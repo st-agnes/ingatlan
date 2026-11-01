@@ -8,7 +8,7 @@ A tároló tartalmazza a fejlesztéshez szükséges .NET 8 SDK, Node.js 22 és M
 
 Más felhős fejlesztőkörnyezet előkészítésekor az installlépés: `bash scripts/cloud-setup.sh`; az indítás: `node scripts/dev.mjs --background`. A telepítő a hiányzó .NET 8 SDK-t a projekt saját, Gitből kizárt `.local/` könyvtárába telepíti. A MySQL-t a mellékelt konfiguráció indítja, vagy a `ConnectionStrings__MySql` változóval megadott szervert használja. A szükséges eszköz- és hálózati jogosultságokat a futtatókörnyezetnek biztosítania kell.
 
-Minden push és pull request elindítja a GitHub Actions ellenőrzést: .NET-fordítás, xUnit-tesztek, 27 JavaScript-teszt és valódi MySQL-en végzett API-integrációs teszt. A tesztadatbázis ideiglenes; az alkalmazás fejlesztői adatbázisa Docker-kötetben marad meg.
+Minden push és pull request elindítja a GitHub Actions ellenőrzést: .NET-fordítás, xUnit-tesztek, 31 JavaScript-teszt és valódi MySQL-en végzett API-integrációs teszt. A tesztadatbázis ideiglenes; az alkalmazás fejlesztői adatbázisa Docker-kötetben marad meg.
 
 Részletes előkészítés és indítás: [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
 
@@ -67,7 +67,7 @@ dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj
 node backend/smoke.mjs http://localhost:5080
 ```
 
-Az átadási környezetben a JavaScript szintaktikai ellenőrzése és a 9 modellteszt, a 7 offline felületi teszt, a 8 API-adapterteszt és a 3 infrastruktúrateszt sikeres. Az API-adaptert backend-formátumú mock válaszokkal ellenőriztük. A .NET- és MySQL-ellenőrzéseket a tároló CI-folyamata végzi el; a tényleges legutóbbi eredmény a GitHub Actions felületén látható. Stripe-próbafizetéshez saját tesztkulcsok szükségesek. Az aktuális ellenőrzési állapotot a `docs/VALIDATION.md` tartalmazza.
+Az átadási környezetben a JavaScript szintaktikai ellenőrzése és a 9 modellteszt, a 7 offline felületi teszt, a 8 API-adapterteszt és a 7 infrastruktúrateszt sikeres. Az API-adaptert backend-formátumú mock válaszokkal ellenőriztük. A .NET- és MySQL-ellenőrzéseket a tároló CI-folyamata végzi el; a tényleges legutóbbi eredmény a GitHub Actions felületén látható. Stripe-próbafizetéshez saját tesztkulcsok szükségesek. Az aktuális ellenőrzési állapotot a `docs/VALIDATION.md` tartalmazza.
 
 ## Élesítés
 

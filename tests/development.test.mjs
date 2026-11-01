@@ -52,3 +52,30 @@ test('local setup creates separate environment entries and preserves existing se
   assert.equal(run().status,0);assert.equal(await readFile(join(root,'.env'),'utf8'),original);
  }finally{await rm(root,{recursive:true,force:true})}
 });
+
+const {supervisorPid,waitForServices,safeLogTail}=await import('../scripts/development-lifecycle.mjs');
+test('background readiness requires both the real web root and proxied API to return 200',async()=>{
+ let clock=0,calls=[];
+ await waitForServices({now:()=>clock,delay:async ms=>{clock+=ms},timeoutMs:1000,intervalMs:100,isAlive:async()=>true,
+  probe:async url=>{calls.push(url);return url.endsWith('/api/health')||clock>=200?200:503;}});
+ assert.equal(clock,200);assert.equal(calls.length,6);assert.ok(calls.includes('http://127.0.0.1:8080/'));
+});
+test('background startup reports a dead supervisor and a bounded readiness timeout',async()=>{
+ await assert.rejects(waitForServices({probe:async()=>200,isAlive:async()=>false}),/supervisor exited/);
+ let clock=0;
+ await assert.rejects(waitForServices({probe:async()=>503,isAlive:async()=>true,now:()=>clock,delay:async ms=>{clock+=ms},timeoutMs:1000,intervalMs:200}),/did not become ready/);
+ assert.equal(clock,1000);
+});
+test('saved development PID must identify the exact service supervisor before reuse',async()=>{
+ const scriptPath='/workspaces/ingatlan/scripts/dev.mjs';let checks=0;
+ const inspect=async(raw,args)=>supervisorPid('/fixture/dev.pid',{scriptPath,check(){checks++},read:async p=>p.endsWith('cmdline')?args:raw});
+ assert.equal(await inspect('42',`node\0${scriptPath}\0--service\0`),42);
+ assert.equal(await inspect('42','node\0/unrelated/server.mjs\0--service\0'),null);
+ assert.equal(await inspect('42',`node\0${scriptPath}\0--background\0`),null);
+ assert.equal(await inspect('0',''),null);assert.equal(checks,3);
+});
+test('startup failure tail is bounded and omits credential-bearing lines',()=>{
+ const output=safeLogTail('ordinary startup\nPassword=do-not-show\nAuthorization: Bearer hidden\nJWT_KEY=private\nAPI exited (1).');
+ assert.ok(output.includes('API exited (1).'));assert.ok(!output.includes('do-not-show'));assert.ok(!output.includes('Bearer'));assert.ok(!output.includes('private'));
+ assert.ok(safeLogTail('x'.repeat(4000)).length<=2000);
+});

@@ -2,6 +2,7 @@ import {spawn,spawnSync} from 'node:child_process';
 import {readFile,writeFile,mkdir,open,access,unlink} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {join} from 'node:path';
+import {supervisorPid,waitForServices,safeLogTail} from './development-lifecycle.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 process.chdir(root);
@@ -15,12 +16,28 @@ if(process.argv.includes('--stop')) {
 }
 if(process.argv.includes('--background')) {
   await mkdir(runtime,{recursive:true});
-  if(await healthy('http://127.0.0.1:8080/api/health')){console.log('Development services already ready at port 8080.');process.exit(0);}
-  try{const pid=Number(await readFile(pidFile,'utf8'));process.kill(pid,0);console.log('Development services are starting; logs: .local/dev.log');process.exit(0);}catch(e){if(!['ENOENT','ESRCH'].includes(e.code))throw e;}
-  const log=await open(join(runtime,'dev.log'),'a',0o600);
-  const child=spawn(process.execPath,[fileURLToPath(import.meta.url),'--service'],{cwd:root,env:process.env,detached:true,stdio:['ignore',log.fd,log.fd]});
-  await writeFile(pidFile,String(child.pid),{mode:0o600});child.unref();await log.close();
-  console.log('Development services starting. Logs: .local/dev.log');process.exit(0);
+  const scriptPath=fileURLToPath(import.meta.url);
+  let pid=await supervisorPid(pidFile,{scriptPath});
+  if(!pid) {
+    await unlink(pidFile).catch(error=>{if(error.code!=='ENOENT')throw error;});
+    const log=await open(join(runtime,'dev.log'),'a',0o600);
+    const child=spawn(process.execPath,[scriptPath,'--service'],{cwd:root,env:process.env,detached:true,stdio:['ignore',log.fd,log.fd]});
+    pid=child.pid;
+    await writeFile(pidFile,String(pid),{mode:0o600});child.unref();await log.close();
+  }
+  try {
+    await waitForServices({
+      probe:async url=>{try{return(await fetch(url,{signal:AbortSignal.timeout(1500)})).status}catch{return 0;}},
+      isAlive:async()=>await supervisorPid(pidFile,{scriptPath})===pid
+    });
+    console.log('Development web and API ready at http://localhost:8080 (forward port 8080 as HTTP).');
+    process.exit(0);
+  }catch(error) {
+    console.error(error.message);
+    try{console.error(safeLogTail(await readFile(join(runtime,'dev.log'),'utf8')));}catch{}
+    console.error('Full local log: .local/dev.log');
+    process.exit(1);
+  }
 }
 await import('./setup-local.mjs');
 const lines=(await readFile(join(root,'.env'),'utf8')).split(/\r?\n/);

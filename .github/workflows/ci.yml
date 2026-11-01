@@ -38,7 +38,7 @@ jobs:
       ConnectionStrings__MySql: Server=127.0.0.1;Port=3306;Database=otthonra_ci;User=otthonra;Password=ci-only-password
       Jwt__Key: ci-only-signing-key-for-disposable-test-environment-2026
       Database__Initialize: "true"
-      Database__SeedDemo: "false"
+      Database__SeedDemo: "true"
       Credits__EnableDemoTopup: "true"
     steps:
       - uses: actions/checkout@v4
@@ -62,63 +62,16 @@ jobs:
           node tests/frontend.test.mjs
           node tests/api.test.mjs
           node tests/development.test.mjs
-      - name: Start API and wait for MySQL readiness
-        shell: bash
-        run: |
-          dotnet run --project backend/Otthonra.Api/Otthonra.Api.csproj --configuration Release --no-build --no-launch-profile --urls http://127.0.0.1:5080 > "$RUNNER_TEMP/otthonra-api.log" 2>&1 &
-          echo "$!" > "$RUNNER_TEMP/otthonra-api.pid"
-          ready=false
-          for attempt in $(seq 1 50); do
-            if curl --fail --silent --max-time 1 http://127.0.0.1:5080/api/health > /dev/null; then
-              ready=true
-              break
-            fi
-            if ! kill -0 "$(cat "$RUNNER_TEMP/otthonra-api.pid")" 2>/dev/null; then
-              cat "$RUNNER_TEMP/otthonra-api.log"
-              exit 1
-            fi
-            sleep 1
-          done
-          if [ "$ready" != true ]; then
-            cat "$RUNNER_TEMP/otthonra-api.log"
-            exit 1
-          fi
-      - name: Start web server and verify same-origin API proxy
-        shell: bash
-        run: |
-          node scripts/serve-web.mjs > "$RUNNER_TEMP/otthonra-web.log" 2>&1 &
-          echo "$!" > "$RUNNER_TEMP/otthonra-web.pid"
-          ready=false
-          for attempt in $(seq 1 10); do
-            if curl --fail --silent --max-time 0.5 http://127.0.0.1:8080/ > /dev/null && curl --fail --silent --max-time 0.5 http://127.0.0.1:8080/api/health > /dev/null; then
-              ready=true
-              break
-            fi
-            if ! kill -0 "$(cat "$RUNNER_TEMP/otthonra-web.pid")" 2>/dev/null; then
-              cat "$RUNNER_TEMP/otthonra-web.log"
-              exit 1
-            fi
-            sleep 0.25
-          done
-          if [ "$ready" != true ]; then
-            cat "$RUNNER_TEMP/otthonra-web.log"
-            exit 1
-          fi
+      - name: Start the actual development supervisor with seeded MySQL
+        run: node scripts/dev.mjs --background
       - name: Test real MySQL and API flows through web proxy
         run: node backend/smoke.mjs http://127.0.0.1:8080
-      - name: Show service logs on failure
+      - name: Show development startup logs on failure
         if: failure()
-        run: |
-          cat "$RUNNER_TEMP/otthonra-api.log" 2>/dev/null || true
-          cat "$RUNNER_TEMP/otthonra-web.log" 2>/dev/null || true
-      - name: Stop API and web server
+        run: tail -n 80 .local/dev.log 2>/dev/null || true
+      - name: Stop development supervisor
         if: always()
-        run: |
-          for service in api web; do
-            if [ -f "$RUNNER_TEMP/otthonra-$service.pid" ]; then
-              kill "$(cat "$RUNNER_TEMP/otthonra-$service.pid")" 2>/dev/null || true
-            fi
-          done
+        run: node scripts/dev.mjs --stop
       - uses: actions/upload-artifact@v4
         if: always()
         with:

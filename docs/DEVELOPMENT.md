@@ -68,4 +68,27 @@ docker compose down
 
 A smoke-teszt új, véletlen nevű tesztfiókokkal fut. Ellenőrzi a jogosultságokat, a párosítás előtti kontaktzárat, az egyidejű ismételt döntés egyszeri kreditlevonását, a kölcsönös találatot és az üzenetküldést. Éles adatbázison ne futtasd.
 
-A `.github/workflows/ci.yml` minden push és pull request esetén külön GitHub Actions futtatóban állítja össze a .NET 8 és MySQL 8 környezetet, fordít, lefuttatja az xUnit-teszteket és a 24 alkalmazási és 3 fejlesztőkörnyezeti JavaScript-tesztet, majd elindított API-val az integrációs smoke-tesztet. A CI-adatbázis és jelszavai egyszer használatos tesztkörnyezethez tartoznak. Személyes vagy éles titok nem szükséges hozzá. A workflow állapotát a repo Actions lapján lehet ellenőrizni; a konfiguráció jelenléte önmagában nem jelenti, hogy a futás már sikeres volt.
+A `.github/workflows/ci.yml` minden push és pull request esetén külön GitHub Actions futtatóban állítja össze a .NET 8 és MySQL 8 környezetet, fordít, lefuttatja az xUnit-teszteket és a 24 alkalmazási és 7 fejlesztőkörnyezeti JavaScript-tesztet, majd elindított API-val az integrációs smoke-tesztet. A CI-adatbázis és jelszavai egyszer használatos tesztkörnyezethez tartoznak. Személyes vagy éles titok nem szükséges hozzá. A workflow állapotát a repo Actions lapján lehet ellenőrizni; a konfiguráció jelenléte önmagában nem jelenti, hogy a futás már sikeres volt.
+
+## Ha a továbbított 8080-as cím 502-t ad
+
+A Ports listája a konfigurációban megadott továbbításokat is tartalmazza, ezért önmagában nem igazolja a webes kiszolgáló futását. A parancsokat a projekt gyökerében kell futtatni, ahol a `scripts/` és `backend/` könyvtár van; a mellékelt devcontainerben ez `/workspaces/ingatlan`.
+
+```sh
+cd /workspaces/ingatlan
+node scripts/dev.mjs --background
+```
+
+Az indító csak akkor tér vissza sikeresen, amikor a webes főoldal és a proxyn át elért API is 200-as állapotot ad. Ha a supervisor leáll vagy az indulás túllépi az időkeretet, hibát és rövid naplórészletet ír ki. A teljes futási napló `.local/dev.log`; ha ez a fájl a megfelelő projektmappában sem létezik, az automatikus indító nem hozta létre a naplót.
+
+A helyi elérés külön ellenőrizhető:
+
+```sh
+curl -I --max-time 5 http://127.0.0.1:8080/
+curl --fail --max-time 5 http://127.0.0.1:5080/api/health
+tail -n 60 .local/dev.log
+```
+
+Ha mindkét helyi végpont működik, de a továbbított cím 502-t ad, a Codespaces továbbítását kell ellenőrizni. A port belső protokollja HTTP, miközben a böngészőben megnyitott külső `app.github.dev` cím HTTPS marad. A devcontainer ezt mindkét portnál explicit beállítja. A meglévő Codespace egyedileg eltárolt protokollját a Ports panelen lehet ellenőrizni. A portot a vizsgálathoz nem kell nyilvánossá tenni.
+
+Az indítás módosításának CI-tesztje ugyanazt a `scripts/dev.mjs --background` parancsot használja, bekapcsolt demóadat-feltöltéssel és valódi MySQL-adatbázissal; ezt követi a webes proxyn keresztüli API-teszt. Ez az indítási láncot ellenőrzi, a felhasználó adott Codespace-ének GitHub-porttovábbítását külön kell megvizsgálni.
