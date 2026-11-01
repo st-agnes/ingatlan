@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+**/bin/
+**/obj/
+**/TestResults/
+*.user
+*.suo
+
+*.zip
+*.tar.gz
+
+.local/
+*.log
