@@ -1,29 +1,29 @@
-# Átadási ellenőrzések
+# Ellenőrzési állapot
 
-## Sikeres
+A .NET és MySQL futtatása a GitHub Actions felhős tesztkörnyezetében sikerült. A korábbi helyi sandboxhibák már nem akadályozzák a tárolóban lévő kód fordításának és adatbázisos működésének ellenőrzését.
+
+Bizonyított futás: [GitHub Actions, 2026. november 1.](https://github.com/st-agnes/ingatlan/actions/runs/41324183251), kódverzió: `1b2d08b92162abc2bef3c81273de537ea7dc069f`. A mindenkori frissebb ellenőrzések a tároló Actions lapján és a pull requestnél láthatók.
 
 | Ellenőrzés | Eredmény |
 |---|---|
-| `node tests/model.test.mjs` | 9/9 sikeres |
-| `node tests/frontend.test.mjs` | 7/7 sikeres, offline szimulált DOM |
-| `node tests/api.test.mjs` | 8/8 sikeres, mock HTTP-válaszok |
-| JavaScript szintaktikai ellenőrzése | Sikeres |
-| JSON-konfigurációk és .csproj XML-fájlok beolvasása | Sikeres |
-| Helyi indítószkript elkülönített ideiglenes könyvtárban | Sikeres: 8 változó, helyes sortörések, 0600 jogosultság, meglévő fájl megőrzése |
-| API-útvonalak, DTO-k és árkonverzió kézi egyeztetése | Sikeres |
+| .NET 8 fordítás | Sikeres |
+| xUnit szerveroldali tesztek | 22/22 sikeres |
+| Böngészős üzleti modell | 9/9 sikeres |
+| Offline felületi integráció | 7/7 sikeres, szimulált DOM |
+| API-adapter | 8/8 sikeres, backend-formátumú mock HTTP-válaszok |
+| Fejlesztői infrastruktúra | 3/3 sikeres |
+| API és MySQL 8 elindítása | Sikeres, elérhető health végpont |
+| Valódi MySQL-es API-integráció | Sikeres |
 
-A modelltesztek a kemény keresési feltételeket, saját entitások kizárását, végleges döntéseket, kölcsönös találatot, kapcsolatvédelmet, egyszeri kreditlevonást, elégtelen egyenlegnél teljes visszagörgetést és újratöltés utáni megőrzést ellenőrzik.
+Az adatbázisos teszt ellenőrizte a regisztrációt, tulajdonosi jogosultságokat, kompatibilis ajánlást, kontaktadatok zárolását, elégtelen egyenleget, párhuzamos ismételt kéréseknél az egyszeri kreditlevonást, kölcsönös párosítást és üzenetküldést.
 
-A felületi tesztek a fő nézetek megjelenítését, a profilváltást, a kedvelést, az üzenetküldést, a profil/keresés mentését és a megszakított húzási mozdulatot ellenőrzik egy függőség nélküli DOM-szimulációban. Ez nem valódi böngészőteszt.
+A valós fordítás során talált EF Core-csomagverzióütközést javítottuk: a futásidejű Core és Relational csomagok explicit azonos verzióval kerülnek át a tesztprojektbe. A MySQL hosszú szöveg- és JSON-mezőit longtext típusra állítottuk a sorhosszkorlát miatt; ehhez regressziós modellteszt is tartozik.
 
-Az adaptertesztek tényleges backend-formátumú JSON-mintákkal ellenőrzik a típusokat, teljes HUF és millió Ft közötti átváltást, hitelesítést, döntési előzményeket, párosítási adatokat, fizetési átirányítást és hibakezelést. Futó .NET API-t nem érnek el.
+## További, külön ellenőrzést igénylő területek
 
-## Nem futtatott
+- Valódi böngészős vizuális/akadálymentességi ellenőrzés és képernyőkép: az offline DOM-tesztek ezt nem helyettesítik.
+- A devcontainer saját képének teljes felépítése: a konfiguráció és az indítószkriptek ellenőrizve, a .NET/MySQL futás a GitHub Actions környezetben igazolt.
+- Stripe tesztfizetés, webhookkézbesítés és pénzügyi egyeztetés: saját Stripe-tesztkulcsok és elérhető webhook szükségesek; fizetés nem történt.
+- Állandó éles tárhely, mentések és monitoring beállítása külön üzembe helyezési feladat.
 
-- .NET build és xUnit-tesztek: a .NET SDK nem állt rendelkezésre, a telepítéshez szükséges hálózati műveletek elakadtak.
-- MySQL-integrációs smoke és párhuzamos tranzakciótesztek: a backend nem indult el ebben a környezetben.
-- Valódi böngészős megjelenés és képernyőkép: a sandbox a helyi HTTP-szerver és a Chromium szükséges socketműveleteit elutasította.
-- Stripe tesztfizetés és webhook: nincs beállított szolgáltatói kulcs; fizetés nem történt.
-- Online közzététel: a Sites-forrás feltöltéséhez szükséges hálózati kapcsolat nem volt elérhető; működő publikált URL nem készült.
-
-A C#-kód és a fizetési integráció forrásként átadva szerepel. A fenti futtatási ellenőrzések elvégzése előtt a szerveroldal és a fizetés nem tekinthető futás közben igazoltnak.
+A CI-adatbázis a futás végén törlődik. A fejlesztőkörnyezet MySQL-adatai Docker-kötetben maradnak meg. A CI sikere a tesztelt folyamatok működését igazolja; nem állítja, hogy minden éles üzemeltetési feltétel készen áll.

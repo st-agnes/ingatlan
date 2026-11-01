@@ -83,17 +83,42 @@ jobs:
             cat "$RUNNER_TEMP/otthonra-api.log"
             exit 1
           fi
-      - name: Test real MySQL and API flows
-        run: node backend/smoke.mjs http://127.0.0.1:5080
-      - name: Show API logs on failure
+      - name: Start web server and verify same-origin API proxy
+        shell: bash
+        run: |
+          node scripts/serve-web.mjs > "$RUNNER_TEMP/otthonra-web.log" 2>&1 &
+          echo "$!" > "$RUNNER_TEMP/otthonra-web.pid"
+          ready=false
+          for attempt in $(seq 1 10); do
+            if curl --fail --silent --max-time 0.5 http://127.0.0.1:8080/ > /dev/null && curl --fail --silent --max-time 0.5 http://127.0.0.1:8080/api/health > /dev/null; then
+              ready=true
+              break
+            fi
+            if ! kill -0 "$(cat "$RUNNER_TEMP/otthonra-web.pid")" 2>/dev/null; then
+              cat "$RUNNER_TEMP/otthonra-web.log"
+              exit 1
+            fi
+            sleep 0.25
+          done
+          if [ "$ready" != true ]; then
+            cat "$RUNNER_TEMP/otthonra-web.log"
+            exit 1
+          fi
+      - name: Test real MySQL and API flows through web proxy
+        run: node backend/smoke.mjs http://127.0.0.1:8080
+      - name: Show service logs on failure
         if: failure()
-        run: cat "$RUNNER_TEMP/otthonra-api.log" 2>/dev/null || true
-      - name: Stop API
+        run: |
+          cat "$RUNNER_TEMP/otthonra-api.log" 2>/dev/null || true
+          cat "$RUNNER_TEMP/otthonra-web.log" 2>/dev/null || true
+      - name: Stop API and web server
         if: always()
         run: |
-          if [ -f "$RUNNER_TEMP/otthonra-api.pid" ]; then
-            kill "$(cat "$RUNNER_TEMP/otthonra-api.pid")" 2>/dev/null || true
-          fi
+          for service in api web; do
+            if [ -f "$RUNNER_TEMP/otthonra-$service.pid" ]; then
+              kill "$(cat "$RUNNER_TEMP/otthonra-$service.pid")" 2>/dev/null || true
+            fi
+          done
       - uses: actions/upload-artifact@v4
         if: always()
         with:

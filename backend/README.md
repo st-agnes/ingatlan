@@ -10,7 +10,7 @@ A projekt gyökerében másold a `.env.example` fájlt `.env` néven, és állí
 docker compose up --build -d
 ```
 
-Felület: `http://localhost:8080`; API: `http://localhost:5080/api`; állapot: `/api/health`. A felület Beállítások → API-kapcsolat részén add meg a `http://localhost:5080` címet, és jelentkezz be. A bejelentkezés másik gépen vagy telefonon csak elérhető, HTTPS-sel védett API-címmel működik.
+Felület: `http://localhost:8080`; API: `http://localhost:5080/api`; állapot: `/api/health`. A felület Beállítások → API-kapcsolat részén add meg a felülettel azonos `http://localhost:8080` címet, és jelentkezz be. A bejelentkezés másik gépen vagy telefonon csak elérhető, HTTPS-sel védett API-címmel működik.
 
 A Development-környezet első üres adatbázisába három példafiók kerül. Jelszavuk: `OtthonraDemo2026!`. Kereső: `anna@otthonra.local`, eladó: `peter@otthonra.local`, harmadik tesztelő: `eszter@otthonra.local`. Péter ingatlanát már ajánlotta Annának; Anna kedvelése kölcsönös párosítást hoz létre. Az adatbázis a `mysql_data` kötetben marad; egy újraindítás nem állítja vissza.
 
@@ -60,4 +60,4 @@ A bankkártyás vásárláshoz Stripe Checkout és aláírt, idempotens webhook-
 node backend/smoke.mjs http://localhost:5080
 ```
 
-A smoke teszt kizárólag új, véletlen nevű tesztfiókokat hoz létre. Éles rendszeren ne futtasd. A MySQL-hálózati és párhuzamossági ellenőrzéshez futó MySQL szükséges.
+A GitHub Actions környezetben a .NET-fordítás, 22 xUnit-teszt és a valódi MySQL-es smoke teszt sikeres volt; részletek: [VALIDATION.md](../docs/VALIDATION.md). A smoke teszt kizárólag új, véletlen nevű tesztfiókokat hoz létre. Éles rendszeren ne futtasd. A MySQL-hálózati és párhuzamossági ellenőrzéshez futó MySQL szükséges.

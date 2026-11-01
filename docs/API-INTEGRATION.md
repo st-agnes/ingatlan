@@ -2,6 +2,8 @@
 
 A webes felület alapértelmezésben böngészőben tárolt demóadatokkal indul. Ez lehetővé teszi a profilváltás, a lapozás, a kölcsönös találat és a kreditfogyás kipróbálását önálló szerver nélkül. A demóban indított kreditfeltöltés nem jár fizetéssel.
 
+A mellékelt fejlesztőkörnyezetben a webes felület ugyanazon az eredeten, `/api` alatt proxyzza a backendet. A kapcsolódási űrlap ezért alapértelmezésben az aktuális webes címet ajánlja fel; továbbított felhős címmel telefonról is ez használandó.
+
 A valódi API használatához indítsd el a MySQL-t és a .NET szervert a projekt üzemeltetési útmutatója szerint. A felület Beállítások oldalán add meg az API alapcímét, majd jelentkezz be vagy regisztrálj. A cím a szerver gyökere legyen; a végén szereplő `/api` részt az adapter eltávolítja, mielőtt összeállítja az útvonalakat.
 
 A `dist/api.js` exportjai:
