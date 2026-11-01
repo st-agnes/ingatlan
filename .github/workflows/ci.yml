@@ -1,0 +1,80 @@
+name: Build and integration tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: otthonra_ci
+          MYSQL_USER: otthonra
+          MYSQL_PASSWORD: ci-only-password
+          MYSQL_ROOT_PASSWORD: ci-only-root-password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="MYSQL_PWD=ci-only-password mysql -h 127.0.0.1 -u otthonra otthonra_ci -e 'SELECT 1' >/dev/null 2>&1"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=30
+    env:
+      DOTNET_NOLOGO: "true"
+      DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__MySql: Server=127.0.0.1;Port=3306;Database=otthonra_ci;User=otthonra;Password=ci-only-password
+      Jwt__Key: ci-only-signing-key-for-disposable-test-environment-2026
+      Database__Initialize: "true"
+      Database__SeedDemo: "true"
+      Credits__EnableDemoTopup: "true"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Restore and build .NET
+        run: |
+          dotnet restore backend/Otthonra.Tests/Otthonra.Tests.csproj
+          dotnet build backend/Otthonra.Tests/Otthonra.Tests.csproj --configuration Release --no-restore
+      - name: Run .NET unit tests
+        run: dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj --configuration Release --no-build --logger "trx;LogFileName=tests.trx"
+      - name: Run JavaScript tests
+        run: |
+          node tests/model.test.mjs
+          node tests/frontend.test.mjs
+          node tests/api.test.mjs
+          node tests/development.test.mjs
+      - name: Start the actual development supervisor with seeded MySQL
+        run: node scripts/dev.mjs --background
+      - name: Test real MySQL and API flows through web proxy
+        run: node backend/smoke.mjs http://127.0.0.1:8080
+      - name: Show development startup logs on failure
+        if: failure()
+        run: tail -n 80 .local/dev.log 2>/dev/null || true
+      - name: Stop development supervisor
+        if: always()
+        run: node scripts/dev.mjs --stop
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dotnet-test-results
+          path: backend/Otthonra.Tests/TestResults/*.trx
+          if-no-files-found: ignore

@@ -1,0 +1,42 @@
+{
+  "name": "Ingatlan · .NET 8 és MySQL 8",
+  "dockerComposeFile": "compose.yml",
+  "service": "development",
+  "workspaceFolder": "/workspaces/ingatlan",
+  "runServices": [
+    "development",
+    "mysql"
+  ],
+  "shutdownAction": "stopCompose",
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
+  "forwardPorts": [
+    8080,
+    5080
+  ],
+  "portsAttributes": {
+    "8080": {
+      "label": "Otthonra web és API",
+      "onAutoForward": "openBrowser",
+      "protocol": "http"
+    },
+    "5080": {
+      "label": ".NET API",
+      "onAutoForward": "silent",
+      "protocol": "http"
+    }
+  },
+  "postCreateCommand": "bash scripts/cloud-setup.sh",
+  "postStartCommand": "node scripts/dev.mjs --background",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp"
+      ]
+    }
+  }
+}
