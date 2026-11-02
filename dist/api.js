@@ -1,4 +1,5 @@
 import { model as demoModel } from './model.js';
+import { getLocation, resolveLegacyLocations } from './locations.js';
 
 export const API_CONFIG_KEY = 'otthonra.api';
 const clone = value => value == null ? value : JSON.parse(JSON.stringify(value));
@@ -52,28 +53,44 @@ const rows = value => Array.isArray(value) ? value : (value?.items || []);
 const initials = name => String(name || '').trim().split(/\s+/).filter(Boolean).map(v => v[0]).slice(0, 2).join('').toUpperCase();
 const millions = value => value == null ? value : Number(value) / MILLION;
 const numeric = value => value == null ? value : Number(value);
+function entityLocations(value, kind, strict = false) {
+  let ids;
+  if (kind === 'property') {
+    if (Object.hasOwn(value, 'locationId') && (strict || value.locationId != null)) ids = [value.locationId];
+    else if (value.location?.id) ids = [value.location.id];
+  } else {
+    if (Object.hasOwn(value, 'locationIds') && (strict || value.locationIds != null)) ids = Array.isArray(value.locationIds) ? value.locationIds : [];
+    else if (Array.isArray(value.locations)) ids = value.locations.map(location=>location.id);
+  }
+  const uniqueIds = ids == null ? null : [...new Set(ids)];
+  const locations = uniqueIds == null ? resolveLegacyLocations(kind === 'search' ? {...value, districts:inputStrings(value.districts)} : value) : uniqueIds.map(getLocation).filter(Boolean);
+  if (strict && (!locations.length || (uniqueIds != null && locations.length !== uniqueIds.length))) throw new Error('Válassz érvényes települést vagy budapesti kerületet a találati listából.');
+  return locations;
+}
 
 function propertyFromApi(value) {
   if (!value) return null;
+  const location = entityLocations(value, 'property')[0] || null;
   return {
     id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''),
-    title: value.title || '', city: value.city || '', district: value.district || '', neighborhood: value.neighborhood || '', address: value.address || '', description: value.description || '', createdAt: value.createdAt,
+    title: value.title || '', locationId:location?.id || '', location:clone(location), city: location?.city ?? value.city ?? '', district: location ? location.district || '' : value.district ?? '', neighborhood: value.neighborhood || '', address: value.address || '', description: value.description || '', createdAt: value.createdAt,
     type: value.type || value.propertyType || 'Lakás',
     price: millions(value.priceHuf ?? value.price), area: numeric(value.area ?? value.areaSqm ?? value.sizeSqm), rooms: numeric(value.rooms ?? value.roomCount),
-    floor: numeric(value.floor), condition: value.condition || '', building: value.building || value.buildingMaterial || '',
+    lotArea: numeric(value.lotArea ?? value.lotAreaSqm ?? null), floor: numeric(value.floor), condition: value.condition || '', building: value.building || value.buildingMaterial || '',
     balcony: !!(value.balcony ?? value.hasBalcony), elevator: !!(value.elevator ?? value.hasElevator),
     images: clone(value.images || value.imageUrls || []), archived: !!(value.archived ?? value.isArchived)
   };
 }
 function searchFromApi(value) {
   if (!value) return null;
+  const locations = entityLocations(value, 'search');
   return {
     id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''),
-    title: value.title || '', city: value.city || '', districts: clone(value.districts || []), description: value.description || '', moveIn: value.moveIn || '', buyerName: value.buyerName || '', financing: value.financing || '', avatar: value.avatar || '', createdAt: value.createdAt,
+    title: value.title || '', locationIds:locations.map(location=>location.id), locations:clone(locations), city: locations[0]?.city ?? value.city ?? '', districts: locations.filter(location=>location.city===locations[0]?.city&&location.district).map(location=>location.district), description: value.description || '', moveIn: value.moveIn || '', buyerName: value.buyerName || '', financing: value.financing || '', avatar: value.avatar || '', createdAt: value.createdAt,
     type: value.type || value.propertyType || 'Lakás',
-    minPrice: millions(value.minPriceHuf ?? value.minPrice), maxPrice: millions(value.maxPriceHuf ?? value.maxPrice),
-    minArea: numeric(value.minArea ?? value.minAreaSqm), maxArea: numeric(value.maxArea ?? value.maxAreaSqm),
-    minRooms: numeric(value.minRooms), maxRooms: numeric(value.maxRooms),
+    minPrice: millions(value.minPriceHuf ?? value.minPrice ?? null), maxPrice: millions(value.maxPriceHuf ?? value.maxPrice ?? null),
+    minArea: numeric(value.minArea ?? value.minAreaSqm ?? null), maxArea: numeric(value.maxArea ?? value.maxAreaSqm ?? null),
+    minRooms: numeric(value.minRooms ?? null), maxRooms: numeric(value.maxRooms ?? null),
     balcony: !!(value.balcony ?? value.requiresBalcony), elevator: !!(value.elevator ?? value.requiresElevator),
     archived: !!(value.archived ?? value.isArchived)
   };
@@ -95,16 +112,22 @@ function propertyToApi(value) {
   if (floor != null && !Number.isInteger(floor)) throw new Error('Az emelet egész szám legyen.');
   const images = Array.isArray(value.images) ? value.images.map(inputText).filter(Boolean) : inputText(value.images).split('\n').map(inputText).filter(Boolean);
   if (images.length > 12 || images.some(image => { try { return new URL(image).protocol !== 'https:' || image.length > 2000; } catch { return true; } })) throw new Error('Az API-hoz legfeljebb 12 HTTPS-képhivatkozás adható meg.');
+  const price = inputNumber(value.price, 'ár'), area = inputNumber(value.area, 'alapterület'), rooms = inputNumber(value.rooms, 'szobaszám');
+  const location = entityLocations(value, 'property', true)[0];
+  const type = inputText(value.type) || 'Lakás';
+  const lotArea = type === 'Ház' ? inputNumber(value.lotArea, 'telekméret', true) : null;
+  if (lotArea != null && lotArea <= 0) throw new Error('A telekméret pozitív szám legyen.');
   return {
-    title: inputText(value.title), city: inputText(value.city), district: inputText(value.district), neighborhood: inputText(value.neighborhood), address: inputText(value.address), description: inputText(value.description),
-    type: inputText(value.type) || 'Lakás', price: Math.round(inputNumber(value.price, 'ár') * MILLION), area: inputNumber(value.area, 'alapterület'), rooms: inputNumber(value.rooms, 'szobaszám'), floor,
+    title: inputText(value.title), locationId:location.id, city:location.city, district:location.district || '', neighborhood: inputText(value.neighborhood), address: inputText(value.address), description: inputText(value.description),
+    type, price: Math.round(price * MILLION), area, rooms, lotArea, floor,
     condition: inputText(value.condition), building: inputText(value.building), balcony: inputBoolean(value.balcony), elevator: inputBoolean(value.elevator), images, archived: inputBoolean(value.archived)
   };
 }
 function searchToApi(value) {
   const minPrice = inputNumber(value.minPrice, 'minimumár', true), maxPrice = inputNumber(value.maxPrice, 'maximumár', true);
+  const locations = entityLocations(value, 'search', true);
   return {
-    title: inputText(value.title), city: inputText(value.city), districts: inputStrings(value.districts), description: inputText(value.description), type: inputText(value.type) || 'Lakás',
+    title: inputText(value.title), locationIds:locations.map(location=>location.id), city:locations[0].city, districts:locations.filter(location=>location.city===locations[0].city&&location.district).map(location=>location.district), description: inputText(value.description), type: inputText(value.type) || 'Lakás',
     minPrice: minPrice == null ? null : Math.round(minPrice * MILLION), maxPrice: maxPrice == null ? null : Math.round(maxPrice * MILLION),
     minArea: inputNumber(value.minArea, 'minimum alapterület', true), maxArea: inputNumber(value.maxArea, 'maximum alapterület', true), minRooms: inputNumber(value.minRooms, 'minimum szobaszám', true), maxRooms: inputNumber(value.maxRooms, 'maximum szobaszám', true),
     balcony: inputBoolean(value.balcony), elevator: inputBoolean(value.elevator), moveIn: inputText(value.moveIn), financing: inputText(value.financing), archived: inputBoolean(value.archived)

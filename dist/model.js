@@ -1,3 +1,5 @@
+import { getLocation, resolveLegacyLocations, matchesLocations } from './locations.js';
+
 /** Browser-only demonstration store. Real deployments use the authenticated .NET API. */
 export const STORAGE_KEY = 'otthonra.demo.v3';
 export const SELLER_LIKE_COST = 2;
@@ -6,6 +8,32 @@ const uid = prefix => `${prefix}-${globalThis.crypto?.randomUUID?.() || `${Date.
 const photos = ['/assets/home.jpg','/assets/living.jpg','/assets/bedroom.jpg','/assets/kitchen.jpg','/assets/terrace.jpg','/assets/living.jpg'];
 const normalized = value => String(value || '').trim().toLocaleLowerCase('hu');
 const numeric = (value, fallback) => value === '' || value == null ? fallback : Number(value);
+const locationError = () => new Error('Válassz érvényes települést vagy budapesti kerületet a találati listából.');
+function withLocations(entity, kind, strict = false) {
+  let locations;
+  if (kind === 'property' && Object.hasOwn(entity, 'locationId') && (strict || entity.locationId != null)) {
+    const location = getLocation(entity.locationId);
+    locations = location ? [location] : [];
+    if (strict && !location) throw locationError();
+  } else if (kind === 'search' && Object.hasOwn(entity, 'locationIds') && (strict || entity.locationIds != null)) {
+    const ids = Array.isArray(entity.locationIds) ? [...new Set(entity.locationIds)] : [];
+    locations = ids.map(getLocation).filter(Boolean);
+    if (strict && (!ids.length || locations.length !== ids.length)) throw locationError();
+  } else {
+    locations = resolveLegacyLocations(entity);
+  }
+  if (strict && !locations.length) throw locationError();
+  if (kind === 'property') {
+    const location = locations[0] || null;
+    return {...entity, locationId:location?.id || '', location:clone(location), city:location?.city ?? entity.city ?? '', district:location ? location.district || '' : entity.district ?? '', lotArea:entity.type === 'Ház' ? numeric(entity.lotArea, null) : null};
+  }
+  return {...entity, locationIds:locations.map(location=>location.id), locations:clone(locations), city:locations[0]?.city ?? entity.city ?? '', districts:locations.filter(location=>location.city === locations[0]?.city && location.district).map(location=>location.district)};
+}
+function migrateLocations(state) {
+  state.properties = state.properties.map(entity=>withLocations(entity, 'property'));
+  state.searches = state.searches.map(entity=>withLocations(entity, 'search'));
+  return state;
+}
 const visibleEntity = entity => {
   const result = clone(entity);
   delete result.email; delete result.phone;
@@ -63,9 +91,8 @@ function seed(now) {
 
 export function isCompatible(property,search) {
   if (!property || !search || property.archived || search.archived || property.ownerId===search.ownerId) return false;
-  if (search.city && normalized(property.city)!==normalized(search.city)) return false;
+  if (!matchesLocations(property, search)) return false;
   if (search.type && !['bármilyen','mindegy','összes'].includes(normalized(search.type)) && normalized(property.type)!==normalized(search.type)) return false;
-  if (search.districts?.length && !search.districts.some(d=>normalized(d).replace(/\./g,'')===normalized(property.district).replace(/\./g,''))) return false;
   for (const [field,min,max] of [['price','minPrice','maxPrice'],['area','minArea','maxArea'],['rooms','minRooms','maxRooms']]) {
     if (!Number.isFinite(Number(property[field]))) return false;
     if (search[min]!=null && Number(property[field])<Number(search[min])) return false;
@@ -81,7 +108,7 @@ export function isCompatible(property,search) {
 export function createModel(storage=globalThis.localStorage, now=()=>new Date().toISOString()) {
   let state;
   try {const saved=JSON.parse(storage?.getItem(STORAGE_KEY)||'null');if(saved?.version===3&&Array.isArray(saved.properties)&&Array.isArray(saved.searches)&&Array.isArray(saved.decisions)&&Array.isArray(saved.matches)&&Array.isArray(saved.users)&&Number.isFinite(saved.credits))state=saved;} catch {}
-  state ||= seed(now);
+  state = migrateLocations(state || seed(now));
   const own = (s,kind,id) => (kind==='property'?s.properties:s.searches).find(e=>e.id===id&&e.ownerId===s.userId);
   const transact = fn => {
     const draft=clone(state);
@@ -115,7 +142,8 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         const likedYou=state.decisions.some(d=>d.propertyId===property.id&&d.searchId===search.id&&d.actorKind!==state.active.kind&&d.liked);
         const reasons=['Megfelelő elhelyezkedés','Árkereten belül','Ideális alapterület'];
         if(property.rooms>=3)reasons.push('Elegendő szoba');
-        const budgetFit=1-Math.abs(property.price-(search.minPrice+search.maxPrice)/2)/Math.max(1,search.maxPrice-search.minPrice);
+        const boundedBudget=search.minPrice!=null&&search.maxPrice!=null;
+        const budgetFit=boundedBudget?Math.max(0,1-Math.abs(property.price-(search.minPrice+search.maxPrice)/2)/Math.max(1,search.maxPrice-search.minPrice)):0.75;
         const score=Math.min(99,Math.round(92+budgetFit*5+(likedYou?2:0)));
         const data=visibleEntity(candidate);
         if(state.active.kind==='property') {
@@ -160,16 +188,15 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         if(id&&!existing)throw new Error('Ez a profil nem szerkeszthető.');
         const title=String(data.title??existing?.title??'').trim();
         if(title.length<3||title.length>150)throw new Error('Adj meg egy 3–150 karakteres nevet.');
-        const entity={...existing,...clone(data),id:existing?.id||uid(kind==='property'?'p':'s'),ownerId:s.userId,title,city:String(data.city??existing?.city??'Budapest').trim(),type:String(data.type??existing?.type??'Lakás'),archived:existing?.archived??false,createdAt:existing?.createdAt||now()};
-        if(!entity.city)throw new Error('A település megadása kötelező.');
+        const entity=withLocations({...existing,...clone(data),id:existing?.id||uid(kind==='property'?'p':'s'),ownerId:s.userId,title,type:String(data.type??existing?.type??'Lakás'),archived:existing?.archived??false,createdAt:existing?.createdAt||now()},kind,true);
         if(kind==='property'){
           for(const field of ['price','area','rooms']){entity[field]=numeric(entity[field],NaN);if(!Number.isFinite(entity[field])||entity[field]<=0)throw new Error('Az ár, az alapterület és a szobaszám legyen pozitív szám.');}
           entity.district=String(entity.district||'').trim();entity.neighborhood=String(entity.neighborhood||'');
+          if(entity.lotArea!=null&&(!Number.isFinite(entity.lotArea)||entity.lotArea<=0))throw new Error('A telekméret pozitív szám legyen.');
           entity.images=Array.isArray(entity.images)?entity.images.filter(u=>typeof u==='string'&&/^(https?:\/\/|\/assets\/|data:image\/(png|jpe?g|webp|gif);base64,)/i.test(u)):[];
           entity.condition ||= 'Jó állapotú';entity.building ||= 'Tégla';entity.floor=numeric(entity.floor,0);entity.balcony=!!entity.balcony;entity.elevator=!!entity.elevator;
         }else{
-          entity.districts=Array.isArray(entity.districts)?entity.districts.map(String):String(entity.districts||'').split(',').map(d=>d.trim()).filter(Boolean);
-          for(const [min,max] of [['minPrice','maxPrice'],['minArea','maxArea'],['minRooms','maxRooms']]){entity[min]=numeric(entity[min],0);entity[max]=numeric(entity[max],1000000);if(!Number.isFinite(entity[min])||!Number.isFinite(entity[max])||entity[min]<0||entity[max]<entity[min]||entity[max]<=0)throw new Error('A minimum érték nem lehet nagyobb a maximumnál.');}
+          for(const [min,max] of [['minPrice','maxPrice'],['minArea','maxArea'],['minRooms','maxRooms']]){entity[min]=numeric(entity[min],null);entity[max]=numeric(entity[max],null);if((entity[min]!=null&&(!Number.isFinite(entity[min])||entity[min]<0))||(entity[max]!=null&&(!Number.isFinite(entity[max])||entity[max]<=0))||(entity[min]!=null&&entity[max]!=null&&entity[max]<entity[min]))throw new Error('A minimum érték nem lehet nagyobb a maximumnál; a korlátok érvényes számok legyenek.');}
           entity.balcony=!!entity.balcony;entity.elevator=!!entity.elevator;entity.moveIn ||= 'Rugalmas';
         }
         const list=kind==='property'?s.properties:s.searches;
@@ -193,7 +220,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       return transact(s=>{const record=s.matches.find(m=>m.id===matchId);if(!record||!getMatch(s,record))throw new Error('Csak kölcsönös találat után küldhetsz üzenetet.');const message={id:uid('message'),senderId:s.userId,text,createdAt:now()};record.messages.push(message);record.unread=0;return message;});
     },
     markRead(matchId){return transact(s=>{const record=s.matches.find(m=>m.id===matchId);if(!record||!getMatch(s,record))throw new Error('A találat nem érhető el.');record.unread=0;return true;});},
-    reset(){const next=seed(now);try{storage?.setItem(STORAGE_KEY,JSON.stringify(next));}catch{throw new Error('A demó nem állítható vissza.');}state=next;return this.getState();}
+    reset(){const next=migrateLocations(seed(now));try{storage?.setItem(STORAGE_KEY,JSON.stringify(next));}catch{throw new Error('A demó nem állítható vissza.');}state=next;return this.getState();}
   };
 }
 export const model=createModel();

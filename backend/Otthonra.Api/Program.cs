@@ -50,8 +50,10 @@ if (builder.Configuration.GetValue<bool>("Database:Initialize"))
     await using var scope = app.Services.CreateAsyncScope();
     var db = scope.ServiceProvider.GetRequiredService<AppDb>();
     await db.Database.EnsureCreatedAsync();
+    await SchemaUpgrade.ApplyAsync(db);
     if (development && builder.Configuration.GetValue<bool>("Database:SeedDemo")) await Seed.Run(db);
 }
+app.MapGet("/api/locations", (string? q, int? limit) => Results.Ok(new { items = LocationCatalog.Search(q, limit ?? 8) }));
 app.MapGet("/api/health", async Task<IResult> (AppDb db) => await db.Database.CanConnectAsync() ? Results.Ok(new { status = "ready" }) : Results.Json(new { status = "database-unavailable" }, statusCode: 503));
 
 object Session(User user)

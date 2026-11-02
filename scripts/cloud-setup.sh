@@ -27,4 +27,5 @@ node tests/model.test.mjs
 node tests/frontend.test.mjs
 node tests/api.test.mjs
 node tests/development.test.mjs
+node tests/locations.test.mjs
 printf '%s\n' 'Setup complete. Start .NET, MySQL, and the web UI with: node scripts/dev.mjs'

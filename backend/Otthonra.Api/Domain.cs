@@ -42,10 +42,8 @@ public static class Rules
     public static bool Compatible(Property p, SearchRequest s)
     {
         if (p.Archived || s.Archived || p.OwnerId == s.OwnerId) return false;
-        if (Normalize(p.City) != Normalize(s.City)) return false;
+        if (!LocationCatalog.Matches(p, s)) return false;
         if (!string.IsNullOrWhiteSpace(s.Type) && Normalize(p.Type) != Normalize(s.Type)) return false;
-        var districts = Dto.Strings(s.DistrictsJson);
-        if (districts.Length > 0 && !districts.Any(d => Normalize(d).Replace(".", "") == Normalize(p.District).Replace(".", ""))) return false;
         return Within(p.Price, s.MinPrice, s.MaxPrice) && Within(p.Area, s.MinArea, s.MaxArea) && Within(p.Rooms, s.MinRooms, s.MaxRooms)
             && (!s.Balcony || p.Balcony) && (!s.Elevator || p.Elevator);
     }
@@ -62,10 +60,14 @@ public static class Rules
     public static string[] Reasons(Property p, SearchRequest s) => new[] { "Megfelelő elhelyezkedés", "A megadott árkereten belül", "Megfelelő alapterület és szobaszám" }.Concat(s.Balcony ? new[] { "Erkéllyel" } : Array.Empty<string>()).Concat(s.Elevator ? new[] { "Liftes épület" } : Array.Empty<string>()).ToArray();
     public static void Apply(Property p, PropertyInput i)
     {
-        p.Title = Required(PublicText(i.Title, 150), "cím", 150); p.City = Required(PublicText(i.City, 100), "település", 100); p.Type = Required(PublicText(i.Type, 50), "ingatlantípus", 50);
+        p.Title = Required(PublicText(i.Title, 150), "cím", 150); p.Type = Required(PublicText(i.Type, 50), "ingatlantípus", 50);
+        var location = LocationCatalog.ResolvePropertyInput(i.LocationId, i.City, i.District);
+        p.LocationId = location.Id; p.City = location.City; p.District = location.District ?? "";
         if (i.Price <= 0 || i.Price > 1_000_000_000_000m || i.Area <= 0 || i.Area > 1_000_000 || i.Rooms <= 0 || i.Rooms > 1000 || i.Floor < -5 || i.Floor > 200) throw new ApiException(400, "Az ár, alapterület, szobaszám vagy emelet érvénytelen.");
         p.Price = i.Price; p.Area = i.Area; p.Rooms = i.Rooms; p.Floor = i.Floor;
-        p.District = PublicText(i.District, 50); p.Neighborhood = PublicText(i.Neighborhood, 100); p.Address = Optional(i.Address, 255); p.Description = PublicText(i.Description);
+        if (Normalize(p.Type) == "HAZ" && (i.LotArea <= 0 || i.LotArea > 10_000_000)) throw new ApiException(400, "A telekméret pozitív szám legyen, legfeljebb 10 000 000 m².");
+        p.LotArea = Normalize(p.Type) == "HAZ" ? i.LotArea : null;
+        p.Neighborhood = PublicText(i.Neighborhood, 100); p.Address = Optional(i.Address, 255); p.Description = PublicText(i.Description);
         p.Condition = PublicText(i.Condition, 100); p.Building = PublicText(i.Building, 100); p.Balcony = i.Balcony; p.Elevator = i.Elevator; p.Archived = i.Archived;
         var images = i.Images ?? [];
         if (images.Length > 12 || images.Any(x => !Uri.TryCreate(x, UriKind.Absolute, out var uri) || uri.Scheme != "https" || x.Length > 2000)) throw new ApiException(400, "Legfeljebb 12 HTTPS-képhivatkozás adható meg.");
@@ -74,12 +76,16 @@ public static class Rules
     }
     public static void Apply(SearchRequest s, SearchInput i)
     {
-        s.Title = Required(PublicText(i.Title, 150), "megnevezés", 150); s.City = Required(PublicText(i.City, 100), "település", 100); s.Type = Required(PublicText(i.Type, 50), "ingatlantípus", 50);
+        s.Title = Required(PublicText(i.Title, 150), "megnevezés", 150); s.Type = Required(PublicText(i.Type, 50), "ingatlantípus", 50);
         Range(i.MinPrice, i.MaxPrice, "ár"); Range(i.MinArea, i.MaxArea, "alapterület"); Range(i.MinRooms, i.MaxRooms, "szobaszám");
         s.MinPrice = i.MinPrice; s.MaxPrice = i.MaxPrice; s.MinArea = i.MinArea; s.MaxArea = i.MaxArea; s.MinRooms = i.MinRooms; s.MaxRooms = i.MaxRooms;
         var districts = i.Districts ?? [];
         if (districts.Length > 50 || districts.Any(x => x is null || x.Length > 50)) throw new ApiException(400, "Érvénytelen kerületlista.");
-        s.DistrictsJson = System.Text.Json.JsonSerializer.Serialize(districts.Select(x => PublicText(x, 50)).Where(x => x.Length > 0).Distinct());
+        var locations = LocationCatalog.ResolveSearchInput(i.LocationIds, i.City, districts);
+        s.LocationIdsJson = System.Text.Json.JsonSerializer.Serialize(locations.Select(x => x.Id));
+        s.City = locations[0].City;
+        var sameCity = locations.Where(x => x.City == s.City).ToArray();
+        s.DistrictsJson = System.Text.Json.JsonSerializer.Serialize(sameCity.Any(x => x.District is null) ? Array.Empty<string>() : sameCity.Select(x => x.District!).Distinct());
         s.Description = PublicText(i.Description); s.MoveIn = PublicText(i.MoveIn, 100); s.Financing = PublicText(i.Financing, 255); s.Balcony = i.Balcony; s.Elevator = i.Elevator; s.Archived = i.Archived;
     }
 }

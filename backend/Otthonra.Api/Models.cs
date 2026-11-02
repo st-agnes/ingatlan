@@ -24,6 +24,8 @@ public sealed class Property
     public string Title { get; set; } = "";
     public string City { get; set; } = "";
     public string District { get; set; } = "";
+    public string LocationId { get; set; } = "";
+    public decimal? LotArea { get; set; }
     public string Neighborhood { get; set; } = "";
     public string Address { get; set; } = "";
     public string Description { get; set; } = "";
@@ -47,6 +49,7 @@ public sealed class SearchRequest
     public string Title { get; set; } = "";
     public string City { get; set; } = "";
     public string DistrictsJson { get; set; } = "[]";
+    public string? LocationIdsJson { get; set; } = "[]";
     public string Description { get; set; } = "";
     public string Type { get; set; } = "Lakás";
     public decimal? MinPrice { get; set; }
@@ -157,11 +160,11 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
 
 public static class Dto
 {
-    public static string[] Strings(string json) => JsonSerializer.Deserialize<string[]>(json) ?? [];
+    public static string[] Strings(string? json) => string.IsNullOrWhiteSpace(json) ? [] : JsonSerializer.Deserialize<string[]>(json) ?? [];
     public static object Profile(User u) => new { u.Id, u.Name, u.Email, u.Phone, u.Credits, u.ActiveKind, u.ActiveEntityId, u.CreatedAt };
     // Public cards intentionally contain no user/contact object or exact street address.
-    public static object Property(Property p, bool own = false) => new { p.Id, p.OwnerId, p.Title, p.City, p.District, p.Neighborhood, Address = own ? p.Address : "", p.Description, p.Type, p.Price, p.Area, p.Rooms, p.Floor, p.Condition, p.Building, p.Balcony, p.Elevator, Images = Strings(p.ImagesJson), p.Archived, p.CreatedAt };
-    public static object Search(SearchRequest s) => new { s.Id, s.OwnerId, s.Title, s.City, Districts = Strings(s.DistrictsJson), s.Description, s.Type, s.MinPrice, s.MaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, s.Balcony, s.Elevator, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
+    public static object Property(Property p, bool own = false) => new { p.Id, p.OwnerId, p.Title, p.City, p.District, p.Neighborhood, Address = own ? p.Address : "", p.Description, locationId = LocationCatalog.ForProperty(p)?.Id ?? p.LocationId, location = LocationCatalog.ForProperty(p), p.Type, p.Price, p.Area, p.LotArea, p.Rooms, p.Floor, p.Condition, p.Building, p.Balcony, p.Elevator, Images = Strings(p.ImagesJson), p.Archived, p.CreatedAt };
+    public static object Search(SearchRequest s) => new { s.Id, s.OwnerId, s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds = LocationCatalog.ForSearch(s).Select(x => x.Id), locations = LocationCatalog.ForSearch(s), s.Description, s.Type, s.MinPrice, s.MaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, s.Balcony, s.Elevator, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
     public static object Message(Message m) => new { m.Id, m.MatchId, m.SenderId, m.Text, m.CreatedAt };
 }
 
@@ -172,5 +175,5 @@ public record ActiveInput(string Kind, Guid Id);
 public record DecisionInput(Guid PropertyId, Guid SearchRequestId, bool Liked);
 public record MessageInput(string Text);
 public record TopupInput(int Amount);
-public record PropertyInput(string Title, string City, string? District, string? Neighborhood, string? Address, string? Description, string Type, decimal Price, decimal Area, decimal Rooms, int? Floor, string? Condition, string? Building, bool Balcony, bool Elevator, string[]? Images, bool Archived = false);
-public record SearchInput(string Title, string City, string[]? Districts, string? Description, string Type, decimal? MinPrice, decimal? MaxPrice, decimal? MinArea, decimal? MaxArea, decimal? MinRooms, decimal? MaxRooms, bool Balcony, bool Elevator, string? MoveIn, string? Financing, bool Archived = false);
+public record PropertyInput(string Title, string City, string? District, string? Neighborhood, string? Address, string? Description, string Type, decimal Price, decimal Area, decimal Rooms, int? Floor, string? Condition, string? Building, bool Balcony, bool Elevator, string[]? Images, bool Archived = false, string? LocationId = null, decimal? LotArea = null);
+public record SearchInput(string Title, string City, string[]? Districts, string? Description, string Type, decimal? MinPrice, decimal? MaxPrice, decimal? MinArea, decimal? MaxArea, decimal? MinRooms, decimal? MaxRooms, bool Balcony, bool Elevator, string? MoveIn, string? Financing, bool Archived = false, string[]? LocationIds = null);
