@@ -37,8 +37,8 @@ test('judgements persist across reloads, returned objects cannot mutate state',(
  const state=again.getState();state.credits=999;state.searches[0].title='Tampered';assert.notEqual(again.getState().credits,999);assert.notEqual(again.getState().searches[0].title,'Tampered');
 });
 test('both profile types can be created, validated, activated, and archived without losing matches',()=>{
- const m=setup();assert.throws(()=>m.saveEntity('search',{title:'Bad',minPrice:80,maxPrice:50}),/minimum/);
- const q=m.saveEntity('search',{title:'Új keresésem',districts:['XI.'],minPrice:55,maxPrice:80,minArea:50,maxArea:70,minRooms:2,maxRooms:3});m.activate('search',q.id);assert.ok(m.feed().length);
+ const m=setup();assert.throws(()=>m.saveEntity('search',{title:'Bad',locationIds:['district:Budapest:11'],minPrice:80,maxPrice:50}),/minimum/);
+ const q=m.saveEntity('search',{title:'Új keresésem',locationIds:['district:Budapest:11'],minPrice:55,maxPrice:80,minArea:50,maxArea:70,minRooms:2,maxRooms:3});m.activate('search',q.id);assert.ok(m.feed().length);
  m.deleteEntity('search',q.id);assert.notEqual(m.getState().active.id,q.id);assert.equal(m.matches().length,3);
  assert.throws(()=>m.activate('search',q.id),/aktiválható/);
  assert.throws(()=>m.activate('property','p1'),/aktiválható/);
@@ -53,3 +53,59 @@ test('compatibility handles required balcony/elevator and exact district/type/si
  assert.ok(isCompatible(p,s));assert.equal(isCompatible(p,{...s,balcony:true}),false);assert.equal(isCompatible(p,{...s,districts:['XIII.']}),false);assert.equal(isCompatible(p,{...s,minRooms:3}),false);assert.equal(isCompatible(p,{...s,maxPrice:59}),false);assert.equal(isCompatible(p,{...s,type:'Ház'}),false);
 });
 test('storage failure does not commit mutation',()=>{const m=createModel({getItem:()=>null,setItem:()=>{throw new Error('quota')}});assert.throws(()=>m.buyDemoCredits(20),/tárhely/);assert.equal(m.getState().credits,24)});
+
+test('several towns and Budapest districts form an OR filter, with Budapest city covering every district',()=>{
+ const property={ownerId:'seller',type:'Lakás',price:60,area:60,rooms:2};
+ const search={ownerId:'buyer',type:'Lakás',locationIds:['city:Debrecen','city:Hajdúszoboszló','city:Hajdúsámson']};
+ for(const city of ['Debrecen','Hajdúszoboszló','Hajdúsámson'])assert.ok(isCompatible({...property,locationId:`city:${city}`},search));
+ assert.equal(isCompatible({...property,locationId:'city:Szeged'},search),false);
+ const mixed={...search,locationIds:['district:Budapest:5','district:Budapest:9','city:Solymár','city:Pilisvörösvár']};
+ for(const id of mixed.locationIds)assert.ok(isCompatible({...property,locationId:id},mixed));
+ assert.equal(isCompatible({...property,locationId:'district:Budapest:11'},mixed),false);
+ assert.ok(isCompatible({...property,locationId:'district:Budapest:11'},{...mixed,locationIds:['city:Budapest']}));
+ assert.equal(isCompatible({...property,locationId:'city:Budapest'},{...mixed,locationIds:['district:Budapest:5']}),false);
+});
+
+test('unselected or unknown locations are rejected and canonical selections override stale legacy fields',()=>{
+ const m=setup();const data={title:'Új keresés',maxPrice:80};
+ for(const locationIds of [[],['city:Nemlétező'],['city:Debrecen','city:Nemlétező']])assert.throws(()=>m.saveEntity('search',{...data,locationIds}),/találati listából/);
+ assert.throws(()=>m.saveEntity('search',data),/találati listából/);
+ assert.throws(()=>m.saveEntity('property',{title:'Ismeretlen ház',locationId:'city:Nemlétező',price:50,area:70,rooms:3}),/találati listából/);
+ const q=m.saveEntity('search',{...data,locationIds:['city:Debrecen','city:Solymár'],city:'Szeged'});
+ assert.deepEqual(q.locations.map(location=>location.city),['Debrecen','Solymár']);assert.equal(q.city,'Debrecen');
+ const p=m.saveEntity('property',{title:'Debreceni lakás',locationId:'city:Debrecen',city:'Budapest',district:'XI.',price:60,area:60,rooms:2});
+ assert.equal(p.city,'Debrecen');assert.equal(p.district,'');
+});
+
+test('blank optional limits remain null after saving and reloading, with no artificial upper bound or invalid score',()=>{
+ const storage=store();const m=createModel(storage);
+ const q=m.saveEntity('search',{title:'Korlátok nélküli keresés',locationIds:['city:Budapest'],minPrice:'',maxPrice:200,minArea:1,maxArea:'',minRooms:1,maxRooms:null});
+ m.activate('search',q.id);
+ const again=createModel(storage);const saved=again.getState().searches.find(search=>search.id===q.id);
+ assert.deepEqual([saved.minPrice,saved.maxArea,saved.maxRooms],[null,null,null]);
+ assert.ok(again.feed().length);assert.ok(again.feed().every(card=>Number.isFinite(card.score)));
+ assert.ok(isCompatible({ownerId:'seller',locationId:'district:Budapest:5',type:'Lakás',price:0.01,area:2000001,rooms:1000001},saved));
+});
+
+test('legacy v3 records migrate in memory without losing decisions, matches, credits or IDs',()=>{
+ const storage=store();const initial=createModel(storage);const first=initial.feed()[0];initial.decide(first,false);
+ const old=JSON.parse(storage.getItem(STORAGE_KEY));
+ for(const property of old.properties){delete property.locationId;delete property.location;delete property.lotArea;}
+ for(const search of old.searches){delete search.locationIds;delete search.locations;}
+ storage.setItem(STORAGE_KEY,JSON.stringify(old));
+ const migrated=createModel(storage);const state=migrated.getState();
+ assert.equal(state.properties[0].id,'own-p1');assert.equal(state.properties[0].locationId,'district:Budapest:11');
+ assert.deepEqual(state.searches[0].locationIds,['district:Budapest:13','district:Budapest:11','district:Budapest:2']);
+ assert.equal(migrated.feed().some(card=>card.id===first.id),false);assert.equal(migrated.matches().length,3);assert.equal(state.credits,24);
+ assert.equal(storage.getItem(STORAGE_KEY),JSON.stringify(old),'migration does not overwrite a saved store until a successful edit');
+});
+
+test('house plot area survives save and reload and is cleared when changing to an apartment',()=>{
+ const storage=store();const m=createModel(storage);
+ const p=m.saveEntity('property',{title:'Családi ház Solymáron',locationId:'city:Solymár',type:'Ház',price:95,area:110,rooms:4,lotArea:'750.5'});
+ assert.equal(p.location.city,'Solymár');assert.equal(p.lotArea,750.5);
+ const again=createModel(storage);assert.equal(again.getState().properties.find(property=>property.id===p.id).lotArea,750.5);
+ assert.throws(()=>again.saveEntity('property',{...p,lotArea:0},p.id),/telekméret/);
+ assert.throws(()=>again.saveEntity('property',{...p,lotArea:'hibás'},p.id),/telekméret/);
+ const changed=again.saveEntity('property',{...p,type:'Lakás'},p.id);assert.equal(changed.lotArea,null);
+});

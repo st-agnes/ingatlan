@@ -19,3 +19,38 @@ A helyi `otthonra.api` kulcs kizárólag az API-címet és a Bearer tokent tarta
 A külön telepített webes felület pontos eredetét a backend engedélyezett CORS-eredetei közé kell felvenni. A HTTPS-en megnyitott webes felülethez HTTPS API-t használj. Fejlesztéskor a frontend és a backend egyaránt futhat helyi HTTP-címen.
 
 A webes árak millió forintban szerepelnek; az adapter a backend teljes forintban tárolt árait két irányban átváltja. Az API-adapternek átadott képcímeknek más kliensekből is elérhetőnek kell lenniük. A demó `/assets/` képei kizárólag a webes demó saját mintaképei.
+
+## Helyválasztás és opcionális mezők
+
+Az ingatlan mentésekor `locationId`, keresési igénynél legalább egy érvényes helyet tartalmazó `locationIds` tömb adandó meg. A felület mindkét oldalon a találatok közül enged választani; a begépelt szöveg önmagában nem helyazonosító. A keresési igényhez több választás megadható és egyenként eltávolítható.
+
+A katalógus a nyilvános `GET /api/locations?q=Deb&limit=8` végponton is elérhető, Bearer token nélkül. Válaszának alakja:
+
+```json
+{"items":[{"id":"city:Debrecen","label":"Debrecen","city":"Debrecen","district":null}]}
+```
+
+A budapesti kerület például `{"id":"district:Budapest:5","label":"Budapest V. kerület","city":"Budapest","district":"V."}`. A teljes város azonosítója `city:Budapest`. A frontend a közös katalógus helyi modulját használja, ezért az automatikus kiegészítéshez nincs szüksége külső szolgáltatásra. A forrás, licenc és frissítési útmutató a [LOCATION-DATA.md](LOCATION-DATA.md) fájlban található.
+
+A mentési szerződés például:
+
+```js
+await model.saveEntity('search', {
+  title: 'Közös otthont keresünk',
+  locationIds: ['district:Budapest:5', 'district:Budapest:9', 'city:Solymár', 'city:Pilisvörösvár'],
+  type: 'Lakás', minPrice: null, maxPrice: 85,
+  minArea: 50, maxArea: null, minRooms: 2, maxRooms: null
+});
+```
+
+A kiválasztott helyek között VAGY kapcsolat van; az összes többi keresési feltétel továbbra is érvényes. Ugyanígy választható együtt Debrecen, Hajdúszoboszló és Hajdúsámson. A teljes Budapest minden kerületet elfogad; a Budapest V. kerület választása önmagában csak az V. kerületet. Egy csak városig pontosított budapesti ingatlan nem tekinthető valamely konkrét kerületben lévőnek.
+
+A `getState()`, `feed()` és `matches()` ingatlanadataiban `locationId` és `location`, keresési adataiban `locationIds` és `locations` szerepel. A helyobjektum alakja a fenti katalógusrekorddal azonos. A régi `city`, `district`, `districts` mezők megmaradnak a kompatibilitáshoz; többvárosos keresés megjelenítéséhez a `locations` címkéit használd. Az azonosítók az irányadók. Az adapter a régi API-válaszok ismert település- és kerületneveit is felismeri, az ismeretlen vagy üres, explicit választást mentéskor elutasítja.
+
+A keresési minimumár, maximum alapterület és maximum szobaszám üresen hagyható. A form, a demómodell és az API-adapter `null` értékként kezeli és mentés/visszaolvasás után is megőrzi ezeket. A `null` nyitott korlátot jelent; nem helyettesíthető nullával vagy egy nagy felső határral. A fenti példában az adapter `maxPrice: 85000000` értéket küld a backendnek, a három nyitott korlát pedig `null` marad.
+
+Házhoz a `lotArea` pozitív számként, m²-ben adható meg; az üres mező `null`. Más ingatlantípusra váltáskor a telekméret `null` lesz. A `lotArea` a visszaadott ingatlanadatokon is elérhető.
+
+## Meglévő adatok
+
+A demó továbbra is az `otthonra.demo.v3` kulcsot használja. A modell a korábbi helyadatokat betöltéskor értelmezi, és megőrzi az entitások azonosítóit, döntéseit, párosításait és kreditegyenlegét. A MySQL-adatbázishoz a backend `20261102-locations-and-lot-area` additív `SchemaUpgrade` frissítése tartozik: `Database__Initialize=true` mellett az `EnsureCreated` után fut, meglévő sorok törlése nélkül. A régi helymezők olvasáskor is használhatók; nincs szükség adatbázis- vagy kötettörlésre. Részletek: [backend/README.md](../backend/README.md).

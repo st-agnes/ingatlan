@@ -52,6 +52,8 @@ test('property form strings become correctly typed .NET JSON and prices round-tr
   assert.equal(body.elevator, false);
   assert.equal('ownerId' in body, false);
   assert.equal(result.price, 72.9);
+  assert.equal(body.locationId, 'district:Budapest:11');
+  assert.equal(result.location.label, 'Budapest XI. kerület');
   assert.equal(calls[0].headers.Authorization, 'Bearer sample-token');
   await assert.rejects(adapter().saveEntity('property', { price: 'invalid', area: 5, rooms: 1 }), /érvényes szám/);
   await assert.rejects(adapter().saveEntity('property', { price: 5, area: 5, rooms: 1, floor: 1.5 }), /egész szám/);
@@ -64,6 +66,7 @@ test('search form serializes nullable bounds, district arrays, and boolean DTO f
   await adapter().saveEntity('search', { title: 'Keresés', city: 'Budapest', type: 'Lakás', districts: 'XI., XIII.', minPrice: '55', maxPrice: '85', minArea: '', maxArea: '85', minRooms: '2', maxRooms: '4', balcony: 'on', elevator: false });
   const body = JSON.parse(calls[0].body);
   assert.deepEqual(body.districts, ['XI.', 'XIII.']);
+  assert.deepEqual(body.locationIds, ['district:Budapest:11', 'district:Budapest:13']);
   assert.deepEqual([body.minPrice, body.maxPrice, body.minArea, body.maxArea, body.minRooms, body.maxRooms], [55000000, 85000000, null, 85, 2, 4]);
   assert.equal(body.balcony, true);
   assert.equal(body.elevator, false);
@@ -91,6 +94,8 @@ test('profile state maps active GUIDs and historical decision snapshots from HUF
   assert.equal(state.credits, 24);
   assert.deepEqual(state.active, { kind: 'search', id: ids.search });
   assert.equal(state.properties[0].price, 72.9);
+  assert.equal(state.properties[0].locationId, 'district:Budapest:13');
+  assert.deepEqual(state.searches[0].locationIds, ['district:Budapest:13']);
   assert.equal(state.searches[0].maxPrice, 85);
   assert.equal(state.decisions[0].property.price, 72.9);
   assert.equal(state.decisions[0].search.minPrice, 55);
@@ -152,4 +157,56 @@ test('a failed connection check never replaces a previously working saved connec
   routes(accountRoutes({ '/api/auth/login': { accessToken: 'new-token' }, '/api/me': () => response({ message: 'Unavailable' }, 503) }));
   await assert.rejects(connectApi('https://api.example.hu', 'anna@example.hu', 'sample-password'), /Unavailable/);
   assert.equal(globalThis.localStorage.getItem(API_CONFIG_KEY), original);
+});
+
+test('mixed canonical locations and blank optional limits round-trip without changing their meaning', async () => {
+  const calls = routes({ '/api/searches': options => response({ id: ids.search, ...JSON.parse(options.body) }, 201) });
+  const selected = ['district:Budapest:5', 'district:Budapest:9', 'city:Solymár', 'city:Pilisvörösvár'];
+  const result = await adapter().saveEntity('search', { title: 'Több helyen keresek', locationIds: selected, city: 'Szeged', type: 'Ház', minPrice: '', maxPrice: '99.9', minArea: '60', maxArea: null, minRooms: '2', maxRooms: '' });
+  const body = JSON.parse(calls[0].body);
+  assert.deepEqual(body.locationIds, selected);
+  assert.deepEqual(body.districts, ['V.', 'IX.']);
+  assert.equal(body.city, 'Budapest');
+  assert.deepEqual([body.minPrice, body.maxPrice, body.maxArea, body.maxRooms], [null, 99900000, null, null]);
+  assert.deepEqual(result.locationIds, selected);
+  assert.deepEqual(result.locations.map(location => location.label), ['Budapest V. kerület', 'Budapest IX. kerület', 'Solymár', 'Pilisvörösvár']);
+  assert.deepEqual([result.minPrice, result.maxPrice, result.maxArea, result.maxRooms], [null, 99.9, null, null]);
+  const towns = ['city:Debrecen', 'city:Hajdúszoboszló', 'city:Hajdúsámson'];
+  const townResult = await adapter().saveEntity('search', { title: 'Hajdúsági otthon', locationIds: towns, maxPrice: 80 });
+  assert.deepEqual(townResult.locationIds, towns);
+  assert.deepEqual(townResult.districts, []);
+});
+
+test('unknown and unselected canonical locations cannot be posted, even alongside valid legacy fields', async () => {
+  const calls = routes({});
+  const data = { title: 'Hibás választás', city: 'Budapest', price: 70, area: 60, rooms: 3 };
+  for (const locationId of ['', 'city:Nemlétező']) await assert.rejects(adapter().saveEntity('property', { ...data, locationId }), /találati listából/);
+  for (const locationIds of [[], ['city:Nemlétező'], ['city:Debrecen', 'city:Nemlétező']]) await assert.rejects(adapter().saveEntity('search', { ...data, locationIds }), /találati listából/);
+  await assert.rejects(adapter().saveEntity('search', { title: 'Nincs kiválasztva' }), /találati listából/);
+  assert.equal(calls.length, 0);
+});
+
+test('house plot area is a nullable numeric DTO field and is cleared for apartments', async () => {
+  const calls = routes({ '/api/properties': options => response({ id: ids.property, ...JSON.parse(options.body) }, 201) });
+  const data = { title: 'Kertes ház', locationId: 'city:Solymár', type: 'Ház', price: '105.5', area: '115', rooms: '4', lotArea: '720.5' };
+  const house = await adapter().saveEntity('property', data);
+  assert.equal(JSON.parse(calls[0].body).lotArea, 720.5);
+  assert.equal(house.lotArea, 720.5);
+  assert.equal(house.locationId, 'city:Solymár');
+  const noPlot = await adapter().saveEntity('property', { ...data, lotArea: '' });
+  assert.equal(noPlot.lotArea, null);
+  const apartment = await adapter().saveEntity('property', { ...data, type: 'Lakás' });
+  assert.equal(apartment.lotArea, null);
+  await assert.rejects(adapter().saveEntity('property', { ...data, lotArea: 0 }), /telekméret/);
+  await assert.rejects(adapter().saveEntity('property', { ...data, lotArea: 'hibás' }), /érvényes szám/);
+  assert.equal(calls.length, 3);
+});
+
+test('canonical location DTO objects work when reading an API response without legacy fields', async () => {
+  routes(accountRoutes({ '/api/me/entities': { properties: [{ ...property, city: undefined, district: undefined, location: { id: 'district:Budapest:9' } }], searchRequests: [{ ...search, city: undefined, districts: undefined, locations: [{ id: 'city:Debrecen' }, { id: 'city:Hajdúszoboszló' }], minPrice: null, maxArea: null, maxRooms: null }] } }));
+  const state = await adapter().getState();
+  assert.equal(state.properties[0].locationId, 'district:Budapest:9');
+  assert.equal(state.properties[0].city, 'Budapest');
+  assert.deepEqual(state.searches[0].locationIds, ['city:Debrecen', 'city:Hajdúszoboszló']);
+  assert.deepEqual([state.searches[0].minPrice, state.searches[0].maxArea, state.searches[0].maxRooms], [null, null, null]);
 });

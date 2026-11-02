@@ -17,6 +17,10 @@ public class SchemaAndInputTests
         Assert.Equal("longtext", db.Model.FindEntityType(typeof(Property))!.FindProperty(nameof(Property.Description))!.GetColumnType());
         Assert.Equal("longtext", db.Model.FindEntityType(typeof(Property))!.FindProperty(nameof(Property.ImagesJson))!.GetColumnType());
         Assert.Equal("longtext", db.Model.FindEntityType(typeof(SearchRequest))!.FindProperty(nameof(SearchRequest.DistrictsJson))!.GetColumnType());
+        Assert.Equal("longtext", db.Model.FindEntityType(typeof(SearchRequest))!.FindProperty(nameof(SearchRequest.LocationIdsJson))!.GetColumnType());
+        Assert.True(db.Model.FindEntityType(typeof(SearchRequest))!.FindProperty(nameof(SearchRequest.LocationIdsJson))!.IsNullable);
+        var lotArea = db.Model.FindEntityType(typeof(Property))!.FindProperty(nameof(Property.LotArea))!;
+        Assert.True(lotArea.IsNullable); Assert.Equal(18, lotArea.GetPrecision()); Assert.Equal(2, lotArea.GetScale());
         Assert.Equal("longtext", db.Model.FindEntityType(typeof(Message))!.FindProperty(nameof(Message.Text))!.GetColumnType());
         Assert.Equal(255, db.Model.FindEntityType(typeof(User))!.FindProperty(nameof(User.Email))!.GetMaxLength());
     }

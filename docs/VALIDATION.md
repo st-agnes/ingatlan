@@ -1,5 +1,26 @@
 # Ellenőrzési állapot
 
+## Településválasztó és többhelyszínes keresés
+
+A 2026. november 2-i fejlesztés teljes ellenőrzése sikeres. Bizonyított futás: [GitHub Actions](https://github.com/st-agnes/ingatlan/actions/runs/41409659020), kódverzió: `3341917edfdfb7f228ec09e2e1d354530535bc0f`.
+
+| Ellenőrzés | Eredmény |
+|---|---|
+| Közös településkatalógus és szűrés | 5/5 sikeres |
+| Böngészős üzleti modell és régi demóadatok | 14/14 sikeres |
+| Offline felületi integráció | 10/10 sikeres, szimulált DOM |
+| API-adapter | 12/12 sikeres, mock HTTP-válaszok |
+| Fejlesztői infrastruktúra | 7/7 sikeres |
+| .NET 8 fordítás és xUnit | Sikeres, 30/30 teszt |
+| Docker API, beágyazott katalógussal | Sikeres build |
+| Valódi MySQL-es API-integráció | Sikeres |
+| Korábbi séma frissítése, adatmegőrzés | Sikeres |
+| Ismételt indítás, adatmegőrzés | Sikeres |
+
+Az új CI a települések és budapesti kerületek vegyes kiválasztását, a nyitott keresési határokat és a házak telekméretét is vizsgálja. Külön, ideiglenes adatbázison ellenőrzi a korábbi séma frissítését, a felhasználók, entitások, matchek, üzenetek és kreditnapló megőrzését, valamint az ismételt indítást. A három új oszlop eltávolítása kizárólag ebben az eldobható CI-adatbázisban történik; az alkalmazás frissítése csak hiányzó oszlopokat ad hozzá.
+
+## Az első verzió ellenőrzése
+
 A .NET és MySQL futtatása a GitHub Actions felhős tesztkörnyezetében sikerült. A korábbi helyi sandboxhibák már nem akadályozzák a tárolóban lévő kód fordításának és adatbázisos működésének ellenőrzését.
 
 Bizonyított futás: [GitHub Actions, 2026. november 1.](https://github.com/st-agnes/ingatlan/actions/runs/41324183251), kódverzió: `1b2d08b92162abc2bef3c81273de537ea7dc069f`. A mindenkori frissebb ellenőrzések a tároló Actions lapján és a pull requestnél láthatók.

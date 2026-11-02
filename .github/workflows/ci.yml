@@ -40,6 +40,7 @@ jobs:
       Database__Initialize: "true"
       Database__SeedDemo: "true"
       Credits__EnableDemoTopup: "true"
+      OTTHONRA_UPGRADE_FIXTURE: .local/upgrade-fixture.json
     steps:
       - uses: actions/checkout@v4
         with:
@@ -56,16 +57,34 @@ jobs:
           dotnet build backend/Otthonra.Tests/Otthonra.Tests.csproj --configuration Release --no-restore
       - name: Run .NET unit tests
         run: dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj --configuration Release --no-build --logger "trx;LogFileName=tests.trx"
+      - name: Build Docker API with embedded location catalogue
+        run: docker build --file backend/Dockerfile --tag otthonra-api:ci .
       - name: Run JavaScript tests
         run: |
           node tests/model.test.mjs
           node tests/frontend.test.mjs
           node tests/api.test.mjs
           node tests/development.test.mjs
+          node tests/locations.test.mjs
       - name: Start the actual development supervisor with seeded MySQL
         run: node scripts/dev.mjs --background
       - name: Test real MySQL and API flows through web proxy
         run: node backend/smoke.mjs http://127.0.0.1:8080
+      - name: Simulate the previous schema in the disposable CI database
+        run: |
+          node scripts/dev.mjs --stop
+          sleep 3
+          docker exec --env MYSQL_PWD=ci-only-password "${{ job.services.mysql.id }}" mysql --user=otthonra otthonra_ci --execute="ALTER TABLE Properties DROP COLUMN LocationId, DROP COLUMN LotArea; ALTER TABLE SearchRequests DROP COLUMN LocationIdsJson; DELETE FROM __OtthonraSchemaVersions WHERE Version = '20261102-locations-and-lot-area';"
+      - name: Upgrade existing data and verify preservation
+        run: |
+          node scripts/dev.mjs --background
+          node backend/upgrade-smoke.mjs http://127.0.0.1:8080
+      - name: Verify schema upgrade is idempotent
+        run: |
+          node scripts/dev.mjs --stop
+          sleep 3
+          node scripts/dev.mjs --background
+          node backend/upgrade-smoke.mjs http://127.0.0.1:8080
       - name: Show development startup logs on failure
         if: failure()
         run: tail -n 80 .local/dev.log 2>/dev/null || true
