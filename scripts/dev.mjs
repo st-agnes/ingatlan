@@ -2,7 +2,7 @@ import {spawn,spawnSync} from 'node:child_process';
 import {readFile,writeFile,mkdir,open,access,unlink,rm,rename,stat} from 'node:fs/promises';
 import {createConnection} from 'node:net';
 import {fileURLToPath} from 'node:url';
-import {join} from 'node:path';
+import {join,resolve} from 'node:path';
 import {supervisorPid,waitForServices,safeLogTail} from './development-lifecycle.mjs';
 import {developmentConfig} from './development-config.mjs';
 
@@ -28,7 +28,7 @@ async function withCommandLock(action){
    if(error.code!=='EEXIST')throw error;
    let stale=false;
    try{const current=JSON.parse(await readFile(owner,'utf8'));if(!Number.isSafeInteger(current.pid)||current.pid<=1)throw new Error('Invalid lifecycle lock.');
-    if(!alive(current.pid))stale=true;else{const args=String(await readFile(`/proc/${current.pid}/cmdline`,'utf8')).split('\0');stale=!args.includes(scriptPath);}
+    if(!alive(current.pid))stale=true;else{const args=String(await readFile(`/proc/${current.pid}/cmdline`,'utf8')).split('\0');stale=resolve(root,args[1]||'')!==scriptPath;}
    }catch(error){if(error instanceof SyntaxError||error.code==='ENOENT'||error.code==='ESRCH'){try{stale=Date.now()-(await stat(lock)).mtimeMs>5000;}catch(error){if(error.code!=='ENOENT')throw error;}}else throw error;}
    if(stale){await rm(lock,{recursive:true,force:true});continue;}
    if(Date.now()>=deadline)throw new Error('Another development start/stop command is still running. Check node scripts/dev.mjs --status.');

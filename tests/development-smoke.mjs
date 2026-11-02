@@ -26,7 +26,7 @@ async function waitUntil(probe,{timeoutMs=45000,label='condition'}={}){
 
 function command(flag,extraEnv={},timeoutMs=150000){
  return new Promise((resolve,reject)=>{
-  const child=spawn(process.execPath,[devScript,flag],{cwd:root,env:{...process.env,WEB_PORT:'3000',...extraEnv},stdio:['ignore','pipe','pipe']});
+  const child=spawn(process.execPath,['scripts/dev.mjs',flag],{cwd:root,env:{...process.env,WEB_PORT:'3000',...extraEnv},stdio:['ignore','pipe','pipe']});
   let output='',settled=false;
   const append=chunk=>{output=(output+chunk.toString()).slice(-24000);};
   child.stdout.on('data',append);child.stderr.on('data',append);
