@@ -1,5 +1,9 @@
 # Ellenőrzési állapot
 
+## Fejlesztői indítás és helyreállítás
+
+A helyi JavaScript-csomag 63 sikeres tesztet tartalmaz, ebből 13 a fejlesztői konfiguráció és életciklus ellenőrzése. A CI külön élő folyamattesztet futtat: API nélküli webes elérés, ismételt és párhuzamos indítás, megvárt leállás, azonnali újraindítás, egyéni webport és API-/webfolyamat-kiesés utáni helyreállítás. A Codespaces külső porttovábbítását ez nem helyettesíti. A teljes eredmény a PR aktuális CI-futásánál látható.
+
 ## Helyszínválasztó és keresésindítás javítása
 
 A helyi csomag 57 JavaScript-tesztet tartalmaz, mind sikeres: 5 katalógus-, 14 modell-, 12 API-adapter-, 19 offline felületi és 7 infrastruktúrateszt. A kilenc új regresszió a külső kattintást és fókuszváltást, a beírt szöveg megőrzését, az eseménykezelők eltávolítását, valamint a mentés utáni visszajelzést, aktiválást és hibakezelést ellenőrzi.

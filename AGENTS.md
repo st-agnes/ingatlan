@@ -6,9 +6,11 @@ This is Otthonra, a Hungarian real-estate matching application. The backend is .
 
 - The `.devcontainer/` configuration supplies the .NET SDK, Node.js 22, and MySQL, then runs the setup/start commands automatically.
 - In another supported development environment, run `bash scripts/cloud-setup.sh`. It installs a missing SDK into ignored `.local/dotnet`, restores, builds, and checks the project.
+- The development web port is configured once by `scripts/development-config.mjs` (default 3000); listener, readiness and forwarded URLs must agree. Full Docker Compose keeps its separate web port 8080.
+- Use `node scripts/dev.mjs --restart` to wait for a complete stop and start. Start/stop commands serialize through a local lock; postStart and postAttach may call them together. Keep owned API/web process groups independent and restart failed children without taking the web down on API failure. Status is read-only: `node scripts/dev.mjs --status`.
 - Start services with `node scripts/dev.mjs --background`; logs are in `.local/dev.log`. Stop the supervisor with `node scripts/dev.mjs --stop`.
 - `ConnectionStrings__MySql` selects a supplied database. Without it, the development supervisor starts the root Compose MySQL service.
-- The web UI is on port 8080 and proxies `/api` to .NET. Use the forwarded web origin when connecting from a phone or remote browser.
+- The web UI is on port 3000 and proxies `/api` to .NET. Use the forwarded web origin when connecting from a phone or remote browser.
 - The backend Docker build context is the repository root (`docker build -f backend/Dockerfile .`), because it embeds `dist/data/settlements.json` shared with the browser.
 - With `Database__Initialize=true`, startup runs `EnsureCreated` and then the additive, repeatable `SchemaUpgrade` version `20261102-locations-and-lot-area`. Existing rows use canonical legacy-location fallback; do not delete the database or Docker volume to apply this upgrade. This is a targeted upgrade, not a general EF migration system.
 - In a managed cloud, use its provided network/proxy/CA and Docker instructions. Diagnose denied operations or service errors rather than disabling sandboxing, TLS verification, or credential protections.
@@ -26,11 +28,11 @@ node tests/development.test.mjs
 node tests/locations.test.mjs
 ```
 
-With Development API and MySQL running, `node backend/smoke.mjs http://localhost:8080` checks real authorization, contact privacy, matching, messaging, and concurrent single credit billing through the web proxy. It creates disposable test accounts. GitHub Actions runs the complete suite with an ephemeral MySQL service.
+With Development API and MySQL running, `node backend/smoke.mjs http://localhost:3000` checks real authorization, contact privacy, matching, messaging, and concurrent single credit billing through the web proxy. It creates disposable test accounts. GitHub Actions runs the complete suite with an ephemeral MySQL service.
 
-The JavaScript suites currently contain 57 tests: locations 5, model 14, API adapter 12, frontend 19, and development 7. Passing mock/offline tests does not establish .NET or real MySQL success; report those only after checking CI. CI also verifies upgrading an initial-release schema and starting it again without losing data.
+The JavaScript suites currently contain 63 tests: locations 5, model 14, API adapter 12, frontend 19, and development 13. Passing mock/offline tests does not establish .NET or real MySQL success; report those only after checking CI. CI runs `node tests/development-smoke.mjs` against its disposable database to verify custom ports, concurrent startup, completed shutdown, immediate restart and child crash recovery. CI also verifies upgrading an initial-release schema and starting it again without losing data.
 
-The real-browser regressions in `tests/browser.test.mjs` check input geometry, pointer/touch and keyboard dismissal, and search creation/activation at desktop, tablet, and mobile sizes. CI installs pinned Playwright into ignored `.local/browser-tests` and runs `node tests/browser.test.mjs http://localhost:8080` while the web server is running. Browser failure screenshots are CI artifacts.
+The real-browser regressions in `tests/browser.test.mjs` check input geometry, pointer/touch and keyboard dismissal, and search creation/activation at desktop, tablet, and mobile sizes. CI installs pinned Playwright into ignored `.local/browser-tests` and runs `node tests/browser.test.mjs http://localhost:3000` while the web server is running. Browser failure screenshots are CI artifacts.
 
 ## Business and data rules
 

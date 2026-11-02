@@ -68,29 +68,29 @@ jobs:
           node tests/locations.test.mjs
       - name: Start the actual development supervisor with seeded MySQL
         run: node scripts/dev.mjs --background
+      - name: Test real development restarts, recovery and configured ports
+        run: node tests/development-smoke.mjs
       - name: Test real MySQL and API flows through web proxy
-        run: node backend/smoke.mjs http://127.0.0.1:8080
+        run: node backend/smoke.mjs http://127.0.0.1:3000
       - name: Install browser regression tools
         run: |
           npm install --prefix .local/browser-tests --no-save --no-package-lock playwright@1.56.1
           .local/browser-tests/node_modules/.bin/playwright install --with-deps chromium
       - name: Test location picker and search creation in Chromium
-        run: node tests/browser.test.mjs http://127.0.0.1:8080
+        run: node tests/browser.test.mjs http://127.0.0.1:3000
       - name: Simulate the previous schema in the disposable CI database
         run: |
           node scripts/dev.mjs --stop
-          sleep 3
           docker exec --env MYSQL_PWD=ci-only-password "${{ job.services.mysql.id }}" mysql --user=otthonra otthonra_ci --execute="ALTER TABLE Properties DROP COLUMN LocationId, DROP COLUMN LotArea; ALTER TABLE SearchRequests DROP COLUMN LocationIdsJson; DELETE FROM __OtthonraSchemaVersions WHERE Version = '20261102-locations-and-lot-area';"
       - name: Upgrade existing data and verify preservation
         run: |
           node scripts/dev.mjs --background
-          node backend/upgrade-smoke.mjs http://127.0.0.1:8080
+          node backend/upgrade-smoke.mjs http://127.0.0.1:3000
       - name: Verify schema upgrade is idempotent
         run: |
           node scripts/dev.mjs --stop
-          sleep 3
           node scripts/dev.mjs --background
-          node backend/upgrade-smoke.mjs http://127.0.0.1:8080
+          node backend/upgrade-smoke.mjs http://127.0.0.1:3000
       - name: Show development startup logs on failure
         if: failure()
         run: tail -n 80 .local/dev.log 2>/dev/null || true

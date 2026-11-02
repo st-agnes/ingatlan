@@ -4,11 +4,13 @@ Magyar nyelvű ingatlanpárosító alkalmazás. Egy felhasználó több ingatlan
 
 ## Fejlesztőkörnyezet a felhőben
 
-A tároló tartalmazza a fejlesztéshez szükséges .NET 8 SDK, Node.js 22 és MySQL 8 környezet konfigurációját a `.devcontainer/` alatt. Devcontainer-kompatibilis felhős környezetben (például GitHub Codespaces) a környezet automatikusan telepít, fordít és indít. A webes felület a továbbított **8080-as porton** érhető el, az API ugyanazon a címen, az `/api` útvonal alatt működik. Telefonon sem kell a távoli API localhost-címét kézzel megadni.
+A tároló tartalmazza a fejlesztéshez szükséges .NET 8 SDK, Node.js 22 és MySQL 8 környezet konfigurációját a `.devcontainer/` alatt. Devcontainer-kompatibilis felhős környezetben (például GitHub Codespaces) a környezet automatikusan telepít, fordít és indít. A webes felület a továbbított **3000-es porton** érhető el, az API ugyanazon a címen, az `/api` útvonal alatt működik. Telefonon sem kell a távoli API localhost-címét kézzel megadni.
 
 Más felhős fejlesztőkörnyezet előkészítésekor az installlépés: `bash scripts/cloud-setup.sh`; az indítás: `node scripts/dev.mjs --background`. A telepítő a hiányzó .NET 8 SDK-t a projekt saját, Gitből kizárt `.local/` könyvtárába telepíti. A MySQL-t a mellékelt konfiguráció indítja, vagy a `ConnectionStrings__MySql` változóval megadott szervert használja. A szükséges eszköz- és hálózati jogosultságokat a futtatókörnyezetnek biztosítania kell.
 
-Minden push és pull request elindítja a GitHub Actions ellenőrzést: .NET-fordítás, xUnit-tesztek, 57 JavaScript-teszt és valódi MySQL-en végzett API-integrációs, illetve sémafrissítési teszt. A tesztadatbázis ideiglenes; az alkalmazás fejlesztői adatbázisa Docker-kötetben marad meg.
+Minden push és pull request elindítja a GitHub Actions ellenőrzést: .NET-fordítás, xUnit-tesztek, 63 JavaScript-teszt és valódi MySQL-en végzett API-integrációs, illetve sémafrissítési teszt. A tesztadatbázis ideiglenes; az alkalmazás fejlesztői adatbázisa Docker-kötetben marad meg.
+
+Fejlesztői újraindítás: `node scripts/dev.mjs --restart`; állapotellenőrzés: `node scripts/dev.mjs --status`. A parancs kiírja a tényleges helyi és Codespaces-címet. A webes felület API-hibánál is elérhető marad, a leálló szolgáltatásokat a felügyelő újraindítja. A Codespace-hez történő visszacsatlakozáskor az indítás automatikusan lefut.
 
 Részletes előkészítés és indítás: [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
 
@@ -77,7 +79,7 @@ dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj
 node backend/smoke.mjs http://localhost:5080
 ```
 
-A 57 JavaScript-teszt sikeres: 5 katalógus-, 14 modell-, 12 API-adapter-, 19 offline felületi és 7 infrastruktúrateszt. A GitHub Actionsben a .NET-fordítás, 30 xUnit-teszt, Docker-build és a valódi MySQL-es API-integráció is sikeres. A korábbi séma frissítése és az ismételt újraindítás megőrizte a tesztelt adatokat. Az API-adaptert backend-formátumú mock válaszokkal ellenőriztük; az offline felületi tesztek szimulált DOM-ot használnak. A CI külön valódi Chromium-próbát is futtat asztali, tablet- és mobilméretben a helyszínválasztó és a keresésindítás ellenőrzésére. Stripe-próbafizetéshez saját tesztkulcsok szükségesek. Részletek és futáslink: [docs/VALIDATION.md](docs/VALIDATION.md).
+A 63 JavaScript-teszt sikeres: 5 katalógus-, 14 modell-, 12 API-adapter-, 19 offline felületi és 13 infrastruktúrateszt. A GitHub Actionsben a .NET-fordítás, 30 xUnit-teszt, Docker-build és a valódi MySQL-es API-integráció is sikeres. A korábbi séma frissítése és az ismételt újraindítás megőrizte a tesztelt adatokat. Az API-adaptert backend-formátumú mock válaszokkal ellenőriztük; az offline felületi tesztek szimulált DOM-ot használnak. A CI külön valódi Chromium-próbát is futtat asztali, tablet- és mobilméretben a helyszínválasztó és a keresésindítás ellenőrzésére. Stripe-próbafizetéshez saját tesztkulcsok szükségesek. Részletek és futáslink: [docs/VALIDATION.md](docs/VALIDATION.md).
 
 ## Meglévő adatok frissítése
 
