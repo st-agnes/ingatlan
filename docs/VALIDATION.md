@@ -1,5 +1,11 @@
 # Ellenőrzési állapot
 
+## Helyszínválasztó és keresésindítás javítása
+
+A helyi csomag 57 JavaScript-tesztet tartalmaz, mind sikeres: 5 katalógus-, 14 modell-, 12 API-adapter-, 19 offline felületi és 7 infrastruktúrateszt. A kilenc új regresszió a külső kattintást és fókuszváltást, a beírt szöveg megőrzését, az eseménykezelők eltávolítását, valamint a mentés utáni visszajelzést, aktiválást és hibakezelést ellenőrzi.
+
+A `tests/browser.test.mjs` valódi Chromiumban, 1280×900, 800×1100 és 390×844 méretben vizsgálja, hogy a találati lista nem takarja el a beírt szöveget. Az érintéses/kattintásos bezárás, a billentyűzetes választás, a sikeres mentés, a felfedezés gomb és a „Később” folyamat is része. Ezt a CI futtatja; eredménye és hiba esetén képernyőképei a pull request ellenőrzéseinél találhatók. A korábbi verziók bizonyított eredményei alább maradnak meg.
+
 ## Településválasztó és többhelyszínes keresés
 
 A 2026. november 2-i fejlesztés teljes ellenőrzése sikeres. Bizonyított futás: [GitHub Actions](https://github.com/st-agnes/ingatlan/actions/runs/41409659020), kódverzió: `3341917edfdfb7f228ec09e2e1d354530535bc0f`.

@@ -28,10 +28,14 @@ node tests/locations.test.mjs
 
 With Development API and MySQL running, `node backend/smoke.mjs http://localhost:8080` checks real authorization, contact privacy, matching, messaging, and concurrent single credit billing through the web proxy. It creates disposable test accounts. GitHub Actions runs the complete suite with an ephemeral MySQL service.
 
-The JavaScript suites currently contain 48 tests: locations 5, model 14, API adapter 12, frontend 10, and development 7. Passing mock/offline tests does not establish .NET or real MySQL success; report those only after checking CI. CI also verifies upgrading an initial-release schema and starting it again without losing data.
+The JavaScript suites currently contain 57 tests: locations 5, model 14, API adapter 12, frontend 19, and development 7. Passing mock/offline tests does not establish .NET or real MySQL success; report those only after checking CI. CI also verifies upgrading an initial-release schema and starting it again without losing data.
+
+The real-browser regressions in `tests/browser.test.mjs` check input geometry, pointer/touch and keyboard dismissal, and search creation/activation at desktop, tablet, and mobile sizes. CI installs pinned Playwright into ignored `.local/browser-tests` and runs `node tests/browser.test.mjs http://localhost:8080` while the web server is running. Browser failure screenshots are CI artifacts.
 
 ## Business and data rules
 
+- Creating a search must confirm the saved entity and offer discovery. Activate its saved ID only when the user chooses discovery; await activation before navigation. Dismissal preserves the previous active entity. Editing does not reopen the creation prompt.
+- Location suggestions must not obscure their input. Outside pointer/focus closes suggestions without selecting or erasing text; clean up per-editor document listeners when the modal closes or is replaced.
 - An account can own multiple properties and searches. Every action checks ownership and the active entity.
 - Only compatible property/search pairs enter the feed; already judged pairs stay excluded for that side.
 - A property selects one canonical `locationId`; a search selects a nonempty `locationIds` array. Public `GET /api/locations?q=&limit=` returns `{items:[{id,label,city,district}]}`. Explicit unknown IDs must fail validation. Keep legacy city/district reads compatible only with known catalogue values.

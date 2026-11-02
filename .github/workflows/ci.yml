@@ -70,6 +70,12 @@ jobs:
         run: node scripts/dev.mjs --background
       - name: Test real MySQL and API flows through web proxy
         run: node backend/smoke.mjs http://127.0.0.1:8080
+      - name: Install browser regression tools
+        run: |
+          npm install --prefix .local/browser-tests --no-save --no-package-lock playwright@1.56.1
+          .local/browser-tests/node_modules/.bin/playwright install --with-deps chromium
+      - name: Test location picker and search creation in Chromium
+        run: node tests/browser.test.mjs http://127.0.0.1:8080
       - name: Simulate the previous schema in the disposable CI database
         run: |
           node scripts/dev.mjs --stop
@@ -96,4 +102,10 @@ jobs:
         with:
           name: dotnet-test-results
           path: backend/Otthonra.Tests/TestResults/*.trx
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-failure-screenshots
+          path: .local/browser-tests/screenshots/*.png
           if-no-files-found: ignore
