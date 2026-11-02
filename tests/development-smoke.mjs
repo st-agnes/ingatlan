@@ -26,7 +26,8 @@ async function waitUntil(probe,{timeoutMs=45000,label='condition'}={}){
 
 function command(flag,extraEnv={},timeoutMs=150000){
  return new Promise((resolve,reject)=>{
-  const child=spawn(process.execPath,['scripts/dev.mjs',flag],{cwd:root,env:{...process.env,WEB_PORT:'3000',...extraEnv},stdio:['ignore','pipe','pipe']});
+  const args=['scripts/dev.mjs'];if(flag!==undefined)args.push(flag);
+  const child=spawn(process.execPath,args,{cwd:root,env:{...process.env,WEB_PORT:'3000',...extraEnv},stdio:['ignore','pipe','pipe']});
   let output='',settled=false;
   const append=chunk=>{output=(output+chunk.toString()).slice(-24000);};
   child.stdout.on('data',append);child.stderr.on('data',append);
@@ -135,6 +136,9 @@ async function main(){
  const first=await status();assert.equal(first.webPort,3000);
  await command('--background');
  assert.equal((await status()).supervisorPid,first.supervisorPid,'Repeated startup must reuse the running supervisor');
+ await command();
+ assert.equal((await status()).supervisorPid,first.supervisorPid,'Default startup must reuse the same managed supervisor');
+ assert.equal((await request(defaultOrigin)).status,200);assert.equal((await request(defaultOrigin,'/api/health')).status,200);
  await command('--status');
  assert.equal((await status()).supervisorPid,first.supervisorPid,'Status must not replace the running supervisor');
  const originalProcesses=await descendants(first.supervisorPid);

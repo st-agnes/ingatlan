@@ -1,8 +1,8 @@
 import {spawn,spawnSync} from 'node:child_process';
-import {readFile,writeFile,mkdir,open,access,unlink,rm,rename,stat} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,open,access,unlink,rename} from 'node:fs/promises';
 import {createConnection} from 'node:net';
 import {fileURLToPath} from 'node:url';
-import {join,resolve} from 'node:path';
+import {join} from 'node:path';
 import {supervisorPid,waitForServices,safeLogTail} from './development-lifecycle.mjs';
 import {developmentConfig} from './development-config.mjs';
 
@@ -14,28 +14,23 @@ const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 await mkdir(runtime,{recursive:true});
 async function status(){try{return JSON.parse(await readFile(statusFile,'utf8'));}catch{return null;}}
 async function probe(url){try{return(await fetch(url,{signal:AbortSignal.timeout(1500)})).status;}catch{return 0;}}
-function alive(pid){try{process.kill(pid,0);return true;}catch(error){if(error.code==='ESRCH')return false;throw error;}}
 function portOpen(port){return new Promise(resolve=>{const socket=createConnection({host:'127.0.0.1',port});let settled=false;const finish=value=>{if(settled)return;settled=true;socket.destroy();resolve(value);};socket.setTimeout(700,()=>finish(false));socket.once('connect',()=>finish(true));socket.once('error',()=>finish(false));});}
 async function unlinkIfPresent(path){try{await unlink(path);}catch(error){if(error.code!=='ENOENT')throw error;}}
 function showAddress(){console.log(`Development web: ${config.webOrigin} (forward port ${config.webPort} as HTTP).`);if(config.forwardedOrigin)console.log(`Open in your browser: ${config.forwardedOrigin}/`);}
 
-// Serialize lifecycle commands, including simultaneous postStart/postAttach hooks.
+// The OS lock survives no process: closing this descriptor (also on a crash)
+// releases it, so stale PID files and simultaneous attach hooks cannot race.
 async function withCommandLock(action){
- const lock=join(runtime,'dev-command.lock'),owner=join(lock,'owner.json'),deadline=Date.now()+180000;
- for(;;){
-  try{await mkdir(lock);await writeFile(owner,JSON.stringify({pid:process.pid}),{mode:0o600});break;}
-  catch(error){
-   if(error.code!=='EEXIST')throw error;
-   let stale=false;
-   try{const current=JSON.parse(await readFile(owner,'utf8'));if(!Number.isSafeInteger(current.pid)||current.pid<=1)throw new Error('Invalid lifecycle lock.');
-    if(!alive(current.pid))stale=true;else{const args=String(await readFile(`/proc/${current.pid}/cmdline`,'utf8')).split('\0');stale=resolve(root,args[1]||'')!==scriptPath;}
-   }catch(error){if(error instanceof SyntaxError||error.code==='ENOENT'||error.code==='ESRCH'){try{stale=Date.now()-(await stat(lock)).mtimeMs>5000;}catch(error){if(error.code!=='ENOENT')throw error;}}else throw error;}
-   if(stale){await rm(lock,{recursive:true,force:true});continue;}
-   if(Date.now()>=deadline)throw new Error('Another development start/stop command is still running. Check node scripts/dev.mjs --status.');
-   await delay(100);
-  }
- }
- try{return await action();}finally{await rm(lock,{recursive:true,force:true});}
+ const handle=await open(join(runtime,'dev-command.flock'),'a',0o600);
+ try{
+  await new Promise((resolve,reject)=>{
+   const lock=spawn('flock',['--exclusive','--timeout','180','3'],{stdio:['ignore','ignore','pipe',handle.fd]});
+   let output='';lock.stderr.on('data',chunk=>{output=(output+chunk).slice(-1000);});
+   lock.once('error',error=>reject(new Error(`Cannot acquire the development lifecycle lock (${error.code}); Linux util-linux/flock is required.`)));
+   lock.once('close',code=>code===0?resolve():reject(new Error(`Another start/stop command did not finish in time. ${output.trim()}`)));
+  });
+  return await action();
+ }finally{await handle.close();}
 }
 
 async function stopSupervisor(){
@@ -161,5 +156,7 @@ try{
  else if(process.argv.includes('--stop'))await withCommandLock(stopSupervisor);
  else if(process.argv.includes('--restart'))await withCommandLock(async()=>{await stopSupervisor();await startBackground();});
  else if(process.argv.includes('--background'))await withCommandLock(startBackground);
- else await runService();
+ else if(process.argv.includes('--service'))await runService();
+ else if(process.argv.length===2)await withCommandLock(startBackground);
+ else throw new Error('Use --background, --restart, --stop or --status.');
 }catch(error){console.error(error.message);process.exitCode=1;}

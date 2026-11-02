@@ -35,7 +35,7 @@ bash scripts/cloud-setup.sh
 node scripts/dev.mjs
 ```
 
-Node.js 20+ szükséges. A szolgáltatásindító a már beállított `ConnectionStrings__MySql` változót használja; ha ilyen nincs, a helyi Docker Compose MySQL-szolgáltatását indítja el. Utóbbihoz Docker-hozzáférés szükséges. A telepítéshez engedélyezett HTTPS-csomagletöltés kell; a script megőrzi a környezet proxy- és TLS-beállításait.
+Node.js 20+ és Linux `flock` (util-linux) szükséges; a mellékelt devcontainer és a CI ezt biztosítja. A szolgáltatásindító a már beállított `ConnectionStrings__MySql` változót használja; ha ilyen nincs, a helyi Docker Compose MySQL-szolgáltatását indítja el. Utóbbihoz Docker-hozzáférés szükséges. A telepítéshez engedélyezett HTTPS-csomagletöltés kell; a script megőrzi a környezet proxy- és TLS-beállításait.
 
 A környezetben az SDK és a MySQL indításához szükséges hozzáférés előkészítése után a scriptek ugyanúgy futnak, mint helyi gépen. A konfigurációs fájlok önmagukban nem változtatják meg egy szolgáltató sandboxengedélyeit.
 
@@ -81,7 +81,7 @@ cd /workspaces/ingatlan
 node scripts/dev.mjs --restart
 ```
 
-Ez megvárja a régi felügyelő és gyermekfolyamatai leállását, valamint a portok felszabadulását, majd elindítja és ellenőrzi az új verziót. A parancsok zárolása megakadályozza, hogy két egyidejű automatikus indítás második példányt hozzon létre. A MySQL-kötet és a `.env` megmarad. A `--background` ismételt futtatása a már futó példányt használja.
+Ez megvárja a régi felügyelő és gyermekfolyamatai leállását, valamint a portok felszabadulását, majd elindítja és ellenőrzi az új verziót. Az operációs rendszer fájlleíróhoz kötött zárolása megakadályozza, hogy két egyidejű automatikus indítás második példányt hozzon létre. A MySQL-kötet és a `.env` megmarad. A `--background` és a kapcsoló nélküli indítás ismételt futtatása a már futó példányt használja. A zárolást a rendszer a parancs kilépésekor vagy megszakadásakor automatikusan elengedi.
 
 A parancs kiírja a kiválasztott portot és a Codespaces környezetváltozóiból képzett böngészőcímet. A korábbi `-8080.app.github.dev` könyvjelző helyett a **-3000.app.github.dev** címet nyisd meg; a saját Codespace nevét tartsd meg. A Ports panelen a 3000-es port protokollja **HTTP**, a kívülről megnyitott cím továbbra is HTTPS. A port maradhat privát. Az új port új böngészős eredetet jelent: az API-hoz ismét be kell jelentkezni. A MySQL-adatok megmaradnak; a kizárólag böngészős demó adatai az eredeti cím helyi tárában maradnak. Meglévő Codespace-ben a port szükség esetén kézzel is hozzáadható a Ports panelen; ehhez nem kell az adatbázist vagy a környezetet törölni.
 
