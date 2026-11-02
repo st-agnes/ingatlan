@@ -8,7 +8,7 @@ A tároló tartalmazza a fejlesztéshez szükséges .NET 8 SDK, Node.js 22 és M
 
 Más felhős fejlesztőkörnyezet előkészítésekor az installlépés: `bash scripts/cloud-setup.sh`; az indítás: `node scripts/dev.mjs --background`. A telepítő a hiányzó .NET 8 SDK-t a projekt saját, Gitből kizárt `.local/` könyvtárába telepíti. A MySQL-t a mellékelt konfiguráció indítja, vagy a `ConnectionStrings__MySql` változóval megadott szervert használja. A szükséges eszköz- és hálózati jogosultságokat a futtatókörnyezetnek biztosítania kell.
 
-Minden push és pull request elindítja a GitHub Actions ellenőrzést: .NET-fordítás, xUnit-tesztek, 31 JavaScript-teszt és valódi MySQL-en végzett API-integrációs teszt. A tesztadatbázis ideiglenes; az alkalmazás fejlesztői adatbázisa Docker-kötetben marad meg.
+Minden push és pull request elindítja a GitHub Actions ellenőrzést: .NET-fordítás, xUnit-tesztek, 48 JavaScript-teszt és valódi MySQL-en végzett API-integrációs, illetve sémafrissítési teszt. A tesztadatbázis ideiglenes; az alkalmazás fejlesztői adatbázisa Docker-kötetben marad meg.
 
 Részletes előkészítés és indítás: [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
 
@@ -32,7 +32,10 @@ A webes felület önmagában böngészős demóként is használható. Demómód
 
 - Magyar, mobilméretre is alkalmazkodó felület, ingatlanfotókkal, kattintással, billentyűzettel és húzással kezelhető ajánlókártyákkal.
 - Ingatlanok és keresési igények létrehozása, szerkesztése, archiválása, aktív profil kiválasztása.
-- Település, kerület, típus, ár, alapterület, szobaszám, erkély és lift szerinti megfelelés; a már elbírált párok kizárása.
+- Település-kiegészítés eladói és keresői oldalon, 3155 magyar település és Budapest 23 kerülete közös katalógusából. Mentéshez találatot kell választani.
+- Egy keresésben több település és budapesti kerület is választható, például Budapest V. kerület, Budapest IX. kerület, Solymár és Pilisvörösvár. Bármely kiválasztott hely megfelelhet; a teljes Budapest választása minden kerületet elfogad.
+- Keresésnél a minimumár, a maximum alapterület és a maximum szobaszám elhagyható; az üres mező valóban nyitott korlát. Házhoz telekméret is megadható.
+- Hely, típus, ár, alapterület, szobaszám, erkély és lift szerinti megfelelés; a már elbírált párok kizárása.
 - JWT-hitelesítés, sózott PBKDF2-jelszótárolás, tulajdonosi jogosultságok, rejtett elérhetőségek.
 - Végleges, újraküldés esetén egyszer feldolgozott döntések; tranzakciós kreditlevonás, kreditnapló és kölcsönös párosítás.
 - Párosításokhoz kötött kapcsolatfelvétel és üzenetküldés.
@@ -45,6 +48,8 @@ A webes felület önmagában böngészős demóként is használható. Demómód
 dist/                    Önálló webes frontend, natív JavaScript + CSS
   model.js               Böngészős demó és helyi adatmentés
   api.js                 Aszinkron adapter a .NET REST API-hoz
+  locations.js           Település- és kerületválasztás, helyegyezés
+  data/settlements.json  A frontend és backend közös településkatalógusa
 backend/Otthonra.Api/     .NET 8, EF Core és Pomelo MySQL
 backend/Otthonra.Tests/   Szerveroldali szabályok egységtesztjei
 backend/smoke.mjs         API-integrációs ellenőrzés futó tesztszerverhez
@@ -57,18 +62,28 @@ A frontend nem igényel buildlépést. Helyi statikus kiszolgálás: `python3 -m
 
 Részletes API-leírás és szerverindítás: [backend/README.md](backend/README.md). Frontend összekötése: [docs/API-INTEGRATION.md](docs/API-INTEGRATION.md). Fizetés: [docs/PAYMENTS.md](docs/PAYMENTS.md).
 
+Az API egy ingatlan helyét `locationId`, egy keresés helyeit `locationIds` azonosítókkal kezeli; az olvasható adatokat a `location`, illetve `locations` mezőben adja vissza. A nyilvános `GET /api/locations?q=Budapest%20V&limit=8` végpont `{items:[...]}` választ ad. A katalógus forrása és frissítése: [docs/LOCATION-DATA.md](docs/LOCATION-DATA.md).
+
 ## Ellenőrzés
 
 ```sh
 node tests/model.test.mjs
 node tests/frontend.test.mjs
 node tests/api.test.mjs
+node tests/locations.test.mjs
+node tests/development.test.mjs
 dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj
 node backend/smoke.mjs http://localhost:5080
 ```
 
-Az átadási környezetben a JavaScript szintaktikai ellenőrzése és a 9 modellteszt, a 7 offline felületi teszt, a 8 API-adapterteszt és a 7 infrastruktúrateszt sikeres. Az API-adaptert backend-formátumú mock válaszokkal ellenőriztük. A .NET- és MySQL-ellenőrzéseket a tároló CI-folyamata végzi el; a tényleges legutóbbi eredmény a GitHub Actions felületén látható. Stripe-próbafizetéshez saját tesztkulcsok szükségesek. Az aktuális ellenőrzési állapotot a `docs/VALIDATION.md` tartalmazza.
+A 48 JavaScript-teszt sikeres: 5 katalógus-, 14 modell-, 12 API-adapter-, 10 offline felületi és 7 infrastruktúrateszt. A GitHub Actionsben a .NET-fordítás, 30 xUnit-teszt, Docker-build és a valódi MySQL-es API-integráció is sikeres. A korábbi séma frissítése és az ismételt újraindítás megőrizte a tesztelt adatokat. Az API-adaptert backend-formátumú mock válaszokkal ellenőriztük; a felületi tesztek szimulált DOM-ot használnak. Stripe-próbafizetéshez saját tesztkulcsok szükségesek. Részletek és futáslink: [docs/VALIDATION.md](docs/VALIDATION.md).
+
+## Meglévő adatok frissítése
+
+A jelenlegi kiadás megőrzi a MySQL-adatokat és a böngészős demó mentett döntéseit, találatait. `Database__Initialize=true` esetén az indulás az EF `EnsureCreated` után lefuttatja a `SchemaUpgrade` additív, ismételhető frissítését (`20261102-locations-and-lot-area`): hozzáadja a helyazonosító- és telekméretmezőket. A meglévő helyadatokat a rendszer az ismert település- és kerületnevekből értelmezi. Frissítéshez indítsd újra az új verziót a meglévő kötettel; az adatbázist és a Docker-kötetet nem kell törölni.
+
+A backend Docker-buildjének kontextusa a tároló gyökere, mert a közös településkatalógust is beágyazza. A Compose ezt már beállítja; közvetlen buildhez a gyökérből használd a `docker build -f backend/Dockerfile .` parancsot.
 
 ## Élesítés
 
-A Docker-alapbeállítások helyi kipróbálásra valók. Éles környezethez Production mód, HTTPS, saját titkok, pontos CORS-origin és kikapcsolt demóadatok szükségesek. A fizetési kulcsokat kizárólag a backend kapja meg. Az első adatbázist az EF létrehozza; későbbi sémaváltozásokhoz verziózott migráció szükséges. A képek jelenleg HTTPS-hivatkozásokkal adhatók meg. Közvetlen képfeltöltés, e-mail-megerősítés, jelszó-visszaállítás és üzemeltetési megfigyelés nincs ebben az első verzióban.
+A Docker-alapbeállítások helyi kipróbálásra valók. Éles környezethez Production mód, HTTPS, saját titkok, pontos CORS-origin és kikapcsolt demóadatok szükségesek. A fizetési kulcsokat kizárólag a backend kapja meg. Sémafrissítés előtt készüljön adatbázismentés; az aktuális additív frissítéshez az inicializálásnak engedélyezettnek kell lennie, a további változásokhoz is verziózott frissítés szükséges. A képek jelenleg HTTPS-hivatkozásokkal adhatók meg. Közvetlen képfeltöltés, e-mail-megerősítés, jelszó-visszaállítás és üzemeltetési megfigyelés nincs ebben az első verzióban.

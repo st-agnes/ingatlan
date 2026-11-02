@@ -2,7 +2,7 @@
 
 ## Településválasztó és többhelyszínes keresés
 
-A 2026. november 2-i fejlesztés helyi ellenőrzése:
+A 2026. november 2-i fejlesztés teljes ellenőrzése sikeres. Bizonyított futás: [GitHub Actions](https://github.com/st-agnes/ingatlan/actions/runs/41409659020), kódverzió: `3341917edfdfb7f228ec09e2e1d354530535bc0f`.
 
 | Ellenőrzés | Eredmény |
 |---|---|
@@ -11,7 +11,11 @@ A 2026. november 2-i fejlesztés helyi ellenőrzése:
 | Offline felületi integráció | 10/10 sikeres, szimulált DOM |
 | API-adapter | 12/12 sikeres, mock HTTP-válaszok |
 | Fejlesztői infrastruktúra | 7/7 sikeres |
-| .NET, Docker és valódi MySQL | A fejlesztési ág CI-futása következik |
+| .NET 8 fordítás és xUnit | Sikeres, 30/30 teszt |
+| Docker API, beágyazott katalógussal | Sikeres build |
+| Valódi MySQL-es API-integráció | Sikeres |
+| Korábbi séma frissítése, adatmegőrzés | Sikeres |
+| Ismételt indítás, adatmegőrzés | Sikeres |
 
 Az új CI a települések és budapesti kerületek vegyes kiválasztását, a nyitott keresési határokat és a házak telekméretét is vizsgálja. Külön, ideiglenes adatbázison ellenőrzi a korábbi séma frissítését, a felhasználók, entitások, matchek, üzenetek és kreditnapló megőrzését, valamint az ismételt indítást. A három új oszlop eltávolítása kizárólag ebben az eldobható CI-adatbázisban történik; az alkalmazás frissítése csak hiányzó oszlopokat ad hozzá.
 

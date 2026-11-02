@@ -1,6 +1,6 @@
 # Otthonra API · .NET 8 + MySQL 8
 
-Önálló, JWT-hitelesített REST API webes és későbbi mobilkliensekhez. Az árak a teljes HUF-összeget tartalmazzák (79 900 000, nem 79,9). Az azonosítók UUID-k; az időbélyegek UTC-ben értendők. A frontend API-adaptere a `/api` végpontokhoz csatlakozik.
+Önálló, JWT-hitelesített REST API webes és későbbi mobilkliensekhez. Az árak a teljes HUF-összeget tartalmazzák (79 900 000, nem 79,9). A felhasználó-, ingatlan-, keresés- és párosításazonosítók UUID-k; a helyazonosítók külön, stabil szöveges kulcsok. Az időbélyegek UTC-ben értendők. A frontend API-adaptere a `/api` végpontokhoz csatlakozik.
 
 ## Helyi indítás Dockerrel
 
@@ -14,6 +14,8 @@ Felület: `http://localhost:8080`; API: `http://localhost:5080/api`; állapot: `
 
 A Development-környezet első üres adatbázisába három példafiók kerül. Jelszavuk: `OtthonraDemo2026!`. Kereső: `anna@otthonra.local`, eladó: `peter@otthonra.local`, harmadik tesztelő: `eszter@otthonra.local`. Péter ingatlanát már ajánlotta Annának; Anna kedvelése kölcsönös párosítást hoz létre. Az adatbázis a `mysql_data` kötetben marad; egy újraindítás nem állítja vissza.
 
+A backend Docker-buildjének kontextusa a tároló gyökere, így a közös `dist/data/settlements.json` is bekerül a buildbe. A Compose ezt beállítja. Önálló build a gyökérből: `docker build -f backend/Dockerfile .`.
+
 Natív futtatás SDK-val és meglévő MySQL-adatbázissal:
 
 ```sh
@@ -24,10 +26,11 @@ dotnet run --project backend/Otthonra.Api --urls http://localhost:5080
 
 ## API
 
-A publikus `POST /auth/register` body: `{name,email,password,phone}`; `POST /auth/login`: `{email,password}`. A jelszó 10–128 karakter. Válasz: `{accessToken,expiresIn,user}`. A token 12 órás; a többi végpontnál `Authorization: Bearer ...` szükséges. Az alábbi útvonalak `/api` relatívak.
+A publikus `POST /auth/register` body: `{name,email,password,phone}`; `POST /auth/login`: `{email,password}`. A jelszó 10–128 karakter. Válasz: `{accessToken,expiresIn,user}`. A token 12 órás. A `GET /locations` és az állapotjelző is publikus; a fiókhoz kötött végpontoknál `Authorization: Bearer ...` szükséges. Az alábbi útvonalak `/api` relatívak.
 
 | Művelet | Végpont | Adat / eredmény |
 |---|---|---|
+| Helykiegészítés | `GET /locations?q=Deb&limit=8` | `{items:[{id,label,city,district}]}`; hitelesítés nélkül |
 | Profil | `GET`, `PUT /me` | `{id,name,email,phone,credits,activeKind,activeEntityId,createdAt}`; módosítás: `{name,email,phone}` |
 | Saját entitások | `GET /me/entities` | `{properties,searchRequests,active:{kind,id}}` |
 | Aktiválás | `PUT /me/active` | `{kind:"property"|"search",id}` |
@@ -40,7 +43,13 @@ A publikus `POST /auth/register` body: `{name,email,password,phone}`; `POST /aut
 | Kreditnapló | `GET /credits/ledger` | `[{id,amount,description,createdAt}]` |
 | Demófeltöltés | `POST /credits/demo-topup` | `{amount:20|50|100|250}`; kizárólag Development + engedélyező kapcsoló esetén |
 
-Ingatlanmezők: `title,city,district,neighborhood,address,description,type,price,area,rooms,floor,condition,building,balcony,elevator,images,archived`. Keresésmezők: `title,city,districts,description,type,minPrice,maxPrice,minArea,maxArea,minRooms,maxRooms,balcony,elevator,moveIn,financing,archived`. A min/max korlátok null értéke nyitott határt jelent. A `balcony/elevator=true` kötelező feltétel, a false nem zárja ki az adott tulajdonságot. A település és ingatlantípus egyezése kötelező, a kerületlista üresen bármely kerületet elfogad. A keresőoldali kedvelés ingyenes. Az eladói kedvelés 2 kredit. Saját entitások egymással nem párosíthatók.
+Ingatlanmezők: `title,locationId,city,district,neighborhood,address,description,type,price,area,rooms,lotArea,floor,condition,building,balcony,elevator,images,archived`. Keresésmezők: `title,locationIds,city,districts,description,type,minPrice,maxPrice,minArea,maxArea,minRooms,maxRooms,balcony,elevator,moveIn,financing,archived`. A `lotArea` házhoz megadható pozitív telekméret m²-ben, egyébként `null`.
+
+Az új kliensek az ingatlanhoz egy `locationId`, a kereséshez legalább egy elemet tartalmazó `locationIds` tömb értéket küldjenek a katalógusból. Példák: `city:Debrecen`, `city:Hajdúsámson`, `district:Budapest:5`. Ismeretlen azonosító nem menthető. A válaszokban a `location`, illetve `locations` a teljes `{id,label,city,district}` objektumot tartalmazza; a városi hely `district` értéke `null`, a kerületi például `V.`. A régi `city,district,districts` mezők kompatibilitási célból megmaradnak; az explicit kanonikus azonosító az irányadó. Régi kliens esetén csak a katalógusból felismerhető helynév fogadható el.
+
+A keresés helyei között VAGY kapcsolat van: `['district:Budapest:5','district:Budapest:9','city:Solymár','city:Pilisvörösvár']` bármelyike megfelelhet. A `city:Budapest` a város összes kerületét elfogadja; egy konkrét kerület csak önmagát. A többi keresési feltételnek is teljesülnie kell. A közös, hálózati szolgáltatás nélkül használható katalógus forrása: [LOCATION-DATA.md](../docs/LOCATION-DATA.md).
+
+A min/max korlátok `null` értéke nyitott határt jelent. A `minPrice`, `maxArea`, `maxRooms` elhagyható; a kliens az üres mezőket `null` értékként küldi, és visszaolvasáskor is megőrzi. A `balcony/elevator=true` kötelező feltétel, a false nem zárja ki az adott tulajdonságot. Az ingatlantípus egyezését is ellenőrzi a rendszer. A keresőoldali kedvelés ingyenes. Az eladói kedvelés 2 kredit. Saját entitások egymással nem párosíthatók.
 
 A döntések egy adott ingatlan–keresés párra és oldalra véglegesek. Újraküldött azonos döntés idempotens és 0 további kreditet von le; ellentétes újraküldés 409. A döntés, a kreditlevonás, a napló és a kölcsönös párosítás egyetlen MySQL-tranzakcióban történik, sorzárolással és adatbázis egyediségi korlátokkal. Az elutasított és már kedvelt párok nem kerülnek vissza az ajánlásokba. Az aktiválás jogosultságot nem ad más felhasználó adatainak módosításához.
 
@@ -48,16 +57,22 @@ A döntések egy adott ingatlan–keresés párra és oldalra véglegesek. Újra
 
 A feed és a publikus kártyák nem tartalmaznak felhasználói elérhetőséget vagy pontos utca/házszámot. A párosítási végpont csak a saját párosításokat adja vissza, és csak ott oldja fel a kapcsolatot. A jelszavak véletlen sóval, 210 000 iterációs PBKDF2-SHA256-tal tárolódnak. A publikus leírásban az e-mail-címet és szokásos magyar telefonszámformátumokat a rendszer elutasítja; képek tartalmának moderálása külön integráció.
 
-Éles környezetben `ASPNETCORE_ENVIRONMENT=Production`, egyedi titkok, HTTPS reverse proxy és pontos CORS-origin szükséges. Kapcsold ki a demóseedet és a demófeltöltést; a feltöltési végpont Production módban akkor sem kerül regisztrálásra, ha a kapcsoló true. A Docker-alapértékek helyi fejlesztéshez készültek. A sémát az első létrehozáskor az EF `EnsureCreated` készíti el (`Database__Initialize=true`); ez nem sémafrissítési stratégia. Későbbi éles sémaváltozás előtt verziózott EF-migrációt és mentést kell készíteni. A titkok nem kerülnek a frontendbe.
+Éles környezetben `ASPNETCORE_ENVIRONMENT=Production`, egyedi titkok, HTTPS reverse proxy és pontos CORS-origin szükséges. Kapcsold ki a demóseedet és a demófeltöltést; a feltöltési végpont Production módban akkor sem kerül regisztrálásra, ha a kapcsoló true. A Docker-alapértékek helyi fejlesztéshez készültek. A titkok nem kerülnek a frontendbe.
+
+## Meglévő adatbázis frissítése
+
+`Database__Initialize=true` esetén az indulás először `EnsureCreated` hívást végez az új adatbázishoz, majd a `SchemaUpgrade.ApplyAsync` fut le a meglévő adatbázison is. A `20261102-locations-and-lot-area` verzió additívan létrehozza a `Properties.LocationId`, `Properties.LotArea` és `SearchRequests.LocationIdsJson` oszlopokat, és a verziót a `__OtthonraSchemaVersions` táblában rögzíti. A lépések ismételhetők, az adatbázis-zár összehangolja a párhuzamos indításokat. Meglévő felhasználót, hirdetést, keresést, döntést, párosítást vagy kreditet nem töröl.
+
+A meglévő sorokban a `LocationId` alapértéke üres szöveg, a `LotArea` és a `LocationIdsJson` értéke `NULL`. A régi helymezőket olvasáskor a közös katalógus alapján értelmezi a rendszer, ezért előzetes adatsor-átírás nem szükséges. Az új verziót a meglévő `mysql_data` kötettel kell újraindítani; kötet- vagy adatbázistörlés nem szükséges. Éles frissítés előtt készüljön mentés. Ha az inicializálás ki van kapcsolva, a telepítés részeként engedélyezni kell a frissítéshez, megfelelő sémamódosítási adatbázis-jogosultsággal. A további sémaváltozásokhoz is verziózott, adatmegőrző frissítés szükséges.
 
 A bankkártyás vásárláshoz Stripe Checkout és aláírt, idempotens webhook-integráció készült, külön PaymentOrders nyilvántartással. Beállítás és ellenőrzés: [PAYMENTS.md](../docs/PAYMENTS.md). Saját Stripe-kulcsok és elérhető webhook szükségesek; valódi fizetést az átadási környezetben nem indítottunk. Fejlesztésben külön demókredit-feltöltés is elérhető. E-mail-hitelesítés, jelszó-visszaállítás, képfeltöltés/tárolás, képek moderálása és üzemi monitoring további integráció.
 
 ## Ellenőrzések
 
-`dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj` futtatja a szűrés és adatvédelmi szabályok egységtesztjeit. A `backend/smoke.mjs` két saját tesztfiókkal ellenőrzi a regisztrációt, kompatibilitást, idegen jogosultságot, párosítás előtti kontaktzárat, eladói levonás egyszeriségét, párosítást és üzenetküldést egy futó Development API-n:
+`dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj` futtatja a szűrés és adatvédelmi szabályok egységtesztjeit. A `backend/smoke.mjs` három saját tesztfiókkal ellenőrzi a regisztrációt, kompatibilitást, idegen jogosultságot, párosítás előtti kontaktzárat, eladói levonás egyszeriségét, párosítást és üzenetküldést egy futó Development API-n:
 
 ```sh
 node backend/smoke.mjs http://localhost:5080
 ```
 
-A GitHub Actions környezetben a .NET-fordítás, 22 xUnit-teszt és a valódi MySQL-es smoke teszt sikeres volt; részletek: [VALIDATION.md](../docs/VALIDATION.md). A smoke teszt kizárólag új, véletlen nevű tesztfiókokat hoz létre. Éles rendszeren ne futtasd. A MySQL-hálózati és párhuzamossági ellenőrzéshez futó MySQL szükséges.
+A 48 JavaScript-teszt, a .NET-fordítás, 30 xUnit-teszt, Docker-build és a valódi MySQL-es ellenőrzések sikeresek; részletek: [VALIDATION.md](../docs/VALIDATION.md). A CI az új funkciók mellett a régi sémájú adatbázis frissítését, az adatok megőrzését és az ismételt indulást is sikeresen ellenőrizte. A smoke tesztek kizárólag tesztadatbázison futtathatók; éles rendszeren ne futtasd őket. A MySQL-hálózati és párhuzamossági ellenőrzéshez futó MySQL szükséges.
