@@ -137,9 +137,17 @@ Ha a helyi Docker-feltöltés korábban hálózati hibát adott, a fenti parancs
 
 ## Használat és ellenőrzés
 
-**Első belépés:** a bejelentkezési képernyőn kattints az **„Új fiókot hozok létre”** gombra. Add meg a neved, az e-mail-címed és egy legalább 10 karakteres saját jelszót, majd válaszd a **„Fiók létrehozása”** gombot. A sikeres regisztráció azonnal beléptet. A README helyi példafiókjai (`anna@otthonra.local`, `peter@otthonra.local`) itt nem jönnek létre, a Codespaces fiókjai sem kerülnek át automatikusan. Ehhez nem szükséges újratelepítés.
+**Példafiókok:** `anna@otthonra.local`, `peter@otthonra.local` és `eszter@otthonra.local`; mindhárom jelszava `OtthonraDemo2026!`. A telepítő a web publikálása után a normál API-n át tölti fel a kitalált tesztadatokat. Új példafiókonként 100 tesztkreditet ad, és aktiválja az induló keresést vagy ingatlant. Meglévő telepítésen a frissített tárolóban külön is futtatható:
 
-A párosítás kipróbálásához két külön regisztrált fiók kell: az egyikhez ingatlant, a másikhoz annak megfelelő keresési igényt készíts és aktiválj. Az új fiók nulla kredittel indul; eladói ajánláshoz a **Krediteim** oldalon ingyenesen adhatsz hozzá tesztkreditet. Kölcsönös kedvelés után elérhető a kapcsolatfelvétel.
+```sh
+node scripts/gcp/seed-dev.mjs
+```
+
+A készlet hat ingatlant és négy keresést tartalmaz: budapesti II./XIII. kerületi és debreceni lakásokat, solymári és pilisvörösvári házakat telekmérettel, több településes és nyitott ár-/méret-/szobakorlátos kereséseket. Anna aktív budapesti keresésének Péter Pozsonyi úti lakása megfelel: Anna és Péter fiókjából is kedveld a másik fél ajánlatát a párosításhoz. Ezután kipróbálható az elérhetőségek feloldása és az üzenetküldés. A fiókokban több keresés és ingatlan között is válthatsz.
+
+A feltöltő az ellenőrzött manifest saját `web.app` címét használja, és minden írás előtt valódi `test` API-/webkonfigurációt és tesztkredit-képességet követel. Production vagy böngészős demó esetén megáll. A `.local/gcp/demo-seed-SITE.json` privát nyugtába csak fiók-/entitásazonosítók és elvégzett lépések kerülnek; hozzáférési token vagy jelszó nem. A félbeszakadt futás innen folytatható. Az ismétlés nem írja felül a példák szerkesztését/archiválását, az aktív profilt vagy az elköltött egyenleget. A kreditnapló megakadályozza a félbeszakadt jóváírás megismétlését is. Más munkamásolatban, nyugta nélkül a már létező példafiók változatlan marad; eltérő jelszavát a feltöltő nem állítja vissza. Ne töröld a nyugtát a feltöltés folyamatban lévő szakaszában.
+
+A megosztott példafiókok kitalált tesztadatokhoz tartoznak. Saját fiókot az **„Új fiókot hozok létre”** gombbal, névvel, e-mail-címmel és legalább 10 karakteres jelszóval is regisztrálhatsz; a sikeres regisztráció azonnal beléptet. Az ilyen saját fiók nulla kredittel indul; a **Krediteim** oldalon ingyenesen adhatsz hozzá tesztkreditet.
 
 A Google Cloudra feltöltött frontend bejelentkezést vagy regisztrációt kér. A fiókok, ingatlanok, keresések, párosítások és üzenetek a valódi tesztadatbázisba kerülnek. Az új fiók első lépésként saját keresést vagy ingatlant hozhat létre, majd aktiválhatja azt.
 
@@ -147,7 +155,7 @@ A felület „Tesztkörnyezet” jelölést mutat. A kreditek ingyenes tesztkred
 
 A `deploy-dev.sh` csak akkor írja ki, hogy a tesztalkalmazás kész, ha a saját API és a Hostingen át elért API is a tesztkörnyezetet azonosítja és az adatbázist eléri. A böngészős helyi demó továbbra is külön használható a fejlesztői környezetben; a feltöltött tesztoldal szerverhiba esetén hibát jelez, és megtartja az élő API-módot.
 
-Az alaptelepítés új, üres tesztadatbázist használ. A Codespaces adatait nem importálja automatikusan, és a példafiókokat sem hozza létre. Meglévő adatok átviteléhez külön export/import szükséges.
+Az alaptelepítés külön tesztadatbázist használ, amelyhez a feltöltő adja hozzá a fenti példákat. A Codespaces adatait nem importálja automatikusan. Meglévő adatok átviteléhez külön export/import szükséges.
 
 ## Mit hoz létre, és mennyibe kerül?
 

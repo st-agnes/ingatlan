@@ -102,6 +102,7 @@ jobs:
           node tests/gcp-runner.test.mjs
           node tests/gcp-push.test.mjs
           node tests/gcp-status.test.mjs
+          node tests/gcp-seed.test.mjs
       - name: Check Cloud Shell script syntax
         run: |
           bash -n scripts/gcp/bootstrap-dev.sh
@@ -144,6 +145,11 @@ jobs:
           node backend/smoke.mjs http://127.0.0.1:3000
       - name: Test hosted login, persistence and test credits in Chromium
         run: node tests/hosted-browser.test.mjs http://127.0.0.1:3000
+      - name: Verify test fixtures and preservation through the real MySQL API
+        run: |
+          node scripts/dev.mjs --stop
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false node scripts/dev.mjs --background
+          node backend/seed-smoke.mjs http://127.0.0.1:3000
       - name: Verify ordinary Production never exposes free credits
         run: |
           node scripts/dev.mjs --stop

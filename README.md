@@ -6,7 +6,15 @@ Magyar nyelvű ingatlanpárosító alkalmazás. Egy felhasználó több ingatlan
 
 A `scripts/gcp/` telepítői az `ingatlan-513620` projekthez készítenek külön `-dev` szolgáltatásokat: Firebase Hosting webet, Cloud Run API-t külön Google Cloud SQL Auth Proxy konténerrel, valamint Cloud SQL for MySQL-adatbázist. Az első indítás a saját Google Cloud Shellből történik; a telepítő kiírja a Google által biztosított HTTPS-címet. A tesztoldal valódi regisztrációt és szerveres adatmentést használ, ingyenes tesztkreditekkel.
 
-**Első belépés a felhős tesztoldalon:** válaszd az **„Új fiókot hozok létre”** gombot, majd töltsd ki a regisztrációt. A fiók létrehozása után azonnal belépsz. A lent megadott Anna/Péter példafiókok csak a helyi fejlesztői adatbázishoz tartoznak: a Google Cloud külön, üres adatbázissal indul, nem hozza létre ezeket, és a Codespaces fiókjait sem másolja át. A párosítás kipróbálásához regisztrálj két külön fiókot, és hozz létre egymásnak megfelelő ingatlant és keresést. Eladói ajánláshoz a **Krediteim** oldalon ingyenes tesztkreditet tölthetsz fel.
+**Példafiókok a felhős tesztoldalon:** `anna@otthonra.local`, `peter@otthonra.local` és `eszter@otthonra.local`, közös jelszó: `OtthonraDemo2026!`. A telepítő három kitalált felhasználót, hat ingatlant és négy keresést készít, új példafiókonként 100 ingyenes tesztkredittel és aktív profillal. Anna és Péter már egymásnak megfelelő ajánlatokat kap. A tesztadatok a Google Cloud külön adatbázisában vannak; Codespaces-adatokat nem importálunk. Saját fiókot az **„Új fiókot hozok létre”** gombbal is regisztrálhatsz.
+
+Már működő tesztoldal feltöltése újratelepítés nélkül, a frissített tárolóban:
+
+```sh
+node scripts/gcp/seed-dev.mjs
+```
+
+A feltöltő csak az azonosított tesztoldalon működik. Privát nyugtával őrzi a létrehozott rekordok azonosítóit; az ismétlés megőrzi az átnevezett/archivált példákat, egyenlegeket, aktív profilokat és kézi adatokat. Ha másik munkamásolatból már létező fiókot talál saját nyugta nélkül, változatlanul hagyja. A példafiókok megosztott, kitalált tesztadatokhoz tartoznak.
 
 Első telepítés, várható költség, Google-hitelesítés és későbbi GitHub-kiadások: **[docs/GOOGLE-CLOUD-TEST.md](docs/GOOGLE-CLOUD-TEST.md)**. A dokumentáció az előkészített telepítést írja le; az alkalmazás Google Cloudban történő tényleges indulását a helyszíni health-ellenőrzés igazolja. A saját dev aldomain később hozzáadható.
 
@@ -34,7 +42,7 @@ docker compose up --build -d
 - Felület: **http://localhost:8080**
 - API: **http://localhost:5080/api/health**
 - A felület **Beállítások → Kapcsolódás a saját szerverhez** részében add meg a `http://localhost:8080` címet (a felülettel azonos címet).
-- **Csak a helyi fejlesztői adatbázis példafiókjai:** `anna@otthonra.local` és `peter@otthonra.local`. Mindkettő jelszava `OtthonraDemo2026!`. Saját fiókot is regisztrálhatsz a kapcsolódási űrlapon. **A Google Cloud tesztoldalon regisztráció szükséges; ezek a példafiókok ott nem jönnek létre.**
+- Helyi példafiókok: `anna@otthonra.local` és `peter@otthonra.local`, jelszó: `OtthonraDemo2026!`. Saját fiókot is regisztrálhatsz a kapcsolódási űrlapon. A felhős tesztoldal külön feltöltött példáit a fenti Google Cloud szakasz írja le.
 
 A webes felület önmagában böngészős demóként is használható. Demómódban a módosítások csak az adott böngészőben tárolódnak, az üzenetek nem jutnak el valódi emberekhez, a kreditfeltöltés nem jár fizetéssel. API-kapcsolat esetén a .NET backend és a MySQL tárolja az adatokat. A demó és a valós API adatai külön maradnak.
 
@@ -91,6 +99,7 @@ node tests/gcp-firebase.test.mjs
 node tests/gcp-runner.test.mjs
 node tests/gcp-push.test.mjs
 node tests/gcp-status.test.mjs
+node tests/gcp-seed.test.mjs
 dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj
 node backend/smoke.mjs http://localhost:5080
 ```

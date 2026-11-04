@@ -99,6 +99,7 @@ if [[ "$firebase_version" != '14.17.0' ]]; then
 fi
 GOOGLE_CLOUD_QUOTA_PROJECT="$project_id" XDG_CONFIG_HOME="$deployment_tmp/firebase-config" .local/gcp/tools/node_modules/.bin/firebase deploy \
   --project "$project_id" --config "$repo_root/.local/gcp/site/firebase.json" --only hosting --non-interactive
+node scripts/gcp/seed-dev.mjs --config "$deployment_tmp/config.json"
 node --input-type=module - "$web_origin" <<'NODE'
 const origin = process.argv[2];
 const [home, runtime, health] = await Promise.all(['/', '/runtime-config.js', '/api/health'].map(async path => {
