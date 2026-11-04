@@ -48,11 +48,20 @@ labels='app=otthonra,environment=dev,managed-by=otthonra-bootstrap'
 describe() {
   local output="$1"; shift
   if gc "$@" --format=json >"$output" 2>"$temporary/describe-error"; then return 0; fi
-  if python3 - "$temporary/describe-error" <<'PY'
+  if python3 - "$temporary/describe-error" "$@" <<'PY'
 import pathlib,re,sys
 text=pathlib.Path(sys.argv[1]).read_text()
-denied=re.search(r'PERMISSION_DENIED|UNAUTHENTICATED|UNAVAILABLE|DEADLINE_EXCEEDED|RESOURCE_EXHAUSTED|HTTPError\s+(?:401|403)',text,re.I)
+# SDK failures are not all emitted as HTTP/structured error codes. Never turn
+# an access, credentials or transport failure into permission to create.
+denied=re.search(r'permission|forbidden|unauth|credentials|UNAVAILABLE|DEADLINE_EXCEEDED|RESOURCE_EXHAUSTED|SERVICE_DISABLED|\b(?:401|403|429|5[0-9]{2})\b|connection|network|timed?\s*out|timeout|unrecognized arguments|invalid (?:argument|choice)|usage:',text,re.I)
 missing=re.search(r'NOT_FOUND|not found|does not exist|\b404\b',text,re.I)
+command=sys.argv[2:]
+if command[:3]==['run','services','describe'] and len(command)>3:
+    # Cloud Run uses "Cannot find service [NAME]" (or parentheses) for 404s.
+    # Match only the exact requested service, never a missing credential/helper.
+    name=re.escape(command[3])
+    run_missing=re.search(r'\(gcloud\.run\.services\.describe\)\s*:?\s*cannot find service\s+[\[(]'+name+r'[\])]\.?\s*$',text,re.I|re.M)
+    missing=run_missing
 sys.exit(0 if missing and not denied else 1)
 PY
   then return 1; fi

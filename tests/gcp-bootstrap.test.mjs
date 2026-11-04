@@ -92,3 +92,81 @@ else if(!command.startsWith('services enable ')&&!command.startsWith('iam servic
  const bad=spawnSync('bash',[program,'--project','ingatlan-513620'],{env,encoding:'utf8',timeout:5000});assert.equal(bad.status,2);assert.match(bad.stderr,/unrecognized arguments: --labels/);
  assert.match(bad.stderr.trim().split('\n').at(-1),/TELEPÍTÉS MEGÁLLT: Cloud SQL tesztadatbázis \(hibakód: 2\)/);assert.doesNotMatch(bad.stderr,/root-password|flags-file|Password=/);
 }));
+
+async function cloudRunFixture(action) {
+ return temporary(async dir=>{
+  const bin=join(dir,'bin');await mkdir(bin);
+  const state=join(dir,'run-state.json');await json(state,{created:false,calls:[]});
+  await executable(join(bin,'gcloud'),`#!/usr/bin/env node
+const fs=require('node:fs'),args=process.argv.slice(2),path=process.env.RUN_STATE,state=JSON.parse(fs.readFileSync(path,'utf8'));
+state.calls.push(args);fs.writeFileSync(path,JSON.stringify(state));
+const a=args.filter(v=>!v.startsWith('--'));
+if(a.slice(0,3).join(' ')==='run services describe') {
+ if(state.created || process.env.RUN_EXISTS==='yes') {
+  console.log(JSON.stringify({metadata:{labels:{app:'otthonra',environment:process.env.RUN_FOREIGN==='yes'?'prod':'dev','managed-by':'otthonra-bootstrap','cloud.googleapis.com/location':'europe-west1'}},spec:{template:{spec:{serviceAccountName:'otthonra-runtime-dev@ingatlan-513620.iam.gserviceaccount.com'}}}}));
+ } else { console.error(process.env.RUN_ERROR);process.exit(1); }
+} else if(a.slice(0,2).join(' ')==='run deploy') {
+ if(!args.includes('--region=europe-west1') || !args.includes('--project=ingatlan-513620') || !args.includes('otthonra-api-dev')) process.exit(93);
+ state.created=true;fs.writeFileSync(path,JSON.stringify(state));
+} else process.exit(92);
+`);
+  const source=await readFile(script,'utf8');
+  const describeStart=source.indexOf('describe() {'),describeEnd=source.indexOf('gc projects describe ',describeStart);
+  const serviceStart=source.indexOf('if describe "$temporary/service.json"'),serviceEnd=source.indexOf('gc run services add-iam-policy-binding ',serviceStart);
+  assert.ok(describeStart>0&&describeEnd>describeStart&&serviceStart>0&&serviceEnd>serviceStart);
+  const program=join(dir,'cloud-run.sh');
+  await writeFile(program,'set -euo pipefail\ntemporary="$RUN_TEMP"\nhelper="$HELPER"\nregion=europe-west1\nruntime_account=otthonra-runtime-dev@ingatlan-513620.iam.gserviceaccount.com\nlabels=app=otthonra,environment=dev,managed-by=otthonra-bootstrap\ngc() { gcloud --project=ingatlan-513620 --quiet "$@"; }\n'+source.slice(describeStart,describeEnd)+source.slice(serviceStart,serviceEnd));
+  const run=error=>spawnSync('bash',[program],{encoding:'utf8',timeout:5000,env:{...process.env,PATH:bin+':'+process.env.PATH,RUN_TEMP:dir,HELPER:helper,RUN_STATE:state,...error}});
+  const readState=async()=>JSON.parse(await readFile(state,'utf8'));
+  await action({run,readState});
+ });
+}
+
+test('the actual Cloud Run missing-service error creates the dev service once and reruns preserve it',async()=>{
+ await cloudRunFixture(async({run,readState})=>{
+  const result=run({RUN_ERROR:'ERROR: (gcloud.run.services.describe) Cannot find service [otthonra-api-dev].'});
+  assert.equal(result.status,0,result.stderr);
+  let state=await readState();assert.equal(state.created,true);
+  assert.equal(state.calls.filter(a=>a.includes('deploy')).length,1);
+  const again=run({RUN_ERROR:'must not be used after creation'});assert.equal(again.status,0,again.stderr);
+  state=await readState();assert.equal(state.calls.filter(a=>a.includes('deploy')).length,1);
+ });
+});
+
+test('the reported parentheses variant of Cannot find service enters creation without logging an error',async()=>{
+ await cloudRunFixture(async({run,readState})=>{
+  const result=run({RUN_ERROR:'ERROR: (gcloud.run.services.describe): cannot find service (otthonra-api-dev)'});
+  assert.equal(result.status,0,result.stderr);assert.equal(result.stderr,'');assert.equal((await readState()).created,true);
+ });
+});
+
+test('access and transport failures remain fatal even when their text also mentions not found',async()=>{
+ for(const error of [
+  'ERROR: (gcloud.run.services.describe) NOT_FOUND: service not found or Permission denied.',
+  'ERROR: (gcloud.run.services.describe) HTTPError: 403 Forbidden. Service not found.',
+  'ERROR: (gcloud.run.services.describe) Cannot find service [otthonra-api-dev].\nCould not find the default credentials.',
+  'ERROR: (gcloud.run.services.describe) 503 Service unavailable: upstream not found.',
+  'ERROR: (gcloud.run.services.describe) Connection timeout: endpoint not found.'
+ ]) await cloudRunFixture(async({run,readState})=>{
+  const result=run({RUN_ERROR:error});assert.notEqual(result.status,0);assert.equal((await readState()).created,false);
+  assert.equal((await readState()).calls.filter(a=>a.includes('deploy')).length,0);
+ });
+});
+
+test('an unrelated missing service, endpoint or CLI argument is never mistaken for the requested service',async()=>{
+ for(const error of [
+  'ERROR: (gcloud.run.services.describe) Cannot find service [another-api-dev].',
+  'ERROR: (gcloud.run.services.describe) Deployment endpoint was not found. The provided region is invalid.',
+  'ERROR: (gcloud.run.services.describe) unrecognized arguments: --not-found'
+ ]) await cloudRunFixture(async({run,readState})=>{
+  const result=run({RUN_ERROR:error});assert.notEqual(result.status,0);assert.equal((await readState()).created,false);
+ });
+});
+
+test('an existing foreign Cloud Run service cannot be reused or overwritten',async()=>{
+ await cloudRunFixture(async({run,readState})=>{
+  const result=run({RUN_EXISTS:'yes',RUN_FOREIGN:'yes'});
+  assert.notEqual(result.status,0);assert.match(result.stderr,/not marked as this Otthonra test deployment/);
+  assert.equal((await readState()).calls.filter(a=>a.includes('deploy')).length,0);
+ });
+});

@@ -128,6 +128,7 @@ Az infrastruktúra bootstrapjét akkor kell ismét futtatni, ha az előkészít�
 
 | Jelenség | Következő lépés |
 |---|---|
+| `Cannot find service [otthonra-api-dev]` miatt megáll az előkészítés | Frissítsd a telepítési ágat (`git pull --ff-only`), majd futtasd újra a `run-dev.sh`-t. A javított telepítő az első indításkor létrehozza a hiányzó szolgáltatást; a meglévő SQL-t és titkokat tovább használja. |
 | Nincs aktív számlázás | A Cloud Billingben kapcsold az `ingatlan-513620` projektet egy aktív számlázási fiókhoz, majd futtasd újra a bootstrapet. |
 | Hiányzó Google-jogosultság | A Cloud Shellben a projektet kezelő Google-fiókot használd. A bootstrapnek API-engedélyezési, infrastruktúra- és IAM-kezelési jogosultságokra van szüksége. |
 | ADC-hitelesítés hiánya | Futtasd a `gcloud auth application-default login` parancsot, majd a deployt. |
