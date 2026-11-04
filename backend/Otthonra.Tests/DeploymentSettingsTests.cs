@@ -67,14 +67,16 @@ public class DeploymentSettingsTests
     }
 
     [Fact]
-    public void CloudSqlConnectionStringAcceptsItsLocalUnixSocketAndBoundedPool()
+    public void CloudSqlConnectionStringAcceptsItsLocalProxyTcpEndpointAndBoundedPool()
     {
-        const string socket = "/cloudsql/project-id:europe-west1:otthonra-mysql-dev";
         var builder = new MySqlConnectionStringBuilder(
-            $"Server={socket};ConnectionProtocol=Unix;Database=otthonra_dev;User ID=otthonra_dev;Password=placeholder;SslMode=None;AllowPublicKeyRetrieval=True;MaximumPoolSize=10;ConnectionTimeout=15");
-        Assert.Equal(socket, builder.Server);
+            "ConnectionProtocol=Tcp;Server=127.0.0.1;Port=3306;Database=otthonra_dev;User ID=otthonra_dev;Password=placeholder;SslMode=None;AllowPublicKeyRetrieval=True;MaximumPoolSize=10;ConnectionTimeout=15;DefaultCommandTimeout=30;");
+        Assert.Equal("127.0.0.1", builder.Server);
+        Assert.Equal(3306u, builder.Port);
+        Assert.Equal(MySqlConnectionProtocol.Sockets, builder.ConnectionProtocol);
         Assert.Equal(10u, builder.MaximumPoolSize);
         Assert.Equal(15u, builder.ConnectionTimeout);
+        Assert.Equal(30, Convert.ToInt32(builder.DefaultCommandTimeout));
         Assert.Equal(MySqlSslMode.None, builder.SslMode);
         Assert.True(builder.AllowPublicKeyRetrieval);
         // Building the options must not open a database connection.

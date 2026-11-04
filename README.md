@@ -4,7 +4,7 @@ Magyar nyelvű ingatlanpárosító alkalmazás. Egy felhasználó több ingatlan
 
 ## Google Cloud tesztkörnyezet
 
-A `scripts/gcp/` telepítői az `ingatlan-513620` projekthez készítenek külön `-dev` szolgáltatásokat: Firebase Hosting webet, Cloud Run API-t és Cloud SQL for MySQL-adatbázist. Az első indítás a saját Google Cloud Shellből történik; a telepítő kiírja a Google által biztosított HTTPS-címet. A tesztoldal valódi regisztrációt és szerveres adatmentést használ, ingyenes tesztkreditekkel.
+A `scripts/gcp/` telepítői az `ingatlan-513620` projekthez készítenek külön `-dev` szolgáltatásokat: Firebase Hosting webet, Cloud Run API-t külön Google Cloud SQL Auth Proxy konténerrel, valamint Cloud SQL for MySQL-adatbázist. Az első indítás a saját Google Cloud Shellből történik; a telepítő kiírja a Google által biztosított HTTPS-címet. A tesztoldal valódi regisztrációt és szerveres adatmentést használ, ingyenes tesztkreditekkel.
 
 Első telepítés, várható költség, Google-hitelesítés és későbbi GitHub-kiadások: **[docs/GOOGLE-CLOUD-TEST.md](docs/GOOGLE-CLOUD-TEST.md)**. A dokumentáció az előkészített telepítést írja le; az alkalmazás Google Cloudban történő tényleges indulását a helyszíni health-ellenőrzés igazolja. A saját dev aldomain később hozzáadható.
 
@@ -82,6 +82,7 @@ node tests/api.test.mjs
 node tests/locations.test.mjs
 node tests/development.test.mjs
 node tests/gcp-deployment.test.mjs
+node tests/gcp-run-config.test.mjs
 node tests/gcp-bootstrap.test.mjs
 node tests/gcp-mysql.test.mjs
 node tests/gcp-firebase.test.mjs

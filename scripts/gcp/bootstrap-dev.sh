@@ -139,7 +139,7 @@ for kind in mysql jwt; do
         changed)
           gc secrets versions add "$secret_name" --data-file="$temporary/mysql-upgraded" >/dev/null
           mv "$temporary/mysql-upgraded" "$temporary/mysql-secret"
-          printf '%s\n' 'MySQL Unix socket authentication settings upgraded; existing password preserved.'
+          printf '%s\n' 'MySQL local TCP proxy settings upgraded; existing password preserved.'
           ;;
         unchanged) rm -f "$temporary/mysql-upgraded" ;;
         *) printf '%s\n' 'Unexpected MySQL secret upgrade result; no credential was changed.' >&2; exit 1 ;;
@@ -264,7 +264,7 @@ python3 "$helper" site "$temporary/site.json" "$app_id"
 step 'Telepítési konfiguráció mentése'
 python3 "$helper" manifest "$root/.local/gcp/dev-config.json" "$project_id" "$project_number" "$region"
 printf '\n%s\n' 'Test infrastructure and GitHub deployment identity are configured.' \
-  'The Cloud Run service is still a placeholder. The application is NOT deployed yet.' \
+  'The Cloud Run test service is configured. Application readiness is checked by deploy-dev.sh.' \
   'Next: run scripts/gcp/deploy-dev.sh with .local/gcp/dev-config.json as described in docs/GOOGLE-CLOUD-TEST.md.' \
   'For GitHub Actions, set the repository variable GCP_DEV_CONFIG to the non-secret JSON in .local/gcp/dev-config.json.' \
   'Firebase Hosting deployment permissions apply to Hosting sites throughout this project; review that role before adding production sites later.'

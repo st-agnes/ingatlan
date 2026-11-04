@@ -30,11 +30,13 @@ test('plan is read-only, verifies billing, and rejects another region before clo
 test('secret creation, validation and gcloud flag files keep credentials private and reusable',async()=>temporary(async dir=>{
  const secret=join(dir,'mysql'),flags=join(dir,'user.json'),rootFlags=join(dir,'root.json');const connection='ingatlan-513620:europe-west1:otthonra-mysql-dev';
  let result=invoke('make-secret',secret,'mysql',connection);assert.equal(result.status,0,result.stderr);assert.equal(result.stdout,'');
- const original=await readFile(secret,'utf8');assert.match(original,/ConnectionProtocol=Unix;Server=\/cloudsql\//);assert.equal((await stat(secret)).mode&0o777,0o600);
+ const original=await readFile(secret,'utf8');assert.match(original,/^ConnectionProtocol=Tcp;Server=127\.0\.0\.1;Port=3306;/);assert.equal((await stat(secret)).mode&0o777,0o600);
  for(let i=0;i<2;i++){result=invoke('secret-value',secret,'mysql',connection);assert.equal(result.status,0,result.stderr);assert.equal(result.stdout,'');assert.equal(await readFile(secret,'utf8'),original);}
  result=invoke('user-flags',secret,flags);assert.equal(result.status,0,result.stderr);const values=JSON.parse(await readFile(flags,'utf8'));assert.deepEqual(Object.keys(values),['--password']);assert.match(values['--password'],/^[0-9a-f]{64}$/);assert.ok(original.includes('Password='+values['--password']+';'));assert.equal((await stat(flags)).mode&0o777,0o600);
  result=invoke('root-flags',rootFlags);assert.equal(result.status,0,result.stderr);assert.match(JSON.parse(await readFile(rootFlags,'utf8'))['--root-password'],/^[0-9a-f]{64}$/);
- result=invoke('secret-value',secret,'mysql','other-project:europe-west1:otthonra-mysql-dev');assert.notEqual(result.status,0);assert.ok(!result.stderr.includes(values['--password']));assert.equal(await readFile(secret,'utf8'),original);
+ const legacy=original.replace('ConnectionProtocol=Tcp;Server=127.0.0.1;Port=3306;',`ConnectionProtocol=Unix;Server=/cloudsql/${connection};`);await writeFile(secret,legacy);
+ result=invoke('secret-value',secret,'mysql','other-project:europe-west1:otthonra-mysql-dev');assert.notEqual(result.status,0);assert.ok(!result.stderr.includes(values['--password']));assert.equal(await readFile(secret,'utf8'),legacy);
+ await writeFile(secret,original);result=invoke('secret-value',secret,'mysql','../invalid-instance');assert.notEqual(result.status,0);assert.ok(!result.stderr.includes(values['--password']));
 }));
 
 test('owned SQL configuration accepts reruns but rejects drift and foreign resources',async()=>temporary(async dir=>{

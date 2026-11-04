@@ -2,6 +2,8 @@
 
 ## Google Cloud teszttelepítés
 
+A Cloud Run-specifikáció tesztjei ellenőrzik az API és a rögzített Google Auth Proxy konténer indítási sorrendjét, a helyi TCP-címet, a titokhivatkozásokat, a jogosultsági határokat és a Firebase revíziócímkék megőrzését. A titokmigráció tesztjei mindkét régi Unix-formátumot a jelszó megváltoztatása nélkül alakítják át. A valódi MySQL-es teszt friss SHA-2 felhasználóval a TCP klienshitelesítést vizsgálja. Ezek nem állítják, hogy egy helyi TCP/Unix közvetítő teljesen reprodukálná a Google kezelt proxyját; az élő kapcsolatot a telepített szolgáltatás adatbázisos próbája igazolja.
+
 Az új CI ugyanazt a .NET 8 API-t MySQL 8.0 és 8.4 mellett is ellenőrzi, Docker-builddel, valódi adatbázisos integrációval és sémafrissítéssel. A hosted böngészőteszt asztali, tablet- és mobilméretben valódi regisztrációt, keresésmentést, aktiválást, tesztkreditet, újratöltést és újbóli belépést vizsgál. A Production hosting explicit tesztjelölés nélkül nem adhat ingyen kreditet.
 
 A bootstrap tesztjei helyi Google-parancs- és HTTP-helyettesítőkkel futnak, a Hosting csomagolótesztjei ideiglenes fájlokkal. Nem hoznak létre számlázott cloud-erőforrást. A sikeres CI nem igazol élő Google Cloud-telepítést; annak hitelesítése, IAM-ja, Cloud SQL-kapcsolata és publikus HTTPS-címe az első Cloud Shell-futtatáskor ellenőrizhető. Az aktuális CI-eredményt a pull request ellenőrzései mutatják.

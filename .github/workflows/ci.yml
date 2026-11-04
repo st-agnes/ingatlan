@@ -47,8 +47,8 @@ jobs:
       Credits__EnableDemoTopup: "true"
       OTTHONRA_UPGRADE_FIXTURE: .local/upgrade-fixture.json
       OTTHONRA_TEST_MYSQL_CACHING_SHA2: "true"
-      OTTHONRA_TEST_MYSQL_USER: otthonra_unix_ci
-      OTTHONRA_TEST_MYSQL_PASSWORD: ci-only-unix-password
+      OTTHONRA_TEST_MYSQL_USER: otthonra_proxy_ci
+      OTTHONRA_TEST_MYSQL_PASSWORD: ci-only-proxy-password
     steps:
       - uses: actions/checkout@v4
         with:
@@ -63,12 +63,30 @@ jobs:
         run: |
           dotnet restore backend/Otthonra.Tests/Otthonra.Tests.csproj
           dotnet build backend/Otthonra.Tests/Otthonra.Tests.csproj --configuration Release --no-restore
-      - name: Create a fresh account for the Cloud SQL Unix-socket authentication regression
-        run: docker exec --env MYSQL_PWD=ci-only-root-password "${{ job.services.mysql.id }}" mysql --user=root --execute="CREATE USER 'otthonra_unix_ci'@'%' IDENTIFIED WITH caching_sha2_password BY 'ci-only-unix-password'; GRANT SELECT ON otthonra_ci.* TO 'otthonra_unix_ci'@'%';"
+      - name: Create a fresh account for the proxy TCP authentication regression
+        run: docker exec --env MYSQL_PWD=ci-only-root-password "${{ job.services.mysql.id }}" mysql --user=root --execute="CREATE USER 'otthonra_proxy_ci'@'%' IDENTIFIED WITH caching_sha2_password BY 'ci-only-proxy-password'; GRANT SELECT ON otthonra_ci.* TO 'otthonra_proxy_ci'@'%';"
       - name: Run .NET unit tests
         run: dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj --configuration Release --no-build --logger "trx;LogFileName=tests.trx"
       - name: Build Docker API with embedded location catalogue
         run: docker build --file backend/Dockerfile --tag otthonra-api:ci .
+      - name: Verify the pinned Cloud SQL proxy image and required CLI flags
+        run: |
+          mkdir -p .local/proxy-smoke
+          proxy_image='gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.26.3'
+          docker pull "$proxy_image"
+          docker run --rm "$proxy_image" --version > .local/proxy-smoke/version.txt
+          docker run --rm "$proxy_image" --help > .local/proxy-smoke/help.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          version=Path('.local/proxy-smoke/version.txt').read_text()
+          help_text=Path('.local/proxy-smoke/help.txt').read_text()
+          assert '2.26.3' in version, 'Unexpected Cloud SQL proxy version'
+          for flag in ['--address', '--port', '--structured-logs', '--health-check', '--http-address', '--http-port', '--lazy-refresh']:
+              assert flag in help_text, 'Missing Cloud SQL proxy flag: '+flag
+          print(version.strip())
+          print('Pinned proxy CLI flags verified.')
+          PY
+          docker image inspect "$proxy_image" --format '{{json .RepoDigests}}'
       - name: Run JavaScript tests
         run: |
           node tests/model.test.mjs
@@ -77,6 +95,7 @@ jobs:
           node tests/development.test.mjs
           node tests/locations.test.mjs
           node tests/gcp-deployment.test.mjs
+          node tests/gcp-run-config.test.mjs
           node tests/gcp-bootstrap.test.mjs
           node tests/gcp-mysql.test.mjs
           node tests/gcp-firebase.test.mjs

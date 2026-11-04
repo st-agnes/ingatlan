@@ -1,6 +1,6 @@
 # Google Cloud tesztkörnyezet
 
-A telepítés az `ingatlan-513620` projekten belül hoz létre egy tesztkörnyezetet, `-dev` nevű szolgáltatásokkal. A webet Firebase Hosting, a .NET API-t Cloud Run, az adatokat külön Cloud SQL for MySQL-példány szolgálja ki. A web és az API ugyanazon HTTPS-címen érhető el; az `/api` kéréseket a Hosting továbbítja a backendnek.
+A telepítés az `ingatlan-513620` projekten belül hoz létre egy tesztkörnyezetet, `-dev` nevű szolgáltatásokkal. A webet Firebase Hosting, a .NET API-t és a külön Google Cloud SQL Auth Proxy konténert Cloud Run, az adatokat külön Cloud SQL for MySQL-példány szolgálja ki. A web és az API ugyanazon HTTPS-címen érhető el; az `/api` kéréseket a Hosting továbbítja a backendnek.
 
 Az előkészített kód és a CI-ellenőrzés önmagában nem jelenti, hogy az alkalmazás már fut a Google Cloudban. Az első telepítést a projekt tulajdonosa a saját Google Cloud Shelljében végzi el. Ehhez a beszélgetésben nem kell Google-jelszót, hozzáférési tokent vagy szolgáltatásfiók-kulcsot megadni.
 
@@ -70,7 +70,7 @@ cloudshell edit .local/gcp/deployment.log
 
 ## MySQL-hitelesítési hiba javítása
 
-Ha a Cloud Run indulási próbája meghiúsul, és az alkalmazásnapló `caching_sha2_password` hibát, RSA-kulcsot vagy `AllowPublicKeyRetrieval=True` beállítást említ, frissítsd a telepítési ágat, és egyszer futtasd a teljes előkészítést is:
+Ha a Cloud Run indulási próbája meghiúsul, és az alkalmazásnapló `caching_sha2_password` hibát, RSA-kulcsot vagy `GetRsaPublicKeyAsync` közben keletkező `Access denied ... cloudsqlproxy` hibát említ, frissítsd a telepítési ágat, és egyszer futtasd a teljes előkészítést is:
 
 ```sh
 git pull --ff-only
@@ -79,7 +79,11 @@ bash scripts/gcp/run-dev.sh
 
 Ebben az esetben a `--deploy-only` helyett a teljes futtató szükséges, mert a Secret Managerben tárolt kapcsolati beállítást is frissíteni kell. Az előkészítő ellenőrzi a titok tulajdonosi címkéit és a teljes ismert régi formátumot, majd a meglévő MySQL-jelszó megtartásával új titokverziót ad hozzá. A JWT-kulcs, az SQL-felhasználó és az adatok megmaradnak. A már frissített titok ismételt futtatáskor nem kap új verziót. A telepítő új Cloud Run-revíziót kér akkor is, ha a Docker-kép tartalma változatlan, így az új példány a friss beállítást olvassa.
 
-Az RSA-kulcs lekérése kizárólag az adott tesztadatbázis Google által kezelt helyi Unix socketjén engedélyezett. A Cloud SQL proxy távoli kapcsolatának TLS-titkosítása és az adatbázis `ENCRYPTED_ONLY` beállítása továbbra is érvényes. TCP-címre vagy más adatbázisra mutató kapcsolati karakterláncot a frissítő elutasít.
+Az új kapcsolat rögzítetten `127.0.0.1:3306` TCP-címre mutat, ahol a Cloud Run szolgáltatáson belül a Google Cloud SQL Auth Proxy **2.26.3** konténere figyel. Az API megvárja a proxy indulási próbáját, majd saját, adatbázist ellenőrző próbával indul. A proxy a validált `PROJECT:europe-west1:otthonra-mysql-dev` példányhoz kapcsolódik a meglévő futtatási szolgáltatásfiókkal, IAM-ellenőrzéssel és távoli TLS-titkosítással. Az adatbázis `ENCRYPTED_ONLY` beállítása megmarad. Más TCP-címre, portra, felhasználóra vagy adatbázisra mutató titkot a migráció elutasít.
+
+Ez a [Cloud SQL Proxy #2317-ben](https://github.com/GoogleCloudPlatform/cloud-sql-proxy/issues/2317) dokumentált Unix/SHA-2 hitelesítési problémát a TCP-útvonal használatával kerüli el. A korábbi Unix-beállítás RSA-kapcsolójának módosítása önmagában nem volt elegendő. A meglévő két Unix-formátum mindegyike közvetlenül a fenti TCP-beállításra frissül. A telepítő megtartja a Firebase korábbi revíziócímkéit is.
+
+A CI friss SHA-2 felhasználóval a MySqlConnector TCP-hitelesítését, valamint a rögzített proxykép elérhetőségét és kapcsolóit ellenőrzi. Ez nem helyettesíti a Google-projekt tényleges IAM- és proxykapcsolatának ellenőrzését, amelyet a telepítés egészségpróbái végeznek el.
 
 ## Megszakadt Docker-feltöltés folytatása
 
@@ -122,7 +126,7 @@ Az alaptelepítés új, üres tesztadatbázist használ. A Codespaces adatait ne
 
 | Erőforrás | Tesztbeállítás |
 |---|---|
-| Cloud Run | `otthonra-api-dev`, 0 minimum / 2 maximum példány |
+| Cloud Run | `otthonra-api-dev`, 0 minimum / 2 maximum példány; API és SQL proxy konténer, egyenként 1 CPU / 512 MiB |
 | Cloud SQL | `otthonra-mysql-dev`, MySQL 8.4 Enterprise, `db-f1-micro`, egy zóna |
 | Adattárhely | Kezdetben 10 GiB SSD, automatikus növekedés legfeljebb 20 GiB-ig |
 | Adatbázis | `otthonra_dev`, standard automatikus mentésekkel |
@@ -132,7 +136,7 @@ Az alaptelepítés új, üres tesztadatbázist használ. A Codespaces adatait ne
 | Futtatási identitás | `otthonra-runtime-dev` szolgáltatásfiók |
 | GitHub-telepítési identitás | `otthonra-deploy-dev` és az `otthonra-dev` Workload Identity pool |
 
-A kis SQL-példány folyamatosan számlázott, tervezett alapköltsége hozzávetőleg **nettó 10–15 USD/hó**. A tényleges díj függ a régiós ártól, tárhelytől és a tárolt mentésektől. A Cloud Run, Hosting, konténerképek és naplók használata további díjat jelenthet. A példányszám- és tárhelykorlát nem teljes számlázási költségplafon. A telepítő nem hoz létre költségvetési riasztást; ilyet a Cloud Billing felületén lehet beállítani.
+A kis SQL-példány folyamatosan számlázott, tervezett alapköltsége hozzávetőleg **nettó 10–15 USD/hó**. A tényleges díj függ a régiós ártól, tárhelytől és a tárolt mentésektől. A Cloud Run, Hosting, konténerképek és naplók használata további díjat jelenthet. A Cloud Run-példány két konténere összesen 2 CPU / 1 GiB erőforrást kap; a proxy nem igényel új, folyamatosan futó SQL-példányt vagy virtuális gépet. A példányszám- és tárhelykorlát nem teljes számlázási költségplafon. A telepítő nem hoz létre költségvetési riasztást; ilyet a Cloud Billing felületén lehet beállítani.
 
 A bootstrap kizárólag a teszt nevű erőforrásokkal dolgozik. Az ismételt futás a saját tulajdonosi jelölésű erőforrásokat használja tovább, és megőrzi a generált jelszavakat. Eltérő tulajdonosi jelölés vagy váratlan konfiguráció esetén hibával megáll. A Cloud SQL törlésvédett; az adatok és a számlázott erőforrások nem tűnnek el a Cloud Shell bezárásakor.
 

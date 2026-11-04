@@ -77,16 +77,9 @@ web_origin="https://$site_id.web.app"
 # Secret Manager's latest value is resolved at instance startup. Force a new
 # revision even when a config-only repair leaves the image digest unchanged.
 revision_suffix="dev-$(date -u +%Y%m%d%H%M%S)-$RANDOM"
-gcloud run deploy "$service" \
-  --project "$project_id" --region "$region" --platform managed --quiet \
-  --image "$image_digest" --service-account "$runtime_account" --revision-suffix "$revision_suffix" \
-  --execution-environment gen2 --port 8080 --cpu 1 --memory 512Mi --concurrency 20 \
-  --min 0 --max 2 --timeout 60 \
-  --set-cloudsql-instances "$connection" \
-  --set-env-vars "ASPNETCORE_ENVIRONMENT=Production,Deployment__Environment=test,Database__Initialize=true,Database__SeedDemo=false,Credits__EnableDemoTopup=true,Cors__Origins__0=$web_origin" \
-  --set-secrets "ConnectionStrings__MySql=$mysql_secret:latest,Jwt__Key=$jwt_secret:latest" \
-  --startup-probe 'httpGet.path=/api/health,initialDelaySeconds=0,timeoutSeconds=3,periodSeconds=5,failureThreshold=48' \
-  --update-labels 'app=otthonra,environment=dev,managed-by=otthonra-bootstrap'
+node scripts/gcp/prepare-run.mjs "$deployment_tmp/config.json" "$deployment_tmp/service.json" "$image_digest" "$revision_suffix" "$deployment_tmp/cloud-run.json"
+gcloud run services replace "$deployment_tmp/cloud-run.json" \
+  --project "$project_id" --region "$region" --quiet
 
 api_origin="$(gcloud run services describe "$service" --project "$project_id" --region "$region" --format='value(status.url)')"
 node --input-type=module - "$api_origin" <<'NODE'
