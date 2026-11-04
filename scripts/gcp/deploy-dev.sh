@@ -101,7 +101,7 @@ if [[ "$firebase_version" != '14.17.0' ]]; then
   command -v npm >/dev/null || { echo 'npm is required for the Firebase CLI.' >&2; exit 1; }
   npm install --prefix .local/gcp/tools --no-save --no-package-lock firebase-tools@14.17.0
 fi
-XDG_CONFIG_HOME="$deployment_tmp/firebase-config" .local/gcp/tools/node_modules/.bin/firebase deploy \
+GOOGLE_CLOUD_QUOTA_PROJECT="$project_id" XDG_CONFIG_HOME="$deployment_tmp/firebase-config" .local/gcp/tools/node_modules/.bin/firebase deploy \
   --project "$project_id" --config "$repo_root/.local/gcp/site/firebase.json" --only hosting --non-interactive
 node --input-type=module - "$web_origin" <<'NODE'
 const origin = process.argv[2];

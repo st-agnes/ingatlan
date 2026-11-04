@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import {spawnSync} from 'node:child_process';
 import {mkdtemp, mkdir, readFile, readdir, rm, symlink, writeFile} from 'node:fs/promises';
 import {join, resolve} from 'node:path';
 import {tmpdir} from 'node:os';
@@ -129,4 +130,29 @@ test('a symlinked staging directory cannot expose or remove files outside deploy
       await assert.rejects(prepareSite({config, source: sourceLink, output}), /real directory/);
     } finally { await rm(protectedFolder, {recursive: true, force: true}); }
   });
+});
+
+
+test('the pinned Firebase process receives the selected quota project and isolated login config without changing the caller', async () => {
+  const source = await readFile(join(root, 'scripts/gcp/deploy-dev.sh'), 'utf8');
+  const start = source.indexOf('GOOGLE_CLOUD_QUOTA_PROJECT="$project_id" XDG_CONFIG_HOME=');
+  const end = source.indexOf('\nnode --input-type=module - "$web_origin"', start);
+  assert.ok(start > 0 && end > start);
+  const workspace = await mkdtemp(join(tmpdir(), 'otthonra-firebase-env-'));
+  try {
+    const binary = join(workspace, '.local/gcp/tools/node_modules/.bin/firebase');
+    await mkdir(join(binary, '..'), {recursive: true});
+    await writeFile(binary, '#!/usr/bin/env node\nrequire("node:fs").writeFileSync(process.env.OBSERVED, JSON.stringify({quota:process.env.GOOGLE_CLOUD_QUOTA_PROJECT,config:process.env.XDG_CONFIG_HOME,adc:process.env.GOOGLE_APPLICATION_CREDENTIALS,args:process.argv.slice(2)}));\n', {mode: 0o700});
+    const result = spawnSync('bash', ['-c', 'set -eu\ncd "$WORKSPACE"\nproject_id=ingatlan-513620\nrepo_root="$WORKSPACE"\ndeployment_tmp="$WORKSPACE/private-deployment"\n'+source.slice(start,end)+'\nprintf "%s|%s" "$GOOGLE_CLOUD_QUOTA_PROJECT" "$XDG_CONFIG_HOME"'], {
+      encoding: 'utf8', timeout: 5000,
+      env: {...process.env, WORKSPACE: workspace, OBSERVED: join(workspace, 'observed.json'), GOOGLE_CLOUD_QUOTA_PROJECT: 'different-project-123', XDG_CONFIG_HOME: '/prior/firebase', GOOGLE_APPLICATION_CREDENTIALS: '/user/adc.json'}
+    });
+    assert.equal(result.status, 0, result.stderr);
+    const observed = JSON.parse(await readFile(join(workspace, 'observed.json'), 'utf8'));
+    assert.equal(observed.quota, 'ingatlan-513620');
+    assert.equal(observed.config, join(workspace, 'private-deployment/firebase-config'));
+    assert.equal(observed.adc, '/user/adc.json');
+    assert.equal(observed.args[observed.args.indexOf('--project')+1], 'ingatlan-513620');
+    assert.equal(result.stdout, 'different-project-123|/prior/firebase');
+  } finally { await rm(workspace, {recursive: true, force: true}); }
 });

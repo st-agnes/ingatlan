@@ -89,7 +89,7 @@ A `401` a registry szokásos válasza hitelesítés nélkül, tehát a végpont 
 
 ## Firebase API-hibák
 
-A közvetlen Firebase REST-kérések az `X-Goog-User-Project` fejlécben a kiválasztott projektet használják kvótaprojektként, a Google [felhasználói tokenekre vonatkozó útmutatója](https://docs.cloud.google.com/sdk/gcloud/reference/auth/print-access-token) szerint. Ehhez a bejelentkezett fióknak `serviceusage.services.use` jogosultság szükséges ezen a projekten.
+A közvetlen Firebase REST-kérések az `X-Goog-User-Project` fejlécben a kiválasztott projektet használják kvótaprojektként, a Google [felhasználói tokenekre vonatkozó útmutatója](https://docs.cloud.google.com/sdk/gcloud/reference/auth/print-access-token) szerint. Ehhez a bejelentkezett fióknak `serviceusage.services.use` jogosultság szükséges ezen a projekten. A Firebase CLI külön folyamatában a `GOOGLE_CLOUD_QUOTA_PROJECT` szintén a validált célprojektet jelöli; ez nem írja át a Cloud Shell globális beállításait.
 
 403 esetén a telepítő kiírja a pontos műveletet, a Google státuszát, rövid hibaüzenetét és az elérhető strukturált indokot (`reason`, `service`, `consumer`, `permission`). A teljes API-választ, tokent és alkalmazáskonfigurációt nem írja ki. A futtató ezeket a rövid diagnosztikai sorokat a terminál végén is megjeleníti.
 
