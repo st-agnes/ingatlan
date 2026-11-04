@@ -8,17 +8,25 @@ cd "$repo_root" || exit 1
 project_id='ingatlan-513620'
 deploy_only=false
 project_supplied=false
+image_digest=''
 while (($#)); do
   case "$1" in
     --project) project_id="${2:?Missing project ID}"; project_supplied=true; shift 2 ;;
     --deploy-only) deploy_only=true; shift ;;
-    *) printf '%s\n' 'Usage: bash scripts/gcp/run-dev.sh [--project PROJECT_ID] [--deploy-only]' >&2; exit 2 ;;
+    --image) image_digest="${2:?Missing image digest}"; shift 2 ;;
+    *) printf '%s\n' 'Usage: bash scripts/gcp/run-dev.sh [--project PROJECT_ID] [--deploy-only [--image REGISTRY_IMAGE@sha256:DIGEST]]' >&2; exit 2 ;;
   esac
 done
 if "$deploy_only" && "$project_supplied"; then
   printf '%s\n' 'ERROR: --deploy-only uses the validated dev-config.json project; do not combine it with --project.' >&2
   exit 2
 fi
+if [[ -n "$image_digest" ]] && ! "$deploy_only"; then
+  printf '%s\n' 'ERROR: --image requires --deploy-only and an already prepared dev-config.json.' >&2
+  exit 2
+fi
+deploy_args=()
+if [[ -n "$image_digest" ]]; then deploy_args+=(--image "$image_digest"); fi
 mkdir -p .local/gcp || exit 1
 log_path="$repo_root/.local/gcp/deployment.log"
 if [[ -f "$log_path" ]]; then mv "$log_path" "$log_path.previous" || exit 1; fi
@@ -52,10 +60,10 @@ PY
   fi
 }
 if "$deploy_only"; then
-  run_step '1/1 Alkalmazás telepítése' bash scripts/gcp/deploy-dev.sh
+  run_step '1/1 Alkalmazás telepítése' bash scripts/gcp/deploy-dev.sh "${deploy_args[@]}"
 else
   run_step '1/2 Előkészítés' bash scripts/gcp/bootstrap-dev.sh --project "$project_id"
-  run_step '2/2 Alkalmazás telepítése' bash scripts/gcp/deploy-dev.sh
+  run_step '2/2 Alkalmazás telepítése' bash scripts/gcp/deploy-dev.sh "${deploy_args[@]}"
 fi
 python3 - "$log_path" <<'PY'
 import pathlib,re,sys

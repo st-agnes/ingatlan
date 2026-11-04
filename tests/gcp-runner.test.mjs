@@ -106,3 +106,25 @@ test('deploy-only cannot silently ignore an explicitly selected project', async 
     await assert.rejects(stat(join(root, 'DEPLOY_RAN')), {code: 'ENOENT'});
   });
 });
+
+
+test('deploy-only forwards an explicit existing image intact and keeps readiness verification', async () => {
+  const image = 'europe-west1-docker.pkg.dev/ingatlan-513620/otthonra-dev/otthonra-api@sha256:' + 'a'.repeat(64);
+  await fixture('touch BOOTSTRAP_RAN; exit 92', 'printf "%s\\n" "$@" > DEPLOY_ARGS\necho "Test application ready: https://otthonra-dev-123456789012.web.app/"', async ({root, run}) => {
+    const result = run('--deploy-only', '--image', image);
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(await readFile(join(root, 'DEPLOY_ARGS'), 'utf8'), `--image\n${image}\n`);
+    assert.match(result.stdout, /KÉSZ:/);
+    await assert.rejects(stat(join(root, 'BOOTSTRAP_RAN')), {code: 'ENOENT'});
+  });
+});
+
+test('an explicit existing image requires deploy-only before any setup or deployment runs', async () => {
+  await fixture('touch BOOTSTRAP_RAN', 'touch DEPLOY_RAN', async ({root, run}) => {
+    const result = run('--image', 'existing-image');
+    assert.equal(result.status, 2);
+    assert.match(result.stderr, /--image requires --deploy-only/);
+    await assert.rejects(stat(join(root, 'BOOTSTRAP_RAN')), {code: 'ENOENT'});
+    await assert.rejects(stat(join(root, 'DEPLOY_RAN')), {code: 'ENOENT'});
+  });
+});

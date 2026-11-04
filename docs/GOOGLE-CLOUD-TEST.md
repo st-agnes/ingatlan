@@ -104,6 +104,18 @@ curl -sS -o /dev/null -w '%{http_code}\n' --connect-timeout 10 --max-time 15 htt
 
 A `401` a registry szokásos válasza hitelesítés nélkül, tehát a végpont ekkor elérhető volt. A `000` kapcsolódási hibát jelez. A shell és a Docker daemon hálózati útvonala eltérhet, és a DNS is több címet adhat; ez a próba önmagában nem bizonyítja, hogy a következő Docker-feltöltés sikerülni fog.
 
+### Már feltöltött kép használata
+
+Tartós Docker-hálózati hiba esetén egy **korábban sikeresen feltöltött**, teljes digesttel azonosított API-kép is megadható:
+
+```sh
+bash scripts/gcp/run-dev.sh --deploy-only --image REGISTRY_IMAGE@sha256:DIGEST
+```
+
+Ekkor a Docker-fordítás, a helyi Docker-feltöltés és annak hitelesítési beállítása kimarad. A telepítő csak a manifest saját teszttárolójába tartozó digestet fogad el; a képet a Cloud Run tölti le. Az aktuális telepítési kód szerinti proxy, a legújabb titokverzió és a jelenlegi frontend továbbra is települ, majd az API/adatbázis/Hosting ellenőrzés lefut. A privát napló és a végső működésellenőrzés megmarad.
+
+A régebbi kép használata előtt ellenőrizni kell, hogy az a kívánt backendverziót tartalmazza. Pusztán telepítési beállítás javításakor azonos backendkód újra felhasználható; módosított backendhez új kép szükséges. A telepítő nem választ automatikusan régi képet. A `--image` a futtatóban csak `--deploy-only` mellett használható: a szükséges titokmigrációnak már előtte le kell futnia. Ez a lehetőség a Cloud Shell Docker-feltöltését kerüli meg; a hálózati elutasítás okát nem változtatja meg.
+
 ## Firebase API-hibák
 
 A közvetlen Firebase REST-kérések az `X-Goog-User-Project` fejlécben a kiválasztott projektet használják kvótaprojektként, a Google [felhasználói tokenekre vonatkozó útmutatója](https://docs.cloud.google.com/sdk/gcloud/reference/auth/print-access-token) szerint. Ehhez a bejelentkezett fióknak `serviceusage.services.use` jogosultság szükséges ezen a projekten. A Firebase CLI külön folyamatában a `GOOGLE_CLOUD_QUOTA_PROJECT` szintén a validált célprojektet jelöli; ez nem írja át a Cloud Shell globális beállításait.
