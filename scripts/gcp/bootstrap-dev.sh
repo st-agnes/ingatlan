@@ -132,6 +132,19 @@ for kind in mysql jwt; do
     python3 "$helper" owned "$temporary/secret.json"
     gc secrets versions access latest --secret="$secret_name" >"$temporary/$kind-secret"
     python3 "$helper" secret-value "$temporary/$kind-secret" "$kind" "$connection_name"
+    if [[ "$kind" == mysql ]]; then
+      # Add a configuration version only; the existing SQL password is retained.
+      mysql_upgrade="$(python3 "$helper" upgrade-mysql-secret "$temporary/mysql-secret" "$temporary/mysql-upgraded" "$connection_name")"
+      case "$mysql_upgrade" in
+        changed)
+          gc secrets versions add "$secret_name" --data-file="$temporary/mysql-upgraded" >/dev/null
+          mv "$temporary/mysql-upgraded" "$temporary/mysql-secret"
+          printf '%s\n' 'MySQL Unix socket authentication settings upgraded; existing password preserved.'
+          ;;
+        unchanged) rm -f "$temporary/mysql-upgraded" ;;
+        *) printf '%s\n' 'Unexpected MySQL secret upgrade result; no credential was changed.' >&2; exit 1 ;;
+      esac
+    fi
   else
     if [[ "$kind" == mysql && "$user_exists" == yes ]]; then
       printf '%s\n' 'The application DB user already exists but its managed connection secret is missing. Restore that secret before retrying; no password was changed.' >&2

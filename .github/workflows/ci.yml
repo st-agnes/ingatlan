@@ -46,6 +46,9 @@ jobs:
       Database__SeedDemo: "true"
       Credits__EnableDemoTopup: "true"
       OTTHONRA_UPGRADE_FIXTURE: .local/upgrade-fixture.json
+      OTTHONRA_TEST_MYSQL_CACHING_SHA2: "true"
+      OTTHONRA_TEST_MYSQL_USER: otthonra_unix_ci
+      OTTHONRA_TEST_MYSQL_PASSWORD: ci-only-unix-password
     steps:
       - uses: actions/checkout@v4
         with:
@@ -60,6 +63,8 @@ jobs:
         run: |
           dotnet restore backend/Otthonra.Tests/Otthonra.Tests.csproj
           dotnet build backend/Otthonra.Tests/Otthonra.Tests.csproj --configuration Release --no-restore
+      - name: Create a fresh account for the Cloud SQL Unix-socket authentication regression
+        run: docker exec --env MYSQL_PWD=ci-only-root-password "${{ job.services.mysql.id }}" mysql --user=root --execute="CREATE USER 'otthonra_unix_ci'@'%' IDENTIFIED WITH caching_sha2_password BY 'ci-only-unix-password'; GRANT SELECT ON otthonra_ci.* TO 'otthonra_unix_ci'@'%';"
       - name: Run .NET unit tests
         run: dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj --configuration Release --no-build --logger "trx;LogFileName=tests.trx"
       - name: Build Docker API with embedded location catalogue
@@ -73,6 +78,7 @@ jobs:
           node tests/locations.test.mjs
           node tests/gcp-deployment.test.mjs
           node tests/gcp-bootstrap.test.mjs
+          node tests/gcp-mysql.test.mjs
           node tests/gcp-firebase.test.mjs
           node tests/gcp-runner.test.mjs
           node tests/gcp-push.test.mjs

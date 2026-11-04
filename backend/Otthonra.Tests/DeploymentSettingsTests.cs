@@ -71,11 +71,12 @@ public class DeploymentSettingsTests
     {
         const string socket = "/cloudsql/project-id:europe-west1:otthonra-mysql-dev";
         var builder = new MySqlConnectionStringBuilder(
-            $"Server={socket};ConnectionProtocol=Unix;Database=otthonra_dev;User ID=otthonra_dev;Password=placeholder;SslMode=None;MaximumPoolSize=10;ConnectionTimeout=15");
+            $"Server={socket};ConnectionProtocol=Unix;Database=otthonra_dev;User ID=otthonra_dev;Password=placeholder;SslMode=None;AllowPublicKeyRetrieval=True;MaximumPoolSize=10;ConnectionTimeout=15");
         Assert.Equal(socket, builder.Server);
         Assert.Equal(10u, builder.MaximumPoolSize);
         Assert.Equal(15u, builder.ConnectionTimeout);
         Assert.Equal(MySqlSslMode.None, builder.SslMode);
+        Assert.True(builder.AllowPublicKeyRetrieval);
         // Building the options must not open a database connection.
         using var connection = new MySqlConnection(builder.ConnectionString);
         Assert.Equal(System.Data.ConnectionState.Closed, connection.State);

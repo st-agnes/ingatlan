@@ -74,9 +74,12 @@ fi
 }
 
 web_origin="https://$site_id.web.app"
+# Secret Manager's latest value is resolved at instance startup. Force a new
+# revision even when a config-only repair leaves the image digest unchanged.
+revision_suffix="dev-$(date -u +%Y%m%d%H%M%S)-$RANDOM"
 gcloud run deploy "$service" \
   --project "$project_id" --region "$region" --platform managed --quiet \
-  --image "$image_digest" --service-account "$runtime_account" \
+  --image "$image_digest" --service-account "$runtime_account" --revision-suffix "$revision_suffix" \
   --execution-environment gen2 --port 8080 --cpu 1 --memory 512Mi --concurrency 20 \
   --min 0 --max 2 --timeout 60 \
   --set-cloudsql-instances "$connection" \

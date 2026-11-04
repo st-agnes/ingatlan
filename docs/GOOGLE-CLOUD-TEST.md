@@ -68,6 +68,19 @@ A már létrejött, saját jelölésű erőforrásokat és titkokat az előkész
 cloudshell edit .local/gcp/deployment.log
 ```
 
+## MySQL-hitelesítési hiba javítása
+
+Ha a Cloud Run indulási próbája meghiúsul, és az alkalmazásnapló `caching_sha2_password` hibát, RSA-kulcsot vagy `AllowPublicKeyRetrieval=True` beállítást említ, frissítsd a telepítési ágat, és egyszer futtasd a teljes előkészítést is:
+
+```sh
+git pull --ff-only
+bash scripts/gcp/run-dev.sh
+```
+
+Ebben az esetben a `--deploy-only` helyett a teljes futtató szükséges, mert a Secret Managerben tárolt kapcsolati beállítást is frissíteni kell. Az előkészítő ellenőrzi a titok tulajdonosi címkéit és a teljes ismert régi formátumot, majd a meglévő MySQL-jelszó megtartásával új titokverziót ad hozzá. A JWT-kulcs, az SQL-felhasználó és az adatok megmaradnak. A már frissített titok ismételt futtatáskor nem kap új verziót. A telepítő új Cloud Run-revíziót kér akkor is, ha a Docker-kép tartalma változatlan, így az új példány a friss beállítást olvassa.
+
+Az RSA-kulcs lekérése kizárólag az adott tesztadatbázis Google által kezelt helyi Unix socketjén engedélyezett. A Cloud SQL proxy távoli kapcsolatának TLS-titkosítása és az adatbázis `ENCRYPTED_ONLY` beállítása továbbra is érvényes. TCP-címre vagy más adatbázisra mutató kapcsolati karakterláncot a frissítő elutasít.
+
 ## Megszakadt Docker-feltöltés folytatása
 
 Ha az előkészítés sikeresen mentette a manifestet, de a `docker push` hálózati hibával leállt, elegendő csak az alkalmazás telepítését folytatni:

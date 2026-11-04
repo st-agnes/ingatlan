@@ -83,6 +83,7 @@ node tests/locations.test.mjs
 node tests/development.test.mjs
 node tests/gcp-deployment.test.mjs
 node tests/gcp-bootstrap.test.mjs
+node tests/gcp-mysql.test.mjs
 node tests/gcp-firebase.test.mjs
 node tests/gcp-runner.test.mjs
 node tests/gcp-push.test.mjs

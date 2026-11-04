@@ -83,6 +83,37 @@ def api_error_summary(value, heading, auth_path=None):
         print("Quota project: serviceusage.services.use permission is required on the selected project.", file=sys.stderr)
 
 
+MYSQL_LEGACY_OPTIONS = ";SslMode=None;MaximumPoolSize=10;ConnectionTimeout=15;DefaultCommandTimeout=30;"
+MYSQL_OPTIONS = ";SslMode=None;AllowPublicKeyRetrieval=True;MaximumPoolSize=10;ConnectionTimeout=15;DefaultCommandTimeout=30;"
+
+
+def mysql_prefix(connection):
+    # Public-key retrieval is permitted only across our managed local Unix
+    # socket; the Cloud SQL proxy encrypts/authenticates the remote connection.
+    if not re.fullmatch(r"[a-z][a-z0-9-]{4,28}[a-z0-9]:europe-west1:otthonra-mysql-dev", connection):
+        raise ValueError("MySQL authentication settings require the reviewed managed test socket.")
+    return "ConnectionProtocol=Unix;Server=/cloudsql/" + connection + ";Database=otthonra_dev;User ID=otthonra_dev;Password="
+
+
+def mysql_password(value, connection):
+    prefix = mysql_prefix(connection)
+    if not value.startswith(prefix):
+        raise ValueError("Existing MySQL secret does not target this test database or has unexpected options.")
+    match = re.fullmatch(r"([0-9a-f]{64})(?:" + re.escape(MYSQL_LEGACY_OPTIONS) + "|" + re.escape(MYSQL_OPTIONS) + ")", value[len(prefix):])
+    if not match:
+        raise ValueError("Existing MySQL secret does not target this test database or has unexpected options.")
+    return match.group(1)
+
+
+def write_private(path, value):
+    path = pathlib.Path(path)
+    # Bootstrap already has umask 077; setting the mode also protects direct
+    # helper use and reruns with a pre-existing destination file.
+    path.touch(mode=0o600, exist_ok=True)
+    path.chmod(0o600)
+    path.write_text(value)
+
+
 def main():
     action, *args = sys.argv[1:]
     if action == "field":
@@ -158,18 +189,18 @@ def main():
             if not re.fullmatch(r"[0-9a-f]{96}", value):
                 raise ValueError("Existing test JWT secret is not the expected generated key.")
         else:
-            expected = "ConnectionProtocol=Unix;Server=/cloudsql/" + connection + ";Database=otthonra_dev;User ID=otthonra_dev;Password="
-            if not value.startswith(expected) or not re.fullmatch(r"[0-9a-f]{64};SslMode=None;MaximumPoolSize=10;ConnectionTimeout=15;DefaultCommandTimeout=30;", value[len(expected):]):
-                raise ValueError("Existing MySQL secret does not target this test database or has unexpected options.")
+            mysql_password(value, connection)
+    elif action == "upgrade-mysql-secret":
+        source, destination, connection = args
+        value = pathlib.Path(source).read_text().strip()
+        password = mysql_password(value, connection)
+        upgraded = mysql_prefix(connection) + password + MYSQL_OPTIONS
+        write_private(destination, upgraded)
+        print("unchanged" if value == upgraded else "changed")
     elif action == "make-secret":
         path, kind, connection = args
-        value = secrets.token_hex(48) if kind == "jwt" else (
-            "ConnectionProtocol=Unix;Server=/cloudsql/" + connection
-            + ";Database=otthonra_dev;User ID=otthonra_dev;Password=" + secrets.token_hex(32)
-            + ";SslMode=None;MaximumPoolSize=10;ConnectionTimeout=15;DefaultCommandTimeout=30;"
-        )
-        pathlib.Path(path).write_text(value)
-        pathlib.Path(path).chmod(0o600)
+        value = secrets.token_hex(48) if kind == "jwt" else mysql_prefix(connection) + secrets.token_hex(32) + MYSQL_OPTIONS
+        write_private(path, value)
     elif action == "user-flags":
         value = pathlib.Path(args[0]).read_text()
         password = re.search(r"(?:^|;)Password=([0-9a-f]{64});", value)
