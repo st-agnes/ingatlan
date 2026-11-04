@@ -1,0 +1,100 @@
+name: Deploy Google Cloud test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: google-cloud-test-deployment
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: >-
+      github.repository_id == '1441962351' &&
+      github.repository_owner_id == '9905462' &&
+      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/codex/google-cloud-test')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      config: ${{ steps.preflight.outputs.config }}
+      workload_identity_provider: ${{ steps.preflight.outputs.workload_identity_provider }}
+      service_account: ${{ steps.preflight.outputs.service_account }}
+      project_id: ${{ steps.preflight.outputs.project_id }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate the test manifest and successful CI for this exact commit
+        id: preflight
+        uses: actions/github-script@v7
+        env:
+          GCP_DEV_CONFIG: ${{ vars.GCP_DEV_CONFIG }}
+        with:
+          script: |
+            const {pathToFileURL} = require('node:url');
+            const {join} = require('node:path');
+            const {validateDevConfig} = await import(pathToFileURL(join(process.env.GITHUB_WORKSPACE, 'scripts/gcp/prepare-site.mjs')).href);
+            if (!process.env.GCP_DEV_CONFIG) throw new Error('Set repository variable GCP_DEV_CONFIG to the non-secret bootstrap manifest first.');
+            const config = validateDevConfig(JSON.parse(process.env.GCP_DEV_CONFIG));
+            const {data} = await github.rest.actions.listWorkflowRuns({
+              ...context.repo, workflow_id: 'ci.yml', head_sha: context.sha,
+              event: 'push', status: 'completed', per_page: 30
+            });
+            const passed = data.workflow_runs.some(run => run.head_sha === context.sha && run.event === 'push'
+              && run.conclusion === 'success' && String(run.head_repository?.id) === '1441962351');
+            if (!passed) throw new Error('Build and integration tests have not passed for this exact commit. Wait for CI, then run this deployment again. No cloud credentials were requested.');
+            core.setOutput('config', JSON.stringify(config));
+            core.setOutput('workload_identity_provider', config.workloadIdentityProvider);
+            core.setOutput('service_account', config.deployServiceAccount);
+            core.setOutput('project_id', config.projectId);
+
+  deploy:
+    needs: validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    environment: test
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      GCP_DEV_CONFIG: ${{ needs.validate.outputs.config }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Write the validated non-secret manifest
+        run: |
+          node --input-type=module <<'NODE'
+          import {mkdir, writeFile} from 'node:fs/promises';
+          import {validateDevConfig} from './scripts/gcp/prepare-site.mjs';
+          const config = validateDevConfig(JSON.parse(process.env.GCP_DEV_CONFIG));
+          await mkdir('.local/gcp', {recursive: true});
+          await writeFile('.local/gcp/dev-config.json', JSON.stringify(config), {mode: 0o600});
+          NODE
+      - name: Obtain short-lived Google credentials
+        uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ needs.validate.outputs.project_id }}
+          workload_identity_provider: ${{ needs.validate.outputs.workload_identity_provider }}
+          service_account: ${{ needs.validate.outputs.service_account }}
+          create_credentials_file: true
+          export_environment_variables: true
+      - uses: google-github-actions/setup-gcloud@v3
+        with:
+          project_id: ${{ needs.validate.outputs.project_id }}
+      - name: Build and deploy the test API and frontend
+        run: bash scripts/gcp/deploy-dev.sh --config .local/gcp/dev-config.json

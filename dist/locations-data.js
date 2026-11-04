@@ -1,4 +1,4 @@
-// Generated from data/settlements.json. Source and MIT attribution: ../docs/LOCATION-DATA.md.
+// Generated from data/settlements.json. Source and MIT attribution: ./THIRD-PARTY-NOTICES.txt.
 export const settlements = Object.freeze([
   "Aba",
   "Abádszalók",

@@ -14,11 +14,16 @@ concurrency:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    name: Build and test (MySQL ${{ matrix.mysql }})
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        mysql: ["8.0", "8.4"]
     services:
       mysql:
-        image: mysql:8.0
+        image: mysql:${{ matrix.mysql }}
         env:
           MYSQL_DATABASE: otthonra_ci
           MYSQL_USER: otthonra
@@ -41,6 +46,9 @@ jobs:
       Database__SeedDemo: "true"
       Credits__EnableDemoTopup: "true"
       OTTHONRA_UPGRADE_FIXTURE: .local/upgrade-fixture.json
+      OTTHONRA_TEST_MYSQL_CACHING_SHA2: "true"
+      OTTHONRA_TEST_MYSQL_USER: otthonra_proxy_ci
+      OTTHONRA_TEST_MYSQL_PASSWORD: ci-only-proxy-password
     steps:
       - uses: actions/checkout@v4
         with:
@@ -55,10 +63,30 @@ jobs:
         run: |
           dotnet restore backend/Otthonra.Tests/Otthonra.Tests.csproj
           dotnet build backend/Otthonra.Tests/Otthonra.Tests.csproj --configuration Release --no-restore
+      - name: Create a fresh account for the proxy TCP authentication regression
+        run: docker exec --env MYSQL_PWD=ci-only-root-password "${{ job.services.mysql.id }}" mysql --user=root --execute="CREATE USER 'otthonra_proxy_ci'@'%' IDENTIFIED WITH caching_sha2_password BY 'ci-only-proxy-password'; GRANT SELECT ON otthonra_ci.* TO 'otthonra_proxy_ci'@'%';"
       - name: Run .NET unit tests
         run: dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj --configuration Release --no-build --logger "trx;LogFileName=tests.trx"
       - name: Build Docker API with embedded location catalogue
         run: docker build --file backend/Dockerfile --tag otthonra-api:ci .
+      - name: Verify the pinned Cloud SQL proxy image and required CLI flags
+        run: |
+          mkdir -p .local/proxy-smoke
+          proxy_image='gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.26.3'
+          docker pull "$proxy_image"
+          docker run --rm "$proxy_image" --version > .local/proxy-smoke/version.txt
+          docker run --rm "$proxy_image" --help > .local/proxy-smoke/help.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          version=Path('.local/proxy-smoke/version.txt').read_text()
+          help_text=Path('.local/proxy-smoke/help.txt').read_text()
+          assert '2.26.3' in version, 'Unexpected Cloud SQL proxy version'
+          for flag in ['--address', '--port', '--structured-logs', '--health-check', '--http-address', '--http-port', '--lazy-refresh']:
+              assert flag in help_text, 'Missing Cloud SQL proxy flag: '+flag
+          print(version.strip())
+          print('Pinned proxy CLI flags verified.')
+          PY
+          docker image inspect "$proxy_image" --format '{{json .RepoDigests}}'
       - name: Run JavaScript tests
         run: |
           node tests/model.test.mjs
@@ -66,25 +94,67 @@ jobs:
           node tests/api.test.mjs
           node tests/development.test.mjs
           node tests/locations.test.mjs
+          node tests/gcp-deployment.test.mjs
+          node tests/gcp-run-config.test.mjs
+          node tests/gcp-bootstrap.test.mjs
+          node tests/gcp-mysql.test.mjs
+          node tests/gcp-firebase.test.mjs
+          node tests/gcp-runner.test.mjs
+          node tests/gcp-push.test.mjs
+          node tests/gcp-status.test.mjs
+          node tests/gcp-seed.test.mjs
+      - name: Check Cloud Shell script syntax
+        run: |
+          bash -n scripts/gcp/bootstrap-dev.sh
+          bash -n scripts/gcp/deploy-dev.sh
+          bash -n scripts/gcp/run-dev.sh
+          bash -n scripts/gcp/push-image.sh
+          python3 -m py_compile scripts/gcp/bootstrap-dev.py
       - name: Start the actual development supervisor with seeded MySQL
         run: node scripts/dev.mjs --background
+      - name: Test real development restarts, recovery and configured ports
+        run: node tests/development-smoke.mjs
       - name: Test real MySQL and API flows through web proxy
-        run: node backend/smoke.mjs http://127.0.0.1:8080
+        run: node backend/smoke.mjs http://127.0.0.1:3000
+      - name: Install browser regression tools
+        run: |
+          npm install --prefix .local/browser-tests --no-save --no-package-lock playwright@1.56.1
+          .local/browser-tests/node_modules/.bin/playwright install --with-deps chromium
+      - name: Test location picker and search creation in Chromium
+        run: node tests/browser.test.mjs http://127.0.0.1:3000
       - name: Simulate the previous schema in the disposable CI database
         run: |
           node scripts/dev.mjs --stop
-          sleep 3
           docker exec --env MYSQL_PWD=ci-only-password "${{ job.services.mysql.id }}" mysql --user=otthonra otthonra_ci --execute="ALTER TABLE Properties DROP COLUMN LocationId, DROP COLUMN LotArea; ALTER TABLE SearchRequests DROP COLUMN LocationIdsJson; DELETE FROM __OtthonraSchemaVersions WHERE Version = '20261102-locations-and-lot-area';"
       - name: Upgrade existing data and verify preservation
         run: |
           node scripts/dev.mjs --background
-          node backend/upgrade-smoke.mjs http://127.0.0.1:8080
+          node backend/upgrade-smoke.mjs http://127.0.0.1:3000
       - name: Verify schema upgrade is idempotent
         run: |
           node scripts/dev.mjs --stop
-          sleep 3
           node scripts/dev.mjs --background
-          node backend/upgrade-smoke.mjs http://127.0.0.1:8080
+          node backend/upgrade-smoke.mjs http://127.0.0.1:3000
+      - name: Start the API with the hosted test configuration
+        run: |
+          node scripts/dev.mjs --stop
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false node scripts/dev.mjs --background
+      - name: Verify hosted test deployment capabilities
+        run: |
+          node backend/deployment-smoke.mjs http://127.0.0.1:3000 test
+          node backend/smoke.mjs http://127.0.0.1:3000
+      - name: Test hosted login, persistence and test credits in Chromium
+        run: node tests/hosted-browser.test.mjs http://127.0.0.1:3000
+      - name: Verify test fixtures and preservation through the real MySQL API
+        run: |
+          node scripts/dev.mjs --stop
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false node scripts/dev.mjs --background
+          node backend/seed-smoke.mjs http://127.0.0.1:3000
+      - name: Verify ordinary Production never exposes free credits
+        run: |
+          node scripts/dev.mjs --stop
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=production Database__SeedDemo=false node scripts/dev.mjs --background
+          node backend/deployment-smoke.mjs http://127.0.0.1:3000 production
       - name: Show development startup logs on failure
         if: failure()
         run: tail -n 80 .local/dev.log 2>/dev/null || true
@@ -94,6 +164,12 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: dotnet-test-results
+          name: dotnet-test-results-mysql-${{ matrix.mysql }}
           path: backend/Otthonra.Tests/TestResults/*.trx
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-failure-screenshots-mysql-${{ matrix.mysql }}
+          path: .local/browser-tests/screenshots/*.png
           if-no-files-found: ignore

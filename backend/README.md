@@ -75,4 +75,4 @@ A bankkártyás vásárláshoz Stripe Checkout és aláírt, idempotens webhook-
 node backend/smoke.mjs http://localhost:5080
 ```
 
-A 48 JavaScript-teszt, a .NET-fordítás, 30 xUnit-teszt, Docker-build és a valódi MySQL-es ellenőrzések sikeresek; részletek: [VALIDATION.md](../docs/VALIDATION.md). A CI az új funkciók mellett a régi sémájú adatbázis frissítését, az adatok megőrzését és az ismételt indulást is sikeresen ellenőrizte. A smoke tesztek kizárólag tesztadatbázison futtathatók; éles rendszeren ne futtasd őket. A MySQL-hálózati és párhuzamossági ellenőrzéshez futó MySQL szükséges.
+A 63 JavaScript-teszt, a .NET-fordítás, 30 xUnit-teszt, Docker-build és a valódi MySQL-es ellenőrzések sikeresek; részletek: [VALIDATION.md](../docs/VALIDATION.md). A CI az új funkciók mellett a régi sémájú adatbázis frissítését, az adatok megőrzését és az ismételt indulást is sikeresen ellenőrizte. A smoke tesztek kizárólag tesztadatbázison futtathatók; éles rendszeren ne futtasd őket. A MySQL-hálózati és párhuzamossági ellenőrzéshez futó MySQL szükséges.

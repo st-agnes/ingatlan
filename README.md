@@ -2,13 +2,31 @@
 
 Magyar nyelvű ingatlanpárosító alkalmazás. Egy felhasználó több ingatlant és több keresési igényt kezelhet, majd egyet aktiválva fedezheti fel a hozzá illő ajánlásokat. A kereső kedvelése ingyenes, az eladó ajánlása 2 kredit. Kölcsönös érdeklődéskor megnyílik az üzenetküldés és láthatóvá válnak az elérhetőségek.
 
+## Google Cloud tesztkörnyezet
+
+A `scripts/gcp/` telepítői az `ingatlan-513620` projekthez készítenek külön `-dev` szolgáltatásokat: Firebase Hosting webet, Cloud Run API-t külön Google Cloud SQL Auth Proxy konténerrel, valamint Cloud SQL for MySQL-adatbázist. Az első indítás a saját Google Cloud Shellből történik; a telepítő kiírja a Google által biztosított HTTPS-címet. A tesztoldal valódi regisztrációt és szerveres adatmentést használ, ingyenes tesztkreditekkel.
+
+**Példafiókok a felhős tesztoldalon:** `anna@otthonra.local`, `peter@otthonra.local` és `eszter@otthonra.local`, közös jelszó: `OtthonraDemo2026!`. A telepítő három kitalált felhasználót, hat ingatlant és négy keresést készít, új példafiókonként 100 ingyenes tesztkredittel és aktív profillal. Anna és Péter már egymásnak megfelelő ajánlatokat kap. A tesztadatok a Google Cloud külön adatbázisában vannak; Codespaces-adatokat nem importálunk. Saját fiókot az **„Új fiókot hozok létre”** gombbal is regisztrálhatsz.
+
+Már működő tesztoldal feltöltése újratelepítés nélkül, a frissített tárolóban:
+
+```sh
+node scripts/gcp/seed-dev.mjs
+```
+
+A feltöltő csak az azonosított tesztoldalon működik. Privát nyugtával őrzi a létrehozott rekordok azonosítóit; az ismétlés megőrzi az átnevezett/archivált példákat, egyenlegeket, aktív profilokat és kézi adatokat. Ha másik munkamásolatból már létező fiókot talál saját nyugta nélkül, változatlanul hagyja. A példafiókok megosztott, kitalált tesztadatokhoz tartoznak.
+
+Első telepítés, várható költség, Google-hitelesítés és későbbi GitHub-kiadások: **[docs/GOOGLE-CLOUD-TEST.md](docs/GOOGLE-CLOUD-TEST.md)**. A dokumentáció az előkészített telepítést írja le; az alkalmazás Google Cloudban történő tényleges indulását a helyszíni health-ellenőrzés igazolja. A saját dev aldomain később hozzáadható.
+
 ## Fejlesztőkörnyezet a felhőben
 
-A tároló tartalmazza a fejlesztéshez szükséges .NET 8 SDK, Node.js 22 és MySQL 8 környezet konfigurációját a `.devcontainer/` alatt. Devcontainer-kompatibilis felhős környezetben (például GitHub Codespaces) a környezet automatikusan telepít, fordít és indít. A webes felület a továbbított **8080-as porton** érhető el, az API ugyanazon a címen, az `/api` útvonal alatt működik. Telefonon sem kell a távoli API localhost-címét kézzel megadni.
+A tároló tartalmazza a fejlesztéshez szükséges .NET 8 SDK, Node.js 22 és MySQL 8 környezet konfigurációját a `.devcontainer/` alatt. Devcontainer-kompatibilis felhős környezetben (például GitHub Codespaces) a környezet automatikusan telepít, fordít és indít. A webes felület a továbbított **3000-es porton** érhető el, az API ugyanazon a címen, az `/api` útvonal alatt működik. Telefonon sem kell a távoli API localhost-címét kézzel megadni.
 
 Más felhős fejlesztőkörnyezet előkészítésekor az installlépés: `bash scripts/cloud-setup.sh`; az indítás: `node scripts/dev.mjs --background`. A telepítő a hiányzó .NET 8 SDK-t a projekt saját, Gitből kizárt `.local/` könyvtárába telepíti. A MySQL-t a mellékelt konfiguráció indítja, vagy a `ConnectionStrings__MySql` változóval megadott szervert használja. A szükséges eszköz- és hálózati jogosultságokat a futtatókörnyezetnek biztosítania kell.
 
-Minden push és pull request elindítja a GitHub Actions ellenőrzést: .NET-fordítás, xUnit-tesztek, 48 JavaScript-teszt és valódi MySQL-en végzett API-integrációs, illetve sémafrissítési teszt. A tesztadatbázis ideiglenes; az alkalmazás fejlesztői adatbázisa Docker-kötetben marad meg.
+Minden push és pull request elindítja a GitHub Actions ellenőrzést: .NET-fordítás, xUnit- és JavaScript-tesztek, böngészős próbák, valamint valódi MySQL-en végzett API-integrációs és sémafrissítési tesztek. A tesztadatbázis ideiglenes; az alkalmazás fejlesztői adatbázisa Docker-kötetben marad meg.
+
+Fejlesztői újraindítás: `node scripts/dev.mjs --restart`; állapotellenőrzés: `node scripts/dev.mjs --status`. A parancs kiírja a tényleges helyi és Codespaces-címet. A webes felület API-hibánál is elérhető marad, a leálló szolgáltatásokat a felügyelő újraindítja. A Codespace-hez történő visszacsatlakozáskor az indítás automatikusan lefut.
 
 Részletes előkészítés és indítás: [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
 
@@ -24,7 +42,7 @@ docker compose up --build -d
 - Felület: **http://localhost:8080**
 - API: **http://localhost:5080/api/health**
 - A felület **Beállítások → Kapcsolódás a saját szerverhez** részében add meg a `http://localhost:8080` címet (a felülettel azonos címet).
-- Példafiókok: `anna@otthonra.local` és `peter@otthonra.local`. Mindkettő jelszava `OtthonraDemo2026!`. Saját fiókot is regisztrálhatsz a kapcsolódási űrlapon.
+- Helyi példafiókok: `anna@otthonra.local` és `peter@otthonra.local`, jelszó: `OtthonraDemo2026!`. Saját fiókot is regisztrálhatsz a kapcsolódási űrlapon. A felhős tesztoldal külön feltöltött példáit a fenti Google Cloud szakasz írja le.
 
 A webes felület önmagában böngészős demóként is használható. Demómódban a módosítások csak az adott böngészőben tárolódnak, az üzenetek nem jutnak el valódi emberekhez, a kreditfeltöltés nem jár fizetéssel. API-kapcsolat esetén a .NET backend és a MySQL tárolja az adatokat. A demó és a valós API adatai külön maradnak.
 
@@ -34,6 +52,7 @@ A webes felület önmagában böngészős demóként is használható. Demómód
 - Ingatlanok és keresési igények létrehozása, szerkesztése, archiválása, aktív profil kiválasztása.
 - Település-kiegészítés eladói és keresői oldalon, 3155 magyar település és Budapest 23 kerülete közös katalógusából. Mentéshez találatot kell választani.
 - Egy keresésben több település és budapesti kerület is választható, például Budapest V. kerület, Budapest IX. kerület, Solymár és Pilisvörösvár. Bármely kiválasztott hely megfelelhet; a teljes Budapest választása minden kerületet elfogad.
+- A helyszínlista a beviteli mező alatt jelenik meg, és máshová kattintva választás nélkül bezárható. Új keresés mentése után külön visszajelzés és „Ingatlanok felfedezése” gomb segít az aktiválásban.
 - Keresésnél a minimumár, a maximum alapterület és a maximum szobaszám elhagyható; az üres mező valóban nyitott korlát. Házhoz telekméret is megadható.
 - Hely, típus, ár, alapterület, szobaszám, erkély és lift szerinti megfelelés; a már elbírált párok kizárása.
 - JWT-hitelesítés, sózott PBKDF2-jelszótárolás, tulajdonosi jogosultságok, rejtett elérhetőségek.
@@ -72,11 +91,20 @@ node tests/frontend.test.mjs
 node tests/api.test.mjs
 node tests/locations.test.mjs
 node tests/development.test.mjs
+node tests/gcp-deployment.test.mjs
+node tests/gcp-run-config.test.mjs
+node tests/gcp-bootstrap.test.mjs
+node tests/gcp-mysql.test.mjs
+node tests/gcp-firebase.test.mjs
+node tests/gcp-runner.test.mjs
+node tests/gcp-push.test.mjs
+node tests/gcp-status.test.mjs
+node tests/gcp-seed.test.mjs
 dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj
 node backend/smoke.mjs http://localhost:5080
 ```
 
-A 48 JavaScript-teszt sikeres: 5 katalógus-, 14 modell-, 12 API-adapter-, 10 offline felületi és 7 infrastruktúrateszt. A GitHub Actionsben a .NET-fordítás, 30 xUnit-teszt, Docker-build és a valódi MySQL-es API-integráció is sikeres. A korábbi séma frissítése és az ismételt újraindítás megőrizte a tesztelt adatokat. Az API-adaptert backend-formátumú mock válaszokkal ellenőriztük; a felületi tesztek szimulált DOM-ot használnak. Stripe-próbafizetéshez saját tesztkulcsok szükségesek. Részletek és futáslink: [docs/VALIDATION.md](docs/VALIDATION.md).
+A JavaScript-tesztek a katalógust, a modellt, az API-adaptert, az offline felületet, az indítási életciklust és a Google Cloud-telepítés előkészítését ellenőrzik. A CI .NET-fordítást, xUnit-teszteket, Docker-buildet, valódi MySQL-es API-próbákat és Chromium-teszteket futtat. Az offline felületi tesztek szimulált DOM-ot, az API-adapter tesztjei mock HTTP-válaszokat használnak. A telepítőtesztek nem helyettesítik a felhasználó Google Cloud-projektjének tényleges telepítését és külső elérésének ellenőrzését. Stripe-próbafizetéshez saját tesztkulcsok szükségesek. A korábbi bizonyított eredmények és futáslinkek: [docs/VALIDATION.md](docs/VALIDATION.md); az aktuális commit eredménye a pull request ellenőrzéseinél látható.
 
 ## Meglévő adatok frissítése
 

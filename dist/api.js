@@ -2,6 +2,10 @@ import { model as demoModel } from './model.js';
 import { getLocation, resolveLegacyLocations } from './locations.js';
 
 export const API_CONFIG_KEY = 'otthonra.api';
+export const hostedMode = () => globalThis.OTTHONRA_CONFIG?.mode === 'api';
+export const deploymentEnvironment = () => globalThis.OTTHONRA_CONFIG?.environment || 'local';
+const hostedApiBase = () => apiBase(globalThis.location?.origin);
+
 const clone = value => value == null ? value : JSON.parse(JSON.stringify(value));
 const MILLION = 1000000;
 
@@ -40,7 +44,7 @@ async function request(baseUrl, token, path, method = 'GET', body) {
     const raw = await response.text();
     let payload = null;
     if (raw) { try { payload = JSON.parse(raw); } catch { if (response.ok) throw new Error('Az API érvénytelen JSON-választ küldött.'); } }
-    if (!response.ok) throw new Error(errorMessage(payload, response.status));
+    if (!response.ok) { const error = new Error(errorMessage(payload, response.status)); error.status = response.status; throw error; }
     return payload;
   } catch (error) {
     if (error.name === 'AbortError') throw new Error('Az API nem válaszolt 20 másodpercen belül. Próbáld újra.');
@@ -167,6 +171,7 @@ export class ApiModel {
   }
   async feed() {
     if (!this.active) await this.getState();
+    if (!this.active?.id) return [];
     const response = await this.call('/feed');
     return rows(response).map(item => {
       const rawProperty = item.property, rawSearch = item.search || item.searchRequest;
@@ -207,9 +212,14 @@ export class ApiModel {
   async reset() { throw new Error('A valódi API-adatok a demó visszaállításával nem törölhetők. A demóhoz bontsd az API-kapcsolatot.'); }
 }
 
-export function getModel() { const config = readConfig(); return config ? new ApiModel(config) : demoModel; }
+export function getModel() {
+  const config = readConfig();
+  if (hostedMode()) return config && config.baseUrl === hostedApiBase() ? new ApiModel(config) : null;
+  return config ? new ApiModel(config) : demoModel;
+}
 export async function connectApi(baseUrl, email, password, registerData) {
   const base = apiBase(baseUrl);
+  if (hostedMode() && base !== hostedApiBase()) throw new Error('Ehhez a munkatérhez a saját webcímén jelentkezhetsz be.');
   const result = await request(base, null, registerData ? '/auth/register' : '/auth/login', 'POST', { ...(registerData || {}), email: String(email).trim(), password: String(password) });
   const token = result?.token || result?.accessToken;
   if (!token) throw new Error('Az API nem küldött hitelesítési tokent.');
@@ -219,5 +229,5 @@ export async function connectApi(baseUrl, email, password, registerData) {
   try { globalThis.localStorage.setItem(API_CONFIG_KEY, JSON.stringify(config)); } catch { throw new Error('A kapcsolat nem menthető a böngésző helyi tárhelyére.'); }
   return adapter;
 }
-export function disconnectApi() { try { globalThis.localStorage?.removeItem(API_CONFIG_KEY); } catch { throw new Error('A mentett API-kapcsolat nem törölhető.'); } return demoModel; }
+export function disconnectApi() { try { globalThis.localStorage?.removeItem(API_CONFIG_KEY); } catch { throw new Error('A mentett API-kapcsolat nem törölhető.'); } return hostedMode() ? null : demoModel; }
 export function getApiConnection() { const config = readConfig(); return config ? { baseUrl: config.baseUrl } : null; }

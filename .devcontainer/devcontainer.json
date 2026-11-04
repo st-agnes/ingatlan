@@ -15,23 +15,28 @@
     }
   },
   "forwardPorts": [
-    8080,
-    5080
+    3000
   ],
   "portsAttributes": {
-    "8080": {
+    "3000": {
       "label": "Otthonra web és API",
       "onAutoForward": "openBrowser",
       "protocol": "http"
     },
     "5080": {
       "label": ".NET API",
-      "onAutoForward": "silent",
+      "onAutoForward": "ignore",
+      "protocol": "http"
+    },
+    "8080": {
+      "label": "Régi fejlesztői port – használd a 3000-et",
+      "onAutoForward": "ignore",
       "protocol": "http"
     }
   },
   "postCreateCommand": "bash scripts/cloud-setup.sh",
   "postStartCommand": "node scripts/dev.mjs --background",
+  "postAttachCommand": "node scripts/dev.mjs --background",
   "customizations": {
     "vscode": {
       "extensions": [

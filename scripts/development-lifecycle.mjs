@@ -11,11 +11,11 @@ export async function supervisorPid(pidFile,{scriptPath,read=readFile,check=pid=
   }catch(error){if(['ENOENT','ESRCH'].includes(error.code))return null;throw error;}
 }
 
-export async function waitForServices({probe,isAlive,timeoutMs=65000,intervalMs=500,now=Date.now,delay=ms=>new Promise(resolve=>setTimeout(resolve,ms))}) {
+export async function waitForServices({probe,isAlive,webOrigin='http://127.0.0.1:3000',timeoutMs=120000,intervalMs=500,now=Date.now,delay=ms=>new Promise(resolve=>setTimeout(resolve,ms))}) {
   const deadline=now()+timeoutMs;
   for(;;) {
     if(!await isAlive())throw new Error('Development supervisor exited before the web application became ready.');
-    const statuses=await Promise.all([probe('http://127.0.0.1:8080/'),probe('http://127.0.0.1:8080/api/health')]);
+    const statuses=await Promise.all([probe(new URL('/',webOrigin).href),probe(new URL('/api/health',webOrigin).href)]);
     if(statuses.every(status=>status===200)&&await isAlive())return;
     if(now()>=deadline)throw new Error(`Development web and API did not become ready within ${Math.round(timeoutMs/1000)} seconds.`);
     await delay(Math.min(intervalMs,Math.max(0,deadline-now())));
