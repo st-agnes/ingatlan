@@ -137,6 +137,10 @@ Ha a helyi Docker-feltöltés korábban hálózati hibát adott, a fenti parancs
 
 ## Használat és ellenőrzés
 
+**Első belépés:** a bejelentkezési képernyőn kattints az **„Új fiókot hozok létre”** gombra. Add meg a neved, az e-mail-címed és egy legalább 10 karakteres saját jelszót, majd válaszd a **„Fiók létrehozása”** gombot. A sikeres regisztráció azonnal beléptet. A README helyi példafiókjai (`anna@otthonra.local`, `peter@otthonra.local`) itt nem jönnek létre, a Codespaces fiókjai sem kerülnek át automatikusan. Ehhez nem szükséges újratelepítés.
+
+A párosítás kipróbálásához két külön regisztrált fiók kell: az egyikhez ingatlant, a másikhoz annak megfelelő keresési igényt készíts és aktiválj. Az új fiók nulla kredittel indul; eladói ajánláshoz a **Krediteim** oldalon ingyenesen adhatsz hozzá tesztkreditet. Kölcsönös kedvelés után elérhető a kapcsolatfelvétel.
+
 A Google Cloudra feltöltött frontend bejelentkezést vagy regisztrációt kér. A fiókok, ingatlanok, keresések, párosítások és üzenetek a valódi tesztadatbázisba kerülnek. Az új fiók első lépésként saját keresést vagy ingatlant hozhat létre, majd aktiválhatja azt.
 
 A felület „Tesztkörnyezet” jelölést mutat. A kreditek ingyenes tesztkreditek: a feltöltés nem indít bankkártyás fizetést. A jogosultságot a backend kizárólag a saját konfigurációjából engedélyezi: `ASPNETCORE_ENVIRONMENT=Production`, `Deployment__Environment=test`, `Credits__EnableDemoTopup=true`. Teszttelepítésben az éles Stripe-kulcsot a szerver elutasítja.
