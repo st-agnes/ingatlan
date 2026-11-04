@@ -124,6 +124,17 @@ A közvetlen Firebase REST-kérések az `X-Goog-User-Project` fejlécben a kivá
 
 A `SERVICE_DISABLED` az adott fogyasztóprojektben engedélyezendő API-t, a `USER_PROJECT_DENIED` a kvótaprojekt használati jogosultságát jelzi. A hibakód önmagában nem dönti el az okot. Ha a Google kifejezetten `Firebase Tos Not Accepted` hibát jelez, a saját Google-fiókoddal nyisd meg a [Firebase feltételeinek ellenőrzését](https://console.firebase.google.com/?forceCheckTos=true), és végezd el az ott kért elfogadást. A telepítő nem fogad el jogi feltételeket helyetted, és nem ad új jogosultságokat egy 403-as válasz alapján.
 
+## Firebase: „Failed to replace Run service”
+
+Ha az API/adatbázis ellenőrzése már sikeres, a fájlok feltöltődnek, de a Hosting „finalizing version” lépése `Failed to replace Run service` hibát ad, frissítsd a telepítési ágat. A korábbi beállítás külön `/api` és `/api/**` szabállyal ugyanazt a szolgáltatást kétszer kötötte a Hosting verziójához. A Firebase CLI 14.17.0 [minden ilyen szabályhoz külön, párhuzamos Cloud Run-módosítást indít](https://github.com/firebase/firebase-tools/blob/v14.17.0/src/hosting/runTags.ts), így ezek ütközhetnek. Az új beállítás egyetlen `^/api(/.*)?$` regexszabályt használ, továbbra is `pinTag: true` értékkel; lefedi az `/api` és az alatta lévő útvonalakat is.
+
+```sh
+git pull --ff-only
+bash scripts/gcp/run-dev.sh --deploy-only
+```
+
+Ha a helyi Docker-feltöltés korábban hálózati hibát adott, a fenti parancsnak add át a már ellenőrzött, feltöltött backendkép `--image` paraméterét is az előző szakasz szerint. A módosítás frontend-telepítési beállítás: azonos backendhez nem szükséges új képet feltölteni. Az npm `warn` üzenetei nem bizonyítják a Cloud Run-módosítás elutasításának okát. Más jogosultsági vagy API-hiba ugyanezt az általános Firebase-üzenetet is okozhatja; ismétlődés esetén a Firebase részletes naplójában szereplő Google HTTP-státusz és hibaüzenet alapján kell folytatni.
+
 ## Használat és ellenőrzés
 
 A Google Cloudra feltöltött frontend bejelentkezést vagy regisztrációt kér. A fiókok, ingatlanok, keresések, párosítások és üzenetek a valódi tesztadatbázisba kerülnek. Az új fiók első lépésként saját keresést vagy ingatlant hozhat létre, majd aktiválhatja azt.

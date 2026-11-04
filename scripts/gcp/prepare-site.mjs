@@ -48,9 +48,12 @@ export function hostingConfig(config) {
       {key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin'},
       {key: 'X-Robots-Tag', value: 'noindex, nofollow'}
     ]}],
-    rewrites: ['/api', '/api/**'].map(source => ({source, run: {
+    // Firebase CLI 14.17.0 pins each rewrite independently and updates duplicate
+    // services concurrently. One regex covers both /api and its descendants,
+    // avoiding conflicting replacements of the same Cloud Run service.
+    rewrites: [{regex: '^/api(/.*)?$', run: {
       serviceId: config.serviceName, region: config.region, pinTag: true
-    }}))
+    }}]
   }};
 }
 

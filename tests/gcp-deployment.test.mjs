@@ -56,11 +56,22 @@ test('a public deployment manifest rejects accidental credential fields', () => 
   }
 });
 
-test('each API rewrite pins the intended test Cloud Run revision and Hosting headers disable caches and indexing', () => {
+test('one pinned rewrite covers exactly the API namespace without concurrent updates of the same Run service', () => {
   const value = hostingConfig(config).hosting;
   assert.equal(value.site, config.siteId);
-  assert.deepEqual(value.rewrites.map(rule => rule.source), ['/api','/api/**']);
-  assert.ok(value.rewrites.every(rule => rule.run.serviceId === config.serviceName && rule.run.region === config.region && rule.run.pinTag === true));
+  // Firebase CLI pins once per rewrite, including repeated references to the
+  // same service. Both API patterns must therefore share a single rewrite.
+  assert.equal(value.rewrites.length, 1);
+  const [rule] = value.rewrites;
+  assert.equal(rule.source, undefined);
+  assert.deepEqual(rule.run, {serviceId: config.serviceName, region: config.region, pinTag: true});
+  const pattern = new RegExp(rule.regex);
+  for (const path of ['/api','/api/','/api/health','/api/auth/login','/api/locations?q=Budapest']) {
+    assert.equal(pattern.test(path), true, `API route missing: ${path}`);
+  }
+  for (const path of ['/','/apix','/api-extra','/API/health','/runtime-config.js','/assets/api/image.jpg']) {
+    assert.equal(pattern.test(path), false, `Frontend route wrongly sent to API: ${path}`);
+  }
   const headers = Object.fromEntries(value.headers[0].headers.map(header => [header.key, header.value]));
   assert.equal(headers['Cache-Control'], 'no-store');
   assert.equal(headers['X-Robots-Tag'], 'noindex, nofollow');
