@@ -26,7 +26,19 @@ done
 for command_name in gcloud python3 curl; do command -v "$command_name" >/dev/null || { printf 'Required command missing: %s\n' "$command_name" >&2; exit 1; }; done
 
 temporary="$(mktemp -d)"
-trap 'rm -rf "$temporary"' EXIT
+bootstrap_step='Projekt és számlázás ellenőrzése'
+finish() {
+  local status=$?
+  trap - EXIT
+  rm -rf "$temporary"
+  if ((status != 0)); then
+    # Only a fixed phase name is printed: never BASH_COMMAND or secret arguments.
+    printf '\nTELEPÍTÉS MEGÁLLT: %s (hibakód: %s).\n' "$bootstrap_step" "$status" >&2
+  fi
+  exit "$status"
+}
+trap finish EXIT
+step() { bootstrap_step="$1"; printf '\nLÉPÉS: %s\n' "$bootstrap_step"; }
 gc() { gcloud --project="$project_id" --quiet "$@"; }
 field() { python3 "$helper" field "$1" "$2"; }
 marker='Managed by st-agnes/ingatlan bootstrap-dev.'
@@ -63,10 +75,12 @@ printf '%s\n' \
   'No production service, database, domain, Stripe key or service-account JSON key is created.'
 if "$plan_only"; then exit 0; fi
 
+step 'Google API-k engedélyezése'
 gc services enable serviceusage.googleapis.com cloudresourcemanager.googleapis.com iam.googleapis.com iamcredentials.googleapis.com \
   sts.googleapis.com run.googleapis.com artifactregistry.googleapis.com sqladmin.googleapis.com secretmanager.googleapis.com \
   firebase.googleapis.com firebasehosting.googleapis.com
 
+step 'Teszt szolgáltatásfiókok'
 runtime_account="otthonra-runtime-dev@$project_id.iam.gserviceaccount.com"
 deploy_account="otthonra-deploy-dev@$project_id.iam.gserviceaccount.com"
 for account in otthonra-runtime-dev otthonra-deploy-dev; do
@@ -77,6 +91,7 @@ for account in otthonra-runtime-dev otthonra-deploy-dev; do
   fi
 done
 
+step 'Teszt konténertároló'
 if describe "$temporary/registry.json" artifacts repositories describe otthonra-dev --location="$region"; then
   python3 "$helper" owned "$temporary/registry.json"
   [[ "$(field "$temporary/registry.json" format)" == DOCKER ]] || { printf '%s\n' 'Existing dev registry is not Docker.' >&2; exit 1; }
@@ -84,11 +99,12 @@ else
   gc artifacts repositories create otthonra-dev --location="$region" --repository-format=docker --description="$marker" --labels="$labels" >/dev/null
 fi
 
+step 'Cloud SQL tesztadatbázis'
 if describe "$temporary/sql.json" sql instances describe otthonra-mysql-dev; then
   python3 "$helper" sql "$temporary/sql.json" "$region"
 else
   python3 "$helper" root-flags "$temporary/root-flags.json"
-  gc sql instances create otthonra-mysql-dev --region="$region" --database-version=MYSQL_8_4 --edition=ENTERPRISE \
+  gc beta sql instances create otthonra-mysql-dev --region="$region" --database-version=MYSQL_8_4 --edition=ENTERPRISE \
     --tier=db-f1-micro --availability-type=ZONAL --storage-type=SSD --storage-size=10 \
     --storage-auto-increase --storage-auto-increase-limit=20 --backup-start-time=03:00 --retained-backups-count=7 \
     --assign-ip --ssl-mode=ENCRYPTED_ONLY --deletion-protection --labels="$labels" --flags-file="$temporary/root-flags.json" >/dev/null
@@ -97,6 +113,7 @@ if ! describe "$temporary/database.json" sql databases describe otthonra_dev --i
   gc sql databases create otthonra_dev --instance=otthonra-mysql-dev --charset=utf8mb4 --collation=utf8mb4_unicode_ci >/dev/null
 fi
 
+step 'Tesztadatbázis-jelszó és JWT-titok'
 connection_name="$project_id:$region:otthonra-mysql-dev"
 gc sql users list --instance=otthonra-mysql-dev --format=json >"$temporary/users.json"
 user_exists="$(python3 "$helper" find-user "$temporary/users.json")"
@@ -122,6 +139,7 @@ if [[ "$user_exists" != yes ]]; then
 fi
 gc projects add-iam-policy-binding "$project_id" --member="serviceAccount:$runtime_account" --role=roles/cloudsql.client --condition=None >/dev/null
 
+step 'Cloud Run tesztszolgáltatás és jogosultságok'
 if describe "$temporary/service.json" run services describe otthonra-api-dev --region="$region"; then
   python3 "$helper" service "$temporary/service.json" "$region" "$runtime_account"
 else
@@ -139,6 +157,7 @@ gc projects add-iam-policy-binding "$project_id" --member="serviceAccount:$deplo
 gc projects add-iam-policy-binding "$project_id" --member="serviceAccount:$deploy_account" --role=roles/firebasehosting.admin --condition=None >/dev/null
 gc projects add-iam-policy-binding "$project_id" --member="serviceAccount:$deploy_account" --role=roles/serviceusage.serviceUsageConsumer --condition=None >/dev/null
 
+step 'GitHub rövid életű Google-identitás'
 if describe "$temporary/pool.json" iam workload-identity-pools describe otthonra-dev --location=global; then
   python3 "$helper" description "$temporary/pool.json"
   [[ "$(field "$temporary/pool.json" state)" == ACTIVE ]] || { printf '%s\n' 'GitHub test identity pool is not active.' >&2; exit 1; }
@@ -158,6 +177,7 @@ gc iam service-accounts add-iam-policy-binding "$deploy_account" \
   --member="principalSet://iam.googleapis.com/projects/$project_number/locations/global/workloadIdentityPools/otthonra-dev/attribute.repository_id/1441962351" \
   --role=roles/iam.workloadIdentityUser >/dev/null
 
+step 'Firebase tesztprojekt és webcím'
 # Firebase APIs use the current Cloud Shell login. The bearer header stays in a
 # private temporary file, never in terminal output, process arguments or Git.
 rest() {
@@ -209,6 +229,7 @@ if [[ "$code" == 404 ]]; then
 else expect_ok "$code"; fi
 python3 "$helper" site "$temporary/site.json" "$app_id"
 
+step 'Telepítési konfiguráció mentése'
 python3 "$helper" manifest "$root/.local/gcp/dev-config.json" "$project_id" "$project_number" "$region"
 printf '\n%s\n' 'Test infrastructure and GitHub deployment identity are configured.' \
   'The Cloud Run service is still a placeholder. The application is NOT deployed yet.' \

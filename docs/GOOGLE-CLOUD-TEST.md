@@ -21,11 +21,12 @@ A `--plan` csak projektadatokat és számlázási állapotot olvas, majd kiírja
 Az infrastruktúra és az alkalmazás létrehozása:
 
 ```sh
-bash scripts/gcp/bootstrap-dev.sh --project ingatlan-513620
-bash scripts/gcp/deploy-dev.sh
+bash scripts/gcp/run-dev.sh
 ```
 
-A Cloud Shellnek `gcloud`, Python 3, curl, Git, Docker és Node.js 22/npm eszközökre van szüksége. A telepítő a Firebase CLI rögzített verzióját az ignorált `.local/gcp/tools` könyvtárba telepíti. A .NET SDK-t az API Docker-buildje biztosítja.
+A futtató két rövid lépést ír ki, és a teljes kimenetet a privát, ignorált `.local/gcp/deployment.log` fájlba menti. Hiba esetén az utolsó sorokban a megállás helye, az első hiba és a napló megnyitásának parancsa látható. Az előző futás naplója `deployment.log.previous` néven megmarad. Siker esetén a végén a megnyitható HTTPS-cím szerepel.
+
+A Cloud Shellnek `gcloud`, Python 3, curl, Git, Docker és Node.js 22/npm eszközökre van szüksége. A Cloud SQL tulajdonosi címkéihez a dokumentált `gcloud beta sql instances create` parancsot használjuk; a stabil változat a `--labels` kapcsolót nem fogadja el. [Google-dokumentáció](https://docs.cloud.google.com/sql/docs/mysql/label-instance). A telepítő a Firebase CLI rögzített verzióját az ignorált `.local/gcp/tools` könyvtárba telepíti. A .NET SDK-t az API Docker-buildje biztosítja.
 
 A bootstrap a Cloud Shell aktuális Google-bejelentkezését használja. Az alkalmazás telepítője Application Default Credentials (ADC) hitelesítést igényel. Ha a telepítő ADC-hiányt jelez, a Cloud Shellben futtasd:
 
@@ -43,6 +44,29 @@ https://otthonra-dev-PROJECTNUMBER.web.app/
 ```
 
 A `PROJECTNUMBER` értékét a telepítő a Google-tól olvassa ki; a cím kiírt, tényleges változatát nyisd meg. Az első indításhoz nem szükséges saját domain vagy DNS-módosítás. A `dev.sajatdomain.hu` később a teszt Hosting-site-hoz kapcsolható a Firebase konzolban, az ott megadott DNS-rekordokkal.
+
+## Állapot és napló tabletről
+
+A tároló könyvtárában futtatva néhány sorban, módosítás nélkül ellenőrizhető a telepítés:
+
+```sh
+node scripts/gcp/status-dev.mjs
+```
+
+A sikerhez a Cloud Run API-nak és a Hostingen át elért API-nak is el kell érnie a MySQL-t, tesztkörnyezetet és engedélyezett tesztkrediteket kell jeleznie. A Hosting futásidejű konfigurációjának valódi API-módot kell kérnie. A Cloud Run-helyőrzőt vagy a böngészős demót az ellenőrző nem tekinti kész alkalmazásnak. Hiányzó manifest esetén az előkészítés még nem fejeződött be.
+
+Ha a korábbi futás Google-help szöveggel állt meg, frissítés és újrapróbálás ugyanabban a Cloud Shell-másolatban:
+
+```sh
+git pull --ff-only
+bash scripts/gcp/run-dev.sh
+```
+
+A már létrejött, saját jelölésű erőforrásokat és titkokat az előkészítő tovább használja. Nem szükséges új adatbázist vagy Cloud Shell-másolatot létrehozni. A részletes napló az editorban olvasható, terminálgörgetés nélkül:
+
+```sh
+cloudshell edit .local/gcp/deployment.log
+```
 
 ## Használat és ellenőrzés
 

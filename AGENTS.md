@@ -18,6 +18,7 @@ This is Otthonra, a Hungarian real-estate matching application. The backend is .
 ## Google Cloud test deployment
 
 - The current authorized cloud scope is TEST only in project `ingatlan-513620`, region `europe-west1`. Create only the named `-dev` resources. Custom DNS and production provisioning are separate work.
+- `bash scripts/gcp/run-dev.sh` performs the first bootstrap/deploy with a private `.local/gcp/deployment.log`, a short error summary and final verified URL. `node scripts/gcp/status-dev.mjs` is read-only and must never treat a Cloud Run placeholder or browser demo as a successful installation. SQL ownership labels require the documented **beta** `gcloud beta sql instances create`; the GA create command rejects `--labels`.
 - `scripts/gcp/bootstrap-dev.sh --project ingatlan-513620 --plan` reads project/billing metadata; the normal bootstrap provisions the dev infrastructure and writes ignored `.local/gcp/dev-config.json`. `scripts/gcp/deploy-dev.sh` builds/deploys the API and Firebase Hosting site. The user runs the first bootstrap/deployment in their own Cloud Shell; repository access alone does not provide Google Cloud credentials here.
 - Keep generated SQL/JWT secrets in Secret Manager and private temporary files. The config manifest contains resource identifiers, not secret payloads. Do not print tokens, connection strings, passwords, credential files or service-account JSON keys.
 - Hosted frontend configuration is generated into staging: `globalThis.OTTHONRA_CONFIG = Object.freeze({mode: 'api', environment: 'test'})`. The tracked config defaults to the local demo. Hosted login uses the current origin, logout/401 returns to authentication, and server failures must not silently fall back to demo data.
@@ -39,6 +40,8 @@ node tests/development.test.mjs
 node tests/locations.test.mjs
 node tests/gcp-deployment.test.mjs
 node tests/gcp-bootstrap.test.mjs
+node tests/gcp-runner.test.mjs
+node tests/gcp-status.test.mjs
 ```
 
 With Development API and MySQL running, `node backend/smoke.mjs http://localhost:3000` checks real authorization, contact privacy, matching, messaging, and concurrent single credit billing through the web proxy. It creates disposable test accounts. GitHub Actions runs the complete suite with an ephemeral MySQL service.

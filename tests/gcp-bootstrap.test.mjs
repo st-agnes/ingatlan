@@ -64,3 +64,31 @@ const fs=require('node:fs'),args=process.argv.slice(2),file=process.env.POLL_STA
  const done=spawnSync('bash',[program],{env,encoding:'utf8',timeout:4000});assert.equal(done.status,0,done.stderr);assert.equal(JSON.parse(await readFile(state,'utf8')).calls,3);assert.ok(!done.stdout.includes('fake-bootstrap-access-token'));
  await json(state,{calls:0});const failed=spawnSync('bash',[program],{env:{...env,POLL_ERROR:'yes'},encoding:'utf8',timeout:4000});assert.notEqual(failed.status,0);assert.match(failed.stderr,/provisioning operation failed/);assert.equal(JSON.parse(await readFile(state,'utf8')).calls,1);assert.ok(!failed.stderr.includes('This detail must not be printed'));assert.ok(!failed.stderr.includes('fake-bootstrap-access-token'));
 }));
+
+test('Cloud SQL creation uses beta for ownership labels and leaves a short phase summary after CLI help',async()=>temporary(async dir=>{
+ const bin=join(dir,'bin');await mkdir(bin);const calls=join(dir,'calls');
+ // Model the documented CLI contract: --labels is available only on beta create.
+ await executable(join(bin,'gcloud'),`#!/usr/bin/env node
+const fs=require('node:fs'),a=process.argv.slice(2),command=a.filter(v=>!v.startsWith('--')).join(' ');fs.appendFileSync(process.env.CALLS,JSON.stringify(a)+'\\n');
+if(command.startsWith('billing projects describe '))console.log(JSON.stringify({billingEnabled:true}));
+else if(command.startsWith('projects describe '))console.log(JSON.stringify({lifecycleState:'ACTIVE',projectNumber:'123456789012'}));
+else if(command.includes('sql instances create ')){
+ if(!command.startsWith('beta sql instances create ')&&a.some(v=>v.startsWith('--labels='))){fs.writeSync(2,'ERROR: unrecognized arguments: --labels\\nUsage: gcloud sql instances create INSTANCE [FLAGS]\\n');process.exit(2);}
+ if(!a.some(v=>v.startsWith('--labels=')))process.exit(93);
+ console.log('SQL creation accepted');
+}else if(command.includes(' describe ')){console.error('NOT_FOUND: fixture resource does not exist');process.exit(1);}
+else if(!command.startsWith('services enable ')&&!command.startsWith('iam service-accounts create ')&&!command.startsWith('artifacts repositories create '))process.exit(92);
+`);
+ const source=await readFile(script,'utf8'),end=source.indexOf('if ! describe "$temporary/database.json"');assert.ok(end>0);
+ // Run the real bootstrap through SQL creation, then stop before later APIs.
+ const prefix=source.slice(0,end).replace('helper="$root/scripts/gcp/bootstrap-dev.py"','helper="$HELPER"');
+ const program=join(dir,'create.sh');await writeFile(program,prefix);
+ const env={...process.env,PATH:bin+':'+process.env.PATH,CALLS:calls,HELPER:helper};
+ const good=spawnSync('bash',[program,'--project','ingatlan-513620'],{env,encoding:'utf8',timeout:5000});assert.equal(good.status,0,good.stderr);
+ const commands=(await readFile(calls,'utf8')).trim().split('\n').map(JSON.parse);const creation=commands.find(a=>a.includes('create')&&a.includes('instances'));assert.ok(creation?.includes('beta'));assert.ok(creation.some(a=>a.startsWith('--labels=app=otthonra,environment=dev,')));
+ // The former GA invocation reproduces the real failure and must keep the
+ // useful fixed phase below the help text, without printing credential flags.
+ await writeFile(program,prefix.replace('gc beta sql instances create','gc sql instances create'));
+ const bad=spawnSync('bash',[program,'--project','ingatlan-513620'],{env,encoding:'utf8',timeout:5000});assert.equal(bad.status,2);assert.match(bad.stderr,/unrecognized arguments: --labels/);
+ assert.match(bad.stderr.trim().split('\n').at(-1),/TELEPÍTÉS MEGÁLLT: Cloud SQL tesztadatbázis \(hibakód: 2\)/);assert.doesNotMatch(bad.stderr,/root-password|flags-file|Password=/);
+}));
