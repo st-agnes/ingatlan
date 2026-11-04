@@ -68,6 +68,14 @@ A már létrejött, saját jelölésű erőforrásokat és titkokat az előkész
 cloudshell edit .local/gcp/deployment.log
 ```
 
+## Firebase API-hibák
+
+A közvetlen Firebase REST-kérések az `X-Goog-User-Project` fejlécben a kiválasztott projektet használják kvótaprojektként, a Google [felhasználói tokenekre vonatkozó útmutatója](https://docs.cloud.google.com/sdk/gcloud/reference/auth/print-access-token) szerint. Ehhez a bejelentkezett fióknak `serviceusage.services.use` jogosultság szükséges ezen a projekten.
+
+403 esetén a telepítő kiírja a pontos műveletet, a Google státuszát, rövid hibaüzenetét és az elérhető strukturált indokot (`reason`, `service`, `consumer`, `permission`). A teljes API-választ, tokent és alkalmazáskonfigurációt nem írja ki. A futtató ezeket a rövid diagnosztikai sorokat a terminál végén is megjeleníti.
+
+A `SERVICE_DISABLED` az adott fogyasztóprojektben engedélyezendő API-t, a `USER_PROJECT_DENIED` a kvótaprojekt használati jogosultságát jelzi. A hibakód önmagában nem dönti el az okot. Ha a Google kifejezetten `Firebase Tos Not Accepted` hibát jelez, a saját Google-fiókoddal nyisd meg a [Firebase feltételeinek ellenőrzését](https://console.firebase.google.com/?forceCheckTos=true), és végezd el az ott kért elfogadást. A telepítő nem fogad el jogi feltételeket helyetted, és nem ad új jogosultságokat egy 403-as válasz alapján.
+
 ## Használat és ellenőrzés
 
 A Google Cloudra feltöltött frontend bejelentkezést vagy regisztrációt kér. A fiókok, ingatlanok, keresések, párosítások és üzenetek a valódi tesztadatbázisba kerülnek. Az új fiók első lépésként saját keresést vagy ingatlant hozhat létre, majd aktiválhatja azt.

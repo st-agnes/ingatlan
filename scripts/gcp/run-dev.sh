@@ -25,11 +25,18 @@ run_step() {
     python3 - "$log_path" <<'PY'
 import pathlib,re,sys
 lines=pathlib.Path(sys.argv[1]).read_text(errors='replace').splitlines()
-for line in lines:
-    if re.search(r'ERROR:|unrecognized arguments|Bootstrap validation failed:|Error:|ADC is not ready|is required\.',line,re.I):
-        line=re.sub(r'\x1b\[[0-?]*[ -/]*[@-~]','',line)
-        print(line[:240],file=sys.stderr)
-        break
+api_prefixes=('Google Firebase API request failed:', 'Firebase provisioning operation failed.', 'Google ErrorInfo:', 'Google status:', 'Google message:', 'Firebase Terms:', 'Quota project:')
+api_start=next((i for i,line in enumerate(lines) if line.startswith(api_prefixes[:2])),None)
+if api_start is not None:
+    for line in lines[api_start:api_start+7]:
+        if line.startswith(api_prefixes):
+            print(line[:400],file=sys.stderr)
+else:
+    for line in lines:
+        if re.search(r'ERROR:|unrecognized arguments|Bootstrap validation failed:|Error:|ADC is not ready|is required\.|Google access token',line,re.I):
+            line=re.sub(r'\x1b\[[0-?]*[ -/]*[@-~]','',line)
+            print(line[:240],file=sys.stderr)
+            break
 PY
     printf 'Napló megnyitása: cloudshell edit %s\n' "$log_path" >&2
     exit "$code"

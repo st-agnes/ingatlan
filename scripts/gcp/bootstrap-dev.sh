@@ -190,9 +190,15 @@ step 'Firebase tesztprojekt és webcím'
 # Firebase APIs use the current Cloud Shell login. The bearer header stays in a
 # private temporary file, never in terminal output, process arguments or Git.
 rest() {
-  local method="$1" url="$2" output="$3" body="${4:-}" code attempt
+  local method="$1" url="$2" output="$3" body="${4:-}" code attempt api_token
   for attempt in 1 2 3 4; do
-    printf 'header = "Authorization: Bearer %s"\n' "$(gcloud auth print-access-token)" >"$temporary/curl-auth"
+    if ! api_token="$(gcloud auth print-access-token --project="$project_id" --quiet)"; then
+      printf '%s\n' 'Google access token is unavailable; no Firebase request was sent.' >&2
+      return 1
+    fi
+    [[ -n "$api_token" ]] || { printf '%s\n' 'Google access token is empty; no Firebase request was sent.' >&2; return 1; }
+    printf 'header = "Authorization: Bearer %s"\nheader = "X-Goog-User-Project: %s"\n' "$api_token" "$project_id" >"$temporary/curl-auth"
+    unset api_token
     if [[ -n "$body" ]]; then
       code="$(curl --silent --show-error --connect-timeout 15 --max-time 60 --config "$temporary/curl-auth" --request "$method" \
         --header 'Content-Type: application/json' --data "$body" --output "$output" --write-out '%{http_code}' "$url")" || return 1
@@ -207,13 +213,17 @@ rest() {
     return
   done
 }
-expect_ok() { [[ "$1" =~ ^2[0-9][0-9]$ ]] || { printf 'Google Firebase API request failed (HTTP %s); no response body containing configuration was printed.\n' "$1" >&2; exit 1; }; }
+expect_ok() {
+  [[ "$1" =~ ^2[0-9][0-9]$ ]] && return 0
+  python3 "$helper" api-error "$2" "$1" "$3" "$temporary/curl-auth"
+  exit 1
+}
 wait_operation() {
   local operation="$1" deadline=$((SECONDS+600)) code state
   [[ "$operation" =~ ^operations/[A-Za-z0-9_./-]+$ ]] || { printf '%s\n' 'Unexpected Firebase operation name.' >&2; exit 1; }
   while :; do
-    code="$(rest GET "https://firebase.googleapis.com/v1beta1/$operation" "$temporary/operation.json")"; expect_ok "$code"
-    state="$(python3 "$helper" operation-state "$temporary/operation.json")" || return 1
+    code="$(rest GET "https://firebase.googleapis.com/v1beta1/$operation" "$temporary/operation.json")"; expect_ok "$code" "$temporary/operation.json" 'Firebase operation lookup'
+    state="$(python3 "$helper" operation-state "$temporary/operation.json" "$temporary/curl-auth")" || return 1
     if [[ "$state" == done ]]; then return; fi
     ((SECONDS<deadline)) || { printf '%s\n' 'Firebase provisioning timed out; retrying this bootstrap will reuse its resources.' >&2; exit 1; }
     sleep 3
@@ -221,21 +231,21 @@ wait_operation() {
 }
 code="$(rest GET "https://firebase.googleapis.com/v1beta1/projects/$project_id" "$temporary/firebase.json")"
 if [[ "$code" == 404 ]]; then
-  code="$(rest POST "https://firebase.googleapis.com/v1beta1/projects/$project_id:addFirebase" "$temporary/firebase-operation.json" '{}')"; expect_ok "$code"
+  code="$(rest POST "https://firebase.googleapis.com/v1beta1/projects/$project_id:addFirebase" "$temporary/firebase-operation.json" '{}')"; expect_ok "$code" "$temporary/firebase-operation.json" 'Enable Firebase on the project'
   wait_operation "$(field "$temporary/firebase-operation.json" name)"
-else expect_ok "$code"; fi
-code="$(rest GET "https://firebase.googleapis.com/v1beta1/projects/$project_id/webApps?pageSize=100" "$temporary/apps.json")"; expect_ok "$code"
+else expect_ok "$code" "$temporary/firebase.json" 'Firebase project lookup'; fi
+code="$(rest GET "https://firebase.googleapis.com/v1beta1/projects/$project_id/webApps?pageSize=100" "$temporary/apps.json")"; expect_ok "$code" "$temporary/apps.json" 'Firebase web-app list'
 app_id="$(python3 "$helper" find-app "$temporary/apps.json")"
 if [[ -z "$app_id" ]]; then
-  code="$(rest POST "https://firebase.googleapis.com/v1beta1/projects/$project_id/webApps" "$temporary/app-operation.json" "{\"displayName\":\"$marker\"}")"; expect_ok "$code"
+  code="$(rest POST "https://firebase.googleapis.com/v1beta1/projects/$project_id/webApps" "$temporary/app-operation.json" "{\"displayName\":\"$marker\"}")"; expect_ok "$code" "$temporary/app-operation.json" 'Create Firebase web app'
   wait_operation "$(field "$temporary/app-operation.json" name)"
   app_id="$(field "$temporary/operation.json" response.appId)"
 fi
 site_id="otthonra-dev-$project_number"
 code="$(rest GET "https://firebasehosting.googleapis.com/v1beta1/projects/$project_number/sites/$site_id" "$temporary/site.json")"
 if [[ "$code" == 404 ]]; then
-  code="$(rest POST "https://firebasehosting.googleapis.com/v1beta1/projects/$project_number/sites?siteId=$site_id" "$temporary/site.json" "{\"appId\":\"$app_id\"}")"; expect_ok "$code"
-else expect_ok "$code"; fi
+  code="$(rest POST "https://firebasehosting.googleapis.com/v1beta1/projects/$project_number/sites?siteId=$site_id" "$temporary/site.json" "{\"appId\":\"$app_id\"}")"; expect_ok "$code" "$temporary/site.json" 'Create Hosting site'
+else expect_ok "$code" "$temporary/site.json" 'Hosting site lookup'; fi
 python3 "$helper" site "$temporary/site.json" "$app_id"
 
 step 'Telepítési konfiguráció mentése'

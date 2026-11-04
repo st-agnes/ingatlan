@@ -60,3 +60,16 @@ test('a zero exit without the verified deployment marker cannot report a working
     assert.match(result.stderr, /működés nincs igazolva/);
   });
 });
+
+
+test('a Firebase failure keeps the useful Google reason and action in the short terminal summary', async () => {
+  await fixture("echo 'Google Firebase API request failed: Firebase project lookup (HTTP 403).'\necho 'Google ErrorInfo: reason=USER_PROJECT_DENIED; service=firebase.googleapis.com; consumer=projects/120611818277'\necho 'Google status: PERMISSION_DENIED'\necho 'Google message: The quota project requires serviceusage.services.use permission.'\necho 'Quota project: serviceusage.services.use permission is required on the selected project.'\necho 'Unrelated log details must remain in the private file.'\nexit 1", 'touch DEPLOYED', async ({root, run}) => {
+    const result = run();
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, /reason=USER_PROJECT_DENIED/);
+    assert.match(result.stderr, /Google status: PERMISSION_DENIED/);
+    assert.match(result.stderr, /serviceusage.services.use/);
+    assert.doesNotMatch(result.stdout + result.stderr, /Unrelated log details/);
+    await assert.rejects(stat(join(root, 'DEPLOYED')), {code: 'ENOENT'});
+  });
+});

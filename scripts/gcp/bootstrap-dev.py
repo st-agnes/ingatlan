@@ -20,6 +20,69 @@ def require_owned(value):
         raise ValueError("Existing resource is not marked as this Otthonra test deployment; refusing to modify it.")
 
 
+def api_error_summary(value, heading, auth_path=None):
+    """Report only Google error diagnostics; never dump bodies or credentials."""
+    token = ""
+    if auth_path:
+        try:
+            match = re.search(r'Authorization: Bearer ([^"\r\n]+)', pathlib.Path(auth_path).read_text())
+            token = match.group(1) if match else ""
+        except OSError:
+            pass
+
+    def clean(text, limit=400):
+        if not isinstance(text, (str, int)) or isinstance(text, bool):
+            return ""
+        text = str(text)
+        if token:
+            text = text.replace(token, "[REDACTED]")
+        text = re.sub(r"-----BEGIN [^-]*PRIVATE KEY-----.*?-----END [^-]*PRIVATE KEY-----", "[REDACTED]", text, flags=re.S)
+        text = re.sub(r"\bBearer\s+[^\s,;\"']+", "Bearer [REDACTED]", text, flags=re.I)
+        text = re.sub(r"\b(?:ya29\.[A-Za-z0-9._~-]+|eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+|AIza[A-Za-z0-9_-]{20,})", "[REDACTED]", text)
+        text = re.sub(r'''(?i)(["']?(?:access_token|refresh_token|id_token|client_secret|password|jwt_key|api_key)["']?\s*[:=]\s*)(?:"[^"\n]*"|'[^'\n]*'|[^\s,;]+)''', r"\1[REDACTED]", text)
+        text = re.sub(r"\x1b\[[0-?]*[ -/]*[@-~]", "", text)
+        text = re.sub(r"[\x00-\x1f\x7f-\x9f\u202a-\u202e\u2066-\u2069]", " ", text)
+        return " ".join(text.split())[:limit]
+
+    print(heading, file=sys.stderr)
+    error = value.get("error") if isinstance(value, dict) else None
+    if not isinstance(error, dict):
+        print("Google error details were not available as JSON.", file=sys.stderr)
+        return
+    status = clean(error.get("status"), 64)
+    if not status:
+        rpc_code = error.get("code")
+        status = {7: "PERMISSION_DENIED", 9: "FAILED_PRECONDITION", 16: "UNAUTHENTICATED"}.get(rpc_code, "") if isinstance(rpc_code, int) else ""
+    details = error.get("details")
+    details = details if isinstance(details, list) else []
+    reasons = []
+    for detail in details:
+        if not isinstance(detail, dict) or detail.get("@type") != "type.googleapis.com/google.rpc.ErrorInfo":
+            continue
+        reason = clean(detail.get("reason"), 80)
+        if reason:
+            reasons.append(reason)
+        domain = clean(detail.get("domain"), 100)
+        metadata = detail.get("metadata")
+        metadata = metadata if isinstance(metadata, dict) else {}
+        fields = [("reason", reason), ("domain", domain)]
+        fields.extend((key, clean(metadata.get(key), 160)) for key in ("service", "consumer", "permission"))
+        line = "; ".join(f"{key}={val}" for key, val in fields if val)
+        if line:
+            print("Google ErrorInfo: " + line[:600], file=sys.stderr)
+        break  # One bounded ErrorInfo entry is enough for a terminal summary.
+    message = clean(error.get("message"))
+    if status:
+        print("Google status: " + status, file=sys.stderr)
+    if message:
+        print("Google message: " + message, file=sys.stderr)
+    terms = str(error.get("message", "")) + " " + " ".join(str(d.get("detail", "")) for d in details if isinstance(d, dict))
+    if "firebase tos not accepted" in terms.lower():
+        print("Firebase Terms: https://console.firebase.google.com/?forceCheckTos=true", file=sys.stderr)
+    elif "USER_PROJECT_DENIED" in reasons:
+        print("Quota project: serviceusage.services.use permission is required on the selected project.", file=sys.stderr)
+
+
 def main():
     action, *args = sys.argv[1:]
     if action == "field":
@@ -74,10 +137,18 @@ def main():
         mapping = {"google.subject": "assertion.sub", "attribute.repository_id": "assertion.repository_id", "attribute.repository_owner_id": "assertion.repository_owner_id", "attribute.ref": "assertion.ref", "attribute.workflow_ref": "assertion.workflow_ref"}
         if value.get("attributeMapping") != mapping or value.get("state", "ACTIVE") != "ACTIVE" or value.get("disabled"):
             raise ValueError("Existing GitHub federation has unexpected claim mappings or is disabled.")
+    elif action == "api-error":
+        path, code, operation, *auth = args
+        try:
+            value = read(path)
+        except (OSError, ValueError):
+            value = None
+        api_error_summary(value, f"Google Firebase API request failed: {operation} (HTTP {code}).", auth[0] if auth else None)
     elif action == "operation-state":
         value = read(args[0])
         if value.get("error"):
-            raise ValueError("Firebase provisioning operation failed; inspect the operation in Google Cloud.")
+            api_error_summary(value, "Firebase provisioning operation failed.", args[1] if len(args)>1 else None)
+            sys.exit(1)
         print("done" if value.get("done") else "pending")
     elif action == "secret-value":
         # Validate before using an existing secret; errors contain no secret data.
