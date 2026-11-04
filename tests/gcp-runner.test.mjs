@@ -12,7 +12,7 @@ async function fixture(bootstrap, deploy, action) {
     await copyFile(new URL('../scripts/gcp/run-dev.sh', import.meta.url), join(root, 'scripts/gcp/run-dev.sh'));
     await writeFile(join(root, 'scripts/gcp/bootstrap-dev.sh'), bootstrap);
     await writeFile(join(root, 'scripts/gcp/deploy-dev.sh'), deploy);
-    const run = () => spawnSync('bash', ['scripts/gcp/run-dev.sh'], {cwd: root, encoding: 'utf8', timeout: 5000});
+    const run = (...args) => spawnSync('bash', ['scripts/gcp/run-dev.sh', ...args], {cwd: root, encoding: 'utf8', timeout: 5000});
     await action({root, run});
   } finally { await rm(root, {recursive: true, force: true}); }
 }
@@ -71,5 +71,38 @@ test('a Firebase failure keeps the useful Google reason and action in the short 
     assert.match(result.stderr, /serviceusage.services.use/);
     assert.doesNotMatch(result.stdout + result.stderr, /Unrelated log details/);
     await assert.rejects(stat(join(root, 'DEPLOYED')), {code: 'ENOENT'});
+  });
+});
+
+
+test('deploy-only resumes the application deployment without rerunning completed infrastructure setup', async () => {
+  await fixture('touch BOOTSTRAP_RAN; exit 92', 'echo "Test application ready: https://otthonra-dev-123456789012.web.app/"', async ({root, run}) => {
+    const result = run('--deploy-only');
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /1\/1 Alkalmazás telepítése/);
+    assert.match(result.stdout, /KÉSZ:/);
+    assert.doesNotMatch(result.stdout, /Előkészítés/);
+    await assert.rejects(stat(join(root, 'BOOTSTRAP_RAN')), {code: 'ENOENT'});
+  });
+});
+
+
+test('a recovered earlier error cannot mask the final deployment failure', async () => {
+  await fixture('echo "ERROR: earlier network attempt recovered"', 'echo "ERROR: final Cloud Run deployment failed"; exit 1', async ({run}) => {
+    const result = run();
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, /ERROR: final Cloud Run deployment failed/);
+    assert.doesNotMatch(result.stderr, /earlier network attempt/);
+  });
+});
+
+
+test('deploy-only cannot silently ignore an explicitly selected project', async () => {
+  await fixture('touch BOOTSTRAP_RAN', 'touch DEPLOY_RAN', async ({root, run}) => {
+    const result = run('--deploy-only', '--project', 'different-project-123');
+    assert.equal(result.status, 2);
+    assert.match(result.stderr, /do not combine it with --project/);
+    await assert.rejects(stat(join(root, 'BOOTSTRAP_RAN')), {code: 'ENOENT'});
+    await assert.rejects(stat(join(root, 'DEPLOY_RAN')), {code: 'ENOENT'});
   });
 });

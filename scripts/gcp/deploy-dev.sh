@@ -65,7 +65,7 @@ if [[ -z "$image_digest" ]]; then
   image_tag="$image_base:$revision"
   gcloud auth configure-docker "$registry_host" --quiet
   docker build --platform linux/amd64 --file backend/Dockerfile --tag "$image_tag" .
-  docker push "$image_tag"
+  bash scripts/gcp/push-image.sh "$image_tag"
   digest="$(gcloud artifacts docker images describe "$image_tag" --project "$project_id" --format='value(image_summary.digest)')"
   image_digest="$image_base@$digest"
 fi

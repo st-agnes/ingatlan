@@ -6,9 +6,18 @@ umask 077
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$repo_root" || exit 1
 project_id='ingatlan-513620'
-if (($#)); then
-  if [[ $# -eq 2 && "$1" == --project ]]; then project_id="$2"
-  else printf '%s\n' 'Usage: bash scripts/gcp/run-dev.sh [--project PROJECT_ID]' >&2; exit 2; fi
+deploy_only=false
+project_supplied=false
+while (($#)); do
+  case "$1" in
+    --project) project_id="${2:?Missing project ID}"; project_supplied=true; shift 2 ;;
+    --deploy-only) deploy_only=true; shift ;;
+    *) printf '%s\n' 'Usage: bash scripts/gcp/run-dev.sh [--project PROJECT_ID] [--deploy-only]' >&2; exit 2 ;;
+  esac
+done
+if "$deploy_only" && "$project_supplied"; then
+  printf '%s\n' 'ERROR: --deploy-only uses the validated dev-config.json project; do not combine it with --project.' >&2
+  exit 2
 fi
 mkdir -p .local/gcp || exit 1
 log_path="$repo_root/.local/gcp/deployment.log"
@@ -32,7 +41,7 @@ if api_start is not None:
         if line.startswith(api_prefixes):
             print(line[:400],file=sys.stderr)
 else:
-    for line in lines:
+    for line in reversed(lines):
         if re.search(r'ERROR:|unrecognized arguments|Bootstrap validation failed:|Error:|ADC is not ready|is required\.|Google access token',line,re.I):
             line=re.sub(r'\x1b\[[0-?]*[ -/]*[@-~]','',line)
             print(line[:240],file=sys.stderr)
@@ -42,8 +51,12 @@ PY
     exit "$code"
   fi
 }
-run_step '1/2 Előkészítés' bash scripts/gcp/bootstrap-dev.sh --project "$project_id"
-run_step '2/2 Alkalmazás telepítése' bash scripts/gcp/deploy-dev.sh
+if "$deploy_only"; then
+  run_step '1/1 Alkalmazás telepítése' bash scripts/gcp/deploy-dev.sh
+else
+  run_step '1/2 Előkészítés' bash scripts/gcp/bootstrap-dev.sh --project "$project_id"
+  run_step '2/2 Alkalmazás telepítése' bash scripts/gcp/deploy-dev.sh
+fi
 python3 - "$log_path" <<'PY'
 import pathlib,re,sys
 log=pathlib.Path(sys.argv[1]).read_text(errors='replace')

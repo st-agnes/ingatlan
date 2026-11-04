@@ -75,12 +75,14 @@ jobs:
           node tests/gcp-bootstrap.test.mjs
           node tests/gcp-firebase.test.mjs
           node tests/gcp-runner.test.mjs
+          node tests/gcp-push.test.mjs
           node tests/gcp-status.test.mjs
       - name: Check Cloud Shell script syntax
         run: |
           bash -n scripts/gcp/bootstrap-dev.sh
           bash -n scripts/gcp/deploy-dev.sh
           bash -n scripts/gcp/run-dev.sh
+          bash -n scripts/gcp/push-image.sh
           python3 -m py_compile scripts/gcp/bootstrap-dev.py
       - name: Start the actual development supervisor with seeded MySQL
         run: node scripts/dev.mjs --background

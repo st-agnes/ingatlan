@@ -85,6 +85,7 @@ node tests/gcp-deployment.test.mjs
 node tests/gcp-bootstrap.test.mjs
 node tests/gcp-firebase.test.mjs
 node tests/gcp-runner.test.mjs
+node tests/gcp-push.test.mjs
 node tests/gcp-status.test.mjs
 dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj
 node backend/smoke.mjs http://localhost:5080

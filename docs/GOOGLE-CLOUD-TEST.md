@@ -24,7 +24,7 @@ Az infrastruktúra és az alkalmazás létrehozása:
 bash scripts/gcp/run-dev.sh
 ```
 
-A futtató két rövid lépést ír ki, és a teljes kimenetet a privát, ignorált `.local/gcp/deployment.log` fájlba menti. Hiba esetén az utolsó sorokban a megállás helye, az első hiba és a napló megnyitásának parancsa látható. Az előző futás naplója `deployment.log.previous` néven megmarad. Siker esetén a végén a megnyitható HTTPS-cím szerepel.
+A futtató két rövid lépést ír ki, és a teljes kimenetet a privát, ignorált `.local/gcp/deployment.log` fájlba menti. Hiba esetén az utolsó sorokban a megállás helye, az aktuális hiba és a napló megnyitásának parancsa látható. Az előző futás naplója `deployment.log.previous` néven megmarad. Siker esetén a végén a megnyitható HTTPS-cím szerepel.
 
 A Cloud Shellnek `gcloud`, Python 3, curl, Git, Docker és Node.js 22/npm eszközökre van szüksége. A Cloud SQL tulajdonosi címkéihez a dokumentált `gcloud beta sql instances create` parancsot használjuk; a stabil változat a `--labels` kapcsolót nem fogadja el. [Google-dokumentáció](https://docs.cloud.google.com/sql/docs/mysql/label-instance). A telepítő a Firebase CLI rögzített verzióját az ignorált `.local/gcp/tools` könyvtárba telepíti. A .NET SDK-t az API Docker-buildje biztosítja.
 
@@ -67,6 +67,25 @@ A már létrejött, saját jelölésű erőforrásokat és titkokat az előkész
 ```sh
 cloudshell edit .local/gcp/deployment.log
 ```
+
+## Megszakadt Docker-feltöltés folytatása
+
+Ha az előkészítés sikeresen mentette a manifestet, de a `docker push` hálózati hibával leállt, elegendő csak az alkalmazás telepítését folytatni:
+
+```sh
+git pull --ff-only
+bash scripts/gcp/run-dev.sh --deploy-only
+```
+
+A `--deploy-only` a validált `.local/gcp/dev-config.json` projektjét használja; a `--project` kapcsolóval nem kombinálható. A meglévő infrastruktúra és titkok ilyenkor nem kerülnek újra előkészítésre. A Docker build felhasználhatja a korábban elkészült rétegeket. A feltöltő az egyértelmű kapcsolódási hibákat legfeljebb háromszor próbálja, próbánként 180 másodperces időkorláttal. Jogosultsági és tanúsítványhibánál megáll. A teljes napló továbbra is a `.local/gcp/deployment.log`, a rövid hiba pedig a terminál végén szerepel.
+
+A `connect: connection refused` a hálózati kapcsolat létrejötte előtt történik; a naplóban korábban megjelenő regisztrált credential helper figyelmeztetés önmagában nem ezt jelenti. Rövid, hitelesítést nem küldő elérhetőségi próba a Cloud Shellből:
+
+```sh
+curl -sS -o /dev/null -w '%{http_code}\n' --connect-timeout 10 --max-time 15 https://europe-west1-docker.pkg.dev/v2/
+```
+
+A `401` a registry szokásos válasza hitelesítés nélkül, tehát a végpont ekkor elérhető volt. A `000` kapcsolódási hibát jelez. A shell és a Docker daemon hálózati útvonala eltérhet, és a DNS is több címet adhat; ez a próba önmagában nem bizonyítja, hogy a következő Docker-feltöltés sikerülni fog.
 
 ## Firebase API-hibák
 
