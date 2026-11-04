@@ -1,12 +1,18 @@
 # Ellenőrzési állapot
 
+## Google Cloud teszttelepítés
+
+Az új CI ugyanazt a .NET 8 API-t MySQL 8.0 és 8.4 mellett is ellenőrzi, Docker-builddel, valódi adatbázisos integrációval és sémafrissítéssel. A hosted böngészőteszt asztali, tablet- és mobilméretben valódi regisztrációt, keresésmentést, aktiválást, tesztkreditet, újratöltést és újbóli belépést vizsgál. A Production hosting explicit tesztjelölés nélkül nem adhat ingyen kreditet.
+
+A bootstrap tesztjei helyi Google-parancs- és HTTP-helyettesítőkkel futnak, a Hosting csomagolótesztjei ideiglenes fájlokkal. Nem hoznak létre számlázott cloud-erőforrást. A sikeres CI nem igazol élő Google Cloud-telepítést; annak hitelesítése, IAM-ja, Cloud SQL-kapcsolata és publikus HTTPS-címe az első Cloud Shell-futtatáskor ellenőrizhető. Az aktuális CI-eredményt a pull request ellenőrzései mutatják.
+
 ## Fejlesztői indítás és helyreállítás
 
-A helyi JavaScript-csomag 63 sikeres tesztet tartalmaz, ebből 13 a fejlesztői konfiguráció és életciklus ellenőrzése. A CI külön élő folyamattesztet futtat: API nélküli webes elérés, ismételt és párhuzamos indítás, megvárt leállás, azonnali újraindítás, egyéni webport és API-/webfolyamat-kiesés utáni helyreállítás. A Codespaces külső porttovábbítását ez nem helyettesíti. A teljes eredmény a PR aktuális CI-futásánál látható.
+A JavaScript-csomag külön ellenőrzi a fejlesztői konfigurációt és életciklust. A CI külön élő folyamattesztet futtat: API nélküli webes elérés, ismételt és párhuzamos indítás, megvárt leállás, azonnali újraindítás, egyéni webport és API-/webfolyamat-kiesés utáni helyreállítás. A Codespaces külső porttovábbítását ez nem helyettesíti. A teljes eredmény a PR aktuális CI-futásánál látható.
 
 ## Helyszínválasztó és keresésindítás javítása
 
-A helyi csomag 57 JavaScript-tesztet tartalmaz, mind sikeres: 5 katalógus-, 14 modell-, 12 API-adapter-, 19 offline felületi és 7 infrastruktúrateszt. A kilenc új regresszió a külső kattintást és fókuszváltást, a beírt szöveg megőrzését, az eseménykezelők eltávolítását, valamint a mentés utáni visszajelzést, aktiválást és hibakezelést ellenőrzi.
+A katalógus-, modell-, API-adapter-, offline felületi és infrastruktúrateszteken belül a regressziók a külső kattintást és fókuszváltást, a beírt szöveg megőrzését, az eseménykezelők eltávolítását, valamint a mentés utáni visszajelzést, aktiválást és hibakezelést ellenőrzi.
 
 A `tests/browser.test.mjs` valódi Chromiumban, 1280×900, 800×1100 és 390×844 méretben vizsgálja, hogy a találati lista nem takarja el a beírt szöveget. Az érintéses/kattintásos bezárás, a billentyűzetes választás, a sikeres mentés, a felfedezés gomb és a „Később” folyamat is része. Ezt a CI futtatja; eredménye és hiba esetén képernyőképei a pull request ellenőrzéseinél találhatók. A korábbi verziók bizonyított eredményei alább maradnak meg.
 
@@ -52,7 +58,7 @@ A valós fordítás során talált EF Core-csomagverzióütközést javítottuk:
 
 ## További, külön ellenőrzést igénylő területek
 
-- Valódi böngészős vizuális/akadálymentességi ellenőrzés és képernyőkép: az offline DOM-tesztek ezt nem helyettesítik.
+- Teljes vizuális és akadálymentességi audit: a CI célzott Chromium-folyamattesztjei és az offline DOM-tesztek ezt nem helyettesítik.
 - A devcontainer saját képének teljes felépítése: a konfiguráció és az indítószkriptek ellenőrizve, a .NET/MySQL futás a GitHub Actions környezetben igazolt.
 - Stripe tesztfizetés, webhookkézbesítés és pénzügyi egyeztetés: saját Stripe-tesztkulcsok és elérhető webhook szükségesek; fizetés nem történt.
 - Állandó éles tárhely, mentések és monitoring beállítása külön üzembe helyezési feladat.

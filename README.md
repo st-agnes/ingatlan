@@ -2,13 +2,19 @@
 
 Magyar nyelvű ingatlanpárosító alkalmazás. Egy felhasználó több ingatlant és több keresési igényt kezelhet, majd egyet aktiválva fedezheti fel a hozzá illő ajánlásokat. A kereső kedvelése ingyenes, az eladó ajánlása 2 kredit. Kölcsönös érdeklődéskor megnyílik az üzenetküldés és láthatóvá válnak az elérhetőségek.
 
+## Google Cloud tesztkörnyezet
+
+A `scripts/gcp/` telepítői az `ingatlan-513620` projekthez készítenek külön `-dev` szolgáltatásokat: Firebase Hosting webet, Cloud Run API-t és Cloud SQL for MySQL-adatbázist. Az első indítás a saját Google Cloud Shellből történik; a telepítő kiírja a Google által biztosított HTTPS-címet. A tesztoldal valódi regisztrációt és szerveres adatmentést használ, ingyenes tesztkreditekkel.
+
+Első telepítés, várható költség, Google-hitelesítés és későbbi GitHub-kiadások: **[docs/GOOGLE-CLOUD-TEST.md](docs/GOOGLE-CLOUD-TEST.md)**. A dokumentáció az előkészített telepítést írja le; az alkalmazás Google Cloudban történő tényleges indulását a helyszíni health-ellenőrzés igazolja. A saját dev aldomain később hozzáadható.
+
 ## Fejlesztőkörnyezet a felhőben
 
 A tároló tartalmazza a fejlesztéshez szükséges .NET 8 SDK, Node.js 22 és MySQL 8 környezet konfigurációját a `.devcontainer/` alatt. Devcontainer-kompatibilis felhős környezetben (például GitHub Codespaces) a környezet automatikusan telepít, fordít és indít. A webes felület a továbbított **3000-es porton** érhető el, az API ugyanazon a címen, az `/api` útvonal alatt működik. Telefonon sem kell a távoli API localhost-címét kézzel megadni.
 
 Más felhős fejlesztőkörnyezet előkészítésekor az installlépés: `bash scripts/cloud-setup.sh`; az indítás: `node scripts/dev.mjs --background`. A telepítő a hiányzó .NET 8 SDK-t a projekt saját, Gitből kizárt `.local/` könyvtárába telepíti. A MySQL-t a mellékelt konfiguráció indítja, vagy a `ConnectionStrings__MySql` változóval megadott szervert használja. A szükséges eszköz- és hálózati jogosultságokat a futtatókörnyezetnek biztosítania kell.
 
-Minden push és pull request elindítja a GitHub Actions ellenőrzést: .NET-fordítás, xUnit-tesztek, 63 JavaScript-teszt és valódi MySQL-en végzett API-integrációs, illetve sémafrissítési teszt. A tesztadatbázis ideiglenes; az alkalmazás fejlesztői adatbázisa Docker-kötetben marad meg.
+Minden push és pull request elindítja a GitHub Actions ellenőrzést: .NET-fordítás, xUnit- és JavaScript-tesztek, böngészős próbák, valamint valódi MySQL-en végzett API-integrációs és sémafrissítési tesztek. A tesztadatbázis ideiglenes; az alkalmazás fejlesztői adatbázisa Docker-kötetben marad meg.
 
 Fejlesztői újraindítás: `node scripts/dev.mjs --restart`; állapotellenőrzés: `node scripts/dev.mjs --status`. A parancs kiírja a tényleges helyi és Codespaces-címet. A webes felület API-hibánál is elérhető marad, a leálló szolgáltatásokat a felügyelő újraindítja. A Codespace-hez történő visszacsatlakozáskor az indítás automatikusan lefut.
 
@@ -75,11 +81,13 @@ node tests/frontend.test.mjs
 node tests/api.test.mjs
 node tests/locations.test.mjs
 node tests/development.test.mjs
+node tests/gcp-deployment.test.mjs
+node tests/gcp-bootstrap.test.mjs
 dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj
 node backend/smoke.mjs http://localhost:5080
 ```
 
-A 63 JavaScript-teszt sikeres: 5 katalógus-, 14 modell-, 12 API-adapter-, 19 offline felületi és 13 infrastruktúrateszt. A GitHub Actionsben a .NET-fordítás, 30 xUnit-teszt, Docker-build és a valódi MySQL-es API-integráció is sikeres. A korábbi séma frissítése és az ismételt újraindítás megőrizte a tesztelt adatokat. Az API-adaptert backend-formátumú mock válaszokkal ellenőriztük; az offline felületi tesztek szimulált DOM-ot használnak. A CI külön valódi Chromium-próbát is futtat asztali, tablet- és mobilméretben a helyszínválasztó és a keresésindítás ellenőrzésére. Stripe-próbafizetéshez saját tesztkulcsok szükségesek. Részletek és futáslink: [docs/VALIDATION.md](docs/VALIDATION.md).
+A JavaScript-tesztek a katalógust, a modellt, az API-adaptert, az offline felületet, az indítási életciklust és a Google Cloud-telepítés előkészítését ellenőrzik. A CI .NET-fordítást, xUnit-teszteket, Docker-buildet, valódi MySQL-es API-próbákat és Chromium-teszteket futtat. Az offline felületi tesztek szimulált DOM-ot, az API-adapter tesztjei mock HTTP-válaszokat használnak. A telepítőtesztek nem helyettesítik a felhasználó Google Cloud-projektjének tényleges telepítését és külső elérésének ellenőrzését. Stripe-próbafizetéshez saját tesztkulcsok szükségesek. A korábbi bizonyított eredmények és futáslinkek: [docs/VALIDATION.md](docs/VALIDATION.md); az aktuális commit eredménye a pull request ellenőrzéseinél látható.
 
 ## Meglévő adatok frissítése
 

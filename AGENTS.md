@@ -15,6 +15,17 @@ This is Otthonra, a Hungarian real-estate matching application. The backend is .
 - With `Database__Initialize=true`, startup runs `EnsureCreated` and then the additive, repeatable `SchemaUpgrade` version `20261102-locations-and-lot-area`. Existing rows use canonical legacy-location fallback; do not delete the database or Docker volume to apply this upgrade. This is a targeted upgrade, not a general EF migration system.
 - In a managed cloud, use its provided network/proxy/CA and Docker instructions. Diagnose denied operations or service errors rather than disabling sandboxing, TLS verification, or credential protections.
 
+## Google Cloud test deployment
+
+- The current authorized cloud scope is TEST only in project `ingatlan-513620`, region `europe-west1`. Create only the named `-dev` resources. Custom DNS and production provisioning are separate work.
+- `scripts/gcp/bootstrap-dev.sh --project ingatlan-513620 --plan` reads project/billing metadata; the normal bootstrap provisions the dev infrastructure and writes ignored `.local/gcp/dev-config.json`. `scripts/gcp/deploy-dev.sh` builds/deploys the API and Firebase Hosting site. The user runs the first bootstrap/deployment in their own Cloud Shell; repository access alone does not provide Google Cloud credentials here.
+- Keep generated SQL/JWT secrets in Secret Manager and private temporary files. The config manifest contains resource identifiers, not secret payloads. Do not print tokens, connection strings, passwords, credential files or service-account JSON keys.
+- Hosted frontend configuration is generated into staging: `globalThis.OTTHONRA_CONFIG = Object.freeze({mode: 'api', environment: 'test'})`. The tracked config defaults to the local demo. Hosted login uses the current origin, logout/401 returns to authentication, and server failures must not silently fall back to demo data.
+- The hosted test backend uses ASP.NET `Production`, `Deployment__Environment=test`, no demo seed, and explicitly enabled nonpayment test credits. The server controls the capability; ordinary Production must not expose the free top-up endpoint even when the enable flag is true. Test deployments reject live Stripe keys.
+- Later GitHub releases use `.github/workflows/deploy-dev.yml`, the nonsecret `GCP_DEV_CONFIG` repository variable and short-lived OIDC/Workload Identity Federation. Only the approved repository/workflow and `main` or `codex/google-cloud-test` refs may deploy, after CI succeeds on the selected commit.
+- Firebase Hosting deployment IAM is currently project-scoped. Do not claim that the `-dev` site name provides IAM isolation from a future production site; revisit access before adding production. The dev SQL user belongs to its own dev SQL instance.
+- See `docs/GOOGLE-CLOUD-TEST.md` for Cloud Shell commands, ADC setup, costs and manual release steps. Mock/CI success is not proof that the user's Google Cloud environment is live.
+
 ## Validation
 
 Run the checks appropriate to the change:
@@ -26,11 +37,13 @@ node tests/frontend.test.mjs
 node tests/api.test.mjs
 node tests/development.test.mjs
 node tests/locations.test.mjs
+node tests/gcp-deployment.test.mjs
+node tests/gcp-bootstrap.test.mjs
 ```
 
 With Development API and MySQL running, `node backend/smoke.mjs http://localhost:3000` checks real authorization, contact privacy, matching, messaging, and concurrent single credit billing through the web proxy. It creates disposable test accounts. GitHub Actions runs the complete suite with an ephemeral MySQL service.
 
-The JavaScript suites currently contain 63 tests: locations 5, model 14, API adapter 12, frontend 19, and development 13. Passing mock/offline tests does not establish .NET or real MySQL success; report those only after checking CI. CI runs `node tests/development-smoke.mjs` against its disposable database to verify custom ports, concurrent startup, completed shutdown, immediate restart and child crash recovery. CI also verifies upgrading an initial-release schema and starting it again without losing data.
+Passing mock/offline tests does not establish .NET or real MySQL success; report those only after checking CI for the actual commit. The Google Cloud bootstrap and packaging tests use local fixtures/mocks and must not create billable resources. CI runs `node tests/development-smoke.mjs` against its disposable database to verify custom ports, concurrent startup, completed shutdown, immediate restart and child crash recovery. CI also verifies upgrading an initial-release schema and starting it again without losing data.
 
 The real-browser regressions in `tests/browser.test.mjs` check input geometry, pointer/touch and keyboard dismissal, and search creation/activation at desktop, tablet, and mobile sizes. CI installs pinned Playwright into ignored `.local/browser-tests` and runs `node tests/browser.test.mjs http://localhost:3000` while the web server is running. Browser failure screenshots are CI artifacts.
 

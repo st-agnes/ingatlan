@@ -41,7 +41,7 @@ Az alábbi parancs újragenerálja a böngészős másolatot:
 node --input-type=module <<'NODE'
 import fs from 'node:fs';
 const { settlements } = JSON.parse(fs.readFileSync('dist/data/settlements.json', 'utf8'));
-const banner = '// Generated from data/settlements.json. Source and MIT attribution: ../docs/LOCATION-DATA.md.\n';
+const banner = '// Generated from data/settlements.json. Source and MIT attribution: ./THIRD-PARTY-NOTICES.txt.\n';
 fs.writeFileSync('dist/locations-data.js', banner + 'export const settlements = Object.freeze(' + JSON.stringify(settlements, null, 2) + ');\n');
 NODE
 node tests/locations.test.mjs

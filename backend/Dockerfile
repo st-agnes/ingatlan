@@ -11,6 +11,7 @@ RUN dotnet publish backend/Otthonra.Api/Otthonra.Api.csproj -c Release -o /app -
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app .
+COPY dist/THIRD-PARTY-NOTICES.txt /app/THIRD-PARTY-NOTICES.txt
 ENV ASPNETCORE_HTTP_PORTS=8080
 USER $APP_UID
 EXPOSE 8080

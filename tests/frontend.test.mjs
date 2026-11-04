@@ -30,11 +30,27 @@ class Document {
  removeEventListener(type,handler,options){const capture=typeof options==='boolean'?options:!!options?.capture;this.listeners.set(type,(this.listeners.get(type)||[]).filter(item=>item.handler!==handler||item.capture!==capture));}
  listenerCount(type){return(this.listeners.get(type)||[]).length;}
 }
-async function setup(){const storage={getItem:()=>null,setItem:()=>{}},model=createModel(storage),document=new Document();const ctx=vm.createContext({document,console,Intl,Date,Promise,URLSearchParams,setTimeout:()=>0,clearTimeout:()=>{},location:{hash:'',search:''},window:{scrollTo:()=>{}},searchLocations,getLocation,resolveLegacyLocations,getModel:()=>model,disconnectApi:()=>model,connectApi:async()=>model,FormData:class {constructor(form){this.values=Object.entries(form.values||{});}get(k){return this.values.find(([key])=>key===k)?.[1]}has(k){return this.values.some(([key])=>key===k)}[Symbol.iterator](){return this.values[Symbol.iterator]()}}});
+async function setup(options={}){
+ const storage={getItem:()=>null,setItem:()=>{}},demoModel=createModel(storage),document=new Document();
+ const apiModel=Object.assign({...demoModel},{mode:'api'},options.apiOverrides||{});
+ let selected=options.hosted?(options.authenticated?apiModel:null):demoModel;
+ const connected=[],disconnected=[];
+ const ctx=vm.createContext({
+  document,console,Intl,Date,Promise,URLSearchParams,setTimeout:()=>0,clearTimeout:()=>{},
+  location:{hash:'',search:'',origin:'https://test.example'},window:{scrollTo:()=>{}},
+  OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:'test'}:{mode:'demo',environment:'local'},
+  searchLocations,getLocation,resolveLegacyLocations,
+  hostedMode:()=>!!options.hosted,deploymentEnvironment:()=>options.hosted?'test':'local',
+  getModel:()=>selected,
+  disconnectApi:()=>{disconnected.push(true);selected=options.hosted?null:demoModel;return selected;},
+  connectApi:async(...args)=>{connected.push(args);if(options.connectApi)await options.connectApi(...args);selected=apiModel;return apiModel;},
+  FormData:class {constructor(form){this.values=Object.entries(form.values||{});}get(k){return this.values.find(([key])=>key===k)?.[1]}has(k){return this.values.some(([key])=>key===k)}[Symbol.iterator](){return this.values[Symbol.iterator]()}}
+ });
  const body=source.replace(/^import[^\n]+\n/gm,'');
  await vm.runInContext(`(async()=>{${body}\nglobalThis.ui={render,changePage,openEditor,openDetails,openModal,closeModal,openActivation,getModelState:()=>state};})()`,ctx);
  const click=async(dataset)=>{const target={dataset,closest:()=>target};await document.handlers.click({target,preventDefault(){}})};
- return{model,document,ctx,click,ui:ctx.ui};}
+ return{model:options.hosted?apiModel:demoModel,document,ctx,click,ui:ctx.ui,connected,disconnected,getSelectedModel:()=>selected};
+}
 const settle=async()=>{for(let i=0;i<16;i++)await Promise.resolve();};
 
 function chooseLocation(t,id){const input=t.document.getElementById('location-input');input.value=getLocation(id).label;input.handlers.input();const list=t.document.getElementById('location-options');assert.match(list.innerHTML,new RegExp(id.replaceAll('.','\\.')));const target={dataset:{locationId:id},closest:()=>target};list.handlers.click({target});}
@@ -196,4 +212,158 @@ test('closing or replacing the editor removes its outside-picker document listen
  t.ui.closeModal();
  assert.equal(t.document.listenerCount('pointerdown'),pointerListeners);
  assert.equal(t.document.listenerCount('focusin'),focusListeners);
+});
+
+function submitHostedAuth(t,values){
+ const form=t.document.getElementById('hosted-auth-form');
+ assert.ok(form,'a hosted authentication form must be available');
+ form.values=values;
+ return form.handlers.submit({preventDefault(){},currentTarget:form});
+}
+const hostedCredentials={email:'anna@test.example',password:'HostedTestPassword2026!'};
+const apiError=(message,status)=>Object.assign(new Error(message),{status});
+
+test('hosted visitors start at labelled login without a demo workspace or API address selector',async()=>{
+ const t=await setup({hosted:true});
+ const html=t.document.getElementById('app').innerHTML;
+ assert.match(html,/Tesztkörnyezet/);
+ assert.match(html,/Jelentkezz be az Otthonrába/);
+ assert.ok(t.document.getElementById('hosted-auth-form'));
+ assert.ok(t.document.getElementById('f-email'));
+ assert.ok(t.document.getElementById('f-password'));
+ assert.doesNotMatch(html,/name="baseUrl"|api-form|Demó munkatér|Vissza a demóhoz|A következő fejezeted/);
+ assert.equal(t.getSelectedModel(),null);
+});
+
+test('hosted login uses the current origin and waits for authentication before opening the API workspace',async()=>{
+ let release;
+ const login=new Promise(resolve=>{release=resolve;});
+ const t=await setup({hosted:true,connectApi:()=>login});
+ const submitted=submitHostedAuth(t,hostedCredentials);
+ await settle();
+ assert.equal(t.connected.length,1);
+ assert.deepEqual(t.connected[0].slice(0,3),['https://test.example',hostedCredentials.email,hostedCredentials.password]);
+ assert.equal(t.getSelectedModel(),null);
+ assert.ok(t.document.getElementById('hosted-auth-form'),'the login page must remain while the API is pending');
+ release();await submitted;await settle();
+ assert.equal(t.getSelectedModel(),t.model);
+ const html=t.document.getElementById('app').innerHTML;
+ assert.match(html,/Tesztkörnyezet/);
+ assert.match(html,/Találj rá az igazira/);
+ assert.doesNotMatch(html,/Demó munkatér|Vissza a demóhoz/);
+});
+
+test('hosted registration sends profile details to the same-origin API without server selection',async()=>{
+ const t=await setup({hosted:true});
+ await t.click({action:'auth-mode',mode:'register'});
+ const html=t.document.getElementById('app').innerHTML;
+ assert.match(html,/Hozd létre a fiókodat/);
+ assert.ok(t.document.getElementById('f-name'));
+ assert.ok(t.document.getElementById('f-phone'));
+ assert.doesNotMatch(html,/name="baseUrl"/);
+ await submitHostedAuth(t,{...hostedCredentials,name:'Új Teszt Anna',phone:'+36 30 123 4567'});await settle();
+ assert.equal(t.connected.length,1);
+ assert.equal(t.connected[0][0],'https://test.example');
+ assert.deepEqual(JSON.parse(JSON.stringify(t.connected[0][3])),{name:'Új Teszt Anna',phone:'+36 30 123 4567'});
+ assert.equal(t.getSelectedModel(),t.model);
+});
+
+test('failed hosted authentication stays on the form and reports the failure without opening demo data',async()=>{
+ const t=await setup({hosted:true,connectApi:async()=>{throw apiError('Hibásak a bejelentkezési adatok.',401);}});
+ await submitHostedAuth(t,hostedCredentials);await settle();
+ assert.equal(t.getSelectedModel(),null);
+ assert.ok(t.document.getElementById('hosted-auth-form'));
+ const error=t.document.getElementById('auth-error');
+ assert.ok(error);assert.match(error.textContent,/Hibásak a bejelentkezési adatok/);
+ assert.doesNotMatch(t.document.getElementById('app').innerHTML,/Demó munkatér|A következő fejezeted/);
+});
+
+test('hosted settings omit the developer API selector and logout returns to login',async()=>{
+ const t=await setup({hosted:true,authenticated:true});
+ await t.click({page:'settings'});
+ const settings=t.document.getElementById('app').innerHTML;
+ assert.match(settings,/Kijelentkezés/);
+ assert.doesNotMatch(settings,/id="api-form"|name="baseUrl"|vissza a demóhoz/i);
+ await t.click({action:'disconnect'});
+ assert.equal(t.getSelectedModel(),null);
+ assert.equal(t.disconnected.length,1);
+ assert.ok(t.document.getElementById('hosted-auth-form'));
+ assert.match(t.document.getElementById('app').innerHTML,/Tesztkörnyezet/);
+});
+
+test('an expired hosted session detected during workspace loading clears the session and requests login',async()=>{
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{getState:async()=>{throw apiError('A munkameneted lejárt.',401);}}});
+ assert.equal(t.getSelectedModel(),null);
+ assert.equal(t.disconnected.length,1);
+ const html=t.document.getElementById('app').innerHTML;
+ assert.ok(t.document.getElementById('hosted-auth-form'));
+ assert.match(html,/lejárt/);
+ assert.doesNotMatch(html,/Vissza a demóhoz|Demó munkatér/);
+});
+
+test('an expired hosted session during an action also returns to login without switching to the local demo',async()=>{
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{decide:async()=>{throw apiError('A munkameneted lejárt.',401);}}});
+ await t.click({action:'pass'});
+ assert.equal(t.getSelectedModel(),null);
+ assert.ok(t.document.getElementById('hosted-auth-form'));
+ assert.match(t.document.getElementById('app').innerHTML,/lejárt/);
+ assert.doesNotMatch(t.document.getElementById('app').innerHTML,/Vissza a demóhoz|Demó munkatér/);
+});
+
+test('a hosted API outage offers retry and keeps the authenticated API mode instead of substituting demo data',async()=>{
+ const fixture=createModel({getItem:()=>null,setItem:()=>{}}).getState();
+ let attempts=0;
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{getState:async()=>{if(++attempts===1)throw apiError('A szerver átmenetileg nem érhető el.',503);return fixture;}}});
+ const failed=t.document.getElementById('app').innerHTML;
+ assert.match(failed,/A szerver átmenetileg nem érhető el/);
+ assert.match(failed,/data-action="retry"/);
+ assert.doesNotMatch(failed,/Vissza a demóhoz|Demó munkatér|A következő fejezeted/);
+ assert.equal(t.getSelectedModel(),t.model);
+ assert.equal(t.disconnected.length,0);
+ await t.click({action:'retry'});
+ assert.equal(t.getSelectedModel(),t.model);
+ assert.match(t.document.getElementById('app').innerHTML,/Találj rá az igazira/);
+ assert.match(t.document.getElementById('app').innerHTML,/Tesztkörnyezet/);
+});
+
+test('hosted test credits use the server method and wait for its persisted balance before confirming success',async()=>{
+ const persisted=createModel({getItem:()=>null,setItem:()=>{}}).getState();
+ const before=persisted.credits,calls=[];
+ let release;
+ const granted=new Promise(resolve=>{release=resolve;});
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{
+  getState:async()=>JSON.parse(JSON.stringify(persisted)),
+  buyDemoCredits:async amount=>{calls.push(amount);await granted;persisted.credits+=amount;persisted.ledger.unshift({id:'server-test-grant',amount,description:'Szerveren mentett tesztfeltöltés',createdAt:'2026-11-03T10:00:00Z'});return{credits:persisted.credits};}
+ }});
+ await t.click({page:'credits'});
+ const credits=t.document.getElementById('app').innerHTML;
+ assert.match(credits,/Tesztkreditek feltöltése/);
+ assert.doesNotMatch(credits,/Demófeltöltés|Stripe|data-action="checkout"|1 990|4 990|9 990/);
+ await t.click({action:'buy',amount:'50'});
+ assert.match(t.document.getElementById('modal-root').innerHTML,/Ez ingyenes/);
+ const clicked=t.click({action:'confirm-test-credits',amount:'50'});
+ await settle();
+ assert.deepEqual(calls,[50]);
+ assert.equal(persisted.credits,before,'credits must not be changed before the API grant succeeds');
+ assert.match(t.document.getElementById('modal-root').innerHTML,/Tesztkreditek hozzáadása/);
+ release();await clicked;
+ assert.equal(persisted.credits,before+50);
+ assert.equal(t.document.getElementById('modal-root').innerHTML,'');
+ const updated=t.document.getElementById('app').innerHTML;
+ assert.match(updated,new RegExp(`${before+50} <small>tesztkredit`));
+ assert.match(updated,/Szerveren mentett tesztfeltöltés/);
+ assert.match(t.document.getElementById('toast').textContent,/tesztkrediteket jóváírtuk/);
+});
+
+test('a rejected hosted test-credit grant preserves the balance and confirmation instead of reporting success',async()=>{
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{buyDemoCredits:async()=>{throw apiError('A tesztfeltöltés most nem sikerült.',503);}}});
+ const before=t.model.getState();
+ await t.click({page:'credits'});
+ await t.click({action:'buy',amount:'20'});
+ await t.click({action:'confirm-test-credits',amount:'20'});
+ assert.equal(t.model.getState().credits,before.credits);
+ assert.equal(t.model.getState().ledger.length,before.ledger.length);
+ assert.match(t.document.getElementById('modal-root').innerHTML,/Tesztkreditek hozzáadása/);
+ assert.match(t.document.getElementById('toast').textContent,/A tesztfeltöltés most nem sikerült/);
+ assert.doesNotMatch(t.document.getElementById('toast').textContent,/jóváírtuk/);
 });

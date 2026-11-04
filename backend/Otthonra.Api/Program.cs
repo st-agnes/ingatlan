@@ -11,6 +11,7 @@ using Otthonra.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 var development = builder.Environment.IsDevelopment();
+var deployment = DeploymentSettings.From(builder.Configuration, builder.Environment.EnvironmentName);
 var connection = builder.Configuration.GetConnectionString("MySql") ?? (development ? "Server=localhost;Port=3306;Database=otthonra;User=otthonra;Password=local-only-change-me" : throw new InvalidOperationException("ConnectionStrings__MySql is required."));
 var signingKey = builder.Configuration["Jwt:Key"] ?? (development ? "otthonra-development-only-signing-key-change-before-production" : "");
 if (signingKey.Length < 32 || (!development && signingKey.Contains("development-only"))) throw new InvalidOperationException("Jwt__Key must be a private random key of at least 32 characters.");
@@ -54,7 +55,9 @@ if (builder.Configuration.GetValue<bool>("Database:Initialize"))
     if (development && builder.Configuration.GetValue<bool>("Database:SeedDemo")) await Seed.Run(db);
 }
 app.MapGet("/api/locations", (string? q, int? limit) => Results.Ok(new { items = LocationCatalog.Search(q, limit ?? 8) }));
-app.MapGet("/api/health", async Task<IResult> (AppDb db) => await db.Database.CanConnectAsync() ? Results.Ok(new { status = "ready" }) : Results.Json(new { status = "database-unavailable" }, statusCode: 503));
+app.MapGet("/api/health", async Task<IResult> (AppDb db) => await db.Database.CanConnectAsync()
+    ? Results.Ok(new { status = "ready", deployment = deployment.Name, testCreditsEnabled = deployment.AllowDemoTopup })
+    : Results.Json(new { status = "database-unavailable", deployment = deployment.Name, testCreditsEnabled = deployment.AllowDemoTopup }, statusCode: 503));
 
 object Session(User user)
 {
@@ -228,15 +231,15 @@ api.MapGet("/credits/ledger", async (AppDb db, ClaimsPrincipal principal) =>
 {
     var uid = principal.UserId(); return Results.Ok(await db.CreditEntries.AsNoTracking().Where(x => x.UserId == uid).OrderByDescending(x => x.CreatedAt).Select(x => new { x.Id, x.Amount, x.Description, x.CreatedAt }).ToListAsync());
 });
-if (development && builder.Configuration.GetValue<bool>("Credits:EnableDemoTopup"))
+if (deployment.AllowDemoTopup)
 {
     api.MapPost("/credits/demo-topup", async (TopupInput input, AppDb db, ClaimsPrincipal principal) =>
     {
-        if (input.Amount is not (20 or 50 or 100 or 250)) throw new ApiException(400, "Válassz 20, 50, 100 vagy 250 demókreditet.");
+        if (input.Amount is not (20 or 50 or 100 or 250)) throw new ApiException(400, "Válassz 20, 50, 100 vagy 250 tesztkreditet.");
         var uid = principal.UserId(); await using var tx = await db.Database.BeginTransactionAsync();
         var user = (await db.Users.FromSqlInterpolated($"SELECT * FROM `Users` WHERE `Id` = {uid} FOR UPDATE").ToListAsync()).SingleOrDefault() ?? throw new ApiException(401, "A fiók nem található.");
-        if (user.Credits > 1_000_000 - input.Amount) throw new ApiException(400, "Elérted a demóegyenleg felső korlátját.");
-        user.Credits += input.Amount; db.CreditEntries.Add(new CreditEntry { UserId = uid, Amount = input.Amount, Description = "Demófeltöltés – valódi fizetés nélkül" });
+        if (user.Credits > 1_000_000 - input.Amount) throw new ApiException(400, "Elérted a tesztegyenleg felső korlátját.");
+        user.Credits += input.Amount; db.CreditEntries.Add(new CreditEntry { UserId = uid, Amount = input.Amount, Description = deployment.TopupDescription });
         await db.SaveChangesAsync(); await tx.CommitAsync(); return Results.Ok(new { credits = user.Credits });
     });
 }

@@ -1,10 +1,12 @@
 import test, { afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi } from '../dist/api.js';
+import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi, hostedMode, deploymentEnvironment } from '../dist/api.js';
 
 const originalFetch = globalThis.fetch;
 const originalStorage = globalThis.localStorage;
-afterEach(() => { globalThis.fetch = originalFetch; globalThis.localStorage = originalStorage; });
+const originalRuntime = globalThis.OTTHONRA_CONFIG;
+const originalLocation = globalThis.location;
+afterEach(() => { globalThis.fetch = originalFetch; globalThis.localStorage = originalStorage;globalThis.OTTHONRA_CONFIG=originalRuntime;globalThis.location=originalLocation; });
 const storage = () => {
   const values = new Map();
   return { getItem: key => values.get(key) || null, setItem: (key, value) => values.set(key, value), removeItem: key => values.delete(key) };
@@ -209,4 +211,57 @@ test('canonical location DTO objects work when reading an API response without l
   assert.equal(state.properties[0].city, 'Budapest');
   assert.deepEqual(state.searches[0].locationIds, ['city:Debrecen', 'city:Hajdúszoboszló']);
   assert.deepEqual([state.searches[0].minPrice, state.searches[0].maxArea, state.searches[0].maxRooms], [null, null, null]);
+});
+
+function hostedSession(){
+  globalThis.OTTHONRA_CONFIG={mode:'api',environment:'test'};
+  globalThis.location={origin:'https://test.example.hu'};
+  globalThis.localStorage=storage();
+}
+
+test('hosted runtime starts unauthenticated without falling back to browser demo data',()=>{
+  hostedSession();let calls=0;globalThis.fetch=async()=>{calls++;throw new Error('Guest must not fetch before login');};
+  assert.equal(hostedMode(),true);assert.equal(deploymentEnvironment(),'test');
+  assert.equal(getModel(),null);assert.equal(disconnectApi(),null);assert.equal(calls,0);
+});
+
+test('hosted sessions cannot send a saved bearer token to another origin',()=>{
+  hostedSession();
+  globalThis.localStorage.setItem(API_CONFIG_KEY,JSON.stringify({baseUrl:'https://foreign.example.hu',token:'foreign-token'}));
+  assert.equal(getModel(),null);
+  globalThis.localStorage.setItem(API_CONFIG_KEY,JSON.stringify({baseUrl:'https://test.example.hu',token:'own-token'}));
+  assert.equal(getModel().baseUrl,'https://test.example.hu');assert.equal(getModel().token,'own-token');
+});
+
+test('hosted login rejects a different API address before sending credentials',async()=>{
+  hostedSession();const calls=routes({});
+  await assert.rejects(connectApi('https://foreign.example.hu','anna@example.hu','password1234'),/saját webcímén/);
+  assert.equal(calls.length,0);assert.equal(globalThis.localStorage.getItem(API_CONFIG_KEY),null);
+});
+
+test('hosted registration and logout use a verified same-origin API session',async()=>{
+  hostedSession();
+  const calls=routes(accountRoutes({'/api/auth/register':{accessToken:'new-user-token'}}));
+  const api=await connectApi(globalThis.location.origin,'anna@example.hu','password1234',{name:'Teszt Anna',phone:''});
+  assert.equal(api.baseUrl,globalThis.location.origin);assert.equal(api.mode,'api');
+  assert.deepEqual(JSON.parse(calls[0].body),{name:'Teszt Anna',phone:'',email:'anna@example.hu',password:'password1234'});
+  const saved=JSON.parse(globalThis.localStorage.getItem(API_CONFIG_KEY));
+  assert.deepEqual(saved,{baseUrl:'https://test.example.hu',token:'new-user-token'});
+  assert.equal(getModel().mode,'api');assert.equal(disconnectApi(),null);assert.equal(getModel(),null);
+});
+
+test('hosted API errors preserve HTTP status for login expiry and never downgrade to demo',async()=>{
+  hostedSession();globalThis.localStorage.setItem(API_CONFIG_KEY,JSON.stringify({baseUrl:globalThis.location.origin,token:'expired'}));
+  routes(accountRoutes({'/api/me':()=>response({message:'Expired'},401)}));
+  await assert.rejects(getModel().getState(),error=>error.status===401&&/lejárt/.test(error.message));
+  assert.equal(getModel().mode,'api');
+  routes(accountRoutes({'/api/me':()=>response({message:'Unavailable'},503)}));
+  await assert.rejects(getModel().getState(),error=>error.status===503&&error.message==='Unavailable');
+  assert.equal(getModel().mode,'api');
+});
+
+test('a new authenticated account without an active entity has an empty feed',async()=>{
+  const calls=routes(accountRoutes({'/api/me/entities':{properties:[],searchRequests:[],active:{kind:'search',id:null}}}));
+  const api=adapter();assert.deepEqual(await api.feed(),[]);
+  assert.equal(calls.some(call=>call.path==='/api/feed'),false);
 });

@@ -14,11 +14,16 @@ concurrency:
 
 jobs:
   build-and-test:
+    name: Build and test (MySQL ${{ matrix.mysql }})
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        mysql: ["8.0", "8.4"]
     services:
       mysql:
-        image: mysql:8.0
+        image: mysql:${{ matrix.mysql }}
         env:
           MYSQL_DATABASE: otthonra_ci
           MYSQL_USER: otthonra
@@ -66,6 +71,13 @@ jobs:
           node tests/api.test.mjs
           node tests/development.test.mjs
           node tests/locations.test.mjs
+          node tests/gcp-deployment.test.mjs
+          node tests/gcp-bootstrap.test.mjs
+      - name: Check Cloud Shell script syntax
+        run: |
+          bash -n scripts/gcp/bootstrap-dev.sh
+          bash -n scripts/gcp/deploy-dev.sh
+          python3 -m py_compile scripts/gcp/bootstrap-dev.py
       - name: Start the actual development supervisor with seeded MySQL
         run: node scripts/dev.mjs --background
       - name: Test real development restarts, recovery and configured ports
@@ -91,6 +103,21 @@ jobs:
           node scripts/dev.mjs --stop
           node scripts/dev.mjs --background
           node backend/upgrade-smoke.mjs http://127.0.0.1:3000
+      - name: Start the API with the hosted test configuration
+        run: |
+          node scripts/dev.mjs --stop
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false node scripts/dev.mjs --background
+      - name: Verify hosted test deployment capabilities
+        run: |
+          node backend/deployment-smoke.mjs http://127.0.0.1:3000 test
+          node backend/smoke.mjs http://127.0.0.1:3000
+      - name: Test hosted login, persistence and test credits in Chromium
+        run: node tests/hosted-browser.test.mjs http://127.0.0.1:3000
+      - name: Verify ordinary Production never exposes free credits
+        run: |
+          node scripts/dev.mjs --stop
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=production Database__SeedDemo=false node scripts/dev.mjs --background
+          node backend/deployment-smoke.mjs http://127.0.0.1:3000 production
       - name: Show development startup logs on failure
         if: failure()
         run: tail -n 80 .local/dev.log 2>/dev/null || true
@@ -100,12 +127,12 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: dotnet-test-results
+          name: dotnet-test-results-mysql-${{ matrix.mysql }}
           path: backend/Otthonra.Tests/TestResults/*.trx
           if-no-files-found: ignore
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: browser-failure-screenshots
+          name: browser-failure-screenshots-mysql-${{ matrix.mysql }}
           path: .local/browser-tests/screenshots/*.png
           if-no-files-found: ignore
