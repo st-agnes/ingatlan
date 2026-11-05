@@ -13,11 +13,27 @@ namespace Otthonra.Api;
 public static class SchemaUpgrade
 {
     public const string LocationsVersion = "20261102-locations-and-lot-area";
+    public const string PropertyAttributesVersion = "20261105-property-attributes";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
         ("Properties", "LotArea", "decimal(18,2) NULL"),
-        ("SearchRequests", "LocationIdsJson", "longtext NULL")
+        ("SearchRequests", "LocationIdsJson", "longtext NULL"),
+        ("Properties", "ConstructionAge", "varchar(255) NOT NULL DEFAULT ''"),
+        ("Properties", "View", "varchar(255) NOT NULL DEFAULT ''"),
+        ("Properties", "CeilingHeight", "varchar(255) NOT NULL DEFAULT ''"),
+        ("Properties", "HeatingType", "varchar(255) NOT NULL DEFAULT ''"),
+        ("Properties", "Insulated", "tinyint(1) NULL"),
+        ("Properties", "EnergyRating", "varchar(255) NOT NULL DEFAULT ''"),
+        ("Properties", "AirConditioning", "tinyint(1) NULL"),
+        ("Properties", "SolarPanels", "tinyint(1) NULL"),
+        ("Properties", "ParkingType", "varchar(255) NOT NULL DEFAULT ''"),
+        ("SearchRequests", "ConditionsJson", "longtext NULL"),
+        ("SearchRequests", "BuildingsJson", "longtext NULL"),
+        ("SearchRequests", "ConstructionAgesJson", "longtext NULL"),
+        ("SearchRequests", "ViewsJson", "longtext NULL"),
+        ("SearchRequests", "CeilingHeight", "varchar(255) NOT NULL DEFAULT ''"),
+        ("SearchRequests", "FloorsJson", "longtext NULL")
     ];
 
     public static async Task ApplyAsync(AppDb db, CancellationToken cancellationToken = default)
@@ -41,6 +57,7 @@ public static class SchemaUpgrade
                     await Execute(connection, $"ALTER TABLE `{addition.Table}` ADD COLUMN `{addition.Column}` {addition.Definition}", cancellationToken);
             }
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", LocationsVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", PropertyAttributesVersion));
         }
         finally
         {

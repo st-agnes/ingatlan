@@ -45,6 +45,8 @@ A publikus `POST /auth/register` body: `{name,email,password,phone}`; `POST /aut
 
 Ingatlanmezők: `title,locationId,city,district,neighborhood,address,description,type,price,area,rooms,lotArea,floor,condition,building,balcony,elevator,images,archived`. Keresésmezők: `title,locationIds,city,districts,description,type,minPrice,maxPrice,minArea,maxArea,minRooms,maxRooms,balcony,elevator,moveIn,financing,archived`. A `lotArea` házhoz megadható pozitív telekméret m²-ben, egyébként `null`.
 
+Az opcionális állapot-, falazat-, épületkor-, kilátás-, belmagasság- és emeletszűrő, valamint az eladói műszaki adatok pontos mezői, értékei és törlési szabályai: [PROPERTY-PARAMETERS.md](../docs/PROPERTY-PARAMETERS.md). A mezőn belüli több kijelölés VAGY, a mezők közötti kapcsolat ÉS; megadott feltételt ismeretlen eladói adat nem teljesít.
+
 Az új kliensek az ingatlanhoz egy `locationId`, a kereséshez legalább egy elemet tartalmazó `locationIds` tömb értéket küldjenek a katalógusból. Példák: `city:Debrecen`, `city:Hajdúsámson`, `district:Budapest:5`. Ismeretlen azonosító nem menthető. A válaszokban a `location`, illetve `locations` a teljes `{id,label,city,district}` objektumot tartalmazza; a városi hely `district` értéke `null`, a kerületi például `V.`. A régi `city,district,districts` mezők kompatibilitási célból megmaradnak; az explicit kanonikus azonosító az irányadó. Régi kliens esetén csak a katalógusból felismerhető helynév fogadható el.
 
 A keresés helyei között VAGY kapcsolat van: `['district:Budapest:5','district:Budapest:9','city:Solymár','city:Pilisvörösvár']` bármelyike megfelelhet. A `city:Budapest` a város összes kerületét elfogadja; egy konkrét kerület csak önmagát. A többi keresési feltételnek is teljesülnie kell. A közös, hálózati szolgáltatás nélkül használható katalógus forrása: [LOCATION-DATA.md](../docs/LOCATION-DATA.md).
@@ -63,6 +65,8 @@ A feed és a publikus kártyák nem tartalmaznak felhasználói elérhetőséget
 
 `Database__Initialize=true` esetén az indulás először `EnsureCreated` hívást végez az új adatbázishoz, majd a `SchemaUpgrade.ApplyAsync` fut le a meglévő adatbázison is. A `20261102-locations-and-lot-area` verzió additívan létrehozza a `Properties.LocationId`, `Properties.LotArea` és `SearchRequests.LocationIdsJson` oszlopokat, és a verziót a `__OtthonraSchemaVersions` táblában rögzíti. A lépések ismételhetők, az adatbázis-zár összehangolja a párhuzamos indításokat. Meglévő felhasználót, hirdetést, keresést, döntést, párosítást vagy kreditet nem töröl.
 
+A `20261105-property-attributes` verzió ugyanazzal a zárral és ismételhető módon adja hozzá az opcionális attribútumoszlopokat; a korábbi kereséseken üres listák jelentenek korlátozás nélküli feltételeket, a három eladói logikai mezőn a `NULL` ismeretlent jelent.
+
 A meglévő sorokban a `LocationId` alapértéke üres szöveg, a `LotArea` és a `LocationIdsJson` értéke `NULL`. A régi helymezőket olvasáskor a közös katalógus alapján értelmezi a rendszer, ezért előzetes adatsor-átírás nem szükséges. Az új verziót a meglévő `mysql_data` kötettel kell újraindítani; kötet- vagy adatbázistörlés nem szükséges. Éles frissítés előtt készüljön mentés. Ha az inicializálás ki van kapcsolva, a telepítés részeként engedélyezni kell a frissítéshez, megfelelő sémamódosítási adatbázis-jogosultsággal. A további sémaváltozásokhoz is verziózott, adatmegőrző frissítés szükséges.
 
 A bankkártyás vásárláshoz Stripe Checkout és aláírt, idempotens webhook-integráció készült, külön PaymentOrders nyilvántartással. Beállítás és ellenőrzés: [PAYMENTS.md](../docs/PAYMENTS.md). Saját Stripe-kulcsok és elérhető webhook szükségesek; valódi fizetést az átadási környezetben nem indítottunk. Fejlesztésben külön demókredit-feltöltés is elérhető. E-mail-hitelesítés, jelszó-visszaállítás, képfeltöltés/tárolás, képek moderálása és üzemi monitoring további integráció.
@@ -75,4 +79,6 @@ A bankkártyás vásárláshoz Stripe Checkout és aláírt, idempotens webhook-
 node backend/smoke.mjs http://localhost:5080
 ```
 
-A 63 JavaScript-teszt, a .NET-fordítás, 30 xUnit-teszt, Docker-build és a valódi MySQL-es ellenőrzések sikeresek; részletek: [VALIDATION.md](../docs/VALIDATION.md). A CI az új funkciók mellett a régi sémájú adatbázis frissítését, az adatok megőrzését és az ismételt indulást is sikeresen ellenőrizte. A smoke tesztek kizárólag tesztadatbázison futtathatók; éles rendszeren ne futtasd őket. A MySQL-hálózati és párhuzamossági ellenőrzéshez futó MySQL szükséges.
+A korábbi .NET-, JavaScript-, Docker- és MySQL-ellenőrzések bizonyítékai: [VALIDATION.md](../docs/VALIDATION.md). A CI az új funkciók mellett a régi sémájú adatbázis frissítését, az adatok megőrzését és az ismételt indulást is sikeresen ellenőrizte. A smoke tesztek kizárólag tesztadatbázison futtathatók; éles rendszeren ne futtasd őket. A MySQL-hálózati és párhuzamossági ellenőrzéshez futó MySQL szükséges.
+
+Az opcionális paraméterek tényleges API/MySQL körútját a `backend/attributes-smoke.mjs` ellenőrzi; újraindítás után a `--verify` kapcsolóval ellenőrzi az értékek megőrzését. A CI ezt és a desktop/tablet/mobil mezőkezelést is futtatja.

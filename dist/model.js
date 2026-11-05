@@ -1,4 +1,5 @@
 import { getLocation, resolveLegacyLocations, matchesLocations } from './locations.js';
+import {normalizePropertyAttributes, normalizeSearchAttributes, attributesCompatible} from './attributes.js';
 
 /** Browser-only demonstration store. Real deployments use the authenticated .NET API. */
 export const STORAGE_KEY = 'otthonra.demo.v3';
@@ -30,8 +31,8 @@ function withLocations(entity, kind, strict = false) {
   return {...entity, locationIds:locations.map(location=>location.id), locations:clone(locations), city:locations[0]?.city ?? entity.city ?? '', districts:locations.filter(location=>location.city === locations[0]?.city && location.district).map(location=>location.district)};
 }
 function migrateLocations(state) {
-  state.properties = state.properties.map(entity=>withLocations(entity, 'property'));
-  state.searches = state.searches.map(entity=>withLocations(entity, 'search'));
+  state.properties = state.properties.map(entity=>normalizePropertyAttributes(withLocations(entity, 'property')));
+  state.searches = state.searches.map(entity=>normalizeSearchAttributes(withLocations(entity, 'search')));
   return state;
 }
 const visibleEntity = entity => {
@@ -100,9 +101,7 @@ export function isCompatible(property,search) {
   }
   if (search.balcony && !property.balcony) return false;
   if (search.elevator && !property.elevator) return false;
-  if (search.condition && search.condition!=='Bármilyen' && normalized(property.condition)!==normalized(search.condition)) return false;
-  if (search.building && search.building!=='Bármilyen' && normalized(property.building)!==normalized(search.building)) return false;
-  return true;
+  return attributesCompatible(property,search);
 }
 
 export function createModel(storage=globalThis.localStorage, now=()=>new Date().toISOString()) {
@@ -189,12 +188,13 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         const title=String(data.title??existing?.title??'').trim();
         if(title.length<3||title.length>150)throw new Error('Adj meg egy 3–150 karakteres nevet.');
         const entity=withLocations({...existing,...clone(data),id:existing?.id||uid(kind==='property'?'p':'s'),ownerId:s.userId,title,type:String(data.type??existing?.type??'Lakás'),archived:existing?.archived??false,createdAt:existing?.createdAt||now()},kind,true);
+        Object.assign(entity,kind==='property'?normalizePropertyAttributes(entity,{strict:true,previous:existing}):normalizeSearchAttributes(entity,{strict:true}));
         if(kind==='property'){
           for(const field of ['price','area','rooms']){entity[field]=numeric(entity[field],NaN);if(!Number.isFinite(entity[field])||entity[field]<=0)throw new Error('Az ár, az alapterület és a szobaszám legyen pozitív szám.');}
           entity.district=String(entity.district||'').trim();entity.neighborhood=String(entity.neighborhood||'');
           if(entity.lotArea!=null&&(!Number.isFinite(entity.lotArea)||entity.lotArea<=0))throw new Error('A telekméret pozitív szám legyen.');
           entity.images=Array.isArray(entity.images)?entity.images.filter(u=>typeof u==='string'&&/^(https?:\/\/|\/assets\/|data:image\/(png|jpe?g|webp|gif);base64,)/i.test(u)):[];
-          entity.condition ||= 'Jó állapotú';entity.building ||= 'Tégla';entity.floor=numeric(entity.floor,0);entity.balcony=!!entity.balcony;entity.elevator=!!entity.elevator;
+          entity.balcony=!!entity.balcony;entity.elevator=!!entity.elevator;
         }else{
           for(const [min,max] of [['minPrice','maxPrice'],['minArea','maxArea'],['minRooms','maxRooms']]){entity[min]=numeric(entity[min],null);entity[max]=numeric(entity[max],null);if((entity[min]!=null&&(!Number.isFinite(entity[min])||entity[min]<0))||(entity[max]!=null&&(!Number.isFinite(entity[max])||entity[max]<=0))||(entity[min]!=null&&entity[max]!=null&&entity[max]<entity[min]))throw new Error('A minimum érték nem lehet nagyobb a maximumnál; a korlátok érvényes számok legyenek.');}
           entity.balcony=!!entity.balcony;entity.elevator=!!entity.elevator;entity.moveIn ||= 'Rugalmas';

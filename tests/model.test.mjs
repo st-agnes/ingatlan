@@ -109,3 +109,40 @@ test('house plot area survives save and reload and is cleared when changing to a
  assert.throws(()=>again.saveEntity('property',{...p,lotArea:'hibás'},p.id),/telekméret/);
  const changed=again.saveEntity('property',{...p,type:'Lakás'},p.id);assert.equal(changed.lotArea,null);
 });
+
+test('new optional property data and multiselect filters persist without turning unknown details into defaults',()=>{
+ const storage=store(),m=createModel(storage);
+ const p=m.saveEntity('property',{title:'Részletes tesztlakás',locationId:'district:Budapest:13',type:'Lakás',price:78,area:68,rooms:3,condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m feletti',floor:0,heatingType:'Hőszivattyú',insulated:false,energyRating:'A+',airConditioning:true,solarPanels:null,parkingType:'Garázs'});
+ const q=m.saveEntity('search',{title:'Részletes keresési igény',locationIds:['district:Budapest:13'],conditions:['Jó','Átlagos'],buildings:['Panel','Tégla'],constructionAges:['10–30 év közötti'],views:['Kertre néző','Panorámás'],ceilingHeight:'3 m feletti',floors:[0,11]});
+ const again=createModel(storage),saved=again.getState().properties.find(item=>item.id===p.id),savedSearch=again.getState().searches.find(item=>item.id===q.id);
+ for(const field of ['condition','building','constructionAge','view','ceilingHeight','floor','heatingType','insulated','energyRating','airConditioning','solarPanels','parkingType'])assert.deepEqual(saved[field],p[field],field);
+ assert.deepEqual(savedSearch.conditions,['Jó','Átlagos']);assert.deepEqual(savedSearch.floors,[0,11]);
+ const blank=again.saveEntity('property',{title:'Opcionális mezők nélkül',locationId:'city:Debrecen',type:'Lakás',price:40,area:50,rooms:2});
+ assert.deepEqual([blank.condition,blank.building,blank.floor,blank.insulated,blank.airConditioning,blank.solarPanels],['','',null,null,null,null]);
+ const cleared=again.saveEntity('property',{...p,condition:'',building:'',constructionAge:'',view:'',ceilingHeight:'',floor:'',insulated:'',airConditioning:'',solarPanels:''},p.id);
+ assert.deepEqual([cleared.floor,cleared.insulated,cleared.airConditioning,cleared.solarPanels],[null,null,null,null]);
+});
+
+test('new attributes constrain actual demo feeds, using OR within lists and rejecting missing seller data',()=>{
+ const m=setup();
+ const all=m.feed();assert.ok(all.length);
+ const base=m.getState().searches.find(item=>item.id==='own-s1');
+ m.saveEntity('search',{...base,conditions:['Új/felújított'],buildings:['Tégla','Panel'],floors:[3]},base.id);
+ assert.ok(m.feed().length);assert.ok(m.feed().every(item=>item.condition==='Új/felújított'&&item.floor===3));
+ m.saveEntity('search',{...base,views:['Panorámás']},base.id);assert.equal(m.feed().length,0);
+ m.saveEntity('search',{...base,views:[],conditions:[],buildings:[],floors:[]},base.id);assert.equal(m.feed().length,all.length);
+});
+
+test('legacy custom condition and wall text survive reads and unrelated edits while new unknown labels fail',()=>{
+ const storage=store(),m=createModel(storage);m.buyDemoCredits(20);
+ const raw=JSON.parse(storage.getItem(STORAGE_KEY)),own=raw.properties.find(item=>item.id==='own-p1');
+ own.condition='Régi egyedi állapot';own.building='Régi egyedi falazat';
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ const again=createModel(storage),before=again.getState(),existing=before.properties.find(item=>item.id===own.id);
+ assert.equal(existing.condition,own.condition);assert.equal(existing.building,own.building);
+ again.saveEntity('property',{...existing,title:'Csak a név változott'},existing.id);
+ assert.equal(again.getState().properties.find(item=>item.id===own.id).condition,own.condition);
+ assert.equal(again.getState().credits,before.credits);assert.deepEqual(again.matches(),m.matches());
+ assert.throws(()=>again.saveEntity('property',{...existing,condition:'Más ismeretlen'},existing.id),/Érvénytelen/);
+ assert.throws(()=>again.saveEntity('search',{title:'Hibás új szűrő',locationIds:['city:Budapest'],floors:[12]}),/Érvénytelen/);
+});
