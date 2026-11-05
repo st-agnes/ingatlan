@@ -10,10 +10,11 @@ const {chromium}=await import(playwrightUrl);
 const origin=new URL(process.argv[2]||'http://127.0.0.1:3000').origin;
 const screenshots=resolve('.local/browser-tests/screenshots');
 const viewports=[{name:'desktop',width:1280,height:900,touch:false},{name:'tablet',width:800,height:1100,touch:true},{name:'mobile',width:390,height:844,touch:true}];
+let visit=0;
 const state=page=>page.evaluate(async()=> (await import('/model.js')).model.getState());
 async function location(page,interact){await page.locator('#location-input').fill('Debrecen');await interact(page.locator('[data-location-id="city:Debrecen"]'));}
-async function openNew(page,interact,kind){await page.goto(`${origin}/#${kind==='search'?'searches':'properties'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));await page.waitForFunction(()=>document.activeElement?.id==='f-title');}
-async function edit(page,interact,kind,id){await page.goto(`${origin}/#${kind==='search'?'searches':'properties'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`[data-action="edit"][data-id="${id}"]`));await page.waitForFunction(()=>document.activeElement?.id==='f-title');}
+async function openNew(page,interact,kind){await page.goto(`${origin}/?attributes-visit=${++visit}#${kind==='search'?'searches':'properties'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));await page.waitForFunction(()=>document.activeElement?.id==='f-title');}
+async function edit(page,interact,kind,id){await page.goto(`${origin}/?attributes-visit=${++visit}#${kind==='search'?'searches':'properties'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`[data-action="edit"][data-id="${id}"]`));await page.waitForFunction(()=>document.activeElement?.id==='f-title');}
 async function save(page,interact,createdSearch=false){await interact(page.locator('#entity-form button[type="submit"]'));if(createdSearch){await page.getByRole('heading',{name:'Elkészült a keresési igényed.',exact:true}).waitFor();await interact(page.locator('.search-created-actions [data-action="close"]'));}await page.locator('#entity-form').waitFor({state:'detached'});}
 
 async function verify(browser,viewport){
