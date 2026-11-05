@@ -44,6 +44,7 @@ node tests/frontend.test.mjs
 node tests/api.test.mjs
 node tests/development.test.mjs
 node tests/locations.test.mjs
+node tests/attributes.test.mjs
 node tests/gcp-deployment.test.mjs
 node tests/gcp-run-config.test.mjs
 node tests/gcp-bootstrap.test.mjs
@@ -59,7 +60,7 @@ With Development API and MySQL running, `node backend/smoke.mjs http://localhost
 
 Passing mock/offline tests does not establish .NET or real MySQL success; report those only after checking CI for the actual commit. The Google Cloud bootstrap and packaging tests use local fixtures/mocks and must not create billable resources. CI runs `node tests/development-smoke.mjs` against its disposable database to verify custom ports, concurrent startup, completed shutdown, immediate restart and child crash recovery. CI also verifies upgrading an initial-release schema and starting it again without losing data. A fresh caching_sha2_password account verifies full loopback TCP authentication with RSA retrieval disabled/enabled. This checks the driver path against MySQL 8.0/8.4; it does not reproduce Google’s managed proxy. CI separately pulls the fixed Google proxy release and verifies its version/flags. The seed importer also runs through the real hosted-test API with disposable aliased accounts in `backend/seed-smoke.mjs`, verifying compatible feeds, matching, one credit charge, messaging and preservation after rename/archive/spending. Restart the API before that smoke to give its nine authentication requests a fresh rate-limit window. Cloud SQL IAM/TLS and the actual proxy route are verified by deployment health checks. Outside the disposable CI setup the database integration test is skipped.
 
-The real-browser regressions in `tests/browser.test.mjs` check input geometry, pointer/touch and keyboard dismissal, and search creation/activation at desktop, tablet, and mobile sizes. CI installs pinned Playwright into ignored `.local/browser-tests` and runs `node tests/browser.test.mjs http://localhost:3000` while the web server is running. Browser failure screenshots are CI artifacts.
+The real-browser regressions in `tests/browser.test.mjs` and `tests/attributes-browser.test.mjs` check input geometry, pointer/touch and keyboard dismissal, and search creation/activation at desktop, tablet, and mobile sizes. CI installs pinned Playwright into ignored `.local/browser-tests` and runs `node tests/browser.test.mjs http://localhost:3000` while the web server is running. Browser failure screenshots are CI artifacts.
 
 ## Business and data rules
 
@@ -72,6 +73,9 @@ The real-browser regressions in `tests/browser.test.mjs` check input geometry, p
 - Preserve nullable search bounds through form, storage and API serialization. In particular, blank `minPrice`, `maxArea` and `maxRooms` remain `null` and mean unbounded; do not coerce them to zero or a synthetic upper bound.
 - `lotArea` is a nullable positive property measurement in square metres for `Ház`; clear it for other property types. There are no search plot-area bounds.
 - `dist/data/settlements.json` is the canonical shared municipality source, embedded by .NET; `dist/locations-data.js` is its generated browser module. Source, license and update instructions are in `docs/LOCATION-DATA.md`. Preserve existing demo storage key `otthonra.demo.v3`, IDs, decisions, matches and balances when upgrading records.
+- Optional attribute selections are OR within `conditions`, `buildings`, `constructionAges`, `views` and `floors`, AND across attributes. Empty lists/ceiling height do not filter; unknown seller data cannot satisfy a selected filter. Floor `11` groups all actual floors >=11; preserve old actual floor values and unknown floor separately from 0.
+- Property `insulated`, `airConditioning`, `solarPanels` are nullable booleans: preserve false versus unknown in UI, local storage and API. Other seller extras (`heatingType`, `energyRating`, `parkingType`) are optional public text. Legacy conditions normalize on read/match; retain unchanged unknown legacy metadata on update while rejecting newly introduced unknown enum values.
+- `20261105-property-attributes` adds the optional columns with the existing schema lock, preserving the old location upgrade. CI simulates the original schema with `backend/fixtures/previous-schema.sql` only in its disposable database, then checks attribute round trips and restart preservation with `backend/attributes-smoke.mjs`. Do not run the destructive CI SQL fixture against a deployed database. Shipping this feature requires a new API image; an old digest does not implement these filters.
 - Search-side likes are free. A property-side like costs two credits exactly once. Credit balance, ledger, decision, and match updates must remain transactional.
 - Public cards contain no contact details or exact address. Only a reciprocal match permits contact access and messaging.
 - Keep runtime EF Core packages on the same patch version; Design is private but runtime references must flow to test/client projects.

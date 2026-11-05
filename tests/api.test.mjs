@@ -265,3 +265,37 @@ test('a new authenticated account without an active entity has an empty feed',as
   const api=adapter();assert.deepEqual(await api.feed(),[]);
   assert.equal(calls.some(call=>call.path==='/api/feed'),false);
 });
+
+test('all optional seller details round-trip through DTOs preserving null, false, ground floor and modern or legacy text',async()=>{
+ const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201)});
+ const result=await adapter().saveEntity('property',{title:'Részletes lakás',locationId:'district:Budapest:13',type:'Lakás',price:78,area:68,rooms:3,condition:'Jó állapotú',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m feletti',floor:'0',heatingType:'Hőszivattyú + padlófűtés',insulated:'false',energyRating:'BB',airConditioning:'true',solarPanels:null,parkingType:'Udvari beálló'});
+ const body=JSON.parse(calls[0].body);
+ assert.deepEqual([body.condition,body.building,body.floor],['Jó','Tégla',0]);
+ assert.deepEqual([body.insulated,body.airConditioning,body.solarPanels],[false,true,null]);
+ for(const field of ['condition','building','constructionAge','view','ceilingHeight','floor','heatingType','insulated','energyRating','airConditioning','solarPanels','parkingType'])assert.deepEqual(result[field],body[field],field);
+ const blank=await adapter().saveEntity('property',{title:'Ismeretlen részletek',locationId:'city:Debrecen',type:'Lakás',price:40,area:50,rooms:2,insulated:'',airConditioning:'',solarPanels:''});
+ assert.deepEqual([blank.condition,blank.building,blank.floor,blank.insulated,blank.airConditioning,blank.solarPanels],['','',null,null,null,null]);
+});
+
+test('multiselect search attributes serialize as deduplicated arrays and can all be cleared',async()=>{
+ const calls=routes({'/api/searches':options=>response({id:ids.search,...JSON.parse(options.body)},201)});
+ const result=await adapter().saveEntity('search',{title:'Szűrt keresés',locationIds:['city:Budapest'],conditions:['Jó','Felújított','Jó'],buildings:['Panel','Tégla'],constructionAges:['10 évnél fiatalabb','10–30 év közötti'],views:['Kertre néző','Panorámás'],ceilingHeight:'3 m alatti',floors:['-1','0','11']});
+ const body=JSON.parse(calls[0].body);
+ assert.deepEqual(body.conditions,['Jó','Új/felújított']);assert.deepEqual(body.buildings,['Panel','Tégla']);assert.deepEqual(body.floors,[-1,0,11]);
+ for(const field of ['conditions','buildings','constructionAges','views','ceilingHeight','floors'])assert.deepEqual(result[field],body[field],field);
+ const cleared=await adapter().saveEntity('search',{...result,conditions:[],buildings:[],constructionAges:[],views:[],ceilingHeight:'',floors:[]});
+ assert.deepEqual([cleared.conditions,cleared.buildings,cleared.constructionAges,cleared.views,cleared.floors],[[],[],[],[],[]]);assert.equal(cleared.ceilingHeight,'');
+});
+
+test('new invalid enums and malformed selections are rejected before sending while an update can preserve server-owned legacy labels',async()=>{
+ const calls=routes({['/api/properties/'+ids.property]:options=>response({id:ids.property,...JSON.parse(options.body)})});
+ const base={title:'Meglévő lakás',locationId:'city:Budapest',price:50,area:60,rooms:3};
+ await assert.rejects(adapter().saveEntity('property',{...base,view:'Ismeretlen'}),/Érvénytelen/);
+ await assert.rejects(adapter().saveEntity('property',{...base,condition:'Ismeretlen'}),/Érvénytelen/);
+ await assert.rejects(adapter().saveEntity('property',{...base,insulated:'talán'}),/igen, nem/);
+ await assert.rejects(adapter().saveEntity('search',{title:'Hibás keresés',locationIds:['city:Budapest'],conditions:'Jó'}),/listaként/);
+ await assert.rejects(adapter().saveEntity('search',{title:'Hibás keresés',locationIds:['city:Budapest'],floors:[12]}),/Érvénytelen/);
+ assert.equal(calls.length,0);
+ const updated=await adapter().saveEntity('property',{...base,condition:'Régi egyedi állapot',building:'Régi egyedi szerkezet'},ids.property);
+ assert.equal(updated.condition,'Régi egyedi állapot');assert.equal(updated.building,'Régi egyedi szerkezet');assert.equal(calls.length,1);
+});

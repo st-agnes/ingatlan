@@ -1,5 +1,6 @@
 import { model as demoModel } from './model.js';
 import { getLocation, resolveLegacyLocations } from './locations.js';
+import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
 
 export const API_CONFIG_KEY = 'otthonra.api';
 export const hostedMode = () => globalThis.OTTHONRA_CONFIG?.mode === 'api';
@@ -75,20 +76,23 @@ function entityLocations(value, kind, strict = false) {
 function propertyFromApi(value) {
   if (!value) return null;
   const location = entityLocations(value, 'property')[0] || null;
-  return {
+  return normalizePropertyAttributes({
     id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''),
     title: value.title || '', locationId:location?.id || '', location:clone(location), city: location?.city ?? value.city ?? '', district: location ? location.district || '' : value.district ?? '', neighborhood: value.neighborhood || '', address: value.address || '', description: value.description || '', createdAt: value.createdAt,
     type: value.type || value.propertyType || 'Lakás',
     price: millions(value.priceHuf ?? value.price), area: numeric(value.area ?? value.areaSqm ?? value.sizeSqm), rooms: numeric(value.rooms ?? value.roomCount),
     lotArea: numeric(value.lotArea ?? value.lotAreaSqm ?? null), floor: numeric(value.floor), condition: value.condition || '', building: value.building || value.buildingMaterial || '',
     balcony: !!(value.balcony ?? value.hasBalcony), elevator: !!(value.elevator ?? value.hasElevator),
+    constructionAge:value.constructionAge, view:value.view, ceilingHeight:value.ceilingHeight,
+    heatingType:value.heatingType, insulated:value.insulated, energyRating:value.energyRating,
+    airConditioning:value.airConditioning, solarPanels:value.solarPanels, parkingType:value.parkingType,
     images: clone(value.images || value.imageUrls || []), archived: !!(value.archived ?? value.isArchived)
-  };
+  });
 }
 function searchFromApi(value) {
   if (!value) return null;
   const locations = entityLocations(value, 'search');
-  return {
+  return normalizeSearchAttributes({
     id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''),
     title: value.title || '', locationIds:locations.map(location=>location.id), locations:clone(locations), city: locations[0]?.city ?? value.city ?? '', districts: locations.filter(location=>location.city===locations[0]?.city&&location.district).map(location=>location.district), description: value.description || '', moveIn: value.moveIn || '', buyerName: value.buyerName || '', financing: value.financing || '', avatar: value.avatar || '', createdAt: value.createdAt,
     type: value.type || value.propertyType || 'Lakás',
@@ -96,8 +100,11 @@ function searchFromApi(value) {
     minArea: numeric(value.minArea ?? value.minAreaSqm ?? null), maxArea: numeric(value.maxArea ?? value.maxAreaSqm ?? null),
     minRooms: numeric(value.minRooms ?? null), maxRooms: numeric(value.maxRooms ?? null),
     balcony: !!(value.balcony ?? value.requiresBalcony), elevator: !!(value.elevator ?? value.requiresElevator),
+    conditions:value.conditions ?? (value.condition ? [value.condition] : []),
+    buildings:value.buildings ?? (value.building ? [value.building] : []),
+    constructionAges:value.constructionAges, views:value.views, ceilingHeight:value.ceilingHeight, floors:value.floors,
     archived: !!(value.archived ?? value.isArchived)
-  };
+  });
 }
 function inputNumber(value, name, nullable = false) {
   if (value === '' || value == null) {
@@ -111,8 +118,9 @@ function inputNumber(value, name, nullable = false) {
 const inputBoolean = value => value === true || value === 1 || ['true', '1', 'on'].includes(String(value).toLowerCase());
 const inputText = value => value == null ? '' : String(value).trim();
 const inputStrings = value => Array.isArray(value) ? value.map(inputText).filter(Boolean) : inputText(value).split(/[,\n]/).map(inputText).filter(Boolean);
-function propertyToApi(value) {
-  const floor = inputNumber(value.floor, 'emelet', true);
+function propertyToApi(value, updating = false) {
+  const attributes = normalizePropertyAttributes(value,{strict:true,allowLegacyUnknown:updating});
+  const floor = attributes.floor;
   if (floor != null && !Number.isInteger(floor)) throw new Error('Az emelet egész szám legyen.');
   const images = Array.isArray(value.images) ? value.images.map(inputText).filter(Boolean) : inputText(value.images).split('\n').map(inputText).filter(Boolean);
   if (images.length > 12 || images.some(image => { try { return new URL(image).protocol !== 'https:' || image.length > 2000; } catch { return true; } })) throw new Error('Az API-hoz legfeljebb 12 HTTPS-képhivatkozás adható meg.');
@@ -124,16 +132,23 @@ function propertyToApi(value) {
   return {
     title: inputText(value.title), locationId:location.id, city:location.city, district:location.district || '', neighborhood: inputText(value.neighborhood), address: inputText(value.address), description: inputText(value.description),
     type, price: Math.round(price * MILLION), area, rooms, lotArea, floor,
-    condition: inputText(value.condition), building: inputText(value.building), balcony: inputBoolean(value.balcony), elevator: inputBoolean(value.elevator), images, archived: inputBoolean(value.archived)
+    condition:attributes.condition, building:attributes.building,
+    constructionAge:attributes.constructionAge, view:attributes.view, ceilingHeight:attributes.ceilingHeight,
+    heatingType:attributes.heatingType, insulated:attributes.insulated, energyRating:attributes.energyRating,
+    airConditioning:attributes.airConditioning, solarPanels:attributes.solarPanels, parkingType:attributes.parkingType,
+    balcony: inputBoolean(value.balcony), elevator: inputBoolean(value.elevator), images, archived: inputBoolean(value.archived)
   };
 }
 function searchToApi(value) {
+  const attributes = normalizeSearchAttributes(value,{strict:true});
   const minPrice = inputNumber(value.minPrice, 'minimumár', true), maxPrice = inputNumber(value.maxPrice, 'maximumár', true);
   const locations = entityLocations(value, 'search', true);
   return {
     title: inputText(value.title), locationIds:locations.map(location=>location.id), city:locations[0].city, districts:locations.filter(location=>location.city===locations[0].city&&location.district).map(location=>location.district), description: inputText(value.description), type: inputText(value.type) || 'Lakás',
     minPrice: minPrice == null ? null : Math.round(minPrice * MILLION), maxPrice: maxPrice == null ? null : Math.round(maxPrice * MILLION),
     minArea: inputNumber(value.minArea, 'minimum alapterület', true), maxArea: inputNumber(value.maxArea, 'maximum alapterület', true), minRooms: inputNumber(value.minRooms, 'minimum szobaszám', true), maxRooms: inputNumber(value.maxRooms, 'maximum szobaszám', true),
+    conditions:attributes.conditions, buildings:attributes.buildings, constructionAges:attributes.constructionAges,
+    views:attributes.views, ceilingHeight:attributes.ceilingHeight, floors:attributes.floors,
     balcony: inputBoolean(value.balcony), elevator: inputBoolean(value.elevator), moveIn: inputText(value.moveIn), financing: inputText(value.financing), archived: inputBoolean(value.archived)
   };
 }
@@ -191,7 +206,7 @@ export class ApiModel {
   async activate(kind, id) { const result = await this.call('/me/active', 'PUT', { kind, id }); this.active = { kind, id }; return result; }
   async saveEntity(kind, data, id) {
     const route = kind === 'property' ? '/properties' : '/searches';
-    const result = await this.call(`${route}${id ? `/${encodeURIComponent(id)}` : ''}`, id ? 'PUT' : 'POST', kind === 'property' ? propertyToApi(data) : searchToApi(data));
+    const result = await this.call(`${route}${id ? `/${encodeURIComponent(id)}` : ''}`, id ? 'PUT' : 'POST', kind === 'property' ? propertyToApi(data,!!id) : searchToApi(data));
     return kind === 'property' ? propertyFromApi(result) : searchFromApi(result);
   }
   async deleteEntity(kind, id) { const result = await this.call(`/${kind === 'property' ? 'properties' : 'searches'}/${encodeURIComponent(id)}`, 'DELETE'); this.active = null; return result; }

@@ -5,6 +5,7 @@ import vm from 'node:vm';
 import fs from 'node:fs/promises';
 import {createModel} from '../dist/model.js';
 import {searchLocations,getLocation,resolveLegacyLocations} from '../dist/locations.js';
+import * as propertyAttributes from '../dist/attributes.js';
 
 const source=await fs.readFile(new URL('../dist/app.js',import.meta.url),'utf8');
 class Element {
@@ -39,12 +40,12 @@ async function setup(options={}){
   document,console,Intl,Date,Promise,URLSearchParams,setTimeout:()=>0,clearTimeout:()=>{},
   location:{hash:'',search:'',origin:'https://test.example'},window:{scrollTo:()=>{}},
   OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:'test'}:{mode:'demo',environment:'local'},
-  searchLocations,getLocation,resolveLegacyLocations,
+  searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,
   hostedMode:()=>!!options.hosted,deploymentEnvironment:()=>options.hosted?'test':'local',
   getModel:()=>selected,
   disconnectApi:()=>{disconnected.push(true);selected=options.hosted?null:demoModel;return selected;},
   connectApi:async(...args)=>{connected.push(args);if(options.connectApi)await options.connectApi(...args);selected=apiModel;return apiModel;},
-  FormData:class {constructor(form){this.values=Object.entries(form.values||{});}get(k){return this.values.find(([key])=>key===k)?.[1]}has(k){return this.values.some(([key])=>key===k)}[Symbol.iterator](){return this.values[Symbol.iterator]()}}
+  FormData:class {constructor(form){this.values=Array.isArray(form.values)?form.values:Object.entries(form.values||{});}get(k){return this.values.find(([key])=>key===k)?.[1]}has(k){return this.values.some(([key])=>key===k)}[Symbol.iterator](){return this.values[Symbol.iterator]()}}
  });
  const body=source.replace(/^import[^\n]+\n/gm,'');
  await vm.runInContext(`(async()=>{${body}\nglobalThis.ui={render,changePage,openEditor,openDetails,openModal,closeModal,openActivation,getModelState:()=>state};})()`,ctx);
@@ -366,4 +367,66 @@ test('a rejected hosted test-credit grant preserves the balance and confirmation
  assert.match(t.document.getElementById('modal-root').innerHTML,/Tesztkreditek hozzáadása/);
  assert.match(t.document.getElementById('toast').textContent,/A tesztfeltöltés most nem sikerült/);
  assert.doesNotMatch(t.document.getElementById('toast').textContent,/jóváírtuk/);
+});
+
+
+test('new property attributes are optional and unknown floor or amenities do not become false defaults',async()=>{
+ const t=await setup();t.ui.openEditor('property');
+ const html=t.document.getElementById('modal-root').innerHTML;
+ for(const name of ['condition','building','constructionAge','view','ceilingHeight','floor','insulated','airConditioning','solarPanels']){
+  const select=html.match(new RegExp(`<select id="f-${name}"[^>]*>([\\s\\S]*?)</select>`))?.[1];
+  assert.ok(select,`${name} select must be present`);
+  assert.match(select,/<option value="" selected>Nincs megadva<\/option>/);
+ }
+ assert.match(html,/maxlength="80" placeholder="Pl\. hőszivattyú, gázkazán"/);
+ chooseLocation(t,'city:Solymár');
+ submitEntity(t,{title:'Opcionális jellemzők',type:'Lakás',price:'82',area:'64',rooms:'3',floor:'',condition:'',building:'',constructionAge:'',view:'',ceilingHeight:'',insulated:'',airConditioning:'',solarPanels:'',images:''});
+ await settle();
+ const saved=t.model.getState().properties.find(item=>item.title==='Opcionális jellemzők');
+ assert.ok(saved);
+ for(const name of ['floor','insulated','airConditioning','solarPanels'])assert.equal(saved[name],null,name);
+ for(const name of ['condition','building','constructionAge','view','ceilingHeight'])assert.equal(saved[name],'',name);
+});
+
+test('search checkboxes serialize several choices per category and can all be cleared',async()=>{
+ const t=await setup();t.ui.openEditor('search');chooseLocation(t,'district:Budapest:13');
+ const html=t.document.getElementById('modal-root').innerHTML;
+ assert.match(html,/<fieldset class="attribute-group"><legend>Állapot/);
+ assert.match(html,/Többet is megjelölhetsz/);
+ assert.equal((html.match(/name="buildings"/g)||[]).length,12);
+ submitEntity(t,[...Object.entries(searchValues('Részletes keresés')),['conditions','Jó'],['conditions','Új/felújított'],['buildings','Tégla'],['buildings','Panel'],['constructionAges','10 évnél fiatalabb'],['constructionAges','10–30 év közötti'],['views','Kertre néző'],['views','Panorámás'],['ceilingHeight','3 m feletti'],['floors','-1'],['floors','0'],['floors','11']]);
+ await settle();
+ let saved=t.model.getState().searches.find(item=>item.title==='Részletes keresés');assert.ok(saved);
+ assert.deepEqual([...saved.conditions],['Jó','Új/felújított']);assert.deepEqual([...saved.buildings],['Tégla','Panel']);
+ assert.deepEqual([...saved.constructionAges],['10 évnél fiatalabb','10–30 év közötti']);assert.deepEqual([...saved.views],['Kertre néző','Panorámás']);
+ assert.deepEqual([...saved.floors],[-1,0,11]);assert.equal(saved.ceilingHeight,'3 m feletti');
+ t.ui.openEditor('search',saved.id);
+ const edited=t.document.getElementById('modal-root').innerHTML;
+ assert.match(edited,/name="conditions" value="Jó" checked/);assert.match(edited,/name="floors" value="-1" checked/);
+ submitEntity(t,searchValues('Részletes keresés'));await settle();
+ saved=t.model.getState().searches.find(item=>item.id===saved.id);
+ for(const name of ['conditions','buildings','constructionAges','views','floors'])assert.equal(saved[name].length,0,name);
+ assert.equal(saved.ceilingHeight,'');
+});
+
+test('seller inputs preserve explicit no, unknown amenities and existing higher floor values',async()=>{
+ const t=await setup();t.ui.openEditor('property');chooseLocation(t,'district:Budapest:13');
+ submitEntity(t,{title:'Részletes eladó lakás',type:'Lakás',price:'78',area:'65',rooms:'3',floor:'12',condition:'Jó',building:'Csúsztatott zsalu',constructionAge:'31–40 év közötti',view:'Panorámás',ceilingHeight:'3 m feletti',heatingType:'Hőszivattyú és padlófűtés',energyRating:'A+',parkingType:'Mélygarázs',insulated:'false',airConditioning:'true',solarPanels:'',images:''});await settle();
+ const saved=t.model.getState().properties.find(item=>item.title==='Részletes eladó lakás');assert.ok(saved);
+ assert.equal(saved.floor,12);assert.equal(saved.insulated,false);assert.equal(saved.airConditioning,true);assert.equal(saved.solarPanels,null);
+ assert.equal(saved.building,'Csúsztatott zsalu');assert.equal(saved.energyRating,'A+');
+ t.ui.openEditor('property',saved.id);
+ const html=t.document.getElementById('modal-root').innerHTML;
+ assert.match(html,/<option value="12" selected>12\. emelet<\/option>/);
+ assert.match(html,/<option value="false" selected>Nem<\/option>/);
+ assert.match(html,/value="Hőszivattyú és padlófűtés"/);
+});
+
+test('candidate details show chosen attributes and amenities without inventing an unknown floor',async()=>{
+ const item={id:'detail-p',kind:'property',title:'Részletes jelölt',city:'Budapest',locationId:'district:Budapest:13',type:'Lakás',price:75,area:60,rooms:3,condition:'Felújított',building:'Tégla',floor:null,constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m alatti',heatingType:'Hőszivattyú',insulated:false,energyRating:'A+',airConditioning:true,solarPanels:null,parkingType:'Fedett beálló',images:[]};
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{feed:async()=>[item]}});
+ let html=t.document.getElementById('app').innerHTML;assert.doesNotMatch(html,/Földszint|0\. emelet/);
+ t.ui.openDetails();html=t.document.getElementById('modal-root').innerHTML;
+ for(const value of ['Új/felújított','Kertre néző','10–30 év közötti','3 m alatti','Hőszivattyú','Fedett beálló','Szigetelés az épületen','Nincs','Légkondi','Van'])assert.ok(html.includes(value),value);
+ assert.doesNotMatch(html,/Napelem/,'unknown solar panels must not be rendered as no');
 });

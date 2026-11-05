@@ -94,6 +94,7 @@ jobs:
           node tests/api.test.mjs
           node tests/development.test.mjs
           node tests/locations.test.mjs
+          node tests/attributes.test.mjs
           node tests/gcp-deployment.test.mjs
           node tests/gcp-run-config.test.mjs
           node tests/gcp-bootstrap.test.mjs
@@ -122,10 +123,12 @@ jobs:
           .local/browser-tests/node_modules/.bin/playwright install --with-deps chromium
       - name: Test location picker and search creation in Chromium
         run: node tests/browser.test.mjs http://127.0.0.1:3000
+      - name: Test optional attributes in desktop, tablet and mobile Chromium
+        run: node tests/attributes-browser.test.mjs http://127.0.0.1:3000
       - name: Simulate the previous schema in the disposable CI database
         run: |
           node scripts/dev.mjs --stop
-          docker exec --env MYSQL_PWD=ci-only-password "${{ job.services.mysql.id }}" mysql --user=otthonra otthonra_ci --execute="ALTER TABLE Properties DROP COLUMN LocationId, DROP COLUMN LotArea; ALTER TABLE SearchRequests DROP COLUMN LocationIdsJson; DELETE FROM __OtthonraSchemaVersions WHERE Version = '20261102-locations-and-lot-area';"
+          docker exec -i --env MYSQL_PWD=ci-only-password "${{ job.services.mysql.id }}" mysql --user=otthonra otthonra_ci < backend/fixtures/previous-schema.sql
       - name: Upgrade existing data and verify preservation
         run: |
           node scripts/dev.mjs --background
@@ -135,6 +138,11 @@ jobs:
           node scripts/dev.mjs --stop
           node scripts/dev.mjs --background
           node backend/upgrade-smoke.mjs http://127.0.0.1:3000
+      - name: Verify optional attributes against MySQL and after a restart
+        run: |
+          node backend/attributes-smoke.mjs http://127.0.0.1:3000
+          node scripts/dev.mjs --restart
+          node backend/attributes-smoke.mjs http://127.0.0.1:3000 --verify
       - name: Start the API with the hosted test configuration
         run: |
           node scripts/dev.mjs --stop
