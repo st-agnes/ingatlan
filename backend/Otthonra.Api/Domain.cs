@@ -45,7 +45,8 @@ public static class Rules
         if (!LocationCatalog.Matches(p, s)) return false;
         if (!string.IsNullOrWhiteSpace(s.Type) && Normalize(p.Type) != Normalize(s.Type)) return false;
         return Within(p.Price, s.MinPrice, s.MaxPrice) && Within(p.Area, s.MinArea, s.MaxArea) && Within(p.Rooms, s.MinRooms, s.MaxRooms)
-            && (!s.Balcony || p.Balcony) && (!s.Elevator || p.Elevator) && PropertyAttributes.Compatible(p, s);
+            && (Normalize(s.Type) == "HAZ" || ((!s.Balcony || p.Balcony) && (!s.Elevator || p.Elevator)))
+            && PropertyAttributes.Compatible(p, s);
     }
     public static bool Within(decimal value, decimal? min, decimal? max) => (!min.HasValue || value >= min.Value) && (!max.HasValue || value <= max.Value);
     public static void Range(decimal? min, decimal? max, string name)
@@ -55,20 +56,50 @@ public static class Rules
     public static int Score(Property p, SearchRequest s)
     {
         var priceFit = s.MaxPrice is > 0 ? Math.Clamp((s.MaxPrice.Value - p.Price) / s.MaxPrice.Value, 0m, .2m) : .1m;
-        return Math.Clamp(90 + (int)(priceFit * 40) + (p.Balcony ? 1 : 0) + (p.Elevator ? 1 : 0), 90, 100);
+        var apartment = Normalize(p.Type) != "HAZ";
+        return Math.Clamp(90 + (int)(priceFit * 40) + (apartment && p.Balcony ? 1 : 0) + (apartment && p.Elevator ? 1 : 0), 90, 100);
     }
-    public static string[] Reasons(Property p, SearchRequest s) => new[] { "Megfelelő elhelyezkedés", "A megadott árkereten belül", "Megfelelő alapterület és szobaszám" }.Concat(s.Balcony ? new[] { "Erkéllyel" } : Array.Empty<string>()).Concat(s.Elevator ? new[] { "Liftes épület" } : Array.Empty<string>()).ToArray();
+    public static string[] Reasons(Property p, SearchRequest s) => new[] { "Megfelelő elhelyezkedés", "A megadott árkereten belül", "Megfelelő alapterület és szobaszám" }.Concat(Normalize(s.Type) != "HAZ" && s.Balcony ? new[] { "Erkéllyel" } : Array.Empty<string>()).Concat(Normalize(s.Type) != "HAZ" && s.Elevator ? new[] { "Liftes épület" } : Array.Empty<string>()).ToArray();
+    // Explicit counts preserve compositions such as 2 whole + 3 half rooms.
+    // Only lossless half-step legacy totals can be displayed as separate counts.
+    public static (int? WholeRooms, int? HalfRooms) RoomCounts(Property property)
+    {
+        if (property.WholeRooms.HasValue || property.HalfRooms.HasValue)
+            return (property.WholeRooms, property.HalfRooms);
+        return LegacyRoomCounts(property.Rooms);
+    }
+    private static (int? WholeRooms, int? HalfRooms) LegacyRoomCounts(decimal rooms)
+    {
+        if (rooms <= 0 || rooms > 1000 || rooms * 2 % 1 != 0) return (null, null);
+        var whole = (int)decimal.Truncate(rooms);
+        return (whole, (int)((rooms - whole) * 2));
+    }
     public static void Apply(Property p, PropertyInput i)
     {
         p.Title = Required(PublicText(i.Title, 150), "cím", 150); p.Type = Required(PublicText(i.Type, 50), "ingatlantípus", 50);
         var location = LocationCatalog.ResolvePropertyInput(i.LocationId, i.City, i.District);
         p.LocationId = location.Id; p.City = location.City; p.District = location.District ?? "";
-        if (i.Price <= 0 || i.Price > 1_000_000_000_000m || i.Area <= 0 || i.Area > 1_000_000 || i.Rooms <= 0 || i.Rooms > 1000 || i.Floor < -5 || i.Floor > 200 || (i.Floor < -1 && i.Floor != p.Floor)) throw new ApiException(400, "Az ár, alapterület, szobaszám vagy emelet érvénytelen.");
-        p.Price = i.Price; p.Area = i.Area; p.Rooms = i.Rooms; p.Floor = i.Floor;
-        if (Normalize(p.Type) == "HAZ" && (i.LotArea <= 0 || i.LotArea > 10_000_000)) throw new ApiException(400, "A telekméret pozitív szám legyen, legfeljebb 10 000 000 m².");
-        p.LotArea = Normalize(p.Type) == "HAZ" ? i.LotArea : null;
+        var house = Normalize(p.Type) == "HAZ";
+        var explicitRoomCounts = i.WholeRooms.HasValue || i.HalfRooms.HasValue;
+        var wholeRooms = i.WholeRooms ?? 0;
+        var halfRooms = i.HalfRooms ?? 0;
+        var rooms = explicitRoomCounts ? (decimal)wholeRooms + halfRooms / 2m : i.Rooms;
+        if (i.Price <= 0 || i.Price > 1_000_000_000_000m || i.Area <= 0 || i.Area > 1_000_000 || rooms <= 0 || rooms > 1000
+            || wholeRooms < 0 || wholeRooms > 1000 || halfRooms < 0 || halfRooms > 1000
+            || i.Rooms < 0 || explicitRoomCounts && i.Rooms > 0 && i.Rooms != rooms
+            || !house && (i.Floor < -5 || i.Floor > 200 || (i.Floor < -1 && i.Floor != p.Floor)))
+            throw new ApiException(400, "Az ár, alapterület, szobaszám vagy emelet érvénytelen.");
+        if (house && (!i.LotArea.HasValue || i.LotArea <= 0 || i.LotArea > 10_000_000))
+            throw new ApiException(400, "Ház esetén a telekméret kötelező, pozitív szám legyen, legfeljebb 10 000 000 m².");
+        var savedCounts = explicitRoomCounts ? (WholeRooms: (int?)wholeRooms, HalfRooms: (int?)halfRooms)
+            : rooms == p.Rooms && (p.WholeRooms.HasValue || p.HalfRooms.HasValue) ? RoomCounts(p)
+            : LegacyRoomCounts(rooms);
+        p.Price = i.Price; p.Area = i.Area; p.Rooms = rooms; p.Floor = house ? null : i.Floor;
+        p.WholeRooms = savedCounts.WholeRooms;
+        p.HalfRooms = savedCounts.HalfRooms;
+        p.LotArea = house ? i.LotArea : null;
         p.Neighborhood = PublicText(i.Neighborhood, 100); p.Address = Optional(i.Address, 255); p.Description = PublicText(i.Description);
-        PropertyAttributes.Apply(p, i); p.Balcony = i.Balcony; p.Elevator = i.Elevator; p.Archived = i.Archived;
+        PropertyAttributes.Apply(p, i); p.Balcony = !house && i.Balcony; p.Elevator = !house && i.Elevator; p.Archived = i.Archived;
         var images = i.Images ?? [];
         if (images.Length > 12 || images.Any(x => !Uri.TryCreate(x, UriKind.Absolute, out var uri) || uri.Scheme != "https" || x.Length > 2000)) throw new ApiException(400, "Legfeljebb 12 HTTPS-képhivatkozás adható meg.");
         p.ImagesJson = System.Text.Json.JsonSerializer.Serialize(images);
@@ -87,7 +118,7 @@ public static class Rules
         var sameCity = locations.Where(x => x.City == s.City).ToArray();
         s.DistrictsJson = System.Text.Json.JsonSerializer.Serialize(sameCity.Any(x => x.District is null) ? Array.Empty<string>() : sameCity.Select(x => x.District!).Distinct());
         PropertyAttributes.Apply(s, i);
-        s.Description = PublicText(i.Description); s.MoveIn = PublicText(i.MoveIn, 100); s.Financing = PublicText(i.Financing, 255); s.Balcony = i.Balcony; s.Elevator = i.Elevator; s.Archived = i.Archived;
+        s.Description = PublicText(i.Description); s.MoveIn = PublicText(i.MoveIn, 100); s.Financing = PublicText(i.Financing, 255); s.Balcony = Normalize(s.Type) != "HAZ" && i.Balcony; s.Elevator = Normalize(s.Type) != "HAZ" && i.Elevator; s.Archived = i.Archived;
     }
 }
 public static class Passwords

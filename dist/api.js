@@ -82,12 +82,12 @@ function propertyFromApi(value) {
     id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''),
     title: value.title || '', locationId:location?.id || '', location:clone(location), city: location?.city ?? value.city ?? '', district: location ? location.district || '' : value.district ?? '', neighborhood: value.neighborhood || '', address: value.address || '', description: value.description || '', createdAt: value.createdAt,
     type: value.type || value.propertyType || 'Lakás',
-    price: millions(value.priceHuf ?? value.price), area: numeric(value.area ?? value.areaSqm ?? value.sizeSqm), rooms: numeric(value.rooms ?? value.roomCount),
+    price: millions(value.priceHuf ?? value.price), area: numeric(value.area ?? value.areaSqm ?? value.sizeSqm), rooms: numeric(value.rooms ?? value.roomCount), wholeRooms:value.wholeRooms, halfRooms:value.halfRooms,
     lotArea: numeric(value.lotArea ?? value.lotAreaSqm ?? null), floor: numeric(value.floor), condition: value.condition || '', building: value.building || value.buildingMaterial || '',
     balcony: !!(value.balcony ?? value.hasBalcony), elevator: !!(value.elevator ?? value.hasElevator),
     constructionAge:value.constructionAge, view:value.view, ceilingHeight:value.ceilingHeight,
-    heatingType:value.heatingType, insulated:value.insulated, energyRating:value.energyRating,
-    airConditioning:value.airConditioning, solarPanels:value.solarPanels, parkingType:value.parkingType,
+    heatingType:value.heatingType, secondaryHeatingType:value.secondaryHeatingType, insulated:value.insulated, energyRating:value.energyRating,
+    airConditioning:value.airConditioning, solarPanels:value.solarPanels, parkingType:value.parkingType, parkingTypes:value.parkingTypes,
     images: clone(value.images || value.imageUrls || []), archived: !!(value.archived ?? value.isArchived)
   });
 }
@@ -104,7 +104,7 @@ function searchFromApi(value) {
     balcony: !!(value.balcony ?? value.requiresBalcony), elevator: !!(value.elevator ?? value.requiresElevator),
     conditions:value.conditions ?? (value.condition ? [value.condition] : []),
     buildings:value.buildings ?? (value.building ? [value.building] : []),
-    constructionAges:value.constructionAges, views:value.views, ceilingHeight:value.ceilingHeight, floors:value.floors,
+    constructionAges:value.constructionAges, views:value.views, ceilingHeight:value.ceilingHeight, floors:value.floors, heatingTypes:value.heatingTypes,
     archived: !!(value.archived ?? value.isArchived)
   });
 }
@@ -113,7 +113,7 @@ function inputNumber(value, name, nullable = false) {
     if (nullable) return null;
     throw new Error(`A(z) ${name} megadása kötelező.`);
   }
-  const result = Number(value);
+  const result = typeof value === 'boolean' ? NaN : Number(value);
   if (!Number.isFinite(result)) throw new Error(`A(z) ${name} érvényes szám legyen.`);
   return result;
 }
@@ -122,36 +122,43 @@ const inputText = value => value == null ? '' : String(value).trim();
 const inputStrings = value => Array.isArray(value) ? value.map(inputText).filter(Boolean) : inputText(value).split(/[,\n]/).map(inputText).filter(Boolean);
 function propertyToApi(value, updating = false) {
   const attributes = normalizePropertyAttributes(value,{strict:true,allowLegacyUnknown:updating});
-  const floor = attributes.floor;
+  const type = inputText(value.type) || 'Lakás';
+  const countsSupplied = [value.wholeRooms,value.halfRooms].some(count=>count != null && String(count).trim() !== '');
+  const floor = type === 'Ház' ? null : attributes.floor;
   if (floor != null && !Number.isInteger(floor)) throw new Error('Az emelet egész szám legyen.');
   const images = Array.isArray(value.images) ? value.images.map(inputText).filter(Boolean) : inputText(value.images).split('\n').map(inputText).filter(Boolean);
   if (images.length > 12 || images.some(image => { try { return new URL(image).protocol !== 'https:' || image.length > 2000; } catch { return true; } })) throw new Error('Az API-hoz legfeljebb 12 HTTPS-képhivatkozás adható meg.');
-  const price = inputNumber(value.price, 'ár'), area = inputNumber(value.area, 'alapterület'), rooms = inputNumber(value.rooms, 'szobaszám');
+  const price = inputNumber(value.price, 'ár'), area = inputNumber(value.area, 'alapterület'), rooms = inputNumber(attributes.rooms, 'szobaszám');
+  if (price <= 0 || area <= 0 || rooms <= 0 || rooms > 1000) throw new Error('Az ár, az alapterület és a szobaszám legyen pozitív szám.');
   const location = entityLocations(value, 'property', true)[0];
-  const type = inputText(value.type) || 'Lakás';
-  const lotArea = type === 'Ház' ? inputNumber(value.lotArea, 'telekméret', true) : null;
-  if (lotArea != null && lotArea <= 0) throw new Error('A telekméret pozitív szám legyen.');
+  const lotArea = type === 'Ház' ? inputNumber(value.lotArea, 'telekméret') : null;
+  if (lotArea != null && (lotArea <= 0 || lotArea > 10000000)) throw new Error('A telekméret pozitív szám legyen.');
   return {
     title: inputText(value.title), locationId:location.id, city:location.city, district:location.district || '', neighborhood: inputText(value.neighborhood), address: inputText(value.address), description: inputText(value.description),
-    type, price: Math.round(price * MILLION), area, rooms, lotArea, floor,
+    type, price: Math.round(price * MILLION), area, rooms, wholeRooms:countsSupplied ? attributes.wholeRooms : null, halfRooms:countsSupplied ? attributes.halfRooms : null, lotArea, floor,
     condition:attributes.condition, building:attributes.building,
     constructionAge:attributes.constructionAge, view:attributes.view, ceilingHeight:attributes.ceilingHeight,
-    heatingType:attributes.heatingType, insulated:attributes.insulated, energyRating:attributes.energyRating,
-    airConditioning:attributes.airConditioning, solarPanels:attributes.solarPanels, parkingType:attributes.parkingType,
-    balcony: inputBoolean(value.balcony), elevator: inputBoolean(value.elevator), images, archived: inputBoolean(value.archived)
+    heatingType:attributes.heatingType, secondaryHeatingType:attributes.secondaryHeatingType, insulated:attributes.insulated, energyRating:attributes.energyRating,
+    airConditioning:attributes.airConditioning, solarPanels:attributes.solarPanels, parkingType:attributes.parkingType, parkingTypes:attributes.parkingTypes,
+    balcony: type === 'Ház' ? false : inputBoolean(value.balcony), elevator: type === 'Ház' ? false : inputBoolean(value.elevator), images, archived: inputBoolean(value.archived)
   };
 }
 function searchToApi(value) {
   const attributes = normalizeSearchAttributes(value,{strict:true});
   const minPrice = inputNumber(value.minPrice, 'minimumár', true), maxPrice = inputNumber(value.maxPrice, 'maximumár', true);
   const locations = entityLocations(value, 'search', true);
+  const minArea = inputNumber(value.minArea, 'minimum alapterület', true), maxArea = inputNumber(value.maxArea, 'maximum alapterület', true);
+  const minRooms = inputNumber(value.minRooms, 'minimum szobaszám', true), maxRooms = inputNumber(value.maxRooms, 'maximum szobaszám', true);
+  for (const [min,max] of [[minPrice,maxPrice],[minArea,maxArea],[minRooms,maxRooms]]) {
+    if ((min != null && min < 0) || (max != null && max <= 0) || (min != null && max != null && min > max)) throw new Error('A minimum érték nem lehet nagyobb a maximumnál; a korlátok érvényes számok legyenek.');
+  }
   return {
     title: inputText(value.title), locationIds:locations.map(location=>location.id), city:locations[0].city, districts:locations.filter(location=>location.city===locations[0].city&&location.district).map(location=>location.district), description: inputText(value.description), type: inputText(value.type) || 'Lakás',
     minPrice: minPrice == null ? null : Math.round(minPrice * MILLION), maxPrice: maxPrice == null ? null : Math.round(maxPrice * MILLION),
-    minArea: inputNumber(value.minArea, 'minimum alapterület', true), maxArea: inputNumber(value.maxArea, 'maximum alapterület', true), minRooms: inputNumber(value.minRooms, 'minimum szobaszám', true), maxRooms: inputNumber(value.maxRooms, 'maximum szobaszám', true),
+    minArea, maxArea, minRooms, maxRooms,
     conditions:attributes.conditions, buildings:attributes.buildings, constructionAges:attributes.constructionAges,
-    views:attributes.views, ceilingHeight:attributes.ceilingHeight, floors:attributes.floors,
-    balcony: inputBoolean(value.balcony), elevator: inputBoolean(value.elevator), moveIn: inputText(value.moveIn), financing: inputText(value.financing), archived: inputBoolean(value.archived)
+    views:attributes.views, ceilingHeight:attributes.ceilingHeight, floors:attributes.floors, heatingTypes:attributes.heatingTypes,
+    balcony: value.type === 'Ház' ? false : inputBoolean(value.balcony), elevator: value.type === 'Ház' ? false : inputBoolean(value.elevator), moveIn: inputText(value.moveIn), financing: inputText(value.financing), archived: inputBoolean(value.archived)
   };
 }
 function messageFromApi(value) {

@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  CONDITION_OPTIONS,BUILDING_OPTIONS,CONSTRUCTION_AGE_OPTIONS,VIEW_OPTIONS,CEILING_HEIGHT_OPTIONS,FLOOR_OPTIONS,
-  normalizeCondition,normalizeBuilding,normalizePropertyAttributes,normalizeSearchAttributes,attributesCompatible
+  CONDITION_OPTIONS,BUILDING_OPTIONS,CONSTRUCTION_AGE_OPTIONS,VIEW_OPTIONS,CEILING_HEIGHT_OPTIONS,FLOOR_OPTIONS,HEATING_OPTIONS,PARKING_OPTIONS,
+  normalizeCondition,normalizeBuilding,normalizePropertyAttributes,normalizePropertyRooms,roomLabel,normalizeSearchAttributes,attributesCompatible
 } from '../dist/attributes.js';
 
 const property = {condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m alatti',floor:3};
@@ -62,9 +62,9 @@ test('optional booleans distinguish unknown from explicit no and text fields ret
   const blank=normalizePropertyAttributes({title:'Kept'});
   assert.equal(blank.title,'Kept');assert.equal(blank.floor,null);assert.equal(blank.condition,'');assert.equal(blank.building,'');
   assert.deepEqual([blank.insulated,blank.airConditioning,blank.solarPanels],[null,null,null]);
-  const value=normalizePropertyAttributes({insulated:'false',airConditioning:'true',solarPanels:false,heatingType:' hőszivattyú és padlófűtés ',energyRating:'BB',parkingType:'saját garázs',floor:0},{strict:true});
+  const value=normalizePropertyAttributes({insulated:'false',airConditioning:'true',solarPanels:false,heatingType:' Hőszivattyú ',energyRating:'BB',parkingTypes:['Garázs'],floor:0},{strict:true});
   assert.deepEqual([value.insulated,value.airConditioning,value.solarPanels],[false,true,false]);
-  assert.equal(value.heatingType,'hőszivattyú és padlófűtés');assert.equal(value.energyRating,'BB');assert.equal(value.floor,0);
+  assert.equal(value.heatingType,'Hőszivattyú');assert.equal(value.energyRating,'BB');assert.equal(value.floor,0);
   assert.equal(normalizePropertyAttributes({floor:' '},{strict:true}).floor,null);
 });
 
@@ -108,4 +108,69 @@ test('new lower basement values are rejected while unchanged legacy floors remai
   assert.equal(normalizePropertyAttributes({floor:-2},{strict:true,allowLegacyUnknown:true}).floor,-2,'API updates can relay the old floor for authoritative server comparison');
   assert.equal(normalizePropertyAttributes({floor:-1},{strict:true}).floor,-1);
   assert.equal(normalizePropertyAttributes({floor:12},{strict:true}).floor,12);
+});
+
+test('explicit whole and half room counts preserve their composition and weighted total',()=>{
+ const input={wholeRooms:'2',halfRooms:'3',rooms:'3.5',title:'Megmarad'};
+ const value=normalizePropertyRooms(input,{strict:true});
+ assert.deepEqual([value.wholeRooms,value.halfRooms,value.rooms],[2,3,3.5]);
+ assert.equal(roomLabel(value),'2 egész + 3 fél szoba');
+ assert.equal(roomLabel({wholeRooms:0,halfRooms:2}),'2 fél szoba');
+ assert.equal(roomLabel({wholeRooms:3,halfRooms:0}),'3 szoba');
+ assert.equal(input.wholeRooms,'2');
+ assert.deepEqual([normalizePropertyRooms({halfRooms:1},{strict:true}).wholeRooms,normalizePropertyRooms({halfRooms:1},{strict:true}).rooms],[0,0.5]);
+ for(const invalid of [{wholeRooms:-1,halfRooms:2},{wholeRooms:1.5},{halfRooms:true},{wholeRooms:0,halfRooms:0},{halfRooms:1001},{wholeRooms:1000,halfRooms:1},{wholeRooms:2,halfRooms:3,rooms:4},{wholeRooms:2,rooms:-1}])assert.throws(()=>normalizePropertyRooms(invalid,{strict:true}),undefined,JSON.stringify(invalid));
+ assert.equal(normalizePropertyRooms({wholeRooms:2,halfRooms:3,rooms:0},{strict:true}).rooms,3.5);
+});
+
+test('legacy room totals derive only exact half steps and retain an existing explicit composition',()=>{
+ for(const [rooms,whole,half] of [[3,3,0],[2.5,2,1],[0.5,0,1]])assert.deepEqual(Object.values(normalizePropertyRooms({rooms})),[rooms,whole,half]);
+ const arbitrary=normalizePropertyRooms({rooms:3.2});
+ assert.deepEqual([arbitrary.rooms,arbitrary.wholeRooms,arbitrary.halfRooms],[3.2,null,null]);
+ assert.equal(roomLabel(arbitrary),'3,2 szoba');
+ const previous={rooms:3.5,wholeRooms:2,halfRooms:3};
+ const retained=normalizePropertyRooms({rooms:3.5},{strict:true,previous});
+ assert.deepEqual([retained.wholeRooms,retained.halfRooms],[2,3]);
+ assert.deepEqual([normalizePropertyRooms({rooms:4},{strict:true,previous}).wholeRooms,normalizePropertyRooms({rooms:4},{strict:true,previous}).halfRooms],[4,0]);
+});
+
+test('heating selections share canonical options and filter primary heating without confusing unknown with none',()=>{
+ assert.equal(HEATING_OPTIONS.length,13);assert.ok(HEATING_OPTIONS.includes('Nincs fűtés'));
+ const value=normalizePropertyAttributes({heatingType:'hőszivattyú',secondaryHeatingType:'klíma'},{strict:true});
+ assert.equal(value.heatingType,'Hőszivattyú');assert.equal(value.secondaryHeatingType,'Klíma');
+ const old={heatingType:'Hőszivattyú és padlófűtés'};
+ assert.equal(normalizePropertyAttributes(old).heatingType,old.heatingType);
+ assert.equal(normalizePropertyAttributes(old,{strict:true,previous:old}).heatingType,old.heatingType);
+ assert.throws(()=>normalizePropertyAttributes(old,{strict:true}),/Érvénytelen/);
+ assert.throws(()=>normalizePropertyAttributes({secondaryHeatingType:'Régi egyedi'},{strict:true,allowLegacyUnknown:true}),/Érvénytelen/);
+ assert.deepEqual(normalizeSearchAttributes({heatingTypes:['klíma','Klíma','Hőszivattyú']},{strict:true}).heatingTypes,['Klíma','Hőszivattyú']);
+ assert.equal(attributesCompatible(value,{heatingTypes:['Hőszivattyú','Nincs fűtés']}),true);
+ assert.equal(attributesCompatible(value,{heatingTypes:['Klíma']}),false,'supplementary heating does not satisfy a primary-heating filter');
+ assert.equal(attributesCompatible({},{heatingTypes:['Nincs fűtés']}),false);
+ assert.equal(attributesCompatible({heatingType:'Nincs fűtés'},{heatingTypes:['Nincs fűtés']}),true);
+ for(const heatingTypes of ['Klíma',[''],[null],['Ismeretlen']])assert.throws(()=>normalizeSearchAttributes({heatingTypes},{strict:true}));
+});
+
+test('multiple parking choices deduplicate, clear explicitly and preserve a legacy description as one choice',()=>{
+ assert.equal(PARKING_OPTIONS.length,7);
+ const value=normalizePropertyAttributes({parkingTypes:['Garázs','Utcai parkolás','Garázs']},{strict:true});
+ assert.deepEqual(value.parkingTypes,['Garázs','Utcai parkolás']);assert.equal(value.parkingType,'Garázs, Utcai parkolás');
+ assert.deepEqual(normalizePropertyAttributes({parkingType:value.parkingType},{strict:true,previous:value}).parkingTypes,value.parkingTypes,'old clients retain a known existing multi-selection');
+ assert.deepEqual(normalizePropertyAttributes({parkingType:'Garázs',parkingTypes:[]},{strict:true}).parkingTypes,[]);
+ const old={parkingType:'Saját garázs, kapubeállóval'};
+ const read=normalizePropertyAttributes(old);assert.deepEqual(read.parkingTypes,[old.parkingType]);
+ assert.deepEqual(normalizePropertyAttributes({...read},{strict:true,previous:read}).parkingTypes,[old.parkingType]);
+ assert.throws(()=>normalizePropertyAttributes(old,{strict:true}),/Érvénytelen/);
+ for(const parkingTypes of ['Garázs',[''],[null],['Ismeretlen'],Array(21).fill('Garázs')])assert.throws(()=>normalizePropertyAttributes({parkingTypes},{strict:true}));
+});
+
+test('house saves clear irrelevant floor constraints while old rows remain readable',()=>{
+ const property={type:'Ház',floor:3,balcony:true,elevator:true};
+ assert.equal(normalizePropertyAttributes(property).floor,3);
+ assert.equal(normalizePropertyAttributes({...property,floor:'invalid'},{strict:true}).floor,null);
+ const search={type:'Ház',floors:[3],balcony:true,elevator:true};
+ assert.deepEqual(normalizeSearchAttributes(search).floors,[3]);
+ const saved=normalizeSearchAttributes(search,{strict:true});
+ assert.deepEqual([saved.floors,saved.balcony,saved.elevator],[[],false,false]);
+ assert.equal(attributesCompatible({type:'Ház',floor:null},search),true);
 });

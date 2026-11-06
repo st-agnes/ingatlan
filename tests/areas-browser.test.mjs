@@ -70,7 +70,7 @@ async function verify(browser,viewport){
   assert.equal(await page.locator('#location-options [data-location-id="city:Debrecen"]').count(),1);
   await choose(page,interact,'city:Debrecen');
   const propertyTitle=`Pontos településű ingatlan – ${viewport.name}`;
-  await page.locator('#f-title').fill(propertyTitle);await page.locator('#f-price').fill('65');await page.locator('#f-area').fill('62');await page.locator('#f-rooms').fill('3');
+  await page.locator('#f-title').fill(propertyTitle);await page.locator('#f-price').fill('65');await page.locator('#f-area').fill('62');await page.locator('#f-wholeRooms').fill('3');await page.locator('#f-halfRooms').fill('0');
   await save(page,interact);
   const property=(await readState(page)).properties.find(item=>item.title===propertyTitle);assert.ok(property);
   assert.equal(property.locationId,'city:Debrecen');

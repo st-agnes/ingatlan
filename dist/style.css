@@ -22,3 +22,4 @@
 .attribute-choice span{min-width:0;overflow-wrap:anywhere}
 .attribute-section .field select{min-height:44px}
 @media(max-width:650px){.attribute-section{margin:20px 0;padding-top:18px}.attribute-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.attribute-choice{min-height:46px;font-size:12px}.attribute-section .form-row{grid-template-columns:1fr;gap:0}.attribute-section .field input,.attribute-section .field select{font-size:16px}.detail-grid{grid-template-columns:1fr;gap:0}}
+@media(max-width:650px){.room-counts{grid-template-columns:1fr;gap:0}#entity-form input[type="number"]{font-size:16px}}

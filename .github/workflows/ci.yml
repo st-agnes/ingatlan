@@ -126,6 +126,8 @@ jobs:
         run: node tests/browser.test.mjs http://127.0.0.1:3000
       - name: Test optional attributes in desktop, tablet and mobile Chromium
         run: node tests/attributes-browser.test.mjs http://127.0.0.1:3000
+      - name: Test seller fields and numeric input on desktop, tablet and mobile
+        run: node tests/seller-form-browser.test.mjs http://127.0.0.1:3000
       - name: Test city-area selection on desktop, tablet and mobile
         run: node tests/areas-browser.test.mjs http://127.0.0.1:3000
       - name: Simulate the previous schema in the disposable CI database
@@ -141,13 +143,15 @@ jobs:
           node scripts/dev.mjs --stop
           node scripts/dev.mjs --background
           node backend/upgrade-smoke.mjs http://127.0.0.1:3000
-      - name: Verify optional attributes against MySQL and after a restart
+      - name: Verify attributes, city areas and seller fields against MySQL and after a restart
         run: |
           node backend/attributes-smoke.mjs http://127.0.0.1:3000
           node backend/areas-smoke.mjs http://127.0.0.1:3000
+          node backend/seller-form-smoke.mjs http://127.0.0.1:3000
           node scripts/dev.mjs --restart
           node backend/attributes-smoke.mjs http://127.0.0.1:3000 --verify
           node backend/areas-smoke.mjs http://127.0.0.1:3000 --verify
+          node backend/seller-form-smoke.mjs http://127.0.0.1:3000 --verify
       - name: Start the API with the hosted test configuration
         run: |
           node scripts/dev.mjs --stop

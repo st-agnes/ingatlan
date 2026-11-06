@@ -43,7 +43,7 @@ A publikus `POST /auth/register` body: `{name,email,password,phone}`; `POST /aut
 | Kreditnapló | `GET /credits/ledger` | `[{id,amount,description,createdAt}]` |
 | Demófeltöltés | `POST /credits/demo-topup` | `{amount:20|50|100|250}`; kizárólag Development + engedélyező kapcsoló esetén |
 
-Ingatlanmezők: `title,locationId,city,district,neighborhood,address,description,type,price,area,rooms,lotArea,floor,condition,building,balcony,elevator,images,archived`. Keresésmezők: `title,locationIds,city,districts,description,type,minPrice,maxPrice,minArea,maxArea,minRooms,maxRooms,balcony,elevator,moveIn,financing,archived`. A `lotArea` házhoz megadható pozitív telekméret m²-ben, egyébként `null`.
+Ingatlanmezők: `title,locationId,city,district,neighborhood,address,description,type,price,area,rooms,wholeRooms,halfRooms,lotArea,floor,condition,building,balcony,elevator,images,archived`. Keresésmezők: `title,locationIds,city,districts,description,type,minPrice,maxPrice,minArea,maxArea,minRooms,maxRooms,balcony,elevator,moveIn,financing,archived`. A `lotArea` házhoz kötelező pozitív telekméret m²-ben, egyébként `null`. Ház mentésekor az emelet, erkély és lift adatai törlődnek. A külön tárolt egész/fél szobákból számolt `rooms` összeg a keresési határok alapja; a korábbi, csak `rooms` mezőt használó kliensek működnek.
 
 Az opcionális állapot-, falazat-, épületkor-, kilátás-, belmagasság- és emeletszűrő, valamint az eladói műszaki adatok pontos mezői, értékei és törlési szabályai: [PROPERTY-PARAMETERS.md](../docs/PROPERTY-PARAMETERS.md). A mezőn belüli több kijelölés VAGY, a mezők közötti kapcsolat ÉS; megadott feltételt ismeretlen eladói adat nem teljesít.
 
@@ -67,6 +67,8 @@ A feed és a publikus kártyák nem tartalmaznak felhasználói elérhetőséget
 
 `Database__Initialize=true` esetén az indulás először `EnsureCreated` hívást végez az új adatbázishoz, majd a `SchemaUpgrade.ApplyAsync` fut le a meglévő adatbázison is. A `20261102-locations-and-lot-area` verzió additívan létrehozza a `Properties.LocationId`, `Properties.LotArea` és `SearchRequests.LocationIdsJson` oszlopokat, és a verziót a `__OtthonraSchemaVersions` táblában rögzíti. A lépések ismételhetők, az adatbázis-zár összehangolja a párhuzamos indításokat. Meglévő felhasználót, hirdetést, keresést, döntést, párosítást vagy kreditet nem töröl.
 
+A `20261106-seller-form-details` szintén additívan adja hozzá a `WholeRooms`, `HalfRooms`, `SecondaryHeatingType`, `ParkingTypesJson` és `HeatingTypesJson` oszlopokat. A fűtésválasztások közösek az eladói és keresési oldalon; a keresés csak a fő fűtést szűri. A parkolóhely többértékű, a régi szöveges mező kompatibilis marad. Részletek: [Ingatlanparaméterek](../docs/PROPERTY-PARAMETERS.md).
+
 A `20261105-property-attributes` verzió ugyanazzal a zárral és ismételhető módon adja hozzá az opcionális attribútumoszlopokat; a korábbi kereséseken üres listák jelentenek korlátozás nélküli feltételeket, a három eladói logikai mezőn a `NULL` ismeretlent jelent.
 
 A meglévő sorokban a `LocationId` alapértéke üres szöveg, a `LotArea` és a `LocationIdsJson` értéke `NULL`. A régi helymezőket olvasáskor a közös katalógus alapján értelmezi a rendszer, ezért előzetes adatsor-átírás nem szükséges. Az új verziót a meglévő `mysql_data` kötettel kell újraindítani; kötet- vagy adatbázistörlés nem szükséges. Éles frissítés előtt készüljön mentés. Ha az inicializálás ki van kapcsolva, a telepítés részeként engedélyezni kell a frissítéshez, megfelelő sémamódosítási adatbázis-jogosultsággal. A további sémaváltozásokhoz is verziózott, adatmegőrző frissítés szükséges.
@@ -84,3 +86,5 @@ node backend/smoke.mjs http://localhost:5080
 A korábbi .NET-, JavaScript-, Docker- és MySQL-ellenőrzések bizonyítékai: [VALIDATION.md](../docs/VALIDATION.md). A CI az új funkciók mellett a régi sémájú adatbázis frissítését, az adatok megőrzését és az ismételt indulást is sikeresen ellenőrizte. A smoke tesztek kizárólag tesztadatbázison futtathatók; éles rendszeren ne futtasd őket. A MySQL-hálózati és párhuzamossági ellenőrzéshez futó MySQL szükséges.
 
 Az opcionális paraméterek tényleges API/MySQL körútját a `backend/attributes-smoke.mjs` ellenőrzi; újraindítás után a `--verify` kapcsolóval ellenőrzi az értékek megőrzését. A CI ezt és a desktop/tablet/mobil mezőkezelést is futtatja.
+
+Az eladói mezők valódi API/MySQL ellenőrzése: `node backend/seller-form-smoke.mjs http://127.0.0.1:3000`, újraindítás után ugyanez `--verify` kapcsolóval. Kizárólag eldobható helyi/CI adatbázison futtatandó; a szkript új tesztfiókokat és adatokat hoz létre.
