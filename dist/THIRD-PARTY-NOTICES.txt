@@ -24,3 +24,17 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+Hungarian city-area membership catalogue
+Forrás / Source: Központi Statisztikai Hivatal (KSH)
+https://www.ksh.hu/teruleti_szamjel_menu
+https://www.ksh.hu/docs/osztalyozasok/teruleti_szamjel/teruleti_szamjelrendszer_struktura_elemei_2026.xlsx
+Source retrieved 2026-11-06; SHA-256 36927d2798ea709f8239d806c9a84881524395f3d6f11dfdd756cc662776e1a5.
+Licence: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+KSH terms: https://www.ksh.hu/copyright
+Changes: selected the 24 city-centered groups, excluded non-settlement rows and
+the non-city-centered Balaton group; matched names to the application catalogue,
+combined Budapest's center and sectors, and generated application IDs/count labels.
+Only public registry membership facts are reused; no KSH logo or scholarly article is copied.

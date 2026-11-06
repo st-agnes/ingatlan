@@ -1,4 +1,4 @@
-import { getLocation, resolveLegacyLocations, matchesLocations } from './locations.js';
+import { getLocation, resolveLegacyLocations, matchesLocations, isPropertyLocation } from './locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes, attributesCompatible} from './attributes.js';
 
 /** Browser-only demonstration store. Real deployments use the authenticated .NET API. */
@@ -12,14 +12,14 @@ const numeric = (value, fallback) => value === '' || value == null ? fallback : 
 const locationError = () => new Error('Válassz érvényes települést vagy budapesti kerületet a találati listából.');
 function withLocations(entity, kind, strict = false) {
   let locations;
-  if (kind === 'property' && Object.hasOwn(entity, 'locationId') && (strict || entity.locationId != null)) {
-    const location = getLocation(entity.locationId);
-    locations = location ? [location] : [];
-    if (strict && !location) throw locationError();
+  if (kind === 'property' && ((Object.hasOwn(entity, 'locationId') && (strict || entity.locationId != null)) || entity.location?.id)) {
+    const location = getLocation(Object.hasOwn(entity, 'locationId') && (strict || entity.locationId != null) ? entity.locationId : entity.location.id);
+    locations = isPropertyLocation(location) ? [location] : [];
+    if (strict && !isPropertyLocation(location)) throw locationError();
   } else if (kind === 'search' && Object.hasOwn(entity, 'locationIds') && (strict || entity.locationIds != null)) {
     const ids = Array.isArray(entity.locationIds) ? [...new Set(entity.locationIds)] : [];
     locations = ids.map(getLocation).filter(Boolean);
-    if (strict && (!ids.length || locations.length !== ids.length)) throw locationError();
+    if (strict && (!ids.length || ids.length > 50 || locations.length !== ids.length)) throw locationError();
   } else {
     locations = resolveLegacyLocations(entity);
   }

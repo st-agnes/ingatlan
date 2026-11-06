@@ -1,5 +1,5 @@
 import { model as demoModel } from './model.js';
-import { getLocation, resolveLegacyLocations } from './locations.js';
+import { getLocation, resolveLegacyLocations, isPropertyLocation } from './locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
 
 export const API_CONFIG_KEY = 'otthonra.api';
@@ -68,8 +68,10 @@ function entityLocations(value, kind, strict = false) {
     else if (Array.isArray(value.locations)) ids = value.locations.map(location=>location.id);
   }
   const uniqueIds = ids == null ? null : [...new Set(ids)];
-  const locations = uniqueIds == null ? resolveLegacyLocations(kind === 'search' ? {...value, districts:inputStrings(value.districts)} : value) : uniqueIds.map(getLocation).filter(Boolean);
-  if (strict && (!locations.length || (uniqueIds != null && locations.length !== uniqueIds.length))) throw new Error('Válassz érvényes települést vagy budapesti kerületet a találati listából.');
+  const selected = uniqueIds == null ? resolveLegacyLocations(kind === 'search' ? {...value, districts:inputStrings(value.districts)} : value) : uniqueIds.map(getLocation).filter(Boolean);
+  const locations = kind === 'property' ? selected.filter(isPropertyLocation) : selected;
+  if (strict && (!locations.length || (kind === 'search' && locations.length > 50)
+      || (uniqueIds != null && locations.length !== uniqueIds.length))) throw new Error('Válassz érvényes települést vagy budapesti kerületet a találati listából.');
   return locations;
 }
 

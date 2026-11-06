@@ -1,5 +1,6 @@
 import test, { afterEach } from 'node:test';
 import assert from 'node:assert/strict';
+import {locations} from '../dist/locations.js';
 import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi, hostedMode, deploymentEnvironment } from '../dist/api.js';
 
 const originalFetch = globalThis.fetch;
@@ -298,4 +299,28 @@ test('new invalid enums and malformed selections are rejected before sending whi
  assert.equal(calls.length,0);
  const updated=await adapter().saveEntity('property',{...base,condition:'Régi egyedi állapot',building:'Régi egyedi szerkezet'},ids.property);
  assert.equal(updated.condition,'Régi egyedi állapot');assert.equal(updated.building,'Régi egyedi szerkezet');assert.equal(calls.length,1);
+});
+
+
+test('area searches post stable compact IDs and retain counted labels on API reads',async()=>{
+ const selected=['area:Budapest','area:Debrecen','district:Budapest:5','city:Szeged'];
+ const calls=routes({'/api/searches':options=>response({...search,...JSON.parse(options.body),id:ids.search},201)});
+ const saved=await adapter().saveEntity('search',{title:'Nagyvárosok és környékük',locationIds:selected,maxPrice:100});
+ const body=JSON.parse(calls[0].body);assert.deepEqual(body.locationIds,selected);assert.equal(body.locationIds.length,4);
+ assert.deepEqual(saved.locationIds,selected);assert.equal(saved.locations[0].kind,'area');assert.equal(saved.locations[0].settlementCount,81);
+ assert.equal(saved.locations[1].settlementCount,13);assert.match(saved.locations[1].label,/Debrecen és környéke \(13 település\)/);
+});
+
+test('the API adapter rejects area property locations and over fifty choices before a request',async()=>{
+ const calls=routes({});const api=adapter();const data={title:'Lakás pontos településsel',locationId:'area:Budapest',city:'Budapest',price:60,area:60,rooms:3};
+ await assert.rejects(api.saveEntity('property',data),/találati listából/);
+ const towns=locations.filter(value=>value.kind==='city').slice(0,50).map(value=>value.id);
+ await assert.rejects(api.saveEntity('search',{title:'Túl sok hely',locationIds:['area:Budapest',...towns]}),/találati listából/);
+ assert.equal(calls.length,0);
+});
+
+test('a property response with an invalid area ID does not become an exact town location',async()=>{
+ routes(accountRoutes({'/api/me/entities':{properties:[{...property,locationId:'area:Budapest',city:'Budapest'}],searchRequests:[{...search,locationIds:['area:Budapest']}],active:{kind:'search',id:ids.search}}}));
+ const state=await adapter().getState();assert.equal(state.properties[0].location,null);assert.equal(state.properties[0].locationId,'');
+ assert.equal(state.searches[0].locations[0].kind,'area');assert.equal(state.searches[0].locations[0].settlementCount,81);
 });

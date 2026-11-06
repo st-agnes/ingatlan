@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { settlements } from '../dist/locations-data.js';
+import { agglomerations } from '../dist/agglomerations-data.js';
 import { locations, getLocation, searchLocations, resolveLegacyLocations, matchesLocations } from '../dist/locations.js';
 
 test('complete municipality catalogue and generated browser data agree', async () => {
@@ -10,7 +11,7 @@ test('complete municipality catalogue and generated browser data agree', async (
   assert.deepEqual(settlements, master.settlements);
   assert.equal(settlements.length, 3155);
   assert.equal(new Set(settlements).size, settlements.length);
-  assert.equal(locations.length, 3155 + 23);
+  assert.equal(locations.length, 3155 + 23 + agglomerations.length);
   assert.equal(new Set(locations.map(location => location.id)).size, locations.length);
   assert.ok(settlements.every(name => name.trim() === name && !/\d|[()]/.test(name)));
   for (const city of ['Budapest', 'Debrecen', 'Hajdúszoboszló', 'Hajdúsámson', 'Solymár', 'Pilisvörösvár', 'Őr', 'Zsámbék']) {

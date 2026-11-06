@@ -44,6 +44,7 @@ node tests/frontend.test.mjs
 node tests/api.test.mjs
 node tests/development.test.mjs
 node tests/locations.test.mjs
+node tests/areas.test.mjs
 node tests/attributes.test.mjs
 node tests/gcp-deployment.test.mjs
 node tests/gcp-run-config.test.mjs
@@ -60,7 +61,7 @@ With Development API and MySQL running, `node backend/smoke.mjs http://localhost
 
 Passing mock/offline tests does not establish .NET or real MySQL success; report those only after checking CI for the actual commit. The Google Cloud bootstrap and packaging tests use local fixtures/mocks and must not create billable resources. CI runs `node tests/development-smoke.mjs` against its disposable database to verify custom ports, concurrent startup, completed shutdown, immediate restart and child crash recovery. CI also verifies upgrading an initial-release schema and starting it again without losing data. A fresh caching_sha2_password account verifies full loopback TCP authentication with RSA retrieval disabled/enabled. This checks the driver path against MySQL 8.0/8.4; it does not reproduce Google’s managed proxy. CI separately pulls the fixed Google proxy release and verifies its version/flags. The seed importer also runs through the real hosted-test API with disposable aliased accounts in `backend/seed-smoke.mjs`, verifying compatible feeds, matching, one credit charge, messaging and preservation after rename/archive/spending. Restart the API before that smoke to give its nine authentication requests a fresh rate-limit window. Cloud SQL IAM/TLS and the actual proxy route are verified by deployment health checks. Outside the disposable CI setup the database integration test is skipped.
 
-The real-browser regressions in `tests/browser.test.mjs` and `tests/attributes-browser.test.mjs` check input geometry, pointer/touch and keyboard dismissal, and search creation/activation at desktop, tablet, and mobile sizes. CI installs pinned Playwright into ignored `.local/browser-tests` and runs `node tests/browser.test.mjs http://localhost:3000` while the web server is running. Browser failure screenshots are CI artifacts.
+The real-browser regressions in `tests/browser.test.mjs`, `tests/attributes-browser.test.mjs` and `tests/areas-browser.test.mjs` check input geometry, pointer/touch and keyboard dismissal, and search creation/activation at desktop, tablet, and mobile sizes. CI installs pinned Playwright into ignored `.local/browser-tests` and runs `node tests/browser.test.mjs http://localhost:3000` while the web server is running. Browser failure screenshots are CI artifacts.
 
 ## Business and data rules
 
@@ -70,6 +71,7 @@ The real-browser regressions in `tests/browser.test.mjs` and `tests/attributes-b
 - Only compatible property/search pairs enter the feed; already judged pairs stay excluded for that side.
 - A property selects one canonical `locationId`; a search selects a nonempty `locationIds` array. Public `GET /api/locations?q=&limit=` returns `{items:[{id,label,city,district}]}`. Explicit unknown IDs must fail validation. Keep legacy city/district reads compatible only with known catalogue values.
 - Search locations use OR semantics across towns and Budapest districts. `city:Budapest` covers all districts; `district:Budapest:5` covers only district V. All other search filters still apply.
+- Search-only city areas use stable `area:<center>` IDs, stored as one choice in `locationIds` (no expansion against the 50-choice cap). `dist/data/agglomerations.json` and generated `dist/agglomerations-data.js` contain the same KSH public-registry membership; counts include the center once, Budapest all districts but one settlement. Exact property locations must reject areas in UI, local model, API adapter and backend. Search kind defaults to `search`; `kind=property` hides groups. Keep legacy town resolution restricted to real cities/districts. Source attribution must remain visible near the search picker, and KSH CC BY 4.0 provenance in notices/docs. `scripts/import-agglomerations.py` regenerates and checks the pinned source offline.
 - Preserve nullable search bounds through form, storage and API serialization. In particular, blank `minPrice`, `maxArea` and `maxRooms` remain `null` and mean unbounded; do not coerce them to zero or a synthetic upper bound.
 - `lotArea` is a nullable positive property measurement in square metres for `Ház`; clear it for other property types. There are no search plot-area bounds.
 - `dist/data/settlements.json` is the canonical shared municipality source, embedded by .NET; `dist/locations-data.js` is its generated browser module. Source, license and update instructions are in `docs/LOCATION-DATA.md`. Preserve existing demo storage key `otthonra.demo.v3`, IDs, decisions, matches and balances when upgrading records.

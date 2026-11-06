@@ -94,6 +94,7 @@ jobs:
           node tests/api.test.mjs
           node tests/development.test.mjs
           node tests/locations.test.mjs
+          node tests/areas.test.mjs
           node tests/attributes.test.mjs
           node tests/gcp-deployment.test.mjs
           node tests/gcp-run-config.test.mjs
@@ -125,6 +126,8 @@ jobs:
         run: node tests/browser.test.mjs http://127.0.0.1:3000
       - name: Test optional attributes in desktop, tablet and mobile Chromium
         run: node tests/attributes-browser.test.mjs http://127.0.0.1:3000
+      - name: Test city-area selection on desktop, tablet and mobile
+        run: node tests/areas-browser.test.mjs http://127.0.0.1:3000
       - name: Simulate the previous schema in the disposable CI database
         run: |
           node scripts/dev.mjs --stop
@@ -141,8 +144,10 @@ jobs:
       - name: Verify optional attributes against MySQL and after a restart
         run: |
           node backend/attributes-smoke.mjs http://127.0.0.1:3000
+          node backend/areas-smoke.mjs http://127.0.0.1:3000
           node scripts/dev.mjs --restart
           node backend/attributes-smoke.mjs http://127.0.0.1:3000 --verify
+          node backend/areas-smoke.mjs http://127.0.0.1:3000 --verify
       - name: Start the API with the hosted test configuration
         run: |
           node scripts/dev.mjs --stop
