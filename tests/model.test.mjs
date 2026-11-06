@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createModel,isCompatible,STORAGE_KEY} from '../dist/model.js';
+import {locations, getLocation} from '../dist/locations.js';
 const store=()=>{const values=new Map();return{getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v)}};
 const setup=()=>createModel(store(),()=>new Date('2026-10-31T12:00:00Z').toISOString());
 
@@ -145,4 +146,39 @@ test('legacy custom condition and wall text survive reads and unrelated edits wh
  assert.equal(again.getState().credits,before.credits);assert.deepEqual(again.matches(),m.matches());
  assert.throws(()=>again.saveEntity('property',{...existing,condition:'Más ismeretlen'},existing.id),/Érvénytelen/);
  assert.throws(()=>again.saveEntity('search',{title:'Hibás új szűrő',locationIds:['city:Budapest'],floors:[12]}),/Érvénytelen/);
+});
+
+
+test('city areas remain compact saved search choices and reload without resetting business data',()=>{
+ const storage=store(),m=createModel(storage),before=m.getState();
+ const selected=['area:Budapest','area:Debrecen','city:Szeged'];
+ const q=m.saveEntity('search',{title:'Nagyvárosok környékén keresek',locationIds:selected,maxPrice:100});
+ assert.deepEqual(q.locationIds,selected);assert.equal(q.locations[0].settlementCount,81);assert.equal(q.locations[1].settlementCount,13);
+ assert.equal(q.locations.length,3);assert.match(q.locations[0].label,/\(81 település\)$/);
+ m.activate('search',q.id);
+ const again=createModel(storage),state=again.getState();
+ assert.deepEqual(state.searches.find(value=>value.id===q.id).locationIds,selected);
+ assert.deepEqual(state.active,{kind:'search',id:q.id});assert.equal(state.credits,before.credits);
+ assert.deepEqual(state.ledger,before.ledger);assert.deepEqual(state.decisions,before.decisions);assert.equal(again.matches().length,m.matches().length);
+ assert.equal(isCompatible({ownerId:'seller',type:'Lakás',locationId:'district:Budapest:23',price:60,area:60,rooms:3},q),true);
+ assert.equal(isCompatible({ownerId:'seller',type:'Lakás',locationId:'city:Szeged',price:60,area:60,rooms:3},q),true);
+ assert.equal(isCompatible({ownerId:'seller',type:'Lakás',locationId:'city:Szeged',price:101,area:60,rooms:3},q),false);
+});
+
+test('a region is one of at most fifty search selections and cannot be saved as a property',()=>{
+ const m=setup(),towns=locations.filter(value=>value.kind==='city').slice(0,50).map(value=>value.id);
+ const fifty=['area:Budapest',...towns.slice(0,49)];
+ const q=m.saveEntity('search',{title:'Ötven kiválasztott hely',locationIds:fifty});assert.deepEqual(q.locationIds,fifty);
+ assert.throws(()=>m.saveEntity('search',{title:'Túl sok hely',locationIds:[...fifty,towns[49]]}),/találati listából/);
+ assert.throws(()=>m.saveEntity('property',{title:'Nem pontos hirdetési hely',locationId:'area:Budapest',city:'Budapest',district:'XIII.',price:80,area:60,rooms:3}),/találati listából/);
+ assert.equal(getLocation('area:Budapest').settlementCount,81);
+});
+
+test('an invalid stored property region never falls back to its central town for matching',()=>{
+ const storage=store(),m=createModel(storage);m.activate('search','own-s1');
+ const raw=JSON.parse(storage.getItem(STORAGE_KEY));const invalid=raw.properties.find(value=>value.id==='p1');invalid.locationId='area:Budapest';
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ const again=createModel(storage);assert.equal(again.feed().some(value=>value.id==='p1'),false);
+ assert.equal(isCompatible({ownerId:'seller',type:'Lakás',locationId:'area:Budapest',city:'Budapest',price:60,area:60,rooms:3},{ownerId:'buyer',locationIds:['city:Budapest']}),false);
+ assert.equal(isCompatible({ownerId:'seller',type:'Lakás',location:{id:'area:Budapest'},city:'Budapest',price:60,area:60,rooms:3},{ownerId:'buyer',locationIds:['city:Budapest']}),false);
 });

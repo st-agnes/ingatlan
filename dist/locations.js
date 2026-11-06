@@ -1,19 +1,40 @@
 import { settlements } from './locations-data.js';
+import { agglomerations } from './agglomerations-data.js';
 
 // IDs are stable and shared by the browser, demo model, and .NET API.
 const normalize = value => String(value ?? '').normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase('hu').trim().replace(/\s+/g, ' ');
 const roman = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII','XXIII'];
-const cities = settlements.map(city => Object.freeze({ id: 'city:' + city, label: city, city, district: null }));
-const districts = roman.map((number, index) => Object.freeze({ id: 'district:Budapest:' + (index + 1), label: 'Budapest ' + number + '. kerület', city: 'Budapest', district: number + '.' }));
+const cities = settlements.map(city => Object.freeze({ id: 'city:' + city, label: city, city, district: null, kind: 'city', settlementCount: null }));
+const districts = roman.map((number, index) => Object.freeze({ id: 'district:Budapest:' + (index + 1), label: 'Budapest ' + number + '. kerület', city: 'Budapest', district: number + '.', kind: 'district', settlementCount: null }));
 
-export const locations = Object.freeze([...cities, ...districts]);
+const settlementNames = new Set(settlements);
+const areaMembers = new Map();
+const areas = agglomerations.map(area => {
+  const members = area?.settlements;
+  if (!area || typeof area.city !== 'string' || area.id !== 'area:' + area.city
+      || !settlementNames.has(area.city) || areaMembers.has(area.id)
+      || !Array.isArray(members) || members.length < 2 || new Set(members).size !== members.length
+      || !members.includes(area.city) || members.some(name => !settlementNames.has(name))) {
+    throw new Error('A városkörnyéki településcsoportok katalógusa érvénytelen.');
+  }
+  areaMembers.set(area.id, new Set(members));
+  return Object.freeze({id: area.id, label: `${area.city} és környéke (${members.length} település)`,
+    city: area.city, district: null, kind: 'area', settlementCount: members.length});
+});
+
+export const locations = Object.freeze([...cities, ...districts, ...areas]);
 const byId = new Map(locations.map(location => [location.id, location]));
 const byCity = new Map(cities.map(location => [normalize(location.city), location]));
 const byLabel = new Map(locations.map(location => [normalize(location.label), location]));
-const indexed = locations.map((location, index) => ({ location, index, label: normalize(location.label) }));
+const indexed = locations.map((location, index) => ({ location, index, label: normalize(location.kind === 'area' ? `${location.city} és környéke` : location.label) }));
 
 export function getLocation(id) {
   return typeof id === 'string' ? byId.get(id) ?? null : null;
+}
+
+/** Listings always identify one real town or Budapest district. */
+export function isPropertyLocation(location) {
+  return !!location && location.kind !== 'area';
 }
 
 function districtNumber(value) {
@@ -44,7 +65,8 @@ function editDistanceAtMostOne(left, right) {
 }
 
 /** Suggest canonical choices; typed text alone never creates a location. */
-export function searchLocations(query, limit = 8) {
+export function searchLocations(query, limit = 8, {kind = 'search'} = {}) {
+  if (!['search', 'property'].includes(kind)) throw new Error('Érvénytelen helyszínválasztó-típus.');
   const text = normalize(query).slice(0, 120);
   const count = Number.isFinite(Number(limit)) ? Math.max(0, Math.min(50, Math.trunc(Number(limit)))) : 8;
   if (!text || !count) return [];
@@ -53,19 +75,27 @@ export function searchLocations(query, limit = 8) {
   const words = compact.split(' ');
   const results = [];
   for (const item of indexed) {
+    if (kind === 'property' && !isPropertyLocation(item.location)) continue;
     const label = item.label.replace(/\./g, '');
     let score = null;
     if (number && item.location.id === 'district:Budapest:' + number) score = -1;
+    else if (item.location.kind === 'area' && normalize(item.location.label) === text) score = 0;
     else if (label === compact) score = 0;
+    // Keep a city's broad search option visible before its many districts.
+    else if (item.location.kind === 'area' && normalize(item.location.city).startsWith(compact)) score = .5;
     else if (label.startsWith(compact)) score = 1;
     else if (words.every(word => label.split(' ').some(part => part.startsWith(word)))) score = 2;
     else if (label.includes(compact)) score = 3;
+    else if (item.location.kind === 'area'
+        && words.every(word => normalize(`${item.location.city} agglomeráció térsége környéke`).split(' ').some(part => part.startsWith(word)))) score = 2;
     if (score !== null) results.push({ ...item, score });
   }
   // Correct a single mistyped letter only when there are no direct suggestions.
   if (!results.length && text.length >= 4 && !/budapest|kerulet|\d/.test(text)) {
     for (const item of indexed) {
-      if (!item.location.district && editDistanceAtMostOne(text, item.label)) results.push({ ...item, score: 4 });
+      if (kind === 'property' && !isPropertyLocation(item.location)) continue;
+      const term = item.location.kind === 'area' ? normalize(item.location.city) : item.label;
+      if (!item.location.district && editDistanceAtMostOne(text, term)) results.push({ ...item, score: item.location.kind === 'area' ? 4.5 : 4 });
     }
   }
   return results.sort((a, b) => a.score - b.score || a.index - b.index).slice(0, count).map(item => item.location);
@@ -88,8 +118,9 @@ export function resolveLegacyLocations(value = {}) {
 }
 
 function propertyLocation(property) {
-  if (property.locationId != null) return getLocation(property.locationId);
-  return resolveLegacyLocations(property)[0] ?? null;
+  const id = property.locationId ?? property.location?.id;
+  const location = id != null ? getLocation(id) : resolveLegacyLocations(property)[0] ?? null;
+  return isPropertyLocation(location) ? location : null;
 }
 
 function searchLocationList(search) {
@@ -105,5 +136,7 @@ function searchLocationList(search) {
 export function matchesLocations(property = {}, search = {}) {
   const home = propertyLocation(property);
   if (!home) return false;
-  return searchLocationList(search).some(location => location.city === home.city && (!location.district || location.district === home.district));
+  return searchLocationList(search).some(location => location.kind === 'area'
+    ? areaMembers.get(location.id)?.has(home.city) === true
+    : location.city === home.city && (!location.district || location.district === home.district));
 }

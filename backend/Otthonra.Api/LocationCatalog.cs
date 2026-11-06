@@ -3,17 +3,18 @@ using System.Text.Json;
 
 namespace Otthonra.Api;
 
-public sealed record Location(string Id, string Label, string City, string? District);
+public sealed record Location(string Id, string Label, string City, string? District, string Kind = "city", int? SettlementCount = null);
 
-/// <summary>The same versioned, local municipality catalogue is used by the web and API.</summary>
+/// <summary>The same versioned, local municipality and city-area catalogues are used by the web and API.</summary>
 public static class LocationCatalog
 {
     private static readonly string[] Romans = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII"];
-    private static readonly Lazy<Location[]> Catalogue = new(Load);
-    private static readonly Lazy<Dictionary<string, Location>> ById = new(() => Catalogue.Value.ToDictionary(x => x.Id, StringComparer.Ordinal));
-    public static IReadOnlyList<Location> All => Catalogue.Value;
+    private sealed record CatalogueData(Location[] Locations, Dictionary<string, HashSet<string>> AreaMembers);
+    private static readonly Lazy<CatalogueData> Catalogue = new(Load);
+    private static readonly Lazy<Dictionary<string, Location>> ById = new(() => All.ToDictionary(x => x.Id, StringComparer.Ordinal));
+    public static IReadOnlyList<Location> All => Catalogue.Value.Locations;
 
-    private static Location[] Load()
+    private static CatalogueData Load()
     {
         using var stream = typeof(LocationCatalog).Assembly.GetManifestResourceStream("Otthonra.Api.Settlements.json")
             ?? throw new InvalidOperationException("The embedded settlement catalogue is missing.");
@@ -21,9 +22,32 @@ public static class LocationCatalog
         var names = document.RootElement.GetProperty("settlements").EnumerateArray().Select(x => x.GetString()!)
             .Where(x => !string.IsNullOrWhiteSpace(x)).Distinct(StringComparer.Ordinal).ToArray();
         if (names.Length < 3000 || !names.Contains("Budapest")) throw new InvalidOperationException("The settlement catalogue is incomplete.");
+        var knownNames = new HashSet<string>(names, StringComparer.Ordinal);
         var cities = names.Select(name => new Location("city:" + name, name, name, null));
-        var districts = Romans.Select((roman, index) => new Location($"district:Budapest:{index + 1}", $"Budapest {roman}. kerület", "Budapest", roman + "."));
-        return cities.Concat(districts).ToArray();
+        var districts = Romans.Select((roman, index) => new Location($"district:Budapest:{index + 1}", $"Budapest {roman}. kerület", "Budapest", roman + ".", "district"));
+        using var areaStream = typeof(LocationCatalog).Assembly.GetManifestResourceStream("Otthonra.Api.Agglomerations.json")
+            ?? throw new InvalidOperationException("The embedded city-area catalogue is missing.");
+        using var areaDocument = JsonDocument.Parse(areaStream);
+        if (areaDocument.RootElement.GetProperty("schemaVersion").GetInt32() != 1)
+            throw new InvalidOperationException("The city-area catalogue schema is not supported.");
+        var areas = new List<Location>();
+        var membersById = new Dictionary<string, HashSet<string>>(StringComparer.Ordinal);
+        var areaCities = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var area in areaDocument.RootElement.GetProperty("areas").EnumerateArray())
+        {
+            var id = area.GetProperty("id").GetString();
+            var city = area.GetProperty("city").GetString();
+            var members = area.GetProperty("settlements").EnumerateArray().Select(x => x.GetString()).ToArray();
+            if (city is null || !knownNames.Contains(city) || id != "area:" + city || !areaCities.Add(city)
+                || members.Length < 2 || members.Any(x => x is null || !knownNames.Contains(x))
+                || members.Distinct(StringComparer.Ordinal).Count() != members.Length || !members.Contains(city))
+                throw new InvalidOperationException("A city area contains invalid, duplicated or unknown settlements.");
+            var memberSet = new HashSet<string>(members.Select(x => x!), StringComparer.Ordinal);
+            if (!membersById.TryAdd(id!, memberSet)) throw new InvalidOperationException("The city-area catalogue contains duplicated IDs.");
+            areas.Add(new Location(id!, $"{city} és környéke ({memberSet.Count} település)", city, null, "area", memberSet.Count));
+        }
+        if (areas.Count == 0) throw new InvalidOperationException("The city-area catalogue is empty.");
+        return new CatalogueData(cities.Concat(districts).Concat(areas).ToArray(), membersById);
     }
 
     public static Location? Get(string? id) => id is not null && ById.Value.TryGetValue(id, out var result) ? result : null;
@@ -39,14 +63,14 @@ public static class LocationCatalog
     public static Location[] ResolveLegacy(string? city, IEnumerable<string?>? districts = null)
     {
         var normalized = Normalize(city);
-        var direct = Catalogue.Value.FirstOrDefault(x => Normalize(x.Label) == normalized);
+        var direct = All.FirstOrDefault(x => x.Kind != "area" && Normalize(x.Label) == normalized);
         if (direct?.District is not null) return [direct];
         if (normalized.StartsWith("BUDAPEST ", StringComparison.Ordinal))
         {
             var districtNumber = DistrictNumber(city);
             return districtNumber.HasValue ? [Get($"district:Budapest:{districtNumber}")!] : [];
         }
-        var place = Catalogue.Value.FirstOrDefault(x => x.District is null && Normalize(x.City) == normalized);
+        var place = All.FirstOrDefault(x => x.Kind == "city" && Normalize(x.City) == normalized);
         if (place is null) return [];
         if (place.City != "Budapest") return [place];
         var requested = districts?.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray() ?? [];
@@ -59,7 +83,8 @@ public static class LocationCatalog
     public static Location ResolvePropertyInput(string? id, string? city, string? district)
     {
         var result = id is not null ? Get(id) : ResolveLegacy(city, string.IsNullOrWhiteSpace(district) ? [] : [district]).SingleOrDefault();
-        return result ?? throw new ApiException(400, "Válassz egy települést vagy budapesti kerületet a listából.");
+        if (result is null || result.Kind == "area") throw new ApiException(400, "Az ingatlanhoz egy konkrét települést vagy budapesti kerületet válassz.");
+        return result;
     }
 
     public static Location[] ResolveSearchInput(string[]? ids, string? city, string[]? districts)
@@ -76,31 +101,54 @@ public static class LocationCatalog
         return result.Select(x => x!).DistinctBy(x => x.Id).ToArray();
     }
 
-    public static Location? ForProperty(Property property) => Get(property.LocationId)
-        ?? ResolveLegacy(property.City, string.IsNullOrWhiteSpace(property.District) ? [] : [property.District]).FirstOrDefault();
+    public static Location? ForProperty(Property property)
+    {
+        // Even malformed persisted area IDs must never become a precise home
+        // location through the old center-city fallback.
+        if (property.LocationId?.StartsWith("area:", StringComparison.Ordinal) == true) return null;
+        return Get(property.LocationId)
+            ?? ResolveLegacy(property.City, string.IsNullOrWhiteSpace(property.District) ? [] : [property.District]).FirstOrDefault();
+    }
 
     public static Location[] ForSearch(SearchRequest search)
     {
         var ids = Dto.Strings(search.LocationIdsJson);
-        if (ids.Length > 0) return ids.Select(Get).Where(x => x is not null).Select(x => x!).DistinctBy(x => x.Id).ToArray();
+        if (ids.Length > 0)
+        {
+            var result = ids.Select(Get).ToArray();
+            return result.Any(x => x is null) ? [] : result.Select(x => x!).DistinctBy(x => x.Id).ToArray();
+        }
         return ResolveLegacy(search.City, Dto.Strings(search.DistrictsJson));
     }
 
     public static bool Matches(Property property, SearchRequest search)
     {
         var place = ForProperty(property);
-        return place is not null && ForSearch(search).Any(wanted => wanted.City == place.City && (wanted.District is null || wanted.District == place.District));
+        if (place is null || place.Kind == "area") return false;
+        return ForSearch(search).Any(wanted => wanted.Kind == "area"
+            ? Catalogue.Value.AreaMembers.TryGetValue(wanted.Id, out var members) && members.Contains(place.City)
+            : wanted.City == place.City && (wanted.District is null || wanted.District == place.District));
     }
 
-    public static Location[] Search(string? query, int limit = 8)
+    public static Location[] Search(string? query, int limit = 8, string? kind = null)
     {
+        kind = kind?.Trim().ToLowerInvariant() ?? "search";
+        if (kind is not ("property" or "search")) throw new ApiException(400, "Érvénytelen helyszínválasztási típus.");
+        var candidates = All.Where(x => kind == "search" || x.Kind != "area");
         var value = Normalize(query);
         limit = Math.Clamp(limit, 1, 25);
-        if (value.Length == 0) return Catalogue.Value.Where(x => x.District is null).OrderBy(x => x.City == "Budapest" ? 0 : 1).ThenBy(x => x.Label, StringComparer.Create(CultureInfo.GetCultureInfo("hu-HU"), false)).Take(limit).ToArray();
+        if (value.Length == 0) return candidates.Where(x => x.Kind == "city").OrderBy(x => x.City == "Budapest" ? 0 : 1).ThenBy(x => x.Label, StringComparer.Create(CultureInfo.GetCultureInfo("hu-HU"), false)).Take(limit).ToArray();
         var directDistrict = value.StartsWith("BUDAPEST", StringComparison.Ordinal) ? DistrictNumber(query) : null;
-        return Catalogue.Value.Select(x => new { Location = x, Label = Normalize(x.Label) })
-            .Where(x => x.Label.Contains(value, StringComparison.Ordinal) || (directDistrict.HasValue && x.Location.Id == $"district:Budapest:{directDistrict}"))
-            .OrderBy(x => directDistrict.HasValue && x.Location.Id == $"district:Budapest:{directDistrict}" ? 0 : x.Label == value ? 1 : x.Label.StartsWith(value, StringComparison.Ordinal) ? 2 : 3)
+        var words = value.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        return candidates.Select(x => new {
+                Location = x, DisplayLabel = Normalize(x.Label), Label = Normalize(x.Kind == "area" ? $"{x.City} és környéke" : x.Label), City = Normalize(x.City),
+                Words = Normalize(x.Kind == "area" ? $"{x.City} és környéke {x.City} agglomeráció {x.City} térsége" : x.Label).Split(' ', StringSplitOptions.RemoveEmptyEntries)
+            })
+            .Where(x => x.DisplayLabel == value || x.Label.Contains(value, StringComparison.Ordinal)
+                || words.All(word => x.Words.Any(part => part.StartsWith(word, StringComparison.Ordinal)))
+                || directDistrict.HasValue && x.Location.Id == $"district:Budapest:{directDistrict}")
+            .OrderBy(x => directDistrict.HasValue && x.Location.Id == $"district:Budapest:{directDistrict}" ? -1
+                : x.DisplayLabel == value || x.Label == value ? 0 : x.Location.Kind == "area" && x.City == value ? 1 : x.Label.StartsWith(value, StringComparison.Ordinal) ? 2 : 3)
             .ThenBy(x => x.Location.Label, StringComparer.Create(CultureInfo.GetCultureInfo("hu-HU"), false)).Take(limit).Select(x => x.Location).ToArray();
     }
 }

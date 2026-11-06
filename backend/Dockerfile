@@ -7,6 +7,7 @@ RUN --mount=type=secret,id=proxy_ca \
     if [ -s /run/secrets/proxy_ca ]; then SSL_CERT_FILE=/run/secrets/proxy_ca dotnet restore backend/Otthonra.Api/Otthonra.Api.csproj; else dotnet restore backend/Otthonra.Api/Otthonra.Api.csproj; fi
 COPY backend/Otthonra.Api/ backend/Otthonra.Api/
 COPY dist/data/settlements.json dist/data/settlements.json
+COPY dist/data/agglomerations.json dist/data/agglomerations.json
 RUN dotnet publish backend/Otthonra.Api/Otthonra.Api.csproj -c Release -o /app --no-restore
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app

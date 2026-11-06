@@ -52,6 +52,7 @@ A webes felület önmagában böngészős demóként is használható. Demómód
 - Ingatlanok és keresési igények létrehozása, szerkesztése, archiválása, aktív profil kiválasztása.
 - Település-kiegészítés eladói és keresői oldalon, 3155 magyar település és Budapest 23 kerülete közös katalógusából. Mentéshez találatot kell választani.
 - Egy keresésben több település és budapesti kerület is választható, például Budapest V. kerület, Budapest IX. kerület, Solymár és Pilisvörösvár. Bármely kiválasztott hely megfelelhet; a teljes Budapest választása minden kerületet elfogad.
+- 24 KSH szerinti városkörnyék is kiválasztható a keresésben, például „Budapest és környéke (81 település)” és „Debrecen és környéke (13 település)”. A szám a központot is tartalmazza; a csoportok konkrét településekkel és kerületekkel együtt használhatók. [Források és teljes lista](docs/LOCATION-DATA.md#város-és-környéke-csoportok).
 - A helyszínlista a beviteli mező alatt jelenik meg, és máshová kattintva választás nélkül bezárható. Új keresés mentése után külön visszajelzés és „Ingatlanok felfedezése” gomb segít az aktiválásban.
 - Keresésnél a minimumár, a maximum alapterület és a maximum szobaszám elhagyható; az üres mező valóban nyitott korlát. Házhoz telekméret is megadható.
 - Opcionális, több értéket elfogadó keresési feltételek: állapot, falazat, épületkor, kilátás és emelet; külön választható belmagasság. Az ingatlanon egy érték adható meg, szintén opcionálisan.
@@ -92,6 +93,7 @@ node tests/model.test.mjs
 node tests/frontend.test.mjs
 node tests/api.test.mjs
 node tests/locations.test.mjs
+node tests/areas.test.mjs
 node tests/attributes.test.mjs
 node tests/development.test.mjs
 node tests/gcp-deployment.test.mjs

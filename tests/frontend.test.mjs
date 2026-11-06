@@ -430,3 +430,55 @@ test('candidate details show chosen attributes and amenities without inventing a
  for(const value of ['Új/felújított','Kertre néző','10–30 év közötti','3 m alatti','Hőszivattyú','Fedett beálló','Szigetelés az épületen','Nincs','Légkondi','Van'])assert.ok(html.includes(value),value);
  assert.doesNotMatch(html,/Napelem/,'unknown solar panels must not be rendered as no');
 });
+
+test('search city-region choices show settlement counts and preserve compact IDs beside exact towns through edit and removal',async()=>{
+ const t=await setup();t.ui.openEditor('search');
+ const html=t.document.getElementById('modal-root').innerHTML;
+ assert.match(html,/A településszám a központot is tartalmazza/);
+ assert.match(html,/Városkörnyékek: <a href="https:\/\/www\.ksh\.hu\/teruleti_szamjel_menu"/);
+ chooseLocation(t,'area:Debrecen');chooseLocation(t,'city:Solymár');
+ let chips=t.document.getElementById('location-chips');
+ assert.match(chips.innerHTML,/Debrecen és környéke \(13 település\)/);
+ assert.match(chips.innerHTML,/Solymár/);
+ submitEntity(t,searchValues('Városkörnyék és másik település'));await settle();
+ let saved=t.model.getState().searches.find(item=>item.title==='Városkörnyék és másik település');
+ assert.ok(saved);assert.deepEqual([...saved.locationIds],['area:Debrecen','city:Solymár']);
+ assert.equal(saved.locationIds.length,2,'a region remains one selected location instead of expanding its members');
+ await t.click({page:'searches'});
+ assert.match(t.document.getElementById('app').innerHTML,/Debrecen és környéke \(13 település\)/);
+ t.ui.openEditor('search',saved.id);chips=t.document.getElementById('location-chips');
+ assert.match(chips.innerHTML,/Debrecen és környéke \(13 település\)/);
+ const target={dataset:{removeLocation:'area:Debrecen'},closest:()=>target};chips.handlers.click({target});
+ assert.doesNotMatch(chips.innerHTML,/Debrecen/);assert.match(chips.innerHTML,/Solymár/);
+ submitEntity(t,searchValues('Városkörnyék és másik település'));await settle();
+ saved=t.model.getState().searches.find(item=>item.id===saved.id);
+ assert.deepEqual([...saved.locationIds],['city:Solymár']);
+});
+
+test('a city-region is selectable by keyboard as one counted search location',async()=>{
+ const t=await setup();t.ui.openEditor('search');
+ const input=t.document.getElementById('location-input');input.value='Budapest és környéke';input.handlers.input();
+ assert.match(t.document.getElementById('location-options').innerHTML,/Budapest és környéke \(81 település\)/);
+ key(input,'ArrowDown');key(input,'Enter');
+ assert.equal(input.value,'');assert.equal(input.getAttribute('aria-expanded'),'false');
+ assert.match(t.document.getElementById('location-chips').innerHTML,/Budapest és környéke \(81 település\)/);
+ submitEntity(t,searchValues('Főváros és környéke'));await settle();
+ const saved=t.model.getState().searches.find(item=>item.title==='Főváros és környéke');
+ assert.ok(saved);assert.deepEqual([...saved.locationIds],['area:Budapest']);
+});
+
+test('seller suggestions and a forged picker action cannot assign a broad city-region to a property',async()=>{
+ const t=await setup();t.ui.openEditor('property');
+ const input=t.document.getElementById('location-input'),list=t.document.getElementById('location-options');
+ input.value='Debrecen';input.handlers.input();
+ assert.match(list.innerHTML,/data-location-id="city:Debrecen"/);
+ assert.doesNotMatch(list.innerHTML,/data-location-id="area:/);
+ assert.doesNotMatch(t.document.getElementById('modal-root').innerHTML,/Városkörnyékek:/);
+ const target={dataset:{locationId:'area:Debrecen'},closest:()=>target};list.handlers.click({target});
+ assert.equal(t.document.getElementById('location-chips').innerHTML,'');
+ assert.equal(input.value,'Debrecen','rejecting a forged region action must not silently consume the typed query');
+ chooseLocation(t,'city:Debrecen');
+ submitEntity(t,{title:'Pontos településen lévő lakás',type:'Lakás',price:'65',area:'62',rooms:'3',floor:'',images:'',condition:'',building:''});await settle();
+ const saved=t.model.getState().properties.find(item=>item.title==='Pontos településen lévő lakás');
+ assert.ok(saved);assert.equal(saved.locationId,'city:Debrecen');
+});
