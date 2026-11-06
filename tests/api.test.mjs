@@ -189,20 +189,19 @@ test('unknown and unselected canonical locations cannot be posted, even alongsid
   assert.equal(calls.length, 0);
 });
 
-test('house plot area is a nullable numeric DTO field and is cleared for apartments', async () => {
+test('house plot area is required on save and is cleared for apartments', async () => {
   const calls = routes({ '/api/properties': options => response({ id: ids.property, ...JSON.parse(options.body) }, 201) });
   const data = { title: 'Kertes ház', locationId: 'city:Solymár', type: 'Ház', price: '105.5', area: '115', rooms: '4', lotArea: '720.5' };
   const house = await adapter().saveEntity('property', data);
   assert.equal(JSON.parse(calls[0].body).lotArea, 720.5);
   assert.equal(house.lotArea, 720.5);
   assert.equal(house.locationId, 'city:Solymár');
-  const noPlot = await adapter().saveEntity('property', { ...data, lotArea: '' });
-  assert.equal(noPlot.lotArea, null);
+  for (const lotArea of ['',null,undefined]) await assert.rejects(adapter().saveEntity('property', { ...data, lotArea }), /telekméret/);
   const apartment = await adapter().saveEntity('property', { ...data, type: 'Lakás' });
   assert.equal(apartment.lotArea, null);
   await assert.rejects(adapter().saveEntity('property', { ...data, lotArea: 0 }), /telekméret/);
   await assert.rejects(adapter().saveEntity('property', { ...data, lotArea: 'hibás' }), /érvényes szám/);
-  assert.equal(calls.length, 3);
+  assert.equal(calls.length, 2);
 });
 
 test('canonical location DTO objects work when reading an API response without legacy fields', async () => {
@@ -269,7 +268,7 @@ test('a new authenticated account without an active entity has an empty feed',as
 
 test('all optional seller details round-trip through DTOs preserving null, false, ground floor and modern or legacy text',async()=>{
  const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201)});
- const result=await adapter().saveEntity('property',{title:'Részletes lakás',locationId:'district:Budapest:13',type:'Lakás',price:78,area:68,rooms:3,condition:'Jó állapotú',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m feletti',floor:'0',heatingType:'Hőszivattyú + padlófűtés',insulated:'false',energyRating:'BB',airConditioning:'true',solarPanels:null,parkingType:'Udvari beálló'});
+ const result=await adapter().saveEntity('property',{title:'Részletes lakás',locationId:'district:Budapest:13',type:'Lakás',price:78,area:68,rooms:3,condition:'Jó állapotú',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m feletti',floor:'0',heatingType:'Hőszivattyú',secondaryHeatingType:'Klíma',insulated:'false',energyRating:'BB',airConditioning:'true',solarPanels:null,parkingType:'Udvari beálló'});
  const body=JSON.parse(calls[0].body);
  assert.deepEqual([body.condition,body.building,body.floor],['Jó','Tégla',0]);
  assert.deepEqual([body.insulated,body.airConditioning,body.solarPanels],[false,true,null]);
@@ -323,4 +322,45 @@ test('a property response with an invalid area ID does not become an exact town 
  routes(accountRoutes({'/api/me/entities':{properties:[{...property,locationId:'area:Budapest',city:'Budapest'}],searchRequests:[{...search,locationIds:['area:Budapest']}],active:{kind:'search',id:ids.search}}}));
  const state=await adapter().getState();assert.equal(state.properties[0].location,null);assert.equal(state.properties[0].locationId,'');
  assert.equal(state.searches[0].locations[0].kind,'area');assert.equal(state.searches[0].locations[0].settlementCount,81);
+});
+
+test('new seller details use typed arrays and explicit room composition throughout API round trips',async()=>{
+ const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201)});
+ const saved=await adapter().saveEntity('property',{title:'Fél szobás lakás',locationId:'city:Debrecen',type:'Lakás',price:'65.5',area:'80',wholeRooms:'2',halfRooms:'3',heatingType:'Gázkazán',secondaryHeatingType:'Kandalló',parkingTypes:['Garázs','Udvari beálló','Garázs']});
+ const body=JSON.parse(calls[0].body);
+ assert.deepEqual([body.wholeRooms,body.halfRooms,body.rooms],[2,3,3.5]);
+ assert.deepEqual([saved.wholeRooms,saved.halfRooms,saved.rooms],[2,3,3.5]);
+ assert.deepEqual(body.parkingTypes,['Garázs','Udvari beálló']);assert.deepEqual(saved.parkingTypes,body.parkingTypes);
+ assert.equal(saved.secondaryHeatingType,'Kandalló');
+ const legacy=await adapter().saveEntity('property',{title:'Régi API adat',locationId:'city:Debrecen',price:55,area:50,rooms:3.2});
+ const legacyBody=JSON.parse(calls[1].body);
+ assert.deepEqual([legacyBody.rooms,legacyBody.wholeRooms,legacyBody.halfRooms],[3.2,null,null]);
+ assert.deepEqual([legacy.rooms,legacy.wholeRooms,legacy.halfRooms],[3.2,null,null]);
+});
+
+test('legacy-only API updates leave explicit composition to the server and allow unchanged public legacy descriptions',async()=>{
+ const calls=routes({['/api/properties/'+ids.property]:options=>response({id:ids.property,...JSON.parse(options.body)})});
+ const updated=await adapter().saveEntity('property',{title:'Változatlan részletek',locationId:'city:Debrecen',price:55,area:50,rooms:3.5,heatingType:'Hőszivattyú és padlófűtés',parkingType:'Régi garázs, kapubeállóval'},ids.property);
+ const body=JSON.parse(calls[0].body);
+ assert.deepEqual([body.wholeRooms,body.halfRooms],[null,null],'do not invent a different breakdown for old-client updates');
+ assert.equal(updated.heatingType,'Hőszivattyú és padlófűtés');assert.deepEqual(updated.parkingTypes,['Régi garázs, kapubeállóval']);
+});
+
+test('invalid counts, negative numeric values and newly introduced heating or parking choices do not reach the API',async()=>{
+ const calls=routes({}),api=adapter(),base={title:'Érvényes lakás',locationId:'city:Debrecen',price:55,area:50,wholeRooms:2,halfRooms:1};
+ for(const changes of [{price:-1},{area:-1},{wholeRooms:-1},{halfRooms:-1},{halfRooms:1.5},{wholeRooms:0,halfRooms:0},{rooms:4},{rooms:-1},{heatingType:'Új egyedi fűtés'},{secondaryHeatingType:'Új egyedi fűtés'},{parkingTypes:['Ismeretlen']},{parkingTypes:['Garázs',null]}])await assert.rejects(api.saveEntity('property',{...base,...changes}));
+ for(const key of ['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'])await assert.rejects(api.saveEntity('search',{title:'Hibás keresés',locationIds:['city:Debrecen'],[key]:-1}));
+ await assert.rejects(api.saveEntity('search',{title:'Hibás fűtés',locationIds:['city:Debrecen'],heatingTypes:['Ismeretlen']}));
+ assert.equal(calls.length,0);
+});
+
+test('house API saves remove hidden controls while search heating remains an optional multi-selection',async()=>{
+ const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201),'/api/searches':options=>response({id:ids.search,...JSON.parse(options.body)},201)});
+ const house=await adapter().saveEntity('property',{title:'Kertes ház',locationId:'city:Solymár',type:'Ház',price:95,area:110,wholeRooms:4,halfRooms:0,lotArea:700,floor:'invalid',balcony:true,elevator:true});
+ assert.deepEqual([house.floor,house.balcony,house.elevator],[null,false,false]);
+ const saved=await adapter().saveEntity('search',{title:'Házat keresünk',locationIds:['city:Solymár'],type:'Ház',floors:[3],balcony:true,elevator:true,heatingTypes:['Gázkazán','Klíma','Gázkazán'],minRooms:2.5,maxRooms:4.5});
+ assert.deepEqual([saved.floors,saved.balcony,saved.elevator],[[],false,false]);
+ assert.deepEqual(saved.heatingTypes,['Gázkazán','Klíma']);
+ assert.deepEqual([saved.minRooms,saved.maxRooms],[2.5,4.5]);
+ const body=JSON.parse(calls[1].body);assert.deepEqual(body.heatingTypes,saved.heatingTypes);
 });

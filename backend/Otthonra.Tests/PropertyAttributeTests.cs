@@ -165,8 +165,8 @@ public class PropertyAttributeTests
     {
         var property = new Property();
         Rules.Apply(property, PropertyInput() with {
-            HeatingType = "Hőszivattyú és padlófűtés", Insulated = false, EnergyRating = "AA++",
-            AirConditioning = true, SolarPanels = null, ParkingType = "Garázs és udvari beálló"
+            HeatingType = "Hőszivattyú", Insulated = false, EnergyRating = "AA++",
+            AirConditioning = true, SolarPanels = null, ParkingTypes = ["Garázs", "Udvari beálló"]
         });
         Assert.False(property.Insulated); Assert.True(property.AirConditioning); Assert.Null(property.SolarPanels);
         using var dto = JsonDocument.Parse(JsonSerializer.Serialize(Dto.Property(property)));
@@ -180,7 +180,7 @@ public class PropertyAttributeTests
     }
 
     [Fact]
-    public void SellerFreeTextAddonsHaveLimitsAndCannotLeakContactDetails()
+    public void SellerAddonsRejectInvalidOptionsAndCannotLeakContactDetails()
     {
         Assert.Throws<ApiException>(() => Rules.Apply(new Property(), PropertyInput() with { HeatingType = new string('x', 81) }));
         Assert.Throws<ApiException>(() => Rules.Apply(new Property(), PropertyInput() with { EnergyRating = new string('x', 21) }));

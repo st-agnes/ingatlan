@@ -9,10 +9,11 @@ import * as propertyAttributes from '../dist/attributes.js';
 
 const source=await fs.readFile(new URL('../dist/app.js',import.meta.url),'utf8');
 class Element {
- constructor(id,doc,markup=''){this.id=id;this.doc=doc;this._innerHTML='';this.textContent='';this.className=markup.match(/class="([^"]*)"/)?.[1]||'';this.value=markup.match(/\bvalue="([^"]*)"/)?.[1]||'';this.disabled=/\sdisabled(?:\s|>)/.test(markup);this.hidden=/\shidden(?:\s|>)/.test(markup);this.style={};this.handlers={};this.attributes={};this.scrollHeight=500;this.scrollTop=0;this.validationMessage='';this.classList={toggle:(name,on)=>{const classes=new Set(this.className.split(' ').filter(Boolean));if(on??!classes.has(name))classes.add(name);else classes.delete(name);this.className=[...classes].join(' ');},remove:name=>this.classList.toggle(name,false)};}
+ constructor(id,doc,markup=''){this.id=id;this.doc=doc;this._innerHTML='';this.textContent='';this.className=markup.match(/class="([^"]*)"/)?.[1]||'';this.value=markup.match(/\bvalue="([^"]*)"/)?.[1]||'';this.name=markup.match(/\bname="([^"]*)"/)?.[1]||'';this.step=markup.match(/\bstep="([^"]*)"/)?.[1]||'';this.type=markup.match(/\btype="([^"]*)"/)?.[1]||'';this.required=/\srequired(?:\s|>)/.test(markup);this.validity={badInput:false};if(markup.startsWith('<select')){const option=[...markup.matchAll(/<option\b([^>]*)>([^<]*)/g)],selected=option.find(match=>/\bselected\b/.test(match[1]))||option[0];this.value=selected?.[1].match(/\bvalue="([^"]*)"/)?.[1]??selected?.[2]??'';}this.disabled=/\sdisabled(?:\s|>)/.test(markup);this.hidden=/\shidden(?:\s|>)/.test(markup);this.style={};this.handlers={};this.attributes={};this.scrollHeight=500;this.scrollTop=0;this.validationMessage='';this.classList={toggle:(name,on)=>{const classes=new Set(this.className.split(' ').filter(Boolean));if(on??!classes.has(name))classes.add(name);else classes.delete(name);this.className=[...classes].join(' ');},remove:name=>this.classList.toggle(name,false)};}
  set innerHTML(value){this._innerHTML=value;if(['app','modal-root'].includes(this.id)){for(const id of this.doc.elements.keys())if(!['app','modal-root','toast'].includes(id))this.doc.elements.delete(id);}}
  get innerHTML(){return this._innerHTML;}
- addEventListener(type,handler){this.handlers[type]=handler;}
+ addEventListener(type,handler){const prior=this.handlers[type];this.handlers[type]=prior?event=>{prior(event);return handler(event);}:handler;}
+ querySelectorAll(selector){assert.equal(selector,'input[type="number"]');return [...this.doc.html.matchAll(/<input\b[^>]*\btype="number"[^>]*>/g)].map(match=>this.doc.getElementById(match[0].match(/\bid="([^"]*)"/)[1])).filter(input=>this.contains(input));}
  setAttribute(name,value){this.attributes[name]=String(value);}
  getAttribute(name){return this.attributes[name]??null;}
  removeAttribute(name){delete this.attributes[name];}
@@ -24,7 +25,7 @@ class Element {
 class Document {
  constructor(){this.elements=new Map();this.handlers={};this.listeners=new Map();for(const id of ['app','modal-root','toast'])this.elements.set(id,new Element(id,this));}
  get html(){return [...this.elements.entries()].filter(([id])=>['app','modal-root'].includes(id)).map(([,e])=>e.innerHTML).join('');}
- getElementById(id){if(this.elements.has(id))return this.elements.get(id);const markup=this.html.match(new RegExp(`<[^>]*\\bid=["']${id}["'][^>]*>`))?.[0];if(!markup)return null;const element=new Element(id,this,markup);this.elements.set(id,element);return element;}
+ getElementById(id){if(this.elements.has(id))return this.elements.get(id);const markup=this.html.match(new RegExp(`<[^>]*\\bid=["']${id}["'][^>]*>`))?.[0];if(!markup)return null;const full=markup.startsWith('<select')?this.html.match(new RegExp(`<select[^>]*\\bid=["']${id}["'][^>]*>[\\s\\S]*?</select>`))?.[0]||markup:markup;const element=new Element(id,this,full);this.elements.set(id,element);return element;}
  querySelector(selector){if(selector==='.modal')return this.elements.get('modal-root').innerHTML.includes('class="modal ')?this.elements.get('modal-root'):null;if(selector.startsWith('#'))return this.getElementById(selector.slice(1).split(' ')[0]);return null;}
  parentOf(id){const stack=[],voidTags=new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);for(const token of this.html.matchAll(/<\/?([a-z][\w-]*)\b[^>]*>/gi)){const tag=token[1].toLowerCase(),markup=token[0];if(markup.startsWith('</')){const index=stack.findLastIndex(item=>item.tag===tag);if(index>=0)stack.length=index;continue;}const currentId=markup.match(/\bid=["']([^"']+)["']/)?.[1];if(currentId===id){const parent=stack.findLast(item=>item.id);return parent?this.getElementById(parent.id):null;}if(!voidTags.has(tag)&&!markup.endsWith('/>'))stack.push({tag,id:currentId});}return null;}
  addEventListener(type,handler,options){const capture=typeof options==='boolean'?options:!!options?.capture,list=this.listeners.get(type)||[];if(!list.some(item=>item.handler===handler&&item.capture===capture))list.push({handler,capture});this.listeners.set(type,list);this.handlers[type]=event=>{const pending=[...(this.listeners.get(type)||[])].sort((a,b)=>Number(b.capture)-Number(a.capture)).map(item=>item.handler(event)).filter(value=>value?.then);return pending.length?Promise.all(pending):undefined;};}
@@ -70,7 +71,7 @@ test('card resets drag transform when a horizontal gesture becomes vertical',asy
 
 test('location picker selects multiple canonical towns, removes chips and accepts keyboard district selection',async()=>{const t=await setup();t.ui.openEditor('search');for(const name of ['Debrecen','Hajdúszoboszló','Hajdúsámson'])chooseLocation(t,`city:${name}`);let chips=t.document.getElementById('location-chips');assert.match(chips.innerHTML,/Hajdúszoboszló/);const target={dataset:{removeLocation:'city:Debrecen'},closest:()=>target};chips.handlers.click({target});assert.doesNotMatch(chips.innerHTML,/Debrecen/);const input=t.document.getElementById('location-input');input.value='Budapest V. kerület';input.handlers.input();key(input,'ArrowDown');assert.equal(input.getAttribute('aria-activedescendant'),'location-option-0');key(input,'Enter');assert.match(chips.innerHTML,/Budapest V\. kerület/);assert.equal(input.value,'');assert.equal(input.getAttribute('aria-expanded'),'false');submitEntity(t,{title:'Több helyen keresünk',type:'Lakás',minPrice:'',maxPrice:'100',minArea:'40',maxArea:'',minRooms:'2',maxRooms:'',moveIn:'Rugalmas'});await settle();const saved=t.model.getState().searches.find(x=>x.title==='Több helyen keresünk');assert.ok(saved);assert.deepEqual([...saved.locationIds],['city:Hajdúszoboszló','city:Hajdúsámson','district:Budapest:5']);for(const name of ['minPrice','maxArea','maxRooms'])assert.equal(saved[name],null);await t.click({page:'searches'});const html=t.document.getElementById('app').innerHTML;assert.match(html,/legalább 40 m²/);assert.match(html,/legfeljebb 100 M Ft/);assert.doesNotMatch(html,/NaN/);});
 test('unselected typed location cannot save and Escape closes only autocomplete options',async()=>{const t=await setup();t.ui.openEditor('search');const input=t.document.getElementById('location-input');input.value='Debrceeen';input.handlers.input();assert.equal(key(input,'Escape').defaultPrevented,true);assert.equal(t.document.getElementById('location-options').hidden,true);assert.match(t.document.getElementById('modal-root').innerHTML,/entity-form/);submitEntity(t,{title:'Elírt hely',type:'Lakás',maxPrice:'100',minArea:'40',minRooms:'2'});await settle();assert.equal(t.model.getState().searches.some(x=>x.title==='Elírt hely'),false);assert.match(input.validationMessage,/Válassz/);chooseLocation(t,'city:Debrecen');assert.equal(input.validationMessage,'');});
-test('property uses a single canonical location and house lot size toggles without replacing other fields',async()=>{const t=await setup();t.ui.openEditor('property');chooseLocation(t,'city:Solymár');chooseLocation(t,'city:Pilisvörösvár');const chips=t.document.getElementById('location-chips');assert.doesNotMatch(chips.innerHTML,/Solymár/);assert.match(chips.innerHTML,/Pilisvörösvár/);const title=t.document.getElementById('f-title');title.value='Családi ház';const type=t.document.getElementById('f-type'),lot=t.document.getElementById('f-lotArea'),wrapper=t.document.getElementById('lot-area-field');type.value='Ház';type.handlers.change({currentTarget:type});assert.equal(lot.disabled,false);assert.doesNotMatch(wrapper.className,/hidden/);assert.equal(title.value,'Családi ház');submitEntity(t,{title:'Családi ház',type:'Ház',price:'95',area:'120',rooms:'4',floor:'0',lotArea:'650',images:'',condition:'Jó állapotú',building:'Tégla'});await settle();const saved=t.model.getState().properties.find(x=>x.title==='Családi ház');assert.ok(saved);assert.equal(saved.locationId,'city:Pilisvörösvár');assert.equal(saved.lotArea,650);await t.click({page:'properties'});assert.match(t.document.getElementById('app').innerHTML,/650 m² telek/);t.ui.openEditor('property',saved.id);const type2=t.document.getElementById('f-type');type2.value='Lakás';type2.handlers.change({currentTarget:type2});assert.equal(t.document.getElementById('f-lotArea').disabled,true);submitEntity(t,{title:'Családi ház',type:'Lakás',price:'95',area:'120',rooms:'4',floor:'0',lotArea:'650',images:'',condition:'Jó állapotú',building:'Tégla'});await settle();assert.equal(t.model.getState().properties.find(x=>x.id===saved.id).lotArea,null);});
+test('property uses a single canonical location and house lot size toggles without replacing other fields',async()=>{const t=await setup();t.ui.openEditor('property');chooseLocation(t,'city:Solymár');chooseLocation(t,'city:Pilisvörösvár');const chips=t.document.getElementById('location-chips');assert.doesNotMatch(chips.innerHTML,/Solymár/);assert.match(chips.innerHTML,/Pilisvörösvár/);const title=t.document.getElementById('f-title');title.value='Családi ház';const type=t.document.getElementById('f-type'),lot=t.document.getElementById('f-lotArea'),wrapper=t.document.getElementById('lot-area-field');type.value='Ház';type.handlers.change({currentTarget:type});assert.equal(lot.disabled,false);assert.doesNotMatch(wrapper.className,/hidden/);assert.equal(title.value,'Családi ház');submitEntity(t,{title:'Családi ház',type:'Ház',price:'95',area:'120',wholeRooms:'4',halfRooms:'0',floor:'0',lotArea:'650',images:'',condition:'Jó állapotú',building:'Tégla'});await settle();const saved=t.model.getState().properties.find(x=>x.title==='Családi ház');assert.ok(saved);assert.equal(saved.locationId,'city:Pilisvörösvár');assert.equal(saved.lotArea,650);await t.click({page:'properties'});assert.match(t.document.getElementById('app').innerHTML,/650 m² telek/);t.ui.openEditor('property',saved.id);const type2=t.document.getElementById('f-type');type2.value='Lakás';type2.handlers.change({currentTarget:type2});assert.equal(t.document.getElementById('f-lotArea').disabled,true);submitEntity(t,{title:'Családi ház',type:'Lakás',price:'95',area:'120',wholeRooms:'4',halfRooms:'0',floor:'0',lotArea:'650',images:'',condition:'Jó állapotú',building:'Tégla'});await settle();assert.equal(t.model.getState().properties.find(x=>x.id===saved.id).lotArea,null);});
 
 test('creating a search confirms the saved title and offers discovery without changing the active profile',async()=>{
  const t=await setup(),before=t.model.getState().active;
@@ -378,9 +379,9 @@ test('new property attributes are optional and unknown floor or amenities do not
   assert.ok(select,`${name} select must be present`);
   assert.match(select,/<option value="" selected>Nincs megadva<\/option>/);
  }
- assert.match(html,/maxlength="80" placeholder="Pl\. hőszivattyú, gázkazán"/);
+ assert.match(html,/<select id="f-heatingType"/);assert.match(html,/<select id="f-secondaryHeatingType"/);assert.match(html,/>Nincs fűtés<\/option>/);assert.equal((html.match(/name="parkingTypes"/g)||[]).length,propertyAttributes.PARKING_OPTIONS.length);
  chooseLocation(t,'city:Solymár');
- submitEntity(t,{title:'Opcionális jellemzők',type:'Lakás',price:'82',area:'64',rooms:'3',floor:'',condition:'',building:'',constructionAge:'',view:'',ceilingHeight:'',insulated:'',airConditioning:'',solarPanels:'',images:''});
+ submitEntity(t,{title:'Opcionális jellemzők',type:'Lakás',price:'82',area:'64',wholeRooms:'3',halfRooms:'0',floor:'',condition:'',building:'',constructionAge:'',view:'',ceilingHeight:'',insulated:'',airConditioning:'',solarPanels:'',images:''});
  await settle();
  const saved=t.model.getState().properties.find(item=>item.title==='Opcionális jellemzők');
  assert.ok(saved);
@@ -391,7 +392,7 @@ test('new property attributes are optional and unknown floor or amenities do not
 test('search checkboxes serialize several choices per category and can all be cleared',async()=>{
  const t=await setup();t.ui.openEditor('search');chooseLocation(t,'district:Budapest:13');
  const html=t.document.getElementById('modal-root').innerHTML;
- assert.match(html,/<fieldset class="attribute-group"><legend>Állapot/);
+ assert.match(html,/<fieldset id="conditions-group" class="attribute-group"><legend>Állapot/);
  assert.match(html,/Többet is megjelölhetsz/);
  assert.equal((html.match(/name="buildings"/g)||[]).length,12);
  submitEntity(t,[...Object.entries(searchValues('Részletes keresés')),['conditions','Jó'],['conditions','Új/felújított'],['buildings','Tégla'],['buildings','Panel'],['constructionAges','10 évnél fiatalabb'],['constructionAges','10–30 év közötti'],['views','Kertre néző'],['views','Panorámás'],['ceilingHeight','3 m feletti'],['floors','-1'],['floors','0'],['floors','11']]);
@@ -405,13 +406,13 @@ test('search checkboxes serialize several choices per category and can all be cl
  assert.match(edited,/name="conditions" value="Jó" checked/);assert.match(edited,/name="floors" value="-1" checked/);
  submitEntity(t,searchValues('Részletes keresés'));await settle();
  saved=t.model.getState().searches.find(item=>item.id===saved.id);
- for(const name of ['conditions','buildings','constructionAges','views','floors'])assert.equal(saved[name].length,0,name);
+ for(const name of ['conditions','buildings','constructionAges','views','heatingTypes','floors'])assert.equal(saved[name].length,0,name);
  assert.equal(saved.ceilingHeight,'');
 });
 
 test('seller inputs preserve explicit no, unknown amenities and existing higher floor values',async()=>{
  const t=await setup();t.ui.openEditor('property');chooseLocation(t,'district:Budapest:13');
- submitEntity(t,{title:'Részletes eladó lakás',type:'Lakás',price:'78',area:'65',rooms:'3',floor:'12',condition:'Jó',building:'Csúsztatott zsalu',constructionAge:'31–40 év közötti',view:'Panorámás',ceilingHeight:'3 m feletti',heatingType:'Hőszivattyú és padlófűtés',energyRating:'A+',parkingType:'Mélygarázs',insulated:'false',airConditioning:'true',solarPanels:'',images:''});await settle();
+ submitEntity(t,{title:'Részletes eladó lakás',type:'Lakás',price:'78',area:'65',wholeRooms:'3',halfRooms:'0',floor:'12',condition:'Jó',building:'Csúsztatott zsalu',constructionAge:'31–40 év közötti',view:'Panorámás',ceilingHeight:'3 m feletti',heatingType:'Hőszivattyú',secondaryHeatingType:'Klíma',energyRating:'A+',parkingTypes:'Mélygarázs',insulated:'false',airConditioning:'true',solarPanels:'',images:''});await settle();
  const saved=t.model.getState().properties.find(item=>item.title==='Részletes eladó lakás');assert.ok(saved);
  assert.equal(saved.floor,12);assert.equal(saved.insulated,false);assert.equal(saved.airConditioning,true);assert.equal(saved.solarPanels,null);
  assert.equal(saved.building,'Csúsztatott zsalu');assert.equal(saved.energyRating,'A+');
@@ -419,7 +420,7 @@ test('seller inputs preserve explicit no, unknown amenities and existing higher 
  const html=t.document.getElementById('modal-root').innerHTML;
  assert.match(html,/<option value="12" selected>12\. emelet<\/option>/);
  assert.match(html,/<option value="false" selected>Nem<\/option>/);
- assert.match(html,/value="Hőszivattyú és padlófűtés"/);
+ assert.match(html,/value="Hőszivattyú" selected/);
 });
 
 test('candidate details show chosen attributes and amenities without inventing an unknown floor',async()=>{
@@ -478,7 +479,63 @@ test('seller suggestions and a forged picker action cannot assign a broad city-r
  assert.equal(t.document.getElementById('location-chips').innerHTML,'');
  assert.equal(input.value,'Debrecen','rejecting a forged region action must not silently consume the typed query');
  chooseLocation(t,'city:Debrecen');
- submitEntity(t,{title:'Pontos településen lévő lakás',type:'Lakás',price:'65',area:'62',rooms:'3',floor:'',images:'',condition:'',building:''});await settle();
+ submitEntity(t,{title:'Pontos településen lévő lakás',type:'Lakás',price:'65',area:'62',wholeRooms:'3',halfRooms:'0',floor:'',images:'',condition:'',building:''});await settle();
  const saved=t.model.getState().properties.find(item=>item.title==='Pontos településen lévő lakás');
  assert.ok(saved);assert.equal(saved.locationId,'city:Debrecen');
+});
+
+test('seller heating lists, supplemental heating and multiple parking choices persist together with exact room counts',async()=>{
+ const t=await setup();t.ui.openEditor('property');chooseLocation(t,'city:Debrecen');
+ const html=t.document.getElementById('modal-root').innerHTML;
+ const options=name=>[...html.match(new RegExp(`<select id="f-${name}"[^>]*>([\\s\\S]*?)</select>`))[1].matchAll(/<option value="([^"]*)"/g)].map(match=>match[1]);
+ assert.deepEqual(options('heatingType'),['',...propertyAttributes.HEATING_OPTIONS]);assert.deepEqual(options('secondaryHeatingType'),options('heatingType'));
+ assert.doesNotMatch(html,/id="f-rooms"|id="f-parkingType"/);
+ submitEntity(t,[...Object.entries({title:'Egész és fél szobák',type:'Lakás',price:'82.5',area:'64.5',wholeRooms:'2',halfRooms:'3',floor:'-1',heatingType:'Nincs fűtés',secondaryHeatingType:'Klíma',images:''}),['parkingTypes','Garázs'],['parkingTypes','Udvari beálló']]);await settle();
+ const saved=t.model.getState().properties.find(item=>item.title==='Egész és fél szobák');assert.ok(saved);assert.equal(saved.wholeRooms,2);assert.equal(saved.halfRooms,3);assert.equal(saved.rooms,3.5);assert.equal(saved.floor,-1);assert.equal(saved.heatingType,'Nincs fűtés');assert.equal(saved.secondaryHeatingType,'Klíma');assert.deepEqual([...saved.parkingTypes],['Garázs','Udvari beálló']);
+ t.ui.openEditor('property',saved.id);assert.equal(t.document.getElementById('f-wholeRooms').value,'2');assert.equal(t.document.getElementById('f-halfRooms').value,'3');
+ assert.match(t.document.getElementById('modal-root').innerHTML,/name="parkingTypes" value="Garázs" checked/);
+ await t.click({page:'properties'});assert.match(t.document.getElementById('app').innerHTML,/2 egész \+ 3 fél szoba/);
+});
+
+function guardedEvent(values={}){return {...values,defaultPrevented:false,preventDefault(){this.defaultPrevented=true;}};}
+test('all entity numeric inputs block signs through keys, mobile beforeinput, paste and input fallback while preserving decimals and empty bounds',async()=>{
+ const t=await setup();
+ for(const kind of ['property','search']){
+  t.ui.openEditor(kind);
+  const inputs=t.document.getElementById('entity-form').querySelectorAll('input[type="number"]');assert.ok(inputs.length>=5);
+  for(const input of inputs){
+   for(const character of ['-','−','+','e','E'])assert.equal(key(input,character).defaultPrevented,true,`${kind} ${input.id} blocks ${character}`);
+   const mobile=guardedEvent({data:'-12',inputType:'insertText'});input.handlers.beforeinput(mobile);assert.equal(mobile.defaultPrevented,true);
+   const paste=guardedEvent({clipboardData:{getData:()=>'-12'}});input.handlers.paste(paste);assert.equal(paste.defaultPrevented,true);
+   input.value='12';input.handlers.input();input.value='-12';input.handlers.input();assert.equal(input.value,'12');input.value='1e-2';input.handlers.input();assert.equal(input.value,'12');
+   input.value='';input.handlers.input();assert.equal(input.value,'');
+  }
+  const decimal=t.document.getElementById(kind==='property'?'f-price':'f-minPrice');decimal.value='12.5';decimal.handlers.input();assert.equal(decimal.value,'12.5');
+ }
+ t.ui.openEditor('property');const whole=t.document.getElementById('f-wholeRooms'),half=t.document.getElementById('f-halfRooms');
+ assert.equal(key(whole,'.').defaultPrevented,true);assert.equal(key(half,',').defaultPrevented,true);
+ whole.value='0';whole.handlers.input();half.value='0';half.handlers.input();assert.match(whole.validationMessage,/legalább egy/);half.value='1';half.handlers.input();assert.equal(whole.validationMessage,'');
+ assert.doesNotMatch(t.document.getElementById('modal-root').innerHTML,/negatív/);
+});
+
+test('house forms require lot area only for sellers and hide or disable floor, balcony and elevator on both sides',async()=>{
+ const t=await setup();
+ for(const kind of ['property','search']){
+  t.ui.openEditor(kind);const type=t.document.getElementById('f-type');type.value='Ház';type.handlers.change();
+  assert.match(t.document.getElementById('entity-amenities').className,/hidden/);for(const name of ['balcony','elevator'])assert.equal(t.document.getElementById(`f-${name}`).disabled,true);
+  if(kind==='property'){assert.equal(t.document.getElementById('f-lotArea').required,true);assert.equal(t.document.getElementById('f-lotArea').disabled,false);assert.equal(t.document.getElementById('f-floor').disabled,true);assert.match(t.document.getElementById('property-floor-field').className,/hidden/);}
+  else{assert.equal(t.document.getElementById('floors-group').disabled,true);assert.match(t.document.getElementById('floors-group').className,/hidden/);}
+  type.value='Lakás';type.handlers.change();assert.doesNotMatch(t.document.getElementById('entity-amenities').className,/hidden/);assert.equal(t.document.getElementById('f-balcony').disabled,false);
+  if(kind==='property'){assert.equal(t.document.getElementById('f-lotArea').required,false);assert.equal(t.document.getElementById('f-lotArea').disabled,true);assert.equal(t.document.getElementById('f-floor').disabled,false);}else assert.equal(t.document.getElementById('floors-group').disabled,false);
+ }
+ t.ui.openEditor('property');chooseLocation(t,'city:Debrecen');submitEntity(t,{title:'Ház mezőtisztítás',type:'Ház',price:'99.5',area:'120.5',wholeRooms:'2',halfRooms:'3',lotArea:'650',floor:'3',balcony:'on',elevator:'on',images:''});await settle();
+ const property=t.model.getState().properties.find(item=>item.title==='Ház mezőtisztítás');assert.ok(property);assert.equal(property.floor,null);assert.equal(property.balcony,false);assert.equal(property.elevator,false);
+ t.ui.openEditor('search');chooseLocation(t,'city:Debrecen');submitEntity(t,[...Object.entries({...searchValues('Ház keresési mezőtisztítás'),type:'Ház',balcony:'on',elevator:'on'}),['floors','-1'],['heatingTypes','Gázkazán'],['heatingTypes','Hőszivattyú']]);await settle();
+ const search=t.model.getState().searches.find(item=>item.title==='Ház keresési mezőtisztítás');assert.ok(search);assert.deepEqual([...search.floors],[]);assert.equal(search.balcony,false);assert.equal(search.elevator,false);assert.deepEqual([...search.heatingTypes],['Gázkazán','Hőszivattyú']);
+});
+
+test('legacy arbitrary room totals are never rounded and existing heating or parking text remains selectable',async()=>{
+ const demo=createModel({getItem:()=>null,setItem:()=>{}}).getState();demo.properties[0]={...demo.properties[0],id:'legacy-property',rooms:3.2,wholeRooms:null,halfRooms:null,heatingType:'Régi vegyes rendszer',parkingType:'Régi garázs és beálló',parkingTypes:undefined};
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{getState:async()=>demo}});t.ui.openEditor('property','legacy-property');const html=t.document.getElementById('modal-root').innerHTML;
+ assert.equal(t.document.getElementById('f-wholeRooms').value,'');assert.equal(t.document.getElementById('f-halfRooms').value,'');assert.match(html,/<option value="Régi vegyes rendszer" selected>Meglévő érték: Régi vegyes rendszer<\/option>/);assert.match(html,/name="parkingTypes" value="Régi garázs és beálló" checked/);
 });

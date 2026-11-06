@@ -100,8 +100,7 @@ public class LocationTests
         Assert.Throws<ApiException>(() => Rules.Apply(new Property(), PropertyInputAt("city:Debrecen", "Ház", 0m)));
         Rules.Apply(property, PropertyInputAt("city:Debrecen", "Lakás", 1240m));
         Assert.Null(property.LotArea);
-        Rules.Apply(property, PropertyInputAt("city:Debrecen", "Ház", null));
-        Assert.Null(property.LotArea);
+        Assert.Throws<ApiException>(() => Rules.Apply(property, PropertyInputAt("city:Debrecen", "Ház", null)));
     }
 
     [Fact]

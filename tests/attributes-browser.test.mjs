@@ -47,20 +47,20 @@ async function verify(browser,viewport){
   assert.equal(saved.ceilingHeight,'');
   await openNew(page,interact,'property');await location(page,interact);
   const propertyTitle=`Opcionális ingatlanadatok – ${viewport.name}`;
-  await page.locator('#f-title').fill(propertyTitle);await page.locator('#f-price').fill('85');await page.locator('#f-area').fill('65');await page.locator('#f-rooms').fill('3');
+  await page.locator('#f-title').fill(propertyTitle);await page.locator('#f-price').fill('85');await page.locator('#f-area').fill('65');await page.locator('#f-wholeRooms').fill('3');await page.locator('#f-halfRooms').fill('0');
   for(const name of ['condition','building','constructionAge','view','ceilingHeight','floor','insulated','airConditioning','solarPanels'])assert.equal(await page.locator(`#f-${name}`).inputValue(),'');
   await save(page,interact);
   let property=(await state(page)).properties.find(value=>value.title===propertyTitle);assert.ok(property);
   for(const name of ['floor','insulated','airConditioning','solarPanels'])assert.equal(property[name],null);
   await edit(page,interact,'property',property.id);
   for(const [name,value] of Object.entries({condition:'Új/felújított',building:'Csúsztatott zsalu',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m alatti',floor:'-1',insulated:'false',airConditioning:'true',solarPanels:''}))await page.locator(`#f-${name}`).selectOption(value);
-  await page.locator('#f-heatingType').fill('Hőszivattyú és padlófűtés');await page.locator('#f-energyRating').fill('A+');await page.locator('#f-parkingType').fill('Udvari beálló');
+  await page.locator('#f-heatingType').selectOption('Hőszivattyú');await page.locator('#f-secondaryHeatingType').selectOption('Klíma');await page.locator('#f-energyRating').fill('A+');await page.locator('input[name="parkingTypes"][value="Udvari beálló"]').check();await page.locator('input[name="parkingTypes"][value="Garázs"]').check();
   await save(page,interact);
   property=(await state(page)).properties.find(value=>value.id===property.id);
-  assert.equal(property.floor,-1);assert.equal(property.insulated,false);assert.equal(property.airConditioning,true);assert.equal(property.solarPanels,null);assert.equal(property.heatingType,'Hőszivattyú és padlófűtés');assert.equal(property.energyRating,'A+');
+  assert.equal(property.floor,-1);assert.equal(property.insulated,false);assert.equal(property.airConditioning,true);assert.equal(property.solarPanels,null);assert.equal(property.heatingType,'Hőszivattyú');assert.equal(property.secondaryHeatingType,'Klíma');assert.equal(property.energyRating,'A+');assert.deepEqual(property.parkingTypes,['Udvari beálló','Garázs']);assert.equal(property.wholeRooms,3);assert.equal(property.halfRooms,0);assert.equal(property.rooms,3);
   await edit(page,interact,'property',property.id);
   assert.equal(await page.locator('#f-floor').inputValue(),'-1');assert.equal(await page.locator('#f-insulated').inputValue(),'false');assert.equal(await page.locator('#f-airConditioning').inputValue(),'true');assert.equal(await page.locator('#f-solarPanels').inputValue(),'');
-  assert.equal(await page.locator('#f-building').inputValue(),'Csúsztatott zsalu');assert.equal(await page.locator('#f-parkingType').inputValue(),'Udvari beálló');
+  assert.equal(await page.locator('#f-building').inputValue(),'Csúsztatott zsalu');assert.equal(await page.locator('#f-heatingType').inputValue(),'Hőszivattyú');assert.equal(await page.locator('#f-secondaryHeatingType').inputValue(),'Klíma');assert.equal(await page.locator('input[name="parkingTypes"][value="Udvari beálló"]').isChecked(),true);assert.equal(await page.locator('input[name="parkingTypes"][value="Garázs"]').isChecked(),true);assert.equal(await page.locator('#f-wholeRooms').inputValue(),'3');assert.equal(await page.locator('#f-halfRooms').inputValue(),'0');
   assert.deepEqual(errors,[],'Optional attribute forms must not emit frontend errors');
   console.log(`Attributes browser ${viewport.name}: optional defaults, multiple selections, reload/edit persistence, clearing, basement and true/false/unknown amenities passed.`);
  }catch(error){await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`attributes-${viewport.name}-failure.png`),fullPage:true}).catch(()=>{});throw error;}

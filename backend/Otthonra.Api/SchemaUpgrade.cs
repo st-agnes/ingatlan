@@ -14,6 +14,7 @@ public static class SchemaUpgrade
 {
     public const string LocationsVersion = "20261102-locations-and-lot-area";
     public const string PropertyAttributesVersion = "20261105-property-attributes";
+    public const string SellerFormDetailsVersion = "20261106-seller-form-details";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
@@ -33,7 +34,12 @@ public static class SchemaUpgrade
         ("SearchRequests", "ConstructionAgesJson", "longtext NULL"),
         ("SearchRequests", "ViewsJson", "longtext NULL"),
         ("SearchRequests", "CeilingHeight", "varchar(255) NOT NULL DEFAULT ''"),
-        ("SearchRequests", "FloorsJson", "longtext NULL")
+        ("SearchRequests", "FloorsJson", "longtext NULL"),
+        ("Properties", "WholeRooms", "int NULL"),
+        ("Properties", "HalfRooms", "int NULL"),
+        ("Properties", "SecondaryHeatingType", "varchar(255) NOT NULL DEFAULT ''"),
+        ("Properties", "ParkingTypesJson", "longtext NULL"),
+        ("SearchRequests", "HeatingTypesJson", "longtext NULL")
     ];
 
     public static async Task ApplyAsync(AppDb db, CancellationToken cancellationToken = default)
@@ -58,6 +64,7 @@ public static class SchemaUpgrade
             }
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", LocationsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", PropertyAttributesVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", SellerFormDetailsVersion));
         }
         finally
         {

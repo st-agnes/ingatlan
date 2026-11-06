@@ -54,9 +54,10 @@ A webes felület önmagában böngészős demóként is használható. Demómód
 - Egy keresésben több település és budapesti kerület is választható, például Budapest V. kerület, Budapest IX. kerület, Solymár és Pilisvörösvár. Bármely kiválasztott hely megfelelhet; a teljes Budapest választása minden kerületet elfogad.
 - 24 KSH szerinti városkörnyék is kiválasztható a keresésben, például „Budapest és környéke (81 település)” és „Debrecen és környéke (13 település)”. A szám a központot is tartalmazza; a csoportok konkrét településekkel és kerületekkel együtt használhatók. [Források és teljes lista](docs/LOCATION-DATA.md#város-és-környéke-csoportok).
 - A helyszínlista a beviteli mező alatt jelenik meg, és máshová kattintva választás nélkül bezárható. Új keresés mentése után külön visszajelzés és „Ingatlanok felfedezése” gomb segít az aktiválásban.
-- Keresésnél a minimumár, a maximum alapterület és a maximum szobaszám elhagyható; az üres mező valóban nyitott korlát. Házhoz telekméret is megadható.
-- Opcionális, több értéket elfogadó keresési feltételek: állapot, falazat, épületkor, kilátás és emelet; külön választható belmagasság. Az ingatlanon egy érték adható meg, szintén opcionálisan.
-- Eladói fűtéstípus, szigetelés, energetikai besorolás, légkondi, napelem és parkolóhely. Az igen/nem mezők az ismeretlen értéket is megőrzik. Részletes értékek és API-mezők: [Ingatlanparaméterek](docs/PROPERTY-PARAMETERS.md).
+- Keresésnél a minimumár, a maximum alapterület és a maximum szobaszám elhagyható; az üres mező valóban nyitott korlát. Házhoz kötelező telekméretet megadni; emeletet, erkélyt és liftet nem kérünk.
+- Opcionális, több értéket elfogadó keresési feltételek: állapot, falazat, épületkor, kilátás, fűtéstípus és emelet; külön választható belmagasság. Az ingatlanon egy érték adható meg, szintén opcionálisan.
+- Eladói fő- és kiegészítő fűtés közös legördülő listából, több parkolóhely kijelölése; szigetelés, energetikai besorolás, légkondi, napelem és parkolóhely. Az igen/nem mezők az ismeretlen értéket is megőrzik. Részletes értékek és API-mezők: [Ingatlanparaméterek](docs/PROPERTY-PARAMETERS.md).
+- Külön egész- és félszobaszám, az összetétel megőrzésével; a keresési szobaszám az egész + fél / 2 összegre vonatkozik. A számmezőkben a negatív érték bevitele blokkolt.
 - Hely, típus, ár, alapterület, szobaszám és a megadott opcionális paraméterek szerinti megfelelés; a már elbírált párok kizárása.
 - JWT-hitelesítés, sózott PBKDF2-jelszótárolás, tulajdonosi jogosultságok, rejtett elérhetőségek.
 - Végleges, újraküldés esetén egyszer feldolgozott döntések; tranzakciós kreditlevonás, kreditnapló és kölcsönös párosítás.
@@ -115,7 +116,7 @@ A JavaScript-tesztek a katalógust, a modellt, az API-adaptert, az offline felü
 
 A jelenlegi kiadás megőrzi a MySQL-adatokat és a böngészős demó mentett döntéseit, találatait. `Database__Initialize=true` esetén az indulás az EF `EnsureCreated` után lefuttatja a `SchemaUpgrade` additív, ismételhető frissítését (`20261102-locations-and-lot-area`): hozzáadja a helyazonosító- és telekméretmezőket. A meglévő helyadatokat a rendszer az ismert település- és kerületnevekből értelmezi. Frissítéshez indítsd újra az új verziót a meglévő kötettel; az adatbázist és a Docker-kötetet nem kell törölni.
 
-Az opcionális ingatlanparaméterekhez a `20261105-property-attributes` verzió új oszlopokat ad hozzá a meglévő sorok és kapcsolatok megőrzésével. Ehhez az új backendképet kell telepíteni; a korábbi kép ismételt használata ezt a fejlesztést nem tartalmazza.
+Az opcionális ingatlanparaméterekhez a `20261105-property-attributes` verzió új oszlopokat ad hozzá a meglévő sorok és kapcsolatok megőrzésével. A `20261106-seller-form-details` a szobabontást, kiegészítő fűtést, több parkolóhelyet és keresési fűtésszűrőt adja hozzá. Ehhez az új backendképet kell telepíteni; a korábbi kép ismételt használata ezt a fejlesztést nem tartalmazza.
 
 A backend Docker-buildjének kontextusa a tároló gyökere, mert a közös településkatalógust is beágyazza. A Compose ezt már beállítja; közvetlen buildhez a gyökérből használd a `docker build -f backend/Dockerfile .` parancsot.
 
