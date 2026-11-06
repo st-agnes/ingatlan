@@ -89,9 +89,9 @@ public class SellerFormTests
 
     [Theory]
     [InlineData(null)]
-    [InlineData(0)]
-    [InlineData(-1)]
-    [InlineData(10000001)]
+    [InlineData(0d)]
+    [InlineData(-1d)]
+    [InlineData(10000001d)]
     public void HousesRequireAValidLotAreaOnEverySave(double? lotArea)
     {
         var property = new Property { Type = "Ház", LotArea = null };
