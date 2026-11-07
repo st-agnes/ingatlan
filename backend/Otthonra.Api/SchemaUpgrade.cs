@@ -15,6 +15,7 @@ public static class SchemaUpgrade
     public const string LocationsVersion = "20261102-locations-and-lot-area";
     public const string PropertyAttributesVersion = "20261105-property-attributes";
     public const string SellerFormDetailsVersion = "20261106-seller-form-details";
+    public const string AccountTypesAndReportsVersion = "20261107-account-types-and-reports";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
@@ -39,7 +40,8 @@ public static class SchemaUpgrade
         ("Properties", "HalfRooms", "int NULL"),
         ("Properties", "SecondaryHeatingType", "varchar(255) NOT NULL DEFAULT ''"),
         ("Properties", "ParkingTypesJson", "longtext NULL"),
-        ("SearchRequests", "HeatingTypesJson", "longtext NULL")
+        ("SearchRequests", "HeatingTypesJson", "longtext NULL"),
+        ("Users", "AccountType", "varchar(20) NOT NULL DEFAULT 'private'")
     ];
 
     public static async Task ApplyAsync(AppDb db, CancellationToken cancellationToken = default)
@@ -62,9 +64,29 @@ public static class SchemaUpgrade
                 if (!exists)
                     await Execute(connection, $"ALTER TABLE `{addition.Table}` ADD COLUMN `{addition.Column}` {addition.Definition}", cancellationToken);
             }
+            // EnsureCreated does not add tables once a database contains user
+            // tables. Keep the new report table additive for those installations.
+            // Guid columns match Pomelo's char(36)/ASCII mapping and user keys.
+            await Execute(connection, """
+                CREATE TABLE IF NOT EXISTS `UserReports` (
+                    `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+                    `ReporterId` char(36) COLLATE ascii_general_ci NOT NULL,
+                    `ReportedUserId` char(36) COLLATE ascii_general_ci NOT NULL,
+                    `EntityKind` varchar(255) NOT NULL,
+                    `EntityId` char(36) COLLATE ascii_general_ci NOT NULL,
+                    `Reason` varchar(255) NOT NULL,
+                    `CreatedAt` datetime(6) NOT NULL,
+                    CONSTRAINT `PK_UserReports` PRIMARY KEY (`Id`),
+                    CONSTRAINT `FK_UserReports_Users_ReporterId` FOREIGN KEY (`ReporterId`) REFERENCES `Users` (`Id`) ON DELETE RESTRICT,
+                    CONSTRAINT `FK_UserReports_Users_ReportedUserId` FOREIGN KEY (`ReportedUserId`) REFERENCES `Users` (`Id`) ON DELETE RESTRICT,
+                    UNIQUE KEY `IX_UserReports_ReporterId_ReportedUserId` (`ReporterId`, `ReportedUserId`),
+                    KEY `IX_UserReports_ReportedUserId` (`ReportedUserId`)
+                ) CHARACTER SET=utf8mb4
+                """, cancellationToken);
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", LocationsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", PropertyAttributesVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", SellerFormDetailsVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", AccountTypesAndReportsVersion));
         }
         finally
         {

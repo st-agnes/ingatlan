@@ -23,3 +23,18 @@
 .attribute-section .field select{min-height:44px}
 @media(max-width:650px){.attribute-section{margin:20px 0;padding-top:18px}.attribute-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.attribute-choice{min-height:46px;font-size:12px}.attribute-section .form-row{grid-template-columns:1fr;gap:0}.attribute-section .field input,.attribute-section .field select{font-size:16px}.detail-grid{grid-template-columns:1fr;gap:0}}
 @media(max-width:650px){.room-counts{grid-template-columns:1fr;gap:0}#entity-form input[type="number"]{font-size:16px}}
+
+/* Declared professional accounts and account-report controls. */
+.agent-badge{display:inline-flex;align-items:center;gap:5px;max-width:100%;padding:5px 8px;margin:0 0 9px;border:1px solid #a8bec8;border-radius:7px;background:#edf4f7;color:#294c5c;font-size:11px;font-weight:600;line-height:1.35;white-space:normal;vertical-align:middle}
+.agent-badge svg{width:14px;height:14px;flex:none}
+.match-property .agent-badge{display:flex;width:fit-content;margin:5px 0}
+.match-person .agent-badge,.chat-header .agent-badge,.conversation .agent-badge{margin:3px 0 4px}
+.report-tools{display:flex;justify-content:flex-end;margin:9px 0 5px}
+.report-button{display:inline-flex;align-items:center;gap:6px;max-width:100%;min-height:36px;padding:6px 1px;background:transparent;border:0;color:#6e7966;font:inherit;font-size:11px;line-height:1.5;text-align:left;cursor:pointer}
+.report-button svg{width:15px;height:15px;flex:none}
+.report-button:hover:not(:disabled){color:#904c35;text-decoration:underline}
+.report-button:focus-visible{outline:2px solid #718a70;outline-offset:3px;border-radius:3px}
+.report-button:disabled{color:#72836a;cursor:default}
+.account-type-info{margin:9px 0 18px!important;font-size:13px!important}
+.report-actions{flex-wrap:wrap}
+@media(max-width:650px){.report-button{min-height:44px;font-size:12px}.agent-badge{font-size:11px}.report-actions .btn{flex:1;justify-content:center}}

@@ -1,6 +1,7 @@
 import { model as demoModel } from './model.js';
 import { getLocation, resolveLegacyLocations, isPropertyLocation } from './locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
+import {normalizeAccountType,likeCost} from './accounts.js';
 
 export const API_CONFIG_KEY = 'otthonra.api';
 export const hostedMode = () => globalThis.OTTHONRA_CONFIG?.mode === 'api';
@@ -79,7 +80,7 @@ function propertyFromApi(value) {
   if (!value) return null;
   const location = entityLocations(value, 'property')[0] || null;
   return normalizePropertyAttributes({
-    id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''),
+    id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''), ownerAccountType:normalizeAccountType(value.ownerAccountType),
     title: value.title || '', locationId:location?.id || '', location:clone(location), city: location?.city ?? value.city ?? '', district: location ? location.district || '' : value.district ?? '', neighborhood: value.neighborhood || '', address: value.address || '', description: value.description || '', createdAt: value.createdAt,
     type: value.type || value.propertyType || 'Lakás',
     price: millions(value.priceHuf ?? value.price), area: numeric(value.area ?? value.areaSqm ?? value.sizeSqm), rooms: numeric(value.rooms ?? value.roomCount), wholeRooms:value.wholeRooms, halfRooms:value.halfRooms,
@@ -95,7 +96,7 @@ function searchFromApi(value) {
   if (!value) return null;
   const locations = entityLocations(value, 'search');
   return normalizeSearchAttributes({
-    id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''),
+    id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''), ownerAccountType:normalizeAccountType(value.ownerAccountType),
     title: value.title || '', locationIds:locations.map(location=>location.id), locations:clone(locations), city: locations[0]?.city ?? value.city ?? '', districts: locations.filter(location=>location.city===locations[0]?.city&&location.district).map(location=>location.district), description: value.description || '', moveIn: value.moveIn || '', buyerName: value.buyerName || '', financing: value.financing || '', avatar: value.avatar || '', createdAt: value.createdAt,
     type: value.type || value.propertyType || 'Lakás',
     minPrice: millions(value.minPriceHuf ?? value.minPrice ?? null), maxPrice: millions(value.maxPriceHuf ?? value.maxPrice ?? null),
@@ -170,7 +171,7 @@ function matchFromApi(value) {
   return {
     ...clone(value), id: String(value.id),
     property: propertyFromApi(value.property), search: searchFromApi(value.search ?? value.searchRequest),
-    partner: { ...clone(partner), id: String(partner.id ?? partner.userId ?? ''), name: partner.name || partner.displayName || '', avatar: partner.avatar || initials(partner.name || partner.displayName), email: partner.email || '', phone: partner.phone || partner.phoneNumber || '' },
+    partner: { ...clone(partner), accountType:normalizeAccountType(partner.accountType), id: String(partner.id ?? partner.userId ?? ''), name: partner.name || partner.displayName || '', avatar: partner.avatar || initials(partner.name || partner.displayName), email: partner.email || '', phone: partner.phone || partner.phoneNumber || '' },
     messages: rows(value.messages).map(messageFromApi), unread: Number(value.unread ?? value.unreadCount ?? 0)
   };
 }
@@ -185,12 +186,14 @@ export class ApiModel {
     const active = rawActive ? { kind: String(rawActive.kind).toLowerCase() === 'property' ? 'property' : 'search', id: String(rawActive.id ?? rawActive.entityId ?? '') || null } : { kind: String(profile.activeKind).toLowerCase() === 'property' ? 'property' : 'search', id: profile.activeEntityId == null ? null : String(profile.activeEntityId) };
     this.active = active;
     return {
-      user: { id: String(user.id), name: user.name || user.displayName || '', email: user.email || '', phone: user.phone || user.phoneNumber || '', avatar: user.avatar || initials(user.name || user.displayName) },
+      user: { accountType:normalizeAccountType(user.accountType), id: String(user.id), name: user.name || user.displayName || '', email: user.email || '', phone: user.phone || user.phoneNumber || '', avatar: user.avatar || initials(user.name || user.displayName) },
       credits: Number(profile.credits ?? profile.creditBalance ?? profile.balance ?? user.credits ?? 0), active,
       properties: rows(entities.properties).map(propertyFromApi), searches: rows(entities.searches || entities.searchRequests).map(searchFromApi),
       decisions: rows(entities.decisions || profile.decisions).map(d=>({...clone(d),id:String(d.id),actorId:String(d.actorId),propertyId:String(d.propertyId),searchId:String(d.searchId??d.searchRequestId),property:propertyFromApi(d.property),search:searchFromApi(d.search??d.searchRequest)})),
       ledger: rows(ledgerResponse.ledger || ledgerResponse).map(entry => ({ ...clone(entry), amount: Number(entry.amount ?? entry.delta ?? 0), description: entry.description || entry.reason || '', createdAt: entry.createdAt })),
-      createdAt: user.createdAt
+      createdAt: user.createdAt,
+      likeCost:active?.id?likeCost(user.accountType,active.kind):0,
+      reportedOwnerIds:[...new Set((Array.isArray(entities.reportedOwnerIds)?entities.reportedOwnerIds:[]).map(String))]
     };
   }
   async feed() {
@@ -219,6 +222,10 @@ export class ApiModel {
     return kind === 'property' ? propertyFromApi(result) : searchFromApi(result);
   }
   async deleteEntity(kind, id) { const result = await this.call(`/${kind === 'property' ? 'properties' : 'searches'}/${encodeURIComponent(id)}`, 'DELETE'); this.active = null; return result; }
+  async reportAccount(entityKind,entityId) {
+    if(!['property','search'].includes(entityKind)||typeof entityId!=='string'||!entityId.trim())throw new Error('Érvénytelen jelentési profil.');
+    return this.call('/reports','POST',{entityKind,entityId});
+  }
   async updateProfile(data) { return this.call('/me', 'PUT', { name: data.name, email: data.email, phone: data.phone }); }
   async buyDemoCredits(amount) { return this.call('/credits/demo-topup', 'POST', { amount: Number(amount) }); }
   async createCheckout(amount) {
@@ -244,7 +251,8 @@ export function getModel() {
 export async function connectApi(baseUrl, email, password, registerData) {
   const base = apiBase(baseUrl);
   if (hostedMode() && base !== hostedApiBase()) throw new Error('Ehhez a munkatérhez a saját webcímén jelentkezhetsz be.');
-  const result = await request(base, null, registerData ? '/auth/register' : '/auth/login', 'POST', { ...(registerData || {}), email: String(email).trim(), password: String(password) });
+  const registration=registerData?{...registerData,accountType:normalizeAccountType(registerData.accountType,{strict:true})}:{};
+  const result = await request(base, null, registerData ? '/auth/register' : '/auth/login', 'POST', { ...registration, email: String(email).trim(), password: String(password) });
   const token = result?.token || result?.accessToken;
   if (!token) throw new Error('Az API nem küldött hitelesítési tokent.');
   const config = { baseUrl: base, token };

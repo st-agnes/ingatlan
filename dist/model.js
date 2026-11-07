@@ -1,5 +1,6 @@
 import { getLocation, resolveLegacyLocations, matchesLocations, isPropertyLocation } from './locations.js';
 import {normalizePropertyAttributes, normalizePropertyRooms, normalizeSearchAttributes, attributesCompatible} from './attributes.js';
+import {normalizeAccountType,likeCost} from './accounts.js';
 
 /** Browser-only demonstration store. Real deployments use the authenticated .NET API. */
 export const STORAGE_KEY = 'otthonra.demo.v3';
@@ -31,13 +32,16 @@ function withLocations(entity, kind, strict = false) {
   return {...entity, locationIds:locations.map(location=>location.id), locations:clone(locations), city:locations[0]?.city ?? entity.city ?? '', districts:locations.filter(location=>location.city === locations[0]?.city && location.district).map(location=>location.district)};
 }
 function migrateLocations(state) {
+  state.users=state.users.map(user=>({...user,accountType:normalizeAccountType(user.accountType)}));
+  state.reports=Array.isArray(state.reports)?state.reports:[];
   state.properties = state.properties.map(entity=>normalizePropertyAttributes(withLocations(entity, 'property')));
   state.searches = state.searches.map(entity=>normalizeSearchAttributes(withLocations(entity, 'search')));
   return state;
 }
-const visibleEntity = entity => {
+const visibleEntity = (entity,users) => {
   const result = clone(entity);
   delete result.email; delete result.phone;
+  result.ownerAccountType=normalizeAccountType(users?.find(user=>user.id===entity.ownerId)?.accountType);
   return result;
 };
 
@@ -46,7 +50,7 @@ function seed(now) {
   const users = [
     {id:'me',name:'Nagy Anna',email:'anna@example.hu',phone:'+36 30 555 0123',avatar:'NA'},
     {id:'u1',name:'Kovács Péter',email:'peter@example.hu',phone:'+36 30 555 0141',avatar:'KP'},
-    {id:'u2',name:'Szabó Eszter',email:'eszter@example.hu',phone:'+36 20 555 0142',avatar:'SZE'},
+    {id:'u2',accountType:'agent',name:'Szabó Eszter',email:'eszter@example.hu',phone:'+36 20 555 0142',avatar:'SZE'},
     {id:'u3',name:'Varga Dániel',email:'daniel@example.hu',phone:'+36 70 555 0143',avatar:'VD'},
     {id:'u4',name:'Tóth Réka',email:'reka@example.hu',phone:'+36 30 555 0144',avatar:'TR'},
     {id:'u5',name:'Farkas Bence',email:'bence@example.hu',phone:'+36 20 555 0145',avatar:'FB'},
@@ -124,11 +128,11 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     const reciprocal=s.decisions.some(d=>d.propertyId===property.id&&d.searchId===search.id&&d.actorKind==='property'&&d.liked)&&s.decisions.some(d=>d.propertyId===property.id&&d.searchId===search.id&&d.actorKind==='search'&&d.liked);
     if(!reciprocal)return null;
     const partner=s.users.find(u=>u.id===(property.ownerId===s.userId?search.ownerId:property.ownerId));
-    return {...clone(match),property:visibleEntity(property),search:visibleEntity(search),partner:clone(partner)};
+    return {...clone(match),property:visibleEntity(property,s.users),search:visibleEntity(search,s.users),partner:clone(partner)};
   };
   return {
     getState() {
-      return clone({user:state.users.find(u=>u.id===state.userId),credits:state.credits,active:state.active,properties:state.properties.filter(p=>p.ownerId===state.userId),searches:state.searches.filter(q=>q.ownerId===state.userId),decisions:state.decisions.filter(d=>own(state,d.actorKind,d.actorId)).map(d=>({...d,property:visibleEntity(state.properties.find(p=>p.id===d.propertyId)),search:visibleEntity(state.searches.find(q=>q.id===d.searchId))})),ledger:state.ledger,createdAt:state.createdAt});
+      return clone({user:state.users.find(u=>u.id===state.userId),credits:state.credits,active:state.active,properties:state.properties.filter(p=>p.ownerId===state.userId).map(p=>visibleEntity(p,state.users)),searches:state.searches.filter(q=>q.ownerId===state.userId).map(q=>visibleEntity(q,state.users)),decisions:state.decisions.filter(d=>own(state,d.actorKind,d.actorId)).map(d=>({...d,property:visibleEntity(state.properties.find(p=>p.id===d.propertyId),state.users),search:visibleEntity(state.searches.find(q=>q.id===d.searchId),state.users)})),ledger:state.ledger,createdAt:state.createdAt,likeCost:state.active?.id?likeCost(state.users.find(user=>user.id===state.userId)?.accountType,state.active.kind):0,reportedOwnerIds:[...new Set(state.reports.filter(report=>report.reporterId===state.userId).map(report=>report.reportedUserId))]});
     },
     feed() {
       const active=own(state,state.active.kind,state.active.id);
@@ -145,7 +149,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         const boundedBudget=search.minPrice!=null&&search.maxPrice!=null;
         const budgetFit=boundedBudget?Math.max(0,1-Math.abs(property.price-(search.minPrice+search.maxPrice)/2)/Math.max(1,search.maxPrice-search.minPrice)):0.75;
         const score=Math.min(99,Math.round(92+budgetFit*5+(likedYou?2:0)));
-        const data=visibleEntity(candidate);
+        const data=visibleEntity(candidate,state.users);
         if(state.active.kind==='property') {
           const person=state.users.find(u=>u.id===candidate.ownerId);
           data.buyerName ||= person?.name?.split(' ').at(-1)||'Érdeklődő';
@@ -163,11 +167,11 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         const property=s.properties.find(p=>p.id===pair.propertyId),search=s.searches.find(q=>q.id===pair.searchId);
         if(!active||active.archived||(s.active.kind==='property'?property?.id:search?.id)!==active.id||!isCompatible(property,search))throw new Error('Ez az ajánlás már nem érhető el az aktív profilodhoz.');
         if(s.decisions.some(d=>d.propertyId===pair.propertyId&&d.searchId===pair.searchId&&d.actorKind===s.active.kind))throw new Error('Erről az ajánlásról már döntöttél.');
-        const charged=s.active.kind==='property'&&liked?SELLER_LIKE_COST:0;
-        if(s.credits<charged)throw new Error('Nincs elegendő kredited. Az ajánláshoz 2 kredit szükséges.');
+        const charged=liked?likeCost(s.users.find(user=>user.id===s.userId)?.accountType,s.active.kind):0;
+        if(s.credits<charged)throw new Error(`Nincs elegendő kredited. A kedveléshez ${charged} kredit szükséges.`);
         s.credits-=charged;
-        if(charged)s.ledger.unshift({id:uid('credit'),amount:-charged,type:'seller_like',description:`Ingatlan ajánlása: ${search.title}`,propertyId:property.id,searchId:search.id,createdAt:now()});
-        s.decisions.push({id:uid('decision'),actorKind:s.active.kind,actorId:active.id,...pair,liked,createdAt:now()});
+        if(charged)s.ledger.unshift({id:uid('credit'),amount:-charged,type:s.active.kind==='property'?'seller_like':'agent_search_like',description:s.active.kind==='property'?`Ingatlan ajánlása: ${search.title}`:`Közvetítői keresés kedvelése: ${property.title}`,propertyId:property.id,searchId:search.id,createdAt:now()});
+        s.decisions.push({id:uid('decision'),actorKind:s.active.kind,actorId:active.id,...pair,liked,charged,createdAt:now()});
         let match=null;
         if(liked&&s.decisions.some(d=>d.propertyId===pair.propertyId&&d.searchId===pair.searchId&&d.actorKind!==s.active.kind&&d.liked)) {
           let record=s.matches.find(m=>m.propertyId===pair.propertyId&&m.searchId===pair.searchId);
@@ -188,7 +192,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         if(id&&!existing)throw new Error('Ez a profil nem szerkeszthető.');
         const title=String(data.title??existing?.title??'').trim();
         if(title.length<3||title.length>150)throw new Error('Adj meg egy 3–150 karakteres nevet.');
-        const incoming=clone(data);
+        const incoming=clone(data);delete incoming.ownerAccountType;
         if(kind==='property'){
           const countsSupplied=[incoming.wholeRooms,incoming.halfRooms].some(count=>count!=null&&String(count).trim()!=='');
           if(countsSupplied){
@@ -213,7 +217,23 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         }
         const list=kind==='property'?s.properties:s.searches;
         if(existing)list[list.findIndex(e=>e.id===id)]=entity;else list.push(entity);
-        return entity;
+        return visibleEntity(entity,s.users);
+      });
+    },
+    reportAccount(entityKind,entityId) {
+      if(!['property','search'].includes(entityKind))throw new Error('Érvénytelen profiltípus.');
+      return transact(s=>{
+        const entity=(entityKind==='property'?s.properties:s.searches).find(item=>item.id===entityId&&!item.archived);
+        if(!entity)throw new Error('A jelenteni kívánt profil nem érhető el.');
+        if(entity.ownerId===s.userId)throw new Error('A saját profilodat nem jelentheted.');
+        const owner=s.users.find(user=>user.id===entity.ownerId);
+        if(!owner)throw new Error('A jelenteni kívánt fiók nem található.');
+        if(normalizeAccountType(owner.accountType)!=='private')throw new Error('Csak magánszemélyként megjelölt fiókot jelenthetsz emiatt.');
+        const previous=s.reports.find(report=>report.reporterId===s.userId&&report.reportedUserId===owner.id);
+        if(previous)return {id:previous.id,reported:true,reportedOwnerId:owner.id,alreadyReported:true};
+        const report={id:uid('report'),reporterId:s.userId,reportedUserId:owner.id,entityKind,entityId,reason:'suspected_agent',createdAt:now()};
+        s.reports.push(report);
+        return {id:report.id,reported:true,reportedOwnerId:owner.id,alreadyReported:false};
       });
     },
     deleteEntity(kind,id) {

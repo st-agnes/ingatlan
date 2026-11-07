@@ -10,6 +10,7 @@ public sealed class ApiException(int status, string message) : Exception(message
 public static class Rules
 {
     public const int SellerLikeCost = 2;
+    public const int AgentSearchLikeCost = 1;
     public static Guid UserId(this ClaimsPrincipal principal) => Guid.Parse(principal.FindFirstValue(ClaimTypes.NameIdentifier) ?? throw new ApiException(401, "Bejelentkezés szükséges."));
     public static string Required(string? value, string field, int max = 255)
     {
