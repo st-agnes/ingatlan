@@ -277,17 +277,20 @@ test('owner declarations are available consistently in property and search feeds
  const before=m.getState().user;m.updateProfile({accountType:'agent'});assert.equal(m.getState().user.accountType,before.accountType,'profile updates cannot turn a declaration into a billing switch');
 });
 
-test('reporting records one private UTC receipt per account across entities, without exposing timestamps or changing business state',()=>{
+test('reports retain private UTC timestamps while deduplicating per source entity and selected reason',()=>{
  const storage=store(),at='2026-11-07T09:10:11.000Z',m=createModel(storage,()=>at),before=m.getState(),matches=m.matches();
- const first=m.reportAccount('property','p1');assert.equal(first.reported,true);assert.equal(first.alreadyReported,false);assert.equal(first.reportedOwnerId,'u1');assert.equal('createdAt' in first,false);
+ const first=m.reportAccount('property','p1','suspected_agent');assert.equal(first.reported,true);assert.equal(first.alreadyReported,false);assert.equal(first.reportedOwnerId,'u1');assert.equal('createdAt' in first,false);
  assert.deepEqual(m.getState().reportedOwnerIds,['u1']);assert.equal('reports' in m.getState(),false);
- const repeat=m.reportAccount('search','s1');assert.equal(repeat.id,first.id);assert.equal(repeat.alreadyReported,true);
- const stored=JSON.parse(storage.getItem(STORAGE_KEY));assert.equal(stored.reports.length,1);assert.deepEqual(stored.reports[0],{id:first.id,reporterId:'me',reportedUserId:'u1',entityKind:'property',entityId:'p1',reason:'suspected_agent',createdAt:at});
+ const repeat=m.reportAccount('property','p1');assert.equal(repeat.id,first.id);assert.equal(repeat.alreadyReported,true);
+ const otherEntity=m.reportAccount('search','s1','suspected_agent');assert.notEqual(otherEntity.id,first.id);assert.equal(otherEntity.alreadyReported,false);
+ const otherReason=m.reportAccount('property','p1','misleading_content');assert.notEqual(otherReason.id,first.id);assert.equal(otherReason.alreadyReported,false);
+ const stored=JSON.parse(storage.getItem(STORAGE_KEY));assert.equal(stored.reports.length,3);assert.deepEqual(stored.reports[0],{id:first.id,reporterId:'me',reportedUserId:'u1',entityKind:'property',entityId:'p1',reason:'suspected_agent',createdAt:at});
+ assert.deepEqual(m.getState().reportedEntities,[{entityKind:'property',entityId:'p1',reason:'suspected_agent'},{entityKind:'search',entityId:'s1',reason:'suspected_agent'},{entityKind:'property',entityId:'p1',reason:'misleading_content'}]);
  const after=m.getState();for(const field of ['credits','ledger','decisions','properties','searches','active','user'])assert.deepEqual(after[field],before[field]);assert.deepEqual(m.matches(),matches);
  const again=createModel(storage,()=>new Date().toISOString());assert.deepEqual(again.getState().reportedOwnerIds,['u1']);assert.equal(again.reportAccount('property','p1').alreadyReported,true);assert.equal(JSON.parse(storage.getItem(STORAGE_KEY)).reports[0].createdAt,at);
 });
 
-test('reporting rejects nonexistent, archived, own and already declared agent entities atomically',()=>{
+test('reporting rejects invalid sources and a disguised-agent reason for declared agents atomically',()=>{
  const m=setup(),before=m.getState();
  for(const [kind,id] of [['user','u1'],['property','unknown'],['property','own-p1'],['property','p2'],['search','s2']])assert.throws(()=>m.reportAccount(kind,id));
  assert.deepEqual(m.getState(),before);
@@ -295,4 +298,46 @@ test('reporting rejects nonexistent, archived, own and already declared agent en
  raw.properties.find(p=>p.id==='p1').archived=true;raw.reports=[{id:'other-report',reporterId:'u3',reportedUserId:'u1',reason:'suspected_agent',createdAt:'2026-11-07T00:00:00Z'}];
  storage.setItem(STORAGE_KEY,JSON.stringify(raw));const again=createModel(storage);assert.deepEqual(again.getState().reportedOwnerIds,[],'other reporters are private');
  assert.throws(()=>again.reportAccount('property','p1'),/nem érhető/);assert.equal(JSON.parse(storage.getItem(STORAGE_KEY)).reports.length,1);
+});
+
+test('agents cannot discover or decide about another agent on either side even with forged entity labels',()=>{
+ const storage=store(),initial=createModel(storage);initial.buyDemoCredits(1);const raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.users.find(user=>user.id==='me').accountType='agent';
+ raw.properties.find(item=>item.id==='p2').ownerAccountType='private';raw.searches.find(item=>item.id==='s2').ownerAccountType='private';storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ const m=createModel(storage);assert.ok(m.feed().length);assert.ok(m.feed().every(item=>item.ownerAccountType==='private'));
+ const before=m.getState();for(const liked of [true,false])assert.throws(()=>m.decide({pair:{propertyId:'p2',searchId:'own-s1'}},liked),/nem érhető/);assert.deepEqual(m.getState(),before);
+ m.activate('property','own-p1');assert.ok(m.feed().length);assert.ok(m.feed().every(item=>item.ownerAccountType==='private'));for(const liked of [true,false])assert.throws(()=>m.decide({pair:{propertyId:'own-p1',searchId:'s2'}},liked),/nem érhető/);
+ assert.equal(m.matches().some(match=>match.partner.accountType==='agent'),true,'Historical conversations remain available');
+});
+
+test('general report reasons apply to declared agents and legacy reports migrate without rewriting stored data',()=>{
+ const storage=store(),m=createModel(storage),first=m.reportAccount('property','p2','misleading_content');assert.equal(first.alreadyReported,false);assert.equal(m.reportAccount('property','p2','misleading_content').alreadyReported,true);
+ assert.equal(m.reportAccount('search','s2','other_violation').alreadyReported,false);const before=m.getState();
+ for(const reason of ['',false,'unknown','suspected_agent'])assert.throws(()=>m.reportAccount('property','p2',reason));assert.deepEqual(m.getState(),before);
+ const raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.reports.push({id:'legacy',reporterId:'me',reportedUserId:'u1',entityKind:'property',entityId:'p1',createdAt:'2026-11-01T00:00:00Z'});storage.setItem(STORAGE_KEY,JSON.stringify(raw));const original=storage.getItem(STORAGE_KEY),again=createModel(storage);
+ assert.equal(storage.getItem(STORAGE_KEY),original,'Reading does not rewrite older report rows');assert.ok(again.getState().reportedEntities.some(item=>item.entityId==='p1'&&item.reason==='suspected_agent'));
+ assert.equal(again.reportAccount('property','p1').id,'legacy');assert.equal(JSON.parse(storage.getItem(STORAGE_KEY)).reports.find(report=>report.id==='legacy').createdAt,'2026-11-01T00:00:00Z');
+});
+
+test('incoming likes include only the active entity, expose no contacts, and retain handled and incompatible statuses',()=>{
+ const storage=store(),initial=createModel(storage);initial.buyDemoCredits(1);const raw=JSON.parse(storage.getItem(STORAGE_KEY));
+ raw.properties.find(item=>item.id==='p1').address='Private exact street 42';
+ for(const decision of raw.decisions)if(decision.actorKind==='property')decision.createdAt=decision.propertyId==='p1'?'2026-11-07T00:00:00Z':'2026-11-01T00:00:00Z';
+ raw.decisions.push({id:'newest-incoming',actorKind:'property',actorId:'p3',propertyId:'p3',searchId:'own-s1',liked:true,createdAt:'2026-11-08T00:00:00Z'});
+ raw.decisions.push({id:'own-pass',actorKind:'search',actorId:'own-s1',propertyId:'p3',searchId:'own-s1',liked:false,createdAt:'2026-11-08T00:00:01Z'});
+ raw.decisions.push({id:'different-active',actorKind:'property',actorId:'p4',propertyId:'p4',searchId:'own-s2',liked:true,createdAt:'2026-11-09T00:00:00Z'});
+ raw.searches.find(item=>item.id==='own-s1').maxPrice=70;storage.setItem(STORAGE_KEY,JSON.stringify(raw));const m=createModel(storage),before=storage.getItem(STORAGE_KEY),page=m.incomingLikes({limit:2});
+ assert.deepEqual(page.active,{kind:'search',id:'own-s1'});assert.equal(page.total,5);assert.equal(page.offset,0);assert.equal(page.limit,2);assert.equal(page.hasMore,true);assert.equal(page.likeCost,0);assert.equal(page.items[0].id,'p3');assert.equal(page.items[0].myDecision,'passed');assert.equal(page.items[0].compatible,false);
+ assert.equal(page.items[1].id,'p1');assert.equal(page.items[1].address,'');assert.equal(page.items[1].myDecision,null);assert.equal(page.items[1].likedYou,true);assert.deepEqual(page.items[1].pair,{propertyId:'p1',searchId:'own-s1'});
+ for(const item of page.items){assert.equal('phone' in item,false);assert.equal('email' in item,false);assert.equal('partner' in item,false);assert.equal('contact' in item,false);}
+ const rest=m.incomingLikes({offset:2,limit:100});assert.equal(rest.hasMore,false);assert.equal(rest.items.length,3);assert.ok(rest.items.every(item=>item.myDecision==='liked'&&item.matchId));assert.equal(storage.getItem(STORAGE_KEY),before,'Viewing incoming likes is free and read-only');
+ m.activate('property','own-p1');const seller=m.incomingLikes();assert.deepEqual(seller.active,{kind:'property',id:'own-p1'});assert.equal(seller.items.length,1);assert.equal(seller.items[0].id,'s1');assert.equal(seller.items[0].kind,'search');assert.equal(seller.likeCost,2);
+ for(const options of [{offset:-1},{limit:101},{offset:1.5}])assert.throws(()=>m.incomingLikes(options),/lapozási/);
+});
+
+test('incoming pagination is stable, excludes invalid counterparties and isolates all agent interactions',()=>{
+ const storage=store(),initial=createModel(storage);initial.buyDemoCredits(1);const raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.users.find(user=>user.id==='me').accountType='agent';
+ raw.decisions=raw.decisions.filter(decision=>decision.id!=='seed-prelike');
+ for(const [index,id] of ['p1','p2','p3','p4'].entries())raw.decisions.push({id:'same-time-'+index,actorKind:'property',actorId:id,propertyId:id,searchId:'own-s1',liked:true,createdAt:'2026-11-09T12:00:00Z'});
+ raw.properties.find(item=>item.id==='p4').archived=true;storage.setItem(STORAGE_KEY,JSON.stringify(raw));const m=createModel(storage);const first=m.incomingLikes({limit:1}),next=m.incomingLikes({offset:1,limit:1});assert.equal(first.items[0].id,'p3');assert.equal(next.items[0].id,'p1');assert.ok(m.incomingLikes().items.every(item=>item.ownerAccountType==='private'));assert.equal(first.likeCost,1);
+ const noActive=JSON.parse(storage.getItem(STORAGE_KEY));noActive.active={kind:'search',id:null};storage.setItem(STORAGE_KEY,JSON.stringify(noActive));assert.deepEqual(createModel(storage).incomingLikes(),{active:null,items:[],total:0,offset:0,limit:50,hasMore:false,likeCost:0});
 });

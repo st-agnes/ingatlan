@@ -1,7 +1,7 @@
 import { model as demoModel } from './model.js';
 import { getLocation, resolveLegacyLocations, isPropertyLocation } from './locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
-import {normalizeAccountType,likeCost} from './accounts.js';
+import {normalizeAccountType,likeCost,normalizeReportReason,normalizeIncomingPagination,REPORT_REASON_OPTIONS} from './accounts.js';
 
 export const API_CONFIG_KEY = 'otthonra.api';
 export const hostedMode = () => globalThis.OTTHONRA_CONFIG?.mode === 'api';
@@ -162,6 +162,22 @@ function searchToApi(value) {
     balcony: value.type === 'Ház' ? false : inputBoolean(value.balcony), elevator: value.type === 'Ház' ? false : inputBoolean(value.elevator), moveIn: inputText(value.moveIn), financing: inputText(value.financing), archived: inputBoolean(value.archived)
   };
 }
+function reportSummaries(values) {
+  const unique=new Map();
+  for(const item of Array.isArray(values)?values:[]) {
+    if(!['property','search'].includes(item?.entityKind)||typeof item.entityId!=='string'||!item.entityId||!REPORT_REASON_OPTIONS.some(option=>option.value===item.reason))continue;
+    const value={entityKind:item.entityKind,entityId:item.entityId,reason:item.reason};
+    unique.set(JSON.stringify(value),value);
+  }
+  return [...unique.values()];
+}
+function candidateFromApi(item,activeKind) {
+  const rawProperty=item.property,rawSearch=item.search||item.searchRequest;
+  const propertyId=String(item.propertyId??rawProperty?.id??''),searchId=String(item.searchId??item.searchRequestId??rawSearch?.id??'');
+  const property=activeKind==='search';
+  const entity=property?propertyFromApi(rawProperty||item):searchFromApi(rawSearch||item);
+  return {...entity,kind:property?'property':'search',score:Math.round(Number(item.compatibilityScore??item.score??100)),reasons:clone(item.reasons||[]),pair:{propertyId,searchId},likedYou:!!(item.likedYou??item.hasLiked)};
+}
 function messageFromApi(value) {
   return { ...clone(value), id: String(value.id), senderId: String(value.senderId ?? value.userId ?? ''), text: value.text ?? value.body ?? '', createdAt: value.createdAt };
 }
@@ -193,7 +209,8 @@ export class ApiModel {
       ledger: rows(ledgerResponse.ledger || ledgerResponse).map(entry => ({ ...clone(entry), amount: Number(entry.amount ?? entry.delta ?? 0), description: entry.description || entry.reason || '', createdAt: entry.createdAt })),
       createdAt: user.createdAt,
       likeCost:active?.id?likeCost(user.accountType,active.kind):0,
-      reportedOwnerIds:[...new Set((Array.isArray(entities.reportedOwnerIds)?entities.reportedOwnerIds:[]).map(String))]
+      reportedOwnerIds:[...new Set((Array.isArray(entities.reportedOwnerIds)?entities.reportedOwnerIds:[]).map(String))],
+      reportedEntities:reportSummaries(entities.reportedEntities)
     };
   }
   async feed() {
@@ -209,6 +226,19 @@ export class ApiModel {
       return { ...entity, kind: isProperty ? 'property' : 'search', score: Math.round(Number(item.compatibilityScore ?? item.score ?? 100)), reasons: clone(item.reasons || []), pair: { propertyId, searchId }, likedYou: !!(item.likedYou ?? item.hasLiked), ...(isProperty ? {} : { buyerName: item.buyerName || entity.buyerName || 'Érdeklődő', avatar: item.avatar || entity.avatar || 'É', financing: item.financing || entity.financing }) };
     });
   }
+  async incomingLikes(options={}) {
+    const {offset,limit}=normalizeIncomingPagination(options);
+    const query=new URLSearchParams({offset:String(offset),limit:String(limit)});
+    const response=await this.call('/incoming-likes?'+query);
+    const rawActive=response?.active;
+    const active=rawActive&&['property','search'].includes(rawActive.kind)&&rawActive.id!=null?{kind:rawActive.kind,id:String(rawActive.id)}:null;
+    const items=active?rows(response).map(item=>{
+      const candidate=candidateFromApi(item,active.kind);
+      if(candidate.kind==='property')candidate.address='';
+      return {...candidate,likedYou:true,likedAt:item.likedAt,myDecision:['liked','passed'].includes(item.myDecision)?item.myDecision:null,matchId:item.matchId==null?null:String(item.matchId),compatible:item.compatible!==false};
+    }):[];
+    return {active,items,total:Number(response?.total??items.length),offset:Number(response?.offset??offset),limit:Number(response?.limit??limit),hasMore:!!response?.hasMore,likeCost:Number(response?.likeCost??0)};
+  }
   async decide(item, liked) {
     const result = await this.call('/decisions', 'POST', { propertyId: item.pair.propertyId, searchRequestId: item.pair.searchId, liked: inputBoolean(liked) });
     let match = result.match ? matchFromApi(result.match) : null;
@@ -222,9 +252,9 @@ export class ApiModel {
     return kind === 'property' ? propertyFromApi(result) : searchFromApi(result);
   }
   async deleteEntity(kind, id) { const result = await this.call(`/${kind === 'property' ? 'properties' : 'searches'}/${encodeURIComponent(id)}`, 'DELETE'); this.active = null; return result; }
-  async reportAccount(entityKind,entityId) {
+  async reportAccount(entityKind,entityId,reason) {
     if(!['property','search'].includes(entityKind)||typeof entityId!=='string'||!entityId.trim())throw new Error('Érvénytelen jelentési profil.');
-    return this.call('/reports','POST',{entityKind,entityId});
+    return this.call('/reports','POST',{entityKind,entityId,reason:normalizeReportReason(reason)});
   }
   async updateProfile(data) { return this.call('/me', 'PUT', { name: data.name, email: data.email, phone: data.phone }); }
   async buyDemoCredits(amount) { return this.call('/credits/demo-topup', 'POST', { amount: Number(amount) }); }

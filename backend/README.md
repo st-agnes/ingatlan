@@ -32,14 +32,15 @@ A publikus `POST /auth/register` body: `{name,email,password,phone,accountType}`
 |---|---|---|
 | Helykiegészítés | `GET /locations?q=Deb&limit=8` | `{items:[{id,label,city,district}]}`; hitelesítés nélkül |
 | Profil | `GET`, `PUT /me` | `{id,name,email,phone,accountType,credits,activeKind,activeEntityId,createdAt}`; módosítás: `{name,email,phone}` |
-| Saját entitások | `GET /me/entities` | `{properties,searchRequests,reportedOwnerIds,active:{kind,id}}` |
+| Saját entitások | `GET /me/entities` | `{properties,searchRequests,reportedOwnerIds,reportedEntities:[{entityKind,entityId,reason}],active:{kind,id}}` |
 | Aktiválás | `PUT /me/active` | `{kind:"property"|"search",id}` |
 | Ingatlanok | `GET`, `POST /properties`, `PUT`, `DELETE /properties/{id}` | Saját ingatlanok; a törlés archivál |
 | Keresések | `GET`, `POST /searches`, `PUT`, `DELETE /searches/{id}` | Saját keresési igények; a törlés archivál |
 | Ajánlások | `GET /feed` | `{items:[{property,searchRequest,propertyId,searchRequestId,compatibilityScore,reasons,likedYou}],sellerLikeCost:2,likeCost}` |
-| Jelentés | `POST /reports` | `{entityKind:"property"|"search",entityId}` → `{id,reported:true,reportedOwnerId,alreadyReported}`; első jelentés 201, ismétlés 200 |
+| Beérkező kedvelések | `GET /incoming-likes?offset=0&limit=50` | `{active,items,total,offset,limit,hasMore,likeCost}`; az aktív saját entitás kedvelői |
+| Jelentés | `POST /reports` | `{entityKind:"property"|"search",entityId,reason}` → `{id,reported:true,reportedOwnerId,alreadyReported}`; első jelentés 201, ismétlés 200 |
 | Döntés | `POST /decisions` | `{propertyId,searchRequestId,liked}` → `{matchId,charged,credits}` |
-| Párosítások | `GET /matches` | `[{id,createdAt,property,searchRequest,contact:{id,name,email,phone},messages,unread}]` |
+| Párosítások | `GET /matches` | `[{id,createdAt,property,searchRequest,contact:{id,name,email,phone,accountType},messages,unread}]` |
 | Üzenet | `POST /matches/{id}/messages` | `{text}` → `{id,matchId,senderId,text,createdAt}` |
 | Kreditnapló | `GET /credits/ledger` | `[{id,amount,description,createdAt}]` |
 | Demófeltöltés | `POST /credits/demo-topup` | `{amount:20|50|100|250}`; kizárólag Development + engedélyező kapcsoló esetén |
@@ -54,17 +55,35 @@ A keresés `locationIds` listájában `area:<központ>` csoport is választható
 
 A keresés helyei között VAGY kapcsolat van: `['district:Budapest:5','district:Budapest:9','city:Solymár','city:Pilisvörösvár']` bármelyike megfelelhet. A `city:Budapest` a város összes kerületét elfogadja; egy konkrét kerület csak önmagát. A többi keresési feltételnek is teljesülnie kell. A közös, hálózati szolgáltatás nélkül használható katalógus forrása: [LOCATION-DATA.md](../docs/LOCATION-DATA.md).
 
-A min/max korlátok `null` értéke nyitott határt jelent. A `minPrice`, `maxArea`, `maxRooms` elhagyható; a kliens az üres mezőket `null` értékként küldi, és visszaolvasáskor is megőrzi. A `balcony/elevator=true` kötelező feltétel, a false nem zárja ki az adott tulajdonságot. Az ingatlantípus egyezését is ellenőrzi a rendszer. A keresőoldali kedvelés magánszemélynek ingyenes, közvetítőnek 1 kredit. Az eladói kedvelés mindkét fióktípusnak 2 kredit; az elutasítás ingyenes. A levonást a szerveren tárolt felhasználói típus szabja meg. Saját entitások egymással nem párosíthatók.
+A min/max korlátok `null` értéke nyitott határt jelent. A `minPrice`, `maxArea`, `maxRooms` elhagyható; a kliens az üres mezőket `null` értékként küldi, és visszaolvasáskor is megőrzi. A `balcony/elevator=true` kötelező feltétel, a false nem zárja ki az adott tulajdonságot. Az ingatlantípus egyezését is ellenőrzi a rendszer. A keresőoldali kedvelés magánszemélynek ingyenes, közvetítőnek 1 kredit. Az eladói kedvelés mindkét fióktípusnak 2 kredit; az elutasítás ingyenes. A levonást a szerveren tárolt felhasználói típus szabja meg. Saját entitások egymással nem párosíthatók. Két `agent` fiók egymás hirdetését vagy keresését egyik szerepben sem kapja az ajánlások között; a szerver a közvetlen `POST /decisions` kérést is HTTP 400-zal utasítja el, levonás és új döntés nélkül. Az ellenőrzés a tulajdonosok szerveren tárolt fióktípusából történik.
 
-A döntések egy adott ingatlan–keresés párra és oldalra véglegesek. Újraküldött azonos döntés idempotens és 0 további kreditet von le; ellentétes újraküldés 409. A döntés, a kreditlevonás, a napló és a kölcsönös párosítás egyetlen MySQL-tranzakcióban történik, sorzárolással és adatbázis egyediségi korlátokkal. Az elutasított és már kedvelt párok nem kerülnek vissza az ajánlásokba. Az aktiválás jogosultságot nem ad más felhasználó adatainak módosításához.
+A döntések egy adott ingatlan–keresés párra és oldalra véglegesek. Engedélyezett fiókpárnál az újraküldött azonos döntés idempotens és 0 további kreditet von le; ellentétes újraküldés 409. A döntés, a kreditlevonás, a napló és a kölcsönös párosítás egyetlen MySQL-tranzakcióban történik, sorzárolással és adatbázis egyediségi korlátokkal. Az elutasított és már kedvelt párok nem kerülnek vissza az ajánlásokba. Az aktiválás jogosultságot nem ad más felhasználó adatainak módosításához.
 
 ## Fióktípus és jelentések
 
-A publikus ingatlan- és keresésválaszok `ownerAccountType` mezője a tulajdonos tényleges fióktípusából készül, nem a kliens által küldött hirdetésadatból. Az `agent` jelzés nem oldja fel az elérhetőségek zárolását.
+A publikus ingatlan- és keresésválaszok `ownerAccountType` mezője a tulajdonos tényleges fióktípusából készül, nem a kliens által küldött hirdetésadatból. Felfedezéskor a másik fél típusa „Magánszemély” vagy „Ingatlanközvetítő” jelölést kap. Saját entitásokon a felület elhagyja az ismételt típusjelzést; a teljes profil típusa a beállításokban továbbra is látható. Egy típusjelzés sem oldja fel az elérhetőségek zárolását. A közvetítő–közvetítő kizárás az ajánlásokra, az új döntésekre és a beérkező kedvelések listájára is érvényes; a korábbi párosításokat és beszélgetéseket nem törli.
 
-Hitelesített felhasználó másik, magánszemélyként szereplő fiókot jelenthet egy létező, nem archivált ingatlanon vagy keresésen keresztül. A cél tulajdonosát a szerver keresi ki; saját fiók és már közvetítőként regisztrált fiók nem jelenthető így. A `UserReports` tárolja a bejelentőt, a jelentett fiókot, a forrásentitást, a rögzített `suspected_agent` okot és az UTC `CreatedAt` időbélyeget. A `(ReporterId,ReportedUserId)` egyediség az ismételt és párhuzamos beküldést is egyszeri jelentéssé teszi.
+Hitelesített felhasználó bármely másik fiók létező, nem archivált ingatlanánál vagy keresésénél jelenthet szabálytalanságot. A cél tulajdonosát a szerver keresi ki; saját entitás nem jelenthető. A `POST /reports` `reason` mezőjének értékei:
 
-A jelentés válasza és a felület nem tartalmaz időbélyeget. A `reportedOwnerIds` csak a saját korábbi jelentések célfiókjait adja vissza; más bejelentők és nyilvános jelentésszám nem érhető el. A jelentés nem módosít automatikusan fióktípust, kreditet vagy láthatóságot.
+| Kód | Felületi szöveg | Jelenthető tulajdonos |
+|---|---|---|
+| `suspected_agent` | Ingatlanközvetítő | Csak `private` |
+| `misleading_content` | Hamis, megtévesztő tartalom | `private` vagy `agent` |
+| `other_violation` | Egyéb szabálytalanság | `private` vagy `agent` |
+
+A régi kliensek elhagyott vagy `null` oka `suspected_agent`; a megadott üres vagy ismeretlen kód hibás kérés (HTTP 400). Az „Ingatlanközvetítő” ok eleve közvetítő tulajdonosnál szintén 400. A két általános ok akkor is használható másik közvetítő korábbi hirdetésénél, ha az új ajánlások között a közvetítő–közvetítő szabály miatt nem jelenhet meg.
+
+A `UserReports` tárolja a bejelentőt, a jelentett fiókot, a forrásentitást, a választott okot és az UTC `CreatedAt` időbélyeget. A `(ReporterId,EntityKind,EntityId,Reason)` egyediség miatt azonos forrás és ok ismételt/párhuzamos jelentése ugyanazt a nyugtát adja (elsőként 201, ismétléskor 200). Másik hirdetés vagy másik ok külön jelentés. A gomb további ok jelzésére is elérhető marad.
+
+A jelentés válasza és a felület nem tartalmaz jelentési időbélyeget. A `/me/entities` `reportedEntities` mezője kizárólag az aktuális bejelentő saját `{entityKind,entityId,reason}` összefoglalóit adja vissza. A `reportedOwnerIds` kompatibilitási mező marad; abból nem szabad másik hirdetést vagy okot letiltani. Más bejelentők és nyilvános jelentésszám nem érhető el. A jelentés nem módosít automatikusan fióktípust, kreditet vagy láthatóságot.
+
+## Beérkező kedvelések
+
+A `GET /incoming-likes?offset=0&limit=50` mindig a hitelesített felhasználó aktuálisan aktív, saját ingatlanját vagy keresését kedvelő másik oldali döntéseket listázza. Nem fogad másik tulajdonoshoz tartozó entitásazonosítót a lista céljaként. Aktív profil hiányában üres lapot ad; saját, archivált és közvetítő–közvetítő ellenfelek nem kerülnek bele. Az `offset` tartománya 0–1 000 000, a `limit` tartománya 1–100; hibás lapozási érték HTTP 400. A rendezés a beérkezés időpontja, majd a döntésazonosító szerint csökkenő.
+
+A válasz `{active:{kind,id}|null,items,total,offset,limit,hasMore,likeCost}`. Az `items` az ajánlások publikus páradatait tartalmazza, kiegészítve `likedAt`, `myDecision:null|"liked"|"passed"`, `matchId` és `compatible` mezőkkel. A már viszonzott vagy elutasított kedvelés is megmarad a listán. Ha időközben módosultak a feltételek, `compatible:false` jelzi az eltérést; ilyen új párosítás nem kezdeményezhető. Meglévő találat beszélgetése továbbra is elérhető.
+
+A „Kedveltek” menüpont minden fióktípusnak ingyenesen böngészhető, lapozható, és aktív profilváltáskor az új profil listájára vált. A megnyitás nem hoz létre döntést vagy párosítást. Viszonzáskor a meglévő `/decisions` útvonal, tulajdonosi ellenőrzés és 0/1/2 kredites díjazás érvényes. A listában nincs telefonszám, e-mail-cím vagy pontos cím; kapcsolatot csak a kölcsönös találat `/matches` válasza ad.
 
 ## Adatvédelem és élesítés
 
@@ -76,7 +95,7 @@ A feed és a publikus kártyák nem tartalmaznak felhasználói elérhetőséget
 
 `Database__Initialize=true` esetén az indulás először `EnsureCreated` hívást végez az új adatbázishoz, majd a `SchemaUpgrade.ApplyAsync` fut le a meglévő adatbázison is. A `20261102-locations-and-lot-area` verzió additívan létrehozza a `Properties.LocationId`, `Properties.LotArea` és `SearchRequests.LocationIdsJson` oszlopokat, és a verziót a `__OtthonraSchemaVersions` táblában rögzíti. A lépések ismételhetők, az adatbázis-zár összehangolja a párhuzamos indításokat. Meglévő felhasználót, hirdetést, keresést, döntést, párosítást vagy kreditet nem töröl.
 
-A `20261107-account-types-and-reports` a `Users.AccountType` oszlopot (`private` alapértékkel) és a `UserReports` táblát hozza létre additívan. A korábbi fiókok, kreditek és kapcsolatok megmaradnak; az új jelentéstábla a meglévő `EnsureCreated` adatbázishoz is létrejön.
+A `20261107-account-types-and-reports` a `Users.AccountType` oszlopot (`private` alapértékkel) és a `UserReports` táblát hozza létre additívan. A korábbi fiókok, kreditek és kapcsolatok megmaradnak; az új jelentéstábla a meglévő `EnsureCreated` adatbázishoz is létrejön. A `20261107-interactions-and-report-reasons` ugyanazon sémazár alatt az új bejelentő–entitás–ok egyedi indexre cseréli a korábbi bejelentő–fiók indexet. A meglévő jelentések azonosítói, `suspected_agent` okai és időbélyegei megmaradnak; az ismételt indulás nem írja át őket.
 
 A `20261106-seller-form-details` szintén additívan adja hozzá a `WholeRooms`, `HalfRooms`, `SecondaryHeatingType`, `ParkingTypesJson` és `HeatingTypesJson` oszlopokat. A fűtésválasztások közösek az eladói és keresési oldalon; a keresés csak a fő fűtést szűri. A parkolóhely többértékű, a régi szöveges mező kompatibilis marad. Részletek: [Ingatlanparaméterek](../docs/PROPERTY-PARAMETERS.md).
 

@@ -24,7 +24,9 @@ async function fresh(f){
  for(const row of rows){const user=accounts.find(user=>user.key===row.key);assert.equal(row.profile.accountType,user.accountType??'private');assert.equal(row.profile.credits,100);assert.equal(row.entities.properties.length,DEMO_FIXTURES.filter(item=>item.owner===user.key&&item.kind==='property').length);assert.equal(row.entities.searchRequests.length,DEMO_FIXTURES.filter(item=>item.owner===user.key&&item.kind==='search').length);assert.deepEqual(row.entities.decisions,[]);assert.deepEqual(row.entities.reportedOwnerIds,[]);assert.deepEqual(row.matches,[]);assert.equal(row.ledger.length,1);assert.equal(row.ledger[0].amount,100);assert.ok([...row.entities.properties,...row.entities.searchRequests].every(item=>item.ownerAccountType===(user.accountType??'private')));const active=entity(row,catalog(user.active.key));assert.ok(active);assert.deepEqual(row.entities.active,{kind:user.active.kind,id:active.id});
   const feed=await api('/feed',{token:f.tokens[row.key]});assert.ok(feed.items.length>=30,`${row.key} must start with at least 30 recommendations`);assert.equal(feed.likeCost,user.active.kind==='property'?2:user.accountType==='agent'?1:0);
   const counterpart=item=>user.active.kind==='property'?item.searchRequest:item.property;
-  assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='agent'));assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='private'));
+  if(user.accountType==='agent')assert.ok(feed.items.every(item=>counterpart(item).ownerAccountType==='private'),'Agents must see private counterparties only');
+  else assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='agent'));
+  assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='private'));
  }
  return rows;
 }

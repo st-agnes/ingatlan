@@ -26,12 +26,12 @@ async function verify(f){
  const match=matches.find(x=>x.id===f.matchId);assert.ok(match);assert.equal(match.property.ownerAccountType,'private');assert.equal(match.searchRequest.ownerAccountType,'agent');assert.equal(match.contact.id,f.sellerId);assert.equal(match.contact.accountType,'private');
  const sellerMatches=await call('/matches',{token:f.seller});assert.equal(sellerMatches.find(x=>x.id===f.matchId).contact.accountType,'agent','A private seller must see the matched agent searcher badge');
  const receipt=await call('/reports',{token:f.privateUser,method:'POST',body:{entityKind:'search',entityId:f.sellerSearchId}});
- assert.equal(receipt.id,f.reports[0].id);assert.equal(receipt.alreadyReported,true);assert.equal(Object.hasOwn(receipt,'createdAt'),false);
+ assert.equal(receipt.id,f.reports.find(row=>row.reporterId===f.privateUserId&&row.entityKind==='search'&&row.entityId===f.sellerSearchId).id);assert.equal(receipt.alreadyReported,true);assert.equal(Object.hasOwn(receipt,'createdAt'),false);
  assert.equal((await entities(f.privateUser)).decisions.filter(d=>d.liked).length,2,'Private search likes survive without a debit');
 }
 if(process.argv[3]==='--verify'){
  await verify(JSON.parse(await readFile(fixturePath,'utf8')));
- console.log('Broker restart preservation passed: account types, owner badges, one-time credit ledger, matching and reporter-private deduplication survive.');
+ console.log('Broker restart preservation passed: account types, owner badges, one-time credit ledger, matching and reporter-private per-entity deduplication survive.');
 }else{
  const suffix=Date.now()+'-'+Math.random().toString(16).slice(2),password='BrokerSmoke2026!';
  const register=async(name,accountType)=>call('/auth/register',{method:'POST',body:{name:'Broker '+name,email:`broker-${name}-${suffix}@example.test`,password,...(accountType===undefined?{}:{accountType})}});
@@ -81,16 +81,17 @@ if(process.argv[3]==='--verify'){
   call('/reports',{token:seller,method:'POST',body:{entityKind:'property',entityId:otherProperty.id},status:201})
  ]);
  assert.equal(reportOne.reportedOwnerId,s.user.id,'The reported owner must be derived from the source entity');
- const dup=await call('/reports',{token:privateUser,method:'POST',body:{entityKind:'search',entityId:sellerSearch.id}});assert.equal(dup.id,reportOne.id);assert.equal(dup.alreadyReported,true);
+ const searchReport=await call('/reports',{token:privateUser,method:'POST',body:{entityKind:'search',entityId:sellerSearch.id},status:201});assert.notEqual(searchReport.id,reportOne.id);assert.equal(searchReport.alreadyReported,false,'Different entities of the same owner need separate reports');
+ const dup=await call('/reports',{token:privateUser,method:'POST',body:{entityKind:'search',entityId:sellerSearch.id}});assert.equal(dup.id,searchReport.id);assert.equal(dup.alreadyReported,true);
  const concurrentReports=await Promise.all([0,1].map(()=>call('/reports',{token:agent,method:'POST',body:{entityKind:'search',entityId:privateSearch.id},status:[200,201]})));
  assert.equal(concurrentReports.filter(x=>!x.alreadyReported).length,1);assert.equal(new Set(concurrentReports.map(x=>x.id)).size,1);
  const reportThree=concurrentReports.find(x=>!x.alreadyReported),reportEnd=new Date().toISOString();
- for(const receipt of [reportOne,reportTwo,dup,...concurrentReports]){assert.equal(receipt.reported,true);assert.equal(Object.hasOwn(receipt,'createdAt'),false);}
+ for(const receipt of [reportOne,reportTwo,searchReport,dup,...concurrentReports]){assert.equal(receipt.reported,true);assert.equal(Object.hasOwn(receipt,'createdAt'),false);}
  await call('/reports',{method:'POST',body:{entityKind:'property',entityId:property.id},status:401});
  for(const body of [{entityKind:'user',entityId:property.id},{entityKind:'property',entityId:otherProperty.id},{entityKind:'property',entityId:agentProperty.id}])await call('/reports',{token:privateUser,method:'POST',body,status:400});
  await call('/reports',{token:privateUser,method:'POST',body:{entityKind:'property',entityId:'00000000-0000-0000-0000-000000000001'},status:404});
  const archived=await call('/properties',{token:seller,method:'POST',body:propertyBody,status:201});await call('/properties/'+archived.id,{token:seller,method:'DELETE',status:204});await call('/reports',{token:privateUser,method:'POST',body:{entityKind:'property',entityId:archived.id},status:404});
- const reports=[{id:reportOne.id,reporterId:b.user.id,reportedUserId:s.user.id,entityKind:'property',entityId:property.id},{id:reportTwo.id,reporterId:s.user.id,reportedUserId:b.user.id,entityKind:'property',entityId:otherProperty.id},{id:reportThree.id,reporterId:a.user.id,reportedUserId:b.user.id,entityKind:'search',entityId:privateSearch.id}];
+ const reports=[{id:reportOne.id,reporterId:b.user.id,reportedUserId:s.user.id,entityKind:'property',entityId:property.id},{id:searchReport.id,reporterId:b.user.id,reportedUserId:s.user.id,entityKind:'search',entityId:sellerSearch.id},{id:reportTwo.id,reporterId:s.user.id,reportedUserId:b.user.id,entityKind:'property',entityId:otherProperty.id},{id:reportThree.id,reporterId:a.user.id,reportedUserId:b.user.id,entityKind:'search',entityId:privateSearch.id}];
  const fixture={agent,seller,privateUser,sellerId:s.user.id,privateUserId:b.user.id,agentPropertyId:agentProperty.id,agentSearchId:search.id,sellerSearchId:sellerSearch.id,matchId,reportStart,reportEnd,reports};
  await verify(fixture);await mkdir(dirname(fixturePath),{recursive:true});await writeFile(fixturePath,JSON.stringify(fixture),{mode:0o600});await chmod(fixturePath,0o600);
  console.log('Broker API integration passed: strict registration, server owner badges, 1-credit agent search, 2-credit seller, free private search, concurrent one-time billing/last-credit race, mutual contact privacy, authenticated duplicate/reciprocal reports and private receipts.');

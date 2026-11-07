@@ -16,6 +16,7 @@ public static class SchemaUpgrade
     public const string PropertyAttributesVersion = "20261105-property-attributes";
     public const string SellerFormDetailsVersion = "20261106-seller-form-details";
     public const string AccountTypesAndReportsVersion = "20261107-account-types-and-reports";
+    public const string InteractionsAndReportReasonsVersion = "20261107-interactions-and-report-reasons";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
@@ -83,10 +84,26 @@ public static class SchemaUpgrade
                     KEY `IX_UserReports_ReportedUserId` (`ReportedUserId`)
                 ) CHARACTER SET=utf8mb4
                 """, cancellationToken);
+            // Preserve historical report rows/timestamps while allowing a separate
+            // report for each source entity and reason. Create the replacement first,
+            // because its leading ReporterId also supports that user foreign key.
+            const string reportIndex = "IX_UserReports_ReporterId_EntityKind_EntityId_Reason";
+            var hasReportIndex = Convert.ToInt32(await Scalar(connection,
+                "SELECT COUNT(*) FROM information_schema.STATISTICS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'UserReports' AND INDEX_NAME = @index",
+                cancellationToken, ("index", reportIndex))) > 0;
+            if (!hasReportIndex)
+                await Execute(connection, "CREATE UNIQUE INDEX `" + reportIndex + "` ON `UserReports` (`ReporterId`, `EntityKind`, `EntityId`, `Reason`)", cancellationToken);
+            const string legacyReportIndex = "IX_UserReports_ReporterId_ReportedUserId";
+            var hasLegacyReportIndex = Convert.ToInt32(await Scalar(connection,
+                "SELECT COUNT(*) FROM information_schema.STATISTICS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'UserReports' AND INDEX_NAME = @index",
+                cancellationToken, ("index", legacyReportIndex))) > 0;
+            if (hasLegacyReportIndex)
+                await Execute(connection, "DROP INDEX `" + legacyReportIndex + "` ON `UserReports`", cancellationToken);
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", LocationsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", PropertyAttributesVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", SellerFormDetailsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", AccountTypesAndReportsVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", InteractionsAndReportReasonsVersion));
         }
         finally
         {

@@ -392,7 +392,7 @@ test('legacy API responses retain private/free defaults and no-active accounts h
 test('report requests use source entities only and preserve idempotent acknowledgements and retryable API failures',async()=>{
  const receipt={id:'receipt',reported:true,reportedOwnerId:'other',alreadyReported:false};let sent=0;
  const calls=routes({'/api/reports':options=>{sent++;return response({...receipt,alreadyReported:sent>1},sent===1?201:200);}}),api=adapter();
- assert.deepEqual(await api.reportAccount('property',ids.property),receipt);assert.deepEqual(JSON.parse(calls[0].body),{entityKind:'property',entityId:ids.property});
+ assert.deepEqual(await api.reportAccount('property',ids.property),receipt);assert.deepEqual(JSON.parse(calls[0].body),{entityKind:'property',entityId:ids.property,reason:'suspected_agent'});
  assert.equal((await api.reportAccount('search',ids.search)).alreadyReported,true);assert.equal('createdAt' in receipt,false);
  const before=calls.length;for(const [kind,id] of [['user','other'],['property',''],['search',null]])await assert.rejects(api.reportAccount(kind,id),/jelentési profil/);assert.equal(calls.length,before);
  routes({'/api/reports':()=>response({message:'Átmeneti hiba'},503)});await assert.rejects(api.reportAccount('property',ids.property),error=>error.status===503&&error.message==='Átmeneti hiba');
@@ -403,4 +403,26 @@ test('owner declarations cannot be set through property or search save payloads 
  const api=adapter();await api.saveEntity('property',{title:'Saját ingatlan',locationId:'city:Debrecen',price:50,area:50,rooms:2,ownerAccountType:'agent'});
  await api.saveEntity('search',{title:'Saját keresés',locationIds:['city:Debrecen'],ownerAccountType:'agent'});await api.updateProfile({name:'Nagy Anna',email:'anna@example.hu',phone:'',accountType:'agent'});
  for(const call of calls){const body=JSON.parse(call.body);assert.equal('ownerAccountType' in body,false);assert.equal('accountType' in body,false);}
+});
+
+test('report reasons and contextual summaries round-trip without exposing audit timestamps',async()=>{
+ const calls=routes(accountRoutes({'/api/me/entities':{properties:[],searchRequests:[search],active:{kind:'search',id:ids.search},reportedOwnerIds:['other'],reportedEntities:[{entityKind:'property',entityId:ids.property,reason:'misleading_content',createdAt:'PRIVATE-TIME',reporterId:'PRIVATE-REPORTER'},{entityKind:'property',entityId:ids.property,reason:'misleading_content'},{entityKind:'user',entityId:'other',reason:'other_violation'}]},'/api/reports':options=>response({id:'receipt',reported:true,reportedOwnerId:'other',alreadyReported:false},201)}));
+ const api=adapter(),state=await api.getState();assert.deepEqual(state.reportedEntities,[{entityKind:'property',entityId:ids.property,reason:'misleading_content'}]);assert.equal(JSON.stringify(state).includes('PRIVATE-TIME'),false);assert.equal(JSON.stringify(state).includes('PRIVATE-REPORTER'),false);
+ await api.reportAccount('property',ids.property,'misleading_content');assert.deepEqual(JSON.parse(calls.at(-1).body),{entityKind:'property',entityId:ids.property,reason:'misleading_content'});
+ await api.reportAccount('search',ids.search,'other_violation');assert.equal(JSON.parse(calls.at(-1).body).reason,'other_violation');const before=calls.length;
+ for(const reason of ['',false,'unknown'])await assert.rejects(api.reportAccount('property',ids.property,reason),/jelentési ok/);assert.equal(calls.length,before);
+});
+
+test('incoming API pages preserve server-active context and handled status while exposing only public candidate fields',async()=>{
+ const incoming={active:{kind:'search',id:ids.search},total:3,offset:1,limit:2,hasMore:false,likeCost:1,items:[{property:{...property,ownerAccountType:'agent',address:'Private street',email:'hidden@example.test',phone:'+36 30 0000000'},searchRequest:search,propertyId:ids.property,searchRequestId:ids.search,likedAt:'2026-11-07T12:00:00Z',likedYou:true,myDecision:'passed',matchId:null,compatible:false,compatibilityScore:95,reasons:['Megfelelő méret']},{property,searchRequest:search,propertyId:ids.property,searchRequestId:ids.search,likedAt:'2026-11-06T12:00:00Z',myDecision:'liked',matchId:ids.match,compatible:true}]};
+ let requested;routes({'/api/incoming-likes':options=>{requested=options;return response(incoming);}});const api=adapter();api.active={kind:'property',id:'stale-active'};
+ const page=await api.incomingLikes({offset:1,limit:2});assert.deepEqual(page.active,{kind:'search',id:ids.search});assert.deepEqual([page.total,page.offset,page.limit,page.hasMore,page.likeCost],[3,1,2,false,1]);assert.equal(page.items.length,2);
+ const item=page.items[0];assert.equal(item.kind,'property');assert.deepEqual(item.pair,{propertyId:ids.property,searchId:ids.search});assert.equal(item.address,'');assert.equal(item.ownerAccountType,'agent');assert.equal(item.myDecision,'passed');assert.equal(item.compatible,false);assert.equal(item.likedAt,incoming.items[0].likedAt);assert.equal('phone' in item,false);assert.equal('email' in item,false);assert.equal('contact' in item,false);assert.equal(page.items[1].matchId,ids.match);assert.equal(page.items[1].myDecision,'liked');assert.equal(requested.method,'GET');
+ const before=JSON.stringify(page);item.title='Tampered';assert.equal(JSON.stringify(incoming).includes('Tampered'),false);assert.ok(before.includes('Újlipótvárosi lakás'));
+});
+
+test('incoming pagination uses encoded query parameters, validates before requests and retains empty active state',async()=>{
+ const calls=[];globalThis.fetch=async(url,options)=>{calls.push({url,options});return response({active:null,items:[],total:0,offset:10,limit:5,hasMore:false,likeCost:0});};
+ const api=adapter();assert.deepEqual(await api.incomingLikes({offset:10,limit:5}),{active:null,items:[],total:0,offset:10,limit:5,hasMore:false,likeCost:0});const url=new URL(calls[0].url);assert.equal(url.pathname,'/api/incoming-likes');assert.equal(url.searchParams.get('offset'),'10');assert.equal(url.searchParams.get('limit'),'5');
+ for(const options of [{offset:-1},{offset:1000001},{offset:'1'},{limit:0},{limit:101}])await assert.rejects(api.incomingLikes(options),/lapozási/);assert.equal(calls.length,1);
 });

@@ -23,7 +23,7 @@ result = subprocess.run(['docker', 'exec', '--env', 'MYSQL_PWD=ci-only-password'
                          'mysql', '--user=otthonra', '--batch', '--skip-column-names',
                          'otthonra_ci', '--execute', query], capture_output=True, text=True, check=True)
 rows = [line.split('\t') for line in result.stdout.strip().splitlines()]
-assert len(rows) == len(expected) == 3, 'Stored reports missing or duplicated.'
+assert len(rows) == len(expected) and len(expected) >= 4, 'Stored reports missing or duplicated.'
 start = dt.datetime.fromisoformat(fixture['reportStart'].replace('Z', '+00:00')) - dt.timedelta(seconds=5)
 end = dt.datetime.fromisoformat(fixture['reportEnd'].replace('Z', '+00:00')) + dt.timedelta(seconds=5)
 timestamps = {}
@@ -43,5 +43,5 @@ if phase == 'record':
     path.chmod(0o600)
 else:
     assert timestamps == fixture['reportTimestamps'], 'A duplicate report or restart changed its original timestamp.'
-print('Report database check passed: three unique reports, correct source ownership, UTC timestamps, and ' +
+print(f'Report database check passed: {len(expected)} unique per-entity reports, correct source ownership, UTC timestamps, and ' +
       ('snapshot recorded.' if phase == 'record' else 'unchanged timestamps after duplicate requests and restart.'))
