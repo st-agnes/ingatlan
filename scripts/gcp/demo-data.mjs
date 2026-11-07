@@ -1,7 +1,7 @@
 /** Public, fictional fixtures for the explicitly identified Google Cloud test site. */
 export const DEMO_PASSWORD = 'OtthonraDemo2026!';
 
-export const DEMO_USERS = [
+const LEGACY_USERS = [
   {key: 'anna', name: 'Kovács Anna', email: 'anna@otthonra.local', phone: '+36 30 555 0101', active: {kind: 'search', key: 'anna-budapest'}},
   {key: 'peter', name: 'Nagy Péter', email: 'peter@otthonra.local', phone: '+36 30 555 0102', active: {kind: 'property', key: 'peter-pozsonyi'}},
   {key: 'eszter', name: 'Szabó Eszter', email: 'eszter@otthonra.local', phone: '+36 30 555 0103', active: {kind: 'search', key: 'eszter-buda'}}
@@ -23,7 +23,7 @@ const searchDefaults = {
   elevator: false, moveIn: '3 hónapon belül', financing: 'Tesztként megadott saját forrás', archived: false
 };
 
-export const DEMO_FIXTURES = [
+const LEGACY_FIXTURES = [
   {
     key: 'peter-pozsonyi', owner: 'peter', kind: 'property', input: {
       ...propertyDefaults,
@@ -115,3 +115,135 @@ export const DEMO_FIXTURES = [
     }
   }
 ];
+
+
+/** Stable batches add new counterparties without resetting any existing decision. */
+export const DEFAULT_BATCH = 'alap';
+const extraUsers = [
+  {key:'daniel-kozvetito', name:'Varga Dániel', email:'daniel.kozvetito', accountType:'agent'},
+  {key:'kata-kozvetito', name:'Kiss Kata', email:'kata.kozvetito', accountType:'agent'},
+  {key:'gabor-kozvetito', name:'Farkas Gábor', email:'gabor.kozvetito', accountType:'agent'},
+  {key:'reka', name:'Tóth Réka', email:'reka', accountType:'private'},
+  {key:'bence', name:'Németh Bence', email:'bence', accountType:'private'},
+  {key:'julia', name:'Molnár Júlia', email:'julia', accountType:'private'},
+  {key:'marton', name:'Varga Márton', email:'marton', accountType:'private'},
+  {key:'lilla', name:'Szabó Lilla', email:'lilla', accountType:'private'},
+  {key:'balazs', name:'Kiss Balázs', email:'balazs', accountType:'private'}
+];
+const copy = value => JSON.parse(JSON.stringify(value));
+
+export function createDemoCatalog(batch = DEFAULT_BATCH) {
+  if (typeof batch !== 'string' || !/^[a-z0-9][a-z0-9-]{0,31}$/.test(batch)) {
+    throw new Error('A tesztadatcsomag neve 1–32 kisbetűs angol betű, szám vagy kötőjel legyen; betűvel vagy számmal kezdődjön.');
+  }
+  const keySuffix = batch === DEFAULT_BATCH ? '' : `--${batch}`;
+  const titleSuffix = batch === DEFAULT_BATCH ? '' : ` · ${batch}`;
+  const users = LEGACY_USERS.map(user => ({...copy(user), accountType:'private'}));
+  const fixtures = copy(LEGACY_FIXTURES);
+  for (const [ownerIndex, definition] of extraUsers.entries()) {
+    const owner = definition.key + keySuffix;
+    const firstProperty = `${owner}-budapest-13-1`;
+    const firstSearch = `${owner}-budapest-search-1`;
+    const kind = definition.accountType === 'agent' || ownerIndex % 2 === 0 ? 'search' : 'property';
+    users.push({
+      key:owner, name:definition.name + titleSuffix,
+      email:`${definition.email}${batch === DEFAULT_BATCH ? '' : `+${batch}`}@otthonra.local`,
+      phone:`+36 30 555 ${String(111 + ownerIndex).padStart(4,'0')}`,
+      accountType:definition.accountType,
+      active:{kind, key:kind === 'search' ? firstSearch : firstProperty}
+    });
+    const add = (key, kind, input) => fixtures.push({key:`${owner}-${key}`, owner, kind, input});
+    const extras = slot => ({
+      condition:['Jó','Új/felújított','Átlagos','Felújítandó'][(slot + ownerIndex) % 4],
+      building:(slot + ownerIndex) % 3 === 0 ? 'Panel' : 'Tégla',
+      constructionAge:['10 évnél fiatalabb','10–30 év közötti','31–40 év közötti','41–50 év közötti','Több mint 50 éves'][(slot + ownerIndex) % 5],
+      view:['Kertre néző','Utcai','Udvari','Panorámás'][(slot + ownerIndex) % 4],
+      ceilingHeight:slot % 2 ? '3 m feletti' : '3 m alatti',
+      heatingType:['Gázkazán','Távfűtés','Hőszivattyú','Elektromos fűtés','Nincs fűtés'][(slot + ownerIndex) % 5],
+      secondaryHeatingType:slot % 3 === 0 ? 'Klíma' : '',
+      insulated:slot % 3 === 0 ? null : slot % 2 === 0,
+      energyRating:slot % 2 ? 'BB' : 'A+',
+      airConditioning:slot % 2 === 0, solarPanels:slot % 3 === 0,
+      parkingTypes:slot % 2 ? ['Garázs','Udvari beálló'] : ['Utcai parkolás']
+    });
+    for (const district of [13,2]) {
+      for (let index = 0; index < 4; index++) {
+        const wholeRooms = 2 + index % 2, halfRooms = index % 2;
+        add(`budapest-${district}-${index + 1}`, 'property', {
+          ...copy(propertyDefaults), ...extras(index + (district === 2 ? 4 : 0)),
+          title:`Teszt · ${district === 13 ? 'Újlipótvárosi' : 'Budai'} otthon ${ownerIndex + 1}/${index + 1}${titleSuffix}`,
+          city:'Budapest', district:district === 13 ? 'XIII.' : 'II.', locationId:`district:Budapest:${district}`,
+          neighborhood:district === 13 ? 'Újlipótváros' : 'Rózsadomb',
+          price:(district === 13 ? 65_000_000 : 79_000_000) + index * 3_000_000 + ownerIndex * 500_000,
+          area:(district === 13 ? 60 : 66) + index * 4 + ownerIndex,
+          wholeRooms, halfRooms, rooms:wholeRooms + halfRooms / 2, floor:index + 1,
+          balcony:true, elevator:true,
+          description:fictional + 'Változatos fűtéssel, parkolási lehetőségekkel és külön megadott egész- és félszobákkal kipróbálható budapesti otthon.'
+        });
+      }
+    }
+    for (const [index,city] of ['Debrecen','Hajdúsámson'].entries()) {
+      add(`debrecen-${index + 1}`, 'property', {
+        ...copy(propertyDefaults), ...extras(index + 8),
+        title:`Teszt · ${city} környéki lakás ${ownerIndex + 1}${titleSuffix}`,
+        city, district:'', locationId:`city:${city}`, neighborhood:city === 'Debrecen' ? 'Nagyerdő környéke' : 'Kertváros',
+        price:54_000_000 + ownerIndex * 1_000_000 + index * 2_000_000,
+        area:58 + ownerIndex + index * 3, wholeRooms:3, halfRooms:0, rooms:3, floor:index + 1,
+        balcony:true, elevator:index === 0,
+        description:fictional + 'A város és környéke csoport, illetve a több településes keresés kipróbálásához készült lakás.'
+      });
+    }
+    for (const [index,city] of ['Solymár','Pilisvörösvár'].entries()) {
+      add(`house-${index + 1}`, 'property', {
+        ...copy(propertyDefaults), ...extras(index + 10), building:'Tégla', type:'Ház', floor:null,
+        title:`Teszt · Kertes ház ${city} településen ${ownerIndex + 1}${titleSuffix}`,
+        city, district:'', locationId:`city:${city}`,
+        price:112_000_000 + ownerIndex * 2_000_000 + index * 3_000_000,
+        area:114 + ownerIndex * 2 + index * 5, lotArea:610 + ownerIndex * 20 + index * 35,
+        wholeRooms:4 + index, halfRooms:0, rooms:4 + index, balcony:false, elevator:false,
+        description:fictional + 'Telekmérettel megadott családi ház. Az agglomerációs keresésekben sok új, korábban nem értékelt párost biztosít.'
+      });
+    }
+    for (let index = 0; index < 4; index++) {
+      const locationIds = [
+        ['district:Budapest:13','district:Budapest:2'], ['city:Budapest'],
+        ['area:Budapest'], ['district:Budapest:13','district:Budapest:2','city:Solymár']
+      ][index];
+      add(`budapest-search-${index + 1}`, 'search', {
+        ...copy(searchDefaults), title:`Teszt · Budapesti otthont keresek ${ownerIndex + 1}/${index + 1}${titleSuffix}`,
+        city:'Budapest', districts:index === 0 ? ['XIII.','II.'] : [], locationIds,
+        maxPrice:110_000_000, minArea:45, maxArea:110, minRooms:2, maxRooms:4,
+        conditions:index % 2 ? [] : ['Jó','Új/felújított','Átlagos','Felújítandó'],
+        buildings:index % 2 ? [] : ['Tégla','Panel'],
+        description:fictional + 'A budapesti kerületeket, a teljes várost vagy a városkörnyéki csoportot elfogadó keresés. Péter és a többi felhasználó budapesti lakásai is megfelelhetnek.'
+      });
+    }
+    for (let index = 0; index < 2; index++) {
+      add(`buda-search-${index + 1}`, 'search', {
+        ...copy(searchDefaults), title:`Teszt · Erkélyes budai lakást keresek ${ownerIndex + 1}/${index + 1}${titleSuffix}`,
+        city:'Budapest', districts:['II.'], locationIds:index ? ['district:Budapest:2','district:Budapest:11'] : ['district:Budapest:2'],
+        maxPrice:110_000_000, minArea:60, maxArea:100, minRooms:2, maxRooms:4, balcony:true,
+        description:fictional + 'Erkélyes budai ingatlanra nyitott keresés, amely a korábbi rózsadombi mintával is összekapcsolható.'
+      });
+      add(`debrecen-search-${index + 1}`, 'search', {
+        ...copy(searchDefaults), title:`Teszt · Debreceni térségben keresek ${ownerIndex + 1}/${index + 1}${titleSuffix}`,
+        city:'Debrecen', locationIds:index ? ['city:Debrecen','city:Hajdúsámson','city:Hajdúszoboszló'] : ['area:Debrecen'],
+        maxPrice:80_000_000, minArea:50, maxArea:95, minRooms:2, maxRooms:4,
+        description:fictional + 'Debrecen és a környező települések lakásaihoz készült keresés, többféle helyszínválasztással.'
+      });
+    }
+    for (let index = 0; index < 4; index++) {
+      add(`house-search-${index + 1}`, 'search', {
+        ...copy(searchDefaults), title:`Teszt · Agglomerációs családi házat keresek ${ownerIndex + 1}/${index + 1}${titleSuffix}`,
+        type:'Ház', city:'Solymár', locationIds:index % 2 ? ['area:Budapest'] : ['city:Solymár','city:Pilisvörösvár'],
+        maxPrice:150_000_000, minArea:105, maxArea:180, minRooms:4, maxRooms:7,
+        description:fictional + 'Solymári vagy pilisvörösvári családi házra keresett új párosítás, az eredeti házmintákhoz is megfelelő feltételekkel.'
+      });
+    }
+  }
+  return {users, fixtures};
+}
+
+const defaultCatalog = createDemoCatalog();
+export const DEMO_USERS = defaultCatalog.users;
+export const DEMO_FIXTURES = defaultCatalog.fixtures;

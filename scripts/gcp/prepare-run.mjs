@@ -72,6 +72,7 @@ export function buildCloudRunService({config, existingService, imageDigest, revi
               env: [
                 literal('ASPNETCORE_ENVIRONMENT', 'Production'), literal('Deployment__Environment', 'test'),
                 literal('Database__Initialize', 'true'), literal('Database__SeedDemo', 'false'),
+                literal('Database__SeedTestFixtures', 'true'),
                 literal('Credits__EnableDemoTopup', 'true'), literal('Cors__Origins__0', `https://${config.siteId}.web.app`),
                 secret('ConnectionStrings__MySql', config.mysqlSecret), secret('Jwt__Key', config.jwtSecret)
               ],

@@ -87,8 +87,8 @@ const origin = new URL(process.argv[2]);
 if (origin.protocol !== 'https:' || !origin.hostname.endsWith('.run.app')) throw new Error('Cloud Run did not return its expected HTTPS address.');
 const response = await fetch(new URL('/api/health', origin), {signal: AbortSignal.timeout(30000)});
 const health = response.status === 200 ? await response.json() : null;
-if (health?.status !== 'ready' || health.deployment !== 'test' || health.testCreditsEnabled !== true) throw new Error('The deployed test API/database is not a healthy test installation; Hosting was not changed.');
-console.log('The deployed test API and database are ready.');
+if (health?.status !== 'ready' || health.deployment !== 'test' || health.testCreditsEnabled !== true || health.testDataVersion !== '20261107-test-fixtures-v2') throw new Error('The deployed test API/database and startup fixtures are not ready; Hosting was not changed. Build an API image containing the current test catalog.');
+console.log('The deployed test API, database and startup test fixtures are ready.');
 NODE
 
 node scripts/gcp/prepare-site.mjs "$deployment_tmp/config.json" .local/gcp/site
@@ -99,7 +99,6 @@ if [[ "$firebase_version" != '14.17.0' ]]; then
 fi
 GOOGLE_CLOUD_QUOTA_PROJECT="$project_id" XDG_CONFIG_HOME="$deployment_tmp/firebase-config" .local/gcp/tools/node_modules/.bin/firebase deploy \
   --project "$project_id" --config "$repo_root/.local/gcp/site/firebase.json" --only hosting --non-interactive
-node scripts/gcp/seed-dev.mjs --config "$deployment_tmp/config.json"
 node --input-type=module - "$web_origin" <<'NODE'
 const origin = process.argv[2];
 const [home, runtime, health] = await Promise.all(['/', '/runtime-config.js', '/api/health'].map(async path => {
@@ -108,6 +107,6 @@ const [home, runtime, health] = await Promise.all(['/', '/runtime-config.js', '/
   return response.text();
 }));
 const backend = JSON.parse(health);
-if (!/runtime-config\.js/.test(home) || !/mode:\s*"api"/.test(runtime) || !/environment:\s*"test"/.test(runtime) || backend.status !== 'ready' || backend.deployment !== 'test' || backend.testCreditsEnabled !== true) throw new Error('The hosted frontend is not connected to its live test API.');
+if (!/runtime-config\.js/.test(home) || !/mode:\s*"api"/.test(runtime) || !/environment:\s*"test"/.test(runtime) || backend.status !== 'ready' || backend.deployment !== 'test' || backend.testCreditsEnabled !== true || backend.testDataVersion !== '20261107-test-fixtures-v2') throw new Error('The hosted frontend is not connected to its ready test API and startup fixtures.');
 console.log(`Test application ready: ${origin}/`);
 NODE

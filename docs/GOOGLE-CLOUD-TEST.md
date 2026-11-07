@@ -137,15 +137,55 @@ Ha a helyi Docker-feltöltés korábban hálózati hibát adott, a fenti parancs
 
 ## Használat és ellenőrzés
 
-**Példafiókok:** `anna@otthonra.local`, `peter@otthonra.local` és `eszter@otthonra.local`; mindhárom jelszava `OtthonraDemo2026!`. A telepítő a web publikálása után a normál API-n át tölti fel a kitalált tesztadatokat. Új példafiókonként 100 tesztkreditet ad, és aktiválja az induló keresést vagy ingatlant. Meglévő telepítésen a frissített tárolóban külön is futtatható:
+A backendbe beágyazott `20261107-test-fixtures-v2` tesztadatcsomag **12 felhasználót, 114 ingatlant és 112 keresést** hoz létre. Ebből 3 fiók ingatlanközvetítő, 9 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
+
+| Fiók | Fióktípus | E-mail-cím |
+|---|---|---|
+| Kovács Anna | Magánszemély | `anna@otthonra.local` |
+| Nagy Péter | Magánszemély | `peter@otthonra.local` |
+| Szabó Eszter | Magánszemély | `eszter@otthonra.local` |
+| Varga Dániel | Ingatlanközvetítő | `daniel.kozvetito@otthonra.local` |
+| Kiss Kata | Ingatlanközvetítő | `kata.kozvetito@otthonra.local` |
+| Farkas Gábor | Ingatlanközvetítő | `gabor.kozvetito@otthonra.local` |
+| Tóth Réka | Magánszemély | `reka@otthonra.local` |
+| Németh Bence | Magánszemély | `bence@otthonra.local` |
+| Molnár Júlia | Magánszemély | `julia@otthonra.local` |
+| Varga Márton | Magánszemély | `marton@otthonra.local` |
+| Szabó Lilla | Magánszemély | `lilla@otthonra.local` |
+| Kiss Balázs | Magánszemély | `balazs@otthonra.local` |
+
+A kibővített készlet kilenc felhasználójának egyenként 12 eladó ingatlanja és 12 keresési igénye van. A közvetítők aktív kereséssel és 100 ingyenes tesztkredittel indulnak, így azonnal próbálható az 1 kredites kedvelés. A magánszemély keresői kedvelése ingyenes, az eladói kedvelés mindkét fióktípusnál 2 kredit. A közvetítői jelzés másik fiókból látható, a jelentéshez pedig bármelyik másik magánszemély mintaprofil használható.
+
+A készlet II./XIII. kerületi, debreceni és hajdúsámsoni lakásokat, solymári és pilisvörösvári házakat, fűtési és parkolási opciókat, egész/fél szobákat, valamint városkörnyéki és több településes kereséseket tartalmaz. Anna, Péter és Eszter eredeti alapmintái is a csomag részei; a hozzájuk illő sok új ajánlatot a további felhasználók biztosítják. Anna és Péter eredeti mintapárjának kölcsönös kedvelésével továbbra is kipróbálható az elérhetőségek feloldása és az üzenetküldés.
+
+### Automatikus alaphelyzetbe állítás telepítéskor
+
+A normál **Deploy Google Cloud test** workflow telepíti az új API-képet és a webet. A backend az indulásakor, az alkalmazás kiszolgálása előtt tölti fel a beágyazott adatokat; a telepítés után nincs külön API-s feltöltő lépés. Merge után elég **Actions → Deploy Google Cloud test → Run workflow**, a `main` ágon. Külön adatfeltöltő workflow-t vagy parancsot nem kell indítani.
+
+A teszttelepítés `Database__SeedTestFixtures=true` beállítást kap. Ez kizárólag `Deployment__Environment=test` környezetben engedélyezi az automatikus tesztadat-kezelést; a szokásos éles környezetben nem töröl és nem tölt fel adatokat. A szerver ASP.NET környezete a teszttelepítésben is lehet `Production`: a tesztjogosultságot a külön `Deployment__Environment=test` beállítás jelenti.
+
+Minden új Cloud Run-revízió (`K_REVISION`) első indulása alaphelyzetbe állítja a teszt alkalmazásadatait, majd létrehozza a 12 felhasználót, a 114 ingatlant, a 112 keresést, a kezdő krediteket és az aktív profilokat. Az előző tesztállapot összes felhasználója — a kézzel regisztrált fiókok is —, saját hirdetése, keresése, döntése, párosítása, üzenete, jelentése és kreditmozgása törlődik. Így az új telepítés után a korábban végighúzott minták helyett újra végigpróbálható alapállapot fogad.
+
+Az adatbáziszár és a revíziók feltöltési előzménye gondoskodik arról, hogy több párhuzamosan induló példány is csak egyszer hajtsa végre ezt egy új revízióhoz. Az azonos revízió hidegindítása vagy újraindítása nem állítja vissza a tesztelés közbeni módosításokat. Egy korábban már feltöltött régi revízió újraindulása sem törli az újabb revízióval létrejött adatokat. A séma és a feltöltési előzmények megmaradnak; a folyamat az alkalmazás tesztadatait kezeli.
+
+A beágyazott csomag forrása a `scripts/gcp/demo-data.mjs`; a verziózott JSON a `backend/Otthonra.Api/Data/test-fixtures.json` fájlban van. Katalógusmódosításkor a tároló gyökerében generáld újra és ellenőrizd:
 
 ```sh
-node scripts/gcp/seed-dev.mjs
+node scripts/gcp/export-demo-data.mjs
+node scripts/gcp/export-demo-data.mjs --check
 ```
 
-A készlet hat ingatlant és négy keresést tartalmaz: budapesti II./XIII. kerületi és debreceni lakásokat, solymári és pilisvörösvári házakat telekmérettel, több településes és nyitott ár-/méret-/szobakorlátos kereséseket. Anna aktív budapesti keresésének Péter Pozsonyi úti lakása megfelel: Anna és Péter fiókjából is kedveld a másik fél ajánlatát a párosításhoz. Ezután kipróbálható az elérhetőségek feloldása és az üzenetküldés. A fiókokban több keresés és ingatlan között is válthatsz.
+A CI a generált fájl és a katalógus egyezését is ellenőrzi. A verzió és a revíziókezelés szerveroldali; a normál teszttelepítésnek nincs szüksége a példafiókokkal végzett külső bejelentkezésekre.
 
-A feltöltő az ellenőrzött manifest saját `web.app` címét használja, és minden írás előtt valódi `test` API-/webkonfigurációt és tesztkredit-képességet követel. Production vagy böngészős demó esetén megáll. A `.local/gcp/demo-seed-SITE.json` privát nyugtába csak fiók-/entitásazonosítók és elvégzett lépések kerülnek; hozzáférési token vagy jelszó nem. A félbeszakadt futás innen folytatható. Az ismétlés nem írja felül a példák szerkesztését/archiválását, az aktív profilt vagy az elköltött egyenleget. A kreditnapló megakadályozza a félbeszakadt jóváírás megismétlését is. Más munkamásolatban, nyugta nélkül a már létező példafiók változatlan marad; eltérő jelszavát a feltöltő nem állítja vissza. Ne töröld a nyugtát a feltöltés folyamatban lévő szakaszában.
+### Külön API-s feltöltő fejlesztői használatra
+
+A `seed-dev.mjs` megmarad opcionális, külön eszközként az azonosított működő tesztoldalhoz. Ez nem része a normál telepítésnek. Például egy futó revízión belül új, elnevezett adatcsomag adható hozzá:
+
+```sh
+node scripts/gcp/seed-dev.mjs --batch proba-2 --config /abszolut/utvonal/dev-config.json
+```
+
+Ez az eszköz a teszt API ellenőrzése és hitelesítés után dolgozik, nyugtával kerüli a duplikációt, és megőrzi a revízión belüli korábbi adatokat. A hitelesítési korlát miatt legfeljebb 10 belépési/regisztrációs kérést küld 61 másodperces ablakonként, látható várakozással. Az így hozzáadott adatok is törlődnek a következő új teszt Cloud Run-revízió indulásakor.
 
 A megosztott példafiókok kitalált tesztadatokhoz tartoznak. Saját fiókot az **„Új fiókot hozok létre”** gombbal, névvel, e-mail-címmel és legalább 10 karakteres jelszóval is regisztrálhatsz; a sikeres regisztráció azonnal beléptet. Az ilyen saját fiók nulla kredittel indul; a **Krediteim** oldalon ingyenesen adhatsz hozzá tesztkreditet.
 
@@ -155,7 +195,7 @@ A felület „Tesztkörnyezet” jelölést mutat. A kreditek ingyenes tesztkred
 
 A `deploy-dev.sh` csak akkor írja ki, hogy a tesztalkalmazás kész, ha a saját API és a Hostingen át elért API is a tesztkörnyezetet azonosítja és az adatbázist eléri. A böngészős helyi demó továbbra is külön használható a fejlesztői környezetben; a feltöltött tesztoldal szerverhiba esetén hibát jelez, és megtartja az élő API-módot.
 
-Az alaptelepítés külön tesztadatbázist használ, amelyhez a feltöltő adja hozzá a fenti példákat. A Codespaces adatait nem importálja automatikusan. Meglévő adatok átviteléhez külön export/import szükséges.
+Az alaptelepítés külön tesztadatbázist használ, amelyben a backend indulási lépése hozza létre a fenti példákat. A Codespaces adatait nem importálja automatikusan. Meglévő adatok átviteléhez külön export/import szükséges.
 
 ## Mit hoz létre, és mennyibe kerül?
 

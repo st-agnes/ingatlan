@@ -6,15 +6,21 @@ Magyar nyelvű ingatlanpárosító alkalmazás. Egy felhasználó több ingatlan
 
 A `scripts/gcp/` telepítői az `ingatlan-513620` projekthez készítenek külön `-dev` szolgáltatásokat: Firebase Hosting webet, Cloud Run API-t külön Google Cloud SQL Auth Proxy konténerrel, valamint Cloud SQL for MySQL-adatbázist. Az első indítás a saját Google Cloud Shellből történik; a telepítő kiírja a Google által biztosított HTTPS-címet. A tesztoldal valódi regisztrációt és szerveres adatmentést használ, ingyenes tesztkreditekkel.
 
-**Példafiókok a felhős tesztoldalon:** `anna@otthonra.local`, `peter@otthonra.local` és `eszter@otthonra.local`, közös jelszó: `OtthonraDemo2026!`. A telepítő három kitalált felhasználót, hat ingatlant és négy keresést készít, új példafiókonként 100 ingyenes tesztkredittel és aktív profillal. Anna és Péter már egymásnak megfelelő ajánlatokat kap. A tesztadatok a Google Cloud külön adatbázisában vannak; Codespaces-adatokat nem importálunk. Saját fiókot az **„Új fiókot hozok létre”** gombbal is regisztrálhatsz.
+**Az alap tesztadatcsomag 12 felhasználót, 114 ingatlant és 112 keresést tartalmaz**, köztük 3 ingatlanközvetítőt. Minden példafiók közös jelszava: `OtthonraDemo2026!`.
 
-Már működő tesztoldal feltöltése újratelepítés nélkül, a frissített tárolóban:
+| Fióktípus | E-mail-címek |
+|---|---|
+| Alap magánszemélyek | `anna@otthonra.local`, `peter@otthonra.local`, `eszter@otthonra.local` |
+| Ingatlanközvetítők | `daniel.kozvetito@otthonra.local`, `kata.kozvetito@otthonra.local`, `gabor.kozvetito@otthonra.local` |
+| További magánszemélyek | `reka@otthonra.local`, `bence@otthonra.local`, `julia@otthonra.local`, `marton@otthonra.local`, `lilla@otthonra.local`, `balazs@otthonra.local` |
 
-```sh
-node scripts/gcp/seed-dev.mjs
-```
+Minden fiókban van aktiválható keresés vagy ingatlan, és minden példafiók 100 ingyenes tesztkredittel indul. A közvetítők aktív kereséssel indulnak: például Dániellel rögtön kipróbálható az 1 kredites keresői kedvelés. Anna, Péter és Eszter eredeti alapmintái mellett sok új, egymáshoz illő magánszemély- és közvetítői ajánlat szerepel. A példafiókok megosztott, kitalált tesztadatokhoz tartoznak.
 
-A feltöltő csak az azonosított tesztoldalon működik. Privát nyugtával őrzi a létrehozott rekordok azonosítóit; az ismétlés megőrzi az átnevezett/archivált példákat, egyenlegeket, aktív profilokat és kézi adatokat. Ha másik munkamásolatból már létező fiókot talál saját nyugta nélkül, változatlanul hagyja. A példafiókok megosztott, kitalált tesztadatokhoz tartoznak.
+A feltöltés a backend indulásának része. Merge után a szokásos **Actions → Deploy Google Cloud test → Run workflow → main** telepítést indítsd: a backendbe beágyazott tesztadatcsomag automatikusan létrejön, külön adatfeltöltő parancs vagy workflow nélkül.
+
+**Minden új teszt Cloud Run-revízió friss tesztállapotot kap:** az alkalmazásadatok törlődnek, majd visszaállnak a fenti példafiókok, ingatlanok, keresések és kezdő kreditek. Ez a tesztelés közben létrehozott saját fiókokat, döntéseket, párosításokat és üzeneteket is törli. Azonos revízió új példányának indulásakor vagy újraindításakor az adatok megmaradnak; egy korábban már feltöltött régi revízió újraindítása sem törli az újabb tesztállapotot.
+
+Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261107-test-fixtures-v2`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.
 
 Első telepítés, várható költség, Google-hitelesítés és későbbi GitHub-kiadások: **[docs/GOOGLE-CLOUD-TEST.md](docs/GOOGLE-CLOUD-TEST.md)**. A dokumentáció az előkészített telepítést írja le; az alkalmazás Google Cloudban történő tényleges indulását a helyszíni health-ellenőrzés igazolja. A saját dev aldomain később hozzáadható.
 
@@ -108,6 +114,8 @@ node tests/gcp-runner.test.mjs
 node tests/gcp-push.test.mjs
 node tests/gcp-status.test.mjs
 node tests/gcp-seed.test.mjs
+node tests/demo-data.test.mjs
+node scripts/gcp/export-demo-data.mjs --check
 dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj
 node backend/smoke.mjs http://localhost:5080
 ```
@@ -116,7 +124,7 @@ A JavaScript-tesztek a katalógust, a modellt, az API-adaptert, az offline felü
 
 ## Meglévő adatok frissítése
 
-A jelenlegi kiadás megőrzi a MySQL-adatokat és a böngészős demó mentett döntéseit, találatait. `Database__Initialize=true` esetén az indulás az EF `EnsureCreated` után lefuttatja a `SchemaUpgrade` additív, ismételhető frissítését (`20261102-locations-and-lot-area`): hozzáadja a helyazonosító- és telekméretmezőket. A meglévő helyadatokat a rendszer az ismert település- és kerületnevekből értelmezi. Frissítéshez indítsd újra az új verziót a meglévő kötettel; az adatbázist és a Docker-kötetet nem kell törölni.
+A normál additív sémafrissítés megőrzi a MySQL-adatokat és a böngészős demó mentett döntéseit, találatait. A felhős teszttelepítés külön, engedélyezett indulási szabálya új Cloud Run-revíziónál az alkalmazásadatokat alaphelyzetbe állítja a fenti tesztadatcsomagra. `Database__Initialize=true` esetén az indulás az EF `EnsureCreated` után lefuttatja a `SchemaUpgrade` additív, ismételhető frissítését (`20261102-locations-and-lot-area`): hozzáadja a helyazonosító- és telekméretmezőket. A meglévő helyadatokat a rendszer az ismert település- és kerületnevekből értelmezi. Frissítéshez indítsd újra az új verziót a meglévő kötettel; az adatbázist és a Docker-kötetet nem kell törölni.
 
 Az opcionális ingatlanparaméterekhez a `20261105-property-attributes` verzió új oszlopokat ad hozzá a meglévő sorok és kapcsolatok megőrzésével. A `20261106-seller-form-details` a szobabontást, kiegészítő fűtést, több parkolóhelyet és keresési fűtésszűrőt adja hozzá. A `20261107-account-types-and-reports` a felhasználói fióktípust és az időbélyegzett `UserReports` táblát vezeti be; a meglévő fiókok magánszemélyként maradnak használhatók. Ehhez az új backendképet kell telepíteni; a korábbi kép ismételt használata ezt a fejlesztést nem tartalmazza.
 
