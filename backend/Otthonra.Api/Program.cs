@@ -220,7 +220,7 @@ api.MapGet("/matches", async (AppDb db, ClaimsPrincipal principal) =>
         var partnerId = row.Property.OwnerId == uid ? row.Search.OwnerId : row.Property.OwnerId;
         var contact = await db.Users.AsNoTracking().SingleAsync(x => x.Id == partnerId);
         var messages = await db.Messages.AsNoTracking().Where(x => x.MatchId == row.Match.Id).OrderBy(x => x.CreatedAt).ToListAsync();
-        results.Add(new { row.Match.Id, row.Match.CreatedAt, property = Dto.Property(row.Property, true, ownerTypes[row.Property.OwnerId]), searchRequest = Dto.Search(row.Search, ownerTypes[row.Search.OwnerId]), contact = new { contact.Id, contact.Name, contact.Email, contact.Phone }, messages = messages.Select(Dto.Message), unread = 0 });
+        results.Add(new { row.Match.Id, row.Match.CreatedAt, property = Dto.Property(row.Property, true, ownerTypes[row.Property.OwnerId]), searchRequest = Dto.Search(row.Search, ownerTypes[row.Search.OwnerId]), contact = new { contact.Id, contact.Name, contact.Email, contact.Phone, contact.AccountType }, messages = messages.Select(Dto.Message), unread = 0 });
     }
     return Results.Ok(results);
 });

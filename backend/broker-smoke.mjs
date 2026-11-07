@@ -23,7 +23,8 @@ async function verify(f){
  const ledger=await call('/credits/ledger',{token:f.agent});assert.equal(ledger.filter(x=>x.amount===-1).length,20);assert.equal(ledger.filter(x=>x.amount===-2).length,1);assert.equal(ledger.filter(x=>x.amount<0).length,21);
  assert.deepEqual(privateEntities.reportedOwnerIds,[f.sellerId]);assert.deepEqual(agentEntities.reportedOwnerIds,[f.privateUserId]);
  const matches=await call('/matches',{token:f.agent});
- const match=matches.find(x=>x.id===f.matchId);assert.ok(match);assert.equal(match.property.ownerAccountType,'private');assert.equal(match.searchRequest.ownerAccountType,'agent');assert.equal(match.contact.id,f.sellerId);
+ const match=matches.find(x=>x.id===f.matchId);assert.ok(match);assert.equal(match.property.ownerAccountType,'private');assert.equal(match.searchRequest.ownerAccountType,'agent');assert.equal(match.contact.id,f.sellerId);assert.equal(match.contact.accountType,'private');
+ const sellerMatches=await call('/matches',{token:f.seller});assert.equal(sellerMatches.find(x=>x.id===f.matchId).contact.accountType,'agent','A private seller must see the matched agent searcher badge');
  const receipt=await call('/reports',{token:f.privateUser,method:'POST',body:{entityKind:'search',entityId:f.sellerSearchId}});
  assert.equal(receipt.id,f.reports[0].id);assert.equal(receipt.alreadyReported,true);assert.equal(Object.hasOwn(receipt,'createdAt'),false);
  assert.equal((await entities(f.privateUser)).decisions.filter(d=>d.liked).length,2,'Private search likes survive without a debit');
