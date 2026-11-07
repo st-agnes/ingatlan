@@ -92,6 +92,7 @@ jobs:
           node tests/model.test.mjs
           node tests/frontend.test.mjs
           node tests/api.test.mjs
+          node tests/accounts.test.mjs
           node tests/development.test.mjs
           node tests/locations.test.mjs
           node tests/areas.test.mjs
@@ -128,6 +129,8 @@ jobs:
         run: node tests/attributes-browser.test.mjs http://127.0.0.1:3000
       - name: Test seller fields and numeric input on desktop, tablet and mobile
         run: node tests/seller-form-browser.test.mjs http://127.0.0.1:3000
+      - name: Test account badges, reports, registration and agent search costs in Chromium
+        run: node tests/broker-browser.test.mjs http://127.0.0.1:3000
       - name: Test city-area selection on desktop, tablet and mobile
         run: node tests/areas-browser.test.mjs http://127.0.0.1:3000
       - name: Simulate the previous schema in the disposable CI database
@@ -152,6 +155,14 @@ jobs:
           node backend/attributes-smoke.mjs http://127.0.0.1:3000 --verify
           node backend/areas-smoke.mjs http://127.0.0.1:3000 --verify
           node backend/seller-form-smoke.mjs http://127.0.0.1:3000 --verify
+      - name: Verify broker billing, reports and UTC timestamp persistence
+        run: |
+          node scripts/dev.mjs --restart
+          node backend/broker-smoke.mjs http://127.0.0.1:3000
+          python3 backend/report-store-smoke.py "${{ job.services.mysql.id }}" record
+          node scripts/dev.mjs --restart
+          node backend/broker-smoke.mjs http://127.0.0.1:3000 --verify
+          python3 backend/report-store-smoke.py "${{ job.services.mysql.id }}" verify
       - name: Start the API with the hosted test configuration
         run: |
           node scripts/dev.mjs --stop

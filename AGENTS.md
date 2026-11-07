@@ -39,6 +39,7 @@ Run the checks appropriate to the change:
 
 ```sh
 dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj
+node tests/accounts.test.mjs
 node tests/model.test.mjs
 node tests/frontend.test.mjs
 node tests/api.test.mjs
@@ -80,7 +81,10 @@ The real-browser regressions in `tests/browser.test.mjs`, `tests/attributes-brow
 - `20261105-property-attributes` adds the optional columns with the existing schema lock, preserving the old location upgrade. CI simulates the original schema with `backend/fixtures/previous-schema.sql` only in its disposable database, then checks attribute round trips and restart preservation with `backend/attributes-smoke.mjs`. Do not run the destructive CI SQL fixture against a deployed database. Shipping this feature requires a new API image; an old digest does not implement these filters.
 - Store nullable `wholeRooms`/`halfRooms` separately to preserve exact room composition; weighted `rooms = wholeRooms + halfRooms/2` is used for matching. Old total-only requests still work; unchanged totals preserve saved composition, exact half-step legacy totals derive display counts without row rewrites, other old decimals never round silently.
 - `20261106-seller-form-details` adds room-count columns, secondary heating, parking JSON and search heating JSON under the same schema lock. Keep this upgrade additive. `backend/seller-form-smoke.mjs` checks actual API persistence and restart; `tests/seller-form-browser.test.mjs` checks all three viewports. All positive/nonnegative number inputs prevent negative typing/paste/mobile input without adding negative-warning copy. Keep decimal typing and optional blank bounds usable; the basement category remains valid.
-- Search-side likes are free. A property-side like costs two credits exactly once. Credit balance, ledger, decision, and match updates must remain transactional.
+- Account types are `private` and `agent`, selected at registration and immutable through ordinary profile updates. Missing legacy types default to `private`. Derive all public `ownerAccountType` badges from the owner user, never listing/search input or current viewer. Keep contacts private until a match. Ship the shared `dist/accounts.js` in the Hosting allowlist.
+- Search-side likes cost zero for private accounts and one credit for agents; property-side likes cost two credits for both account types. Passes are free. Read the actor type from the locked database user. Credit balance, ledger, decision, and match updates remain transactional; retries debit no additional credits and insufficient funds create no decision/ledger/match.
+- `POST /reports` records a suspected disguised agent using a source property/search ID; derive the target owner on the server. Only another private account with a live source entity is reportable. A unique reporter/target pair makes repeats idempotent. Store UTC `CreatedAt` in `UserReports`, never render or return the report timestamp. `/me/entities` exposes only the current reporter’s `reportedOwnerIds`, not reports from others, public counts or details. Reports never automatically change account type, credits or visibility.
+- `20261107-account-types-and-reports` adds `Users.AccountType` and creates `UserReports` under the existing schema lock, including old EnsureCreated databases. Keep old rows/credits/IDs. The destructive CI-only previous-schema fixture drops this table/column/version solely in the disposable CI database; never execute it against a deployed database.
 - Public cards contain no contact details or exact address. Only a reciprocal match permits contact access and messaging.
 - Keep runtime EF Core packages on the same patch version; Design is private but runtime references must flow to test/client projects.
 - Large public text and JSON map to MySQL longtext with explicit input size limits.

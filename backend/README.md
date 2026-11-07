@@ -26,17 +26,18 @@ dotnet run --project backend/Otthonra.Api --urls http://localhost:5080
 
 ## API
 
-A publikus `POST /auth/register` body: `{name,email,password,phone}`; `POST /auth/login`: `{email,password}`. A jelszó 10–128 karakter. Válasz: `{accessToken,expiresIn,user}`. A token 12 órás. A `GET /locations` és az állapotjelző is publikus; a fiókhoz kötött végpontoknál `Authorization: Bearer ...` szükséges. Az alábbi útvonalak `/api` relatívak.
+A publikus `POST /auth/register` body: `{name,email,password,phone,accountType}`; `POST /auth/login`: `{email,password}`. Az `accountType` értéke `private` vagy `agent`; elhagyva/null esetén a régi kliensekhez `private`. Ismeretlen vagy üres megadott érték HTTP 400. A típus regisztrációkor rögzül, a profilmódosítás nem írja át. A jelszó 10–128 karakter. Válasz: `{accessToken,expiresIn,user}`. A token 12 órás. A `GET /locations` és az állapotjelző is publikus; a fiókhoz kötött végpontoknál `Authorization: Bearer ...` szükséges. Az alábbi útvonalak `/api` relatívak.
 
 | Művelet | Végpont | Adat / eredmény |
 |---|---|---|
 | Helykiegészítés | `GET /locations?q=Deb&limit=8` | `{items:[{id,label,city,district}]}`; hitelesítés nélkül |
-| Profil | `GET`, `PUT /me` | `{id,name,email,phone,credits,activeKind,activeEntityId,createdAt}`; módosítás: `{name,email,phone}` |
-| Saját entitások | `GET /me/entities` | `{properties,searchRequests,active:{kind,id}}` |
+| Profil | `GET`, `PUT /me` | `{id,name,email,phone,accountType,credits,activeKind,activeEntityId,createdAt}`; módosítás: `{name,email,phone}` |
+| Saját entitások | `GET /me/entities` | `{properties,searchRequests,reportedOwnerIds,active:{kind,id}}` |
 | Aktiválás | `PUT /me/active` | `{kind:"property"|"search",id}` |
 | Ingatlanok | `GET`, `POST /properties`, `PUT`, `DELETE /properties/{id}` | Saját ingatlanok; a törlés archivál |
 | Keresések | `GET`, `POST /searches`, `PUT`, `DELETE /searches/{id}` | Saját keresési igények; a törlés archivál |
-| Ajánlások | `GET /feed` | `{items:[{property,searchRequest,propertyId,searchRequestId,compatibilityScore,reasons,likedYou}],sellerLikeCost:2}` |
+| Ajánlások | `GET /feed` | `{items:[{property,searchRequest,propertyId,searchRequestId,compatibilityScore,reasons,likedYou}],sellerLikeCost:2,likeCost}` |
+| Jelentés | `POST /reports` | `{entityKind:"property"|"search",entityId}` → `{id,reported:true,reportedOwnerId,alreadyReported}`; első jelentés 201, ismétlés 200 |
 | Döntés | `POST /decisions` | `{propertyId,searchRequestId,liked}` → `{matchId,charged,credits}` |
 | Párosítások | `GET /matches` | `[{id,createdAt,property,searchRequest,contact:{id,name,email,phone},messages,unread}]` |
 | Üzenet | `POST /matches/{id}/messages` | `{text}` → `{id,matchId,senderId,text,createdAt}` |
@@ -53,9 +54,17 @@ A keresés `locationIds` listájában `area:<központ>` csoport is választható
 
 A keresés helyei között VAGY kapcsolat van: `['district:Budapest:5','district:Budapest:9','city:Solymár','city:Pilisvörösvár']` bármelyike megfelelhet. A `city:Budapest` a város összes kerületét elfogadja; egy konkrét kerület csak önmagát. A többi keresési feltételnek is teljesülnie kell. A közös, hálózati szolgáltatás nélkül használható katalógus forrása: [LOCATION-DATA.md](../docs/LOCATION-DATA.md).
 
-A min/max korlátok `null` értéke nyitott határt jelent. A `minPrice`, `maxArea`, `maxRooms` elhagyható; a kliens az üres mezőket `null` értékként küldi, és visszaolvasáskor is megőrzi. A `balcony/elevator=true` kötelező feltétel, a false nem zárja ki az adott tulajdonságot. Az ingatlantípus egyezését is ellenőrzi a rendszer. A keresőoldali kedvelés ingyenes. Az eladói kedvelés 2 kredit. Saját entitások egymással nem párosíthatók.
+A min/max korlátok `null` értéke nyitott határt jelent. A `minPrice`, `maxArea`, `maxRooms` elhagyható; a kliens az üres mezőket `null` értékként küldi, és visszaolvasáskor is megőrzi. A `balcony/elevator=true` kötelező feltétel, a false nem zárja ki az adott tulajdonságot. Az ingatlantípus egyezését is ellenőrzi a rendszer. A keresőoldali kedvelés magánszemélynek ingyenes, közvetítőnek 1 kredit. Az eladói kedvelés mindkét fióktípusnak 2 kredit; az elutasítás ingyenes. A levonást a szerveren tárolt felhasználói típus szabja meg. Saját entitások egymással nem párosíthatók.
 
 A döntések egy adott ingatlan–keresés párra és oldalra véglegesek. Újraküldött azonos döntés idempotens és 0 további kreditet von le; ellentétes újraküldés 409. A döntés, a kreditlevonás, a napló és a kölcsönös párosítás egyetlen MySQL-tranzakcióban történik, sorzárolással és adatbázis egyediségi korlátokkal. Az elutasított és már kedvelt párok nem kerülnek vissza az ajánlásokba. Az aktiválás jogosultságot nem ad más felhasználó adatainak módosításához.
+
+## Fióktípus és jelentések
+
+A publikus ingatlan- és keresésválaszok `ownerAccountType` mezője a tulajdonos tényleges fióktípusából készül, nem a kliens által küldött hirdetésadatból. Az `agent` jelzés nem oldja fel az elérhetőségek zárolását.
+
+Hitelesített felhasználó másik, magánszemélyként szereplő fiókot jelenthet egy létező, nem archivált ingatlanon vagy keresésen keresztül. A cél tulajdonosát a szerver keresi ki; saját fiók és már közvetítőként regisztrált fiók nem jelenthető így. A `UserReports` tárolja a bejelentőt, a jelentett fiókot, a forrásentitást, a rögzített `suspected_agent` okot és az UTC `CreatedAt` időbélyeget. A `(ReporterId,ReportedUserId)` egyediség az ismételt és párhuzamos beküldést is egyszeri jelentéssé teszi.
+
+A jelentés válasza és a felület nem tartalmaz időbélyeget. A `reportedOwnerIds` csak a saját korábbi jelentések célfiókjait adja vissza; más bejelentők és nyilvános jelentésszám nem érhető el. A jelentés nem módosít automatikusan fióktípust, kreditet vagy láthatóságot.
 
 ## Adatvédelem és élesítés
 
@@ -66,6 +75,8 @@ A feed és a publikus kártyák nem tartalmaznak felhasználói elérhetőséget
 ## Meglévő adatbázis frissítése
 
 `Database__Initialize=true` esetén az indulás először `EnsureCreated` hívást végez az új adatbázishoz, majd a `SchemaUpgrade.ApplyAsync` fut le a meglévő adatbázison is. A `20261102-locations-and-lot-area` verzió additívan létrehozza a `Properties.LocationId`, `Properties.LotArea` és `SearchRequests.LocationIdsJson` oszlopokat, és a verziót a `__OtthonraSchemaVersions` táblában rögzíti. A lépések ismételhetők, az adatbázis-zár összehangolja a párhuzamos indításokat. Meglévő felhasználót, hirdetést, keresést, döntést, párosítást vagy kreditet nem töröl.
+
+A `20261107-account-types-and-reports` a `Users.AccountType` oszlopot (`private` alapértékkel) és a `UserReports` táblát hozza létre additívan. A korábbi fiókok, kreditek és kapcsolatok megmaradnak; az új jelentéstábla a meglévő `EnsureCreated` adatbázishoz is létrejön.
 
 A `20261106-seller-form-details` szintén additívan adja hozzá a `WholeRooms`, `HalfRooms`, `SecondaryHeatingType`, `ParkingTypesJson` és `HeatingTypesJson` oszlopokat. A fűtésválasztások közösek az eladói és keresési oldalon; a keresés csak a fő fűtést szűri. A parkolóhely többértékű, a régi szöveges mező kompatibilis marad. Részletek: [Ingatlanparaméterek](../docs/PROPERTY-PARAMETERS.md).
 

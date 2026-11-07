@@ -1,0 +1,70 @@
+using System.Data;
+using Microsoft.EntityFrameworkCore;
+
+namespace Otthonra.Api;
+
+/// <summary>Registration-only account identity and server-controlled decision pricing.</summary>
+public static class AccountTypes
+{
+    public const string Private = "private";
+    public const string Agent = "agent";
+    public const string SuspectedAgentReason = "suspected_agent";
+
+    public static string RegistrationType(string? value)
+    {
+        if (value is null) return Private; // Preserve older registration clients.
+        var type = value.Trim().ToLowerInvariant();
+        if (type is not (Private or Agent)) throw new ApiException(400, "Válassz a magánszemély és az ingatlanközvetítő fióktípus közül.");
+        return type;
+    }
+
+    public static string PublicType(string? value) => value == Agent ? Agent : Private;
+    public static int LikeCost(string accountType, string? kind) => kind switch
+    {
+        "property" => Rules.SellerLikeCost,
+        "search" when accountType == Agent => Rules.AgentSearchLikeCost,
+        _ => 0
+    };
+
+    public static int DecisionCost(string accountType, string? kind, bool liked) => liked ? LikeCost(accountType, kind) : 0;
+
+    public static void ValidateReportTarget(Guid reporterId, Guid reportedUserId, string accountType)
+    {
+        if (reporterId == reportedUserId) throw new ApiException(400, "A saját fiókodat nem jelentheted.");
+        if (accountType == Agent) throw new ApiException(400, "Ez a fiók már ingatlanközvetítőként szerepel.");
+    }
+}
+
+public record ReportReceipt(Guid Id, bool Reported, Guid ReportedOwnerId, bool AlreadyReported);
+
+public static class AccountReports
+{
+    public static async Task<ReportReceipt> CreateAsync(AppDb db, Guid reporterId, ReportInput input)
+    {
+        if (input.EntityKind is not ("property" or "search")) throw new ApiException(400, "Érvénytelen profiltípus.");
+        await using var transaction = await db.Database.BeginTransactionAsync(IsolationLevel.ReadCommitted);
+        var ownerId = input.EntityKind == "property"
+            ? await db.Properties.AsNoTracking().Where(entity => entity.Id == input.EntityId && !entity.Archived).Select(entity => (Guid?)entity.OwnerId).SingleOrDefaultAsync()
+            : await db.SearchRequests.AsNoTracking().Where(entity => entity.Id == input.EntityId && !entity.Archived).Select(entity => (Guid?)entity.OwnerId).SingleOrDefaultAsync();
+        if (!ownerId.HasValue) throw new ApiException(404, "A jelentett profil nem található.");
+        // Lock both user FK rows in a stable order. This serializes duplicate
+        // reports and avoids reciprocal A-reports-B/B-reports-A FK deadlocks.
+        var users = await db.Users.FromSqlInterpolated($"SELECT * FROM `Users` WHERE `Id` = {reporterId} OR `Id` = {ownerId.Value} ORDER BY `Id` FOR UPDATE").ToListAsync();
+        var reporter = users.SingleOrDefault(user => user.Id == reporterId)
+            ?? throw new ApiException(401, "A fiók nem található.");
+        var owner = users.SingleOrDefault(user => user.Id == ownerId.Value)
+            ?? throw new ApiException(404, "A jelentett profil nem található.");
+        AccountTypes.ValidateReportTarget(reporter.Id, owner.Id, owner.AccountType);
+        var previous = await db.UserReports.SingleOrDefaultAsync(report => report.ReporterId == reporter.Id && report.ReportedUserId == owner.Id);
+        if (previous is not null)
+        {
+            await transaction.CommitAsync();
+            return new(previous.Id, true, owner.Id, true);
+        }
+        var report = new UserReport { ReporterId = reporter.Id, ReportedUserId = owner.Id, EntityKind = input.EntityKind, EntityId = input.EntityId };
+        db.UserReports.Add(report);
+        await db.SaveChangesAsync();
+        await transaction.CommitAsync();
+        return new(report.Id, true, owner.Id, false);
+    }
+}

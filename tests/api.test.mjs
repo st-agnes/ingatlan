@@ -244,7 +244,7 @@ test('hosted registration and logout use a verified same-origin API session',asy
   const calls=routes(accountRoutes({'/api/auth/register':{accessToken:'new-user-token'}}));
   const api=await connectApi(globalThis.location.origin,'anna@example.hu','password1234',{name:'Teszt Anna',phone:''});
   assert.equal(api.baseUrl,globalThis.location.origin);assert.equal(api.mode,'api');
-  assert.deepEqual(JSON.parse(calls[0].body),{name:'Teszt Anna',phone:'',email:'anna@example.hu',password:'password1234'});
+  assert.deepEqual(JSON.parse(calls[0].body),{name:'Teszt Anna',phone:'',accountType:'private',email:'anna@example.hu',password:'password1234'});
   const saved=JSON.parse(globalThis.localStorage.getItem(API_CONFIG_KEY));
   assert.deepEqual(saved,{baseUrl:'https://test.example.hu',token:'new-user-token'});
   assert.equal(getModel().mode,'api');assert.equal(disconnectApi(),null);assert.equal(getModel(),null);
@@ -363,4 +363,44 @@ test('house API saves remove hidden controls while search heating remains an opt
  assert.deepEqual(saved.heatingTypes,['Gázkazán','Klíma']);
  assert.deepEqual([saved.minRooms,saved.maxRooms],[2.5,4.5]);
  const body=JSON.parse(calls[1].body);assert.deepEqual(body.heatingTypes,saved.heatingTypes);
+});
+
+test('agent declarations register explicitly while invalid choices never send credentials',async()=>{
+ globalThis.localStorage=storage();
+ const calls=routes(accountRoutes({'/api/auth/register':{accessToken:'registered-agent-token'},'/api/me':{...profile,accountType:'agent'}}));
+ const api=await connectApi('https://api.example.hu','agent@example.hu','password1234',{name:'Közvetítő Anna',accountType:'agent'});
+ assert.equal(JSON.parse(calls[0].body).accountType,'agent');assert.equal((await api.getState()).user.accountType,'agent');assert.equal((await api.getState()).likeCost,1);
+ const before=calls.length;for(const accountType of ['',false,'unknown'])await assert.rejects(connectApi('https://api.example.hu','agent@example.hu','password1234',{name:'Közvetítő Anna',accountType}),/fióktípust/);
+ assert.equal(calls.length,before);
+});
+
+test('API owner metadata persists through own lists, public feeds, history and matches without using the viewer account type',async()=>{
+ const agentProperty={...property,ownerAccountType:'agent'},privateSearch={...search,ownerAccountType:'private'};
+ routes(accountRoutes({'/api/me':{...profile,accountType:'agent'},'/api/me/entities':{properties:[agentProperty],searchRequests:[privateSearch],reportedOwnerIds:['other','other'],active:{kind:'search',id:ids.search},decisions:[{id:'choice',actorId:ids.search,actorKind:'search',propertyId:ids.property,searchRequestId:ids.search,property:agentProperty,searchRequest:privateSearch}]},'/api/feed':{likeCost:1,items:[{property:agentProperty,searchRequest:privateSearch}]},'/api/matches':[{...match,property:agentProperty,searchRequest:privateSearch,contact:{...match.contact,accountType:'agent'}}]}));
+ const api=adapter(),state=await api.getState();assert.equal(state.user.accountType,'agent');assert.equal(state.likeCost,1);assert.deepEqual(state.reportedOwnerIds,['other']);
+ assert.equal(state.properties[0].ownerAccountType,'agent');assert.equal(state.searches[0].ownerAccountType,'private');assert.equal(state.decisions[0].property.ownerAccountType,'agent');assert.equal(state.decisions[0].search.ownerAccountType,'private');
+ const card=(await api.feed())[0];assert.equal(card.ownerAccountType,'agent');assert.equal('email' in card,false);assert.equal('phone' in card,false);
+ const result=(await api.matches())[0];assert.equal(result.partner.accountType,'agent');assert.equal(result.property.ownerAccountType,'agent');assert.equal(result.search.ownerAccountType,'private');
+});
+
+test('legacy API responses retain private/free defaults and no-active accounts have no like cost',async()=>{
+ routes(accountRoutes());let state=await adapter().getState();assert.equal(state.user.accountType,'private');assert.equal(state.likeCost,0);assert.deepEqual(state.reportedOwnerIds,[]);
+ routes(accountRoutes({'/api/me':{...profile,accountType:'agent',activeKind:null,activeEntityId:null},'/api/me/entities':{properties:[],searchRequests:[],active:null}}));state=await adapter().getState();assert.equal(state.likeCost,0);
+ routes(accountRoutes({'/api/me':{...profile,accountType:'agent'},'/api/me/entities':{properties:[property],searchRequests:[],active:{kind:'property',id:ids.property}}}));state=await adapter().getState();assert.equal(state.likeCost,2);assert.equal(state.properties[0].ownerAccountType,'private','a viewer declaration cannot label another owner');
+});
+
+test('report requests use source entities only and preserve idempotent acknowledgements and retryable API failures',async()=>{
+ const receipt={id:'receipt',reported:true,reportedOwnerId:'other',alreadyReported:false};let sent=0;
+ const calls=routes({'/api/reports':options=>{sent++;return response({...receipt,alreadyReported:sent>1},sent===1?201:200);}}),api=adapter();
+ assert.deepEqual(await api.reportAccount('property',ids.property),receipt);assert.deepEqual(JSON.parse(calls[0].body),{entityKind:'property',entityId:ids.property});
+ assert.equal((await api.reportAccount('search',ids.search)).alreadyReported,true);assert.equal('createdAt' in receipt,false);
+ const before=calls.length;for(const [kind,id] of [['user','other'],['property',''],['search',null]])await assert.rejects(api.reportAccount(kind,id),/jelentési profil/);assert.equal(calls.length,before);
+ routes({'/api/reports':()=>response({message:'Átmeneti hiba'},503)});await assert.rejects(api.reportAccount('property',ids.property),error=>error.status===503&&error.message==='Átmeneti hiba');
+});
+
+test('owner declarations cannot be set through property or search save payloads or profile updates',async()=>{
+ const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201),'/api/searches':options=>response({id:ids.search,...JSON.parse(options.body)},201),'/api/me':options=>response({...profile,...JSON.parse(options.body)})});
+ const api=adapter();await api.saveEntity('property',{title:'Saját ingatlan',locationId:'city:Debrecen',price:50,area:50,rooms:2,ownerAccountType:'agent'});
+ await api.saveEntity('search',{title:'Saját keresés',locationIds:['city:Debrecen'],ownerAccountType:'agent'});await api.updateProfile({name:'Nagy Anna',email:'anna@example.hu',phone:'',accountType:'agent'});
+ for(const call of calls){const body=JSON.parse(call.body);assert.equal('ownerAccountType' in body,false);assert.equal('accountType' in body,false);}
 });

@@ -238,3 +238,61 @@ test('heating and parking data persist while new invalid options or negative mea
  assert.equal(isCompatible(loaded,{...q,ownerId:'other'}),true);
  assert.equal(isCompatible({...loaded,heatingType:'Nincs fűtés'},{...q,ownerId:'other'}),false);
 });
+
+test('legacy account declarations migrate in memory without resetting business data and owner labels cannot be forged',()=>{
+ const storage=store(),m=createModel(storage);m.buyDemoCredits(1);
+ const raw=JSON.parse(storage.getItem(STORAGE_KEY));for(const user of raw.users)delete user.accountType;
+ raw.properties.find(p=>p.id==='p1').ownerAccountType='agent';
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));const oldSaved=storage.getItem(STORAGE_KEY),again=createModel(storage),state=again.getState();
+ assert.equal(state.user.accountType,'private');assert.equal(state.likeCost,0);assert.deepEqual(state.reportedOwnerIds,[]);
+ assert.equal(again.feed().find(p=>p.id==='p1').ownerAccountType,'private');
+ assert.equal(storage.getItem(STORAGE_KEY),oldSaved,'reading must not rewrite old saved records');
+ assert.equal(state.credits,raw.credits);assert.deepEqual(state.ledger,raw.ledger);assert.equal(state.decisions.length,raw.decisions.filter(d=>d.actorKind==='search'&&d.actorId==='own-s1').length);
+ assert.equal(again.matches().length,m.matches().length);
+ const saved=again.saveEntity('property',{title:'Magánszemély hirdetése',locationId:'city:Debrecen',price:60,area:60,rooms:2,ownerAccountType:'agent'});
+ assert.equal(saved.ownerAccountType,'private');assert.equal(again.getState().properties.find(p=>p.id===saved.id).ownerAccountType,'private');
+});
+
+test('agent search likes cost one credit once, passes are free and insufficient balance commits nothing',()=>{
+ const storage=store(),m=createModel(storage);m.buyDemoCredits(1);
+ const raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.users.find(user=>user.id==='me').accountType='agent';raw.credits=0;
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));let again=createModel(storage),first=again.feed()[0],before=again.getState();
+ assert.equal(before.likeCost,1);assert.throws(()=>again.decide(first,true),/1 kredit/);assert.deepEqual(again.getState(),before);
+ assert.equal(again.decide(first,false).charged,0);assert.equal(again.getState().credits,0);
+ again.buyDemoCredits(1);const next=again.feed()[0],balance=again.getState().credits,result=again.decide(next,true);
+ assert.equal(result.charged,1);assert.equal(again.getState().credits,balance-1);
+ const entry=again.getState().ledger[0];assert.equal(entry.amount,-1);assert.equal(entry.type,'agent_search_like');assert.match(entry.description,/Közvetítői keresés/);
+ const after=again.getState();assert.throws(()=>again.decide(next,true),/már döntöttél/);assert.deepEqual(again.getState(),after);
+ again=createModel(storage);assert.equal(again.getState().credits,0);assert.equal(again.getState().user.accountType,'agent');
+ again.activate('property','own-p1');assert.equal(again.getState().likeCost,2);again.buyDemoCredits(2);assert.equal(again.decide(again.feed()[0],true).charged,2);
+});
+
+test('owner declarations are available consistently in property and search feeds, decisions and matches',()=>{
+ const m=setup();assert.equal(m.getState().user.accountType,'private');
+ assert.equal(m.feed().find(p=>p.id==='p2').ownerAccountType,'agent');
+ const privateCard=m.feed().find(p=>p.id==='p1');assert.equal(privateCard.ownerAccountType,'private');assert.equal('email' in privateCard,false);assert.equal('phone' in privateCard,false);
+ m.decide(privateCard,false);const history=m.getState().decisions.find(d=>d.propertyId==='p1');assert.equal(history.property.ownerAccountType,'private');assert.equal(history.search.ownerAccountType,'private');
+ const match=m.matches().find(match=>match.id==='m1');assert.equal(match.partner.accountType,'agent');assert.equal(match.property.ownerAccountType,'agent');assert.equal(match.search.ownerAccountType,'private');
+ m.activate('property','own-p1');assert.equal(m.feed().find(s=>s.id==='s2').ownerAccountType,'agent');
+ const before=m.getState().user;m.updateProfile({accountType:'agent'});assert.equal(m.getState().user.accountType,before.accountType,'profile updates cannot turn a declaration into a billing switch');
+});
+
+test('reporting records one private UTC receipt per account across entities, without exposing timestamps or changing business state',()=>{
+ const storage=store(),at='2026-11-07T09:10:11.000Z',m=createModel(storage,()=>at),before=m.getState(),matches=m.matches();
+ const first=m.reportAccount('property','p1');assert.equal(first.reported,true);assert.equal(first.alreadyReported,false);assert.equal(first.reportedOwnerId,'u1');assert.equal('createdAt' in first,false);
+ assert.deepEqual(m.getState().reportedOwnerIds,['u1']);assert.equal('reports' in m.getState(),false);
+ const repeat=m.reportAccount('search','s1');assert.equal(repeat.id,first.id);assert.equal(repeat.alreadyReported,true);
+ const stored=JSON.parse(storage.getItem(STORAGE_KEY));assert.equal(stored.reports.length,1);assert.deepEqual(stored.reports[0],{id:first.id,reporterId:'me',reportedUserId:'u1',entityKind:'property',entityId:'p1',reason:'suspected_agent',createdAt:at});
+ const after=m.getState();for(const field of ['credits','ledger','decisions','properties','searches','active','user'])assert.deepEqual(after[field],before[field]);assert.deepEqual(m.matches(),matches);
+ const again=createModel(storage,()=>new Date().toISOString());assert.deepEqual(again.getState().reportedOwnerIds,['u1']);assert.equal(again.reportAccount('property','p1').alreadyReported,true);assert.equal(JSON.parse(storage.getItem(STORAGE_KEY)).reports[0].createdAt,at);
+});
+
+test('reporting rejects nonexistent, archived, own and already declared agent entities atomically',()=>{
+ const m=setup(),before=m.getState();
+ for(const [kind,id] of [['user','u1'],['property','unknown'],['property','own-p1'],['property','p2'],['search','s2']])assert.throws(()=>m.reportAccount(kind,id));
+ assert.deepEqual(m.getState(),before);
+ const storage=store(),initial=createModel(storage);initial.buyDemoCredits(1);const raw=JSON.parse(storage.getItem(STORAGE_KEY));
+ raw.properties.find(p=>p.id==='p1').archived=true;raw.reports=[{id:'other-report',reporterId:'u3',reportedUserId:'u1',reason:'suspected_agent',createdAt:'2026-11-07T00:00:00Z'}];
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));const again=createModel(storage);assert.deepEqual(again.getState().reportedOwnerIds,[],'other reporters are private');
+ assert.throws(()=>again.reportAccount('property','p1'),/nem érhető/);assert.equal(JSON.parse(storage.getItem(STORAGE_KEY)).reports.length,1);
+});

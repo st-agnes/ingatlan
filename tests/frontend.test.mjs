@@ -6,6 +6,7 @@ import fs from 'node:fs/promises';
 import {createModel} from '../dist/model.js';
 import {searchLocations,getLocation,resolveLegacyLocations} from '../dist/locations.js';
 import * as propertyAttributes from '../dist/attributes.js';
+import * as accountHelpers from '../dist/accounts.js';
 
 const source=await fs.readFile(new URL('../dist/app.js',import.meta.url),'utf8');
 class Element {
@@ -33,7 +34,7 @@ class Document {
  listenerCount(type){return(this.listeners.get(type)||[]).length;}
 }
 async function setup(options={}){
- const storage={getItem:()=>null,setItem:()=>{}},demoModel=createModel(storage),document=new Document();
+ const storage={getItem:()=>options.initialRaw?JSON.stringify(options.initialRaw):null,setItem:()=>{}},demoModel=createModel(storage),document=new Document();
  const apiModel=Object.assign({...demoModel},{mode:'api'},options.apiOverrides||{});
  let selected=options.hosted?(options.authenticated?apiModel:null):demoModel;
  const connected=[],disconnected=[];
@@ -41,7 +42,7 @@ async function setup(options={}){
   document,console,Intl,Date,Promise,URLSearchParams,setTimeout:()=>0,clearTimeout:()=>{},
   location:{hash:'',search:'',origin:'https://test.example'},window:{scrollTo:()=>{}},
   OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:'test'}:{mode:'demo',environment:'local'},
-  searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,
+  searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...accountHelpers,
   hostedMode:()=>!!options.hosted,deploymentEnvironment:()=>options.hosted?'test':'local',
   getModel:()=>selected,
   disconnectApi:()=>{disconnected.push(true);selected=options.hosted?null:demoModel;return selected;},
@@ -266,7 +267,7 @@ test('hosted registration sends profile details to the same-origin API without s
  await submitHostedAuth(t,{...hostedCredentials,name:'Új Teszt Anna',phone:'+36 30 123 4567'});await settle();
  assert.equal(t.connected.length,1);
  assert.equal(t.connected[0][0],'https://test.example');
- assert.deepEqual(JSON.parse(JSON.stringify(t.connected[0][3])),{name:'Új Teszt Anna',phone:'+36 30 123 4567'});
+ assert.deepEqual(JSON.parse(JSON.stringify(t.connected[0][3])),{name:'Új Teszt Anna',phone:'+36 30 123 4567',accountType:'private'});
  assert.equal(t.getSelectedModel(),t.model);
 });
 
@@ -538,4 +539,42 @@ test('legacy arbitrary room totals are never rounded and existing heating or par
  const demo=createModel({getItem:()=>null,setItem:()=>{}}).getState();demo.properties[0]={...demo.properties[0],id:'legacy-property',rooms:3.2,wholeRooms:null,halfRooms:null,heatingType:'Régi vegyes rendszer',parkingType:'Régi garázs és beálló',parkingTypes:undefined};
  const t=await setup({hosted:true,authenticated:true,apiOverrides:{getState:async()=>demo}});t.ui.openEditor('property','legacy-property');const html=t.document.getElementById('modal-root').innerHTML;
  assert.equal(t.document.getElementById('f-wholeRooms').value,'');assert.equal(t.document.getElementById('f-halfRooms').value,'');assert.match(html,/<option value="Régi vegyes rendszer" selected>Meglévő érték: Régi vegyes rendszer<\/option>/);assert.match(html,/name="parkingTypes" value="Régi garázs és beálló" checked/);
+});
+
+
+function accountFixture(mutate){let raw;const local=createModel({getItem:()=>null,setItem:(_key,value)=>{raw=JSON.parse(value);}});local.activate('search','own-s1');mutate(raw);return raw;}
+test('hosted and settings registration both offer account types and send the selected agent role',async()=>{
+ const hosted=await setup({hosted:true});await hosted.click({action:'auth-mode',mode:'register'});
+ const registration=hosted.document.getElementById('app').innerHTML;assert.match(registration,/id="f-accountType"/);assert.match(registration,/value="private">Magánszemély/);assert.match(registration,/value="agent">Ingatlanközvetítő/);
+ await submitHostedAuth(hosted,{...hostedCredentials,name:'Közvetítő Anna',accountType:'agent'});await settle();assert.equal(hosted.connected[0][3].accountType,'agent');
+ const legacy=await setup();await legacy.click({page:'settings'});const select=legacy.document.getElementById('api-accountType');assert.ok(select);assert.equal(select.value,'private');
+ legacy.document.getElementById('register-toggle').handlers.change({target:{checked:true}});assert.doesNotMatch(legacy.document.getElementById('register-name').className,/hidden/);
+ const form=legacy.document.getElementById('api-form');form.values={baseUrl:'https://api.example.test',email:'agent@example.test',password:'LongPassword2026!',register:'on',registerName:'Közvetítő Eszter',accountType:'agent'};form.handlers.submit({preventDefault(){},currentTarget:form});await settle();assert.equal(legacy.connected[0][3].accountType,'agent');
+});
+test('agent metadata labels property and search cards, details, saved decisions, own entities and matched partners',async()=>{
+ const raw=accountFixture(raw=>{raw.users.find(user=>user.id==='me').accountType='agent';raw.users.find(user=>user.id==='u1').accountType='agent';});
+ const t=await setup({initialRaw:raw});let html=t.document.getElementById('app').innerHTML;assert.match(html,/class="agent-badge"/);assert.match(html,/Ingatlanközvetítő/);assert.doesNotMatch(html,/data-action="report-account" data-kind="property" data-id="p1"/);assert.doesNotMatch(html,/peter@example.hu|\+36 30 555 0141/);
+ t.ui.openDetails();assert.match(t.document.getElementById('modal-root').innerHTML,/class="agent-badge"/);await t.click({action:'close'});
+ for(const page of ['properties','searches','matches']){await t.click({page});assert.match(t.document.getElementById('app').innerHTML,/class="agent-badge"/);}
+ await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.match(t.document.getElementById('app').innerHTML,/class="agent-badge"/);t.ui.openDetails();assert.match(t.document.getElementById('modal-root').innerHTML,/class="agent-badge"/);await t.click({action:'close'});
+ await t.click({action:'like'});await t.click({action:'close'});await t.click({action:'tab',tab:'liked'});assert.match(t.document.getElementById('app').innerHTML,/class="agent-badge"/);
+ await t.click({page:'settings'});html=t.document.getElementById('app').innerHTML;assert.match(html,/Fióktípus: <strong>Ingatlanközvetítő/);assert.doesNotMatch(html.match(/<form[^>]*id="profile-form"[\s\S]*?<\/form>/)[0],/name="accountType"/,'the existing profile form must not expose an editable role');
+});
+test('reporting a private counterparty requires confirmation, awaits persistence and never renders its stored timestamp',async()=>{
+ const t=await setup(),before=t.model.getState();await t.click({action:'report-account',kind:'property',id:'p1'});assert.match(t.document.getElementById('modal-root').innerHTML,/Ingatlanközvetítőnek tűnik\?/);await t.click({action:'close'});assert.deepEqual(t.model.getState().reportedOwnerIds,[]);
+ let release;const wait=new Promise(resolve=>{release=resolve;});const original=t.model.reportAccount;t.model.reportAccount=async(...args)=>{await wait;return original(...args);};
+ await t.click({action:'report-account',kind:'property',id:'p1'});const sending=t.click({action:'confirm-report',kind:'property',id:'p1'});await settle();assert.deepEqual(t.model.getState().reportedOwnerIds,[]);assert.match(t.document.getElementById('modal-root').innerHTML,/Jelentés elküldése/);
+ release();await sending;assert.deepEqual(t.model.getState().reportedOwnerIds,['u1']);assert.equal(t.model.getState().credits,before.credits);assert.equal(t.model.getState().user.accountType,'private');assert.equal(t.document.getElementById('modal-root').innerHTML,'');assert.match(t.document.getElementById('toast').textContent,/A jelentésedet elmentettük/);const html=t.document.getElementById('app').innerHTML;assert.match(html,/data-action="report-account" data-kind="property" data-id="p1" disabled/);assert.match(html,/Jelentve/);assert.doesNotMatch(html,/\d{4}-\d{2}-\d{2}T|reportedAt|CreatedAt/);
+ await t.click({action:'report-account',kind:'property',id:'p1'});assert.equal(t.document.getElementById('modal-root').innerHTML,'','reported accounts must not reopen a report dialog');
+});
+test('a failed report retains confirmation for retry and known agents or own profiles cannot open it',async()=>{
+ const t=await setup(),original=t.model.reportAccount;t.model.reportAccount=async()=>{throw new Error('A jelentés mentése most nem sikerült.');};await t.click({action:'report-account',kind:'property',id:'p1'});await t.click({action:'confirm-report',kind:'property',id:'p1'});assert.match(t.document.getElementById('modal-root').innerHTML,/Jelentés elküldése/);assert.match(t.document.getElementById('toast').textContent,/mentése most nem sikerült/);assert.deepEqual(t.model.getState().reportedOwnerIds,[]);
+ t.model.reportAccount=original;await t.click({action:'confirm-report',kind:'property',id:'p1'});assert.deepEqual(t.model.getState().reportedOwnerIds,['u1']);
+ for(const id of ['p2','own-p1']){await t.click({action:'report-account',kind:'property',id});assert.equal(t.document.getElementById('modal-root').innerHTML,'');}
+});
+test('agent search likes show one credit and button, keyboard and swipe cannot consume an unaffordable candidate',async()=>{
+ const raw=accountFixture(raw=>{raw.users.find(user=>user.id==='me').accountType='agent';raw.credits=1;});const t=await setup({initialRaw:raw});assert.match(t.document.getElementById('app').innerHTML,/Tetszik · 1 kredit/);t.ui.openDetails();assert.match(t.document.getElementById('modal-root').innerHTML,/Tetszik · 1 kredit/);await t.click({action:'close'});await t.click({action:'like'});assert.equal(t.model.getState().credits,0);await t.click({action:'close'});
+ const before=t.model.getState(),candidate=t.model.feed()[0].id;await t.click({action:'like'});assert.match(t.document.getElementById('modal-root').innerHTML,/Kreditekre van szükséged/);assert.equal(t.model.feed()[0].id,candidate);assert.equal(t.model.getState().decisions.length,before.decisions.length);await t.click({action:'close'});
+ await t.document.handlers.keydown({key:'ArrowRight',target:{closest:()=>null},preventDefault(){}});assert.match(t.document.getElementById('modal-root').innerHTML,/Kreditekre van szükséged/);await t.click({action:'close'});
+ const card=t.document.getElementById('candidate'),target={closest:selector=>selector==='#candidate'?card:null};t.document.handlers.pointerdown({target,clientX:0,clientY:0,pointerId:7});await t.document.handlers.pointerup({clientX:130,clientY:3,pointerId:7});assert.match(t.document.getElementById('modal-root').innerHTML,/Kreditekre van szükséged/);assert.equal(t.model.feed()[0].id,candidate);assert.equal(t.model.getState().credits,0);assert.equal(t.model.getState().ledger.length,before.ledger.length);await t.click({action:'close'});await t.click({action:'pass'});assert.notEqual(t.model.feed()[0]?.id,candidate);assert.equal(t.model.getState().credits,0);
 });

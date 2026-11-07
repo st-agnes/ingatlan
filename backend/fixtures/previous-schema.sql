@@ -1,5 +1,7 @@
 -- CI ONLY: simulate the initial release in the disposable otthonra_ci database.
 -- No application deployment executes this file.
+DROP TABLE IF EXISTS `UserReports`;
+ALTER TABLE `Users` DROP COLUMN `AccountType`;
 ALTER TABLE `Properties`
   DROP COLUMN `LocationId`, DROP COLUMN `LotArea`,
   DROP COLUMN `ConstructionAge`, DROP COLUMN `View`, DROP COLUMN `CeilingHeight`,
@@ -12,4 +14,4 @@ ALTER TABLE `SearchRequests`
   DROP COLUMN `ConstructionAgesJson`, DROP COLUMN `ViewsJson`, DROP COLUMN `CeilingHeight`, DROP COLUMN `FloorsJson`,
   DROP COLUMN `HeatingTypesJson`;
 DELETE FROM `__OtthonraSchemaVersions`
-  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details');
+  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports');
