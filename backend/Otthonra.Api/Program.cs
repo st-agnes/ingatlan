@@ -45,19 +45,25 @@ app.UseRateLimiter();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Initial empty databases can be provisioned explicitly. Never seed user data in production.
+// Initialize schemas explicitly. Disposable fixtures require both a test deployment and its separate opt-in flag.
+string? testDataVersion = null;
 if (builder.Configuration.GetValue<bool>("Database:Initialize"))
 {
     await using var scope = app.Services.CreateAsyncScope();
     var db = scope.ServiceProvider.GetRequiredService<AppDb>();
     await db.Database.EnsureCreatedAsync();
     await SchemaUpgrade.ApplyAsync(db);
-    if (development && builder.Configuration.GetValue<bool>("Database:SeedDemo")) await Seed.Run(db);
+    if (deployment.IsTest && builder.Configuration.GetValue<bool>("Database:SeedTestFixtures"))
+    {
+        await TestDataSeed.RunAsync(db, deployment, builder.Configuration["K_REVISION"]);
+        testDataVersion = TestDataSeed.CatalogVersion;
+    }
+    else if (development && builder.Configuration.GetValue<bool>("Database:SeedDemo")) await Seed.Run(db);
 }
 app.MapGet("/api/locations", (string? q, int? limit, string? kind) => Results.Ok(new { items = LocationCatalog.Search(q, limit ?? 8, kind) }));
 app.MapGet("/api/health", async Task<IResult> (AppDb db) => await db.Database.CanConnectAsync()
-    ? Results.Ok(new { status = "ready", deployment = deployment.Name, testCreditsEnabled = deployment.AllowDemoTopup })
-    : Results.Json(new { status = "database-unavailable", deployment = deployment.Name, testCreditsEnabled = deployment.AllowDemoTopup }, statusCode: 503));
+    ? Results.Ok(new { status = "ready", deployment = deployment.Name, testCreditsEnabled = deployment.AllowDemoTopup, testDataVersion })
+    : Results.Json(new { status = "database-unavailable", deployment = deployment.Name, testCreditsEnabled = deployment.AllowDemoTopup, testDataVersion }, statusCode: 503));
 
 object Session(User user)
 {

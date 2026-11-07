@@ -71,6 +71,7 @@ test('only secret references enter the API environment and runtime permissions r
   assert.equal(env.ASPNETCORE_ENVIRONMENT.value, 'Production');
   assert.equal(env.Deployment__Environment.value, 'test');
   assert.equal(env.Database__SeedDemo.value, 'false');
+  assert.equal(env.Database__SeedTestFixtures.value, 'true');
   assert.equal(env.Credits__EnableDemoTopup.value, 'true');
   assert.equal(env.Cors__Origins__0.value, `https://${config.siteId}.web.app`);
   assert.deepEqual(env.ConnectionStrings__MySql.valueFrom, {secretKeyRef: {name: config.mysqlSecret, key: 'latest'}});

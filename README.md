@@ -10,22 +10,17 @@ A `scripts/gcp/` telepítői az `ingatlan-513620` projekthez készítenek külö
 
 | Fióktípus | E-mail-címek |
 |---|---|
-| Meglévő magánszemélyek | `anna@otthonra.local`, `peter@otthonra.local`, `eszter@otthonra.local` |
+| Alap magánszemélyek | `anna@otthonra.local`, `peter@otthonra.local`, `eszter@otthonra.local` |
 | Ingatlanközvetítők | `daniel.kozvetito@otthonra.local`, `kata.kozvetito@otthonra.local`, `gabor.kozvetito@otthonra.local` |
 | További magánszemélyek | `reka@otthonra.local`, `bence@otthonra.local`, `julia@otthonra.local`, `marton@otthonra.local`, `lilla@otthonra.local`, `balazs@otthonra.local` |
 
-Az új fiókokban ingatlanok és keresések is vannak, fiókonként 100 ingyenes tesztkredittel. A közvetítők aktív kereséssel indulnak: például Dániellel rögtön kipróbálható az 1 kredites keresői kedvelés. A meglévő magánszemélyfiókok típusa, aktív profilja, döntései és egyenlege megmarad; az eredeti kereséseikhez és ingatlanjaikhoz az új felhasználók sok friss megfelelő ajánlatot adnak. A tesztadatok külön Google Cloud-adatbázisba kerülnek; saját fiókot az **„Új fiókot hozok létre”** gombbal is regisztrálhatsz.
+Minden fiókban van aktiválható keresés vagy ingatlan, és minden példafiók 100 ingyenes tesztkredittel indul. A közvetítők aktív kereséssel indulnak: például Dániellel rögtön kipróbálható az 1 kredites keresői kedvelés. Anna, Péter és Eszter eredeti alapmintái mellett sok új, egymáshoz illő magánszemély- és közvetítői ajánlat szerepel. A példafiókok megosztott, kitalált tesztadatokhoz tartoznak.
 
-Feltöltés újratelepítés nélkül: merge után **Actions → Add Google Cloud test data → Run workflow**, a `batch` mezőben `alap`. Ha később elfogynak a minták, adj meg új csomagnevet, például `proba-2`: ez további **9 felhasználót, 108 ingatlant és 108 keresést** ad hozzá a meglévő döntések törlése nélkül. Azonos csomagnév ismétlése nem készít újabb példányokat. A névvel bővített fiókok címe például `daniel.kozvetito+proba-2@otthonra.local`, a jelszó változatlan.
+A feltöltés a backend indulásának része. Merge után a szokásos **Actions → Deploy Google Cloud test → Run workflow → main** telepítést indítsd: a backendbe beágyazott tesztadatcsomag automatikusan létrejön, külön adatfeltöltő parancs vagy workflow nélkül.
 
-Ugyanez a frissített tárolóban, meglévő `.local/gcp/dev-config.json` konfigurációval:
+**Minden új teszt Cloud Run-revízió friss tesztállapotot kap:** az alkalmazásadatok törlődnek, majd visszaállnak a fenti példafiókok, ingatlanok, keresések és kezdő kreditek. Ez a tesztelés közben létrehozott saját fiókokat, döntéseket, párosításokat és üzeneteket is törli. Azonos revízió új példányának indulásakor vagy újraindításakor az adatok megmaradnak; egy korábban már feltöltött régi revízió újraindítása sem törli az újabb tesztállapotot.
 
-```sh
-node scripts/gcp/seed-dev.mjs
-node scripts/gcp/seed-dev.mjs --batch proba-2
-```
-
-A belépési korlát miatt a feltöltő legfeljebb 10 hitelesítési kérést küld 61 másodperces ablakonként. A kiírt várakozás normális: a folyamat automatikusan folytatódik. Privát nyugta őrzi a létrehozott azonosítókat; az ismétlés megőrzi az átnevezett/archivált példákat és kézi adatokat. Másik munkamásolatból talált, nyugta nélküli meglévő fiók változatlan marad. A példafiókok megosztott, kitalált tesztadatokhoz tartoznak.
+Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261107-test-fixtures-v2`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.
 
 Első telepítés, várható költség, Google-hitelesítés és későbbi GitHub-kiadások: **[docs/GOOGLE-CLOUD-TEST.md](docs/GOOGLE-CLOUD-TEST.md)**. A dokumentáció az előkészített telepítést írja le; az alkalmazás Google Cloudban történő tényleges indulását a helyszíni health-ellenőrzés igazolja. A saját dev aldomain később hozzáadható.
 
@@ -119,6 +114,8 @@ node tests/gcp-runner.test.mjs
 node tests/gcp-push.test.mjs
 node tests/gcp-status.test.mjs
 node tests/gcp-seed.test.mjs
+node tests/demo-data.test.mjs
+node scripts/gcp/export-demo-data.mjs --check
 dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj
 node backend/smoke.mjs http://localhost:5080
 ```
@@ -127,7 +124,7 @@ A JavaScript-tesztek a katalógust, a modellt, az API-adaptert, az offline felü
 
 ## Meglévő adatok frissítése
 
-A jelenlegi kiadás megőrzi a MySQL-adatokat és a böngészős demó mentett döntéseit, találatait. `Database__Initialize=true` esetén az indulás az EF `EnsureCreated` után lefuttatja a `SchemaUpgrade` additív, ismételhető frissítését (`20261102-locations-and-lot-area`): hozzáadja a helyazonosító- és telekméretmezőket. A meglévő helyadatokat a rendszer az ismert település- és kerületnevekből értelmezi. Frissítéshez indítsd újra az új verziót a meglévő kötettel; az adatbázist és a Docker-kötetet nem kell törölni.
+A normál additív sémafrissítés megőrzi a MySQL-adatokat és a böngészős demó mentett döntéseit, találatait. A felhős teszttelepítés külön, engedélyezett indulási szabálya új Cloud Run-revíziónál az alkalmazásadatokat alaphelyzetbe állítja a fenti tesztadatcsomagra. `Database__Initialize=true` esetén az indulás az EF `EnsureCreated` után lefuttatja a `SchemaUpgrade` additív, ismételhető frissítését (`20261102-locations-and-lot-area`): hozzáadja a helyazonosító- és telekméretmezőket. A meglévő helyadatokat a rendszer az ismert település- és kerületnevekből értelmezi. Frissítéshez indítsd újra az új verziót a meglévő kötettel; az adatbázist és a Docker-kötetet nem kell törölni.
 
 Az opcionális ingatlanparaméterekhez a `20261105-property-attributes` verzió új oszlopokat ad hozzá a meglévő sorok és kapcsolatok megőrzésével. A `20261106-seller-form-details` a szobabontást, kiegészítő fűtést, több parkolóhelyet és keresési fűtésszűrőt adja hozzá. A `20261107-account-types-and-reports` a felhasználói fióktípust és az időbélyegzett `UserReports` táblát vezeti be; a meglévő fiókok magánszemélyként maradnak használhatók. Ehhez az új backendképet kell telepíteni; a korábbi kép ismételt használata ezt a fejlesztést nem tartalmazza.
 

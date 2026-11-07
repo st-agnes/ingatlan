@@ -44,6 +44,7 @@ jobs:
       Jwt__Key: ci-only-signing-key-for-disposable-test-environment-2026
       Database__Initialize: "true"
       Database__SeedDemo: "true"
+      Database__SeedTestFixtures: "false"
       Credits__EnableDemoTopup: "true"
       OTTHONRA_UPGRADE_FIXTURE: .local/upgrade-fixture.json
       OTTHONRA_TEST_MYSQL_CACHING_SHA2: "true"
@@ -67,6 +68,8 @@ jobs:
         run: docker exec --env MYSQL_PWD=ci-only-root-password "${{ job.services.mysql.id }}" mysql --user=root --execute="CREATE USER 'otthonra_proxy_ci'@'%' IDENTIFIED WITH caching_sha2_password BY 'ci-only-proxy-password'; GRANT SELECT ON otthonra_ci.* TO 'otthonra_proxy_ci'@'%';"
       - name: Run .NET unit tests
         run: dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj --configuration Release --no-build --logger "trx;LogFileName=tests.trx"
+      - name: Verify the embedded test catalog matches its source
+        run: node scripts/gcp/export-demo-data.mjs --check
       - name: Build Docker API with embedded location catalogue
         run: docker build --file backend/Dockerfile --tag otthonra-api:ci .
       - name: Verify the pinned Cloud SQL proxy image and required CLI flags
@@ -107,6 +110,7 @@ jobs:
           node tests/gcp-status.test.mjs
           node tests/gcp-seed.test.mjs
           node tests/demo-data.test.mjs
+          node tests/startup-seed-packaging.test.mjs
       - name: Check Cloud Shell script syntax
         run: |
           bash -n scripts/gcp/bootstrap-dev.sh
@@ -184,6 +188,26 @@ jobs:
           node scripts/dev.mjs --stop
           ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=production Database__SeedDemo=false node scripts/dev.mjs --background
           node backend/deployment-smoke.mjs http://127.0.0.1:3000 production
+      - name: Verify embedded test fixtures and safe resets per deployment revision
+        run: |
+          node scripts/dev.mjs --stop
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-a node scripts/dev.mjs --background
+          node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --initial
+          python3 backend/startup-seed-store.py "${{ job.services.mysql.id }}" changed
+          node scripts/dev.mjs --stop
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-a node scripts/dev.mjs --background
+          node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --preserved
+          node scripts/dev.mjs --stop
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-b node scripts/dev.mjs --background
+          node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --reset
+          python3 backend/startup-seed-store.py "${{ job.services.mysql.id }}" reset
+          node scripts/dev.mjs --stop
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-a node scripts/dev.mjs --background
+          node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --preserved
+          node scripts/dev.mjs --stop
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=production Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-production node scripts/dev.mjs --background
+          node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --production
+          python3 backend/startup-seed-store.py "${{ job.services.mysql.id }}" reset
       - name: Show development startup logs on failure
         if: failure()
         run: tail -n 80 .local/dev.log 2>/dev/null || true
