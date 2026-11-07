@@ -1,0 +1,54 @@
+name: Add Google Cloud test data
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: 'alap: standard examples; a new name such as proba-2 adds another independent batch'
+        required: true
+        default: alap
+        type: string
+
+permissions:
+  contents: read
+
+# Share the deployment lock so an import cannot overlap an API rollout.
+concurrency:
+  group: google-cloud-test-deployment
+  cancel-in-progress: false
+
+jobs:
+  seed:
+    if: >-
+      github.repository_id == '1441962351' &&
+      github.repository_owner_id == '9905462' &&
+      github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: test
+    env:
+      GCP_DEV_CONFIG: ${{ vars.GCP_DEV_CONFIG }}
+      SEED_BATCH: ${{ inputs.batch }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate the test destination and batch
+        run: |
+          node --input-type=module <<'NODE'
+          import {mkdir, writeFile} from 'node:fs/promises';
+          import {validateDevConfig} from './scripts/gcp/prepare-site.mjs';
+          import {createDemoCatalog} from './scripts/gcp/demo-data.mjs';
+          if (!process.env.GCP_DEV_CONFIG) throw new Error('Set repository variable GCP_DEV_CONFIG to the non-secret bootstrap manifest.');
+          const config = validateDevConfig(JSON.parse(process.env.GCP_DEV_CONFIG));
+          const catalog = createDemoCatalog(process.env.SEED_BATCH);
+          await mkdir('.local/gcp', {recursive: true});
+          await writeFile('.local/gcp/dev-config.json', JSON.stringify(config), {mode: 0o600});
+          console.log(`Test catalog: ${catalog.users.length} accounts, ${catalog.fixtures.length} entities.`);
+          NODE
+      - name: Add fictional users and compatible properties and searches
+        run: node scripts/gcp/seed-dev.mjs --config .local/gcp/dev-config.json --batch "$SEED_BATCH"

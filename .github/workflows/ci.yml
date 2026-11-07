@@ -106,6 +106,7 @@ jobs:
           node tests/gcp-push.test.mjs
           node tests/gcp-status.test.mjs
           node tests/gcp-seed.test.mjs
+          node tests/demo-data.test.mjs
       - name: Check Cloud Shell script syntax
         run: |
           bash -n scripts/gcp/bootstrap-dev.sh

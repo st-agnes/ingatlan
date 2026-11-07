@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {seedTestData} from '../scripts/gcp/seed-dev.mjs';
+import {seedTestData, parseSeedArguments} from '../scripts/gcp/seed-dev.mjs';
+import {DEMO_USERS, DEFAULT_BATCH, createDemoCatalog} from '../scripts/gcp/demo-data.mjs';
 
 const config = Object.freeze({
   projectId: 'ingatlan-513620', projectNumber: '123456789012', region: 'europe-west1',
@@ -15,6 +16,12 @@ const runtime = 'globalThis.OTTHONRA_CONFIG = Object.freeze({mode: "api", enviro
 const health = {status: 'ready', deployment: 'test', testCreditsEnabled: true};
 const password = 'OtthonraDemo2026!';
 const initialState = () => ({version: 1, projectId: config.projectId, siteId: config.siteId, accounts: {}});
+function fastClock() {
+  let time = 0;
+  const waits = [];
+  return {now: () => time, wait: async milliseconds => {waits.push(milliseconds); time += milliseconds;}, waits};
+}
+const runSeed = options => seedTestData({...fastClock(), ...options});
 const writes = calls => calls.filter(call => ['POST', 'PUT', 'PATCH', 'DELETE'].includes(call.method)
   && call.path !== '/api/auth/login');
 
@@ -22,15 +29,16 @@ function server() {
   let nextId = 1;
   const id = () => `00000000-0000-4000-8000-${String(nextId++).padStart(12, '0')}`;
   const users = new Map(), calls = [];
-  const options = {health, runtime, failAtCreate: 0, createdEntities: 0};
+  const options = {health, runtime, failAtCreate: 0, createdEntities: 0, profileAccountTypes: true};
   function addUser(email, extra = {}) {
-    const user = {id: id(), email, name: 'Existing tester', phone: '', password, credits: 0,
+    const user = {id: id(), email, name: 'Existing tester', phone: '', password, credits: 0, accountType: 'private',
       activeKind: null, activeEntityId: null, properties: [], searches: [], ledger: [], ...extra};
     users.set(email, user);
     return user;
   }
   const profile = user => ({id: user.id, email: user.email, name: user.name, phone: user.phone,
-    credits: user.credits, activeKind: user.activeKind, activeEntityId: user.activeEntityId});
+    credits: user.credits, activeKind: user.activeKind, activeEntityId: user.activeEntityId,
+    ...(options.profileAccountTypes ? {accountType: user.accountType} : {})});
   const session = user => ({accessToken: `private-test-token:${user.email}`, expiresIn: 43200, user: profile(user)});
   const json = (body, status = 200) => Response.json(body, {status});
   async function fetchImpl(url, init = {}) {
@@ -49,7 +57,7 @@ function server() {
     }
     if (url.pathname === '/api/auth/register') {
       if (users.has(body.email)) return json({message: 'Already registered'}, 409);
-      return json(session(addUser(body.email, {name: body.name, phone: body.phone ?? '', password: body.password})));
+      return json(session(addUser(body.email, {name: body.name, phone: body.phone ?? '', password: body.password, accountType: body.accountType ?? 'private'})));
     }
     const token = new Headers(init.headers).get('Authorization');
     const user = [...users.values()].find(user => token === `Bearer private-test-token:${user.email}`);
@@ -98,7 +106,7 @@ function counts(mock) {
 
 test('fresh test installation receives ready accounts, properties, searches and credits only after test checks', async () => {
   const mock = server(), state = initialState(), saves = [];
-  const result = await seedTestData({config, fetchImpl: mock.fetchImpl, state,
+  const result = await runSeed({config, fetchImpl: mock.fetchImpl, state,
     saveState: async value => saves.push(JSON.stringify(value))});
   assert.ok(result.createdUsers >= 3);
   assert.ok(result.createdProperties >= 3);
@@ -124,7 +132,7 @@ test('fresh test installation receives ready accounts, properties, searches and 
 
 test('repeat seed preserves archived and renamed fixtures, manual data, balances and active selections', async () => {
   const mock = server(), state = initialState();
-  await seedTestData({config, fetchImpl: mock.fetchImpl, state, saveState: async () => {}});
+  await runSeed({config, fetchImpl: mock.fetchImpl, state, saveState: async () => {}});
   for (const user of mock.users.values()) {
     user.name = 'Manually edited test profile';
     user.credits = 7;
@@ -136,7 +144,7 @@ test('repeat seed preserves archived and renamed fixtures, manual data, balances
   }
   const before = JSON.stringify([...mock.users]);
   mock.calls.length = 0;
-  const result = await seedTestData({config, fetchImpl: mock.fetchImpl, state, saveState: async () => {}});
+  const result = await runSeed({config, fetchImpl: mock.fetchImpl, state, saveState: async () => {}});
   assert.equal(result.createdUsers, 0);
   assert.equal(result.createdProperties, 0);
   assert.equal(result.createdSearches, 0);
@@ -149,7 +157,7 @@ test('existing account without a seed receipt keeps all its manual data and rece
   const existing = mock.addUser('anna@otthonra.local', {credits: 13, name: 'My existing account', activeKind: 'search', activeEntityId: 'my-search',
     searches: [{id: 'my-search', title: 'My own search', archived: false}]});
   const before = JSON.stringify(existing);
-  const result = await seedTestData({config, fetchImpl: mock.fetchImpl, state, saveState: async () => {}});
+  const result = await runSeed({config, fetchImpl: mock.fetchImpl, state, saveState: async () => {}});
   assert.equal(JSON.stringify(existing), before);
   assert.ok(result.existingUsers >= 1);
   assert.ok(result.warnings.length > 0);
@@ -172,7 +180,7 @@ test('a conflicting account with a different password stops without changing cre
 test('a managed account whose email or password changed is never registered again on a later seed', async () => {
   for (const change of ['password', 'email']) {
     const mock = server(), state = initialState();
-    await seedTestData({config, fetchImpl: mock.fetchImpl, state, saveState: async () => {}});
+    await runSeed({config, fetchImpl: mock.fetchImpl, state, saveState: async () => {}});
     const user = mock.users.get('anna@otthonra.local');
     assert.equal(state.accounts[user.email].complete, true);
     if (change === 'password') user.password = 'changed-private-password';
@@ -192,7 +200,7 @@ test('a managed account whose email or password changed is never registered agai
     assert.equal(JSON.stringify([...mock.users]), before);
     assert.equal(JSON.stringify(state), receipt);
     assert.deepEqual(writes(mock.calls), [], 'A completed managed account must not trigger registration or any data change');
-    assert.equal(mock.users.size, 3);
+    assert.equal(mock.users.size, DEMO_USERS.length);
   }
 });
 
@@ -208,7 +216,7 @@ test('registration race adopts no existing account and preserves its data after 
     }
     return mock.fetchImpl(url, init);
   };
-  const result = await seedTestData({config, fetchImpl, state, saveState: async () => {}});
+  const result = await runSeed({config, fetchImpl, state, saveState: async () => {}});
   assert.ok(result.existingUsers >= 1);
   assert.ok(result.warnings.length > 0);
   assert.equal(JSON.stringify(racedUser), racedSnapshot);
@@ -247,7 +255,7 @@ test('an interrupted seed resumes from saved entity IDs without duplicating comp
   assert.equal(savedEntities.length, 1);
   assert.ok(Object.values(state.accounts).some(account => Object.keys(account.fixtures).length));
   mock.options.failAtCreate = 0;
-  await seedTestData({config, fetchImpl: mock.fetchImpl, state, saveState: async () => {}});
+  await runSeed({config, fetchImpl: mock.fetchImpl, state, saveState: async () => {}});
   const allEntities = [...mock.users.values()].flatMap(user => [...user.properties, ...user.searches]);
   assert.ok(savedEntities.every(id => allEntities.some(entity => entity.id === id)));
   for (const user of mock.users.values()) {
@@ -255,7 +263,7 @@ test('an interrupted seed resumes from saved entity IDs without duplicating comp
     assert.equal(new Set(user.searches.map(entity => entity.title)).size, user.searches.length);
   }
   mock.calls.length = 0;
-  await seedTestData({config, fetchImpl: mock.fetchImpl, state, saveState: async () => {}});
+  await runSeed({config, fetchImpl: mock.fetchImpl, state, saveState: async () => {}});
   assert.deepEqual(writes(mock.calls), []);
 });
 
@@ -271,9 +279,87 @@ test('a topup committed before receipt persistence is detected in the ledger and
   }}));
   assert.equal(interrupted, true);
   const resumedState = JSON.parse(stored);
-  await seedTestData({config, fetchImpl: mock.fetchImpl, state: resumedState, saveState: async next => {stored = JSON.stringify(next);}});
+  await runSeed({config, fetchImpl: mock.fetchImpl, state: resumedState, saveState: async next => {stored = JSON.stringify(next);}});
   for (const user of mock.users.values()) {
     assert.equal(user.credits, 100);
     assert.equal(user.ledger.filter(entry => entry.amount > 0).length, 1);
+  }
+});
+
+
+test('new accounts register once with their catalog type and use a paced authentication window', async () => {
+  const mock = server(), clock = fastClock();
+  const result = await seedTestData({config, fetchImpl: mock.fetchImpl, state: initialState(), ...clock});
+  assert.equal(result.createdUsers, DEMO_USERS.length);
+  const auth = mock.calls.filter(call => call.path.startsWith('/api/auth/'));
+  assert.equal(auth.length, DEMO_USERS.length, 'Fresh accounts must not issue failed logins before registration');
+  assert.ok(auth.every(call => call.path === '/api/auth/register'));
+  assert.deepEqual(clock.waits, [61000]);
+  assert.equal([...mock.users.values()].filter(user => user.accountType === 'agent').length, 3);
+  for (const account of DEMO_USERS) assert.equal(mock.users.get(account.email).accountType, account.accountType ?? 'private');
+});
+
+test('a server without account types fails before creating fixtures or registering an agent', async () => {
+  const mock = server();mock.options.profileAccountTypes = false;
+  await assert.rejects(runSeed({config, fetchImpl: mock.fetchImpl, state: initialState()}), /fióktípusa eltér/);
+  assert.equal(mock.options.createdEntities, 0);
+  assert.ok(!mock.calls.some(call => call.path === '/api/auth/register' && call.body.accountType === 'agent'));
+});
+
+test('an existing account with the wrong declared type is not silently adopted or changed', async () => {
+  const mock = server(), catalog = createDemoCatalog();
+  const agent = catalog.users.find(user => user.accountType === 'agent');
+  const existing = mock.addUser(agent.email, {accountType: 'private', credits: 17});
+  const before = JSON.stringify(existing);
+  await assert.rejects(runSeed({config, fetchImpl: mock.fetchImpl, state: initialState()}), /fióktípusa eltér/);
+  assert.equal(JSON.stringify(existing), before);
+});
+
+test('auth rate limits honor Retry-After and retry without duplicate fixture work', async () => {
+  const mock = server(), clock = fastClock();
+  let rejected = false;
+  const fetchImpl = async (url, init) => {
+    if (!rejected && new URL(url).pathname.startsWith('/api/auth/')) {
+      rejected = true;
+      return new Response('', {status: 429, headers: {'Retry-After': '2'}});
+    }
+    return mock.fetchImpl(url, init);
+  };
+  const result = await seedTestData({config, fetchImpl, state: initialState(), ...clock});
+  assert.equal(result.createdUsers, DEMO_USERS.length);
+  assert.equal(clock.waits[0], 2000);
+  for (const user of mock.users.values()) assert.equal(user.ledger.length, 1);
+});
+
+test('persistent auth throttling stops after bounded retries without changing any account', async () => {
+  const mock = server(), clock = fastClock();let attempts = 0;
+  const fetchImpl = async (url, init) => {
+    if (new URL(url).pathname.startsWith('/api/auth/')) {attempts++;return new Response('', {status: 429});}
+    return mock.fetchImpl(url, init);
+  };
+  await assert.rejects(seedTestData({config, fetchImpl, state: initialState(), ...clock}), /korlátja továbbra is aktív/);
+  assert.equal(attempts, 3);assert.deepEqual(clock.waits, [61000, 61000]);assert.equal(mock.users.size, 0);
+});
+
+test('an explicitly named batch adds new identities once and preserves all previous accounts', async () => {
+  const mock = server(), state = initialState();
+  await runSeed({config, fetchImpl: mock.fetchImpl, state});
+  const before = JSON.stringify([...mock.users]);
+  const result = await runSeed({config, fetchImpl: mock.fetchImpl, state, batch: 'november-1'});
+  assert.equal(result.createdUsers, 9);assert.equal(result.createdProperties, 108);assert.equal(result.createdSearches, 108);
+  assert.equal(JSON.stringify([...mock.users].slice(0, DEMO_USERS.length)), before);
+  const complete = JSON.stringify([...mock.users]);
+  const again = await runSeed({config, fetchImpl: mock.fetchImpl, state, batch: 'november-1'});
+  assert.equal(again.createdUsers, 0);assert.equal(again.createdProperties, 0);assert.equal(again.createdSearches, 0);
+  assert.equal(JSON.stringify([...mock.users]), complete);
+});
+
+test('CLI accepts config and batch in either order and rejects missing, duplicate or unsafe options', () => {
+  assert.deepEqual(parseSeedArguments([]), {configPath: null, batch: DEFAULT_BATCH});
+  for (const args of [['--config', 'manifest.json', '--batch', 'november-1'], ['--batch', 'november-1', '--config', 'manifest.json']]) {
+    assert.deepEqual(parseSeedArguments(args), {configPath: 'manifest.json', batch: 'november-1'});
+  }
+  for (const args of [['--batch'], ['--config'], ['--batch', '--config'], ['--other', 'x'], ['--batch', 'one', '--batch', 'two'], ['--batch', '../outside'], ['--batch', 'UpperCase']]) {
+    assert.throws(() => parseSeedArguments(args));
   }
 });

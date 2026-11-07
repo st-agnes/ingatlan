@@ -137,13 +137,51 @@ Ha a helyi Docker-feltöltés korábban hálózati hibát adott, a fenti parancs
 
 ## Használat és ellenőrzés
 
-**Példafiókok:** `anna@otthonra.local`, `peter@otthonra.local` és `eszter@otthonra.local`; mindhárom jelszava `OtthonraDemo2026!`. A telepítő a web publikálása után a normál API-n át tölti fel a kitalált tesztadatokat. Új példafiókonként 100 tesztkreditet ad, és aktiválja az induló keresést vagy ingatlant. Meglévő telepítésen a frissített tárolóban külön is futtatható:
+Az `alap` tesztadatcsomag **12 felhasználót, 114 ingatlant és 112 keresést** határoz meg. Ebből 3 fiók ingatlanközvetítő, 9 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
+
+| Fiók | Fióktípus | E-mail-cím |
+|---|---|---|
+| Kovács Anna | Magánszemély | `anna@otthonra.local` |
+| Nagy Péter | Magánszemély | `peter@otthonra.local` |
+| Szabó Eszter | Magánszemély | `eszter@otthonra.local` |
+| Varga Dániel | Ingatlanközvetítő | `daniel.kozvetito@otthonra.local` |
+| Kiss Kata | Ingatlanközvetítő | `kata.kozvetito@otthonra.local` |
+| Farkas Gábor | Ingatlanközvetítő | `gabor.kozvetito@otthonra.local` |
+| Tóth Réka | Magánszemély | `reka@otthonra.local` |
+| Németh Bence | Magánszemély | `bence@otthonra.local` |
+| Molnár Júlia | Magánszemély | `julia@otthonra.local` |
+| Varga Márton | Magánszemély | `marton@otthonra.local` |
+| Szabó Lilla | Magánszemély | `lilla@otthonra.local` |
+| Kiss Balázs | Magánszemély | `balazs@otthonra.local` |
+
+Az új kilenc felhasználónak egyenként 12 eladó ingatlanja és 12 keresési igénye van. A közvetítők aktív kereséssel és 100 ingyenes tesztkredittel indulnak, így azonnal próbálható az 1 kredites kedvelés. A magánszemély keresői kedvelése ingyenes, az eladói kedvelés mindkét fióktípusnál 2 kredit. A közvetítői jelzés másik fiókból látható, a jelentéshez pedig bármelyik másik magánszemély mintaprofil használható.
+
+A készlet II./XIII. kerületi, debreceni és hajdúsámsoni lakásokat, solymári és pilisvörösvári házakat, fűtési és parkolási opciókat, egész/fél szobákat, valamint városkörnyéki és több településes kereséseket tartalmaz. Az eredeti Anna-, Péter- és Eszter-profilok megmaradnak; a hozzájuk illő új ajánlatokat az új felhasználók biztosítják. Anna és Péter eredeti mintapárjának kölcsönös kedvelésével továbbra is kipróbálható az elérhetőségek feloldása és az üzenetküldés.
+
+### További tesztadatok GitHub Actionsből
+
+A külön adatfeltöltéshez a **`GCP_DEV_CONFIG`** repository variable legyen beállítva, ugyanúgy, mint a meglévő telepítési workflow-nál. A változtatás merge-elése után nyisd meg: **Actions → Add Google Cloud test data → Run workflow**, válaszd a `main` ágat, és hagyd a `batch` mezőt `alap` értéken. Ez a már működő tesztoldalt az API-n át tölti fel, az alkalmazás újratelepítése nélkül.
+
+Ha újra elfogynak az ajánlások, indítsd másik csomagnévvel, például `proba-2`. Egy új név **további 9 fiókot, 108 ingatlant és 108 keresést** hoz létre; az eredeti három fiókot tovább használja. A korábbi csomag és a már meghozott döntések megmaradnak. Ugyanazzal a csomagnévvel újraindítva nem jönnek létre duplikátumok. Az új fiókok címe ekkor például `daniel.kozvetito+proba-2@otthonra.local` vagy `reka+proba-2@otthonra.local`, közös jelszavuk továbbra is `OtthonraDemo2026!`.
+
+A csomagnév 1–32 kisbetűs angol betűből, számból és kötőjelből állhat, és betűvel vagy számmal kezdődjön. A bejelentkezési védelem megmarad: a feltöltő 61 másodperces ablakonként legfeljebb 10 hitelesítési kérést küld. A naplóban kiírt várakozás után automatikusan folytatja a munkát; egy nagyobb feltöltés ezért néhány percig tarthat.
+
+### Feltöltés Cloud Shellből
+
+A frissített tároló könyvtárában, a meglévő konfigurációval:
 
 ```sh
 node scripts/gcp/seed-dev.mjs
+node scripts/gcp/seed-dev.mjs --batch proba-2
 ```
 
-A készlet hat ingatlant és négy keresést tartalmaz: budapesti II./XIII. kerületi és debreceni lakásokat, solymári és pilisvörösvári házakat telekmérettel, több településes és nyitott ár-/méret-/szobakorlátos kereséseket. Anna aktív budapesti keresésének Péter Pozsonyi úti lakása megfelel: Anna és Péter fiókjából is kedveld a másik fél ajánlatát a párosításhoz. Ezután kipróbálható az elérhetőségek feloldása és az üzenetküldés. A fiókokban több keresés és ingatlan között is válthatsz.
+Eltérő konfigurációs fájl esetén:
+
+```sh
+node scripts/gcp/seed-dev.mjs --batch proba-2 --config /abszolut/utvonal/dev-config.json
+```
+
+A normál telepítő a web publikálása után ugyanezt az alapcsomagot tölti fel. Új példafiókonként egyszer ad 100 tesztkreditet és aktiválja az induló profilt; a meglévő fiókok egyenlegét és aktív profilját nem állítja vissza.
 
 A feltöltő az ellenőrzött manifest saját `web.app` címét használja, és minden írás előtt valódi `test` API-/webkonfigurációt és tesztkredit-képességet követel. Production vagy böngészős demó esetén megáll. A `.local/gcp/demo-seed-SITE.json` privát nyugtába csak fiók-/entitásazonosítók és elvégzett lépések kerülnek; hozzáférési token vagy jelszó nem. A félbeszakadt futás innen folytatható. Az ismétlés nem írja felül a példák szerkesztését/archiválását, az aktív profilt vagy az elköltött egyenleget. A kreditnapló megakadályozza a félbeszakadt jóváírás megismétlését is. Más munkamásolatban, nyugta nélkül a már létező példafiók változatlan marad; eltérő jelszavát a feltöltő nem állítja vissza. Ne töröld a nyugtát a feltöltés folyamatban lévő szakaszában.
 

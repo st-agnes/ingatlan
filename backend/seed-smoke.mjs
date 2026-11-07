@@ -60,9 +60,9 @@ let state = {};
 let writes = 0;
 const saveState = async value => { state = structuredClone(value); writes++; };
 const first = await seedTestData({config, fetchImpl, state, saveState});
-assert.equal(first.createdUsers, 3);
-assert.equal(first.createdProperties, 6);
-assert.equal(first.createdSearches, 4);
+assert.equal(first.createdUsers, DEMO_USERS.length);
+assert.equal(first.createdProperties, DEMO_FIXTURES.filter(item => item.kind === 'property').length);
+assert.equal(first.createdSearches, DEMO_FIXTURES.filter(item => item.kind === 'search').length);
 assert.equal(first.warnings.length, 0);
 assert.ok(writes > 0);
 const tokenFor = key => sessions.get(DEMO_USERS.find(user => user.key === key).email).accessToken;
@@ -76,13 +76,31 @@ async function api(key, path, method = 'GET', body) {
   assert.ok(response.ok, `${method} ${path}: HTTP ${response.status}`);
   return response.status === 204 ? null : response.json();
 }
+const initialFeeds = new Map();
+const newOwnerIds = new Set(DEMO_USERS.filter(user => !['anna', 'peter', 'eszter'].includes(user.key)).map(user => receiptFor(user.key).id));
 for (const user of DEMO_USERS) {
   const [profile, entities, feed] = await Promise.all([api(user.key, '/me'), api(user.key, '/me/entities'), api(user.key, '/feed')]);
+  const accountType = user.accountType ?? 'private';
+  assert.equal(profile.accountType, accountType, `${user.key} has the wrong registration type`);
   assert.equal(profile.credits, 100);
+  for (const entity of [...entities.properties, ...entities.searchRequests]) {
+    assert.equal(entity.ownerAccountType, accountType, 'Own entity badges must use the registered account type');
+  }
   assert.equal(entities.properties.length, DEMO_FIXTURES.filter(item => item.owner === user.key && item.kind === 'property').length);
   assert.equal(entities.searchRequests.length, DEMO_FIXTURES.filter(item => item.owner === user.key && item.kind === 'search').length);
   assert.deepEqual(entities.active, {kind: user.active.kind, id: receiptFor(user.key).fixtures[user.active.key]});
   assert.ok(feed.items.length > 0, `${user.key} has no compatible initial recommendation`);
+  assert.equal(feed.likeCost, user.active.kind === 'property' ? 2 : accountType === 'agent' ? 1 : 0);
+  initialFeeds.set(user.key, feed);
+}
+// Refill existing testers through new counterpart entities; old decisions stay untouched.
+for (const key of ['anna', 'peter', 'eszter']) {
+  const ownerKind = DEMO_USERS.find(user => user.key === key).active.kind;
+  const fresh = initialFeeds.get(key).items.map(item => ownerKind === 'search' ? item.property : item.searchRequest)
+    .filter(entity => newOwnerIds.has(entity.ownerId));
+  assert.ok(fresh.length >= 30, `${key} has only ${fresh.length} fresh counterpart recommendations`);
+  assert.ok(fresh.some(entity => entity.ownerAccountType === 'agent'), `${key} cannot see an agent example`);
+  assert.ok(fresh.some(entity => entity.ownerAccountType === 'private'), `${key} cannot see a private example`);
 }
 const pair = {propertyId: receiptFor('peter').fixtures['peter-pozsonyi'], searchRequestId: receiptFor('anna').fixtures['anna-budapest'], liked: true};
 assert.equal((await api('anna', '/decisions', 'POST', pair)).charged, 0);
@@ -92,6 +110,26 @@ assert.equal(match.credits, 98);
 assert.ok(match.matchId);
 await api('anna', `/matches/${match.matchId}/messages`, 'POST', {text: 'CI tesztüzenet: a mintapárosítás üzenetküldése működik.'});
 assert.ok((await api('peter', '/matches')).some(item => item.id === match.matchId && item.messages.length === 1));
+// New agent accounts start with an active search and usable paid-like examples.
+const agent = DEMO_USERS.find(user => user.accountType === 'agent');
+assert.ok(agent, 'The hosted catalog must contain an agent account');
+assert.equal(agent.active.kind, 'search');
+const agentPair = {propertyId: pair.propertyId, searchRequestId: receiptFor(agent.key).fixtures[agent.active.key], liked: true};
+const agentLike = await api(agent.key, '/decisions', 'POST', agentPair);
+assert.equal(agentLike.charged, 1);
+assert.equal(agentLike.credits, 99);
+assert.equal((await api(agent.key, '/decisions', 'POST', agentPair)).charged, 0, 'Retrying an agent like must not charge again');
+const agentLedger = await api(agent.key, '/credits/ledger');
+assert.equal(agentLedger.filter(entry => entry.amount < 0).length, 1);
+assert.equal(agentLedger.find(entry => entry.amount < 0).amount, -1);
+const agentMatch = await api('peter', '/decisions', 'POST', agentPair);
+assert.equal(agentMatch.charged, 2);
+assert.equal(agentMatch.credits, 96);
+assert.ok(agentMatch.matchId);
+const sellerMatch = (await api('peter', '/matches')).find(item => item.id === agentMatch.matchId);
+assert.equal(sellerMatch.property.ownerAccountType, 'private');
+assert.equal(sellerMatch.searchRequest.ownerAccountType, 'agent');
+assert.equal(sellerMatch.contact.accountType, 'agent');
 const editable = DEMO_FIXTURES.find(item => item.key === 'anna-solymar-house');
 await api('anna', `/properties/${receiptFor('anna').fixtures[editable.key]}`, 'PUT', {...editable.input, title: 'CI-ben átnevezett és archivált minta', archived: true});
 await api('anna', '/me/active', 'PUT', {kind: 'search', id: receiptFor('anna').fixtures['anna-debrecen']});
@@ -103,7 +141,7 @@ const snapshot = async () => Promise.all(DEMO_USERS.map(async user => ({
 const before = await snapshot();
 const second = await seedTestData({config, fetchImpl, state, saveState});
 assert.deepEqual([second.createdUsers, second.createdProperties, second.createdSearches], [0, 0, 0]);
-assert.equal(second.existingUsers, 3);
+assert.equal(second.existingUsers, DEMO_USERS.length);
 assert.equal(second.warnings.length, 0);
 assert.deepEqual(await snapshot(), before, 'Rerun changed credits, entities, active selections, decisions, matches or messages.');
-console.log('Test seeding integration passed: 3 users, 6 properties, 4 searches; real matching, credit billing and messaging; rerun preserves edits, archives and activity.');
+console.log(`Test seeding integration passed: ${DEMO_USERS.length} users (${DEMO_USERS.filter(user => user.accountType === 'agent').length} agents), ${first.createdProperties} properties, ${first.createdSearches} searches; existing testers each receive at least 30 fresh mixed-owner recommendations; private/agent/seller billing and messaging work; rerun preserves edits, archives, balances and activity.`);
