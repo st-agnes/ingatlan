@@ -6,15 +6,26 @@ Magyar nyelvű ingatlanpárosító alkalmazás. Egy felhasználó több ingatlan
 
 A `scripts/gcp/` telepítői az `ingatlan-513620` projekthez készítenek külön `-dev` szolgáltatásokat: Firebase Hosting webet, Cloud Run API-t külön Google Cloud SQL Auth Proxy konténerrel, valamint Cloud SQL for MySQL-adatbázist. Az első indítás a saját Google Cloud Shellből történik; a telepítő kiírja a Google által biztosított HTTPS-címet. A tesztoldal valódi regisztrációt és szerveres adatmentést használ, ingyenes tesztkreditekkel.
 
-**Példafiókok a felhős tesztoldalon:** `anna@otthonra.local`, `peter@otthonra.local` és `eszter@otthonra.local`, közös jelszó: `OtthonraDemo2026!`. A telepítő három kitalált felhasználót, hat ingatlant és négy keresést készít, új példafiókonként 100 ingyenes tesztkredittel és aktív profillal. Anna és Péter már egymásnak megfelelő ajánlatokat kap. A tesztadatok a Google Cloud külön adatbázisában vannak; Codespaces-adatokat nem importálunk. Saját fiókot az **„Új fiókot hozok létre”** gombbal is regisztrálhatsz.
+**Az alap tesztadatcsomag 12 felhasználót, 114 ingatlant és 112 keresést tartalmaz**, köztük 3 ingatlanközvetítőt. Minden példafiók közös jelszava: `OtthonraDemo2026!`.
 
-Már működő tesztoldal feltöltése újratelepítés nélkül, a frissített tárolóban:
+| Fióktípus | E-mail-címek |
+|---|---|
+| Meglévő magánszemélyek | `anna@otthonra.local`, `peter@otthonra.local`, `eszter@otthonra.local` |
+| Ingatlanközvetítők | `daniel.kozvetito@otthonra.local`, `kata.kozvetito@otthonra.local`, `gabor.kozvetito@otthonra.local` |
+| További magánszemélyek | `reka@otthonra.local`, `bence@otthonra.local`, `julia@otthonra.local`, `marton@otthonra.local`, `lilla@otthonra.local`, `balazs@otthonra.local` |
+
+Az új fiókokban ingatlanok és keresések is vannak, fiókonként 100 ingyenes tesztkredittel. A közvetítők aktív kereséssel indulnak: például Dániellel rögtön kipróbálható az 1 kredites keresői kedvelés. A meglévő magánszemélyfiókok típusa, aktív profilja, döntései és egyenlege megmarad; az eredeti kereséseikhez és ingatlanjaikhoz az új felhasználók sok friss megfelelő ajánlatot adnak. A tesztadatok külön Google Cloud-adatbázisba kerülnek; saját fiókot az **„Új fiókot hozok létre”** gombbal is regisztrálhatsz.
+
+Feltöltés újratelepítés nélkül: merge után **Actions → Add Google Cloud test data → Run workflow**, a `batch` mezőben `alap`. Ha később elfogynak a minták, adj meg új csomagnevet, például `proba-2`: ez további **9 felhasználót, 108 ingatlant és 108 keresést** ad hozzá a meglévő döntések törlése nélkül. Azonos csomagnév ismétlése nem készít újabb példányokat. A névvel bővített fiókok címe például `daniel.kozvetito+proba-2@otthonra.local`, a jelszó változatlan.
+
+Ugyanez a frissített tárolóban, meglévő `.local/gcp/dev-config.json` konfigurációval:
 
 ```sh
 node scripts/gcp/seed-dev.mjs
+node scripts/gcp/seed-dev.mjs --batch proba-2
 ```
 
-A feltöltő csak az azonosított tesztoldalon működik. Privát nyugtával őrzi a létrehozott rekordok azonosítóit; az ismétlés megőrzi az átnevezett/archivált példákat, egyenlegeket, aktív profilokat és kézi adatokat. Ha másik munkamásolatból már létező fiókot talál saját nyugta nélkül, változatlanul hagyja. A példafiókok megosztott, kitalált tesztadatokhoz tartoznak.
+A belépési korlát miatt a feltöltő legfeljebb 10 hitelesítési kérést küld 61 másodperces ablakonként. A kiírt várakozás normális: a folyamat automatikusan folytatódik. Privát nyugta őrzi a létrehozott azonosítókat; az ismétlés megőrzi az átnevezett/archivált példákat és kézi adatokat. Másik munkamásolatból talált, nyugta nélküli meglévő fiók változatlan marad. A példafiókok megosztott, kitalált tesztadatokhoz tartoznak.
 
 Első telepítés, várható költség, Google-hitelesítés és későbbi GitHub-kiadások: **[docs/GOOGLE-CLOUD-TEST.md](docs/GOOGLE-CLOUD-TEST.md)**. A dokumentáció az előkészített telepítést írja le; az alkalmazás Google Cloudban történő tényleges indulását a helyszíni health-ellenőrzés igazolja. A saját dev aldomain később hozzáadható.
 
