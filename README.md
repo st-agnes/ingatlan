@@ -1,6 +1,6 @@
 # Ingatlan · Otthonra
 
-Magyar nyelvű ingatlanpárosító alkalmazás. Egy felhasználó több ingatlant és több keresési igényt kezelhet, majd egyet aktiválva fedezheti fel a hozzá illő ajánlásokat. Magánszemélyként a keresői kedvelés ingyenes, ingatlanközvetítőként 1 kredit; az eladói ajánlás mindkét fióktípusnál 2 kredit. Kölcsönös érdeklődéskor megnyílik az üzenetküldés és láthatóvá válnak az elérhetőségek.
+Magyar nyelvű ingatlanpárosító alkalmazás. Egy felhasználó több ingatlant és több keresési igényt kezelhet, majd egyet aktiválva fedezheti fel a hozzá illő ajánlásokat. Magánszemélyként a keresői kedvelés ingyenes, ingatlanközvetítőként 1 kredit; az eladói ajánlás mindkét fióktípusnál 2 kredit. Kölcsönös érdeklődéskor megnyílik az üzenetküldés és láthatóvá válnak az elérhetőségek. Ingatlanközvetítőnek mindkét szerepben csak magánszemély ajánlható; magánszemély mindkét fióktípust láthatja.
 
 ## Google Cloud tesztkörnyezet
 
@@ -54,8 +54,10 @@ A webes felület önmagában böngészős demóként is használható. Demómód
 
 ## Mi készült el?
 
-- Regisztrációkor magánszemély vagy ingatlanközvetítő fiók választható. A közvetítő ingatlanjait és keresési igényeit egyértelmű jelzés mutatja.
-- Magánszemélynek kiadó közvetítő jelentése az adott hirdetésről vagy keresési igényről, párosítás előtt is. Egy bejelentő ugyanazt a fiókot egyszer jelentheti; az időbélyeg az adatbázisban marad, a felületen nem jelenik meg.
+- Regisztrációkor magánszemély vagy ingatlanközvetítő fiók választható. Mások ajánlatain a „Magánszemély” vagy „Ingatlanközvetítő” jelölés látszik; a saját ingatlanokon és kereséseken nincs ismételt fióktípusjelzés.
+- Közvetítők mind keresőként, mind eladóként csak magánszemélyekkel kapnak ajánlást. A szerver a közvetítő–közvetítő döntést is elutasítja; a korábbi párosítások és beszélgetések megmaradnak.
+- „Szabálytalan hirdetés?” jelentés mások ingatlanainál és kereséseinél. Egy ok választható: „Ingatlanközvetítő” (csak magánhirdetésnél), „Hamis, megtévesztő tartalom” vagy „Egyéb szabálytalanság”. A jelentés az adott entitáshoz és okhoz tartozik; az UTC-időbélyeg az adatbázisban marad, a felületen nem jelenik meg.
+- Külön „Kedveltek” menüpont az éppen aktív ingatlant vagy keresést kedvelő profiloknak. A lista megtekintése ingyenes, a viszonzásra a szokásos kreditdíj vonatkozik. Látszik a korábbi saját döntés, a párosítás és az is, ha a pár jelenleg nem illeszkedik; elérhetőség továbbra is csak kölcsönös találatnál nyílik meg.
 - Magyar, mobilméretre is alkalmazkodó felület, ingatlanfotókkal, kattintással, billentyűzettel és húzással kezelhető ajánlókártyákkal.
 - Ingatlanok és keresési igények létrehozása, szerkesztése, archiválása, aktív profil kiválasztása.
 - Település-kiegészítés eladói és keresői oldalon, 3155 magyar település és Budapest 23 kerülete közös katalógusából. Mentéshez találatot kell választani.
@@ -126,7 +128,7 @@ A JavaScript-tesztek a katalógust, a modellt, az API-adaptert, az offline felü
 
 A normál additív sémafrissítés megőrzi a MySQL-adatokat és a böngészős demó mentett döntéseit, találatait. A felhős teszttelepítés külön, engedélyezett indulási szabálya új Cloud Run-revíziónál az alkalmazásadatokat alaphelyzetbe állítja a fenti tesztadatcsomagra. `Database__Initialize=true` esetén az indulás az EF `EnsureCreated` után lefuttatja a `SchemaUpgrade` additív, ismételhető frissítését (`20261102-locations-and-lot-area`): hozzáadja a helyazonosító- és telekméretmezőket. A meglévő helyadatokat a rendszer az ismert település- és kerületnevekből értelmezi. Frissítéshez indítsd újra az új verziót a meglévő kötettel; az adatbázist és a Docker-kötetet nem kell törölni.
 
-Az opcionális ingatlanparaméterekhez a `20261105-property-attributes` verzió új oszlopokat ad hozzá a meglévő sorok és kapcsolatok megőrzésével. A `20261106-seller-form-details` a szobabontást, kiegészítő fűtést, több parkolóhelyet és keresési fűtésszűrőt adja hozzá. A `20261107-account-types-and-reports` a felhasználói fióktípust és az időbélyegzett `UserReports` táblát vezeti be; a meglévő fiókok magánszemélyként maradnak használhatók. Ehhez az új backendképet kell telepíteni; a korábbi kép ismételt használata ezt a fejlesztést nem tartalmazza.
+Az opcionális ingatlanparaméterekhez a `20261105-property-attributes` verzió új oszlopokat ad hozzá a meglévő sorok és kapcsolatok megőrzésével. A `20261106-seller-form-details` a szobabontást, kiegészítő fűtést, több parkolóhelyet és keresési fűtésszűrőt adja hozzá. A `20261107-account-types-and-reports` a felhasználói fióktípust és az időbélyegzett `UserReports` táblát vezeti be; a meglévő fiókok magánszemélyként maradnak használhatók. A `20261107-interactions-and-report-reasons` megőrzi a korábbi jelentéseket és időbélyegeiket, és a jelentések egyediségét bejelentő–entitás–ok szerint állítja be. Ehhez az új backendképet kell telepíteni; a korábbi kép ismételt használata ezt a fejlesztést nem tartalmazza.
 
 A backend Docker-buildjének kontextusa a tároló gyökere, mert a közös településkatalógust is beágyazza. A Compose ezt már beállítja; közvetlen buildhez a gyökérből használd a `docker build -f backend/Dockerfile .` parancsot.
 

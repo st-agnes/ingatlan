@@ -155,7 +155,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<Message>().ToTable("Messages");
         b.Entity<CreditEntry>().ToTable("CreditEntries");
         b.Entity<User>().HasIndex(x => x.Email).IsUnique();
-        b.Entity<UserReport>().HasIndex(x => new { x.ReporterId, x.ReportedUserId }).IsUnique();
+        b.Entity<UserReport>().HasIndex(x => new { x.ReporterId, x.EntityKind, x.EntityId, x.Reason }).IsUnique();
         b.Entity<Decision>().HasIndex(x => new { x.PropertyId, x.SearchRequestId, x.ActorKind }).IsUnique();
         b.Entity<Match>().HasIndex(x => new { x.PropertyId, x.SearchRequestId }).IsUnique();
         b.Entity<CreditEntry>().HasIndex(x => x.DecisionId).IsUnique();
@@ -215,7 +215,7 @@ public record LoginInput(string Email, string Password);
 public record ProfileInput(string Name, string Email, string? Phone);
 public record ActiveInput(string Kind, Guid Id);
 public record DecisionInput(Guid PropertyId, Guid SearchRequestId, bool Liked);
-public record ReportInput(string EntityKind, Guid EntityId);
+public record ReportInput(string EntityKind, Guid EntityId, string? Reason = null);
 public record MessageInput(string Text);
 public record TopupInput(int Amount);
 public record PropertyInput(string Title, string City, string? District, string? Neighborhood, string? Address, string? Description, string Type, decimal Price, decimal Area, decimal Rooms, int? Floor, string? Condition, string? Building, bool Balcony, bool Elevator, string[]? Images, bool Archived = false, string? LocationId = null, decimal? LotArea = null, string? ConstructionAge = null, string? View = null, string? CeilingHeight = null, string? HeatingType = null, bool? Insulated = null, string? EnergyRating = null, bool? AirConditioning = null, bool? SolarPanels = null, string? ParkingType = null, int? WholeRooms = null, int? HalfRooms = null, string? SecondaryHeatingType = null, string[]? ParkingTypes = null);

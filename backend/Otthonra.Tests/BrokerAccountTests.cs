@@ -92,7 +92,7 @@ public class BrokerAccountTests
     }
 
     [Fact]
-    public void ReportSchemaHasUserForeignKeysUniqueReporterTargetAndLegacyTypeDefault()
+    public void ReportSchemaHasUserForeignKeysUniqueReporterSourceReasonAndLegacyTypeDefault()
     {
         var options = new DbContextOptionsBuilder<AppDb>().UseMySql(
             "Server=localhost;Database=model_only;User=test;Password=test", new MySqlServerVersion(new Version(8, 0, 36))).Options;
@@ -102,7 +102,7 @@ public class BrokerAccountTests
         Assert.Equal(20, userType.GetMaxLength());
         var report = db.Model.FindEntityType(typeof(UserReport))!;
         var unique = Assert.Single(report.GetIndexes(), index => index.IsUnique);
-        Assert.Equal(new[] { nameof(UserReport.ReporterId), nameof(UserReport.ReportedUserId) }, unique.Properties.Select(property => property.Name));
+        Assert.Equal(new[] { nameof(UserReport.ReporterId), nameof(UserReport.EntityKind), nameof(UserReport.EntityId), nameof(UserReport.Reason) }, unique.Properties.Select(property => property.Name));
         Assert.Equal(2, report.GetForeignKeys().Count());
         Assert.All(report.GetForeignKeys(), foreignKey => Assert.Equal(DeleteBehavior.Restrict, foreignKey.DeleteBehavior));
         Assert.False(report.FindProperty(nameof(UserReport.CreatedAt))!.IsNullable);

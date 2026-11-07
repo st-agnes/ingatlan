@@ -6,6 +6,7 @@ import {DEFAULT_BATCH, createDemoCatalog, DEMO_USERS, DEMO_FIXTURES, DEMO_PASSWO
 import {getLocation, isPropertyLocation} from '../dist/locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from '../dist/attributes.js';
 import {isCompatible} from '../dist/model.js';
+import {canInteract} from '../dist/accounts.js';
 
 const oldUsers = ['anna','peter','eszter'];
 const oldFixtures = [
@@ -16,6 +17,7 @@ const hash = value => createHash('sha256').update(JSON.stringify(value)).digest(
 const kind = (catalog,name) => catalog.fixtures.filter(fixture=>fixture.kind===name);
 const property = fixture => ({...fixture.input,ownerId:fixture.owner,id:fixture.key});
 const search = fixture => ({...fixture.input,ownerId:fixture.owner,id:fixture.key});
+const canPair=(catalog,left,right)=>canInteract(catalog.users.find(user=>user.key===left.owner)?.accountType,catalog.users.find(user=>user.key===right.owner)?.accountType);
 
 test('default catalog contains twelve ready accounts including three agents and a substantial mixed-role inventory',()=>{
  const catalog=createDemoCatalog();
@@ -53,7 +55,7 @@ test('already exhausted original default profiles receive dozens of entirely new
  ];
  for(const [key,activeKind,minimum] of checks){
   const active=locate(key);
-  const matches=fresh.filter(fixture=>fixture.kind!==activeKind&&(
+  const matches=fresh.filter(fixture=>fixture.kind!==activeKind&&canPair(catalog,active,fixture)&&(
    activeKind==='search'?isCompatible(property(fixture),search(active)):isCompatible(property(active),search(fixture))
   ));
   assert.ok(matches.length>=minimum,`${key} must get at least ${minimum} new matches, got ${matches.length}`);
@@ -67,11 +69,11 @@ test('new accounts have compatible initial recommendations and agent searches ca
  const peter=property(catalog.fixtures.find(fixture=>fixture.key==='peter-pozsonyi'));
  for(const user of catalog.users.filter(user=>!oldUsers.includes(user.key))){
   const active=catalog.fixtures.find(fixture=>fixture.key===user.active.key);
-  const matches=catalog.fixtures.filter(fixture=>fixture.kind!==active.kind&&(
+  const matches=catalog.fixtures.filter(fixture=>fixture.kind!==active.kind&&canPair(catalog,active,fixture)&&(
    active.kind==='search'?isCompatible(property(fixture),search(active)):isCompatible(property(active),search(fixture))
   ));
   assert.ok(matches.length>=30,`${user.key} needs many initial recommendations`);
-  if(user.accountType==='agent')assert.ok(isCompatible(peter,search(active)),`${user.key} must match the original seller for the 1-credit test`);
+  if(user.accountType==='agent'){assert.ok(matches.every(fixture=>catalog.users.find(owner=>owner.key===fixture.owner).accountType==='private'),'Agent examples must receive only private counterparties');assert.ok(isCompatible(peter,search(active)),`${user.key} must match the original seller for the 1-credit test`);}
  }
 });
 

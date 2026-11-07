@@ -91,6 +91,10 @@ for (const user of DEMO_USERS) {
   assert.deepEqual(entities.active, {kind: user.active.kind, id: receiptFor(user.key).fixtures[user.active.key]});
   assert.ok(feed.items.length > 0, `${user.key} has no compatible initial recommendation`);
   assert.equal(feed.likeCost, user.active.kind === 'property' ? 2 : accountType === 'agent' ? 1 : 0);
+  if(accountType==='agent'){
+    const counterpart=item=>user.active.kind==='property'?item.searchRequest:item.property;
+    assert.ok(feed.items.every(item=>counterpart(item).ownerAccountType==='private'),'Agents must not receive other agent listings or searches');
+  }
   initialFeeds.set(user.key, feed);
 }
 // Refill existing testers through new counterpart entities; old decisions stay untouched.
