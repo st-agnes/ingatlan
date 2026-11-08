@@ -667,3 +667,12 @@ test('empty notifications explain the response window and failed read preserves 
 test('refund ledger and saved paid interest show the credited amount without hiding the original like',async()=>{
  const state=createModel({getItem:()=>null,setItem:()=>{}}).getState();state.decisions=[{id:'refunded',actorKind:'search',actorId:'own-s1',propertyId:'p1',searchId:'own-s1',liked:true,charged:1,createdAt:'2026-10-01T00:00:00Z',refundedAt:'2026-10-15T00:00:00Z',property:{id:'p1',ownerId:'u1',ownerAccountType:'private',title:'Visszatérített otthon',city:'Budapest',price:70,area:60,rooms:2,images:[]}}];state.matches=[];state.ledger=[{id:'refund-ledger',kind:'like_refund',amount:1,description:'Kreditvisszatérítés: 14 napig nem érkezett válasz.',createdAt:'2026-10-15T00:00:00Z'}];const t=await setup({hosted:true,authenticated:true,apiOverrides:{getState:async()=>state,matches:async()=>[]}});await t.click({action:'tab',tab:'liked'});let html=t.document.getElementById('app').innerHTML;assert.match(html,/Kredit visszatérítve/);assert.match(html,/\+1 kredit visszatérítve/);assert.match(html,/Visszatérített otthon/);await t.click({page:'credits'});html=t.document.getElementById('app').innerHTML;assert.match(html,/14 nap után visszatérítve/);assert.match(html,/\+1 kredit/);
 });
+
+test('public and authentication routes cannot act on a hidden paid discovery candidate',async()=>{
+ const t=await setup();await t.click({action:'activate-one',kind:'property',id:'own-p1'});const before=t.model.getState();
+ for(const route of ['landing','login','register']){
+  if(route==='landing')await t.click({action:'landing'});else await t.click({action:'auth-mode',mode:route});
+  for(const key of ['ArrowLeft','ArrowRight'])await t.document.handlers.keydown({key,target:{closest:()=>null},preventDefault(){}});
+  await t.click({action:'like'});assert.deepEqual(t.model.getState(),before,'A hidden candidate must never make a decision or spend credits');
+ }
+});
