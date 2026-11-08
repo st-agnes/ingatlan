@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createModel,isCompatible,STORAGE_KEY} from '../dist/model.js';
+import {createModel,isCompatible,STORAGE_KEY,demoLanding} from '../dist/model.js';
 import {locations, getLocation} from '../dist/locations.js';
 const store=()=>{const values=new Map();return{getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v)}};
 const setup=()=>createModel(store(),()=>new Date('2026-10-31T12:00:00Z').toISOString());
@@ -432,4 +432,27 @@ test('legacy paid decisions with no valid recorded timestamp cannot produce a sy
   const t=refundFixture(),raw=JSON.parse(t.storage.getItem(STORAGE_KEY));raw.decisions.find(item=>item.id===t.decision.id).createdAt=createdAt;t.storage.setItem(STORAGE_KEY,JSON.stringify(raw));t.setClock(REFUND_DEADLINE);
   const m=t.reload();assert.equal(m.getState().credits,t.balance-2);assert.equal(m.notifications().total,0);
  }
+});
+
+const publicFingerprint=items=>items.map(({key,...item})=>JSON.stringify(item)).sort();
+test('public demo previews cover different budgets, sizes, room counts and districts without touching saved profiles',()=>{
+ const storage=store(),m=createModel(storage,()=>REFUND_START);m.activate('property','own-p1');const before=JSON.stringify(m.getState()),saved=storage.getItem(STORAGE_KEY);
+ const preview=demoLanding(null,()=>0);assert.equal(preview.searches.length,8);assert.equal(preview.properties.length,4);
+ for(const items of [preview.searches,preview.properties])assert.equal(new Set(items.map(item=>item.type)).size,2,'Both apartments and houses should be represented');
+ assert.ok(Math.min(...preview.properties.map(item=>item.price))<=50);assert.ok(Math.max(...preview.properties.map(item=>item.price))>=120);
+ assert.ok(Math.min(...preview.properties.map(item=>item.area))<=40);assert.ok(Math.max(...preview.properties.map(item=>item.area))>=100);
+ assert.ok(new Set(preview.properties.map(item=>item.rooms)).size>=3);assert.ok(new Set(preview.properties.map(item=>item.location)).size>=3);
+ assert.ok(preview.searches.some(item=>item.maxPrice!=null&&item.maxPrice<=55));assert.ok(preview.searches.some(item=>item.maxPrice==null||item.maxPrice>=150));
+ assert.equal(JSON.stringify(m.getState()),before);assert.equal(storage.getItem(STORAGE_KEY),saved);
+});
+test('public demo refresh changes selected membership with deterministic randomness while keeping the response private',()=>{
+ const region={id:'HU110',label:'Budapest'};let previous;
+ for(let i=0;i<6;i++){
+  const preview=demoLanding(region,()=>0);assert.equal(preview.searches.length,8);assert.equal(preview.properties.length,4);
+  const current={searches:publicFingerprint(preview.searches),properties:publicFingerprint(preview.properties)};
+  if(previous){assert.notDeepEqual(current.searches,previous.searches);assert.notDeepEqual(current.properties,previous.properties);}
+  for(const item of [...preview.searches,...preview.properties])for(const key of ['id','ownerId','userId','description','address','images','email','phone'])assert.equal(Object.hasOwn(item,key),false);
+  assert.doesNotMatch(JSON.stringify(preview),/@|Pozsonyi|public-search|public-property/);previous=current;
+ }
+ const empty=demoLanding({id:'HU321',label:'Hajdú-Bihar'},()=>0);assert.deepEqual(empty.searches,[]);assert.deepEqual(empty.properties,[]);
 });

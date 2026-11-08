@@ -2,6 +2,8 @@
 import assert from 'node:assert/strict';
 import {mkdir,readFile,writeFile,chmod} from 'node:fs/promises';
 import {resolve,dirname} from 'node:path';
+import {locations} from '../dist/locations.js';
+import {agglomerations} from '../dist/agglomerations-data.js';
 
 const origin=new URL(process.argv[2]||'http://127.0.0.1:3000');
 const mode=process.argv[3]||'--setup';
@@ -36,7 +38,11 @@ async function publicLanding(f){
  }
  const vas=await api('/public/landing?region=HU222');assert.equal(vas.scope,'region');assert.equal(vas.region.id,'HU222');
  assert.ok(vas.properties.length>0);assert.ok(vas.properties.every(p=>p.location==='Őriszentpéter'),'County selection must filter properties before limiting');
- const hajdu=await api('/public/landing?region=HU321');assert.equal(hajdu.region.id,'HU321');assert.ok(hajdu.searches.some(s=>s.locations.includes('Debrecen')),'A multi-location search must belong to every matching county');
+ const hajdu=await api('/public/landing?region=HU321');assert.equal(hajdu.region.id,'HU321');assert.ok(hajdu.searches.length>0);
+ const counties=JSON.parse(await readFile(new URL('./Otthonra.Api/Data/regions.json',import.meta.url),'utf8'));
+ const countyCities=new Set(counties.regions.find(region=>region.id==='HU321').settlements);
+ const regionLabels=new Set(locations.filter(location=>location.kind==='area'?agglomerations.find(area=>area.id===location.id).settlements.some(city=>countyCities.has(city)):countyCities.has(location.city)).map(location=>location.label));
+ assert.ok(hajdu.searches.every(search=>search.locations.some(label=>regionLabels.has(label))),'Every varied preview must still match the selected county, including cross-county searches and areas');
  await api('/public/landing?region=unknown',{status:400});
 }
 

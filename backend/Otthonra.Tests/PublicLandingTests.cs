@@ -148,4 +148,97 @@ public class PublicLandingTests
         var error = Assert.Throws<ApiException>(() => PublicLanding.ParseRegion(region));
         Assert.Equal(400, error.Status);
     }
+    [Fact]
+    public void DiverseSamplesKeepRareTypesAndPriceBandsBehindThousandsOfSimilarRows()
+    {
+        var snapshot = new PublicLandingSnapshot(new Random(2718));
+        for (var index = 0; index < 3000; index++)
+        {
+            var search = SearchAt("district:Budapest:13"); search.MaxPrice = 55_000_000m;
+            var property = PropertyAt("district:Budapest:13"); property.Price = 55_000_000m;
+            snapshot.Add(search, AccountTypes.Private); snapshot.Add(property, AccountTypes.Private);
+        }
+        var types = new[] { "Ház", "Nyaraló", "Iroda" };
+        var prices = new[] { 20_000_000m, 105_000_000m, 220_000_000m };
+        var districts = new[] { 2, 5, 11 };
+        for (var index = 0; index < types.Length; index++)
+        {
+            var search = SearchAt($"district:Budapest:{districts[index]}");
+            search.Type = types[index]; search.MaxPrice = prices[index]; search.MaxArea = 50m + index * 70m;
+            var property = PropertyAt($"district:Budapest:{districts[index]}");
+            property.Type = types[index]; property.Price = prices[index]; property.Area = 50m + index * 70m;
+            property.LotArea = types[index] == "Ház" ? 500m : null;
+            snapshot.Add(search, AccountTypes.Agent); snapshot.Add(property, AccountTypes.Private);
+        }
+        for (var refresh = 0; refresh < 20; refresh++)
+        {
+            var response = snapshot.Response(RegionCatalog.Get("HU110"));
+            Assert.Equal(8, response.Searches.Length); Assert.Equal(4, response.Properties.Length);
+            Assert.Equal(new[] { "Ház", "Iroda", "Lakás", "Nyaraló" }, response.Searches.Select(item => item.Type).Distinct().Order(StringComparer.Ordinal).ToArray());
+            Assert.Equal(4, response.Properties.Select(item => item.Type).Distinct().Count());
+            Assert.Equal(4, response.Searches.Select(item => item.MaxPrice).Distinct().Count());
+            Assert.Equal(4, response.Properties.Select(item => item.Price).Distinct().Count());
+            Assert.Equal(4, response.Properties.Select(item => item.Location).Distinct().Count());
+        }
+    }
+
+    private static PublicLandingSnapshot VariedSnapshot(int seed)
+    {
+        var snapshot = new PublicLandingSnapshot(new Random(seed));
+        for (var index = 0; index < 32; index++)
+        {
+            var search = SearchAt("city:Debrecen"); search.MaxPrice = 10_000_000m + index * 5_000_000m;
+            search.MaxArea = 30m + index * 6m; search.MaxRooms = 1m + index % 7;
+            var property = PropertyAt("city:Debrecen"); property.Price = search.MaxPrice.Value;
+            property.Area = search.MaxArea.Value; property.Rooms = search.MaxRooms.Value;
+            snapshot.Add(search, index % 2 == 0 ? AccountTypes.Private : AccountTypes.Agent);
+            snapshot.Add(property, AccountTypes.Private);
+        }
+        return snapshot;
+    }
+
+    [Fact]
+    public void EveryRefreshChangesMembershipWithinTheSameCachedCandidateSnapshot()
+    {
+        var snapshot = VariedSnapshot(42);
+        string? previousSearches = null, previousProperties = null;
+        for (var refresh = 0; refresh < 30; refresh++)
+        {
+            var response = snapshot.Response(RegionCatalog.Get("HU321"));
+            var searches = string.Join("|", response.Searches.Select(item => item.MaxPrice).Order());
+            var properties = string.Join("|", response.Properties.Select(item => item.Price).Order());
+            Assert.NotEqual(previousSearches, searches); Assert.NotEqual(previousProperties, properties);
+            Assert.Equal(8, response.Searches.Select(item => item.MaxPrice).Distinct().Count());
+            Assert.Equal(4, response.Properties.Select(item => item.Price).Distinct().Count());
+            Assert.Equal(Enumerable.Range(1, 8).Select(index => "search-" + index), response.Searches.Select(item => item.Key));
+            Assert.Equal(Enumerable.Range(1, 4).Select(index => "property-" + index), response.Properties.Select(item => item.Key));
+            previousSearches = searches; previousProperties = properties;
+        }
+    }
+
+    [Fact]
+    public void SeededSelectionAndConcurrentResponsesRemainValidWithoutMutatingCachedLocations()
+    {
+        var first = VariedSnapshot(99); var second = VariedSnapshot(99);
+        for (var refresh = 0; refresh < 5; refresh++)
+        {
+            var a = first.Response(RegionCatalog.Get("HU321")); var b = second.Response(RegionCatalog.Get("HU321"));
+            Assert.Equal(a.Searches.Select(item => item.MaxPrice), b.Searches.Select(item => item.MaxPrice));
+            Assert.Equal(a.Properties.Select(item => item.Price), b.Properties.Select(item => item.Price));
+        }
+        var original = first.Response(RegionCatalog.Get("HU321"));
+        foreach (var item in original.Searches) item.Locations[0] = "Corrupted client array";
+        var responses = new System.Collections.Concurrent.ConcurrentBag<PublicLandingResponse>();
+        Parallel.For(0, 32, _ => responses.Add(first.Response(RegionCatalog.Get("HU321"))));
+        Assert.Equal(32, responses.Count);
+        foreach (var response in responses)
+        {
+            Assert.Equal(8, response.Searches.Length); Assert.Equal(4, response.Properties.Length);
+            Assert.All(response.Searches, item => Assert.Equal("Debrecen", Assert.Single(item.Locations)));
+            Assert.All(response.Properties, item => Assert.Equal("Debrecen", item.Location));
+            Assert.Equal(8, response.Searches.Select(item => item.MaxPrice).Distinct().Count());
+            Assert.Equal(4, response.Properties.Select(item => item.Price).Distinct().Count());
+        }
+    }
+
 }

@@ -98,16 +98,64 @@ function seed(now) {
   return {version:3,users,userId:'me',credits:24,active:{kind:'search',id:'own-s1'},properties,searches,decisions,matches,ledger:[{id:'initial-credit',amount:24,type:'demo_grant',description:'Kezdő demókreditek',createdAt:time}],createdAt:time};
 }
 
+// Public preview history is in memory only and never touches the saved workspace.
+const publicDemoSelections=new Map();
+const publicDemoType=type=>['Lakás','Ház'].includes(type)?type:'Ingatlan';
+const publicDemoBucket=(value,limits)=>{if(value==null)return 'open';const index=limits.findIndex(limit=>Number(value)<limit);return index<0?limits.length:index;};
+function samplePublicDemo(items,limit,kind,scope,random) {
+  const draw=()=>{const value=Number(random());return Number.isFinite(value)?Math.max(0,Math.min(1-Number.EPSILON,value)):0;};
+  const key=kind+':'+scope,previous=publicDemoSelections.get(key)||[];
+  // Excluding one previous member guarantees a different set whenever there is a spare candidate.
+  const excluded=items.length>limit&&previous.length?previous[Math.floor(draw()*previous.length)]:null;
+  const remaining=items.filter(item=>item.id!==excluded).map(item=>{
+    const locations=kind==='search'?item.locations:[item.location];
+    const budget=kind==='search'?item.maxPrice??item.minPrice:item.price;
+    const size=kind==='search'?item.minArea??item.maxArea:item.area;
+    const rooms=kind==='search'?item.minRooms??item.maxRooms:item.rooms;
+    return {item,features:[['type:'+publicDemoType(item.type),3],['budget:'+publicDemoBucket(budget,[30,60,90,150]),2],['area:'+publicDemoBucket(size,[40,70,100,160]),1.5],['rooms:'+publicDemoBucket(rooms,[2,3,4,6]),1],...locations.slice(0,3).map(location=>['location:'+location.id,1])],tie:draw()};
+  });
+  const selected=[],seen=new Set();
+  while(remaining.length&&selected.length<limit) {
+    let best=0,bestScore=-1;
+    for(let i=0;i<remaining.length;i++) {
+      const candidate=remaining[i],score=candidate.features.reduce((sum,[feature,weight])=>sum+(seen.has(feature)?0:weight),0)+candidate.tie*.25;
+      if(score>bestScore){best=i;bestScore=score;}
+    }
+    const [chosen]=remaining.splice(best,1);selected.push(chosen.item);chosen.features.forEach(([feature])=>seen.add(feature));
+  }
+  // Shuffle the selected set too, so variety is visible in the first cards.
+  for(let i=selected.length-1;i>0;i--){const j=Math.floor(draw()*(i+1));[selected[i],selected[j]]=[selected[j],selected[i]];}
+  publicDemoSelections.set(key,selected.map(item=>item.id));
+  return selected;
+}
+
 /** Deliberately fictional public preview: no saved users, free text, IDs or contact details. */
-export function demoLanding(region=null) {
+export function demoLanding(region=null,random=Math.random) {
   const sample=migrateLocations(seed(()=>new Date().toISOString()));
   const available=!region||region.id==='HU110';
-  const typeOf=entity=>entity.type==='Ház'?'Ház':'Lakás';
   const ownerType=entity=>normalizeAccountType(sample.users.find(user=>user.id===entity.ownerId)?.accountType);
+  // These extra examples belong solely to the public preview, never to the user's stored profiles.
+  const searchExamples=[
+    ['district:Budapest:8','Lakás',null,35,20,40,1,2],
+    ['district:Budapest:22','Ház',60,110,85,160,3,6],
+    ['district:Budapest:2','Ház',120,220,140,280,5,9],
+    ['district:Budapest:5','Lakás',95,160,90,150,3,5],
+    ['district:Budapest:14','Lakás',null,55,30,55,1,3],
+    ['district:Budapest:17','Ház',20,null,100,null,4,null]
+  ].map(([id,type,minPrice,maxPrice,minArea,maxArea,minRooms,maxRooms],index)=>({id:'public-search-'+index,ownerId:index%2?'u2':'u1',type,minPrice,maxPrice,minArea,maxArea,minRooms,maxRooms,locations:[getLocation(id)]}));
+  const propertyExamples=[
+    ['district:Budapest:22','Ház',74.9,95,3,450],
+    ['district:Budapest:2','Ház',169,180,5,1000],
+    ['district:Budapest:8','Lakás',28.9,25,1,null],
+    ['district:Budapest:5','Lakás',219,150,5,null]
+  ].map(([id,type,price,area,rooms,lotArea],index)=>({id:'public-property-'+index,ownerId:index%2?'u2':'u1',type,price,area,rooms,wholeRooms:rooms,halfRooms:0,lotArea,location:getLocation(id)}));
+  const scope=region?.id||'national';
+  const searches=available?samplePublicDemo([...sample.searches,...searchExamples],8,'search',scope,random):[];
+  const properties=available?samplePublicDemo([...sample.properties,...propertyExamples],4,'property',scope,random):[];
   return {
     region:clone(region),scope:region?'region':'national',
-    searches:available?sample.searches.slice(0,8).map((entity,index)=>({key:`search-${index+1}`,title:`${typeOf(entity)} keresési igény`,type:typeOf(entity),locations:entity.locations.map(location=>location.label),minPrice:entity.minPrice,maxPrice:entity.maxPrice,minArea:entity.minArea,maxArea:entity.maxArea,minRooms:entity.minRooms,maxRooms:entity.maxRooms,ownerAccountType:ownerType(entity)})):[],
-    properties:available?sample.properties.slice(0,4).map((entity,index)=>({key:`property-${index+1}`,title:`Eladó ${typeOf(entity).toLocaleLowerCase('hu')}`,type:typeOf(entity),location:entity.location.label,price:entity.price,area:entity.area,wholeRooms:entity.wholeRooms??null,halfRooms:entity.halfRooms??null,rooms:entity.rooms,lotArea:entity.lotArea??null,ownerAccountType:ownerType(entity)})):[]
+    searches:searches.map((entity,index)=>({key:`search-${index+1}`,title:`${publicDemoType(entity.type)} keresési igény`,type:publicDemoType(entity.type),locations:entity.locations.map(location=>location.label),minPrice:entity.minPrice,maxPrice:entity.maxPrice,minArea:entity.minArea,maxArea:entity.maxArea,minRooms:entity.minRooms,maxRooms:entity.maxRooms,ownerAccountType:ownerType(entity)})),
+    properties:properties.map((entity,index)=>({key:`property-${index+1}`,title:`Eladó ${publicDemoType(entity.type).toLocaleLowerCase('hu')}`,type:publicDemoType(entity.type),location:entity.location.label,price:entity.price,area:entity.area,wholeRooms:entity.wholeRooms??null,halfRooms:entity.halfRooms??null,rooms:entity.rooms,lotArea:entity.lotArea??null,ownerAccountType:ownerType(entity)}))
   };
 }
 
