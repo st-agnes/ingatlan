@@ -5,11 +5,14 @@ import {normalizeAccountType,likeCost,canInteract,normalizeReportReason,normaliz
 /** Browser-only demonstration store. Real deployments use the authenticated .NET API. */
 export const STORAGE_KEY = 'otthonra.demo.v3';
 export const SELLER_LIKE_COST = 2;
+export const LIKE_RESPONSE_DAYS = 14;
+const LIKE_RESPONSE_WINDOW = LIKE_RESPONSE_DAYS * 86400000;
 const clone = value => JSON.parse(JSON.stringify(value));
 const uid = prefix => `${prefix}-${globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`}`;
 const photos = ['/assets/home.jpg','/assets/living.jpg','/assets/bedroom.jpg','/assets/kitchen.jpg','/assets/terrace.jpg','/assets/living.jpg'];
 const normalized = value => String(value || '').trim().toLocaleLowerCase('hu');
 const numeric = (value, fallback) => value === '' || value == null ? fallback : typeof value === 'boolean' ? NaN : Number(value);
+const storedInstant = value => typeof value==='string'&&value.trim()?Date.parse(value):NaN;
 const locationError = () => new Error('Válassz érvényes települést vagy budapesti kerületet a találati listából.');
 function withLocations(entity, kind, strict = false) {
   let locations;
@@ -34,6 +37,7 @@ function withLocations(entity, kind, strict = false) {
 function migrateLocations(state) {
   state.users=state.users.map(user=>({...user,accountType:normalizeAccountType(user.accountType)}));
   state.reports=Array.isArray(state.reports)?state.reports.map(report=>({...report,reason:report.reason??'suspected_agent'})):[];
+  state.notifications=Array.isArray(state.notifications)?state.notifications:[];
   state.properties = state.properties.map(entity=>normalizePropertyAttributes(withLocations(entity, 'property')));
   state.searches = state.searches.map(entity=>normalizeSearchAttributes(withLocations(entity, 'search')));
   return state;
@@ -94,6 +98,19 @@ function seed(now) {
   return {version:3,users,userId:'me',credits:24,active:{kind:'search',id:'own-s1'},properties,searches,decisions,matches,ledger:[{id:'initial-credit',amount:24,type:'demo_grant',description:'Kezdő demókreditek',createdAt:time}],createdAt:time};
 }
 
+/** Deliberately fictional public preview: no saved users, free text, IDs or contact details. */
+export function demoLanding(region=null) {
+  const sample=migrateLocations(seed(()=>new Date().toISOString()));
+  const available=!region||region.id==='HU110';
+  const typeOf=entity=>entity.type==='Ház'?'Ház':'Lakás';
+  const ownerType=entity=>normalizeAccountType(sample.users.find(user=>user.id===entity.ownerId)?.accountType);
+  return {
+    region:clone(region),scope:region?'region':'national',
+    searches:available?sample.searches.slice(0,8).map((entity,index)=>({key:`search-${index+1}`,title:`${typeOf(entity)} keresési igény`,type:typeOf(entity),locations:entity.locations.map(location=>location.label),minPrice:entity.minPrice,maxPrice:entity.maxPrice,minArea:entity.minArea,maxArea:entity.maxArea,minRooms:entity.minRooms,maxRooms:entity.maxRooms,ownerAccountType:ownerType(entity)})):[],
+    properties:available?sample.properties.slice(0,4).map((entity,index)=>({key:`property-${index+1}`,title:`Eladó ${typeOf(entity).toLocaleLowerCase('hu')}`,type:typeOf(entity),location:entity.location.label,price:entity.price,area:entity.area,wholeRooms:entity.wholeRooms??null,halfRooms:entity.halfRooms??null,rooms:entity.rooms,lotArea:entity.lotArea??null,ownerAccountType:ownerType(entity)})):[]
+  };
+}
+
 export function isCompatible(property,search) {
   if (!property || !search || property.archived || search.archived || property.ownerId===search.ownerId) return false;
   if (!matchesLocations(property, search)) return false;
@@ -122,6 +139,33 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     state=draft;
     return clone(result ?? null);
   };
+  const refundDue = (s,at) => {
+    const timestamp = new Date(at).getTime();
+    if(!Number.isFinite(timestamp))return [];
+    return s.decisions.filter(decision=>{
+      if(!decision.liked||!own(s,decision.actorKind,decision.actorId)||!Number.isSafeInteger(decision.charged)||decision.charged<=0||decision.refundedAt)return false;
+      const created = storedInstant(decision.createdAt),deadline=created+LIKE_RESPONSE_WINDOW;
+      if(!Number.isFinite(created)||timestamp<deadline)return false;
+      return !s.decisions.some(response=>response.actorKind!==decision.actorKind&&response.propertyId===decision.propertyId&&response.searchId===decision.searchId&&Number.isFinite(storedInstant(response.createdAt))&&storedInstant(response.createdAt)<=deadline);
+    });
+  };
+  const processRefunds = () => {
+    const at=now();
+    if(!refundDue(state,at).length)return 0;
+    return transact(s=>{
+      const due=refundDue(s,at);
+      for(const decision of due) {
+        const previous=s.ledger.find(entry=>(entry.type==='like_refund'||entry.kind==='like_refund')&&(entry.refundedDecisionId===decision.id||entry.decisionId===decision.id));
+        decision.refundedAt=previous?.createdAt||at;
+        if(previous)continue;
+        s.credits+=decision.charged;
+        const text=`${decision.charged} kreditet visszatérítettünk, mert a kedvelésedre 14 napon belül nem érkezett válasz.`;
+        s.ledger.unshift({id:uid('credit'),amount:decision.charged,type:'like_refund',kind:'like_refund',description:text,refundedDecisionId:decision.id,propertyId:decision.propertyId,searchId:decision.searchId,createdAt:at});
+        s.notifications.unshift({id:uid('notification'),userId:s.userId,decisionId:decision.id,kind:'like_refund',amount:decision.charged,text,createdAt:at,readAt:null});
+      }
+      return due.length;
+    });
+  };
   const getMatch = (s,match) => {
     const property=s.properties.find(p=>p.id===match.propertyId);
     const search=s.searches.find(q=>q.id===match.searchId);
@@ -133,9 +177,11 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
   };
   return {
     getState() {
-      return clone({user:state.users.find(u=>u.id===state.userId),credits:state.credits,active:state.active,properties:state.properties.filter(p=>p.ownerId===state.userId).map(p=>visibleEntity(p,state.users)),searches:state.searches.filter(q=>q.ownerId===state.userId).map(q=>visibleEntity(q,state.users)),decisions:state.decisions.filter(d=>own(state,d.actorKind,d.actorId)).map(d=>({...d,property:visibleEntity(state.properties.find(p=>p.id===d.propertyId),state.users),search:visibleEntity(state.searches.find(q=>q.id===d.searchId),state.users)})),ledger:state.ledger,createdAt:state.createdAt,likeCost:state.active?.id?likeCost(state.users.find(user=>user.id===state.userId)?.accountType,state.active.kind):0,reportedOwnerIds:[...new Set(state.reports.filter(report=>report.reporterId===state.userId).map(report=>report.reportedUserId))],reportedEntities:state.reports.filter(report=>report.reporterId===state.userId&&['property','search'].includes(report.entityKind)&&typeof report.entityId==='string').map(({entityKind,entityId,reason})=>({entityKind,entityId,reason}))});
+      processRefunds();
+      return clone({unreadNotificationCount:state.notifications.filter(item=>item.userId===state.userId&&!item.readAt).length,user:state.users.find(u=>u.id===state.userId),credits:state.credits,active:state.active,properties:state.properties.filter(p=>p.ownerId===state.userId).map(p=>visibleEntity(p,state.users)),searches:state.searches.filter(q=>q.ownerId===state.userId).map(q=>visibleEntity(q,state.users)),decisions:state.decisions.filter(d=>own(state,d.actorKind,d.actorId)).map(d=>({...d,property:visibleEntity(state.properties.find(p=>p.id===d.propertyId),state.users),search:visibleEntity(state.searches.find(q=>q.id===d.searchId),state.users)})),ledger:state.ledger,createdAt:state.createdAt,likeCost:state.active?.id?likeCost(state.users.find(user=>user.id===state.userId)?.accountType,state.active.kind):0,reportedOwnerIds:[...new Set(state.reports.filter(report=>report.reporterId===state.userId).map(report=>report.reportedUserId))],reportedEntities:state.reports.filter(report=>report.reporterId===state.userId&&['property','search'].includes(report.entityKind)&&typeof report.entityId==='string').map(({entityKind,entityId,reason})=>({entityKind,entityId,reason}))});
     },
     feed() {
+      processRefunds();
       const active=own(state,state.active.kind,state.active.id);
       if(!active||active.archived)return [];
       const candidates=state.active.kind==='search'?state.properties:state.searches;
@@ -161,6 +207,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     },
     incomingLikes(options={}) {
       const {offset,limit}=normalizeIncomingPagination(options);
+      processRefunds();
       const active=own(state,state.active?.kind,state.active?.id);
       const empty={active:null,items:[],total:0,offset,limit,hasMore:false,likeCost:0};
       if(!active||active.archived)return empty;
@@ -180,6 +227,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       return {active:{kind:activeKind,id:active.id},items:items.slice(offset,offset+limit).map(({_decisionId,...item})=>item),total,offset,limit,hasMore:offset+limit<total,likeCost:likeCost(state.users.find(user=>user.id===state.userId)?.accountType,activeKind)};
     },
     decide(item,liked) {
+      processRefunds();
       if(typeof liked!=='boolean')throw new Error('Érvénytelen döntés.');
       const pair=item?.pair;
       if(!pair?.propertyId||!pair?.searchId)throw new Error('Érvénytelen ajánlás.');
@@ -200,6 +248,22 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
           match=getMatch(s,record);
         }
         return {match,charged};
+      });
+    },
+    notifications(options={}) {
+      const {offset,limit}=normalizeIncomingPagination(options);
+      processRefunds();
+      const items=state.notifications.filter(item=>item.userId===state.userId).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt))||String(b.id).localeCompare(String(a.id)));
+      return clone({items:items.slice(offset,offset+limit).map(({userId,...item})=>item),total:items.length,unreadCount:items.filter(item=>!item.readAt).length,offset,limit,hasMore:offset+limit<items.length});
+    },
+    markNotificationRead(id) {
+      processRefunds();
+      return transact(s=>{
+        const item=s.notifications.find(notification=>notification.id===id&&notification.userId===s.userId);
+        if(!item)throw new Error('Az értesítés nem található.');
+        item.readAt ||= now();
+        const {userId,...result}=item;
+        return result;
       });
     },
     activate(kind,id) {
@@ -268,7 +332,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       amount=Number(amount);if(!Number.isInteger(amount)||amount<1||amount>10000)throw new Error('Érvénytelen kreditmennyiség.');
       return transact(s=>{s.credits+=amount;s.ledger.unshift({id:uid('credit'),amount,type:'demo_topup',description:'Demófeltöltés – fizetés nem történt',createdAt:now()});return {credits:s.credits,demo:true};});
     },
-    matches() {return state.matches.map(m=>getMatch(state,m)).filter(Boolean).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));},
+    matches() {processRefunds();return state.matches.map(m=>getMatch(state,m)).filter(Boolean).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));},
     sendMessage(matchId,text) {
       text=String(text||'').trim();if(!text||text.length>4000)throw new Error('Az üzenet 1–4000 karakter hosszú lehet.');
       return transact(s=>{const record=s.matches.find(m=>m.id===matchId);if(!record||!getMatch(s,record))throw new Error('Csak kölcsönös találat után küldhetsz üzenetet.');const message={id:uid('message'),senderId:s.userId,text,createdAt:now()};record.messages.push(message);record.unread=0;return message;});

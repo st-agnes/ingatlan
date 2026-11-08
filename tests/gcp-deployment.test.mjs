@@ -19,7 +19,7 @@ const config = Object.freeze({
   deployServiceAccount: 'otthonra-deploy-dev@ingatlan-513620.iam.gserviceaccount.com',
   workloadIdentityProvider: 'projects/123456789012/locations/global/workloadIdentityPools/otthonra-dev/providers/github'
 });
-const required = ['index.html','app.js','style.css','api.js','model.js','locations.js','locations-data.js','agglomerations-data.js','attributes.js','accounts.js','runtime-config.js','data/settlements.json','data/agglomerations.json','THIRD-PARTY-NOTICES.txt'];
+const required = ['index.html','app.js','style.css','api.js','model.js','locations.js','locations-data.js','agglomerations-data.js', 'regions-data.js','attributes.js','accounts.js','runtime-config.js','data/settlements.json','data/agglomerations.json','THIRD-PARTY-NOTICES.txt'];
 
 async function fixture(run) {
   const source = await mkdtemp(join(tmpdir(), 'otthonra-hosting-source-'));

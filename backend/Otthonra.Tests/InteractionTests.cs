@@ -28,6 +28,7 @@ public class InteractionTests
     [InlineData("suspected_agent", "suspected_agent")]
     [InlineData(" MISLEADING_CONTENT ", "misleading_content")]
     [InlineData("other_violation", "other_violation")]
+    [InlineData("no_longer_current", "no_longer_current")]
     public void ReportReasonsAreCanonicalAndOldClientsRetainTheirOriginalMeaning(string? value, string expected)
     {
         Assert.Equal(expected, ReportReasons.Normalize(value));
@@ -48,6 +49,8 @@ public class InteractionTests
     [InlineData("agent", "misleading_content", true)]
     [InlineData("private", "other_violation", true)]
     [InlineData("agent", "other_violation", true)]
+    [InlineData("private", "no_longer_current", true)]
+    [InlineData("agent", "no_longer_current", true)]
     public void GeneralReportsAllowEveryForeignOwnerButSuspectedAgentRequiresAPrivateOwner(string ownerType, string reason, bool allowed)
     {
         var reporter = Guid.NewGuid(); var owner = Guid.NewGuid();

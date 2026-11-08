@@ -99,6 +99,7 @@ jobs:
           node tests/development.test.mjs
           node tests/locations.test.mjs
           node tests/areas.test.mjs
+          node tests/regions.test.mjs
           node tests/attributes.test.mjs
           node tests/gcp-deployment.test.mjs
           node tests/gcp-run-config.test.mjs
@@ -138,6 +139,8 @@ jobs:
         run: node tests/broker-browser.test.mjs http://127.0.0.1:3000
       - name: Test incoming likes, account visibility and report reasons in Chromium
         run: node tests/interaction-browser.test.mjs http://127.0.0.1:3000
+      - name: Test public landing, region fallback and refund notifications in Chromium
+        run: node tests/landing-refund-browser.test.mjs http://127.0.0.1:3000
       - name: Test city-area selection on desktop, tablet and mobile
         run: node tests/areas-browser.test.mjs http://127.0.0.1:3000
       - name: Simulate the previous schema in the disposable CI database
@@ -185,6 +188,17 @@ jobs:
           python3 backend/interaction-store-smoke.py "${{ job.services.mysql.id }}" upgraded
           node scripts/dev.mjs --restart
           python3 backend/interaction-store-smoke.py "${{ job.services.mysql.id }}" upgraded
+      - name: Verify public landing privacy, reports and exactly-once overdue refunds on MySQL
+        run: |
+          node scripts/dev.mjs --restart
+          node backend/landing-refund-smoke.mjs http://127.0.0.1:3000 --setup
+          node scripts/dev.mjs --restart
+          python3 backend/refund-store-smoke.py "${{ job.services.mysql.id }}" age
+          node backend/landing-refund-smoke.mjs http://127.0.0.1:3000 --verify
+          python3 backend/refund-store-smoke.py "${{ job.services.mysql.id }}" record
+          node scripts/dev.mjs --restart
+          node backend/landing-refund-smoke.mjs http://127.0.0.1:3000 --preserved
+          python3 backend/refund-store-smoke.py "${{ job.services.mysql.id }}" verify
       - name: Start the API with the hosted test configuration
         run: |
           node scripts/dev.mjs --stop

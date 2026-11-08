@@ -45,6 +45,25 @@ https://otthonra-dev-PROJECTNUMBER.web.app/
 
 A `PROJECTNUMBER` értékét a telepítő a Google-tól olvassa ki; a cím kiírt, tényleges változatát nyisd meg. Az első indításhoz nem szükséges saját domain vagy DNS-módosítás. A `dev.sajatdomain.hu` később a teszt Hosting-site-hoz kapcsolható a Firebase konzolban, az ott megadott DNS-rekordokkal.
 
+## Frissítés az automatikus kreditvisszatérítéshez
+
+Az óránkénti ellenőrzés új Cloud Scheduler-erőforrást és külön kérési szolgáltatásfiókot használ. **Meglévő telepítésnél a módosítás merge-elése után egyszer a teljes előkészítést és telepítést futtasd**, ne csak a GitHub Actions alkalmazástelepítését:
+
+```sh
+cd ~/ingatlan-cloud-test
+git switch main
+git pull --ff-only
+bash scripts/gcp/run-dev.sh --project ingatlan-513620
+```
+
+A teljes futás létrehozza az `otthonra-refunds-dev` Scheduler-feladatot és az azonos nevű szolgáltatásfiókot. A nem titkos `GCP_DEV_CONFIG` formátuma nem változik; a következő kiadások ismét indíthatók a **Deploy Google Cloud test** workflow-val. Az új tesztrevízió a korábban engedélyezett módon újratölti a tesztadatokat.
+
+A feladat UTC szerint minden óra 17. percében meghívja a Cloud Run stabil címének `/internal/refunds/run` végpontját. Ez nulla futó példány esetén is elindítja a backendet; nem egy folyamatosan futó példány időzítőjére támaszkodik. A 14 nap leteltével a jóváírás a következő sikeres ellenőrzéskor történik, így rendes működés mellett legfeljebb körülbelül egy óra késés lehet. A backend a felhasználó adatainak lekérésekor és futás közben is feldolgozza az esedékes visszatérítéseket. Egy kedvelés díját egyszer írja jóvá, a tranzakcióban rögzített értesítéssel együtt.
+
+A Scheduler Google által kiadott, rövid életű OIDC-tokent küld. Az audience a stabil Cloud Run-alapcím, a kérési identitás `otthonra-refunds-dev@PROJECTID.iam.gserviceaccount.com`; a backend az aláírás, lejárat és audience mellett ezt az ellenőrzött email-címet is megköveteli. A normál alkalmazás-bejelentkezés nem jogosít a belső végpont használatára. A kérés közvetlenül a Run szolgáltatásra megy, nem a Hosting átirányításán keresztül. Nem készül statikus token vagy letölthető szolgáltatásfiók-kulcs.
+
+Egy próbálkozás határideje 180 másodperc; hiba esetén legfeljebb három újrapróbálkozás engedélyezett, 15–120 másodperces visszalépéssel és legfeljebb 30 perces újrapróbálási ablakkal. A feladat állapota és futási naplója a [Cloud Scheduler konzolban](https://console.cloud.google.com/cloudscheduler?project=ingatlan-513620) látható. A kézzel szüneteltetett feladatot a bootstrap nem indítja újra észrevétlenül: ilyen állapotnál megáll, és ellenőrzést kér. Szándékos szüneteltetés után a konzolban folytatható.
+
 ## Állapot és napló tabletről
 
 A tároló könyvtárában futtatva néhány sorban, módosítás nélkül ellenőrizhető a telepítés:
@@ -189,7 +208,7 @@ Ez az eszköz a teszt API ellenőrzése és hitelesítés után dolgozik, nyugt�
 
 A megosztott példafiókok kitalált tesztadatokhoz tartoznak. Saját fiókot az **„Új fiókot hozok létre”** gombbal, névvel, e-mail-címmel és legalább 10 karakteres jelszóval is regisztrálhatsz; a sikeres regisztráció azonnal beléptet. Az ilyen saját fiók nulla kredittel indul; a **Krediteim** oldalon ingyenesen adhatsz hozzá tesztkreditet.
 
-A Google Cloudra feltöltött frontend bejelentkezést vagy regisztrációt kér. A fiókok, ingatlanok, keresések, párosítások és üzenetek a valódi tesztadatbázisba kerülnek. Az új fiók első lépésként saját keresést vagy ingatlant hozhat létre, majd aktiválhatja azt.
+A Google Cloudra feltöltött frontend bejelentkezés előtt nyilvános, elsősorban keresési igényeket bemutató ajánlót jelenít meg. A hozzávetőleges régió IP-alapú becsléssel választható ki, helyhozzáférési engedélykérés nélkül; a régió kézzel is módosítható, sikertelen becslésnél országos példák jelennek meg. Az ajánlóban nincsenek elérhetőségek vagy pontos címek. A használathoz bejelentkezés vagy regisztráció szükséges; a fiókok, ingatlanok, keresések, párosítások és üzenetek a valódi tesztadatbázisba kerülnek. Az új fiók első lépésként saját keresést vagy ingatlant hozhat létre, majd aktiválhatja azt.
 
 A felület „Tesztkörnyezet” jelölést mutat. A kreditek ingyenes tesztkreditek: a feltöltés nem indít bankkártyás fizetést. A jogosultságot a backend kizárólag a saját konfigurációjából engedélyezi: `ASPNETCORE_ENVIRONMENT=Production`, `Deployment__Environment=test`, `Credits__EnableDemoTopup=true`. Teszttelepítésben az éles Stripe-kulcsot a szerver elutasítja.
 
@@ -209,9 +228,10 @@ Az alaptelepítés külön tesztadatbázist használ, amelyben a backend indulá
 | Artifact Registry | `otthonra-dev`, a backend konténerképei |
 | Titkok | `otthonra-mysql-dev` és `otthonra-jwt-dev` a Secret Managerben |
 | Futtatási identitás | `otthonra-runtime-dev` szolgáltatásfiók |
+| Visszatérítések időzítése | `otthonra-refunds-dev` Cloud Scheduler-feladat, óránként, külön OIDC-kérési identitással |
 | GitHub-telepítési identitás | `otthonra-deploy-dev` és az `otthonra-dev` Workload Identity pool |
 
-A kis SQL-példány folyamatosan számlázott, tervezett alapköltsége hozzávetőleg **nettó 10–15 USD/hó**. A tényleges díj függ a régiós ártól, tárhelytől és a tárolt mentésektől. A Cloud Run, Hosting, konténerképek és naplók használata további díjat jelenthet. A Cloud Run-példány két konténere összesen 2 CPU / 1 GiB erőforrást kap; a proxy nem igényel új, folyamatosan futó SQL-példányt vagy virtuális gépet. A példányszám- és tárhelykorlát nem teljes számlázási költségplafon. A telepítő nem hoz létre költségvetési riasztást; ilyet a Cloud Billing felületén lehet beállítani.
+A kis SQL-példány folyamatosan számlázott, tervezett alapköltsége hozzávetőleg **nettó 10–15 USD/hó**. A tényleges díj függ a régiós ártól, tárhelytől és a tárolt mentésektől. A Cloud Run, Hosting, Cloud Scheduler, konténerképek és naplók használata további díjat jelenthet. Az óránkénti ellenőrzés kis API- és adatbázisforgalmat okoz akkor is, ha nincs látogató. A Cloud Run-példány két konténere összesen 2 CPU / 1 GiB erőforrást kap; a proxy nem igényel új, folyamatosan futó SQL-példányt vagy virtuális gépet. A példányszám- és tárhelykorlát nem teljes számlázási költségplafon. A telepítő nem hoz létre költségvetési riasztást; ilyet a Cloud Billing felületén lehet beállítani.
 
 A bootstrap kizárólag a teszt nevű erőforrásokkal dolgozik. Az ismételt futás a saját tulajdonosi jelölésű erőforrásokat használja tovább, és megőrzi a generált jelszavakat. Eltérő tulajdonosi jelölés vagy váratlan konfiguráció esetén hibával megáll. A Cloud SQL törlésvédett; az adatok és a számlázott erőforrások nem tűnnek el a Cloud Shell bezárásakor.
 

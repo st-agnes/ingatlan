@@ -17,6 +17,7 @@ public static class SchemaUpgrade
     public const string SellerFormDetailsVersion = "20261106-seller-form-details";
     public const string AccountTypesAndReportsVersion = "20261107-account-types-and-reports";
     public const string InteractionsAndReportReasonsVersion = "20261107-interactions-and-report-reasons";
+    public const string LikeRefundsVersion = "20261108-public-landing-and-like-refunds";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
@@ -42,7 +43,9 @@ public static class SchemaUpgrade
         ("Properties", "SecondaryHeatingType", "varchar(255) NOT NULL DEFAULT ''"),
         ("Properties", "ParkingTypesJson", "longtext NULL"),
         ("SearchRequests", "HeatingTypesJson", "longtext NULL"),
-        ("Users", "AccountType", "varchar(20) NOT NULL DEFAULT 'private'")
+        ("Users", "AccountType", "varchar(20) NOT NULL DEFAULT 'private'"),
+        ("Decisions", "RefundedAt", "datetime(6) NULL"),
+        ("CreditEntries", "RefundedDecisionId", "char(36) COLLATE ascii_general_ci NULL")
     ];
 
     public static async Task ApplyAsync(AppDb db, CancellationToken cancellationToken = default)
@@ -99,11 +102,39 @@ public static class SchemaUpgrade
                 cancellationToken, ("index", legacyReportIndex))) > 0;
             if (hasLegacyReportIndex)
                 await Execute(connection, "DROP INDEX `" + legacyReportIndex + "` ON `UserReports`", cancellationToken);
+            await Execute(connection, """
+                CREATE TABLE IF NOT EXISTS `UserNotifications` (
+                    `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+                    `UserId` char(36) COLLATE ascii_general_ci NOT NULL,
+                    `DecisionId` char(36) COLLATE ascii_general_ci NOT NULL,
+                    `Kind` varchar(255) NOT NULL,
+                    `Amount` int NOT NULL,
+                    `Text` longtext NOT NULL,
+                    `CreatedAt` datetime(6) NOT NULL,
+                    `ReadAt` datetime(6) NULL,
+                    CONSTRAINT `PK_UserNotifications` PRIMARY KEY (`Id`),
+                    CONSTRAINT `FK_UserNotifications_Users_UserId` FOREIGN KEY (`UserId`) REFERENCES `Users` (`Id`) ON DELETE RESTRICT,
+                    CONSTRAINT `FK_UserNotifications_Decisions_DecisionId` FOREIGN KEY (`DecisionId`) REFERENCES `Decisions` (`Id`) ON DELETE RESTRICT,
+                    UNIQUE KEY `IX_UserNotifications_DecisionId` (`DecisionId`),
+                    KEY `IX_UserNotifications_UserId_CreatedAt` (`UserId`, `CreatedAt`)
+                ) CHARACTER SET=utf8mb4
+                """, cancellationToken);
+            await EnsureIndex(connection, "CreditEntries", "IX_CreditEntries_RefundedDecisionId",
+                "CREATE UNIQUE INDEX `IX_CreditEntries_RefundedDecisionId` ON `CreditEntries` (`RefundedDecisionId`)", cancellationToken);
+            await EnsureIndex(connection, "Decisions", "IX_Decisions_Liked_RefundedAt_CreatedAt",
+                "CREATE INDEX `IX_Decisions_Liked_RefundedAt_CreatedAt` ON `Decisions` (`Liked`, `RefundedAt`, `CreatedAt`)", cancellationToken);
+            const string refundForeignKey = "FK_CreditEntries_Decisions_RefundedDecisionId";
+            var hasRefundForeignKey = Convert.ToInt32(await Scalar(connection,
+                "SELECT COUNT(*) FROM information_schema.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = DATABASE() AND TABLE_NAME = 'CreditEntries' AND CONSTRAINT_NAME = @name AND CONSTRAINT_TYPE = 'FOREIGN KEY'",
+                cancellationToken, ("name", refundForeignKey))) > 0;
+            if (!hasRefundForeignKey)
+                await Execute(connection, "ALTER TABLE `CreditEntries` ADD CONSTRAINT `" + refundForeignKey + "` FOREIGN KEY (`RefundedDecisionId`) REFERENCES `Decisions` (`Id`) ON DELETE RESTRICT", cancellationToken);
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", LocationsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", PropertyAttributesVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", SellerFormDetailsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", AccountTypesAndReportsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", InteractionsAndReportReasonsVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", LikeRefundsVersion));
         }
         finally
         {
@@ -113,6 +144,14 @@ public static class SchemaUpgrade
             }
             finally { if (openedHere) await db.Database.CloseConnectionAsync(); }
         }
+    }
+
+    private static async Task EnsureIndex(DbConnection connection, string table, string index, string sql, CancellationToken cancellationToken)
+    {
+        var exists = Convert.ToInt32(await Scalar(connection,
+            "SELECT COUNT(*) FROM information_schema.STATISTICS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = @table AND INDEX_NAME = @index",
+            cancellationToken, ("table", table), ("index", index))) > 0;
+        if (!exists) await Execute(connection, sql, cancellationToken);
     }
 
     private static DbCommand Command(DbConnection connection, string sql, params (string Name, string Value)[] parameters)

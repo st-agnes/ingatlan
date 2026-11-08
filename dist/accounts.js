@@ -21,7 +21,8 @@ export function canInteract(typeA,typeB) {
 export const REPORT_REASON_OPTIONS = Object.freeze([
   Object.freeze({value:'suspected_agent',label:'Ingatlanközvetítő'}),
   Object.freeze({value:'misleading_content',label:'Hamis, megtévesztő tartalom'}),
-  Object.freeze({value:'other_violation',label:'Egyéb szabálytalanság'})
+  Object.freeze({value:'other_violation',label:'Egyéb szabálytalanság'}),
+  Object.freeze({value:'no_longer_current',label:'Már nem aktuális'})
 ]);
 export function normalizeReportReason(value) {
   const reason=value==null?'suspected_agent':typeof value==='string'?value.trim():'';

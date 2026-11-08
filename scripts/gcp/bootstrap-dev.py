@@ -166,6 +166,20 @@ def main():
             raise ValueError("Existing test service is in another region.")
         if value.get("spec", {}).get("template", {}).get("spec", {}).get("serviceAccountName") != account:
             raise ValueError("Existing test service uses a different runtime identity.")
+    elif action == "scheduler":
+        value, project, number, region = read(args[0]), args[1], args[2], args[3]
+        expected_names = {f"projects/{identifier}/locations/{region}/jobs/otthonra-refunds-dev" for identifier in (project, number)}
+        origin = f"https://otthonra-api-dev-{number}.{region}.run.app"
+        target = value.get("httpTarget", {})
+        oidc = target.get("oidcToken", {})
+        if value.get("name") not in expected_names or value.get("description") != MARKER:
+            raise ValueError("Existing refund Scheduler job belongs to another deployment; refusing to modify it.")
+        if target.get("uri") != origin + "/internal/refunds/run" or target.get("httpMethod") != "POST" or target.get("oauthToken"):
+            raise ValueError("Existing refund Scheduler job targets an unexpected service or authentication method.")
+        if oidc.get("serviceAccountEmail") != f"otthonra-refunds-dev@{project}.iam.gserviceaccount.com" or oidc.get("audience") != origin:
+            raise ValueError("Existing refund Scheduler job has an unexpected request identity or audience.")
+        if value.get("state") != "ENABLED":
+            raise ValueError("The refund Scheduler job is not enabled. Review/resume it in Cloud Scheduler before retrying.")
     elif action == "description":
         value = read(args[0])
         if value.get("description") != MARKER or value.get("disabled"):

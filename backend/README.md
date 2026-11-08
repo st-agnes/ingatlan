@@ -31,6 +31,7 @@ A publikus `POST /auth/register` body: `{name,email,password,phone,accountType}`
 | Művelet | Végpont | Adat / eredmény |
 |---|---|---|
 | Helykiegészítés | `GET /locations?q=Deb&limit=8` | `{items:[{id,label,city,district}]}`; hitelesítés nélkül |
+| Nyilvános kezdőoldal | `GET /public/landing?region=HU110` | Hitelesítés nélkül: `{regions,region,scope,searches,properties}`; régió nélkül országos ajánló |
 | Profil | `GET`, `PUT /me` | `{id,name,email,phone,accountType,credits,activeKind,activeEntityId,createdAt}`; módosítás: `{name,email,phone}` |
 | Saját entitások | `GET /me/entities` | `{properties,searchRequests,reportedOwnerIds,reportedEntities:[{entityKind,entityId,reason}],active:{kind,id}}` |
 | Aktiválás | `PUT /me/active` | `{kind:"property"|"search",id}` |
@@ -42,6 +43,8 @@ A publikus `POST /auth/register` body: `{name,email,password,phone,accountType}`
 | Döntés | `POST /decisions` | `{propertyId,searchRequestId,liked}` → `{matchId,charged,credits}` |
 | Párosítások | `GET /matches` | `[{id,createdAt,property,searchRequest,contact:{id,name,email,phone,accountType},messages,unread}]` |
 | Üzenet | `POST /matches/{id}/messages` | `{text}` → `{id,matchId,senderId,text,createdAt}` |
+| Értesítések | `GET /notifications?offset=0&limit=50` | `{items,total,unreadCount,offset,limit,hasMore}`; csak a saját értesítések |
+| Olvasott értesítés | `PUT /notifications/{id}/read` | A saját értesítés; ismétlés megőrzi az első `readAt` értékét |
 | Kreditnapló | `GET /credits/ledger` | `[{id,amount,description,createdAt}]` |
 | Demófeltöltés | `POST /credits/demo-topup` | `{amount:20|50|100|250}`; kizárólag Development + engedélyező kapcsoló esetén |
 
@@ -70,8 +73,9 @@ Hitelesített felhasználó bármely másik fiók létező, nem archivált ingat
 | `suspected_agent` | Ingatlanközvetítő | Csak `private` |
 | `misleading_content` | Hamis, megtévesztő tartalom | `private` vagy `agent` |
 | `other_violation` | Egyéb szabálytalanság | `private` vagy `agent` |
+| `no_longer_current` | Már nem aktuális | `private` vagy `agent` |
 
-A régi kliensek elhagyott vagy `null` oka `suspected_agent`; a megadott üres vagy ismeretlen kód hibás kérés (HTTP 400). Az „Ingatlanközvetítő” ok eleve közvetítő tulajdonosnál szintén 400. A két általános ok akkor is használható másik közvetítő korábbi hirdetésénél, ha az új ajánlások között a közvetítő–közvetítő szabály miatt nem jelenhet meg.
+A régi kliensek elhagyott vagy `null` oka `suspected_agent`; a megadott üres vagy ismeretlen kód hibás kérés (HTTP 400). Az „Ingatlanközvetítő” ok eleve közvetítő tulajdonosnál szintén 400. A három általános ok akkor is használható másik közvetítő korábbi hirdetésénél, ha az új ajánlások között a közvetítő–közvetítő szabály miatt nem jelenhet meg.
 
 A `UserReports` tárolja a bejelentőt, a jelentett fiókot, a forrásentitást, a választott okot és az UTC `CreatedAt` időbélyeget. A `(ReporterId,EntityKind,EntityId,Reason)` egyediség miatt azonos forrás és ok ismételt/párhuzamos jelentése ugyanazt a nyugtát adja (elsőként 201, ismétléskor 200). Másik hirdetés vagy másik ok külön jelentés. A gomb további ok jelzésére is elérhető marad.
 
@@ -118,3 +122,17 @@ A korábbi .NET-, JavaScript-, Docker- és MySQL-ellenőrzések bizonyítékai: 
 Az opcionális paraméterek tényleges API/MySQL körútját a `backend/attributes-smoke.mjs` ellenőrzi; újraindítás után a `--verify` kapcsolóval ellenőrzi az értékek megőrzését. A CI ezt és a desktop/tablet/mobil mezőkezelést is futtatja.
 
 Az eladói mezők valódi API/MySQL ellenőrzése: `node backend/seller-form-smoke.mjs http://127.0.0.1:3000`, újraindítás után ugyanez `--verify` kapcsolóval. Kizárólag eldobható helyi/CI adatbázison futtatandó; a szkript új tesztfiókokat és adatokat hoz létre.
+
+## Nyilvános ajánló és kredit-visszatérítés
+
+A `GET /api/public/landing` legfeljebb 8 keresést és 4 eladó ingatlant emel ki. A `region` opcionális, a válasz 20 elemű `regions` katalógusának NUTS3 azonosítója (például `HU110` Budapest, `HU321` Hajdú-Bihar); ismeretlen kód 400. Régióban nem elérhető kínálatnál üres lista jön vissza, más térség adatai nem kapnak helyi címkét. A nyilvános előnézet kizárólag generált címeket, katalógusbeli helyeket, számos feltételeket és fióktípust tartalmaz; a hirdetés eredeti szabad szövegei, képei, forrásazonosítói, tulajdonosa, címe és elérhetőségei kimaradnak. A rövid szerveres gyorsítótár legfeljebb egy perc késést okozhat.
+
+A frontend engedélykérés nélküli, hozzávetőleges becslése a [GeoJS](https://www.geojs.io/docs/v1/endpoints/geo/) szolgáltatástól kizárólag az országot és a vármegyét használja; az IP-címet és koordinátákat nem menti és nem továbbítja az API-nak. A látogató IP-címe a szolgáltató számára a kérés miatt ismert; [adatkezelés](https://www.geojs.io/privacy/). Három másodperc után vagy ismeretlen hely esetén országos ajánló marad. A kézi régióválasztás felülírja a becslést.
+
+A visszatérítési határidő a szerver UTC `CreatedAt` értéke + 14×24 óra. Csak a `Liked=true`, `Charged>0` kedvelések díja jár vissza, ha a másik oldal a határidőig sem kedveléssel, sem elutasítással nem válaszolt. A későbbi reakció nem szünteti meg a már esedékes visszatérítést; egy későbbi kedvelés párosítást is létrehozhat. A döntés végleges marad, és az eredeti terhelés a naplóban megmarad. A `CreditEntries.RefundedDecisionId` külön egyediségi kulcs, a `Decision.RefundedAt` és egy `UserNotifications` sor egyetlen tranzakcióban készül a pozitív jóváírással.
+
+Az értesítés alakja `{id,kind:'like_refund',amount,text,decisionId,createdAt,readAt}`. A más felhasználóhoz tartozó értesítés olvasása 404; ismételt olvasás megőrzi az első időpontot. A `/me` az `unreadNotificationCount` mezőt is adja. A kreditnapló `kind` és `refundedDecisionId` adata megkülönbözteti a visszatérítést az eredeti terheléstől.
+
+A felhasználói olvasások és az időszakos feldolgozó mellett Cloud Scheduler óránként hívja a `/internal/refunds/run` végpontot. Ez külön Google OIDC-hitelesítést, pontos audience-t és a beállított, ellenőrzött szolgáltatásfiókot követel; alkalmazás-felhasználói token nem jogosít rá. Hiányzó `Scheduler__Audience` vagy `Scheduler__ServiceAccountEmail` esetén a végpont nincs regisztrálva. A telepítő a meglévő, nullára skálázható teszt API-hoz hozza létre az ütemezést. Részletek: [teszttelepítés](../docs/GOOGLE-CLOUD-TEST.md).
+
+A `20261108-public-landing-and-like-refunds` additív sémafrissítés hozza létre az értesítéseket és a visszatérítési oszlopokat/indexeket. A normál frissítés meglévő alkalmazásadatot nem töröl; a külön engedélyezett teszt-revízió-visszaállítás az értesítéseket is törli.

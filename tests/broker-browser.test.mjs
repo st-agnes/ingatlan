@@ -20,7 +20,7 @@ async function expectBadge(locator){assert.match(await locator.innerText(),/Inga
 async function verifyWorkspace(browser,viewport){
  const context=await contextFor(browser,viewport),page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));page.setDefaultTimeout(10000);page.setDefaultNavigationTimeout(15000);const interact=locator=>viewport.touch?locator.tap():locator.click();
  const reportFor=id=>page.locator(`[data-action="report-account"][data-id="${id}"]`).first();
- async function reportReason(id,reason){await interact(reportFor(id));await page.getByRole('heading',{name:'Szabálytalan hirdetés?',exact:true}).waitFor();await page.locator('#f-reportReason').selectOption(reason);await interact(page.locator('.modal [data-action="confirm-report"]'));await page.locator('.modal').waitFor({state:'detached'});}
+ async function reportReason(id,reason){await interact(reportFor(id));await page.getByRole('heading',{name:'Hirdetés jelentése',exact:true}).waitFor();await page.locator('#f-reportReason').selectOption(reason);await interact(page.locator('.modal [data-action="confirm-report"]'));await page.locator('.modal').waitFor({state:'detached'});}
  try{
   await go(page);
   await page.evaluate(async()=>{const {createModel,STORAGE_KEY}=await import('/model.js');let serialized;const demo=createModel({getItem:()=>null,setItem:(_key,value)=>{serialized=value;}});demo.activate('search','own-s1');const fixture=JSON.parse(serialized);fixture.users.find(user=>user.id==='me').accountType='agent';fixture.users.find(user=>user.id==='u1').accountType='private';fixture.users.find(user=>user.id==='u2').accountType='agent';fixture.credits=1;fixture.reports=[];localStorage.setItem(STORAGE_KEY,JSON.stringify(fixture));});
@@ -31,8 +31,8 @@ async function verifyWorkspace(browser,viewport){
   assert.equal(await page.locator('#candidate .agent-badge').count(),0,'A private owner must not inherit the current agent actor badge');
   assert.match(await page.locator('#candidate .private-badge').innerText(),/Magánszemély/);
   assert.equal(await page.evaluate(async()=> (await import('/model.js')).model.feed().every(item=>item.ownerAccountType==='private')),true,'Agent searches must exclude all agent counterparties');
-  const report=reportFor(candidate.id);assert.equal(await report.isEnabled(),true);assert.equal((await report.innerText()).trim(),'Szabálytalan hirdetés?');
-  await interact(report);await page.getByRole('heading',{name:'Szabálytalan hirdetés?',exact:true}).waitFor();
+  const report=reportFor(candidate.id);assert.equal(await report.isEnabled(),true);assert.equal((await report.innerText()).trim(),'Hirdetés jelentése');
+  await interact(report);await page.getByRole('heading',{name:'Hirdetés jelentése',exact:true}).waitFor();
   assert.deepEqual(await page.locator('#f-reportReason option').evaluateAll(options=>options.map(option=>option.value).filter(Boolean)),['suspected_agent','misleading_content','other_violation']);
   await interact(page.locator('.modal [data-action="close"]').last());assert.equal((await raw(page)).reports.length,0,'Cancelling a report must not store it');
   await reportReason(candidate.id,'suspected_agent');assert.match(await page.locator('#toast').innerText(),/jelent/i);
@@ -60,7 +60,7 @@ async function verifyWorkspace(browser,viewport){
   await page.evaluate(async()=>{const {STORAGE_KEY}=await import('/model.js');const fixture=JSON.parse(localStorage.getItem(STORAGE_KEY));fixture.users.find(user=>user.id==='me').accountType='private';fixture.active={kind:'search',id:'own-s1'};localStorage.setItem(STORAGE_KEY,JSON.stringify(fixture));});await go(page);
   for(let count=0;count<12&&(await first(page))?.ownerAccountType!=='agent';count++)await interact(page.locator('.card-actions [data-action="pass"]'));
   candidate=await first(page);assert.equal(candidate.ownerAccountType,'agent');await expectBadge(page.locator('#candidate .agent-badge'));assert.equal(await reportFor(candidate.id).isEnabled(),true,'Declared agents can also have irregular content reported');
-  await interact(reportFor(candidate.id));await page.getByRole('heading',{name:'Szabálytalan hirdetés?',exact:true}).waitFor();
+  await interact(reportFor(candidate.id));await page.getByRole('heading',{name:'Hirdetés jelentése',exact:true}).waitFor();
   assert.deepEqual(await page.locator('#f-reportReason option').evaluateAll(options=>options.map(option=>option.value).filter(Boolean)),['misleading_content','other_violation'],'A declared agent cannot be reported as pretending to be private');
   await page.locator('#f-reportReason').selectOption('misleading_content');await interact(page.locator('.modal [data-action="confirm-report"]'));await page.locator('.modal').waitFor({state:'detached'});assert.ok((await current(page)).reportedEntities.some(row=>row.entityId===candidate.id&&row.reason==='misleading_content'));
   await interact(page.locator('.card-actions [data-action="details"]'));await expectBadge(page.locator('.modal .agent-badge').first());await interact(page.locator('.modal [data-action="close"]').last());

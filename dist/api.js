@@ -1,4 +1,5 @@
-import { model as demoModel } from './model.js';
+import { model as demoModel, demoLanding } from './model.js';
+import { regions } from './regions-data.js';
 import { getLocation, resolveLegacyLocations, isPropertyLocation } from './locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
 import {normalizeAccountType,likeCost,normalizeReportReason,normalizeIncomingPagination,REPORT_REASON_OPTIONS} from './accounts.js';
@@ -178,6 +179,9 @@ function candidateFromApi(item,activeKind) {
   const entity=property?propertyFromApi(rawProperty||item):searchFromApi(rawSearch||item);
   return {...entity,kind:property?'property':'search',score:Math.round(Number(item.compatibilityScore??item.score??100)),reasons:clone(item.reasons||[]),pair:{propertyId,searchId},likedYou:!!(item.likedYou??item.hasLiked)};
 }
+function notificationFromApi(value) {
+  return {id:String(value.id),kind:String(value.kind||''),amount:Number(value.amount||0),text:String(value.text||''),decisionId:String(value.decisionId||''),createdAt:value.createdAt,readAt:value.readAt??null};
+}
 function messageFromApi(value) {
   return { ...clone(value), id: String(value.id), senderId: String(value.senderId ?? value.userId ?? ''), text: value.text ?? value.body ?? '', createdAt: value.createdAt };
 }
@@ -208,6 +212,7 @@ export class ApiModel {
       decisions: rows(entities.decisions || profile.decisions).map(d=>({...clone(d),id:String(d.id),actorId:String(d.actorId),propertyId:String(d.propertyId),searchId:String(d.searchId??d.searchRequestId),property:propertyFromApi(d.property),search:searchFromApi(d.search??d.searchRequest)})),
       ledger: rows(ledgerResponse.ledger || ledgerResponse).map(entry => ({ ...clone(entry), amount: Number(entry.amount ?? entry.delta ?? 0), description: entry.description || entry.reason || '', createdAt: entry.createdAt })),
       createdAt: user.createdAt,
+      unreadNotificationCount:Number(profile.unreadNotificationCount??user.unreadNotificationCount??0),
       likeCost:active?.id?likeCost(user.accountType,active.kind):0,
       reportedOwnerIds:[...new Set((Array.isArray(entities.reportedOwnerIds)?entities.reportedOwnerIds:[]).map(String))],
       reportedEntities:reportSummaries(entities.reportedEntities)
@@ -238,6 +243,17 @@ export class ApiModel {
       return {...candidate,likedYou:true,likedAt:item.likedAt,myDecision:['liked','passed'].includes(item.myDecision)?item.myDecision:null,matchId:item.matchId==null?null:String(item.matchId),compatible:item.compatible!==false};
     }):[];
     return {active,items,total:Number(response?.total??items.length),offset:Number(response?.offset??offset),limit:Number(response?.limit??limit),hasMore:!!response?.hasMore,likeCost:Number(response?.likeCost??0)};
+  }
+  async notifications(options={}) {
+    const {offset,limit}=normalizeIncomingPagination(options);
+    const query=new URLSearchParams({offset:String(offset),limit:String(limit)});
+    const response=await this.call('/notifications?'+query);
+    const items=rows(response).map(notificationFromApi);
+    return {items,total:Number(response?.total??items.length),unreadCount:Number(response?.unreadCount??0),offset:Number(response?.offset??offset),limit:Number(response?.limit??limit),hasMore:!!response?.hasMore};
+  }
+  async markNotificationRead(id) {
+    if(typeof id!=='string'||!id.trim())throw new Error('Érvénytelen értesítés.');
+    return notificationFromApi(await this.call(`/notifications/${encodeURIComponent(id)}/read`,'PUT'));
   }
   async decide(item, liked) {
     const result = await this.call('/decisions', 'POST', { propertyId: item.pair.propertyId, searchRequestId: item.pair.searchId, liked: inputBoolean(liked) });
@@ -271,6 +287,42 @@ export class ApiModel {
   async sendMessage(matchId, text) { return messageFromApi(await this.call(`/matches/${encodeURIComponent(matchId)}/messages`, 'POST', { text: String(text).trim() })); }
   async markRead() { return true; }
   async reset() { throw new Error('A valódi API-adatok a demó visszaállításával nem törölhetők. A demóhoz bontsd az API-kapcsolatot.'); }
+}
+
+const regionById = id => regions.find(region=>region.id===id)||null;
+const nullableNumber = value => value==null||value===''?null:(Number.isFinite(Number(value))?Number(value):null);
+function landingFromApi(value) {
+  const region=regionById(value?.region?.id);
+  const publicType=value=>['Lakás','Ház','Telek','Nyaraló','Garázs','Iroda','Üzlethelyiség','Egyéb'].includes(value)?value:'Ingatlan';
+  return {
+    regions:regions.map(region=>({...region})),region:clone(region),scope:region?'region':'national',
+    searches:rows(value?.searches).slice(0,8).map((item,index)=>({key:String(item.key??`search-${index+1}`),title:String(item.title||'Ingatlant keresnek'),type:publicType(item.type),locations:(Array.isArray(item.locations)?item.locations:[]).filter(location=>typeof location==='string').slice(0,50),minPrice:millions(nullableNumber(item.minPrice)),maxPrice:millions(nullableNumber(item.maxPrice)),minArea:nullableNumber(item.minArea),maxArea:nullableNumber(item.maxArea),minRooms:nullableNumber(item.minRooms),maxRooms:nullableNumber(item.maxRooms),ownerAccountType:normalizeAccountType(item.ownerAccountType)})),
+    properties:rows(value?.properties).slice(0,4).map((item,index)=>({key:String(item.key??`property-${index+1}`),title:String(item.title||'Eladó ingatlan'),type:publicType(item.type),location:String(item.location||''),price:millions(nullableNumber(item.price)),area:nullableNumber(item.area),wholeRooms:nullableNumber(item.wholeRooms),halfRooms:nullableNumber(item.halfRooms),rooms:nullableNumber(item.rooms),lotArea:nullableNumber(item.lotArea),ownerAccountType:normalizeAccountType(item.ownerAccountType)}))
+  };
+}
+export async function fetchLanding({region}={}) {
+  const selected=region==null||region===''?null:regionById(region);
+  if(region!=null&&region!==''&&!selected)throw new Error('Válassz egy érvényes régiót.');
+  if(!hostedMode())return {regions:regions.map(region=>({...region})),...demoLanding(selected)};
+  const query=selected?'?'+new URLSearchParams({region:selected.id}):'';
+  return landingFromApi(await request(hostedApiBase(),null,'/public/landing'+query));
+}
+function normalizedRegionLabel(value) {
+  return String(value||'').normalize('NFD').replace(/\p{M}/gu,'').toLowerCase().replace(/\b(county|megye|varmegye)\b/g,'').replace(/[^a-z0-9]/g,'').replace(/^csongrad$/,'csongradcsanad');
+}
+/** Coarse IP lookup only; never requests device location or retains the provider payload. */
+export async function detectLandingRegion(regionOptions=regions) {
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),3000);
+  try {
+    const response=await fetch('https://get.geojs.io/v1/ip/geo.json',{credentials:'omit',referrerPolicy:'no-referrer',cache:'no-store',redirect:'error',headers:{Accept:'application/json'},signal:controller.signal});
+    if(!response.ok)return null;
+    const payload=await response.json();
+    if(payload?.country_code!=='HU'||typeof payload.region!=='string')return null;
+    const label=normalizedRegionLabel(payload.region);
+    return (Array.isArray(regionOptions)?regionOptions:[]).find(region=>regionById(region?.id)&&normalizedRegionLabel(region.label)===label)?.id||null;
+  } catch {return null;}
+  finally {clearTimeout(timeout);}
 }
 
 export function getModel() {
