@@ -41,11 +41,11 @@ async function setup(options={}){
  const storage={getItem:()=>options.initialRaw?JSON.stringify(options.initialRaw):null,setItem:()=>{}},demoModel=createModel(storage),document=new Document();
  const apiModel=Object.assign({...demoModel},{mode:'api'},options.apiOverrides||{});
  let selected=options.hosted?(options.authenticated?apiModel:null):demoModel;
- const connected=[],disconnected=[],landingCalls=[],regionStorage=new Map(Object.entries(options.regionStorage||{}));
+ const connected=[],disconnected=[],landingCalls=[],windowEvents={},regionStorage=new Map(Object.entries(options.regionStorage||{}));
  let currentHash=options.hash??(options.hosted&&!options.authenticated?'#login':'');
  const ctx=vm.createContext({
   document,console,Intl,Date,Promise,URLSearchParams,setTimeout:()=>0,clearTimeout:()=>{},
-  location:{get hash(){return currentHash;},set hash(value){currentHash=value?(value.startsWith('#')?value:'#'+value):'';},search:'',origin:'https://test.example'},window:{scrollTo:()=>{}},
+  location:{get hash(){return currentHash;},set hash(value){currentHash=value?(value.startsWith('#')?value:'#'+value):'';},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},addEventListener:(type,handler)=>{windowEvents[type]=handler;}},
   OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:'test'}:{mode:'demo',environment:'local'},
   searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...accountHelpers,
   hostedMode:()=>!!options.hosted,deploymentEnvironment:()=>options.hosted?'test':'local',
@@ -60,7 +60,7 @@ async function setup(options={}){
  const body=source.replace(/^import[^\n]+\n/gm,'');
  await vm.runInContext(`(async()=>{${body}\nglobalThis.ui={render,changePage,openEditor,openDetails,openModal,closeModal,openActivation,getModelState:()=>state};})()`,ctx);
  const click=async(dataset)=>{const target={dataset,closest:()=>target};await document.handlers.click({target,preventDefault(){}})};
- return{model:options.hosted?apiModel:demoModel,document,ctx,click,ui:ctx.ui,connected,disconnected,getSelectedModel:()=>selected,landingCalls,regionStorage};
+ return{model:options.hosted?apiModel:demoModel,document,ctx,click,ui:ctx.ui,connected,disconnected,getSelectedModel:()=>selected,landingCalls,regionStorage,windowEvents};
 }
 const settle=async()=>{for(let i=0;i<16;i++)await Promise.resolve();};
 
@@ -675,4 +675,11 @@ test('public and authentication routes cannot act on a hidden paid discovery can
   for(const key of ['ArrowLeft','ArrowRight'])await t.document.handlers.keydown({key,target:{closest:()=>null},preventDefault(){}});
   await t.click({action:'like'});assert.deepEqual(t.model.getState(),before,'A hidden candidate must never make a decision or spend credits');
  }
+});
+
+test('a delayed auth route event preserves entered registration details while browser navigation still switches forms',async()=>{
+ const t=await setup({hosted:true});await t.click({action:'auth-mode',mode:'register'});
+ t.document.getElementById('f-name').value='Teszt Név';t.document.getElementById('f-email').value='teszt@example.test';
+ t.windowEvents.hashchange();await settle();assert.equal(t.document.getElementById('f-name').value,'Teszt Név');assert.equal(t.document.getElementById('f-email').value,'teszt@example.test');
+ t.ctx.location.hash='#login';t.windowEvents.hashchange();await settle();assert.equal(t.document.getElementById('f-name'),null);assert.ok(t.document.getElementById('hosted-auth-form'));
 });
