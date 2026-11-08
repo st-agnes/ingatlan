@@ -27,9 +27,9 @@ def uid(value):
 def query(sql):
     result = subprocess.run([
         'docker', 'exec', '--env', 'MYSQL_PWD=ci-only-password', container_id,
-        'mysql', '--user=otthonra', '--batch', '--skip-column-names',
+        'mysql', '--default-character-set=utf8mb4', '--user=otthonra', '--batch', '--skip-column-names',
         'otthonra_ci', '--execute', sql,
-    ], capture_output=True, text=True)
+    ], capture_output=True, text=True, encoding='utf-8')
     if result.returncode:
         raise SystemExit('The disposable MySQL refund-store check failed; credentials and SQL output were not printed.')
     return result.stdout.strip()
