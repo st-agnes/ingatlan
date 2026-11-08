@@ -199,6 +199,11 @@ jobs:
           node scripts/dev.mjs --restart
           node backend/landing-refund-smoke.mjs http://127.0.0.1:3000 --preserved
           python3 backend/refund-store-smoke.py "${{ job.services.mysql.id }}" verify
+      - name: Verify diverse public samples change on refresh inside the candidate cache
+        run: |
+          node backend/landing-selection-smoke.mjs http://127.0.0.1:3000 --setup
+          node scripts/dev.mjs --restart
+          node backend/landing-selection-smoke.mjs http://127.0.0.1:3000 --verify
       - name: Start the API with the hosted test configuration
         run: |
           node scripts/dev.mjs --stop

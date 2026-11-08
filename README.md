@@ -56,7 +56,7 @@ A webes felület önmagában böngészős demóként is használható. Demómód
 
 ## Mi készült el?
 
-- Bejelentkezés nélküli, keresési igényekre épülő kezdőoldal néhány eladó ingatlannal. Hozzávetőleges, vármegye szintű IP-alapú ajánlás, helyhozzáférési engedélykérés nélkül; a régió kézzel is kiválasztható. Sikertelen becslésnél országos példák jelennek meg. A nyilvános ajánló generált címeket és strukturált adatokat közöl, elérhetőséget és pontos címet nem.
+- Bejelentkezés nélküli, keresési igényekre épülő kezdőoldal néhány eladó ingatlannal. Hozzávetőleges, vármegye szintű IP-alapú ajánlás, helyhozzáférési engedélykérés nélkül; a régió kézzel is kiválasztható. Sikertelen becslésnél országos példák jelennek meg. A keresések és az ingatlanok már az első képernyőn megjelennek, külön eladói és otthonkereső csatlakozási gombbal. Az ajánló változatos típus-, ár-, méret- és helyszínmintát választ, oldalfrissítéskor új összeállítással. Generált címeket és strukturált adatokat közöl, elérhetőséget és pontos címet nem.
 - A fizetett, 14 napig megválaszolatlan kedvelés eredeti kreditdíja egyszer visszajár, alkalmazáson belüli értesítéssel és kreditnapló-bejegyzéssel. A határidőn belüli kedvelés vagy elutasítás válasznak számít; későbbi válasz esetén a visszatérítés továbbra is jár. A felhőben óránkénti feldolgozás és belépéskori ellenőrzés kezeli az esedékes jóváírásokat.
 
 - Regisztrációkor magánszemély vagy ingatlanközvetítő fiók választható. Mások ajánlatain a „Magánszemély” vagy „Ingatlanközvetítő” jelölés látszik; a saját ingatlanokon és kereséseken nincs ismételt fióktípusjelzés.
