@@ -22,6 +22,8 @@ A feltöltés a backend indulásának része. Merge után a szokásos **Actions 
 
 Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261107-test-fixtures-v2`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.
 
+**A visszatérítések ütemezésének első telepítésekor** a teljes `bash scripts/gcp/run-dev.sh` parancs szükséges a Cloud Shellben, a frissített tároló gyökeréből; ez létrehozza az új tesztütemezőt is. A későbbi kiadások a megszokott Actions workflow-val mennek.
+
 Első telepítés, várható költség, Google-hitelesítés és későbbi GitHub-kiadások: **[docs/GOOGLE-CLOUD-TEST.md](docs/GOOGLE-CLOUD-TEST.md)**. A dokumentáció az előkészített telepítést írja le; az alkalmazás Google Cloudban történő tényleges indulását a helyszíni health-ellenőrzés igazolja. A saját dev aldomain később hozzáadható.
 
 ## Fejlesztőkörnyezet a felhőben
@@ -54,9 +56,12 @@ A webes felület önmagában böngészős demóként is használható. Demómód
 
 ## Mi készült el?
 
+- Bejelentkezés nélküli, keresési igényekre épülő kezdőoldal néhány eladó ingatlannal. Hozzávetőleges, vármegye szintű IP-alapú ajánlás, helyhozzáférési engedélykérés nélkül; a régió kézzel is kiválasztható. Sikertelen becslésnél országos példák jelennek meg. A nyilvános ajánló generált címeket és strukturált adatokat közöl, elérhetőséget és pontos címet nem.
+- A fizetett, 14 napig megválaszolatlan kedvelés eredeti kreditdíja egyszer visszajár, alkalmazáson belüli értesítéssel és kreditnapló-bejegyzéssel. A határidőn belüli kedvelés vagy elutasítás válasznak számít; későbbi válasz esetén a visszatérítés továbbra is jár. A felhőben óránkénti feldolgozás és belépéskori ellenőrzés kezeli az esedékes jóváírásokat.
+
 - Regisztrációkor magánszemély vagy ingatlanközvetítő fiók választható. Mások ajánlatain a „Magánszemély” vagy „Ingatlanközvetítő” jelölés látszik; a saját ingatlanokon és kereséseken nincs ismételt fióktípusjelzés.
 - Közvetítők mind keresőként, mind eladóként csak magánszemélyekkel kapnak ajánlást. A szerver a közvetítő–közvetítő döntést is elutasítja; a korábbi párosítások és beszélgetések megmaradnak.
-- „Szabálytalan hirdetés?” jelentés mások ingatlanainál és kereséseinél. Egy ok választható: „Ingatlanközvetítő” (csak magánhirdetésnél), „Hamis, megtévesztő tartalom” vagy „Egyéb szabálytalanság”. A jelentés az adott entitáshoz és okhoz tartozik; az UTC-időbélyeg az adatbázisban marad, a felületen nem jelenik meg.
+- „Hirdetés jelentése” mások ajánlatainál: jelentés mások ingatlanainál és kereséseinél. Egy ok választható: „Ingatlanközvetítő” (csak magánhirdetésnél), „Hamis, megtévesztő tartalom”, „Egyéb szabálytalanság” vagy „Már nem aktuális”. A jelentés az adott entitáshoz és okhoz tartozik; az UTC-időbélyeg az adatbázisban marad, a felületen nem jelenik meg.
 - Külön „Kedveltek” menüpont az éppen aktív ingatlant vagy keresést kedvelő profiloknak. A lista megtekintése ingyenes, a viszonzásra a szokásos kreditdíj vonatkozik. Látszik a korábbi saját döntés, a párosítás és az is, ha a pár jelenleg nem illeszkedik; elérhetőség továbbra is csak kölcsönös találatnál nyílik meg.
 - Magyar, mobilméretre is alkalmazkodó felület, ingatlanfotókkal, kattintással, billentyűzettel és húzással kezelhető ajánlókártyákkal.
 - Ingatlanok és keresési igények létrehozása, szerkesztése, archiválása, aktív profil kiválasztása.
@@ -128,7 +133,7 @@ A JavaScript-tesztek a katalógust, a modellt, az API-adaptert, az offline felü
 
 A normál additív sémafrissítés megőrzi a MySQL-adatokat és a böngészős demó mentett döntéseit, találatait. A felhős teszttelepítés külön, engedélyezett indulási szabálya új Cloud Run-revíziónál az alkalmazásadatokat alaphelyzetbe állítja a fenti tesztadatcsomagra. `Database__Initialize=true` esetén az indulás az EF `EnsureCreated` után lefuttatja a `SchemaUpgrade` additív, ismételhető frissítését (`20261102-locations-and-lot-area`): hozzáadja a helyazonosító- és telekméretmezőket. A meglévő helyadatokat a rendszer az ismert település- és kerületnevekből értelmezi. Frissítéshez indítsd újra az új verziót a meglévő kötettel; az adatbázist és a Docker-kötetet nem kell törölni.
 
-Az opcionális ingatlanparaméterekhez a `20261105-property-attributes` verzió új oszlopokat ad hozzá a meglévő sorok és kapcsolatok megőrzésével. A `20261106-seller-form-details` a szobabontást, kiegészítő fűtést, több parkolóhelyet és keresési fűtésszűrőt adja hozzá. A `20261107-account-types-and-reports` a felhasználói fióktípust és az időbélyegzett `UserReports` táblát vezeti be; a meglévő fiókok magánszemélyként maradnak használhatók. A `20261107-interactions-and-report-reasons` megőrzi a korábbi jelentéseket és időbélyegeiket, és a jelentések egyediségét bejelentő–entitás–ok szerint állítja be. Ehhez az új backendképet kell telepíteni; a korábbi kép ismételt használata ezt a fejlesztést nem tartalmazza.
+Az opcionális ingatlanparaméterekhez a `20261105-property-attributes` verzió új oszlopokat ad hozzá a meglévő sorok és kapcsolatok megőrzésével. A `20261106-seller-form-details` a szobabontást, kiegészítő fűtést, több parkolóhelyet és keresési fűtésszűrőt adja hozzá. A `20261107-account-types-and-reports` a felhasználói fióktípust és az időbélyegzett `UserReports` táblát vezeti be; a meglévő fiókok magánszemélyként maradnak használhatók. A `20261107-interactions-and-report-reasons` megőrzi a korábbi jelentéseket és időbélyegeiket, és a jelentések egyediségét bejelentő–entitás–ok szerint állítja be. A `20261108-public-landing-and-like-refunds` a visszatérítés egyszeri könyvelését és az olvasható értesítéseket adja hozzá. Ehhez az új backendképet kell telepíteni; a korábbi kép ismételt használata ezt a fejlesztést nem tartalmazza.
 
 A backend Docker-buildjének kontextusa a tároló gyökere, mert a közös településkatalógust is beágyazza. A Compose ezt már beállítja; közvetlen buildhez a gyökérből használd a `docker build -f backend/Dockerfile .` parancsot.
 

@@ -23,11 +23,11 @@ test('account interaction rules are symmetric and exclude only two declared agen
  assert.equal(canInteract(' AGENT ','agent'),false);
 });
 test('report choices have stable codes and permit disguised-agent reports only for private owners',()=>{
- assert.deepEqual(REPORT_REASON_OPTIONS,[{value:'suspected_agent',label:'Ingatlanközvetítő'},{value:'misleading_content',label:'Hamis, megtévesztő tartalom'},{value:'other_violation',label:'Egyéb szabálytalanság'}]);
+ assert.deepEqual(REPORT_REASON_OPTIONS,[{value:'suspected_agent',label:'Ingatlanközvetítő'},{value:'misleading_content',label:'Hamis, megtévesztő tartalom'},{value:'other_violation',label:'Egyéb szabálytalanság'},{value:'no_longer_current',label:'Már nem aktuális'}]);
  assert.ok(Object.isFrozen(REPORT_REASON_OPTIONS));assert.ok(REPORT_REASON_OPTIONS.every(Object.isFrozen));
  assert.deepEqual(getReportReasons('private'),REPORT_REASON_OPTIONS);assert.deepEqual(getReportReasons('agent'),REPORT_REASON_OPTIONS.slice(1));
  for(const value of [undefined,null])assert.equal(normalizeReportReason(value),'suspected_agent');
- for(const value of ['suspected_agent','misleading_content','other_violation'])assert.equal(normalizeReportReason(value),value);
+ for(const value of ['suspected_agent','misleading_content','other_violation','no_longer_current'])assert.equal(normalizeReportReason(value),value);
  for(const value of ['',false,'unknown','Misleading_Content'])assert.throws(()=>normalizeReportReason(value),/jelentési ok/);
 });
 test('incoming pagination validates bounds without silently truncating or coercing invalid values',()=>{

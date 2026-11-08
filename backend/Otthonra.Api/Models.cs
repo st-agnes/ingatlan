@@ -95,6 +95,7 @@ public sealed class Decision
     public Guid ActorUserId { get; set; }
     public bool Liked { get; set; }
     public int Charged { get; set; }
+    public DateTime? RefundedAt { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
 public sealed class Match
@@ -119,7 +120,20 @@ public sealed class CreditEntry
     public int Amount { get; set; }
     public string Description { get; set; } = "";
     public Guid? DecisionId { get; set; }
+    public Guid? RefundedDecisionId { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+}
+
+public sealed class UserNotification
+{
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public Guid UserId { get; set; }
+    public Guid DecisionId { get; set; }
+    public string Kind { get; set; } = "like_refund";
+    public int Amount { get; set; }
+    public string Text { get; set; } = "";
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? ReadAt { get; set; }
 }
 
 public sealed class UserReport
@@ -143,6 +157,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
     public DbSet<Match> Matches => Set<Match>();
     public DbSet<Message> Messages => Set<Message>();
     public DbSet<CreditEntry> CreditEntries => Set<CreditEntry>();
+    public DbSet<UserNotification> UserNotifications => Set<UserNotification>();
     protected override void OnModelCreating(ModelBuilder b)
     {
         Payments.Configure(b);
@@ -154,11 +169,16 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<Match>().ToTable("Matches");
         b.Entity<Message>().ToTable("Messages");
         b.Entity<CreditEntry>().ToTable("CreditEntries");
+        b.Entity<UserNotification>().ToTable("UserNotifications");
         b.Entity<User>().HasIndex(x => x.Email).IsUnique();
         b.Entity<UserReport>().HasIndex(x => new { x.ReporterId, x.EntityKind, x.EntityId, x.Reason }).IsUnique();
         b.Entity<Decision>().HasIndex(x => new { x.PropertyId, x.SearchRequestId, x.ActorKind }).IsUnique();
         b.Entity<Match>().HasIndex(x => new { x.PropertyId, x.SearchRequestId }).IsUnique();
         b.Entity<CreditEntry>().HasIndex(x => x.DecisionId).IsUnique();
+        b.Entity<CreditEntry>().HasIndex(x => x.RefundedDecisionId).IsUnique();
+        b.Entity<UserNotification>().HasIndex(x => x.DecisionId).IsUnique();
+        b.Entity<UserNotification>().HasIndex(x => new { x.UserId, x.CreatedAt });
+        b.Entity<Decision>().HasIndex(x => new { x.Liked, x.RefundedAt, x.CreatedAt });
         b.Entity<Property>().HasIndex(x => new { x.OwnerId, x.Archived });
         b.Entity<SearchRequest>().HasIndex(x => new { x.OwnerId, x.Archived });
         b.Entity<Message>().HasIndex(x => new { x.MatchId, x.CreatedAt });
@@ -167,6 +187,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         foreach (var property in entity.GetProperties())
         {
             if (property.ClrType == typeof(DateTime)) property.SetValueConverter(new ValueConverter<DateTime, DateTime>(v => v, v => DateTime.SpecifyKind(v, DateTimeKind.Utc)));
+            if (property.ClrType == typeof(DateTime?)) property.SetValueConverter(new ValueConverter<DateTime?, DateTime?>(v => v, v => v.HasValue ? DateTime.SpecifyKind(v.Value, DateTimeKind.Utc) : null));
             if (property.ClrType == typeof(string))
             {
                 // Several 10,000-character VARCHAR columns can exceed MySQL's
@@ -189,6 +210,9 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<Message>().HasOne<User>().WithMany().HasForeignKey(x => x.SenderId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<CreditEntry>().HasOne<User>().WithMany().HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<CreditEntry>().HasOne<Decision>().WithMany().HasForeignKey(x => x.DecisionId).OnDelete(DeleteBehavior.Restrict);
+        b.Entity<CreditEntry>().HasOne<Decision>().WithMany().HasForeignKey(x => x.RefundedDecisionId).OnDelete(DeleteBehavior.Restrict);
+        b.Entity<UserNotification>().HasOne<User>().WithMany().HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Restrict);
+        b.Entity<UserNotification>().HasOne<Decision>().WithMany().HasForeignKey(x => x.DecisionId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<User>().Property(x => x.AccountType).HasMaxLength(20).HasDefaultValue(AccountTypes.Private);
         b.Entity<UserReport>().HasOne<User>().WithMany().HasForeignKey(x => x.ReporterId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<UserReport>().HasOne<User>().WithMany().HasForeignKey(x => x.ReportedUserId).OnDelete(DeleteBehavior.Restrict);
@@ -199,7 +223,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
 public static class Dto
 {
     public static string[] Strings(string? json) => string.IsNullOrWhiteSpace(json) ? [] : JsonSerializer.Deserialize<string[]>(json) ?? [];
-    public static object Profile(User u) => new { u.Id, u.Name, u.Email, u.Phone, u.AccountType, u.Credits, u.ActiveKind, u.ActiveEntityId, u.CreatedAt };
+    public static object Profile(User u, int unreadNotificationCount = 0) => new { u.Id, u.Name, u.Email, u.Phone, u.AccountType, u.Credits, u.ActiveKind, u.ActiveEntityId, u.CreatedAt, unreadNotificationCount };
     // Public cards intentionally contain no user/contact object or exact street address.
     public static object Property(Property p, bool own = false, string ownerAccountType = AccountTypes.Private)
     {

@@ -23,6 +23,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     ValidateIssuer = true, ValidIssuer = issuer, ValidateAudience = true, ValidAudience = "otthonra-clients", ValidateLifetime = true, ClockSkew = TimeSpan.FromSeconds(30)
 });
 builder.Services.AddAuthorization();
+builder.Services.AddLikeRefunds(builder.Configuration);
+builder.Services.AddPublicLanding(builder.Configuration);
 builder.Services.AddHttpClient("stripe", c => c.Timeout = TimeSpan.FromSeconds(20));
 var origins = builder.Configuration.GetSection("Cors:Origins").Get<string[]>() ?? [];
 builder.Services.AddCors(o => o.AddDefaultPolicy(p => { if (origins.Length > 0) p.WithOrigins(origins).AllowAnyHeader().AllowAnyMethod(); else if (development) p.WithOrigins("http://localhost:8080", "http://localhost:5173").AllowAnyHeader().AllowAnyMethod(); }));
@@ -60,6 +62,8 @@ if (builder.Configuration.GetValue<bool>("Database:Initialize"))
     }
     else if (development && builder.Configuration.GetValue<bool>("Database:SeedDemo")) await Seed.Run(db);
 }
+app.MapLikeRefunds();
+app.MapPublicLanding();
 app.MapGet("/api/locations", (string? q, int? limit, string? kind) => Results.Ok(new { items = LocationCatalog.Search(q, limit ?? 8, kind) }));
 app.MapGet("/api/health", async Task<IResult> (AppDb db) => await db.Database.CanConnectAsync()
     ? Results.Ok(new { status = "ready", deployment = deployment.Name, testCreditsEnabled = deployment.AllowDemoTopup, testDataVersion })
@@ -88,7 +92,15 @@ auth.MapPost("/login", async (LoginInput input, AppDb db) =>
     return Results.Ok(Session(user));
 });
 var api = app.MapGroup("/api").RequireAuthorization();
-api.MapGet("/me", async (AppDb db, ClaimsPrincipal principal) => Results.Ok(Dto.Profile(await CurrentUser(db, principal))));
+api.MapNotifications();
+api.MapGet("/me", async (AppDb db, ClaimsPrincipal principal, LikeRefundService refunds, CancellationToken cancellationToken) =>
+{
+    var userId = principal.UserId();
+    await refunds.RunAsync(userId, cancellationToken);
+    var user = await CurrentUser(db, principal);
+    var unreadNotificationCount = await db.UserNotifications.CountAsync(item => item.UserId == userId && item.ReadAt == null, cancellationToken);
+    return Results.Ok(Dto.Profile(user, unreadNotificationCount));
+});
 api.MapPut("/me", async (ProfileInput input, AppDb db, ClaimsPrincipal principal) =>
 {
     var user = await CurrentUser(db, principal); var email = Rules.Email(input.Email);
@@ -96,8 +108,9 @@ api.MapPut("/me", async (ProfileInput input, AppDb db, ClaimsPrincipal principal
     user.Name = Rules.Required(input.Name, "név", 100); user.Email = email; user.Phone = Rules.Optional(input.Phone, 40);
     await db.SaveChangesAsync(); return Results.Ok(Dto.Profile(user));
 });
-api.MapGet("/me/entities", async (AppDb db, ClaimsPrincipal principal) =>
+api.MapGet("/me/entities", async (AppDb db, ClaimsPrincipal principal, LikeRefundService refunds, CancellationToken cancellationToken) =>
 {
+    await refunds.RunAsync(principal.UserId(), cancellationToken);
     var user = await CurrentUser(db, principal);
     var properties = await db.Properties.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).OrderByDescending(x => x.CreatedAt).ToListAsync();
     var searches = await db.SearchRequests.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).OrderByDescending(x => x.CreatedAt).ToListAsync();
@@ -115,7 +128,7 @@ api.MapGet("/me/entities", async (AppDb db, ClaimsPrincipal principal) =>
         row.Decision.Id, row.Decision.ActorKind,
         actorId = row.Decision.ActorKind == "property" ? row.Decision.PropertyId : row.Decision.SearchRequestId,
         row.Decision.PropertyId, searchId = row.Decision.SearchRequestId, row.Decision.SearchRequestId,
-        row.Decision.Liked, row.Decision.CreatedAt,
+        row.Decision.Liked, row.Decision.Charged, row.Decision.RefundedAt, row.Decision.CreatedAt,
         property = Dto.Property(row.Property, ownerAccountType: ownerTypes[row.Property.OwnerId]), search = Dto.Search(row.Search, ownerTypes[row.Search.OwnerId])
     });
     return Results.Ok(new { properties = properties.Select(p => Dto.Property(p, true, user.AccountType)), searchRequests = searches.Select(s => Dto.Search(s, user.AccountType)), decisions, reportedOwnerIds, reportedEntities, active = user.ActiveKind is null ? null : new { kind = user.ActiveKind, id = user.ActiveEntityId } });
@@ -296,9 +309,13 @@ api.MapPost("/reports", async Task<IResult> (ReportInput input, AppDb db, Claims
     var receipt = await AccountReports.CreateAsync(db, principal.UserId(), input);
     return receipt.AlreadyReported ? Results.Ok(receipt) : Results.Json(receipt, statusCode: 201);
 });
-api.MapGet("/credits/ledger", async (AppDb db, ClaimsPrincipal principal) =>
+api.MapGet("/credits/ledger", async (AppDb db, ClaimsPrincipal principal, LikeRefundService refunds, CancellationToken cancellationToken) =>
 {
-    var uid = principal.UserId(); return Results.Ok(await db.CreditEntries.AsNoTracking().Where(x => x.UserId == uid).OrderByDescending(x => x.CreatedAt).Select(x => new { x.Id, x.Amount, x.Description, x.CreatedAt }).ToListAsync());
+    var uid = principal.UserId();
+    await refunds.RunAsync(uid, cancellationToken);
+    return Results.Ok(await db.CreditEntries.AsNoTracking().Where(x => x.UserId == uid).OrderByDescending(x => x.CreatedAt)
+        .Select(x => new { x.Id, x.Amount, x.Description, x.CreatedAt, x.RefundedDecisionId,
+            kind = x.RefundedDecisionId != null ? "like_refund" : x.DecisionId != null ? "like_charge" : "other" }).ToListAsync(cancellationToken));
 });
 if (deployment.AllowDemoTopup)
 {

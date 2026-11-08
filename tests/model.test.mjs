@@ -341,3 +341,95 @@ test('incoming pagination is stable, excludes invalid counterparties and isolate
  raw.properties.find(item=>item.id==='p4').archived=true;storage.setItem(STORAGE_KEY,JSON.stringify(raw));const m=createModel(storage);const first=m.incomingLikes({limit:1}),next=m.incomingLikes({offset:1,limit:1});assert.equal(first.items[0].id,'p3');assert.equal(next.items[0].id,'p1');assert.ok(m.incomingLikes().items.every(item=>item.ownerAccountType==='private'));assert.equal(first.likeCost,1);
  const noActive=JSON.parse(storage.getItem(STORAGE_KEY));noActive.active={kind:'search',id:null};storage.setItem(STORAGE_KEY,JSON.stringify(noActive));assert.deepEqual(createModel(storage).incomingLikes(),{active:null,items:[],total:0,offset:0,limit:50,hasMore:false,likeCost:0});
 });
+
+const REFUND_START='2026-11-01T12:00:00.000Z';
+const REFUND_DEADLINE='2026-11-15T12:00:00.000Z';
+function refundFixture({agent=false}={}) {
+ const storage=store();let clock=REFUND_START;
+ let m=createModel(storage,()=>clock);
+ m.buyDemoCredits(1);
+ if(agent){const raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.users.find(user=>user.id==='me').accountType='agent';storage.setItem(STORAGE_KEY,JSON.stringify(raw));m=createModel(storage,()=>clock);}
+ else m.activate('property','own-p1');
+ const item=m.feed().find(item=>!item.likedYou);
+ assert.ok(item,'A compatible unanswered candidate is available');
+ const balance=m.getState().credits,result=m.decide(item,true);
+ assert.equal(result.charged,agent?1:2);assert.equal(result.match,null);
+ const raw=JSON.parse(storage.getItem(STORAGE_KEY));
+ const decision=raw.decisions.find(d=>d.propertyId===item.pair.propertyId&&d.searchId===item.pair.searchId&&d.actorKind===(agent?'search':'property'));
+ return {storage,m,item,decision,balance,setClock:value=>{clock=value;},reload:()=>createModel(storage,()=>clock)};
+}
+
+test('paid unanswered likes refund exactly at fourteen days once, persisting a private notification and ledger reference',()=>{
+ const t=refundFixture();t.setClock('2026-11-15T11:59:59.999Z');
+ assert.equal(t.m.getState().credits,t.balance-2);assert.equal(t.m.notifications().total,0);
+ t.setClock(REFUND_DEADLINE);const refunded=t.m.getState();
+ assert.equal(refunded.credits,t.balance);assert.equal(refunded.unreadNotificationCount,1);
+ const entry=refunded.ledger.find(entry=>entry.type==='like_refund');assert.equal(entry.amount,2);assert.equal(entry.refundedDecisionId,t.decision.id);
+ const page=t.m.notifications();assert.equal(page.total,1);assert.equal(page.unreadCount,1);assert.equal(page.hasMore,false);
+ assert.deepEqual(Object.keys(page.items[0]).sort(),['amount','createdAt','decisionId','id','kind','readAt','text']);
+ assert.equal(page.items[0].kind,'like_refund');assert.equal(page.items[0].amount,2);assert.match(page.items[0].text,/14 napon/);assert.equal(page.items[0].readAt,null);
+ assert.equal(t.m.getState().decisions.find(d=>d.id===t.decision.id).refundedAt,REFUND_DEADLINE);
+ const again=t.reload();for(let i=0;i<3;i++){assert.equal(again.getState().credits,t.balance);assert.equal(again.notifications().total,1);}
+ assert.equal(again.getState().ledger.filter(entry=>entry.type==='like_refund').length,1);
+});
+
+test('any opposite decision at or before the deadline blocks a refund, including pre-existing passes',()=>{
+ for(const liked of [false,true])for(const createdAt of ['2026-10-31T12:00:00.000Z',REFUND_DEADLINE]){
+  const t=refundFixture(),raw=JSON.parse(t.storage.getItem(STORAGE_KEY));
+  raw.decisions.push({id:'opposite',actorKind:'search',actorId:t.item.pair.searchId,...t.item.pair,liked,charged:0,createdAt});
+  t.storage.setItem(STORAGE_KEY,JSON.stringify(raw));t.setClock('2026-11-20T12:00:00.000Z');
+  const m=t.reload();assert.equal(m.getState().credits,t.balance-2);assert.equal(m.notifications().total,0);
+ }
+});
+
+test('a reaction after fourteen days keeps the due refund and a later mutual match remains usable',()=>{
+ const t=refundFixture(),raw=JSON.parse(t.storage.getItem(STORAGE_KEY));
+ raw.decisions.push({id:'late',actorKind:'search',actorId:t.item.pair.searchId,...t.item.pair,liked:true,charged:0,createdAt:'2026-11-15T12:00:00.001Z'});
+ raw.matches.push({id:'late-match',...t.item.pair,createdAt:'2026-11-15T12:00:00.001Z',unread:0,messages:[]});
+ t.storage.setItem(STORAGE_KEY,JSON.stringify(raw));t.setClock('2026-11-16T12:00:00.000Z');
+ const m=t.reload();assert.equal(m.getState().credits,t.balance);assert.equal(m.notifications().total,1);assert.ok(m.matches().find(item=>item.id==='late-match').partner.email);
+});
+
+test('agent search refunds the charged one credit; free, passed, foreign and legacy uncharged decisions never create money',()=>{
+ const t=refundFixture({agent:true});t.setClock(REFUND_DEADLINE);
+ assert.equal(t.m.getState().credits,t.balance);assert.equal(t.m.notifications().items[0].amount,1);
+ const storage=store();let clock=REFUND_START;const m=createModel(storage,()=>clock);m.decide(m.feed().find(item=>!item.likedYou),true);
+ m.activate('property','own-p1');m.decide(m.feed()[0],false);clock='2026-12-01T12:00:00.000Z';
+ assert.equal(m.getState().credits,24);assert.equal(m.notifications().total,0,'Free, pass and foreign seeded likes do not refund');
+ const raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.decisions.push({id:'legacy-uncharged',actorKind:'property',actorId:'own-p1',propertyId:'own-p1',searchId:'s3',liked:true,createdAt:REFUND_START});storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ assert.equal(createModel(storage,()=>clock).getState().credits,24);
+});
+
+test('notification reads are owner-scoped and idempotent, with bounded pagination and stable saved timestamps',()=>{
+ const t=refundFixture();t.setClock(REFUND_DEADLINE);const item=t.m.notifications().items[0];
+ assert.equal(t.m.getState().unreadNotificationCount,1);const marked=t.m.markNotificationRead(item.id);assert.equal(marked.readAt,REFUND_DEADLINE);
+ t.setClock('2026-11-16T12:00:00.000Z');assert.deepEqual(t.m.markNotificationRead(item.id),marked);assert.equal(t.m.getState().unreadNotificationCount,0);
+ assert.equal(t.reload().notifications().unreadCount,0);assert.equal(t.m.notifications({offset:1,limit:1}).items.length,0);
+ for(const options of [{offset:-1},{limit:101}])assert.throws(()=>t.m.notifications(options),/lapozási/);
+ assert.throws(()=>t.m.markNotificationRead('missing'),/nem található/);
+ const raw=JSON.parse(t.storage.getItem(STORAGE_KEY));raw.notifications.push({...item,id:'foreign-notification',userId:'u1'});t.storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ const again=t.reload();assert.equal(again.notifications().total,1);assert.throws(()=>again.markNotificationRead('foreign-notification'),/nem található/);
+});
+
+test('refund storage failure commits neither balance, decision marker, ledger nor notification',()=>{
+ const t=refundFixture();t.setClock(REFUND_DEADLINE);const before=t.storage.getItem(STORAGE_KEY);
+ const m=createModel({getItem:key=>t.storage.getItem(key),setItem:()=>{throw new Error('quota');}},()=>REFUND_DEADLINE);
+ assert.throws(()=>m.getState(),/tárhely/);assert.equal(t.storage.getItem(STORAGE_KEY),before);
+ assert.equal(t.reload().getState().credits,t.balance);assert.equal(t.reload().notifications().total,1);
+});
+
+test('no-longer-current reports apply to both account types and keep existing contextual deduplication',()=>{
+ const storage=store(),m=createModel(storage,()=>REFUND_START);
+ for(const id of ['p1','p2']){
+  const receipt=m.reportAccount('property',id,'no_longer_current');assert.equal(receipt.alreadyReported,false);assert.equal(m.reportAccount('property',id,'no_longer_current').id,receipt.id);
+ }
+ assert.equal(JSON.parse(storage.getItem(STORAGE_KEY)).reports.every(report=>report.reason==='no_longer_current'&&report.createdAt===REFUND_START),true);
+ assert.equal(m.getState().reportedEntities.length,2);
+});
+
+test('legacy paid decisions with no valid recorded timestamp cannot produce a synthetic refund',()=>{
+ for(const createdAt of [null,'',undefined,'invalid']){
+  const t=refundFixture(),raw=JSON.parse(t.storage.getItem(STORAGE_KEY));raw.decisions.find(item=>item.id===t.decision.id).createdAt=createdAt;t.storage.setItem(STORAGE_KEY,JSON.stringify(raw));t.setClock(REFUND_DEADLINE);
+  const m=t.reload();assert.equal(m.getState().credits,t.balance-2);assert.equal(m.notifications().total,0);
+ }
+});

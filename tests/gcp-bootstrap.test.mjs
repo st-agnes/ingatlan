@@ -172,3 +172,96 @@ test('an existing foreign Cloud Run service cannot be reused or overwritten',asy
   assert.equal((await readState()).calls.filter(a=>a.includes('deploy')).length,0);
  });
 });
+
+const schedulerJob = () => ({
+ name:'projects/ingatlan-513620/locations/europe-west1/jobs/otthonra-refunds-dev',
+ description:marker,state:'ENABLED',schedule:'17 * * * *',timeZone:'Etc/UTC',
+ httpTarget:{uri:'https://otthonra-api-dev-123456789012.europe-west1.run.app/internal/refunds/run',httpMethod:'POST',oidcToken:{
+  serviceAccountEmail:'otthonra-refunds-dev@ingatlan-513620.iam.gserviceaccount.com',
+  audience:'https://otthonra-api-dev-123456789012.europe-west1.run.app'
+ }}
+});
+
+test('refund job ownership, fixed target and verified identity cannot be replaced by a foreign scheduler configuration',async()=>temporary(async dir=>{
+ const path=join(dir,'scheduler.json');await json(path,schedulerJob());
+ const check=()=>invoke('scheduler',path,'ingatlan-513620','123456789012','europe-west1');
+ assert.equal(check().status,0);
+ const numeric=schedulerJob();numeric.name=numeric.name.replace('ingatlan-513620','123456789012');await json(path,numeric);assert.equal(check().status,0);
+ for(const mutate of [
+  x=>x.name=x.name.replace('otthonra-refunds-dev','otthonra-refunds-prod'),
+  x=>x.description='Created by another application',
+  x=>x.httpTarget.uri='https://another.example/internal/refunds/run',
+  x=>x.httpTarget.httpMethod='GET',
+  x=>x.httpTarget.oidcToken.audience='https://another.example',
+  x=>x.httpTarget.oidcToken.serviceAccountEmail='otthonra-runtime-dev@ingatlan-513620.iam.gserviceaccount.com',
+  x=>x.httpTarget.oauthToken={serviceAccountEmail:'other@example.com'},
+  x=>x.state='PAUSED'
+ ]) {const value=schedulerJob();mutate(value);await json(path,value);assert.notEqual(check().status,0);}
+}));
+
+async function schedulerFixture(action) {
+ return temporary(async dir=>{
+  const bin=join(dir,'bin');await mkdir(bin);const state=join(dir,'scheduler-state.json');await json(state,{job:null,calls:[]});
+  await executable(join(bin,'gcloud'),`#!/usr/bin/env node
+const fs=require('node:fs'),args=process.argv.slice(2),path=process.env.SCHEDULER_STATE,state=JSON.parse(fs.readFileSync(path,'utf8'));
+state.calls.push(args);fs.writeFileSync(path,JSON.stringify(state));
+if(!args.includes('--project=ingatlan-513620'))process.exit(96);
+const command=args.filter(v=>!v.startsWith('--')).join(' ');
+if(command.startsWith('scheduler jobs describe ')) {
+ if(process.env.SCHEDULER_ERROR){console.error(process.env.SCHEDULER_ERROR);process.exit(1);}
+ if(!state.job){console.error('NOT_FOUND: scheduler job does not exist');process.exit(1);}
+ console.log(JSON.stringify(state.job));
+} else if(command.startsWith('scheduler jobs create http ')||command.startsWith('scheduler jobs update http ')) {
+ if(command.startsWith('scheduler jobs update http ')&&args.some(x=>x.startsWith('--headers=')))process.exit(93);
+ if(command.startsWith('scheduler jobs create http ')&&!args.includes('--headers=Content-Type=application/json'))process.exit(92);
+ if(command.startsWith('scheduler jobs update http ')&&!args.includes('--update-headers=Content-Type=application/json'))process.exit(91);
+ const value=prefix=>args.find(x=>x.startsWith(prefix)).slice(prefix.length);
+ if(!args.includes('otthonra-refunds-dev')||value('--location=')!=='europe-west1')process.exit(95);
+ state.job={name:'projects/ingatlan-513620/locations/europe-west1/jobs/otthonra-refunds-dev',description:value('--description='),state:'ENABLED',schedule:value('--schedule='),timeZone:value('--time-zone='),httpTarget:{uri:value('--uri='),httpMethod:value('--http-method='),oidcToken:{serviceAccountEmail:value('--oidc-service-account-email='),audience:value('--oidc-token-audience=')}}};
+ fs.writeFileSync(path,JSON.stringify(state));
+} else if(!command.startsWith('beta services identity create')&&!command.startsWith('projects add-iam-policy-binding ')&&!command.startsWith('run services add-iam-policy-binding '))process.exit(94);
+`);
+  const source=await readFile(script,'utf8'),describeStart=source.indexOf('describe() {'),describeEnd=source.indexOf('gc projects describe ',describeStart);
+  const start=source.indexOf("step 'Óránkénti teszt kreditvisszatérítés'"),end=source.indexOf("step 'GitHub rövid életű Google-identitás'",start);
+  assert.ok(start>0&&end>start);
+  const program=join(dir,'scheduler.sh');await writeFile(program,'set -euo pipefail\ntemporary="$SCHEDULER_TEMP"\nhelper="$HELPER"\nproject_id=ingatlan-513620\nproject_number=123456789012\nregion=europe-west1\nrefund_account=otthonra-refunds-dev@ingatlan-513620.iam.gserviceaccount.com\nmarker="Managed by st-agnes/ingatlan bootstrap-dev."\ngc() { gcloud --project="$project_id" --quiet "$@"; }\nstep() { :; }\n'+source.slice(describeStart,describeEnd)+source.slice(start,end));
+  const run=extra=>spawnSync('bash',[program],{encoding:'utf8',timeout:5000,env:{...process.env,PATH:bin+':'+process.env.PATH,SCHEDULER_TEMP:dir,SCHEDULER_STATE:state,HELPER:helper,...extra}});
+  const readState=async()=>JSON.parse(await readFile(state,'utf8'));
+  await action({run,readState,state});
+ });
+}
+
+test('the hourly refund job is provisioned once, updated on rerun and wakes the direct Run service with short-lived OIDC',async()=>{
+ await schedulerFixture(async({run,readState})=>{
+  const first=run();assert.equal(first.status,0,first.stderr);let state=await readState();
+  assert.deepEqual(state.job,schedulerJob());
+  const created=state.calls.find(a=>a.includes('create')&&a.includes('scheduler'));assert.ok(created);
+  for(const flag of ['--attempt-deadline=180s','--max-retry-attempts=3','--max-retry-duration=1800s','--min-backoff=15s','--max-backoff=120s','--max-doublings=3'])assert.ok(created.includes(flag));
+  assert.ok(state.calls.some(a=>a.includes('--role=roles/cloudscheduler.serviceAgent')&&a.includes('--member=serviceAccount:service-123456789012@gcp-sa-cloudscheduler.iam.gserviceaccount.com')));
+  const invoker=state.calls.find(a=>a.includes('--role=roles/run.invoker'));
+  assert.ok(invoker.includes('otthonra-api-dev'));assert.ok(invoker.includes('--member=serviceAccount:otthonra-refunds-dev@ingatlan-513620.iam.gserviceaccount.com'));
+  assert.ok(!state.calls.some(a=>a.includes('--role=roles/iam.serviceAccountTokenCreator')));
+  const second=run();assert.equal(second.status,0,second.stderr);state=await readState();
+  assert.equal(state.calls.filter(a=>a.includes('scheduler')&&a.includes('create')).length,1);
+  assert.equal(state.calls.filter(a=>a.includes('scheduler')&&a.includes('update')).length,1);
+ });
+});
+
+test('scheduler permission or network failures cannot become permission to create a job',async()=>{
+ for(const error of ['PERMISSION_DENIED: job not found or permission denied.','Connection timeout: scheduler job not found.','HTTP 503 service unavailable; job not found.']) {
+  await schedulerFixture(async({run,readState})=>{
+   const result=run({SCHEDULER_ERROR:error});assert.notEqual(result.status,0);
+   const state=await readState();assert.equal(state.job,null);assert.equal(state.calls.filter(a=>a.includes('scheduler')&&(a.includes('create')||a.includes('update'))).length,0);
+  });
+ }
+});
+
+test('a foreign or paused refund job cannot be silently adopted or resumed',async()=>{
+ for(const mutate of [x=>x.description='Other deployment',x=>x.state='PAUSED',x=>x.httpTarget.uri='https://different.example/']) {
+  await schedulerFixture(async({run,readState,state})=>{
+   const job=schedulerJob();mutate(job);await json(state,{job,calls:[]});
+   const result=run();assert.notEqual(result.status,0);
+   const observed=await readState();assert.deepEqual(observed.job,job);assert.equal(observed.calls.filter(a=>a.includes('scheduler')&&(a.includes('create')||a.includes('update'))).length,0);
+  });
+ }
+});

@@ -80,6 +80,7 @@ printf 'Project: %s\nRegion: %s\n' "$project_id" "$region"
 printf '%s\n' \
   'Test-only plan: one MySQL 8.4 Enterprise db-f1-micro instance, 10 GiB SSD (growth capped at 20 GiB), standard backups.' \
   'One Cloud Run -dev service (0 minimum / 2 maximum instances), one Hosting site, dev identities and secrets.' \
+  'One hourly Cloud Scheduler -dev job wakes the API to process due credit refunds.' \
   'Cloud SQL is continuously billable: budget roughly USD 10-15/month before tax; actual storage/backups and regional prices vary.' \
   'No production service, database, domain, Stripe key or service-account JSON key is created.'
 if "$plan_only"; then exit 0; fi
@@ -87,12 +88,13 @@ if "$plan_only"; then exit 0; fi
 step 'Google API-k engedélyezése'
 gc services enable serviceusage.googleapis.com cloudresourcemanager.googleapis.com iam.googleapis.com iamcredentials.googleapis.com \
   sts.googleapis.com run.googleapis.com artifactregistry.googleapis.com sqladmin.googleapis.com secretmanager.googleapis.com \
-  firebase.googleapis.com firebasehosting.googleapis.com
+  firebase.googleapis.com firebasehosting.googleapis.com cloudscheduler.googleapis.com
 
 step 'Teszt szolgáltatásfiókok'
 runtime_account="otthonra-runtime-dev@$project_id.iam.gserviceaccount.com"
 deploy_account="otthonra-deploy-dev@$project_id.iam.gserviceaccount.com"
-for account in otthonra-runtime-dev otthonra-deploy-dev; do
+refund_account="otthonra-refunds-dev@$project_id.iam.gserviceaccount.com"
+for account in otthonra-runtime-dev otthonra-deploy-dev otthonra-refunds-dev; do
   if describe "$temporary/account.json" iam service-accounts describe "$account@$project_id.iam.gserviceaccount.com"; then
     python3 "$helper" service-account "$temporary/account.json"
   else
@@ -178,6 +180,29 @@ gc artifacts repositories add-iam-policy-binding otthonra-dev --location="$regio
 gc projects add-iam-policy-binding "$project_id" --member="serviceAccount:$deploy_account" --role=roles/run.viewer --condition=None >/dev/null
 gc projects add-iam-policy-binding "$project_id" --member="serviceAccount:$deploy_account" --role=roles/firebasehosting.admin --condition=None >/dev/null
 gc projects add-iam-policy-binding "$project_id" --member="serviceAccount:$deploy_account" --role=roles/serviceusage.serviceUsageConsumer --condition=None >/dev/null
+
+step 'Óránkénti teszt kreditvisszatérítés'
+# The Scheduler service agent mints short-lived OIDC tokens; no user key or
+# static token is generated. Its invoker grant is scoped to this one service.
+gc beta services identity create --service=cloudscheduler.googleapis.com >/dev/null
+gc projects add-iam-policy-binding "$project_id" \
+  --member="serviceAccount:service-$project_number@gcp-sa-cloudscheduler.iam.gserviceaccount.com" \
+  --role=roles/cloudscheduler.serviceAgent --condition=None >/dev/null
+gc run services add-iam-policy-binding otthonra-api-dev --region="$region" \
+  --member="serviceAccount:$refund_account" --role=roles/run.invoker >/dev/null
+refund_origin="https://otthonra-api-dev-$project_number.$region.run.app"
+refund_job_args=(--location="$region" --schedule='17 * * * *' --time-zone=Etc/UTC
+  --uri="$refund_origin/internal/refunds/run" --http-method=POST
+  --oidc-service-account-email="$refund_account" --oidc-token-audience="$refund_origin"
+  --attempt-deadline=180s --max-retry-attempts=3 --max-retry-duration=1800s
+  --min-backoff=15s --max-backoff=120s --max-doublings=3
+  --description="$marker" --message-body='{}')
+if describe "$temporary/refund-job.json" scheduler jobs describe otthonra-refunds-dev --location="$region"; then
+  python3 "$helper" scheduler "$temporary/refund-job.json" "$project_id" "$project_number" "$region"
+  gc scheduler jobs update http otthonra-refunds-dev "${refund_job_args[@]}" --update-headers='Content-Type=application/json' >/dev/null
+else
+  gc scheduler jobs create http otthonra-refunds-dev "${refund_job_args[@]}" --headers='Content-Type=application/json' >/dev/null
+fi
 
 step 'GitHub rövid életű Google-identitás'
 if describe "$temporary/pool.json" iam workload-identity-pools describe otthonra-dev --location=global; then

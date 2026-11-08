@@ -64,7 +64,7 @@ async function verifyViewport(browser, viewport) {
   const email = `hosted-${suffix}@example.test`, password = 'HostedTestPassword2026!';
   const title = `Felhős keresés – ${suffix}`;
   try {
-    await page.goto(origin + '/', {waitUntil: 'domcontentloaded'});
+    await page.goto(origin + '/#login', {waitUntil: 'domcontentloaded'});
     await page.locator('#hosted-auth-form').waitFor();
     assert.equal(await page.locator('.sidebar').count(), 0, 'A guest must not see a demo workspace');
     assert.equal(await page.locator('input[name="baseUrl"]').count(), 0, 'Hosted users must not select a backend URL');

@@ -1,7 +1,7 @@
 import test, { afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import {locations} from '../dist/locations.js';
-import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi, hostedMode, deploymentEnvironment } from '../dist/api.js';
+import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi, hostedMode, deploymentEnvironment, fetchLanding, detectLandingRegion } from '../dist/api.js';
 
 const originalFetch = globalThis.fetch;
 const originalStorage = globalThis.localStorage;
@@ -425,4 +425,85 @@ test('incoming pagination uses encoded query parameters, validates before reques
  const calls=[];globalThis.fetch=async(url,options)=>{calls.push({url,options});return response({active:null,items:[],total:0,offset:10,limit:5,hasMore:false,likeCost:0});};
  const api=adapter();assert.deepEqual(await api.incomingLikes({offset:10,limit:5}),{active:null,items:[],total:0,offset:10,limit:5,hasMore:false,likeCost:0});const url=new URL(calls[0].url);assert.equal(url.pathname,'/api/incoming-likes');assert.equal(url.searchParams.get('offset'),'10');assert.equal(url.searchParams.get('limit'),'5');
  for(const options of [{offset:-1},{offset:1000001},{offset:'1'},{limit:0},{limit:101}])await assert.rejects(api.incomingLikes(options),/lapozási/);assert.equal(calls.length,1);
+});
+
+test('notification pages map only recipient-safe fields, retain pagination and expose the profile unread count',async()=>{
+ const notification={id:'refund-notification',kind:'like_refund',amount:2,text:'2 kredit visszatérítve.',decisionId:'paid-decision',createdAt:'2026-11-15T12:00:00Z',readAt:null,userId:'PRIVATE-OWNER',privateField:'PRIVATE-AUDIT'};
+ const calls=routes(accountRoutes({'/api/me':{...profile,unreadNotificationCount:3},'/api/notifications':{items:[notification],total:8,unreadCount:3,offset:2,limit:1,hasMore:true}}));
+ const api=adapter();assert.equal((await api.getState()).unreadNotificationCount,3);
+ const page=await api.notifications({offset:2,limit:1});
+ assert.deepEqual(page,{items:[{id:notification.id,kind:'like_refund',amount:2,text:notification.text,decisionId:'paid-decision',createdAt:notification.createdAt,readAt:null}],total:8,unreadCount:3,offset:2,limit:1,hasMore:true});
+ assert.equal(JSON.stringify(page).includes('PRIVATE-'),false);
+ const request=calls.find(call=>call.path==='/api/notifications');assert.equal(request.headers.Authorization,'Bearer sample-token');
+ const before=calls.length;for(const options of [{offset:-1},{limit:0},{limit:101}])await assert.rejects(api.notifications(options),/lapozási/);assert.equal(calls.length,before);
+});
+
+test('notification read calls are authenticated and encoded, preserve the server timestamp, and surface access failures',async()=>{
+ const item={id:'notice/id',kind:'like_refund',amount:1,text:'Visszatérítés',decisionId:'decision',createdAt:'2026-11-15T12:00:00Z',readAt:'2026-11-16T12:00:00Z'};
+ const calls=routes({'/api/notifications/notice%2Fid/read':item}),api=adapter();
+ assert.deepEqual(await api.markNotificationRead('notice/id'),item);assert.equal(calls[0].method,'PUT');assert.equal(calls[0].headers.Authorization,'Bearer sample-token');assert.equal(calls[0].body,undefined);
+ for(const id of ['',null,1])await assert.rejects(api.markNotificationRead(id),/értesítés/);assert.equal(calls.length,1);
+ routes({'/api/notifications/unknown/read':()=>response({message:'Az értesítés nem található.'},404)});
+ await assert.rejects(api.markNotificationRead('unknown'),error=>error.status===404&&/nem található/.test(error.message));
+});
+
+test('hosted landing is anonymous and same-origin, converts HUF and discards private or raw listing fields',async()=>{
+ globalThis.OTTHONRA_CONFIG={mode:'api',environment:'test'};globalThis.location={origin:'https://dev.otthonra.hu'};
+ globalThis.localStorage={getItem:()=>{throw new Error('Anonymous landing must not read authentication storage');}};
+ let captured;
+ globalThis.fetch=async(url,options)=>{captured={url,options};return response({regions:[{id:'untrusted',label:'Private'}],region:{id:'HU110',label:'wrong'},scope:'region',searches:[{key:'search-1',title:'Lakást keresnek',type:'Lakás',locations:['Budapest XI. kerület'],minPrice:null,maxPrice:85000000,minArea:50,maxArea:null,minRooms:2,maxRooms:null,ownerAccountType:'agent',id:'PRIVATE-ID',ownerId:'PRIVATE-OWNER',description:'PRIVATE-CONTACT',phone:'PRIVATE-PHONE'}],properties:[{key:'property-1',title:'Eladó lakás',type:'Lakás',location:'Budapest',price:72900000,area:64,wholeRooms:2,halfRooms:2,rooms:3,lotArea:null,ownerAccountType:'private',address:'PRIVATE-ADDRESS',images:['PRIVATE-IMAGE'],email:'PRIVATE-EMAIL'}]});};
+ const data=await fetchLanding({region:'HU110'});
+ assert.equal(captured.url,'https://dev.otthonra.hu/api/public/landing?region=HU110');assert.equal(captured.options.headers.Authorization,undefined);
+ assert.equal(data.regions.length,20);assert.deepEqual(data.region,{id:'HU110',label:'Budapest'});assert.equal(data.scope,'region');
+ assert.equal(data.searches[0].maxPrice,85);assert.equal(data.searches[0].minPrice,null);assert.equal(data.properties[0].price,72.9);
+ assert.equal(JSON.stringify(data).includes('PRIVATE-'),false);assert.equal('id' in data.searches[0],false);assert.equal('images' in data.properties[0],false);
+});
+
+test('public landing errors never turn into hosted demo data and invalid regions never make a request',async()=>{
+ globalThis.OTTHONRA_CONFIG={mode:'api',environment:'test'};globalThis.location={origin:'https://dev.otthonra.hu'};
+ let requests=0;globalThis.fetch=async()=>{requests++;return response({message:'A szolgáltatás nem érhető el.'},503);};
+ await assert.rejects(fetchLanding(),error=>error.status===503);assert.equal(requests,1);
+ for(const region of ['unknown','HU110&private=1',false,123])await assert.rejects(fetchLanding({region}),/régió/);assert.equal(requests,1);
+ globalThis.fetch=async()=>{throw new TypeError('offline');};await assert.rejects(fetchLanding(),/API nem érhető/);
+});
+
+test('local public preview uses fictional safe catalog data, prioritizes searches, and returns honest regional emptiness',async()=>{
+ globalThis.OTTHONRA_CONFIG={mode:'demo'};globalThis.fetch=async()=>{throw new Error('Local preview must not fetch');};
+ globalThis.localStorage={getItem:()=>{throw new Error('Public preview must not read saved users');}};
+ const national=await fetchLanding();assert.equal(national.scope,'national');assert.equal(national.region,null);assert.equal(national.regions.length,20);
+ assert.ok(national.searches.length>national.properties.length);assert.ok(national.searches.length<=8);assert.ok(national.properties.length<=4);
+ assert.equal(JSON.stringify(national).includes('@'),false);assert.equal(JSON.stringify(national).includes('Pozsonyi'),false);
+ const selected=await fetchLanding({region:'HU110'});assert.equal(selected.scope,'region');assert.ok(selected.searches.length);
+ const empty=await fetchLanding({region:'HU321'});assert.equal(empty.region.label,'Hajdú-Bihar vármegye');assert.deepEqual(empty.searches,[]);assert.deepEqual(empty.properties,[]);
+});
+
+test('coarse region detection uses only Hungarian country and region, with privacy-preserving request settings',async()=>{
+ let captured;globalThis.localStorage={setItem:()=>{throw new Error('IP payload must not be persisted');}};
+ const privatePayload={country_code:'HU',region:'Hajdu-Bihar County',ip:'PRIVATE-IP',latitude:'PRIVATE-LAT',longitude:'PRIVATE-LONG',city:'PRIVATE-CITY'};
+ globalThis.fetch=async(url,options)=>{captured={url,options};return {ok:true,json:async()=>privatePayload};};
+ assert.equal(await detectLandingRegion(),'HU321');assert.equal(captured.url,'https://get.geojs.io/v1/ip/geo.json');
+ for(const [key,value] of Object.entries({credentials:'omit',referrerPolicy:'no-referrer',cache:'no-store',redirect:'error'}))assert.equal(captured.options[key],value);
+ assert.equal(captured.options.headers.Authorization,undefined);assert.ok(captured.options.signal instanceof AbortSignal);
+ for(const region of ['Csongrad County','Csongrád-Csanád vármegye']){globalThis.fetch=async()=>({ok:true,json:async()=>({country_code:'HU',region})});assert.equal(await detectLandingRegion(),'HU333');}
+ globalThis.fetch=async()=>({ok:true,json:async()=>({country_code:'HU',region:'Budapest'})});assert.equal(await detectLandingRegion([{id:'HU110',label:'Budapest'}]),'HU110');
+ assert.equal(await detectLandingRegion([{id:'HU321',label:'Hajdú-Bihar vármegye'}]),null);
+});
+
+test('coarse region lookup fails closed to national for foreign, unknown, malformed, blocked and unavailable providers',async()=>{
+ for(const payload of [{country_code:'US',region:'Budapest'},{country_code:'HU',region:'Unknown'},{country_code:'HU',region:null},null]){
+  globalThis.fetch=async()=>({ok:true,json:async()=>payload});assert.equal(await detectLandingRegion(),null);
+ }
+ globalThis.fetch=async()=>({ok:false,json:async()=>{throw new Error('must not parse');}});assert.equal(await detectLandingRegion(),null);
+ globalThis.fetch=async()=>{throw new TypeError('network blocked');};assert.equal(await detectLandingRegion(),null);
+ globalThis.fetch=async()=>({ok:true,json:async()=>{throw new SyntaxError('invalid JSON');}});assert.equal(await detectLandingRegion(),null);
+});
+
+test('coarse region detection aborts after three seconds and leaves timeout failures as national',async()=>{
+ const originalSetTimeout=globalThis.setTimeout,originalClearTimeout=globalThis.clearTimeout;let cleared;
+ try {
+  globalThis.setTimeout=(callback,ms)=>{assert.equal(ms,3000);queueMicrotask(callback);return 'coarse-region-timeout';};
+  globalThis.clearTimeout=id=>{cleared=id;};
+  globalThis.fetch=async(url,{signal})=>new Promise((resolve,reject)=>signal.addEventListener('abort',()=>reject(new DOMException('Aborted','AbortError')),{once:true}));
+  assert.equal(await detectLandingRegion(),null);assert.equal(cleared,'coarse-region-timeout');
+ } finally {globalThis.setTimeout=originalSetTimeout;globalThis.clearTimeout=originalClearTimeout;}
 });
