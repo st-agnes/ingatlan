@@ -20,7 +20,7 @@ async function configure(page,accountType='private'){
  await page.evaluate(async accountType=>{
   const {createModel,STORAGE_KEY}=await import('/model.js');let serialized;
   const demo=createModel({getItem:()=>null,setItem:(_key,value)=>{serialized=value;}});demo.activate('search','own-s1');
-  const fixture=JSON.parse(serialized);fixture.users.find(user=>user.id==='me').accountType=accountType;fixture.users.find(user=>user.id==='u1').accountType='private';fixture.users.find(user=>user.id==='u2').accountType='agent';fixture.credits=24;fixture.reports=[];fixture.matches=[];
+  const fixture=JSON.parse(serialized);fixture.users.find(user=>user.id==='me').accountType=accountType;fixture.users.find(user=>user.id==='u1').accountType='private';fixture.users.find(user=>user.id==='u2').accountType='agent';fixture.credits=24;fixture.reports=[];fixture.matches=[];fixture.properties.find(item=>item.id==='p2').area=50;
   const secondary=fixture.searches.find(search=>search.id==='own-s2');Object.assign(secondary,{title:'Másik saját keresés',locationIds:['district:Budapest:13'],city:'Budapest',districts:['XIII.']});
   const decision=(id,actorKind,actorId,propertyId,searchId,owner)=>({id,actorKind,actorId,actorUserId:owner,propertyId,searchId,liked:true,createdAt:'2026-11-07T08:00:00.000Z'});
   fixture.decisions=[decision('incoming-p1','property','p1','p1','own-s1','u1'),decision('incoming-p2','property','p2','p2','own-s1','u2'),decision('incoming-p4-other','property','p4','p4','own-s2','u4'),decision('incoming-s1','search','s1','own-p1','s1','u1'),decision('incoming-s2','search','s2','own-p1','s2','u2')];

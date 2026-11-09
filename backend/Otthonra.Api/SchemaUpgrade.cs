@@ -18,6 +18,7 @@ public static class SchemaUpgrade
     public const string AccountTypesAndReportsVersion = "20261107-account-types-and-reports";
     public const string InteractionsAndReportReasonsVersion = "20261107-interactions-and-report-reasons";
     public const string LikeRefundsVersion = "20261108-public-landing-and-like-refunds";
+    public const string RecommendationIndexesVersion = "20261110-ranked-recommendation-indexes";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
@@ -68,6 +69,17 @@ public static class SchemaUpgrade
                 if (!exists)
                     await Execute(connection, $"ALTER TABLE `{addition.Table}` ADD COLUMN `{addition.Column}` {addition.Definition}", cancellationToken);
             }
+            await Execute(connection, """
+                CREATE TABLE IF NOT EXISTS `SearchLocations` (
+                    `SearchRequestId` char(36) COLLATE ascii_general_ci NOT NULL,
+                    `LocationId` varchar(255) NOT NULL,
+                    CONSTRAINT `PK_SearchLocations` PRIMARY KEY (`SearchRequestId`, `LocationId`),
+                    KEY `IX_SearchLocations_LocationId_SearchRequestId` (`LocationId`, `SearchRequestId`),
+                    CONSTRAINT `FK_SearchLocations_SearchRequests_SearchRequestId` FOREIGN KEY (`SearchRequestId`)
+                        REFERENCES `SearchRequests` (`Id`) ON DELETE RESTRICT
+                ) CHARACTER SET=utf8mb4
+                """, cancellationToken);
+            await SearchLocationIndex.BackfillAsync(db, cancellationToken);
             // EnsureCreated does not add tables once a database contains user
             // tables. Keep the new report table additive for those installations.
             // Guid columns match Pomelo's char(36)/ASCII mapping and user keys.
@@ -123,6 +135,14 @@ public static class SchemaUpgrade
                 "CREATE UNIQUE INDEX `IX_CreditEntries_RefundedDecisionId` ON `CreditEntries` (`RefundedDecisionId`)", cancellationToken);
             await EnsureIndex(connection, "Decisions", "IX_Decisions_Liked_RefundedAt_CreatedAt",
                 "CREATE INDEX `IX_Decisions_Liked_RefundedAt_CreatedAt` ON `Decisions` (`Liked`, `RefundedAt`, `CreatedAt`)", cancellationToken);
+            await EnsureIndex(connection, "Properties", "IX_Properties_Archived_Type_LocationId",
+                "CREATE INDEX `IX_Properties_Archived_Type_LocationId` ON `Properties` (`Archived`, `Type`, `LocationId`)", cancellationToken);
+            await EnsureIndex(connection, "Properties", "IX_Properties_Archived_Type_City",
+                "CREATE INDEX `IX_Properties_Archived_Type_City` ON `Properties` (`Archived`, `Type`, `City`)", cancellationToken);
+            await EnsureIndex(connection, "SearchRequests", "IX_SearchRequests_Archived_Type_City",
+                "CREATE INDEX `IX_SearchRequests_Archived_Type_City` ON `SearchRequests` (`Archived`, `Type`, `City`)", cancellationToken);
+            await EnsureIndex(connection, "Decisions", "IX_Decisions_SearchRequestId_ActorKind_PropertyId",
+                "CREATE INDEX `IX_Decisions_SearchRequestId_ActorKind_PropertyId` ON `Decisions` (`SearchRequestId`, `ActorKind`, `PropertyId`)", cancellationToken);
             const string refundForeignKey = "FK_CreditEntries_Decisions_RefundedDecisionId";
             var hasRefundForeignKey = Convert.ToInt32(await Scalar(connection,
                 "SELECT COUNT(*) FROM information_schema.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = DATABASE() AND TABLE_NAME = 'CreditEntries' AND CONSTRAINT_NAME = @name AND CONSTRAINT_TYPE = 'FOREIGN KEY'",
@@ -135,6 +155,7 @@ public static class SchemaUpgrade
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", AccountTypesAndReportsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", InteractionsAndReportReasonsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", LikeRefundsVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", RecommendationIndexesVersion));
         }
         finally
         {

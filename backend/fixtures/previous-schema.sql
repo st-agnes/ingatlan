@@ -1,5 +1,9 @@
 -- CI ONLY: simulate the initial release in the disposable otthonra_ci database.
 -- No application deployment executes this file.
+DROP TABLE IF EXISTS `SearchLocations`;
+ALTER TABLE `Properties` DROP INDEX `IX_Properties_Archived_Type_LocationId`, DROP INDEX `IX_Properties_Archived_Type_City`;
+ALTER TABLE `SearchRequests` DROP INDEX `IX_SearchRequests_Archived_Type_City`;
+ALTER TABLE `Decisions` DROP INDEX `IX_Decisions_SearchRequestId_ActorKind_PropertyId`;
 DROP TABLE IF EXISTS `UserNotifications`;
 DROP TABLE IF EXISTS `UserReports`;
 ALTER TABLE `CreditEntries` DROP FOREIGN KEY `FK_CreditEntries_Decisions_RefundedDecisionId`, DROP INDEX `IX_CreditEntries_RefundedDecisionId`, DROP COLUMN `RefundedDecisionId`;
@@ -17,4 +21,4 @@ ALTER TABLE `SearchRequests`
   DROP COLUMN `ConstructionAgesJson`, DROP COLUMN `ViewsJson`, DROP COLUMN `CeilingHeight`, DROP COLUMN `FloorsJson`,
   DROP COLUMN `HeatingTypesJson`;
 DELETE FROM `__OtthonraSchemaVersions`
-  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds');
+  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes');

@@ -1,5 +1,6 @@
 import { model as demoModel, demoLanding } from './model.js';
 import { regions } from './regions-data.js';
+import {searchSpecificity} from './matching.js';
 import { getLocation, resolveLegacyLocations, isPropertyLocation } from './locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
 import {normalizeAccountType,likeCost,normalizeReportReason,normalizeIncomingPagination,REPORT_REASON_OPTIONS} from './accounts.js';
@@ -70,7 +71,8 @@ function entityLocations(value, kind, strict = false) {
     else if (Array.isArray(value.locations)) ids = value.locations.map(location=>location.id);
   }
   const uniqueIds = ids == null ? null : [...new Set(ids)];
-  const selected = uniqueIds == null ? resolveLegacyLocations(kind === 'search' ? {...value, districts:inputStrings(value.districts)} : value) : uniqueIds.map(getLocation).filter(Boolean);
+  const legacyEmpty = !strict && uniqueIds != null && (uniqueIds.length === 0 || kind === 'property' && uniqueIds.length === 1 && (uniqueIds[0] == null || typeof uniqueIds[0] === 'string' && !uniqueIds[0].trim()));
+  const selected = uniqueIds == null || legacyEmpty ? resolveLegacyLocations(kind === 'search' ? {...value, districts:inputStrings(value.districts)} : value) : uniqueIds.map(getLocation).filter(Boolean);
   const locations = kind === 'property' ? selected.filter(isPropertyLocation) : selected;
   if (strict && (!locations.length || (kind === 'search' && locations.length > 50)
       || (uniqueIds != null && locations.length !== uniqueIds.length))) throw new Error('Válassz érvényes települést vagy budapesti kerületet a találati listából.');
@@ -80,9 +82,10 @@ function entityLocations(value, kind, strict = false) {
 function propertyFromApi(value) {
   if (!value) return null;
   const location = entityLocations(value, 'property')[0] || null;
+  const declaredId = value.locationId ?? value.location?.id;
   return normalizePropertyAttributes({
     id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''), ownerAccountType:normalizeAccountType(value.ownerAccountType),
-    title: value.title || '', locationId:location?.id || '', location:clone(location), city: location?.city ?? value.city ?? '', district: location ? location.district || '' : value.district ?? '', neighborhood: value.neighborhood || '', address: value.address || '', description: value.description || '', createdAt: value.createdAt,
+    title: value.title || '', locationId:location?.id ?? declaredId ?? '', location:clone(location), city: location?.city ?? value.city ?? '', district: location ? location.district || '' : value.district ?? '', neighborhood: value.neighborhood || '', address: value.address || '', description: value.description || '', createdAt: value.createdAt,
     type: value.type || value.propertyType || 'Lakás',
     price: millions(value.priceHuf ?? value.price), area: numeric(value.area ?? value.areaSqm ?? value.sizeSqm), rooms: numeric(value.rooms ?? value.roomCount), wholeRooms:value.wholeRooms, halfRooms:value.halfRooms,
     lotArea: numeric(value.lotArea ?? value.lotAreaSqm ?? null), floor: numeric(value.floor), condition: value.condition || '', building: value.building || value.buildingMaterial || '',
@@ -96,9 +99,12 @@ function propertyFromApi(value) {
 function searchFromApi(value) {
   if (!value) return null;
   const locations = entityLocations(value, 'search');
-  return normalizeSearchAttributes({
+  // Retain explicit invalid selections so the matcher cannot revive them through a legacy city.
+  const declaredIds = value.locationIds != null ? (Array.isArray(value.locationIds) ? clone(value.locationIds) : [clone(value.locationIds)]) : Array.isArray(value.locations) ? value.locations.map(location=>location?.id) : null;
+  const locationIds = declaredIds?.length ? declaredIds : locations.map(location=>location.id);
+  const search = normalizeSearchAttributes({
     id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''), ownerAccountType:normalizeAccountType(value.ownerAccountType),
-    title: value.title || '', locationIds:locations.map(location=>location.id), locations:clone(locations), city: locations[0]?.city ?? value.city ?? '', districts: locations.filter(location=>location.city===locations[0]?.city&&location.district).map(location=>location.district), description: value.description || '', moveIn: value.moveIn || '', buyerName: value.buyerName || '', financing: value.financing || '', avatar: value.avatar || '', createdAt: value.createdAt,
+    title: value.title || '', locationIds, locations:clone(locations), city: locations[0]?.city ?? value.city ?? '', districts: locations.filter(location=>location.city===locations[0]?.city&&location.district).map(location=>location.district), description: value.description || '', moveIn: value.moveIn || '', buyerName: value.buyerName || '', financing: value.financing || '', avatar: value.avatar || '', createdAt: value.createdAt,
     type: value.type || value.propertyType || 'Lakás',
     minPrice: millions(value.minPriceHuf ?? value.minPrice ?? null), maxPrice: millions(value.maxPriceHuf ?? value.maxPrice ?? null),
     minArea: numeric(value.minArea ?? value.minAreaSqm ?? null), maxArea: numeric(value.maxArea ?? value.maxAreaSqm ?? null),
@@ -109,6 +115,8 @@ function searchFromApi(value) {
     constructionAges:value.constructionAges, views:value.views, ceilingHeight:value.ceilingHeight, floors:value.floors, heatingTypes:value.heatingTypes,
     archived: !!(value.archived ?? value.isArchived)
   });
+  search.searchSpecificity = Number(value.searchSpecificity ?? searchSpecificity(search));
+  return search;
 }
 function inputNumber(value, name, nullable = false) {
   if (value === '' || value == null) {
@@ -177,7 +185,8 @@ function candidateFromApi(item,activeKind) {
   const propertyId=String(item.propertyId??rawProperty?.id??''),searchId=String(item.searchId??item.searchRequestId??rawSearch?.id??'');
   const property=activeKind==='search';
   const entity=property?propertyFromApi(rawProperty||item):searchFromApi(rawSearch||item);
-  return {...entity,kind:property?'property':'search',score:Math.round(Number(item.compatibilityScore??item.score??100)),reasons:clone(item.reasons||[]),pair:{propertyId,searchId},likedYou:!!(item.likedYou??item.hasLiked)};
+  const score=Math.round(Number(item.compatibilityScore??item.score??100));
+  return {...entity,kind:property?'property':'search',score,isExact:item.isExact??score===100,searchSpecificity:Number(item.searchSpecificity??entity.searchSpecificity??0),valueForMoney:Number(item.valueForMoney??0),reasons:clone(item.reasons||[]),pair:{propertyId,searchId},likedYou:!!(item.likedYou??item.hasLiked)};
 }
 function notificationFromApi(value) {
   return {id:String(value.id),kind:String(value.kind||''),amount:Number(value.amount||0),text:String(value.text||''),decisionId:String(value.decisionId||''),createdAt:value.createdAt,readAt:value.readAt??null};
@@ -218,19 +227,21 @@ export class ApiModel {
       reportedEntities:reportSummaries(entities.reportedEntities)
     };
   }
-  async feed() {
+  async recommendations({includeApproximate=false}={}) {
     if (!this.active) await this.getState();
-    if (!this.active?.id) return [];
-    const response = await this.call('/feed');
-    return rows(response).map(item => {
-      const rawProperty = item.property, rawSearch = item.search || item.searchRequest;
-      const propertyId = String(item.propertyId ?? rawProperty?.id ?? (this.active.kind === 'property' ? this.active.id : item.id));
-      const searchId = String(item.searchId ?? item.searchRequestId ?? rawSearch?.id ?? (this.active.kind === 'search' ? this.active.id : item.id));
-      const isProperty = this.active.kind === 'search';
-      const entity = isProperty ? propertyFromApi(rawProperty || item) : searchFromApi(rawSearch || item);
-      return { ...entity, kind: isProperty ? 'property' : 'search', score: Math.round(Number(item.compatibilityScore ?? item.score ?? 100)), reasons: clone(item.reasons || []), pair: { propertyId, searchId }, likedYou: !!(item.likedYou ?? item.hasLiked), ...(isProperty ? {} : { buyerName: item.buyerName || entity.buyerName || 'Érdeklődő', avatar: item.avatar || entity.avatar || 'É', financing: item.financing || entity.financing }) };
+    const requestedActive=this.active?{...this.active}:null;
+    if (!requestedActive?.id) return {active:null,items:[],hasApproximate:false,requiresApproximateConsent:false,stage:'empty'};
+    const response = await this.call('/feed'+(includeApproximate===true?'?includeApproximate=true':''));
+    const rawActive=response?.active;
+    const active=Object.hasOwn(response||{},'active')?(rawActive&&['property','search'].includes(rawActive.kind)&&rawActive.id!=null?{kind:rawActive.kind,id:String(rawActive.id)}:null):requestedActive;
+    const items=rows(response).map(item=>{
+      const candidate=candidateFromApi(item,requestedActive.kind);
+      return candidate.kind==='search'?{...candidate,buyerName:item.buyerName||candidate.buyerName||'Érdeklődő',avatar:item.avatar||candidate.avatar||'É',financing:item.financing||candidate.financing}:candidate;
     });
+    return {active,items,hasApproximate:!!response?.hasApproximate,requiresApproximateConsent:!!response?.requiresApproximateConsent,
+      stage:['exact','approximate','empty'].includes(response?.stage)?response.stage:items.length?'exact':'empty'};
   }
+  async feed(options={}) { return (await this.recommendations(options)).items; }
   async incomingLikes(options={}) {
     const {offset,limit}=normalizeIncomingPagination(options);
     const query=new URLSearchParams({offset:String(offset),limit:String(limit)});
@@ -255,8 +266,8 @@ export class ApiModel {
     if(typeof id!=='string'||!id.trim())throw new Error('Érvénytelen értesítés.');
     return notificationFromApi(await this.call(`/notifications/${encodeURIComponent(id)}/read`,'PUT'));
   }
-  async decide(item, liked) {
-    const result = await this.call('/decisions', 'POST', { propertyId: item.pair.propertyId, searchRequestId: item.pair.searchId, liked: inputBoolean(liked) });
+  async decide(item, liked, {allowApproximate=false}={}) {
+    const result = await this.call('/decisions', 'POST', { propertyId: item.pair.propertyId, searchRequestId: item.pair.searchId, liked: inputBoolean(liked), ...(allowApproximate===true?{allowApproximate:true}:{}) });
     let match = result.match ? matchFromApi(result.match) : null;
     if (!match && result.matchId) match = (await this.matches()).find(m => m.id === String(result.matchId)) || null;
     return { match, charged: Number(result.charged ?? result.creditsSpent ?? result.creditCost ?? 0) };

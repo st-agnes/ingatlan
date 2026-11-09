@@ -54,3 +54,16 @@ Házhoz a `lotArea` pozitív számként, m²-ben adható meg; az üres mező `nu
 ## Meglévő adatok
 
 A demó továbbra is az `otthonra.demo.v3` kulcsot használja. A modell a korábbi helyadatokat betöltéskor értelmezi, és megőrzi az entitások azonosítóit, döntéseit, párosításait és kreditegyenlegét. A MySQL-adatbázishoz a backend `20261102-locations-and-lot-area` additív `SchemaUpgrade` frissítése tartozik: `Database__Initialize=true` mellett az `EnsureCreated` után fut, meglévő sorok törlése nélkül. A régi helymezők olvasáskor is használhatók; nincs szükség adatbázis- vagy kötettörlésre. Részletek: [backend/README.md](../backend/README.md).
+
+
+## Pontos és részleges ajánlások
+
+A `GET /api/feed` alapértelmezésben csak a pontos, 100%-os ajánlásokat adja. A válasz az `items`, `likeCost`, `sellerLikeCost` mellett `active`, `stage`, `hasApproximate`, `requiresApproximateConsent` mezőket tartalmaz. A `stage` értéke `exact`, `approximate` vagy `empty`. A `GET /api/feed?includeApproximate=true` is előbb a még el nem bírált pontos találatokat adja; részlegeseket csak ezek elfogyása után. Az üres, hozzájárulást kérő válasz nem feltétlenül jelenti a jelöltek teljes hiányát.
+
+A kártya `compatibilityScore` értéke 0–100, `isExact` jelzi a teljes feltételteljesítést. A `valueForMoney` belső sorrendezési érték, a `searchSpecificity` a keresés 0–100 közötti specializáltsága. A százalékot nem szabad `value || 97` jellegű helyettesítéssel megjeleníteni: a 0 is érvényes. A `reasons` részleges kártyánál a tényleges eltéréseket nevezi meg.
+
+A `POST /api/decisions` részleges párnál explicit `allowApproximate: true` mezőt vár. Ez önmagában nem kerülheti meg a helyszín-/típus-/tulajdonosi szabályokat vagy a még meglévő pontos ajánlásokat. A feltételek közben változhatnak, ezért az elutasítást a kliensnek kezelnie és az ajánlást frissítenie kell. Pontos párnál a régi kérésforma továbbra is megfelelő. A már rögzített döntés azonos újraküldése továbbra is díjmentes.
+
+A böngészős modell és adapter `recommendations({includeApproximate})` metódusa visszaadja a szakaszadatokat, míg a korábbi `feed(options)` továbbra is kártyatömböt ad. A `decide(item, liked, {allowApproximate})` adja tovább az explicit engedélyt. Az engedélyt a kliens az aktív entitáshoz és aktuális feltételeihez köti; váltás, szerkesztés és kijelentkezés után újra kell kérnie.
+
+A Kedveltek listájában a `compatible` a kizáró feltételek szerinti jogosultságot, az `isExact` a teljes egyezést jelzi. Korábbi, részleges pár látható maradhat, de az arra adott új döntéshez ugyanaz a hozzájárulási szabály tartozik. Kontaktadat továbbra is kizárólag kölcsönös kedvelés után érhető el.

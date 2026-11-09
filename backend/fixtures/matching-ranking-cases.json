@@ -1,0 +1,311 @@
+[
+  {
+    "name": "unbounded-exact",
+    "property": {},
+    "search": {},
+    "eligible": true,
+    "score": 100,
+    "specificity": 3,
+    "valueForMoney": 0.75375
+  },
+  {
+    "name": "above-budget",
+    "property": {
+      "price": 110
+    },
+    "search": {
+      "maxPrice": 100
+    },
+    "eligible": true,
+    "score": 90
+  },
+  {
+    "name": "below-one-million-unit-parity",
+    "property": {
+      "price": 0.6
+    },
+    "search": {
+      "maxPrice": 0.5
+    },
+    "eligible": true,
+    "score": 80
+  },
+  {
+    "name": "zero-maximum",
+    "property": {
+      "price": 0.6
+    },
+    "search": {
+      "maxPrice": 0
+    },
+    "eligible": true,
+    "score": 0
+  },
+  {
+    "name": "sole-low-weight-minimum",
+    "property": {
+      "price": 40
+    },
+    "search": {
+      "minPrice": 50
+    },
+    "eligible": true,
+    "score": 80
+  },
+  {
+    "name": "half-room-relative-shortage",
+    "property": {
+      "rooms": 0.25
+    },
+    "search": {
+      "minRooms": 0.5
+    },
+    "eligible": true,
+    "score": 50
+  },
+  {
+    "name": "condition-better-than-minimum",
+    "property": {
+      "condition": "Új/felújított"
+    },
+    "search": {
+      "conditions": [
+        "Átlagos"
+      ]
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "condition-two-levels-worse",
+    "property": {
+      "condition": "Felújítandó"
+    },
+    "search": {
+      "conditions": [
+        "Jó"
+      ]
+    },
+    "eligible": true,
+    "score": 33
+  },
+  {
+    "name": "floor-nearest-selection",
+    "property": {
+      "floor": 4
+    },
+    "search": {
+      "floors": [
+        1,
+        5
+      ]
+    },
+    "eligible": true,
+    "score": 80
+  },
+  {
+    "name": "floor-unknown",
+    "property": {},
+    "search": {
+      "floors": [
+        1
+      ]
+    },
+    "eligible": true,
+    "score": 0
+  },
+  {
+    "name": "age-adjacent",
+    "property": {
+      "constructionAge": "10–30 év közötti"
+    },
+    "search": {
+      "constructionAges": [
+        "10 évnél fiatalabb"
+      ]
+    },
+    "eligible": true,
+    "score": 75
+  },
+  {
+    "name": "weighted-price",
+    "property": {
+      "price": 150,
+      "rooms": 4,
+      "area": 80
+    },
+    "search": {
+      "maxPrice": 100,
+      "minRooms": 4,
+      "minArea": 80
+    },
+    "eligible": true,
+    "score": 77
+  },
+  {
+    "name": "weighted-rooms",
+    "property": {
+      "price": 100,
+      "rooms": 2,
+      "area": 80
+    },
+    "search": {
+      "maxPrice": 100,
+      "minRooms": 4,
+      "minArea": 80
+    },
+    "eligible": true,
+    "score": 84
+  },
+  {
+    "name": "weighted-area",
+    "property": {
+      "price": 100,
+      "rooms": 4,
+      "area": 40
+    },
+    "search": {
+      "maxPrice": 100,
+      "minRooms": 4,
+      "minArea": 80
+    },
+    "eligible": true,
+    "score": 89
+  },
+  {
+    "name": "unknown-category",
+    "property": {},
+    "search": {
+      "buildings": [
+        "Tégla"
+      ]
+    },
+    "eligible": true,
+    "score": 0
+  },
+  {
+    "name": "house-irrelevant-fields-and-land-cap",
+    "property": {
+      "type": "Ház",
+      "price": 100,
+      "area": 100,
+      "rooms": 4,
+      "lotArea": 50000
+    },
+    "search": {
+      "type": "Ház",
+      "floors": [
+        11
+      ],
+      "balcony": true,
+      "elevator": true
+    },
+    "eligible": true,
+    "score": 100,
+    "valueForMoney": 1.206
+  },
+  {
+    "name": "wrong-type",
+    "property": {
+      "type": "Ház"
+    },
+    "search": {},
+    "eligible": false,
+    "score": 0
+  },
+  {
+    "name": "wrong-location",
+    "property": {
+      "locationId": "city:Szeged"
+    },
+    "search": {},
+    "eligible": false,
+    "score": 0
+  },
+  {
+    "name": "full-specialization",
+    "property": {},
+    "search": {
+      "minPrice": 70,
+      "maxPrice": 90,
+      "minRooms": 2,
+      "maxRooms": 3,
+      "minArea": 50,
+      "maxArea": 70,
+      "conditions": [
+        "Jó"
+      ],
+      "buildings": [
+        "Tégla"
+      ],
+      "heatingTypes": [
+        "Hőszivattyú"
+      ],
+      "constructionAges": [
+        "10 évnél fiatalabb"
+      ],
+      "views": [
+        "Kertre néző"
+      ],
+      "ceilingHeight": "3 m alatti",
+      "floors": [
+        1
+      ],
+      "balcony": true,
+      "elevator": true
+    },
+    "specificity": 86
+  },
+  {
+    "name": "legacy-property-empty-id",
+    "property": {
+      "locationId": "",
+      "city": "Debrecen"
+    },
+    "search": {},
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "legacy-property-whitespace-id",
+    "property": {
+      "locationId": "  ",
+      "city": "Debrecen"
+    },
+    "search": {},
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "legacy-search-empty-selection",
+    "property": {},
+    "search": {
+      "locationIds": [],
+      "city": "Debrecen"
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "explicit-invalid-property-id-no-fallback",
+    "property": {
+      "locationId": "city:missing",
+      "city": "Debrecen"
+    },
+    "search": {},
+    "eligible": false,
+    "score": 0
+  },
+  {
+    "name": "explicit-invalid-search-id-no-fallback",
+    "property": {},
+    "search": {
+      "locationIds": [
+        "city:missing"
+      ],
+      "city": "Debrecen"
+    },
+    "eligible": false,
+    "score": 0
+  }
+]

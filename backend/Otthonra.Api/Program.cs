@@ -170,34 +170,10 @@ api.MapDelete("/searches/{id:guid}", async (Guid id, AppDb db, ClaimsPrincipal p
     var uid = principal.UserId(); var s = await db.SearchRequests.SingleOrDefaultAsync(x => x.Id == id && x.OwnerId == uid) ?? throw new ApiException(404, "A keresési igény nem található.");
     s.Archived = true; await ClearArchivedActive(db, uid, id, true); await db.SaveChangesAsync(); return Results.NoContent();
 });
-api.MapGet("/feed", async (AppDb db, ClaimsPrincipal principal) =>
+api.MapGet("/feed", async (bool? includeApproximate, AppDb db, ClaimsPrincipal principal, CancellationToken cancellationToken) =>
 {
-    var user = await CurrentUser(db, principal); var items = new List<FeedItem>();
-    if (user.ActiveKind == "search")
-    {
-        var s = await db.SearchRequests.AsNoTracking().SingleOrDefaultAsync(x => x.Id == user.ActiveEntityId && x.OwnerId == user.Id && !x.Archived);
-        if (s is not null)
-        {
-            var seen = await db.Decisions.Where(x => x.SearchRequestId == s.Id && x.ActorKind == "search").Select(x => x.PropertyId).ToListAsync();
-            var likes = await db.Decisions.Where(x => x.SearchRequestId == s.Id && x.ActorKind == "property" && x.Liked).Select(x => x.PropertyId).ToListAsync();
-            var properties = await db.Properties.AsNoTracking().Where(x => x.OwnerId != user.Id && !x.Archived && !seen.Contains(x.Id)).ToListAsync();
-            var ownerTypes = await OwnerAccountTypes(db, properties.Select(p => p.OwnerId));
-            items.AddRange(properties.Where(p => AccountTypes.CanInteract(user.AccountType, ownerTypes[p.OwnerId]) && Rules.Compatible(p, s)).Select(p => new FeedItem(Dto.Property(p, ownerAccountType: ownerTypes[p.OwnerId]), Dto.Search(s, user.AccountType), p.Id, s.Id, Rules.Score(p, s), Rules.Reasons(p, s), likes.Contains(p.Id))));
-        }
-    }
-    else if (user.ActiveKind == "property")
-    {
-        var p = await db.Properties.AsNoTracking().SingleOrDefaultAsync(x => x.Id == user.ActiveEntityId && x.OwnerId == user.Id && !x.Archived);
-        if (p is not null)
-        {
-            var seen = await db.Decisions.Where(x => x.PropertyId == p.Id && x.ActorKind == "property").Select(x => x.SearchRequestId).ToListAsync();
-            var likes = await db.Decisions.Where(x => x.PropertyId == p.Id && x.ActorKind == "search" && x.Liked).Select(x => x.SearchRequestId).ToListAsync();
-            var searches = await db.SearchRequests.AsNoTracking().Where(x => x.OwnerId != user.Id && !x.Archived && !seen.Contains(x.Id)).ToListAsync();
-            var ownerTypes = await OwnerAccountTypes(db, searches.Select(s => s.OwnerId));
-            items.AddRange(searches.Where(s => AccountTypes.CanInteract(user.AccountType, ownerTypes[s.OwnerId]) && Rules.Compatible(p, s)).Select(s => new FeedItem(Dto.Property(p, true, user.AccountType), Dto.Search(s, ownerTypes[s.OwnerId]), p.Id, s.Id, Rules.Score(p, s), Rules.Reasons(p, s), likes.Contains(s.Id))));
-        }
-    }
-    return Results.Ok(new { items = items.OrderByDescending(x => x.LikedYou).ThenByDescending(x => x.CompatibilityScore).ThenBy(x => x.PropertyId).ThenBy(x => x.SearchRequestId).Take(50), sellerLikeCost = Rules.SellerLikeCost, likeCost = AccountTypes.LikeCost(user.AccountType, user.ActiveKind) });
+    var user = await CurrentUser(db, principal);
+    return Results.Ok(await RecommendationFeed.GetAsync(db, user, includeApproximate ?? false, cancellationToken));
 });
 api.MapGet("/incoming-likes", async (int? offset, int? limit, AppDb db, ClaimsPrincipal principal) =>
 {
@@ -234,18 +210,21 @@ api.MapGet("/incoming-likes", async (int? offset, int? limit, AppDb db, ClaimsPr
     var items = rows.Select(row => {
         var own = ownDecisions.SingleOrDefault(decision => decision.PropertyId == row.Property.Id && decision.SearchRequestId == row.Search.Id);
         var match = matches.SingleOrDefault(item => item.PropertyId == row.Property.Id && item.SearchRequestId == row.Search.Id);
-        var compatible = Rules.Compatible(row.Property, row.Search);
+        var prepared = MatchingRanking.Prepare(row.Search);
+        var evaluation = MatchingRanking.Evaluate(row.Property, prepared);
+        var compatible = evaluation.Eligible;
         return new IncomingLikeItem(Dto.Property(row.Property, ownerAccountType: row.PropertyOwnerType),
             Dto.Search(row.Search, row.SearchOwnerType), row.Property.Id, row.Search.Id,
-            compatible ? Rules.Score(row.Property, row.Search) : 0,
-            compatible ? Rules.Reasons(row.Property, row.Search) : [], true, row.Decision.CreatedAt,
-            own is null ? null : own.Liked ? "liked" : "passed", match?.Id, compatible);
+            compatible ? evaluation.Score : 0,
+            compatible ? evaluation.Reasons : [], true, row.Decision.CreatedAt,
+            own is null ? null : own.Liked ? "liked" : "passed", match?.Id, compatible,
+            evaluation.IsExact, MatchingRanking.ValueForMoney(row.Property), prepared.Specificity);
     }).ToArray();
     return Results.Ok(new { active = (object)new { kind, id = activeId }, items, total,
         offset = page.Offset, limit = page.Limit, hasMore = page.Offset + items.Length < total,
         likeCost = AccountTypes.LikeCost(user.AccountType, kind) });
 });
-api.MapPost("/decisions", async (DecisionInput input, AppDb db, ClaimsPrincipal principal) =>
+api.MapPost("/decisions", async (DecisionInput input, AppDb db, ClaimsPrincipal principal, CancellationToken cancellationToken) =>
 {
     var uid = principal.UserId();
     await using var tx = await db.Database.BeginTransactionAsync(IsolationLevel.ReadCommitted);
@@ -268,7 +247,14 @@ api.MapPost("/decisions", async (DecisionInput input, AppDb db, ClaimsPrincipal 
         var previousMatch = await db.Matches.SingleOrDefaultAsync(x => x.PropertyId == p.Id && x.SearchRequestId == s.Id);
         await tx.CommitAsync(); return Results.Ok(new { matchId = previousMatch?.Id, charged = 0, credits = user.Credits });
     }
-    if (!Rules.Compatible(p, s)) throw new ApiException(400, "Az ingatlan nem felel meg az aktív keresési feltételeknek.");
+    var evaluation = MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s), includeReasons: false);
+    if (!evaluation.Eligible) throw new ApiException(400, "Az ingatlan helyszíne vagy típusa nem felel meg az aktív keresésnek.");
+    if (!evaluation.IsExact)
+    {
+        if (!input.AllowApproximate) throw new ApiException(400, "Előbb engedélyezd az alacsonyabb egyezésű találatokat.");
+        if (await RecommendationFeed.HasExactUnseenAsync(db, user, cancellationToken))
+            throw new ApiException(400, "Előbb nézd végig a teljes egyezésű találatokat.");
+    }
     var charge = AccountTypes.DecisionCost(user.AccountType, kind, input.Liked);
     if (user.Credits < charge) throw new ApiException(402, "Nincs elegendő kredited az ajánláshoz.");
     var decision = new Decision { PropertyId = p.Id, SearchRequestId = s.Id, ActorKind = kind!, ActorUserId = uid, Liked = input.Liked, Charged = charge };
@@ -345,7 +331,9 @@ static async Task<Dictionary<Guid, string>> OwnerAccountTypes(AppDb db, IEnumera
     if (ids.Length == 0) return new Dictionary<Guid, string>();
     return await db.Users.AsNoTracking().Where(user => ids.Contains(user.Id)).ToDictionaryAsync(user => user.Id, user => user.AccountType);
 }
-public record FeedItem(object Property, object SearchRequest, Guid PropertyId, Guid SearchRequestId, int CompatibilityScore, string[] Reasons, bool LikedYou);
+public record FeedItem(object Property, object SearchRequest, Guid PropertyId, Guid SearchRequestId, int CompatibilityScore,
+    string[] Reasons, bool LikedYou, bool IsExact = true, decimal ValueForMoney = 0, int SearchSpecificity = 0);
 public record IncomingLikeItem(object Property, object SearchRequest, Guid PropertyId, Guid SearchRequestId,
-    int CompatibilityScore, string[] Reasons, bool LikedYou, DateTime LikedAt, string? MyDecision, Guid? MatchId, bool Compatible);
+    int CompatibilityScore, string[] Reasons, bool LikedYou, DateTime LikedAt, string? MyDecision, Guid? MatchId, bool Compatible,
+    bool IsExact = true, decimal ValueForMoney = 0, int SearchSpecificity = 0);
 public partial class Program { }

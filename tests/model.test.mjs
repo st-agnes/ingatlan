@@ -183,6 +183,29 @@ test('an invalid stored property region never falls back to its central town for
  assert.equal(isCompatible({ownerId:'seller',type:'Lakás',location:{id:'area:Budapest'},city:'Budapest',price:60,area:60,rooms:3},{ownerId:'buyer',locationIds:['city:Budapest']}),false);
 });
 
+test('read migration preserves invalid explicit location IDs instead of reviving their legacy cities',()=>{
+ for(const invalidId of ['area:Budapest','city:Unknown']){
+  const storage=store();createModel(storage,()=> '2026-11-10T12:00:00Z').buyDemoCredits(1);
+  const raw=JSON.parse(storage.getItem(STORAGE_KEY)),property=raw.properties.find(item=>item.id==='p1');
+  property.locationId=invalidId;storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+  const m=createModel(storage,()=> '2026-11-10T12:00:00Z');
+  assert.equal(m.feed({includeApproximate:true}).some(item=>item.id==='p1'),false);
+ }
+ for(const invalidIds of [['city:Unknown'],['city:Budapest','city:Unknown'],'city:Budapest']){
+  const storage=store();createModel(storage,()=> '2026-11-10T12:00:00Z').buyDemoCredits(1);
+  const raw=JSON.parse(storage.getItem(STORAGE_KEY)),search=raw.searches.find(item=>item.id==='own-s1');
+  search.locationIds=invalidIds;storage.setItem(STORAGE_KEY,JSON.stringify(raw));const before=storage.getItem(STORAGE_KEY);
+  const m=createModel(storage,()=> '2026-11-10T12:00:00Z');
+  assert.deepEqual(m.getState().searches.find(item=>item.id==='own-s1').locationIds,invalidIds);
+  assert.deepEqual(m.feed({includeApproximate:true}),[]);
+  assert.equal(storage.getItem(STORAGE_KEY),before,'Read migration must preserve the original stored row');
+ }
+ const storage=store();createModel(storage,()=> '2026-11-10T12:00:00Z').buyDemoCredits(1);
+ const raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.properties.find(item=>item.id==='p1').locationId='  ';
+ raw.searches.find(item=>item.id==='own-s1').locationIds=[];storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ assert.equal(createModel(storage,()=> '2026-11-10T12:00:00Z').feed().some(item=>item.id==='p1'),true,'Genuinely blank legacy selections still resolve known cities');
+});
+
 test('explicit room composition survives save, reload and old-client total-only edits without changing weighted search matching',()=>{
  const storage=store(),m=createModel(storage);
  const p=m.saveEntity('property',{title:'Fél szobás otthon',locationId:'city:Debrecen',type:'Lakás',price:60,area:70,wholeRooms:2,halfRooms:3});
@@ -326,7 +349,7 @@ test('incoming likes include only the active entity, expose no contacts, and ret
  raw.decisions.push({id:'own-pass',actorKind:'search',actorId:'own-s1',propertyId:'p3',searchId:'own-s1',liked:false,createdAt:'2026-11-08T00:00:01Z'});
  raw.decisions.push({id:'different-active',actorKind:'property',actorId:'p4',propertyId:'p4',searchId:'own-s2',liked:true,createdAt:'2026-11-09T00:00:00Z'});
  raw.searches.find(item=>item.id==='own-s1').maxPrice=70;storage.setItem(STORAGE_KEY,JSON.stringify(raw));const m=createModel(storage),before=storage.getItem(STORAGE_KEY),page=m.incomingLikes({limit:2});
- assert.deepEqual(page.active,{kind:'search',id:'own-s1'});assert.equal(page.total,5);assert.equal(page.offset,0);assert.equal(page.limit,2);assert.equal(page.hasMore,true);assert.equal(page.likeCost,0);assert.equal(page.items[0].id,'p3');assert.equal(page.items[0].myDecision,'passed');assert.equal(page.items[0].compatible,false);
+ assert.deepEqual(page.active,{kind:'search',id:'own-s1'});assert.equal(page.total,5);assert.equal(page.offset,0);assert.equal(page.limit,2);assert.equal(page.hasMore,true);assert.equal(page.likeCost,0);assert.equal(page.items[0].id,'p3');assert.equal(page.items[0].myDecision,'passed');assert.equal(page.items[0].compatible,true);assert.equal(page.items[0].isExact,false);assert.ok(page.items[0].score<100);
  assert.equal(page.items[1].id,'p1');assert.equal(page.items[1].address,'');assert.equal(page.items[1].myDecision,null);assert.equal(page.items[1].likedYou,true);assert.deepEqual(page.items[1].pair,{propertyId:'p1',searchId:'own-s1'});
  for(const item of page.items){assert.equal('phone' in item,false);assert.equal('email' in item,false);assert.equal('partner' in item,false);assert.equal('contact' in item,false);}
  const rest=m.incomingLikes({offset:2,limit:100});assert.equal(rest.hasMore,false);assert.equal(rest.items.length,3);assert.ok(rest.items.every(item=>item.myDecision==='liked'&&item.matchId));assert.equal(storage.getItem(STORAGE_KEY),before,'Viewing incoming likes is free and read-only');
@@ -456,4 +479,120 @@ test('public demo refresh changes selected membership with deterministic randomn
   assert.doesNotMatch(JSON.stringify(preview),/@|Pozsonyi|public-search|public-property/);previous=current;
  }
  const empty=demoLanding({id:'HU321',label:'Hajdú-Bihar'},()=>0);assert.deepEqual(empty.searches,[]);assert.deepEqual(empty.properties,[]);
+});
+
+function rankedFixture({seller=false, manyExact=0}={}) {
+ const storage=store(),clock=()=> '2026-11-10T12:00:00.000Z';
+ createModel(storage,clock).buyDemoCredits(1);
+ const raw=JSON.parse(storage.getItem(STORAGE_KEY));
+ const property=(id,extras={})=>({id,ownerId:'u1',title:id,locationId:'city:Debrecen',city:'Debrecen',district:'',type:'Lakás',
+  price:80,area:60,rooms:3,wholeRooms:3,halfRooms:0,condition:'Jó',building:'Tégla',floor:2,balcony:false,elevator:false,
+  heatingType:'Gázkazán',address:'Privát utca 99',images:[],archived:false,createdAt:clock(),...extras});
+ const search=(id,extras={})=>({id,ownerId:'me',title:id,locationIds:['city:Debrecen'],city:'Debrecen',type:'Lakás',
+  minPrice:null,maxPrice:100,minArea:60,maxArea:null,minRooms:3,maxRooms:null,conditions:[],buildings:[],floors:[],
+  constructionAges:[],views:[],heatingTypes:[],ceilingHeight:'',balcony:false,elevator:false,archived:false,createdAt:clock(),...extras});
+ raw.decisions=[];raw.matches=[];raw.reports=[];raw.notifications=[];
+ raw.searches=[search('own-query')];
+ raw.properties=[property('exact-liked',{price:95}),property('exact-value',{price:70,area:75}),
+  property('near-small',{ownerId:'u3',price:110}),property('near-large',{ownerId:'u4',price:150}),
+  property('wrong-place',{ownerId:'u3',locationId:'city:Szeged',city:'Szeged'}),
+  property('wrong-type',{ownerId:'u3',type:'Ház',floor:null,lotArea:700}),property('archived',{archived:true}),
+  property('own-home',{ownerId:'me'})];
+ raw.active={kind:seller?'property':'search',id:seller?'own-home':'own-query'};
+ const incoming=(id,propertyId,searchId,actorKind)=>({id,propertyId,searchId,actorKind,
+  actorId:actorKind==='property'?propertyId:searchId,liked:true,charged:0,createdAt:clock()});
+ if(seller){
+  raw.searches=[search('own-query'),search('liked-broad',{ownerId:'u1',minArea:null,minRooms:null,maxPrice:200}),
+   search('specific',{ownerId:'u3',minPrice:75,maxPrice:85,minArea:58,maxArea:62,minRooms:3,maxRooms:3,conditions:['Jó'],buildings:['Tégla'],floors:[2],heatingTypes:['Gázkazán']}),
+   search('broad',{ownerId:'u4',maxPrice:200,minArea:null,minRooms:null}),
+   search('liked-near',{ownerId:'u1',maxPrice:70}),search('closer-near',{ownerId:'u3',maxPrice:79}),
+   search('wrong-place-query',{ownerId:'u3',locationIds:['city:Szeged'],city:'Szeged'}),
+   search('wrong-type-query',{ownerId:'u3',type:'Ház'})];
+  raw.decisions.push(incoming('liked-broad-first','own-home','liked-broad','search'),incoming('liked-near-first','own-home','liked-near','search'));
+ }else{
+  raw.decisions.push(incoming('liked-exact-first','exact-liked','own-query','property'),incoming('liked-near-first','near-large','own-query','property'));
+  if(manyExact)raw.properties=[...Array.from({length:manyExact},(_,i)=>property(`many-${String(i).padStart(3,'0')}`)),property('near-small',{price:110})];
+ }
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ return {m:createModel(storage,clock),storage,property,search};
+}
+
+test('exact buyer recommendations are all 100 percent and exhaust before consent-only partial recommendations',()=>{
+ const {m,storage}=rankedFixture();
+ const exact=m.recommendations({includeApproximate:true});
+ assert.deepEqual(exact.items.map(item=>item.id),['exact-liked','exact-value']);
+ assert.equal(exact.stage,'exact');assert.equal(exact.hasApproximate,true);assert.equal(exact.requiresApproximateConsent,false);
+ assert.ok(exact.items.every(item=>item.isExact&&item.score===100&&item.address===''));
+ const nearPair={pair:{propertyId:'near-small',searchId:'own-query'}},before=storage.getItem(STORAGE_KEY);
+ assert.throws(()=>m.decide(nearPair,true,{allowApproximate:true}),/tökéletes egyezéseket/);
+ assert.equal(storage.getItem(STORAGE_KEY),before,'An early partial decision must not change credits or decisions');
+ for(const item of exact.items)m.decide(item,false);
+ const pending=m.recommendations();
+ assert.deepEqual(pending.items,[]);assert.equal(pending.stage,'empty');assert.equal(pending.requiresApproximateConsent,true);
+ assert.deepEqual(m.feed(),[]);assert.equal(m.getState().credits,25);
+ const partial=m.recommendations({includeApproximate:true});
+ assert.equal(partial.stage,'approximate');assert.equal(partial.requiresApproximateConsent,false);
+ assert.deepEqual(partial.items.map(item=>item.id),['near-small','near-large'],'Buyer percentage precedes the liked-you tie breaker');
+ assert.ok(partial.items.every(item=>!item.isExact&&item.score<100));
+ assert.throws(()=>m.decide(partial.items[0],false),/engedélyezd/);
+ m.decide(partial.items[0],false,{allowApproximate:true});
+ const result=m.decide(m.feed({includeApproximate:true})[0],true,{allowApproximate:true});
+ assert.equal(result.charged,0);assert.ok(result.match);assert.ok(result.match.partner.phone);
+});
+
+test('buyer ties prioritize incoming likes and then the stronger price-to-living-area value',()=>{
+ const {m,storage}=rankedFixture();
+ const raw=JSON.parse(storage.getItem(STORAGE_KEY));
+ raw.decisions=[];raw.properties=raw.properties.filter(item=>item.id.startsWith('exact-'));
+ raw.properties.push({...raw.properties[0],id:'exact-poor',price:100,area:60});
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ const model=createModel(storage,()=> '2026-11-10T12:00:00.000Z'),items=model.feed();
+ assert.deepEqual(items.map(item=>item.id),['exact-value','exact-liked','exact-poor']);
+ assert.ok(items.every(item=>item.score===100));assert.ok(items[0].valueForMoney>items[1].valueForMoney);
+ assert.ok(items.every(item=>Number.isInteger(item.searchSpecificity)));
+});
+
+test('seller recommendations prioritize incoming likes and then exact search specialization',()=>{
+ const {m}=rankedFixture({seller:true}),page=m.recommendations({includeApproximate:true});
+ assert.deepEqual(page.items.map(item=>item.id),['liked-broad','specific','broad']);
+ assert.ok(page.items.every(item=>item.score===100));assert.ok(page.items[1].searchSpecificity>page.items[2].searchSpecificity);
+ for(const item of page.items)m.decide(item,false);
+ assert.equal(m.recommendations().requiresApproximateConsent,true);
+ const partial=m.feed({includeApproximate:true});
+ assert.deepEqual(partial.map(item=>item.id),['liked-near','closer-near']);
+ assert.ok(partial[0].score<partial[1].score,'Seller incoming likes precede percentage across partial matches');
+ assert.throws(()=>m.decide(partial[0],true),/engedélyezd/);
+ const result=m.decide(partial[0],true,{allowApproximate:true});assert.equal(result.charged,2);assert.ok(result.match);
+});
+
+test('hard location and type exclusions cannot be bypassed by approximate consent on either discovery side',()=>{
+ for(const seller of [false,true]){
+  const {m,storage}=rankedFixture({seller}),before=storage.getItem(STORAGE_KEY);
+  const pairs=seller?[{propertyId:'own-home',searchId:'wrong-place-query'},{propertyId:'own-home',searchId:'wrong-type-query'}]
+   :[{propertyId:'wrong-place',searchId:'own-query'},{propertyId:'wrong-type',searchId:'own-query'},{propertyId:'own-home',searchId:'own-query'}];
+  for(const pair of pairs)for(const liked of [false,true])assert.throws(()=>m.decide({pair},liked,{allowApproximate:true}),/nem érhető/);
+  assert.equal(storage.getItem(STORAGE_KEY),before);
+  assert.ok(m.feed({includeApproximate:true}).every(item=>!item.id.startsWith('wrong-')));
+ }
+});
+
+test('all exact pages remain ahead of partial matches and no opt-in survives a normal reload implicitly',()=>{
+ const {m,storage}=rankedFixture({manyExact:51});
+ assert.equal(m.feed({includeApproximate:true}).length,50);
+ for(let count=0;count<50;count++)m.decide(m.feed()[0],false);
+ assert.equal(m.feed({includeApproximate:true}).length,1);assert.equal(m.feed()[0].score,100);
+ m.decide(m.feed()[0],false);
+ assert.equal(m.recommendations().requiresApproximateConsent,true);assert.equal(m.feed({includeApproximate:true})[0].id,'near-small');
+ const reloaded=createModel(storage,()=> '2026-11-10T12:00:00.000Z');
+ assert.deepEqual(reloaded.feed(),[]);assert.equal(reloaded.recommendations().requiresApproximateConsent,true);
+});
+
+test('search specialization is derived for own entities and cannot be forged or persisted by form payloads',()=>{
+ const {m,storage,search}=rankedFixture();
+ const own=m.getState().searches.find(item=>item.id==='own-query');assert.ok(Number.isInteger(own.searchSpecificity));
+ const saved=m.saveEntity('search',{...search('unused'),title:'Tágabb új keresés',maxPrice:null,minArea:null,minRooms:null,searchSpecificity:100});
+ assert.ok(saved.searchSpecificity<own.searchSpecificity);
+ const stored=JSON.parse(storage.getItem(STORAGE_KEY)).searches.find(item=>item.id===saved.id);
+ assert.equal(Object.hasOwn(stored,'searchSpecificity'),false);
+ assert.equal(createModel(storage).getState().searches.find(item=>item.id===saved.id).searchSpecificity,saved.searchSpecificity);
 });
