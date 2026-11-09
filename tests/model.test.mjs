@@ -335,11 +335,12 @@ test('incoming likes include only the active entity, expose no contacts, and ret
 });
 
 test('incoming pagination is stable, excludes invalid counterparties and isolates all agent interactions',()=>{
- const storage=store(),initial=createModel(storage);initial.buyDemoCredits(1);const raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.users.find(user=>user.id==='me').accountType='agent';
+ // Seed existing likes before the equal-time pagination candidates, independent of the wall clock.
+ const storage=store(),initial=createModel(storage,()=> '2026-11-09T11:00:00.000Z');initial.buyDemoCredits(1);const raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.users.find(user=>user.id==='me').accountType='agent';
  raw.decisions=raw.decisions.filter(decision=>decision.id!=='seed-prelike');
  for(const [index,id] of ['p1','p2','p3','p4'].entries())raw.decisions.push({id:'same-time-'+index,actorKind:'property',actorId:id,propertyId:id,searchId:'own-s1',liked:true,createdAt:'2026-11-09T12:00:00Z'});
- raw.properties.find(item=>item.id==='p4').archived=true;storage.setItem(STORAGE_KEY,JSON.stringify(raw));const m=createModel(storage);const first=m.incomingLikes({limit:1}),next=m.incomingLikes({offset:1,limit:1});assert.equal(first.items[0].id,'p3');assert.equal(next.items[0].id,'p1');assert.ok(m.incomingLikes().items.every(item=>item.ownerAccountType==='private'));assert.equal(first.likeCost,1);
- const noActive=JSON.parse(storage.getItem(STORAGE_KEY));noActive.active={kind:'search',id:null};storage.setItem(STORAGE_KEY,JSON.stringify(noActive));assert.deepEqual(createModel(storage).incomingLikes(),{active:null,items:[],total:0,offset:0,limit:50,hasMore:false,likeCost:0});
+ raw.properties.find(item=>item.id==='p4').archived=true;storage.setItem(STORAGE_KEY,JSON.stringify(raw));const m=createModel(storage,()=> '2026-11-09T13:00:00.000Z');const first=m.incomingLikes({limit:1}),next=m.incomingLikes({offset:1,limit:1});assert.equal(first.items[0].id,'p3');assert.equal(next.items[0].id,'p1');assert.ok(m.incomingLikes().items.every(item=>item.ownerAccountType==='private'));assert.equal(first.likeCost,1);
+ const noActive=JSON.parse(storage.getItem(STORAGE_KEY));noActive.active={kind:'search',id:null};storage.setItem(STORAGE_KEY,JSON.stringify(noActive));assert.deepEqual(createModel(storage,()=> '2026-11-09T13:00:00.000Z').incomingLikes(),{active:null,items:[],total:0,offset:0,limit:50,hasMore:false,likeCost:0});
 });
 
 const REFUND_START='2026-11-01T12:00:00.000Z';
