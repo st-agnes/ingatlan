@@ -3,7 +3,11 @@
 DROP TABLE IF EXISTS `SearchLocations`;
 ALTER TABLE `Properties` DROP INDEX `IX_Properties_Archived_Type_LocationId`, DROP INDEX `IX_Properties_Archived_Type_City`;
 ALTER TABLE `SearchRequests` DROP INDEX `IX_SearchRequests_Archived_Type_City`;
-ALTER TABLE `Decisions` DROP INDEX `IX_Decisions_SearchRequestId_ActorKind_PropertyId`;
+-- The current composite index also supports the search foreign key. Restore
+-- a legacy-style supporting index before removing the new recommendation one.
+ALTER TABLE `Decisions`
+  ADD INDEX `IX_Decisions_SearchRequestId_UpgradeFixture` (`SearchRequestId`),
+  DROP INDEX `IX_Decisions_SearchRequestId_ActorKind_PropertyId`;
 DROP TABLE IF EXISTS `UserNotifications`;
 DROP TABLE IF EXISTS `UserReports`;
 ALTER TABLE `CreditEntries` DROP FOREIGN KEY `FK_CreditEntries_Decisions_RefundedDecisionId`, DROP INDEX `IX_CreditEntries_RefundedDecisionId`, DROP COLUMN `RefundedDecisionId`;
