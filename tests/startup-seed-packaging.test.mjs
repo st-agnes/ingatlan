@@ -35,8 +35,11 @@ test('check mode rejects missing or drifted packaged data without replacing it',
 test('deployment requires startup seed readiness and does not run the external API importer',async()=>{
   const deployment=await readFile(new URL('../scripts/gcp/deploy-dev.sh',import.meta.url),'utf8');
   assert.doesNotMatch(deployment,/seed-dev\.mjs/);
-  assert.ok(deployment.includes(`health.testDataVersion !== '${TEST_FIXTURE_VERSION}'`));
-  assert.ok(deployment.includes(`backend.testDataVersion !== '${TEST_FIXTURE_VERSION}'`));
+  assert.match(deployment, /verify-dev\.mjs --api/);
+  assert.match(deployment, /verify-dev\.mjs --hosting/);
+  const verifier=await readFile(new URL('../scripts/gcp/verify-dev.mjs',import.meta.url),'utf8');
+  assert.match(verifier, /import \{TEST_FIXTURE_VERSION\} from '\.\/export-demo-data\.mjs'/);
+  assert.match(verifier, /health\?\.testDataVersion === TEST_FIXTURE_VERSION/);
   const runConfig=await readFile(new URL('../scripts/gcp/prepare-run.mjs',import.meta.url),'utf8');
   assert.match(runConfig,/literal\('Database__SeedTestFixtures', 'true'\)/);
   assert.match(runConfig,/literal\('Deployment__Environment', 'test'\)/);

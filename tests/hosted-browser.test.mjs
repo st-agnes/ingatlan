@@ -43,6 +43,10 @@ async function verifyViewport(browser, viewport) {
     viewport: {width: viewport.width, height: viewport.height},
     hasTouch: viewport.touch, reducedMotion: 'reduce'
   });
+  // Match the other functional browser suites: a late third-party font swap
+  // must not move the form between the touch action's hit test and its tap.
+  await context.route('https://fonts.googleapis.com/**', route => route.abort());
+  await context.route('https://fonts.gstatic.com/**', route => route.abort());
   // Emulate the one public file changed by prepare-site.mjs; every API call
   // continues through the real web proxy and the real MySQL-backed API.
   await context.route(`${origin}/runtime-config.js`, route => route.fulfill({
@@ -74,6 +78,8 @@ async function verifyViewport(browser, viewport) {
     assert.equal(await serverState(page), null);
 
     await interact(page.locator('[data-action="auth-mode"][data-mode="register"]'));
+    assert.equal(new URL(page.url()).hash, '#register', 'The registration action must switch the auth route');
+    await page.getByRole('heading', {name: 'Hozd létre a fiókodat.', exact: true}).waitFor();
     await page.locator('#f-name').fill(`Felhős Teszt ${viewport.name}`);
     await page.locator('#f-email').fill(email);
     await page.locator('#f-password').fill(password);
