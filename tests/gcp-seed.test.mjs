@@ -346,7 +346,11 @@ test('an explicitly named batch adds new identities once and preserves all previ
   await runSeed({config, fetchImpl: mock.fetchImpl, state});
   const before = JSON.stringify([...mock.users]);
   const result = await runSeed({config, fetchImpl: mock.fetchImpl, state, batch: 'november-1'});
-  assert.equal(result.createdUsers, 9);assert.equal(result.createdProperties, 108);assert.equal(result.createdSearches, 108);
+  assert.equal(result.createdUsers, 9);
+  const newOwners = new Set(createDemoCatalog('november-1').users.slice(3).map(user => user.key));
+  const added = createDemoCatalog('november-1').fixtures.filter(fixture => newOwners.has(fixture.owner));
+  assert.equal(result.createdProperties, added.filter(fixture => fixture.kind === 'property').length);
+  assert.equal(result.createdSearches, added.filter(fixture => fixture.kind === 'search').length);
   assert.equal(JSON.stringify([...mock.users].slice(0, DEMO_USERS.length)), before);
   const complete = JSON.stringify([...mock.users]);
   const again = await runSeed({config, fetchImpl: mock.fetchImpl, state, batch: 'november-1'});

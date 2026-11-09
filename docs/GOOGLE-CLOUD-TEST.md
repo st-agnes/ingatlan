@@ -156,7 +156,7 @@ Ha a helyi Docker-feltöltés korábban hálózati hibát adott, a fenti parancs
 
 ## Használat és ellenőrzés
 
-A backendbe beágyazott `20261107-test-fixtures-v2` tesztadatcsomag **12 felhasználót, 114 ingatlant és 112 keresést** hoz létre. Ebből 3 fiók ingatlanközvetítő, 9 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
+A backendbe beágyazott `20261109-test-fixtures-v3` tesztadatcsomag **12 felhasználót, 354 ingatlant és 352 keresést** hoz létre. Ebből 3 fiók ingatlanközvetítő, 9 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
 
 | Fiók | Fióktípus | E-mail-cím |
 |---|---|---|
@@ -177,13 +177,15 @@ A kibővített készlet kilenc felhasználójának egyenként 12 eladó ingatlan
 
 A készlet II./XIII. kerületi, debreceni és hajdúsámsoni lakásokat, solymári és pilisvörösvári házakat, fűtési és parkolási opciókat, egész/fél szobákat, valamint városkörnyéki és több településes kereséseket tartalmaz. Anna, Péter és Eszter eredeti alapmintái is a csomag részei; a hozzájuk illő sok új ajánlatot a további felhasználók biztosítják. Anna és Péter eredeti mintapárjának kölcsönös kedvelésével továbbra is kipróbálható az elérhetőségek feloldása és az üzenetküldés.
 
+A regionális bővítés Budapesthez és mind a 19 vármegyéhez 12 új ingatlant és 12 hozzá illő keresést ad: hat lakást és hat házat, több településsel, eltérő árakkal, méretekkel és egész/fél szobaszámokkal. A keresési korlátok változatosak, köztük elhagyott minimumár, maximum alapterület és maximum szobaszám is szerepel. A landing oldal ezért az egyes vármegyéken belül is többféle élethelyzetből tud válogatni. A bejelentkezési adatok és az eredeti mintapárok változatlanok.
+
 ### Automatikus alaphelyzetbe állítás telepítéskor
 
 A normál **Deploy Google Cloud test** workflow telepíti az új API-képet és a webet. A backend az indulásakor, az alkalmazás kiszolgálása előtt tölti fel a beágyazott adatokat; a telepítés után nincs külön API-s feltöltő lépés. Merge után elég **Actions → Deploy Google Cloud test → Run workflow**, a `main` ágon. Külön adatfeltöltő workflow-t vagy parancsot nem kell indítani.
 
 A teszttelepítés `Database__SeedTestFixtures=true` beállítást kap. Ez kizárólag `Deployment__Environment=test` környezetben engedélyezi az automatikus tesztadat-kezelést; a szokásos éles környezetben nem töröl és nem tölt fel adatokat. A szerver ASP.NET környezete a teszttelepítésben is lehet `Production`: a tesztjogosultságot a külön `Deployment__Environment=test` beállítás jelenti.
 
-Minden új Cloud Run-revízió (`K_REVISION`) első indulása alaphelyzetbe állítja a teszt alkalmazásadatait, majd létrehozza a 12 felhasználót, a 114 ingatlant, a 112 keresést, a kezdő krediteket és az aktív profilokat. Az előző tesztállapot összes felhasználója — a kézzel regisztrált fiókok is —, saját hirdetése, keresése, döntése, párosítása, üzenete, jelentése és kreditmozgása törlődik. Így az új telepítés után a korábban végighúzott minták helyett újra végigpróbálható alapállapot fogad.
+Minden új Cloud Run-revízió (`K_REVISION`) első indulása alaphelyzetbe állítja a teszt alkalmazásadatait, majd létrehozza a 12 felhasználót, a 354 ingatlant, a 352 keresést, a kezdő krediteket és az aktív profilokat. Az előző tesztállapot összes felhasználója — a kézzel regisztrált fiókok is —, saját hirdetése, keresése, döntése, párosítása, üzenete, jelentése és kreditmozgása törlődik. Így az új telepítés után a korábban végighúzott minták helyett újra végigpróbálható alapállapot fogad.
 
 Az adatbáziszár és a revíziók feltöltési előzménye gondoskodik arról, hogy több párhuzamosan induló példány is csak egyszer hajtsa végre ezt egy új revízióhoz. Az azonos revízió hidegindítása vagy újraindítása nem állítja vissza a tesztelés közbeni módosításokat. Egy korábban már feltöltött régi revízió újraindulása sem törli az újabb revízióval létrejött adatokat. A séma és a feltöltési előzmények megmaradnak; a folyamat az alkalmazás tesztadatait kezeli.
 

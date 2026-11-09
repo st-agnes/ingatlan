@@ -182,6 +182,87 @@ public class PublicLandingTests
         }
     }
 
+    private static readonly Lazy<TestDataPlan> HostedFixtures = new(() =>
+        TestDataSeed.BuildPlan(TestDataSeed.LoadCatalog()));
+
+    private static PublicLandingSnapshot HostedFixtureSnapshot(int seed)
+    {
+        var snapshot = new PublicLandingSnapshot(new Random(seed));
+        var owners = HostedFixtures.Value.Users.ToDictionary(user => user.Id, user => user.AccountType);
+        foreach (var search in HostedFixtures.Value.Searches) snapshot.Add(search, owners[search.OwnerId]);
+        foreach (var property in HostedFixtures.Value.Properties) snapshot.Add(property, owners[property.OwnerId]);
+        return snapshot;
+    }
+
+    // Ignore positional UI keys: membership must change in fields the visitor
+    // can actually see, rather than merely swapping internal source IDs/order.
+    private static string VisibleSearch(LandingSearchTeaser item) => JsonSerializer.Serialize(item with { Key = "" });
+    private static string VisibleProperty(LandingPropertyTeaser item) => JsonSerializer.Serialize(item with { Key = "" });
+    private static string Membership(IEnumerable<string> signatures) => string.Join("\n", signatures.Order(StringComparer.Ordinal));
+
+    [Fact]
+    public void ActualHostedFixturesProduceDiverseSafeCountySamplesRatherThanOnlySyntheticTestRows()
+    {
+        var snapshot = HostedFixtureSnapshot(20261109);
+        var owners = HostedFixtures.Value.Users.ToDictionary(user => user.Id, user => user.AccountType);
+        foreach (var region in RegionCatalog.All)
+        {
+            var allowedSearches = HostedFixtures.Value.Searches
+                .Select(item => PublicLanding.SearchTeaser(item, owners[item.OwnerId])!.Value)
+                .Where(item => item.Regions.Contains(region.Id)).Select(item => VisibleSearch(item.Teaser)).ToHashSet();
+            var allowedProperties = HostedFixtures.Value.Properties
+                .Select(item => PublicLanding.PropertyTeaser(item, owners[item.OwnerId])!.Value)
+                .Where(item => item.Regions.Contains(region.Id)).Select(item => VisibleProperty(item.Teaser)).ToHashSet();
+            for (var refresh = 0; refresh < 8; refresh++)
+            {
+                var response = snapshot.Response(region);
+                Assert.Equal(region.Id, response.Region!.Id);
+                Assert.Equal(8, response.Searches.Length); Assert.Equal(4, response.Properties.Length);
+                Assert.Equal(2, response.Searches.Select(item => item.Type).Distinct().Count());
+                Assert.Equal(2, response.Properties.Select(item => item.Type).Distinct().Count());
+                Assert.True(response.Searches.Select(item => (item.MinPrice, item.MaxPrice)).Distinct().Count() >= 3, region.Label);
+                Assert.True(response.Searches.Select(item => (item.MinArea, item.MaxArea)).Distinct().Count() >= 3, region.Label);
+                Assert.True(response.Searches.Select(item => (item.MinRooms, item.MaxRooms)).Distinct().Count() >= 3, region.Label);
+                Assert.True(response.Properties.Select(item => item.Price).Distinct().Count() >= 3, region.Label);
+                Assert.True(response.Properties.Select(item => item.Area).Distinct().Count() >= 3, region.Label);
+                Assert.True(response.Properties.Select(item => item.Rooms).Distinct().Count() >= 2, region.Label);
+                Assert.All(response.Searches, item => Assert.Contains(VisibleSearch(item), allowedSearches));
+                Assert.All(response.Properties, item => Assert.Contains(VisibleProperty(item), allowedProperties));
+            }
+        }
+    }
+
+    [Fact]
+    public void HajduBiharHostedSamplesSpanWideCriteriaAndRefreshTheirVisibleMembership()
+    {
+        var snapshot = HostedFixtureSnapshot(321);
+        var seenSearches = new List<LandingSearchTeaser>();
+        var seenProperties = new List<LandingPropertyTeaser>();
+        var searchMemberships = new HashSet<string>(StringComparer.Ordinal);
+        var propertyMemberships = new HashSet<string>(StringComparer.Ordinal);
+        for (var refresh = 0; refresh < 30; refresh++)
+        {
+            var response = snapshot.Response(RegionCatalog.Get("HU321"));
+            seenSearches.AddRange(response.Searches); seenProperties.AddRange(response.Properties);
+            searchMemberships.Add(Membership(response.Searches.Select(VisibleSearch)));
+            propertyMemberships.Add(Membership(response.Properties.Select(VisibleProperty)));
+        }
+        Assert.True(searchMemberships.Count >= 10, "Refreshes should show different search criteria, not only reorder the same cards.");
+        Assert.True(propertyMemberships.Count >= 10, "Refreshes should show different properties, not only reorder the same cards.");
+        Assert.Contains(seenSearches, item => item.MaxPrice <= 40_000_000m);
+        Assert.Contains(seenSearches, item => item.MaxPrice >= 200_000_000m);
+        Assert.Contains(seenSearches, item => item.MaxArea <= 55m);
+        Assert.Contains(seenSearches, item => (item.MaxArea ?? item.MinArea) >= 160m);
+        Assert.Contains(seenSearches, item => item.MinRooms <= 1.5m);
+        Assert.Contains(seenSearches, item => item.MinRooms >= 5m);
+        Assert.Contains(seenProperties, item => item.Price <= 35_000_000m);
+        Assert.Contains(seenProperties, item => item.Price >= 200_000_000m);
+        Assert.Contains(seenProperties, item => item.Area <= 45m);
+        Assert.Contains(seenProperties, item => item.Area >= 160m);
+        Assert.Contains(seenProperties, item => item.Rooms <= 2m);
+        Assert.Contains(seenProperties, item => item.Rooms >= 5m);
+    }
+
     private static PublicLandingSnapshot VariedSnapshot(int seed)
     {
         var snapshot = new PublicLandingSnapshot(new Random(seed));

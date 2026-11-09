@@ -15,8 +15,8 @@ test('the packaged backend catalog contains every canonical fictional account an
   assert.deepEqual(packaged.fixtures,DEMO_FIXTURES);
   assert.equal(packaged.users.length,12);
   assert.equal(packaged.users.filter(user=>user.accountType==='agent').length,3);
-  assert.equal(packaged.fixtures.filter(item=>item.kind==='property').length,114);
-  assert.equal(packaged.fixtures.filter(item=>item.kind==='search').length,112);
+  assert.equal(packaged.fixtures.filter(item=>item.kind==='property').length,354);
+  assert.equal(packaged.fixtures.filter(item=>item.kind==='search').length,352);
 });
 
 test('check mode rejects missing or drifted packaged data without replacing it', async()=>{

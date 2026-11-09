@@ -132,6 +132,53 @@ const extraUsers = [
 ];
 const copy = value => JSON.parse(JSON.stringify(value));
 
+const propertyExtras = (slot, ownerIndex) => ({
+  condition:['Jó','Új/felújított','Átlagos','Felújítandó'][(slot + ownerIndex) % 4],
+  building:(slot + ownerIndex) % 3 === 0 ? 'Panel' : 'Tégla',
+  constructionAge:['10 évnél fiatalabb','10–30 év közötti','31–40 év közötti','41–50 év közötti','Több mint 50 éves'][(slot + ownerIndex) % 5],
+  view:['Kertre néző','Utcai','Udvari','Panorámás'][(slot + ownerIndex) % 4],
+  ceilingHeight:slot % 2 ? '3 m feletti' : '3 m alatti',
+  heatingType:['Gázkazán','Távfűtés','Hőszivattyú','Elektromos fűtés','Nincs fűtés'][(slot + ownerIndex) % 5],
+  secondaryHeatingType:slot % 3 === 0 ? 'Klíma' : '',
+  insulated:slot % 3 === 0 ? null : slot % 2 === 0,
+  energyRating:slot % 2 ? 'BB' : 'A+',
+  airConditioning:slot % 2 === 0, solarPanels:slot % 3 === 0,
+  parkingTypes:slot % 2 ? ['Garázs','Udvari beálló'] : ['Utcai parkolás']
+});
+
+// County-specific examples supplement, rather than replace, the original matching scenarios.
+// Keep these exact town names aligned with the shared KSH region/location catalogues.
+const regionalPlaces = [
+  ['HU110', ['district:Budapest:13','district:Budapest:9','district:Budapest:11']],
+  ['HU331', ['Kecskemét','Baja','Kiskunfélegyháza']],
+  ['HU231', ['Pécs','Komló','Mohács']],
+  ['HU332', ['Békéscsaba','Gyula','Orosháza']],
+  ['HU311', ['Miskolc','Kazincbarcika','Tiszaújváros']],
+  ['HU333', ['Szeged','Hódmezővásárhely','Makó']],
+  ['HU211', ['Székesfehérvár','Dunaújváros','Mór']],
+  ['HU221', ['Győr','Sopron','Mosonmagyaróvár']],
+  ['HU321', ['Debrecen','Hajdúszoboszló','Hajdúsámson']],
+  ['HU312', ['Eger','Gyöngyös','Hatvan']],
+  ['HU322', ['Szolnok','Jászberény','Karcag']],
+  ['HU212', ['Tatabánya','Esztergom','Tata']],
+  ['HU313', ['Salgótarján','Balassagyarmat','Pásztó']],
+  ['HU120', ['Érd','Solymár','Pilisvörösvár']],
+  ['HU232', ['Kaposvár','Siófok','Marcali']],
+  ['HU323', ['Nyíregyháza','Mátészalka','Kisvárda']],
+  ['HU233', ['Szekszárd','Dombóvár','Paks']],
+  ['HU222', ['Szombathely','Kőszeg','Sárvár']],
+  ['HU213', ['Veszprém','Pápa','Ajka']],
+  ['HU223', ['Zalaegerszeg','Nagykanizsa','Keszthely']]
+];
+const regionalProfiles = [
+  {type:'Lakás', key:'lakas', prices:[20,34,52,78,125,205], budgets:[25,40,60,90,145,230],
+    areas:[24,38,56,83,118,162], rooms:[1,1.5,2.5,3,4,5.5],
+    labels:['Kompakt garzon','Első saját otthon','Másfél szobánál nagyobb lakás','Tágas családi lakás','Nagy alapterületű lakás','Többgenerációs lakás']},
+  {type:'Ház', key:'haz', prices:[28,46,73,110,165,245], budgets:[35,55,85,130,190,280],
+    areas:[48,72,104,145,205,280], rooms:[1.5,2.5,3,4.5,6,7.5],
+    labels:['Kis kertes ház','Kompakt családi ház','Családi ház kerttel','Tágas kertes otthon','Nagycsaládos otthon','Többgenerációs családi ház']}
+];
+
 export function createDemoCatalog(batch = DEFAULT_BATCH) {
   if (typeof batch !== 'string' || !/^[a-z0-9][a-z0-9-]{0,31}$/.test(batch)) {
     throw new Error('A tesztadatcsomag neve 1–32 kisbetűs angol betű, szám vagy kötőjel legyen; betűvel vagy számmal kezdődjön.');
@@ -153,19 +200,7 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
       active:{kind, key:kind === 'search' ? firstSearch : firstProperty}
     });
     const add = (key, kind, input) => fixtures.push({key:`${owner}-${key}`, owner, kind, input});
-    const extras = slot => ({
-      condition:['Jó','Új/felújított','Átlagos','Felújítandó'][(slot + ownerIndex) % 4],
-      building:(slot + ownerIndex) % 3 === 0 ? 'Panel' : 'Tégla',
-      constructionAge:['10 évnél fiatalabb','10–30 év közötti','31–40 év közötti','41–50 év közötti','Több mint 50 éves'][(slot + ownerIndex) % 5],
-      view:['Kertre néző','Utcai','Udvari','Panorámás'][(slot + ownerIndex) % 4],
-      ceilingHeight:slot % 2 ? '3 m feletti' : '3 m alatti',
-      heatingType:['Gázkazán','Távfűtés','Hőszivattyú','Elektromos fűtés','Nincs fűtés'][(slot + ownerIndex) % 5],
-      secondaryHeatingType:slot % 3 === 0 ? 'Klíma' : '',
-      insulated:slot % 3 === 0 ? null : slot % 2 === 0,
-      energyRating:slot % 2 ? 'BB' : 'A+',
-      airConditioning:slot % 2 === 0, solarPanels:slot % 3 === 0,
-      parkingTypes:slot % 2 ? ['Garázs','Udvari beálló'] : ['Utcai parkolás']
-    });
+    const extras = slot => propertyExtras(slot, ownerIndex);
     for (const district of [13,2]) {
       for (let index = 0; index < 4; index++) {
         const wholeRooms = 2 + index % 2, halfRooms = index % 2;
@@ -239,6 +274,50 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
         maxPrice:150_000_000, minArea:105, maxArea:180, minRooms:4, maxRooms:7,
         description:fictional + 'Solymári vagy pilisvörösvári családi házra keresett új párosítás, az eredeti házmintákhoz is megfelelő feltételekkel.'
       });
+    }
+  }
+  let pairIndex = 0;
+  for (const [regionId, places] of regionalPlaces) {
+    for (const profile of regionalProfiles) {
+      for (let index = 0; index < profile.prices.length; index++, pairIndex++) {
+        const propertyOwnerIndex = pairIndex % extraUsers.length;
+        const owner = extraUsers[propertyOwnerIndex].key + keySuffix;
+        const searchOwner = extraUsers[(propertyOwnerIndex + 4) % extraUsers.length].key + keySuffix;
+        const pairKey = `regional-${regionId.toLowerCase()}-${profile.key}-${index + 1}${keySuffix}`;
+        const place = places[index % places.length];
+        const locationId = place.startsWith('district:') ? place : `city:${place}`;
+        const district = place.startsWith('district:') ? ({13:'XIII.',9:'IX.',11:'XI.'})[place.split(':')[2]] : '';
+        const city = district ? 'Budapest' : place;
+        const price = profile.prices[index] * 1_000_000;
+        const area = profile.areas[index], rooms = profile.rooms[index];
+        const house = profile.type === 'Ház';
+        const attributes = propertyExtras(index + pairIndex, propertyOwnerIndex);
+        const wholeRooms = Math.floor(rooms), halfRooms = (rooms - wholeRooms) * 2;
+        fixtures.push({key:`${pairKey}-property`, owner, kind:'property', input:{
+          ...copy(propertyDefaults), ...attributes,
+          title:`Teszt · ${profile.labels[index]} · ${city}${titleSuffix}`,
+          city, district, locationId, type:profile.type, price, area, rooms, wholeRooms, halfRooms,
+          building:house ? 'Tégla' : attributes.building,
+          floor:house ? null : index % 6,
+          lotArea:house ? 240 + index * 215 : null,
+          balcony:!house && index % 2 === 1, elevator:!house && index >= 3,
+          description:fictional + 'A régiós tesztkínálat különböző árú, méretű és szobaszámú otthonainak egyike. A hozzá illeszkedő keresés másik felhasználóhoz tartozik.'
+        }});
+        fixtures.push({key:`${pairKey}-search`, owner:searchOwner, kind:'search', input:{
+          ...copy(searchDefaults),
+          title:`Teszt · ${profile.labels[index]} keresése · ${city}${titleSuffix}`,
+          city, districts:district ? [district] : [], type:profile.type,
+          locationIds:index % 2 ? places.map(value=>value.startsWith('district:') ? value : `city:${value}`) : [locationId],
+          minPrice:index % 3 === 0 ? null : Math.max(1,profile.prices[index] - (house ? 12 : 8)) * 1_000_000,
+          maxPrice:profile.budgets[index] * 1_000_000,
+          minArea:Math.max(15,area - (house ? 12 : 8)),
+          maxArea:index % 3 === 2 ? null : area + (house ? 25 : 16),
+          minRooms:Math.max(1,rooms - 0.5), maxRooms:index % 2 ? null : rooms + 1,
+          conditions:index % 3 === 0 ? [attributes.condition] : [],
+          heatingTypes:index % 3 === 1 ? [attributes.heatingType] : [],
+          description:fictional + 'Önálló régiós keresési példa változatos költségkerettel, méret- és szobaigénnyel. A nyitott felső korlátok és a több településes keresés is kipróbálható.'
+        }});
+      }
     }
   }
   return {users, fixtures};
