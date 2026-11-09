@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {chmod, mkdir, writeFile} from 'node:fs/promises';
 import {dirname, resolve} from 'node:path';
+import {assertNoContactData} from './smoke-privacy.mjs';
 const base = (process.argv[2] || 'http://localhost:5080').replace(/\/$/, '') + '/api';
 const run = Date.now() + '-' + Math.random().toString(16).slice(2);
 async function call(path, {token,method='GET',body,status=200}={}) {
@@ -27,14 +28,18 @@ await call('/searches',{method:'POST',token:b,body:{...searchBody,locationIds:['
 await call('/me/active',{method:'PUT',token:b,body:{kind:'search',id:search.id}});
 await call('/me/active',{method:'PUT',token:s,body:{kind:'property',id:property.id}});
 await call('/me/active',{method:'PUT',token:o,body:{kind:'property',id:property.id},status:404});
-const feed=await call('/feed',{token:b});const card=feed.items.find(item=>item.propertyId===property.id);assert.ok(card);assert.equal(card.property.address,'');assert.ok(!JSON.stringify(card).includes('9999'));assert.deepEqual(await call('/matches',{token:b}),[]);
+const feed=await call('/feed',{token:b});
+const card=feed.items.find(item=>item.propertyId===property.id);
+assert.ok(card);assert.equal(card.property.address,'');
+assertNoContactData(card,[buyer.user.phone,seller.user.phone,buyer.user.email,seller.user.email,propertyBody.address]);
+assert.deepEqual(await call('/matches',{token:b}),[]);
 const pair={propertyId:property.id,searchRequestId:search.id,liked:true};
 await call('/decisions',{method:'POST',token:s,body:pair,status:402});
 await call('/credits/demo-topup',{method:'POST',token:s,body:{amount:20}});
 const results=await Promise.all([call('/decisions',{method:'POST',token:s,body:pair}),call('/decisions',{method:'POST',token:s,body:pair})]);
 assert.equal(results.reduce((sum,v)=>sum+v.charged,0),2);assert.equal((await call('/me',{token:s})).credits,18);assert.deepEqual(await call('/matches',{token:b}),[]);
 assert.equal((await call('/feed',{token:s})).items.some(item=>item.searchRequestId===search.id),false);const matchDecision=await call('/decisions',{method:'POST',token:b,body:pair});assert.ok(matchDecision.matchId);assert.equal(matchDecision.charged,0);
-const matches=await call('/matches',{token:b});assert.equal(matches.length,1);assert.equal(matches[0].contact.email,seller.user.email);assert.equal(matches[0].property.address,'Private street 12');
+const matches=await call('/matches',{token:b});assert.equal(matches.length,1);assert.equal(matches[0].contact.email,seller.user.email);assert.equal(matches[0].contact.phone,seller.user.phone);assert.equal(matches[0].property.address,'Private street 12');
 const matchId=matches[0].id;await call(`/matches/${matchId}/messages`,{method:'POST',token:o,body:{text:'Should fail'},status:404});
 const message=await call(`/matches/${matchId}/messages`,{method:'POST',token:b,body:{text:'Szia! Mikor nézhetem meg?'},status:201});assert.equal(message.senderId,buyer.user.id);
 assert.equal((await call('/matches',{token:s}))[0].messages.length,1);

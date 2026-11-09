@@ -93,6 +93,7 @@ jobs:
       - name: Run JavaScript tests
         run: |
           node tests/model.test.mjs
+          node tests/smoke-privacy.test.mjs
           node tests/frontend.test.mjs
           node tests/api.test.mjs
           node tests/accounts.test.mjs
