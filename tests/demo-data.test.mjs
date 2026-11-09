@@ -2,6 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
+import {readFileSync} from 'node:fs';
 import {DEFAULT_BATCH, createDemoCatalog, DEMO_USERS, DEMO_FIXTURES, DEMO_PASSWORD} from '../scripts/gcp/demo-data.mjs';
 import {getLocation, isPropertyLocation} from '../dist/locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from '../dist/attributes.js';
@@ -23,7 +24,7 @@ test('default catalog contains twelve ready accounts including three agents and 
  const catalog=createDemoCatalog();
  assert.equal(DEFAULT_BATCH,'alap');assert.deepEqual(DEMO_USERS,catalog.users);assert.deepEqual(DEMO_FIXTURES,catalog.fixtures);
  assert.equal(catalog.users.length,12);assert.equal(catalog.users.filter(user=>user.accountType==='agent').length,3);
- assert.equal(kind(catalog,'property').length,114);assert.equal(kind(catalog,'search').length,112);
+ assert.equal(kind(catalog,'property').length,354);assert.equal(kind(catalog,'search').length,352);
  assert.equal(new Set(catalog.users.map(user=>user.email)).size,catalog.users.length);
  assert.equal(new Set(catalog.users.map(user=>user.key)).size,catalog.users.length);
  assert.equal(new Set(catalog.fixtures.map(fixture=>fixture.key)).size,catalog.fixtures.length);
@@ -31,7 +32,10 @@ test('default catalog contains twelve ready accounts including three agents and 
   const own=catalog.fixtures.filter(fixture=>fixture.owner===user.key);
   assert.ok(own.some(fixture=>fixture.kind==='property'));assert.ok(own.some(fixture=>fixture.kind==='search'));
   assert.ok(own.some(fixture=>fixture.key===user.active.key&&fixture.kind===user.active.kind));
-  if(!oldUsers.includes(user.key))assert.equal(own.length,24);
+  if(!oldUsers.includes(user.key)){
+   assert.equal(own.filter(fixture=>!fixture.key.startsWith('regional-')).length,24,'Keep the existing matching inventory');
+   assert.ok(own.length>=76,'Distribute the added regional examples across the existing accounts');
+  }
   if(user.accountType==='agent')assert.equal(user.active.kind,'search','Agent accounts must open directly into the 1-credit search flow');
  }
 });
@@ -115,4 +119,47 @@ test('named batches have new account and fixture identities while keeping the or
  assert.equal(createDemoCatalog('november-uj').fixtures[10].input.images.length,2,'Caller mutations must not leak into later batches');
  for(const batch of ['',null,1,'UPPER','bad batch','../other','a'.repeat(33),'-start'])assert.throws(()=>createDemoCatalog(batch));
  assert.doesNotThrow(()=>createDemoCatalog('a'.repeat(32)));
+});
+
+
+test('the actual hosted catalog covers every county with visibly different homes and searches',()=>{
+ const catalog=createDemoCatalog();
+ const regions=JSON.parse(readFileSync(new URL('../backend/Otthonra.Api/Data/regions.json',import.meta.url),'utf8')).regions;
+ assert.equal(regions.length,20);
+ for(const region of regions){
+  const regional=catalog.fixtures.filter(fixture=>fixture.key.startsWith(`regional-${region.id.toLowerCase()}-`));
+  const properties=regional.filter(fixture=>fixture.kind==='property'),searches=regional.filter(fixture=>fixture.kind==='search');
+  assert.equal(properties.length,12,`${region.label}: property coverage`);
+  assert.equal(searches.length,12,`${region.label}: search coverage`);
+  for(const fixture of regional){
+   const ids=fixture.kind==='property'?[fixture.input.locationId]:fixture.input.locationIds;
+   assert.ok(ids.every(id=>region.settlements.includes(getLocation(id)?.city)),`${fixture.key}: canonical county isolation`);
+  }
+  assert.equal(new Set(properties.map(fixture=>fixture.input.locationId)).size,3,`${region.label}: multiple local places`);
+  for(const rows of [properties,searches]){
+   assert.deepEqual([...new Set(rows.map(fixture=>fixture.input.type))].sort(),['Ház','Lakás']);
+   const values=rows.map(fixture=>fixture.input);
+   const propertyRows=rows[0].kind==='property';
+   const budgets=values.map(input=>propertyRows?input.price:input.maxPrice);
+   const areas=values.map(input=>propertyRows?input.area:input.minArea);
+   const rooms=values.map(input=>propertyRows?input.rooms:input.minRooms);
+   assert.ok(new Set(budgets).size>=10,`${region.label}: diverse budgets`);
+   assert.ok(new Set(areas).size>=10,`${region.label}: diverse floor areas`);
+   assert.ok(new Set(rooms).size>=6,`${region.label}: diverse rooms`);
+   assert.ok(Math.min(...budgets)<=35_000_000&&Math.max(...budgets)>=200_000_000,`${region.label}: affordable through large budgets`);
+   assert.ok(Math.min(...areas)<=30&&Math.max(...areas)>=200,`${region.label}: compact through spacious homes`);
+   assert.ok(Math.min(...rooms)<=1.5&&Math.max(...rooms)>=6,`${region.label}: small through large households`);
+  }
+  assert.ok(searches.some(fixture=>fixture.input.minPrice===null));
+  assert.ok(searches.some(fixture=>fixture.input.maxArea===null));
+  assert.ok(searches.some(fixture=>fixture.input.maxRooms===null));
+  assert.ok(searches.some(fixture=>fixture.input.locationIds.length>1));
+  for(const home of properties){
+   const request=searches.find(fixture=>fixture.key===home.key.replace(/-property$/,'-search'));
+   assert.ok(request,`${home.key}: matching search example exists`);
+   assert.notEqual(home.owner,request.owner);
+   assert.ok(canPair(catalog,home,request),`${home.key}: account types can interact`);
+   assert.ok(isCompatible(property(home),search(request)),`${home.key}: corresponding criteria match`);
+  }
+ }
 });
