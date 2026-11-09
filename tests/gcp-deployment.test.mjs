@@ -147,7 +147,7 @@ test('a symlinked staging directory cannot expose or remove files outside deploy
 test('the pinned Firebase process receives the selected quota project and isolated login config without changing the caller', async () => {
   const source = await readFile(join(root, 'scripts/gcp/deploy-dev.sh'), 'utf8');
   const start = source.indexOf('GOOGLE_CLOUD_QUOTA_PROJECT="$project_id" XDG_CONFIG_HOME=');
-  const end = source.indexOf('\nnode --input-type=module - \"$web_origin\"', start);
+  const end = source.indexOf('\nnode scripts/gcp/verify-dev.mjs --hosting', start);
   assert.ok(start > 0 && end > start);
   const workspace = await mkdtemp(join(tmpdir(), 'otthonra-firebase-env-'));
   try {

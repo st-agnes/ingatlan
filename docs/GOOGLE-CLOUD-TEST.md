@@ -156,6 +156,8 @@ Ha a helyi Docker-feltöltés korábban hálózati hibát adott, a fenti parancs
 
 ## Használat és ellenőrzés
 
+A telepítés az új Cloud Run API-t a Hosting módosítása előtt ellenőrzi. A Firebase közzétételének befejezése után a webes ellenőrzés legfeljebb 12 alkalommal, 5 másodperces várakozással kérdezi le újra az oldalt, a runtime-konfigurációt és az API állapotát. Minden kérés külön URL-paramétert kap, és tiltja a gyorsítótárazást. Átmenetileg még korábbi Hosting-útvonal válaszolhat; siker csak az aktuális beágyazott tesztadat-verzióval lehetséges. Tartós eltérésnél a napló kiírja a hibás útvonalat és feltételt, verzióeltérésnél a kapott és az elvárt verziót is. A 401/403 válasz azonnal megállítja az ellenőrzést. A „release complete” után kapott ellenőrzési hiba nem vonja vissza automatikusan a már közzétett kiadást.
+
 A backendbe beágyazott `20261109-test-fixtures-v3` tesztadatcsomag **12 felhasználót, 354 ingatlant és 352 keresést** hoz létre. Ebből 3 fiók ingatlanközvetítő, 9 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
 
 | Fiók | Fióktípus | E-mail-cím |

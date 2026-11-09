@@ -102,6 +102,7 @@ jobs:
           node tests/regions.test.mjs
           node tests/attributes.test.mjs
           node tests/gcp-deployment.test.mjs
+          node tests/gcp-verification.test.mjs
           node tests/gcp-run-config.test.mjs
           node tests/gcp-bootstrap.test.mjs
           node tests/gcp-mysql.test.mjs
