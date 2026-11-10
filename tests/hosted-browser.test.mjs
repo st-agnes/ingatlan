@@ -145,11 +145,16 @@ async function verifyViewport(browser, viewport) {
     await navigate(page, interact, 'settings', viewport);
     await page.locator('#profile-form').waitFor();
     assert.equal(await page.locator('input[name="baseUrl"]').count(), 0);
+    const publicPreview=page.waitForResponse(response => new URL(response.url()).pathname === '/api/public/landing');
     await interact(page.getByRole('button', {name: 'Kijelentkezés', exact: true}));
-    await page.locator('#hosted-auth-form').waitFor();
+    await page.locator('.landing-header').waitFor();
+    assert.equal(new URL(page.url()).hash,'#landing');
     assert.equal(await serverState(page), null);
-    assert.equal(await page.locator('.sidebar').count(), 0);
+    assert.equal(await page.evaluate(()=>localStorage.getItem('otthonra.api')),null,'Logout removes the saved authenticated session');
+    assert.equal(await page.locator('.sidebar,#hosted-auth-form').count(), 0);
+    const publicResponse=await publicPreview;assert.equal(publicResponse.status(),200);assert.equal(publicResponse.request().headers().authorization,undefined,'The post-logout preview must be anonymous');
     assert.doesNotMatch(await page.locator('#app').innerText(), /Demó munkatér|Vissza a demóhoz/);
+    await interact(page.locator('.landing-header [data-mode="login"]'));await page.locator('#hosted-auth-form').waitFor();
 
     await page.locator('#f-email').fill(email);
     await page.locator('#f-password').fill(password);
@@ -163,7 +168,7 @@ async function verifyViewport(browser, viewport) {
     assert.equal(signedIn.searches.find(item => item.id === saved.id)?.title, title);
     assert.deepEqual(signedIn.active, {kind: 'search', id: saved.id});
     assert.deepEqual(errors, [], 'The hosted flow must not produce unhandled browser errors');
-    console.log(`Hosted browser ${viewport.name} ${viewport.width}x${viewport.height}: real registration, MySQL search, activation, free test credits, reload persistence and logout/login passed.`);
+    console.log(`Hosted browser ${viewport.name} ${viewport.width}x${viewport.height}: real registration, MySQL search, activation, free test credits, reload persistence and logout to anonymous landing and login passed.`);
   } catch (error) {
     await mkdir(screenshots, {recursive: true});
     await page.screenshot({path: resolve(screenshots, `hosted-${viewport.name}-failure.png`), fullPage: true}).catch(() => {});
