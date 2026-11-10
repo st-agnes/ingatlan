@@ -153,11 +153,17 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
     public DbSet<UserReport> UserReports => Set<UserReport>();
     public DbSet<Property> Properties => Set<Property>();
     public DbSet<SearchRequest> SearchRequests => Set<SearchRequest>();
+    public DbSet<SearchLocation> SearchLocations => Set<SearchLocation>();
     public DbSet<Decision> Decisions => Set<Decision>();
     public DbSet<Match> Matches => Set<Match>();
     public DbSet<Message> Messages => Set<Message>();
     public DbSet<CreditEntry> CreditEntries => Set<CreditEntry>();
     public DbSet<UserNotification> UserNotifications => Set<UserNotification>();
+    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        => SearchLocationIndex.SaveAsync(this, () => base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken), cancellationToken);
+    public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        => SearchLocationIndex.SaveAsync(this, () => Task.FromResult(base.SaveChanges(acceptAllChangesOnSuccess)), CancellationToken.None)
+            .GetAwaiter().GetResult();
     protected override void OnModelCreating(ModelBuilder b)
     {
         Payments.Configure(b);
@@ -165,6 +171,9 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<UserReport>().ToTable("UserReports");
         b.Entity<Property>().ToTable("Properties");
         b.Entity<SearchRequest>().ToTable("SearchRequests");
+        b.Entity<SearchLocation>().ToTable("SearchLocations");
+        b.Entity<SearchLocation>().HasKey(location => new { location.SearchRequestId, location.LocationId });
+        b.Entity<SearchLocation>().HasIndex(location => new { location.LocationId, location.SearchRequestId });
         b.Entity<Decision>().ToTable("Decisions");
         b.Entity<Match>().ToTable("Matches");
         b.Entity<Message>().ToTable("Messages");
@@ -180,7 +189,11 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<UserNotification>().HasIndex(x => new { x.UserId, x.CreatedAt });
         b.Entity<Decision>().HasIndex(x => new { x.Liked, x.RefundedAt, x.CreatedAt });
         b.Entity<Property>().HasIndex(x => new { x.OwnerId, x.Archived });
+        b.Entity<Property>().HasIndex(x => new { x.Archived, x.Type, x.LocationId });
+        b.Entity<Property>().HasIndex(x => new { x.Archived, x.Type, x.City });
+        b.Entity<Decision>().HasIndex(x => new { x.SearchRequestId, x.ActorKind, x.PropertyId });
         b.Entity<SearchRequest>().HasIndex(x => new { x.OwnerId, x.Archived });
+        b.Entity<SearchRequest>().HasIndex(x => new { x.Archived, x.Type, x.City });
         b.Entity<Message>().HasIndex(x => new { x.MatchId, x.CreatedAt });
         b.Entity<CreditEntry>().HasIndex(x => new { x.UserId, x.CreatedAt });
         foreach (var entity in b.Model.GetEntityTypes())
@@ -201,6 +214,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         }
         b.Entity<Property>().HasOne<User>().WithMany().HasForeignKey(x => x.OwnerId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<SearchRequest>().HasOne<User>().WithMany().HasForeignKey(x => x.OwnerId).OnDelete(DeleteBehavior.Restrict);
+        b.Entity<SearchLocation>().HasOne<SearchRequest>().WithMany().HasForeignKey(x => x.SearchRequestId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<Decision>().HasOne<Property>().WithMany().HasForeignKey(x => x.PropertyId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<Decision>().HasOne<SearchRequest>().WithMany().HasForeignKey(x => x.SearchRequestId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<Decision>().HasOne<User>().WithMany().HasForeignKey(x => x.ActorUserId).OnDelete(DeleteBehavior.Restrict);
@@ -230,7 +244,7 @@ public static class Dto
         var rooms = Rules.RoomCounts(p);
         return new { p.Id, p.OwnerId, ownerAccountType = AccountTypes.PublicType(ownerAccountType), p.Title, p.City, p.District, p.Neighborhood, Address = own ? p.Address : "", p.Description, locationId = LocationCatalog.ForProperty(p)?.Id ?? p.LocationId, location = LocationCatalog.ForProperty(p), p.Type, p.Price, p.Area, p.LotArea, p.Rooms, wholeRooms = rooms.WholeRooms, halfRooms = rooms.HalfRooms, p.Floor, condition = PropertyAttributes.NormalizeCondition(p.Condition), building = PropertyAttributes.NormalizeBuilding(p.Building), p.ConstructionAge, p.View, p.CeilingHeight, heatingType = PropertyAttributes.NormalizeHeating(p.HeatingType), p.SecondaryHeatingType, p.Insulated, p.EnergyRating, p.AirConditioning, p.SolarPanels, p.ParkingType, parkingTypes = PropertyAttributes.Parking(p), p.Balcony, p.Elevator, Images = Strings(p.ImagesJson), p.Archived, p.CreatedAt };
     }
-    public static object Search(SearchRequest s, string ownerAccountType = AccountTypes.Private) => new { s.Id, s.OwnerId, ownerAccountType = AccountTypes.PublicType(ownerAccountType), s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds = LocationCatalog.ForSearch(s).Select(x => x.Id), locations = LocationCatalog.ForSearch(s), s.Description, s.Type, s.MinPrice, s.MaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, conditions = Strings(s.ConditionsJson), buildings = Strings(s.BuildingsJson), constructionAges = Strings(s.ConstructionAgesJson), views = Strings(s.ViewsJson), s.CeilingHeight, floors = PropertyAttributes.Floors(s.FloorsJson), heatingTypes = Strings(s.HeatingTypesJson), s.Balcony, s.Elevator, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
+    public static object Search(SearchRequest s, string ownerAccountType = AccountTypes.Private) => new { s.Id, s.OwnerId, searchSpecificity = MatchingRanking.Specificity(s), ownerAccountType = AccountTypes.PublicType(ownerAccountType), s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds = LocationCatalog.ForSearch(s).Select(x => x.Id), locations = LocationCatalog.ForSearch(s), s.Description, s.Type, s.MinPrice, s.MaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, conditions = Strings(s.ConditionsJson), buildings = Strings(s.BuildingsJson), constructionAges = Strings(s.ConstructionAgesJson), views = Strings(s.ViewsJson), s.CeilingHeight, floors = PropertyAttributes.Floors(s.FloorsJson), heatingTypes = Strings(s.HeatingTypesJson), s.Balcony, s.Elevator, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
     public static object Message(Message m) => new { m.Id, m.MatchId, m.SenderId, m.Text, m.CreatedAt };
 }
 
@@ -238,7 +252,7 @@ public record RegisterInput(string Name, string Email, string Password, string? 
 public record LoginInput(string Email, string Password);
 public record ProfileInput(string Name, string Email, string? Phone);
 public record ActiveInput(string Kind, Guid Id);
-public record DecisionInput(Guid PropertyId, Guid SearchRequestId, bool Liked);
+public record DecisionInput(Guid PropertyId, Guid SearchRequestId, bool Liked, bool AllowApproximate = false);
 public record ReportInput(string EntityKind, Guid EntityId, string? Reason = null);
 public record MessageInput(string Text);
 public record TopupInput(int Amount);

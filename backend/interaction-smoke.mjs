@@ -50,7 +50,7 @@ if(mode==='--verify'){
  for(const key of ['a1','a2','b1'])await api('/credits/demo-topup',{token:tokens[key],method:'POST',body:{amount:20}});
  await decision(tokens.b1,entities.b1.p,entities.a1.s);await decision(tokens.b1,entities.b1.p,entities.b2.s);await decision(tokens.a2,entities.a2.p,entities.b2.s);
  const beforeAgentView=await api('/me',{token:tokens.a1}),beforeLedger=await api('/credits/ledger',{token:tokens.a1});
- const incomingA=await api('/incoming-likes',{token:tokens.a1});privatePage(incomingA);assert.equal(incomingA.total,1);assert.equal(incomingA.items[0].propertyId,entities.b1.p.id);assert.equal(incomingA.items[0].myDecision,null);assert.equal(incomingA.items[0].compatible,true);assert.equal(incomingA.likeCost,1);
+ const incomingA=await api('/incoming-likes',{token:tokens.a1});privatePage(incomingA);assert.equal(incomingA.total,1);assert.equal(incomingA.items[0].propertyId,entities.b1.p.id);assert.equal(incomingA.items[0].myDecision,null);assert.equal(incomingA.items[0].compatible,true);assert.equal(incomingA.items[0].isExact,true);assert.equal(incomingA.items[0].compatibilityScore,100);assert.equal(incomingA.likeCost,1);
  assert.equal((await api('/me',{token:tokens.a1})).credits,beforeAgentView.credits);assert.deepEqual(await api('/credits/ledger',{token:tokens.a1}),beforeLedger,'Viewing incoming likes is free');
  const matchA=await decision(tokens.a1,entities.b1.p,entities.a1.s);assert.equal(matchA.charged,1);assert.ok(matchA.matchId);
  const matchedA=await api('/incoming-likes',{token:tokens.a1});assert.equal(matchedA.items[0].myDecision,'liked');assert.equal(matchedA.items[0].matchId,matchA.matchId);privatePage(matchedA);
@@ -59,7 +59,11 @@ if(mode==='--verify'){
  const pages=[];for(let offset=0;offset<3;offset++)pages.push(await api(`/incoming-likes?offset=${offset}&limit=1`,{token:tokens.b2}));assert.equal(new Set(pages.flatMap(page=>page.items.map(row=>row.propertyId))).size,3);assert.equal(pages[0].hasMore,true);assert.equal(pages[2].hasMore,false);
  let incomingB=await api('/incoming-likes',{token:tokens.b2});assert.equal(incomingB.items.find(row=>row.propertyId===entities.a2.p.id).myDecision,'passed');assert.equal(incomingB.items.find(row=>row.propertyId===entities.b1.p.id).matchId,matchB.matchId);
  await api('/searches/'+entities.b2.s.id,{token:tokens.b2,method:'PUT',body:{...search,maxPrice:10000000}});
- incomingB=await api('/incoming-likes',{token:tokens.b2});assert.equal(incomingB.total,3);assert.ok(incomingB.items.every(row=>row.compatible===false));assert.equal(incomingB.items.find(row=>row.propertyId===extra.id).myDecision,null);await decision(tokens.b2,extra,entities.b2.s,true,400);
+ incomingB=await api('/incoming-likes',{token:tokens.b2});assert.equal(incomingB.total,3);
+ assert.ok(incomingB.items.every(row=>row.compatible===true&&row.isExact===false&&row.compatibilityScore>=0&&row.compatibilityScore<100),
+  'Over-budget incoming likes remain location/type eligible but must be marked as partial matches');
+ assert.equal(incomingB.items.find(row=>row.propertyId===extra.id).myDecision,null);
+ await decision(tokens.b2,extra,entities.b2.s,true,400);
  await api('/searches/'+entities.b2.s.id,{token:tokens.b2,method:'PUT',body:search});await api('/properties/'+extra.id,{token:tokens.b1,method:'DELETE',status:204});assert.equal((await api('/incoming-likes',{token:tokens.b2})).total,2);
  const secondSearch=await api('/searches',{token:tokens.a1,method:'POST',body:{...search,title:'Másik aktív keresés'},status:201});await active(tokens.a1,'search',secondSearch.id);assert.equal((await api('/incoming-likes',{token:tokens.a1})).total,0);await active(tokens.a1,'search',entities.a1.s.id);assert.equal((await api('/incoming-likes',{token:tokens.a1})).total,1);
  await decision(tokens.b2,entities.a1.p,entities.b2.s);await active(tokens.a1,'property',entities.a1.p.id);const sellerIncoming=await api('/incoming-likes',{token:tokens.a1});assert.equal(sellerIncoming.total,1);assert.equal(sellerIncoming.items[0].searchRequestId,entities.b2.s.id);assert.equal(sellerIncoming.likeCost,2);privatePage(sellerIncoming);

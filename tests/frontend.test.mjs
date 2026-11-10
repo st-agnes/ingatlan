@@ -40,6 +40,7 @@ class Document {
 async function setup(options={}){
  const storage={getItem:()=>options.initialRaw?JSON.stringify(options.initialRaw):null,setItem:()=>{}},demoModel=createModel(storage),document=new Document();
  const apiModel=Object.assign({...demoModel},{mode:'api'},options.apiOverrides||{});
+ if(options.apiOverrides?.feed&&!options.apiOverrides?.recommendations)apiModel.recommendations=async request=>{const items=await apiModel.feed(request);return {items,stage:items.length?'exact':'empty'};};
  let selected=options.hosted?(options.authenticated?apiModel:null):demoModel;
  const connected=[],disconnected=[],landingCalls=[],windowEvents={},regionStorage=new Map(Object.entries(options.regionStorage||{}));
  let currentHash=options.hash??(options.hosted&&!options.authenticated?'#login':'');
@@ -596,6 +597,8 @@ test('agent search likes show one credit and button, keyboard and swipe cannot c
 
 function incomingFixture(type='private') {return accountFixture(raw=>{
  raw.users.find(user=>user.id==='me').accountType=type;raw.matches=[];raw.reports=[];
+ // Keep the incoming-action target distinct from the best-value discovery card.
+ raw.properties.find(item=>item.id==='p2').area=50;
  const received=(id,actorKind,actorId,propertyId,searchId)=>({id,actorKind,actorId,propertyId,searchId,liked:true,createdAt:'2026-11-07T10:00:00.000Z'});
  raw.decisions=[received('in-p1','property','p1','p1','own-s1'),received('in-p2','property','p2','p2','own-s1'),received('in-p4','property','p4','p4','own-s2'),received('in-s1','search','s1','own-p1','s1')];
  const second=raw.searches.find(search=>search.id==='own-s2');Object.assign(second,{locationIds:['district:Budapest:13'],city:'Budapest',districts:['XIII.']});
@@ -621,7 +624,7 @@ test('incoming pagination appends unique rows and discards an old load after nav
 });
 test('incoming view handles no active profile and incompatible interests without actionable likes',async()=>{
  const empty=createModel({getItem:()=>null,setItem:()=>{}}).getState();empty.active={kind:'search',id:null};const t=await setup({hosted:true,authenticated:true,apiOverrides:{getState:()=>empty,incomingLikes:()=>({active:null,items:[],total:0,offset:0,limit:50,hasMore:false,likeCost:0})}});await t.click({page:'incoming'});assert.match(t.document.getElementById('app').innerHTML,/Válassz aktív profilt/);
- const raw=incomingFixture();raw.properties.find(item=>item.id==='p1').area=999;const incompatible=await setup({initialRaw:raw});await incompatible.click({page:'incoming'});assert.match(incompatible.document.getElementById('app').innerHTML,/Jelenleg nem felel meg/);const before=incompatible.model.getState();await incompatible.click({action:'incoming-like',kind:'property',id:'p1'});assert.deepEqual(incompatible.model.getState(),before);
+ const raw=incomingFixture();raw.properties.find(item=>item.id==='p1').area=999;const incompatible=await setup({initialRaw:raw});await incompatible.click({page:'incoming'});assert.match(incompatible.document.getElementById('app').innerHTML,/Részleges egyezés/);assert.match(incompatible.document.getElementById('app').innerHTML,/engedélyezd a részleges egyezéseket/);const before=incompatible.model.getState();await incompatible.click({action:'incoming-like',kind:'property',id:'p1'});assert.deepEqual(incompatible.model.getState(),before);
 });
 
 test('hosted root is a public demand-focused landing with independent login and registration routes',async()=>{
@@ -682,4 +685,50 @@ test('a delayed auth route event preserves entered registration details while br
  t.document.getElementById('f-name').value='Teszt Név';t.document.getElementById('f-email').value='teszt@example.test';
  t.windowEvents.hashchange();await settle();assert.equal(t.document.getElementById('f-name').value,'Teszt Név');assert.equal(t.document.getElementById('f-email').value,'teszt@example.test');
  t.ctx.location.hash='#login';t.windowEvents.hashchange();await settle();assert.equal(t.document.getElementById('f-name'),null);assert.ok(t.document.getElementById('hosted-auth-form'));
+});
+
+function partialOnlyFixture(){return accountFixture(raw=>{
+ raw.matches=[];raw.decisions=[];raw.reports=[];
+ raw.properties=raw.properties.filter(item=>item.ownerId==='me'||['p1','p2'].includes(item.id));
+ Object.assign(raw.searches.find(item=>item.id==='own-s1'),{minPrice:null,maxPrice:10,minArea:50,maxArea:85,minRooms:2,maxRooms:4,conditions:[],buildings:[],heatingTypes:[],balcony:false,elevator:false});
+});}
+
+test('partial recommendations remain hidden until explicit consent, and declining never consumes a candidate',async()=>{
+ const t=await setup({initialRaw:partialOnlyFixture()}),before=t.model.getState();
+ assert.equal(t.document.getElementById('candidate'),null);assert.match(t.document.getElementById('app').innerHTML,/Elfogytak a tökéletes egyezések/);
+ await t.click({action:'approximate-decline'});assert.equal(t.document.getElementById('candidate'),null);assert.match(t.document.getElementById('app').innerHTML,/rejtve maradnak/);
+ await t.ui.render();assert.deepEqual(t.model.getState(),before);assert.equal(t.document.getElementById('modal-root').innerHTML,'');
+ await t.click({action:'approximate-accept'});assert.ok(t.document.getElementById('candidate'));assert.match(t.document.getElementById('app').innerHTML,/Részleges egyezések/);
+ const candidate=t.model.feed({includeApproximate:true})[0];await t.click({action:'pass'});
+ assert.ok(t.model.getState().decisions.some(item=>item.propertyId===candidate.id&&item.actorKind==='search'&&item.liked===false));
+});
+
+test('partial consent resets when the active profile or its criteria change',async()=>{
+ const t=await setup({initialRaw:partialOnlyFixture()});await t.click({action:'approximate-accept'});assert.ok(t.document.getElementById('candidate'));
+ await t.click({action:'activate-one',kind:'search',id:'own-s2'});
+ await t.click({action:'activate-one',kind:'search',id:'own-s1'});assert.equal(t.document.getElementById('candidate'),null);assert.match(t.document.getElementById('app').innerHTML,/Elfogytak a tökéletes egyezések/);
+ await t.click({action:'approximate-accept'});const search=t.model.getState().searches.find(item=>item.id==='own-s1');t.model.saveEntity('search',{...search,maxPrice:11},search.id);await t.ui.render();
+ assert.equal(t.document.getElementById('candidate'),null);assert.match(t.document.getElementById('app').innerHTML,/Elfogytak a tökéletes egyezések/);
+});
+
+test('zero-percent partial cards stay zero and describe deviations without positive hardcoded tags',async()=>{
+ const seed=createModel({getItem:()=>null,setItem:()=>{}}).feed()[0];
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{recommendations:({includeApproximate=false}={})=>includeApproximate?{items:[{...seed,score:0,isExact:false,reasons:['Az ár meghaladja a keretet']}],stage:'approximate'}:{items:[],stage:'empty',requiresApproximateConsent:true,hasApproximate:true}}});
+ await t.click({action:'approximate-accept'});const html=t.document.getElementById('app').innerHTML;
+ assert.match(html,/0% egyezés/);assert.doesNotMatch(html,/97% egyezés|Árkereten belül|Kedvenc környékeden/);assert.match(html,/Az ár meghaladja a keretet/);
+});
+
+test('a late partial response cannot transfer consent or recommendations to another active profile',async()=>{
+ const local=createModel({getItem:()=>JSON.stringify(partialOnlyFixture()),setItem:()=>{}}),seed=local.feed({includeApproximate:true})[0];let release;
+ const pending=new Promise(resolve=>{release=resolve;});
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{getState:()=>local.getState(),activate:(kind,id)=>local.activate(kind,id),recommendations:({includeApproximate=false}={})=>{
+  const active={...local.getState().active};return includeApproximate?pending.then(()=>({active,items:[{...seed,score:15,isExact:false}],stage:'approximate'})):{active,items:[],stage:'empty',requiresApproximateConsent:true,hasApproximate:true};
+ }}});
+ const accepting=t.click({action:'approximate-accept'});await settle();local.activate('search','own-s2');await t.ui.render();release();await accepting;
+ assert.equal(t.ui.getModelState().active.id,'own-s2');assert.equal(t.document.getElementById('candidate'),null);assert.match(t.document.getElementById('app').innerHTML,/Elfogytak a tökéletes egyezések/);
+});
+
+test('search specialization appears on seller recommendation cards and own searches',async()=>{
+ const t=await setup();await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.match(t.document.getElementById('app').innerHTML,/Specializáltság: [\d,]+\/100/);
+ await t.click({page:'searches'});assert.match(t.document.getElementById('app').innerHTML,/Specializáltság: [\d,]+\/100/);
 });

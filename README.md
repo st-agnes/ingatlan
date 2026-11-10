@@ -56,6 +56,8 @@ A webes felület önmagában böngészős demóként is használható. Demómód
 
 ## Mi készült el?
 
+- Kétlépcsős ajánló: minden feltételt teljesítő találat 100%, a részlegesek eltérésarányos súlyozott pontot kapnak és csak külön hozzájárulás után jelennek meg. A helyszín és típus kizáró feltétel. Keresőként azonos egyezésnél a beérkezett kedvelés és ár-érték arány, eladóként a beérkezett kedvelés, egyezés és keresési specializáltság rendezi az ajánlatokat. [Képletek és súlyok](docs/ARCHITECTURE.md#egyezési-százalék-és-rangsorolási-mutatók).
+
 - Bejelentkezés nélküli, keresési igényekre épülő kezdőoldal néhány eladó ingatlannal. Hozzávetőleges, vármegye szintű IP-alapú ajánlás, helyhozzáférési engedélykérés nélkül; a régió kézzel is kiválasztható. Sikertelen becslésnél országos példák jelennek meg. A keresések és az ingatlanok már az első képernyőn megjelennek, külön eladói és otthonkereső csatlakozási gombbal. Az ajánló változatos típus-, ár-, méret- és helyszínmintát választ, oldalfrissítéskor új összeállítással. Generált címeket és strukturált adatokat közöl, elérhetőséget és pontos címet nem.
 - A fizetett, 14 napig megválaszolatlan kedvelés eredeti kreditdíja egyszer visszajár, alkalmazáson belüli értesítéssel és kreditnapló-bejegyzéssel. A határidőn belüli kedvelés vagy elutasítás válasznak számít; későbbi válasz esetén a visszatérítés továbbra is jár. A felhőben óránkénti feldolgozás és belépéskori ellenőrzés kezeli az esedékes jóváírásokat.
 

@@ -40,27 +40,14 @@ public static class Rules
         return text;
     }
     public static string Normalize(string value) => string.Concat(value.Normalize(NormalizationForm.FormD).Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)).ToUpperInvariant().Trim();
-    public static bool Compatible(Property p, SearchRequest s)
-    {
-        if (p.Archived || s.Archived || p.OwnerId == s.OwnerId) return false;
-        if (!LocationCatalog.Matches(p, s)) return false;
-        if (!string.IsNullOrWhiteSpace(s.Type) && Normalize(p.Type) != Normalize(s.Type)) return false;
-        return Within(p.Price, s.MinPrice, s.MaxPrice) && Within(p.Area, s.MinArea, s.MaxArea) && Within(p.Rooms, s.MinRooms, s.MaxRooms)
-            && (Normalize(s.Type) == "HAZ" || ((!s.Balcony || p.Balcony) && (!s.Elevator || p.Elevator)))
-            && PropertyAttributes.Compatible(p, s);
-    }
+    public static bool Compatible(Property p, SearchRequest s) => MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s), includeReasons: false).IsExact;
     public static bool Within(decimal value, decimal? min, decimal? max) => (!min.HasValue || value >= min.Value) && (!max.HasValue || value <= max.Value);
     public static void Range(decimal? min, decimal? max, string name)
     {
         if (min < 0 || max < 0 || min > max) throw new ApiException(400, $"Érvénytelen {name} tartomány.");
     }
-    public static int Score(Property p, SearchRequest s)
-    {
-        var priceFit = s.MaxPrice is > 0 ? Math.Clamp((s.MaxPrice.Value - p.Price) / s.MaxPrice.Value, 0m, .2m) : .1m;
-        var apartment = Normalize(p.Type) != "HAZ";
-        return Math.Clamp(90 + (int)(priceFit * 40) + (apartment && p.Balcony ? 1 : 0) + (apartment && p.Elevator ? 1 : 0), 90, 100);
-    }
-    public static string[] Reasons(Property p, SearchRequest s) => new[] { "Megfelelő elhelyezkedés", "A megadott árkereten belül", "Megfelelő alapterület és szobaszám" }.Concat(Normalize(s.Type) != "HAZ" && s.Balcony ? new[] { "Erkéllyel" } : Array.Empty<string>()).Concat(Normalize(s.Type) != "HAZ" && s.Elevator ? new[] { "Liftes épület" } : Array.Empty<string>()).ToArray();
+    public static int Score(Property p, SearchRequest s) => MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s), includeReasons: false).Score;
+    public static string[] Reasons(Property p, SearchRequest s) => MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s)).Reasons;
     // Explicit counts preserve compositions such as 2 whole + 3 half rooms.
     // Only lossless half-step legacy totals can be displayed as separate counts.
     public static (int? WholeRooms, int? HalfRooms) RoomCounts(Property property)

@@ -1,6 +1,7 @@
-import { getLocation, resolveLegacyLocations, matchesLocations, isPropertyLocation } from './locations.js';
-import {normalizePropertyAttributes, normalizePropertyRooms, normalizeSearchAttributes, attributesCompatible} from './attributes.js';
+import { getLocation, resolveLegacyLocations, isPropertyLocation } from './locations.js';
+import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
 import {normalizeAccountType,likeCost,canInteract,normalizeReportReason,normalizeIncomingPagination} from './accounts.js';
+import {prepareSearch,evaluateMatch,valueForMoney,searchSpecificity} from './matching.js';
 
 /** Browser-only demonstration store. Real deployments use the authenticated .NET API. */
 export const STORAGE_KEY = 'otthonra.demo.v3';
@@ -10,29 +11,37 @@ const LIKE_RESPONSE_WINDOW = LIKE_RESPONSE_DAYS * 86400000;
 const clone = value => JSON.parse(JSON.stringify(value));
 const uid = prefix => `${prefix}-${globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`}`;
 const photos = ['/assets/home.jpg','/assets/living.jpg','/assets/bedroom.jpg','/assets/kitchen.jpg','/assets/terrace.jpg','/assets/living.jpg'];
-const normalized = value => String(value || '').trim().toLocaleLowerCase('hu');
 const numeric = (value, fallback) => value === '' || value == null ? fallback : typeof value === 'boolean' ? NaN : Number(value);
 const storedInstant = value => typeof value==='string'&&value.trim()?Date.parse(value):NaN;
 const locationError = () => new Error('Válassz érvényes települést vagy budapesti kerületet a találati listából.');
 function withLocations(entity, kind, strict = false) {
-  let locations;
+  let locations,invalidPropertyId,invalidSearchIds;
   if (kind === 'property' && ((Object.hasOwn(entity, 'locationId') && (strict || entity.locationId != null)) || entity.location?.id)) {
-    const location = getLocation(Object.hasOwn(entity, 'locationId') && (strict || entity.locationId != null) ? entity.locationId : entity.location.id);
-    locations = isPropertyLocation(location) ? [location] : [];
-    if (strict && !isPropertyLocation(location)) throw locationError();
+    const id=Object.hasOwn(entity,'locationId')&&(strict||entity.locationId!=null)?entity.locationId:entity.location.id;
+    const location=getLocation(id);
+    locations=isPropertyLocation(location)?[location]:[];
+    if(strict&&!isPropertyLocation(location))throw locationError();
+    if(!strict&&!locations.length){
+      if(id==null||typeof id==='string'&&!id.trim())locations=resolveLegacyLocations(entity);
+      else invalidPropertyId=id;
+    }
   } else if (kind === 'search' && Object.hasOwn(entity, 'locationIds') && (strict || entity.locationIds != null)) {
     const ids = Array.isArray(entity.locationIds) ? [...new Set(entity.locationIds)] : [];
-    locations = ids.map(getLocation).filter(Boolean);
-    if (strict && (!ids.length || ids.length > 50 || locations.length !== ids.length)) throw locationError();
+    locations=ids.map(getLocation).filter(Boolean);
+    if(strict&&(!ids.length||ids.length>50||locations.length!==ids.length))throw locationError();
+    if(!strict){
+      if(!Array.isArray(entity.locationIds)||locations.length!==ids.length){invalidSearchIds=entity.locationIds;locations=[];}
+      else if(!ids.length)locations=resolveLegacyLocations(entity);
+    }
   } else {
     locations = resolveLegacyLocations(entity);
   }
   if (strict && !locations.length) throw locationError();
   if (kind === 'property') {
     const location = locations[0] || null;
-    return {...entity, locationId:location?.id || '', location:clone(location), city:location?.city ?? entity.city ?? '', district:location ? location.district || '' : entity.district ?? '', lotArea:entity.type === 'Ház' ? numeric(entity.lotArea, null) : null};
+    return {...entity, locationId:location?.id ?? invalidPropertyId ?? '', location:clone(location), city:location?.city ?? entity.city ?? '', district:location ? location.district || '' : entity.district ?? '', lotArea:entity.type === 'Ház' ? numeric(entity.lotArea, null) : null};
   }
-  return {...entity, locationIds:locations.map(location=>location.id), locations:clone(locations), city:locations[0]?.city ?? entity.city ?? '', districts:locations.filter(location=>location.city === locations[0]?.city && location.district).map(location=>location.district)};
+  return {...entity, locationIds:invalidSearchIds===undefined?locations.map(location=>location.id):clone(invalidSearchIds), locations:clone(locations), city:locations[0]?.city ?? entity.city ?? '', districts:locations.filter(location=>location.city === locations[0]?.city && location.district).map(location=>location.district)};
 }
 function migrateLocations(state) {
   state.users=state.users.map(user=>({...user,accountType:normalizeAccountType(user.accountType)}));
@@ -42,10 +51,11 @@ function migrateLocations(state) {
   state.searches = state.searches.map(entity=>normalizeSearchAttributes(withLocations(entity, 'search')));
   return state;
 }
-const visibleEntity = (entity,users) => {
+const visibleEntity = (entity,users,specificity) => {
   const result = clone(entity);
   delete result.email; delete result.phone;
   result.ownerAccountType=normalizeAccountType(users?.find(user=>user.id===entity.ownerId)?.accountType);
+  if(Array.isArray(entity.locationIds))result.searchSpecificity=specificity??searchSpecificity(entity);
   return result;
 };
 
@@ -161,17 +171,7 @@ export function demoLanding(region=null,random=Math.random) {
 
 export function isCompatible(property,search) {
   if (!property || !search || property.archived || search.archived || property.ownerId===search.ownerId) return false;
-  if (!matchesLocations(property, search)) return false;
-  if (search.type && !['bármilyen','mindegy','összes'].includes(normalized(search.type)) && normalized(property.type)!==normalized(search.type)) return false;
-  property = normalizePropertyRooms(property);
-  for (const [field,min,max] of [['price','minPrice','maxPrice'],['area','minArea','maxArea'],['rooms','minRooms','maxRooms']]) {
-    if (!Number.isFinite(Number(property[field]))) return false;
-    if (search[min]!=null && Number(property[field])<Number(search[min])) return false;
-    if (search[max]!=null && Number(property[field])>Number(search[max])) return false;
-  }
-  if (search.type !== 'Ház' && search.balcony && !property.balcony) return false;
-  if (search.type !== 'Ház' && search.elevator && !property.elevator) return false;
-  return attributesCompatible(property,search);
+  return evaluateMatch(property,prepareSearch(search)).isExact;
 }
 
 export function createModel(storage=globalThis.localStorage, now=()=>new Date().toISOString()) {
@@ -223,35 +223,67 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     const partner=s.users.find(u=>u.id===(property.ownerId===s.userId?search.ownerId:property.ownerId));
     return {...clone(match),property:visibleEntity(property,s.users),search:visibleEntity(search,s.users),partner:clone(partner)};
   };
+  const recommendationSnapshot = (s, options={}) => {
+    const includeApproximate=options?.includeApproximate===true;
+    const active=own(s,s.active?.kind,s.active?.id);
+    const empty={items:[],hasApproximate:false,requiresApproximateConsent:false,stage:'empty'};
+    if(!active||active.archived)return empty;
+    const buyer=s.active.kind==='search';
+    const candidates=buyer?s.properties:s.searches;
+    const seen=new Set(),liked=new Set();
+    for(const decision of s.decisions){
+      if((buyer?decision.searchId:decision.propertyId)!==active.id)continue;
+      const candidateId=buyer?decision.propertyId:decision.searchId;
+      if(decision.actorKind===s.active.kind)seen.add(candidateId);
+      else if(decision.liked)liked.add(candidateId);
+    }
+    const prepared=buyer?prepareSearch(active):null;
+    const activeSpecificity=buyer?searchSpecificity(prepared):null;
+    const activeValue=buyer?null:valueForMoney(active);
+    const exact=[],approximate=[];
+    for(const candidate of candidates){
+      if(candidate.ownerId===s.userId||candidate.archived||seen.has(candidate.id))continue;
+      const property=buyer?candidate:active,search=buyer?active:candidate;
+      if(!ownersCanInteract(s,property,search))continue;
+      const preparedCandidate=prepared||prepareSearch(search);
+      const evaluation=evaluateMatch(property,preparedCandidate);
+      if(!evaluation.eligible)continue;
+      const item={candidate,property,search,score:evaluation.score,isExact:evaluation.isExact,reasons:evaluation.reasons,
+        likedYou:liked.has(candidate.id),valueForMoney:activeValue??valueForMoney(property),
+        searchSpecificity:activeSpecificity??searchSpecificity(preparedCandidate)};
+      (evaluation.isExact?exact:approximate).push(item);
+    }
+    const selected=exact.length?exact:includeApproximate?approximate:[];
+    selected.sort((a,b)=>(buyer?b.score-a.score||Number(b.likedYou)-Number(a.likedYou)
+      :Number(b.likedYou)-Number(a.likedYou)||b.score-a.score)
+      ||(buyer?b.valueForMoney-a.valueForMoney:b.searchSpecificity-a.searchSpecificity)
+      ||String(a.property.id).localeCompare(String(b.property.id))||String(a.search.id).localeCompare(String(b.search.id)));
+    return {items:selected.slice(0,50).map(item=>{
+      const {candidate,property,search,...ranking}=item;
+      const data=visibleEntity(candidate,s.users,ranking.searchSpecificity);
+      if(buyer)data.address='';
+      else{
+        const person=s.users.find(user=>user.id===candidate.ownerId);
+        data.buyerName ||= person?.name?.split(' ').at(-1)||'Érdeklődő';
+        data.avatar=person?.avatar;
+      }
+      return {...data,...ranking,kind:buyer?'property':'search',pair:{propertyId:property.id,searchId:search.id}};
+    }),hasApproximate:approximate.length>0,
+      requiresApproximateConsent:!exact.length&&approximate.length>0&&!includeApproximate,
+      stage:exact.length?'exact':includeApproximate&&approximate.length?'approximate':'empty'};
+  };
   return {
     getState() {
       processRefunds();
       return clone({unreadNotificationCount:state.notifications.filter(item=>item.userId===state.userId&&!item.readAt).length,user:state.users.find(u=>u.id===state.userId),credits:state.credits,active:state.active,properties:state.properties.filter(p=>p.ownerId===state.userId).map(p=>visibleEntity(p,state.users)),searches:state.searches.filter(q=>q.ownerId===state.userId).map(q=>visibleEntity(q,state.users)),decisions:state.decisions.filter(d=>own(state,d.actorKind,d.actorId)).map(d=>({...d,property:visibleEntity(state.properties.find(p=>p.id===d.propertyId),state.users),search:visibleEntity(state.searches.find(q=>q.id===d.searchId),state.users)})),ledger:state.ledger,createdAt:state.createdAt,likeCost:state.active?.id?likeCost(state.users.find(user=>user.id===state.userId)?.accountType,state.active.kind):0,reportedOwnerIds:[...new Set(state.reports.filter(report=>report.reporterId===state.userId).map(report=>report.reportedUserId))],reportedEntities:state.reports.filter(report=>report.reporterId===state.userId&&['property','search'].includes(report.entityKind)&&typeof report.entityId==='string').map(({entityKind,entityId,reason})=>({entityKind,entityId,reason}))});
     },
-    feed() {
+    recommendations(options={}) {
       processRefunds();
-      const active=own(state,state.active.kind,state.active.id);
-      if(!active||active.archived)return [];
-      const candidates=state.active.kind==='search'?state.properties:state.searches;
-      return candidates.map(candidate=>{
-        const property=state.active.kind==='search'?candidate:active;
-        const search=state.active.kind==='search'?active:candidate;
-        if(!isCompatible(property,search)||!ownersCanInteract(state,property,search))return null;
-        if(state.decisions.some(d=>d.propertyId===property.id&&d.searchId===search.id&&d.actorKind===state.active.kind))return null;
-        const likedYou=state.decisions.some(d=>d.propertyId===property.id&&d.searchId===search.id&&d.actorKind!==state.active.kind&&d.liked);
-        const reasons=['Megfelelő elhelyezkedés','Árkereten belül','Ideális alapterület'];
-        if(property.rooms>=3)reasons.push('Elegendő szoba');
-        const boundedBudget=search.minPrice!=null&&search.maxPrice!=null;
-        const budgetFit=boundedBudget?Math.max(0,1-Math.abs(property.price-(search.minPrice+search.maxPrice)/2)/Math.max(1,search.maxPrice-search.minPrice)):0.75;
-        const score=Math.min(99,Math.round(92+budgetFit*5+(likedYou?2:0)));
-        const data=visibleEntity(candidate,state.users);
-        if(state.active.kind==='property') {
-          const person=state.users.find(u=>u.id===candidate.ownerId);
-          data.buyerName ||= person?.name?.split(' ').at(-1)||'Érdeklődő';
-          data.avatar=person?.avatar;
-        }
-        return {...data,kind:state.active.kind==='search'?'property':'search',score,reasons,pair:{propertyId:property.id,searchId:search.id},likedYou};
-      }).filter(Boolean).sort((a,b)=>Number(b.likedYou)-Number(a.likedYou)||b.score-a.score||a.id.localeCompare(b.id));
+      return recommendationSnapshot(state,options);
+    },
+    feed(options={}) {
+      processRefunds();
+      return recommendationSnapshot(state,options).items;
     },
     incomingLikes(options={}) {
       const {offset,limit}=normalizeIncomingPagination(options);
@@ -260,21 +292,26 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       const empty={active:null,items:[],total:0,offset,limit,hasMore:false,likeCost:0};
       if(!active||active.archived)return empty;
       const activeKind=state.active.kind;
+      const preparedActive=activeKind==='search'?prepareSearch(active):null;
       const items=state.decisions.filter(decision=>decision.liked&&decision.actorKind===(activeKind==='property'?'search':'property')&&(activeKind==='property'?decision.propertyId===active.id:decision.searchId===active.id)).map(decision=>{
         const property=state.properties.find(item=>item.id===decision.propertyId),search=state.searches.find(item=>item.id===decision.searchId);
         if(!property||!search||property.archived||search.archived||property.ownerId===search.ownerId||!ownersCanInteract(state,property,search))return null;
         const candidate=activeKind==='search'?property:search;
         if(candidate.ownerId===state.userId)return null;
-        const data=visibleEntity(candidate,state.users);
+        const prepared=preparedActive||prepareSearch(search),specificity=searchSpecificity(prepared);
+        const data=visibleEntity(candidate,state.users,specificity);
         if(activeKind==='search')data.address='';
         const mine=state.decisions.find(item=>item.propertyId===property.id&&item.searchId===search.id&&item.actorKind===activeKind);
-        const compatible=isCompatible(property,search),match=state.matches.find(item=>item.propertyId===property.id&&item.searchId===search.id);
-        return {...data,kind:activeKind==='search'?'property':'search',pair:{propertyId:property.id,searchId:search.id},score:compatible?98:0,reasons:compatible?['Megfelelő elhelyezkedés','Árkereten belül','Ideális alapterület']:[],likedYou:true,likedAt:decision.createdAt,myDecision:mine?(mine.liked?'liked':'passed'):null,matchId:match&&getMatch(state,match)?match.id:null,compatible,_decisionId:String(decision.id)};
+        const evaluation=evaluateMatch(property,prepared),compatible=evaluation.eligible;
+        const match=state.matches.find(item=>item.propertyId===property.id&&item.searchId===search.id);
+        return {...data,kind:activeKind==='search'?'property':'search',pair:{propertyId:property.id,searchId:search.id},
+          score:evaluation.score,isExact:evaluation.isExact,reasons:evaluation.reasons,searchSpecificity:specificity,valueForMoney:valueForMoney(property),
+          likedYou:true,likedAt:decision.createdAt,myDecision:mine?(mine.liked?'liked':'passed'):null,matchId:match&&getMatch(state,match)?match.id:null,compatible,_decisionId:String(decision.id)};
       }).filter(Boolean).sort((a,b)=>String(a.likedAt)===String(b.likedAt)?(a._decisionId===b._decisionId?0:a._decisionId>b._decisionId?-1:1):(String(a.likedAt)>String(b.likedAt)?-1:1));
       const total=items.length;
       return {active:{kind:activeKind,id:active.id},items:items.slice(offset,offset+limit).map(({_decisionId,...item})=>item),total,offset,limit,hasMore:offset+limit<total,likeCost:likeCost(state.users.find(user=>user.id===state.userId)?.accountType,activeKind)};
     },
-    decide(item,liked) {
+    decide(item,liked,options={}) {
       processRefunds();
       if(typeof liked!=='boolean')throw new Error('Érvénytelen döntés.');
       const pair=item?.pair;
@@ -282,8 +319,13 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       return transact(s=>{
         const active=own(s,s.active.kind,s.active.id);
         const property=s.properties.find(p=>p.id===pair.propertyId),search=s.searches.find(q=>q.id===pair.searchId);
-        if(!active||active.archived||(s.active.kind==='property'?property?.id:search?.id)!==active.id||!isCompatible(property,search)||!ownersCanInteract(s,property,search))throw new Error('Ez az ajánlás már nem érhető el az aktív profilodhoz.');
+        if(!active||active.archived||!property||!search||property.archived||search.archived
+          ||(s.active.kind==='property'?property.id:search.id)!==active.id||!ownersCanInteract(s,property,search))throw new Error('Ez az ajánlás már nem érhető el az aktív profilodhoz.');
+        const evaluation=evaluateMatch(property,prepareSearch(search));
+        if(!evaluation.eligible)throw new Error('Ez az ajánlás már nem érhető el az aktív profilodhoz.');
         if(s.decisions.some(d=>d.propertyId===pair.propertyId&&d.searchId===pair.searchId&&d.actorKind===s.active.kind))throw new Error('Erről az ajánlásról már döntöttél.');
+        if(!evaluation.isExact&&(options?.allowApproximate!==true||recommendationSnapshot(s).items.length))
+          throw new Error('Előbb nézd végig a tökéletes egyezéseket, majd engedélyezd a részleges találatokat.');
         const charged=liked?likeCost(s.users.find(user=>user.id===s.userId)?.accountType,s.active.kind):0;
         if(s.credits<charged)throw new Error(`Nincs elegendő kredited. A kedveléshez ${charged} kredit szükséges.`);
         s.credits-=charged;
@@ -326,6 +368,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         const title=String(data.title??existing?.title??'').trim();
         if(title.length<3||title.length>150)throw new Error('Adj meg egy 3–150 karakteres nevet.');
         const incoming=clone(data);delete incoming.ownerAccountType;
+        for(const field of ['searchSpecificity','valueForMoney','isExact','score'])delete incoming[field];
         if(kind==='property'){
           const countsSupplied=[incoming.wholeRooms,incoming.halfRooms].some(count=>count!=null&&String(count).trim()!=='');
           if(countsSupplied){

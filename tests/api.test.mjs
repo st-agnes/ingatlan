@@ -320,7 +320,7 @@ test('the API adapter rejects area property locations and over fifty choices bef
 
 test('a property response with an invalid area ID does not become an exact town location',async()=>{
  routes(accountRoutes({'/api/me/entities':{properties:[{...property,locationId:'area:Budapest',city:'Budapest'}],searchRequests:[{...search,locationIds:['area:Budapest']}],active:{kind:'search',id:ids.search}}}));
- const state=await adapter().getState();assert.equal(state.properties[0].location,null);assert.equal(state.properties[0].locationId,'');
+ const state=await adapter().getState();assert.equal(state.properties[0].location,null);assert.equal(state.properties[0].locationId,'area:Budapest');
  assert.equal(state.searches[0].locations[0].kind,'area');assert.equal(state.searches[0].locations[0].settlementCount,81);
 });
 
@@ -506,4 +506,55 @@ test('coarse region detection aborts after three seconds and leaves timeout fail
   globalThis.fetch=async(url,{signal})=>new Promise((resolve,reject)=>signal.addEventListener('abort',()=>reject(new DOMException('Aborted','AbortError')),{once:true}));
   assert.equal(await detectLandingRegion(),null);assert.equal(cleared,'coarse-region-timeout');
  } finally {globalThis.setTimeout=originalSetTimeout;globalThis.clearTimeout=originalClearTimeout;}
+});
+
+test('recommendation stages preserve consent metadata, zero scores and specialization without exposing private fields',async()=>{
+ const calls=[];
+ globalThis.fetch=async(url,options)=>{const target=new URL(url);calls.push({target,options});return response(target.searchParams.get('includeApproximate')==='true'?{
+  active:{kind:'search',id:ids.search},stage:'approximate',hasApproximate:true,requiresApproximateConsent:false,
+  items:[{property:{...property,owner:{email:'private@example.test'}},searchRequest:search,compatibilityScore:0,isExact:false,searchSpecificity:67,valueForMoney:1.25,reasons:['Az ár meghaladja a keretet']}]
+ }:{active:{kind:'search',id:ids.search},items:[],stage:'empty',hasApproximate:true,requiresApproximateConsent:true});};
+ const api=adapter();api.active={kind:'search',id:ids.search};
+ const exact=await api.recommendations();assert.deepEqual(exact.items,[]);assert.equal(exact.requiresApproximateConsent,true);assert.equal(calls[0].target.search,'');
+ const approximate=await api.recommendations({includeApproximate:true});assert.equal(approximate.stage,'approximate');assert.equal(calls[1].target.searchParams.get('includeApproximate'),'true');
+ assert.equal(approximate.items[0].score,0);assert.equal(approximate.items[0].isExact,false);assert.equal(approximate.items[0].searchSpecificity,67);assert.equal(approximate.items[0].valueForMoney,1.25);assert.equal('owner' in approximate.items[0],false);
+ assert.deepEqual(approximate.active,{kind:'search',id:ids.search});
+});
+
+test('approximate decision authorization is sent only with an explicit boolean opt-in',async()=>{
+ const calls=routes({'/api/decisions':{charged:0}}),api=adapter(),candidate={pair:{propertyId:ids.property,searchId:ids.search}};
+ await api.decide(candidate,false);assert.equal('allowApproximate' in JSON.parse(calls[0].body),false);
+ await api.decide(candidate,true,{allowApproximate:true});assert.equal(JSON.parse(calls[1].body).allowApproximate,true);
+ await api.decide(candidate,true,{allowApproximate:'false'});assert.equal('allowApproximate' in JSON.parse(calls[2].body),false);
+});
+
+test('recommendations keep the requested active kind while a later activation changes the adapter',async()=>{
+ let finish;
+ globalThis.fetch=async()=>new Promise(resolve=>{finish=()=>resolve(response({active:{kind:'search',id:ids.search},stage:'exact',items:[{property,searchRequest:search,compatibilityScore:100,isExact:true}]}));});
+ const api=adapter();api.active={kind:'search',id:ids.search};const pending=api.recommendations();
+ api.active={kind:'property',id:ids.property};finish();const result=await pending;
+ assert.deepEqual(result.active,{kind:'search',id:ids.search});assert.equal(result.items[0].kind,'property');
+});
+
+test('search specialization is preserved from authoritative own-search DTOs',async()=>{
+ routes(accountRoutes({'/api/me/entities':{searchRequests:[{...search,searchSpecificity:81}],active:{kind:'search',id:ids.search}}}));
+ const state=await adapter().getState();assert.equal(state.searches[0].searchSpecificity,81);
+});
+
+test('invalid nonempty API location selections stay invalid rather than reviving through legacy city fields',async()=>{
+ const {evaluateMatch}=await import('../dist/matching.js');
+ for(const invalidId of ['city:Nemlétező','area:Budapest']){
+  routes(accountRoutes({'/api/me/entities':{properties:[{...property,locationId:invalidId,city:'Budapest'}],searchRequests:[{...search,locationIds:['city:Budapest']}],active:{kind:'search',id:ids.search}}}));
+  const state=await adapter().getState();assert.equal(state.properties[0].locationId,invalidId);assert.equal(evaluateMatch(state.properties[0],state.searches[0]).eligible,false);
+ }
+ for(const locationIds of [['city:Nemlétező'],['city:Budapest','city:Nemlétező']]){
+  routes(accountRoutes({'/api/me/entities':{properties:[{...property,locationId:'city:Budapest'}],searchRequests:[{...search,city:'Budapest',locationIds}],active:{kind:'search',id:ids.search}}}));
+  const state=await adapter().getState();assert.deepEqual(state.searches[0].locationIds,locationIds);assert.equal(evaluateMatch(state.properties[0],state.searches[0]).eligible,false);
+ }
+});
+
+test('blank legacy API selections retain their canonical city and district fallback without changing save validation',async()=>{
+ const {evaluateMatch}=await import('../dist/matching.js');
+ routes(accountRoutes({'/api/me/entities':{properties:[{...property,locationId:'',city:'Budapest',district:'XIII.'}],searchRequests:[{...search,city:'Budapest',districts:['XIII.'],locationIds:[]}],active:{kind:'search',id:ids.search}}}));
+ const state=await adapter().getState();assert.equal(state.properties[0].locationId,'district:Budapest:13');assert.deepEqual(state.searches[0].locationIds,['district:Budapest:13']);assert.equal(evaluateMatch(state.properties[0],state.searches[0]).eligible,true);
 });
