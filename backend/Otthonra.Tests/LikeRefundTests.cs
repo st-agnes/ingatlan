@@ -126,10 +126,13 @@ public class LikeRefundTests
         var ledger = db.Model.FindEntityType(typeof(CreditEntry))!;
         Assert.Contains(ledger.GetIndexes(), index => index.IsUnique && index.Properties.Select(property => property.Name).SequenceEqual(new[] { "DecisionId" }));
         Assert.Contains(ledger.GetIndexes(), index => index.IsUnique && index.Properties.Select(property => property.Name).SequenceEqual(new[] { "RefundedDecisionId" }));
-        Assert.Equal(3, ledger.GetForeignKeys().Count());
+        foreach (var name in new[] { "UserId", "DecisionId", "RefundedDecisionId" })
+            Assert.Contains(ledger.GetForeignKeys(), key => key.Properties.Select(property => property.Name).SequenceEqual(new[] { name }));
+        Assert.All(ledger.GetForeignKeys(), key => Assert.Equal(DeleteBehavior.Restrict, key.DeleteBehavior));
         var notification = db.Model.FindEntityType(typeof(UserNotification))!;
         Assert.Contains(notification.GetIndexes(), index => index.IsUnique && index.Properties.Select(property => property.Name).SequenceEqual(new[] { "DecisionId" }));
-        Assert.Equal(2, notification.GetForeignKeys().Count());
+        foreach (var name in new[] { "UserId", "DecisionId" })
+            Assert.Contains(notification.GetForeignKeys(), key => key.Properties.Select(property => property.Name).SequenceEqual(new[] { name }));
         Assert.All(notification.GetForeignKeys(), key => Assert.Equal(DeleteBehavior.Restrict, key.DeleteBehavior));
         Assert.True(db.Model.FindEntityType(typeof(Decision))!.FindProperty("RefundedAt")!.IsNullable);
         Assert.Equal("20261108-public-landing-and-like-refunds", SchemaUpgrade.LikeRefundsVersion);

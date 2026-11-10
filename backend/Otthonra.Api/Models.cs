@@ -14,6 +14,7 @@ public sealed class User
     public string PasswordHash { get; set; } = "";
     public string AccountType { get; set; } = AccountTypes.Private;
     public int Credits { get; set; }
+    public int FeedbackPassCounter { get; set; }
     public string? ActiveKind { get; set; }
     public Guid? ActiveEntityId { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
@@ -121,6 +122,8 @@ public sealed class CreditEntry
     public string Description { get; set; } = "";
     public Guid? DecisionId { get; set; }
     public Guid? RefundedDecisionId { get; set; }
+    public Guid? FeedbackPackageId { get; set; }
+    public Guid? RefundedFeedbackPackageId { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
 
@@ -128,7 +131,8 @@ public sealed class UserNotification
 {
     public Guid Id { get; set; } = Guid.NewGuid();
     public Guid UserId { get; set; }
-    public Guid DecisionId { get; set; }
+    public Guid? DecisionId { get; set; }
+    public Guid? FeedbackPackageId { get; set; }
     public string Kind { get; set; } = "like_refund";
     public int Amount { get; set; }
     public string Text { get; set; } = "";
@@ -159,6 +163,9 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
     public DbSet<Message> Messages => Set<Message>();
     public DbSet<CreditEntry> CreditEntries => Set<CreditEntry>();
     public DbSet<UserNotification> UserNotifications => Set<UserNotification>();
+    public DbSet<PropertyImpression> PropertyImpressions => Set<PropertyImpression>();
+    public DbSet<FeedbackPackage> FeedbackPackages => Set<FeedbackPackage>();
+    public DbSet<FeedbackInvitation> FeedbackInvitations => Set<FeedbackInvitation>();
     public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         => SearchLocationIndex.SaveAsync(this, () => base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken), cancellationToken);
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -167,6 +174,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
     protected override void OnModelCreating(ModelBuilder b)
     {
         Payments.Configure(b);
+        SellerFeedbackSchema.Configure(b);
         b.Entity<User>().ToTable("Users");
         b.Entity<UserReport>().ToTable("UserReports");
         b.Entity<Property>().ToTable("Properties");

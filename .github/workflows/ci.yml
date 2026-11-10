@@ -93,11 +93,14 @@ jobs:
       - name: Run JavaScript tests
         run: |
           node tests/model.test.mjs
+          node tests/feedback.test.mjs
+          node tests/seller-feedback-model.test.mjs
           node tests/matching.test.mjs
           node tests/public-profile.test.mjs
           node tests/smoke-privacy.test.mjs
           node tests/frontend.test.mjs
           node tests/api.test.mjs
+          node tests/seller-feedback-api.test.mjs
           node tests/accounts.test.mjs
           node tests/development.test.mjs
           node tests/locations.test.mjs
@@ -133,6 +136,25 @@ jobs:
         run: |
           node backend/matching-smoke.mjs http://127.0.0.1:3000
           python3 backend/matching-store-smoke.py "${{ job.services.mysql.id }}"
+      - name: Preserve an existing notification table through the feedback upgrade
+        run: |
+          node scripts/dev.mjs --stop
+          python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" legacy-notification
+          node scripts/dev.mjs --background
+          python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" upgraded-notification
+      - name: Verify seller statistics, paid feedback, quota races and exactly-once package refunds
+        run: |
+          node backend/seller-feedback-smoke.mjs http://127.0.0.1:3000 --setup
+          python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" prime
+          node backend/seller-feedback-smoke.mjs http://127.0.0.1:3000 --responses
+          python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" capacity
+          node backend/seller-feedback-smoke.mjs http://127.0.0.1:3000 --capacity
+          python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" age
+          node backend/seller-feedback-smoke.mjs http://127.0.0.1:3000 --expired
+          python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" record
+          node scripts/dev.mjs --restart
+          node backend/seller-feedback-smoke.mjs http://127.0.0.1:3000 --preserved
+          python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" verify
       - name: Install browser regression tools
         run: |
           npm install --prefix .local/browser-tests --no-save --no-package-lock playwright@1.56.1
@@ -153,6 +175,8 @@ jobs:
         run: node tests/areas-browser.test.mjs http://127.0.0.1:3000
       - name: Test exact-to-approximate discovery consent on desktop, tablet and mobile
         run: node tests/matching-browser.test.mjs http://127.0.0.1:3000
+      - name: Test seller insights and one-click rejection feedback on desktop, tablet and mobile
+        run: node tests/seller-feedback-browser.test.mjs http://127.0.0.1:3000
       - name: Simulate the previous schema in the disposable CI database
         run: |
           node scripts/dev.mjs --stop
