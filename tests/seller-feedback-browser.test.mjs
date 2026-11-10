@@ -32,10 +32,12 @@ async function verify(browser,viewport){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
  await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());
  const page=await context.newPage();page.setDefaultTimeout(12000);const errors=[];page.on('pageerror',error=>errors.push(error.message));
- const interact=async locator=>{await locator.scrollIntoViewIfNeeded();return viewport.touch?locator.tap():locator.click();};
+ // Locator actions scroll and retry against the current DOM during route renders.
+ const interact=locator=>viewport.touch?locator.tap():locator.click();
+ const navigate=async name=>{if(await page.locator('.mobile-menu').isVisible())await interact(page.locator('.mobile-menu'));await interact(page.locator(`.nav-button[data-page="${name}"]`));await page.waitForFunction(expected=>location.hash===`#${expected}`,name);};
  try{
   await freshDemo(page);
-  await interact(page.locator('[data-page="properties"]').first());
+  await navigate('properties');
   await interact(page.locator('.property-insights-button').first());await page.locator('.property-insights').waitFor();
   assert.equal(await page.locator('.insight-stat').count(),4);assert.match(await page.locator('.property-insights').innerText(),/Látták|Kedvelték|Kedvelt keresések|Párosítási arány/);
   assert.equal(await page.locator('.feedback-total').innerText(),'0 db');
