@@ -24,8 +24,9 @@ async function api(path, {token, method='GET', body, status=200}={}) {
   return response.status === 204 ? null : response.json();
 }
 async function register(name) {
+  const displayNames={Buyer:'Kovács Anna',Seller:'Nagy Péter',SecondBuyer:'Szabó Eszter'};
   const session = await api('/auth/register', {method:'POST', body:{
-    name:`Matching ${name}`, email:`matching-${name.toLowerCase()}-${suffix}@example.test`,
+    name:displayNames[name], email:`matching-${name.toLowerCase()}-${suffix}@example.test`,
     password:'MatchingFixturePassword2026!', phone:privatePhone
   }});
   return {...session.user, token:session.accessToken};
@@ -98,7 +99,11 @@ assert.equal(propertyId(exact.items[0]),liked.id,'An existing seller like comes 
 assert.equal(propertyId(exact.items[1]),good.id,'Price and living area must reward the better-value property');
 for(const item of exact.items){
   assert.equal(score(item),100);assert.equal(item.isExact,true);assert.ok(exactIds.has(propertyId(item)));
+  assert.equal(item.property.ownerFirstName,'Péter');assert.equal(item.searchRequest.ownerFirstName,'Anna');
+  assert.ok(item.matchDetails.length>=5&&item.matchDetails.every(detail=>detail.matches),
+    'Exact recommendations must explain the requested and actual values for every active criterion');
   assert.equal(item.property.address,'');assertNoContactData(item,[privatePhone,buyer.email,seller.email,propertyBase.address]);
+  assertNoContactData(item,['Nagy Péter','Kovács Anna']);
 }
 const notLiked = exact.items.filter(item=>!item.likedYou);
 for(let index=1;index<notLiked.length;index++) assert.ok(notLiked[index-1].valueForMoney>=notLiked[index].valueForMoney);
@@ -125,9 +130,26 @@ assert.deepEqual(new Set(approximate.items.map(propertyId)),nearIds);
 for(const item of approximate.items){
   assert.equal(item.isExact,false);assert.ok(score(item)>=0&&score(item)<100);
   assert.equal(excludedIds.has(propertyId(item)),false);assert.equal(item.property.address,'');
+  assert.equal(item.property.ownerFirstName,'Péter');assert.equal(item.searchRequest.ownerFirstName,'Anna');
+  assert.ok(item.matchDetails.some(detail=>detail.matches)&&item.matchDetails.some(detail=>!detail.matches),
+    'Partial recommendations must include fulfilled conditions as well as deviations');
+  for(const detail of item.matchDetails){
+    assert.deepEqual(Object.keys(detail).sort(),['actual','expected','key','label','matches']);
+    assert.ok(detail.expected.trim()&&detail.actual.trim()&&detail.label.trim());
+  }
+  assertNoContactData(item,[privatePhone,buyer.email,seller.email,propertyBase.address,'Nagy Péter','Kovács Anna']);
 }
 const closeItem=approximate.items.find(item=>propertyId(item)===close.id);
 const farItem=approximate.items.find(item=>propertyId(item)===far.id);
+const closeDetails=Object.fromEntries(closeItem.matchDetails.map(detail=>[detail.key,detail]));
+assert.equal(closeDetails.rooms.matches,false);assert.match(closeDetails.rooms.expected,/3.*szoba/);
+assert.match(closeDetails.rooms.actual,/2,5.*szoba/);
+assert.equal(closeDetails.area.matches,false);assert.match(closeDetails.area.expected,/60.*m²/);
+assert.match(closeDetails.area.actual,/59.*m²/);
+assert.equal(closeDetails.price.matches,false);assert.match(closeDetails.price.expected,/100.*M Ft/);
+assert.match(closeDetails.price.actual,/102.*M Ft/);
+assert.equal(closeDetails.location.matches,true);assert.ok(closeDetails.location.expected.includes(town));
+assert.equal(closeDetails.type.matches,true);assert.equal(closeDetails.type.expected,'Lakás');
 assert.ok(score(closeItem)>score(farItem),'Greater bound deviations must lose more percentage points');
 assert.equal(farItem.likedYou,true);
 assert.ok(approximate.items.indexOf(closeItem)<approximate.items.indexOf(farItem),

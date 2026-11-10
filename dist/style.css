@@ -70,3 +70,16 @@
 .specialization{display:inline-flex;margin:8px 0;padding:5px 9px;border-radius:7px;background:#f3ede7;color:#715c4c;font-size:12px;line-height:1.4}
 .partial-tags .tag,.partial-match{background:#fff1e4;color:#825b2d}
 @media(max-width:720px){.approximate-offer{padding:28px 18px}.matching-consent-actions{flex-direction:column}.matching-consent-actions .btn{width:100%}}
+
+/* Concrete requested/actual criteria keep both sides of a partial match visible. */
+.feature-tags.match-comparison{display:grid;gap:15px;margin-top:18px;align-items:start}
+.match-group{min-width:0;width:100%}.match-group h4{margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:.2px}
+.match-group ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.match-criterion{display:flex;align-items:flex-start;gap:7px;min-width:0;padding:9px 10px;border-radius:8px;font-size:10px;line-height:1.55;overflow-wrap:anywhere}
+.match-criterion>div{min-width:0}.match-criterion strong{display:block;font-size:10px;font-weight:700;margin-bottom:2px}
+.criterion-expected,.criterion-actual{display:block}.criterion-actual{opacity:.76}.criterion-status{display:inline-flex;flex-shrink:0;padding-top:2px}.criterion-status svg{width:13px;height:13px}
+.criterion-passed{background:#edf3e9;color:#49663e}.criterion-different{background:#fff0e5;color:#89512b}.match-passed h4{color:#49663e}.match-different h4{color:#89512b}
+.owner-info{display:inline-flex;align-items:center;gap:6px;color:#687360;font-size:12px;line-height:1.5;margin:0 0 10px 9px;vertical-align:middle;max-width:100%}.owner-initial{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:23px;height:23px;border-radius:50%;background:#eaf0e6;font-size:10px;font-weight:700;color:#617154}.owner-first-name{overflow-wrap:anywhere;min-width:0}
+.landing-card-meta{display:flex;align-items:center;flex-wrap:wrap;gap:5px 9px;margin-top:5px;min-height:20px}.landing-card-meta .owner-info{margin:0;font-size:10px;gap:4px}.landing-card-meta .owner-initial{height:18px;width:18px;font-size:8px}.landing-type{font-size:9px;line-height:1.5;color:#929a8a;letter-spacing:.15px}
+.landing-showcase .landing-search-card{border-top:3px solid #d6a47e;background:#fffdf9}.landing-showcase .landing-property-card{border-top:3px solid #8b9f7c}.landing-showcase .landing-search-card h3,.landing-showcase .landing-property-card h3{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:3em;max-height:3em}
+@media(max-width:720px){.match-group ul{grid-template-columns:1fr}.match-criterion{font-size:11px}.owner-info{font-size:11px}.landing-card-meta{gap:3px 6px;min-height:18px;margin-top:4px}.landing-card-meta .owner-info{font-size:9px;gap:3px}.landing-card-meta .owner-initial{height:16px;width:16px;font-size:7px}.landing-type{font-size:8px}}

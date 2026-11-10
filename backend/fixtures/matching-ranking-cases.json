@@ -307,5 +307,55 @@
     },
     "eligible": false,
     "score": 0
+  },
+  {
+    "name": "concrete-requested-values-and-successful-criteria",
+    "property": {
+      "price": 95,
+      "rooms": 3,
+      "area": 60
+    },
+    "search": {
+      "maxPrice": 80,
+      "minRooms": 4,
+      "minArea": 50
+    },
+    "matchDetails": [
+      {
+        "key": "location",
+        "label": "Helyszín",
+        "expected": "Debrecen",
+        "actual": "Debrecen",
+        "matches": true
+      },
+      {
+        "key": "type",
+        "label": "Ingatlantípus",
+        "expected": "Lakás",
+        "actual": "Lakás",
+        "matches": true
+      },
+      {
+        "key": "price",
+        "label": "Ár",
+        "expected": "legfeljebb 80 M Ft",
+        "actual": "95 M Ft",
+        "matches": false
+      },
+      {
+        "key": "rooms",
+        "label": "Szobaszám",
+        "expected": "legalább 4 szoba",
+        "actual": "3 szoba",
+        "matches": false
+      },
+      {
+        "key": "area",
+        "label": "Alapterület",
+        "expected": "legalább 50 m²",
+        "actual": "60 m²",
+        "matches": true
+      }
+    ]
   }
 ]

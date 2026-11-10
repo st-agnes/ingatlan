@@ -13,7 +13,8 @@ async function api(path,{token,method='GET',body,status=200}={}){
 async function save(f){await mkdir(dirname(fixturePath),{recursive:true});await writeFile(fixturePath,JSON.stringify(f),{mode:0o600});await chmod(fixturePath,0o600);}
 const active=(token,kind,id)=>api('/me/active',{token,method:'PUT',body:{kind,id}});
 const decision=(token,p,s,liked=true,status=200)=>api('/decisions',{token,method:'POST',body:{propertyId:p.id,searchRequestId:s.id,liked},status});
-function privatePage(page){for(const row of page.items){assert.equal(row.property.address,'');for(const entity of [row.property,row.searchRequest])for(const field of ['phone','email','contact','passwordHash'])assert.equal(Object.hasOwn(entity,field),false);assert.equal(row.likedYou,true);assert.ok(!Number.isNaN(Date.parse(row.likedAt)));}}
+const displayNames={a1:'Nagy Péter',a2:'Tóth Márk',b1:'Kovács Anna',b2:'Szabó Eszter'};
+function privatePage(page){for(const row of page.items){assert.equal(row.property.address,'');for(const entity of [row.property,row.searchRequest]){for(const field of ['phone','email','contact','passwordHash','ownerName'])assert.equal(Object.hasOwn(entity,field),false);assert.ok(['Péter','Márk','Anna','Eszter'].includes(entity.ownerFirstName));}assert.ok(row.matchDetails.length>=5);assert.equal(row.likedYou,true);assert.ok(!Number.isNaN(Date.parse(row.likedAt)));}const serialized=JSON.stringify(page);for(const name of Object.values(displayNames))assert.ok(!serialized.includes(name),'Incoming cards must expose only the first name before contact access');}
 async function verify(f){
  for(const key of ['a1','b2']){const page=await api('/incoming-likes',{token:f.tokens[key]});privatePage(page);assert.deepEqual(page,f.incoming[key],'Incoming likes changed after a restart');}
  for(const key of Object.keys(f.tokens)){const profile=await api('/me',{token:f.tokens[key]});assert.equal(profile.credits,f.balances[key]);assert.deepEqual(await api('/credits/ledger',{token:f.tokens[key]}),f.ledgers[key]);}
@@ -34,7 +35,7 @@ if(mode==='--verify'){
 }else{
  const suffix=Date.now()+'-'+Math.random().toString(16).slice(2),tokens={},ids={};
  for(const [key,accountType] of [['a1','agent'],['a2','agent'],['b1','private'],['b2','private']]){
-  const session=await api('/auth/register',{method:'POST',body:{name:'Interaction '+key,email:`interaction-${key}-${suffix}@example.test`,password:'InteractionSmoke2026!',phone:'+36 30 555 0888',accountType}});tokens[key]=session.accessToken;ids[key]=session.user.id;
+  const session=await api('/auth/register',{method:'POST',body:{name:displayNames[key],email:`interaction-${key}-${suffix}@example.test`,password:'InteractionSmoke2026!',phone:'+36 30 555 0888',accountType}});tokens[key]=session.accessToken;ids[key]=session.user.id;
  }
  const property={title:'Interakciós API-próba',locationId:'city:Őriszentpéter',city:'Őriszentpéter',district:'',type:'Lakás',price:55000000,area:77,rooms:3.5,wholeRooms:2,halfRooms:3,floor:2,address:'Private test street 10',images:[],balcony:false,elevator:false};
  const search={title:'Interakciós keresés',locationIds:['city:Őriszentpéter'],city:'Őriszentpéter',type:'Lakás',maxPrice:70000000,minArea:60,maxArea:100,minRooms:3,maxRooms:4,balcony:false,elevator:false};
@@ -62,6 +63,13 @@ if(mode==='--verify'){
  incomingB=await api('/incoming-likes',{token:tokens.b2});assert.equal(incomingB.total,3);
  assert.ok(incomingB.items.every(row=>row.compatible===true&&row.isExact===false&&row.compatibilityScore>=0&&row.compatibilityScore<100),
   'Over-budget incoming likes remain location/type eligible but must be marked as partial matches');
+ privatePage(incomingB);
+ for(const row of incomingB.items){
+  const price=row.matchDetails.find(detail=>detail.key==='price');
+  assert.equal(price.matches,false);assert.match(price.expected,/10.*M Ft/);assert.match(price.actual,/55.*M Ft/);
+  assert.ok(row.matchDetails.some(detail=>detail.matches&&detail.key==='rooms'),
+   'The incoming partial card must retain satisfied conditions beside the actual requested price');
+ }
  assert.equal(incomingB.items.find(row=>row.propertyId===extra.id).myDecision,null);
  await decision(tokens.b2,extra,entities.b2.s,true,400);
  await api('/searches/'+entities.b2.s.id,{token:tokens.b2,method:'PUT',body:search});await api('/properties/'+extra.id,{token:tokens.b1,method:'DELETE',status:204});assert.equal((await api('/incoming-likes',{token:tokens.b2})).total,2);

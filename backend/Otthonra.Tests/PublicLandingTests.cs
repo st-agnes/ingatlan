@@ -101,7 +101,7 @@ public class PublicLandingTests
     }
 
     [Fact]
-    public void AnonymousTeasersOnlySerializeSafeFieldsAndNeverSourceIdentifiersOrFreeText()
+    public void AnonymousTeasersOnlySerializeApprovedPublicFieldsAndNeverContactsOrSourceIdentifiers()
     {
         const string secret = "secret-canary person@example.test +36 30 123 4567";
         var search = SearchAt("city:Debrecen");
@@ -111,7 +111,7 @@ public class PublicLandingTests
         property.Title = secret; property.Description = secret; property.Neighborhood = secret; property.Address = secret;
         property.City = secret; property.District = secret; property.ImagesJson = JsonSerializer.Serialize(new[] { "https://tracker.example.test/" + secret });
         property.WholeRooms = 2; property.HalfRooms = 1; property.Type = secret;
-        var snapshot = new PublicLandingSnapshot(); snapshot.Add(search, secret); snapshot.Add(property, AccountTypes.Agent);
+        var snapshot = new PublicLandingSnapshot(); snapshot.Add(search, secret, secret); snapshot.Add(property, AccountTypes.Agent, secret);
         var response = snapshot.Response(null);
         var json = JsonSerializer.Serialize(response, new JsonSerializerOptions(JsonSerializerDefaults.Web));
         Assert.DoesNotContain(secret, json);
@@ -120,9 +120,9 @@ public class PublicLandingTests
         using var document = JsonDocument.Parse(json);
         var s = document.RootElement.GetProperty("searches")[0];
         var p = document.RootElement.GetProperty("properties")[0];
-        Assert.Equal(new[] { "key", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "ownerAccountType", "title", "type" },
+        Assert.Equal(new[] { "key", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "ownerAccountType", "ownerFirstName", "title", "type" },
             s.EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
-        Assert.Equal(new[] { "area", "halfRooms", "key", "location", "lotArea", "ownerAccountType", "price", "rooms", "title", "type", "wholeRooms" },
+        Assert.Equal(new[] { "area", "halfRooms", "key", "location", "lotArea", "ownerAccountType", "ownerFirstName", "price", "rooms", "title", "type", "wholeRooms" },
             p.EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
         Assert.Equal("Ingatlant keres", response.Searches[0].Title);
         Assert.Equal("Ingatlan", response.Properties[0].Type);
@@ -131,6 +131,25 @@ public class PublicLandingTests
         Assert.Equal("Budapest V. kerület", response.Properties[0].Location);
         Assert.Equal("private", response.Searches[0].OwnerAccountType);
         Assert.Equal("agent", response.Properties[0].OwnerAccountType);
+    }
+
+    [Fact]
+    public void TeasersDisplayTheRealAdTitleAndOnlyTheOwnersGivenName()
+    {
+        var search = SearchAt("city:Debrecen"); search.Title = "Kertes családi otthont keresünk";
+        var property = PropertyAt("city:Debrecen"); property.Title = "Napfényes otthon az egyetem mellett";
+        property.Address = "Személyes utca 42";
+        var snapshot = new PublicLandingSnapshot();
+        snapshot.Add(search, AccountTypes.Private, "Kovács Anna");
+        snapshot.Add(property, AccountTypes.Agent, "Dr. Nagy Péter");
+        var response = snapshot.Response(null);
+        var publicSearch = Assert.Single(response.Searches);
+        var publicProperty = Assert.Single(response.Properties);
+        Assert.Equal(search.Title, publicSearch.Title); Assert.Equal("Anna", publicSearch.OwnerFirstName);
+        Assert.Equal(property.Title, publicProperty.Title); Assert.Equal("Péter", publicProperty.OwnerFirstName);
+        var json = JsonSerializer.Serialize(response);
+        Assert.DoesNotContain("Nagy", json); Assert.DoesNotContain("Kovács", json);
+        Assert.DoesNotContain(property.Address, json);
     }
 
     [Theory]

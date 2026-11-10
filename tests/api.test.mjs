@@ -375,12 +375,12 @@ test('agent declarations register explicitly while invalid choices never send cr
 });
 
 test('API owner metadata persists through own lists, public feeds, history and matches without using the viewer account type',async()=>{
- const agentProperty={...property,ownerAccountType:'agent'},privateSearch={...search,ownerAccountType:'private'};
+ const agentProperty={...property,ownerAccountType:'agent',ownerFirstName:'Péter'},privateSearch={...search,ownerAccountType:'private',ownerFirstName:'Anna'};
  routes(accountRoutes({'/api/me':{...profile,accountType:'agent'},'/api/me/entities':{properties:[agentProperty],searchRequests:[privateSearch],reportedOwnerIds:['other','other'],active:{kind:'search',id:ids.search},decisions:[{id:'choice',actorId:ids.search,actorKind:'search',propertyId:ids.property,searchRequestId:ids.search,property:agentProperty,searchRequest:privateSearch}]},'/api/feed':{likeCost:1,items:[{property:agentProperty,searchRequest:privateSearch}]},'/api/matches':[{...match,property:agentProperty,searchRequest:privateSearch,contact:{...match.contact,accountType:'agent'}}]}));
  const api=adapter(),state=await api.getState();assert.equal(state.user.accountType,'agent');assert.equal(state.likeCost,1);assert.deepEqual(state.reportedOwnerIds,['other']);
  assert.equal(state.properties[0].ownerAccountType,'agent');assert.equal(state.searches[0].ownerAccountType,'private');assert.equal(state.decisions[0].property.ownerAccountType,'agent');assert.equal(state.decisions[0].search.ownerAccountType,'private');
- const card=(await api.feed())[0];assert.equal(card.ownerAccountType,'agent');assert.equal('email' in card,false);assert.equal('phone' in card,false);
- const result=(await api.matches())[0];assert.equal(result.partner.accountType,'agent');assert.equal(result.property.ownerAccountType,'agent');assert.equal(result.search.ownerAccountType,'private');
+ const card=(await api.feed())[0];assert.equal(card.ownerAccountType,'agent');assert.equal(card.ownerFirstName,'Péter');assert.equal(state.searches[0].ownerFirstName,'Anna');assert.equal(state.decisions[0].property.ownerFirstName,'Péter');assert.equal('email' in card,false);assert.equal('phone' in card,false);
+ const result=(await api.matches())[0];assert.equal(result.partner.accountType,'agent');assert.equal(result.property.ownerAccountType,'agent');assert.equal(result.search.ownerAccountType,'private');assert.equal(result.property.ownerFirstName,'Péter');
 });
 
 test('legacy API responses retain private/free defaults and no-active accounts have no like cost',async()=>{
@@ -557,4 +557,30 @@ test('blank legacy API selections retain their canonical city and district fallb
  const {evaluateMatch}=await import('../dist/matching.js');
  routes(accountRoutes({'/api/me/entities':{properties:[{...property,locationId:'',city:'Budapest',district:'XIII.'}],searchRequests:[{...search,city:'Budapest',districts:['XIII.'],locationIds:[]}],active:{kind:'search',id:ids.search}}}));
  const state=await adapter().getState();assert.equal(state.properties[0].locationId,'district:Budapest:13');assert.deepEqual(state.searches[0].locationIds,['district:Budapest:13']);assert.equal(evaluateMatch(state.properties[0],state.searches[0]).eligible,true);
+});
+
+test('match criteria expose only concrete public comparison fields on discovery and incoming cards',async()=>{
+ const details=[{key:'rooms',label:'Szobaszám',expected:'legalább 3 szoba',actual:'2 szoba',matches:false,privateOwner:{email:'hidden@example.test'}},
+  {key:'area',label:'Alapterület',expected:'legalább 50 m²',actual:'64 m²',matches:true},
+  {key:'privatePhone',label:'private',expected:'private',actual:'private',matches:false},{key:'floor',label:[],expected:'Földszint',actual:'1. emelet',matches:false}];
+ const item={property:{...property,ownerFirstName:'Péter',owner:{name:'Kovács Péter',phone:'PRIVATE-PHONE'}},searchRequest:search,compatibilityScore:75,isExact:false,matchDetails:details};
+ routes({'/api/feed':{items:[item]},'/api/incoming-likes':{active:{kind:'search',id:ids.search},items:[{...item,compatible:true}],total:1,offset:0,limit:50,hasMore:false}});
+ const api=adapter();api.active={kind:'search',id:ids.search};
+ for(const card of [(await api.feed())[0],(await api.incomingLikes()).items[0]]){
+  assert.equal(card.ownerFirstName,'Péter');assert.equal(card.matchDetails.length,2);
+  assert.deepEqual(card.matchDetails[0],{key:'rooms',label:'Szobaszám',expected:'legalább 3 szoba',actual:'2 szoba',matches:false});
+  assert.equal(card.matchDetails[1].matches,true);assert.doesNotMatch(JSON.stringify(card),/hidden@example|PRIVATE-PHONE|privateOwner|Kovács/);
+ }
+});
+
+test('public landing preserves real titles and first names while omitting contacts and all private fields',async()=>{
+ globalThis.OTTHONRA_CONFIG={mode:'api',environment:'test'};globalThis.location={origin:'https://dev.otthonra.hu'};
+ globalThis.fetch=async()=>response({searches:[{title:'Kertes családi otthont keresünk',ownerFirstName:'Anna',type:'Ház',locations:['Debrecen'],maxPrice:95000000,ownerName:'Nagy Anna',email:'PRIVATE-EMAIL'}],
+  properties:[{title:'Világos otthon a belvárosban',ownerFirstName:'Péter',type:'Lakás',location:'Debrecen',price:65000000,area:60,rooms:3,ownerId:'PRIVATE-ID',phone:'PRIVATE-PHONE'}]});
+ const result=await fetchLanding();
+ assert.equal(result.searches[0].title,'Kertes családi otthont keresünk');assert.equal(result.searches[0].ownerFirstName,'Anna');
+ assert.equal(result.properties[0].title,'Világos otthon a belvárosban');assert.equal(result.properties[0].ownerFirstName,'Péter');
+ assert.doesNotMatch(JSON.stringify(result),/PRIVATE-|Nagy Anna/);
+ globalThis.fetch=async()=>response({searches:[{title:'Hívj: +36 30 123 4567',ownerFirstName:'anna@example.test'}],properties:[{title:'Írj: peter@example.test',ownerFirstName:'+36 30 123 4567'}]});
+ const unsafe=await fetchLanding();assert.equal(unsafe.searches[0].title,'Ingatlant keresnek');assert.equal(unsafe.properties[0].title,'Eladó ingatlan');assert.equal(unsafe.searches[0].ownerFirstName,'');assert.equal(unsafe.properties[0].ownerFirstName,'');
 });

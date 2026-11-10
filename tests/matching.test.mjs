@@ -7,8 +7,11 @@ const home=(extra={})=>({ownerId:'seller',locationId:'city:Debrecen',city:'Debre
 const wanted=(extra={})=>({ownerId:'buyer',locationIds:['city:Debrecen'],city:'Debrecen',type:'Lakás',...extra});
 
 test('every exact match receives 100 regardless of price margin or optional amenities',()=>{
-  for(const p of [home(),home({price:100}),home({balcony:true,elevator:true}),home({price:60})])
-    assert.deepEqual(evaluateMatch(p,wanted({maxPrice:100})),{eligible:true,isExact:true,score:100,reasons:['Megfelelő elhelyezkedés','A megadott árkereten belül','Megfelelő alapterület és szobaszám']});
+  for(const p of [home(),home({price:100}),home({balcony:true,elevator:true}),home({price:60})]){
+    const result=evaluateMatch(p,wanted({maxPrice:100}));
+    assert.deepEqual({...result,matchDetails:undefined},{eligible:true,isExact:true,score:100,reasons:['Megfelelő elhelyezkedés','A megadott árkereten belül','Megfelelő alapterület és szobaszám'],matchDetails:undefined});
+    assert.ok(result.matchDetails.every(detail=>detail.matches));
+  }
   assert.equal(evaluateMatch(home({type:'Ház'}),wanted({type:'Ház'})).score,100);
 });
 
@@ -126,5 +129,46 @@ test('the browser and .NET matching engines use the same fixed cross-language sc
     if('score' in item){assert.equal(result.score,item.score,item.name);assert.equal(result.isExact,item.score===100,item.name);}
     if('specificity' in item)assert.equal(searchSpecificity(s),item.specificity,item.name);
     if('valueForMoney' in item)assert.ok(Math.abs(valueForMoney(p)-item.valueForMoney)<1e-8,item.name);
+    if('matchDetails' in item)assert.deepEqual(result.matchDetails,item.matchDetails,item.name);
   }
+});
+
+test('partial explanations contain concrete requested and actual values plus met criteria',()=>{
+  const p=home({price:95,rooms:3,area:60,condition:'Átlagos',floor:2,building:'Tégla',heatingType:'Gázkazán'});
+  const s=wanted({maxPrice:80,minRooms:4,minArea:50,conditions:['Jó','Új/felújított'],floors:[1,5],elevator:true,buildings:['Tégla'],heatingTypes:['Gázkazán']});
+  const result=evaluateMatch(p,s),details=Object.fromEntries(result.matchDetails.map(item=>[item.key,item]));
+  assert.equal(result.isExact,false);
+  assert.deepEqual(details.rooms,{key:'rooms',label:'Szobaszám',expected:'legalább 4 szoba',actual:'3 szoba',matches:false});
+  assert.deepEqual(details.price,{key:'price',label:'Ár',expected:'legfeljebb 80 M Ft',actual:'95 M Ft',matches:false});
+  assert.deepEqual(details.area,{key:'area',label:'Alapterület',expected:'legalább 50 m²',actual:'60 m²',matches:true});
+  assert.equal(details.condition.expected,'Jó vagy jobb');assert.equal(details.condition.actual,'Átlagos');assert.equal(details.condition.matches,false);
+  assert.equal(details.floor.expected,'1. emelet vagy 5. emelet');assert.equal(details.floor.actual,'2. emelet');assert.equal(details.floor.matches,false);
+  assert.equal(details.elevator.expected,'Van lift');assert.equal(details.elevator.actual,'Nincs lift');
+  for(const key of ['location','type','area','building','heatingType'])assert.equal(details[key].matches,true,key);
+});
+
+test('explanations respect bounds, aliases, 11+ floors, unknown values and applicable criteria',()=>{
+  let result=evaluateMatch(home({price:80.5,rooms:3.5,area:60}),wanted({minPrice:60,maxPrice:100,minRooms:2.5,maxRooms:4,minArea:50,maxArea:70}));
+  assert.equal(result.matchDetails.find(item=>item.key==='rooms').expected,'2,5–4 szoba');
+  assert.equal(result.matchDetails.find(item=>item.key==='price').actual,'80,5 M Ft');
+  result=evaluateMatch(home({floor:27,condition:'Felújított'}),wanted({floors:[11],conditions:['Jó']}));
+  assert.equal(result.matchDetails.find(item=>item.key==='floor').expected,'11. emelet vagy afölötti');
+  assert.equal(result.matchDetails.find(item=>item.key==='floor').actual,'27. emelet');
+  assert.ok(result.matchDetails.every(item=>item.matches));
+  result=evaluateMatch(home(),wanted({buildings:['Panel','Tégla'],heatingTypes:['Nincs fűtés']}));
+  assert.equal(result.matchDetails.find(item=>item.key==='building').expected,'Tégla vagy Panel');
+  assert.equal(result.matchDetails.find(item=>item.key==='building').actual,'Nincs megadva');
+  assert.equal(result.matchDetails.find(item=>item.key==='heatingType').matches,false);
+  result=evaluateMatch(home({type:'Ház'}),wanted({type:'Ház',floors:[11],balcony:true,elevator:true}));
+  assert.deepEqual(result.matchDetails.map(item=>item.key),['location','type']);
+  assert.deepEqual(evaluateMatch(home({type:'Ház'}),wanted()).matchDetails,[]);
+});
+
+test('lean ranking omits presentation details while snapshots retain the original location labels',()=>{
+  const s=wanted({maxPrice:100}),prepared=prepareSearch(s);
+  s.locationIds.push('city:Szeged');
+  const result=evaluateMatch(home(),prepared);
+  assert.equal(result.matchDetails.find(item=>item.key==='location').expected,'Debrecen');
+  const lean=evaluateMatch(home({price:120}),prepared,{includeReasons:false});
+  assert.equal(lean.score,80);assert.deepEqual(lean.matchDetails,[]);assert.deepEqual(lean.reasons,[]);
 });

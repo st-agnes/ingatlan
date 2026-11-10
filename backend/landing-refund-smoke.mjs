@@ -33,7 +33,11 @@ async function publicLanding(f){
  assert.equal(national.regions.length,20);assert.equal(new Set(national.regions.map(r=>r.id)).size,20);
  assert.ok(national.searches.length>0&&national.searches.length<=8);assert.ok(national.properties.length>0&&national.properties.length<=4);
  for(const page of [national,await api('/public/landing?region=HU222'),await api('/public/landing?region=HU321')]){
-  noPrivateFields(page);const raw=JSON.stringify(page);assert.ok(!raw.includes(f.secret),'Public landing exposed submitted free text');
+  noPrivateFields(page);const raw=JSON.stringify(page);assert.ok(!raw.includes(f.secret),'Public landing exposed a private description or address');
+  for(const teaser of [...page.searches,...page.properties]){
+   assert.equal(typeof teaser.ownerFirstName,'string');assert.ok(teaser.title.trim());
+  }
+  for(const name of Object.values(f.displayNames))assert.ok(!raw.includes(name),'Anonymous cards must expose only the first name');
   for(const id of [...Object.values(f.ids),...Object.values(f.properties).map(p=>p.id),f.search.id,f.agentSearch.id])assert.ok(!raw.includes(id),'Public landing exposed source/owner IDs');
  }
  const vas=await api('/public/landing?region=HU222');assert.equal(vas.scope,'region');assert.equal(vas.region.id,'HU222');
@@ -48,12 +52,13 @@ async function publicLanding(f){
 
 if(mode==='--setup'){
  const suffix=Date.now()+'-'+Math.random().toString(16).slice(2),secret='PRIVATE-CONTENT-'+suffix.replace(/[0-9]/g,d=>String.fromCharCode(97+Number(d))),tokens={},ids={};
+ const displayNames={seller:'Nagy Péter',buyer:'Kovács Anna',agent:'Szabó Eszter'};
  for(const [key,accountType] of [['seller','private'],['buyer','private'],['agent','agent']]){
-  const session=await api('/auth/register',{method:'POST',body:{name:secret+' '+key,email:`refund-${key}-${suffix}@example.test`,password:'RefundIntegration2026!',phone:'+36 30 555 0777',accountType}});tokens[key]=session.accessToken;ids[key]=session.user.id;
+  const session=await api('/auth/register',{method:'POST',body:{name:displayNames[key],email:`refund-${key}-${suffix}@example.test`,password:'RefundIntegration2026!',phone:'+36 30 555 0777',accountType}});tokens[key]=session.accessToken;ids[key]=session.user.id;
  }
  for(const key of ['seller','agent'])await api('/credits/demo-topup',{token:tokens[key],method:'POST',body:{amount:20}});
- const property={title:secret,description:secret,locationId:'city:Őriszentpéter',city:'Őriszentpéter',district:'',type:'Lakás',price:55000000,area:77,rooms:3,wholeRooms:3,halfRooms:0,floor:2,address:secret+' street 10',images:[],balcony:false,elevator:false};
- const criteria={title:secret,description:secret,locationIds:['city:Őriszentpéter','city:Debrecen'],city:'Őriszentpéter',type:'Lakás',maxPrice:70000000,minArea:60,maxArea:100,minRooms:2,maxRooms:4,balcony:false,elevator:false};
+ const property={title:'Napfényes otthon az Őrségben',description:secret,locationId:'city:Őriszentpéter',city:'Őriszentpéter',district:'',type:'Lakás',price:55000000,area:77,rooms:3,wholeRooms:3,halfRooms:0,floor:2,address:secret+' street 10',images:[],balcony:false,elevator:false};
+ const criteria={title:'Tágas otthont keresek több városban',description:secret,locationIds:['city:Őriszentpéter','city:Debrecen'],city:'Őriszentpéter',type:'Lakás',maxPrice:70000000,minArea:60,maxArea:100,minRooms:2,maxRooms:4,balcony:false,elevator:false};
  const search=await api('/searches',{token:tokens.buyer,method:'POST',body:criteria,status:201});
  const agentSearch=await api('/searches',{token:tokens.agent,method:'POST',body:criteria,status:201});
  await active(tokens.buyer,'search',search.id);await active(tokens.agent,'search',agentSearch.id);
@@ -74,7 +79,7 @@ if(mode==='--setup'){
   assert.equal(receipt.reason,'no_longer_current');assert.equal(Object.hasOwn(receipt,'createdAt'),false);
   const repeat=await api('/reports',{token:tokens.buyer,method:'POST',body:{entityKind,entityId,reason:'no_longer_current'}});assert.equal(repeat.id,receipt.id);assert.equal(repeat.alreadyReported,true);reports.push({id:receipt.id,entityKind,entityId});
  }
- const f={tokens,ids,properties,search,agentSearch,cases,reports,secret,balances:{}};
+ const f={tokens,ids,properties,search,agentSearch,cases,reports,secret,displayNames,balances:{}};
  for(const key of Object.keys(tokens)){
   const entities=await api('/me/entities',{token:tokens[key]});
   for(const c of Object.values(cases).filter(c=>c.actor===key)){

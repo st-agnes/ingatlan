@@ -35,7 +35,7 @@ export function prepareSearch(input={}) {
   }
   for(const id of districtIds)if(cities.has(getLocation(id).city))districtIds.delete(id);
   const type=norm(search.type);
-  const prepared={[compiledMarker]:true,search,cities,districtIds,type,house:type==='HAZ',
+  const prepared={[compiledMarker]:true,search,cities,districtIds,locationLabels:chosen.map(location=>location.label),type,house:type==='HAZ',
     conditions:new Set(search.conditions.map(normalizeCondition)),buildings:new Set(search.buildings.map(normalizeBuilding)),
     heating:new Set(search.heatingTypes),ages:new Set(search.constructionAges),views:new Set(search.views),floors:search.floors};
   prepared.conditionMinimum=prepared.conditions.size?Math.min(...[...prepared.conditions].map(conditionIndex)):null;
@@ -57,11 +57,11 @@ function roomTotal(property){
   return Number(property.rooms);
 }
 
-export function evaluateMatch(property,input){
+export function evaluateMatch(property,input,{includeReasons=true}={}){
   const p=property,q=input?.[compiledMarker]?input:prepareSearch(input),s=q.search,place=p&&propertyPlace(p);
   if(!p||p.archived||s.archived||p.ownerId===s.ownerId||!place||(!q.cities.has(place.city)&&!q.districtIds.has(place.id))
       ||q.type&&norm(p.type)!==q.type||!Number.isFinite(Number(p.price))||!Number.isFinite(Number(p.area))||!Number.isFinite(roomTotal(p)))
-    return {eligible:false,isExact:false,score:0,reasons:[]};
+    return {eligible:false,isExact:false,score:0,reasons:[],matchDetails:[]};
   let weight=0,loss=0;const differences=[];
   function add(key,active,penalty,label){if(!active)return;const amount=clamp(penalty);weight+=MATCH_WEIGHTS[key];loss+=MATCH_WEIGHTS[key]*amount;if(amount>0)differences.push(label);}
   for(const [field,minimum,maximum,minLabel,maxLabel] of [['price','minPrice','maxPrice','Minimumár','Maximumár'],['rooms','minRooms','maxRooms','Minimum szobaszám','Maximum szobaszám'],['area','minArea','maxArea','Minimum alapterület','Maximum alapterület']]){
@@ -84,7 +84,57 @@ export function evaluateMatch(property,input){
   add('view',q.views.size,categoryLoss(canon(p.view,VIEW_OPTIONS),q.views,VIEW_OPTIONS),'Kilátás');
   const isExact=differences.length===0;
   const score=isExact?100:Math.min(99,Math.max(0,Math.round(100*(1-loss/(weight>0?weight:1)))));
-  return {eligible:true,isExact,score,reasons:isExact?['Megfelelő elhelyezkedés','A megadott árkereten belül','Megfelelő alapterület és szobaszám']:differences.map(label=>`${label}: eltérés a kereséstől`)};
+  return {eligible:true,isExact,score,reasons:!includeReasons?[]:isExact?['Megfelelő elhelyezkedés','A megadott árkereten belül','Megfelelő alapterület és szobaszám']:differences.map(label=>`${label}: eltérés a kereséstől`),
+    matchDetails:includeReasons?explainMatch(p,q,place):[]};
+}
+
+const explanationNumber=new Intl.NumberFormat('hu-HU',{useGrouping:false,maximumFractionDigits:6});
+const detailNumber=value=>explanationNumber.format(value);
+const detailFloor=(value,bucket=false)=>value===-1?'Szuterén':value===0?'Földszint':value===11&&bucket?'11. emelet vagy afölötti':`${value}. emelet`;
+const knownDetail=(value,options)=>options.includes(value)?value:'Nincs megadva';
+
+/** Concrete requested/actual values, only built for cards that need presentation. */
+function explainMatch(p,q,place){
+  const s=q.search,details=[];
+  const add=(key,label,expected,actual,matches)=>details.push({key,label,expected,actual,matches});
+  function bounds(key,label,actual,minimum,maximum,unit){
+    const min=minimum!=null&&Number(minimum)>0,max=maximum!=null;
+    if(!min&&!max)return;
+    const expected=min&&max?`${detailNumber(minimum)}–${detailNumber(maximum)} ${unit}`
+      :min?`legalább ${detailNumber(minimum)} ${unit}`:`legfeljebb ${detailNumber(maximum)} ${unit}`;
+    add(key,label,expected,`${detailNumber(actual)} ${unit}`,(!min||actual>=minimum)&&(!max||actual<=maximum));
+  }
+  function category(key,label,actual,selected,options){
+    if(!selected.size)return;
+    const expected=options.filter(value=>selected.has(value));
+    add(key,label,expected.length?expected.join(' vagy '):'Ismeretlen feltétel',knownDetail(actual,options),options.includes(actual)&&selected.has(actual));
+  }
+  add('location','Helyszín',q.locationLabels.join(' vagy '),place.label,true);
+  if(q.type)add('type','Ingatlantípus',s.type,p.type,true);
+  bounds('price','Ár',Number(p.price),s.minPrice,s.maxPrice,'M Ft');
+  bounds('rooms','Szobaszám',roomTotal(p),s.minRooms,s.maxRooms,'szoba');
+  bounds('area','Alapterület',Number(p.area),s.minArea,s.maxArea,'m²');
+  if(q.conditions.size){
+    const actual=conditionIndex(p.condition),minimum=q.conditionMinimum;
+    add('condition','Állapot',minimum>=0?`${CONDITION_OPTIONS[minimum]} vagy jobb`:'Ismeretlen feltétel',
+      actual>=0?CONDITION_OPTIONS[actual]:'Nincs megadva',actual>=0&&minimum>=0&&actual>=minimum);
+  }
+  if(!q.house&&q.floors.length){
+    const floor=p.floor==null||!Number.isInteger(Number(p.floor))?null:Number(p.floor);
+    add('floor','Emelet',q.floors.map(value=>detailFloor(value,true)).join(' vagy '),floor==null?'Nincs megadva':detailFloor(floor),
+      floor!=null&&q.floors.some(value=>value===floor||value===11&&floor>=11));
+  }
+  if(!q.house&&s.elevator)add('elevator','Lift','Van lift',p.elevator?'Van lift':'Nincs lift',!!p.elevator);
+  if(!q.house&&s.balcony)add('balcony','Erkély','Van erkély',p.balcony?'Van erkély':'Nincs erkély',!!p.balcony);
+  category('building','Falazat',normalizeBuilding(p.building),q.buildings,BUILDING_OPTIONS);
+  category('heatingType','Fűtés típusa',canon(p.heatingType,HEATING_OPTIONS),q.heating,HEATING_OPTIONS);
+  category('constructionAge','Építési kor',canon(p.constructionAge,CONSTRUCTION_AGE_OPTIONS),q.ages,CONSTRUCTION_AGE_OPTIONS);
+  if(s.ceilingHeight){
+    const actual=canon(p.ceilingHeight,CEILING_HEIGHT_OPTIONS);
+    add('ceilingHeight','Belmagasság',s.ceilingHeight,knownDetail(actual,CEILING_HEIGHT_OPTIONS),CEILING_HEIGHT_OPTIONS.includes(actual)&&actual===s.ceilingHeight);
+  }
+  category('view','Kilátás',canon(p.view,VIEW_OPTIONS),q.views,VIEW_OPTIONS);
+  return details;
 }
 
 /** Positive quality adjustment is capped at 25%; living size and price dominate. */
