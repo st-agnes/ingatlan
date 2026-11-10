@@ -75,7 +75,10 @@ async function verify(browser,viewport,kind){
   if(kind==='search'){
    await interact(page.locator('[data-action="edit-active"]').first());await page.locator('#entity-form').waitFor();await page.locator('#f-maxPrice').fill('81');await interact(page.locator('#entity-form button[type="submit"]'));
    await page.getByRole('heading',{name:'Elfogytak a tökéletes egyezések.',exact:true}).waitFor();assert.equal(await page.locator('#candidate').count(),0,'Editing criteria resets consent');
-   await page.evaluate(async()=>{const {STORAGE_KEY}=await import('/model.js');const raw=JSON.parse(localStorage.getItem(STORAGE_KEY));Object.assign(raw.searches.find(item=>item.id===raw.active.id),{maxPrice:1,minArea:1000000,maxArea:null,minRooms:1000,maxRooms:null});localStorage.setItem(STORAGE_KEY,JSON.stringify(raw));});
+   // Keep this zero-score fixture independent of the floor criterion used above
+   // to exercise wrapping: its partial floor credit would otherwise yield 5%.
+   const zeroScore=await page.evaluate(async()=>{const {STORAGE_KEY}=await import('/model.js');const {evaluateMatch}=await import('/matching.js');const raw=JSON.parse(localStorage.getItem(STORAGE_KEY));const search=raw.searches.find(item=>item.id===raw.active.id);Object.assign(search,{maxPrice:1,minArea:1000000,maxArea:null,minRooms:1000,maxRooms:null,floors:[]});localStorage.setItem(STORAGE_KEY,JSON.stringify(raw));return evaluateMatch(raw.properties.find(item=>item.id==='near-property'),search).score;});
+   assert.equal(zeroScore,0,'The display regression must receive a real zero score from the matching algorithm');
    await page.reload({waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:'Elfogytak a tökéletes egyezések.',exact:true}).waitFor();await interact(page.locator('[data-action="approximate-accept"]'));await page.locator('#candidate').waitFor();assert.match(await page.locator('#candidate .score').innerText(),/^0%/,'A real zero-percent partial score must never become the former 97-percent fallback');
   }else{
    await interact(page.locator('[data-action="activate"]').first());await interact(page.locator('.modal [data-action="activate-one"][data-kind="search"][data-id="own-s1"]'));await page.locator('#candidate').waitFor();assert.match(await page.locator('#candidate .score').innerText(),/100%/);
