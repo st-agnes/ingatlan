@@ -147,8 +147,13 @@ public class PublicLandingTests
         var publicProperty = Assert.Single(response.Properties);
         Assert.Equal(search.Title, publicSearch.Title); Assert.Equal("Anna", publicSearch.OwnerFirstName);
         Assert.Equal(property.Title, publicProperty.Title); Assert.Equal("Péter", publicProperty.OwnerFirstName);
-        var json = JsonSerializer.Serialize(response);
-        Assert.DoesNotContain("Nagy", json); Assert.DoesNotContain("Kovács", json);
+        // Inspect the public cards, not unrelated region labels such as
+        // Jász-Nagykun-Szolnok. Decode Unicode so name checks cannot pass
+        // merely because the serializer escaped accented characters.
+        var json = JsonSerializer.Serialize(new { publicSearch, publicProperty }, new JsonSerializerOptions {
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+        });
+        Assert.DoesNotContain("Dr. Nagy Péter", json); Assert.DoesNotContain("Kovács Anna", json);
         Assert.DoesNotContain(property.Address, json);
     }
 
