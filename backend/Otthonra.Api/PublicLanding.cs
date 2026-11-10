@@ -5,10 +5,10 @@ namespace Otthonra.Api;
 
 public sealed record LandingSearchTeaser(string Key, string Title, string Type, string[] Locations,
     decimal? MinPrice, decimal? MaxPrice, decimal? MinArea, decimal? MaxArea, decimal? MinRooms,
-    decimal? MaxRooms, string OwnerAccountType);
+    decimal? MaxRooms, string OwnerAccountType, string OwnerFirstName = "");
 public sealed record LandingPropertyTeaser(string Key, string Title, string Type, string Location,
     decimal Price, decimal Area, int? WholeRooms, int? HalfRooms, decimal Rooms, decimal? LotArea,
-    string OwnerAccountType);
+    string OwnerAccountType, string OwnerFirstName = "");
 public sealed record PublicLandingResponse(IReadOnlyList<LandingRegion> Regions, LandingRegion? Region,
     string Scope, LandingSearchTeaser[] Searches, LandingPropertyTeaser[] Properties);
 
@@ -37,7 +37,7 @@ public static class PublicLanding
         return RegionCatalog.Get(region.Trim()) ?? throw new ApiException(400, "Ismeretlen régió. Válassz a régiók listájából.");
     }
 
-    // Free-form text, owner/source IDs, photographs and addresses never enter a teaser.
+    // Only sanitized ad titles and given names are public; contacts, source IDs, photographs and addresses stay private.
     public static string SafeType(string? type) => Rules.Normalize(type ?? "") switch
     {
         "LAKAS" => "Lakás", "HAZ" => "Ház", "TELEK" => "Telek", "NYARALO" => "Nyaraló",
@@ -52,7 +52,7 @@ public static class PublicLanding
     };
     private static decimal? SafeBound(decimal? value) => value >= 0 ? value : null;
 
-    public static (LandingSearchTeaser Teaser, string[] Regions)? SearchTeaser(SearchRequest search, string? accountType)
+    public static (LandingSearchTeaser Teaser, string[] Regions)? SearchTeaser(SearchRequest search, string? accountType, string? ownerName = null)
     {
         if (search.Archived) return null;
         Location[] locations;
@@ -60,23 +60,23 @@ public static class PublicLanding
         catch (JsonException) { return null; }
         if (locations.Length == 0) return null;
         var type = SafeType(search.Type);
-        return (new LandingSearchTeaser("", SearchTitle(type), type,
+        return (new LandingSearchTeaser("", PublicProfile.Title(search.Title, SearchTitle(type)), type,
             locations.Select(location => location.Label).ToArray(), SafeBound(search.MinPrice), SafeBound(search.MaxPrice),
             SafeBound(search.MinArea), SafeBound(search.MaxArea), SafeBound(search.MinRooms), SafeBound(search.MaxRooms),
-            AccountTypes.PublicType(accountType)), RegionCatalog.ForLocations(locations));
+            AccountTypes.PublicType(accountType), PublicProfile.FirstName(ownerName)), RegionCatalog.ForLocations(locations));
     }
 
-    public static (LandingPropertyTeaser Teaser, string[] Regions)? PropertyTeaser(Property property, string? accountType)
+    public static (LandingPropertyTeaser Teaser, string[] Regions)? PropertyTeaser(Property property, string? accountType, string? ownerName = null)
     {
         if (property.Archived || property.Price <= 0 || property.Area <= 0 || property.Rooms < 0) return null;
         var location = LocationCatalog.ForProperty(property);
         if (location is null) return null;
         var type = SafeType(property.Type);
         var rooms = Rules.RoomCounts(property);
-        return (new LandingPropertyTeaser("", "Eladó " + type.ToLowerInvariant(), type, location.Label,
+        return (new LandingPropertyTeaser("", PublicProfile.Title(property.Title, "Eladó " + type.ToLowerInvariant()), type, location.Label,
             property.Price, property.Area, rooms.WholeRooms >= 0 ? rooms.WholeRooms : null,
             rooms.HalfRooms >= 0 ? rooms.HalfRooms : null, property.Rooms,
-            type == "Ház" ? SafeBound(property.LotArea) : null, AccountTypes.PublicType(accountType)),
+            type == "Ház" ? SafeBound(property.LotArea) : null, AccountTypes.PublicType(accountType), PublicProfile.FirstName(ownerName)),
             RegionCatalog.ForLocation(location));
     }
 }
@@ -99,9 +99,9 @@ public sealed class PublicLandingSnapshot
             .ToDictionary(id => id, _ => new Content(new Random(random.Next())), StringComparer.Ordinal);
     }
 
-    public void Add(SearchRequest search, string? accountType)
+    public void Add(SearchRequest search, string? accountType, string? ownerName = null)
     {
-        if (PublicLanding.SearchTeaser(search, accountType) is not { } item) return;
+        if (PublicLanding.SearchTeaser(search, accountType, ownerName) is not { } item) return;
         var candidate = new LandingCandidate<LandingSearchTeaser>(search.Id, item.Teaser, LandingTraits.From(item.Teaser));
         foreach (var id in item.Regions.Prepend(""))
         {
@@ -109,9 +109,9 @@ public sealed class PublicLandingSnapshot
             lock (content.Gate) content.Searches.Add(candidate);
         }
     }
-    public void Add(Property property, string? accountType)
+    public void Add(Property property, string? accountType, string? ownerName = null)
     {
-        if (PublicLanding.PropertyTeaser(property, accountType) is not { } item) return;
+        if (PublicLanding.PropertyTeaser(property, accountType, ownerName) is not { } item) return;
         var candidate = new LandingCandidate<LandingPropertyTeaser>(property.Id, item.Teaser, LandingTraits.From(item.Teaser));
         foreach (var id in item.Regions.Prepend(""))
         {
@@ -160,21 +160,21 @@ public sealed class PublicLandingCache
                 orderby search.CreatedAt descending, search.Id descending
                 select new { search.Id, search.City, search.DistrictsJson, search.LocationIdsJson, search.Type,
                     search.MinPrice, search.MaxPrice, search.MinArea, search.MaxArea, search.MinRooms, search.MaxRooms,
-                    owner.AccountType };
+                    search.Title, owner.Name, owner.AccountType };
             await foreach (var row in searches.AsAsyncEnumerable().WithCancellation(cancellationToken))
-                snapshot.Add(new SearchRequest { Id = row.Id, City = row.City, DistrictsJson = row.DistrictsJson,
+                snapshot.Add(new SearchRequest { Id = row.Id, Title = row.Title, City = row.City, DistrictsJson = row.DistrictsJson,
                     LocationIdsJson = row.LocationIdsJson, Type = row.Type, MinPrice = row.MinPrice, MaxPrice = row.MaxPrice,
-                    MinArea = row.MinArea, MaxArea = row.MaxArea, MinRooms = row.MinRooms, MaxRooms = row.MaxRooms }, row.AccountType);
+                    MinArea = row.MinArea, MaxArea = row.MaxArea, MinRooms = row.MinRooms, MaxRooms = row.MaxRooms }, row.AccountType, row.Name);
             var properties = from property in db.Properties.AsNoTracking()
                 join owner in db.Users.AsNoTracking() on property.OwnerId equals owner.Id
                 where !property.Archived
                 orderby property.CreatedAt descending, property.Id descending
                 select new { property.Id, property.City, property.District, property.LocationId, property.Type, property.Price,
-                    property.Area, property.Rooms, property.WholeRooms, property.HalfRooms, property.LotArea, owner.AccountType };
+                    property.Area, property.Rooms, property.WholeRooms, property.HalfRooms, property.LotArea, property.Title, owner.Name, owner.AccountType };
             await foreach (var row in properties.AsAsyncEnumerable().WithCancellation(cancellationToken))
-                snapshot.Add(new Property { Id = row.Id, City = row.City, District = row.District, LocationId = row.LocationId,
+                snapshot.Add(new Property { Id = row.Id, Title = row.Title, City = row.City, District = row.District, LocationId = row.LocationId,
                     Type = row.Type, Price = row.Price, Area = row.Area, Rooms = row.Rooms, WholeRooms = row.WholeRooms,
-                    HalfRooms = row.HalfRooms, LotArea = row.LotArea }, row.AccountType);
+                    HalfRooms = row.HalfRooms, LotArea = row.LotArea }, row.AccountType, row.Name);
             Volatile.Write(ref cached, new Cached(DateTime.UtcNow.AddSeconds(60), snapshot));
             return snapshot;
         }

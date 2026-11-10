@@ -29,8 +29,14 @@ async function seededLanding(){
  const labelRegions=new Map([...cityRegions].map(([city,id])=>[city,new Set([id])]));
  for(const roman of ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII','XXIII'])labelRegions.set(`Budapest ${roman}. kerület`,new Set(['HU110']));
  for(const area of areas)labelRegions.set(`${area.city} és környéke (${area.settlements.length} település)`,new Set(area.settlements.map(city=>cityRegions.get(city))));
- const searchKeys=['key','title','type','locations','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','ownerAccountType'].sort();
- const propertyKeys=['key','title','type','location','price','area','wholeRooms','halfRooms','rooms','lotArea','ownerAccountType'].sort();
+ const searchKeys=['key','title','type','locations','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','ownerAccountType','ownerFirstName'].sort();
+ const propertyKeys=['key','title','type','location','price','area','wholeRooms','halfRooms','rooms','lotArea','ownerAccountType','ownerFirstName'].sort();
+ const publishedOwners={property:new Map(),search:new Map()};
+ for(const fixture of DEMO_FIXTURES){
+  const owner=DEMO_USERS.find(user=>user.key===fixture.owner),firstName=owner.name.trim().split(/\s+/).at(-1);
+  const owners=publishedOwners[fixture.kind].get(fixture.input.title)??new Set();
+  owners.add(firstName);publishedOwners[fixture.kind].set(fixture.input.title,owners);
+ }
  const expectedRegions=regions.map(({id,label})=>({id,label}));
  function check(page,region){
   assert.deepEqual(Object.keys(page).sort(),['properties','region','regions','scope','searches']);
@@ -42,14 +48,15 @@ async function seededLanding(){
    for(const [index,row] of items.entries()){
     assert.deepEqual(Object.keys(row).sort(),keys,'Public fixtures must expose only safe teaser fields');
     assert.equal(row.key,`${kind}-${index+1}`);assert.ok(['private','agent'].includes(row.ownerAccountType));
-    assert.equal(row.title,kind==='property'?`Eladó ${row.type.toLowerCase()}`:row.type==='Ház'?'Házat keres':'Lakást keres');
+    assert.ok(publishedOwners[kind].get(row.title)?.has(row.ownerFirstName),
+     'The real seeded ad title and its actual owner first name must reach the anonymous card');
     const labels=kind==='property'?[row.location]:row.locations;
     assert.ok(labels.length>0&&labels.every(label=>labelRegions.has(label)),'Only canonical public location labels are allowed');
     assert.ok(labels.some(label=>labelRegions.get(label).has(region.id)),`${region.id}: a teaser leaked from another county`);
    }
   }
   const serialized=JSON.stringify(page);
-  for(const user of DEMO_USERS){assert.ok(!serialized.includes(user.email));assert.ok(!serialized.includes(user.phone));}
+  for(const user of DEMO_USERS){assert.ok(!serialized.includes(user.email));assert.ok(!serialized.includes(user.phone));assert.ok(!serialized.includes(user.name),'Anonymous cards must expose first names without full registered names');}
  }
  for(const region of regions)check(await api('/public/landing?region='+region.id),region);
  const region=regions.find(region=>region.id==='HU321'),searchSamples=new Set(),propertySamples=new Set(),allSearches=[],allProperties=[];
@@ -72,7 +79,7 @@ async function seededLanding(){
   ['search minimum sizes',allSearches.map(row=>row.minArea).filter(value=>value!==null),40,100],
   ['search minimum rooms',allSearches.map(row=>row.minRooms).filter(value=>value!==null),2,4]
  ])assert.ok(Math.min(...values)<=low&&Math.max(...values)>=high,`Actual Hajdú-Bihar ${label} must span small/affordable and large/premium cases`);
- console.log('Embedded catalog landing passed: all 20 regions have mixed housing previews; Hajdú-Bihar shows varied budgets, sizes and rooms across eight visibly changing samples, with canonical county isolation and no private fields.');
+ console.log('Embedded catalog landing passed: actual ad titles and owner first names across all 20 regions; Hajdú-Bihar shows varied budgets, sizes and rooms across eight visibly changing samples, with canonical county isolation and no private fields.');
 }
 async function fresh(f){
  await seededLanding();
@@ -80,6 +87,9 @@ async function fresh(f){
  for(const row of rows){const user=accounts.find(user=>user.key===row.key);assert.equal(row.profile.accountType,user.accountType??'private');assert.equal(row.profile.credits,100);assert.equal(row.entities.properties.length,DEMO_FIXTURES.filter(item=>item.owner===user.key&&item.kind==='property').length);assert.equal(row.entities.searchRequests.length,DEMO_FIXTURES.filter(item=>item.owner===user.key&&item.kind==='search').length);assert.deepEqual(row.entities.decisions,[]);assert.deepEqual(row.entities.reportedOwnerIds,[]);assert.deepEqual(row.matches,[]);assert.equal(row.ledger.length,1);assert.equal(row.ledger[0].amount,100);assert.ok([...row.entities.properties,...row.entities.searchRequests].every(item=>item.ownerAccountType===(user.accountType??'private')));const active=entity(row,catalog(user.active.key));assert.ok(active);assert.deepEqual(row.entities.active,{kind:user.active.kind,id:active.id});
   const feed=await api('/feed',{token:f.tokens[row.key]});assert.ok(feed.items.length>=30,`${row.key} must start with at least 30 recommendations`);assert.equal(feed.likeCost,user.active.kind==='property'?2:user.accountType==='agent'?1:0);
   const counterpart=item=>user.active.kind==='property'?item.searchRequest:item.property;
+  const publicFirstNames=new Set(DEMO_USERS.map(person=>person.name.trim().split(/\s+/).at(-1)));
+  assert.ok(feed.items.every(item=>publicFirstNames.has(counterpart(item).ownerFirstName)),
+   'Seeded discovery must show the owner first name, not the full contact name');
   if(user.accountType==='agent')assert.ok(feed.items.every(item=>counterpart(item).ownerAccountType==='private'),'Agents must see private counterparties only');
   else assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='agent'));
   assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='private'));

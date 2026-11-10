@@ -1,9 +1,14 @@
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Otthonra.Api;
 
-public sealed record MatchEvaluation(bool Eligible, bool IsExact, int Score, string[] Reasons);
+public sealed record MatchCriterion(string Key, string Label, string Expected, string Actual, bool Matches);
+public sealed record MatchEvaluation(bool Eligible, bool IsExact, int Score, string[] Reasons)
+{
+    public MatchCriterion[] MatchDetails { get; init; } = [];
+}
 
 /// <summary>Parsed search filters are reused for every candidate in one request.</summary>
 public sealed class CompiledSearch
@@ -156,7 +161,74 @@ public static class MatchingRanking
         var exact = !different;
         var score = exact ? 100 : Math.Clamp((int)Math.Round(100m * (1m - loss / (weight > 0m ? weight : 1m)), MidpointRounding.AwayFromZero), 0, 99);
         return new(true, exact, score, !includeReasons ? [] : exact
-            ? ["Megfelelő elhelyezkedés", "A megadott árkereten belül", "Megfelelő alapterület és szobaszám"] : differences!.ToArray());
+            ? ["Megfelelő elhelyezkedés", "A megadott árkereten belül", "Megfelelő alapterület és szobaszám"] : differences!.ToArray()) {
+                MatchDetails = includeReasons ? Explain(property, search) : []
+            };
+    }
+
+    private static readonly CultureInfo Hungarian = CultureInfo.GetCultureInfo("hu-HU");
+    private static string Number(decimal value) => value.ToString("0.######", Hungarian);
+    private static string Floor(int value, bool bucket = false) => value switch {
+        -1 => "Szuterén", 0 => "Földszint", 11 when bucket => "11. emelet vagy afölötti", _ => value + ". emelet"
+    };
+    private static string Known(string value, string[] options) => options.Contains(value) ? value : "Nincs megadva";
+
+    // Built only for cards actually returned, never during the lean ranking scan.
+    // The requested value remains separate from the listing's value so both
+    // successful and unsuccessful criteria can be rendered without guessing.
+    private static MatchCriterion[] Explain(Property p, CompiledSearch q)
+    {
+        var s = q.Source;
+        var details = new List<MatchCriterion>();
+        void Add(string key, string label, string expected, string actual, bool matches) =>
+            details.Add(new(key, label, expected, actual, matches));
+        void Bounds(string key, string label, decimal actual, decimal? minimum, decimal? maximum, string unit)
+        {
+            var min = minimum is > 0;
+            if (!min && !maximum.HasValue) return;
+            var expected = min && maximum.HasValue ? Number(minimum!.Value) + "–" + Number(maximum.Value) + " " + unit
+                : min ? "legalább " + Number(minimum!.Value) + " " + unit
+                : "legfeljebb " + Number(maximum!.Value) + " " + unit;
+            Add(key, label, expected, Number(actual) + " " + unit,
+                (!min || actual >= minimum!.Value) && (!maximum.HasValue || actual <= maximum.Value));
+        }
+        void Category(string key, string label, string actual, HashSet<string> selected, string[] options)
+        {
+            if (selected.Count == 0) return;
+            var expected = options.Where(selected.Contains).ToArray();
+            Add(key, label, expected.Length > 0 ? string.Join(" vagy ", expected) : "Ismeretlen feltétel",
+                Known(actual, options), options.Contains(actual) && selected.Contains(actual));
+        }
+        var location = LocationCatalog.ForProperty(p)!;
+        Add("location", "Helyszín", string.Join(" vagy ", LocationCatalog.ForSearch(s).Select(value => value.Label)), location.Label, true);
+        if (q.NormalizedType.Length > 0) Add("type", "Ingatlantípus", s.Type, p.Type, true);
+        Bounds("price", "Ár", p.Price / 1_000_000m, s.MinPrice / 1_000_000m, s.MaxPrice / 1_000_000m, "M Ft");
+        Bounds("rooms", "Szobaszám", p.Rooms, s.MinRooms, s.MaxRooms, "szoba");
+        Bounds("area", "Alapterület", p.Area, s.MinArea, s.MaxArea, "m²");
+        if (q.Conditions.Count > 0)
+        {
+            var actual = ConditionIndex(p.Condition);
+            var minimum = q.ConditionMinimum ?? -1;
+            Add("condition", "Állapot", minimum >= 0 ? PropertyAttributes.Conditions[minimum] + " vagy jobb" : "Ismeretlen feltétel",
+                actual >= 0 ? PropertyAttributes.Conditions[actual] : "Nincs megadva", actual >= 0 && minimum >= 0 && actual >= minimum);
+        }
+        if (!q.House && q.Floors.Length > 0)
+            Add("floor", "Emelet", string.Join(" vagy ", q.Floors.Select(value => Floor(value, bucket: true))),
+                p.Floor.HasValue ? Floor(p.Floor.Value) : "Nincs megadva",
+                p.Floor.HasValue && q.Floors.Any(value => value == p.Floor.Value || value == 11 && p.Floor.Value >= 11));
+        if (!q.House && s.Elevator) Add("elevator", "Lift", "Van lift", p.Elevator ? "Van lift" : "Nincs lift", p.Elevator);
+        if (!q.House && s.Balcony) Add("balcony", "Erkély", "Van erkély", p.Balcony ? "Van erkély" : "Nincs erkély", p.Balcony);
+        Category("building", "Falazat", Canonical(p.Building, PropertyAttributes.Buildings), q.Buildings, PropertyAttributes.Buildings);
+        Category("heatingType", "Fűtés típusa", Canonical(p.HeatingType, PropertyAttributes.HeatingTypes), q.Heating, PropertyAttributes.HeatingTypes);
+        Category("constructionAge", "Építési kor", Canonical(p.ConstructionAge, PropertyAttributes.ConstructionAges), q.Ages, PropertyAttributes.ConstructionAges);
+        if (!string.IsNullOrEmpty(s.CeilingHeight))
+        {
+            var actual = Canonical(p.CeilingHeight, PropertyAttributes.CeilingHeights);
+            Add("ceilingHeight", "Belmagasság", s.CeilingHeight, Known(actual, PropertyAttributes.CeilingHeights),
+                PropertyAttributes.CeilingHeights.Contains(actual) && actual == s.CeilingHeight);
+        }
+        Category("view", "Kilátás", Canonical(p.View, PropertyAttributes.Views), q.Views, PropertyAttributes.Views);
+        return details.ToArray();
     }
 
     public static decimal ValueForMoney(Property property)

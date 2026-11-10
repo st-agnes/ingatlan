@@ -10,7 +10,7 @@ import * as accountHelpers from '../dist/accounts.js';
 
 
 const landingRegions=[{id:'HU110',label:'Budapest'},{id:'HU321',label:'Hajdú-Bihar'},{id:'HU232',label:'Somogy'}];
-function landingFixture(region){const selected=landingRegions.find(item=>item.id===region)||null;return {regions:landingRegions,region:selected,scope:selected?'region':'national',searches:region==='HU232'?[]:[{key:'s-public',title:'Lakást keresnek',type:'Lakás',locations:[region==='HU321'?'Debrecen':'Budapest XIII. kerület'],minPrice:null,maxPrice:90,minArea:50,maxArea:null,minRooms:2,maxRooms:null,ownerAccountType:'private'}],properties:region==='HU232'?[]:[{key:'p-public',title:'Eladó lakás',type:'Lakás',location:region==='HU321'?'Debrecen':'Budapest',price:82,area:60,wholeRooms:2,halfRooms:1,rooms:2.5,lotArea:null,ownerAccountType:'agent'}]};}
+function landingFixture(region){const selected=landingRegions.find(item=>item.id===region)||null;return {regions:landingRegions,region:selected,scope:selected?'region':'national',searches:region==='HU232'?[]:[{key:'s-public',title:'Kertes otthont keresünk',ownerFirstName:'Anna',type:'Lakás',locations:[region==='HU321'?'Debrecen':'Budapest XIII. kerület'],minPrice:null,maxPrice:90,minArea:50,maxArea:null,minRooms:2,maxRooms:null,ownerAccountType:'private'}],properties:region==='HU232'?[]:[{key:'p-public',title:'Napfényes erkélyes otthon',ownerFirstName:'Péter',type:'Lakás',location:region==='HU321'?'Debrecen':'Budapest',price:82,area:60,wholeRooms:2,halfRooms:1,rooms:2.5,lotArea:null,ownerAccountType:'agent'}]};}
 
 const source=await fs.readFile(new URL('../dist/app.js',import.meta.url),'utf8');
 class Element {
@@ -693,10 +693,11 @@ function partialOnlyFixture(){return accountFixture(raw=>{
  Object.assign(raw.searches.find(item=>item.id==='own-s1'),{minPrice:null,maxPrice:10,minArea:50,maxArea:85,minRooms:2,maxRooms:4,conditions:[],buildings:[],heatingTypes:[],balcony:false,elevator:false});
 });}
 
-test('partial recommendations remain hidden until explicit consent, and declining never consumes a candidate',async()=>{
+test('partial recommendations remain hidden without clicking the single consent action',async()=>{
  const t=await setup({initialRaw:partialOnlyFixture()}),before=t.model.getState();
  assert.equal(t.document.getElementById('candidate'),null);assert.match(t.document.getElementById('app').innerHTML,/Elfogytak a tökéletes egyezések/);
- await t.click({action:'approximate-decline'});assert.equal(t.document.getElementById('candidate'),null);assert.match(t.document.getElementById('app').innerHTML,/rejtve maradnak/);
+ assert.doesNotMatch(t.document.getElementById('app').innerHTML,/approximate-decline|Csak tökéletes egyezések|Nem, csak/);
+ assert.equal((t.document.getElementById('app').innerHTML.match(/data-action="approximate-accept"/g)||[]).length,1);
  await t.ui.render();assert.deepEqual(t.model.getState(),before);assert.equal(t.document.getElementById('modal-root').innerHTML,'');
  await t.click({action:'approximate-accept'});assert.ok(t.document.getElementById('candidate'));assert.match(t.document.getElementById('app').innerHTML,/Részleges egyezések/);
  const candidate=t.model.feed({includeApproximate:true})[0];await t.click({action:'pass'});
@@ -713,7 +714,7 @@ test('partial consent resets when the active profile or its criteria change',asy
 
 test('zero-percent partial cards stay zero and describe deviations without positive hardcoded tags',async()=>{
  const seed=createModel({getItem:()=>null,setItem:()=>{}}).feed()[0];
- const t=await setup({hosted:true,authenticated:true,apiOverrides:{recommendations:({includeApproximate=false}={})=>includeApproximate?{items:[{...seed,score:0,isExact:false,reasons:['Az ár meghaladja a keretet']}],stage:'approximate'}:{items:[],stage:'empty',requiresApproximateConsent:true,hasApproximate:true}}});
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{recommendations:({includeApproximate=false}={})=>includeApproximate?{items:[{...seed,score:0,isExact:false,reasons:['Az ár meghaladja a keretet'],matchDetails:[]}],stage:'approximate'}:{items:[],stage:'empty',requiresApproximateConsent:true,hasApproximate:true}}});
  await t.click({action:'approximate-accept'});const html=t.document.getElementById('app').innerHTML;
  assert.match(html,/0% egyezés/);assert.doesNotMatch(html,/97% egyezés|Árkereten belül|Kedvenc környékeden/);assert.match(html,/Az ár meghaladja a keretet/);
 });
@@ -729,6 +730,26 @@ test('a late partial response cannot transfer consent or recommendations to anot
 });
 
 test('search specialization appears on seller recommendation cards and own searches',async()=>{
- const t=await setup();await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.match(t.document.getElementById('app').innerHTML,/Specializáltság: [\d,]+\/100/);
- await t.click({page:'searches'});assert.match(t.document.getElementById('app').innerHTML,/Specializáltság: [\d,]+\/100/);
+ const t=await setup();await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.match(t.document.getElementById('app').innerHTML,/Specializáltság: [\d,]+%/);
+ await t.click({page:'searches'});assert.match(t.document.getElementById('app').innerHTML,/Specializáltság: [\d,]+%/);
+});
+
+
+test('partial cards show concrete requested and actual values for both matching and differing criteria',async()=>{
+ const seed=createModel({getItem:()=>null,setItem:()=>{}}).feed()[0],matchDetails=[
+  {key:'rooms',label:'Szobaszám',expected:'legalább 3 szoba',actual:'2 szoba',matches:false},
+  {key:'area',label:'Alapterület',expected:'50–80 m²',actual:'65 m²',matches:true},
+  {key:'building',label:'Falazat',expected:'Tégla <és> kő',actual:'Panel',matches:false},
+  {key:'location',label:'Helyszín',expected:'Budapest XIII. kerület',actual:'Budapest XIII. kerület',matches:true}];
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{recommendations:({includeApproximate=false}={})=>includeApproximate?{items:[{...seed,score:77,isExact:false,ownerFirstName:'Anna <teszt>',matchDetails}],stage:'approximate'}:{items:[],stage:'empty',requiresApproximateConsent:true}}});
+ await t.click({action:'approximate-accept'});let html=t.document.getElementById('app').innerHTML;
+ for(const text of ['Eltérő feltételek','Teljesülő feltételek','Keresés: legalább 3 szoba','Ingatlan: 2 szoba','Keresés: 50–80 m²','Ingatlan: 65 m²','Tégla &lt;és&gt; kő','owner-first-name','Anna &lt;teszt&gt;'])assert.ok(html.includes(text),text);
+ assert.match(html,/criterion-passed/);assert.match(html,/criterion-different/);assert.doesNotMatch(html,/eltérés a kereséstől|<teszt>|<és>/);
+ t.ui.openDetails();html=t.document.getElementById('modal-root').innerHTML;assert.match(html,/Keresés: legalább 3 szoba/);assert.match(html,/Teljesülő feltételek/);assert.match(html,/Anna &lt;teszt&gt;/);
+});
+
+test('public cards display listing titles, discreet types and first names',async()=>{
+ const t=await setup({hosted:true,hash:''}),html=t.document.getElementById('app').innerHTML;
+ for(const text of ['Kertes otthont keresünk','Napfényes erkélyes otthon','Anna','Péter','landing-type','owner-first-name'])assert.ok(html.includes(text),text);
+ assert.doesNotMatch(html,/Lakást keresnek|Eladó lakás/);
 });

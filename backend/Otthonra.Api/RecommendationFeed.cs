@@ -17,7 +17,7 @@ public static class RecommendationFeed
 {
     public const int PageSize = 50;
     private sealed record Candidate(Property Property, SearchRequest Search, string PropertyOwnerType,
-        string SearchOwnerType, bool LikedYou, MatchEvaluation Evaluation, CompiledSearch Prepared,
+        string SearchOwnerType, string PropertyOwnerName, string SearchOwnerName, bool LikedYou, MatchEvaluation Evaluation, CompiledSearch Prepared,
         decimal ValueForMoney, int Specificity);
 
     private sealed class CandidateRow
@@ -25,6 +25,7 @@ public static class RecommendationFeed
         public Property? Property { get; init; }
         public SearchRequest? Search { get; init; }
         public string OwnerType { get; init; } = AccountTypes.Private;
+        public string OwnerName { get; init; } = "";
         public bool LikedYou { get; init; }
     }
 
@@ -157,7 +158,7 @@ public static class RecommendationFeed
                 var property = row.Property!;
                 var evaluation = MatchingRanking.Evaluate(property, prepared, includeReasons: false);
                 if (evaluation.Eligible)
-                    yield return new(property, activeSearch, row.OwnerType, user.AccountType, row.LikedYou, evaluation, prepared,
+                    yield return new(property, activeSearch, row.OwnerType, user.AccountType, row.OwnerName, user.Name, row.LikedYou, evaluation, prepared,
                         MatchingRanking.ValueForMoney(property), specificity);
             }
         }
@@ -170,7 +171,7 @@ public static class RecommendationFeed
                 var prepared = MatchingRanking.Prepare(search);
                 var evaluation = MatchingRanking.Evaluate(activeProperty, prepared, includeReasons: false);
                 if (evaluation.Eligible)
-                    yield return new(activeProperty, search, user.AccountType, row.OwnerType, row.LikedYou, evaluation, prepared, value, prepared.Specificity);
+                    yield return new(activeProperty, search, user.AccountType, row.OwnerType, user.Name, row.OwnerName, row.LikedYou, evaluation, prepared, value, prepared.Specificity);
             }
         }
     }
@@ -190,7 +191,7 @@ public static class RecommendationFeed
         return from property in properties.Select(PropertyColumns)
             join owner in db.Users.AsNoTracking() on property.OwnerId equals owner.Id
             where user.AccountType != AccountTypes.Agent || owner.AccountType != AccountTypes.Agent
-            select new CandidateRow { Property = property, OwnerType = owner.AccountType,
+            select new CandidateRow { Property = property, OwnerType = owner.AccountType, OwnerName = owner.Name,
                 LikedYou = db.Decisions.Any(decision => decision.PropertyId == property.Id && decision.SearchRequestId == search.Id
                     && decision.ActorKind == "property" && decision.Liked && decision.ActorUserId == property.OwnerId) };
     }
@@ -227,7 +228,7 @@ public static class RecommendationFeed
         return from search in searches.Select(SearchColumns)
             join owner in db.Users.AsNoTracking() on search.OwnerId equals owner.Id
             where user.AccountType != AccountTypes.Agent || owner.AccountType != AccountTypes.Agent
-            select new CandidateRow { Search = search, OwnerType = owner.AccountType,
+            select new CandidateRow { Search = search, OwnerType = owner.AccountType, OwnerName = owner.Name,
                 LikedYou = db.Decisions.Any(decision => decision.PropertyId == property.Id && decision.SearchRequestId == search.Id
                     && decision.ActorKind == "search" && decision.Liked && decision.ActorUserId == search.OwnerId) };
     }
@@ -239,11 +240,13 @@ public static class RecommendationFeed
         var searchIds = candidates.Select(candidate => candidate.Search.Id).Distinct().ToArray();
         var properties = await db.Properties.AsNoTracking().Where(property => propertyIds.Contains(property.Id)).ToDictionaryAsync(property => property.Id, cancellationToken);
         var searches = await db.SearchRequests.AsNoTracking().Where(search => searchIds.Contains(search.Id)).ToDictionaryAsync(search => search.Id, cancellationToken);
-        return candidates.Select(candidate => new FeedItem(
-            Dto.Property(properties[candidate.Property.Id], !buyer, candidate.PropertyOwnerType),
-            Dto.Search(searches[candidate.Search.Id], candidate.SearchOwnerType), candidate.Property.Id, candidate.Search.Id,
-            candidate.Evaluation.Score, MatchingRanking.Evaluate(properties[candidate.Property.Id], candidate.Prepared).Reasons,
-            candidate.LikedYou, candidate.Evaluation.IsExact,
-            candidate.ValueForMoney, candidate.Specificity)).ToArray();
+        return candidates.Select(candidate => {
+            var evaluation = MatchingRanking.Evaluate(properties[candidate.Property.Id], candidate.Prepared);
+            return new FeedItem(
+                Dto.Property(properties[candidate.Property.Id], !buyer, candidate.PropertyOwnerType, candidate.PropertyOwnerName),
+                Dto.Search(searches[candidate.Search.Id], candidate.SearchOwnerType, candidate.SearchOwnerName), candidate.Property.Id, candidate.Search.Id,
+                candidate.Evaluation.Score, evaluation.Reasons, candidate.LikedYou, candidate.Evaluation.IsExact,
+                candidate.ValueForMoney, candidate.Specificity, evaluation.MatchDetails);
+        }).ToArray();
     }
 }

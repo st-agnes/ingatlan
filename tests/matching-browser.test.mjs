@@ -37,15 +37,15 @@ async function verify(browser,viewport,kind){
   await configure(page,kind);
   assert.match(await page.locator('#candidate .score').innerText(),/100%/);assert.doesNotMatch(await page.locator('#app').innerText(),/Másik város/);
   if(kind==='property'){
-   assert.match(await page.locator('#candidate').innerText(),/Szűk tesztkeresés/);assert.match(await page.locator('#candidate .specialization').innerText(),/Specializáltság:/);
+   assert.match(await page.locator('#candidate').innerText(),/Szűk tesztkeresés/);assert.match(await page.locator('#candidate .specialization').innerText(),/Specializáltság: [\d,]+%/);assert.doesNotMatch(await page.locator('#candidate .specialization').innerText(),/\/100/);
    await interact(page.locator('.card-actions [data-action="pass"]'));await page.getByRole('heading',{name:'Tág tesztkeresés',exact:true}).waitFor();assert.match(await page.locator('#candidate .score').innerText(),/100%/);
   }
   await interact(page.locator('.card-actions [data-action="pass"]'));await page.getByRole('heading',{name:'Elfogytak a tökéletes egyezések.',exact:true}).waitFor();
   assert.equal(await page.locator('#candidate').count(),0,'No partial card may appear before consent');
-  const before=await readState(page);await interact(page.locator('[data-action="approximate-decline"]'));assert.equal(await page.locator('#candidate').count(),0);assert.deepEqual(await readState(page),before,'Declining does not consume or bill a candidate');
+  const before=await readState(page);assert.equal(await page.locator('[data-action="approximate-decline"]').count(),0);assert.equal(await page.locator('.approximate-offer button').count(),1);await page.waitForTimeout(120);assert.equal(await page.locator('#candidate').count(),0);assert.deepEqual(await readState(page),before,'Leaving partial matches closed does not consume or bill a candidate');
   const geometry=await page.locator('.approximate-offer').evaluate(element=>({width:element.clientWidth,scrollWidth:element.scrollWidth}));assert.ok(geometry.scrollWidth<=geometry.width+1,'Consent controls must fit on screen');
   await interact(page.locator('[data-action="approximate-accept"]'));await page.locator('#candidate').waitFor();const score=Number((await page.locator('#candidate .score').innerText()).match(/\d+/)?.[0]);assert.ok(score<100);assert.match(await page.locator('.matching-stage').innerText(),/Részleges egyezések/);
-  if(kind==='search')assert.doesNotMatch(await page.locator('#candidate .feature-tags').innerText(),/Árkereten belül|Kedvenc környékeden/);
+  assert.ok(await page.locator('#candidate .criterion-different').count()>0);assert.ok(await page.locator('#candidate .criterion-passed').count()>0);assert.match(await page.locator('#candidate .feature-tags').innerText(),/Keresés:/);assert.match(await page.locator('#candidate .feature-tags').innerText(),/Ingatlan:/);assert.match(await page.locator('#candidate [data-criterion="price"]').innerText(),kind==='search'?/80/:/70/);assert.equal(await page.locator('[data-action="approximate-decline"]').count(),0);assert.ok(await page.locator('#candidate .owner-first-name').count()>0);
   await page.reload({waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:'Elfogytak a tökéletes egyezések.',exact:true}).waitFor();assert.equal(await page.locator('#candidate').count(),0,'Consent does not survive a new browser session view');
   await interact(page.locator('[data-action="approximate-accept"]'));await page.locator('#candidate').waitFor();
   if(kind==='search'){
@@ -57,7 +57,7 @@ async function verify(browser,viewport,kind){
    await interact(page.locator('[data-action="activate"]').first());await interact(page.locator('.modal [data-action="activate-one"][data-kind="search"][data-id="own-s1"]'));await page.locator('#candidate').waitFor();assert.match(await page.locator('#candidate .score').innerText(),/100%/);
    await interact(page.locator('.card-actions [data-action="pass"]'));await page.getByRole('heading',{name:'Elfogytak a tökéletes egyezések.',exact:true}).waitFor();assert.equal(await page.locator('#candidate').count(),0,'Switching roles resets consent');
   }
-  assert.deepEqual(errors,[]);console.log(`Matching ${kind} ${viewport.name}: exact-first discovery, explicit yes/no consent, partial percentages, scoped consent and specialization passed.`);
+  assert.deepEqual(errors,[]);console.log(`Matching ${kind} ${viewport.name}: exact-first discovery, single explicit opt-in, concrete matching/differing criteria, first names, partial percentages, scoped consent and specialization passed.`);
  }catch(error){await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`matching-${kind}-${viewport.name}-failure.png`),fullPage:true}).catch(()=>{});throw error;}
  finally{await context.close();}
 }

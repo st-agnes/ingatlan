@@ -94,6 +94,7 @@ jobs:
         run: |
           node tests/model.test.mjs
           node tests/matching.test.mjs
+          node tests/public-profile.test.mjs
           node tests/smoke-privacy.test.mjs
           node tests/frontend.test.mjs
           node tests/api.test.mjs

@@ -196,10 +196,50 @@ public class MatchingRankingTests
         for (var i = 0; i < 10000; i++)
         {
             var result = MatchingRanking.Evaluate(p, compiled, includeReasons: false);
-            Assert.Equal(100, result.Score); Assert.Empty(result.Reasons);
+            Assert.Equal(100, result.Score); Assert.Empty(result.Reasons); Assert.Empty(result.MatchDetails);
         }
         Assert.NotEmpty(MatchingRanking.Evaluate(p, compiled).Reasons);
         Assert.Equal(80_000_000m, p.Price); Assert.Equal("Tégla", p.Building);
+    }
+
+    [Fact]
+    public void PartialExplanationsContainSpecificRequestedAndActualValuesAndSuccessfulCriteria()
+    {
+        var p = Home(); p.Price = 95_000_000m; p.Condition = "Átlagos"; p.Floor = 2;
+        p.Building = "Tégla"; p.HeatingType = "Gázkazán";
+        var s = Wanted(); s.MaxPrice = 80_000_000m; s.MinRooms = 4; s.MinArea = 50;
+        s.ConditionsJson = "[\"Jó\",\"Új/felújított\"]"; s.FloorsJson = "[1,5]"; s.Elevator = true;
+        s.BuildingsJson = "[\"Tégla\"]"; s.HeatingTypesJson = "[\"Gázkazán\"]";
+        var result = Match(p, s); var details = result.MatchDetails.ToDictionary(value => value.Key);
+        Assert.False(result.IsExact);
+        Assert.Equal(new MatchCriterion("rooms", "Szobaszám", "legalább 4 szoba", "3 szoba", false), details["rooms"]);
+        Assert.Equal(new MatchCriterion("price", "Ár", "legfeljebb 80 M Ft", "95 M Ft", false), details["price"]);
+        Assert.Equal(new MatchCriterion("area", "Alapterület", "legalább 50 m²", "60 m²", true), details["area"]);
+        Assert.Equal("Jó vagy jobb", details["condition"].Expected); Assert.Equal("Átlagos", details["condition"].Actual);
+        Assert.Equal("1. emelet vagy 5. emelet", details["floor"].Expected); Assert.Equal("2. emelet", details["floor"].Actual);
+        Assert.Equal("Van lift", details["elevator"].Expected); Assert.Equal("Nincs lift", details["elevator"].Actual);
+        foreach (var key in new[] { "location", "type", "area", "building", "heatingType" }) Assert.True(details[key].Matches);
+    }
+
+    [Fact]
+    public void ExplanationsRespectBoundsAliasesElevenPlusUnknownValuesAndHouseApplicability()
+    {
+        var p = Home(); p.Price = 80_500_000m; p.Rooms = 3.5m;
+        var q = Wanted(); q.MinPrice = 60_000_000m; q.MaxPrice = 100_000_000m;
+        q.MinRooms = 2.5m; q.MaxRooms = 4; q.MinArea = 50; q.MaxArea = 70;
+        var details = Match(p, q).MatchDetails.ToDictionary(value => value.Key);
+        Assert.Equal("2,5–4 szoba", details["rooms"].Expected); Assert.Equal("80,5 M Ft", details["price"].Actual);
+        q = Wanted(); q.FloorsJson = "[11]"; q.ConditionsJson = "[\"Jó\"]"; p.Floor = 27; p.Condition = "Felújított";
+        var result = Match(p, q); details = result.MatchDetails.ToDictionary(value => value.Key);
+        Assert.Equal("11. emelet vagy afölötti", details["floor"].Expected); Assert.Equal("27. emelet", details["floor"].Actual);
+        Assert.All(result.MatchDetails, value => Assert.True(value.Matches));
+        q = Wanted(); q.BuildingsJson = "[\"Panel\",\"Tégla\"]"; q.HeatingTypesJson = "[\"Nincs fűtés\"]";
+        details = Match(p, q).MatchDetails.ToDictionary(value => value.Key);
+        Assert.Equal("Tégla vagy Panel", details["building"].Expected); Assert.Equal("Nincs megadva", details["building"].Actual);
+        Assert.False(details["heatingType"].Matches);
+        q = WantedHouse(); q.FloorsJson = "[11]"; q.Elevator = q.Balcony = true; p.Type = "Ház";
+        Assert.Equal(new[] { "location", "type" }, Match(p, q).MatchDetails.Select(value => value.Key));
+        Assert.Empty(Match(p, Wanted()).MatchDetails);
     }
 
     [Fact]
@@ -233,6 +273,8 @@ public class MatchingRankingTests
             if (item.TryGetProperty("specificity", out var specificity)) Assert.Equal(specificity.GetInt32(), MatchingRanking.Specificity(search));
             if (item.TryGetProperty("valueForMoney", out var value))
                 Assert.InRange(Math.Abs((double)MatchingRanking.ValueForMoney(property) - value.GetDouble()), 0d, 1e-8);
+            if (item.TryGetProperty("matchDetails", out var details))
+                Assert.Equal(details.Deserialize<MatchCriterion[]>(options)!, result.MatchDetails);
         }
     }
 

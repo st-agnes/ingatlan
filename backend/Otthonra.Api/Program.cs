@@ -120,7 +120,7 @@ api.MapGet("/me/entities", async (AppDb db, ClaimsPrincipal principal, LikeRefun
         where d.ActorUserId == user.Id
         orderby d.CreatedAt descending
         select new { Decision = d, Property = p, Search = s }).ToListAsync();
-    var ownerTypes = await OwnerAccountTypes(db, decisionRows.SelectMany(row => new[] { row.Property.OwnerId, row.Search.OwnerId }));
+    var ownerProfiles = await OwnerProfiles(db, decisionRows.SelectMany(row => new[] { row.Property.OwnerId, row.Search.OwnerId }));
     var reportedOwnerIds = await db.UserReports.AsNoTracking().Where(report => report.ReporterId == user.Id).Select(report => report.ReportedUserId).Distinct().ToListAsync();
     var reportedEntities = await db.UserReports.AsNoTracking().Where(report => report.ReporterId == user.Id)
         .Select(report => new { report.EntityKind, report.EntityId, report.Reason }).ToListAsync();
@@ -129,9 +129,9 @@ api.MapGet("/me/entities", async (AppDb db, ClaimsPrincipal principal, LikeRefun
         actorId = row.Decision.ActorKind == "property" ? row.Decision.PropertyId : row.Decision.SearchRequestId,
         row.Decision.PropertyId, searchId = row.Decision.SearchRequestId, row.Decision.SearchRequestId,
         row.Decision.Liked, row.Decision.Charged, row.Decision.RefundedAt, row.Decision.CreatedAt,
-        property = Dto.Property(row.Property, ownerAccountType: ownerTypes[row.Property.OwnerId]), search = Dto.Search(row.Search, ownerTypes[row.Search.OwnerId])
+        property = Dto.Property(row.Property, ownerAccountType: ownerProfiles[row.Property.OwnerId].AccountType, ownerName: ownerProfiles[row.Property.OwnerId].Name), search = Dto.Search(row.Search, ownerProfiles[row.Search.OwnerId].AccountType, ownerProfiles[row.Search.OwnerId].Name)
     });
-    return Results.Ok(new { properties = properties.Select(p => Dto.Property(p, true, user.AccountType)), searchRequests = searches.Select(s => Dto.Search(s, user.AccountType)), decisions, reportedOwnerIds, reportedEntities, active = user.ActiveKind is null ? null : new { kind = user.ActiveKind, id = user.ActiveEntityId } });
+    return Results.Ok(new { properties = properties.Select(p => Dto.Property(p, true, user.AccountType, user.Name)), searchRequests = searches.Select(s => Dto.Search(s, user.AccountType, user.Name)), decisions, reportedOwnerIds, reportedEntities, active = user.ActiveKind is null ? null : new { kind = user.ActiveKind, id = user.ActiveEntityId } });
 });
 api.MapPut("/me/active", async (ActiveInput input, AppDb db, ClaimsPrincipal principal) =>
 {
@@ -140,30 +140,30 @@ api.MapPut("/me/active", async (ActiveInput input, AppDb db, ClaimsPrincipal pri
     if (!owned) throw new ApiException(404, "Az entitás nem található vagy nem aktiválható.");
     user.ActiveKind = kind; user.ActiveEntityId = input.Id; await db.SaveChangesAsync(); return Results.Ok(new { kind, id = input.Id });
 });
-api.MapGet("/properties", async (AppDb db, ClaimsPrincipal principal) => { var user = await CurrentUser(db, principal); var items = await db.Properties.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).ToListAsync(); return Results.Ok(items.Select(p => Dto.Property(p, true, user.AccountType))); });
+api.MapGet("/properties", async (AppDb db, ClaimsPrincipal principal) => { var user = await CurrentUser(db, principal); var items = await db.Properties.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).ToListAsync(); return Results.Ok(items.Select(p => Dto.Property(p, true, user.AccountType, user.Name))); });
 api.MapPost("/properties", async (PropertyInput input, AppDb db, ClaimsPrincipal principal) =>
 {
-    var p = new Property { OwnerId = principal.UserId() }; Rules.Apply(p, input); db.Properties.Add(p); await db.SaveChangesAsync(); return Results.Created($"/api/properties/{p.Id}", Dto.Property(p, true, (await CurrentUser(db, principal)).AccountType));
+    var p = new Property { OwnerId = principal.UserId() }; Rules.Apply(p, input); db.Properties.Add(p); await db.SaveChangesAsync(); var owner = await CurrentUser(db, principal); return Results.Created($"/api/properties/{p.Id}", Dto.Property(p, true, owner.AccountType, owner.Name));
 });
 api.MapPut("/properties/{id:guid}", async (Guid id, PropertyInput input, AppDb db, ClaimsPrincipal principal) =>
 {
     var uid = principal.UserId(); var p = await db.Properties.SingleOrDefaultAsync(x => x.Id == id && x.OwnerId == uid && !x.Archived) ?? throw new ApiException(404, "Az ingatlan nem található.");
-    Rules.Apply(p, input); await ClearArchivedActive(db, uid, p.Id, p.Archived); await db.SaveChangesAsync(); return Results.Ok(Dto.Property(p, true, (await CurrentUser(db, principal)).AccountType));
+    Rules.Apply(p, input); await ClearArchivedActive(db, uid, p.Id, p.Archived); await db.SaveChangesAsync(); var owner = await CurrentUser(db, principal); return Results.Ok(Dto.Property(p, true, owner.AccountType, owner.Name));
 });
 api.MapDelete("/properties/{id:guid}", async (Guid id, AppDb db, ClaimsPrincipal principal) =>
 {
     var uid = principal.UserId(); var p = await db.Properties.SingleOrDefaultAsync(x => x.Id == id && x.OwnerId == uid) ?? throw new ApiException(404, "Az ingatlan nem található.");
     p.Archived = true; await ClearArchivedActive(db, uid, id, true); await db.SaveChangesAsync(); return Results.NoContent();
 });
-api.MapGet("/searches", async (AppDb db, ClaimsPrincipal principal) => { var user = await CurrentUser(db, principal); var items = await db.SearchRequests.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).ToListAsync(); return Results.Ok(items.Select(s => Dto.Search(s, user.AccountType))); });
+api.MapGet("/searches", async (AppDb db, ClaimsPrincipal principal) => { var user = await CurrentUser(db, principal); var items = await db.SearchRequests.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).ToListAsync(); return Results.Ok(items.Select(s => Dto.Search(s, user.AccountType, user.Name))); });
 api.MapPost("/searches", async (SearchInput input, AppDb db, ClaimsPrincipal principal) =>
 {
-    var s = new SearchRequest { OwnerId = principal.UserId() }; Rules.Apply(s, input); db.SearchRequests.Add(s); await db.SaveChangesAsync(); return Results.Created($"/api/searches/{s.Id}", Dto.Search(s, (await CurrentUser(db, principal)).AccountType));
+    var s = new SearchRequest { OwnerId = principal.UserId() }; Rules.Apply(s, input); db.SearchRequests.Add(s); await db.SaveChangesAsync(); var owner = await CurrentUser(db, principal); return Results.Created($"/api/searches/{s.Id}", Dto.Search(s, owner.AccountType, owner.Name));
 });
 api.MapPut("/searches/{id:guid}", async (Guid id, SearchInput input, AppDb db, ClaimsPrincipal principal) =>
 {
     var uid = principal.UserId(); var s = await db.SearchRequests.SingleOrDefaultAsync(x => x.Id == id && x.OwnerId == uid && !x.Archived) ?? throw new ApiException(404, "A keresési igény nem található.");
-    Rules.Apply(s, input); await ClearArchivedActive(db, uid, id, s.Archived); await db.SaveChangesAsync(); return Results.Ok(Dto.Search(s, (await CurrentUser(db, principal)).AccountType));
+    Rules.Apply(s, input); await ClearArchivedActive(db, uid, id, s.Archived); await db.SaveChangesAsync(); var owner = await CurrentUser(db, principal); return Results.Ok(Dto.Search(s, owner.AccountType, owner.Name));
 });
 api.MapDelete("/searches/{id:guid}", async (Guid id, AppDb db, ClaimsPrincipal principal) =>
 {
@@ -199,7 +199,8 @@ api.MapGet("/incoming-likes", async (int? offset, int? limit, AppDb db, ClaimsPr
             && property.OwnerId != search.OwnerId && !property.Archived && !search.Archived
             && !(propertyOwner.AccountType == AccountTypes.Agent && searchOwner.AccountType == AccountTypes.Agent)
         select new { Decision = decision, Property = property, Search = search,
-            PropertyOwnerType = propertyOwner.AccountType, SearchOwnerType = searchOwner.AccountType };
+            PropertyOwnerType = propertyOwner.AccountType, SearchOwnerType = searchOwner.AccountType,
+            PropertyOwnerName = propertyOwner.Name, SearchOwnerName = searchOwner.Name };
     var total = await incoming.CountAsync();
     var rows = await incoming.OrderByDescending(row => row.Decision.CreatedAt).ThenByDescending(row => row.Decision.Id)
         .Skip(page.Offset).Take(page.Limit).ToListAsync();
@@ -213,12 +214,13 @@ api.MapGet("/incoming-likes", async (int? offset, int? limit, AppDb db, ClaimsPr
         var prepared = MatchingRanking.Prepare(row.Search);
         var evaluation = MatchingRanking.Evaluate(row.Property, prepared);
         var compatible = evaluation.Eligible;
-        return new IncomingLikeItem(Dto.Property(row.Property, ownerAccountType: row.PropertyOwnerType),
-            Dto.Search(row.Search, row.SearchOwnerType), row.Property.Id, row.Search.Id,
+        return new IncomingLikeItem(Dto.Property(row.Property, ownerAccountType: row.PropertyOwnerType, ownerName: row.PropertyOwnerName),
+            Dto.Search(row.Search, row.SearchOwnerType, row.SearchOwnerName), row.Property.Id, row.Search.Id,
             compatible ? evaluation.Score : 0,
             compatible ? evaluation.Reasons : [], true, row.Decision.CreatedAt,
             own is null ? null : own.Liked ? "liked" : "passed", match?.Id, compatible,
-            evaluation.IsExact, MatchingRanking.ValueForMoney(row.Property), prepared.Specificity);
+            evaluation.IsExact, MatchingRanking.ValueForMoney(row.Property), prepared.Specificity,
+            compatible ? evaluation.MatchDetails : []);
     }).ToArray();
     return Results.Ok(new { active = (object)new { kind, id = activeId }, items, total,
         offset = page.Offset, limit = page.Limit, hasMore = page.Offset + items.Length < total,
@@ -271,14 +273,14 @@ api.MapGet("/matches", async (AppDb db, ClaimsPrincipal principal) =>
 {
     var uid = principal.UserId();
     var rows = await (from m in db.Matches.AsNoTracking() join p in db.Properties.AsNoTracking() on m.PropertyId equals p.Id join s in db.SearchRequests.AsNoTracking() on m.SearchRequestId equals s.Id where p.OwnerId == uid || s.OwnerId == uid orderby m.CreatedAt descending select new { Match = m, Property = p, Search = s }).ToListAsync();
-    var ownerTypes = await OwnerAccountTypes(db, rows.SelectMany(row => new[] { row.Property.OwnerId, row.Search.OwnerId }));
+    var ownerProfiles = await OwnerProfiles(db, rows.SelectMany(row => new[] { row.Property.OwnerId, row.Search.OwnerId }));
     var results = new List<object>();
     foreach (var row in rows)
     {
         var partnerId = row.Property.OwnerId == uid ? row.Search.OwnerId : row.Property.OwnerId;
         var contact = await db.Users.AsNoTracking().SingleAsync(x => x.Id == partnerId);
         var messages = await db.Messages.AsNoTracking().Where(x => x.MatchId == row.Match.Id).OrderBy(x => x.CreatedAt).ToListAsync();
-        results.Add(new { row.Match.Id, row.Match.CreatedAt, property = Dto.Property(row.Property, true, ownerTypes[row.Property.OwnerId]), searchRequest = Dto.Search(row.Search, ownerTypes[row.Search.OwnerId]), contact = new { contact.Id, contact.Name, contact.Email, contact.Phone, contact.AccountType }, messages = messages.Select(Dto.Message), unread = 0 });
+        results.Add(new { row.Match.Id, row.Match.CreatedAt, property = Dto.Property(row.Property, true, ownerProfiles[row.Property.OwnerId].AccountType, ownerProfiles[row.Property.OwnerId].Name), searchRequest = Dto.Search(row.Search, ownerProfiles[row.Search.OwnerId].AccountType, ownerProfiles[row.Search.OwnerId].Name), contact = new { contact.Id, contact.Name, contact.Email, contact.Phone, contact.AccountType }, messages = messages.Select(Dto.Message), unread = 0 });
     }
     return Results.Ok(results);
 });
@@ -325,15 +327,18 @@ static async Task ClearArchivedActive(AppDb db, Guid uid, Guid entityId, bool ar
     var user = await db.Users.SingleAsync(x => x.Id == uid);
     if (user.ActiveEntityId == entityId) { user.ActiveEntityId = null; user.ActiveKind = null; }
 }
-static async Task<Dictionary<Guid, string>> OwnerAccountTypes(AppDb db, IEnumerable<Guid> ownerIds)
+static async Task<Dictionary<Guid, PublicOwnerSummary>> OwnerProfiles(AppDb db, IEnumerable<Guid> ownerIds)
 {
     var ids = ownerIds.Distinct().ToArray();
-    if (ids.Length == 0) return new Dictionary<Guid, string>();
-    return await db.Users.AsNoTracking().Where(user => ids.Contains(user.Id)).ToDictionaryAsync(user => user.Id, user => user.AccountType);
+    if (ids.Length == 0) return new Dictionary<Guid, PublicOwnerSummary>();
+    var rows = await db.Users.AsNoTracking().Where(user => ids.Contains(user.Id))
+        .Select(user => new { user.Id, user.AccountType, user.Name }).ToListAsync();
+    return rows.ToDictionary(user => user.Id, user => new PublicOwnerSummary(user.AccountType, user.Name));
 }
+public sealed record PublicOwnerSummary(string AccountType, string Name);
 public record FeedItem(object Property, object SearchRequest, Guid PropertyId, Guid SearchRequestId, int CompatibilityScore,
-    string[] Reasons, bool LikedYou, bool IsExact = true, decimal ValueForMoney = 0, int SearchSpecificity = 0);
+    string[] Reasons, bool LikedYou, bool IsExact = true, decimal ValueForMoney = 0, int SearchSpecificity = 0, MatchCriterion[]? MatchDetails = null);
 public record IncomingLikeItem(object Property, object SearchRequest, Guid PropertyId, Guid SearchRequestId,
     int CompatibilityScore, string[] Reasons, bool LikedYou, DateTime LikedAt, string? MyDecision, Guid? MatchId, bool Compatible,
-    bool IsExact = true, decimal ValueForMoney = 0, int SearchSpecificity = 0);
+    bool IsExact = true, decimal ValueForMoney = 0, int SearchSpecificity = 0, MatchCriterion[]? MatchDetails = null);
 public partial class Program { }

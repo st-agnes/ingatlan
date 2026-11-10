@@ -596,3 +596,25 @@ test('search specialization is derived for own entities and cannot be forged or 
  assert.equal(Object.hasOwn(stored,'searchSpecificity'),false);
  assert.equal(createModel(storage).getState().searches.find(item=>item.id===saved.id).searchSpecificity,saved.searchSpecificity);
 });
+
+test('public first names derive from owners and forged listing fields cannot override them',()=>{
+ const storage=store(),m=createModel(storage);m.buyDemoCredits(1);const raw=JSON.parse(storage.getItem(STORAGE_KEY));
+ raw.properties.find(item=>item.id==='p1').ownerFirstName='FORGED';storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ const reloaded=createModel(storage),card=reloaded.feed().find(item=>item.id==='p1');
+ assert.equal(card.ownerFirstName,'Péter');assert.equal('phone' in card,false);assert.equal('email' in card,false);
+ const saved=reloaded.saveEntity('search',{...reloaded.getState().searches[0],id:undefined,title:'Új saját keresés',ownerFirstName:'FORGED'});
+ assert.equal(saved.ownerFirstName,'Anna');assert.equal(Object.hasOwn(JSON.parse(storage.getItem(STORAGE_KEY)).searches.find(item=>item.id===saved.id),'ownerFirstName'),false);
+ const preview=demoLanding(null,()=>0);
+ for(const item of [...preview.searches,...preview.properties]){
+  assert.ok(item.title.length>8);assert.ok(item.ownerFirstName);assert.doesNotMatch(item.ownerFirstName,/\s|@|\d/);
+  assert.doesNotMatch(item.title,/^(?:Lakást|Házat) keres$|^Eladó (?:lakás|ház)$/);
+ }
+});
+
+test('partial demo cards and incoming likes contain fulfilled and unfulfilled concrete search criteria',()=>{
+ const {m}=rankedFixture();for(const item of [...m.feed()])m.decide(item,false);
+ const card=m.feed({includeApproximate:true})[0];
+ assert.equal(card.isExact,false);assert.ok(card.matchDetails.some(item=>item.matches));assert.ok(card.matchDetails.some(item=>!item.matches));
+ assert.ok(card.matchDetails.every(item=>item.expected&&item.actual));
+ assert.ok(card.matchDetails.some(item=>item.key==='price'&&item.expected.includes('M Ft')));
+});
