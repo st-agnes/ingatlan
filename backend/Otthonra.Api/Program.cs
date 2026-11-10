@@ -95,6 +95,7 @@ auth.MapPost("/login", async (LoginInput input, AppDb db) =>
 var api = app.MapGroup("/api").RequireAuthorization();
 api.MapNotifications();
 api.MapSellerFeedback();
+if (deployment.IsTest && builder.Configuration.GetValue<bool>("Database:SeedTestFixtures")) api.MapFeedbackTestScenario();
 api.MapGet("/me", async (AppDb db, ClaimsPrincipal principal, LikeRefundService refunds, CancellationToken cancellationToken) =>
 {
     var userId = principal.UserId();

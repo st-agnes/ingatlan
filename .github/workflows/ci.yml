@@ -280,6 +280,11 @@ jobs:
           ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=production Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-production node scripts/dev.mjs --background
           node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --production
           python3 backend/startup-seed-store.py "${{ job.services.mysql.id }}" reset
+      - name: Test the repeatable hosted feedback scenario on desktop, tablet and mobile
+        run: |
+          node scripts/dev.mjs --stop
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-b node scripts/dev.mjs --background
+          node tests/feedback-scenario-browser.test.mjs http://127.0.0.1:3000
       - name: Show development startup logs on failure
         if: failure()
         run: tail -n 80 .local/dev.log 2>/dev/null || true

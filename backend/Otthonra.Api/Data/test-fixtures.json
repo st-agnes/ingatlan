@@ -1,5 +1,5 @@
 {
-  "version": "20261109-test-fixtures-v3",
+  "version": "20261110-test-fixtures-v4",
   "password": "OtthonraDemo2026!",
   "users": [
     {
@@ -132,6 +132,28 @@
       "active": {
         "kind": "search",
         "key": "balazs-budapest-search-1"
+      }
+    },
+    {
+      "key": "feedbackseller",
+      "name": "Teszt Péter",
+      "email": "visszajelzes-elado@otthonra.local",
+      "phone": "",
+      "accountType": "private",
+      "active": {
+        "kind": "property",
+        "key": "feedback-demo-property"
+      }
+    },
+    {
+      "key": "feedbackbuyer",
+      "name": "Teszt Anna",
+      "email": "visszajelzes-kereso@otthonra.local",
+      "phone": "",
+      "accountType": "private",
+      "active": {
+        "kind": "search",
+        "key": "feedback-demo-search"
       }
     }
   ],
@@ -25903,6 +25925,73 @@
         "conditions": [],
         "heatingTypes": []
       }
+    },
+    {
+      "key": "feedback-demo-property",
+      "owner": "feedbackseller",
+      "kind": "property",
+      "input": {
+        "neighborhood": "",
+        "address": "",
+        "description": "Kitalált tesztadat, nem valódi ingatlanhirdetés. A visszajelzés kipróbálására szolgáló nyaraló. A keresői tesztfiókban az első elutasítás után megjelenik a kérdés.",
+        "type": "Nyaraló",
+        "floor": null,
+        "condition": "Jó",
+        "building": "Tégla",
+        "balcony": false,
+        "elevator": false,
+        "images": [
+          "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85",
+          "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85"
+        ],
+        "archived": false,
+        "lotArea": null,
+        "title": "Visszajelzés-próba · Tisza-tavi nyaraló",
+        "city": "Abádszalók",
+        "district": "",
+        "locationId": "city:Abádszalók",
+        "price": 42000000,
+        "area": 60,
+        "rooms": 3,
+        "wholeRooms": 3,
+        "halfRooms": 0
+      }
+    },
+    {
+      "key": "feedback-demo-search",
+      "owner": "feedbackbuyer",
+      "kind": "search",
+      "input": {
+        "districts": [],
+        "description": "Kitalált tesztadat, nem valódi ingatlanhirdetés. Az első Most nem gombbal azonnal kipróbálható a visszajelzési ablak.",
+        "type": "Nyaraló",
+        "minPrice": null,
+        "maxPrice": 50000000,
+        "minArea": 50,
+        "maxArea": 80,
+        "minRooms": 2,
+        "maxRooms": 4,
+        "balcony": false,
+        "elevator": false,
+        "moveIn": "3 hónapon belül",
+        "financing": "Tesztként megadott saját forrás",
+        "archived": false,
+        "title": "Visszajelzés-próba · Nyaralót keresek",
+        "city": "Abádszalók",
+        "locationIds": [
+          "city:Abádszalók"
+        ]
+      }
+    }
+  ],
+  "feedbackScenarios": [
+    {
+      "key": "feedback-first-pass",
+      "seller": "feedbackseller",
+      "buyer": "feedbackbuyer",
+      "property": "feedback-demo-property",
+      "search": "feedback-demo-search",
+      "size": 10
     }
   ]
 }

@@ -15,7 +15,7 @@ function landingFixture(region){const selected=landingRegions.find(item=>item.id
 
 const source=await fs.readFile(new URL('../dist/app.js',import.meta.url),'utf8');
 class Element {
- constructor(id,doc,markup=''){this.id=id;this.doc=doc;this._innerHTML='';this.textContent='';this.className=markup.match(/class="([^"]*)"/)?.[1]||'';this.value=markup.match(/\bvalue="([^"]*)"/)?.[1]||'';this.name=markup.match(/\bname="([^"]*)"/)?.[1]||'';this.step=markup.match(/\bstep="([^"]*)"/)?.[1]||'';this.type=markup.match(/\btype="([^"]*)"/)?.[1]||'';this.required=/\srequired(?:\s|>)/.test(markup);this.validity={badInput:false};if(markup.startsWith('<select')){const option=[...markup.matchAll(/<option\b([^>]*)>([^<]*)/g)],selected=option.find(match=>/\bselected\b/.test(match[1]))||option[0];this.value=selected?.[1].match(/\bvalue="([^"]*)"/)?.[1]??selected?.[2]??'';}this.disabled=/\sdisabled(?:\s|>)/.test(markup);this.hidden=/\shidden(?:\s|>)/.test(markup);this.style={};this.handlers={};this.attributes={};this.scrollHeight=500;this.scrollTop=0;this.validationMessage='';this.classList={toggle:(name,on)=>{const classes=new Set(this.className.split(' ').filter(Boolean));if(on??!classes.has(name))classes.add(name);else classes.delete(name);this.className=[...classes].join(' ');},remove:name=>this.classList.toggle(name,false)};}
+ constructor(id,doc,markup=''){this.id=id;this.doc=doc;this._innerHTML='';this.textContent='';this.className=markup.match(/class="([^"]*)"/)?.[1]||'';this.value=markup.match(/\bvalue="([^"]*)"/)?.[1]||'';this.name=markup.match(/\bname="([^"]*)"/)?.[1]||'';this.step=markup.match(/\bstep="([^"]*)"/)?.[1]||'';this.type=markup.match(/\btype="([^"]*)"/)?.[1]||'';this.required=/\srequired(?:\s|>)/.test(markup);this.validity={badInput:false};if(markup.startsWith('<select')){const option=[...markup.matchAll(/<option\b([^>]*)>([^<]*)/g)],selected=option.find(match=>/\bselected\b/.test(match[1]))||option[0];this.value=selected?.[1].match(/\bvalue="([^"]*)"/)?.[1]??selected?.[2]??'';}this.checked=/\schecked(?:\s|>)/.test(markup);this.disabled=/\sdisabled(?:\s|>)/.test(markup);this.hidden=/\shidden(?:\s|>)/.test(markup);this.style={};this.handlers={};this.attributes={};this.scrollHeight=500;this.scrollTop=0;this.validationMessage='';this.classList={toggle:(name,on)=>{const classes=new Set(this.className.split(' ').filter(Boolean));if(on??!classes.has(name))classes.add(name);else classes.delete(name);this.className=[...classes].join(' ');},remove:name=>this.classList.toggle(name,false)};}
  set innerHTML(value){this._innerHTML=value;if(['app','modal-root'].includes(this.id)){for(const id of this.doc.elements.keys())if(!['app','modal-root','toast'].includes(id))this.doc.elements.delete(id);}}
  get innerHTML(){return this._innerHTML;}
  addEventListener(type,handler){const prior=this.handlers[type];this.handlers[type]=prior?event=>{prior(event);return handler(event);}:handler;}
@@ -48,9 +48,9 @@ async function setup(options={}){
  const ctx=vm.createContext({
   document,console,Intl,Date,Promise,URLSearchParams,IntersectionObserver:options.IntersectionObserver,setTimeout:()=>0,clearTimeout:()=>{},
   location:{get hash(){return currentHash;},set hash(value){currentHash=value?(value.startsWith('#')?value:'#'+value):'';},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},addEventListener:(type,handler)=>{windowEvents[type]=handler;}},
-  OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:'test'}:{mode:'demo',environment:'local'},
+  OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:options.environment||'test'}:{mode:'demo',environment:'local'},
   searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...accountHelpers,...feedbackHelpers,
-  hostedMode:()=>!!options.hosted,deploymentEnvironment:()=>options.hosted?'test':'local',
+  hostedMode:()=>!!options.hosted,deploymentEnvironment:()=>options.hosted?(options.environment||'test'):'local',
   getModel:()=>selected,
   fetchLanding:async(input={})=>{landingCalls.push(input);if(options.fetchLanding)return options.fetchLanding(input);return landingFixture(input.region);},
   detectLandingRegion:options.detectLandingRegion||(async()=>null),
@@ -72,7 +72,7 @@ function key(input,key){const event={key,preventDefault(){this.defaultPrevented=
 const searchValues=title=>({title,type:'Lakás',minPrice:'',maxPrice:'90',minArea:'40',maxArea:'',minRooms:'2',maxRooms:'',moveIn:'Rugalmas'});
 async function createSearch(t,title='Új keresési igény'){t.ui.openEditor('search');chooseLocation(t,'district:Budapest:13');submitEntity(t,searchValues(title));await settle();return t.model.getState().searches.find(item=>item.title===title);}
 test('initial app renders recommendation without private contacts',async()=>{const t=await setup(),html=t.document.getElementById('app').innerHTML;assert.match(html,/page-heading/);assert.match(html,/A következő fejezeted/);assert.match(html,/72,9/);assert.equal(html.includes('peter@example.hu'),false);assert.equal(html.includes('+36 30 555 0141'),false);});
-test('buyer like opens mutual-match dialog; seller activation and recommendation debit exactly two credits',async()=>{const t=await setup();await t.click({action:'like'});assert.match(t.document.getElementById('modal-root').innerHTML,/Egymásra találtatok/);assert.equal(t.model.getState().credits,24);await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.match(t.document.getElementById('app').innerHTML,/Ajánlom · 2 kredit/);await t.click({action:'like'});assert.equal(t.model.getState().credits,22);assert.equal(t.model.getState().ledger.filter(x=>x.type==='seller_like').length,1);});
+test('buyer like opens mutual-match dialog; seller activation and recommendation debit exactly two credits',async()=>{const t=await setup();await t.click({action:'like'});assert.match(t.document.getElementById('modal-root').innerHTML,/Egymásra találtatok/);assert.equal(t.model.getState().credits,24);await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.match(t.document.getElementById('app').innerHTML,/<span class="decision-like-caption"><span>Kedvelés<\/span><small>2 kredit<\/small>/);await t.click({action:'like'});assert.equal(t.model.getState().credits,22);assert.equal(t.model.getState().ledger.filter(x=>x.type==='seller_like').length,1);});
 test('passing removes a candidate persistently from current feed',async()=>{const t=await setup(),id=t.model.feed()[0].id;await t.click({action:'pass'});assert.equal(t.model.feed().some(x=>x.id===id),false);assert.equal(t.model.getState().credits,24);});
 test('every navigation page renders, settings inputs have unique IDs',async()=>{const t=await setup();for(const page of ['matches','messages','properties','searches','credits','settings']){await t.click({page});assert.doesNotMatch(t.document.getElementById('app').innerHTML,/Nem érhető el a munkatér/);}const html=t.document.getElementById('app').innerHTML;const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'all IDs within settings must be unique');assert.match(html,/for="api-email"/);});
 test('new search form creates a saved entity and profile form persists changes',async()=>{const t=await setup();await t.click({page:'searches'});await t.click({action:'new',kind:'search'});let form=t.document.getElementById('entity-form');chooseLocation(t,'district:Budapest:11');form.values={title:'Kertvárosi terveink',type:'Lakás',minPrice:'30',maxPrice:'65',minArea:'40',maxArea:'75',minRooms:'2',maxRooms:'4',description:'Zöld környezetben keresünk.',moveIn:'Rugalmas'};form.handlers.submit({preventDefault(){},currentTarget:form});await settle();assert.equal(t.model.getState().searches.some(x=>x.title==='Kertvárosi terveink'),true);await t.click({page:'settings'});form=t.document.getElementById('profile-form');form.values={name:'Teszt Anna',email:'anna@test.hu',phone:'+36 30 123 4567'};form.handlers.submit({preventDefault(){},currentTarget:form});await settle();assert.equal(t.model.getState().user.name,'Teszt Anna');});
@@ -558,6 +558,7 @@ test('legacy arbitrary room totals are never rounded and existing heating or par
 });
 
 
+function chooseReport(t,reason){for(const option of accountHelpers.REPORT_REASON_OPTIONS){const input=t.document.getElementById('f-reportReason-'+option.value);if(input)input.checked=option.value===reason;}}
 function accountFixture(mutate){let raw;const local=createModel({getItem:()=>null,setItem:(_key,value)=>{raw=JSON.parse(value);}});local.activate('search','own-s1');mutate(raw);return raw;}
 test('hosted and settings registration both offer account types and send the selected agent role',async()=>{
  const hosted=await setup({hosted:true});await hosted.click({action:'auth-mode',mode:'register'});
@@ -579,24 +580,24 @@ test('foreign owner labels are explicit while agent-owned workspace cards, summa
  await agent.click({page:'settings'});const html=agent.document.getElementById('app').innerHTML;assert.match(html,/Fióktípus: <strong>Ingatlanközvetítő/);assert.doesNotMatch(html.match(/<form[^>]*id="profile-form"[\s\S]*?<\/form>/)[0],/name="accountType"/);
 });
 test('reporting requires one reason, awaits persistence and allows another reason without revealing timestamps',async()=>{
- const t=await setup(),before=t.model.getState();await t.click({action:'report-account',kind:'property',id:'p1'});let html=t.document.getElementById('modal-root').innerHTML;assert.match(html,/Hirdetés jelentése/);for(const option of accountHelpers.REPORT_REASON_OPTIONS)assert.ok(html.includes(`value="${option.value}"`));
- await t.click({action:'confirm-report',kind:'property',id:'p1'});assert.match(t.document.getElementById('f-reportReason').validationMessage,/jelentés okát/);assert.deepEqual(t.model.getState().reportedEntities,[]);await t.click({action:'close'});
+ const t=await setup(),before=t.model.getState();await t.click({action:'report-account',kind:'property',id:'p1'});let html=t.document.getElementById('modal-root').innerHTML;assert.match(html,/Milyen szabálytalanságot tapasztaltál\?/);assert.doesNotMatch(html,/<select|Jelentés oka|Korábban jelzett ok/);for(const option of accountHelpers.REPORT_REASON_OPTIONS)assert.ok(html.includes(`value="${option.value}"`));
+ await t.click({action:'confirm-report',kind:'property',id:'p1'});assert.equal(t.document.activeElement.id,'f-reportReason-suspected_agent');assert.deepEqual(t.model.getState().reportedEntities,[]);await t.click({action:'close'});
  let release;const wait=new Promise(resolve=>{release=resolve;});const original=t.model.reportAccount;t.model.reportAccount=async(...args)=>{await wait;return original(...args);};
- await t.click({action:'report-account',kind:'property',id:'p1'});t.document.getElementById('f-reportReason').value='suspected_agent';const sending=t.click({action:'confirm-report',kind:'property',id:'p1'});await settle();assert.deepEqual(t.model.getState().reportedEntities,[]);assert.match(t.document.getElementById('modal-root').innerHTML,/Jelentés elküldése/);
+ await t.click({action:'report-account',kind:'property',id:'p1'});chooseReport(t,'suspected_agent');const sending=t.click({action:'confirm-report',kind:'property',id:'p1'});await settle();assert.deepEqual(t.model.getState().reportedEntities,[]);assert.match(t.document.getElementById('modal-root').innerHTML,/Jelentés elküldése/);
  release();await sending;assert.deepEqual(t.model.getState().reportedEntities,[{entityKind:'property',entityId:'p1',reason:'suspected_agent'}]);assert.equal(t.model.getState().credits,before.credits);assert.equal(t.document.getElementById('modal-root').innerHTML,'');assert.match(t.document.getElementById('toast').textContent,/A jelentésedet elmentettük/);
  html=t.document.getElementById('app').innerHTML;assert.match(html,/data-action="report-account" data-kind="property" data-id="p1">/);assert.doesNotMatch(html,/\d{4}-\d{2}-\d{2}T|reportedAt|CreatedAt/);
- await t.click({action:'report-account',kind:'property',id:'p1'});assert.match(t.document.getElementById('modal-root').innerHTML,/Korábban jelzett ok/);t.document.getElementById('f-reportReason').value='misleading_content';await t.click({action:'confirm-report',kind:'property',id:'p1'});assert.equal(t.model.getState().reportedEntities.length,2);
- await t.click({action:'report-account',kind:'property',id:'p1'});t.document.getElementById('f-reportReason').value='misleading_content';await t.click({action:'confirm-report',kind:'property',id:'p1'});assert.equal(t.model.getState().reportedEntities.length,2);assert.match(t.document.getElementById('toast').textContent,/már jelentetted/);
+ await t.click({action:'report-account',kind:'property',id:'p1'});assert.doesNotMatch(t.document.getElementById('modal-root').innerHTML,/Korábban jelzett ok|Jelentés oka/);chooseReport(t,'misleading_content');await t.click({action:'confirm-report',kind:'property',id:'p1'});assert.equal(t.model.getState().reportedEntities.length,2);
+ await t.click({action:'report-account',kind:'property',id:'p1'});chooseReport(t,'misleading_content');await t.click({action:'confirm-report',kind:'property',id:'p1'});assert.equal(t.model.getState().reportedEntities.length,2);assert.match(t.document.getElementById('toast').textContent,/már jelentetted/);
 });
 test('agent listings offer applicable report reasons and failed saves retain the selected reason for retry',async()=>{
  const t=await setup(),original=t.model.reportAccount;await t.click({action:'report-account',kind:'property',id:'own-p1'});assert.equal(t.document.getElementById('modal-root').innerHTML,'');
  while(t.model.feed()[0]?.id!=='p2'){t.model.decide(t.model.feed()[0],false);await t.ui.render();}
  await t.click({action:'report-account',kind:'property',id:'p2'});const html=t.document.getElementById('modal-root').innerHTML;assert.doesNotMatch(html,/value="suspected_agent"/);assert.match(html,/value="misleading_content"/);assert.match(html,/value="other_violation"/);
- t.document.getElementById('f-reportReason').value='misleading_content';t.model.reportAccount=async()=>{throw new Error('A jelentés mentése most nem sikerült.');};await t.click({action:'confirm-report',kind:'property',id:'p2'});assert.match(t.document.getElementById('modal-root').innerHTML,/Jelentés elküldése/);assert.match(t.document.getElementById('toast').textContent,/mentése most nem sikerült/);assert.equal(t.document.getElementById('f-reportReason').value,'misleading_content');assert.deepEqual(t.model.getState().reportedEntities,[]);
+ chooseReport(t,'misleading_content');t.model.reportAccount=async()=>{throw new Error('A jelentés mentése most nem sikerült.');};await t.click({action:'confirm-report',kind:'property',id:'p2'});assert.match(t.document.getElementById('modal-root').innerHTML,/Jelentés elküldése/);assert.match(t.document.getElementById('toast').textContent,/mentése most nem sikerült/);assert.equal(t.document.getElementById('f-reportReason-misleading_content').checked,true);assert.deepEqual(t.model.getState().reportedEntities,[]);
  t.model.reportAccount=original;await t.click({action:'confirm-report',kind:'property',id:'p2'});assert.deepEqual(t.model.getState().reportedEntities,[{entityKind:'property',entityId:'p2',reason:'misleading_content'}]);
 });
 test('agent search likes show one credit and button, keyboard and swipe cannot consume an unaffordable candidate',async()=>{
- const raw=accountFixture(raw=>{raw.users.find(user=>user.id==='me').accountType='agent';raw.credits=1;});const t=await setup({initialRaw:raw});assert.match(t.document.getElementById('app').innerHTML,/Tetszik · 1 kredit/);t.ui.openDetails();assert.match(t.document.getElementById('modal-root').innerHTML,/Tetszik · 1 kredit/);await t.click({action:'close'});await t.click({action:'like'});assert.equal(t.model.getState().credits,0);await t.click({action:'close'});
+ const raw=accountFixture(raw=>{raw.users.find(user=>user.id==='me').accountType='agent';raw.credits=1;});const t=await setup({initialRaw:raw});assert.match(t.document.getElementById('app').innerHTML,/<span class="decision-like-caption"><span>Kedvelés<\/span><small>1 kredit<\/small>/);t.ui.openDetails();assert.match(t.document.getElementById('modal-root').innerHTML,/Tetszik · 1 kredit/);await t.click({action:'close'});await t.click({action:'like'});assert.equal(t.model.getState().credits,0);await t.click({action:'close'});
  const before=t.model.getState(),candidate=t.model.feed()[0].id;await t.click({action:'like'});assert.match(t.document.getElementById('modal-root').innerHTML,/Kreditekre van szükséged/);assert.equal(t.model.feed()[0].id,candidate);assert.equal(t.model.getState().decisions.length,before.decisions.length);await t.click({action:'close'});
  await t.document.handlers.keydown({key:'ArrowRight',target:{closest:()=>null},preventDefault(){}});assert.match(t.document.getElementById('modal-root').innerHTML,/Kreditekre van szükséged/);await t.click({action:'close'});
  const card=t.document.getElementById('candidate'),target={closest:selector=>selector==='#candidate'?card:null};t.document.handlers.pointerdown({target,clientX:0,clientY:0,pointerId:7});await t.document.handlers.pointerup({clientX:130,clientY:3,pointerId:7});assert.match(t.document.getElementById('modal-root').innerHTML,/Kreditekre van szükséged/);assert.equal(t.model.feed()[0].id,candidate);assert.equal(t.model.getState().credits,0);assert.equal(t.model.getState().ledger.length,before.ledger.length);await t.click({action:'close'});await t.click({action:'pass'});assert.notEqual(t.model.feed()[0]?.id,candidate);assert.equal(t.model.getState().credits,0);
@@ -636,7 +637,7 @@ test('incoming view handles no active profile and incompatible interests without
 
 test('hosted root is a public demand-focused landing with independent login and registration routes',async()=>{
  const t=await setup({hosted:true,hash:''}),html=t.document.getElementById('app').innerHTML;
- assert.match(html,/Érd el, aki/);assert.match(html,/Nézd meg, mit keresnek a vevők/);assert.ok(html.indexOf('landing-search-card')<html.indexOf('landing-property-card'));assert.match(html,/Megtalálom a vevőmet/);assert.match(html,/Megtalálom az otthonom/);assert.match(html,/Illusztráció/);assert.match(html,/geojs.io\/privacy/);assert.ok(html.indexOf('landing-property-card')<html.indexOf('class="landing-how"'),'Both teaser types precede the longer explanation');assert.doesNotMatch(html,/landing-region-status|landing-region-note|aria-describedby="landing-region-note"|Hozzávetőleges régió|Bármikor választhatsz másikat/);assert.equal(t.document.getElementById('hosted-auth-form'),null);assert.equal(t.getSelectedModel(),null);assert.doesNotMatch(html,/sidebar|api-email|Demó munkatér/);
+ assert.match(html,/Unod a passzív várakozást és a kéretlen telefonokat\?/);assert.match(html,/Érd el a vevőidet egy kattintással!/);assert.match(html,/Tedd közzé a keresési igényed és maradj inkognitóban!/);assert.match(html,/Nézd meg, mit keresnek a vevők/);assert.ok(html.indexOf('landing-search-card')<html.indexOf('landing-property-card'));assert.match(html,/Megtalálom a vevőmet/);assert.match(html,/Megtalálom az otthonom/);assert.match(html,/Illusztráció/);assert.match(html,/geojs.io\/privacy/);assert.ok(html.indexOf('landing-property-card')<html.indexOf('class="landing-how"'),'Both teaser types precede the longer explanation');assert.doesNotMatch(html,/landing-region-status|landing-region-note|aria-describedby="landing-region-note"|Hozzávetőleges régió|Bármikor választhatsz másikat/);assert.equal(t.document.getElementById('hosted-auth-form'),null);assert.equal(t.getSelectedModel(),null);assert.doesNotMatch(html,/sidebar|api-email|Demó munkatér/);
  await t.click({action:'auth-mode',mode:'register'});assert.equal(t.ctx.location.hash,'#register');assert.ok(t.document.getElementById('f-name'));await t.click({action:'landing'});assert.equal(t.ctx.location.hash,'#landing');assert.ok(t.document.getElementById('landing-region'));await t.click({action:'auth-mode',mode:'login'});assert.equal(t.ctx.location.hash,'#login');assert.equal(t.document.getElementById('f-name'),null);assert.ok(t.document.getElementById('hosted-auth-form'));
 });
 test('local landing preview does not alter the saved demo workspace',async()=>{
@@ -737,8 +738,8 @@ test('a late partial response cannot transfer consent or recommendations to anot
 });
 
 test('search specialization appears on seller recommendation cards and own searches',async()=>{
- const t=await setup();await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.match(t.document.getElementById('app').innerHTML,/Specializáltság: [\d,]+%/);
- await t.click({page:'searches'});assert.match(t.document.getElementById('app').innerHTML,/Specializáltság: [\d,]+%/);
+ const t=await setup();await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.match(t.document.getElementById('app').innerHTML,/[\d,]+%-ban fókuszált keresés/);
+ await t.click({page:'searches'});assert.match(t.document.getElementById('app').innerHTML,/[\d,]+%-ban fókuszált keresés/);
 });
 
 
@@ -781,7 +782,7 @@ test('hard-only match details do not produce a fulfilled condition section or re
 
 test('public cards display listing titles, discreet types and first names',async()=>{
  const t=await setup({hosted:true,hash:''}),html=t.document.getElementById('app').innerHTML;
- for(const text of ['Kertes otthont keresünk','Napfényes erkélyes otthon','Anna','Péter','landing-type','owner-first-name'])assert.ok(html.includes(text),text);
+ for(const text of ['Kertes otthont keresünk','Napfényes erkélyes otthon','Anna','Péter','lakást keres','landing-ad-title','landing-type','owner-first-name'])assert.ok(html.includes(text),text);
  assert.doesNotMatch(html,/Lakást keresnek|Eladó lakás/);
 });
 
@@ -800,7 +801,7 @@ test('seller insights are property scoped, anonymous and show an active package 
 test('package purchase shows sizes and cost, and retains its UUID when a failed payment is retried',async()=>{
  const attempts=[],t=await setup({hosted:true,authenticated:true,apiOverrides:{buyFeedbackPackage:async(id,size,request)=>{attempts.push({id,size,request});throw new Error('Átmeneti hiba');}}});
  const property=t.model.getState().properties[0];t.ui.openFeedbackPackages(property.id);let html=t.document.getElementById('modal-root').innerHTML;
- for(const size of [10,20,50])assert.match(html,new RegExp('data-size="'+size+'"'));assert.match(html,/két hétig/);assert.match(html,/automatikusan visszakapod/);
+ for(const size of [10,20,50])assert.match(html,new RegExp('data-size="'+size+'"'));assert.match(html,/két hétig/);assert.match(html,/kreditet írunk jóvá/);assert.doesNotMatch(html,/válaszok árát|visszajelzések árát/);
  await t.click({action:'feedback-plan',id:property.id,size:'10'});html=t.document.getElementById('modal-root').innerHTML;assert.match(html,/Csomag indítása · 10 kredit/);
  const request=html.match(/data-request="([^"]+)"/)[1];assert.match(request,/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
  await t.click({action:'feedback-buy',id:property.id,size:'10',request});await t.click({action:'feedback-buy',id:property.id,size:'10',request});
@@ -832,4 +833,35 @@ test('discovery records only the visible buyer card once and ignores stale visib
  await t.ui.render();observers.at(-1).callback([{isIntersecting:true,intersectionRatio:.5}]);await settle();assert.equal(calls.length,1,'Repaints do not add another viewer');
  await t.click({page:'properties'});first.callback([{isIntersecting:true,intersectionRatio:1}]);await settle();assert.equal(calls.length,1,'A stale callback cannot count a hidden candidate');
  await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.equal(calls.length,1,'Seller-side search cards never count as property exposure');
+});
+
+test('focused-search badge opens a plain explanation and separates focus from the match percentage',async()=>{
+ const t=await setup();await t.click({action:'activate-one',kind:'property',id:'own-p1'});
+ let html=t.document.getElementById('app').innerHTML;assert.match(html,/[\d,]+%-ban fókuszált keresés/);assert.match(html,/data-action="focus-info"/);assert.doesNotMatch(html,/Specializáltság:/);
+ await t.click({action:'focus-info'});html=t.document.getElementById('modal-root').innerHTML;
+ assert.match(html,/Mit jelent a fókuszált keresés\?/);assert.match(html,/szűkebb ár-, méret- és szobatartomány/);assert.match(html,/kártya tetején látható egyezési százalék/);
+});
+
+test('the report dialog contains ordered radios only and a duplicate report persists as its own reason',async()=>{
+ const t=await setup();await t.click({action:'report-account',kind:'property',id:'p1'});const html=t.document.getElementById('modal-root').innerHTML;
+ assert.match(html,/aria-labelledby="report-question"/);assert.equal((html.match(/type="radio"/g)||[]).length,accountHelpers.REPORT_REASON_OPTIONS.length);assert.doesNotMatch(html,/<select|Jelentés oka|A következő fejezeted|profilnál|Korábban jelzett/);
+ const values=[...html.matchAll(/type="radio" name="reportReason" value="([^"]+)"/g)].map(match=>match[1]);assert.deepEqual(values,accountHelpers.REPORT_REASON_OPTIONS.map(option=>option.value));
+ chooseReport(t,'duplicate_listing');await t.click({action:'confirm-report',kind:'property',id:'p1'});assert.equal(t.model.getState().reportedEntities[0].reason,'duplicate_listing');
+});
+
+test('seller insights omit measurement and frequency boilerplate and express refunds only as credits',async()=>{
+ const t=await setup();await t.click({action:'property-insights',id:'own-p1'});let html=t.document.getElementById('app').innerHTML;
+ assert.doesNotMatch(html,/A megjelenések mérése|1 visszajelzés = 1 kredit|A keresők csak ritkán kapnak/);
+ await t.click({action:'feedback-packages',id:'own-p1'});html=t.document.getElementById('modal-root').innerHTML;assert.match(html,/kreditet írunk jóvá/);assert.doesNotMatch(html,/hiányzó.*árát/);
+ await t.click({action:'feedback-plan',id:'own-p1',size:'10'});html=t.document.getElementById('modal-root').innerHTML;assert.match(html,/kreditet írunk jóvá/);assert.doesNotMatch(html,/hiányzó.*árát/);
+});
+
+test('feedback trial controls require explicit hosted-test capability and reset through the model',async()=>{
+ const scenario={available:true,role:'buyer',propertyId:'own-p1',searchId:'own-s1',buyerEmail:'visszajelzes-kereso@otthonra.local',sellerEmail:'visszajelzes-elado@otthonra.local'};let resets=0,release;
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{getFeedbackScenario:()=>scenario,resetFeedbackScenario:()=>{resets++;return new Promise(resolve=>{release=resolve;});}}});
+ assert.match(t.document.getElementById('app').innerHTML,/Visszajelzés-próba|visszajelzes-kereso@otthonra.local/);
+ assert.ok(t.document.getElementById('candidate'));const pending=t.click({action:'feedback-scenario-reset'});await settle();assert.equal(resets,1);assert.equal(t.document.getElementById('candidate'),null);assert.match(t.document.getElementById('app').innerHTML,/feedback-scenario-resetting/);release();await pending;assert.equal(t.ctx.location.hash,'#discover');assert.ok(t.document.getElementById('candidate'));
+ const selected=[];const seller=await setup({hosted:true,authenticated:true,apiOverrides:{getFeedbackScenario:()=>({...scenario,role:'seller'}),resetFeedbackScenario:()=>{},getPropertyInsights:id=>{selected.push(id);return {stats:{},feedback:{items:[],reasonCounts:[]}};}}});await seller.click({action:'feedback-scenario-reset'});assert.equal(seller.ctx.location.hash,'#insights');assert.equal(selected.at(-1),scenario.propertyId);
+ const ordinary=await setup({hosted:true,authenticated:true,apiOverrides:{getFeedbackScenario:()=>({available:false})}});assert.doesNotMatch(ordinary.document.getElementById('app').innerHTML,/feedback-scenario-reset/);
+ const production=await setup({hosted:true,authenticated:true,environment:'production',apiOverrides:{getFeedbackScenario:()=>{throw new Error('No test endpoint in production');}}});assert.doesNotMatch(production.document.getElementById('app').innerHTML,/feedback-scenario-reset|Nem érhető el a munkatér/);
 });

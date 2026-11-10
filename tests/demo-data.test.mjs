@@ -3,12 +3,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
-import {DEFAULT_BATCH, createDemoCatalog, DEMO_USERS, DEMO_FIXTURES, DEMO_PASSWORD} from '../scripts/gcp/demo-data.mjs';
+import {DEFAULT_BATCH, createDemoCatalog, DEMO_USERS, DEMO_FIXTURES, DEMO_PASSWORD, FEEDBACK_TEST_SCENARIO} from '../scripts/gcp/demo-data.mjs';
 import {getLocation, isPropertyLocation} from '../dist/locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from '../dist/attributes.js';
 import {isCompatible} from '../dist/model.js';
 import {canInteract} from '../dist/accounts.js';
 
+const isScenarioUser=user=>user.key.startsWith('feedbackseller')||user.key.startsWith('feedbackbuyer');
 const oldUsers = ['anna','peter','eszter'];
 const oldFixtures = [
   'peter-pozsonyi','peter-rozsadomb','peter-debrecen','anna-solymar-house',
@@ -20,19 +21,20 @@ const property = fixture => ({...fixture.input,ownerId:fixture.owner,id:fixture.
 const search = fixture => ({...fixture.input,ownerId:fixture.owner,id:fixture.key});
 const canPair=(catalog,left,right)=>canInteract(catalog.users.find(user=>user.key===left.owner)?.accountType,catalog.users.find(user=>user.key===right.owner)?.accountType);
 
-test('default catalog contains twelve ready accounts including three agents and a substantial mixed-role inventory',()=>{
+test('default catalog includes fourteen accounts, three agents, a feedback trial and substantial mixed-role inventory',()=>{
  const catalog=createDemoCatalog();
  assert.equal(DEFAULT_BATCH,'alap');assert.deepEqual(DEMO_USERS,catalog.users);assert.deepEqual(DEMO_FIXTURES,catalog.fixtures);
- assert.equal(catalog.users.length,12);assert.equal(catalog.users.filter(user=>user.accountType==='agent').length,3);
- assert.equal(kind(catalog,'property').length,354);assert.equal(kind(catalog,'search').length,352);
+ assert.equal(catalog.users.length,14);assert.equal(catalog.users.filter(user=>user.accountType==='agent').length,3);
+ assert.equal(kind(catalog,'property').length,355);assert.equal(kind(catalog,'search').length,353);
  assert.equal(new Set(catalog.users.map(user=>user.email)).size,catalog.users.length);
  assert.equal(new Set(catalog.users.map(user=>user.key)).size,catalog.users.length);
  assert.equal(new Set(catalog.fixtures.map(fixture=>fixture.key)).size,catalog.fixtures.length);
  for(const user of catalog.users){
   const own=catalog.fixtures.filter(fixture=>fixture.owner===user.key);
-  assert.ok(own.some(fixture=>fixture.kind==='property'));assert.ok(own.some(fixture=>fixture.kind==='search'));
+  if(isScenarioUser(user))assert.equal(own.length,1,'Each feedback test account has one unambiguous role');
+  else{assert.ok(own.some(fixture=>fixture.kind==='property'));assert.ok(own.some(fixture=>fixture.kind==='search'));}
   assert.ok(own.some(fixture=>fixture.key===user.active.key&&fixture.kind===user.active.kind));
-  if(!oldUsers.includes(user.key)){
+  if(!oldUsers.includes(user.key)&&!isScenarioUser(user)){
    assert.equal(own.filter(fixture=>!fixture.key.startsWith('regional-')).length,24,'Keep the existing matching inventory');
    assert.ok(own.length>=76,'Distribute the added regional examples across the existing accounts');
   }
@@ -76,7 +78,8 @@ test('new accounts have compatible initial recommendations and agent searches ca
   const matches=catalog.fixtures.filter(fixture=>fixture.kind!==active.kind&&canPair(catalog,active,fixture)&&(
    active.kind==='search'?isCompatible(property(fixture),search(active)):isCompatible(property(active),search(fixture))
   ));
-  assert.ok(matches.length>=30,`${user.key} needs many initial recommendations`);
+  assert.ok(matches.length>=(isScenarioUser(user)?1:30),`${user.key} needs its initial recommendations`);
+  if(isScenarioUser(user))assert.equal(matches.length,1,'The feedback trial must start at its dedicated counterpart');
   if(user.accountType==='agent'){assert.ok(matches.every(fixture=>catalog.users.find(owner=>owner.key===fixture.owner).accountType==='private'),'Agent examples must receive only private counterparties');assert.ok(isCompatible(peter,search(active)),`${user.key} must match the original seller for the 1-credit test`);}
  }
 });
@@ -86,7 +89,7 @@ test('all fixture locations, categories, room compositions and house requirement
  for(const fixture of catalog.fixtures){
   const input=fixture.input;
   assert.ok(catalog.users.some(user=>user.key===fixture.owner));
-  assert.ok(input.title.startsWith('Teszt · '));assert.ok(input.title.length<=150);
+  assert.ok(input.title.startsWith(isScenarioUser({key:fixture.owner})?'Visszajelzés-próba · ':'Teszt · '));assert.ok(input.title.length<=150);
   assert.match(input.description,/Kitalált tesztadat/);
   assert.equal(Object.hasOwn(input,'ownerAccountType'),false,'The server must derive owner roles');
   if(fixture.kind==='property'){
@@ -113,6 +116,12 @@ test('named batches have new account and fixture identities while keeping the or
  const oldEmails=new Set(original.users.slice(3).map(user=>user.email)),oldKeys=new Set(original.fixtures.slice(10).map(fixture=>fixture.key));
  assert.ok(next.users.slice(3).every(user=>!oldEmails.has(user.email)&&user.email.includes('+november-uj@')));
  assert.ok(next.fixtures.slice(10).every(fixture=>!oldKeys.has(fixture.key)));
+ const nextScenario=next.feedbackScenarios[0];
+ assert.equal(next.feedbackScenarios.length,1);assert.equal(nextScenario.size,10);
+ for(const [key,ownerKey] of [[nextScenario.property,nextScenario.seller],[nextScenario.search,nextScenario.buyer]]){
+  assert.ok(next.users.some(user=>user.key===ownerKey));
+  assert.equal(next.fixtures.find(fixture=>fixture.key===key)?.owner,ownerKey,'Named batches must preserve their own scenario links');
+ }
  assert.deepEqual(createDemoCatalog('november-uj'),next,'A named batch must stay deterministic across reruns');
  next.users[3].name='Edited in caller';next.fixtures[10].input.images.push('https://example.test/image.jpg');
  assert.notEqual(createDemoCatalog('november-uj').users[3].name,next.users[3].name);
@@ -162,4 +171,17 @@ test('the actual hosted catalog covers every county with visibly different homes
    assert.ok(isCompatible(property(home),search(request)),`${home.key}: corresponding criteria match`);
   }
  }
+});
+
+
+test('the feedback trial starts with an isolated exact counterpart and canonical account metadata',()=>{
+ const catalog=createDemoCatalog(),scenario=FEEDBACK_TEST_SCENARIO;
+ const seller=catalog.users.find(user=>user.key===scenario.seller),buyer=catalog.users.find(user=>user.key===scenario.buyer);
+ const home=catalog.fixtures.find(fixture=>fixture.key===scenario.property),query=catalog.fixtures.find(fixture=>fixture.key===scenario.search);
+ assert.equal(scenario.size,10);assert.equal(seller.accountType,'private');assert.equal(buyer.accountType,'private');
+ assert.equal(seller.email,'visszajelzes-elado@otthonra.local');assert.equal(buyer.email,'visszajelzes-kereso@otthonra.local');
+ assert.deepEqual(seller.active,{kind:'property',key:home.key});assert.deepEqual(buyer.active,{kind:'search',key:query.key});
+ assert.equal(home.owner,seller.key);assert.equal(query.owner,buyer.key);assert.equal(home.input.type,'Nyaraló');assert.equal(query.input.type,'Nyaraló');
+ assert.equal(home.input.locationId,'city:Abádszalók');assert.deepEqual(query.input.locationIds,['city:Abádszalók']);
+ assert.ok(isCompatible(property(home),search(query)));
 });

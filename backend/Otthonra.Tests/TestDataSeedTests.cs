@@ -15,24 +15,65 @@ public class TestDataSeedTests
     [Fact]
     public void EmbeddedCatalogBuildsTheEntireReadyDatasetWithRolesCreditsAndStableIds()
     {
-        Assert.Equal("20261109-test-fixtures-v3", TestDataSeed.CatalogVersion);
-        Assert.Equal(12, Plan.Users.Length);
+        Assert.Equal("20261110-test-fixtures-v4", TestDataSeed.CatalogVersion);
+        Assert.Equal(14, Plan.Users.Length);
         Assert.Equal(3, Plan.Users.Count(user => user.AccountType == AccountTypes.Agent));
-        Assert.Equal(354, Plan.Properties.Length);
-        Assert.Equal(352, Plan.Searches.Length);
-        Assert.Equal(12, Plan.Credits.Length);
+        Assert.Equal(355, Plan.Properties.Length);
+        Assert.Equal(353, Plan.Searches.Length);
+        Assert.Equal(15, Plan.Credits.Length);
         Assert.All(Plan.Users, user => {
-            Assert.Equal(100, user.Credits);
+            Assert.Equal(user.Email == "visszajelzes-elado@otthonra.local" ? 90 : 100, user.Credits);
             Assert.True(Passwords.Verify("OtthonraDemo2026!", user.PasswordHash));
-            var entry = Assert.Single(Plan.Credits, credit => credit.UserId == user.Id);
+            var entry = Assert.Single(Plan.Credits, credit => credit.UserId == user.Id && credit.Amount == 100 && credit.FeedbackPackageId == null);
             Assert.Equal(100, entry.Amount); Assert.Null(entry.DecisionId);
             Assert.NotNull(user.ActiveEntityId);
+            Assert.Equal(user.Credits, Plan.Credits.Where(credit => credit.UserId == user.Id).Sum(credit => credit.Amount));
         });
         var ids = Plan.Users.Select(user => user.Id).Concat(Plan.Properties.Select(property => property.Id))
-            .Concat(Plan.Searches.Select(search => search.Id)).Concat(Plan.Credits.Select(credit => credit.Id)).ToArray();
+            .Concat(Plan.Searches.Select(search => search.Id)).Concat(Plan.Credits.Select(credit => credit.Id))
+            .Concat(Plan.FeedbackPackages.Select(package => package.Id)).ToArray();
         Assert.Equal(ids.Length, ids.Distinct().Count());
         Assert.All(Plan.Properties, property => Assert.Contains(Plan.Users, user => user.Id == property.OwnerId));
         Assert.All(Plan.Searches, search => Assert.Contains(Plan.Users, user => user.Id == search.OwnerId));
+    }
+
+    [Fact]
+    public void FeedbackTrialStartsWithOnePrepaidCampaignAndAnImmediatelyEligibleBuyerPass()
+    {
+        var seller = Assert.Single(Plan.Users, user => user.Email == "visszajelzes-elado@otthonra.local");
+        var buyer = Assert.Single(Plan.Users, user => user.Email == "visszajelzes-kereso@otthonra.local");
+        var property = Assert.Single(Plan.Properties, item => item.OwnerId == seller.Id);
+        var search = Assert.Single(Plan.Searches, item => item.OwnerId == buyer.Id);
+        var package = Assert.Single(Plan.FeedbackPackages);
+        Assert.Equal(AccountTypes.Private, seller.AccountType); Assert.Equal(AccountTypes.Private, buyer.AccountType);
+        Assert.Equal("property", seller.ActiveKind); Assert.Equal(property.Id, seller.ActiveEntityId);
+        Assert.Equal("search", buyer.ActiveKind); Assert.Equal(search.Id, buyer.ActiveEntityId);
+        Assert.Equal(SellerFeedbackPolicy.PromptSpacing - 1, buyer.FeedbackPassCounter);
+        Assert.True(Rules.Compatible(property, search));
+        Assert.Equal("Nyaraló", property.Type); Assert.Equal("city:Abádszalók", property.LocationId);
+        Assert.Equal(property.Id, package.PropertyId); Assert.Equal(seller.Id, package.OwnerId);
+        Assert.Equal(10, package.Size); Assert.Equal(0, package.ReceivedCount); Assert.True(package.Enabled);
+        Assert.Equal(package.CreatedAt.AddDays(SellerFeedbackPolicy.DurationDays), package.ExpiresAt);
+        Assert.Null(package.RefundedAt); Assert.Equal(0, package.RefundedCredits);
+        var charge = Assert.Single(Plan.Credits, row => row.FeedbackPackageId == package.Id);
+        Assert.Equal(-10, charge.Amount); Assert.Equal(seller.Id, charge.UserId); Assert.Equal(90, seller.Credits);
+        Assert.Null(charge.DecisionId); Assert.Null(charge.RefundedDecisionId); Assert.Null(charge.RefundedFeedbackPackageId);
+    }
+
+    [Fact]
+    public void FeedbackTrialRejectsInvalidParticipantsPackagesAndEntityOwnership()
+    {
+        var catalog = TestDataSeed.LoadCatalog();
+        var scenario = Assert.Single(catalog.FeedbackScenarios!);
+        foreach (var invalid in new[] {
+            scenario with { Buyer = scenario.Seller },
+            scenario with { Seller = "missing" },
+            scenario with { Size = 11 },
+            scenario with { Property = scenario.Search },
+            scenario with { Search = "anna-budapest" }
+        })
+            Assert.Throws<InvalidOperationException>(() => TestDataSeed.BuildPlan(catalog with { FeedbackScenarios = [invalid] }));
+        Assert.Throws<InvalidOperationException>(() => TestDataSeed.BuildPlan(catalog with { FeedbackScenarios = [scenario, scenario] }));
     }
 
     [Fact]
@@ -119,7 +160,7 @@ public class TestDataSeedTests
     [Fact]
     public void DeploymentHistoryKeysDistinguishRevisionsAndLocalCatalogVersions()
     {
-        Assert.Equal("local:20261109-test-fixtures-v3", TestDataSeed.RevisionKey(null, TestDataSeed.CatalogVersion));
+        Assert.Equal("local:20261110-test-fixtures-v4", TestDataSeed.RevisionKey(null, TestDataSeed.CatalogVersion));
         Assert.Equal("ci-fixtures-a", TestDataSeed.RevisionKey("ci-fixtures-a", TestDataSeed.CatalogVersion));
         Assert.NotEqual(TestDataSeed.RevisionKey("ci-fixtures-a", TestDataSeed.CatalogVersion), TestDataSeed.RevisionKey("ci-fixtures-b", TestDataSeed.CatalogVersion));
         Assert.NotEqual(TestDataSeed.RevisionKey(null, "catalog-v1"), TestDataSeed.RevisionKey(null, "catalog-v2"));

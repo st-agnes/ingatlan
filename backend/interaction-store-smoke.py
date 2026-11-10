@@ -17,7 +17,7 @@ MODES = ('record', 'verify', 'legacy', 'upgraded')
 OLD_INDEX = 'IX_UserReports_ReporterId_ReportedUserId'
 NEW_INDEX = 'IX_UserReports_ReporterId_EntityKind_EntityId_Reason'
 VERSION = '20261107-interactions-and-report-reasons'
-REASONS = {'suspected_agent', 'misleading_content', 'other_violation'}
+REASONS = {'suspected_agent', 'misleading_content', 'no_longer_current', 'duplicate_listing', 'other_violation'}
 NEW_COLUMNS = ['ReporterId', 'EntityKind', 'EntityId', 'Reason']
 OLD_COLUMNS = ['ReporterId', 'ReportedUserId']
 

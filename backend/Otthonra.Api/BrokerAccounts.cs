@@ -44,7 +44,8 @@ public static class ReportReasons
     public const string MisleadingContent = "misleading_content";
     public const string OtherViolation = "other_violation";
     public const string NoLongerCurrent = "no_longer_current";
-    public static readonly string[] Values = [AccountTypes.SuspectedAgentReason, MisleadingContent, OtherViolation, NoLongerCurrent];
+    public const string DuplicateListing = "duplicate_listing";
+    public static readonly string[] Values = [AccountTypes.SuspectedAgentReason, MisleadingContent, NoLongerCurrent, DuplicateListing, OtherViolation];
     public static string Normalize(string? reason)
     {
         if (reason is null) return AccountTypes.SuspectedAgentReason;

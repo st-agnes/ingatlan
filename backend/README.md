@@ -70,10 +70,11 @@ Hitelesített felhasználó bármely másik fiók létező, nem archivált ingat
 
 | Kód | Felületi szöveg | Jelenthető tulajdonos |
 |---|---|---|
-| `suspected_agent` | Ingatlanközvetítő | Csak `private` |
+| `suspected_agent` | A hirdető ingatlanközvetítő | Csak `private` |
 | `misleading_content` | Hamis, megtévesztő tartalom | `private` vagy `agent` |
+| `duplicate_listing` | Duplikált hirdetés | `private` vagy `agent` |
 | `other_violation` | Egyéb szabálytalanság | `private` vagy `agent` |
-| `no_longer_current` | Már nem aktuális | `private` vagy `agent` |
+| `no_longer_current` | A hirdetés már nem aktuális | `private` vagy `agent` |
 
 A régi kliensek elhagyott vagy `null` oka `suspected_agent`; a megadott üres vagy ismeretlen kód hibás kérés (HTTP 400). Az „Ingatlanközvetítő” ok eleve közvetítő tulajdonosnál szintén 400. A három általános ok akkor is használható másik közvetítő korábbi hirdetésénél, ha az új ajánlások között a közvetítő–közvetítő szabály miatt nem jelenhet meg.
 

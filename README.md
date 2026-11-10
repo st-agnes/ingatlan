@@ -6,21 +6,30 @@ Magyar nyelvű ingatlanpárosító alkalmazás. Egy felhasználó több ingatlan
 
 A `scripts/gcp/` telepítői az `ingatlan-513620` projekthez készítenek külön `-dev` szolgáltatásokat: Firebase Hosting webet, Cloud Run API-t külön Google Cloud SQL Auth Proxy konténerrel, valamint Cloud SQL for MySQL-adatbázist. Az első indítás a saját Google Cloud Shellből történik; a telepítő kiírja a Google által biztosított HTTPS-címet. A tesztoldal valódi regisztrációt és szerveres adatmentést használ, ingyenes tesztkreditekkel.
 
-**Az alap tesztadatcsomag 12 felhasználót, 354 ingatlant és 352 keresést tartalmaz**, köztük 3 ingatlanközvetítőt. Minden példafiók közös jelszava: `OtthonraDemo2026!`.
+**Az alap tesztadatcsomag 14 felhasználót, 355 ingatlant és 353 keresést tartalmaz**, köztük 3 ingatlanközvetítőt. Minden példafiók közös jelszava: `OtthonraDemo2026!`.
 
 | Fióktípus | E-mail-címek |
 |---|---|
 | Alap magánszemélyek | `anna@otthonra.local`, `peter@otthonra.local`, `eszter@otthonra.local` |
 | Ingatlanközvetítők | `daniel.kozvetito@otthonra.local`, `kata.kozvetito@otthonra.local`, `gabor.kozvetito@otthonra.local` |
+| Visszajelzés-próba | `visszajelzes-kereso@otthonra.local`, `visszajelzes-elado@otthonra.local` |
 | További magánszemélyek | `reka@otthonra.local`, `bence@otthonra.local`, `julia@otthonra.local`, `marton@otthonra.local`, `lilla@otthonra.local`, `balazs@otthonra.local` |
 
-Minden fiókban van aktiválható keresés vagy ingatlan, és minden példafiók 100 ingyenes tesztkredittel indul. A közvetítők aktív kereséssel indulnak: például Dániellel rögtön kipróbálható az 1 kredites keresői kedvelés. Anna, Péter és Eszter eredeti alapmintái mellett sok új, egymáshoz illő magánszemély- és közvetítői ajánlat szerepel. A példafiókok megosztott, kitalált tesztadatokhoz tartoznak. Mind a 19 vármegyében és Budapesten vannak lakások és házak, kisebb garzontól nagy családi házig, eltérő árakkal, méretekkel és szobaszámokkal. A keresések között nyitott korlátú példák is szerepelnek.
+Minden fiókban van aktiválható keresés vagy ingatlan, és az eredeti példafiókok 100 ingyenes tesztkredittel indulnak. A közvetítők aktív kereséssel indulnak: például Dániellel rögtön kipróbálható az 1 kredites keresői kedvelés. Anna, Péter és Eszter eredeti alapmintái mellett sok új, egymáshoz illő magánszemély- és közvetítői ajánlat szerepel. A példafiókok megosztott, kitalált tesztadatokhoz tartoznak. Mind a 19 vármegyében és Budapesten vannak lakások és házak, kisebb garzontól nagy családi házig, eltérő árakkal, méretekkel és szobaszámokkal. A keresések között nyitott korlátú példák is szerepelnek.
+
+### Visszajelzés kipróbálása
+
+1. Lépj be a `visszajelzes-kereso@otthonra.local` fiókkal, jelszó: `OtthonraDemo2026!`.
+2. Kattints a **Visszajelzés-próba újraindítása** gombra, majd utasítsd el az első ingatlant. A kérdés azonnal megjelenik; válassz egy gombot.
+3. Jelentkezz ki, és lépj be a `visszajelzes-elado@otthonra.local` fiókkal, ugyanazzal a jelszóval. A **Statisztikák és visszajelzések** oldalon látszik az egy beérkezett válasz.
+
+A próba tetszőlegesen újraindítható a két kijelölt tesztfiókból. Az eladó előre megvett 10 válaszos csomaggal és 90 tesztkredittel indul, a kereső a következő elutasításnál kap kérdést. A gomb csak a külön előkészített tesztkörnyezetben érhető el, és csak a próba adatait állítja vissza; más tesztfiókok tevékenységét megőrzi.
 
 A feltöltés a backend indulásának része. Merge után a szokásos **Actions → Deploy Google Cloud test → Run workflow → main** telepítést indítsd: a backendbe beágyazott tesztadatcsomag automatikusan létrejön, külön adatfeltöltő parancs vagy workflow nélkül.
 
 **Minden új teszt Cloud Run-revízió friss tesztállapotot kap:** az alkalmazásadatok törlődnek, majd visszaállnak a fenti példafiókok, ingatlanok, keresések és kezdő kreditek. Ez a tesztelés közben létrehozott saját fiókokat, döntéseket, párosításokat és üzeneteket is törli. Azonos revízió új példányának indulásakor vagy újraindításakor az adatok megmaradnak; egy korábban már feltöltött régi revízió újraindítása sem törli az újabb tesztállapotot.
 
-Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261109-test-fixtures-v3`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.
+Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261110-test-fixtures-v4`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.
 
 **A visszatérítések ütemezésének első telepítésekor** a teljes `bash scripts/gcp/run-dev.sh` parancs szükséges a Cloud Shellben, a frissített tároló gyökeréből; ez létrehozza az új tesztütemezőt is. A későbbi kiadások a megszokott Actions workflow-val mennek.
 
