@@ -20,7 +20,7 @@ Minden fiókban van aktiválható keresés vagy ingatlan, és az eredeti példaf
 ### Visszajelzés kipróbálása
 
 1. Lépj be a `visszajelzes-kereso@otthonra.local` fiókkal, jelszó: `OtthonraDemo2026!`.
-2. Kattints a **Visszajelzés-próba újraindítása** gombra, majd utasítsd el az első ingatlant. A kérdés azonnal megjelenik; válassz egy gombot.
+2. Kattints a **Teszt újraindítása** gombra, majd utasítsd el az első ingatlant. A kérdés azonnal megjelenik; válassz egy gombot.
 3. Jelentkezz ki, és lépj be a `visszajelzes-elado@otthonra.local` fiókkal, ugyanazzal a jelszóval. A **Statisztikák és visszajelzések** oldalon látszik az egy beérkezett válasz.
 
 A próba tetszőlegesen újraindítható a két kijelölt tesztfiókból. Az eladó előre megvett 10 válaszos csomaggal és 90 tesztkredittel indul, a kereső a következő elutasításnál kap kérdést. A gomb csak a külön előkészített tesztkörnyezetben érhető el, és csak a próba adatait állítja vissza; más tesztfiókok tevékenységét megőrzi.

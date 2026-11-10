@@ -242,8 +242,13 @@ public class PublicLandingTests
                 var response = snapshot.Response(region);
                 Assert.Equal(region.Id, response.Region!.Id);
                 Assert.Equal(8, response.Searches.Length); Assert.Equal(4, response.Properties.Length);
-                Assert.Equal(2, response.Searches.Select(item => item.Type).Distinct().Count());
-                Assert.Equal(2, response.Properties.Select(item => item.Type).Distinct().Count());
+                // The feedback trial adds a holiday home to the real catalog.
+                // Both principal housing types must remain visible even when
+                // a county also contains additional valid property types.
+                Assert.Contains(response.Searches, item => item.Type == "Lakás");
+                Assert.Contains(response.Searches, item => item.Type == "Ház");
+                Assert.Contains(response.Properties, item => item.Type == "Lakás");
+                Assert.Contains(response.Properties, item => item.Type == "Ház");
                 Assert.True(response.Searches.Select(item => (item.MinPrice, item.MaxPrice)).Distinct().Count() >= 3, region.Label);
                 Assert.True(response.Searches.Select(item => (item.MinArea, item.MaxArea)).Distinct().Count() >= 3, region.Label);
                 Assert.True(response.Searches.Select(item => (item.MinRooms, item.MaxRooms)).Distinct().Count() >= 3, region.Label);

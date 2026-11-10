@@ -76,7 +76,7 @@ Hitelesített felhasználó bármely másik fiók létező, nem archivált ingat
 | `other_violation` | Egyéb szabálytalanság | `private` vagy `agent` |
 | `no_longer_current` | A hirdetés már nem aktuális | `private` vagy `agent` |
 
-A régi kliensek elhagyott vagy `null` oka `suspected_agent`; a megadott üres vagy ismeretlen kód hibás kérés (HTTP 400). Az „Ingatlanközvetítő” ok eleve közvetítő tulajdonosnál szintén 400. A három általános ok akkor is használható másik közvetítő korábbi hirdetésénél, ha az új ajánlások között a közvetítő–közvetítő szabály miatt nem jelenhet meg.
+A régi kliensek elhagyott vagy `null` oka `suspected_agent`; a megadott üres vagy ismeretlen kód hibás kérés (HTTP 400). Az „Ingatlanközvetítő” ok eleve közvetítő tulajdonosnál szintén 400. A négy általános ok akkor is használható másik közvetítő korábbi hirdetésénél, ha az új ajánlások között a közvetítő–közvetítő szabály miatt nem jelenhet meg.
 
 A `UserReports` tárolja a bejelentőt, a jelentett fiókot, a forrásentitást, a választott okot és az UTC `CreatedAt` időbélyeget. A `(ReporterId,EntityKind,EntityId,Reason)` egyediség miatt azonos forrás és ok ismételt/párhuzamos jelentése ugyanazt a nyugtát adja (elsőként 201, ismétléskor 200). Másik hirdetés vagy másik ok külön jelentés. A gomb további ok jelzésére is elérhető marad.
 
