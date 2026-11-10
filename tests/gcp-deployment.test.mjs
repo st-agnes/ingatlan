@@ -19,7 +19,7 @@ const config = Object.freeze({
   deployServiceAccount: 'otthonra-deploy-dev@ingatlan-513620.iam.gserviceaccount.com',
   workloadIdentityProvider: 'projects/123456789012/locations/global/workloadIdentityPools/otthonra-dev/providers/github'
 });
-const required = ['index.html','app.js','style.css','api.js','model.js','matching.js','public-profile.js','locations.js','locations-data.js','agglomerations-data.js', 'regions-data.js','attributes.js','accounts.js','runtime-config.js','data/settlements.json','data/agglomerations.json','THIRD-PARTY-NOTICES.txt'];
+const required = ['index.html','app.js','style.css','api.js','model.js','matching.js','public-profile.js','feedback.js','locations.js','locations-data.js','agglomerations-data.js', 'regions-data.js','attributes.js','accounts.js','runtime-config.js','data/settlements.json','data/agglomerations.json','THIRD-PARTY-NOTICES.txt'];
 
 async function fixture(run) {
   const source = await mkdtemp(join(tmpdir(), 'otthonra-hosting-source-'));
@@ -111,7 +111,7 @@ test('hidden files, unknown files and symlinks are refused before replacing a pr
 });
 
 test('an incomplete frontend cannot replace a working staged release', async () => {
-  for (const missing of ['locations.js','accounts.js','matching.js','public-profile.js']) await fixture(async ({source, output}) => {
+  for (const missing of ['locations.js','accounts.js','matching.js','public-profile.js','feedback.js']) await fixture(async ({source, output}) => {
     await mkdir(output); await writeFile(join(output, 'sentinel'), 'previous-release');
     await rm(join(source, missing));
     await assert.rejects(prepareSite({config, source, output}), new RegExp('Missing frontend file '+missing.replaceAll('.', '\\.')));

@@ -6,9 +6,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Otthonra.Api;
 
-public record NotificationItem(Guid Id, string Kind, int Amount, string Text, Guid DecisionId, DateTime CreatedAt, DateTime? ReadAt)
+public record NotificationItem(Guid Id, string Kind, int Amount, string Text, Guid? DecisionId, DateTime CreatedAt, DateTime? ReadAt, Guid? FeedbackPackageId = null)
 {
-    public static NotificationItem From(UserNotification item) => new(item.Id, item.Kind, item.Amount, item.Text, item.DecisionId, item.CreatedAt, item.ReadAt);
+    public static NotificationItem From(UserNotification item) => new(item.Id, item.Kind, item.Amount, item.Text, item.DecisionId, item.CreatedAt, item.ReadAt, item.FeedbackPackageId);
 }
 
 public sealed record RefundSchedulerSettings(string Audience, string ServiceAccountEmail)

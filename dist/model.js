@@ -3,6 +3,7 @@ import {normalizePropertyAttributes, normalizeSearchAttributes} from './attribut
 import {normalizeAccountType,likeCost,canInteract,normalizeReportReason,normalizeIncomingPagination} from './accounts.js';
 import {prepareSearch,evaluateMatch,valueForMoney,searchSpecificity} from './matching.js';
 import {publicFirstName,publicTitle} from './public-profile.js';
+import {FEEDBACK_OPTIONS,FEEDBACK_QUESTION,FEEDBACK_PACKAGE_SIZES,FEEDBACK_DURATION_DAYS,FEEDBACK_PROMPT_SPACING,FEEDBACK_INVITATION_MINUTES,feedbackTitle} from './feedback.js';
 
 /** Browser-only demonstration store. Real deployments use the authenticated .NET API. */
 export const STORAGE_KEY = 'otthonra.demo.v3';
@@ -45,9 +46,10 @@ function withLocations(entity, kind, strict = false) {
   return {...entity, locationIds:invalidSearchIds===undefined?locations.map(location=>location.id):clone(invalidSearchIds), locations:clone(locations), city:locations[0]?.city ?? entity.city ?? '', districts:locations.filter(location=>location.city === locations[0]?.city && location.district).map(location=>location.district)};
 }
 function migrateLocations(state) {
-  state.users=state.users.map(user=>({...user,accountType:normalizeAccountType(user.accountType)}));
+  state.users=state.users.map(user=>({...user,accountType:normalizeAccountType(user.accountType),feedbackPassCounter:Number.isSafeInteger(user.feedbackPassCounter)?Math.max(0,Math.min(FEEDBACK_PROMPT_SPACING,user.feedbackPassCounter)):0}));
   state.reports=Array.isArray(state.reports)?state.reports.map(report=>({...report,reason:report.reason??'suspected_agent'})):[];
   state.notifications=Array.isArray(state.notifications)?state.notifications:[];
+  for(const key of ['propertyImpressions','feedbackPackages','feedbackInvitations'])state[key]=Array.isArray(state[key])?state[key]:[];
   state.properties = state.properties.map(entity=>normalizePropertyAttributes(withLocations(entity, 'property')));
   state.searches = state.searches.map(entity=>normalizeSearchAttributes(withLocations(entity, 'search')));
   return state;
@@ -201,9 +203,46 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       return !s.decisions.some(response=>response.actorKind!==decision.actorKind&&response.propertyId===decision.propertyId&&response.searchId===decision.searchId&&Number.isFinite(storedInstant(response.createdAt))&&storedInstant(response.createdAt)<=deadline);
     });
   };
+  const feedbackPackageDue=(s,at)=>s.feedbackPackages.filter(pkg=>pkg.ownerId===s.userId&&!pkg.refundedAt
+    &&Number.isFinite(storedInstant(pkg.expiresAt))&&storedInstant(pkg.expiresAt)<=storedInstant(at));
+  const feedbackPackageView=(pkg,at)=>pkg?{
+    id:pkg.id,size:pkg.size,receivedCount:pkg.receivedCount,remaining:Math.max(0,pkg.size-pkg.receivedCount),
+    enabled:pkg.enabled,createdAt:pkg.createdAt,expiresAt:pkg.expiresAt,refundedAt:pkg.refundedAt??null,
+    refundedCredits:pkg.refundedCredits??0,status:storedInstant(pkg.expiresAt)<=storedInstant(at)?'expired':pkg.receivedCount>=pkg.size?'completed':'active'
+  }:null;
+  const activeFeedbackPackage=(s,propertyId,at)=>s.feedbackPackages.find(pkg=>pkg.propertyId===propertyId&&storedInstant(pkg.expiresAt)>storedInstant(at));
+  const liveFeedbackInvitation=(s,invitation,at)=>{
+    if(invitation.answeredAt||storedInstant(invitation.expiresAt)<=storedInstant(at))return false;
+    const pkg=s.feedbackPackages.find(item=>item.id===invitation.packageId);
+    return !!pkg&&storedInstant(pkg.expiresAt)>storedInstant(at)&&pkg.receivedCount<pkg.size;
+  };
+  const pendingFeedbackInvitation=(s,at)=>s.feedbackInvitations.find(item=>item.buyerId===s.userId&&liveFeedbackInvitation(s,item,at));
+  const feedbackPrompt=(s,invitation)=>{
+    if(!invitation)return null;
+    const property=s.properties.find(item=>item.id===invitation.propertyId),seller=s.users.find(item=>item.id===property?.ownerId);
+    const sellerFirstName=publicFirstName(seller?.name);
+    return {id:invitation.id,propertyId:invitation.propertyId,sellerFirstName,title:feedbackTitle(sellerFirstName),
+      question:FEEDBACK_QUESTION,options:clone(FEEDBACK_OPTIONS),expiresAt:invitation.expiresAt};
+  };
+  const offerFeedback=(s,decision,property)=>{
+    if(decision.actorKind!=='search'||decision.liked)return null;
+    const at=now(),buyer=s.users.find(user=>user.id===s.userId);
+    buyer.feedbackPassCounter=Math.min(FEEDBACK_PROMPT_SPACING,(buyer.feedbackPassCounter||0)+1);
+    const pending=pendingFeedbackInvitation(s,at);
+    if(pending)return feedbackPrompt(s,pending);
+    if(buyer.feedbackPassCounter<FEEDBACK_PROMPT_SPACING)return null;
+    const pkg=activeFeedbackPackage(s,property.id,at);
+    if(!pkg?.enabled||pkg.receivedCount>=pkg.size||s.feedbackInvitations.some(item=>item.packageId===pkg.id&&item.buyerId===s.userId))return null;
+    const reservations=s.feedbackInvitations.filter(item=>item.packageId===pkg.id&&liveFeedbackInvitation(s,item,at)).length;
+    if(pkg.receivedCount+reservations>=pkg.size)return null;
+    const invitation={id:uid('feedback'),packageId:pkg.id,propertyId:property.id,decisionId:decision.id,buyerId:s.userId,
+      createdAt:at,expiresAt:new Date(Math.min(storedInstant(at)+FEEDBACK_INVITATION_MINUTES*60000,storedInstant(pkg.expiresAt))).toISOString(),answeredAt:null,reason:null};
+    s.feedbackInvitations.push(invitation);buyer.feedbackPassCounter=0;
+    return feedbackPrompt(s,invitation);
+  };
   const processRefunds = () => {
     const at=now();
-    if(!refundDue(state,at).length)return 0;
+    if(!refundDue(state,at).length&&!feedbackPackageDue(state,at).length)return 0;
     return transact(s=>{
       const due=refundDue(s,at);
       for(const decision of due) {
@@ -215,7 +254,19 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         s.ledger.unshift({id:uid('credit'),amount:decision.charged,type:'like_refund',kind:'like_refund',description:text,refundedDecisionId:decision.id,propertyId:decision.propertyId,searchId:decision.searchId,createdAt:at});
         s.notifications.unshift({id:uid('notification'),userId:s.userId,decisionId:decision.id,kind:'like_refund',amount:decision.charged,text,createdAt:at,readAt:null});
       }
-      return due.length;
+      const packages=feedbackPackageDue(s,at);
+      for(const pkg of packages){
+        const previous=s.ledger.find(entry=>entry.refundedFeedbackPackageId===pkg.id);
+        pkg.refundedAt=previous?.createdAt||at;pkg.refundedCredits=previous?.amount??Math.max(0,pkg.size-pkg.receivedCount);
+        if(previous||pkg.refundedCredits===0)continue;
+        const balance=s.credits+pkg.refundedCredits;
+        if(!Number.isSafeInteger(balance))throw new Error('A kreditegyenleg nem növelhető tovább.');
+        s.credits=balance;
+        const text=`Visszakaptál ${pkg.refundedCredits} kreditet, mert a visszajelzés-csomagod 14 nap alatt nem telt be.`;
+        s.ledger.unshift({id:uid('credit'),amount:pkg.refundedCredits,type:'feedback_refund',kind:'feedback_refund',description:text,refundedFeedbackPackageId:pkg.id,propertyId:pkg.propertyId,createdAt:at});
+        s.notifications.unshift({id:uid('notification'),userId:s.userId,feedbackPackageId:pkg.id,kind:'feedback_refund',amount:pkg.refundedCredits,text,createdAt:at,readAt:null});
+      }
+      return due.length+packages.length;
     });
   };
   const getMatch = (s,match) => {
@@ -335,14 +386,93 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         if(s.credits<charged)throw new Error(`Nincs elegendő kredited. A kedveléshez ${charged} kredit szükséges.`);
         s.credits-=charged;
         if(charged)s.ledger.unshift({id:uid('credit'),amount:-charged,type:s.active.kind==='property'?'seller_like':'agent_search_like',description:s.active.kind==='property'?`Ingatlan ajánlása: ${search.title}`:`Közvetítői keresés kedvelése: ${property.title}`,propertyId:property.id,searchId:search.id,createdAt:now()});
-        s.decisions.push({id:uid('decision'),actorKind:s.active.kind,actorId:active.id,...pair,liked,charged,createdAt:now()});
+        const decision={id:uid('decision'),actorKind:s.active.kind,actorId:active.id,...pair,liked,charged,createdAt:now()};
+        s.decisions.push(decision);
+        const offeredFeedback=offerFeedback(s,decision,property);
         let match=null;
         if(liked&&s.decisions.some(d=>d.propertyId===pair.propertyId&&d.searchId===pair.searchId&&d.actorKind!==s.active.kind&&d.liked)) {
           let record=s.matches.find(m=>m.propertyId===pair.propertyId&&m.searchId===pair.searchId);
           if(!record){record={id:uid('match'),...pair,createdAt:now(),unread:0,messages:[]};s.matches.unshift(record);}
           match=getMatch(s,record);
         }
-        return {match,charged};
+        return {match,charged,feedbackPrompt:offeredFeedback};
+      });
+    },
+    getPropertyInsights(propertyId,options={}) {
+      const {offset,limit}=normalizeIncomingPagination(options);processRefunds();
+      const property=own(state,'property',propertyId);
+      if(!property)throw new Error('Az ingatlan nem található.');
+      const searchOwner=id=>state.searches.find(item=>item.id===id)?.ownerId;
+      const viewers=new Set(state.propertyImpressions.filter(item=>item.propertyId===propertyId).map(item=>item.viewerUserId));
+      const buyerLikes=new Set(state.decisions.filter(item=>item.propertyId===propertyId&&item.actorKind==='search'&&item.liked)
+        .map(item=>searchOwner(item.searchId)).filter(id=>id&&id!==property.ownerId)).size;
+      const sellerLikes=new Set(state.decisions.filter(item=>item.propertyId===propertyId&&item.actorKind==='property'&&item.liked).map(item=>item.searchId)).size;
+      const matchedViewers=new Set(state.matches.filter(item=>item.propertyId===propertyId).map(item=>searchOwner(item.searchId)).filter(id=>viewers.has(id))).size;
+      const answers=state.feedbackInvitations.filter(item=>item.propertyId===propertyId&&item.answeredAt&&item.reason&&item.reason!=='decline')
+        .sort((a,b)=>String(b.answeredAt).localeCompare(String(a.answeredAt))||String(b.id).localeCompare(String(a.id)));
+      const label=reason=>FEEDBACK_OPTIONS.find(option=>option.value===reason)?.label||'';
+      const at=now();
+      return clone({propertyId,stats:{uniqueViewers:viewers.size,buyerLikes,sellerLikes,matchedViewers,
+        matchRate:viewers.size?Math.round(matchedViewers/viewers.size*10000)/100:0},
+        feedback:{total:answers.length,items:answers.slice(offset,offset+limit).map(item=>({id:item.id,reason:item.reason,label:label(item.reason),createdAt:item.answeredAt})),
+          reasonCounts:FEEDBACK_OPTIONS.filter(option=>option.value!=='decline').map(option=>({reason:option.value,label:option.label,count:answers.filter(item=>item.reason===option.value).length})),
+          offset,limit,hasMore:offset+limit<answers.length},
+        activePackage:feedbackPackageView(activeFeedbackPackage(state,propertyId,at),at),
+        packages:state.feedbackPackages.filter(pkg=>pkg.propertyId===propertyId).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt))||String(b.id).localeCompare(String(a.id))).slice(0,20).map(pkg=>feedbackPackageView(pkg,at)),
+        packageSizes:[...FEEDBACK_PACKAGE_SIZES],durationDays:FEEDBACK_DURATION_DAYS,creditCostPerFeedback:1});
+    },
+    buyFeedbackPackage(propertyId,size,requestId) {
+      if(!FEEDBACK_PACKAGE_SIZES.includes(size))throw new Error('Válassz 10, 20 vagy 50 visszajelzést tartalmazó csomagot.');
+      if(typeof requestId!=='string'||!/^[\da-f]{8}-(?:[\da-f]{4}-){3}[\da-f]{12}$/i.test(requestId)||/^0{8}-(?:0{4}-){3}0{12}$/.test(requestId))throw new Error('Érvényes vásárlási azonosító szükséges.');
+      requestId=requestId.toLowerCase();processRefunds();
+      return transact(s=>{
+        const property=own(s,'property',propertyId);
+        if(!property)throw new Error('Az ingatlan nem található.');
+        const previous=s.feedbackPackages.find(pkg=>pkg.ownerId===s.userId&&pkg.requestId===requestId);
+        if(previous){
+          if(previous.propertyId!==propertyId||previous.size!==size)throw new Error('Ezt a vásárlási azonosítót már másik csomaghoz használtad.');
+          return {package:feedbackPackageView(previous,now()),charged:0,credits:s.credits};
+        }
+        if(property.archived)throw new Error('Archivált ingatlanhoz nem vásárolhatsz új visszajelzés-csomagot.');
+        if(activeFeedbackPackage(s,propertyId,now()))throw new Error('Ehhez az ingatlanhoz már van aktív visszajelzés-csomag.');
+        if(s.credits<size)throw new Error(`Nincs elegendő kredited. A csomag ára ${size} kredit.`);
+        const createdAt=now(),pkg={id:uid('feedback-package'),propertyId,ownerId:s.userId,requestId,size,receivedCount:0,enabled:true,
+          createdAt,expiresAt:new Date(storedInstant(createdAt)+FEEDBACK_DURATION_DAYS*86400000).toISOString(),refundedAt:null,refundedCredits:0};
+        s.credits-=size;s.feedbackPackages.push(pkg);
+        s.ledger.unshift({id:uid('credit'),amount:-size,type:'feedback_package',kind:'feedback_package',description:`${size} visszajelzést tartalmazó csomag: ${property.title}`,feedbackPackageId:pkg.id,propertyId,createdAt});
+        return {package:feedbackPackageView(pkg,createdAt),charged:size,credits:s.credits};
+      });
+    },
+    setFeedbackEnabled(propertyId,enabled) {
+      if(typeof enabled!=='boolean')throw new Error('Érvénytelen visszajelzés-beállítás.');processRefunds();
+      return transact(s=>{
+        if(!own(s,'property',propertyId))throw new Error('Az ingatlan nem található.');
+        const pkg=activeFeedbackPackage(s,propertyId,now());
+        if(!pkg)throw new Error('Nincs aktív visszajelzés-csomag ehhez az ingatlanhoz.');
+        pkg.enabled=enabled;return {package:feedbackPackageView(pkg,now())};
+      });
+    },
+    recordImpression(propertyId,searchRequestId) {
+      const property=state.properties.find(item=>item.id===propertyId),search=own(state,'search',searchRequestId);
+      if(state.active?.kind!=='search'||state.active.id!==searchRequestId||!search||!property||!ownersCanInteract(state,property,search)
+        ||!evaluateMatch(property,prepareSearch(search),{includeReasons:false}).eligible)throw new Error('Ez az ingatlan nem érhető el az aktív keresésedhez.');
+      if(state.propertyImpressions.some(item=>item.propertyId===propertyId&&item.viewerUserId===state.userId))return {recorded:false};
+      return transact(s=>{s.propertyImpressions.push({id:uid('impression'),propertyId,viewerUserId:s.userId,searchRequestId,createdAt:now()});return {recorded:true};});
+    },
+    pendingFeedback() {
+      processRefunds();return clone(feedbackPrompt(state,pendingFeedbackInvitation(state,now())));
+    },
+    answerFeedback(invitationId,reason) {
+      if(!FEEDBACK_OPTIONS.some(option=>option.value===reason))throw new Error('Válassz egy visszajelzési lehetőséget.');processRefunds();
+      return transact(s=>{
+        const invitation=s.feedbackInvitations.find(item=>item.id===invitationId&&item.buyerId===s.userId);
+        if(!invitation)throw new Error('A visszajelzés-kérés nem található.');
+        if(invitation.answeredAt)return {accepted:invitation.reason!=='decline',alreadyAnswered:true};
+        if(!liveFeedbackInvitation(s,invitation,now()))return {accepted:false,alreadyAnswered:false};
+        const pkg=s.feedbackPackages.find(item=>item.id===invitation.packageId);
+        invitation.answeredAt=now();invitation.reason=reason;
+        if(reason!=='decline')pkg.receivedCount++;
+        return {accepted:reason!=='decline',alreadyAnswered:false};
       });
     },
     notifications(options={}) {

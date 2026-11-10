@@ -1,5 +1,6 @@
 import { model as demoModel, demoLanding } from './model.js';
 import {publicFirstName,publicTitle} from './public-profile.js';
+import {FEEDBACK_OPTIONS,FEEDBACK_PACKAGE_SIZES,FEEDBACK_QUESTION,feedbackTitle} from './feedback.js';
 import { regions } from './regions-data.js';
 import {searchSpecificity} from './matching.js';
 import { getLocation, resolveLegacyLocations, isPropertyLocation } from './locations.js';
@@ -197,7 +198,37 @@ function candidateFromApi(item,activeKind) {
   return {...entity,kind:property?'property':'search',score,isExact:item.isExact??score===100,searchSpecificity:Number(item.searchSpecificity??entity.searchSpecificity??0),valueForMoney:Number(item.valueForMoney??0),reasons:clone(item.reasons||[]),matchDetails:matchDetailsFromApi(item.matchDetails),pair:{propertyId,searchId},likedYou:!!(item.likedYou??item.hasLiked)};
 }
 function notificationFromApi(value) {
-  return {id:String(value.id),kind:String(value.kind||''),amount:Number(value.amount||0),text:String(value.text||''),decisionId:String(value.decisionId||''),createdAt:value.createdAt,readAt:value.readAt??null};
+  return {id:String(value.id),kind:String(value.kind||''),amount:Number(value.amount||0),text:String(value.text||''),decisionId:value.decisionId==null?null:String(value.decisionId),feedbackPackageId:value.feedbackPackageId==null?null:String(value.feedbackPackageId),createdAt:value.createdAt,readAt:value.readAt??null};
+}
+const feedbackReason=reason=>FEEDBACK_OPTIONS.find(option=>option.value===reason);
+const feedbackCount=value=>Number.isFinite(Number(value))?Math.max(0,Math.trunc(Number(value))):0;
+function feedbackId(value,label='azonosító') {
+  if(typeof value!=='string'||!value.trim())throw new Error(`Érvénytelen ${label}.`);
+  return value.trim();
+}
+function feedbackPackageFromApi(value) {
+  if(!value||typeof value!=='object')return null;
+  const size=feedbackCount(value.size),receivedCount=feedbackCount(value.receivedCount);
+  return {id:String(value.id??''),size,receivedCount,remaining:Math.max(0,size-receivedCount),enabled:value.enabled===true,
+    createdAt:value.createdAt,expiresAt:value.expiresAt,refundedAt:value.refundedAt??null,refundedCredits:feedbackCount(value.refundedCredits),
+    status:['active','completed','expired'].includes(value.status)?value.status:'expired'};
+}
+function feedbackPromptFromApi(value) {
+  if(!value||typeof value!=='object'||typeof value.id!=='string'||!value.id||typeof value.propertyId!=='string'||!value.propertyId)return null;
+  const sellerFirstName=publicFirstName(value.sellerFirstName);
+  return {id:value.id,propertyId:value.propertyId,sellerFirstName,title:feedbackTitle(sellerFirstName),question:FEEDBACK_QUESTION,
+    options:FEEDBACK_OPTIONS.map(option=>({...option})),expiresAt:value.expiresAt};
+}
+function propertyInsightsFromApi(value) {
+  const stats=value?.stats||{},feedback=value?.feedback||{};
+  const items=rows(feedback.items).filter(item=>feedbackReason(item.reason)&&item.reason!=='decline').map(item=>({
+    id:String(item.id??''),reason:item.reason,label:feedbackReason(item.reason).label,createdAt:item.createdAt
+  }));
+  const counts=new Map(rows(feedback.reasonCounts).filter(item=>feedbackReason(item.reason)&&item.reason!=='decline').map(item=>[item.reason,feedbackCount(item.count)]));
+  return {propertyId:String(value?.propertyId??''),stats:{uniqueViewers:feedbackCount(stats.uniqueViewers),buyerLikes:feedbackCount(stats.buyerLikes),sellerLikes:feedbackCount(stats.sellerLikes),matchedViewers:feedbackCount(stats.matchedViewers),matchRate:Math.max(0,Math.min(100,Number(stats.matchRate)||0))},
+    feedback:{total:feedbackCount(feedback.total),items,reasonCounts:FEEDBACK_OPTIONS.filter(option=>option.value!=='decline').map(option=>({reason:option.value,label:option.label,count:counts.get(option.value)||0})),offset:feedbackCount(feedback.offset),limit:feedbackCount(feedback.limit||50),hasMore:feedback.hasMore===true},
+    activePackage:feedbackPackageFromApi(value?.activePackage),packages:rows(value?.packages).slice(0,20).map(feedbackPackageFromApi).filter(Boolean),
+    packageSizes:[...FEEDBACK_PACKAGE_SIZES],durationDays:14,creditCostPerFeedback:1};
 }
 function messageFromApi(value) {
   return { ...clone(value), id: String(value.id), senderId: String(value.senderId ?? value.userId ?? ''), text: value.text ?? value.body ?? '', createdAt: value.createdAt };
@@ -274,11 +305,41 @@ export class ApiModel {
     if(typeof id!=='string'||!id.trim())throw new Error('Érvénytelen értesítés.');
     return notificationFromApi(await this.call(`/notifications/${encodeURIComponent(id)}/read`,'PUT'));
   }
+  async getPropertyInsights(id,options={}) {
+    id=feedbackId(id,'ingatlanazonosító');
+    const {offset,limit}=normalizeIncomingPagination(options);
+    return propertyInsightsFromApi(await this.call(`/properties/${encodeURIComponent(id)}/insights?${new URLSearchParams({offset:String(offset),limit:String(limit)})}`));
+  }
+  async buyFeedbackPackage(id,size,requestId) {
+    id=feedbackId(id,'ingatlanazonosító');
+    if(!FEEDBACK_PACKAGE_SIZES.includes(Number(size)))throw new Error('Válassz 10, 20 vagy 50 visszajelzéses csomagot.');
+    if(typeof requestId!=='string'||!(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i).test(requestId)||/^0{8}-0{4}-0{4}-0{4}-0{12}$/.test(requestId))throw new Error('Érvénytelen vásárlási azonosító.');
+    const result=await this.call(`/properties/${encodeURIComponent(id)}/feedback-packages`,'POST',{size:Number(size),requestId});
+    return {package:feedbackPackageFromApi(result.package),charged:feedbackCount(result.charged),credits:feedbackCount(result.credits)};
+  }
+  async setFeedbackEnabled(id,enabled) {
+    id=feedbackId(id,'ingatlanazonosító');
+    if(typeof enabled!=='boolean')throw new Error('Érvénytelen visszajelzés-beállítás.');
+    const result=await this.call(`/properties/${encodeURIComponent(id)}/feedback`,'PUT',{enabled});
+    return {package:feedbackPackageFromApi(result.package)};
+  }
+  async recordImpression(propertyId,searchId) {
+    propertyId=feedbackId(propertyId,'ingatlanazonosító');searchId=feedbackId(searchId,'keresésazonosító');
+    const result=await this.call('/impressions','POST',{propertyId,searchRequestId:searchId});
+    return {recorded:result.recorded===true};
+  }
+  async pendingFeedback() { return feedbackPromptFromApi((await this.call('/feedback/pending')).feedbackPrompt); }
+  async answerFeedback(id,reason) {
+    id=feedbackId(id,'visszajelzés-azonosító');
+    if(!feedbackReason(reason))throw new Error('Válassz egy visszajelzési lehetőséget.');
+    const result=await this.call(`/feedback/${encodeURIComponent(id)}`,'POST',{reason});
+    return {accepted:result.accepted===true,alreadyAnswered:result.alreadyAnswered===true};
+  }
   async decide(item, liked, {allowApproximate=false}={}) {
     const result = await this.call('/decisions', 'POST', { propertyId: item.pair.propertyId, searchRequestId: item.pair.searchId, liked: inputBoolean(liked), ...(allowApproximate===true?{allowApproximate:true}:{}) });
     let match = result.match ? matchFromApi(result.match) : null;
     if (!match && result.matchId) match = (await this.matches()).find(m => m.id === String(result.matchId)) || null;
-    return { match, charged: Number(result.charged ?? result.creditsSpent ?? result.creditCost ?? 0) };
+    return { match, charged: Number(result.charged ?? result.creditsSpent ?? result.creditCost ?? 0), feedbackPrompt:feedbackPromptFromApi(result.feedbackPrompt) };
   }
   async activate(kind, id) { const result = await this.call('/me/active', 'PUT', { kind, id }); this.active = { kind, id }; return result; }
   async saveEntity(kind, data, id) {

@@ -9,6 +9,17 @@ ALTER TABLE `Decisions`
   ADD INDEX `IX_Decisions_SearchRequestId_UpgradeFixture` (`SearchRequestId`),
   DROP INDEX `IX_Decisions_SearchRequestId_ActorKind_PropertyId`;
 DROP TABLE IF EXISTS `UserNotifications`;
+DROP TABLE IF EXISTS `FeedbackInvitations`;
+DROP TABLE IF EXISTS `PropertyImpressions`;
+ALTER TABLE `CreditEntries`
+  DROP FOREIGN KEY `FK_CreditEntries_FeedbackPackages_FeedbackPackageId`,
+  DROP FOREIGN KEY `FK_CreditEntries_FeedbackPackages_RefundedFeedbackPackageId`,
+  DROP INDEX `IX_CreditEntries_FeedbackPackageId`,
+  DROP INDEX `IX_CreditEntries_RefundedFeedbackPackageId`,
+  DROP COLUMN `FeedbackPackageId`, DROP COLUMN `RefundedFeedbackPackageId`;
+DROP TABLE IF EXISTS `FeedbackPackages`;
+ALTER TABLE `Users` DROP COLUMN `FeedbackPassCounter`;
+ALTER TABLE `Decisions` DROP INDEX `IX_Decisions_PropertyStats`;
 DROP TABLE IF EXISTS `UserReports`;
 ALTER TABLE `CreditEntries` DROP FOREIGN KEY `FK_CreditEntries_Decisions_RefundedDecisionId`, DROP INDEX `IX_CreditEntries_RefundedDecisionId`, DROP COLUMN `RefundedDecisionId`;
 ALTER TABLE `Decisions` DROP INDEX `IX_Decisions_Liked_RefundedAt_CreatedAt`, DROP COLUMN `RefundedAt`;
@@ -25,4 +36,4 @@ ALTER TABLE `SearchRequests`
   DROP COLUMN `ConstructionAgesJson`, DROP COLUMN `ViewsJson`, DROP COLUMN `CeilingHeight`, DROP COLUMN `FloorsJson`,
   DROP COLUMN `HeatingTypesJson`;
 DELETE FROM `__OtthonraSchemaVersions`
-  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes');
+  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights');

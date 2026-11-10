@@ -7,6 +7,7 @@ import {createModel} from '../dist/model.js';
 import {searchLocations,getLocation,resolveLegacyLocations} from '../dist/locations.js';
 import * as propertyAttributes from '../dist/attributes.js';
 import * as accountHelpers from '../dist/accounts.js';
+import * as feedbackHelpers from '../dist/feedback.js';
 
 
 const landingRegions=[{id:'HU110',label:'Budapest'},{id:'HU321',label:'Hajdú-Bihar'},{id:'HU232',label:'Somogy'}];
@@ -45,10 +46,10 @@ async function setup(options={}){
  const connected=[],disconnected=[],landingCalls=[],windowEvents={},regionStorage=new Map(Object.entries(options.regionStorage||{}));
  let currentHash=options.hash??(options.hosted&&!options.authenticated?'#login':'');
  const ctx=vm.createContext({
-  document,console,Intl,Date,Promise,URLSearchParams,setTimeout:()=>0,clearTimeout:()=>{},
+  document,console,Intl,Date,Promise,URLSearchParams,IntersectionObserver:options.IntersectionObserver,setTimeout:()=>0,clearTimeout:()=>{},
   location:{get hash(){return currentHash;},set hash(value){currentHash=value?(value.startsWith('#')?value:'#'+value):'';},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},addEventListener:(type,handler)=>{windowEvents[type]=handler;}},
   OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:'test'}:{mode:'demo',environment:'local'},
-  searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...accountHelpers,
+  searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...accountHelpers,...feedbackHelpers,
   hostedMode:()=>!!options.hosted,deploymentEnvironment:()=>options.hosted?'test':'local',
   getModel:()=>selected,
   fetchLanding:async(input={})=>{landingCalls.push(input);if(options.fetchLanding)return options.fetchLanding(input);return landingFixture(input.region);},
@@ -59,7 +60,7 @@ async function setup(options={}){
   FormData:class {constructor(form){this.values=Array.isArray(form.values)?form.values:Object.entries(form.values||{});}get(k){return this.values.find(([key])=>key===k)?.[1]}has(k){return this.values.some(([key])=>key===k)}[Symbol.iterator](){return this.values[Symbol.iterator]()}}
  });
  const body=source.replace(/^import[^\n]+\n/gm,'');
- await vm.runInContext(`(async()=>{${body}\nglobalThis.ui={render,changePage,openEditor,openDetails,openModal,closeModal,openActivation,matchingTags,getModelState:()=>state};})()`,ctx);
+ await vm.runInContext(`(async()=>{${body}\nglobalThis.ui={render,changePage,openEditor,openDetails,openModal,closeModal,openActivation,matchingTags,openFeedbackPackages,openFeedbackPurchase,openFeedbackPrompt,propertyInsightsPage,getFeedbackPrompt:()=>feedbackPrompt,getModelState:()=>state};})()`,ctx);
  const click=async(dataset)=>{const target={dataset,closest:()=>target};await document.handlers.click({target,preventDefault(){}})};
  return{model:options.hosted?apiModel:demoModel,document,ctx,click,ui:ctx.ui,connected,disconnected,getSelectedModel:()=>selected,landingCalls,regionStorage,windowEvents};
 }
@@ -782,4 +783,53 @@ test('public cards display listing titles, discreet types and first names',async
  const t=await setup({hosted:true,hash:''}),html=t.document.getElementById('app').innerHTML;
  for(const text of ['Kertes otthont keresünk','Napfényes erkélyes otthon','Anna','Péter','landing-type','owner-first-name'])assert.ok(html.includes(text),text);
  assert.doesNotMatch(html,/Lakást keresnek|Eladó lakás/);
+});
+
+test('seller insights are property scoped, anonymous and show an active package without another purchase',async()=>{
+ const m=createModel({getItem:()=>null,setItem:()=>{}}),own=m.getState(),property=own.properties[0],calls=[];
+ const insights={propertyId:property.id,stats:{uniqueViewers:24,buyerLikes:7,sellerLikes:5,matchedViewers:3,matchRate:12.5},feedback:{total:2,items:[{id:'r1',reason:'layout',label:'Elrendezés',createdAt:'2026-11-10T10:00:00Z'}],reasonCounts:[{reason:'layout',label:'Elrendezés',count:2}],offset:0,limit:50,hasMore:false},activePackage:{id:'pack',size:10,receivedCount:2,remaining:8,enabled:true,createdAt:'2026-11-10T10:00:00Z',expiresAt:'2026-11-24T10:00:00Z',status:'active'},packages:[]};
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{getPropertyInsights:async(id)=>{calls.push(id);return insights;}}});
+ await t.click({action:'property-insights',id:property.id});const html=t.document.getElementById('app').innerHTML;
+ assert.equal(calls.at(-1),property.id);for(const text of ['Statisztikák és visszajelzések','Látták','Kedvelték','Kedvelt keresések','12,5','2 db','2 / 10','8 még hiányzik','Visszajelzés kérése: bekapcsolva','név nélkül'])assert.ok(html.includes(text),text);
+ assert.doesNotMatch(html,/data-action="feedback-packages"/,'An active package cannot offer another purchase');
+ let toggled; t.model.setFeedbackEnabled=async(id,enabled)=>{toggled={id,enabled};insights.activePackage.enabled=enabled;};
+ await t.click({action:'feedback-toggle',id:property.id,enabled:'false'});assert.deepEqual(toggled,{id:property.id,enabled:false});assert.match(t.document.getElementById('app').innerHTML,/Visszajelzés kérése: szüneteltetve/);
+ assert.doesNotMatch(t.document.getElementById('app').innerHTML,/buyerId|searchRequestId|PRIVATE-CONTACT/);
+});
+
+test('package purchase shows sizes and cost, and retains its UUID when a failed payment is retried',async()=>{
+ const attempts=[],t=await setup({hosted:true,authenticated:true,apiOverrides:{buyFeedbackPackage:async(id,size,request)=>{attempts.push({id,size,request});throw new Error('Átmeneti hiba');}}});
+ const property=t.model.getState().properties[0];t.ui.openFeedbackPackages(property.id);let html=t.document.getElementById('modal-root').innerHTML;
+ for(const size of [10,20,50])assert.match(html,new RegExp('data-size="'+size+'"'));assert.match(html,/két hétig/);assert.match(html,/automatikusan visszakapod/);
+ await t.click({action:'feedback-plan',id:property.id,size:'10'});html=t.document.getElementById('modal-root').innerHTML;assert.match(html,/Csomag indítása · 10 kredit/);
+ const request=html.match(/data-request="([^"]+)"/)[1];assert.match(request,/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
+ await t.click({action:'feedback-buy',id:property.id,size:'10',request});await t.click({action:'feedback-buy',id:property.id,size:'10',request});
+ assert.equal(attempts.length,2);assert.equal(attempts[0].request,request);assert.equal(attempts[1].request,request);assert.match(t.document.getElementById('modal-root').innerHTML,/Csomag indítása/);
+});
+
+test('pending feedback blocks the next card and sends a single button choice before closing',async()=>{
+ const options=feedbackHelpers.FEEDBACK_OPTIONS,prompt={id:'invitation',propertyId:'p1',title:'Segíts Péternek egy visszajelzéssel',question:'Miért nem tetszett az ingatlan?',options},impressions=[],answers=[];let pending=prompt,finish;
+ const t=await setup({hosted:true,authenticated:true,apiOverrides:{pendingFeedback:async()=>({feedbackPrompt:pending}),recordImpression:async(...args)=>{impressions.push(args);},answerFeedback:async(id,reason)=>{answers.push({id,reason});await new Promise(resolve=>{finish=resolve;});pending=null;return{accepted:true,alreadyAnswered:false};}}});
+ let html=t.document.getElementById('modal-root').innerHTML;assert.equal(t.document.getElementById('candidate'),null);assert.equal(impressions.length,0);
+ assert.match(html,/Segíts Péternek egy visszajelzéssel/);assert.match(html,/Miért nem tetszett az ingatlan/);assert.equal((html.match(/data-action="feedback-answer"/g)||[]).length,8);assert.doesNotMatch(html,/modal-close|data-action="close"/);
+ await t.click({action:'close'});assert.match(t.document.getElementById('modal-root').innerHTML,/feedback-survey/);
+ const answering=t.click({action:'feedback-answer',reason:'layout'});await settle();assert.deepEqual(answers,[{id:'invitation',reason:'layout'}]);assert.match(t.document.getElementById('modal-root').innerHTML,/feedback-survey/,'The window stays until persistence succeeds');
+ finish();await answering;await settle();assert.equal(t.document.getElementById('modal-root').innerHTML,'');assert.ok(t.document.getElementById('candidate'));assert.equal(impressions.length,1);
+});
+
+test('feedback decline and expired requests continue discovery without sending a paid response',async()=>{
+ for(const expired of [false,true]){let pending={id:'survey',propertyId:'p1',title:'Segíts Annának egy visszajelzéssel',options:feedbackHelpers.FEEDBACK_OPTIONS},answer;
+  const t=await setup({hosted:true,authenticated:true,apiOverrides:{pendingFeedback:async()=>pending,answerFeedback:async(id,reason)=>{answer={id,reason};pending=null;if(expired)throw Object.assign(new Error('Lejárt'),{status:410});return {accepted:false,alreadyAnswered:false};}}});
+  await t.document.handlers.keydown({key:'Escape',preventDefault(){this.defaultPrevented=true;}});assert.deepEqual(answer,{id:'survey',reason:'decline'});assert.equal(t.document.getElementById('modal-root').innerHTML,'');assert.ok(t.document.getElementById('candidate'));
+ }
+});
+
+test('discovery records only the visible buyer card once and ignores stale visibility callbacks',async()=>{
+ const observers=[],calls=[];class Observer{constructor(callback){this.callback=callback;observers.push(this);}observe(){}disconnect(){}}
+ const t=await setup({hosted:true,authenticated:true,IntersectionObserver:Observer,apiOverrides:{recordImpression:async(...args)=>calls.push(args)}});
+ assert.equal(calls.length,0);const first=observers.at(-1);first.callback([{isIntersecting:false,intersectionRatio:0}]);await settle();assert.equal(calls.length,0);
+ first.callback([{isIntersecting:true,intersectionRatio:.5}]);await settle();assert.equal(calls.length,1);assert.equal(calls[0][1],t.model.getState().active.id);
+ await t.ui.render();observers.at(-1).callback([{isIntersecting:true,intersectionRatio:.5}]);await settle();assert.equal(calls.length,1,'Repaints do not add another viewer');
+ await t.click({page:'properties'});first.callback([{isIntersecting:true,intersectionRatio:1}]);await settle();assert.equal(calls.length,1,'A stale callback cannot count a hidden candidate');
+ await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.equal(calls.length,1,'Seller-side search cards never count as property exposure');
 });

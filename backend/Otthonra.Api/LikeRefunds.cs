@@ -15,12 +15,13 @@ public static class LikeRefundPolicy
 }
 
 /// <summary>Durable, replay-safe refunds. Every call uses fresh contexts and database locks.</summary>
-public sealed class LikeRefundService(IServiceScopeFactory scopes, TimeProvider clock, ILogger<LikeRefundService> logger)
+public sealed class LikeRefundService(IServiceScopeFactory scopes, TimeProvider clock, ILogger<LikeRefundService> logger, FeedbackRefundService? feedbackRefunds = null)
 {
     public const int BatchSize = 500;
 
     public async Task<int> RunAsync(Guid? userId = null, CancellationToken cancellationToken = default)
     {
+        if (feedbackRefunds is not null) await feedbackRefunds.RunAsync(userId, cancellationToken);
         var now = clock.GetUtcNow().UtcDateTime;
         var cutoff = now.AddDays(-LikeRefundPolicy.ResponseDays);
         List<Guid> candidates;

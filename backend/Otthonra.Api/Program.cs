@@ -24,6 +24,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 builder.Services.AddAuthorization();
 builder.Services.AddLikeRefunds(builder.Configuration);
+builder.Services.AddSellerFeedback();
 builder.Services.AddPublicLanding(builder.Configuration);
 builder.Services.AddHttpClient("stripe", c => c.Timeout = TimeSpan.FromSeconds(20));
 var origins = builder.Configuration.GetSection("Cors:Origins").Get<string[]>() ?? [];
@@ -93,6 +94,7 @@ auth.MapPost("/login", async (LoginInput input, AppDb db) =>
 });
 var api = app.MapGroup("/api").RequireAuthorization();
 api.MapNotifications();
+api.MapSellerFeedback();
 api.MapGet("/me", async (AppDb db, ClaimsPrincipal principal, LikeRefundService refunds, CancellationToken cancellationToken) =>
 {
     var userId = principal.UserId();
@@ -226,7 +228,7 @@ api.MapGet("/incoming-likes", async (int? offset, int? limit, AppDb db, ClaimsPr
         offset = page.Offset, limit = page.Limit, hasMore = page.Offset + items.Length < total,
         likeCost = AccountTypes.LikeCost(user.AccountType, kind) });
 });
-api.MapPost("/decisions", async (DecisionInput input, AppDb db, ClaimsPrincipal principal, CancellationToken cancellationToken) =>
+api.MapPost("/decisions", async (DecisionInput input, AppDb db, ClaimsPrincipal principal, TimeProvider clock, CancellationToken cancellationToken) =>
 {
     var uid = principal.UserId();
     await using var tx = await db.Database.BeginTransactionAsync(IsolationLevel.ReadCommitted);
@@ -247,7 +249,8 @@ api.MapPost("/decisions", async (DecisionInput input, AppDb db, ClaimsPrincipal 
     {
         if (prior.Liked != input.Liked) throw new ApiException(409, "Ezt a párost már elbíráltad. A döntés végleges.");
         var previousMatch = await db.Matches.SingleOrDefaultAsync(x => x.PropertyId == p.Id && x.SearchRequestId == s.Id);
-        await tx.CommitAsync(); return Results.Ok(new { matchId = previousMatch?.Id, charged = 0, credits = user.Credits });
+        var previousPrompt = kind == "search" && !input.Liked ? await SellerFeedback.PendingAsync(db, uid, clock.GetUtcNow().UtcDateTime, cancellationToken) : null;
+        await tx.CommitAsync(); return Results.Ok(new { matchId = previousMatch?.Id, charged = 0, credits = user.Credits, feedbackPrompt = previousPrompt });
     }
     var evaluation = MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s), includeReasons: false);
     if (!evaluation.Eligible) throw new ApiException(400, "Az ingatlan helyszíne vagy típusa nem felel meg az aktív keresésnek.");
@@ -259,7 +262,8 @@ api.MapPost("/decisions", async (DecisionInput input, AppDb db, ClaimsPrincipal 
     }
     var charge = AccountTypes.DecisionCost(user.AccountType, kind, input.Liked);
     if (user.Credits < charge) throw new ApiException(402, "Nincs elegendő kredited az ajánláshoz.");
-    var decision = new Decision { PropertyId = p.Id, SearchRequestId = s.Id, ActorKind = kind!, ActorUserId = uid, Liked = input.Liked, Charged = charge };
+    var now = clock.GetUtcNow().UtcDateTime;
+    var decision = new Decision { PropertyId = p.Id, SearchRequestId = s.Id, ActorKind = kind!, ActorUserId = uid, Liked = input.Liked, Charged = charge, CreatedAt = now };
     db.Decisions.Add(decision);
     if (charge > 0) { user.Credits -= charge; db.CreditEntries.Add(new CreditEntry { UserId = uid, Amount = -charge, Description = kind == "search" ? "Ingatlan kedvelése közvetítőként" : "Ingatlan ajánlása egy keresőnek", DecisionId = decision.Id }); }
     Match? match = null;
@@ -267,7 +271,9 @@ api.MapPost("/decisions", async (DecisionInput input, AppDb db, ClaimsPrincipal 
     {
         match = new Match { PropertyId = p.Id, SearchRequestId = s.Id }; db.Matches.Add(match);
     }
-    await db.SaveChangesAsync(); await tx.CommitAsync(); return Results.Ok(new { matchId = match?.Id, charged = charge, credits = user.Credits });
+    var feedbackPrompt = kind == "search" && !input.Liked
+        ? await SellerFeedback.OnPassAsync(db, user, p, decision, now, cancellationToken) : null;
+    await db.SaveChangesAsync(); await tx.CommitAsync(); return Results.Ok(new { matchId = match?.Id, charged = charge, credits = user.Credits, feedbackPrompt });
 });
 api.MapGet("/matches", async (AppDb db, ClaimsPrincipal principal) =>
 {
@@ -302,8 +308,9 @@ api.MapGet("/credits/ledger", async (AppDb db, ClaimsPrincipal principal, LikeRe
     var uid = principal.UserId();
     await refunds.RunAsync(uid, cancellationToken);
     return Results.Ok(await db.CreditEntries.AsNoTracking().Where(x => x.UserId == uid).OrderByDescending(x => x.CreatedAt)
-        .Select(x => new { x.Id, x.Amount, x.Description, x.CreatedAt, x.RefundedDecisionId,
-            kind = x.RefundedDecisionId != null ? "like_refund" : x.DecisionId != null ? "like_charge" : "other" }).ToListAsync(cancellationToken));
+        .Select(x => new { x.Id, x.Amount, x.Description, x.CreatedAt, x.RefundedDecisionId, x.FeedbackPackageId, x.RefundedFeedbackPackageId,
+            kind = x.RefundedFeedbackPackageId != null ? "feedback_refund" : x.FeedbackPackageId != null ? "feedback_package"
+                : x.RefundedDecisionId != null ? "like_refund" : x.DecisionId != null ? "like_charge" : "other" }).ToListAsync(cancellationToken));
 });
 if (deployment.AllowDemoTopup)
 {

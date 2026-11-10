@@ -432,7 +432,7 @@ test('notification pages map only recipient-safe fields, retain pagination and e
  const calls=routes(accountRoutes({'/api/me':{...profile,unreadNotificationCount:3},'/api/notifications':{items:[notification],total:8,unreadCount:3,offset:2,limit:1,hasMore:true}}));
  const api=adapter();assert.equal((await api.getState()).unreadNotificationCount,3);
  const page=await api.notifications({offset:2,limit:1});
- assert.deepEqual(page,{items:[{id:notification.id,kind:'like_refund',amount:2,text:notification.text,decisionId:'paid-decision',createdAt:notification.createdAt,readAt:null}],total:8,unreadCount:3,offset:2,limit:1,hasMore:true});
+ assert.deepEqual(page,{items:[{id:notification.id,kind:'like_refund',amount:2,text:notification.text,decisionId:'paid-decision',feedbackPackageId:null,createdAt:notification.createdAt,readAt:null}],total:8,unreadCount:3,offset:2,limit:1,hasMore:true});
  assert.equal(JSON.stringify(page).includes('PRIVATE-'),false);
  const request=calls.find(call=>call.path==='/api/notifications');assert.equal(request.headers.Authorization,'Bearer sample-token');
  const before=calls.length;for(const options of [{offset:-1},{limit:0},{limit:101}])await assert.rejects(api.notifications(options),/lapozási/);assert.equal(calls.length,before);
@@ -441,7 +441,7 @@ test('notification pages map only recipient-safe fields, retain pagination and e
 test('notification read calls are authenticated and encoded, preserve the server timestamp, and surface access failures',async()=>{
  const item={id:'notice/id',kind:'like_refund',amount:1,text:'Visszatérítés',decisionId:'decision',createdAt:'2026-11-15T12:00:00Z',readAt:'2026-11-16T12:00:00Z'};
  const calls=routes({'/api/notifications/notice%2Fid/read':item}),api=adapter();
- assert.deepEqual(await api.markNotificationRead('notice/id'),item);assert.equal(calls[0].method,'PUT');assert.equal(calls[0].headers.Authorization,'Bearer sample-token');assert.equal(calls[0].body,undefined);
+ assert.deepEqual(await api.markNotificationRead('notice/id'),{...item,feedbackPackageId:null});assert.equal(calls[0].method,'PUT');assert.equal(calls[0].headers.Authorization,'Bearer sample-token');assert.equal(calls[0].body,undefined);
  for(const id of ['',null,1])await assert.rejects(api.markNotificationRead(id),/értesítés/);assert.equal(calls.length,1);
  routes({'/api/notifications/unknown/read':()=>response({message:'Az értesítés nem található.'},404)});
  await assert.rejects(api.markNotificationRead('unknown'),error=>error.status===404&&/nem található/.test(error.message));
