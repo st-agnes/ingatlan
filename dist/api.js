@@ -230,6 +230,11 @@ function propertyInsightsFromApi(value) {
     activePackage:feedbackPackageFromApi(value?.activePackage),packages:rows(value?.packages).slice(0,20).map(feedbackPackageFromApi).filter(Boolean),
     packageSizes:[...FEEDBACK_PACKAGE_SIZES],durationDays:14,creditCostPerFeedback:1};
 }
+function feedbackScenarioFromApi(value) {
+  if(value?.available!==true||!['buyer','seller'].includes(value.role))return {available:false};
+  return {available:true,role:value.role,propertyId:String(value.propertyId??''),searchId:String(value.searchId??''),
+    buyerEmail:String(value.buyerEmail??''),sellerEmail:String(value.sellerEmail??''),feedbackReady:value.feedbackReady===true};
+}
 function messageFromApi(value) {
   return { ...clone(value), id: String(value.id), senderId: String(value.senderId ?? value.userId ?? ''), text: value.text ?? value.body ?? '', createdAt: value.createdAt };
 }
@@ -245,7 +250,7 @@ function matchFromApi(value) {
 }
 
 export class ApiModel {
-  constructor(config) { this.mode = 'api'; this.baseUrl = apiBase(config.baseUrl); this.token = config.token; this.active = null; }
+  constructor(config) { this.mode = 'api'; this.baseUrl = apiBase(config.baseUrl); this.token = config.token; this.active = null; this.feedbackScenarioCapability = undefined; }
   call(path, method, body) { return request(this.baseUrl, this.token, path, method, body); }
   async getState() {
     const [profile, entities, ledgerResponse] = await Promise.all([this.call('/me'), this.call('/me/entities'), this.call('/credits/ledger')]);
@@ -309,6 +314,21 @@ export class ApiModel {
     id=feedbackId(id,'ingatlanazonosító');
     const {offset,limit}=normalizeIncomingPagination(options);
     return propertyInsightsFromApi(await this.call(`/properties/${encodeURIComponent(id)}/insights?${new URLSearchParams({offset:String(offset),limit:String(limit)})}`));
+  }
+  async getFeedbackScenario() {
+    if(!hostedMode()||deploymentEnvironment()!=='test')return {available:false};
+    if(this.feedbackScenarioCapability===undefined){
+      try{this.feedbackScenarioCapability=feedbackScenarioFromApi(await this.call('/test/feedback-scenario'));}
+      catch(error){if(error.status!==404)throw error;this.feedbackScenarioCapability={available:false};}
+    }
+    return clone(this.feedbackScenarioCapability);
+  }
+  async resetFeedbackScenario() {
+    if(!hostedMode()||deploymentEnvironment()!=='test')throw new Error('A visszajelzés-próba csak a tesztkörnyezetben érhető el.');
+    const result=feedbackScenarioFromApi(await this.call('/test/feedback-scenario/reset','POST',{}));
+    this.feedbackScenarioCapability=result;
+    if(result.available)this.active={kind:result.role==='buyer'?'search':'property',id:result.role==='buyer'?result.searchId:result.propertyId};
+    return clone(result);
   }
   async buyFeedbackPackage(id,size,requestId) {
     id=feedbackId(id,'ingatlanazonosító');

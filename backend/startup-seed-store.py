@@ -33,20 +33,24 @@ expressions = {
     'sum_credits': '(SELECT COALESCE(SUM(Credits),0) FROM Users)',
     'archived_properties': '(SELECT COUNT(*) FROM Properties WHERE Archived=1)',
     'payment_orders': '(SELECT COUNT(*) FROM PaymentOrders)',
+    'feedback_packages': '(SELECT COUNT(*) FROM FeedbackPackages)',
+    'feedback_invitations': '(SELECT COUNT(*) FROM FeedbackInvitations)',
+    'feedback_ready_buyers': '(SELECT COUNT(*) FROM Users WHERE FeedbackPassCounter=19)',
 }
 values = query('SELECT ' + ','.join(expressions.values())).split('\t')
 assert len(values) == len(expressions), 'Unexpected fixture-count result.'
 actual = dict(zip(expressions, map(int, values)))
 expected = {
-    'users': 12, 'agents': 3, 'properties': 354, 'searches': 352,
+    'users': 14, 'agents': 3, 'properties': 355, 'searches': 353,
     'decisions': 3 if phase == 'changed' else 1,
     'matches': 1 if phase == 'changed' else 0,
     'messages': 1 if phase == 'changed' else 0,
     'reports': 1 if phase == 'changed' else 0,
-    'credit_entries': 14 if phase == 'changed' else 13,
-    'sum_credits': 1197 if phase == 'changed' else 1199,
+    'credit_entries': 17 if phase == 'changed' else 16,
+    'sum_credits': 1387 if phase == 'changed' else 1389,
     'archived_properties': 1 if phase == 'changed' else 0,
     'payment_orders': 0,
+    'feedback_packages': 1, 'feedback_invitations': 0, 'feedback_ready_buyers': 1,
 }
 for name, value in expected.items():
     assert actual[name] == value, f'Incorrect startup fixture {name}: expected {value}, received {actual[name]}.'
@@ -55,6 +59,6 @@ history = query('SELECT RevisionId,Version,(AppliedAt IS NOT NULL) FROM __Otthon
 rows = [row.split('\t') for row in history.splitlines()]
 expected_revisions = ['ci-fixtures-a'] if phase == 'changed' else ['ci-fixtures-a', 'ci-fixtures-b']
 assert [row[0] for row in rows] == expected_revisions, 'Seed history changed or ordinary Production created a marker.'
-assert all(len(row) == 3 and row[1] == '20261109-test-fixtures-v3' and row[2] == '1' for row in rows), 'Invalid seed version or timestamp in history.'
-print('Embedded fixture database check passed: 12 users, 3 agents, 354 properties, 352 searches; '
+assert all(len(row) == 3 and row[1] == '20261110-test-fixtures-v4' and row[2] == '1' for row in rows), 'Invalid seed version or timestamp in history.'
+print('Embedded fixture database check passed: 14 users, 3 agents, 355 properties, 353 searches; '
       + ('test changes and first revision recorded.' if phase == 'changed' else 'reset results and two-revision history preserved.'))

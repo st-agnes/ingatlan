@@ -2,10 +2,10 @@
 import assert from 'node:assert/strict';
 import {mkdir,readFile,writeFile,chmod} from 'node:fs/promises';
 import {resolve,dirname} from 'node:path';
-import {DEMO_USERS,DEMO_FIXTURES,DEMO_PASSWORD} from '../scripts/gcp/demo-data.mjs';
+import {DEMO_USERS,DEMO_FIXTURES,DEMO_PASSWORD,FEEDBACK_TEST_SCENARIO} from '../scripts/gcp/demo-data.mjs';
 const origin=new URL(process.argv[2]||'http://127.0.0.1:3000');
 if(origin.protocol!=='http:'||!['localhost','127.0.0.1','[::1]'].includes(origin.hostname)||origin.username||origin.password||origin.pathname!=='/'||origin.search||origin.hash)throw new Error('Use only a disposable loopback API.');
-const mode=process.argv[3],fixturePath=resolve('.local/startup-seed-fixture.json'),version='20261109-test-fixtures-v3';
+const mode=process.argv[3],fixturePath=resolve('.local/startup-seed-fixture.json'),version='20261110-test-fixtures-v4';
 if(!['--initial','--preserved','--reset','--production'].includes(mode))throw new Error('Choose a startup seed check mode.');
 async function api(path,{token,method='GET',body,status=200}={}){
  const response=await fetch(new URL('/api'+path,origin),{method,redirect:'error',signal:AbortSignal.timeout(20000),headers:{...(token?{Authorization:`Bearer ${token}`} : {}),...(body===undefined?{}:{'Content-Type':'application/json'})},...(body===undefined?{}:{body:JSON.stringify(body)})});
@@ -14,7 +14,7 @@ async function api(path,{token,method='GET',body,status=200}={}){
 const health=await api('/health');assert.equal(health.status,'ready');
 if(mode==='--production'){assert.equal(health.deployment,'production');assert.equal(health.testCreditsEnabled,false);assert.equal(health.testDataVersion??null,null);}
 else{assert.equal(health.deployment,'test');assert.equal(health.testDataVersion,version);}
-const agent=DEMO_USERS.find(user=>user.accountType==='agent'),accounts=[...DEMO_USERS.slice(0,3),agent];
+const agent=DEMO_USERS.find(user=>user.accountType==='agent'),scenario=FEEDBACK_TEST_SCENARIO,scenarioKeys=new Set([scenario.seller,scenario.buyer]),accounts=[...DEMO_USERS.slice(0,3),agent,...DEMO_USERS.filter(user=>scenarioKeys.has(user.key))];
 const catalog=key=>DEMO_FIXTURES.find(fixture=>fixture.key===key);
 async function snapshot(f){return Promise.all(accounts.map(async user=>({key:user.key,profile:await api('/me',{token:f.tokens[user.key]}),entities:await api('/me/entities',{token:f.tokens[user.key]}),ledger:await api('/credits/ledger',{token:f.tokens[user.key]}),matches:await api('/matches',{token:f.tokens[user.key]})})));}
 async function save(f){await mkdir(dirname(fixturePath),{recursive:true});await writeFile(fixturePath,JSON.stringify(f),{mode:0o600});await chmod(fixturePath,0o600);}
@@ -44,7 +44,7 @@ async function seededLanding(){
   assert.equal(page.searches.length,8,`${region.id}: the shipped catalog needs eight search previews`);
   assert.equal(page.properties.length,4,`${region.id}: the shipped catalog needs four property previews`);
   for(const [kind,items,keys] of [['search',page.searches,searchKeys],['property',page.properties,propertyKeys]]){
-   assert.deepEqual([...new Set(items.map(row=>row.type))].sort(),['Ház','Lakás'],`${region.id}: ${kind} previews must include houses and apartments`);
+   const types=new Set(items.map(row=>row.type));assert.ok(types.has('Ház')&&types.has('Lakás'),`${region.id}: ${kind} previews must include houses and apartments`);assert.ok([...types].every(type=>['Ház','Lakás','Nyaraló'].includes(type)));
    for(const [index,row] of items.entries()){
     assert.deepEqual(Object.keys(row).sort(),keys,'Public fixtures must expose only safe teaser fields');
     assert.equal(row.key,`${kind}-${index+1}`);assert.ok(['private','agent'].includes(row.ownerAccountType));
@@ -56,7 +56,7 @@ async function seededLanding(){
    }
   }
   const serialized=JSON.stringify(page);
-  for(const user of DEMO_USERS){assert.ok(!serialized.includes(user.email));assert.ok(!serialized.includes(user.phone));assert.ok(!serialized.includes(user.name),'Anonymous cards must expose first names without full registered names');}
+  for(const user of DEMO_USERS){assert.ok(!serialized.includes(user.email));if(user.phone)assert.ok(!serialized.includes(user.phone));assert.ok(!serialized.includes(user.name),'Anonymous cards must expose first names without full registered names');}
  }
  for(const region of regions)check(await api('/public/landing?region='+region.id),region);
  const region=regions.find(region=>region.id==='HU321'),searchSamples=new Set(),propertySamples=new Set(),allSearches=[],allProperties=[];
@@ -84,22 +84,68 @@ async function seededLanding(){
 async function fresh(f){
  await seededLanding();
  const rows=await snapshot(f);
- for(const row of rows){const user=accounts.find(user=>user.key===row.key);assert.equal(row.profile.accountType,user.accountType??'private');assert.equal(row.profile.credits,100);assert.equal(row.entities.properties.length,DEMO_FIXTURES.filter(item=>item.owner===user.key&&item.kind==='property').length);assert.equal(row.entities.searchRequests.length,DEMO_FIXTURES.filter(item=>item.owner===user.key&&item.kind==='search').length);assert.deepEqual(row.entities.decisions,[]);assert.deepEqual(row.entities.reportedOwnerIds,[]);assert.deepEqual(row.matches,[]);assert.equal(row.ledger.length,1);assert.equal(row.ledger[0].amount,100);assert.ok([...row.entities.properties,...row.entities.searchRequests].every(item=>item.ownerAccountType===(user.accountType??'private')));const active=entity(row,catalog(user.active.key));assert.ok(active);assert.deepEqual(row.entities.active,{kind:user.active.kind,id:active.id});
-  const feed=await api('/feed',{token:f.tokens[row.key]});assert.ok(feed.items.length>=30,`${row.key} must start with at least 30 recommendations`);assert.equal(feed.likeCost,user.active.kind==='property'?2:user.accountType==='agent'?1:0);
+ for(const row of rows){
+  const user=accounts.find(user=>user.key===row.key),isTrial=scenarioKeys.has(user.key),isSeller=user.key===scenario.seller;
+  assert.equal(row.profile.accountType,user.accountType??'private');assert.equal(row.profile.credits,isSeller?90:100);
+  assert.equal(row.entities.properties.length,DEMO_FIXTURES.filter(item=>item.owner===user.key&&item.kind==='property').length);
+  assert.equal(row.entities.searchRequests.length,DEMO_FIXTURES.filter(item=>item.owner===user.key&&item.kind==='search').length);
+  assert.deepEqual(row.entities.decisions,[]);assert.deepEqual(row.entities.reportedOwnerIds,[]);assert.deepEqual(row.matches,[]);
+  assert.equal(row.ledger.length,isSeller?2:1);assert.equal(row.ledger.reduce((sum,item)=>sum+item.amount,0),isSeller?90:100);
+  assert.equal(row.ledger.filter(item=>item.amount===100).length,1);
+  if(isSeller)assert.equal(row.ledger.filter(item=>item.amount===-10&&item.feedbackPackageId).length,1);
+  assert.ok([...row.entities.properties,...row.entities.searchRequests].every(item=>item.ownerAccountType===(user.accountType??'private')));
+  const active=entity(row,catalog(user.active.key));assert.ok(active);assert.deepEqual(row.entities.active,{kind:user.active.kind,id:active.id});
+  const feed=await api('/feed',{token:f.tokens[row.key]});assert.ok(feed.items.length>=(isTrial?1:30),`${row.key} must start with its compatible recommendations`);
+  if(isTrial)assert.equal(feed.items.length,1,'The feedback trial starts at its sole exact counterpart');
+  assert.equal(feed.likeCost,user.active.kind==='property'?2:user.accountType==='agent'?1:0);
   const counterpart=item=>user.active.kind==='property'?item.searchRequest:item.property;
   const publicFirstNames=new Set(DEMO_USERS.map(person=>person.name.trim().split(/\s+/).at(-1)));
   assert.ok(feed.items.every(item=>publicFirstNames.has(counterpart(item).ownerFirstName)),
    'Seeded discovery must show the owner first name, not the full contact name');
   if(user.accountType==='agent')assert.ok(feed.items.every(item=>counterpart(item).ownerAccountType==='private'),'Agents must see private counterparties only');
-  else assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='agent'));
+  else if(!isTrial)assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='agent'));
   assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='private'));
  }
  return rows;
 }
+async function proveFeedbackScenario(f){
+ const buyerToken=f.tokens[scenario.buyer],sellerToken=f.tokens[scenario.seller];
+ const ordinaryBefore=(await snapshot(f)).filter(row=>!scenarioKeys.has(row.key));
+ assert.deepEqual(await api('/test/feedback-scenario',{token:f.tokens.anna}),{available:false});
+ await api('/test/feedback-scenario/reset',{token:f.tokens.anna,method:'POST',status:404});
+ const buyerCapability=await api('/test/feedback-scenario',{token:buyerToken}),sellerCapability=await api('/test/feedback-scenario',{token:sellerToken});
+ assert.equal(buyerCapability.available,true);assert.equal(buyerCapability.feedbackReady,true);assert.equal(buyerCapability.role,'buyer');assert.equal(sellerCapability.role,'seller');
+ assert.equal(buyerCapability.buyerEmail,'visszajelzes-kereso@otthonra.local');assert.equal(buyerCapability.sellerEmail,'visszajelzes-elado@otthonra.local');
+ assert.equal(buyerCapability.propertyId,sellerCapability.propertyId);assert.equal(buyerCapability.searchId,sellerCapability.searchId);
+ const reset=await api('/test/feedback-scenario/reset',{token:buyerToken,method:'POST'});
+ assert.equal(reset.available,true);assert.equal(reset.propertyId,buyerCapability.propertyId);assert.equal(reset.searchId,buyerCapability.searchId);
+ const propertyId=reset.propertyId,searchRequestId=reset.searchId;
+ const feed=await api('/feed',{token:buyerToken});assert.equal(feed.items.length,1);assert.equal(feed.items[0].propertyId,propertyId);assert.equal(feed.items[0].compatibilityScore,100);
+ await api('/impressions',{token:buyerToken,method:'POST',body:{propertyId,searchRequestId}});
+ const pass=await api('/decisions',{token:buyerToken,method:'POST',body:{propertyId,searchRequestId,liked:false}});
+ assert.equal(pass.charged,0);assert.ok(pass.feedbackPrompt,'The first normal pass must immediately request real feedback');
+ assert.match(pass.feedbackPrompt.title,/Segíts Péternek egy visszajelzéssel/);assert.equal(pass.feedbackPrompt.question,'Miért nem tetszett az ingatlan?');assert.equal(pass.feedbackPrompt.options.length,8);
+ assert.equal((await api('/feedback/'+pass.feedbackPrompt.id,{token:buyerToken,method:'POST',body:{reason:'layout'}})).accepted,true);
+ assert.equal((await api('/feedback/'+pass.feedbackPrompt.id,{token:buyerToken,method:'POST',body:{reason:'layout'}})).alreadyAnswered,true);
+ let insights=await api('/properties/'+propertyId+'/insights',{token:sellerToken});
+ assert.equal(insights.feedback.total,1);assert.equal(insights.activePackage.receivedCount,1);assert.equal(insights.feedback.items[0].reason,'layout');assert.equal(insights.stats.uniqueViewers,1);
+ assert.equal((await api('/me',{token:sellerToken})).credits,90);assert.equal((await api('/me',{token:buyerToken})).credits,100);
+ assert.ok(!Object.hasOwn(insights.feedback.items[0],'buyerId'));assert.ok(!JSON.stringify(insights.feedback).includes(buyerCapability.buyerEmail));
+ // A final reset restores the canonical row counts before the existing store
+ // and restart checks. Normal users and their activity must remain untouched.
+ await api('/test/feedback-scenario/reset',{token:sellerToken,method:'POST'});
+ await api('/feedback/'+pass.feedbackPrompt.id,{token:buyerToken,method:'POST',body:{reason:'layout'},status:404});
+ insights=await api('/properties/'+propertyId+'/insights',{token:sellerToken});assert.equal(insights.feedback.total,0);assert.equal(insights.activePackage.size,10);assert.equal(insights.activePackage.receivedCount,0);assert.equal(insights.stats.uniqueViewers,0);
+ assert.deepEqual((await api('/me/entities',{token:buyerToken})).decisions,[]);assert.equal((await api('/feedback/pending',{token:buyerToken})).feedbackPrompt,null);
+ assert.equal((await api('/me',{token:sellerToken})).credits,90);assert.equal((await api('/me',{token:buyerToken})).credits,100);
+ assert.deepEqual((await snapshot(f)).filter(row=>!scenarioKeys.has(row.key)),ordinaryBefore,'Resetting the named trial must preserve unrelated accounts and ledger activity');
+ console.log('Prepared feedback scenario passed: dedicated test-only capability, first-pass real feedback, anonymous counted answer, safe repeat/reset and unrelated-account preservation.');
+}
 if(mode==='--initial'){
  const f={tokens:{},ids:{}};
  for(const user of accounts){const session=await api('/auth/login',{method:'POST',body:{email:user.email,password:DEMO_PASSWORD}});f.tokens[user.key]=session.accessToken;f.ids[user.key]=session.user.id;}
- const rows=await fresh(f),anna=rows.find(row=>row.key==='anna'),peter=rows.find(row=>row.key==='peter'),agency=rows.find(row=>row.key===agent.key);
+ await fresh(f);await proveFeedbackScenario(f);
+ const rows=await snapshot(f),anna=rows.find(row=>row.key==='anna'),peter=rows.find(row=>row.key==='peter'),agency=rows.find(row=>row.key===agent.key);
  const property=entity(peter,catalog('peter-pozsonyi')),search=entity(anna,catalog('anna-budapest')),agentSearch=entity(agency,catalog(agent.active.key));
  assert.equal((await api('/decisions',{token:f.tokens.anna,method:'POST',body:{propertyId:property.id,searchRequestId:search.id,liked:true}})).charged,0);
  const sellerLike=await api('/decisions',{token:f.tokens.peter,method:'POST',body:{propertyId:property.id,searchRequestId:search.id,liked:true}});assert.equal(sellerLike.charged,2);assert.ok(sellerLike.matchId);
@@ -110,7 +156,7 @@ if(mode==='--initial'){
  await api('/properties/'+house.id,{token:f.tokens.anna,method:'PUT',body:{...catalog('anna-solymar-house').input,title:'Edited and archived before cold start',archived:true}});
  await api('/me',{token:f.tokens.anna,method:'PUT',body:{name:'Edited before cold start',email:anna.profile.email,phone:anna.profile.phone}});
  await api('/me/active',{token:f.tokens.anna,method:'PUT',body:{kind:'search',id:entity(anna,catalog('anna-debrecen')).id}});
- f.expected=await snapshot(f);await save(f);console.log('Embedded startup fixtures passed: ready 12-account catalog, mixed-owner recommendations, agent/private/seller billing, match, message and changes recorded for restart preservation.');
+ f.expected=await snapshot(f);await save(f);console.log('Embedded startup fixtures passed: ready 14-account catalog, mixed-owner recommendations, agent/private/seller billing, match, message and changes recorded for restart preservation.');
 }else{
  const f=JSON.parse(await readFile(fixturePath,'utf8'));
  if(mode==='--reset'){
@@ -118,8 +164,16 @@ if(mode==='--initial'){
   const agency=rows.find(row=>row.key===agent.key),peter=rows.find(row=>row.key==='peter'),property=entity(peter,catalog('peter-pozsonyi')),search=entity(agency,catalog(agent.active.key));
   await api('/me',{token:f.tokens[agent.key],method:'PUT',body:{name:'Later revision work',email:agency.profile.email,phone:agency.profile.phone}});
   assert.equal((await api('/decisions',{token:f.tokens[agent.key],method:'POST',body:{propertyId:property.id,searchRequestId:search.id,liked:true}})).charged,1);
-  f.expected=await snapshot(f);await save(f);console.log('New test revision reset passed: original identities, full fixtures and 100 credits restored; later-revision work saved for old-replica guard.');
+  f.expected=await snapshot(f);await save(f);console.log('New test revision reset passed: original identities, full fixtures and initial balances restored, including the prepaid feedback trial; later-revision work saved for old-replica guard.');
  }else{
+  if(mode==='--production'){
+   // The seed flag deliberately remains true in this mode; neither read nor
+   // reset route may exist when the deployment itself is ordinary production.
+   for(const [path,method] of [['/api/test/feedback-scenario','GET'],['/api/test/feedback-scenario/reset','POST']]){
+    const response=await fetch(new URL(path,origin),{method,headers:{Authorization:`Bearer ${f.tokens[scenario.buyer]}`},redirect:'error',signal:AbortSignal.timeout(20000)});
+    assert.equal(response.status,404,`${method} scenario endpoint must not exist in production`);await response.text();
+   }
+  }
   assert.deepEqual(await snapshot(f),f.expected,'A cold start, old revision replica or ordinary Production changed test data');
   console.log(mode==='--production'?'Ordinary Production safety passed: enabled seed flag did not reset or seed data.':'Same/previous revision preservation passed: edited profiles, archives, active selections, decisions, matches, messages, reports and balances unchanged.');
  }

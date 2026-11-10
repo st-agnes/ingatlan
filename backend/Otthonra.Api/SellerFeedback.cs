@@ -215,9 +215,16 @@ public static class SellerFeedback
             _ = await LockedUserAsync(db, uid, cancellationToken);
             _ = await LockedPropertyAsync(db, candidate.PropertyId, cancellationToken);
             var package = (await db.FeedbackPackages.FromSqlInterpolated($"SELECT * FROM `FeedbackPackages` WHERE `Id` = {candidate.PackageId} FOR UPDATE")
-                .ToListAsync(cancellationToken)).Single();
+                .ToListAsync(cancellationToken)).SingleOrDefault();
             var invitation = (await db.FeedbackInvitations.FromSqlInterpolated($"SELECT * FROM `FeedbackInvitations` WHERE `Id` = {id} FOR UPDATE")
-                .ToListAsync(cancellationToken)).Single();
+                .ToListAsync(cancellationToken)).SingleOrDefault();
+            if (package is null || invitation is null)
+            {
+                // A scoped test reset may replace the rows while this request
+                // waits for its locks. The old question is then expired.
+                await transaction.CommitAsync(cancellationToken);
+                return Results.Json(new { message = "Ez a visszajelzéskérés már lejárt.", accepted = false }, statusCode: 410);
+            }
             if (invitation.BuyerId != uid) throw new ApiException(404, "A visszajelzéskérés nem található.");
             now = clock.GetUtcNow().UtcDateTime;
             if (invitation.AnsweredAt is not null)
@@ -327,8 +334,8 @@ public sealed class FeedbackRefundService(IServiceScopeFactory scopes, TimeProvi
         var owner = await SellerFeedback.LockedUserAsync(db, candidate.OwnerId, cancellationToken);
         var property = await SellerFeedback.LockedPropertyAsync(db, candidate.PropertyId, cancellationToken);
         var package = (await db.FeedbackPackages.FromSqlInterpolated($"SELECT * FROM `FeedbackPackages` WHERE `Id` = {packageId} FOR UPDATE")
-            .ToListAsync(cancellationToken)).Single();
-        if (package.RefundedAt is not null || package.ExpiresAt > now) return false;
+            .ToListAsync(cancellationToken)).SingleOrDefault();
+        if (package is null || package.RefundedAt is not null || package.ExpiresAt > now) return false;
         var missing = SellerFeedbackPolicy.Missing(package);
         package.RefundedAt = now;
         package.RefundedCredits = missing;

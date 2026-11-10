@@ -2,7 +2,7 @@ import test,{afterEach} from 'node:test';
 import assert from 'node:assert/strict';
 import {ApiModel} from '../dist/api.js';
 import {FEEDBACK_OPTIONS,FEEDBACK_QUESTION} from '../dist/feedback.js';
-const original=globalThis.fetch;afterEach(()=>{globalThis.fetch=original;});
+const original=globalThis.fetch,originalRuntime=globalThis.OTTHONRA_CONFIG;afterEach(()=>{globalThis.fetch=original;globalThis.OTTHONRA_CONFIG=originalRuntime;});
 const propertyId='22222222-2222-4222-8222-222222222222',searchId='33333333-3333-4333-8333-333333333333',requestId='44444444-4444-4444-8444-444444444444';
 const pack={id:'package-id',size:10,receivedCount:3,remaining:7,enabled:true,createdAt:'2026-11-10T12:00:00Z',expiresAt:'2026-11-24T12:00:00Z',refundedAt:null,refundedCredits:0,status:'active'};
 const prompt={id:'invitation-id',propertyId,sellerFirstName:'Anna',title:'PRIVATE-FULL-OWNER',question:FEEDBACK_QUESTION,options:FEEDBACK_OPTIONS,expiresAt:'2026-11-10T12:15:00Z',email:'PRIVATE-EMAIL',buyerId:'PRIVATE-BUYER'};
@@ -51,4 +51,30 @@ test('answer buttons send exactly one recognized reason and preserve declines an
 test('package-refund notifications retain their package key without requiring a decision or exposing private owner data',async()=>{
  const {api}=setup({'/api/notifications':{items:[{id:'notice',kind:'feedback_refund',amount:9,text:'9 kredit visszatérítve.',decisionId:null,feedbackPackageId:pack.id,userId:'PRIVATE-OWNER',createdAt:'2026-11-24T12:00:00Z',readAt:null}]}});
  const page=await api.notifications();assert.equal(page.items[0].decisionId,null);assert.equal(page.items[0].feedbackPackageId,pack.id);assert.equal(page.items[0].amount,9);assert.doesNotMatch(JSON.stringify(page),/PRIVATE-/);
+});
+
+
+test('test scenario capability is explicitly test-only, cached per session and strips private fields',async()=>{
+ globalThis.OTTHONRA_CONFIG={mode:'api',environment:'test'};
+ const capability={available:true,role:'buyer',propertyId,searchId,buyerEmail:'visszajelzes-kereso@otthonra.local',sellerEmail:'visszajelzes-elado@otthonra.local',feedbackReady:true};
+ const {api,calls}=setup({'/api/test/feedback-scenario':{...capability,password:'PRIVATE-PASSWORD',accessToken:'PRIVATE-TOKEN'},'/api/test/feedback-scenario/reset':{...capability,token:'PRIVATE-TOKEN'}});
+ const first=await api.getFeedbackScenario();assert.deepEqual(first,capability);assert.deepEqual(await api.getFeedbackScenario(),capability);assert.equal(calls.length,1);
+ first.buyerEmail='changed';assert.equal((await api.getFeedbackScenario()).buyerEmail,capability.buyerEmail);
+ const reset=await api.resetFeedbackScenario();assert.deepEqual(reset,capability);assert.deepEqual(api.active,{kind:'search',id:searchId});
+ assert.equal(calls[1].method,'POST');assert.deepEqual(JSON.parse(calls[1].body),{});assert.doesNotMatch(JSON.stringify(reset),/PRIVATE-/);
+});
+
+test('scenario controls remain unavailable in production or on a test API without seeded fixtures',async()=>{
+ globalThis.OTTHONRA_CONFIG={mode:'api',environment:'production'};
+ const prod=setup({});assert.deepEqual(await prod.api.getFeedbackScenario(),{available:false});await assert.rejects(prod.api.resetFeedbackScenario(),/tesztkörnyezet/);assert.equal(prod.calls.length,0);
+ globalThis.OTTHONRA_CONFIG={mode:'api',environment:'test'};
+ const absent=setup({'/api/test/feedback-scenario':()=>response({message:'Not found'},404)});
+ assert.deepEqual(await absent.api.getFeedbackScenario(),{available:false});assert.deepEqual(await absent.api.getFeedbackScenario(),{available:false});assert.equal(absent.calls.length,1);
+ const ordinary=setup({'/api/test/feedback-scenario':{available:false}});assert.deepEqual(await ordinary.api.getFeedbackScenario(),{available:false});
+});
+
+test('scenario authentication and server failures stay retryable instead of becoming a false capability',async()=>{
+ globalThis.OTTHONRA_CONFIG={mode:'api',environment:'test'};
+ const expired=setup({'/api/test/feedback-scenario':()=>response({message:'Expired'},401)});await assert.rejects(expired.api.getFeedbackScenario(),error=>error.status===401);
+ const unavailable=setup({'/api/test/feedback-scenario':()=>response({message:'Unavailable'},503)});await assert.rejects(unavailable.api.getFeedbackScenario(),error=>error.status===503);assert.equal(unavailable.api.feedbackScenarioCapability,undefined);
 });

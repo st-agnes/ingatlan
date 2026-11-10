@@ -63,6 +63,7 @@ public static class TestDataSeed
         var properties = new List<Property>();
         var searches = new List<SearchRequest>();
         var credits = new List<CreditEntry>();
+        var feedbackPackages = new List<FeedbackPackage>();
         var now = DateTime.UtcNow;
         foreach (var definition in catalog.Users)
         {
@@ -120,7 +121,40 @@ public static class TestDataSeed
             users[definition.Key].ActiveKind = active.Kind;
             users[definition.Key].ActiveEntityId = active.Id;
         }
-        return new(catalog.Version, users.Values.ToArray(), properties.ToArray(), searches.ToArray(), credits.ToArray());
+        var scenarioUsers = new HashSet<Guid>();
+        foreach (var scenario in catalog.FeedbackScenarios ?? [])
+        {
+            Key(scenario.Key);
+            if (!users.TryGetValue(scenario.Seller, out var seller) || !users.TryGetValue(scenario.Buyer, out var buyer)
+                || seller.Id == buyer.Id || !scenarioUsers.Add(seller.Id) || !scenarioUsers.Add(buyer.Id)
+                || seller.AccountType != AccountTypes.Private || buyer.AccountType != AccountTypes.Private
+                || !SellerFeedbackPolicy.PackageSizes.Contains(scenario.Size))
+                throw new InvalidOperationException("Invalid feedback test scenario participants or package.");
+            if (!fixtureEntities.TryGetValue(scenario.Property, out var propertyRef) || propertyRef.Kind != "property" || propertyRef.Owner != scenario.Seller
+                || !fixtureEntities.TryGetValue(scenario.Search, out var searchRef) || searchRef.Kind != "search" || searchRef.Owner != scenario.Buyer)
+                throw new InvalidOperationException("A feedback test scenario must refer to its participants' own entities.");
+            var property = properties.Single(item => item.Id == propertyRef.Id);
+            var search = searches.Single(item => item.Id == searchRef.Id);
+            if (!Rules.Compatible(property, search) || seller.Credits < scenario.Size
+                || seller.ActiveKind != "property" || seller.ActiveEntityId != property.Id
+                || buyer.ActiveKind != "search" || buyer.ActiveEntityId != search.Id)
+                throw new InvalidOperationException("The feedback test pair must be exact, active and prepaid.");
+            var package = new FeedbackPackage {
+                Id = StableId("feedback-package:" + scenario.Key), RequestId = StableId("feedback-request:" + scenario.Key),
+                PropertyId = property.Id, OwnerId = seller.Id, Size = scenario.Size, Enabled = true,
+                CreatedAt = now, ExpiresAt = now.AddDays(SellerFeedbackPolicy.DurationDays)
+            };
+            seller.Credits -= scenario.Size;
+            buyer.FeedbackPassCounter = SellerFeedbackPolicy.PromptSpacing - 1;
+            feedbackPackages.Add(package);
+            credits.Add(new CreditEntry {
+                Id = StableId("feedback-charge:" + scenario.Key), UserId = seller.Id, Amount = -scenario.Size,
+                FeedbackPackageId = package.Id, Description = "Előkészített visszajelzés-próba – 10 válaszos csomag", CreatedAt = now
+            });
+        }
+        return new(catalog.Version, users.Values.ToArray(), properties.ToArray(), searches.ToArray(), credits.ToArray()) {
+            FeedbackPackages = feedbackPackages.ToArray()
+        };
     }
 
     private static void Key(string? key)
@@ -192,6 +226,7 @@ public static class TestDataSeed
             db.Users.AddRange(plan.Users);
             db.Properties.AddRange(plan.Properties);
             db.SearchRequests.AddRange(plan.Searches);
+            db.FeedbackPackages.AddRange(plan.FeedbackPackages);
             db.CreditEntries.AddRange(plan.Credits);
             await db.SaveChangesAsync(cancellationToken);
             await Execute(db, connection,
@@ -233,8 +268,13 @@ public static class TestDataSeed
     }
 }
 
-public sealed record TestFixtureCatalog(string Version, string Password, TestFixtureUser[] Users, TestFixture[] Fixtures);
+public sealed record TestFixtureCatalog(string Version, string Password, TestFixtureUser[] Users, TestFixture[] Fixtures,
+    TestFeedbackScenario[]? FeedbackScenarios = null);
+public sealed record TestFeedbackScenario(string Key, string Seller, string Buyer, string Property, string Search, int Size);
 public sealed record TestFixtureUser(string Key, string Name, string Email, string? Phone, string? AccountType, TestFixtureActive Active);
 public sealed record TestFixtureActive(string Kind, string Key);
 public sealed record TestFixture(string Key, string Owner, string Kind, JsonElement Input);
-public sealed record TestDataPlan(string Version, User[] Users, Property[] Properties, SearchRequest[] Searches, CreditEntry[] Credits);
+public sealed record TestDataPlan(string Version, User[] Users, Property[] Properties, SearchRequest[] Searches, CreditEntry[] Credits)
+{
+    public FeedbackPackage[] FeedbackPackages { get; init; } = [];
+}

@@ -82,3 +82,11 @@ A nyilvános ingatlan-/keresés-DTO-k és a bejelentkezés nélküli landing ká
 Az okazonosítók: `insufficient_information`, `layout`, `lighting`, `location`, `view`, `incorrect_parameters`, `other`, `decline`. A feliratokat és a csomagméreteket a közös `feedback.js` definiálja. Egy kérés legfeljebb 15 percig tart helyet a kvótában, a csomag határidejét nem lépheti túl. Egy ember egy csomaghoz egy kérdést kaphat, függetlenül a keresési profiljai számától. A mintavétel egy kicsi, felhasználóhoz kötött elutasításszámlálót használ, nem új, költséges ajánlóalgoritmust.
 
 A `feedback_refund` értesítéseknek `feedbackPackageId` hivatkozásuk és `decisionId:null` értékük van. A kreditnapló külön `feedback_package` és `feedback_refund` típusokat és csomaghivatkozásokat ad. A háttérfeldolgozás és a tulajdonosi olvasás is elindítja a lejárt csomagok egyszeri elszámolását, így a visszatérítés független az egyes Cloud Run példányok élettartamától.
+
+## Visszajelzés-próba a tesztkörnyezetben
+
+`GET /api/test/feedback-scenario` a két kijelölt fióknak `{available:true,role,propertyId,searchId,buyerEmail,sellerEmail,feedbackReady}` választ ad; más tesztfióknál `{available:false}`. `POST /api/test/feedback-scenario/reset` újra előkészíti a próbát és ugyanilyen mezőket ad vissza. A webes adapter `getFeedbackScenario()` és `resetFeedbackScenario()` metódusai csak explicit hosted test módban használják ezt, munkamenetenként tárolt képességleírással. Jelszó vagy másik felhasználó tokenje nem szerepel a válaszban.
+
+A végpont csak teszttelepítés és beágyazott tesztadatok esetén van regisztrálva; éles környezetben 404. Az újraindítás után a kereső aktív, pontos keresése a kijelölt ingatlant adja elsőnek, és a következő elutasítás a rendes visszajelzési folyamatot indítja. Az eladó 10 válaszos csomagja érvényes kreditnaplóval készül, a többi fiók adatai nem változnak.
+
+A jelentési okok között most `duplicate_listing` is megadható. A webes sorrend: `suspected_agent`, `misleading_content`, `no_longer_current`, `duplicate_listing`, `other_violation`; közvetítő hirdetőnél az első opció kimarad. A többi jelentési szabály változatlan.

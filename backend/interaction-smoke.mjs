@@ -18,7 +18,7 @@ function privatePage(page){for(const row of page.items){assert.equal(row.propert
 async function verify(f){
  for(const key of ['a1','b2']){const page=await api('/incoming-likes',{token:f.tokens[key]});privatePage(page);assert.deepEqual(page,f.incoming[key],'Incoming likes changed after a restart');}
  for(const key of Object.keys(f.tokens)){const profile=await api('/me',{token:f.tokens[key]});assert.equal(profile.credits,f.balances[key]);assert.deepEqual(await api('/credits/ledger',{token:f.tokens[key]}),f.ledgers[key]);}
- const rows=await api('/me/entities',{token:f.tokens.b2});assert.equal(rows.reportedEntities.length,5);assert.ok(rows.reportedEntities.every(row=>!Object.hasOwn(row,'createdAt')));
+ const rows=await api('/me/entities',{token:f.tokens.b2});assert.equal(rows.reportedEntities.length,7);assert.ok(rows.reportedEntities.every(row=>!Object.hasOwn(row,'createdAt')));
 }
 if(mode==='--verify'){
  await verify(JSON.parse(await readFile(fixturePath,'utf8')));console.log('Interaction restart preservation passed: incoming statuses/privacy, contextual report summaries, balances and ledger unchanged.');
@@ -82,10 +82,16 @@ if(mode==='--verify'){
  const anchor=await report('b2','b1','property',entities.b1.p.id,'suspected_agent');const misleading=await report('b2','b1','property',entities.b1.p.id,'misleading_content');assert.notEqual(anchor.id,misleading.id);assert.equal((await report('b2','b1','property',entities.b1.p.id,'misleading_content',200)).id,misleading.id);
  assert.notEqual((await report('b2','b1','search',entities.b1.s.id,'suspected_agent')).id,anchor.id);
  await report('b2','a2','property',entities.a2.p.id,'misleading_content');await report('b2','a2','search',entities.a2.s.id,'other_violation');await report('a1','a2','property',entities.a2.p.id,'other_violation');
+ const duplicateReplies=await Promise.all(Array.from({length:5},()=>api('/reports',{token:tokens.b2,method:'POST',body:{entityKind:'property',entityId:entities.b1.p.id,reason:'duplicate_listing'},status:[200,201]})));
+ assert.equal(new Set(duplicateReplies.map(receipt=>receipt.id)).size,1);assert.equal(duplicateReplies.filter(receipt=>!receipt.alreadyReported).length,1,'Concurrent duplicate-listing reports create one receipt');
+ for(const receipt of duplicateReplies){assert.equal(receipt.reason,'duplicate_listing');assert.equal(Object.hasOwn(receipt,'createdAt'),false);}
+ reports.push({id:duplicateReplies[0].id,reporterId:ids.b2,reportedUserId:ids.b1,entityKind:'property',entityId:entities.b1.p.id,reason:'duplicate_listing'});
+ const duplicateAgent=await report('b2','a2','property',entities.a2.p.id,'duplicate_listing');assert.notEqual(duplicateAgent.id,duplicateReplies[0].id,'The duplicate reason is scoped to the reported ad');
+ assert.equal((await report('b2','a2','property',entities.a2.p.id,'duplicate_listing',200)).id,duplicateAgent.id);
  for(const [owner,kind,id,reason] of [['a2','property',entities.a2.p.id,'suspected_agent'],['b2','property',entities.b2.p.id,'other_violation'],['b1','property',entities.b1.p.id,'unknown'],['b1','property',entities.b1.p.id,'']])await report('b2',owner,kind,id,reason,400);
  const legacyDefault=await api('/reports',{token:tokens.b2,method:'POST',body:{entityKind:'property',entityId:entities.b1.p.id}});assert.equal(legacyDefault.id,anchor.id);assert.equal(legacyDefault.alreadyReported,true);
  const reportEnd=new Date().toISOString(),f={tokens,ids,entities,reports,reportStart,reportEnd,incoming:{},balances:{},ledgers:{}};
  for(const key of ['a1','b2'])f.incoming[key]=await api('/incoming-likes',{token:tokens[key]});
  for(const key of Object.keys(tokens)){f.balances[key]=(await api('/me',{token:tokens[key]})).credits;f.ledgers[key]=await api('/credits/ledger',{token:tokens[key]});}
- await verify(f);await save(f);console.log('Interaction API integration passed: agent exclusion on both sides, server decision enforcement, universal reason-aware reports, incoming privacy/statuses/paging/activation, free viewing and normal reciprocal billing.');
+ await verify(f);await save(f);console.log('Interaction API integration passed: agent exclusion on both sides, server decision enforcement, universal reason-aware reports including concurrent duplicate-listing deduplication for private and agent ads, incoming privacy/statuses/paging/activation, free viewing and normal reciprocal billing.');
 }

@@ -320,9 +320,29 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
       }
     }
   }
-  return {users, fixtures};
+  // A separate, isolated pair makes the real rejection-feedback path easy to try.
+  // These accounts do not participate in the normal regional owner rotation.
+  const seller = 'feedbackseller' + keySuffix, buyer = 'feedbackbuyer' + keySuffix;
+  const propertyKey = 'feedback-demo-property' + keySuffix, searchKey = 'feedback-demo-search' + keySuffix;
+  users.push(
+    {key:seller,name:'Teszt Péter' + titleSuffix,email:`visszajelzes-elado${batch === DEFAULT_BATCH ? '' : `+${batch}`}@otthonra.local`,phone:'',accountType:'private',active:{kind:'property',key:propertyKey}},
+    {key:buyer,name:'Teszt Anna' + titleSuffix,email:`visszajelzes-kereso${batch === DEFAULT_BATCH ? '' : `+${batch}`}@otthonra.local`,phone:'',accountType:'private',active:{kind:'search',key:searchKey}}
+  );
+  fixtures.push(
+    {key:propertyKey,owner:seller,kind:'property',input:{...copy(propertyDefaults),title:'Visszajelzés-próba · Tisza-tavi nyaraló' + titleSuffix,
+      city:'Abádszalók',district:'',locationId:'city:Abádszalók',type:'Nyaraló',price:42_000_000,area:60,rooms:3,wholeRooms:3,halfRooms:0,
+      floor:null,condition:'Jó',building:'Tégla',balcony:false,elevator:false,
+      description:fictional + 'A visszajelzés kipróbálására szolgáló nyaraló. A keresői tesztfiókban az első elutasítás után megjelenik a kérdés.'}},
+    {key:searchKey,owner:buyer,kind:'search',input:{...copy(searchDefaults),title:'Visszajelzés-próba · Nyaralót keresek' + titleSuffix,
+      city:'Abádszalók',locationIds:['city:Abádszalók'],type:'Nyaraló',maxPrice:50_000_000,minArea:50,maxArea:80,minRooms:2,maxRooms:4,
+      description:fictional + 'Az első Most nem gombbal azonnal kipróbálható a visszajelzési ablak.'}}
+  );
+  return {users, fixtures, feedbackScenarios:[{key:'feedback-first-pass' + keySuffix,seller,buyer,property:propertyKey,search:searchKey,size:10}]};
 }
 
 const defaultCatalog = createDemoCatalog();
 export const DEMO_USERS = defaultCatalog.users;
 export const DEMO_FIXTURES = defaultCatalog.fixtures;
+
+export const FEEDBACK_TEST_SCENARIO = Object.freeze(defaultCatalog.feedbackScenarios[0]);
+export const DEMO_FEEDBACK_SCENARIOS = defaultCatalog.feedbackScenarios;

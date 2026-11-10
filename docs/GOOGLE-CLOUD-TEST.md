@@ -158,7 +158,7 @@ Ha a helyi Docker-feltöltés korábban hálózati hibát adott, a fenti parancs
 
 A telepítés az új Cloud Run API-t a Hosting módosítása előtt ellenőrzi. A Firebase közzétételének befejezése után a webes ellenőrzés legfeljebb 12 alkalommal, 5 másodperces várakozással kérdezi le újra az oldalt, a runtime-konfigurációt és az API állapotát. Minden kérés külön URL-paramétert kap, és tiltja a gyorsítótárazást. Átmenetileg még korábbi Hosting-útvonal válaszolhat; siker csak az aktuális beágyazott tesztadat-verzióval lehetséges. Tartós eltérésnél a napló kiírja a hibás útvonalat és feltételt, verzióeltérésnél a kapott és az elvárt verziót is. A 401/403 válasz azonnal megállítja az ellenőrzést. A „release complete” után kapott ellenőrzési hiba nem vonja vissza automatikusan a már közzétett kiadást.
 
-A backendbe beágyazott `20261109-test-fixtures-v3` tesztadatcsomag **12 felhasználót, 354 ingatlant és 352 keresést** hoz létre. Ebből 3 fiók ingatlanközvetítő, 9 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
+A backendbe beágyazott `20261110-test-fixtures-v4` tesztadatcsomag **14 felhasználót, 355 ingatlant és 353 keresést** hoz létre. Ebből 3 fiók ingatlanközvetítő, 11 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
 
 | Fiók | Fióktípus | E-mail-cím |
 |---|---|---|
@@ -174,6 +174,8 @@ A backendbe beágyazott `20261109-test-fixtures-v3` tesztadatcsomag **12 felhasz
 | Varga Márton | Magánszemély | `marton@otthonra.local` |
 | Szabó Lilla | Magánszemély | `lilla@otthonra.local` |
 | Kiss Balázs | Magánszemély | `balazs@otthonra.local` |
+| Teszt Anna | Visszajelzés-próba kereső | `visszajelzes-kereso@otthonra.local` |
+| Teszt Péter | Visszajelzés-próba eladó | `visszajelzes-elado@otthonra.local` |
 
 A kibővített készlet kilenc felhasználójának egyenként 12 eladó ingatlanja és 12 keresési igénye van. A közvetítők aktív kereséssel és 100 ingyenes tesztkredittel indulnak, így azonnal próbálható az 1 kredites kedvelés. A magánszemély keresői kedvelése ingyenes, az eladói kedvelés mindkét fióktípusnál 2 kredit. A közvetítői jelzés másik fiókból látható, a jelentéshez pedig bármelyik másik magánszemély mintaprofil használható.
 
@@ -187,7 +189,7 @@ A normál **Deploy Google Cloud test** workflow telepíti az új API-képet és 
 
 A teszttelepítés `Database__SeedTestFixtures=true` beállítást kap. Ez kizárólag `Deployment__Environment=test` környezetben engedélyezi az automatikus tesztadat-kezelést; a szokásos éles környezetben nem töröl és nem tölt fel adatokat. A szerver ASP.NET környezete a teszttelepítésben is lehet `Production`: a tesztjogosultságot a külön `Deployment__Environment=test` beállítás jelenti.
 
-Minden új Cloud Run-revízió (`K_REVISION`) első indulása alaphelyzetbe állítja a teszt alkalmazásadatait, majd létrehozza a 12 felhasználót, a 354 ingatlant, a 352 keresést, a kezdő krediteket és az aktív profilokat. Az előző tesztállapot összes felhasználója — a kézzel regisztrált fiókok is —, saját hirdetése, keresése, döntése, párosítása, üzenete, jelentése és kreditmozgása törlődik. Így az új telepítés után a korábban végighúzott minták helyett újra végigpróbálható alapállapot fogad.
+Minden új Cloud Run-revízió (`K_REVISION`) első indulása alaphelyzetbe állítja a teszt alkalmazásadatait, majd létrehozza a 14 felhasználót, a 355 ingatlant, a 353 keresést, a kezdő krediteket és az aktív profilokat. Az előző tesztállapot összes felhasználója — a kézzel regisztrált fiókok is —, saját hirdetése, keresése, döntése, párosítása, üzenete, jelentése és kreditmozgása törlődik. Így az új telepítés után a korábban végighúzott minták helyett újra végigpróbálható alapállapot fogad.
 
 Az adatbáziszár és a revíziók feltöltési előzménye gondoskodik arról, hogy több párhuzamosan induló példány is csak egyszer hajtsa végre ezt egy új revízióhoz. Az azonos revízió hidegindítása vagy újraindítása nem állítja vissza a tesztelés közbeni módosításokat. Egy korábban már feltöltött régi revízió újraindulása sem törli az újabb revízióval létrejött adatokat. A séma és a feltöltési előzmények megmaradnak; a folyamat az alkalmazás tesztadatait kezeli.
 
@@ -280,3 +282,9 @@ Az infrastruktúra bootstrapjét akkor kell ismét futtatni, ha az előkészít�
 | Az oldal saját domainen nem érhető el | Először a telepítő által kiírt `web.app` címet ellenőrizd, majd a Firebase-ben megadott domain- és DNS-állapotot. |
 
 Az éles üzemhez szükséges megerősített fiókkezelés, fizetési ellenőrzés és üzemeltetési eljárások külön feladatok. A tesztkörnyezet telepítése ezek elkészültét nem állítja.
+
+### Egyszerű, ismételhető visszajelzés-próba
+
+A két külön fiók ugyanazt a `OtthonraDemo2026!` jelszót használja. A kereső fiókban az újraindító gomb után az első ingatlan elutasítása rögtön felhozza a nyolcgombos kérdést. Az eladó fiókban a Statisztikák és visszajelzések oldal mutatja a beküldött választ; onnan is újraindítható a próba. A 10 válaszos csomag valódi tesztkredit-könyveléssel készül: 100 kezdő kreditből 10 levonás, 90 maradék. A visszautasított választ a rendes végpont kezeli, a normál felhasználók ritkítása változatlan.
+
+Az újraindító útvonal kizárólag explicit teszttelepítésnél és beágyazott tesztfeltöltésnél létezik. Csak a két kijelölt fiók használhatja; normál éles környezetben a végpont hiányzik, akkor is, ha a feltöltési jelző véletlenül be van kapcsolva. Az újraindítás a próba saját csomagját/párját és hozzájuk tartozó könyvelését kezeli, mások számláit és eseményeit megőrzi.

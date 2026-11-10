@@ -67,7 +67,8 @@ public sealed class LikeRefundService(IServiceScopeFactory scopes, TimeProvider 
         var search = (await db.SearchRequests.FromSqlInterpolated($"SELECT * FROM `SearchRequests` WHERE `Id` = {candidate.SearchRequestId} FOR UPDATE")
             .ToListAsync(cancellationToken)).SingleOrDefault();
         if (property is null || search is null) return false;
-        var original = await db.Decisions.SingleAsync(decision => decision.Id == decisionId, cancellationToken);
+        var original = await db.Decisions.SingleOrDefaultAsync(decision => decision.Id == decisionId, cancellationToken);
+        if (original is null) return false; // A scoped test reset already removed this decision.
         var repliedAt = await db.Decisions.AsNoTracking().Where(reply => reply.PropertyId == original.PropertyId
                 && reply.SearchRequestId == original.SearchRequestId && reply.ActorKind != original.ActorKind)
             .Select(reply => (DateTime?)reply.CreatedAt).SingleOrDefaultAsync(cancellationToken);

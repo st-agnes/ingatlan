@@ -2,12 +2,12 @@
 import {mkdir, readFile, writeFile} from 'node:fs/promises';
 import {dirname, resolve} from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
-import {DEMO_PASSWORD, DEMO_USERS, DEMO_FIXTURES} from './demo-data.mjs';
+import {DEMO_PASSWORD, DEMO_USERS, DEMO_FIXTURES, DEMO_FEEDBACK_SCENARIOS} from './demo-data.mjs';
 
-export const TEST_FIXTURE_VERSION = '20261109-test-fixtures-v3';
+export const TEST_FIXTURE_VERSION = '20261110-test-fixtures-v4';
 export const TEST_FIXTURE_PATH = fileURLToPath(new URL('../../backend/Otthonra.Api/Data/test-fixtures.json', import.meta.url));
 export function renderTestFixtureCatalog() {
-  return JSON.stringify({version:TEST_FIXTURE_VERSION, password:DEMO_PASSWORD, users:DEMO_USERS, fixtures:DEMO_FIXTURES}, null, 2) + '\n';
+  return JSON.stringify({version:TEST_FIXTURE_VERSION, password:DEMO_PASSWORD, users:DEMO_USERS, fixtures:DEMO_FIXTURES, feedbackScenarios:DEMO_FEEDBACK_SCENARIOS}, null, 2) + '\n';
 }
 export async function exportTestFixtureCatalog({output=TEST_FIXTURE_PATH, check=false}={}) {
   const expected = renderTestFixtureCatalog();
