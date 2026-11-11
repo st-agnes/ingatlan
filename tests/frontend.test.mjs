@@ -28,10 +28,10 @@ class Element {
   this.style={};this.handlers={};this.scrollHeight=500;this.scrollTop=0;this.validationMessage='';this.reportedValidity=0;
   this.classList={toggle:(name,on)=>{const classes=new Set(this.className.split(' ').filter(Boolean));if(on??!classes.has(name))classes.add(name);else classes.delete(name);this.className=[...classes].join(' ');},remove:name=>this.classList.toggle(name,false),add:name=>this.classList.toggle(name,true),contains:name=>this.className.split(' ').includes(name)};
  }
- set innerHTML(value){this._innerHTML=value;if(['app','modal-root'].includes(this.id)){for(const id of this.doc.elements.keys())if(!['app','modal-root','toast'].includes(id))this.doc.elements.delete(id);}}
+ set innerHTML(value){this._innerHTML=value;if(['app','modal-root'].includes(this.id)){for(const id of this.doc.elements.keys())if(!['app','modal-root','toast'].includes(id))this.doc.elements.delete(id);}if(this.id==='modal-root'){const markup=value.match(/<[^>]*class="modal(?:\s[^"]*)?"[^>]*>/)?.[0];this.doc.currentModal=markup?new Element('__modal-'+(++this.doc.modalSerial),this.doc,markup):null;if(this.doc.currentModal)this.doc.currentModal.isModal=true;}}
  get innerHTML(){return this._innerHTML;}
  addEventListener(type,handler){const prior=this.handlers[type];this.handlers[type]=prior?event=>{prior(event);return handler(event);}:handler;}
- querySelectorAll(selector){assert.equal(selector,'input[type="number"]');return [...this.doc.html.matchAll(/<input\b[^>]*\btype="number"[^>]*>/g)].map(match=>this.doc.getElementById(match[0].match(/\bid="([^"]*)"/)[1])).filter(input=>this.contains(input));}
+ querySelectorAll(selector){return this.doc.selectWithin(this,selector);}
  setAttribute(name,value){this.attributes[name]=String(value);if(name==='hidden')this.hidden=true;}
  getAttribute(name){return this.attributes[name]??null;}
  removeAttribute(name){delete this.attributes[name];if(name==='hidden')this.hidden=false;}
@@ -52,17 +52,27 @@ class Element {
   return !(minlength!==null&&value.length<Number(minlength)||maxlength!==null&&value.length>Number(maxlength));
  }
  reportValidity(){this.reportedValidity++;return this.checkValidity();}
- focus(){this.doc.activeElement=this;}
+ focus(){this.doc.activeElement=this;this.doc.focusEvents.push(this.id);}
+ get offsetParent(){if(this.type==='hidden')return null;for(let node=this;node;node=node.parentElement)if(node.hidden||node.classList?.contains('hidden')||node.style?.display==='none')return null;return this.doc.getElementById('modal-root');}
  scrollIntoView(){}
  get parentElement(){return this.doc.parentOf(this.id);}
  contains(node){for(let current=node;current;current=current.parentElement){if(current===this)return true;}return false;}
 }
 
 class Document {
- constructor(){this.elements=new Map();this.handlers={};this.listeners=new Map();for(const id of ['app','modal-root','toast'])this.elements.set(id,new Element(id,this));}
+ constructor(){this.elements=new Map();this.handlers={};this.listeners=new Map();this.currentModal=null;this.modalSerial=0;this.focusEvents=[];for(const id of ['app','modal-root','toast'])this.elements.set(id,new Element(id,this));}
  get html(){return [...this.elements.entries()].filter(([id])=>['app','modal-root'].includes(id)).map(([,e])=>e.innerHTML).join('');}
  getElementById(id){if(this.elements.has(id))return this.elements.get(id);const markup=this.html.match(new RegExp(`<[^>]*\\bid=["']${id}["'][^>]*>`))?.[0];if(!markup)return null;const full=markup.startsWith('<select')||markup.startsWith('<textarea')?this.html.match(new RegExp(`<${markup.startsWith('<select')?'select':'textarea'}[^>]*\\bid=["']${id}["'][^>]*>[\\s\\S]*?</${markup.startsWith('<select')?'select':'textarea'}>`))?.[0]||markup:markup;const element=new Element(id,this,full);this.elements.set(id,element);return element;}
- querySelector(selector){if(selector==='.modal')return this.elements.get('modal-root').innerHTML.includes('class="modal ')?this.elements.get('modal-root'):null;if(selector.startsWith('#'))return this.getElementById(selector.slice(1).split(' ')[0]);return null;}
+ querySelector(selector){if(selector==='.modal')return this.currentModal;if(selector.startsWith('.modal '))return this.currentModal?.querySelectorAll(selector)[0]||null;if(selector.startsWith('#'))return this.getElementById(selector.slice(1).split(' ')[0]);return null;}
+ selectWithin(root,selector){
+  const selectors=selector.split(',').map(value=>value.trim().replace(/^\.modal\s+/,'')),markup=root.isModal?this.elements.get('modal-root').innerHTML:this.html,selected=[];
+  for(const match of markup.matchAll(/<([a-z][\w-]*)\b[^>]*\bid="([^"]+)"[^>]*>/gi)){
+   const element=this.getElementById(match[2]);if(!element||!root.isModal&&!root.contains(element))continue;
+   if(selectors.some(value=>{const tag=value.match(/^[a-z]+/)?.[0];if(tag&&tag!==match[1].toLowerCase())return false;if(value.includes(':not(.modal-close)')&&element.classList.contains('modal-close'))return false;const type=value.match(/\[type="([^"]+)"\]/)?.[1];return !type||element.type===type;}))selected.push(element);
+  }
+  return selected;
+ }
+
  parentOf(id){const stack=[],voidTags=new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);for(const token of this.html.matchAll(/<\/?([a-z][\w-]*)\b[^>]*>/gi)){const tag=token[1].toLowerCase(),markup=token[0];if(markup.startsWith('</')){const index=stack.findLastIndex(item=>item.tag===tag);if(index>=0)stack.length=index;continue;}const currentId=markup.match(/\bid=["']([^"']+)["']/)?.[1];if(currentId===id){const parent=stack.findLast(item=>item.id);return parent?this.getElementById(parent.id):null;}if(!voidTags.has(tag)&&!markup.endsWith('/>'))stack.push({tag,id:currentId});}return null;}
  addEventListener(type,handler,options){const capture=typeof options==='boolean'?options:!!options?.capture,list=this.listeners.get(type)||[];if(!list.some(item=>item.handler===handler&&item.capture===capture))list.push({handler,capture});this.listeners.set(type,list);this.handlers[type]=event=>{const pending=[...(this.listeners.get(type)||[])].sort((a,b)=>Number(b.capture)-Number(a.capture)).map(item=>item.handler(event)).filter(value=>value?.then);return pending.length?Promise.all(pending):undefined;};}
  removeEventListener(type,handler,options){const capture=typeof options==='boolean'?options:!!options?.capture;this.listeners.set(type,(this.listeners.get(type)||[]).filter(item=>item.handler!==handler||item.capture!==capture));}
@@ -73,10 +83,10 @@ async function setup(options={}){
  const apiModel=Object.assign({...demoModel},{mode:'api'},options.apiOverrides||{});
  if(options.apiOverrides?.feed&&!options.apiOverrides?.recommendations)apiModel.recommendations=async request=>{const items=await apiModel.feed(request);return {items,stage:items.length?'exact':'empty'};};
  let selected=options.hosted?(options.authenticated?apiModel:null):demoModel;
- const connected=[],disconnected=[],landingCalls=[],windowEvents={},regionStorage=new Map(Object.entries(options.regionStorage||{}));
+ const timers=[],connected=[],disconnected=[],landingCalls=[],windowEvents={},regionStorage=new Map(Object.entries(options.regionStorage||{}));
  let currentHash=options.hash??(options.hosted&&!options.authenticated?'#login':'');
  const ctx=vm.createContext({
-  document,console,Intl,Date,Promise,URLSearchParams,IntersectionObserver:options.IntersectionObserver,setTimeout:()=>0,clearTimeout:()=>{},
+  document,console,Intl,Date,Promise,URLSearchParams,IntersectionObserver:options.IntersectionObserver,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
   location:{get hash(){return currentHash;},set hash(value){currentHash=value?(value.startsWith('#')?value:'#'+value):'';},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},addEventListener:(type,handler)=>{windowEvents[type]=handler;}},
   OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:options.environment||'test'}:{mode:'demo',environment:'local'},
   searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...accountHelpers,...feedbackHelpers,
@@ -92,7 +102,7 @@ async function setup(options={}){
  const body=source.replace(/^import[^\n]+\n/gm,'');
  await vm.runInContext(`(async()=>{${body}\nglobalThis.ui={render,changePage,openEditor,openDetails,openModal,closeModal,openActivation,matchingTags,openFeedbackPackages,openFeedbackPurchase,openFeedbackPrompt,propertyInsightsPage,getFeedbackPrompt:()=>feedbackPrompt,getModelState:()=>state};})()`,ctx);
  const click=async(dataset)=>{const target={dataset,closest:()=>target};await document.handlers.click({target,preventDefault(){}})};
- return{model:options.hosted?apiModel:demoModel,document,ctx,click,ui:ctx.ui,connected,disconnected,getSelectedModel:()=>selected,landingCalls,regionStorage,windowEvents};
+ return{model:options.hosted?apiModel:demoModel,document,ctx,click,ui:ctx.ui,connected,disconnected,getSelectedModel:()=>selected,landingCalls,regionStorage,windowEvents,timers,runNextTimer:()=>timers.shift()?.callback(),runTimers:()=>{for(const timer of timers.splice(0))timer.callback();}};
 }
 const settle=async()=>{for(let i=0;i<16;i++)await Promise.resolve();};
 
@@ -1053,4 +1063,19 @@ test('editing a saved holiday-home property or search preserves its existing typ
   assert.equal(collection.find(item=>item.id===id).type,'Nyaraló','Saving unrelated edits must not silently convert a holiday home into a flat');
   assert.equal(t.document.getElementById('modal-root').innerHTML,'');
  }
+});
+
+
+test('modal focus chooses the first visible enabled field before progress buttons and ignores closed or replaced modal timers',async()=>{
+ const t=await setup({captureTimers:true});t.ui.openEditor('search');
+ assert.equal(t.document.querySelector('.modal input,.modal select,.modal button,.modal textarea').id,'editor-step-button-0','Selector unions follow DOM order, so the original mixed query would focus a progress button');
+ const before=t.document.focusEvents.length;t.runTimers();assert.equal(t.document.activeElement.id,'f-title');assert.deepEqual(t.document.focusEvents.slice(before),['f-title'],'Opening focus moves once directly to the first field');
+ t.ui.openModal('<div id="hidden-fields" hidden><input id="hidden-field"></div><input id="disabled-field" disabled><textarea id="visible-field"></textarea><button id="visible-action">Folytatás</button>');
+ t.runTimers();assert.equal(t.document.activeElement.id,'visible-field','Hidden ancestors and disabled controls cannot receive opening focus');
+ t.ui.openModal('<button id="disabled-action" disabled>Nem</button><button id="hidden-action" hidden>Nem</button><button id="fallback-action">Rendben</button>');
+ t.runTimers();assert.equal(t.document.activeElement.id,'fallback-action','An action-only dialog focuses its first enabled visible action');
+ t.ui.openModal('<input id="replaced-field">');const replaced=t.document.querySelector('.modal');t.ui.openModal('<input id="replacement-field">');assert.notEqual(t.document.querySelector('.modal'),replaced);
+ const replacementStart=t.document.focusEvents.length;t.runNextTimer();assert.equal(t.document.focusEvents.length,replacementStart,'The replaced dialog timer must not move focus into the new dialog');
+ t.runNextTimer();assert.equal(t.document.activeElement.id,'replacement-field');assert.deepEqual(t.document.focusEvents.slice(replacementStart),['replacement-field']);
+ t.ui.openModal('<input id="closed-field">');t.ui.closeModal();const closedStart=t.document.focusEvents.length;t.runTimers();assert.equal(t.document.focusEvents.length,closedStart,'A closed dialog timer cannot steal focus');
 });
