@@ -64,6 +64,9 @@ async function verifyViewport(browser, viewport) {
     await openSearch(page, interact);
     const input = page.locator('#location-input');
     const list = page.locator('#location-options');
+    assert.equal(await input.getAttribute('type'), 'search');
+    assert.equal(await input.getAttribute('role'), 'combobox');
+    assert.equal(await input.getAttribute('autocomplete'), 'off');
 
     await input.scrollIntoViewIfNeeded();
     await input.fill('Deb');

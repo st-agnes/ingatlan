@@ -2,7 +2,7 @@
 
 Magyar nyelvű ingatlanpárosító alkalmazás. Egy felhasználó több ingatlant és több keresési igényt kezelhet, majd egyet aktiválva fedezheti fel a hozzá illő ajánlásokat. Magánszemélyként a keresői kedvelés ingyenes, ingatlanközvetítőként 1 kredit; az eladói ajánlás mindkét fióktípusnál 2 kredit. Kölcsönös érdeklődéskor megnyílik az üzenetküldés és láthatóvá válnak az elérhetőségek. Ingatlanközvetítőnek mindkét szerepben csak magánszemély ajánlható; magánszemély mindkét fióktípust láthatja.
 
-Az eladó ingatlanok és keresési igények felvétele, illetve szerkesztése öt témakörre bontott űrlapon történik. Az állapotsoron követhető az előrehaladás; a korábbi lépésekre az addigi adatok megtartásával lehet visszatérni. Felfedezéskor a döntési gombok görgetés közben is a képernyőn maradnak.
+Az eladó ingatlanok és keresési igények felvétele, illetve szerkesztése öt témakörre bontott űrlapon történik. Az állapotsoron követhető az előrehaladás; a korábbi lépésekre az addigi adatok megtartásával lehet visszatérni. Felfedezéskor a döntési gombok görgetés közben is a képernyőn maradnak. A Szűrők gomb először az aktív keresés vagy ingatlan beállításainak témakörös összesítőjét mutatja; innen a Szerkesztés gomb nyitja meg az űrlapot.
 
 A visszajelzés-csomagok a vásárlástól számított két hétig folyamatosan működnek, szüneteltetés nélkül. A lejáratkor hiányzó válaszok után továbbra is kreditet írunk jóvá.
 

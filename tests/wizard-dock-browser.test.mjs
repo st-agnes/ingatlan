@@ -33,6 +33,8 @@ async function verifyProgress(page,kind,index){
  assert.equal(await page.locator(`#editor-step-button-${index}`).getAttribute('aria-current'),'step');
  assert.equal(await page.locator('.editor-step:visible').count(),1,'Only one topic is displayed at a time');
  assert.equal(await page.locator(`#editor-step-${index}`).isVisible(),true);
+ assert.equal(await page.locator('.editor-progress small,[id^="editor-state-"]').count(),0,'Topic names must not have redundant current/completed/upcoming captions');
+ assert.doesNotMatch(await page.locator('.editor-progress').innerText(),/Kitöltve|Aktuális|Hátravan/);
  const geometry=await page.locator('.entity-wizard').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth}));
  assert.ok(geometry.scroll<=geometry.width+1,'Named progress and fields must fit without horizontal scrolling');
 }
@@ -42,6 +44,7 @@ async function createWizard(page,interact,kind,viewport){
  const before=await state(page),title=`Lépésenként ${kind} ${viewport.name}`;
  await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));
  await page.waitForFunction(()=>document.activeElement?.id==='f-title');await verifyProgress(page,kind,0);
+ assert.equal(await page.locator('#location-input').getAttribute('type'),'search');assert.equal(await page.locator('#location-input').getAttribute('role'),'combobox');assert.equal(await page.locator('#location-input').getAttribute('autocomplete'),'off');assert.equal(await page.locator('.entity-wizard input[type="search"]').count(),1,'Only the location query uses search semantics');
  assert.equal(await page.locator('#editor-save').isVisible(),false,'Saving is offered only after all topic screens');
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,0);
  assert.equal((await state(page))[kind==='property'?'properties':'searches'].length,before[kind==='property'?'properties':'searches'].length,'An invalid next action must not create an entity');
@@ -51,6 +54,7 @@ async function createWizard(page,interact,kind,viewport){
  if(kind==='property')await page.locator('#f-type').selectOption('Ház');
  await page.evaluate(()=>{globalThis.wizardOriginalTitle=document.getElementById('f-title');});
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,1);
+ await alignedBounds(page,kind,viewport);
  assert.equal(await page.locator('#editor-step-button-0').getAttribute('data-state'),'completed');
  if(kind==='property'){
   await page.locator('#f-price').fill('95.5');await page.locator('#f-area').fill('86.5');await page.locator('#f-wholeRooms').fill('3');await page.locator('#f-halfRooms').fill('1');
@@ -109,6 +113,98 @@ async function createWizard(page,interact,kind,viewport){
  const edited=await state(page);assert.equal(edited[kind==='property'?'properties':'searches'].length,after[kind==='property'?'properties':'searches'].length);assert.equal(edited[kind==='property'?'properties':'searches'].find(item=>item.id===saved.id).description,description+' szerkesztve');assert.equal(await page.locator('.search-created-actions').count(),0,'Editing must not reopen the new-search activation prompt');
 }
 
+
+async function boundGeometry(page){
+ return page.locator('#editor-step-1 .form-row').evaluateAll(rows=>rows.map(row=>[...row.querySelectorAll('.field')].map(field=>{
+  const input=field.querySelector('input,select,textarea'),label=field.querySelector('label');
+  if(!input||!label)return null;const box=input.getBoundingClientRect(),caption=label.getBoundingClientRect();
+  return{id:input.id,left:box.left,right:box.right,top:box.top,bottom:box.bottom,labelHeight:caption.height};
+ }).filter(Boolean)));
+}
+async function alignedBounds(page,kind,viewport){
+ const prove=rows=>{let pairs=0;for(const row of rows){if(row.length!==2||row[0].right>row[1].left+1)continue;pairs++;assert.ok(Math.abs(row[0].top-row[1].top)<=1,`${kind}: paired ${row[0].id}/${row[1].id} input tops must align when labels wrap`);assert.ok(Math.abs(row[0].bottom-row[1].bottom)<=1,'Paired input bottoms must stay aligned');}assert.ok(pairs>0,'The fixture must retain actual side-by-side inputs');};
+ let rows=await boundGeometry(page);prove(rows);
+ if(kind==='search'&&viewport.name==='mobile'){
+  let pair=rows.find(row=>row.some(field=>field.id==='f-minPrice'));
+  if(Math.abs(pair[0].labelHeight-pair[1].labelHeight)<=1){
+   // A narrow, real viewport makes the existing optional-label wording wrap.
+   await page.setViewportSize({width:320,height:viewport.height});rows=await boundGeometry(page);prove(rows);pair=rows.find(row=>row.some(field=>field.id==='f-minPrice'));
+  }
+  assert.ok(Math.abs(pair[0].labelHeight-pair[1].labelHeight)>1,'The regression must exercise naturally unequal label heights, without changing the labels or CSS');
+  await page.setViewportSize({width:viewport.width,height:viewport.height});prove(await boundGeometry(page));
+ }
+}
+const coreState=value=>({active:value.active,credits:value.credits,properties:value.properties,searches:value.searches,decisions:value.decisions});
+async function summaryValue(page,key){const row=page.locator(`.criteria-summary-row[data-summary-field="${key}"]`);assert.equal(await row.count(),1,`Configured ${key} must appear once in the summary`);return row.locator('dd').innerText();}
+async function summaryIncludes(page,key,...values){const text=await summaryValue(page,key);for(const value of values){if(value instanceof RegExp)assert.match(text,value,`${key}: ${text}`);else assert.ok(text.includes(value),`${key} must contain ${value}; received ${text}`);}}
+async function openSummary(page,interact,kind,id){
+ await interact(page.locator('.filter-button'));const summary=page.locator('.criteria-summary');await summary.waitFor();
+ assert.equal(await summary.getAttribute('data-kind'),kind);assert.equal(await summary.getAttribute('data-id'),id);
+ assert.equal(await page.locator('#entity-form').count(),0,'The filter button must show a read-only overview before editing');
+ assert.equal(await summary.locator('input,select,textarea').count(),0,'Summary values must be read-only');
+ await page.waitForFunction(()=>document.activeElement?.id==='criteria-summary-heading');
+ const geometry=await summary.evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth}));assert.ok(geometry.scroll<=geometry.width+1,'The complete summary must fit the viewport horizontally');
+ const edit=page.locator('.criteria-summary-actions [data-action="edit-criteria"]');assert.equal(await edit.innerText(),'Szerkesztés');
+ for(const fraction of [0,.5,1]){
+  await page.locator('.modal').evaluate(async(element,fraction)=>{element.scrollTo({top:(element.scrollHeight-element.clientHeight)*fraction,behavior:'instant'});await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));},fraction);
+  const proof=await edit.evaluate(element=>{const box=element.getBoundingClientRect(),top=document.elementFromPoint(box.x+box.width/2,box.y+box.height/2);return{top:box.top,bottom:box.bottom,viewport:innerHeight,hit:element===top||element.contains(top)};});
+  assert.ok(proof.top>=0&&proof.bottom<=proof.viewport+1,'Explicit editing must be reachable at every summary scroll position');assert.equal(proof.hit,true,'Summary editing must be unobstructed');
+ }
+ return edit;
+}
+async function verifyCriteriaSummary(page,interact,kind,viewport){
+ await fresh(page,kind);
+ await page.evaluate(async kind=>{
+  const {STORAGE_KEY}=await import('/model.js'),raw=JSON.parse(localStorage.getItem(STORAGE_KEY));
+  if(kind==='property')Object.assign(raw.properties.find(item=>item.id==='own-p1'),{
+   type:'Lakás',title:'Összesített tesztotthon',locationId:'district:Budapest:5',city:'Budapest',district:'V.',neighborhood:'Belváros',address:'Teszt utca 12.',
+   price:95.5,area:72.5,lotArea:null,rooms:3.5,wholeRooms:3,halfRooms:1,floor:0,condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Panorámás',ceilingHeight:'3 m feletti',
+   heatingType:'Hőszivattyú',secondaryHeatingType:'Klíma',insulated:false,energyRating:'BB',airConditioning:true,solarPanels:false,parkingTypes:['Udvari beálló','Garázs'],parkingType:'Udvari beálló, Garázs',balcony:false,elevator:true,
+   description:'Eladói összesítő <b>szöveg</b>',images:['https://images.unsplash.com/photo-1600585154340-be6161a56a0c','https://images.unsplash.com/photo-1600585154340-be6161a56a0c?view=2']
+  });
+  else Object.assign(raw.searches.find(item=>item.id==='own-s1'),{
+   type:'Lakás',title:'Összesített tesztkeresés',locationIds:['city:Debrecen','city:Hajdúszoboszló','district:Budapest:5'],city:'Debrecen',districts:['V.'],
+   minPrice:0,maxPrice:120.5,minArea:0,maxArea:95.5,minRooms:0,maxRooms:4.5,conditions:['Átlagos','Jó','Új/felújított'],buildings:['Tégla','Panel'],constructionAges:['10 évnél fiatalabb','10–30 év közötti'],views:['Kertre néző','Panorámás'],heatingTypes:['Nincs fűtés','Hőszivattyú'],ceilingHeight:'3 m alatti',floors:[-1,0,11],balcony:true,elevator:false,moveIn:'3 hónapon belül',financing:'Teszt saját forrás és hitel',description:'Keresői összesítő <b>szöveg</b>'
+  });
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ },kind);
+ await page.reload({waitUntil:'domcontentloaded'});await page.locator('.filter-button').waitFor();
+ const before=await state(page),id=kind==='property'?'own-p1':'own-s1',edit=await openSummary(page,interact,kind,id);
+ await summaryIncludes(page,'type','Lakás');
+ if(kind==='property'){
+  await summaryIncludes(page,'locationId','Budapest','V.');await summaryIncludes(page,'neighborhood','Belváros');await summaryIncludes(page,'address','Teszt utca 12.');
+  await summaryIncludes(page,'price',/95[,.]5/,'M Ft');await summaryIncludes(page,'area',/72[,.]5/,'m²');await summaryIncludes(page,'rooms','3','1','fél');await summaryIncludes(page,'floor','Földszint');
+  for(const [key,value]of Object.entries({condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Panorámás',ceilingHeight:'3 m feletti',heatingType:'Hőszivattyú',secondaryHeatingType:'Klíma',insulated:'Nincs',energyRating:'BB',airConditioning:'Van',solarPanels:'Nincs',balcony:'Nincs',elevator:'Van'}))await summaryIncludes(page,key,value);
+  await summaryIncludes(page,'parkingTypes','Udvari beálló','Garázs');assert.equal(await page.locator('.criteria-summary-row[data-summary-field="images"] a').count(),2);
+ }else{
+  await summaryIncludes(page,'locationIds','Debrecen','Hajdúszoboszló','Budapest','V.');
+  for(const [key,value,unit]of [['minPrice',/^0\s*M Ft$/,'M Ft'],['maxPrice',/120[,.]5/,'M Ft'],['minArea',/^0\s*m²$/,'m²'],['maxArea',/95[,.]5/,'m²'],['minRooms',/^0\s*szoba$/,'szoba'],['maxRooms',/4[,.]5/,'szoba']])await summaryIncludes(page,key,value,unit);
+  await summaryIncludes(page,'conditions','Átlagos','Jó','Új/felújított');await summaryIncludes(page,'buildings','Tégla','Panel');await summaryIncludes(page,'constructionAges','10 évnél fiatalabb','10–30 év közötti');await summaryIncludes(page,'views','Kertre néző','Panorámás');await summaryIncludes(page,'heatingTypes','Nincs fűtés','Hőszivattyú');await summaryIncludes(page,'ceilingHeight','3 m alatti');await summaryIncludes(page,'floors','Szuterén','Földszint','11');await summaryIncludes(page,'balcony','Szükséges');await summaryIncludes(page,'elevator','Nem feltétel');await summaryIncludes(page,'moveIn','3 hónapon belül');await summaryIncludes(page,'financing','Teszt saját forrás és hitel');
+ }
+ await summaryIncludes(page,'description',`${kind==='property'?'Eladói':'Keresői'} összesítő <b>szöveg</b>`);assert.equal(await page.locator('.criteria-summary b,.criteria-summary script').count(),0,'Summary values must be escaped as text');
+ assert.deepEqual(coreState(await state(page)),coreState(before),'Opening and scrolling an overview cannot save or bill anything');
+ await interact(edit);await page.locator('#entity-form').waitFor();await page.waitForFunction(()=>document.activeElement?.id==='f-title');await verifyProgress(page,kind,0);
+ assert.equal(await page.locator('#f-title').inputValue(),before[kind==='property'?'properties':'searches'].find(item=>item.id===id).title);
+ assert.equal(await page.locator('#location-input').getAttribute('type'),'search');assert.equal(await page.locator('.entity-wizard input[type="search"]').count(),1);
+ await editorStep(page,1,interact);await alignedBounds(page,kind,viewport);
+ await editorStep(page,4,interact);await page.locator('#f-description').fill(`Összesítőből szerkesztve ${kind} ${viewport.name}`);await editorSave(page,interact);await page.locator('#entity-form').waitFor({state:'detached'});
+ const after=await state(page),saved=after[kind==='property'?'properties':'searches'].find(item=>item.id===id);assert.equal(saved.description,`Összesítőből szerkesztve ${kind} ${viewport.name}`);assert.deepEqual(after.active,before.active);assert.equal(after.credits,before.credits);
+ assert.equal(kind==='property'?saved.address:saved.financing,kind==='property'?'Teszt utca 12.':'Teszt saját forrás és hitel','Uneditable legacy values shown in the overview must survive unrelated edits');
+ if(kind==='search'){
+  const staleEdit=await openSummary(page,interact,kind,id);
+  await page.evaluate(async()=>{(await import('/model.js')).model.activate('search','own-s2');});
+  const switched=await state(page);await interact(staleEdit);await page.locator('.criteria-summary').waitFor({state:'detached'});
+  assert.equal(await page.locator('#entity-form').count(),0,'A stale overview cannot open an editor for a different active entity');
+  assert.deepEqual(coreState(await state(page)),coreState(switched),'Rejecting stale editing cannot save or bill anything');
+  await openSummary(page,interact,'search','own-s2');await interact(page.locator('.criteria-summary-actions [data-action="close"]'));
+ }
+ if(kind==='property'){
+  await page.evaluate(async()=>{const {STORAGE_KEY}=await import('/model.js'),raw=JSON.parse(localStorage.getItem(STORAGE_KEY));Object.assign(raw.properties.find(item=>item.id==='own-p1'),{type:'Ház',lotArea:640.5,floor:null,balcony:false,elevator:false});localStorage.setItem(STORAGE_KEY,JSON.stringify(raw));});
+  await page.reload({waitUntil:'domcontentloaded'});await page.locator('.filter-button').waitFor();await openSummary(page,interact,kind,id);await summaryIncludes(page,'lotArea',/640[,.]5/,'m²');await interact(page.locator('.criteria-summary-actions [data-action="close"]'));
+ }
+ console.log(`Criteria overview ${kind} ${viewport.name}: all configured values, zero/false distinctions, read-only state, explicit editing, preserved legacy values and aligned bounds passed.`);
+}
+
 async function assertReachable(page){
  const dock=page.locator('.discovery-decision-dock');assert.equal(await dock.isVisible(),true);
  const details=await dock.evaluate(element=>({position:getComputedStyle(element).position,width:element.clientWidth,scroll:element.scrollWidth}));assert.equal(details.position,'fixed');assert.ok(details.scroll<=details.width+1);
@@ -154,6 +250,7 @@ async function verify(browser,viewport){
  const page=await context.newPage();page.setDefaultTimeout(10000);page.setDefaultNavigationTimeout(20000);const errors=[];page.on('pageerror',error=>errors.push(error.message));const interact=locator=>viewport.touch?locator.tap():locator.click();
  try{
   await fresh(page);
+  for(const kind of ['property','search'])await verifyCriteriaSummary(page,interact,kind,viewport);
   for(const kind of ['property','search'])await createWizard(page,interact,kind,viewport);
   for(const kind of ['search','property'])await verifyDock(page,interact,kind,viewport);
   assert.deepEqual(errors,[]);console.log(`Wizard ${viewport.name}: all five named topics, validation, backward edits without draft loss, nullable bounds, optional choices, one final save and edits passed.`);

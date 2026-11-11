@@ -74,7 +74,7 @@ async function verify(browser,viewport,kind){
   await page.reload({waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:'Elfogytak a tökéletes egyezések.',exact:true}).waitFor();assert.equal(await page.locator('#candidate').count(),0,'Consent does not survive a new browser session view');
   await interact(page.locator('[data-action="approximate-accept"]'));await page.locator('#candidate').waitFor();
   if(kind==='search'){
-   await interact(page.locator('[data-action="edit-active"]').first());await page.locator('#entity-form').waitFor();await (await editorField(page,'#f-maxPrice',interact)).fill('81');await editorSave(page,interact);
+   await interact(page.locator('.filter-button'));await page.locator('.criteria-summary').waitFor();await interact(page.locator('.criteria-summary-actions [data-action="edit-criteria"]'));await page.locator('#entity-form').waitFor();await (await editorField(page,'#f-maxPrice',interact)).fill('81');await editorSave(page,interact);
    await page.getByRole('heading',{name:'Elfogytak a tökéletes egyezések.',exact:true}).waitFor();assert.equal(await page.locator('#candidate').count(),0,'Editing criteria resets consent');
    // Keep this zero-score fixture independent of the floor criterion used above
    // to exercise wrapping: its partial floor credit would otherwise yield 5%.
