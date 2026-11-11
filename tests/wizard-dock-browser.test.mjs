@@ -139,7 +139,7 @@ async function verifyDock(page,interact,kind,viewport){
   await interact(page.locator('.mobile-menu'));assert.equal(await page.locator('.discovery-decision-dock').isVisible(),false,'The mobile navigation must own its click targets');
   await page.setViewportSize({width:800,height:1100});await assertReachable(page);
   await page.setViewportSize({width:viewport.width,height:viewport.height});assert.equal(await page.locator('.discovery-decision-dock').isVisible(),false);
-  await interact(page.locator('.mobile-menu'));await assertReachable(page);
+  await interact(page.locator('.sidebar .nav-button[data-page="discover"]'));await assertReachable(page);
  }
  const before=await state(page);await interact(page.locator('.card-actions [data-action="pass"]'));await page.waitForFunction(async count=>(await import('/model.js')).model.getState().decisions.length===count+1,before.decisions.length);await page.locator('#candidate').waitFor();await assertReachable(page);
  const next=await state(page);await interact(page.locator('.card-actions [data-action="like"]'));await page.waitForFunction(async count=>(await import('/model.js')).model.getState().decisions.length===count+1,next.decisions.length);
