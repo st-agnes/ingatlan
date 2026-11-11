@@ -27,11 +27,11 @@ test('package purchases send one stable request ID and replay-safe response cred
  for(const key of ['',undefined,'not-a-uuid','00000000-0000-0000-0000-000000000000'])await assert.rejects(api.buyFeedbackPackage(propertyId,10,key),/vásárlási azonosító/);assert.equal(calls.length,2);
 });
 
-test('toggle and actual-card impression calls expose only their permitted fields',async()=>{
- const {api,calls}=setup({[`/api/properties/${propertyId}/feedback`]:{package:{...pack,enabled:false}},'/api/impressions':{recorded:true}});
- assert.equal((await api.setFeedbackEnabled(propertyId,false)).package.enabled,false);assert.equal(calls[0].method,'PUT');assert.deepEqual(JSON.parse(calls[0].body),{enabled:false});
- assert.deepEqual(await api.recordImpression(propertyId,searchId),{recorded:true});assert.deepEqual(JSON.parse(calls[1].body),{propertyId,searchRequestId:searchId});
- await assert.rejects(api.setFeedbackEnabled(propertyId,'true'),/beállítás/);await assert.rejects(api.recordImpression(propertyId,''),/azonosító/);assert.equal(calls.length,2);
+test('actual-card impressions expose only their permitted fields and no pause method exists',async()=>{
+ const {api,calls}=setup({'/api/impressions':{recorded:true}});
+ assert.equal(typeof api.setFeedbackEnabled,'undefined','The adapter cannot call a removed pause/resume API.');
+ assert.deepEqual(await api.recordImpression(propertyId,searchId),{recorded:true});assert.equal(calls[0].method,'POST');assert.deepEqual(JSON.parse(calls[0].body),{propertyId,searchRequestId:searchId});
+ await assert.rejects(api.recordImpression(propertyId,''),/azonosító/);assert.equal(calls.length,1);
 });
 
 test('pending and decision-returned prompts contain exactly the safe first name and eight one-click options',async()=>{

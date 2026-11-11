@@ -48,14 +48,17 @@ public class SellerFeedbackPolicyTests
     }
 
     [Fact]
-    public void PausingDoesNotExtendThePaidPeriodAndFinalizedRefundsStayClosed()
+    public void LegacyDisabledFlagsCannotPauseThePaidPeriodAndFinalizedRefundsStayClosed()
     {
         var package = Package(); package.Enabled = false;
         Assert.True(SellerFeedbackPolicy.IsPeriodActive(package, Start.AddDays(1)));
+        Assert.True(SellerFeedbackPolicy.Package(package, Start.AddDays(1)).Enabled);
+        Assert.Equal("active", SellerFeedbackPolicy.Package(package, Start.AddDays(1)).Status);
         Assert.Equal(Start.AddDays(14), SellerFeedbackPolicy.Package(package, Start.AddDays(1)).ExpiresAt);
         package.RefundedAt = Start.AddDays(14);
         Assert.False(SellerFeedbackPolicy.IsPeriodActive(package, Start.AddDays(20)));
         Assert.Equal("expired", SellerFeedbackPolicy.Package(package, Start.AddDays(20)).Status);
+        Assert.False(SellerFeedbackPolicy.Package(package, Start.AddDays(20)).Enabled);
     }
 
     [Theory]

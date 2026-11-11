@@ -18,7 +18,7 @@ async function save(f){await mkdir(dirname(fixturePath),{recursive:true});await 
 const active=(token,kind,id)=>api('/me/active',{token,method:'PUT',body:{kind,id}});
 const insight=(f,key='main',extra='')=>api(`/properties/${f.properties[key].id}/insights${extra}`,{token:f.tokens.seller});
 const purchase=(token,p,size,requestId=randomUUID(),status=200)=>api(`/properties/${p.id}/feedback-packages`,{token,method:'POST',body:{size,requestId},status});
-const toggle=(token,p,enabled,status=200)=>api(`/properties/${p.id}/feedback`,{token,method:'PUT',body:{enabled},status});
+const removedToggle=(token,p,enabled)=>api(`/properties/${p.id}/feedback`,{token,method:'PUT',body:{enabled},status:[404,405]});
 const answer=(token,id,reason,status=200)=>api(`/feedback/${id}`,{token,method:'POST',body:{reason},status});
 const pending=token=>api('/feedback/pending',{token});
 const decide=(token,p,s,liked=false,status=200)=>api('/decisions',{token,method:'POST',body:{propertyId:p.id,searchRequestId:s.id,liked},status});
@@ -98,10 +98,11 @@ if(mode==='--setup'){
  const replay=await purchase(f.tokens.seller,f.properties.main,10,f.requests.main);assert.equal(replay.charged,0);assert.equal(replay.package.id,f.packages.main.id);
  await purchase(f.tokens.seller,f.properties.main,20,f.requests.main,409);await purchase(f.tokens.seller,f.properties.plan20,10,f.requests.main,409);
  await Promise.all([purchase(f.tokens.seller,f.properties.main,10,randomUUID(),409),purchase(f.tokens.seller,f.properties.main,20,randomUUID(),409)]);
- await toggle(f.tokens.buyer,f.properties.main,false,404);await toggle(f.tokens.seller,f.properties.main,false);assert.equal((await insight(f)).activePackage.enabled,false);await toggle(f.tokens.seller,f.properties.main,true);
- await toggle(f.tokens.seller,f.properties.capacity,false);f.capacityDecisions=[];
+ const continuous=stable(await insight(f)),ownerCredits=(await api('/me',{token:f.tokens.seller})).credits;
+ await Promise.all([removedToggle(f.tokens.buyer,f.properties.main,false),removedToggle(f.tokens.seller,f.properties.main,false),removedToggle(f.tokens.seller,f.properties.main,true)]);
+ assert.deepEqual(stable(await insight(f)),continuous,'Removed pause/resume requests cannot change the active package, deadline or counts');assert.equal((await api('/me',{token:f.tokens.seller})).credits,ownerCredits,'Removed pause requests cannot alter credits or trigger a refund');
+ f.capacityDecisions=[];
  for(let i=0;i<9;i++){const row=await passFresh(f,f.properties.capacity,`Kapacitási előzmény ${i}`);assert.equal(row.result.feedbackPrompt??null,null);f.capacityDecisions.push(row.s.id);}
- await toggle(f.tokens.seller,f.properties.capacity,true);
  await api('/credits/demo-topup',{token:f.tokens.other,method:'POST',body:{amount:20}});
  f.otherSpend=await createProperty(f.tokens.other,'Külön tízes csomag a határérték előtt');await purchase(f.tokens.other,f.otherSpend,10);
  const lastCredit=await Promise.all(f.otherProperties.map(p=>purchase(f.tokens.other,p,10,randomUUID(),[200,402])));assert.equal(lastCredit.filter(Boolean).length,1);assert.equal((await api('/me',{token:f.tokens.other})).credits,0,'Concurrent package purchases must not spend the final credits twice');
@@ -111,9 +112,8 @@ if(mode==='--setup'){
 }else{
  const f=JSON.parse(await readFile(fixturePath,'utf8'));
  if(mode==='--responses'){
-  await toggle(f.tokens.seller,f.properties.main,false);
-  const paused=await passFresh(f,f.properties.main,'Szüneteltetett visszajelzéskérés');assert.equal(paused.result.feedbackPrompt??null,null);assert.equal((await pending(f.tokens.buyer)).feedbackPrompt,null);
-  await toggle(f.tokens.seller,f.properties.main,true);
+  await removedToggle(f.tokens.seller,f.properties.main,false);
+  assert.equal((await insight(f)).activePackage.enabled,true,'An old client cannot suppress the next invitation by trying to pause.');
   const first=await passFresh(f,f.properties.main,'Első meghívott keresés');assertPrompt(first.result.feedbackPrompt,f,f.properties.main);f.firstPrompt=first.result.feedbackPrompt;
   assert.equal((await pending(f.tokens.buyer)).feedbackPrompt.id,f.firstPrompt.id);await answer(f.tokens.other,f.firstPrompt.id,'layout',404);await answer(f.tokens.seller,f.firstPrompt.id,'layout',404);await answer(f.tokens.buyer,f.firstPrompt.id,'unknown',400);
   const concurrent=await Promise.all(Array.from({length:4},()=>answer(f.tokens.buyer,f.firstPrompt.id,reasons[0])));assert.ok(concurrent.every(row=>row.accepted));assert.equal(concurrent.filter(row=>row.alreadyAnswered===false).length,1);
@@ -152,7 +152,7 @@ if(mode==='--setup'){
   assert.equal((await api('/me',{token:f.tokens.seller})).credits,f.beforeRefund+19,'One accepted response refunds9; one unanswered ten-pack refunds10');
   const main=await insight(f),unanswered=await insight(f,'pendingExpiry');assert.equal(main.activePackage,null);assert.equal(main.feedback.total,1);assert.equal(unanswered.activePackage,null);assert.equal(unanswered.feedback.total,0);
   const full=await insight(f,'capacity'),settledFull=full.packages.find(row=>row.id===f.packages.capacity.id);assert.equal(full.activePackage,null);assert.ok(settledFull.refundedAt);assert.equal(settledFull.refundedCredits,0,'A completely delivered campaign must never create a credit refund');
-  await toggle(f.tokens.seller,f.properties.pendingExpiry,true,409);
+  await removedToggle(f.tokens.seller,f.properties.pendingExpiry,true);
   assert.equal(main.packages.find(row=>row.id===f.packages.main.id).refundedCredits,9);assert.equal(unanswered.packages.find(row=>row.id===f.packages.pendingExpiry.id).refundedCredits,10);
   const notes=await api('/notifications',{token:f.tokens.seller});const refundNotes=notes.items.filter(row=>row.kind==='feedback_refund');assert.equal(refundNotes.length,2);assert.deepEqual(refundNotes.map(row=>row.amount).sort((a,b)=>a-b),[9,10]);
   const replay=await purchase(f.tokens.seller,f.properties.main,10,f.requests.main);assert.equal(replay.charged,0);assert.equal(replay.package.id,f.packages.main.id);

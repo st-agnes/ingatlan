@@ -101,3 +101,50 @@
 @media(max-width:720px){.match-group ul{display:flex}.match-criterion{font-size:10px;padding:6px 8px}.match-criterion strong{font-size:10px}.decision-like-caption small{font-size:9px}.report-reason{font-size:12px}.landing-hero-compact .eyebrow{display:none}.landing-hero-compact h1{font-size:19px;line-height:1.2;letter-spacing:-.4px}.landing-hero-compact .landing-buyer-hook{font-size:10px;line-height:1.5;margin-top:7px}.landing-search-card .landing-ad-title{font-size:8px}.landing-hero-compact{padding-top:5px;padding-bottom:12px;gap:10px}}
 
 .feedback-scenario{padding:18px 20px;margin:0 0 22px;border:1px solid #d8e3ce;background:#f7faf3}.feedback-scenario h3{font-size:15px;margin:0 0 8px}.feedback-scenario p{font-size:12px;line-height:1.7;color:#6f7b63;margin:7px 0 12px}.feedback-scenario strong{overflow-wrap:anywhere}.feedback-scenario .btn{font-size:11px}
+
+/* Keep the complete draft mounted while one named topic is shown at a time. */
+.entity-wizard{min-width:0}
+.editor-progress{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;list-style:none;margin:0;padding:0}
+.editor-progress li{min-width:0}
+.editor-progress button{display:flex;flex-direction:column;align-items:flex-start;gap:8px;width:100%;min-height:104px;padding:10px 8px;border:1px solid #e1e6da;border-radius:9px;background:#f4f5ef;text-align:left;color:#7c8874}
+.editor-progress button:disabled{cursor:default;opacity:1}
+.editor-progress button[data-state="current"]{background:#edf3e7;border-color:#819a6a;color:#304e26}
+.editor-progress button[data-state="completed"]{background:#fff;border-color:#c8d8bc;color:#49623a}
+.editor-progress button:not(:disabled):hover{border-color:#809b6b}
+.editor-progress button:focus-visible,.editor-navigation button:focus-visible{outline:2px solid #708a5b;outline-offset:3px}
+.editor-step-number{display:grid;place-items:center;width:25px;height:25px;flex:none;background:#e5e9de;border-radius:50%;font-size:11px;font-weight:700}
+[data-state="current"]>.editor-step-number{background:#5b7845;color:#fff}
+[data-state="completed"]>.editor-step-number{background:#e5efdc;color:#49623a}
+.editor-step-label{font-size:10px;font-weight:600;line-height:1.45;overflow-wrap:anywhere}
+.editor-step-label small{display:block;font-size:9px;font-weight:400;margin-top:4px;color:#87947d}
+.editor-step-status{font-size:11px;line-height:1.6;color:#6b7e5d;margin:16px 0 22px}
+.editor-step[hidden],.editor-navigation [hidden]{display:none!important}
+.editor-step>h3{font-size:18px;line-height:1.4;margin:0 0 19px}
+.editor-step>h3:focus{outline:none}
+.editor-step .attribute-section{border:0;margin:0;padding:0}
+.editor-navigation{position:sticky;bottom:-30px;z-index:12;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-top:26px;padding:16px 0;background:var(--bg);border-top:1px solid var(--line)}
+.editor-step-actions{display:flex;flex-wrap:wrap;gap:9px;margin-left:auto}
+.editor-navigation .btn{min-height:44px}
+.modal .discovery-detail-actions{position:sticky;bottom:-30px;z-index:12;padding:14px 0;background:var(--bg);border-top:1px solid var(--line)}
+.discovery-detail-actions .btn{min-height:44px;flex:1;justify-content:center;white-space:normal}
+
+/* The decision dock stays in the viewport, centered on the recommendation column. */
+:root{--discovery-sidebar:238px;--discovery-aside:309px}
+.discovery-decision-dock{position:fixed;z-index:15;left:calc(50% + var(--discovery-sidebar)/2 - var(--discovery-aside)/2);bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:290px;max-width:calc(100vw - var(--discovery-sidebar) - 24px);padding:9px 12px 8px;border:1px solid #dce3d6;border-radius:20px;background:#fffffff5;box-shadow:0 7px 32px #263b2826;backdrop-filter:blur(12px)}
+.discovery-decision-dock .card-actions{width:260px;max-width:100%;margin:0 auto 5px}
+.discovery-decision-dock .decision{width:50px;height:50px}
+.discovery-decision-dock .detail-button{width:44px;height:44px}
+.discovery-decision-dock .decision-labels{width:260px;max-width:100%;margin:0 auto;align-items:start;line-height:1.4;color:#65755a;font-size:10px}
+.discovery-decision-dock .decision-like-caption{gap:1px}
+.discovery-decision-dock .decision-like-caption small{font-size:9px}
+body:has(.discovery-decision-dock) .content{padding-bottom:145px}
+html:has(.discovery-decision-dock){scroll-padding-bottom:145px}
+body:has(.discovery-decision-dock):not(:has(.modal)) #toast{bottom:calc(125px + env(safe-area-inset-bottom,0px));left:calc(50% + var(--discovery-sidebar)/2 - var(--discovery-aside)/2)}
+body:has(.modal) .discovery-decision-dock{visibility:hidden;pointer-events:none}
+@media(min-width:1450px){:root{--discovery-aside:350px}}
+@media(max-width:1150px){:root{--discovery-sidebar:208px;--discovery-aside:267px}}
+@media(max-width:940px){:root{--discovery-aside:0px}}
+@media(max-width:720px){:root{--discovery-sidebar:0px}.editor-navigation{bottom:-25px;padding:12px 0}.editor-progress{gap:4px}.editor-progress button{padding:8px 5px;min-height:112px;gap:6px}.editor-step-label{font-size:9px}.editor-step-label small{font-size:8px}.editor-step-number{width:23px;height:23px;font-size:10px}.editor-step-status{margin:13px 0 18px}.editor-step>h3{font-size:17px}.entity-wizard .field input,.entity-wizard .field select,.entity-wizard .field textarea{font-size:16px}.editor-navigation .btn{font-size:11px;padding:11px 12px}.editor-step-actions{gap:7px}.discovery-decision-dock{border-radius:18px}.discovery-decision-dock .decision-labels{font-size:10px}}
+@media(max-width:720px){.modal .discovery-detail-actions{bottom:-25px;padding:12px 0}}
+@media(max-width:720px){body:has(.sidebar.open) .discovery-decision-dock{visibility:hidden;pointer-events:none}}
+@media(max-height:600px){.discovery-decision-dock{padding-top:6px;padding-bottom:6px;bottom:calc(6px + env(safe-area-inset-bottom,0px))}.discovery-decision-dock .decision{width:44px;height:44px}}

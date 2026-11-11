@@ -168,7 +168,8 @@ async function verify(browser, viewport) {
     assert.equal(await page.locator('.property-insights').getAttribute('data-property-id'), scenario.propertyId);
     assert.equal(await page.locator('.feedback-history').count(), 0);
     assert.match(await page.locator('.feedback-package-counts').innerText(), /0\s*\/\s*10 beérkezett/);
-    assert.equal(await page.locator('[data-action="feedback-toggle"]').getAttribute('aria-pressed'), 'true');
+    assert.equal(await page.locator('[data-action="feedback-toggle"]').count(), 0, 'A prepaid scenario campaign has no pause control');
+    assert.match(await page.locator('.feedback-package-panel .feedback-panel-heading .tag').innerText(), /Aktív/);
     const sellerState = await readState(page);
     assert.deepEqual(sellerState.active, {kind: 'property', id: scenario.propertyId});
     assert.equal(sellerState.credits, 90, 'Reset restores the prepaid 10-response test package without repeat charges');

@@ -13,6 +13,48 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  guided-forms-and-discovery:
+    name: Guided forms and discovery controls
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned headless browser tools
+        timeout-minutes: 5
+        run: |
+          npm install --prefix .local/browser-tests --no-save --no-package-lock --no-audit --no-fund playwright@1.56.1
+          .local/browser-tests/node_modules/.bin/playwright install --only-shell chromium
+      - name: Test guided forms and fixed discovery actions without backend setup
+        run: |
+          set -o pipefail
+          mkdir -p .local/browser-tests
+          python3 -m http.server 3000 --directory dist --bind 127.0.0.1 > .local/browser-tests/guided-static-server.log 2>&1 &
+          guided_frontend_pid=$!
+          trap 'kill "$guided_frontend_pid" 2>/dev/null || true' EXIT
+          node --input-type=module - <<'JS'
+          const deadline = Date.now() + 10000;
+          let ready = false;
+          while (Date.now() < deadline) {
+            try {
+              const response = await fetch('http://127.0.0.1:3000/', {signal: AbortSignal.timeout(500)});
+              if (response.ok) { ready = true; break; }
+            } catch {}
+            await new Promise(resolve => setTimeout(resolve, 200));
+          }
+          if (!ready) throw new Error('The static frontend did not become ready within ten seconds.');
+          JS
+          node tests/wizard-dock-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-ui.log
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: guided-forms-discovery-browser-failure
+          path: |
+            .local/browser-tests/screenshots/wizard-dock-*.png
+            .local/browser-tests/guided-*.log
+          if-no-files-found: ignore
   build-and-test:
     name: Build and test (MySQL ${{ matrix.mysql }})
     runs-on: ubuntu-24.04
@@ -142,6 +184,8 @@ jobs:
           python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" legacy-notification
           node scripts/dev.mjs --background
           python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" upgraded-notification
+          node scripts/dev.mjs --restart
+          python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" preserved-notification
       - name: Verify seller statistics, paid feedback, quota races and exactly-once package refunds
         run: |
           node backend/seller-feedback-smoke.mjs http://127.0.0.1:3000 --setup
@@ -156,9 +200,14 @@ jobs:
           node backend/seller-feedback-smoke.mjs http://127.0.0.1:3000 --preserved
           python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" verify
       - name: Install browser regression tools
+        timeout-minutes: 5
         run: |
-          npm install --prefix .local/browser-tests --no-save --no-package-lock playwright@1.56.1
-          .local/browser-tests/node_modules/.bin/playwright install --with-deps chromium
+          # Ubuntu 24.04 runners include Chromium's system libraries. Avoid apt
+          # mirror/font downloads; retain Playwright's exact headless browser.
+          npm install --prefix .local/browser-tests --no-save --no-package-lock --no-audit --no-fund playwright@1.56.1
+          .local/browser-tests/node_modules/.bin/playwright install --only-shell chromium
+      - name: Test themed editors and always reachable discovery actions in Chromium
+        run: node tests/wizard-dock-browser.test.mjs http://127.0.0.1:3000
       - name: Test location picker and search creation in Chromium
         run: node tests/browser.test.mjs http://127.0.0.1:3000
       - name: Test optional attributes in desktop, tablet and mobile Chromium

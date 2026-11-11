@@ -107,5 +107,6 @@ public class SellerFeedbackSchemaTests
             "IX_UserNotifications_FeedbackPackageId", "IX_Decisions_PropertyStats", "CK_FeedbackPackages_Size", "CK_FeedbackPackages_Counts" })
             Assert.Contains("`" + identifier + "`", sql);
         Assert.Equal("20261110-seller-feedback-and-insights", SchemaUpgrade.SellerFeedbackVersion);
+        Assert.Equal("20261111-continuous-seller-feedback", SchemaUpgrade.ContinuousFeedbackVersion);
     }
 }

@@ -45,10 +45,10 @@ async function verify(browser,viewport){
   await interact(page.locator('[data-action="feedback-plan"][data-size="50"]'));assert.equal(await page.locator('[data-action="feedback-buy"]').count(),0);assert.match(await page.locator('.modal').innerText(),/kreditre van szükséged/);
   await interact(page.locator('.modal [data-action="close"]').last());
   await interact(page.locator('[data-action="feedback-packages"]'));await interact(page.locator('[data-action="feedback-plan"][data-size="10"]'));
-  const before=(await readState(page)).credits;await interact(page.locator('[data-action="feedback-buy"]'));await page.locator('[data-action="feedback-toggle"]').waitFor();
+  const before=(await readState(page)).credits;await interact(page.locator('[data-action="feedback-buy"]'));await page.waitForFunction(()=>document.querySelector('.feedback-package-counts')?.textContent.includes('0 / 10'));
   assert.equal((await readState(page)).credits,before-10);assert.equal(await page.locator('[data-action="feedback-packages"]').count(),0);assert.match(await page.locator('.feedback-package-counts').innerText(),/0 \/ 10/);
-  await interact(page.locator('[data-action="feedback-toggle"]'));assert.match(await page.locator('[data-action="feedback-toggle"]').innerText(),/szüneteltetve/);
-  await interact(page.locator('[data-action="feedback-toggle"]'));assert.match(await page.locator('[data-action="feedback-toggle"]').innerText(),/bekapcsolva/);
+  assert.equal(await page.locator('[data-action="feedback-toggle"]').count(),0,'An active prepaid feedback campaign cannot be paused');
+  assert.doesNotMatch(await page.locator('.feedback-package-panel').innerText(),/szüneteltet|folytathatod/i);
   const layout=await page.locator('.property-insights').evaluate(element=>({width:element.clientWidth,scrollWidth:element.scrollWidth}));assert.ok(layout.scrollWidth<=layout.width+1,'Insights fit the viewport');
   await buyerFixture(page);
   const buyerCredits=(await readState(page)).credits;await interact(page.locator('.card-actions [data-action="pass"]'));await page.locator('.feedback-survey').waitFor();
@@ -63,7 +63,7 @@ async function verify(browser,viewport){
   await buyerFixture(page);await interact(page.locator('.card-actions [data-action="pass"]'));await page.locator('.feedback-survey').waitFor();
   await interact(page.locator('[data-action="feedback-answer"][data-reason="decline"]'));await page.locator('#candidate').waitFor();
   saved=await page.evaluate(async()=>JSON.parse(localStorage.getItem((await import('/model.js')).STORAGE_KEY)));assert.equal(saved.feedbackPackages[0].receivedCount,0,'Opt-out does not consume one of the seller feedback items');assert.equal(saved.feedbackInvitations[0].reason,'decline');
-  assert.deepEqual(errors,[]);console.log(`Seller feedback ${viewport.name}: property-scoped statistics, prepaid package confirmation/toggle, visible impressions, blocking persisted one-click answers, anonymous results and non-counting opt-out passed.`);
+  assert.deepEqual(errors,[]);console.log(`Seller feedback ${viewport.name}: property-scoped statistics, prepaid continuously active package confirmation, visible impressions, blocking persisted one-click answers, anonymous results and non-counting opt-out passed.`);
  }catch(error){await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`seller-feedback-${viewport.name}-failure.png`),fullPage:true}).catch(()=>{});throw error;}
  finally{await context.close();}
 }

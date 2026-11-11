@@ -20,6 +20,7 @@ public static class SchemaUpgrade
     public const string LikeRefundsVersion = "20261108-public-landing-and-like-refunds";
     public const string RecommendationIndexesVersion = "20261110-ranked-recommendation-indexes";
     public const string SellerFeedbackVersion = "20261110-seller-feedback-and-insights";
+    public const string ContinuousFeedbackVersion = "20261111-continuous-seller-feedback";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
@@ -189,6 +190,21 @@ public static class SchemaUpgrade
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", LikeRefundsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", RecommendationIndexesVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", SellerFeedbackVersion));
+            if (Convert.ToInt32(await Scalar(connection,
+                    "SELECT COUNT(*) FROM `__OtthonraSchemaVersions` WHERE `Version` = @version",
+                    cancellationToken, ("version", ContinuousFeedbackVersion))) == 0)
+            {
+                // Retire owner-controlled pauses without changing any paid period,
+                // response count, receipt or credit balance. The update is also
+                // idempotent if startup stops before recording the marker.
+                await Execute(connection, """
+                    UPDATE `FeedbackPackages` SET `Enabled` = TRUE
+                    WHERE `Enabled` = FALSE AND `ExpiresAt` > UTC_TIMESTAMP(6)
+                        AND `RefundedAt` IS NULL AND `ReceivedCount` < `Size`
+                    """, cancellationToken);
+                await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))",
+                    cancellationToken, ("version", ContinuousFeedbackVersion));
+            }
         }
         finally
         {

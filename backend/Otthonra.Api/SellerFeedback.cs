@@ -11,7 +11,6 @@ public sealed record FeedbackPrompt(Guid Id, Guid PropertyId, string SellerFirst
 public sealed record FeedbackPackageItem(Guid Id, int Size, int ReceivedCount, int Remaining, bool Enabled,
     DateTime CreatedAt, DateTime ExpiresAt, DateTime? RefundedAt, int RefundedCredits, string Status);
 public sealed record FeedbackPackageInput(int Size, Guid RequestId);
-public sealed record FeedbackToggleInput(bool Enabled);
 public sealed record FeedbackAnswerInput(string? Reason);
 public sealed record ImpressionInput(Guid PropertyId, Guid SearchRequestId);
 
@@ -37,7 +36,7 @@ public static class SellerFeedbackPolicy
     public static bool IsPeriodActive(FeedbackPackage package, DateTime now) => now < package.ExpiresAt && package.RefundedAt is null;
     public static int Missing(FeedbackPackage package) => Math.Max(0, package.Size - package.ReceivedCount);
     public static FeedbackPackageItem Package(FeedbackPackage package, DateTime now) => new(package.Id, package.Size,
-        package.ReceivedCount, Missing(package), package.Enabled, package.CreatedAt, package.ExpiresAt,
+        package.ReceivedCount, Missing(package), IsPeriodActive(package, now) && Missing(package) > 0, package.CreatedAt, package.ExpiresAt,
         package.RefundedAt, package.RefundedCredits,
         !IsPeriodActive(package, now) ? "expired" : package.ReceivedCount >= package.Size ? "completed" : "active");
 
@@ -156,24 +155,6 @@ public static class SellerFeedback
             return Results.Ok(new { package = SellerFeedbackPolicy.Package(package, now), charged = input.Size, credits = user.Credits });
         });
 
-        api.MapPut("/properties/{id:guid}/feedback", async (Guid id, FeedbackToggleInput input, AppDb db,
-            ClaimsPrincipal principal, TimeProvider clock, CancellationToken cancellationToken) =>
-        {
-            var uid = principal.UserId(); var now = clock.GetUtcNow().UtcDateTime;
-            await using var transaction = await db.Database.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken);
-            _ = await LockedUserAsync(db, uid, cancellationToken);
-            var property = await LockedPropertyAsync(db, id, cancellationToken);
-            if (property.OwnerId != uid) throw new ApiException(404, "Az ingatlan nem található.");
-            now = clock.GetUtcNow().UtcDateTime;
-            if (property.Archived && input.Enabled) throw new ApiException(400, "Archivált ingatlanhoz nem kapcsolható be a visszajelzéskérés.");
-            var package = (await db.FeedbackPackages.FromSqlInterpolated($"SELECT * FROM `FeedbackPackages` WHERE `PropertyId` = {id} AND `ExpiresAt` > {now} AND `RefundedAt` IS NULL ORDER BY `CreatedAt` DESC LIMIT 1 FOR UPDATE")
-                .ToListAsync(cancellationToken)).SingleOrDefault() ?? throw new ApiException(409, "Előbb válassz visszajelzés-csomagot.");
-            package.Enabled = input.Enabled;
-            await db.SaveChangesAsync(cancellationToken);
-            await transaction.CommitAsync(cancellationToken);
-            return Results.Ok(new { package = SellerFeedbackPolicy.Package(package, now) });
-        });
-
         api.MapPost("/impressions", async (ImpressionInput input, AppDb db, ClaimsPrincipal principal,
             TimeProvider clock, CancellationToken cancellationToken) =>
         {
@@ -257,7 +238,7 @@ public static class SellerFeedback
         var pending = await PendingAsync(db, buyer.Id, now, cancellationToken);
         if (pending is not null) return pending;
         if (buyer.FeedbackPassCounter < SellerFeedbackPolicy.PromptSpacing) return null;
-        var package = (await db.FeedbackPackages.FromSqlInterpolated($"SELECT * FROM `FeedbackPackages` WHERE `PropertyId` = {property.Id} AND `Enabled` = TRUE AND `ReceivedCount` < `Size` AND `ExpiresAt` > {now} AND `RefundedAt` IS NULL ORDER BY `CreatedAt` DESC LIMIT 1 FOR UPDATE")
+        var package = (await db.FeedbackPackages.FromSqlInterpolated($"SELECT * FROM `FeedbackPackages` WHERE `PropertyId` = {property.Id} AND `ReceivedCount` < `Size` AND `ExpiresAt` > {now} AND `RefundedAt` IS NULL ORDER BY `CreatedAt` DESC LIMIT 1 FOR UPDATE")
             .ToListAsync(cancellationToken)).SingleOrDefault();
         if (package is null) return null;
         if (await db.FeedbackInvitations.AnyAsync(row => row.PackageId == package.Id && row.BuyerId == buyer.Id, cancellationToken)) return null;

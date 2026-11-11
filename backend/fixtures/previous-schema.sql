@@ -36,4 +36,4 @@ ALTER TABLE `SearchRequests`
   DROP COLUMN `ConstructionAgesJson`, DROP COLUMN `ViewsJson`, DROP COLUMN `CeilingHeight`, DROP COLUMN `FloorsJson`,
   DROP COLUMN `HeatingTypesJson`;
 DELETE FROM `__OtthonraSchemaVersions`
-  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights');
+  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights', '20261111-continuous-seller-feedback');

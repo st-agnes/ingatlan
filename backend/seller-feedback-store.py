@@ -11,7 +11,7 @@ import subprocess
 import sys
 import uuid
 
-MODES = ('legacy-notification', 'upgraded-notification', 'prime', 'capacity', 'age', 'record', 'verify')
+MODES = ('legacy-notification', 'upgraded-notification', 'preserved-notification', 'prime', 'capacity', 'age', 'record', 'verify')
 if os.environ.get('CI') != 'true' or len(sys.argv) != 3 or sys.argv[2] not in MODES:
     raise SystemExit('Use only as a disposable GitHub CI seller-feedback store check.')
 container_id, mode = sys.argv[1:]
@@ -53,6 +53,29 @@ DATE_FORMAT(CreatedAt,'%Y-%m-%dT%H:%i:%s.%fZ'),COALESCE(DATE_FORMAT(ReadAt,'%Y-%
 FROM UserNotifications WHERE Id='{uid(notification_id)}'""")
 
 
+def migration_package_rows(package_ids):
+    ids = ','.join(literal(uid(value)) for value in package_ids)
+    result = query(f"""SELECT Id,PropertyId,OwnerId,RequestId,Size,ReceivedCount,Enabled,
+DATE_FORMAT(CreatedAt,'%Y-%m-%dT%H:%i:%s.%fZ'),DATE_FORMAT(ExpiresAt,'%Y-%m-%dT%H:%i:%s.%fZ'),
+COALESCE(DATE_FORMAT(RefundedAt,'%Y-%m-%dT%H:%i:%s.%fZ'),'NULL'),RefundedCredits
+FROM FeedbackPackages WHERE Id IN ({ids}) ORDER BY Id""")
+    return [row.split('\t') for row in result.splitlines()]
+
+
+def migration_financial_state():
+    # Compare immutable financial rows, not just a count or total. The old
+    # notification columns exist on both sides of its nullable-link upgrade.
+    return {
+        'balances': query('SELECT Id,Credits FROM Users ORDER BY Id'),
+        'credits': query("""SELECT Id,UserId,Amount,DecisionId,RefundedDecisionId,FeedbackPackageId,
+RefundedFeedbackPackageId,Description,DATE_FORMAT(CreatedAt,'%Y-%m-%dT%H:%i:%s.%fZ')
+FROM CreditEntries ORDER BY Id"""),
+        'notifications': query("""SELECT Id,UserId,DecisionId,Kind,Amount,Text,
+DATE_FORMAT(CreatedAt,'%Y-%m-%dT%H:%i:%s.%fZ'),COALESCE(DATE_FORMAT(ReadAt,'%Y-%m-%dT%H:%i:%s.%fZ'),'NULL')
+FROM UserNotifications ORDER BY Id"""),
+    }
+
+
 if mode == 'legacy-notification':
     # The API is stopped by CI before altering this owned disposable table.
     assert query('SELECT COUNT(*) FROM FeedbackPackages') == '0', 'Legacy fixture must precede feedback package creation.'
@@ -61,21 +84,42 @@ if mode == 'legacy-notification':
     assert len(row) == 2
     decision_id, user_id = map(uid, row)
     notification_id = str(uuid.uuid4())
+    property_id, owner_id = map(uid, query('SELECT Id,OwnerId FROM Properties ORDER BY Id LIMIT 1').split('\t'))
+    package_ids = [str(uuid.uuid4()) for _ in range(5)]
+    # These temporary, isolated migration rows are removed before the business
+    # tests. Settled expiry avoids the normal startup refund worker altering the
+    # fixture while the schema-only preservation assertions run.
+    states = [
+        (0, 2, 'DATE_ADD(UTC_TIMESTAMP(6),INTERVAL 7 DAY)', 'NULL', 0),
+        (0, 10, 'DATE_ADD(UTC_TIMESTAMP(6),INTERVAL 7 DAY)', 'NULL', 0),
+        (0, 4, 'DATE_SUB(UTC_TIMESTAMP(6),INTERVAL 1 DAY)', 'DATE_SUB(UTC_TIMESTAMP(6),INTERVAL 1 DAY)', 6),
+        (0, 5, 'DATE_ADD(UTC_TIMESTAMP(6),INTERVAL 7 DAY)', 'UTC_TIMESTAMP(6)', 5),
+        (1, 0, 'DATE_ADD(UTC_TIMESTAMP(6),INTERVAL 7 DAY)', 'NULL', 0),
+    ]
+    for package_id, (enabled, received, expires_at, refunded_at, refunded) in zip(package_ids, states):
+        request_id = str(uuid.uuid4())
+        query(f"""INSERT INTO FeedbackPackages
+(Id,PropertyId,OwnerId,RequestId,Size,ReceivedCount,Enabled,CreatedAt,ExpiresAt,RefundedAt,RefundedCredits)
+VALUES('{package_id}','{property_id}','{owner_id}','{request_id}',10,{received},{enabled},
+DATE_SUB(UTC_TIMESTAMP(6),INTERVAL 7 DAY),{expires_at},{refunded_at},{refunded})""")
     query("""ALTER TABLE UserNotifications DROP FOREIGN KEY FK_UserNotifications_FeedbackPackages_FeedbackPackageId;
 ALTER TABLE UserNotifications DROP INDEX IX_UserNotifications_FeedbackPackageId;
 ALTER TABLE UserNotifications DROP COLUMN FeedbackPackageId;
 ALTER TABLE UserNotifications DROP FOREIGN KEY FK_UserNotifications_Decisions_DecisionId;
 ALTER TABLE UserNotifications MODIFY COLUMN DecisionId char(36) COLLATE ascii_general_ci NOT NULL;
 ALTER TABLE UserNotifications ADD CONSTRAINT FK_UserNotifications_Decisions_DecisionId FOREIGN KEY (DecisionId) REFERENCES Decisions(Id) ON DELETE RESTRICT;
-DELETE FROM __OtthonraSchemaVersions WHERE Version='20261110-seller-feedback-and-insights';""")
+DELETE FROM __OtthonraSchemaVersions WHERE Version IN ('20261110-seller-feedback-and-insights','20261111-continuous-seller-feedback');""")
     query(f"""INSERT INTO UserNotifications(Id,UserId,DecisionId,Kind,Amount,Text,CreatedAt,ReadAt)
 VALUES('{notification_id}','{user_id}','{decision_id}','migration_fixture',0,'Legacy notification preservation',UTC_TIMESTAMP(6),NULL)""")
-    persist(legacy_path, {'id': notification_id, 'row': notification_row(notification_id)})
+    persist(legacy_path, {'id': notification_id, 'row': notification_row(notification_id),
+                         'packageIds': package_ids, 'activePausedId': package_ids[0],
+                         'packageRows': migration_package_rows(package_ids),
+                         'financialState': migration_financial_state()})
     assert query("SELECT IS_NULLABLE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='UserNotifications' AND COLUMN_NAME='DecisionId'") == 'NO'
-    print('Legacy notification fixture prepared: original non-null DecisionId schema, real decision foreign key and one immutable notification receipt.')
+    print('Legacy upgrade fixture prepared: original notification receipt plus paused active, completed, settled expired, refunded and already-active campaigns.')
     raise SystemExit(0)
 
-if mode == 'upgraded-notification':
+if mode in ('upgraded-notification', 'preserved-notification'):
     fixture = json.loads(legacy_path.read_text())
     assert query("SELECT IS_NULLABLE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='UserNotifications' AND COLUMN_NAME='DecisionId'") == 'YES'
     assert query("SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='UserNotifications' AND COLUMN_NAME='FeedbackPackageId'") == '1'
@@ -83,8 +127,24 @@ if mode == 'upgraded-notification':
     assert query("SELECT COUNT(*) FROM information_schema.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA=DATABASE() AND TABLE_NAME='UserNotifications' AND CONSTRAINT_NAME='FK_UserNotifications_FeedbackPackages_FeedbackPackageId' AND CONSTRAINT_TYPE='FOREIGN KEY'") == '1'
     assert notification_row(fixture['id']) == fixture['row'], 'Additive notification upgrade changed an original receipt.'
     assert query("SELECT COUNT(*) FROM __OtthonraSchemaVersions WHERE Version='20261110-seller-feedback-and-insights'") == '1'
-    query(f"DELETE FROM UserNotifications WHERE Id='{uid(fixture['id'])}' AND Kind='migration_fixture'")
-    print('Legacy notification upgrade passed: nullable decision link, package link, both foreign keys and original notification fields/timestamp preserved.')
+    marker = query("SELECT DATE_FORMAT(AppliedAt,'%Y-%m-%dT%H:%i:%s.%fZ') FROM __OtthonraSchemaVersions WHERE Version='20261111-continuous-seller-feedback'")
+    assert len(marker.splitlines()) == 1 and marker, 'The continuous-feedback migration must have exactly one durable marker.'
+    expected = [list(row) for row in fixture['packageRows']]
+    for row in expected:
+        if row[0] == fixture['activePausedId']:
+            row[6] = '1'
+    assert migration_package_rows(fixture['packageIds']) == expected, 'Only the unfinished, unexpired paused campaign may be reenabled; all deadlines, counts and closed states must remain unchanged.'
+    assert migration_financial_state() == fixture['financialState'], 'Removing pauses changed financial rows, balances or notifications.'
+    if mode == 'upgraded-notification':
+        fixture['continuousMarker'] = marker
+        persist(legacy_path, fixture)
+        print('Feedback upgrade passed: paused live campaign reenabled, closed campaigns/deadlines/counts and all financial rows preserved; original nullable notification upgrade remains valid.')
+    else:
+        assert marker == fixture['continuousMarker'], 'A repeated startup rewrote the continuous-feedback upgrade marker.'
+        ids = ','.join(literal(uid(value)) for value in fixture['packageIds'])
+        query(f"DELETE FROM FeedbackPackages WHERE Id IN ({ids})")
+        query(f"DELETE FROM UserNotifications WHERE Id='{uid(fixture['id'])}' AND Kind='migration_fixture'")
+        print('Feedback upgrade restart passed: continuous campaign states, package fields, credits, receipts and the migration marker remained identical; temporary upgrade fixtures removed.')
     raise SystemExit(0)
 
 fixture = json.loads(fixture_path.read_text())
