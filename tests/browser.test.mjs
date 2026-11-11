@@ -2,6 +2,7 @@
  * Install Playwright into ignored .local/browser-tests; see the CI workflow.
  */
 import assert from 'node:assert/strict';
+import {editorSave} from './editor-browser-helpers.mjs';
 import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -109,7 +110,7 @@ async function verifyViewport(browser, viewport) {
     assert.equal(await page.locator('#location-chips .location-chip').count(), 2);
     const title = `Böngészős próba – ${viewport.name}`;
     await page.locator('#f-title').fill(title);
-    await interact(page.locator('#entity-form button[type="submit"]'));
+    await editorSave(page, interact);
     await page.getByRole('heading', { name: 'Elkészült a keresési igényed.', exact: true }).waitFor();
     const savedState = await demoState(page);
     const saved = savedState.searches.find(item => item.title === title);
@@ -129,7 +130,7 @@ async function verifyViewport(browser, viewport) {
     await choose(page, interact, 'city:Debrecen', 'Debrecen');
     const laterTitle = `Később folytatom – ${viewport.name}`;
     await page.locator('#f-title').fill(laterTitle);
-    await interact(page.locator('#entity-form button[type="submit"]'));
+    await editorSave(page, interact);
     await page.getByRole('heading', { name: 'Elkészült a keresési igényed.', exact: true }).waitFor();
     await interact(page.locator('.modal-actions [data-action="close"]'));
     assert.equal(await page.locator('#modal-root .modal').count(), 0);

@@ -15,23 +15,53 @@ function landingFixture(region){const selected=landingRegions.find(item=>item.id
 
 const source=await fs.readFile(new URL('../dist/app.js',import.meta.url),'utf8');
 class Element {
- constructor(id,doc,markup=''){this.id=id;this.doc=doc;this._innerHTML='';this.textContent='';this.className=markup.match(/class="([^"]*)"/)?.[1]||'';this.value=markup.match(/\bvalue="([^"]*)"/)?.[1]||'';this.name=markup.match(/\bname="([^"]*)"/)?.[1]||'';this.step=markup.match(/\bstep="([^"]*)"/)?.[1]||'';this.type=markup.match(/\btype="([^"]*)"/)?.[1]||'';this.required=/\srequired(?:\s|>)/.test(markup);this.validity={badInput:false};if(markup.startsWith('<select')){const option=[...markup.matchAll(/<option\b([^>]*)>([^<]*)/g)],selected=option.find(match=>/\bselected\b/.test(match[1]))||option[0];this.value=selected?.[1].match(/\bvalue="([^"]*)"/)?.[1]??selected?.[2]??'';}this.checked=/\schecked(?:\s|>)/.test(markup);this.disabled=/\sdisabled(?:\s|>)/.test(markup);this.hidden=/\shidden(?:\s|>)/.test(markup);this.style={};this.handlers={};this.attributes={};this.scrollHeight=500;this.scrollTop=0;this.validationMessage='';this.classList={toggle:(name,on)=>{const classes=new Set(this.className.split(' ').filter(Boolean));if(on??!classes.has(name))classes.add(name);else classes.delete(name);this.className=[...classes].join(' ');},remove:name=>this.classList.toggle(name,false)};}
+ constructor(id,doc,markup='') {
+  this.id=id;this.doc=doc;this.markup=markup;this._innerHTML='';this.textContent='';
+  this.tagName=(markup.match(/^<([a-z][\w-]*)/i)?.[1]||'div').toUpperCase();
+  this.attributes=Object.fromEntries([...markup.split('>')[0].matchAll(/([\w-]+)="([^"]*)"/g)].map(match=>[match[1],match[2]]));
+  this.dataset=new Proxy(Object.fromEntries(Object.entries(this.attributes).filter(([name])=>name.startsWith('data-')).map(([name,value])=>[name.slice(5).replace(/-([a-z])/g,(_match,letter)=>letter.toUpperCase()),value])),{set:(target,key,value)=>{target[key]=String(value);this.attributes['data-'+String(key).replace(/[A-Z]/g,letter=>'-'+letter.toLowerCase())]=String(value);return true;}});
+  this.className=this.attributes.class||'';this.value=this.attributes.value||'';this.name=this.attributes.name||'';this.step=this.attributes.step||'';this.type=this.attributes.type||'';
+  this.required=/\srequired(?:\s|>)/.test(markup);this.validity={badInput:false};
+  if(markup.startsWith('<select')) {const option=[...markup.matchAll(/<option\b([^>]*)>([^<]*)/g)],selected=option.find(match=>/\bselected\b/.test(match[1]))||option[0];this.value=selected?.[1].match(/\bvalue="([^"]*)"/)?.[1]??selected?.[2]??'';}
+  if(markup.startsWith('<textarea'))this.value=markup.match(/^[^>]*>([\s\S]*?)<\/textarea>/)?.[1]||'';
+  this.checked=/\schecked(?:\s|>)/.test(markup);this.disabled=/\sdisabled(?:\s|>)/.test(markup);this.hidden=/\shidden(?:\s|>)/.test(markup);
+  this.style={};this.handlers={};this.scrollHeight=500;this.scrollTop=0;this.validationMessage='';this.reportedValidity=0;
+  this.classList={toggle:(name,on)=>{const classes=new Set(this.className.split(' ').filter(Boolean));if(on??!classes.has(name))classes.add(name);else classes.delete(name);this.className=[...classes].join(' ');},remove:name=>this.classList.toggle(name,false),add:name=>this.classList.toggle(name,true),contains:name=>this.className.split(' ').includes(name)};
+ }
  set innerHTML(value){this._innerHTML=value;if(['app','modal-root'].includes(this.id)){for(const id of this.doc.elements.keys())if(!['app','modal-root','toast'].includes(id))this.doc.elements.delete(id);}}
  get innerHTML(){return this._innerHTML;}
  addEventListener(type,handler){const prior=this.handlers[type];this.handlers[type]=prior?event=>{prior(event);return handler(event);}:handler;}
  querySelectorAll(selector){assert.equal(selector,'input[type="number"]');return [...this.doc.html.matchAll(/<input\b[^>]*\btype="number"[^>]*>/g)].map(match=>this.doc.getElementById(match[0].match(/\bid="([^"]*)"/)[1])).filter(input=>this.contains(input));}
- setAttribute(name,value){this.attributes[name]=String(value);}
+ setAttribute(name,value){this.attributes[name]=String(value);if(name==='hidden')this.hidden=true;}
  getAttribute(name){return this.attributes[name]??null;}
- removeAttribute(name){delete this.attributes[name];}
+ removeAttribute(name){delete this.attributes[name];if(name==='hidden')this.hidden=false;}
  setCustomValidity(message){this.validationMessage=message;}
+ checkValidity(){
+  if(this.disabled)return true;
+  if(this.validationMessage||this.validity.badInput)return false;
+  const value=String(this.value??'');
+  if(this.required&&((this.type==='checkbox'||this.type==='radio')?!this.checked:!value))return false;
+  if(!value)return true;
+  if(this.type==='number'){
+   const number=Number(value);if(!Number.isFinite(number))return false;
+   const min=this.getAttribute('min'),max=this.getAttribute('max');if(min!==null&&number<Number(min)||max!==null&&number>Number(max))return false;
+   const step=this.step&&this.step!=='any'?Number(this.step):1,base=min===null?0:Number(min);
+   if(Number.isFinite(step)&&step>0&&Math.abs((number-base)/step-Math.round((number-base)/step))>1e-7)return false;
+  }
+  const minlength=this.getAttribute('minlength'),maxlength=this.getAttribute('maxlength');
+  return !(minlength!==null&&value.length<Number(minlength)||maxlength!==null&&value.length>Number(maxlength));
+ }
+ reportValidity(){this.reportedValidity++;return this.checkValidity();}
  focus(){this.doc.activeElement=this;}
+ scrollIntoView(){}
  get parentElement(){return this.doc.parentOf(this.id);}
  contains(node){for(let current=node;current;current=current.parentElement){if(current===this)return true;}return false;}
 }
+
 class Document {
  constructor(){this.elements=new Map();this.handlers={};this.listeners=new Map();for(const id of ['app','modal-root','toast'])this.elements.set(id,new Element(id,this));}
  get html(){return [...this.elements.entries()].filter(([id])=>['app','modal-root'].includes(id)).map(([,e])=>e.innerHTML).join('');}
- getElementById(id){if(this.elements.has(id))return this.elements.get(id);const markup=this.html.match(new RegExp(`<[^>]*\\bid=["']${id}["'][^>]*>`))?.[0];if(!markup)return null;const full=markup.startsWith('<select')?this.html.match(new RegExp(`<select[^>]*\\bid=["']${id}["'][^>]*>[\\s\\S]*?</select>`))?.[0]||markup:markup;const element=new Element(id,this,full);this.elements.set(id,element);return element;}
+ getElementById(id){if(this.elements.has(id))return this.elements.get(id);const markup=this.html.match(new RegExp(`<[^>]*\\bid=["']${id}["'][^>]*>`))?.[0];if(!markup)return null;const full=markup.startsWith('<select')||markup.startsWith('<textarea')?this.html.match(new RegExp(`<${markup.startsWith('<select')?'select':'textarea'}[^>]*\\bid=["']${id}["'][^>]*>[\\s\\S]*?</${markup.startsWith('<select')?'select':'textarea'}>`))?.[0]||markup:markup;const element=new Element(id,this,full);this.elements.set(id,element);return element;}
  querySelector(selector){if(selector==='.modal')return this.elements.get('modal-root').innerHTML.includes('class="modal ')?this.elements.get('modal-root'):null;if(selector.startsWith('#'))return this.getElementById(selector.slice(1).split(' ')[0]);return null;}
  parentOf(id){const stack=[],voidTags=new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);for(const token of this.html.matchAll(/<\/?([a-z][\w-]*)\b[^>]*>/gi)){const tag=token[1].toLowerCase(),markup=token[0];if(markup.startsWith('</')){const index=stack.findLastIndex(item=>item.tag===tag);if(index>=0)stack.length=index;continue;}const currentId=markup.match(/\bid=["']([^"']+)["']/)?.[1];if(currentId===id){const parent=stack.findLast(item=>item.id);return parent?this.getElementById(parent.id):null;}if(!voidTags.has(tag)&&!markup.endsWith('/>'))stack.push({tag,id:currentId});}return null;}
  addEventListener(type,handler,options){const capture=typeof options==='boolean'?options:!!options?.capture,list=this.listeners.get(type)||[];if(!list.some(item=>item.handler===handler&&item.capture===capture))list.push({handler,capture});this.listeners.set(type,list);this.handlers[type]=event=>{const pending=[...(this.listeners.get(type)||[])].sort((a,b)=>Number(b.capture)-Number(a.capture)).map(item=>item.handler(event)).filter(value=>value?.then);return pending.length?Promise.all(pending):undefined;};}
@@ -57,7 +87,7 @@ async function setup(options={}){
   localStorage:{getItem:key=>regionStorage.get(key)||null,setItem:(key,value)=>regionStorage.set(key,value),removeItem:key=>regionStorage.delete(key)},
   disconnectApi:()=>{disconnected.push(true);selected=options.hosted?null:demoModel;return selected;},
   connectApi:async(...args)=>{connected.push(args);if(options.connectApi)await options.connectApi(...args);selected=apiModel;return apiModel;},
-  FormData:class {constructor(form){this.values=Array.isArray(form.values)?form.values:Object.entries(form.values||{});}get(k){return this.values.find(([key])=>key===k)?.[1]}has(k){return this.values.some(([key])=>key===k)}[Symbol.iterator](){return this.values[Symbol.iterator]()}}
+  FormData:class {constructor(form){this.values=form.values===undefined?mountedFormValues(document,form):Array.isArray(form.values)?form.values:Object.entries(form.values||{});}get(k){return this.values.find(([key])=>key===k)?.[1]}has(k){return this.values.some(([key])=>key===k)}[Symbol.iterator](){return this.values[Symbol.iterator]()}}
  });
  const body=source.replace(/^import[^\n]+\n/gm,'');
  await vm.runInContext(`(async()=>{${body}\nglobalThis.ui={render,changePage,openEditor,openDetails,openModal,closeModal,openActivation,matchingTags,openFeedbackPackages,openFeedbackPurchase,openFeedbackPrompt,propertyInsightsPage,getFeedbackPrompt:()=>feedbackPrompt,getModelState:()=>state};})()`,ctx);
@@ -67,7 +97,38 @@ async function setup(options={}){
 const settle=async()=>{for(let i=0;i<16;i++)await Promise.resolve();};
 
 function chooseLocation(t,id){const input=t.document.getElementById('location-input');input.value=getLocation(id).label;input.handlers.input();const list=t.document.getElementById('location-options');assert.match(list.innerHTML,new RegExp(id.replaceAll('.','\\.')));const target={dataset:{locationId:id},closest:()=>target};list.handlers.click({target});}
-function submitEntity(t,values){const form=t.document.getElementById('entity-form');form.values=values;form.handlers.submit({preventDefault(){},currentTarget:form});}
+function mountedFormValues(document,form){
+ const values=[];
+ for(const match of document.html.matchAll(/<(?:input|select|textarea)\b[^>]*\bid="([^"]+)"[^>]*>/g)){
+  const input=document.getElementById(match[1]);
+  if(!input?.name||!form.contains(input)||input.disabled)continue;
+  let disabledByGroup=false;for(let parent=input.parentElement;parent&&parent!==form;parent=parent.parentElement)if(parent.disabled)disabledByGroup=true;
+  if(disabledByGroup||['checkbox','radio'].includes(input.type)&&!input.checked)continue;
+  values.push([input.name,input.type==='checkbox'?(input.value||'on'):input.value]);
+ }
+ return values;
+}
+function setEditorValues(t,values){
+ const entries=Array.isArray(values)?values:Object.entries(values);
+ for(const [name,value] of entries){
+  const control=t.document.getElementById(name==='images'?'property-images':'f-'+name);
+  if(control&&control.type!=='checkbox')control.value=String(value??'');
+ }
+ const type=t.document.getElementById('f-type');type?.handlers.change?.({target:type,currentTarget:type});
+ for(const name of ['wholeRooms','halfRooms']){const control=t.document.getElementById('f-'+name);control?.handlers.input?.({target:control,currentTarget:control,inputType:'insertText'});}
+}
+function editorStep(t){return Array.from({length:5},(_value,index)=>t.document.getElementById('editor-step-'+index)).findIndex(step=>step&&!step.hidden);}
+function editorAction(t,id){const button=t.document.getElementById(id);assert.ok(button,`Missing editor control ${id}`);assert.equal(button.disabled,false,`${id} must be enabled`);return button.handlers.click({target:button,currentTarget:button,preventDefault(){}});}
+function submitEditor(t){const form=t.document.getElementById('entity-form');return form.handlers.submit({preventDefault(){},currentTarget:form});}
+function submitEntity(t,values){
+ const form=t.document.getElementById('entity-form');form.values=values;setEditorValues(t,values);
+ if(!t.document.getElementById('editor-step-0')){submitEditor(t);return;}
+ for(let attempts=0;attempts<5;attempts++){
+  const before=editorStep(t);submitEditor(t);
+  if(before===4||editorStep(t)===before)return;
+ }
+}
+
 function key(input,key){const event={key,preventDefault(){this.defaultPrevented=true;},stopPropagation(){}};input.handlers.keydown(event);return event;}
 const searchValues=title=>({title,type:'Lakás',minPrice:'',maxPrice:'90',minArea:'40',maxArea:'',minRooms:'2',maxRooms:'',moveIn:'Rugalmas'});
 async function createSearch(t,title='Új keresési igény'){t.ui.openEditor('search');chooseLocation(t,'district:Budapest:13');submitEntity(t,searchValues(title));await settle();return t.model.getState().searches.find(item=>item.title===title);}
@@ -75,7 +136,7 @@ test('initial app renders recommendation without private contacts',async()=>{con
 test('buyer like opens mutual-match dialog; seller activation and recommendation debit exactly two credits',async()=>{const t=await setup();await t.click({action:'like'});assert.match(t.document.getElementById('modal-root').innerHTML,/Egymásra találtatok/);assert.equal(t.model.getState().credits,24);await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.match(t.document.getElementById('app').innerHTML,/<span class="decision-like-caption"><span>Kedvelés<\/span><small>2 kredit<\/small>/);await t.click({action:'like'});assert.equal(t.model.getState().credits,22);assert.equal(t.model.getState().ledger.filter(x=>x.type==='seller_like').length,1);});
 test('passing removes a candidate persistently from current feed',async()=>{const t=await setup(),id=t.model.feed()[0].id;await t.click({action:'pass'});assert.equal(t.model.feed().some(x=>x.id===id),false);assert.equal(t.model.getState().credits,24);});
 test('every navigation page renders, settings inputs have unique IDs',async()=>{const t=await setup();for(const page of ['matches','messages','properties','searches','credits','settings']){await t.click({page});assert.doesNotMatch(t.document.getElementById('app').innerHTML,/Nem érhető el a munkatér/);}const html=t.document.getElementById('app').innerHTML;const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'all IDs within settings must be unique');assert.match(html,/for="api-email"/);});
-test('new search form creates a saved entity and profile form persists changes',async()=>{const t=await setup();await t.click({page:'searches'});await t.click({action:'new',kind:'search'});let form=t.document.getElementById('entity-form');chooseLocation(t,'district:Budapest:11');form.values={title:'Kertvárosi terveink',type:'Lakás',minPrice:'30',maxPrice:'65',minArea:'40',maxArea:'75',minRooms:'2',maxRooms:'4',description:'Zöld környezetben keresünk.',moveIn:'Rugalmas'};form.handlers.submit({preventDefault(){},currentTarget:form});await settle();assert.equal(t.model.getState().searches.some(x=>x.title==='Kertvárosi terveink'),true);await t.click({page:'settings'});form=t.document.getElementById('profile-form');form.values={name:'Teszt Anna',email:'anna@test.hu',phone:'+36 30 123 4567'};form.handlers.submit({preventDefault(){},currentTarget:form});await settle();assert.equal(t.model.getState().user.name,'Teszt Anna');});
+test('new search form creates a saved entity and profile form persists changes',async()=>{const t=await setup();await t.click({page:'searches'});await t.click({action:'new',kind:'search'});let form=t.document.getElementById('entity-form');chooseLocation(t,'district:Budapest:11');form.values={title:'Kertvárosi terveink',type:'Lakás',minPrice:'30',maxPrice:'65',minArea:'40',maxArea:'75',minRooms:'2',maxRooms:'4',description:'Zöld környezetben keresünk.',moveIn:'Rugalmas'};submitEntity(t,form.values);await settle();assert.equal(t.model.getState().searches.some(x=>x.title==='Kertvárosi terveink'),true);await t.click({page:'settings'});form=t.document.getElementById('profile-form');form.values={name:'Teszt Anna',email:'anna@test.hu',phone:'+36 30 123 4567'};form.handlers.submit({preventDefault(){},currentTarget:form});await settle();assert.equal(t.model.getState().user.name,'Teszt Anna');});
 test('matched conversation accepts a message through the chat form',async()=>{const t=await setup();await t.click({action:'open-chat',id:'m1'});const form=t.document.getElementById('chat-form');form.values={message:'Vasárnap délután megfelel a megtekintés?'};form.handlers.submit({preventDefault(){},currentTarget:form});await settle();assert.equal(t.model.matches().find(m=>m.id==='m1').messages.at(-1).text,'Vasárnap délután megfelel a megtekintés?');assert.match(t.document.getElementById('app').innerHTML,/Vasárnap délután megfelel/);});
 test('card resets drag transform when a horizontal gesture becomes vertical',async()=>{const t=await setup(),card=t.document.getElementById('candidate');const target={closest:s=>s==='#candidate'?card:null};t.document.handlers.pointerdown({target,clientX:0,clientY:0,pointerId:1});t.document.handlers.pointermove({clientX:40,clientY:0,pointerId:1});assert.notEqual(card.style.transform,'');t.document.handlers.pointermove({clientX:40,clientY:100,pointerId:1});assert.equal(card.style.transform,'');assert.equal(card.style.opacity,'');});
 
@@ -791,10 +852,10 @@ test('seller insights are property scoped, anonymous and show an active package 
  const insights={propertyId:property.id,stats:{uniqueViewers:24,buyerLikes:7,sellerLikes:5,matchedViewers:3,matchRate:12.5},feedback:{total:2,items:[{id:'r1',reason:'layout',label:'Elrendezés',createdAt:'2026-11-10T10:00:00Z'}],reasonCounts:[{reason:'layout',label:'Elrendezés',count:2}],offset:0,limit:50,hasMore:false},activePackage:{id:'pack',size:10,receivedCount:2,remaining:8,enabled:true,createdAt:'2026-11-10T10:00:00Z',expiresAt:'2026-11-24T10:00:00Z',status:'active'},packages:[]};
  const t=await setup({hosted:true,authenticated:true,apiOverrides:{getPropertyInsights:async(id)=>{calls.push(id);return insights;}}});
  await t.click({action:'property-insights',id:property.id});const html=t.document.getElementById('app').innerHTML;
- assert.equal(calls.at(-1),property.id);for(const text of ['Statisztikák és visszajelzések','Látták','Kedvelték','Kedvelt keresések','12,5','2 db','2 / 10','8 még hiányzik','Visszajelzés kérése: bekapcsolva','név nélkül'])assert.ok(html.includes(text),text);
+ assert.equal(calls.at(-1),property.id);for(const text of ['Statisztikák és visszajelzések','Látták','Kedvelték','Kedvelt keresések','12,5','2 db','2 / 10','8 még hiányzik','név nélkül'])assert.ok(html.includes(text),text);
  assert.doesNotMatch(html,/data-action="feedback-packages"/,'An active package cannot offer another purchase');
- let toggled; t.model.setFeedbackEnabled=async(id,enabled)=>{toggled={id,enabled};insights.activePackage.enabled=enabled;};
- await t.click({action:'feedback-toggle',id:property.id,enabled:'false'});assert.deepEqual(toggled,{id:property.id,enabled:false});assert.match(t.document.getElementById('app').innerHTML,/Visszajelzés kérése: szüneteltetve/);
+ assert.doesNotMatch(html,/data-action="feedback-toggle"|szüneteltet|folytathatod/,'An active paid package cannot be paused');
+ await t.click({action:'feedback-toggle',id:property.id,enabled:'false'});assert.equal(insights.activePackage.enabled,true,'An obsolete pause action cannot alter the package');
  assert.doesNotMatch(t.document.getElementById('app').innerHTML,/buyerId|searchRequestId|PRIVATE-CONTACT/);
 });
 
@@ -864,4 +925,132 @@ test('feedback trial controls require explicit hosted-test capability and reset 
  const selected=[];const seller=await setup({hosted:true,authenticated:true,apiOverrides:{getFeedbackScenario:()=>({...scenario,role:'seller'}),resetFeedbackScenario:()=>{},getPropertyInsights:id=>{selected.push(id);return {stats:{},feedback:{items:[],reasonCounts:[]}};}}});await seller.click({action:'feedback-scenario-reset'});assert.equal(seller.ctx.location.hash,'#insights');assert.equal(selected.at(-1),scenario.propertyId);
  const ordinary=await setup({hosted:true,authenticated:true,apiOverrides:{getFeedbackScenario:()=>({available:false})}});assert.doesNotMatch(ordinary.document.getElementById('app').innerHTML,/feedback-scenario-reset/);
  const production=await setup({hosted:true,authenticated:true,environment:'production',apiOverrides:{getFeedbackScenario:()=>{throw new Error('No test endpoint in production');}}});assert.doesNotMatch(production.document.getElementById('app').innerHTML,/feedback-scenario-reset|Nem érhető el a munkatér/);
+});
+
+function editorChoice(t,name,value){
+ const ids=[...t.document.html.matchAll(new RegExp('<input\\b[^>]*\\bid="([^\"]+)"[^>]*\\bname="'+name+'"[^>]*>','g'))].map(match=>match[1]);
+ const choice=ids.map(id=>t.document.getElementById(id)).find(input=>input.value===String(value));assert.ok(choice,`Missing ${name} choice ${value}`);return choice;
+}
+async function advanceEditor(t,target){
+ for(let attempt=0;editorStep(t)<target&&attempt<5;attempt++){
+  const before=editorStep(t);await editorAction(t,'editor-next');assert.equal(editorStep(t),before+1,'A valid step must advance exactly once');
+ }
+ assert.equal(editorStep(t),target);
+}
+
+test('search editor exposes named stages, validates the current topic and retains all mounted values when revisiting',async()=>{
+ const t=await setup(),saved=[],save=t.model.saveEntity;t.model.saveEntity=(...args)=>{saved.push(args);return save(...args);};
+ t.ui.openEditor('search');const form=t.document.getElementById('entity-form'),html=t.document.getElementById('modal-root').innerHTML;
+ for(const label of ['Helyszín és típus','Ár és méret','Ingatlanjellemzők','Kényelem és felszereltség','További elképzelések'])assert.ok(html.includes(label),label);
+ assert.equal(editorStep(t),0);assert.equal(t.document.getElementById('editor-back').hidden,true);
+ await editorAction(t,'editor-next');assert.equal(editorStep(t),0);assert.equal(t.document.activeElement.id,'f-title');
+ assert.ok(t.document.getElementById('f-title').reportedValidity>0);assert.equal(saved.length,0);
+ t.document.getElementById('f-title').value='Megőrzött keresési elképzelés';chooseLocation(t,'city:Debrecen');chooseLocation(t,'city:Hajdúszoboszló');
+ await editorAction(t,'editor-next');assert.equal(editorStep(t),1);
+ assert.equal(t.document.getElementById('editor-step-button-1').getAttribute('aria-current'),'step');
+ assert.equal(t.document.getElementById('editor-step-button-0').getAttribute('data-editor-state'),'completed');
+ t.document.getElementById('f-maxPrice').value='125';t.document.getElementById('f-minArea').value='65';t.document.getElementById('f-minRooms').value='3';
+ for(const name of ['minPrice','maxArea','maxRooms'])t.document.getElementById('f-'+name).value='';
+ await editorAction(t,'editor-next');assert.equal(editorStep(t),2);
+ editorChoice(t,'conditions','Jó').checked=true;editorChoice(t,'conditions','Új/felújított').checked=true;editorChoice(t,'buildings','Tégla').checked=true;
+ await editorAction(t,'editor-next');assert.equal(editorStep(t),3);
+ editorChoice(t,'heatingTypes','Hőszivattyú').checked=true;editorChoice(t,'floors','0').checked=true;t.document.getElementById('f-ceilingHeight').value='3 m feletti';
+ await editorAction(t,'editor-next');assert.equal(editorStep(t),4);t.document.getElementById('f-description').value='Fényes, csendes otthont szeretnénk.';
+ await editorAction(t,'editor-back');assert.equal(editorStep(t),3);assert.equal(editorChoice(t,'heatingTypes','Hőszivattyú').checked,true);
+ await editorAction(t,'editor-step-button-0');assert.equal(editorStep(t),0);
+ assert.match(t.document.getElementById('location-chips').innerHTML,/Debrecen/);assert.match(t.document.getElementById('location-chips').innerHTML,/Hajdúszoboszló/);
+ assert.equal(t.document.getElementById('f-title').value,'Megőrzött keresési elképzelés');assert.equal(t.document.getElementById('f-maxPrice').value,'125');
+ assert.equal(editorChoice(t,'conditions','Új/felújított').checked,true);assert.equal(t.document.getElementById('f-description').value,'Fényes, csendes otthont szeretnénk.');
+ assert.equal(t.document.getElementById('entity-form'),form,'Step navigation must preserve the mounted form');assert.equal(saved.length,0,'Navigation never saves a draft entity');
+ await editorAction(t,'editor-step-button-4');assert.equal(editorStep(t),4);submitEditor(t);await settle();
+ assert.equal(saved.length,1);const result=t.model.getState().searches.find(item=>item.title==='Megőrzött keresési elképzelés');assert.ok(result);
+ assert.deepEqual([...result.locationIds],['city:Debrecen','city:Hajdúszoboszló']);assert.equal(result.maxPrice,125);assert.equal(result.minArea,65);assert.equal(result.minRooms,3);
+ for(const name of ['minPrice','maxArea','maxRooms'])assert.equal(result[name],null);
+ assert.deepEqual([...result.conditions],['Jó','Új/felújított']);assert.deepEqual([...result.heatingTypes],['Hőszivattyú']);assert.deepEqual([...result.floors],[0]);assert.equal(result.description,'Fényes, csendes otthont szeretnénk.');
+ assert.match(t.document.getElementById('modal-root').innerHTML,/Ingatlanok felfedezése/);
+});
+
+test('seller wizard preserves required house plot, nullable amenities, image URLs and multiple parking choices through backtracking',async()=>{
+ const t=await setup(),before=t.model.getState(),saved=[],save=t.model.saveEntity;t.model.saveEntity=(...args)=>{saved.push(args);return save(...args);};
+ t.ui.openEditor('property');const html=t.document.getElementById('modal-root').innerHTML;
+ for(const label of ['Alapadatok','Ár és méret','Ingatlanjellemzők','Felszereltség','Képek és leírás'])assert.ok(html.includes(label),label);
+ t.document.getElementById('f-title').value='Lépésenként megőrzött családi ház';chooseLocation(t,'city:Solymár');
+ const type=t.document.getElementById('f-type');type.value='Ház';type.handlers.change({target:type,currentTarget:type});
+ await editorAction(t,'editor-next');assert.equal(editorStep(t),1);
+ for(const [name,value] of Object.entries({price:'110.5',area:'130.5',wholeRooms:'3',halfRooms:'1'}))t.document.getElementById('f-'+name).value=value;
+ await editorAction(t,'editor-next');assert.equal(editorStep(t),1,'A house cannot advance without its plot');assert.equal(t.document.activeElement.id,'f-lotArea');
+ t.document.getElementById('f-lotArea').value='720';await editorAction(t,'editor-next');assert.equal(editorStep(t),2);
+ t.document.getElementById('f-condition').value='Jó';t.document.getElementById('f-building').value='Tégla';
+ await editorAction(t,'editor-next');assert.equal(editorStep(t),3);
+ for(const [name,value] of Object.entries({heatingType:'Hőszivattyú',secondaryHeatingType:'Klíma',insulated:'false',airConditioning:'true',solarPanels:'',energyRating:'A+'}))t.document.getElementById('f-'+name).value=value;
+ editorChoice(t,'parkingTypes','Garázs').checked=true;editorChoice(t,'parkingTypes','Udvari beálló').checked=true;
+ await editorAction(t,'editor-next');assert.equal(editorStep(t),4);
+ t.document.getElementById('property-images').value='https://example.test/elol.jpg\nhttps://example.test/kert.jpg';t.document.getElementById('f-description').value='Az eddig bevitt részletek maradjanak meg.';
+ await editorAction(t,'editor-step-button-1');assert.equal(editorStep(t),1);assert.equal(t.document.getElementById('f-lotArea').value,'720');
+ await editorAction(t,'editor-step-button-3');assert.equal(t.document.getElementById('f-insulated').value,'false');assert.equal(t.document.getElementById('f-solarPanels').value,'');assert.equal(editorChoice(t,'parkingTypes','Garázs').checked,true);
+ await editorAction(t,'editor-step-button-4');assert.match(t.document.getElementById('property-images').value,/kert\.jpg/);assert.equal(saved.length,0);
+ submitEditor(t);await settle();assert.equal(saved.length,1);
+ const result=t.model.getState().properties.find(item=>item.title==='Lépésenként megőrzött családi ház');assert.ok(result);assert.equal(result.lotArea,720);assert.equal(result.insulated,false);assert.equal(result.airConditioning,true);assert.equal(result.solarPanels,null);assert.equal(result.wholeRooms,3);assert.equal(result.halfRooms,1);
+ assert.deepEqual([...result.parkingTypes],['Udvari beálló','Garázs']);assert.deepEqual([...result.images],['https://example.test/elol.jpg','https://example.test/kert.jpg']);assert.equal(result.floor,null);assert.equal(result.balcony,false);assert.equal(result.elevator,false);
+ assert.deepEqual(t.model.getState().active,before.active);
+});
+
+test('final wizard submission revisits an invalid earlier topic instead of silently saving hidden invalid controls',async()=>{
+ const t=await setup(),calls=[],save=t.model.saveEntity;t.model.saveEntity=(...args)=>{calls.push(args);return save(...args);};
+ t.ui.openEditor('search','own-s1');await advanceEditor(t,4);
+ t.document.getElementById('f-maxPrice').value='';submitEditor(t);await settle();
+ assert.equal(editorStep(t),1);assert.equal(t.document.activeElement.id,'f-maxPrice');assert.equal(calls.length,0);assert.equal(t.document.getElementById('f-maxPrice').hidden,false);
+ t.document.getElementById('f-maxPrice').value='95';await advanceEditor(t,4);submitEditor(t);await settle();assert.equal(calls.length,1);assert.equal(t.model.getState().searches.find(item=>item.id==='own-s1').maxPrice,95);
+ assert.equal(t.document.getElementById('modal-root').innerHTML,'','An edit does not open the new-search activation offer');
+});
+
+test('wizard range errors stay in the price and size topic and future-step clicks cannot bypass validation',async()=>{
+ const t=await setup();t.ui.openEditor('search');
+ await editorAction(t,'editor-step-button-4');assert.equal(editorStep(t),0,'A future topic cannot bypass missing required earlier details');assert.equal(t.document.activeElement.id,'f-title');
+ t.document.getElementById('f-title').value='Ártartomány ellenőrzése';chooseLocation(t,'city:Debrecen');await editorAction(t,'editor-next');
+ t.document.getElementById('f-minPrice').value='100';t.document.getElementById('f-maxPrice').value='80';await editorAction(t,'editor-next');assert.equal(editorStep(t),1);assert.ok(t.document.activeElement.validationMessage);
+ t.document.getElementById('f-minPrice').value='';await editorAction(t,'editor-next');assert.equal(editorStep(t),2);
+ await editorAction(t,'editor-back');assert.equal(editorStep(t),1);assert.equal(t.document.getElementById('f-maxPrice').value,'80');
+});
+
+test('wizard editing and cancellation preserve the saved entity and clean up location listeners',async()=>{
+ const t=await setup(),before=t.model.getState(),pointers=t.document.listenerCount('pointerdown'),focus=t.document.listenerCount('focusin');
+ t.ui.openEditor('search','own-s1');const originalTitle=t.document.getElementById('f-title').value;assert.equal(originalTitle,before.searches.find(item=>item.id==='own-s1').title);
+ t.document.getElementById('f-title').value='Ez még csak piszkozat';await advanceEditor(t,3);await editorAction(t,'editor-step-button-0');assert.equal(t.document.getElementById('f-title').value,'Ez még csak piszkozat');
+ await t.click({action:'close'});assert.equal(t.document.getElementById('modal-root').innerHTML,'');assert.deepEqual(t.model.getState(),before);
+ assert.equal(t.document.listenerCount('pointerdown'),pointers);assert.equal(t.document.listenerCount('focusin'),focus);
+});
+
+test('discovery dock follows the active candidate and disappears for empty feeds, partial consent and pending feedback',async()=>{
+ const t=await setup();let html=t.document.getElementById('app').innerHTML;assert.match(html,/discovery-decision-dock/);assert.match(html,/class="card-actions"/);
+ await t.click({action:'activate-one',kind:'property',id:'own-p1'});html=t.document.getElementById('app').innerHTML;assert.match(html,/discovery-decision-dock/);assert.match(html,/Kedvelés<\/span><small>2 kredit/);
+ await t.click({page:'properties'});assert.doesNotMatch(t.document.getElementById('app').innerHTML,/discovery-decision-dock/);
+ const empty=await setup({hosted:true,authenticated:true,apiOverrides:{recommendations:()=>({items:[],stage:'empty'})}});assert.doesNotMatch(empty.document.getElementById('app').innerHTML,/discovery-decision-dock/);
+ const partial=await setup({hosted:true,authenticated:true,apiOverrides:{recommendations:()=>({items:[],stage:'empty',requiresApproximateConsent:true})}});assert.doesNotMatch(partial.document.getElementById('app').innerHTML,/discovery-decision-dock/);
+ const pending=await setup({hosted:true,authenticated:true,apiOverrides:{pendingFeedback:()=>({feedbackPrompt:{id:'pending',title:'Segíts egy visszajelzéssel',options:feedbackHelpers.FEEDBACK_OPTIONS}})}});assert.doesNotMatch(pending.document.getElementById('app').innerHTML,/discovery-decision-dock/);
+});
+
+test('wizard final-save retries cannot duplicate a pending write or navigate away from the submitted topic',async()=>{
+ const t=await setup(),save=t.model.saveEntity,calls=[];let release;
+ t.ui.openEditor('search','own-s1');await advanceEditor(t,4);
+ t.document.getElementById('f-description').value='Egyetlen mentésből létrejövő módosítás.';
+ t.model.saveEntity=async(...args)=>{calls.push(args);await new Promise(resolve=>{release=resolve;});return save(...args);};
+ submitEditor(t);await settle();assert.equal(calls.length,1);
+ submitEditor(t);await editorAction(t,'editor-back');assert.equal(editorStep(t),4);assert.equal(calls.length,1);
+ release();await settle();assert.equal(calls.length,1);assert.equal(t.document.getElementById('modal-root').innerHTML,'');
+ assert.equal(t.model.getState().searches.find(item=>item.id==='own-s1').description,'Egyetlen mentésből létrejövő módosítás.');
+});
+
+test('editing a saved holiday-home property or search preserves its existing type throughout the wizard and final save',async()=>{
+ let raw;const seed=createModel({getItem:()=>null,setItem:(_key,value)=>{raw=JSON.parse(value);}});seed.activate('search','own-s1');
+ raw.properties.find(item=>item.id==='own-p1').type='Nyaraló';raw.searches.find(item=>item.id==='own-s1').type='Nyaraló';
+ for(const kind of ['property','search']){
+  const t=await setup({initialRaw:raw}),id=kind==='property'?'own-p1':'own-s1';
+  t.ui.openEditor(kind,id);const type=t.document.getElementById('f-type');assert.equal(type.value,'Nyaraló','A saved type outside the creation choices must remain selected');
+  await advanceEditor(t,4);await editorAction(t,'editor-step-button-0');assert.equal(t.document.getElementById('f-type'),type);assert.equal(type.value,'Nyaraló');
+  await editorAction(t,'editor-step-button-4');submitEditor(t);await settle();
+  const collection=kind==='property'?t.model.getState().properties:t.model.getState().searches;
+  assert.equal(collection.find(item=>item.id===id).type,'Nyaraló','Saving unrelated edits must not silently convert a holiday home into a flat');
+  assert.equal(t.document.getElementById('modal-root').innerHTML,'');
+ }
 });

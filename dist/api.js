@@ -337,12 +337,6 @@ export class ApiModel {
     const result=await this.call(`/properties/${encodeURIComponent(id)}/feedback-packages`,'POST',{size:Number(size),requestId});
     return {package:feedbackPackageFromApi(result.package),charged:feedbackCount(result.charged),credits:feedbackCount(result.credits)};
   }
-  async setFeedbackEnabled(id,enabled) {
-    id=feedbackId(id,'ingatlanazonosító');
-    if(typeof enabled!=='boolean')throw new Error('Érvénytelen visszajelzés-beállítás.');
-    const result=await this.call(`/properties/${encodeURIComponent(id)}/feedback`,'PUT',{enabled});
-    return {package:feedbackPackageFromApi(result.package)};
-  }
   async recordImpression(propertyId,searchId) {
     propertyId=feedbackId(propertyId,'ingatlanazonosító');searchId=feedbackId(searchId,'keresésazonosító');
     const result=await this.call('/impressions','POST',{propertyId,searchRequestId:searchId});

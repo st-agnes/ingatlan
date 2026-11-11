@@ -2,6 +2,10 @@
 
 Magyar nyelvű ingatlanpárosító alkalmazás. Egy felhasználó több ingatlant és több keresési igényt kezelhet, majd egyet aktiválva fedezheti fel a hozzá illő ajánlásokat. Magánszemélyként a keresői kedvelés ingyenes, ingatlanközvetítőként 1 kredit; az eladói ajánlás mindkét fióktípusnál 2 kredit. Kölcsönös érdeklődéskor megnyílik az üzenetküldés és láthatóvá válnak az elérhetőségek. Ingatlanközvetítőnek mindkét szerepben csak magánszemély ajánlható; magánszemély mindkét fióktípust láthatja.
 
+Az eladó ingatlanok és keresési igények felvétele, illetve szerkesztése öt témakörre bontott űrlapon történik. Az állapotsoron követhető az előrehaladás; a korábbi lépésekre az addigi adatok megtartásával lehet visszatérni. Felfedezéskor a döntési gombok görgetés közben is a képernyőn maradnak.
+
+A visszajelzés-csomagok a vásárlástól számított két hétig folyamatosan működnek, szüneteltetés nélkül. A lejáratkor hiányzó válaszok után továbbra is kreditet írunk jóvá.
+
 ## Google Cloud tesztkörnyezet
 
 A `scripts/gcp/` telepítői az `ingatlan-513620` projekthez készítenek külön `-dev` szolgáltatásokat: Firebase Hosting webet, Cloud Run API-t külön Google Cloud SQL Auth Proxy konténerrel, valamint Cloud SQL for MySQL-adatbázist. Az első indítás a saját Google Cloud Shellből történik; a telepítő kiírja a Google által biztosított HTTPS-címet. A tesztoldal valódi regisztrációt és szerveres adatmentést használ, ingyenes tesztkreditekkel.

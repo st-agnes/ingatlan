@@ -142,6 +142,8 @@ jobs:
           python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" legacy-notification
           node scripts/dev.mjs --background
           python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" upgraded-notification
+          node scripts/dev.mjs --restart
+          python3 backend/seller-feedback-store.py "${{ job.services.mysql.id }}" preserved-notification
       - name: Verify seller statistics, paid feedback, quota races and exactly-once package refunds
         run: |
           node backend/seller-feedback-smoke.mjs http://127.0.0.1:3000 --setup
@@ -159,6 +161,8 @@ jobs:
         run: |
           npm install --prefix .local/browser-tests --no-save --no-package-lock playwright@1.56.1
           .local/browser-tests/node_modules/.bin/playwright install --with-deps chromium
+      - name: Test themed editors and always reachable discovery actions in Chromium
+        run: node tests/wizard-dock-browser.test.mjs http://127.0.0.1:3000
       - name: Test location picker and search creation in Chromium
         run: node tests/browser.test.mjs http://127.0.0.1:3000
       - name: Test optional attributes in desktop, tablet and mobile Chromium

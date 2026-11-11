@@ -44,9 +44,17 @@ test('package purchase is owner-only, charged once, validates size/key/balance a
  assert.equal(m.buyFeedbackPackage('own-p1',10,REQUEST).charged,0);assert.equal(m.getState().credits,before-10);
  assert.throws(()=>m.buyFeedbackPackage('own-p1',20,REQUEST),/azonosítót/);assert.throws(()=>m.buyFeedbackPackage('own-p1',10,NEXT),/aktív/);
  assert.equal(m.getPropertyInsights('own-p1').activePackage.id,bought.package.id);assert.equal(m.getState().ledger.filter(item=>item.feedbackPackageId===bought.package.id).length,1);
- m.setFeedbackEnabled('own-p1',false);assert.equal(m.getPropertyInsights('own-p1').activePackage.enabled,false);m.setFeedbackEnabled('own-p1',true);assert.equal(m.getState().credits,before-10);
- assert.throws(()=>m.setFeedbackEnabled('own-p1','true'));assert.throws(()=>m.setFeedbackEnabled('p1',true));
+ assert.equal(typeof m.setFeedbackEnabled,'undefined','Packages cannot be paused or resumed by their owner.');
  const poor=fixture(raw=>{raw.credits=9;});const prior=poor.storage.getItem(STORAGE_KEY);assert.throws(()=>poor.model.buyFeedbackPackage('own-p1',10,REQUEST),/elegendő/);assert.equal(poor.storage.getItem(STORAGE_KEY),prior);
+});
+
+test('legacy paused packages remain continuously eligible without changing their charge or expiry',()=>{
+ const t=fixture(),bought=t.model.buyFeedbackPackage('own-p1',10,REQUEST),balance=t.model.getState().credits;
+ t.edit(raw=>{raw.feedbackPackages[0].enabled=false;});const saved=t.storage.getItem(STORAGE_KEY),again=t.reload(),page=again.getPropertyInsights('own-p1');
+ assert.equal(page.activePackage.enabled,true);assert.equal(page.activePackage.status,'active');assert.equal(page.activePackage.id,bought.package.id);assert.equal(page.activePackage.expiresAt,END);
+ assert.equal(again.getState().credits,balance);assert.equal(again.getState().ledger.filter(item=>item.feedbackPackageId===bought.package.id).length,1);assert.equal(t.storage.getItem(STORAGE_KEY),saved,'Reading a legacy package does not rewrite saved business data.');
+ const buyer=buyerFixture(raw=>{raw.feedbackPackages[0].enabled=false;});assert.ok(promptAtTwenty(buyer),'A legacy disabled flag cannot suppress the next ordinary eligible request.');
+ t.at(END);assert.equal(again.getPropertyInsights('own-p1').activePackage,null);assert.equal(again.getState().credits,balance+10);assert.equal(again.getState().ledger.filter(item=>item.refundedFeedbackPackageId===bought.package.id).length,1);
 });
 
 test('failed package storage cannot debit credits or leave a package or ledger entry behind',()=>{
@@ -93,7 +101,7 @@ test('one human cannot be invited twice by the same campaign after declining, ex
  }
 });
 
-test('valid responses count once, remain anonymous to the seller, and survive pause, archive and reload',()=>{
+test('valid responses count once, remain anonymous to the seller, and survive legacy flags, archive and reload',()=>{
  const t=buyerFixture(),prompt=promptAtTwenty(t);t.edit(raw=>{raw.feedbackPackages[0].enabled=false;raw.properties.find(item=>item.id==='ad-19').archived=true;});
  const buyer=t.reload();assert.equal(buyer.pendingFeedback().id,prompt.id);assert.deepEqual(buyer.answerFeedback(prompt.id,'layout'),{accepted:true,alreadyAnswered:false});
  assert.deepEqual(buyer.answerFeedback(prompt.id,'other'),{accepted:true,alreadyAnswered:true});assert.equal(t.raw().feedbackPackages[0].receivedCount,1);

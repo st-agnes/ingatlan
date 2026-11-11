@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
+import {editorField,editorSave,editorStep} from './editor-browser-helpers.mjs';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
 const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
@@ -17,10 +18,10 @@ async function openPage(page,kind){
 }
 async function newEntity(page,interact,kind){await openPage(page,kind);await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));await page.waitForFunction(()=>document.activeElement?.id==='f-title');}
 async function editEntity(page,interact,kind,id){await openPage(page,kind);await interact(page.locator(`[data-action="edit"][data-id="${id}"]`));await page.waitForFunction(()=>document.activeElement?.id==='f-title');}
-async function query(page,value){await page.locator('#location-input').fill(value);await page.locator('#location-options').waitFor({state:'visible'});}
+async function query(page,value){await (await editorField(page,'#location-input')).fill(value);await page.locator('#location-options').waitFor({state:'visible'});}
 async function choose(page,interact,id){await interact(page.locator(`#location-options [data-location-id="${id}"]`));assert.equal(await page.locator('#location-input').inputValue(),'');}
 async function save(page,interact,isNewSearch=false){
- await interact(page.locator('#entity-form button[type="submit"]'));
+ await editorSave(page,interact);
  if(isNewSearch){await page.getByRole('heading',{name:'Elkészült a keresési igényed.',exact:true}).waitFor();await interact(page.locator('.search-created-actions [data-action="close"]'));}
  await page.locator('#entity-form').waitFor({state:'detached'});
 }
@@ -49,7 +50,7 @@ async function verify(browser,viewport){
   const geometry=await page.locator('.modal').evaluate(element=>({width:element.clientWidth,scrollWidth:element.scrollWidth}));
   assert.ok(geometry.scrollWidth<=geometry.width+1,'Region names and counts must fit the modal without horizontal scrolling');
   const title=`Városkörnyékek és település – ${viewport.name}`;
-  await page.locator('#f-title').fill(title);await save(page,interact,true);
+  await (await editorField(page,'#f-title')).fill(title);await save(page,interact,true);
   let search=(await readState(page)).searches.find(item=>item.title===title);assert.ok(search);
   assert.deepEqual(search.locationIds,['area:Debrecen','area:Budapest','city:Solymár'],'Selected groups stay compact and are not expanded to member IDs');
   await openPage(page,'search');
@@ -70,7 +71,7 @@ async function verify(browser,viewport){
   assert.equal(await page.locator('#location-options [data-location-id="city:Debrecen"]').count(),1);
   await choose(page,interact,'city:Debrecen');
   const propertyTitle=`Pontos településű ingatlan – ${viewport.name}`;
-  await page.locator('#f-title').fill(propertyTitle);await page.locator('#f-price').fill('65');await page.locator('#f-area').fill('62');await page.locator('#f-wholeRooms').fill('3');await page.locator('#f-halfRooms').fill('0');
+  await (await editorField(page,'#f-title')).fill(propertyTitle);await (await editorField(page,'#f-price')).fill('65');await (await editorField(page,'#f-area')).fill('62');await (await editorField(page,'#f-wholeRooms')).fill('3');await (await editorField(page,'#f-halfRooms')).fill('0');
   await save(page,interact);
   const property=(await readState(page)).properties.find(item=>item.title===propertyTitle);assert.ok(property);
   assert.equal(property.locationId,'city:Debrecen');

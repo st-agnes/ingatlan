@@ -207,14 +207,14 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     &&Number.isFinite(storedInstant(pkg.expiresAt))&&storedInstant(pkg.expiresAt)<=storedInstant(at));
   const feedbackPackageView=(pkg,at)=>pkg?{
     id:pkg.id,size:pkg.size,receivedCount:pkg.receivedCount,remaining:Math.max(0,pkg.size-pkg.receivedCount),
-    enabled:pkg.enabled,createdAt:pkg.createdAt,expiresAt:pkg.expiresAt,refundedAt:pkg.refundedAt??null,
-    refundedCredits:pkg.refundedCredits??0,status:storedInstant(pkg.expiresAt)<=storedInstant(at)?'expired':pkg.receivedCount>=pkg.size?'completed':'active'
+    enabled:!pkg.refundedAt&&storedInstant(pkg.expiresAt)>storedInstant(at)&&pkg.receivedCount<pkg.size,createdAt:pkg.createdAt,expiresAt:pkg.expiresAt,refundedAt:pkg.refundedAt??null,
+    refundedCredits:pkg.refundedCredits??0,status:pkg.refundedAt||storedInstant(pkg.expiresAt)<=storedInstant(at)?'expired':pkg.receivedCount>=pkg.size?'completed':'active'
   }:null;
-  const activeFeedbackPackage=(s,propertyId,at)=>s.feedbackPackages.find(pkg=>pkg.propertyId===propertyId&&storedInstant(pkg.expiresAt)>storedInstant(at));
+  const activeFeedbackPackage=(s,propertyId,at)=>s.feedbackPackages.find(pkg=>pkg.propertyId===propertyId&&!pkg.refundedAt&&storedInstant(pkg.expiresAt)>storedInstant(at));
   const liveFeedbackInvitation=(s,invitation,at)=>{
     if(invitation.answeredAt||storedInstant(invitation.expiresAt)<=storedInstant(at))return false;
     const pkg=s.feedbackPackages.find(item=>item.id===invitation.packageId);
-    return !!pkg&&storedInstant(pkg.expiresAt)>storedInstant(at)&&pkg.receivedCount<pkg.size;
+    return !!pkg&&!pkg.refundedAt&&storedInstant(pkg.expiresAt)>storedInstant(at)&&pkg.receivedCount<pkg.size;
   };
   const pendingFeedbackInvitation=(s,at)=>s.feedbackInvitations.find(item=>item.buyerId===s.userId&&liveFeedbackInvitation(s,item,at));
   const feedbackPrompt=(s,invitation)=>{
@@ -232,7 +232,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     if(pending)return feedbackPrompt(s,pending);
     if(buyer.feedbackPassCounter<FEEDBACK_PROMPT_SPACING)return null;
     const pkg=activeFeedbackPackage(s,property.id,at);
-    if(!pkg?.enabled||pkg.receivedCount>=pkg.size||s.feedbackInvitations.some(item=>item.packageId===pkg.id&&item.buyerId===s.userId))return null;
+    if(!pkg||pkg.receivedCount>=pkg.size||s.feedbackInvitations.some(item=>item.packageId===pkg.id&&item.buyerId===s.userId))return null;
     const reservations=s.feedbackInvitations.filter(item=>item.packageId===pkg.id&&liveFeedbackInvitation(s,item,at)).length;
     if(pkg.receivedCount+reservations>=pkg.size)return null;
     const invitation={id:uid('feedback'),packageId:pkg.id,propertyId:property.id,decisionId:decision.id,buyerId:s.userId,
@@ -441,15 +441,6 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         s.credits-=size;s.feedbackPackages.push(pkg);
         s.ledger.unshift({id:uid('credit'),amount:-size,type:'feedback_package',kind:'feedback_package',description:`${size} visszajelzést tartalmazó csomag: ${property.title}`,feedbackPackageId:pkg.id,propertyId,createdAt});
         return {package:feedbackPackageView(pkg,createdAt),charged:size,credits:s.credits};
-      });
-    },
-    setFeedbackEnabled(propertyId,enabled) {
-      if(typeof enabled!=='boolean')throw new Error('Érvénytelen visszajelzés-beállítás.');processRefunds();
-      return transact(s=>{
-        if(!own(s,'property',propertyId))throw new Error('Az ingatlan nem található.');
-        const pkg=activeFeedbackPackage(s,propertyId,now());
-        if(!pkg)throw new Error('Nincs aktív visszajelzés-csomag ehhez az ingatlanhoz.');
-        pkg.enabled=enabled;return {package:feedbackPackageView(pkg,now())};
       });
     },
     recordImpression(propertyId,searchRequestId) {
