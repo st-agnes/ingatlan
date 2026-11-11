@@ -14,16 +14,20 @@ const landingRegions=[{id:'HU110',label:'Budapest'},{id:'HU321',label:'Hajdú-Bi
 function landingFixture(region){const selected=landingRegions.find(item=>item.id===region)||null;return {regions:landingRegions,region:selected,scope:selected?'region':'national',searches:region==='HU232'?[]:[{key:'s-public',title:'Kertes otthont keresünk',ownerFirstName:'Anna',type:'Lakás',locations:[region==='HU321'?'Debrecen':'Budapest XIII. kerület'],minPrice:null,maxPrice:90,minArea:50,maxArea:null,minRooms:2,maxRooms:null,ownerAccountType:'private'}],properties:region==='HU232'?[]:[{key:'p-public',title:'Napfényes erkélyes otthon',ownerFirstName:'Péter',type:'Lakás',location:region==='HU321'?'Debrecen':'Budapest',price:82,area:60,wholeRooms:2,halfRooms:1,rooms:2.5,lotArea:null,ownerAccountType:'agent'}]};}
 
 const source=await fs.readFile(new URL('../dist/app.js',import.meta.url),'utf8');
+const decodeHtmlValue=value=>String(value).replace(/&(?:amp|lt|gt|quot|apos|#(?:x[0-9a-f]+|\d+));/gi,encoded=>{
+ const key=encoded.slice(1,-1).toLowerCase(),named={amp:'&',lt:'<',gt:'>',quot:'"',apos:"'"};
+ if(!key.startsWith('#'))return named[key];const code=key[1]==='x'?parseInt(key.slice(2),16):Number(key.slice(1));return code>=0&&code<=0x10ffff?String.fromCodePoint(code):encoded;
+});
 class Element {
  constructor(id,doc,markup='') {
   this.id=id;this.doc=doc;this.markup=markup;this._innerHTML='';this.textContent='';
   this.tagName=(markup.match(/^<([a-z][\w-]*)/i)?.[1]||'div').toUpperCase();
-  this.attributes=Object.fromEntries([...markup.split('>')[0].matchAll(/([\w-]+)="([^"]*)"/g)].map(match=>[match[1],match[2]]));
+  this.attributes=Object.fromEntries([...markup.split('>')[0].matchAll(/([\w-]+)="([^"]*)"/g)].map(match=>[match[1],decodeHtmlValue(match[2])]));
   this.dataset=new Proxy(Object.fromEntries(Object.entries(this.attributes).filter(([name])=>name.startsWith('data-')).map(([name,value])=>[name.slice(5).replace(/-([a-z])/g,(_match,letter)=>letter.toUpperCase()),value])),{set:(target,key,value)=>{target[key]=String(value);this.attributes['data-'+String(key).replace(/[A-Z]/g,letter=>'-'+letter.toLowerCase())]=String(value);return true;}});
   this.className=this.attributes.class||'';this.value=this.attributes.value||'';this.name=this.attributes.name||'';this.step=this.attributes.step||'';this.type=this.attributes.type||'';
   this.required=/\srequired(?:\s|>)/.test(markup);this.validity={badInput:false};
-  if(markup.startsWith('<select')) {const option=[...markup.matchAll(/<option\b([^>]*)>([^<]*)/g)],selected=option.find(match=>/\bselected\b/.test(match[1]))||option[0];this.value=selected?.[1].match(/\bvalue="([^"]*)"/)?.[1]??selected?.[2]??'';}
-  if(markup.startsWith('<textarea'))this.value=markup.match(/^[^>]*>([\s\S]*?)<\/textarea>/)?.[1]||'';
+  if(markup.startsWith('<select')) {const option=[...markup.matchAll(/<option\b([^>]*)>([^<]*)/g)],selected=option.find(match=>/\bselected\b/.test(match[1]))||option[0];this.value=decodeHtmlValue(selected?.[1].match(/\bvalue="([^"]*)"/)?.[1]??selected?.[2]??'');}
+  if(markup.startsWith('<textarea'))this.value=decodeHtmlValue(markup.match(/^[^>]*>([\s\S]*?)<\/textarea>/)?.[1]||'');
   this.checked=/\schecked(?:\s|>)/.test(markup);this.disabled=/\sdisabled(?:\s|>)/.test(markup);this.hidden=/\shidden(?:\s|>)/.test(markup);
   this.style={};this.handlers={};this.scrollHeight=500;this.scrollTop=0;this.validationMessage='';this.reportedValidity=0;
   this.classList={toggle:(name,on)=>{const classes=new Set(this.className.split(' ').filter(Boolean));if(on??!classes.has(name))classes.add(name);else classes.delete(name);this.className=[...classes].join(' ');},remove:name=>this.classList.toggle(name,false),add:name=>this.classList.toggle(name,true),contains:name=>this.className.split(' ').includes(name)};
@@ -86,7 +90,7 @@ async function setup(options={}){
  const timers=[],connected=[],disconnected=[],landingCalls=[],windowEvents={},regionStorage=new Map(Object.entries(options.regionStorage||{}));
  let currentHash=options.hash??(options.hosted&&!options.authenticated?'#login':'');
  const ctx=vm.createContext({
-  document,console,Intl,Date,Promise,URLSearchParams,IntersectionObserver:options.IntersectionObserver,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
+  document,console,Intl,Date,Promise,URL,URLSearchParams,IntersectionObserver:options.IntersectionObserver,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
   location:{get hash(){return currentHash;},set hash(value){currentHash=value?(value.startsWith('#')?value:'#'+value):'';},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},addEventListener:(type,handler)=>{windowEvents[type]=handler;}},
   OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:options.environment||'test'}:{mode:'demo',environment:'local'},
   searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...accountHelpers,...feedbackHelpers,
@@ -1078,4 +1082,98 @@ test('modal focus chooses the first visible enabled field before progress button
  const replacementStart=t.document.focusEvents.length;t.runNextTimer();assert.equal(t.document.focusEvents.length,replacementStart,'The replaced dialog timer must not move focus into the new dialog');
  t.runNextTimer();assert.equal(t.document.activeElement.id,'replacement-field');assert.deepEqual(t.document.focusEvents.slice(replacementStart),['replacement-field']);
  t.ui.openModal('<input id="closed-field">');t.ui.closeModal();const closedStart=t.document.focusEvents.length;t.runTimers();assert.equal(t.document.focusEvents.length,closedStart,'A closed dialog timer cannot steal focus');
+});
+
+function configuredCriteriaRaw(kind){
+ let raw;const model=createModel({getItem:()=>null,setItem:(_key,value)=>{raw=JSON.parse(value);}});model.activate(kind,kind==='property'?'own-p1':'own-s1');
+ Object.assign(raw.properties.find(item=>item.id==='own-p1'),{
+  title:'Minden adat <otthon> & fény',type:'Lakás',locationId:'district:Budapest:5',city:'Budapest',district:'V.',neighborhood:'Belváros',address:'Budapest, Napfény utca 12.',
+  price:92.5,area:66.5,wholeRooms:2,halfRooms:1,rooms:2.5,floor:0,condition:'Átlagos',building:'Tégla',constructionAge:'31–40 év közötti',view:'Udvari',ceilingHeight:'3 m feletti',
+  heatingType:'Nincs fűtés',secondaryHeatingType:'Klíma',insulated:false,energyRating:'BB',airConditioning:false,solarPanels:true,parkingTypes:['Udvari beálló','Garázs'],
+  balcony:false,elevator:true,images:['https://example.test/elol.jpg','https://example.test/udvar.jpg'],description:'Tágas <belső> & csendes udvar.'
+ });
+ Object.assign(raw.searches.find(item=>item.id==='own-s1'),{
+  title:'Minden feltétel <keresés> & tér',type:'Lakás',locationIds:['city:Debrecen','district:Budapest:5'],city:'Debrecen',districts:['V.'],
+  minPrice:0,maxPrice:120.5,minArea:0,maxArea:150,minRooms:0,maxRooms:5.5,conditions:['Átlagos','Jó'],buildings:['Tégla','Panel'],
+  constructionAges:['10 évnél fiatalabb','31–40 év közötti'],views:['Kertre néző','Panorámás'],heatingTypes:['Hőszivattyú','Klíma'],ceilingHeight:'3 m alatti',floors:[-1,0,11],
+  balcony:true,elevator:true,moveIn:'Azonnal',financing:'Saját forrásból',description:'Csendes <kert> & tágas tér.'
+ });
+ return raw;
+}
+function criteriaRow(t,key){
+ const html=t.document.getElementById('modal-root').innerHTML,match=html.match(new RegExp('<div\\b(?=[^>]*\\bdata-summary-field="'+key+'")[^>]*>\\s*<dt\\b[^>]*>([\\s\\S]*?)<\\/dt>\\s*<dd\\b[^>]*>([\\s\\S]*?)<\\/dd>'));
+ assert.ok(match,`The criteria summary must include the configured ${key} parameter`);
+ return {label:match[1].replace(/<[^>]*>/g,''),html:match[2],text:match[2].replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim()};
+}
+
+test('only the location query is a search input while editor progress retains accessible state without visible status captions',async()=>{
+ for(const kind of ['search','property']){
+  const t=await setup();t.ui.openEditor(kind,kind==='property'?'own-p1':'own-s1');const form=t.document.getElementById('entity-form'),location=t.document.getElementById('location-input');
+  assert.equal(location.type,'search');assert.equal(location.getAttribute('role'),'combobox');assert.equal(location.getAttribute('autocomplete'),'off');assert.equal(location.getAttribute('aria-autocomplete'),'list');
+  assert.deepEqual(form.querySelectorAll('input[type="search"]').map(input=>input.id),['location-input'],'Other fields must retain their actual input semantics');
+  assert.equal(t.document.getElementById('f-title').type,'text');assert.equal(t.document.getElementById(kind==='property'?'f-price':'f-maxPrice').type,'number');assert.equal(t.document.getElementById('f-description').tagName,'TEXTAREA');
+  let html=t.document.getElementById('modal-root').innerHTML;assert.doesNotMatch(html,/id="editor-state-\d|<small[^>]*>\s*(?:Kitöltve|Aktuális|Hátravan)/);assert.equal(t.document.getElementById('editor-step-button-0').getAttribute('aria-current'),'step');
+  await editorAction(t,'editor-next');assert.equal(editorStep(t),1);assert.equal(t.document.getElementById('editor-step-button-0').getAttribute('data-state'),'completed');assert.equal(t.document.getElementById('editor-step-button-1').getAttribute('aria-current'),'step');
+  assert.match(t.document.getElementById('editor-step-status').textContent,/2\. lépés az 5-ből/);
+ }
+});
+
+test('discovery filters first show every configured search criterion read-only, including zero bounds and multiple choices',async()=>{
+ const t=await setup({initialRaw:configuredCriteriaRaw('search'),captureTimers:true}),before=t.model.getState(),writes=[],save=t.model.saveEntity;t.model.saveEntity=(...args)=>{writes.push(args);return save(...args);};
+ assert.match(t.document.getElementById('app').innerHTML,/<button[^>]*class="filter-button"[^>]*data-action="active-criteria-summary"/);
+ await t.click({action:'active-criteria-summary'});t.runTimers();assert.equal(t.document.activeElement.id,'criteria-summary-heading','The read-only overview starts at its heading');const html=t.document.getElementById('modal-root').innerHTML;
+ assert.match(html,/class="criteria-summary"[^>]*data-kind="search"[^>]*data-id="own-s1"/);assert.match(html,/Beállított feltételek/);assert.match(html,/Minden feltétel &lt;keresés&gt; &amp; tér/);assert.doesNotMatch(html,/<form\b|<input\b|<select\b|<textarea\b|id="entity-form"/);
+ assert.equal(criteriaRow(t,'type').text,'Lakás');assert.match(criteriaRow(t,'locationIds').text,/Debrecen/);assert.match(criteriaRow(t,'locationIds').text,/Budapest V\. kerület/);
+ for(const key of ['minPrice','minArea','minRooms'])assert.match(criteriaRow(t,key).text,/^0(?:\s|,|\.|$)/,`${key}=0 is a configured value`);
+ assert.match(criteriaRow(t,'maxPrice').text,/120,5.*M Ft/);assert.match(criteriaRow(t,'maxArea').text,/150.*m²/);assert.match(criteriaRow(t,'maxRooms').text,/5,5.*szoba/);
+ for(const [key,values] of Object.entries({conditions:['Átlagos','Jó'],buildings:['Tégla','Panel'],constructionAges:['10 évnél fiatalabb','31–40 év közötti'],views:['Kertre néző','Panorámás'],heatingTypes:['Hőszivattyú','Klíma'],floors:['Szuterén','Földszint','11']}))for(const value of values)assert.ok(criteriaRow(t,key).text.includes(value),`${key} must show ${value}`);
+ assert.equal(criteriaRow(t,'ceilingHeight').text,'3 m alatti');assert.equal(criteriaRow(t,'balcony').text,'Szükséges');assert.equal(criteriaRow(t,'elevator').text,'Szükséges');assert.equal(criteriaRow(t,'moveIn').text,'Azonnal');assert.equal(criteriaRow(t,'financing').text,'Saját forrásból');
+ assert.match(criteriaRow(t,'description').html,/Csendes &lt;kert&gt; &amp; tágas tér\./);assert.doesNotMatch(html,/<keresés>|<kert>/);
+ assert.deepEqual(t.model.getState(),before);assert.equal(writes.length,0,'Opening the overview neither saves nor debits');
+ await t.click({action:'edit-criteria',kind:'search',id:'own-s1'});assert.ok(t.document.getElementById('entity-form'));assert.equal(t.document.getElementById('f-title').value,before.searches.find(item=>item.id==='own-s1').title);assert.equal(writes.length,0);
+});
+
+test('property filter overview shows saved details, known negative amenities and ground floor without treating them as missing',async()=>{
+ const t=await setup({initialRaw:configuredCriteriaRaw('property')}),before=t.model.getState();await t.click({action:'active-criteria-summary'});let html=t.document.getElementById('modal-root').innerHTML;
+ assert.match(html,/class="criteria-summary"[^>]*data-kind="property"[^>]*data-id="own-p1"/);assert.match(html,/Az ingatlan adatai/);assert.match(html,/Minden adat &lt;otthon&gt; &amp; fény/);assert.doesNotMatch(html,/<form\b|<input\b|<select\b|<textarea\b/);
+ assert.equal(criteriaRow(t,'type').text,'Lakás');assert.match(criteriaRow(t,'locationId').text,/Budapest V\. kerület/);assert.equal(criteriaRow(t,'neighborhood').text,'Belváros');assert.equal(criteriaRow(t,'address').text,'Budapest, Napfény utca 12.');
+ assert.match(criteriaRow(t,'price').text,/92,5.*M Ft/);assert.match(criteriaRow(t,'area').text,/66,5.*m²/);assert.match(criteriaRow(t,'rooms').text,/2.*egész.*1.*fél/);assert.equal(criteriaRow(t,'floor').text,'Földszint');
+ for(const [key,value] of Object.entries({condition:'Átlagos',building:'Tégla',constructionAge:'31–40 év közötti',view:'Udvari',ceilingHeight:'3 m feletti',heatingType:'Nincs fűtés',secondaryHeatingType:'Klíma',energyRating:'BB'}))assert.equal(criteriaRow(t,key).text,value);
+ for(const key of ['insulated','airConditioning','balcony'])assert.equal(criteriaRow(t,key).text,'Nincs',`${key}=false must remain distinguishable from unknown`);
+ for(const key of ['solarPanels','elevator'])assert.equal(criteriaRow(t,key).text,'Van');
+ for(const choice of ['Udvari beálló','Garázs'])assert.ok(criteriaRow(t,'parkingTypes').text.includes(choice));
+ assert.match(criteriaRow(t,'images').html,/<img[^>]*src="https:\/\/example\.test\/elol\.jpg"/);assert.match(criteriaRow(t,'images').html,/https:\/\/example\.test\/udvar\.jpg/);assert.match(criteriaRow(t,'description').html,/Tágas &lt;belső&gt; &amp; csendes udvar\./);assert.deepEqual(t.model.getState(),before);
+ await t.click({action:'close'});assert.equal(t.document.getElementById('modal-root').innerHTML,'');assert.deepEqual(t.model.getState(),before);
+});
+
+test('the filter overview distinguishes unconstrained search bounds and house-only plot size',async()=>{
+ const searchRaw=configuredCriteriaRaw('search');Object.assign(searchRaw.searches.find(item=>item.id==='own-s1'),{minPrice:null,maxArea:null,maxRooms:null,balcony:false,elevator:false});
+ const search=await setup({initialRaw:searchRaw});await search.click({action:'active-criteria-summary'});
+ for(const key of ['minPrice','maxArea','maxRooms'])assert.equal(criteriaRow(search,key).text,'Nincs megkötés',`${key}=null must never become zero or a synthetic maximum`);
+ for(const key of ['balcony','elevator'])assert.equal(criteriaRow(search,key).text,'Nem feltétel');
+ const propertyRaw=configuredCriteriaRaw('property');Object.assign(propertyRaw.properties.find(item=>item.id==='own-p1'),{type:'Ház',lotArea:650,floor:null,balcony:false,elevator:false});
+ const property=await setup({initialRaw:propertyRaw});await property.click({action:'active-criteria-summary'});assert.match(criteriaRow(property,'lotArea').text,/650.*m²/);
+ assert.doesNotMatch(property.document.getElementById('modal-root').innerHTML,/data-summary-field="(?:floor|balcony|elevator)"/,'House summaries retain the existing applicability rules');
+});
+
+test('a stale filter-summary edit action cannot open an inactive, foreign or replaced profile',async()=>{
+ const t=await setup({initialRaw:configuredCriteriaRaw('search')}),writes=[],save=t.model.saveEntity;t.model.saveEntity=(...args)=>{writes.push(args);return save(...args);};
+ await t.click({action:'active-criteria-summary'});await t.model.activate('search','own-s2');const before=t.model.getState();
+ await t.click({action:'edit-criteria',kind:'search',id:'own-s1'});assert.equal(t.document.getElementById('entity-form'),null);assert.equal(writes.length,0);assert.deepEqual(t.model.getState(),before,'An active change outside the cached workspace must also invalidate the summary');
+ await t.click({action:'edit-criteria',kind:'search',id:'s1'});assert.equal(t.document.getElementById('entity-form'),null);assert.equal(writes.length,0);
+ await t.ui.render();await t.click({action:'active-criteria-summary'});const getState=t.model.getState;let release;
+ t.model.getState=async()=>{const snapshot=getState();await new Promise(resolve=>{release=resolve;});return snapshot;};
+ const pending=t.click({action:'edit-criteria',kind:'search',id:'own-s2'});await settle();assert.equal(typeof release,'function');
+ t.ui.openModal('<h2>Másik megnyitott ablak</h2>');t.model.getState=getState;release();await pending;
+ assert.match(t.document.getElementById('modal-root').innerHTML,/Másik megnyitott ablak/);assert.equal(t.document.getElementById('entity-form'),null);assert.equal(writes.length,0);
+});
+
+test('editing unrelated fields preserves legacy exact address and financing in the actual save payload',async()=>{
+ for(const kind of ['property','search']){
+  const t=await setup({initialRaw:configuredCriteriaRaw(kind)}),id=kind==='property'?'own-p1':'own-s1',field=kind==='property'?'address':'financing',collection=kind==='property'?'properties':'searches',before=t.model.getState()[collection].find(item=>item.id===id),calls=[],save=t.model.saveEntity;
+  t.model.saveEntity=(savedKind,data,savedId)=>{calls.push({kind:savedKind,data:JSON.parse(JSON.stringify(data)),id:savedId});return save(savedKind,data,savedId);};
+  await t.click({action:'active-criteria-summary'});await t.click({action:'edit-criteria',kind,id});await advanceEditor(t,4);t.document.getElementById('f-description').value='Csak a leírást módosítom, a meglévő adatok megmaradnak.';submitEditor(t);await settle();
+  assert.equal(calls.length,1);assert.equal(calls[0].kind,kind);assert.equal(calls[0].id,id);assert.equal(calls[0].data[field],before[field],`The API update must receive the unchanged ${field}, even though it has no editable input`);
+  assert.equal(t.model.getState()[collection].find(item=>item.id===id)[field],before[field]);
+ }
 });
