@@ -39,9 +39,13 @@ export function municipalityAdminLevel(city) {
 
 export function queryFor(city) {
   validateCities([city]);
+  // Resolve the known capital relation directly before its large boundary export.
+  const municipality = city === 'Budapest'
+    ? 'relation(37244)["boundary"="administrative"]["admin_level"="6"]["name"="Budapest"]'
+    : `relation(area.hungary)["boundary"="administrative"]["admin_level"="${municipalityAdminLevel(city)}"]["name"=${JSON.stringify(city)}]`;
   return `[out:json][timeout:30][maxsize:67108864];
 area["ISO3166-1"="HU"]["admin_level"="2"]->.hungary;
-relation(area.hungary)["boundary"="administrative"]["admin_level"="${municipalityAdminLevel(city)}"]["name"=${JSON.stringify(city)}]->.municipality;
+${municipality}->.municipality;
 .municipality out tags center;
 .municipality map_to_area ->.city;
 (

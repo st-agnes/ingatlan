@@ -29,6 +29,7 @@ assert.equal(fileNameFor('Győr'), 'gyor.json');
 assert.equal(municipalityAdminLevel('Budapest'), '6');
 assert.equal(municipalityAdminLevel('Debrecen'), '8');
 assert.match(queryFor('Budapest'), /admin_level.*6.*name.*Budapest/);
+assert.match(queryFor('Budapest'), /relation\(37244\)/);
 assert.equal(summarizeResponse(documents('Budapest'), 'Budapest').municipalityRelationId, 37244);
 assert.equal(summarizeResponse(documents('Budapest'), 'Budapest').municipalityAdminLevel, '6');
 const wrongBudapestLevel = documents('Budapest');

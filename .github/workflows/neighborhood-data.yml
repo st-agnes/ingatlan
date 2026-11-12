@@ -16,7 +16,7 @@ on:
         options:
           - core
           - all
-        default: core
+        default: all
 
 permissions:
   contents: read
@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
-      COLLECTION_SCOPE: ${{ inputs.scope || 'core' }}
+      COLLECTION_SCOPE: ${{ inputs.scope || 'all' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
