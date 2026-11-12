@@ -45,6 +45,7 @@ assert.match(query, /map_to_area/);
 assert.match(query, /\^\(9\|10\|11\)\$/);
 assert.match(query, /suburb\|quarter\|neighbourhood/);
 assert.match(query, /is_closed/);
+assert.match(query, /way\(area\.city\)\["boundary"="administrative"\]/);
 assert.match(query, /out geom/);
 assert.doesNotMatch(query, /node\(/);
 
@@ -107,6 +108,9 @@ try {
   assert.deepEqual(JSON.parse(await readFile(join(output, 'budapest.json'), 'utf8')), documents('Budapest'));
   assert.deepEqual(JSON.parse(await readFile(join(output, 'summary.json'), 'utf8')), summary);
   assert.deepEqual((await readdir(output)).sort(), ['budapest.json', 'budapest.source.json', 'summary.json']);
+  await assert.rejects(() => collect({cities: ['Budapest'], output, pause: immediately,
+    fetchOptions: {fetchImpl: async () => {throw new Error('An occupied output directory must stop before network.');}}}),
+  /output-directory-not-empty/);
 } finally { await rm(output, { recursive: true, force: true }); }
 
 console.log('Neighborhood acquisition safeguards passed.');

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Manual source research for validating and extending freely reusable neighborhood geometry.",
+  "records": [
+    {
+      "municipality": "Debrecen",
+      "name": "Sestakert",
+      "osmRelationId": 17519326,
+      "catalogId": "osm:relation:17519326",
+      "reviewStatus": "source_identified_geometry_review_pending",
+      "usableForAddressAssignment": false,
+      "boundaryStreetNames": [
+        "Nádor utca",
+        "Thomas Mann utca",
+        "Mikszáth Kálmán utca",
+        "Békessy Béla utca",
+        "Dóczy József utca",
+        "Egyetem sugárút",
+        "Füredi út"
+      ],
+      "boundaryStreetOrderVerified": false,
+      "sources": [
+        {
+          "url": "https://www.openstreetmap.org/relation/17519326",
+          "role": "Actual polygon geometry; the raw OSM snapshot and ODbL attribution are retained separately."
+        },
+        {
+          "url": "https://dehir.hu/debrecen/regi-debreceni-kertsegbe-kalauzol-nyul-imre/2022/11/17",
+          "role": "Independent neighborhood description listing the boundary streets, not merely a redevelopment action area."
+        },
+        {
+          "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+          "printedPage": 208,
+          "role": "Municipal neighborhood map; Sestakert is listed as number 48."
+        },
+        {
+          "url": "https://dea.lib.unideb.hu/server/api/core/bitstreams/9c8c07c6-2cd6-4731-8990-2047162be997/content",
+          "printedPages": [140, 141, 142, 143],
+          "role": "Reproduced municipal resolutions 92/2004 and 282/2005 link Sestakert to city-planning district 19."
+        }
+      ],
+      "remainingChecks": [
+        "Cross-check the actual polygon against every listed boundary street and the municipal map.",
+        "Inspect boundary junctions and sample addresses on both sides of each boundary street.",
+        "Review neighboring polygons for gaps and overlaps before automatic address assignment."
+      ]
+    }
+  ]
+}

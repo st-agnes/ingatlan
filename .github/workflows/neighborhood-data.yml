@@ -1,13 +1,6 @@
 name: Collect draft neighborhood data
 
 on:
-  push:
-    branches:
-      - codex/free-neighborhood-boundaries
-    paths:
-      - scripts/neighborhoods/fetch-osm.mjs
-      - tests/neighborhoods-fetch.test.mjs
-      - .github/workflows/neighborhood-data.yml
   workflow_dispatch:
     inputs:
       scope:

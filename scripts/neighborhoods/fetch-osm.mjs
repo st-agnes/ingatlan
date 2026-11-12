@@ -1,4 +1,4 @@
-import { mkdir, rename, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, rename, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -50,6 +50,7 @@ ${municipality}->.municipality;
 .municipality map_to_area ->.city;
 (
   relation(area.city)["boundary"="administrative"]["admin_level"~"^(9|10|11)$"]["name"];
+  way(area.city)["boundary"="administrative"]["admin_level"~"^(9|10|11)$"]["name"](if:is_closed());
   relation(area.city)["place"~"^(suburb|quarter|neighbourhood)$"]["name"];
   way(area.city)["place"~"^(suburb|quarter|neighbourhood)$"]["name"](if:is_closed());
 );
@@ -232,6 +233,9 @@ export async function collect({
   validateCities(cities);
   const directory = resolve(output);
   await mkdir(directory, { recursive: true });
+  // Each run is a new source snapshot. A failed refresh must not accidentally
+  // leave old raw files next to a summary describing a different acquisition.
+  if ((await readdir(directory)).length) throw new AcquisitionError('output-directory-not-empty');
   const results = [];
   for (let index = 0; index < cities.length; index++) {
     const city = cities[index];

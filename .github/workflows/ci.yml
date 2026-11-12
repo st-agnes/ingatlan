@@ -47,6 +47,23 @@ jobs:
           if (!ready) throw new Error('The static frontend did not become ready within ten seconds.');
           JS
           node tests/wizard-dock-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-ui.log
+      - name: Verify free neighborhood sources and offline review
+        run: |
+          node tests/neighborhoods.test.mjs
+          node tests/neighborhoods-fetch.test.mjs
+          node tests/neighborhoods-osm.test.mjs
+          node scripts/neighborhoods/build.mjs --check
+          node scripts/neighborhoods/preview.mjs
+          node tests/neighborhoods-browser.test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: neighborhood-boundary-review
+          path: |
+            data/neighborhoods/review.html
+            data/neighborhoods/coverage.json
+            .local/neighborhoods/review-*.png
+          if-no-files-found: ignore
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
