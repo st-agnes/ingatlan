@@ -11,6 +11,9 @@ Ez az adatgyűjtés a későbbi térképes címmegjelenítéshez készül. Nem m
 - `data/neighborhoods/catalog.geojson.gz`: tömörített GeoJSON, benne a geometriai ellenőrzésen átment, településhez köthető **ellenőrizetlen poligonjelöltek**. Ez nem hiteles országos városrésznyilvántartás. A normál újraépítés a tömörítetlen `catalog.geojson` fájlt is előállítja.
 - `data/neighborhoods/coverage.json`: a tényleges találatok, a 26 elsődlegesen vizsgált város, a hiányok és a kihagyott rekordok indoklása. A poligonok száma nem lefedettségi százalék.
 - `data/neighborhoods/name-audit.json`: a 64 eredeti WOF-poligon név- és településellenőrzése, a mai névre tett javaslat, a történelmi névváltozatok kapcsolatai, a bizonytalan összerendelések és az ellenőrzés forráshivatkozásai. A névellenőrzés nem igazolja a régi geometria mai pontosságát.
+- `data/neighborhoods/osm-association-audit.json`: konkrét OSM-azonosítóhoz és a nyers válasz SHA256-lenyomatához kötött településbesorolási javítások és kizárások. Egy területi OSM-lekérdezés a városhatárt metsző szomszédos elemet is visszaadhatja, ezért a lekérdezett település önmagában nem bizonyítja a városrész hovatartozását.
+- `data/neighborhoods/sources/municipality-reference/`: hét település ellenőrzött forrású referenciahatára, reprodukálható kinyerés és a települési hozzárendelések térbeli diagnosztikája. A történeti Frankhegy-poligon jelentős átnyúlását is dokumentálja. A csúcspontarányok nem területi átfedési arányok; ez a diagnosztika önmagában nem hitelesít városrészhatárokat.
+- `data/neighborhoods/budapest-local-areas.json`: a friss OSM-kivonat 16 kisebb lakótelepi, lakóparki vagy helyi karakterterülete, elkülönítve a fővárosi rendelet névjegyzékétől.
 - `data/neighborhoods/reference-inventories.json`: külön megjelölt időszakra vonatkozó városrészjegyzékek, amelyekhez az ismert határok név szerint összehasonlíthatók.
 - `data/neighborhoods/budapest-current-reference.json`: a hatályos fővárosi rendelet átírt névjegyzéke és a név szerint ismert budapesti hiányok bizonyítékai. Külön kezeli a 211 külön nevet és a 212 területi azonosságot: a XII. és XXIII. kerületi Orbánhegy két külön hely. A Gerce/Gercse névváltozat megfeleltetése külön forrást kapott.
 - `data/neighborhoods/report.json`, `report.csv`, `report.md`: reprodukálható városonkénti statisztika és hiánylista. A géppel feldolgozható JSON és a táblázatos CSV mellett a Markdown közvetlenül olvasható összefoglaló.
@@ -33,6 +36,7 @@ node tests/neighborhoods.test.mjs
 node tests/neighborhoods-fetch.test.mjs
 node tests/neighborhoods-osm.test.mjs
 node tests/neighborhoods-national.test.mjs
+node tests/neighborhoods-association.test.mjs
 node tests/neighborhoods-report.test.mjs
 python3 tests/neighborhood-national-fetch.test.py
 ```
@@ -64,7 +68,11 @@ Ugyanazon település ugyanazon normalizált városrésznevéhez elsőbbséget k
 
 A gyengébb prioritású rekord `shadowed_by_*` indokkal és a megtartott rekord azonosítójával kerül a `coverage.json` kihagyott listájába. A forrásfájlt és annak eredeti geometriáját nem töröljük, a poligonokat nem egyesítjük és nem rajzoljuk át. A hibás településhez kötött vagy jelentősen bizonytalan geometria nem kerül át automatikusan egy másik településre. A támogatott mai név önmagában nem oldja fel ezt a hibát.
 
+Külön, bizonyítékhoz kötött település-asszociációs audit javíthatja a név besorolását, az eredeti lekérdezési település megőrzésével. Például az Esztergomra kiadott lekérdezésből érkező Kolónia nevet Dorog önkormányzati forrása alapján Doroghoz rendeljük. A poligon ettől változatlan marad: 18 egyedi csúcsából 10 a 2025-ös Dorog-, 8 az Esztergom-referenciahatárba esik. Ezek **csúcspontszámok, nem területarányok**; a geometria átlépi a referencia-településhatárt, teljes Doroghoz tartozását nem állítjuk. Az azonos lekérdezésből érkező, bizonytalan azonosságú ipari-gazdasági területet kizárjuk a fő exportból. A forrásazonosító vagy a nyers válasz megváltozása esetén az auditot újra kell ellenőrizni: a nem egyező lenyomat megállítja az importot.
+
 A riport külön közli a geometria darabszámát, az elfogadott különböző városrészneveket, a nagyobb területi gyűjtőneveket, a névellenőrzéssel alátámasztott neveket és a friss, illetve történeti OSM-források mennyiségét. Az „elfogadott név” az adatgyűjtésben használható név: lehet OSM-forrásnév is, amelyet még nem ellenőriztünk egyenként másik jegyzékben. **Nem jelenti azt, hogy az összes név mai létezése vagy az összes határ pontossága igazolt.**
+
+Budapesten a friss OSM-adat kisebb lakótelepeket, lakóparkokat és kerületi karakterterületeket is lehatárol. Ezeket megtartjuk, és a riport külön felsorolja a fővárosi rendelet névjegyzékében nem szereplő neveket. A térképen névvel rendelkező területek darabszáma ezért nem azonos a fővárosi rendelet szerinti hivatalos városrészek számával.
 
 Hiányzó határnak csak megadott jegyzékhez képest nevezünk meg konkrét városrésznevet. Debrecennél például a hivatkozott történeti jegyzék 79 nevéhez hasonlítjuk az összegyűjtött határokat; a jegyzék időszaka és a hiányzó nevek is megjelennek. Az ország összes jelenlegi városrészének teljes száma nincs megállapítva. Sikertelen vagy időtúllépéses lekérésből nem következtetünk arra, hogy az adott városnak nincsenek elérhető határai.
 

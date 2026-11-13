@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-13T09:55:30+00:00",
+  "policy": "Kézi név- és település-asszociációs felülvizsgálat, konkrét OSM-azonosítóra és nyers forráshashre kötve. A reassign_municipality a név településbesorolását javítja, nem vágja le és nem hitelesíti a poligont. A csúcspontarányok nem területarányok. A nyers geometriák változatlanok és címhozzárendelésre nem engedélyezettek.",
+  "records": [
+    {
+      "id": "osm:way:988252508",
+      "name": "Kolónia",
+      "sourceSha256": "8ea79f4f56f25dd05a409a87cfecadad88b1c0672e209861bae4f9829bd943d7",
+      "sourceMunicipality": "Esztergom",
+      "action": "reassign_municipality",
+      "boundaryKind": "neighbourhood",
+      "checkedAt": "2026-11-13T09:55:30+00:00",
+      "sourceOsmTimestamp": "2026-11-13T09:31:51Z",
+      "geometryAssociation": {
+        "method": "A befoglaló téglalap középpontjának pont-a-poligonban vizsgálata és az egyedi forráspoligon-csúcspontok megszámlálása a 2025-ös admin8 településhatárokon belül. A csúcspontarány nem területarány, és nem a poligon geometriai centroidja.",
+        "referencePath": "data/neighborhoods/sources/municipality-reference/municipalities.geojson",
+        "referenceManifestPath": "data/neighborhoods/sources/municipality-reference/manifest.json",
+        "referenceArchiveUrl": "https://github.com/ferenci-tamas/BudapestiElerhetoseg/blob/2f7a91ee1f320e6a08488ef8413715be13abf226/kozighatarok.zip",
+        "referenceArchiveSha256": "2c38117de636dc03d7452db14ecb6c8e66a426e05e2a6d7c8932717bf609db7a",
+        "referenceCommit": "2f7a91ee1f320e6a08488ef8413715be13abf226",
+        "referenceCommitDate": "2025-08-28T17:51:58Z",
+        "referenceSnapshotDateMeaning": "A tükörtároló commitideje; nem dokumentált pontos OSM-adatkinyerési idő.",
+        "areaOverlapComputed": false,
+        "geometryStatus": "cross_municipality_boundary",
+        "geometryAssociationNeedsReview": true,
+        "bboxCenter": [
+          18.73427455,
+          47.72594455
+        ],
+        "bboxCenterInMunicipality": "Dorog",
+        "uniqueVertexCount": 18,
+        "vertexCounts": {
+          "Dorog": 10,
+          "Esztergom": 8,
+          "outsideBoth": 0
+        },
+        "status": "crosses_2025_reference_municipal_boundaries"
+      },
+      "geometryAssociationNeedsReview": true,
+      "geometryStatus": "cross_municipality_boundary",
+      "geometryVerified": false,
+      "sourceGeometryUnmodified": true,
+      "usableForAddressAssignment": false,
+      "verifiedMunicipality": "Dorog",
+      "reason": "audited_municipality_reassignment",
+      "evidenceUrls": [
+        "https://www.dorog.hu/static/3303--feltoltes-integralt-telepulesfejlesztesi-strategia.pdf",
+        "https://e-xpertness.com/dorogweb/DOROG_MEGALAPOZO_VIZSGALAT.pdf",
+        "https://github.com/ferenci-tamas/BudapestiElerhetoseg/blob/2f7a91ee1f320e6a08488ef8413715be13abf226/kozighatarok.zip",
+        "https://www.openstreetmap.org/way/988252508"
+      ],
+      "explanation": "Dorog önkormányzati fejlesztési stratégiája Kolóniát Dorog északi, Esztergom-Kertvárossal szomszédos területeként nevezi meg. A poligon befoglaló téglalapjának középpontja és 18 egyedi csúcspontjából 10 a rendelkezésre álló Dorog-határon belül van. Nyolc csúcspont az Esztergom-referenciába esik, ezért a név Doroghoz rendelése nem jelenti a teljes geometria Doroghoz tartozásának igazolását. Az eredeti alak változatlanul, további ellenőrzést igénylő jelöltként marad meg; címhozzárendeléshez nem használható.",
+      "canonicalNameSupported": true
+    },
+    {
+      "id": "osm:relation:15865189",
+      "name": "Ipari- gazdasági terület",
+      "sourceSha256": "8ea79f4f56f25dd05a409a87cfecadad88b1c0672e209861bae4f9829bd943d7",
+      "sourceMunicipality": "Esztergom",
+      "action": "exclude",
+      "boundaryKind": "neighbourhood",
+      "checkedAt": "2026-11-13T09:55:30+00:00",
+      "sourceOsmTimestamp": "2026-11-13T09:31:51Z",
+      "geometryAssociation": {
+        "method": "A befoglaló téglalap középpontjának pont-a-poligonban vizsgálata és az egyedi forráspoligon-csúcspontok megszámlálása a 2025-ös admin8 településhatárokon belül. A csúcspontarány nem területarány, és nem a poligon geometriai centroidja.",
+        "referencePath": "data/neighborhoods/sources/municipality-reference/municipalities.geojson",
+        "referenceManifestPath": "data/neighborhoods/sources/municipality-reference/manifest.json",
+        "referenceArchiveUrl": "https://github.com/ferenci-tamas/BudapestiElerhetoseg/blob/2f7a91ee1f320e6a08488ef8413715be13abf226/kozighatarok.zip",
+        "referenceArchiveSha256": "2c38117de636dc03d7452db14ecb6c8e66a426e05e2a6d7c8932717bf609db7a",
+        "referenceCommit": "2f7a91ee1f320e6a08488ef8413715be13abf226",
+        "referenceCommitDate": "2025-08-28T17:51:58Z",
+        "referenceSnapshotDateMeaning": "A tükörtároló commitideje; nem dokumentált pontos OSM-adatkinyerési idő.",
+        "areaOverlapComputed": false,
+        "geometryStatus": "cross_municipality_boundary",
+        "geometryAssociationNeedsReview": true,
+        "bboxCenter": [
+          18.71863505,
+          47.7283445
+        ],
+        "bboxCenterInMunicipality": "Dorog",
+        "uniqueVertexCount": 41,
+        "vertexCounts": {
+          "Dorog": 38,
+          "Esztergom": 2,
+          "outsideBoth": 1
+        },
+        "status": "crosses_2025_reference_municipal_boundaries"
+      },
+      "geometryAssociationNeedsReview": true,
+      "geometryStatus": "cross_municipality_boundary",
+      "geometryVerified": false,
+      "sourceGeometryUnmodified": true,
+      "usableForAddressAssignment": false,
+      "verifiedMunicipality": null,
+      "reason": "audited_unverified_neighbourhood",
+      "evidenceUrls": [
+        "https://www.openstreetmap.org/relation/15865189",
+        "https://github.com/ferenci-tamas/BudapestiElerhetoseg/blob/2f7a91ee1f320e6a08488ef8413715be13abf226/kozighatarok.zip",
+        "https://www.esztergom.hu/items/cikk2024/FVS_Esztergom.pdf"
+      ],
+      "explanation": "Az OSM-rekord neve általános ipari-gazdasági funkciót jelöl, és csak place=suburb címkével rendelkezik. Nem sikerült olyan elsődleges névforrást találni, amely ezt a konkrét nevet és ezt a poligont önálló esztergomi városrészként azonosítaná. Esztergom stratégiája említ Ipari terület nevű városrészt, de annak ezzel a Dorog felé eső poligonnal való azonossága nincs igazolva. A befoglaló téglalap középpontja Dorogban van; 41 egyedi csúcspontból 38 Dorogba, 2 Esztergomba, 1 egyik referenciahatárba sem esik. Az ipari jelleg önmagában nem kizáró ok: a konkrét városrészazonosság és településbesorolás bizonytalansága miatt a fő városrészexportból kizárjuk, a nyers jelöltet megőrizzük.",
+      "canonicalNameSupported": false
+    }
+  ]
+}

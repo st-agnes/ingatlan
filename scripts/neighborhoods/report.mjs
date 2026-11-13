@@ -114,6 +114,11 @@ export function createReport(catalog, coverage, {references = {inventories: []},
       const missing = expected.filter(name=>!matches(name));
       const nameEquivalencesUsed=equivalences.filter(row=>expected.some(name=>normalizeName(name)===normalizeName(row.referenceName))
         && !represented.has(normalizeName(row.referenceName)) && represented.has(normalizeName(row.equivalentName)));
+      const referenceOrEquivalentNames=new Set(expected.map(normalizeName));
+      for(const row of equivalences)if(referenceOrEquivalentNames.has(normalizeName(row.referenceName))){
+        referenceOrEquivalentNames.add(normalizeName(row.equivalentName));
+      }
+      const collectedNamesNotInReference=acceptedNeighbourhoodNames.filter(name=>!referenceOrEquivalentNames.has(normalizeName(name)));
       const additionalMissingIdentities=reference.additionalMissingIdentities ?? [];
       return {title:reference.title,referencePeriod:reference.referencePeriod,sourceUrl:reference.sourceUrl,
         printedPage:reference.printedPage ?? null,completeForReferencePeriod:reference.completeForReferencePeriod===true,
@@ -121,6 +126,9 @@ export function createReport(catalog, coverage, {references = {inventories: []},
         transcriptionNote:reference.transcriptionNote ?? null,
         referenceNameCount:expected.length,matchedNameCount:matched.length,missingNameCount:missing.length,
         matchedNames:matched,missingNames:missing,nameEquivalencesUsed,
+        collectedNameCount:acceptedNeighbourhoodNames.length,
+        matchedCollectedNameCount:acceptedNeighbourhoodNames.length-collectedNamesNotInReference.length,
+        collectedNamesNotInReferenceCount:collectedNamesNotInReference.length,collectedNamesNotInReference,
         referenceIdentityCount:reference.distinctNeighborhoodIdentityCount ?? null,
         additionalMissingIdentityCount:additionalMissingIdentities.length,additionalMissingIdentities,
         totalKnownMissingIdentityCount:reference.missingNamesEachRepresentOneIdentity===true
@@ -183,12 +191,13 @@ export function createReport(catalog, coverage, {references = {inventories: []},
 
 const csvCell = value => {const s=String(value ?? '');return /[;"\r\n]/.test(s)?`"${s.replaceAll('"','""')}"`:s;};
 export function csvReport(report) {
-  const rows=[['Település','Elfogadott városrésznevek','Összes elfogadott területi név','Határgeometriák','Egyedi forrásnevek','Friss OSM-geometriák','Korábbi OSM-geometriák','Régebbi/egyéb geometriák','Névként megerősített','Nem elfogadott forrásnevek','Ismert határ nélküli nevek','Referencialista hiányzó nevei','További azonos nevű hiányzó területek','Ismert hiányzó területek összesen','Lekérdezési állapot','Lekérdezési hiba']];
+  const rows=[['Település','Elfogadott térképi városrésznevek','Összes elfogadott területi név','Határgeometriák','Egyedi forrásnevek','Friss OSM-geometriák','Korábbi OSM-geometriák','Régebbi/egyéb geometriák','Névként megerősített','Nem elfogadott forrásnevek','Ismert határ nélküli nevek','Referencialista hiányzó nevei','További azonos nevű hiányzó területek','Ismert hiányzó területek összesen','Referencialistában nem szereplő térképi nevek','Lekérdezési állapot','Lekérdezési hiba']];
   for(const row of report.cities) rows.push([row.municipality,row.acceptedNeighbourhoodNameCount,row.acceptedCurrentAreaNameCount,row.neighbourhoodGeometryCount,row.uniqueSourceNameCount,
     row.currentOsmGeometryCount,row.historicalOsmGeometryCount,row.legacyOrOtherGeometryCount,row.nameConfirmedUniqueCount,row.unverifiedSourceNameCount,row.knownNamesWithoutGeometryCount,
     row.referenceComparisons.length?row.referenceComparisons.map(x=>x.missingNameCount).join(' / '):'',
     row.referenceComparisons.length?row.referenceComparisons.map(x=>x.additionalMissingIdentityCount).join(' / '):'',
     row.referenceComparisons.length?row.referenceComparisons.map(x=>x.totalKnownMissingIdentityCount ?? '').join(' / '):'',
+    row.referenceComparisons.length?row.referenceComparisons.map(x=>x.collectedNamesNotInReferenceCount).join(' / '):'',
     row.osmQuery.observedResult,row.osmQuery.reason ?? '']);
   return '\uFEFF'+rows.map(row=>row.map(csvCell).join(';')).join('\r\n')+'\r\n';
 }
@@ -197,8 +206,8 @@ const queryLabels = {downloaded_with_boundaries:'Sikeres, talált határt',downl
 export function markdownReport(report) {
   const s=report.summary;
   const lines=['# Összegyűjtött városrészhatárok és ismert hiányok','',
-    `${s.acceptedNeighbourhoodNameCount} különböző elfogadott városrésznévhez tartozik határ, ${s.settlementsWithAcceptedNeighbourhoodNames} településen. A katalógus összesen ${s.neighbourhoodGeometryCount} határgeometriát és ${s.uniqueSourceNamesAcrossSettlements} eredeti forrásnevet tartalmaz. Ebből ${s.currentOsmGeometryCount} geometria friss OSM-lekérésből, ${s.historicalOsmGeometryCount} korábbi OSM-adatkivonatból származik.`,
-    '', 'A fő névszám az OSM-ben városrészként jelölt neveket és a külön névauditban támogatott mai városrészneveket számolja, városonként összevonva az azonos neveket és történelmi változatokat. A kerület/nagyterületi neveket nem adja hozzá. Ez nem teljes városi lefedettség és nem határvonal-ellenőrzés. A névként megerősített oszlop kizárólag rögzített névauditot számol; a nullás érték nem jelenti, hogy a nevek megszűntek.',
+    `${s.acceptedNeighbourhoodNameCount} különböző elfogadott térképi városrésznévhez tartozik határ, ${s.settlementsWithAcceptedNeighbourhoodNames} településen. A katalógus ${s.neighbourhoodGeometryCount} városrész- vagy nagyterületi határgeometriát és ${s.uniqueSourceNamesAcrossSettlements} eredeti forrásnevet tartalmaz${s.districtFallbackGeometryCount?', továbbá '+s.districtFallbackGeometryCount+' külön kerülethatárt':''}. A városrész/nagyterületi geometriák közül ${s.currentOsmGeometryCount} friss OSM-lekérésből, ${s.historicalOsmGeometryCount} korábbi OSM-adatkivonatból származik.`,
+    '', 'A fő névszám az OSM-ben városrészként vagy kisebb helyi területként jelölt neveket és a külön névauditban támogatott mai városrészneveket számolja, városonként összevonva az azonos neveket és történelmi változatokat. A kerület/nagyterületi neveket nem adja hozzá. A térképi névszám nem hivatalos városrészszám, nem teljes városi lefedettség és nem határvonal-ellenőrzés. A névként megerősített oszlop kizárólag rögzített névauditot számol; a nullás érték nem jelenti, hogy a nevek megszűntek.',
     '', '| Település | Elfogadott városrésznevek | Geometriák | Egyedi forrásnevek | Friss OSM | Korábbi OSM | Névként megerősített | Ismert név határ nélkül | Lekérés |',
     '|---|---:|---:|---:|---:|---:|---:|---:|---|'];
   for(const row of report.cities) lines.push(`| ${md(row.municipality)} | ${row.acceptedNeighbourhoodNameCount} | ${row.neighbourhoodGeometryCount} | ${row.uniqueSourceNameCount} | ${row.currentOsmGeometryCount} | ${row.historicalOsmGeometryCount} | ${row.nameConfirmedUniqueCount} | ${row.knownNamesWithoutGeometryCount} | ${queryLabels[row.osmQuery.observedResult]}${row.osmQuery.reason?' ('+md(row.osmQuery.reason)+')':''} |`);
@@ -212,6 +221,11 @@ export function markdownReport(report) {
       '', reference.missingNames.map(name=>md(name)).join(', ')+'.');
     if(reference.nameEquivalencesUsed.length)for(const equivalence of reference.nameEquivalencesUsed){
       lines.push('',`Dokumentált névváltozatként megfeleltetve: **${md(equivalence.referenceName)} = ${md(equivalence.equivalentName)}**. ${md(equivalence.reason)} Forrás: ${equivalence.evidenceUrls.map((url,index)=>`[${index+1}](${url})`).join(', ')}.`);
+    }
+    if(reference.collectedNamesNotInReferenceCount){
+      lines.push('',`A gyűjtemény ${reference.collectedNameCount} térképi nevéből ${reference.matchedCollectedNameCount} név illeszkedik ehhez a névjegyzékhez (a dokumentált névváltozatokkal együtt); ${reference.collectedNamesNotInReferenceCount} további térképi név nem szerepel benne:`,
+        '',reference.collectedNamesNotInReference.map(name=>md(name)).join(', ')+'.',
+        '', 'Ezek között kisebb helyi területek, lakóparkok vagy karakterterületek nevei is lehetnek. A térképi gyűjtemény darabszáma ezért nem azonos a hivatalos vagy történeti referencia városrészszámával.');
     }
     if(reference.additionalMissingIdentityCount){
       lines.push('',`További ${reference.additionalMissingIdentityCount} külön területi azonossághoz nincs határ, bár azonos nevű másik városrész már szerepel a gyűjteményben:`);

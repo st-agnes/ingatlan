@@ -53,6 +53,7 @@ jobs:
           node tests/neighborhoods-fetch.test.mjs
           node tests/neighborhoods-osm.test.mjs
           node tests/neighborhoods-national.test.mjs
+          node tests/neighborhoods-association.test.mjs
           python3 tests/neighborhood-national-fetch.test.py
           node scripts/neighborhoods/build.mjs --check
           node scripts/neighborhoods/report.mjs --check

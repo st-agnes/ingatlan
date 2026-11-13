@@ -1,0 +1,47 @@
+{
+  "sourcePath": "data/neighborhoods/sources/whosonfirst/85901113.geojson",
+  "sourceSha256": "b123e85b6521118b12259eb094215446ff43bff316dc5cf925fe46b2a088ee9e",
+  "id": "wof:85901113",
+  "name": "Frankhegy",
+  "bbox": [
+    18.916697,
+    47.442237,
+    18.980489,
+    47.496792
+  ],
+  "bboxCenter": [
+    18.948593,
+    47.4695145
+  ],
+  "planarAreaCentroid": [
+    18.94658459233964,
+    47.46770631486244
+  ],
+  "uniqueVertices": 108,
+  "referenceGeojsonSha256": "afe01cc29b6c385e4da025a41b309b5c5e0e5890f6ee8f633a44896767bfa427",
+  "notAreaOverlap": true,
+  "references": {
+    "Budaörs": {
+      "referenceId": "osm-hu-20250828:admin8:3110",
+      "bboxCenter": "inside",
+      "planarAreaCentroid": "inside",
+      "uniqueVertices": {
+        "inside": 36,
+        "boundary": 0,
+        "outside": 72
+      },
+      "coveredVertexPercent": 33.3333
+    },
+    "Budapest": {
+      "referenceId": "osm-hu-20250828:admin6:5",
+      "bboxCenter": "outside",
+      "planarAreaCentroid": "outside",
+      "uniqueVertices": {
+        "inside": 22,
+        "boundary": 0,
+        "outside": 86
+      },
+      "coveredVertexPercent": 20.3704
+    }
+  }
+}

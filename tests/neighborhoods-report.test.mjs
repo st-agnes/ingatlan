@@ -81,6 +81,19 @@ test('documented name equivalents and a same-named distinct missing area remain 
     nameEquivalences:[{referenceName:'Gerce',equivalentName:'Gercse'}]}]}}),/require explicit names, reason and evidence/);
 });
 
+test('mapped names outside the reference stay separate and documented aliases never become false extra names',()=>{
+  const reference={municipality:'Budapest',names:['Gerce','Orbánhegy'],nameEquivalences:[
+    {referenceName:'Gerce',equivalentName:'Gercse',reason:'Documented spelling variant',evidenceUrls:['https://example.test/reference']}
+  ]};
+  const report=createReport(collection([feature('a','Gercse','Budapest'),feature('b','Orbánhegy','Budapest'),
+    feature('c','Kisebb lakópark','Budapest')]),{excluded:[]},{references:{inventories:[reference]}});
+  const comparison=report.cities[0].referenceComparisons[0];
+  assert.equal(comparison.matchedNameCount,2);assert.equal(comparison.collectedNameCount,3);
+  assert.equal(comparison.matchedCollectedNameCount,2);assert.equal(comparison.collectedNamesNotInReferenceCount,1);
+  assert.deepEqual(comparison.collectedNamesNotInReference,['Kisebb lakópark']);
+  assert.equal(comparison.missingNameCount,0);
+});
+
 test('Google/name verification is never inferred; explicit name-audit evidence is counted separately',()=>{
   const report=createReport(collection([feature('a','A','City'),feature('b','B','City')]),{excluded:[]},{nameAudit:{records:[
     {id:'a',validationStatus:'verified_current',evidenceUrl:'https://example.test/name'},

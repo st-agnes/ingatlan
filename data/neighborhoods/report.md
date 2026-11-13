@@ -1,36 +1,36 @@
 # Összegyűjtött városrészhatárok és ismert hiányok
 
-247 különböző elfogadott városrésznévhez tartozik határ, 5 településen. A katalógus összesen 256 határgeometriát és 256 eredeti forrásnevet tartalmaz. Ebből 43 geometria friss OSM-lekérésből, 203 korábbi OSM-adatkivonatból származik.
+264 különböző elfogadott térképi városrésznévhez tartozik határ, 6 településen. A katalógus 273 városrész- vagy nagyterületi határgeometriát és 273 eredeti forrásnevet tartalmaz, továbbá 23 külön kerülethatárt. A városrész/nagyterületi geometriák közül 263 friss OSM-lekérésből, 0 korábbi OSM-adatkivonatból származik.
 
-A fő névszám az OSM-ben városrészként jelölt neveket és a külön névauditban támogatott mai városrészneveket számolja, városonként összevonva az azonos neveket és történelmi változatokat. A kerület/nagyterületi neveket nem adja hozzá. Ez nem teljes városi lefedettség és nem határvonal-ellenőrzés. A névként megerősített oszlop kizárólag rögzített névauditot számol; a nullás érték nem jelenti, hogy a nevek megszűntek.
+A fő névszám az OSM-ben városrészként vagy kisebb helyi területként jelölt neveket és a külön névauditban támogatott mai városrészneveket számolja, városonként összevonva az azonos neveket és történelmi változatokat. A kerület/nagyterületi neveket nem adja hozzá. A térképi névszám nem hivatalos városrészszám, nem teljes városi lefedettség és nem határvonal-ellenőrzés. A névként megerősített oszlop kizárólag rögzített névauditot számol; a nullás érték nem jelenti, hogy a nevek megszűntek.
 
 | Település | Elfogadott városrésznevek | Geometriák | Egyedi forrásnevek | Friss OSM | Korábbi OSM | Névként megerősített | Ismert név határ nélkül | Lekérés |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
 | Abony | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
 | Ajka | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
-| Baja | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikertelen (request-timeout) |
+| Baja | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikeres, nem talált határt |
 | Békéscsaba | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikertelen (request-timeout) |
 | Budaörs | 1 | 1 | 1 | 0 | 0 | 1 | 2 | Nem vizsgáltuk |
-| Budapest | 203 | 212 | 212 | 0 | 203 | 46 | 25 | Sikertelen (request-timeout) |
+| Budapest | 219 | 228 | 228 | 219 | 0 | 46 | 24 | Sikeres, talált határt |
 | Csömör | 0 | 0 | 0 | 0 | 0 | 0 | 0 | Nem vizsgáltuk |
 | Csongrád | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
-| Debrecen | 26 | 26 | 26 | 26 | 0 | 0 | 0 | Sikeres, talált határt |
-| Dorog | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
+| Debrecen | 26 | 26 | 26 | 26 | 0 | 0 | 0 | Sikertelen (request-timeout) |
+| Dorog | 1 | 1 | 1 | 1 | 0 | 1 | 1 | Nem vizsgáltuk |
 | Dunakeszi | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
-| Dunaújváros | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikertelen (request-timeout) |
-| Eger | 0 | 0 | 0 | 0 | 0 | 0 | 0 | Sikeres, nem talált határt |
+| Dunaújváros | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikeres, nem talált határt |
+| Eger | 0 | 0 | 0 | 0 | 0 | 0 | 0 | Sikertelen (request-timeout) |
 | Érd | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikeres, nem talált határt |
-| Esztergom | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikertelen (request-timeout) |
+| Esztergom | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikeres, nem talált határt |
 | Gödöllő | 0 | 0 | 0 | 0 | 0 | 0 | 2 | Nem vizsgáltuk |
 | Gyöngyös | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
-| Győr | 0 | 0 | 0 | 0 | 0 | 0 | 3 | Sikertelen (request-timeout) |
+| Győr | 0 | 0 | 0 | 0 | 0 | 0 | 3 | Sikeres, nem talált határt |
 | Hajdúböszörmény | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
 | Hajdúszoboszló | 0 | 0 | 0 | 0 | 0 | 0 | 2 | Nem vizsgáltuk |
 | Hatvan | 0 | 0 | 0 | 0 | 0 | 0 | 2 | Nem vizsgáltuk |
 | Hódmezővásárhely | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikeres, nem talált határt |
 | Jászberény | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
 | Kalocsa | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
-| Kaposvár | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikeres, nem talált határt |
+| Kaposvár | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikertelen (request-timeout) |
 | Kecskemét | 0 | 0 | 0 | 0 | 0 | 0 | 3 | Sikeres, nem talált határt |
 | Keszthely | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
 | Kiskunhalas | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
@@ -42,30 +42,30 @@ A fő névszám az OSM-ben városrészként jelölt neveket és a külön névau
 | Mosonmagyaróvár | 0 | 0 | 0 | 0 | 0 | 0 | 2 | Nem vizsgáltuk |
 | Nagykanizsa | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikertelen (request-timeout) |
 | Nyírbátor | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
-| Nyíregyháza | 0 | 0 | 0 | 0 | 0 | 0 | 2 | Sikeres, nem talált határt |
+| Nyíregyháza | 0 | 0 | 0 | 0 | 0 | 0 | 2 | Sikertelen (request-timeout) |
 | Pápa | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
-| Pécs | 0 | 0 | 0 | 0 | 0 | 0 | 6 | Sikertelen (request-timeout) |
-| Salgótarján | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikertelen (request-timeout) |
+| Pécs | 0 | 0 | 0 | 0 | 0 | 0 | 6 | Sikeres, nem talált határt |
+| Salgótarján | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikeres, nem talált határt |
 | Sárospatak | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
 | Sárvár | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
 | Siófok | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
 | Sopron | 1 | 1 | 1 | 1 | 0 | 0 | 0 | Sikeres, talált határt |
 | Szarvas | 0 | 0 | 0 | 0 | 0 | 0 | 2 | Nem vizsgáltuk |
-| Szeged | 0 | 0 | 0 | 0 | 0 | 0 | 5 | Sikeres, nem talált határt |
-| Székesfehérvár | 16 | 16 | 16 | 16 | 0 | 0 | 1 | Sikeres, talált határt |
+| Szeged | 0 | 0 | 0 | 0 | 0 | 0 | 5 | Sikertelen (request-timeout) |
+| Székesfehérvár | 16 | 16 | 16 | 16 | 0 | 0 | 1 | Sikertelen (request-timeout) |
 | Szekszárd | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikeres, nem talált határt |
 | Szentes | 0 | 0 | 0 | 0 | 0 | 0 | 2 | Nem vizsgáltuk |
 | Szerencs | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
 | Szolnok | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Sikertelen (request-timeout) |
 | Szombathely | 0 | 0 | 0 | 0 | 0 | 0 | 2 | Sikertelen (request-timeout) |
 | Tárnok | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
-| Tatabánya | 0 | 0 | 0 | 0 | 0 | 0 | 2 | Sikeres, nem talált határt |
+| Tatabánya | 0 | 0 | 0 | 0 | 0 | 0 | 2 | Sikertelen (request-timeout) |
 | Tiszafüred | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
 | Tokodaltáró | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
 | Törökszentmiklós | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Nem vizsgáltuk |
 | Vác | 0 | 0 | 0 | 0 | 0 | 0 | 3 | Nem vizsgáltuk |
 | Veszprém | 0 | 0 | 0 | 0 | 0 | 0 | 0 | Sikertelen (request-timeout) |
-| Zalaegerszeg | 0 | 0 | 0 | 0 | 0 | 0 | 2 | Sikertelen (request-timeout) |
+| Zalaegerszeg | 0 | 0 | 0 | 0 | 0 | 0 | 2 | Sikeres, nem talált határt |
 
 ## Hiányok a név szerint ismert referencialistákhoz képest
 
@@ -80,6 +80,12 @@ A lista 211 nevéből 203 névhez van összegyűjtött határ; 8 névhez még ni
 Apostolhegy, Hets-telep, Molnár-sziget, Péterimajor, Sólyom-telep, Történeti központ, Vargatelep, Wesselényi-telep.
 
 Dokumentált névváltozatként megfeleltetve: **Gerce = Gercse**. A hatályos fővárosi rendelet Gerce alakot használ, a II. kerületi önkormányzat városrészjegyzéke és választási térképe ugyanott Gercse nevet. Az eredeti jogszabályi nevet megőrizzük; összevetéskor ez névváltozat, nem külön hiányzó városrész. Forrás: [1](https://or.njt.hu/onkormanyzati-rendelet/2012-94-SP-4191), [2](https://masodikkerulet.hu/keruletrol/keruletunkrol), [3](https://masodikkerulet.hu/sites/default/files/attachments/files/masodikkerulethu/2023_12/bp02_valasztasi_tkp_1920_1170.pdf).
+
+A gyűjtemény 219 térképi nevéből 203 név illeszkedik ehhez a névjegyzékhez (a dokumentált névváltozatokkal együtt); 16 további térképi név nem szerepel benne:
+
+Késmárk utcai ipari terület, Kossuth utcai lakótelep, MÁV telep, Naphegy, Napraforgó utcai kísérleti lakótelep, Növényolajgyár, Óbudai kísérleti lakótelep, Palota Újfalu, Rákospalota Kertváros, Rákospalota Öregfalu, Rákospalota Újfalu, Szocreál lakótelep, Újpalota parkváros, Virágvölgy Lakópark, Vízművek lakótelep, volt BM lakótelep.
+
+Ezek között kisebb helyi területek, lakóparkok vagy karakterterületek nevei is lehetnek. A térképi gyűjtemény darabszáma ezért nem azonos a hivatalos vagy történeti referencia városrészszámával.
 
 További 1 külön területi azonossághoz nincs határ, bár azonos nevű másik városrész már szerepel a gyűjteményben:
 
@@ -123,7 +129,7 @@ Ez a lista az átvett források hiányait mutatja, nem ellenőrzött, teljes jel
 
 **Budaörs (2):** Örsöd, Spanyolrét.
 
-**Budapest (25):** Belváros-Lipótváros, Csaterka, Erdőalja, Erdősor, Gadazgrét, Gyártelep, Havannatelep, Hegyvidek, Kertváros, Királyerdő, Királymajor, Masagút, Naphégy, Óbuda-Békásmegyer, Ófalu, Pestszentimre, Pestszentlőrinc-Pestszentimre, Rákosmente, Szent Lőrinc-telep, Szigetcsdúcs, Újbuda, Várkerület, XIII. kerület, XVI. kerület, XV. kerület.
+**Budapest (24):** Belváros-Lipótváros, Csaterka, Erdőalja, Erdősor, Gadazgrét, Gyártelep, Havannatelep, Hegyvidek, Kertváros, Királyerdő, Királymajor, Masagút, Óbuda-Békásmegyer, Ófalu, Pestszentimre, Pestszentlőrinc-Pestszentimre, Rákosmente, Szent Lőrinc-telep, Szigetcsdúcs, Újbuda, Várkerület, XIII. kerület, XVI. kerület, XV. kerület.
 
 **Csongrád (1):** Kisrét.
 
@@ -225,7 +231,7 @@ Ez a lista az átvett források hiányait mutatja, nem ellenőrzött, teljes jel
 
 ## Lekérdezési és besorolási korlátok
 
-14 település legutóbbi lekérése sikertelen, 9 esetben a használt lekérdezés sikeres volt, de nem adott határgeometriát; 34 ismert forrástelepülést nem vizsgáltunk ezzel az OSM-lekéréssel.
+13 település legutóbbi lekérése sikertelen, 11 esetben a használt lekérdezés sikeres volt, de nem adott határgeometriát; 34 ismert forrástelepülést nem vizsgáltunk ezzel az OSM-lekéréssel.
 
 Az időtúllépés nem jelenti a határvonal hiányát. A sikeres üres eredmény sem zárja ki más adatforrás vagy más térképi címkézés létezését. A teljes országos vagy jelenlegi városi hiány száma ezért ismeretlen.
 

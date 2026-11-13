@@ -265,6 +265,51 @@ export function applyNameAudit(features, audit = null) {
   return {features: accepted, excluded};
 }
 
+/** An Overpass area intersection is not ownership. Corrections require exact source-bound evidence. */
+export function applyOsmAssociationAudit(collected, canonicalSettlements, audit = null) {
+  if (!audit) return collected;
+  if (audit.schemaVersion !== 1 || !Array.isArray(audit.records)) throw new Error('Unsupported OSM association audit');
+  const canonical = new Set(canonicalSettlements), byId = new Map(), keys = new Set();
+  for (const record of audit.records) {
+    const key = `${record.id}\0${record.sourceSha256}`;
+    if (!/^osm:(?:way|relation):[1-9]\d*$/.test(record.id ?? '') || !/^[a-f0-9]{64}$/.test(record.sourceSha256 ?? '') ||
+        !canonical.has(record.sourceMunicipality) || !['reassign_municipality', 'exclude'].includes(record.action) ||
+        !Array.isArray(record.evidenceUrls) || !record.evidenceUrls.some(url => typeof url === 'string' && url.startsWith('https://'))) {
+      throw new Error('Invalid OSM association audit record');
+    }
+    if (keys.has(key)) throw new Error(`Duplicate OSM association audit identity: ${record.id}`);
+    keys.add(key);
+    if (record.action === 'reassign_municipality' && (!canonical.has(record.verifiedMunicipality) ||
+        !['neighbourhood', 'district'].includes(record.boundaryKind))) throw new Error(`Invalid audited municipality: ${record.id}`);
+    if (record.action === 'exclude' && !/^audited_[a-z0-9_]+$/.test(record.reason ?? '')) throw new Error(`Invalid OSM audit exclusion: ${record.id}`);
+    const records = byId.get(record.id) ?? [];
+    records.push(record); byId.set(record.id, records);
+  }
+  const features = [], excluded = [...collected.excluded];
+  for (const feature of collected.features) {
+    const records = byId.get(feature.id), properties = feature.properties;
+    if (!records) { features.push(feature); continue; }
+    const record = records.find(item => item.sourceSha256 === properties.source.sha256);
+    if (!record || properties.source.provider !== 'openstreetmap' || record.sourceMunicipality !== properties.municipality) {
+      throw new Error(`OSM association audit source identity mismatch: ${feature.id}`);
+    }
+    if (record.action === 'exclude') {
+      excluded.push({id: feature.id, name: properties.name, municipality: properties.municipality,
+        boundaryKind: properties.boundaryKind, geometryType: feature.geometry.type,
+        reason: record.reason, sourceAssociationAudit: record, source: properties.source});
+      continue;
+    }
+    features.push({...feature, properties: {...properties, sourceMunicipality: properties.municipality,
+      municipality: record.verifiedMunicipality, municipalityId: `city:${record.verifiedMunicipality}`,
+      municipalityEvidence: 'verified_name_municipality_association', boundaryKind: record.boundaryKind,
+      ...(record.canonicalNameSupported === true ? {canonicalNameSupported: true,
+        nameVerificationStatus: 'supported_by_association_audit'} : {}),
+      ...(record.geometryAssociation ? {geometryAssociation: record.geometryAssociation} : {}),
+      sourceAssociationAudit: record, usableForAddressAssignment: false}});
+  }
+  return {...collected, features, excluded};
+}
+
 export function mergeCatalogs(wof, osm, national = null, audit = null) {
   national ??= {features: [], excluded: [], sourceRecords: 0, candidateRecords: 0, neighbourhoodRecords: 0};
   const auditedWof = applyNameAudit(wof.catalog.features, audit);
@@ -350,7 +395,11 @@ export async function buildFiles({root = ROOT, check = false} = {}) {
   let audit = null;
   try { audit = JSON.parse(await readFile(join(root, 'data/neighborhoods/name-audit.json'), 'utf8')); }
   catch (error) { if (error.code !== 'ENOENT') throw error; }
-  const result = mergeCatalogs(wof, collectOsmCandidates(osmSnapshots, canonical, validateGeometry),
+  let associationAudit = null;
+  try { associationAudit = JSON.parse(await readFile(join(root, 'data/neighborhoods/osm-association-audit.json'), 'utf8')); }
+  catch (error) { if (error.code !== 'ENOENT') throw error; }
+  const osm = applyOsmAssociationAudit(collectOsmCandidates(osmSnapshots, canonical, validateGeometry), canonical, associationAudit);
+  const result = mergeCatalogs(wof, osm,
     collectNationalCandidates(nationalSnapshots, canonical, validateGeometry), audit);
   for (const [name, value] of [['catalog.geojson', result.catalog], ['coverage.json', result.coverage]]) {
     const path = join(root, 'data/neighborhoods', name === 'catalog.geojson' ? `${name}.gz` : name);

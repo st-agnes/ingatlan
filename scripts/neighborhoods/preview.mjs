@@ -36,7 +36,7 @@ const targets = (coverage.targetCities || []).map(c => typeof c === 'string' ? c
 const allCities = [...new Set([...targets, ...municipalities, ...report.cities.map(row=>row.municipality)])].sort((a,b) => a.localeCompare(b,'hu'));
 const normalize = value => String(value).normalize('NFD').replace(/\\p{M}/gu,'').toLocaleLowerCase('hu').replace(/[^\\p{L}\\p{N}]+/gu,'');
 const queryLabels={downloaded_with_boundaries:'Sikeres, talált határt',downloaded_without_boundaries:'Sikeres, nem adott határt',query_failed:'Sikertelen lekérés',not_requested:'Nem vizsgáltuk',other:'Egyéb'};
-byId('summary').textContent=report.summary.acceptedNeighbourhoodNameCount+' különböző városrésznévhez van határ '+report.summary.settlementsWithAcceptedNeighbourhoodNames+' településen; '+report.summary.neighbourhoodGeometryCount+' geometria összesen.';
+byId('summary').textContent=report.summary.acceptedNeighbourhoodNameCount+' különböző térképi városrésznévhez van határ '+report.summary.settlementsWithAcceptedNeighbourhoodNames+' településen; '+report.summary.neighbourhoodGeometryCount+' városrész- vagy nagyterületi geometria'+(report.summary.districtFallbackGeometryCount?' és '+report.summary.districtFallbackGeometryCount+' kerülethatár':'')+'.';
 function sourceLabel(p){return p.source.provider==='openstreetmap' ? p.source.historical ? 'OSM · '+p.source.snapshotDate+' kivonat' : 'OSM · friss lekérés' : 'WOF · korábbi geometria';}
 function isBroadArea(p){return p.boundaryKind==='district' || p.nameAudit?.canonicalNameIsNeighborhood===false || p.canonicalNameIsNeighborhood===false;}
 function nameState(p){return p.nameAudit?.canonicalNameSupported===true || p.canonicalNameSupported===true || p.previewNameEvidence ? 'Mai magyar név: nyilvános forrással alátámasztva. A geometria és a terület besorolása ettől külön ellenőrizendő.' : p.nameReviewNeeded ? 'A forrásnév vagy a fordítás külön tisztázandó.' : 'A térképi forrás szerinti név; külön, mai névellenőrzés nincs rögzítve.';}
@@ -80,7 +80,31 @@ function render() {
  if(!selected)byId('detail').replaceChildren(Object.assign(document.createElement('p'),{textContent:'Válassz egy területet az alakja és a forrása ellenőrzéséhez.'}));
 }
 function safeLink(url,label){const link=document.createElement('a');link.textContent=label;try{const parsed=new URL(url);if(parsed.protocol==='https:'){link.href=parsed.href;link.target='_blank';link.rel='noopener noreferrer';}}catch{}return link;}
-function choose(f){selected=f.properties.id;render();const p=f.properties;const dl=document.createElement('dl');const rows=[['Terület neve',p.name],['Település',p.municipality],['Terület típusa',isBroadArea(p) ? 'Kerület vagy nagyobb terület; a fő városrészszámban nem szerepel.' : 'Városrész'],['Név ellenőrzése',nameState(p)],['Forráskivonat dátuma',p.source.snapshotDate || p.source.osmTimestamp || 'A forrásban nincs igazolt adatállapot-dátum'],['Geometria ellenőrzése','A forrásból átvett határvonal; mai pontossága nincs igazolva.'],['Azonosító',p.id],['Geometria forrása',sourceLabel(p)]];if(p.sourceName && p.sourceName!==p.name)rows.splice(1,0,['Eredeti forrásnév',p.sourceName]);for(const [label,value] of rows){const dt=document.createElement('dt');dt.textContent=label;const dd=document.createElement('dd');dd.textContent=value;dl.append(dt,dd);}const contents=[dl,safeLink(p.source.url,'Eredeti adatállomány megnyitása')];const urls=[...new Set([...(p.nameAudit?.evidenceUrls || []),...(p.previewNameEvidence?.evidenceUrls || [])])];for(const [index,url] of urls.entries()){const paragraph=document.createElement('p');paragraph.append(safeLink(url,'Névellenőrzés forrása '+(index+1)));contents.push(paragraph);}byId('detail').replaceChildren(...contents);}
+function choose(f){
+ selected=f.properties.id;render();const p=f.properties;const dl=document.createElement('dl');
+ const crossBoundary=p.geometryAssociation?.status==='crosses_2025_reference_municipal_boundaries';
+ const rows=[['Terület neve',p.name],['Település',p.municipality],
+  ['Terület típusa',isBroadArea(p) ? 'Kerület vagy nagyobb terület; a fő városrészszámban nem szerepel.' : 'Térképi városrész vagy kisebb helyi terület'],
+  ['Név ellenőrzése',nameState(p)],
+  ['Forráskivonat dátuma',p.source.snapshotDate || p.source.osmTimestamp || 'A forrásban nincs igazolt adatállapot-dátum'],
+  ['Geometria ellenőrzése','A forrásból átvett határvonal; mai pontossága nincs igazolva.'],
+  ['Automatikus címhozzárendelés',p.usableForAddressAssignment ? 'Engedélyezett.' : crossBoundary ? 'Nem használható: a poligon a vizsgált településhatárt keresztezi. A név ellenőrzése nem igazolja a teljes alakzat megfelelőségét.' : 'Nincs engedélyezve; a határvonal címhez rendelési ellenőrzése nincs elvégezve.'],
+  ['Azonosító',p.id],['Geometria forrása',sourceLabel(p)]];
+ if(p.sourceName && p.sourceName!==p.name)rows.splice(1,0,['Eredeti forrásnév',p.sourceName]);
+ if(p.sourceAssociationAudit){
+  rows.push(['Településhez rendelés ellenőrzése',p.sourceAssociationAudit.explanation || 'A név települési összerendelése külön forrásellenőrzés alapján történt.']);
+ }
+ if(crossBoundary){
+  const g=p.geometryAssociation;
+  rows.push(['Településhatárt átlépő jelölt','Az eredeti alakzat a 2025-ös referencia szerint több településre kiterjed; a geometria további ellenőrzést igényel.']);
+  rows.push(['Csúcspontok ellenőrzése',g.uniqueVertexCount+' különböző forráscsúcspont: '+Object.entries(g.vertexCounts || {}).map(([name,count])=>name+': '+count).join(', ')+'. Ez csúcspontszám, nem területarány. A vizsgált pont a befoglaló téglalap középpontja; nem geometriai súlypont.']);
+ }
+ for(const [label,value] of rows){const dt=document.createElement('dt');dt.textContent=label;const dd=document.createElement('dd');dd.textContent=value;dl.append(dt,dd);}
+ const contents=[dl,safeLink(p.source.url,'Eredeti adatállomány megnyitása')];
+ const urls=[...new Set([...(p.nameAudit?.evidenceUrls || []),...(p.previewNameEvidence?.evidenceUrls || []),...(p.sourceAssociationAudit?.evidenceUrls || [])])];
+ for(const [index,url] of urls.entries()){const paragraph=document.createElement('p');paragraph.append(safeLink(url,'Névellenőrzés forrása '+(index+1)));contents.push(paragraph);}
+ byId('detail').replaceChildren(...contents);
+}
 byId('city').addEventListener('change',()=>{selected=null;render();});byId('query').addEventListener('input',render);byId('all').addEventListener('click',()=>{selected=null;render();});
 for(const row of report.cities){const tr=document.createElement('tr');for(const value of [row.municipality,row.acceptedNeighbourhoodNameCount,row.neighbourhoodGeometryCount,row.historicalOsmGeometryCount,queryLabels[row.osmQuery.observedResult]]){const cell=document.createElement('td');cell.textContent=String(value);tr.append(cell);}byId('coverage').append(tr);}
 render();

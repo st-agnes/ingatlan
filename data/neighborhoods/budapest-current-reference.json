@@ -4159,8 +4159,8 @@
   ],
   "coverageAssessment": {
     "checkedAgainst": "data/neighborhoods/neighborhoods.geojson",
-    "checkedAt": "2026-11-13T09:39:42+00:00",
-    "acceptedUniqueNameCount": 203,
+    "checkedAt": "2026-11-13",
+    "acceptedUniqueNameCount": 219,
     "missingUniqueNames": [
       "Apostolhegy",
       "Hets-telep",
@@ -4235,16 +4235,19 @@
         "reason": "A jogszabály XII. és XXIII. kerületben két külön Orbánhegyet sorol fel. Az export egyetlen Orbánhegy-poligonja a XII. kerületben van; ez nem fedi a Grassalkovich út–Haraszti út–Millennium utca térségében leírt XXIII. kerületi városrészt.",
         "evidenceUrl": "https://or.njt.hu/onkormanyzati-rendelet/2012-94-SP-4191",
         "availableSameNameGeometry": {
-          "id": "osm-hu-20250828:admin10:97",
+          "id": "osm:relation:2806937",
           "district": 12,
           "geometryType": "Polygon",
           "bbox": [
-            18.99367438,
-            47.49140958,
-            19.02023549,
-            47.50036377
+            18.9936744,
+            47.4914096,
+            19.0202355,
+            47.5003638
           ],
-          "sourceUrl": "https://github.com/ferenci-tamas/BudapestiElerhetoseg/blob/2f7a91ee1f320e6a08488ef8413715be13abf226/kozighatarok.zip"
+          "sourceUrl": "https://www.openstreetmap.org/relation/2806937",
+          "sourceOsmTimestamp": "2026-11-13T09:26:50Z",
+          "sourcePath": "data/neighborhoods/sources/openstreetmap/budapest.json",
+          "sourceSha256": "0c3d870cafe6995668bce3350ccb79582373c98d108d15bc7c446c72242b3768"
         }
       }
     ],
@@ -4259,6 +4262,8 @@
       "Orbánhegy (XII. kerület)",
       "Orbánhegy (XXIII. kerület)"
     ],
-    "caveat": "Ez névjegyzéki és durva térbeli azonossági hiányvizsgálat. A rendelkezésre álló poligonok részletes határpontosságát nem igazolja."
+    "caveat": "Ez névjegyzéki és durva térbeli azonossági hiányvizsgálat. A rendelkezésre álló poligonok részletes határpontosságát nem igazolja.",
+    "officialMatchedUniqueNameCount": 203,
+    "collectedNamesOutsideOfficialReferenceCount": 16
   }
 }

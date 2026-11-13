@@ -11,23 +11,23 @@
   },
   "summary": {
     "settlementsInReport": 60,
-    "settlementsWithNeighbourhoodGeometry": 5,
-    "settlementsWithAcceptedNeighbourhoodNames": 5,
+    "settlementsWithNeighbourhoodGeometry": 6,
+    "settlementsWithAcceptedNeighbourhoodNames": 6,
     "targetCities": 26,
-    "neighbourhoodGeometryCount": 256,
-    "uniqueSourceNamesAcrossSettlements": 256,
-    "districtFallbackGeometryCount": 0,
-    "acceptedNeighbourhoodNameCount": 247,
-    "acceptedCurrentAreaNameCount": 256,
+    "neighbourhoodGeometryCount": 273,
+    "uniqueSourceNamesAcrossSettlements": 273,
+    "districtFallbackGeometryCount": 23,
+    "acceptedNeighbourhoodNameCount": 264,
+    "acceptedCurrentAreaNameCount": 273,
     "unverifiedSourceNameCount": 0,
-    "osmGeometryCount": 246,
-    "historicalOsmGeometryCount": 203,
-    "currentOsmGeometryCount": 43,
+    "osmGeometryCount": 263,
+    "historicalOsmGeometryCount": 0,
+    "currentOsmGeometryCount": 263,
     "legacyOrOtherGeometryCount": 10,
-    "nameConfirmedUniqueCount": 47,
-    "knownNamesWithoutGeometryCount": 106,
-    "failedQueries": 14,
-    "successfulEmptyQueries": 9,
+    "nameConfirmedUniqueCount": 48,
+    "knownNamesWithoutGeometryCount": 105,
+    "failedQueries": 13,
+    "successfulEmptyQueries": 11,
     "unrequestedCities": 34,
     "totalMissingCurrentNeighbourhoods": null,
     "completeNationalCoverage": false
@@ -173,10 +173,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Baja",
-        "status": "failed",
-        "reason": "request-timeout",
-        "osmTimestamp": null,
-        "observedResult": "query_failed"
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-13T09:27:51Z",
+        "observedResult": "downloaded_without_boundaries"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
@@ -303,9 +303,9 @@
     {
       "municipality": "Budapest",
       "isTargetCity": true,
-      "neighbourhoodGeometryCount": 212,
-      "uniqueSourceNameCount": 212,
-      "acceptedNeighbourhoodNameCount": 203,
+      "neighbourhoodGeometryCount": 228,
+      "uniqueSourceNameCount": 228,
+      "acceptedNeighbourhoodNameCount": 219,
       "acceptedNeighbourhoodNames": [
         "Adyliget",
         "Akadémiaújtelep",
@@ -328,8 +328,8 @@
         "Budaliget",
         "Budatétény",
         "Cinkota",
-        "Corvin negyed",
-        "Csarnok negyed",
+        "Corvinnegyed",
+        "Csarnoknegyed",
         "Csatárka",
         "Csepel-Belváros",
         "Csepel-Csillagtelep",
@@ -360,12 +360,12 @@
         "Felsőrákos",
         "Ferihegy",
         "Ganzkertváros",
-        "Ganz negyed",
+        "Ganznegyed",
         "Ganztelep",
         "Gazdagrét",
         "Gellérthegy",
         "Gercse",
-        "Gloriett telep",
+        "Gloriett-telep",
         "Göncz Árpád városközpont",
         "Gubacs",
         "Gubacsipuszta",
@@ -392,6 +392,7 @@
         "Kelenvölgy",
         "Kerepesdűlő",
         "Keresztúridűlő",
+        "Késmárk utcai ipari terület",
         "Kispest",
         "Kissvábhegy",
         "Kiszugló",
@@ -399,6 +400,7 @@
         "Kőérberek",
         "Kossuthfalva",
         "Kossuth Ferenc-telep",
+        "Kossuth utcai lakótelep",
         "Kővár",
         "Középső-Ferencváros",
         "Krepuska Géza-telep",
@@ -415,7 +417,7 @@
         "Lipótváros",
         "Liptáktelep",
         "Lónyaytelep",
-        "Losonci negyed",
+        "Losoncinegyed",
         "Madárdomb",
         "Madárhegy",
         "Magasút",
@@ -424,6 +426,7 @@
         "Máriaremete",
         "Mártonhegy",
         "Mátyásföld",
+        "MÁV telep",
         "Megyer",
         "Miklóstelep",
         "Millenniumtelep",
@@ -431,22 +434,27 @@
         "Nádorkert",
         "Nagytétény",
         "Nagyzugló",
+        "Naphegy",
+        "Napraforgó utcai kísérleti lakótelep",
         "Németvölgy",
         "Népliget",
         "Népsziget",
-        "Népszínház negyed",
+        "Népszínháznegyed",
+        "Növényolajgyár",
         "Nyék",
         "Óbuda",
         "Óbuda hegyvidéke",
+        "Óbudai kísérleti lakótelep",
         "Óbudai-sziget",
         "Óhegy",
         "Orbánhegy",
-        "Orczy negyed",
+        "Orczynegyed",
         "Őrmező",
         "Örsöd",
         "Országút",
         "Pacsirtatelep",
         "Palotanegyed",
+        "Palota Újfalu",
         "Pálvölgy",
         "Pasarét",
         "Pesthidegkút-Ófalu",
@@ -462,6 +470,9 @@
         "Rákoskert",
         "Rákosliget",
         "Rákospalota",
+        "Rákospalota Kertváros",
+        "Rákospalota Öregfalu",
+        "Rákospalota Újfalu",
         "Rákosszentmihály",
         "Régiakadémiatelep",
         "Remetekertváros",
@@ -478,17 +489,18 @@
         "Spanyolrét",
         "Svábhegy",
         "Szabótelep",
-        "Százados negyed",
+        "Századosnegyed",
         "Széchenyihegy",
         "Székesdűlő",
         "Szemeretelep",
         "Szemlőhegy",
-        "Szent Imre kertváros",
+        "Szent Imre-kertváros",
         "Szentimreváros",
         "Szent Lőrinc-lakótelep",
         "Széphalom",
         "Szépilona",
         "Szépvölgy",
+        "Szocreál lakótelep",
         "Tabán",
         "Téglagyárdűlő",
         "Terézváros",
@@ -499,19 +511,23 @@
         "Újlak",
         "Újlipótváros",
         "Újpalota",
+        "Újpalota parkváros",
         "Újpest",
         "Újpéteritelep",
         "Vár",
         "Városliget",
         "Vérhalom",
+        "Virágvölgy Lakópark",
         "Virányos",
         "Vizafogó",
         "Víziváros",
+        "Vízművek lakótelep",
+        "volt BM lakótelep",
         "Wekerletelep",
         "Zöldmál",
         "Zugliget"
       ],
-      "acceptedCurrentAreaNameCount": 212,
+      "acceptedCurrentAreaNameCount": 228,
       "acceptedCurrentAreaNames": [
         "Adyliget",
         "Akadémiaújtelep",
@@ -534,8 +550,8 @@
         "Budaliget",
         "Budatétény",
         "Cinkota",
-        "Corvin negyed",
-        "Csarnok negyed",
+        "Corvinnegyed",
+        "Csarnoknegyed",
         "Csatárka",
         "Csepel",
         "Csepel-Belváros",
@@ -568,12 +584,12 @@
         "Ferencváros",
         "Ferihegy",
         "Ganzkertváros",
-        "Ganz negyed",
+        "Ganznegyed",
         "Ganztelep",
         "Gazdagrét",
         "Gellérthegy",
         "Gercse",
-        "Gloriett telep",
+        "Gloriett-telep",
         "Göncz Árpád városközpont",
         "Gubacs",
         "Gubacsidűlő",
@@ -602,6 +618,7 @@
         "Kelenvölgy",
         "Kerepesdűlő",
         "Keresztúridűlő",
+        "Késmárk utcai ipari terület",
         "Kispest",
         "Kissvábhegy",
         "Kiszugló",
@@ -610,6 +627,7 @@
         "Kőérberek",
         "Kossuthfalva",
         "Kossuth Ferenc-telep",
+        "Kossuth utcai lakótelep",
         "Kővár",
         "Középső-Ferencváros",
         "Krepuska Géza-telep",
@@ -626,7 +644,7 @@
         "Lipótváros",
         "Liptáktelep",
         "Lónyaytelep",
-        "Losonci negyed",
+        "Losoncinegyed",
         "Madárdomb",
         "Madárhegy",
         "Magasút",
@@ -635,6 +653,7 @@
         "Máriaremete",
         "Mártonhegy",
         "Mátyásföld",
+        "MÁV telep",
         "Megyer",
         "Miklóstelep",
         "Millenniumtelep",
@@ -642,22 +661,27 @@
         "Nádorkert",
         "Nagytétény",
         "Nagyzugló",
+        "Naphegy",
+        "Napraforgó utcai kísérleti lakótelep",
         "Németvölgy",
         "Népliget",
         "Népsziget",
-        "Népszínház negyed",
+        "Népszínháznegyed",
+        "Növényolajgyár",
         "Nyék",
         "Óbuda",
         "Óbuda hegyvidéke",
+        "Óbudai kísérleti lakótelep",
         "Óbudai-sziget",
         "Óhegy",
         "Orbánhegy",
-        "Orczy negyed",
+        "Orczynegyed",
         "Őrmező",
         "Örsöd",
         "Országút",
         "Pacsirtatelep",
         "Palotanegyed",
+        "Palota Újfalu",
         "Pálvölgy",
         "Pasarét",
         "Pesterzsébet",
@@ -676,6 +700,9 @@
         "Rákoskert",
         "Rákosliget",
         "Rákospalota",
+        "Rákospalota Kertváros",
+        "Rákospalota Öregfalu",
+        "Rákospalota Újfalu",
         "Rákosszentmihály",
         "Régiakadémiatelep",
         "Remetekertváros",
@@ -692,17 +719,18 @@
         "Spanyolrét",
         "Svábhegy",
         "Szabótelep",
-        "Százados negyed",
+        "Századosnegyed",
         "Széchenyihegy",
         "Székesdűlő",
         "Szemeretelep",
         "Szemlőhegy",
-        "Szent Imre kertváros",
+        "Szent Imre-kertváros",
         "Szentimreváros",
         "Szent Lőrinc-lakótelep",
         "Széphalom",
         "Szépilona",
         "Szépvölgy",
+        "Szocreál lakótelep",
         "Tabán",
         "Téglagyárdűlő",
         "Terézváros",
@@ -713,43 +741,46 @@
         "Újlak",
         "Újlipótváros",
         "Újpalota",
+        "Újpalota parkváros",
         "Újpest",
         "Újpéteritelep",
         "Vár",
         "Városliget",
         "Vérhalom",
+        "Virágvölgy Lakópark",
         "Virányos",
         "Vizafogó",
         "Víziváros",
+        "Vízművek lakótelep",
+        "volt BM lakótelep",
         "Wekerletelep",
         "Zöldmál",
         "Zugliget",
         "Zugló"
       ],
-      "districtFallbackGeometryCount": 0,
-      "currentOsmGeometryCount": 0,
-      "osmGeometryCount": 203,
-      "historicalOsmGeometryCount": 203,
+      "districtFallbackGeometryCount": 23,
+      "currentOsmGeometryCount": 219,
+      "osmGeometryCount": 219,
+      "historicalOsmGeometryCount": 0,
       "legacyOrOtherGeometryCount": 9,
       "nameConfirmedUniqueCount": 46,
-      "nameConfirmationUnrecordedCount": 166,
+      "nameConfirmationUnrecordedCount": 182,
       "unverifiedSourceNameCount": 0,
       "unverifiedSourceNames": [],
       "providerCounts": {
-        "openstreetmap": 203,
+        "openstreetmap": 219,
         "whosonfirst": 9
       },
       "nameValidationStatusCounts": {
-        "not_individually_checked": 203,
+        "not_individually_checked": 219,
         "name_supported": 7,
         "historical_alias": 1,
         "geographic_name_only": 1
       },
       "excludedSourceReasonCounts": {
-        "shadowed_by_newer_national_osm": 202,
+        "shadowed_by_current_osm": 446,
         "not_polygon": 146,
         "retired_record": 1,
-        "shadowed_by_national_osm": 41,
         "audited_macro_area": 4,
         "duplicate_canonical_neighbourhood_name": 2,
         "audited_geometry_association_unresolved": 4,
@@ -778,8 +809,8 @@
         "Budaliget",
         "Budatétény",
         "Cinkota",
-        "Corvin negyed",
-        "Csarnok negyed",
+        "Corvinnegyed",
+        "Csarnoknegyed",
         "Csatárka",
         "Csepel",
         "Csepel-Belváros",
@@ -812,12 +843,12 @@
         "Ferencvaros",
         "Ferihegy",
         "Ganzkertváros",
-        "Ganz negyed",
+        "Ganznegyed",
         "Ganztelep",
         "Gazdagrét",
         "Gellérthegy",
         "Gercse",
-        "Gloriett telep",
+        "Gloriett-telep",
         "Göncz Árpád városközpont",
         "Gubacs",
         "Gubacsi Dulo",
@@ -846,6 +877,7 @@
         "Kelenvölgy",
         "Kerepesdűlő",
         "Keresztúridűlő",
+        "Késmárk utcai ipari terület",
         "Kispest",
         "Kissvábhegy",
         "Kiszugló",
@@ -854,6 +886,7 @@
         "Kőérberek",
         "Kossuthfalva",
         "Kossuth Ferenc-telep",
+        "Kossuth utcai lakótelep",
         "Kővár",
         "Középső-Ferencváros",
         "Krepuska Géza-telep",
@@ -871,7 +904,7 @@
         "Lipótváros",
         "Liptáktelep",
         "Lónyaytelep",
-        "Losonci negyed",
+        "Losoncinegyed",
         "Madárdomb",
         "Madárhegy",
         "Magasút",
@@ -880,6 +913,7 @@
         "Máriaremete",
         "Mártonhegy",
         "Mátyásföld",
+        "MÁV telep",
         "Megyer",
         "Miklóstelep",
         "Millenniumtelep",
@@ -887,22 +921,27 @@
         "Nádorkert",
         "Nagytétény",
         "Nagyzugló",
+        "Naphegy",
+        "Napraforgó utcai kísérleti lakótelep",
         "Németvölgy",
         "Népliget",
         "Népsziget",
-        "Népszínház negyed",
+        "Népszínháznegyed",
+        "Növényolajgyár",
         "Nyék",
         "Óbuda",
         "Óbuda hegyvidéke",
+        "Óbudai kísérleti lakótelep",
         "Óbudai-sziget",
         "Óhegy",
         "Orbánhegy",
-        "Orczy negyed",
+        "Orczynegyed",
         "Őrmező",
         "Örsöd",
         "Országút",
         "Pacsirtatelep",
         "Palotanegyed",
+        "Palota Újfalu",
         "Pálvölgy",
         "Pasarét",
         "Pesthidegkut",
@@ -920,6 +959,9 @@
         "Rákoskert",
         "Rákosliget",
         "Rákospalota",
+        "Rákospalota Kertváros",
+        "Rákospalota Öregfalu",
+        "Rákospalota Újfalu",
         "Rákosszentmihály",
         "Régiakadémiatelep",
         "Remetekertváros",
@@ -936,17 +978,18 @@
         "Spanyolrét",
         "Svábhegy",
         "Szabótelep",
-        "Százados negyed",
+        "Századosnegyed",
         "Széchenyihegy",
         "Székesdűlő",
         "Szemeretelep",
         "Szemlőhegy",
-        "Szent Imre kertváros",
+        "Szent Imre-kertváros",
         "Szentimreváros",
         "Szent Lőrinc-lakótelep",
         "Széphalom",
         "Szépilona",
         "Szépvölgy",
+        "Szocreál lakótelep",
         "Tabán",
         "Téglagyárdűlő",
         "Terézváros",
@@ -957,20 +1000,24 @@
         "Újlak",
         "Újlipótváros",
         "Újpalota",
+        "Újpalota parkváros",
         "Újpest",
         "Újpéteritelep",
         "Vár",
         "Városliget",
         "Vérhalom",
+        "Virágvölgy Lakópark",
         "Virányos",
         "Vizafogó",
         "Víziváros",
+        "Vízművek lakótelep",
+        "volt BM lakótelep",
         "Wekerletelep",
         "Zöldmál",
         "Zugliget",
         "Zugló"
       ],
-      "knownNamesWithoutGeometryCount": 25,
+      "knownNamesWithoutGeometryCount": 24,
       "knownNamesWithoutGeometry": [
         {
           "name": "Belváros-Lipótváros",
@@ -1100,17 +1147,6 @@
           ],
           "sourceUrls": [
             "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/052/1/1108940521.geojson"
-          ],
-          "sourceKind": "name_or_point_only",
-          "currentNameConfirmed": false
-        },
-        {
-          "name": "Naphégy",
-          "sourceIds": [
-            "wof:1108940405"
-          ],
-          "sourceUrls": [
-            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/040/5/1108940405.geojson"
           ],
           "sourceKind": "name_or_point_only",
           "currentNameConfirmed": false
@@ -1488,6 +1524,27 @@
               ]
             }
           ],
+          "collectedNameCount": 219,
+          "matchedCollectedNameCount": 203,
+          "collectedNamesNotInReferenceCount": 16,
+          "collectedNamesNotInReference": [
+            "Késmárk utcai ipari terület",
+            "Kossuth utcai lakótelep",
+            "MÁV telep",
+            "Naphegy",
+            "Napraforgó utcai kísérleti lakótelep",
+            "Növényolajgyár",
+            "Óbudai kísérleti lakótelep",
+            "Palota Újfalu",
+            "Rákospalota Kertváros",
+            "Rákospalota Öregfalu",
+            "Rákospalota Újfalu",
+            "Szocreál lakótelep",
+            "Újpalota parkváros",
+            "Virágvölgy Lakópark",
+            "Vízművek lakótelep",
+            "volt BM lakótelep"
+          ],
           "referenceIdentityCount": 212,
           "additionalMissingIdentityCount": 1,
           "additionalMissingIdentities": [
@@ -1499,18 +1556,21 @@
               "sourceParagraph": "3. melléklet 23.5.",
               "note": "A jogszabály XII. és XXIII. kerületben két külön Orbánhegyet sorol fel. Az export egyetlen Orbánhegy-poligonja a XII. kerületben van; ez nem fedi a Grassalkovich út–Haraszti út–Millennium utca térségében leírt XXIII. kerületi városrészt.",
               "sourceUrl": "https://or.njt.hu/onkormanyzati-rendelet/2012-94-SP-4191",
-              "checkedAt": "2026-11-13T09:39:42+00:00",
+              "checkedAt": "2026-11-13",
               "availableSameNameGeometry": {
-                "id": "osm-hu-20250828:admin10:97",
+                "id": "osm:relation:2806937",
                 "district": 12,
                 "geometryType": "Polygon",
                 "bbox": [
-                  18.99367438,
-                  47.49140958,
-                  19.02023549,
-                  47.50036377
+                  18.9936744,
+                  47.4914096,
+                  19.0202355,
+                  47.5003638
                 ],
-                "sourceUrl": "https://github.com/ferenci-tamas/BudapestiElerhetoseg/blob/2f7a91ee1f320e6a08488ef8413715be13abf226/kozighatarok.zip"
+                "sourceUrl": "https://www.openstreetmap.org/relation/2806937",
+                "sourceOsmTimestamp": "2026-11-13T09:26:50Z",
+                "sourcePath": "data/neighborhoods/sources/openstreetmap/budapest.json",
+                "sourceSha256": "0c3d870cafe6995668bce3350ccb79582373c98d108d15bc7c446c72242b3768"
               },
               "status": "no_collected_boundary_for_this_identity"
             }
@@ -1532,10 +1592,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Budapest",
-        "status": "failed",
-        "reason": "request-timeout",
-        "osmTimestamp": null,
-        "observedResult": "query_failed"
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-13T09:26:50Z",
+        "observedResult": "downloaded_with_boundaries"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
@@ -1830,6 +1890,10 @@
             "Zsibogó"
           ],
           "nameEquivalencesUsed": [],
+          "collectedNameCount": 26,
+          "matchedCollectedNameCount": 26,
+          "collectedNamesNotInReferenceCount": 0,
+          "collectedNamesNotInReference": [],
           "referenceIdentityCount": null,
           "additionalMissingIdentityCount": 0,
           "additionalMissingIdentities": [],
@@ -1843,37 +1907,47 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Debrecen",
-        "status": "downloaded",
-        "reason": null,
+        "status": "failed",
+        "reason": "request-timeout",
         "osmTimestamp": "2026-11-12T20:35:36Z",
-        "observedResult": "downloaded_with_boundaries"
+        "observedResult": "query_failed"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
     {
       "municipality": "Dorog",
       "isTargetCity": false,
-      "neighbourhoodGeometryCount": 0,
-      "uniqueSourceNameCount": 0,
-      "acceptedNeighbourhoodNameCount": 0,
-      "acceptedNeighbourhoodNames": [],
-      "acceptedCurrentAreaNameCount": 0,
-      "acceptedCurrentAreaNames": [],
+      "neighbourhoodGeometryCount": 1,
+      "uniqueSourceNameCount": 1,
+      "acceptedNeighbourhoodNameCount": 1,
+      "acceptedNeighbourhoodNames": [
+        "Kolónia"
+      ],
+      "acceptedCurrentAreaNameCount": 1,
+      "acceptedCurrentAreaNames": [
+        "Kolónia"
+      ],
       "districtFallbackGeometryCount": 0,
-      "currentOsmGeometryCount": 0,
-      "osmGeometryCount": 0,
+      "currentOsmGeometryCount": 1,
+      "osmGeometryCount": 1,
       "historicalOsmGeometryCount": 0,
       "legacyOrOtherGeometryCount": 0,
-      "nameConfirmedUniqueCount": 0,
+      "nameConfirmedUniqueCount": 1,
       "nameConfirmationUnrecordedCount": 0,
       "unverifiedSourceNameCount": 0,
       "unverifiedSourceNames": [],
-      "providerCounts": {},
-      "nameValidationStatusCounts": {},
+      "providerCounts": {
+        "openstreetmap": 1
+      },
+      "nameValidationStatusCounts": {
+        "not_individually_checked": 1
+      },
       "excludedSourceReasonCounts": {
         "not_polygon": 1
       },
-      "neighborhoodNames": [],
+      "neighborhoodNames": [
+        "Kolónia"
+      ],
       "knownNamesWithoutGeometryCount": 1,
       "knownNamesWithoutGeometry": [
         {
@@ -1990,10 +2064,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Dunaújváros",
-        "status": "failed",
-        "reason": "request-timeout",
-        "osmTimestamp": null,
-        "observedResult": "query_failed"
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-13T09:30:51Z",
+        "observedResult": "downloaded_without_boundaries"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
@@ -2027,10 +2101,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Eger",
-        "status": "downloaded",
-        "reason": null,
+        "status": "failed",
+        "reason": "request-timeout",
         "osmTimestamp": "2026-11-12T20:37:43Z",
-        "observedResult": "downloaded_without_boundaries"
+        "observedResult": "query_failed"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
@@ -2080,7 +2154,7 @@
         "city": "Érd",
         "status": "downloaded",
         "reason": null,
-        "osmTimestamp": "2026-11-12T20:37:43Z",
+        "osmTimestamp": "2026-11-13T09:31:51Z",
         "observedResult": "downloaded_without_boundaries"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
@@ -2106,6 +2180,7 @@
       "providerCounts": {},
       "nameValidationStatusCounts": {},
       "excludedSourceReasonCounts": {
+        "audited_unverified_neighbourhood": 1,
         "not_polygon": 1
       },
       "neighborhoodNames": [],
@@ -2129,10 +2204,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Esztergom",
-        "status": "failed",
-        "reason": "request-timeout",
-        "osmTimestamp": null,
-        "observedResult": "query_failed"
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-13T09:31:51Z",
+        "observedResult": "downloaded_without_boundaries"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
@@ -2309,10 +2384,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Győr",
-        "status": "failed",
-        "reason": "request-timeout",
-        "osmTimestamp": null,
-        "observedResult": "query_failed"
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-13T09:32:55Z",
+        "observedResult": "downloaded_without_boundaries"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
@@ -2528,7 +2603,7 @@
         "city": "Hódmezővásárhely",
         "status": "downloaded",
         "reason": null,
-        "osmTimestamp": "2026-11-12T20:39:51Z",
+        "osmTimestamp": "2026-11-13T09:33:56Z",
         "observedResult": "downloaded_without_boundaries"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
@@ -2673,10 +2748,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Kaposvár",
-        "status": "downloaded",
-        "reason": null,
+        "status": "failed",
+        "reason": "request-timeout",
         "osmTimestamp": "2026-11-12T20:40:51Z",
-        "observedResult": "downloaded_without_boundaries"
+        "observedResult": "query_failed"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
@@ -2748,7 +2823,7 @@
         "city": "Kecskemét",
         "status": "downloaded",
         "reason": null,
-        "osmTimestamp": "2026-11-12T20:40:51Z",
+        "osmTimestamp": "2026-11-13T09:34:57Z",
         "observedResult": "downloaded_without_boundaries"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
@@ -3316,10 +3391,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Nyíregyháza",
-        "status": "downloaded",
-        "reason": null,
+        "status": "failed",
+        "reason": "request-timeout",
         "osmTimestamp": "2026-11-12T20:43:51Z",
-        "observedResult": "downloaded_without_boundaries"
+        "observedResult": "query_failed"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
@@ -3470,10 +3545,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Pécs",
-        "status": "failed",
-        "reason": "request-timeout",
-        "osmTimestamp": "2026-11-12T20:26:35Z",
-        "observedResult": "query_failed"
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-13T09:36:59Z",
+        "observedResult": "downloaded_without_boundaries"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
@@ -3521,10 +3596,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Salgótarján",
-        "status": "failed",
-        "reason": "request-timeout",
-        "osmTimestamp": null,
-        "observedResult": "query_failed"
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-13T09:38:01Z",
+        "observedResult": "downloaded_without_boundaries"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
@@ -3714,7 +3789,7 @@
         "city": "Sopron",
         "status": "downloaded",
         "reason": null,
-        "osmTimestamp": "2026-11-12T20:45:46Z",
+        "osmTimestamp": "2026-11-13T09:39:02Z",
         "observedResult": "downloaded_with_boundaries"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
@@ -3866,10 +3941,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Szeged",
-        "status": "downloaded",
-        "reason": null,
+        "status": "failed",
+        "reason": "request-timeout",
         "osmTimestamp": "2026-11-12T20:46:50Z",
-        "observedResult": "downloaded_without_boundaries"
+        "observedResult": "query_failed"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
@@ -3972,10 +4047,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Székesfehérvár",
-        "status": "downloaded",
-        "reason": null,
+        "status": "failed",
+        "reason": "request-timeout",
         "osmTimestamp": "2026-11-12T20:47:50Z",
-        "observedResult": "downloaded_with_boundaries"
+        "observedResult": "query_failed"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
@@ -4025,7 +4100,7 @@
         "city": "Szekszárd",
         "status": "downloaded",
         "reason": null,
-        "osmTimestamp": "2026-11-12T20:47:50Z",
+        "osmTimestamp": "2026-11-13T09:41:02Z",
         "observedResult": "downloaded_without_boundaries"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
@@ -4353,10 +4428,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Tatabánya",
-        "status": "downloaded",
-        "reason": null,
+        "status": "failed",
+        "reason": "request-timeout",
         "osmTimestamp": "2026-11-12T20:49:50Z",
-        "observedResult": "downloaded_without_boundaries"
+        "observedResult": "query_failed"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     },
@@ -4666,10 +4741,10 @@
       "totalMissingCurrentNeighbourhoods": null,
       "osmQuery": {
         "city": "Zalaegerszeg",
-        "status": "failed",
-        "reason": "request-timeout",
-        "osmTimestamp": null,
-        "observedResult": "query_failed"
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-13T09:46:01Z",
+        "observedResult": "downloaded_without_boundaries"
       },
       "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
     }
@@ -4914,9 +4989,9 @@
     "recordCount": 64
   },
   "inputFingerprints": {
-    "catalogSha256": "86cc987b2d1c79c93a071a0905ae1ff09118a8366e7aebeec71868d5fd8ac01a",
-    "coverageSha256": "619cc259e39c8ae1a4876fffb89fab766fa3da5c5f3b81a911738579999c325c",
-    "referencesSha256": "21d25a063e7f94bf9b339a4942fda45824c3b732b49f6c4e1e26e95b84b1f663",
+    "catalogSha256": "837cfaa2fcd73a7dfcd5404fd6f2ee331573f5855198f2b05789671df1a3e52e",
+    "coverageSha256": "5d864fb0b8a801ef081a386fa54905ad01f0253218c2403a71058f45e0754b87",
+    "referencesSha256": "32fc06f7bb8f0caf4fd89ade200551d7df024f975b03ab768a5e1f9a6e401c4d",
     "nameAuditSha256": "e343149436f8b227ec7242ed18d46a7c5d48c8e5072a2f13dfcd2b40348b79a6"
   }
 }

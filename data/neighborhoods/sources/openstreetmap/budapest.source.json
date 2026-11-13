@@ -1,0 +1,34 @@
+{
+  "city": "Budapest",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:30][maxsize:67108864];\nrelation(37244)[\"boundary\"=\"administrative\"][\"admin_level\"=\"6\"][\"name\"=\"Budapest\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  way(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"](if:is_closed());\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+  "retrievedAt": "2026-11-13T09:28:23.915Z",
+  "sha256": "0c3d870cafe6995668bce3350ccb79582373c98d108d15bc7c446c72242b3768",
+  "bytes": 3757364,
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "municipalityRelationId": 37244,
+  "municipalityAdminLevel": "6",
+  "candidates": 242,
+  "byAdminLevel": {
+    "9": 23,
+    "10": 212,
+    "11": 3,
+    "place-only": 4
+  },
+  "relationsWithWayGeometry": 229,
+  "closedWays": 13,
+  "osmTimestamp": "2026-11-13T09:26:50Z",
+  "completeCoverage": false,
+  "reviewStatus": "unreviewed",
+  "usableForAddressAssignment": false,
+  "attempts": [
+    {
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "status": "ok"
+    }
+  ],
+  "status": "downloaded",
+  "file": "budapest.json"
+}

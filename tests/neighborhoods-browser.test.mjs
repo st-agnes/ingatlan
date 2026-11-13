@@ -36,6 +36,42 @@ try {
     assert.equal(await page.locator('#empty').isVisible(), true);
     await page.locator('#query').fill('');
     assert.ok(await page.locator('#map path').count() > 0);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `${populatedCity} must fit the viewport`);
+    const budapestFeatures = catalog.features.filter(feature => feature.properties.municipality === 'Budapest');
+    if (budapestFeatures.length) {
+      await page.selectOption('#city', 'Budapest');
+      assert.equal(await page.locator('#list button').count(), budapestFeatures.length, 'Budapest lists every collected area and district');
+      assert.ok(await page.locator('#map path').count() > 0, 'The full Budapest collection must render actual SVG paths');
+      assert.ok(budapestFeatures.some(feature => feature.properties.name === 'Orbánhegy'), 'The Budapest scenario needs the actual Orbánhegy boundary');
+      await page.locator('#list').getByRole('button', {name: /^Orbánhegy(?:\s*·|$)/}).first().click();
+      assert.equal(await page.locator('#map path').count(), 1);
+      const details = await page.locator('#detail').innerText();
+      assert.match(details, /Orbánhegy/);
+      assert.match(details, /Név ellenőrzése/);
+      assert.match(details, /Forráskivonat dátuma/);
+      assert.match(details, /mai pontossága nincs igazolva/);
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'Budapest must fit the viewport after selecting an actual boundary');
+    }
+    const dorogAssociation = catalog.features.find(feature => feature.properties.municipality === 'Dorog' &&
+      feature.properties.geometryAssociation?.status === 'crosses_2025_reference_municipal_boundaries');
+    if (dorogAssociation) {
+      await page.selectOption('#city', 'Dorog');
+      await page.locator('#list button').first().click();
+      assert.ok(await page.locator('#map path').count() > 0);
+      const details = await page.locator('#detail').innerText();
+      assert.match(details, /Településhatárt átlépő jelölt/);
+      assert.match(details, /Dorog:\s*10/);
+      assert.match(details, /Esztergom:\s*8/);
+      assert.match(details, /18 különböző forráscsúcspont/);
+      assert.match(details, /csúcspontszám, nem területarány/);
+      assert.match(details, /Nem használható: a poligon a vizsgált településhatárt keresztezi/);
+      const officialEvidence = (dorogAssociation.properties.sourceAssociationAudit?.evidenceUrls ?? [])
+        .find(url => new URL(url).hostname === 'www.dorog.hu');
+      assert.ok(officialEvidence, 'The Dorog scenario needs its official municipal name evidence');
+      assert.ok((await page.locator('#detail a').evaluateAll(links => links.map(link => link.href))).includes(officialEvidence),
+        'The official Dorog evidence must be linked in the actual detail panel');
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'The cross-boundary warning must fit the viewport');
+    }
     const emptyCity = await page.locator('#city option').evaluateAll((options, citiesWithAreas) =>
       options.map(option => option.value).find(name => !citiesWithAreas.includes(name)),
     [...new Set(catalog.features.map(feature => feature.properties.municipality))]);
