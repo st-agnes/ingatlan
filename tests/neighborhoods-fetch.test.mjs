@@ -3,7 +3,7 @@ import { mkdtemp, readFile, readdir, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import {
-  CORE_CITIES, ENDPOINTS, TARGET_CITIES, collect, fetchCity, fileNameFor,
+  CORE_CITIES, ENDPOINTS, TARGET_CITIES, MUNICIPALITIES, collect, fetchCity, fileNameFor,
   municipalityAdminLevel, parseArguments, queryFor, summarizeResponse
 } from '../scripts/neighborhoods/fetch-osm.mjs';
 
@@ -39,7 +39,13 @@ for (const args of [['--cities', 'Budapest,Budapest'], ['--cities', 'Budapest"];
   assert.throws(() => parseArguments(args));
 
 const query = queryFor('Debrecen');
-assert.match(query, /ISO3166-1.*HU/);
+assert.doesNotMatch(query, /area\.hungary|ISO3166-1/);
+assert.match(query, /relation\(1444234\)/);
+assert.equal(Object.keys(MUNICIPALITIES).length, 26);
+for (const city of TARGET_CITIES) {
+  assert.match(queryFor(city), new RegExp(`relation\\(${MUNICIPALITIES[city].relationId}\\)`));
+  assert.ok(MUNICIPALITIES[city].sources.some(url => url.includes(`relation/${MUNICIPALITIES[city].relationId}`)));
+}
 assert.match(query, /admin_level.*8.*name.*Debrecen/);
 assert.match(query, /map_to_area/);
 assert.match(query, /\^\(9\|10\|11\)\$/);

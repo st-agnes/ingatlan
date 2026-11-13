@@ -1,5 +1,6 @@
 import { mkdir, readdir, rename, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -20,6 +21,13 @@ export const ENDPOINTS = Object.freeze([
 ]);
 export const MAX_RESPONSE_BYTES = 8 * 1024 * 1024;
 export const REQUEST_TIMEOUT_MS = 40_000;
+const municipalityRegistry = JSON.parse(readFileSync(new URL('../../data/neighborhoods/municipality-ids.json', import.meta.url), 'utf8'));
+export const MUNICIPALITIES = Object.freeze(Object.fromEntries(municipalityRegistry.records.map(record => [record.municipality, Object.freeze(record)])));
+if (municipalityRegistry.schemaVersion !== 1 || municipalityRegistry.records.length !== TARGET_CITIES.length
+  || TARGET_CITIES.some(city => !Number.isSafeInteger(MUNICIPALITIES[city]?.relationId)
+    || MUNICIPALITIES[city].adminLevel !== (city === 'Budapest' ? 6 : 8))
+  || new Set(municipalityRegistry.records.map(record => record.relationId)).size !== TARGET_CITIES.length)
+  throw new Error('Invalid municipality relation registry.');
 
 export function validateCities(cities) {
   if (!Array.isArray(cities) || !cities.length || cities.length > TARGET_CITIES.length)
@@ -39,12 +47,10 @@ export function municipalityAdminLevel(city) {
 
 export function queryFor(city) {
   validateCities([city]);
-  // Resolve the known capital relation directly before its large boundary export.
-  const municipality = city === 'Budapest'
-    ? 'relation(37244)["boundary"="administrative"]["admin_level"="6"]["name"="Budapest"]'
-    : `relation(area.hungary)["boundary"="administrative"]["admin_level"="${municipalityAdminLevel(city)}"]["name"=${JSON.stringify(city)}]`;
+  // Verified relation IDs avoid repeatedly scanning Hungary's administrative
+  // areas. Keep name/admin-level guards so a changed registry cannot mix cities.
+  const municipality = `relation(${MUNICIPALITIES[city].relationId})["boundary"="administrative"]["admin_level"="${municipalityAdminLevel(city)}"]["name"=${JSON.stringify(city)}]`;
   return `[out:json][timeout:30][maxsize:67108864];
-area["ISO3166-1"="HU"]["admin_level"="2"]->.hungary;
 ${municipality}->.municipality;
 .municipality out tags center;
 .municipality map_to_area ->.city;
