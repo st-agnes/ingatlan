@@ -1,8 +1,10 @@
 import {createHash} from 'node:crypto';
+import {gzipSync, gunzipSync} from 'node:zlib';
 import {readFile, readdir, writeFile} from 'node:fs/promises';
 import {dirname, join, relative, resolve, sep} from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 import {collectOsmCandidates, loadOsmSources} from './osm.mjs';
+import {collectNationalCandidates, loadNationalSource} from './national.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const EPSILON = 1e-12;
@@ -218,7 +220,7 @@ function assembleCatalog(features, excluded, counts) {
   }
   return {
     catalog: {type: 'FeatureCollection', schemaVersion: 1, status: 'draft', reviewStatus: 'unreviewed',
-      usableForAddressAssignment: false, processing: 'WOF geometries retained unchanged; OSM boundaries assembled from actual member-way vertices only. No point/bounding-box approximation, snapping, interpolation or invented closing edges. Basic ring/bounding-box checks only. City completeness, source accuracy, inter-feature/MultiPolygon component overlaps and address samples are not certified.',
+      usableForAddressAssignment: false, processing: 'WOF geometries retained unchanged; live OSM boundaries assembled from actual member-way vertices only. Historical national OSM shapefile vertices transformed from EPSG:3857 to EPSG:4326 with ring orientation and 8-decimal rounding only. Audited current names deduplicated; original names and source geometry remain preserved in source files. No point/bounding-box approximation, snapping, interpolation or invented closing edges. Basic ring/bounding-box checks only. City completeness, source accuracy, inter-feature/MultiPolygon component overlaps and address samples are not certified.',
       features},
     coverage: {schemaVersion: 1, status: 'draft', usableForAddressAssignment: false,
       summary: {sourceRecords: counts.sourceRecords, candidateRecords: counts.candidateRecords,
@@ -232,26 +234,75 @@ function assembleCatalog(features, excluded, counts) {
   };
 }
 
-const duplicateName = name => name.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().trim().replace(/\s+/g, ' ');
-export function mergeCatalogs(wof, osm) {
-  const currentNames = new Map(osm.features.filter(feature => feature.properties.boundaryKind === 'neighbourhood')
-    .map(feature => [`${feature.properties.municipality}\0${duplicateName(feature.properties.name)}`, feature.id]));
-  const features = [...osm.features], excluded = [...wof.coverage.excluded, ...osm.excluded];
-  for (const feature of wof.catalog.features) {
-    const shadowedBy = currentNames.get(`${feature.properties.municipality}\0${duplicateName(feature.properties.name)}`);
-    if (shadowedBy) excluded.push({id: feature.id, name: feature.properties.name, municipality: feature.properties.municipality,
-      boundaryKind: feature.properties.boundaryKind, geometryType: feature.geometry.type,
-      reason: 'shadowed_by_current_osm', shadowedBy, source: feature.properties.source});
-    else features.push(feature);
+/** Bind manual name evidence to its exact raw source; never infer new borders or move a polygon. */
+export function applyNameAudit(features, audit = null) {
+  const records = new Map((audit?.records ?? []).map(record => [record.id, record]));
+  if (records.size !== (audit?.records?.length ?? 0)) throw new Error('Duplicate name audit identity');
+  const accepted = [], excluded = [];
+  for (const original of features) {
+    const properties = original.properties, evidence = records.get(original.id);
+    if (!evidence) { accepted.push(original); continue; }
+    if ((evidence.sourceSha256 && evidence.sourceSha256 !== properties.source.sha256) ||
+        evidence.originalMunicipality !== properties.municipality || evidence.sourceName !== properties.sourceName) {
+      throw new Error(`Name audit source identity mismatch: ${original.id}`);
+    }
+    const reason = evidence.municipalityCorrectionNeeded ? 'audited_municipality_mismatch' :
+      evidence.geometryAssociationNeedsReview ? 'audited_geometry_association_unresolved' :
+      evidence.canonicalNameSupported !== true ? `audited_${evidence.validationStatus}` : null;
+    if (reason) {
+      excluded.push({id: original.id, name: properties.name, municipality: properties.municipality,
+        boundaryKind: properties.boundaryKind, geometryType: original.geometry.type,
+        reason, nameAudit: evidence, source: properties.source});
+      continue;
+    }
+    if (typeof evidence.proposedHungarianName !== 'string' || !evidence.proposedHungarianName.trim() ||
+        evidence.actualMunicipality !== properties.municipality) throw new Error(`Invalid accepted name audit: ${original.id}`);
+    accepted.push({...original, properties: {...properties, name: evidence.proposedHungarianName,
+      canonicalNameSupported: true, canonicalNameIsNeighborhood: evidence.canonicalNameIsNeighborhood,
+      nameVerificationStatus: 'supported_by_name_audit', nameReviewNeeded: false,
+      geometryVerificationStatus: 'not-rechecked', nameAudit: evidence}});
+  }
+  return {features: accepted, excluded};
+}
+
+export function mergeCatalogs(wof, osm, national = null, audit = null) {
+  national ??= {features: [], excluded: [], sourceRecords: 0, candidateRecords: 0, neighbourhoodRecords: 0};
+  const auditedWof = applyNameAudit(wof.catalog.features, audit);
+  // A current source label wins over its historical alias within the same WOF cohort.
+  auditedWof.features.sort((a, b) => Number(a.properties.nameAudit?.sourceLabelIsCurrentName === false) -
+    Number(b.properties.nameAudit?.sourceLabelIsCurrentName === false) || a.id.localeCompare(b.id, 'en'));
+  const features = [], excluded = [...wof.coverage.excluded, ...osm.excluded, ...national.excluded, ...auditedWof.excluded];
+  const currentNames = new Map();
+  const orderedNational = [...national.features].sort((a, b) =>
+    (b.properties.source.sourceCommitDate ?? '').localeCompare(a.properties.source.sourceCommitDate ?? '') || a.id.localeCompare(b.id, 'en'));
+  for (const [cohort, candidates] of [['current_osm', osm.features], ['national_osm', orderedNational], ['whosonfirst', auditedWof.features]]) {
+    for (const feature of candidates) {
+      const key = `${normalizedName(feature.properties.municipality)}\0${normalizedName(feature.properties.name)}`;
+      const winner = feature.properties.boundaryKind === 'neighbourhood' ? currentNames.get(key) : null;
+      if (winner) excluded.push({id: feature.id, name: feature.properties.name, municipality: feature.properties.municipality,
+        boundaryKind: feature.properties.boundaryKind, geometryType: feature.geometry.type,
+        reason: winner.cohort === cohort ?
+          (cohort === 'national_osm' && winner.sourceCommitDate > (feature.properties.source.sourceCommitDate ?? '') ?
+            'shadowed_by_newer_national_osm' : 'duplicate_canonical_neighbourhood_name') : `shadowed_by_${winner.cohort}`,
+        shadowedBy: winner.id, nameAudit: feature.properties.nameAudit ?? null, source: feature.properties.source});
+      else {
+        features.push(feature);
+        if (feature.properties.boundaryKind === 'neighbourhood') currentNames.set(key,
+          {id: feature.id, cohort, sourceCommitDate: feature.properties.source.sourceCommitDate ?? ''});
+      }
+    }
   }
   return assembleCatalog(features, excluded, {
-    sourceRecords: wof.coverage.summary.sourceRecords + osm.sourceRecords,
-    candidateRecords: wof.coverage.summary.candidateRecords + osm.candidateRecords,
-    neighbourhoodRecords: wof.coverage.summary.neighbourhoodRecords + osm.neighbourhoodRecords,
+    sourceRecords: wof.coverage.summary.sourceRecords + osm.sourceRecords + national.sourceRecords,
+    candidateRecords: wof.coverage.summary.candidateRecords + osm.candidateRecords + national.candidateRecords,
+    neighbourhoodRecords: wof.coverage.summary.neighbourhoodRecords + osm.neighbourhoodRecords + national.neighbourhoodRecords,
     districtRecords: osm.districtRecords, ignoredParentRecords: wof.coverage.summary.ignoredParentRecords,
     queryResults: osm.queryResults,
     providers: {whosonfirst: wof.coverage.summary.providers.whosonfirst,
-      openstreetmap: {sourceSnapshots: osm.sourceSnapshots, sourceRecords: osm.sourceRecords, candidateRecords: osm.candidateRecords}}
+      openstreetmap: {sourceSnapshots: osm.sourceSnapshots + (national.sourceSnapshots ?? Number(national.sourceRecords > 0)),
+        sourceRecords: osm.sourceRecords + national.sourceRecords, candidateRecords: osm.candidateRecords + national.candidateRecords,
+        liveSourceSnapshots: osm.sourceSnapshots, liveCandidateRecords: osm.candidateRecords,
+        historicalSourceSnapshots: national.sourceSnapshots ?? Number(national.sourceRecords > 0), historicalCandidateRecords: national.candidateRecords}}
   });
 }
 
@@ -295,13 +346,22 @@ export async function buildFiles({root = ROOT, check = false} = {}) {
   const records = await loadSources(root);
   const wof = buildCatalog(records, canonical);
   const osmSnapshots = await loadOsmSources(root);
-  const result = osmSnapshots.length ? mergeCatalogs(wof, collectOsmCandidates(osmSnapshots, canonical, validateGeometry)) : wof;
+  const nationalSnapshots = await Promise.all(['national-osm', 'national-osm-2025'].map(directory => loadNationalSource(root, directory)));
+  let audit = null;
+  try { audit = JSON.parse(await readFile(join(root, 'data/neighborhoods/name-audit.json'), 'utf8')); }
+  catch (error) { if (error.code !== 'ENOENT') throw error; }
+  const result = mergeCatalogs(wof, collectOsmCandidates(osmSnapshots, canonical, validateGeometry),
+    collectNationalCandidates(nationalSnapshots, canonical, validateGeometry), audit);
   for (const [name, value] of [['catalog.geojson', result.catalog], ['coverage.json', result.coverage]]) {
-    const path = join(root, 'data/neighborhoods', name);
+    const path = join(root, 'data/neighborhoods', name === 'catalog.geojson' ? `${name}.gz` : name);
     const content = `${JSON.stringify(value, null, 2)}\n`;
     if (check) {
-      if (await readFile(path, 'utf8') !== content) throw new Error(`${name} is out of date; run node scripts/neighborhoods/build.mjs`);
-    } else await writeFile(path, content);
+      const stored = name === 'catalog.geojson' ? gunzipSync(await readFile(path)).toString('utf8') : await readFile(path, 'utf8');
+      if (stored !== content) throw new Error(`${name} is out of date; run node scripts/neighborhoods/build.mjs`);
+    } else {
+      await writeFile(path, name === 'catalog.geojson' ? gzipSync(content, {level: 9}) : content);
+      if (name === 'catalog.geojson') await writeFile(join(root, 'data/neighborhoods', name), content);
+    }
   }
   return result;
 }

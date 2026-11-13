@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
+import { gunzipSync } from 'node:zlib';
 import { mkdir, readFile } from 'node:fs/promises';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import path from 'node:path';
 import { chromium } from '../.local/browser-tests/node_modules/playwright/index.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const catalog = JSON.parse(await readFile(path.join(root, 'data/neighborhoods/catalog.geojson'), 'utf8'));
+const catalog = JSON.parse(gunzipSync(await readFile(path.join(root, 'data/neighborhoods/catalog.geojson.gz'))).toString('utf8'));
 const populatedCity = catalog.features[0]?.properties.municipality;
 assert.ok(populatedCity, 'The review scenario needs an actual source polygon.');
 await mkdir(path.join(root, '.local/neighborhoods'), {recursive: true});
@@ -24,7 +25,9 @@ try {
     await page.locator('#list button').first().click();
     assert.equal(await page.locator('#map path').count(), 1);
     assert.equal(await page.locator('#list button[aria-pressed=true]').count(), 1);
-    assert.match(await page.locator('#detail').innerText(), /Ellenőrzésre vár/);
+    assert.match(await page.locator('#detail').innerText(), /Név ellenőrzése/);
+    assert.match(await page.locator('#detail').innerText(), /Forráskivonat dátuma/);
+    assert.match(await page.locator('#detail').innerText(), /mai pontossága nincs igazolva/);
     assert.ok((await page.locator('#detail a').getAttribute('href'))?.startsWith('https://'));
     await page.locator('#all').click();
     assert.equal(await page.locator('#list button[aria-pressed=true]').count(), 0);

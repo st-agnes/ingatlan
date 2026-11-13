@@ -1,8 +1,6 @@
 name: Collect draft neighborhood data
 
 on:
-  push:
-    branches: [codex/free-neighborhood-boundaries]
   workflow_dispatch:
     inputs:
       scope:

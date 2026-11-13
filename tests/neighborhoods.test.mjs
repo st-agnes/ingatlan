@@ -4,6 +4,7 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {buildCatalog, buildFiles, loadSources, TARGET_CITIES, validateGeometry} from '../scripts/neighborhoods/build.mjs';
 import {loadOsmSources} from '../scripts/neighborhoods/osm.mjs';
+import {loadNationalSource} from '../scripts/neighborhoods/national.mjs';
 
 const square = [[19,47],[19.1,47],[19.1,47.1],[19,47.1],[19,47]];
 const polygon = coordinates => ({type:'Polygon',coordinates:[coordinates]});
@@ -130,6 +131,8 @@ test('checked-in draft is reproducible from pinned original records and canonica
   assert.equal(coverage.summary.candidateRecords,catalog.features.length+coverage.excluded.length);
   assert.equal(new Set(catalog.features.map(feature=>feature.id)).size,catalog.features.length);
   const osmSources = new Map((await loadOsmSources(new URL('..',import.meta.url).pathname)).map(snapshot=>[snapshot.path,snapshot]));
+  const nationalSources = await Promise.all(['national-osm','national-osm-2025'].map(directory=>
+    loadNationalSource(new URL('..',import.meta.url).pathname,directory)));
   for(const feature of catalog.features){
     assert.ok(canonical.has(feature.properties.municipality));
     assert.ok(validateGeometry(feature.geometry,feature.bbox).valid);
@@ -141,6 +144,16 @@ test('checked-in draft is reproducible from pinned original records and canonica
       const original=records.find(record=>`wof:${record.feature.properties?.['wof:id']}`===feature.id);
       assert.ok(original);
       assert.deepEqual(feature.geometry,original.feature.geometry);
+    }else if(feature.properties.source.collection==='national-osm-admin10'){
+      const nationalSource=nationalSources.find(snapshot=>snapshot?.path===feature.properties.source.path);
+      assert.ok(nationalSource,'missing pinned national source cohort');
+      const original=nationalSource.document.features.find(item=>item.id===feature.id);
+      assert.ok(original,'missing exact national source record');
+      assert.deepEqual(feature.geometry,original.geometry,'national geometry must equal the pinned converted original');
+      assert.equal(feature.properties.source.sha256,nationalSource.sha256);
+      assert.equal(feature.properties.source.historical,true);
+      assert.equal(feature.properties.source.osmTimestamp,null);
+      assert.equal(feature.properties.source.license,'ODbL-1.0');
     }else{
       assert.equal(feature.properties.source.provider,'openstreetmap');
       const original=osmSources.get(feature.properties.source.path);

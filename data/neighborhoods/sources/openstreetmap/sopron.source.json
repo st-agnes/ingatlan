@@ -1,0 +1,31 @@
+{
+  "city": "Sopron",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Sopron\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+  "retrievedAt": "2026-11-12T20:47:37.030Z",
+  "sha256": "9b1e7270bae3a30b5b7a19a44cfda4052db76a7dc4b05caae1c599860a6a3aa6",
+  "bytes": 25903,
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "municipalityRelationId": 1491393,
+  "municipalityAdminLevel": "8",
+  "candidates": 1,
+  "byAdminLevel": {
+    "place-only": 1
+  },
+  "relationsWithWayGeometry": 1,
+  "closedWays": 0,
+  "osmTimestamp": "2026-11-12T20:45:46Z",
+  "completeCoverage": false,
+  "reviewStatus": "unreviewed",
+  "usableForAddressAssignment": false,
+  "attempts": [
+    {
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "status": "ok"
+    }
+  ],
+  "status": "downloaded",
+  "file": "sopron.json"
+}

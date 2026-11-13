@@ -3,16 +3,35 @@
   "provider": "openstreetmap",
   "requestedCities": [
     "Budapest",
+    "Baja",
+    "Békéscsaba",
     "Debrecen",
-    "Szeged",
-    "Miskolc",
-    "Pécs",
+    "Dunaújváros",
+    "Eger",
+    "Érd",
+    "Esztergom",
     "Győr",
-    "Nyíregyháza"
+    "Hódmezővásárhely",
+    "Kaposvár",
+    "Kecskemét",
+    "Miskolc",
+    "Nagykanizsa",
+    "Nyíregyháza",
+    "Pécs",
+    "Salgótarján",
+    "Sopron",
+    "Szeged",
+    "Székesfehérvár",
+    "Szekszárd",
+    "Szolnok",
+    "Szombathely",
+    "Tatabánya",
+    "Veszprém",
+    "Zalaegerszeg"
   ],
-  "successfulCities": 4,
-  "failedCities": 3,
-  "candidateCount": 26,
+  "successfulCities": 12,
+  "failedCities": 14,
+  "candidateCount": 43,
   "completeCoverage": false,
   "reviewStatus": "unreviewed",
   "usableForAddressAssignment": false,
@@ -22,6 +41,36 @@
   "results": [
     {
       "city": "Budapest",
+      "status": "failed",
+      "reason": "request-timeout",
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "request-timeout"
+        },
+        {
+          "endpoint": "https://overpass.private.coffee/api/interpreter",
+          "status": "request-timeout"
+        }
+      ]
+    },
+    {
+      "city": "Baja",
+      "status": "failed",
+      "reason": "request-timeout",
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "http-502"
+        },
+        {
+          "endpoint": "https://overpass.private.coffee/api/interpreter",
+          "status": "request-timeout"
+        }
+      ]
+    },
+    {
+      "city": "Békéscsaba",
       "status": "failed",
       "reason": "request-timeout",
       "attempts": [
@@ -39,8 +88,8 @@
       "city": "Debrecen",
       "endpoint": "https://overpass-api.de/api/interpreter",
       "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Debrecen\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
-      "retrievedAt": "2026-11-12T20:25:42.841Z",
-      "sha256": "8f15b80c1e7c58574eccc613f83a0b13f10c4f680e88b6637c67d6b5ed8b0be9",
+      "retrievedAt": "2026-11-12T20:37:32.314Z",
+      "sha256": "23329ecc41b2ccf3ea29eea09aa4f8e3e59d2f8340b73150f1b7826cd5b74563",
       "bytes": 222207,
       "attribution": "© OpenStreetMap contributors",
       "license": "ODbL-1.0",
@@ -53,7 +102,7 @@
       },
       "relationsWithWayGeometry": 26,
       "closedWays": 0,
-      "osmTimestamp": "2026-11-12T20:23:30Z",
+      "osmTimestamp": "2026-11-12T20:35:36Z",
       "completeCoverage": false,
       "reviewStatus": "unreviewed",
       "usableForAddressAssignment": false,
@@ -67,42 +116,13 @@
       "file": "debrecen.json"
     },
     {
-      "city": "Szeged",
-      "endpoint": "https://overpass-api.de/api/interpreter",
-      "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Szeged\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
-      "retrievedAt": "2026-11-12T20:26:19.676Z",
-      "sha256": "9a8c4b57fdd559340d1bc1fbd8bdb87e24c384291dd609df9d6671d0e2e212cf",
-      "bytes": 675,
-      "attribution": "© OpenStreetMap contributors",
-      "license": "ODbL-1.0",
-      "licenseUrl": "https://www.openstreetmap.org/copyright",
-      "municipalityRelationId": 1025105,
-      "municipalityAdminLevel": "8",
-      "candidates": 0,
-      "byAdminLevel": {},
-      "relationsWithWayGeometry": 0,
-      "closedWays": 0,
-      "osmTimestamp": "2026-11-12T20:24:33Z",
-      "completeCoverage": false,
-      "reviewStatus": "unreviewed",
-      "usableForAddressAssignment": false,
-      "attempts": [
-        {
-          "endpoint": "https://overpass-api.de/api/interpreter",
-          "status": "ok"
-        }
-      ],
-      "status": "downloaded",
-      "file": "szeged.json"
-    },
-    {
-      "city": "Miskolc",
+      "city": "Dunaújváros",
       "status": "failed",
       "reason": "request-timeout",
       "attempts": [
         {
           "endpoint": "https://overpass-api.de/api/interpreter",
-          "status": "request-timeout"
+          "status": "http-502"
         },
         {
           "endpoint": "https://overpass.private.coffee/api/interpreter",
@@ -111,22 +131,22 @@
       ]
     },
     {
-      "city": "Pécs",
+      "city": "Eger",
       "endpoint": "https://overpass-api.de/api/interpreter",
-      "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Pécs\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
-      "retrievedAt": "2026-11-12T20:28:21.144Z",
-      "sha256": "f4f9dd5da636df690b7ea4b7ab3b3e8d34041b281fa1dc52671c3e5ddd99d9e7",
-      "bytes": 1212,
+      "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Eger\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+      "retrievedAt": "2026-11-12T20:38:55.254Z",
+      "sha256": "36bd7b709a65a1a9b2c8f2986d79aec434946c2cec324b1964e3fcf69f403ad1",
+      "bytes": 988,
       "attribution": "© OpenStreetMap contributors",
       "license": "ODbL-1.0",
       "licenseUrl": "https://www.openstreetmap.org/copyright",
-      "municipalityRelationId": 575380,
+      "municipalityRelationId": 1418156,
       "municipalityAdminLevel": "8",
       "candidates": 0,
       "byAdminLevel": {},
       "relationsWithWayGeometry": 0,
       "closedWays": 0,
-      "osmTimestamp": "2026-11-12T20:26:35Z",
+      "osmTimestamp": "2026-11-12T20:37:43Z",
       "completeCoverage": false,
       "reviewStatus": "unreviewed",
       "usableForAddressAssignment": false,
@@ -137,7 +157,51 @@
         }
       ],
       "status": "downloaded",
-      "file": "pecs.json"
+      "file": "eger.json"
+    },
+    {
+      "city": "Érd",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Érd\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+      "retrievedAt": "2026-11-12T20:39:32.196Z",
+      "sha256": "68497826d26fd0e088fa9cb09778e4b7a87e4620ff2d73eeabd6f35d2e149351",
+      "bytes": 669,
+      "attribution": "© OpenStreetMap contributors",
+      "license": "ODbL-1.0",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "municipalityRelationId": 112435,
+      "municipalityAdminLevel": "8",
+      "candidates": 0,
+      "byAdminLevel": {},
+      "relationsWithWayGeometry": 0,
+      "closedWays": 0,
+      "osmTimestamp": "2026-11-12T20:37:43Z",
+      "completeCoverage": false,
+      "reviewStatus": "unreviewed",
+      "usableForAddressAssignment": false,
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "ok"
+        }
+      ],
+      "status": "downloaded",
+      "file": "erd.json"
+    },
+    {
+      "city": "Esztergom",
+      "status": "failed",
+      "reason": "request-timeout",
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "http-502"
+        },
+        {
+          "endpoint": "https://overpass.private.coffee/api/interpreter",
+          "status": "request-timeout"
+        }
+      ]
     },
     {
       "city": "Győr",
@@ -155,11 +219,128 @@
       ]
     },
     {
+      "city": "Hódmezővásárhely",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Hódmezővásárhely\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+      "retrievedAt": "2026-11-12T20:41:35.248Z",
+      "sha256": "9a0c5ac9dc7deb2b614bdf39ed78340a7faffe5c33cc5e7dcfab970db0b798e6",
+      "bytes": 702,
+      "attribution": "© OpenStreetMap contributors",
+      "license": "ODbL-1.0",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "municipalityRelationId": 1025072,
+      "municipalityAdminLevel": "8",
+      "candidates": 0,
+      "byAdminLevel": {},
+      "relationsWithWayGeometry": 0,
+      "closedWays": 0,
+      "osmTimestamp": "2026-11-12T20:39:51Z",
+      "completeCoverage": false,
+      "reviewStatus": "unreviewed",
+      "usableForAddressAssignment": false,
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "ok"
+        }
+      ],
+      "status": "downloaded",
+      "file": "hodmezovasarhely.json"
+    },
+    {
+      "city": "Kaposvár",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Kaposvár\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+      "retrievedAt": "2026-11-12T20:42:15.897Z",
+      "sha256": "29ab03ba2181f2a3933205abe3cd03497f520aaac2f6c9449f05a9b03b1d36da",
+      "bytes": 723,
+      "attribution": "© OpenStreetMap contributors",
+      "license": "ODbL-1.0",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "municipalityRelationId": 1368050,
+      "municipalityAdminLevel": "8",
+      "candidates": 0,
+      "byAdminLevel": {},
+      "relationsWithWayGeometry": 0,
+      "closedWays": 0,
+      "osmTimestamp": "2026-11-12T20:40:51Z",
+      "completeCoverage": false,
+      "reviewStatus": "unreviewed",
+      "usableForAddressAssignment": false,
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "ok"
+        }
+      ],
+      "status": "downloaded",
+      "file": "kaposvar.json"
+    },
+    {
+      "city": "Kecskemét",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Kecskemét\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+      "retrievedAt": "2026-11-12T20:42:55.557Z",
+      "sha256": "31a624f6dd74ada439f22c11454abcf39537a0827241d110c5d98875ae47aabf",
+      "bytes": 725,
+      "attribution": "© OpenStreetMap contributors",
+      "license": "ODbL-1.0",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "municipalityRelationId": 1130433,
+      "municipalityAdminLevel": "8",
+      "candidates": 0,
+      "byAdminLevel": {},
+      "relationsWithWayGeometry": 0,
+      "closedWays": 0,
+      "osmTimestamp": "2026-11-12T20:40:51Z",
+      "completeCoverage": false,
+      "reviewStatus": "unreviewed",
+      "usableForAddressAssignment": false,
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "ok"
+        }
+      ],
+      "status": "downloaded",
+      "file": "kecskemet.json"
+    },
+    {
+      "city": "Miskolc",
+      "status": "failed",
+      "reason": "request-timeout",
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "http-502"
+        },
+        {
+          "endpoint": "https://overpass.private.coffee/api/interpreter",
+          "status": "request-timeout"
+        }
+      ]
+    },
+    {
+      "city": "Nagykanizsa",
+      "status": "failed",
+      "reason": "request-timeout",
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "request-timeout"
+        },
+        {
+          "endpoint": "https://overpass.private.coffee/api/interpreter",
+          "status": "request-timeout"
+        }
+      ]
+    },
+    {
       "city": "Nyíregyháza",
       "endpoint": "https://overpass-api.de/api/interpreter",
       "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Nyíregyháza\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
-      "retrievedAt": "2026-11-12T20:29:41.271Z",
-      "sha256": "17a92d204b5e9d1aeb90d0bc2a01af53db8c3d8d88b4e14aaa3f5fe2ba838bd4",
+      "retrievedAt": "2026-11-12T20:45:38.786Z",
+      "sha256": "54f2ac979c3397ccebd75abe837915304295f2a4cea6318cbd369f7f9b619a32",
       "bytes": 661,
       "attribution": "© OpenStreetMap contributors",
       "license": "ODbL-1.0",
@@ -170,7 +351,7 @@
       "byAdminLevel": {},
       "relationsWithWayGeometry": 0,
       "closedWays": 0,
-      "osmTimestamp": "2026-11-12T20:28:34Z",
+      "osmTimestamp": "2026-11-12T20:43:51Z",
       "completeCoverage": false,
       "reviewStatus": "unreviewed",
       "usableForAddressAssignment": false,
@@ -182,6 +363,256 @@
       ],
       "status": "downloaded",
       "file": "nyiregyhaza.json"
+    },
+    {
+      "city": "Pécs",
+      "status": "failed",
+      "reason": "request-timeout",
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "http-502"
+        },
+        {
+          "endpoint": "https://overpass.private.coffee/api/interpreter",
+          "status": "request-timeout"
+        }
+      ],
+      "retainedPreviousSnapshot": {
+        "file": "pecs.json",
+        "sha256": "f4f9dd5da636df690b7ea4b7ab3b3e8d34041b281fa1dc52671c3e5ddd99d9e7",
+        "retrievedAt": "2026-11-12T20:28:21.144Z",
+        "osmTimestamp": "2026-11-12T20:26:35Z"
+      }
+    },
+    {
+      "city": "Salgótarján",
+      "status": "failed",
+      "reason": "request-timeout",
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "http-502"
+        },
+        {
+          "endpoint": "https://overpass.private.coffee/api/interpreter",
+          "status": "request-timeout"
+        }
+      ]
+    },
+    {
+      "city": "Sopron",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Sopron\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+      "retrievedAt": "2026-11-12T20:47:37.030Z",
+      "sha256": "9b1e7270bae3a30b5b7a19a44cfda4052db76a7dc4b05caae1c599860a6a3aa6",
+      "bytes": 25903,
+      "attribution": "© OpenStreetMap contributors",
+      "license": "ODbL-1.0",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "municipalityRelationId": 1491393,
+      "municipalityAdminLevel": "8",
+      "candidates": 1,
+      "byAdminLevel": {
+        "place-only": 1
+      },
+      "relationsWithWayGeometry": 1,
+      "closedWays": 0,
+      "osmTimestamp": "2026-11-12T20:45:46Z",
+      "completeCoverage": false,
+      "reviewStatus": "unreviewed",
+      "usableForAddressAssignment": false,
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "ok"
+        }
+      ],
+      "status": "downloaded",
+      "file": "sopron.json"
+    },
+    {
+      "city": "Szeged",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Szeged\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+      "retrievedAt": "2026-11-12T20:48:16.775Z",
+      "sha256": "868aed99c475fb4c74cb00457123667718d116d4e699b6cb12d83dbee0598a39",
+      "bytes": 675,
+      "attribution": "© OpenStreetMap contributors",
+      "license": "ODbL-1.0",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "municipalityRelationId": 1025105,
+      "municipalityAdminLevel": "8",
+      "candidates": 0,
+      "byAdminLevel": {},
+      "relationsWithWayGeometry": 0,
+      "closedWays": 0,
+      "osmTimestamp": "2026-11-12T20:46:50Z",
+      "completeCoverage": false,
+      "reviewStatus": "unreviewed",
+      "usableForAddressAssignment": false,
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "ok"
+        }
+      ],
+      "status": "downloaded",
+      "file": "szeged.json"
+    },
+    {
+      "city": "Székesfehérvár",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Székesfehérvár\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+      "retrievedAt": "2026-11-12T20:48:57.334Z",
+      "sha256": "496065e8f2c0ba92da78ab11eb00437b2ad7f54c13bffe95d591a08fecf3c6df",
+      "bytes": 65137,
+      "attribution": "© OpenStreetMap contributors",
+      "license": "ODbL-1.0",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "municipalityRelationId": 1361450,
+      "municipalityAdminLevel": "8",
+      "candidates": 16,
+      "byAdminLevel": {
+        "11": 1,
+        "place-only": 15
+      },
+      "relationsWithWayGeometry": 1,
+      "closedWays": 15,
+      "osmTimestamp": "2026-11-12T20:47:50Z",
+      "completeCoverage": false,
+      "reviewStatus": "unreviewed",
+      "usableForAddressAssignment": false,
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "ok"
+        }
+      ],
+      "status": "downloaded",
+      "file": "szekesfehervar.json"
+    },
+    {
+      "city": "Szekszárd",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Szekszárd\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+      "retrievedAt": "2026-11-12T20:49:28.984Z",
+      "sha256": "a97438161312a003a557c3ab906a92ee1beeb926a780f54d3dadde6ad5794665",
+      "bytes": 655,
+      "attribution": "© OpenStreetMap contributors",
+      "license": "ODbL-1.0",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "municipalityRelationId": 1501296,
+      "municipalityAdminLevel": "8",
+      "candidates": 0,
+      "byAdminLevel": {},
+      "relationsWithWayGeometry": 0,
+      "closedWays": 0,
+      "osmTimestamp": "2026-11-12T20:47:50Z",
+      "completeCoverage": false,
+      "reviewStatus": "unreviewed",
+      "usableForAddressAssignment": false,
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "ok"
+        }
+      ],
+      "status": "downloaded",
+      "file": "szekszard.json"
+    },
+    {
+      "city": "Szolnok",
+      "status": "failed",
+      "reason": "request-timeout",
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "http-502"
+        },
+        {
+          "endpoint": "https://overpass.private.coffee/api/interpreter",
+          "status": "request-timeout"
+        }
+      ]
+    },
+    {
+      "city": "Szombathely",
+      "status": "failed",
+      "reason": "request-timeout",
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "http-502"
+        },
+        {
+          "endpoint": "https://overpass.private.coffee/api/interpreter",
+          "status": "request-timeout"
+        }
+      ]
+    },
+    {
+      "city": "Tatabánya",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Tatabánya\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+      "retrievedAt": "2026-11-12T20:51:23.206Z",
+      "sha256": "ac71dc40d3fc8baeeb0936cb333c284e8577e05cb9f4e6843c5be2bd83a17afd",
+      "bytes": 727,
+      "attribution": "© OpenStreetMap contributors",
+      "license": "ODbL-1.0",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "municipalityRelationId": 1027771,
+      "municipalityAdminLevel": "8",
+      "candidates": 0,
+      "byAdminLevel": {},
+      "relationsWithWayGeometry": 0,
+      "closedWays": 0,
+      "osmTimestamp": "2026-11-12T20:49:50Z",
+      "completeCoverage": false,
+      "reviewStatus": "unreviewed",
+      "usableForAddressAssignment": false,
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "ok"
+        }
+      ],
+      "status": "downloaded",
+      "file": "tatabanya.json"
+    },
+    {
+      "city": "Veszprém",
+      "status": "failed",
+      "reason": "request-timeout",
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "http-502"
+        },
+        {
+          "endpoint": "https://overpass.private.coffee/api/interpreter",
+          "status": "request-timeout"
+        }
+      ]
+    },
+    {
+      "city": "Zalaegerszeg",
+      "status": "failed",
+      "reason": "request-timeout",
+      "attempts": [
+        {
+          "endpoint": "https://overpass-api.de/api/interpreter",
+          "status": "http-502"
+        },
+        {
+          "endpoint": "https://overpass.private.coffee/api/interpreter",
+          "status": "request-timeout"
+        }
+      ]
     }
-  ]
+  ],
+  "retainedPreviousSnapshotCities": [
+    "Pécs"
+  ],
+  "acquisitionWorkflowRun": "https://github.com/st-agnes/ingatlan/actions/runs/43301569723"
 }

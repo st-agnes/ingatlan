@@ -52,7 +52,13 @@ jobs:
           node tests/neighborhoods.test.mjs
           node tests/neighborhoods-fetch.test.mjs
           node tests/neighborhoods-osm.test.mjs
+          node tests/neighborhoods-national.test.mjs
+          python3 tests/neighborhood-national-fetch.test.py
           node scripts/neighborhoods/build.mjs --check
+          node scripts/neighborhoods/report.mjs --check
+          node scripts/neighborhoods/export.mjs
+          node tests/neighborhoods-report.test.mjs
+          node scripts/neighborhoods/build.mjs
           node scripts/neighborhoods/preview.mjs
           node tests/neighborhoods-browser.test.mjs
       - uses: actions/upload-artifact@v4
@@ -62,6 +68,9 @@ jobs:
           path: |
             data/neighborhoods/review.html
             data/neighborhoods/coverage.json
+            data/neighborhoods/catalog.geojson
+            data/neighborhoods/neighborhoods.geojson*
+            data/neighborhoods/report.*
             .local/neighborhoods/review-*.png
           if-no-files-found: ignore
       - uses: actions/upload-artifact@v4

@@ -1,0 +1,4922 @@
+{
+  "schemaVersion": 1,
+  "status": "partial_collection",
+  "countingPolicy": {
+    "geometry": "Each Polygon or MultiPolygon feature is one geometry; separate parts of a MultiPolygon are not additional neighborhoods.",
+    "uniqueNames": "Names deduplicate by city after case, accent, punctuation and whitespace normalization. This does not establish that every source name is a current distinct neighborhood.",
+    "acceptedNames": "The main neighborhood count uses mapped OSM neighborhood names or explicitly supported canonical names in the name audit. Historical aliases deduplicate to the canonical name; district/large-area names are excluded from that main count. Name acceptance does not verify the boundary.",
+    "missing": "Point-only names without a matching collected polygon are known source gaps. Other missing names are listed only against an explicitly cited reference inventory.",
+    "query": "Failed, successful-empty and unrequested lookups remain separate. A failed lookup is not evidence that boundaries do not exist.",
+    "verification": "Current OSM origin and recorded human name confirmation are separate counts. Exact normalized canonical city/name matches may reuse existing name-audit evidence across data sources; this confirms the name only, not the feature classification or geometry. No Google verification is inferred from source age or an unvisited search link."
+  },
+  "summary": {
+    "settlementsInReport": 60,
+    "settlementsWithNeighbourhoodGeometry": 5,
+    "settlementsWithAcceptedNeighbourhoodNames": 5,
+    "targetCities": 26,
+    "neighbourhoodGeometryCount": 256,
+    "uniqueSourceNamesAcrossSettlements": 256,
+    "districtFallbackGeometryCount": 0,
+    "acceptedNeighbourhoodNameCount": 247,
+    "acceptedCurrentAreaNameCount": 256,
+    "unverifiedSourceNameCount": 0,
+    "osmGeometryCount": 246,
+    "historicalOsmGeometryCount": 203,
+    "currentOsmGeometryCount": 43,
+    "legacyOrOtherGeometryCount": 10,
+    "nameConfirmedUniqueCount": 47,
+    "knownNamesWithoutGeometryCount": 106,
+    "failedQueries": 14,
+    "successfulEmptyQueries": 9,
+    "unrequestedCities": 34,
+    "totalMissingCurrentNeighbourhoods": null,
+    "completeNationalCoverage": false
+  },
+  "cities": [
+    {
+      "municipality": "Abony",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Kismihálytódůlő",
+          "sourceIds": [
+            "wof:85901151"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/51/85901151.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Ajka",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Bakonygyepes",
+          "sourceIds": [
+            "wof:85906271"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/062/71/85906271.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Baja",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Láp",
+          "sourceIds": [
+            "wof:85901199"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/99/85901199.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Baja",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": null,
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Békéscsaba",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Csabaszabadi",
+          "sourceIds": [
+            "wof:85901073"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/73/85901073.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Békéscsaba",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": null,
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Budaörs",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 1,
+      "uniqueSourceNameCount": 1,
+      "acceptedNeighbourhoodNameCount": 1,
+      "acceptedNeighbourhoodNames": [
+        "Frankhegy"
+      ],
+      "acceptedCurrentAreaNameCount": 1,
+      "acceptedCurrentAreaNames": [
+        "Frankhegy"
+      ],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 1,
+      "nameConfirmedUniqueCount": 1,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {
+        "whosonfirst": 1
+      },
+      "nameValidationStatusCounts": {
+        "name_supported": 1
+      },
+      "excludedSourceReasonCounts": {
+        "not_polygon": 2
+      },
+      "neighborhoodNames": [
+        "Frankhegy"
+      ],
+      "knownNamesWithoutGeometryCount": 2,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Örsöd",
+          "sourceIds": [
+            "wof:1108940537"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/053/7/1108940537.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Spanyolrét",
+          "sourceIds": [
+            "wof:1108940527"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/052/7/1108940527.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Budapest",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 212,
+      "uniqueSourceNameCount": 212,
+      "acceptedNeighbourhoodNameCount": 203,
+      "acceptedNeighbourhoodNames": [
+        "Adyliget",
+        "Akadémiaújtelep",
+        "Albertfalva",
+        "Almáskert",
+        "Alsórákos",
+        "Angyalföld",
+        "Aquincum",
+        "Aranyhegy-Ürömhegy-Péterhegy",
+        "Árpádföld",
+        "Baross Gábor-telep",
+        "Békásmegyer",
+        "Bélatelep",
+        "Belső-Ferencváros",
+        "Belsőmajor",
+        "Belváros",
+        "Bókaytelep",
+        "Budafok",
+        "Budakeszierdő",
+        "Budaliget",
+        "Budatétény",
+        "Cinkota",
+        "Corvin negyed",
+        "Csarnok negyed",
+        "Csatárka",
+        "Csepel-Belváros",
+        "Csepel-Csillagtelep",
+        "Csepel-Erdőalja",
+        "Csepel-Erdősor",
+        "Csepel-Gyártelep",
+        "Csepel-Háros",
+        "Csepel-Kertváros",
+        "Csepel-Királyerdő",
+        "Csepel-Királymajor",
+        "Csepel-Ófalu",
+        "Csepel-Rózsadomb",
+        "Csepel-Szabótelep",
+        "Csepel-Szigetcsúcs",
+        "Csillaghegy",
+        "Csillebérc",
+        "Csúcshegy",
+        "Dobogó",
+        "Erdőskert",
+        "Erzsébetfalva",
+        "Erzsébetliget",
+        "Erzsébettelek",
+        "Erzsébettelep",
+        "Erzsébetváros",
+        "Farkasrét",
+        "Farkasvölgy",
+        "Felhévíz",
+        "Felsőrákos",
+        "Ferihegy",
+        "Ganzkertváros",
+        "Ganz negyed",
+        "Ganztelep",
+        "Gazdagrét",
+        "Gellérthegy",
+        "Gercse",
+        "Gloriett telep",
+        "Göncz Árpád városközpont",
+        "Gubacs",
+        "Gubacsipuszta",
+        "Gyárdűlő",
+        "Halmierdő",
+        "Hármashatárhegy",
+        "Hársakalja",
+        "Harsánylejtő",
+        "Hárshegy",
+        "Havanna-lakótelep",
+        "Herminamező",
+        "Hosszúrét",
+        "Hűvösvölgy",
+        "Infopark",
+        "Istenhegy",
+        "Istvánmező",
+        "Istvántelek",
+        "Jánoshegy",
+        "József Attila-lakótelep",
+        "Kamaraerdő",
+        "Káposztásmegyer",
+        "Kaszásdűlő",
+        "Kelenföld",
+        "Kelenvölgy",
+        "Kerepesdűlő",
+        "Keresztúridűlő",
+        "Kispest",
+        "Kissvábhegy",
+        "Kiszugló",
+        "Kőbánya-Kertváros",
+        "Kőérberek",
+        "Kossuthfalva",
+        "Kossuth Ferenc-telep",
+        "Kővár",
+        "Középső-Ferencváros",
+        "Krepuska Géza-telep",
+        "Krisztinaváros",
+        "Külső-Ferencváros",
+        "Kurucles",
+        "Kúttó",
+        "Kútvölgy",
+        "Lágymányos",
+        "Lakatos-lakótelep",
+        "Laposdűlő",
+        "Ligettelek",
+        "Lipótmező",
+        "Lipótváros",
+        "Liptáktelep",
+        "Lónyaytelep",
+        "Losonci negyed",
+        "Madárdomb",
+        "Madárhegy",
+        "Magasút",
+        "Magdolnanegyed",
+        "Margitsziget",
+        "Máriaremete",
+        "Mártonhegy",
+        "Mátyásföld",
+        "Megyer",
+        "Miklóstelep",
+        "Millenniumtelep",
+        "Mocsárosdűlő",
+        "Nádorkert",
+        "Nagytétény",
+        "Nagyzugló",
+        "Németvölgy",
+        "Népliget",
+        "Népsziget",
+        "Népszínház negyed",
+        "Nyék",
+        "Óbuda",
+        "Óbuda hegyvidéke",
+        "Óbudai-sziget",
+        "Óhegy",
+        "Orbánhegy",
+        "Orczy negyed",
+        "Őrmező",
+        "Örsöd",
+        "Országút",
+        "Pacsirtatelep",
+        "Palotanegyed",
+        "Pálvölgy",
+        "Pasarét",
+        "Pesthidegkút-Ófalu",
+        "Pestújhely",
+        "Péterhegy",
+        "Petneházyrét",
+        "Pösingermajor",
+        "Rákoscsaba",
+        "Rákoscsaba-Újtelep",
+        "Rákosfalva",
+        "Rákoshegy",
+        "Rákoskeresztúr",
+        "Rákoskert",
+        "Rákosliget",
+        "Rákospalota",
+        "Rákosszentmihály",
+        "Régiakadémiatelep",
+        "Remetekertváros",
+        "Rendessytelep",
+        "Rézmál",
+        "Rómaifürdő",
+        "Rózsadomb",
+        "Sasad",
+        "Sashalom",
+        "Sashegy",
+        "Solymárvölgy",
+        "Soroksár",
+        "Soroksár-Újtelep",
+        "Spanyolrét",
+        "Svábhegy",
+        "Szabótelep",
+        "Százados negyed",
+        "Széchenyihegy",
+        "Székesdűlő",
+        "Szemeretelep",
+        "Szemlőhegy",
+        "Szent Imre kertváros",
+        "Szentimreváros",
+        "Szent Lőrinc-lakótelep",
+        "Széphalom",
+        "Szépilona",
+        "Szépvölgy",
+        "Tabán",
+        "Téglagyárdűlő",
+        "Terézváros",
+        "Tisztviselőtelep",
+        "Törökőr",
+        "Törökvész",
+        "Újhegy",
+        "Újlak",
+        "Újlipótváros",
+        "Újpalota",
+        "Újpest",
+        "Újpéteritelep",
+        "Vár",
+        "Városliget",
+        "Vérhalom",
+        "Virányos",
+        "Vizafogó",
+        "Víziváros",
+        "Wekerletelep",
+        "Zöldmál",
+        "Zugliget"
+      ],
+      "acceptedCurrentAreaNameCount": 212,
+      "acceptedCurrentAreaNames": [
+        "Adyliget",
+        "Akadémiaújtelep",
+        "Albertfalva",
+        "Almáskert",
+        "Alsórákos",
+        "Angyalföld",
+        "Aquincum",
+        "Aranyhegy-Ürömhegy-Péterhegy",
+        "Árpádföld",
+        "Baross Gábor-telep",
+        "Békásmegyer",
+        "Bélatelep",
+        "Belső-Ferencváros",
+        "Belsőmajor",
+        "Belváros",
+        "Bókaytelep",
+        "Budafok",
+        "Budakeszierdő",
+        "Budaliget",
+        "Budatétény",
+        "Cinkota",
+        "Corvin negyed",
+        "Csarnok negyed",
+        "Csatárka",
+        "Csepel",
+        "Csepel-Belváros",
+        "Csepel-Csillagtelep",
+        "Csepel-Erdőalja",
+        "Csepel-Erdősor",
+        "Csepel-Gyártelep",
+        "Csepel-Háros",
+        "Csepel-Kertváros",
+        "Csepel-Királyerdő",
+        "Csepel-Királymajor",
+        "Csepel-Ófalu",
+        "Csepel-Rózsadomb",
+        "Csepel-Szabótelep",
+        "Csepel-Szigetcsúcs",
+        "Csillaghegy",
+        "Csillebérc",
+        "Csúcshegy",
+        "Dobogó",
+        "Erdőskert",
+        "Erzsébetfalva",
+        "Erzsébetliget",
+        "Erzsébettelek",
+        "Erzsébettelep",
+        "Erzsébetváros",
+        "Farkasrét",
+        "Farkasvölgy",
+        "Felhévíz",
+        "Felsőrákos",
+        "Ferencváros",
+        "Ferihegy",
+        "Ganzkertváros",
+        "Ganz negyed",
+        "Ganztelep",
+        "Gazdagrét",
+        "Gellérthegy",
+        "Gercse",
+        "Gloriett telep",
+        "Göncz Árpád városközpont",
+        "Gubacs",
+        "Gubacsidűlő",
+        "Gubacsipuszta",
+        "Gyárdűlő",
+        "Halmierdő",
+        "Hármashatárhegy",
+        "Hársakalja",
+        "Harsánylejtő",
+        "Hárshegy",
+        "Havanna-lakótelep",
+        "Herminamező",
+        "Hosszúrét",
+        "Hűvösvölgy",
+        "Infopark",
+        "Istenhegy",
+        "Istvánmező",
+        "Istvántelek",
+        "Jánoshegy",
+        "József Attila-lakótelep",
+        "Józsefváros",
+        "Kamaraerdő",
+        "Káposztásmegyer",
+        "Kaszásdűlő",
+        "Kelenföld",
+        "Kelenvölgy",
+        "Kerepesdűlő",
+        "Keresztúridűlő",
+        "Kispest",
+        "Kissvábhegy",
+        "Kiszugló",
+        "Kőbánya",
+        "Kőbánya-Kertváros",
+        "Kőérberek",
+        "Kossuthfalva",
+        "Kossuth Ferenc-telep",
+        "Kővár",
+        "Középső-Ferencváros",
+        "Krepuska Géza-telep",
+        "Krisztinaváros",
+        "Külső-Ferencváros",
+        "Kurucles",
+        "Kúttó",
+        "Kútvölgy",
+        "Lágymányos",
+        "Lakatos-lakótelep",
+        "Laposdűlő",
+        "Ligettelek",
+        "Lipótmező",
+        "Lipótváros",
+        "Liptáktelep",
+        "Lónyaytelep",
+        "Losonci negyed",
+        "Madárdomb",
+        "Madárhegy",
+        "Magasút",
+        "Magdolnanegyed",
+        "Margitsziget",
+        "Máriaremete",
+        "Mártonhegy",
+        "Mátyásföld",
+        "Megyer",
+        "Miklóstelep",
+        "Millenniumtelep",
+        "Mocsárosdűlő",
+        "Nádorkert",
+        "Nagytétény",
+        "Nagyzugló",
+        "Németvölgy",
+        "Népliget",
+        "Népsziget",
+        "Népszínház negyed",
+        "Nyék",
+        "Óbuda",
+        "Óbuda hegyvidéke",
+        "Óbudai-sziget",
+        "Óhegy",
+        "Orbánhegy",
+        "Orczy negyed",
+        "Őrmező",
+        "Örsöd",
+        "Országút",
+        "Pacsirtatelep",
+        "Palotanegyed",
+        "Pálvölgy",
+        "Pasarét",
+        "Pesterzsébet",
+        "Pesthidegkút",
+        "Pesthidegkút-Ófalu",
+        "Pestszentlőrinc",
+        "Pestújhely",
+        "Péterhegy",
+        "Petneházyrét",
+        "Pösingermajor",
+        "Rákoscsaba",
+        "Rákoscsaba-Újtelep",
+        "Rákosfalva",
+        "Rákoshegy",
+        "Rákoskeresztúr",
+        "Rákoskert",
+        "Rákosliget",
+        "Rákospalota",
+        "Rákosszentmihály",
+        "Régiakadémiatelep",
+        "Remetekertváros",
+        "Rendessytelep",
+        "Rézmál",
+        "Rómaifürdő",
+        "Rózsadomb",
+        "Sasad",
+        "Sashalom",
+        "Sashegy",
+        "Solymárvölgy",
+        "Soroksár",
+        "Soroksár-Újtelep",
+        "Spanyolrét",
+        "Svábhegy",
+        "Szabótelep",
+        "Százados negyed",
+        "Széchenyihegy",
+        "Székesdűlő",
+        "Szemeretelep",
+        "Szemlőhegy",
+        "Szent Imre kertváros",
+        "Szentimreváros",
+        "Szent Lőrinc-lakótelep",
+        "Széphalom",
+        "Szépilona",
+        "Szépvölgy",
+        "Tabán",
+        "Téglagyárdűlő",
+        "Terézváros",
+        "Tisztviselőtelep",
+        "Törökőr",
+        "Törökvész",
+        "Újhegy",
+        "Újlak",
+        "Újlipótváros",
+        "Újpalota",
+        "Újpest",
+        "Újpéteritelep",
+        "Vár",
+        "Városliget",
+        "Vérhalom",
+        "Virányos",
+        "Vizafogó",
+        "Víziváros",
+        "Wekerletelep",
+        "Zöldmál",
+        "Zugliget",
+        "Zugló"
+      ],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 203,
+      "historicalOsmGeometryCount": 203,
+      "legacyOrOtherGeometryCount": 9,
+      "nameConfirmedUniqueCount": 46,
+      "nameConfirmationUnrecordedCount": 166,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {
+        "openstreetmap": 203,
+        "whosonfirst": 9
+      },
+      "nameValidationStatusCounts": {
+        "not_individually_checked": 203,
+        "name_supported": 7,
+        "historical_alias": 1,
+        "geographic_name_only": 1
+      },
+      "excludedSourceReasonCounts": {
+        "shadowed_by_newer_national_osm": 202,
+        "not_polygon": 146,
+        "retired_record": 1,
+        "shadowed_by_national_osm": 41,
+        "audited_macro_area": 4,
+        "duplicate_canonical_neighbourhood_name": 2,
+        "audited_geometry_association_unresolved": 4,
+        "audited_geographic_name_only": 1,
+        "audited_ambiguous_name": 1
+      },
+      "neighborhoodNames": [
+        "Adyliget",
+        "Akadémiaújtelep",
+        "Albertfalva",
+        "Almáskert",
+        "Alsórákos",
+        "Angyalföld",
+        "Aquincum",
+        "Aranyhegy-Ürömhegy-Péterhegy",
+        "Árpádföld",
+        "Baross Gábor-telep",
+        "Békásmegyer",
+        "Bélatelep",
+        "Belső-Ferencváros",
+        "Belsőmajor",
+        "Belváros",
+        "Bókaytelep",
+        "Budafok",
+        "Budakeszierdő",
+        "Budaliget",
+        "Budatétény",
+        "Cinkota",
+        "Corvin negyed",
+        "Csarnok negyed",
+        "Csatárka",
+        "Csepel",
+        "Csepel-Belváros",
+        "Csepel-Csillagtelep",
+        "Csepel-Erdőalja",
+        "Csepel-Erdősor",
+        "Csepel-Gyártelep",
+        "Csepel-Háros",
+        "Csepel-Kertváros",
+        "Csepel-Királyerdő",
+        "Csepel-Királymajor",
+        "Csepel-Ófalu",
+        "Csepel-Rózsadomb",
+        "Csepel-Szabótelep",
+        "Csepel-Szigetcsúcs",
+        "Csillaghegy",
+        "Csillebérc",
+        "Csúcshegy",
+        "Dobogó",
+        "Erdőskert",
+        "Erzsébetfalva",
+        "Erzsébetliget",
+        "Erzsébettelek",
+        "Erzsébettelep",
+        "Erzsébetváros",
+        "Farkasrét",
+        "Farkasvölgy",
+        "Felhévíz",
+        "Felsőrákos",
+        "Ferencvaros",
+        "Ferihegy",
+        "Ganzkertváros",
+        "Ganz negyed",
+        "Ganztelep",
+        "Gazdagrét",
+        "Gellérthegy",
+        "Gercse",
+        "Gloriett telep",
+        "Göncz Árpád városközpont",
+        "Gubacs",
+        "Gubacsi Dulo",
+        "Gubacsipuszta",
+        "Gyárdűlő",
+        "Halmierdő",
+        "Hármashatárhegy",
+        "Hársakalja",
+        "Harsánylejtő",
+        "Hárshegy",
+        "Havanna-lakótelep",
+        "Herminamező",
+        "Hosszúrét",
+        "Hűvösvölgy",
+        "Infopark",
+        "Istenhegy",
+        "Istvánmező",
+        "Istvántelek",
+        "Jánoshegy",
+        "József Attila-lakótelep",
+        "Jozsefvaros",
+        "Kamaraerdő",
+        "Káposztásmegyer",
+        "Kaszásdűlő",
+        "Kelenföld",
+        "Kelenvölgy",
+        "Kerepesdűlő",
+        "Keresztúridűlő",
+        "Kispest",
+        "Kissvábhegy",
+        "Kiszugló",
+        "Kobanya",
+        "Kőbánya-Kertváros",
+        "Kőérberek",
+        "Kossuthfalva",
+        "Kossuth Ferenc-telep",
+        "Kővár",
+        "Középső-Ferencváros",
+        "Krepuska Géza-telep",
+        "Krisztinaváros",
+        "Külső-Ferencváros",
+        "Kurucles",
+        "Kúttó",
+        "Kútvölgy",
+        "Lágymányos",
+        "Lakatos-lakótelep",
+        "Laposdűlő",
+        "Leninváros",
+        "Ligettelek",
+        "Lipótmező",
+        "Lipótváros",
+        "Liptáktelep",
+        "Lónyaytelep",
+        "Losonci negyed",
+        "Madárdomb",
+        "Madárhegy",
+        "Magasút",
+        "Magdolnanegyed",
+        "Margitsziget",
+        "Máriaremete",
+        "Mártonhegy",
+        "Mátyásföld",
+        "Megyer",
+        "Miklóstelep",
+        "Millenniumtelep",
+        "Mocsárosdűlő",
+        "Nádorkert",
+        "Nagytétény",
+        "Nagyzugló",
+        "Németvölgy",
+        "Népliget",
+        "Népsziget",
+        "Népszínház negyed",
+        "Nyék",
+        "Óbuda",
+        "Óbuda hegyvidéke",
+        "Óbudai-sziget",
+        "Óhegy",
+        "Orbánhegy",
+        "Orczy negyed",
+        "Őrmező",
+        "Örsöd",
+        "Országút",
+        "Pacsirtatelep",
+        "Palotanegyed",
+        "Pálvölgy",
+        "Pasarét",
+        "Pesthidegkut",
+        "Pesthidegkút-Ófalu",
+        "Pestszentlorinc",
+        "Pestújhely",
+        "Péterhegy",
+        "Petneházyrét",
+        "Pösingermajor",
+        "Rákoscsaba",
+        "Rákoscsaba-Újtelep",
+        "Rákosfalva",
+        "Rákoshegy",
+        "Rákoskeresztúr",
+        "Rákoskert",
+        "Rákosliget",
+        "Rákospalota",
+        "Rákosszentmihály",
+        "Régiakadémiatelep",
+        "Remetekertváros",
+        "Rendessytelep",
+        "Rézmál",
+        "Rómaifürdő",
+        "Rózsadomb",
+        "Sasad",
+        "Sashalom",
+        "Sashegy",
+        "Solymárvölgy",
+        "Soroksár",
+        "Soroksár-Újtelep",
+        "Spanyolrét",
+        "Svábhegy",
+        "Szabótelep",
+        "Százados negyed",
+        "Széchenyihegy",
+        "Székesdűlő",
+        "Szemeretelep",
+        "Szemlőhegy",
+        "Szent Imre kertváros",
+        "Szentimreváros",
+        "Szent Lőrinc-lakótelep",
+        "Széphalom",
+        "Szépilona",
+        "Szépvölgy",
+        "Tabán",
+        "Téglagyárdűlő",
+        "Terézváros",
+        "Tisztviselőtelep",
+        "Törökőr",
+        "Törökvész",
+        "Újhegy",
+        "Újlak",
+        "Újlipótváros",
+        "Újpalota",
+        "Újpest",
+        "Újpéteritelep",
+        "Vár",
+        "Városliget",
+        "Vérhalom",
+        "Virányos",
+        "Vizafogó",
+        "Víziváros",
+        "Wekerletelep",
+        "Zöldmál",
+        "Zugliget",
+        "Zugló"
+      ],
+      "knownNamesWithoutGeometryCount": 25,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Belváros-Lipótváros",
+          "sourceIds": [
+            "wof:1108940377"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/037/7/1108940377.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Csaterka",
+          "sourceIds": [
+            "wof:1108940435"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/043/5/1108940435.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Erdőalja",
+          "sourceIds": [
+            "wof:1108940565"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/056/5/1108940565.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Erdősor",
+          "sourceIds": [
+            "wof:1108940561"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/056/1/1108940561.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Gadazgrét",
+          "sourceIds": [
+            "wof:1108940533"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/053/3/1108940533.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Gyártelep",
+          "sourceIds": [
+            "wof:1108940567"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/056/7/1108940567.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Havannatelep",
+          "sourceIds": [
+            "wof:1108940685"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/068/5/1108940685.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Hegyvidek",
+          "sourceIds": [
+            "wof:1108940387"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/038/7/1108940387.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Kertváros",
+          "sourceIds": [
+            "wof:1108940569"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/056/9/1108940569.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Királyerdő",
+          "sourceIds": [
+            "wof:1108940563"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/056/3/1108940563.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Királymajor",
+          "sourceIds": [
+            "wof:1108940573"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/057/3/1108940573.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Masagút",
+          "sourceIds": [
+            "wof:1108940521"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/052/1/1108940521.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Naphégy",
+          "sourceIds": [
+            "wof:1108940405"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/040/5/1108940405.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Óbuda-Békásmegyer",
+          "sourceIds": [
+            "wof:1108940381"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/038/1/1108940381.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Ófalu",
+          "sourceIds": [
+            "wof:1108940577"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/057/7/1108940577.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Pestszentimre",
+          "sourceIds": [
+            "wof:1108940691"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/069/1/1108940691.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Pestszentlőrinc-Pestszentimre",
+          "sourceIds": [
+            "wof:1108940399"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/039/9/1108940399.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Rákosmente",
+          "sourceIds": [
+            "wof:1108940397"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/039/7/1108940397.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Szent Lőrinc-telep",
+          "sourceIds": [
+            "wof:1108940687"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/068/7/1108940687.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Szigetcsdúcs",
+          "sourceIds": [
+            "wof:1108940579"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/057/9/1108940579.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Újbuda",
+          "sourceIds": [
+            "wof:1108940385"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/038/5/1108940385.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Várkerület",
+          "sourceIds": [
+            "wof:1108940375"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/037/5/1108940375.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "XIII. kerület",
+          "sourceIds": [
+            "wof:1108940389"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/038/9/1108940389.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "XVI. kerület",
+          "sourceIds": [
+            "wof:1108940395"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/039/5/1108940395.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "XV. kerület",
+          "sourceIds": [
+            "wof:1108940393"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/039/3/1108940393.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [
+        {
+          "title": "Budapest hatályos városrésznév-jegyzéke: a 94/2012. (XII. 27.) fővárosi rendelet 3. melléklete",
+          "referencePeriod": "Hatályos jogszabályszöveg: 2025-12-31; ellenőrizve: 2026-11-13",
+          "sourceUrl": "https://or.njt.hu/onkormanyzati-rendelet/2012-94-SP-4191",
+          "printedPage": null,
+          "completeForReferencePeriod": true,
+          "currentCompletenessVerified": true,
+          "transcriptionNote": null,
+          "referenceNameCount": 211,
+          "matchedNameCount": 203,
+          "missingNameCount": 8,
+          "matchedNames": [
+            "Adyliget",
+            "Akadémiaújtelep",
+            "Albertfalva",
+            "Almáskert",
+            "Alsórákos",
+            "Angyalföld",
+            "Aquincum",
+            "Aranyhegy–Ürömhegy–Péterhegy",
+            "Árpádföld",
+            "Baross Gábor–telep",
+            "Békásmegyer",
+            "Bélatelep",
+            "Belső-Ferencváros",
+            "Belsőmajor",
+            "Belváros",
+            "Bókaytelep",
+            "Budafok",
+            "Budakeszierdő",
+            "Budaliget",
+            "Budatétény",
+            "Cinkota",
+            "Corvin negyed",
+            "Csarnok negyed",
+            "Csatárka",
+            "Csepel-Belváros",
+            "Csepel-Csillagtelep",
+            "Csepel-Erdőalja",
+            "Csepel-Erdősor",
+            "Csepel-Gyártelep",
+            "Csepel-Háros",
+            "Csepel-Kertváros",
+            "Csepel-Királyerdő",
+            "Csepel-Királymajor",
+            "Csepel-Ófalu",
+            "Csepel-Rózsadomb",
+            "Csepel-Szabótelep",
+            "Csepel-Szigetcsúcs",
+            "Csillaghegy",
+            "Csillebérc",
+            "Csúcshegy",
+            "Dobogó",
+            "Erdőskert",
+            "Erzsébetfalva",
+            "Erzsébetliget",
+            "Erzsébettelek",
+            "Erzsébettelep",
+            "Erzsébetváros",
+            "Farkasrét",
+            "Farkasvölgy",
+            "Felhévíz",
+            "Felsőrákos",
+            "Ferihegy",
+            "Ganzkertváros",
+            "Ganz negyed",
+            "Ganztelep",
+            "Gazdagrét",
+            "Gellérthegy",
+            "Gerce",
+            "Gloriett telep",
+            "Göncz Árpád városközpont",
+            "Gubacs",
+            "Gubacsipuszta",
+            "Gyárdűlő",
+            "Halmierdő",
+            "Hármashatár-hegy",
+            "Hársakalja",
+            "Harsánylejtő",
+            "Hárshegy",
+            "Havanna-lakótelep",
+            "Herminamező",
+            "Hosszúrét",
+            "Hűvösvölgy",
+            "Infopark",
+            "Istenhegy",
+            "Istvánmező",
+            "Istvántelek",
+            "Jánoshegy",
+            "József Attila-lakótelep",
+            "Kamaraerdő",
+            "Káposztásmegyer",
+            "Kaszásdűlő",
+            "Kelenföld",
+            "Kelenvölgy",
+            "Kerepesdűlő",
+            "Keresztúridűlő",
+            "Kispest",
+            "Kissvábhegy",
+            "Kiszugló",
+            "Kőbánya-Kertváros",
+            "Kőérberek",
+            "Kossuthfalva",
+            "Kossuth Ferenc-telep",
+            "Kővár",
+            "Középső-Ferencváros",
+            "Krepuska Géza-telep",
+            "Krisztinaváros",
+            "Külső-Ferencváros",
+            "Kurucles",
+            "Kúttó",
+            "Kútvölgy",
+            "Lágymányos",
+            "Lakatos-lakótelep",
+            "Laposdűlő",
+            "Ligettelek",
+            "Lipótmező",
+            "Lipótváros",
+            "Liptáktelep",
+            "Lónyaytelep",
+            "Losonci negyed",
+            "Madárdomb",
+            "Madárhegy",
+            "Magasút",
+            "Magdolna negyed",
+            "Margitsziget",
+            "Máriaremete",
+            "Mártonhegy",
+            "Mátyásföld",
+            "Megyer",
+            "Miklóstelep",
+            "Millenniumtelep",
+            "Mocsárosdűlő",
+            "Nádorkert",
+            "Nagytétény",
+            "Nagyzugló",
+            "Németvölgy",
+            "Népliget",
+            "Népsziget",
+            "Népszínház negyed",
+            "Nyék",
+            "Óbuda",
+            "Óbuda hegyvidéke",
+            "Óbudai-sziget",
+            "Óhegy",
+            "Orbánhegy",
+            "Orczy negyed",
+            "Őrmező",
+            "Örsöd",
+            "Országút",
+            "Pacsirtatelep",
+            "Palotanegyed",
+            "Pálvölgy",
+            "Pasarét",
+            "Pesthidegkút-Ófalu",
+            "Pestújhely",
+            "Péterhegy",
+            "Petneházyrét",
+            "Pösingermajor",
+            "Rákoscsaba",
+            "Rákoscsaba–Újtelep",
+            "Rákosfalva",
+            "Rákoshegy",
+            "Rákoskeresztúr",
+            "Rákoskert",
+            "Rákosliget",
+            "Rákospalota",
+            "Rákosszentmihály",
+            "Régiakadémiatelep",
+            "Remetekertváros",
+            "Rendessytelep",
+            "Rézmál",
+            "Rómaifürdő",
+            "Rózsadomb",
+            "Sasad",
+            "Sashalom",
+            "Sashegy",
+            "Solymárvölgy",
+            "Soroksár",
+            "Soroksár-Újtelep",
+            "Spanyolrét",
+            "Svábhegy",
+            "Szabótelep",
+            "Százados negyed",
+            "Széchenyihegy",
+            "Székesdűlő",
+            "Szemeretelep",
+            "Szemlőhegy",
+            "Szent Imre-kertváros",
+            "Szentimreváros",
+            "Szent Lőrinc-lakótelep",
+            "Széphalom",
+            "Szépilona",
+            "Szépvölgy",
+            "Tabán",
+            "Téglagyárdűlő",
+            "Terézváros",
+            "Tisztviselőtelep",
+            "Törökőr",
+            "Törökvész",
+            "Újhegy",
+            "Újlak",
+            "Újlipótváros",
+            "Újpalota",
+            "Újpest",
+            "Újpéteritelep",
+            "Vár",
+            "Városliget",
+            "Vérhalom",
+            "Virányos",
+            "Vizafogó",
+            "Víziváros",
+            "Wekerletelep",
+            "Zöldmál",
+            "Zugliget"
+          ],
+          "missingNames": [
+            "Apostolhegy",
+            "Hets-telep",
+            "Molnár-sziget",
+            "Péterimajor",
+            "Sólyom-telep",
+            "Történeti központ",
+            "Vargatelep",
+            "Wesselényi-telep"
+          ],
+          "nameEquivalencesUsed": [
+            {
+              "referenceName": "Gerce",
+              "equivalentName": "Gercse",
+              "district": 2,
+              "reason": "A hatályos fővárosi rendelet Gerce alakot használ, a II. kerületi önkormányzat városrészjegyzéke és választási térképe ugyanott Gercse nevet. Az eredeti jogszabályi nevet megőrizzük; összevetéskor ez névváltozat, nem külön hiányzó városrész.",
+              "evidenceUrls": [
+                "https://or.njt.hu/onkormanyzati-rendelet/2012-94-SP-4191",
+                "https://masodikkerulet.hu/keruletrol/keruletunkrol",
+                "https://masodikkerulet.hu/sites/default/files/attachments/files/masodikkerulethu/2023_12/bp02_valasztasi_tkp_1920_1170.pdf"
+              ]
+            }
+          ],
+          "referenceIdentityCount": 212,
+          "additionalMissingIdentityCount": 1,
+          "additionalMissingIdentities": [
+            {
+              "name": "Orbánhegy",
+              "districts": [
+                23
+              ],
+              "sourceParagraph": "3. melléklet 23.5.",
+              "note": "A jogszabály XII. és XXIII. kerületben két külön Orbánhegyet sorol fel. Az export egyetlen Orbánhegy-poligonja a XII. kerületben van; ez nem fedi a Grassalkovich út–Haraszti út–Millennium utca térségében leírt XXIII. kerületi városrészt.",
+              "sourceUrl": "https://or.njt.hu/onkormanyzati-rendelet/2012-94-SP-4191",
+              "checkedAt": "2026-11-13T09:39:42+00:00",
+              "availableSameNameGeometry": {
+                "id": "osm-hu-20250828:admin10:97",
+                "district": 12,
+                "geometryType": "Polygon",
+                "bbox": [
+                  18.99367438,
+                  47.49140958,
+                  19.02023549,
+                  47.50036377
+                ],
+                "sourceUrl": "https://github.com/ferenci-tamas/BudapestiElerhetoseg/blob/2f7a91ee1f320e6a08488ef8413715be13abf226/kozighatarok.zip"
+              },
+              "status": "no_collected_boundary_for_this_identity"
+            }
+          ],
+          "totalKnownMissingIdentityCount": 9,
+          "countingNotes": [
+            "A melléklet néhány több kerületre kiterjedő városrészt minden érintett kerületnél külön felsorol.",
+            "Orbánhegy XII. kerületi és XXIII. kerületi előfordulása két külön hely: pusztán város+név szerinti deduplikálás ezt a két városrészt összecsúsztatná.",
+            "A nevek normalizálása a megjelenített név írásmódját nem írja át; összevetéshez az ékezet-, írásjel- és szóközkülönbségek figyelmen kívül hagyhatók.",
+            "A jegyzék névlétezési és teljességi referencia. A városrészek jogszabálybeli szöveges határleírásait nem alakítottuk át geometriává.",
+            "Gerce és Gercse az önkormányzati forrásokban eltérő írásmódú azonos terület; a nameEquivalences mező ezt az összerendelést külön bizonyítékokkal tartalmazza.",
+            "Ez névjegyzéki és durva térbeli azonossági hiányvizsgálat. A rendelkezésre álló poligonok részletes határpontosságát nem igazolja."
+          ],
+          "referenceInventoryFile": "data/neighborhoods/budapest-current-reference.json"
+        }
+      ],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Budapest",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": null,
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Csömör",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "audited_municipality_mismatch": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 0,
+      "knownNamesWithoutGeometry": [],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Csongrád",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Kisrét",
+          "sourceIds": [
+            "wof:85901155"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/55/85901155.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Debrecen",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 26,
+      "uniqueSourceNameCount": 26,
+      "acceptedNeighbourhoodNameCount": 26,
+      "acceptedNeighbourhoodNames": [
+        "Belváros",
+        "Biharikert",
+        "Burgundia",
+        "Csapókert",
+        "Csigekert",
+        "Dobozikert",
+        "Egyetemváros",
+        "Falóger",
+        "Gerébytelep",
+        "Kandia",
+        "Kincseshegy",
+        "Libakert",
+        "Mesterfalva",
+        "Miklóskapu",
+        "Nagyerdő",
+        "Nagyerdőalja",
+        "Nagyerdőpark",
+        "Péterfia",
+        "Postakert",
+        "Sámsonikert",
+        "Sestakert",
+        "Széchenyikert",
+        "Szentlászlófalva",
+        "Tizenháromváros",
+        "Újkert",
+        "Vénkert"
+      ],
+      "acceptedCurrentAreaNameCount": 26,
+      "acceptedCurrentAreaNames": [
+        "Belváros",
+        "Biharikert",
+        "Burgundia",
+        "Csapókert",
+        "Csigekert",
+        "Dobozikert",
+        "Egyetemváros",
+        "Falóger",
+        "Gerébytelep",
+        "Kandia",
+        "Kincseshegy",
+        "Libakert",
+        "Mesterfalva",
+        "Miklóskapu",
+        "Nagyerdő",
+        "Nagyerdőalja",
+        "Nagyerdőpark",
+        "Péterfia",
+        "Postakert",
+        "Sámsonikert",
+        "Sestakert",
+        "Széchenyikert",
+        "Szentlászlófalva",
+        "Tizenháromváros",
+        "Újkert",
+        "Vénkert"
+      ],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 26,
+      "osmGeometryCount": 26,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 26,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {
+        "openstreetmap": 26
+      },
+      "nameValidationStatusCounts": {
+        "not_individually_checked": 26
+      },
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [
+        "Belváros",
+        "Biharikert",
+        "Burgundia",
+        "Csapókert",
+        "Csigekert",
+        "Dobozikert",
+        "Egyetemváros",
+        "Falóger",
+        "Gerébytelep",
+        "Kandia",
+        "Kincseshegy",
+        "Libakert",
+        "Mesterfalva",
+        "Miklóskapu",
+        "Nagyerdő",
+        "Nagyerdőalja",
+        "Nagyerdőpark",
+        "Péterfia",
+        "Postakert",
+        "Sámsonikert",
+        "Sestakert",
+        "Széchenyikert",
+        "Szentlászlófalva",
+        "Tizenháromváros",
+        "Újkert",
+        "Vénkert"
+      ],
+      "knownNamesWithoutGeometryCount": 0,
+      "knownNamesWithoutGeometry": [],
+      "referenceComparisons": [
+        {
+          "title": "A városfejlesztési vizsgálat történelmi városrészjegyzéke (75+4)",
+          "referencePeriod": "2021–2027-es városfejlesztési stratégia; 2023-ban közzétett dokumentum",
+          "sourceUrl": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+          "printedPage": 208,
+          "completeForReferencePeriod": true,
+          "currentCompletenessVerified": false,
+          "transcriptionNote": "A nevek a PDF kereshető szövegének átírásai. Az eredeti lista néhány alakja (például Nagycserte, Nagyerdőtőlgyes) külön névellenőrzést igényel. Nem állítunk 2026-os, teljes városi nyilvántartást.",
+          "referenceNameCount": 79,
+          "matchedNameCount": 26,
+          "missingNameCount": 53,
+          "matchedNames": [
+            "Belváros",
+            "Biharikert",
+            "Burgundia",
+            "Csapókert",
+            "Csigekert",
+            "Dobozikert",
+            "Egyetemváros",
+            "Falóger",
+            "Gerébytelep",
+            "Kandia",
+            "Kincseshegy",
+            "Libakert",
+            "Mesterfalva",
+            "Miklóskapu",
+            "Nagyerdő",
+            "Nagyerdőalja",
+            "Nagyerdőpark",
+            "Péterfia",
+            "Postakert",
+            "Sámsonikert",
+            "Sestakert",
+            "Széchenyikert",
+            "Szentlászlófalva",
+            "Tizenháromváros",
+            "Újkert",
+            "Vénkert"
+          ],
+          "missingNames": [
+            "Akadémiaikert",
+            "Alsójózsa",
+            "Auguszta",
+            "Bánk",
+            "Basahalom",
+            "Boldogfalvikert",
+            "Debreceni Egyetemi Ipari Park",
+            "Déli Ipari Park",
+            "Dombos",
+            "Epreskert",
+            "Észak-Nyugati Gazdasági Övezet",
+            "Felsőjózsa",
+            "Gyógyszergyár",
+            "Haláp",
+            "Hatvan utcai kert",
+            "Hőforrás",
+            "Homokkert",
+            "Ispotály",
+            "József Attila-telep",
+            "Júliatelep",
+            "Kerekestelep",
+            "Kertváros",
+            "Kétútköz",
+            "Kismacs",
+            "Kondoros",
+            "Köntösgát",
+            "Köntöskert",
+            "Köztemető",
+            "Lencztelep",
+            "Lóskúti",
+            "Majorság",
+            "Műhelytelep",
+            "Nagycserte",
+            "Nagyerdőtőlgyes",
+            "Nagymacs",
+            "Nagysándortelep",
+            "Nyulas",
+            "Ondód",
+            "Pallag",
+            "Pércsikert",
+            "Repülőtér",
+            "Sóház",
+            "Téglagyár",
+            "Tégláskert",
+            "Tócóliget",
+            "Tócóret",
+            "Tócóskert",
+            "Tócóvölgy",
+            "Úrrétje",
+            "Vargakert",
+            "Veres Péter-kert",
+            "Wesselényi",
+            "Zsibogó"
+          ],
+          "nameEquivalencesUsed": [],
+          "referenceIdentityCount": null,
+          "additionalMissingIdentityCount": 0,
+          "additionalMissingIdentities": [],
+          "totalKnownMissingIdentityCount": null,
+          "countingNotes": [],
+          "referenceInventoryFile": null
+        }
+      ],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Debrecen",
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-12T20:35:36Z",
+        "observedResult": "downloaded_with_boundaries"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Dorog",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Tömedékakna",
+          "sourceIds": [
+            "wof:85901311"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/11/85901311.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Dunakeszi",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Nádormajor",
+          "sourceIds": [
+            "wof:85901221"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/21/85901221.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Dunaújváros",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Leitnertanya",
+          "sourceIds": [
+            "wof:85901201"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/01/85901201.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Dunaújváros",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": null,
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Eger",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {},
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 0,
+      "knownNamesWithoutGeometry": [],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Eger",
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-12T20:37:43Z",
+        "observedResult": "downloaded_without_boundaries"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Érd",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Érd-Parkváros",
+          "sourceIds": [
+            "wof:85901083"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/83/85901083.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Érd",
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-12T20:37:43Z",
+        "observedResult": "downloaded_without_boundaries"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Esztergom",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Kőalja",
+          "sourceIds": [
+            "wof:85901163"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/63/85901163.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Esztergom",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": null,
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Gödöllő",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 2
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 2,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Központimajor",
+          "sourceIds": [
+            "wof:85901187"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/87/85901187.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Kütteltanya",
+          "sourceIds": [
+            "wof:85901191"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/91/85901191.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Gyöngyös",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Farkasmály",
+          "sourceIds": [
+            "wof:85901097"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/97/85901097.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Győr",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 3
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 3,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Kisbácsa",
+          "sourceIds": [
+            "wof:85901145"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/45/85901145.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Somosmajor",
+          "sourceIds": [
+            "wof:85901285"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/85/85901285.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Újtelep",
+          "sourceIds": [
+            "wof:85901327"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/27/85901327.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Győr",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": null,
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Hajdúböszörmény",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Lórántffykert",
+          "sourceIds": [
+            "wof:85901205"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/05/85901205.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Hajdúszoboszló",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 2
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 2,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Köteles",
+          "sourceIds": [
+            "wof:85901177"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/77/85901177.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Zsoldosdůlő",
+          "sourceIds": [
+            "wof:85901343"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/43/85901343.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Hatvan",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 2
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 2,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Kistelek",
+          "sourceIds": [
+            "wof:85901159"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/59/85901159.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Nagytelek",
+          "sourceIds": [
+            "wof:85901225"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/25/85901225.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Hódmezővásárhely",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Kincsestelep",
+          "sourceIds": [
+            "wof:85901141"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/41/85901141.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Hódmezővásárhely",
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-12T20:39:51Z",
+        "observedResult": "downloaded_without_boundaries"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Jászberény",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Túlatarna",
+          "sourceIds": [
+            "wof:85901317"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/17/85901317.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Kalocsa",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Homokgyőr",
+          "sourceIds": [
+            "wof:85901127"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/27/85901127.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Kaposvár",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Kaposfüred",
+          "sourceIds": [
+            "wof:85906277"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/062/77/85906277.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Kaposvár",
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-12T20:40:51Z",
+        "observedResult": "downloaded_without_boundaries"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Kecskemét",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 3
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 3,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Alsócsalános",
+          "sourceIds": [
+            "wof:85901037"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/37/85901037.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Budaihegy",
+          "sourceIds": [
+            "wof:85901069"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/69/85901069.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Rendőrfalu",
+          "sourceIds": [
+            "wof:85901267"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/67/85901267.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Kecskemét",
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-12T20:40:51Z",
+        "observedResult": "downloaded_without_boundaries"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Keszthely",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Kőfejtő",
+          "sourceIds": [
+            "wof:85901169"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/69/85901169.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Kiskunhalas",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Iparszőlők",
+          "sourceIds": [
+            "wof:85901131"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/31/85901131.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Kisvárda",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Farkashegy",
+          "sourceIds": [
+            "wof:85901095"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/95/85901095.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Kunszentmárton",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Nyomás",
+          "sourceIds": [
+            "wof:85901231"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/31/85901231.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Miskolc",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 2
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 2,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Egyetemvaros",
+          "sourceIds": [
+            "wof:85906279"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/062/79/85906279.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Nagykőkötő",
+          "sourceIds": [
+            "wof:85901223"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/23/85901223.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Miskolc",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": null,
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Mohács",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Felsőlög",
+          "sourceIds": [
+            "wof:85901099"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/99/85901099.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Monor",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Paplapos",
+          "sourceIds": [
+            "wof:85901237"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/37/85901237.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Mosonmagyaróvár",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 2
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 2,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Kozliktanya",
+          "sourceIds": [
+            "wof:85901185"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/85/85901185.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Szalaitanya",
+          "sourceIds": [
+            "wof:85901289"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/89/85901289.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Nagykanizsa",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Kiskanizsa",
+          "sourceIds": [
+            "wof:85901149"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/49/85901149.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Nagykanizsa",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": null,
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Nyírbátor",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Peresföld",
+          "sourceIds": [
+            "wof:85901239"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/39/85901239.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Nyíregyháza",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 2
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 2,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Alsóbadurbokor",
+          "sourceIds": [
+            "wof:85901035"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/35/85901035.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Borbánya",
+          "sourceIds": [
+            "wof:85901059"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/59/85901059.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Nyíregyháza",
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-12T20:43:51Z",
+        "observedResult": "downloaded_without_boundaries"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Pápa",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Böröllő",
+          "sourceIds": [
+            "wof:85901061"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/61/85901061.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Pécs",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 6
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 6,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Borbálatelep",
+          "sourceIds": [
+            "wof:85901057"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/57/85901057.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Csoronika",
+          "sourceIds": [
+            "wof:85901081"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/81/85901081.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Fuenfkirchen",
+          "sourceIds": [
+            "wof:85906273"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/062/73/85906273.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Középdeindol",
+          "sourceIds": [
+            "wof:85901183"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/83/85901183.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Szkókó",
+          "sourceIds": [
+            "wof:85901299"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/99/85901299.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Üszögpuszta",
+          "sourceIds": [
+            "wof:85901329"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/29/85901329.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Pécs",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": "2026-11-12T20:26:35Z",
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Salgótarján",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Kőváralja",
+          "sourceIds": [
+            "wof:85901179"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/79/85901179.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Salgótarján",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": null,
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Sárospatak",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Kútpatka",
+          "sourceIds": [
+            "wof:85901189"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/89/85901189.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Sárvár",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Sársziget",
+          "sourceIds": [
+            "wof:85901273"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/73/85901273.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Siófok",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Törekihegy",
+          "sourceIds": [
+            "wof:85901313"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/13/85901313.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Sopron",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 1,
+      "uniqueSourceNameCount": 1,
+      "acceptedNeighbourhoodNameCount": 1,
+      "acceptedNeighbourhoodNames": [
+        "Sopronbánfalva"
+      ],
+      "acceptedCurrentAreaNameCount": 1,
+      "acceptedCurrentAreaNames": [
+        "Sopronbánfalva"
+      ],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 1,
+      "osmGeometryCount": 1,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 1,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {
+        "openstreetmap": 1
+      },
+      "nameValidationStatusCounts": {
+        "not_individually_checked": 1
+      },
+      "excludedSourceReasonCounts": {},
+      "neighborhoodNames": [
+        "Sopronbánfalva"
+      ],
+      "knownNamesWithoutGeometryCount": 0,
+      "knownNamesWithoutGeometry": [],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Sopron",
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-12T20:45:46Z",
+        "observedResult": "downloaded_with_boundaries"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Szarvas",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 2
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 2,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Erzsébetliget",
+          "sourceIds": [
+            "wof:85901089"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/89/85901089.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Kórházdůlő",
+          "sourceIds": [
+            "wof:85901171"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/71/85901171.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Szeged",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 5
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 5,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Alsóváros",
+          "sourceIds": [
+            "wof:85901041"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/41/85901041.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Felsőváros",
+          "sourceIds": [
+            "wof:85901105"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/05/85901105.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Marostő",
+          "sourceIds": [
+            "wof:85901207"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/07/85901207.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Rókus",
+          "sourceIds": [
+            "wof:85901269"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/69/85901269.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Újszeged",
+          "sourceIds": [
+            "wof:85901325"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/25/85901325.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Szeged",
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-12T20:46:50Z",
+        "observedResult": "downloaded_without_boundaries"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Székesfehérvár",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 16,
+      "uniqueSourceNameCount": 16,
+      "acceptedNeighbourhoodNameCount": 16,
+      "acceptedNeighbourhoodNames": [
+        "Belsőhegy",
+        "Berkes Ferenc lakótelep",
+        "Feketehegy-Szárazrét",
+        "Felsőhegy",
+        "Íróutcák",
+        "Köfém lakótelep",
+        "Középhegy",
+        "Külsőhegy",
+        "Máriavölgy",
+        "Napsugár lakópark",
+        "Öreghegy",
+        "Püspökkertváros",
+        "Rácbánya",
+        "Rózsahegy",
+        "Szélsőhegy",
+        "Túrózsák"
+      ],
+      "acceptedCurrentAreaNameCount": 16,
+      "acceptedCurrentAreaNames": [
+        "Belsőhegy",
+        "Berkes Ferenc lakótelep",
+        "Feketehegy-Szárazrét",
+        "Felsőhegy",
+        "Íróutcák",
+        "Köfém lakótelep",
+        "Középhegy",
+        "Külsőhegy",
+        "Máriavölgy",
+        "Napsugár lakópark",
+        "Öreghegy",
+        "Püspökkertváros",
+        "Rácbánya",
+        "Rózsahegy",
+        "Szélsőhegy",
+        "Túrózsák"
+      ],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 16,
+      "osmGeometryCount": 16,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 16,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {
+        "openstreetmap": 16
+      },
+      "nameValidationStatusCounts": {
+        "not_individually_checked": 16
+      },
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [
+        "Belsőhegy",
+        "Berkes Ferenc lakótelep",
+        "Feketehegy-Szárazrét",
+        "Felsőhegy",
+        "Íróutcák",
+        "Köfém lakótelep",
+        "Középhegy",
+        "Külsőhegy",
+        "Máriavölgy",
+        "Napsugár lakópark",
+        "Öreghegy",
+        "Püspökkertváros",
+        "Rácbánya",
+        "Rózsahegy",
+        "Szélsőhegy",
+        "Túrózsák"
+      ],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Ezrespuszta",
+          "sourceIds": [
+            "wof:85901093"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/93/85901093.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Székesfehérvár",
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-12T20:47:50Z",
+        "observedResult": "downloaded_with_boundaries"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Szekszárd",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Bartina",
+          "sourceIds": [
+            "wof:85901055"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/55/85901055.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Szekszárd",
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-12T20:47:50Z",
+        "observedResult": "downloaded_without_boundaries"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Szentes",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 2
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 2,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Felsőrét",
+          "sourceIds": [
+            "wof:85901101"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/01/85901101.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Vekerzug",
+          "sourceIds": [
+            "wof:85901339"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/39/85901339.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Szerencs",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Szivattyútelep",
+          "sourceIds": [
+            "wof:85901297"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/97/85901297.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Szolnok",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Piroska",
+          "sourceIds": [
+            "wof:85901257"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/57/85901257.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Szolnok",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": null,
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Szombathely",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 2
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 2,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Herény",
+          "sourceIds": [
+            "wof:85906275"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/062/75/85906275.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Szinesemajor",
+          "sourceIds": [
+            "wof:85901295"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/95/85901295.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Szombathely",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": null,
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Tárnok",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Töröktanya",
+          "sourceIds": [
+            "wof:85901315"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/15/85901315.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Tatabánya",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 2
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 2,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Alsógalla",
+          "sourceIds": [
+            "wof:85901039"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/39/85901039.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Labanctanya",
+          "sourceIds": [
+            "wof:85901195"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/95/85901195.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Tatabánya",
+        "status": "downloaded",
+        "reason": null,
+        "osmTimestamp": "2026-11-12T20:49:50Z",
+        "observedResult": "downloaded_without_boundaries"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Tiszafüred",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Homokcsárda",
+          "sourceIds": [
+            "wof:85901123"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/23/85901123.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Tokodaltáró",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Altáróbányatelep",
+          "sourceIds": [
+            "wof:85901043"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/43/85901043.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Törökszentmiklós",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 1
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 1,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Újballa",
+          "sourceIds": [
+            "wof:85901321"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/21/85901321.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Vác",
+      "isTargetCity": false,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 3
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 3,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Fenyvesdůlő",
+          "sourceIds": [
+            "wof:85901109"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/09/85901109.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Homokdůlő",
+          "sourceIds": [
+            "wof:85901125"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/25/85901125.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Téglaházpuszta",
+          "sourceIds": [
+            "wof:85901307"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/07/85901307.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "status": "not_requested",
+        "observedResult": "not_requested"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Veszprém",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {},
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 0,
+      "knownNamesWithoutGeometry": [],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Veszprém",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": null,
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    },
+    {
+      "municipality": "Zalaegerszeg",
+      "isTargetCity": true,
+      "neighbourhoodGeometryCount": 0,
+      "uniqueSourceNameCount": 0,
+      "acceptedNeighbourhoodNameCount": 0,
+      "acceptedNeighbourhoodNames": [],
+      "acceptedCurrentAreaNameCount": 0,
+      "acceptedCurrentAreaNames": [],
+      "districtFallbackGeometryCount": 0,
+      "currentOsmGeometryCount": 0,
+      "osmGeometryCount": 0,
+      "historicalOsmGeometryCount": 0,
+      "legacyOrOtherGeometryCount": 0,
+      "nameConfirmedUniqueCount": 0,
+      "nameConfirmationUnrecordedCount": 0,
+      "unverifiedSourceNameCount": 0,
+      "unverifiedSourceNames": [],
+      "providerCounts": {},
+      "nameValidationStatusCounts": {},
+      "excludedSourceReasonCounts": {
+        "not_polygon": 2
+      },
+      "neighborhoodNames": [],
+      "knownNamesWithoutGeometryCount": 2,
+      "knownNamesWithoutGeometry": [
+        {
+          "name": "Gógánhegy",
+          "sourceIds": [
+            "wof:85901119"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/19/85901119.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        },
+        {
+          "name": "Kaszaháza",
+          "sourceIds": [
+            "wof:85901133"
+          ],
+          "sourceUrls": [
+            "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/33/85901133.geojson"
+          ],
+          "sourceKind": "name_or_point_only",
+          "currentNameConfirmed": false
+        }
+      ],
+      "referenceComparisons": [],
+      "completeCoverage": false,
+      "totalCurrentNeighbourhoods": null,
+      "totalMissingCurrentNeighbourhoods": null,
+      "osmQuery": {
+        "city": "Zalaegerszeg",
+        "status": "failed",
+        "reason": "request-timeout",
+        "osmTimestamp": null,
+        "observedResult": "query_failed"
+      },
+      "caveat": "Counts cover collected source geometries and source names only; current complete city coverage is not established."
+    }
+  ],
+  "unassignedSourceRecords": [
+    {
+      "id": "wof:1108940379",
+      "name": "II. kerület",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/037/9/1108940379.geojson"
+    },
+    {
+      "id": "wof:1108940439",
+      "name": "Szépvölgy",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/043/9/1108940439.geojson"
+    },
+    {
+      "id": "wof:1108940449",
+      "name": "Aranyhegy-Ürömhegy-Péterhegy",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/044/9/1108940449.geojson"
+    },
+    {
+      "id": "wof:1108940451",
+      "name": "Aranyhegy",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/045/1/1108940451.geojson"
+    },
+    {
+      "id": "wof:1108940453",
+      "name": "Péterhegy",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/045/3/1108940453.geojson"
+    },
+    {
+      "id": "wof:1108940455",
+      "name": "Solymárvölgy",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/045/5/1108940455.geojson"
+    },
+    {
+      "id": "wof:1108940459",
+      "name": "Csúcshegy",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/045/9/1108940459.geojson"
+    },
+    {
+      "id": "wof:1108940461",
+      "name": "Gercse",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/046/1/1108940461.geojson"
+    },
+    {
+      "id": "wof:1108940465",
+      "name": "Pesthidegkút-Ófalu",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/046/5/1108940465.geojson"
+    },
+    {
+      "id": "wof:1108940491",
+      "name": "Petneházyrét",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/049/1/1108940491.geojson"
+    },
+    {
+      "id": "wof:1108940493",
+      "name": "Jánoshegy",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/049/3/1108940493.geojson"
+    },
+    {
+      "id": "wof:1108940545",
+      "name": "Kamaraerdő",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/054/5/1108940545.geojson"
+    },
+    {
+      "id": "wof:1108940557",
+      "name": "Háros",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/055/7/1108940557.geojson"
+    },
+    {
+      "id": "wof:1108940559",
+      "name": "Rózsadomb",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/055/9/1108940559.geojson"
+    },
+    {
+      "id": "wof:1108940705",
+      "name": "Almáskert",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/070/5/1108940705.geojson"
+    },
+    {
+      "id": "wof:1108940713",
+      "name": "Belsőmajor",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/110/894/071/3/1108940713.geojson"
+    },
+    {
+      "id": "wof:85901079",
+      "name": "Csillagtelep",
+      "geometryType": "MultiPolygon",
+      "reason": "unknown_municipality",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/79/85901079.geojson"
+    },
+    {
+      "id": "wof:85901107",
+      "name": "Fénykőpuszta",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/07/85901107.geojson"
+    },
+    {
+      "id": "wof:85901147",
+      "name": "Kisfári",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/47/85901147.geojson"
+    },
+    {
+      "id": "wof:85901167",
+      "name": "Kocsoros",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/67/85901167.geojson"
+    },
+    {
+      "id": "wof:85901173",
+      "name": "Kőrösihegy",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/73/85901173.geojson"
+    },
+    {
+      "id": "wof:85901181",
+      "name": "Kövecses",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/81/85901181.geojson"
+    },
+    {
+      "id": "wof:85901217",
+      "name": "Mecsekszentkút",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/17/85901217.geojson"
+    },
+    {
+      "id": "wof:85901219",
+      "name": "Nádastóvölgy",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/19/85901219.geojson"
+    },
+    {
+      "id": "wof:85901279",
+      "name": "Schmidtvilla",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/79/85901279.geojson"
+    },
+    {
+      "id": "wof:85901281",
+      "name": "Sikonda",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/81/85901281.geojson"
+    },
+    {
+      "id": "wof:85901287",
+      "name": "Soroksar",
+      "geometryType": "MultiPolygon",
+      "reason": "unknown_municipality",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/87/85901287.geojson"
+    },
+    {
+      "id": "wof:85901291",
+      "name": "Szarvashegy",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/91/85901291.geojson"
+    },
+    {
+      "id": "wof:85901303",
+      "name": "Szőlőhátuljadůlő",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/03/85901303.geojson"
+    },
+    {
+      "id": "wof:85901331",
+      "name": "Úsztatómajor",
+      "geometryType": "Point",
+      "reason": "not_polygon",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/31/85901331.geojson"
+    },
+    {
+      "id": "wof:85906433",
+      "name": "Ujpalota",
+      "geometryType": "Polygon",
+      "reason": "unknown_municipality",
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/064/33/85906433.geojson"
+    }
+  ],
+  "referenceSources": [
+    {
+      "municipality": "Debrecen",
+      "title": "A városfejlesztési vizsgálat történelmi városrészjegyzéke (75+4)",
+      "referencePeriod": "2021–2027-es városfejlesztési stratégia; 2023-ban közzétett dokumentum",
+      "sourceUrl": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+      "printedPage": 208
+    },
+    {
+      "municipality": "Budapest",
+      "title": "Budapest hatályos városrésznév-jegyzéke: a 94/2012. (XII. 27.) fővárosi rendelet 3. melléklete",
+      "referencePeriod": "Hatályos jogszabályszöveg: 2025-12-31; ellenőrizve: 2026-11-13",
+      "sourceUrl": "https://or.njt.hu/onkormanyzati-rendelet/2012-94-SP-4191",
+      "printedPage": null
+    }
+  ],
+  "audit": {
+    "present": true,
+    "recordCount": 64
+  },
+  "inputFingerprints": {
+    "catalogSha256": "86cc987b2d1c79c93a071a0905ae1ff09118a8366e7aebeec71868d5fd8ac01a",
+    "coverageSha256": "619cc259e39c8ae1a4876fffb89fab766fa3da5c5f3b81a911738579999c325c",
+    "referencesSha256": "21d25a063e7f94bf9b339a4942fda45824c3b732b49f6c4e1e26e95b84b1f663",
+    "nameAuditSha256": "e343149436f8b227ec7242ed18d46a7c5d48c8e5072a2f13dfcd2b40348b79a6"
+  }
+}

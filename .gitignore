@@ -13,3 +13,8 @@
 .local/
 *.log
 gha-creds-*.json
+# Neighborhood catalogue sources are tracked; expanded review artifacts are generated.
+data/neighborhoods/catalog.geojson
+data/neighborhoods/review.html
+data/neighborhoods/neighborhoods.geojson
+data/neighborhoods/neighborhoods.geojson.gz
