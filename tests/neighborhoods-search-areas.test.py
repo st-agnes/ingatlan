@@ -61,6 +61,23 @@ class SearchAreaReleaseTests(unittest.TestCase):
         self.registry([path]); path.write_text(path.read_text() + '\n')
         with self.assertRaisesRegex(ValueError, 'Changed registered source'): MODULE.build()
 
+    def test_whole_quarter_selected_over_same_name_core(self):
+        core = self.feature('Nádorváros', 'Győr', method='source_vector', sourceSubdivisionKind='circuit')
+        parent = self.feature('Nádorváros', 'Győr', method='source_vector', sourceSubdivisionKind='parent_quarter')
+        parent['geometry']['coordinates'][0][1][0] = 21.64
+        path = self.write('expansion-20261114/native/features.geojson', [core, parent]); self.registry([path])
+        files, _ = MODULE.build(); features = json.loads(files['search-areas.geojson'])['features']
+        self.assertEqual(features[0]['geometry'], parent['geometry'])
+
+    def test_low_quality_new_estimate_does_not_replace_existing_map(self):
+        baseline = self.feature('Vénkert', method='map_trace')
+        rough = self.feature('Vénkert', method='rough_map_trace', qualityScore=20)
+        rough['geometry']['coordinates'][0][1][0] = 21.64
+        self.write('estimated-candidates.geojson', [baseline])
+        path = self.write('expansion-20261114/native/features.geojson', [rough]); self.registry([path])
+        files, _ = MODULE.build()
+        self.assertEqual(json.loads(files['search-areas.geojson'])['features'][0]['geometry'], baseline['geometry'])
+
     def test_invalid_coordinates_rejected_and_holes_preserved_in_mysql(self):
         feature = self.feature('Vénkert'); hole = [[21.605,47.555],[21.605,47.56],[21.61,47.56],[21.61,47.555],[21.605,47.555]]
         feature['geometry']['coordinates'].append(hole)

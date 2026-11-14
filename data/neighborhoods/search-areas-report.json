@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "policyVersion": "20261114-throughput",
-  "featureCount": 1304,
-  "municipalityCount": 249,
+  "featureCount": 1333,
+  "municipalityCount": 251,
   "methods": {
-    "map_or_text_estimate": 309,
+    "map_or_text_estimate": 337,
     "named_source_footprint": 383,
-    "source_map_polygon": 124,
+    "source_map_polygon": 125,
     "source_polygon": 488
   },
-  "inputFeatureCount": 1394,
+  "inputFeatureCount": 1423,
   "duplicateVariantsPreserved": 90,
   "duplicateNameGroups": 89,
   "rejectedTechnicalRecords": [],
@@ -24,7 +24,10 @@
     "data/neighborhoods/expansion-20261114/szeged-miskolc/szeged-features.geojson": "9cd90c0430a3adc5efc7a8127751894f682ee6417eff51c074e093be66ee964e",
     "data/neighborhoods/expansion-20261114/szolnok-veszprem/features.geojson": "dcbbbde0ecb88eb27736a549c0905c3058fa5dc045ee537ec90a35c910e0c0cd",
     "data/neighborhoods/expansion-20261114/major-city-maps/features.geojson": "bef16e591a6b086c7c1b2d5b4c03b1a94b68a2d5197f3e6956c02d308227b318",
-    "data/neighborhoods/expansion-20261114/major-city-maps/additional-features.geojson": "b0c5cbed284bc1588571f94e41eaaf9423cc79e76a7df336c3a277a16bcadc30"
+    "data/neighborhoods/expansion-20261114/major-city-maps/additional-features.geojson": "b0c5cbed284bc1588571f94e41eaaf9423cc79e76a7df336c3a277a16bcadc30",
+    "data/neighborhoods/expansion-20261114/major-city-maps/budapest-features.geojson": "3cc123203c641f314606477bbdb7e93ebb2e0bd4a8540dc1a7e826c6f7d62008",
+    "data/neighborhoods/expansion-20261114/major-city-more/features.geojson": "c1ac345a8e99b98a46b2f52b3229b996d956ad128222bf3d4fc7ba146bb04a25",
+    "data/neighborhoods/expansion-20261114/root-town-maps/features.geojson": "e68cc1fcff18726df3688a7036ba2b6035c86e2457d7fa7fd7266fbe684dd872"
   },
   "selectionOrder": [
     "OSM administrative named boundary",
@@ -257,11 +260,11 @@
     },
     {
       "municipality": "Budapest",
-      "count": 317,
+      "count": 322,
       "methods": {
-        "map_or_text_estimate": 3,
+        "map_or_text_estimate": 7,
         "named_source_footprint": 62,
-        "source_map_polygon": 1,
+        "source_map_polygon": 2,
         "source_polygon": 251
       }
     },
@@ -900,6 +903,13 @@
       }
     },
     {
+      "municipality": "Komló",
+      "count": 10,
+      "methods": {
+        "map_or_text_estimate": 10
+      }
+    },
+    {
       "municipality": "Kosd",
       "count": 1,
       "methods": {
@@ -1462,6 +1472,13 @@
       }
     },
     {
+      "municipality": "Szigetszentmiklós",
+      "count": 5,
+      "methods": {
+        "map_or_text_estimate": 5
+      }
+    },
+    {
       "municipality": "Szigetszentmárton",
       "count": 2,
       "methods": {
@@ -1579,9 +1596,9 @@
     },
     {
       "municipality": "Tatabánya",
-      "count": 14,
+      "count": 23,
       "methods": {
-        "map_or_text_estimate": 11,
+        "map_or_text_estimate": 20,
         "named_source_footprint": 3
       }
     },
@@ -1825,5 +1842,5 @@
       }
     }
   ],
-  "outputGeojsonSha256": "9c3686ff783041e0930a52150a5fc2c068e8a31c689e2f52af5db63f8afef4dc"
+  "outputGeojsonSha256": "be0f559270d755e74a0c75d4b4daff85b911165369032c7362bdeee04c26d96e"
 }

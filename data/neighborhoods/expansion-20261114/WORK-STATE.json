@@ -48,14 +48,27 @@
   "resume": "Read STRATEGY.md, inspect committed task summaries and git status; regenerate unified export after completed source packets, then commit/push. Do not restart the earlier source collection or discard existing raw polygons.",
   "completeNationalCoverage": false,
   "latestCheckpoint": {
-    "featureCount": 1304,
-    "municipalityCount": 249,
+    "featureCount": 1333,
+    "municipalityCount": 251,
     "methods": {
-      "map_or_text_estimate": 309,
+      "map_or_text_estimate": 337,
       "named_source_footprint": 383,
-      "source_map_polygon": 124,
+      "source_map_polygon": 125,
       "source_polygon": 488
     },
     "duplicateVariantsPreserved": 90
-  }
+  },
+  "additionalCompletedPackets": [
+    "major-city-maps/budapest-features.geojson",
+    "major-city-more/features.geojson",
+    "root-town-maps/features.geojson"
+  ],
+  "collectionContinues": [
+    "Remaining Debrecen/Kecskemét source parts",
+    "Miskolc fine map",
+    "Nagykanizsa/Érd/Békéscsaba maps",
+    "National unnamed OSM residential footprints",
+    "Additional major-city maps",
+    "Optional separately marked point-radius fallbacks"
+  ]
 }

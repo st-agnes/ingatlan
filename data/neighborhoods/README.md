@@ -1,5 +1,13 @@
 # Magyar városrészhatárok – kutatási adatállomány
 
+**Az új gyűjtési stratégia aktuális, összevont állománya:** [kereshető területek és poligonok](search-areas.geojson), [településenkénti darabszámok](search-areas-report.csv), [MySQL-import](search-areas.mysql.sql.gz). A név szerint egyesített állomány gépi határokat, térképi becsléseket és átfedő felosztásokat is tartalmaz. A mindenkori pontos darabszám a [gépi jelentésben](search-areas-report.json) található.
+
+- [Új adatmodell, névazonosság, forrásválasztás és importálás](../../docs/NEIGHBORHOOD-SEARCH-DATA.md)
+- [Gyűjtési stratégia és folytatható munkafolyamat](expansion-20261114/STRATEGY.md)
+- [A legutóbbi mentés és a következő munkák állapota](expansion-20261114/WORK-STATE.json)
+
+## Korábbi, szigorúbb kutatási rétegek
+
 A 2026. november 14-i állapot 506 forrásalapú városrészjelöltet tartalmaz 48 településről. Külön rétegben 191 becsült alakzat szerepel 17 településről: 165 negyedjelölt, 16 tágabb tervezési csoport és 10 helyi terület. A 31 forrásalapú tervezési egység szintén külön állományban marad.
 
 Az országos gyűjtés még nem teljes. Egyetlen alakzat sincs automatikus címbesorolásra jóváhagyva. A történeti forrás, a mai névazonosítás és a földrajzi illesztés bizonyossága külön adat.

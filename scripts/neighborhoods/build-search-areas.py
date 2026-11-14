@@ -40,8 +40,16 @@ def geometry_bounds(geometry):
                 points.append(point)
     return [min(x[0] for x in points), min(x[1] for x in points), max(x[0] for x in points), max(x[1] for x in points)]
 
+def source_metadata(properties):
+    source = properties.get('source') or (properties.get('provenance') or {}).get('source')
+    if source: return source
+    return {key: value for key, value in {
+        'url': properties.get('sourceUrl'), 'path': properties.get('sourcePath'),
+        'sha256': properties.get('sourceSha256'), 'evidenceUrls': properties.get('evidenceUrls'),
+        'paths': properties.get('sourcePaths')}.items() if value}
+
 def source_priority(properties, layer):
-    source = properties.get('source') or {}
+    source = source_metadata(properties)
     method = str(properties.get('method') or source.get('method') or '')
     provider = str(source.get('provider') or '')
     tags = source.get('tags') or {}
@@ -52,12 +60,17 @@ def source_priority(properties, layer):
     if footprint:
         return 40, 'named_source_footprint'
     if method == 'source_polygon' or provider in ('openstreetmap', 'public-arcgis', 'whosonfirst'):
-        return (10 if tags.get('boundary') == 'administrative' else 20), 'source_polygon'
+        administrative = tags.get('boundary') == 'administrative' or properties.get('sourceRole') == 'district'
+        return (10 if administrative else 20), 'source_polygon'
     if layer == 'neighborhoods.geojson' and source.get('osmType'):
         return 10, 'source_polygon'
     if layer == 'estimated-candidates.geojson' or any(x in method.lower() for x in ('infer', 'trace', 'raster', 'approx', 'estimate')):
         return 30, 'map_or_text_estimate'
     return 25, 'source_map_polygon'
+
+def relative_quality(candidate):
+    value = candidate['feature']['properties'].get('qualityScore')
+    return float(value) if isinstance(value, (int, float)) and math.isfinite(value) else 50.0
 
 def input_paths():
     paths = [DATA / x for x in ('neighborhoods.geojson', 'planning-units.geojson', 'estimated-candidates.geojson')]
@@ -112,7 +125,7 @@ def build():
         # Whole named boundary > source footprint > point radius. Stable ties preserve baseline.
         group.sort(key=lambda c: (c['priority'],
                                   0 if c['feature']['properties'].get('sourceSubdivisionKind') == 'parent_quarter' else 1,
-                                  -float(c['feature']['properties'].get('qualityScore') or 0),
+                                  -relative_quality(c),
                                   0 if c['path'].endswith('/neighborhoods.geojson') else 1,
                                   c['path'], str(c['feature'].get('id', '')), c['index']))
         selected = group[0]; feature = selected['feature']; p = feature['properties']
@@ -126,7 +139,7 @@ def build():
                       'name': p['name'], 'label': p['name'] + ' (' + city + ')', 'canonicalNameKey': norm,
                       'aliases': [x for x in all_names if x != p['name']], 'method': selected['method'],
                       'boundaryKind': p.get('candidateBoundaryKind') or p.get('boundaryKind') or 'named_area',
-                      'estimated': selected['method'] != 'source_polygon', 'source': p.get('source'),
+                      'estimated': selected['method'] != 'source_polygon', 'source': source_metadata(p),
                       'sourceProperties': p, 'selectedSource': alternatives[0], 'sourceAlternatives': alternatives,
                       'geometrySha256': selected['geometrySha256'],
                       'usableForApproximateAddressFiltering': True,

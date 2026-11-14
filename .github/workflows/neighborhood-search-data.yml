@@ -1,0 +1,37 @@
+name: Validate searchable neighborhood data
+
+on:
+  push:
+    paths:
+      - 'data/neighborhoods/**'
+      - 'scripts/neighborhoods/build-search-areas.py'
+      - 'tests/neighborhoods-search-areas.test.py'
+      - '.github/workflows/neighborhood-search-data.yml'
+  pull_request:
+    paths:
+      - 'data/neighborhoods/**'
+      - 'scripts/neighborhoods/build-search-areas.py'
+      - 'tests/neighborhoods-search-areas.test.py'
+      - '.github/workflows/neighborhood-search-data.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: neighborhood-search-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify selected source hashes and generated exports
+        run: python3 scripts/neighborhoods/build-search-areas.py --check
+      - name: Verify deduplication, aliases and spatial export safeguards
+        run: python3 tests/neighborhoods-search-areas.test.py
