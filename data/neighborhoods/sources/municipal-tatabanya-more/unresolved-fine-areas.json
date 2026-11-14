@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "sourceLabelCount": 16,
+  "previousFineQuarterCount": 4,
+  "newFineQuarterCount": 3,
+  "individuallyUnresolvedFineNames": 9,
+  "compoundSourceAreasProduced": 4,
+  "blockers": [
+    {
+      "names": [
+        "Bánhida",
+        "Dózsakert"
+      ],
+      "sourceGroup": "Bánhida – Dózsakert",
+      "reason": "One source contour contains two labels; no distinct complete internal quarter divider is shown."
+    },
+    {
+      "names": [
+        "Szőlőhegy",
+        "Újváros",
+        "Sárberek"
+      ],
+      "sourceGroup": "Szőlőhegy – Újváros – Sárberek",
+      "reason": "The literal outer circuit is recoverable. The northern M1 divider has an actual missing A–B section; Újváros and Sárberek also share one outline without a complete internal source divider.",
+      "missingNorthernDividerExactEndpointsPdf": [
+        [
+          "274.52",
+          "160.72"
+        ],
+        [
+          "303.56",
+          "199.96"
+        ]
+      ]
+    },
+    {
+      "names": [
+        "VI-os telep",
+        "Felsőgalla"
+      ],
+      "sourceGroup": "VI-os telep – Felsőgalla",
+      "reason": "Only the combined actual source outer cycle closes. A complete literal internal road-1 dividing circuit is absent; road ink/nearby gray strips are not an exact named-area closure.",
+      "individualOpenPathEndpointsPdf": [
+        [
+          "555.20",
+          "535.24"
+        ],
+        [
+          "597.68",
+          "613.36"
+        ]
+      ]
+    },
+    {
+      "names": [
+        "Nyugati ipari park",
+        "Erőmű ltp."
+      ],
+      "sourceGroup": "Nyugati ipari park – Erőmű ltp.",
+      "reason": "Both labels lie in one large source outline. The turquoise closed shape nearby is a lake and cannot substitute for the missing residential outline."
+    }
+  ],
+  "inventedFineSplitsProduced": false,
+  "currentNamesIndependentlyVerified": false,
+  "usableForAddressAssignment": false
+}

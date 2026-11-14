@@ -1,0 +1,943 @@
+{
+  "schemaVersion": 1,
+  "classification": "inferred_area_only",
+  "primaryCandidateCount": 0,
+  "candidateCount": 1,
+  "inputWaySha256": "241835aa107403a3e8dcc2c1cd06118590a950f5e4992749eb115cf32e107a2b",
+  "sourceFactsSha256": "9ea09f5410315bf9e899e1c13f951f1312d5888cc4ee73b1a8c1f400abe78c36",
+  "municipalitySha256": "524df6f5ec0d28132f458a5d3d4e530286677467b8afac7550b73643c0d62034",
+  "namePointSha256": "9284cdc7be861369603039f1ecaa4ed97627633f547e065302292ac8cb1a0a7c",
+  "originalPbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "uniqueNameContainingFace": true,
+  "insideMunicipality": true,
+  "containsOriginalNamePoint": true,
+  "valid": true,
+  "holes": 0,
+  "boundaryVerticesIncludingClosure": 76,
+  "usedSourceWays": 28,
+  "allEdgesConsecutiveOriginalNodes": true,
+  "syntheticVertices": 0,
+  "syntheticEdges": 0,
+  "geometryRepairs": 0,
+  "namedOnlyRoadsClose": false,
+  "metricGapBetweenAranyAndDozsaMetres": 178.00944112380233,
+  "corridorLengthsMetres": {
+    "Szórád Márton út": 782.74425624103,
+    "Aranyvölgyi út": 625.7812819254078,
+    "unnamed_roundabout": 29.865930529980794,
+    "Vasmű út": 165.15755061802778,
+    "Dózsa György út": 499.29154957524327
+  },
+  "areaM2": 188365.18892405834,
+  "perimeterMetres": 2102.8405688896896,
+  "roundaboutAlternative": {
+    "originalWayId": "osm:way:445990097",
+    "wholeLoopMetres": 108.65467003111853,
+    "chosenArcMetres": 29.865930529980794,
+    "otherArcMetres": 78.78873950113774,
+    "alternativeNotResolvedBySource": true
+  },
+  "boundaryEdges": [
+    {
+      "edgeIndex": 0,
+      "wayId": "osm:way:141655441",
+      "sourceNodeRefs": [
+        1202252630,
+        10564960093
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 26.45343956410507,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 1,
+      "wayId": "osm:way:141655441",
+      "sourceNodeRefs": [
+        10564960093,
+        11926531274
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 38.2321772833832,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 2,
+      "wayId": "osm:way:141655441",
+      "sourceNodeRefs": [
+        11926531274,
+        1202255763
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 13.741319847835735,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 3,
+      "wayId": "osm:way:141655441",
+      "sourceNodeRefs": [
+        1202255763,
+        457872733
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 12.068909378203966,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 4,
+      "wayId": "osm:way:141655441",
+      "sourceNodeRefs": [
+        457872733,
+        457872734
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 7.490792423757089,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 5,
+      "wayId": "osm:way:360390725",
+      "sourceNodeRefs": [
+        457872734,
+        3946803589
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 140.5791283060279,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 6,
+      "wayId": "osm:way:391465569",
+      "sourceNodeRefs": [
+        3946803589,
+        2508352518
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 115.56633468736071,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 7,
+      "wayId": "osm:way:378921127",
+      "sourceNodeRefs": [
+        2508352518,
+        686571786
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 15.267527923325673,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 8,
+      "wayId": "osm:way:378921132",
+      "sourceNodeRefs": [
+        686571786,
+        3946289483
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 12.578277548703422,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 9,
+      "wayId": "osm:way:378921132",
+      "sourceNodeRefs": [
+        3946289483,
+        3946289482
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 36.07391394933108,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 10,
+      "wayId": "osm:way:1467064818",
+      "sourceNodeRefs": [
+        3946289482,
+        1202253153
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 31.194366034775395,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 11,
+      "wayId": "osm:way:1467064818",
+      "sourceNodeRefs": [
+        1202253153,
+        457872688
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 33.05326918847392,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 12,
+      "wayId": "osm:way:1467064820",
+      "sourceNodeRefs": [
+        457872688,
+        3946803577
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 50.79060355855334,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 13,
+      "wayId": "osm:way:1467064820",
+      "sourceNodeRefs": [
+        3946803577,
+        3946803575
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 37.208776618621656,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 14,
+      "wayId": "osm:way:1467064819",
+      "sourceNodeRefs": [
+        3946803575,
+        12655243104
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 16.114072734389737,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 15,
+      "wayId": "osm:way:1467064819",
+      "sourceNodeRefs": [
+        12655243104,
+        1202256084
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 11.755874101969649,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 16,
+      "wayId": "osm:way:1467064821",
+      "sourceNodeRefs": [
+        1202256084,
+        13456011177
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 53.01971125208978,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 17,
+      "wayId": "osm:way:391465571",
+      "sourceNodeRefs": [
+        13456011177,
+        457872689
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 15.10833412368764,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 18,
+      "wayId": "osm:way:391465571",
+      "sourceNodeRefs": [
+        457872689,
+        8749053843
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 10.628049067649002,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 19,
+      "wayId": "osm:way:391465571",
+      "sourceNodeRefs": [
+        8749053843,
+        3957096707
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 10.127213428005598,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 20,
+      "wayId": "osm:way:391465571",
+      "sourceNodeRefs": [
+        3957096707,
+        1202255840
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 9.65651494627939,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 21,
+      "wayId": "osm:way:392491924",
+      "sourceNodeRefs": [
+        1202255840,
+        12655243108
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 17.686375498015686,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 22,
+      "wayId": "osm:way:392491924",
+      "sourceNodeRefs": [
+        12655243108,
+        3155249865
+      ],
+      "name": "Aranyvölgyi út",
+      "lengthMetres": 9.372938958148335,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 23,
+      "wayId": "osm:way:445990097",
+      "sourceNodeRefs": [
+        3155249865,
+        8749053844
+      ],
+      "name": "",
+      "lengthMetres": 4.193221150571534,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 24,
+      "wayId": "osm:way:445990097",
+      "sourceNodeRefs": [
+        8749053844,
+        12644844889
+      ],
+      "name": "",
+      "lengthMetres": 4.192481804003657,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 25,
+      "wayId": "osm:way:445990097",
+      "sourceNodeRefs": [
+        12644844889,
+        3155249863
+      ],
+      "name": "",
+      "lengthMetres": 4.188257214030984,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 26,
+      "wayId": "osm:way:445990097",
+      "sourceNodeRefs": [
+        3155249863,
+        8749053845
+      ],
+      "name": "",
+      "lengthMetres": 5.506920665739085,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 27,
+      "wayId": "osm:way:445990097",
+      "sourceNodeRefs": [
+        8749053845,
+        1202251137
+      ],
+      "name": "",
+      "lengthMetres": 6.760434688760027,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 28,
+      "wayId": "osm:way:445990097",
+      "sourceNodeRefs": [
+        1202251137,
+        12644844890
+      ],
+      "name": "",
+      "lengthMetres": 2.1547765280955677,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 29,
+      "wayId": "osm:way:445990097",
+      "sourceNodeRefs": [
+        12644844890,
+        3155249864
+      ],
+      "name": "",
+      "lengthMetres": 2.869838478779939,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 30,
+      "wayId": "osm:way:392491918",
+      "sourceNodeRefs": [
+        3155249864,
+        3957096700
+      ],
+      "name": "Vasmű út",
+      "lengthMetres": 8.335245050297294,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 31,
+      "wayId": "osm:way:392491918",
+      "sourceNodeRefs": [
+        3957096700,
+        12655234265
+      ],
+      "name": "Vasmű út",
+      "lengthMetres": 4.008194207269043,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 32,
+      "wayId": "osm:way:392491918",
+      "sourceNodeRefs": [
+        12655234265,
+        457872694
+      ],
+      "name": "Vasmű út",
+      "lengthMetres": 16.538862014098463,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 33,
+      "wayId": "osm:way:310153560",
+      "sourceNodeRefs": [
+        457872694,
+        457872695
+      ],
+      "name": "Vasmű út",
+      "lengthMetres": 30.39736195820416,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 34,
+      "wayId": "osm:way:310153560",
+      "sourceNodeRefs": [
+        457872695,
+        12644844885
+      ],
+      "name": "Vasmű út",
+      "lengthMetres": 22.68281864293159,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 35,
+      "wayId": "osm:way:310153560",
+      "sourceNodeRefs": [
+        12644844885,
+        1202253840
+      ],
+      "name": "Vasmű út",
+      "lengthMetres": 19.255082159458343,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 36,
+      "wayId": "osm:way:310153560",
+      "sourceNodeRefs": [
+        1202253840,
+        274919031
+      ],
+      "name": "Vasmű út",
+      "lengthMetres": 31.39420420276229,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 37,
+      "wayId": "osm:way:391403845",
+      "sourceNodeRefs": [
+        274919031,
+        12650409290
+      ],
+      "name": "Vasmű út",
+      "lengthMetres": 18.86693356018431,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 38,
+      "wayId": "osm:way:391403845",
+      "sourceNodeRefs": [
+        12650409290,
+        274959855
+      ],
+      "name": "Vasmű út",
+      "lengthMetres": 13.678848822822292,
+      "unprovenBoundaryRole": true,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 39,
+      "wayId": "osm:way:390927631",
+      "sourceNodeRefs": [
+        274959855,
+        12650409288
+      ],
+      "name": "Dózsa György út",
+      "lengthMetres": 19.712936990044078,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 40,
+      "wayId": "osm:way:390927631",
+      "sourceNodeRefs": [
+        12650409288,
+        1202255920
+      ],
+      "name": "Dózsa György út",
+      "lengthMetres": 66.56592991793404,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 41,
+      "wayId": "osm:way:360390861",
+      "sourceNodeRefs": [
+        1202255920,
+        2161875103
+      ],
+      "name": "Dózsa György út",
+      "lengthMetres": 2.9035836134699657,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 42,
+      "wayId": "osm:way:360390861",
+      "sourceNodeRefs": [
+        2161875103,
+        3938649126
+      ],
+      "name": "Dózsa György út",
+      "lengthMetres": 33.22674734243524,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 43,
+      "wayId": "osm:way:360390861",
+      "sourceNodeRefs": [
+        3938649126,
+        2161870837
+      ],
+      "name": "Dózsa György út",
+      "lengthMetres": 30.042167480314287,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 44,
+      "wayId": "osm:way:360390861",
+      "sourceNodeRefs": [
+        2161870837,
+        3938649116
+      ],
+      "name": "Dózsa György út",
+      "lengthMetres": 72.08743376544922,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 45,
+      "wayId": "osm:way:360390861",
+      "sourceNodeRefs": [
+        3938649116,
+        1202253030
+      ],
+      "name": "Dózsa György út",
+      "lengthMetres": 62.26668948266645,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 46,
+      "wayId": "osm:way:1466052796",
+      "sourceNodeRefs": [
+        1202253030,
+        1202254591
+      ],
+      "name": "Dózsa György út",
+      "lengthMetres": 58.729010829613934,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 47,
+      "wayId": "osm:way:1466052795",
+      "sourceNodeRefs": [
+        1202254591,
+        2161883724
+      ],
+      "name": "Dózsa György út",
+      "lengthMetres": 33.00076307284989,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 48,
+      "wayId": "osm:way:1466052795",
+      "sourceNodeRefs": [
+        2161883724,
+        3938649109
+      ],
+      "name": "Dózsa György út",
+      "lengthMetres": 59.16043021906672,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 49,
+      "wayId": "osm:way:390927632",
+      "sourceNodeRefs": [
+        3938649109,
+        3938649108
+      ],
+      "name": "Dózsa György út",
+      "lengthMetres": 29.859412974047295,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 50,
+      "wayId": "osm:way:390927632",
+      "sourceNodeRefs": [
+        3938649108,
+        3938649106
+      ],
+      "name": "Dózsa György út",
+      "lengthMetres": 12.838653443066347,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 51,
+      "wayId": "osm:way:390927632",
+      "sourceNodeRefs": [
+        3938649106,
+        457872722
+      ],
+      "name": "Dózsa György út",
+      "lengthMetres": 18.897790444285793,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 52,
+      "wayId": "osm:way:391465575",
+      "sourceNodeRefs": [
+        457872722,
+        3940832035
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 5.780643052294708,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 53,
+      "wayId": "osm:way:391465575",
+      "sourceNodeRefs": [
+        3940832035,
+        3938649107
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 13.647646152461435,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 54,
+      "wayId": "osm:way:391465575",
+      "sourceNodeRefs": [
+        3938649107,
+        3946803574
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 78.81656138372654,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 55,
+      "wayId": "osm:way:360390860",
+      "sourceNodeRefs": [
+        3946803574,
+        7358656514
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 18.147623909779604,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 56,
+      "wayId": "osm:way:360390860",
+      "sourceNodeRefs": [
+        7358656514,
+        12797733254
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 13.802901544173007,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 57,
+      "wayId": "osm:way:360390860",
+      "sourceNodeRefs": [
+        12797733254,
+        3975910304
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 9.240352181401732,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 58,
+      "wayId": "osm:way:360390860",
+      "sourceNodeRefs": [
+        3975910304,
+        3938649125
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 50.35014481467961,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 59,
+      "wayId": "osm:way:1466475439",
+      "sourceNodeRefs": [
+        3938649125,
+        3938649127
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 28.41064617841586,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 60,
+      "wayId": "osm:way:1466475439",
+      "sourceNodeRefs": [
+        3938649127,
+        3938649129
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 12.675695221534006,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 61,
+      "wayId": "osm:way:1466475439",
+      "sourceNodeRefs": [
+        3938649129,
+        1202251542
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 11.240782642330805,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 62,
+      "wayId": "osm:way:1466475441",
+      "sourceNodeRefs": [
+        1202251542,
+        12740895349
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 8.796044471665342,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 63,
+      "wayId": "osm:way:1466475441",
+      "sourceNodeRefs": [
+        12740895349,
+        3938649132
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 5.107264728346224,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 64,
+      "wayId": "osm:way:1466475441",
+      "sourceNodeRefs": [
+        3938649132,
+        457872727
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 14.431612309513621,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 65,
+      "wayId": "osm:way:1466475441",
+      "sourceNodeRefs": [
+        457872727,
+        13450239808
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 26.814212574887872,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 66,
+      "wayId": "osm:way:1466475440",
+      "sourceNodeRefs": [
+        13450239808,
+        3938649136
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 87.67615124246888,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 67,
+      "wayId": "osm:way:1466475440",
+      "sourceNodeRefs": [
+        3938649136,
+        7358650195
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 20.708446603873846,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 68,
+      "wayId": "osm:way:1466475440",
+      "sourceNodeRefs": [
+        7358650195,
+        3938649151
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 46.24374107900753,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 69,
+      "wayId": "osm:way:935331692",
+      "sourceNodeRefs": [
+        3938649151,
+        3938649159
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 57.53564243143201,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 70,
+      "wayId": "osm:way:935331692",
+      "sourceNodeRefs": [
+        3938649159,
+        12797733213
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 22.08933327635054,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 71,
+      "wayId": "osm:way:935331692",
+      "sourceNodeRefs": [
+        12797733213,
+        457872729
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 10.819764773693558,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 72,
+      "wayId": "osm:way:445985377",
+      "sourceNodeRefs": [
+        457872729,
+        12797733207
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 17.07164528389258,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 73,
+      "wayId": "osm:way:445985377",
+      "sourceNodeRefs": [
+        12797733207,
+        1202254973
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 10.501952640471972,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    },
+    {
+      "edgeIndex": 74,
+      "wayId": "osm:way:1466475436",
+      "sourceNodeRefs": [
+        1202254973,
+        1202252630
+      ],
+      "name": "Szórád Márton út",
+      "lengthMetres": 114.84880924734367,
+      "unprovenBoundaryRole": false,
+      "actualOriginalEdge": true
+    }
+  ],
+  "usableForAddressAssignment": false
+}

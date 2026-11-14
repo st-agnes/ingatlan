@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "reviewScope": "Independent original-PBF identity check for frozen geographical-control roads and current-name points only. This does not validate historical raster junction identity or neighborhood boundary extent.",
+  "reviewMethod": "A separate C++-filtered osmium FileProcessor pass reads literal original nodes and ways. No derivation script, generated geometry or location interpolation is used.",
+  "sourcePbfPath": ".local/neighborhoods/hungary-latest.osm.pbf",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "sourcePbfBytes": 329791850,
+  "inputSha256": {
+    "calibration-figure73-control-roads.geojson": "626c532130175afb62c52f968bfd1bda7e477a7ccf8f1c0a76df8e3419cd1f09",
+    "current-name-points.geojson": "6f378d92adcf5a69dfa574edcae85979671f0c78b995a319ecdd6f1696448618"
+  },
+  "wayCount": 23,
+  "namePointCount": 1,
+  "uniqueComparedNodeCount": 117,
+  "pairedWayNodeCoordinateCountIncludingSharedNodes": 133,
+  "wayRecords": [
+    {
+      "osmWayId": 25726161,
+      "name": "Dózsa György út",
+      "nodeCount": 11,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 26,
+      "objectTimestamp": "2026-08-18 13:28:47+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 40694671,
+      "name": "Tizedes utca",
+      "nodeCount": 5,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 9,
+      "objectTimestamp": "2026-04-06 14:45:38+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 40694716,
+      "name": "Rákóczi út",
+      "nodeCount": 9,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 27,
+      "objectTimestamp": "2026-08-05 12:21:55+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 40694896,
+      "name": "Csongrádi út",
+      "nodeCount": 3,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 24,
+      "objectTimestamp": "2026-08-05 12:21:55+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 40712294,
+      "name": "Mária körút",
+      "nodeCount": 13,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 16,
+      "objectTimestamp": "2026-08-18 14:13:49+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 40771093,
+      "name": "Mezei utca",
+      "nodeCount": 6,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 12,
+      "objectTimestamp": "2026-02-23 19:54:48+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 40771095,
+      "name": "Piaristák tere",
+      "nodeCount": 7,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 16,
+      "objectTimestamp": "2026-08-03 18:10:08+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 40774741,
+      "name": "Árpád körút",
+      "nodeCount": 5,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 18,
+      "objectTimestamp": "2026-08-24 13:11:52+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 40917273,
+      "name": "Magyar utca",
+      "nodeCount": 9,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 10,
+      "objectTimestamp": "2026-07-12 16:03:09+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 237950831,
+      "name": "Piaristák tere",
+      "nodeCount": 4,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 13,
+      "objectTimestamp": "2026-08-03 18:10:08+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 262095981,
+      "name": "Kossuth körút",
+      "nodeCount": 10,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 12,
+      "objectTimestamp": "2026-08-28 20:21:03+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 416268350,
+      "name": "Széchenyi körút",
+      "nodeCount": 3,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 12,
+      "objectTimestamp": "2026-07-13 22:13:14+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 416268353,
+      "name": "Jókai utca",
+      "nodeCount": 10,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 15,
+      "objectTimestamp": "2026-08-03 18:10:08+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 416268366,
+      "name": "Jókai utca",
+      "nodeCount": 2,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 13,
+      "objectTimestamp": "2026-07-13 22:14:29+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 416268367,
+      "name": "Budai kapu",
+      "nodeCount": 2,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 10,
+      "objectTimestamp": "2026-07-13 22:13:46+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 416268368,
+      "name": "Budai kapu",
+      "nodeCount": 3,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 10,
+      "objectTimestamp": "2026-07-13 22:13:44+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 428796225,
+      "name": "Petőfi Sándor utca",
+      "nodeCount": 7,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 15,
+      "objectTimestamp": "2026-07-22 11:32:28+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 615556289,
+      "name": "Mezei utca",
+      "nodeCount": 9,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 8,
+      "objectTimestamp": "2026-07-12 16:03:09+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 1159135791,
+      "name": "Erzsébet körút",
+      "nodeCount": 3,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 2,
+      "objectTimestamp": "2025-08-12 18:10:24+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 1479072405,
+      "name": "Csányi János körút",
+      "nodeCount": 3,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 6,
+      "objectTimestamp": "2026-07-20 19:37:12+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 1488786703,
+      "name": "Csányi János körút",
+      "nodeCount": 4,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 5,
+      "objectTimestamp": "2026-08-05 12:21:55+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 1537752338,
+      "name": "Bethlen körút",
+      "nodeCount": 2,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 3,
+      "objectTimestamp": "2026-08-24 13:11:14+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 1547020436,
+      "name": "",
+      "nodeCount": 3,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 2,
+      "objectTimestamp": "2026-10-18 10:22:24+00:00",
+      "versionAndTimestampMatch": true
+    }
+  ],
+  "namePointRecords": [
+    {
+      "osmNodeId": 984225130,
+      "name": "Hunyadiváros",
+      "coordinates": [
+        19.7073121,
+        46.9182768
+      ],
+      "objectVersion": 3,
+      "objectTimestamp": "2026-08-09 18:29:37+00:00",
+      "tagsMatch": true,
+      "coordinatesMatch": true,
+      "versionAndTimestampMatch": true
+    }
+  ],
+  "allOriginalWayNodeSequencesAndCoordinatesMatch": true,
+  "allOriginalWayTagsVersionsAndTimestampsMatch": true,
+  "allOriginalNameNodeCoordinatesTagsVersionsAndTimestampsMatch": true,
+  "originalPbfWasActuallyReadToCreateThisProof": true,
+  "historicalSourceFeatureCorrespondenceValidated": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "conclusion": "PASS for literal OSM source identity. Historical map registration and source-cell semantics remain separate review questions."
+}

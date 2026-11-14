@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "status": "all23_complete_original_control_ways_match_pinned_PBF",
+  "reviewer": "zala_semantic_qa, independent of road extraction/registration",
+  "inputs": [
+    {
+      "path": ".local/neighborhoods/hungary-latest.osm.pbf",
+      "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a"
+    },
+    {
+      "path": "registration-road-controls.geojson",
+      "sha256": "6884fe93171860fcc94a879b27e202969a22732d8d0ecd7de328c02cbc1fdd04"
+    },
+    {
+      "path": "review-henits-road-pbf-working.py",
+      "sha256": "8e9d68c94cd1a40bba583f08ffb3025a4bd42668199646be4e5503cedb1a5c95"
+    }
+  ],
+  "method": "C++ entity/ID-filtered passes over original ways, then their original nodes. Compare complete ordered refs, tags, versions, timestamps and all coordinates.",
+  "wayCount": 23,
+  "uniqueOriginalNodes": 66,
+  "coordinateOccurrences": 83,
+  "maximumCoordinateDifferenceDegrees": 0,
+  "checks": [
+    {
+      "id": "osm:way:1086725955",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 2,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1104675528",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 2,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1357186098",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 3,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:182658820",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 4,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:206766790",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 8,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:218908638",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 4,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:231722369",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 4,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:231722388",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 3,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:344064456",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 2,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:344064465",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 3,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:344064476",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 3,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:367094766",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 3,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:367094768",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 3,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:38062666",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 3,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:390489399",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 3,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:4795303",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 4,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:4806584",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 2,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:4937501",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 12,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:4937502",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 3,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:515861139",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 3,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:616989347",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 3,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:756576174",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 3,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:759435668",
+      "completeNodeRefsEqual": true,
+      "completeTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "nodeCount": 3,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    }
+  ],
+  "limits": "Reference fidelity only. Does not establish source-map feature correspondence or positional accuracy.",
+  "networkCallsPerformed": false,
+  "globalRegistryModified": false,
+  "frozenPacketsModified": false
+}

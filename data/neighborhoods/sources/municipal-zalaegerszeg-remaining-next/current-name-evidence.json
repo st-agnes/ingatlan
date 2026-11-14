@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "provider": "OpenStreetMap",
+    "pbfPath": ".local/neighborhoods/hungary-latest.osm.pbf",
+    "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "osmSnapshotTimestamp": "2026-11-12T21:23:05Z",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "networkUsed": false,
+  "method": "Exact normalized primary-name match from original local PBF nodes, complete ways and libosmium assembled areas; complete original geometry retained. Search bounds only select evidence.",
+  "searchBoundsWgs84": [
+    16.72,
+    46.74,
+    16.99,
+    46.94
+  ],
+  "counts": {
+    "exactNameAssembledAreasCountrywide": 1,
+    "exactNameNodesCountrywide": 6,
+    "exactNameWaysCountrywide": 1,
+    "nativeFilteredNodes": 216492,
+    "nativeFilteredRelations": 40678,
+    "nativeFilteredWays": 358408
+  },
+  "errors": [],
+  "nameResults": [
+    {
+      "name": "Iparterület",
+      "exactNamedPlaceObservedInCity": false,
+      "status": "not_independently_confirmed",
+      "evidenceIds": [],
+      "supportingPlaceIds": []
+    },
+    {
+      "name": "Zalabesenyő",
+      "exactNamedPlaceObservedInCity": true,
+      "status": "same_city_exact_osm_name_observed",
+      "evidenceIds": [
+        "osm:node:990019150"
+      ],
+      "supportingPlaceIds": [
+        "osm:node:990019150"
+      ]
+    },
+    {
+      "name": "Botfa",
+      "exactNamedPlaceObservedInCity": true,
+      "status": "same_city_exact_osm_name_observed",
+      "evidenceIds": [
+        "osm:node:514956911"
+      ],
+      "supportingPlaceIds": [
+        "osm:node:514956911"
+      ]
+    },
+    {
+      "name": "Bazita",
+      "exactNamedPlaceObservedInCity": true,
+      "status": "same_city_exact_osm_name_observed",
+      "evidenceIds": [
+        "osm:node:990019893"
+      ],
+      "supportingPlaceIds": [
+        "osm:node:990019893"
+      ]
+    },
+    {
+      "name": "Ebergény",
+      "exactNamedPlaceObservedInCity": true,
+      "status": "same_city_exact_osm_name_observed",
+      "evidenceIds": [
+        "osm:node:525433120"
+      ],
+      "supportingPlaceIds": [
+        "osm:node:525433120"
+      ]
+    },
+    {
+      "name": "Szenterzsébethegy",
+      "exactNamedPlaceObservedInCity": true,
+      "status": "same_city_exact_osm_name_observed",
+      "evidenceIds": [
+        "osm:node:990000886"
+      ],
+      "supportingPlaceIds": [
+        "osm:node:990000886"
+      ]
+    }
+  ],
+  "georeferenceControlCount": 0,
+  "establishesHistoricalContour": false,
+  "allFeaturesAreEvidenceOnly": true,
+  "evidenceGeojson": "current-name-evidence.geojson"
+}

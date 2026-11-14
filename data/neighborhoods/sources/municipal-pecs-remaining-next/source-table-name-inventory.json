@@ -1,0 +1,545 @@
+{
+  "schemaVersion": 1,
+  "sourcePdfSha256": "995d0db03e454a34046b248526e0882aee26ffbf40ba916e996afa4c8b49f6b1",
+  "sourceTable": {
+    "originalPdfPagesOneBased": [
+      47,
+      48
+    ],
+    "printedPages": [
+      40,
+      41
+    ],
+    "number": 8,
+    "title": "Pécs városrészei"
+  },
+  "sourceNameCount": 67,
+  "frozenFirstCohortCount": 33,
+  "additionalCompletedSourceNames": 27,
+  "sourceNamesWithCompleteReviewedContoursAcrossBothCohorts": 60,
+  "remainingUnresolvedSourceNames": 7,
+  "newPrimaryApprovedCount": 0,
+  "newCohortGeographicPlacementVerified": false,
+  "claimedAbsoluteAccuracy": null,
+  "sourceRomanNumbersAreNotUsedAsAutomaticCrossFigureKeys": true,
+  "records": [
+    {
+      "sourceName": "Kismélyvölgy",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 59,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Deindol",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 57,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Donátus",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 71,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Ürög",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 65,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Patacs",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 87,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Makár",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 82,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Somogy",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 45,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Vasas",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 38,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Hird",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 49,
+      "newFeatureId": "pecs-remaining:hird",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Murom",
+      "status": "unresolved_original_source_extent",
+      "sourceCellIdsRelevant": [
+        51,
+        53,
+        54
+      ],
+      "reason": "Figure9 gives the labelled purple southern lobe with a thin northern stem below Somogy. Figure12 no-data diagonal hatching divides this silhouette. A complete external silhouette is visible inside the image; one 53 or 54 fragment is not the whole labelled area. Recomputed exact original mask also exposes thin upper fragment 51 with bbox [792,301,799,321], in addition to 53 bbox [781,326,801,344]and 54 bbox [761,327,792,344]. The role of the whole stem must be retained in any later explicit outer-contour trace, not discarded by selecting only a bottom half.",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Újhegy",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 69,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Gyárváros",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 77,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Basamalom",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 86,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Üszög",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 101,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Balokány",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 90,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Tüskésrét",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 103,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Füzes",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 120,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Kertváros",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 121,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Köztemető",
+      "status": "unresolved_original_source_extent",
+      "sourceCellIdsRelevant": [
+        131,
+        132,
+        134,
+        143,
+        147
+      ],
+      "reason": "Figure9 identifies a green cemetery footprint immediately south of the red district and east of southern XI cells. Figure12 hatch cuts across the complete outlined no-data footprint; original source silhouette is fully inside the image. Recomputed mask has upper 131 fragment bbox [482,634,500,666], plus 134 bbox [484,652,516,686]and 143 bbox [503,667,518,684]. Taking only 134 or 143 omits substantial original extent; even the prior 134/143 list is not an exhaustive list of source fragments. Full observed outer perimeter could be traced separately, but this review creates no replacement.",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Nagyárpád",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 135,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Megyer",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 144,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Árpádváros",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 148,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Málom",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 158,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Postavölgy",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 159,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Déli gazdasági terület",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 184,
+      "historicalFrozenSemanticKind": "planning_unit",
+      "includedInNewOutput": false,
+      "separateUnappliedSemanticRecommendation": "first-cohort-semantic-recommendation.json"
+    },
+    {
+      "sourceName": "Belváros",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 83,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Szigeti külváros",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 85,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Ispitaalja",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 96,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Rácváros",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 100,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Újmecsekalja",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 94,
+      "newFeatureId": "pecs-remaining:ujmecsekalja",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Uránváros",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 99,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Kovácstelep",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 107,
+      "newFeatureId": "pecs-remaining:kovacstelep",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Bálics",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 64,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Szkókó",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 66,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Mecsekoldal",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 63,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Havihegy",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 75,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Piricsizma",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 68,
+      "newFeatureId": "pecs-remaining:piricsizma",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Rókusdomb",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 79,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Csoronika",
+      "status": "existing_frozen_first_cohort",
+      "sourceCellId": 81,
+      "historicalFrozenSemanticKind": "neighbourhood_source_candidate",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Szentkút",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 56,
+      "newFeatureId": "pecs-remaining:szentkut",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Szentmiklós",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 98,
+      "newFeatureId": "pecs-remaining:szentmiklos",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Zsebedomb",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 84,
+      "newFeatureId": "pecs-remaining:zsebedomb",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Gyükés",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 55,
+      "newFeatureId": "pecs-remaining:gyukes",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Pécsbánya",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 50,
+      "newFeatureId": "pecs-remaining:pecsbanya",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Rigóder",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 61,
+      "newFeatureId": "pecs-remaining:rigoder",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Szabolcs",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 48,
+      "newFeatureId": "pecs-remaining:szabolcs",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Szabolcsi zártkert",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 52,
+      "newFeatureId": "pecs-remaining:szabolcsizartkert",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Meszes",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 58,
+      "newFeatureId": "pecs-remaining:meszes",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Diós",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 72,
+      "newFeatureId": "pecs-remaining:dios",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Budai külváros",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 76,
+      "newFeatureId": "pecs-remaining:budaikulvaros",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Budaiváros",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 80,
+      "newFeatureId": "pecs-remaining:budaivaros",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Kisbalokány",
+      "status": "unresolved_original_source_extent",
+      "sourceCellIdsRelevant": [
+        92
+      ],
+      "reason": "The Figure9 blue I group has a fine separator near x278 through the lower blue wedge, partly covered by fine labels. It separates the Kisbalokány-side eastern wedge from Siklósi külváros to its west/southwest. Figure12 shows one continuous orange wedge through the corresponding area; the frozen mask assigns both independent interiors to 92. A unique unchanged 92 cannot be assigned twice; reconstructing the missing fine separator would require a distinct literal Figure9 trace and an audit of its obscured label crossings.",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Siklósi külváros",
+      "status": "unresolved_original_source_extent",
+      "sourceCellIdsRelevant": [
+        92
+      ],
+      "reason": "Separate Figure9 fine label and western/southwestern side of the lower blue I wedge from Kisbalokány. The source-map fine separator is visible in segments around x278, but crosses a broad white label band near y304–308. Figure12 corresponding orange wedge lacks a closed fine separator under the exact frozen mask, leaving shared92. A shared component is not two quarter footprints. No artificial dividing edge or label-band closure is supplied.",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Észak-Megyer",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 104,
+      "newFeatureId": "pecs-remaining:eszakmegyer",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Szigeti tanya",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 118,
+      "newFeatureId": "pecs-remaining:szigetitanya",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Fogadó",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 105,
+      "newFeatureId": "pecs-remaining:fogado",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Bolgárkert",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 106,
+      "newFeatureId": "pecs-remaining:bolgarkert",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Nyugati ipari út",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 122,
+      "newFeatureId": "pecs-remaining:nyugatiipariut",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Üszögi tározó-major",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 95,
+      "newFeatureId": "pecs-remaining:uszogitarozomajor",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Péterpuszta",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 177,
+      "newFeatureId": "pecs-remaining:peterpuszta",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Árpádtető",
+      "status": "unresolved_original_source_extent",
+      "sourceCellIdsRelevant": [
+        40,
+        41
+      ],
+      "reason": "Figure9 has a complete solid-purple island left of its label. Figure12 has a fully visible small outlined island whose diagonal no-data hatch separates 40 and 41. It is not clipped by the image frame. The unchanged 40 or 41 interior is only a fragment; separate full silhouette tracing is possible in principle, and must retain the original exterior rather than closing either half artificially.",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Józsefháza",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 39,
+      "newFeatureId": "pecs-remaining:jozsefhaza",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Rücker-akna",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 42,
+      "newFeatureId": "pecs-remaining:ruckerakna",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "István-akna",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 46,
+      "newFeatureId": "pecs-remaining:istvanakna",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "Petőfi-akna",
+      "status": "unresolved_original_source_extent",
+      "sourceCellIdsRelevant": [
+        10,
+        11,
+        12
+      ],
+      "reason": "Figure9 shows the complete tiny purple northern island below the title, with readable label to its east. Figure12 whole external outline is in frame; a no-data diagonal passes through its northern cap. Frozen-mask 12 contains 79 pixels with bbox[850,87,859,101]; other isolated free pixels 10 and 11 are in the cap. Cell 12 alone is not the whole footprint. The difficulty is hatch fragmentation and raster size, not frame clipping.",
+      "includedInNewOutput": false
+    },
+    {
+      "sourceName": "Flóriántelep",
+      "status": "new_completed_inferred_candidate",
+      "sourceCellId": 24,
+      "newFeatureId": "pecs-remaining:floriantelep",
+      "candidateBoundaryKind": "neighbourhood",
+      "includedInNewOutput": true
+    },
+    {
+      "sourceName": "M utca",
+      "status": "unresolved_original_source_extent",
+      "sourceCellIdsRelevant": [],
+      "reason": "Both figures show a complete extremely small dark curved/vertical island below Petőfi-akna and east of Flóriántelep. Figure9 literal M utca label is visible. The external silhouette remains inside the image; under the exact frozen mask its small dark interior is fully classified as stroke, so no separate free-cell label occurs in bbox[840,108,871,132]. An independent silhouette treatment could be investigated, but this image review does not certify a reliable unchanged seed or reconstruct a closure.",
+      "includedInNewOutput": false
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "snapshotScope": "Read-only existing source exports at start of remaining batch; root exports are not written and are not future reproduction dependencies.",
+  "inputs": [
+    {
+      "path": "data/neighborhoods/neighborhoods.geojson",
+      "sha256": "8a242edafec268aa55095b5713774d7c28dddf8f41617bcb9eabb375d2253ddf"
+    },
+    {
+      "path": "data/neighborhoods/estimated-candidates.geojson",
+      "sha256": "0329c48037a9cda2d4dfe545f85add9bff5bc3117bef7353abca1b8c61547b4d"
+    },
+    {
+      "path": "data/neighborhoods/planning-units.geojson",
+      "sha256": "c004c4d622e83fbf570b466bdd83cb48c7a3c8c7bae5d20a7620fb9dd0d44b1b"
+    }
+  ],
+  "records": [
+    {
+      "sourceName": "Kismélyvölgy",
+      "normalizedName": "kismelyvolgy",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:kismelyvolgy",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Deindol",
+      "normalizedName": "deindol",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:deindol",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Donátus",
+      "normalizedName": "donatus",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:donatus",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Ürög",
+      "normalizedName": "urog",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:urog",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Patacs",
+      "normalizedName": "patacs",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:patacs",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Makár",
+      "normalizedName": "makar",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:makar",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Somogy",
+      "normalizedName": "somogy",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:somogy",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Vasas",
+      "normalizedName": "vasas",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:vasas",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Újhegy",
+      "normalizedName": "ujhegy",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:ujhegy",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Gyárváros",
+      "normalizedName": "gyarvaros",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:gyarvaros",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Basamalom",
+      "normalizedName": "basamalom",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:basamalom",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Üszög",
+      "normalizedName": "uszog",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:uszog",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Balokány",
+      "normalizedName": "balokany",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:balokany",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Tüskésrét",
+      "normalizedName": "tuskesret",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:tuskesret",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Füzes",
+      "normalizedName": "fuzes",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:fuzes",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Kertváros",
+      "normalizedName": "kertvaros",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:kertvaros",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Nagyárpád",
+      "normalizedName": "nagyarpad",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:nagyarpad",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Megyer",
+      "normalizedName": "megyer",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:megyer",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Árpádváros",
+      "normalizedName": "arpadvaros",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:arpadvaros",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Málom",
+      "normalizedName": "malom",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:malom",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Postavölgy",
+      "normalizedName": "postavolgy",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:postavolgy",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Déli gazdasági terület",
+      "normalizedName": "deligazdasagiterulet",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:deligazdasagiterulet",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Belváros",
+      "normalizedName": "belvaros",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:belvaros",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Szigeti külváros",
+      "normalizedName": "szigetikulvaros",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:szigetikulvaros",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Ispitaalja",
+      "normalizedName": "ispitaalja",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:ispitaalja",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Rácváros",
+      "normalizedName": "racvaros",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:racvaros",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Uránváros",
+      "normalizedName": "uranvaros",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:uranvaros",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Bálics",
+      "normalizedName": "balics",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:balics",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Szkókó",
+      "normalizedName": "szkoko",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:szkoko",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Mecsekoldal",
+      "normalizedName": "mecsekoldal",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:mecsekoldal",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Havihegy",
+      "normalizedName": "havihegy",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:havihegy",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Rókusdomb",
+      "normalizedName": "rokusdomb",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:rokusdomb",
+      "publishedLayer": "estimated-candidates.geojson"
+    },
+    {
+      "sourceName": "Csoronika",
+      "normalizedName": "csoronika",
+      "featureId": "inferred:pecs-first-source-contours-estimated-placement:pecs-first:csoronika",
+      "publishedLayer": "estimated-candidates.geojson"
+    }
+  ],
+  "aliasesInferredFromNames": false
+}

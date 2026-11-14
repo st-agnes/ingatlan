@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "scope": "Local application-level geometry/import checks; independent source/geometry QA is in raster-independent-review.json.",
+  "outputs": {
+    "szechenyi-source-raster.geojson": "06ccbe775220cf9260abcc184c87a7620cfffa5d931d156eda3fa1d3f3a2c000",
+    "szechenyi-label-inferred.geojson": "a141e2a7f899672f9c833c21994d65b1fd512e4484ddacc183b082581e529b85"
+  },
+  "checks": [
+    {
+      "name": "scripts/neighborhoods/build.mjs validateGeometry",
+      "featuresChecked": 4,
+      "accepted": 4,
+      "rejected": 0
+    },
+    {
+      "name": "collectManualCandidates on isolated registry-entry candidate",
+      "acceptedNames": [
+        "Belső-Máriahegy",
+        "Széchenyiváros III."
+      ],
+      "rejected": []
+    },
+    {
+      "name": "inferredCandidates on isolated inferred-registry-entry candidate",
+      "acceptedNames": [
+        "Széchenyiváros II.",
+        "Széchenyiváros I."
+      ],
+      "rejected": []
+    },
+    {
+      "name": "PYTHONPATH=.local/geodata python3 scripts/neighborhoods/derive-kecskemet-fig81.py --check",
+      "passed": true,
+      "outputArtifactsRewritten": false
+    }
+  ],
+  "globalRegistriesModifiedByTheseChecks": false,
+  "usableForAddressAssignment": false
+}

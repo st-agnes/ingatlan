@@ -1,0 +1,37 @@
+{
+  "id": "sopron-native-planning-units-next",
+  "path": "data/neighborhoods/sources/municipal-sopron-next/source-vector.geojson",
+  "sha256": "5f87062ca249f91d1179c574a6157c380d8ebc9b2dbd484c9df5293bee80436a",
+  "municipality": "Sopron",
+  "method": "Exact native blue source-segment network and four real source faces; approximate actual municipal-perimeter registration in EOV, cross-page link verified by 4888 original CAD segment pairs; inverse projection to WGS84.",
+  "evidenceUrls": [
+    "https://njt.jog.gov.hu/document/4f/4fb0LL_EJR_84883813-Sopron_-_HESZmod_1_melleklet__SZT-Atnezeti_tervlapok.pdf"
+  ],
+  "sourceDocuments": [
+    {
+      "url": "https://njt.jog.gov.hu/document/4f/4fb0LL_EJR_84883813-Sopron_-_HESZmod_1_melleklet__SZT-Atnezeti_tervlapok.pdf",
+      "sha256": "62589313512700af95c98e41af9a7556ebaf97fc0e1eac3240cd0aeaf791ec41",
+      "pdfPageOneBased": 2,
+      "pdfPageZeroBased": 1,
+      "localSourceFile": "data/neighborhoods/sources/municipal-sopron-next/source-pages1-2.pdf",
+      "archivedSourceSha256": "6213be7ec2318f03856a102d7791c2e98b3704a26cbc0c0f011df8c6e1bd063b",
+      "annex": "1/B to 39/2021.(XII.28.)",
+      "workNumber": "TT08518-M1/24"
+    }
+  ],
+  "license": "Municipal map reuse rights unverified; OSM calibration ODbL-1.0",
+  "propertyOverrides": {
+    "boundaryKind": "planning_unit",
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false,
+    "georeferencingIsApproximate": true,
+    "claimedAbsoluteAccuracyMetres": null,
+    "sourceIsHardBoundary": false,
+    "sourceIsOfficial": false
+  },
+  "reviewPath": "data/neighborhoods/manual-review.json",
+  "reviewDatasetId": "sopron-native-planning-units-next",
+  "rightsStatus": "Municipal-source factual contours; map reuse rights not independently established; OSM control geometry ODbL-1.0",
+  "independentReviewPath": "data/neighborhoods/sources/municipal-sopron-next/independent-review.json",
+  "independentReviewMeaning": "Native source geometry and transformation arithmetic independently verified; current legal validity, reuse rights and absolute positional accuracy remain unverified."
+}

@@ -1,0 +1,23 @@
+{
+  "id": "gyongyos-2016-source-contours-unverified-registration",
+  "path": "data/neighborhoods/sources/municipal-gyongyos-more/gyongyos-inferred.geojson",
+  "sha256": "4072e2c4ff5d1ee7da1747d195487392fc15b6be5ebd66fe1bf441dff0502104",
+  "municipality": "Gyöngyös",
+  "method": "Five real closed municipal source contours with explicitly unverified manually approximate affine geographic registration; estimated research layer only.",
+  "evidenceUrls": [
+    "https://gyongyos.hu/wp-content/uploads/2021/01/integralt-telepulesfejlesztesi-strategia-2016-its-gyongyos.pdf"
+  ],
+  "license": "Municipal/Google Earth imagery reuse licence unestablished; ODbL-1.0 for OSM calibration",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-gyongyos-more/independent-review.json",
+  "uncertainties": [
+    "All geographic placement remains unverified; no absolute accuracy asserted. Source contours are real and complete. North contour is omitted, not closed at the frame."
+  ],
+  "rightsStatus": "Municipal publication contains Google Earth / 2015 DigitalGlobe imagery. No open-reuse or redistribution licence for imagery/map has been independently established. OSM calibration ODbL-1.0."
+}

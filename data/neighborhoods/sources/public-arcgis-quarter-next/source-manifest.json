@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "status": "unregistered reviewed packet; six estimated candidates only",
+  "arcgis": {
+    "itemId": "a04e2a4ff4d2467c8bb6eb640f515b51",
+    "layerId": 0,
+    "sourceRecords": 77,
+    "uniqueLiteralNames": 76,
+    "nativeCrs": "EPSG:3857 (ArcGIS102100)",
+    "publishedGeojsonCrs": "EPSG:4326",
+    "fields": [
+      "FID",
+      "tipus",
+      "nev"
+    ],
+    "hostingDataEditUtc": "2025-06-02T23:33:23.324Z",
+    "originalBoundaryPeriod": null,
+    "lineage": null,
+    "reuseLicenseEstablished": false,
+    "searchOrganizationLabelDoesNotProvePublisher": true,
+    "rawNativeSha256": "d97a7d3ca556f3ed554a5e6c70381d196b41199ba1c5b1ee4f692a55e3e00792",
+    "rawPublishedGeojsonSha256": "fb7d0f0bae18b05263d5658221f0a612a2839193ce47413e05dc71401b18cf3e",
+    "countSha256": "9b3a218b2e4ed1da46308c6dcf68fe028fd0c8353ddcb4866757de12a62f90af",
+    "idsSha256": "f763185f4511f0caaccbb42282a54d75599a3acf6986c8c7e5b142046a1a74d2",
+    "queryAcquisitionProof": "query-acquisition-proof.json"
+  },
+  "municipalIdentityReference": {
+    "sourceUrl": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+    "sourcePdfSha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+    "sourceBytes": 14439107,
+    "localOriginalPath": ".local/neighborhoods/supplement-official-next/debrecen-fvs2023.pdf",
+    "publicationPeriod": "November2023",
+    "strategyHorizon": "2021–2027",
+    "historicalOrdinance": "32/2007.(VI.28.), already repealed by publication",
+    "role": "Historical name identity only; no same-schema or geometric-accuracy transfer",
+    "evidencePath": "debrecen-fvs-name-evidence.json",
+    "originalMapPath": "debrecen-fvs-p208-original.png",
+    "sixLabelCropsPath": "debrecen-fvs-six-table-label-crops.png",
+    "fullOriginalIncluded": false
+  },
+  "osmIdentityEvidence": {
+    "pbfLocalOriginal": ".local/neighborhoods/hungary-latest.osm.pbf",
+    "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "pbfTimestamp": "2026-11-12T21:23:05Z",
+    "retainedActualSourcePoints": "debrecen-source-name-points.geojson",
+    "pointRole": "Name/identity/location diagnostics only, never fit controls or polygon generation",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "pbfIncluded": false,
+    "independentSixNodeRevalidationPath": "first-six-independent-review.json"
+  },
+  "frozenCandidates": {
+    "count": 6,
+    "file": "debrecen-first-six-estimated.geojson",
+    "sha256": "0d2238b780220e2e1b091f6134afe55e26018edf0a4dd9260baf6e67e09f1c6a",
+    "classification": "ESTIMATED source placement/current extent; literal published coordinates unchanged",
+    "primaryAdmissions": 0,
+    "existing26Changed": false,
+    "wholeCurrentExtentVerified": false,
+    "absoluteAccuracyM": null,
+    "addressAssignmentApproved": false
+  },
+  "independentReviews": [
+    "independent-metadata-review.json",
+    "independent-geometry-review.json",
+    "baseline-overlap-review.json",
+    "first-six-independent-review.json"
+  ],
+  "allPairMetrics": "baseline-all-pair-metrics.csv",
+  "allPairCount": 2002,
+  "automaticAliases": 0,
+  "geometryCorrections": 0,
+  "globalWritesPerformed": false
+}

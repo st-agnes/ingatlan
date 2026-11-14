@@ -1,0 +1,558 @@
+{
+  "purpose": "Literal source-map name assignment only; these are native Figure 9 image pixels, never geographic controls or output boundary vertices.",
+  "sourceImage": "pecs-p48-names.jpeg",
+  "sourceImageNativeSize": [
+    585,
+    514
+  ],
+  "coordinateConvention": "x rightwards and y downwards from original image upper-left; zero-based approximate pixel coordinates",
+  "inspection": "Names read in original JPEG and nearest-neighbor enlarged inspection crops; table 8 supplies spelling, not cell assignment. Labels may cover a boundary, so verify transformed fine-cell containment before assigning.",
+  "anchors": [
+    {
+      "sourceName": "Kismélyvölgy",
+      "labelAnchorPixel": [
+        164,
+        207
+      ],
+      "interiorPixel": [
+        163,
+        215
+      ],
+      "confidence": "high",
+      "inspectionCrop": "west-grid",
+      "note": "Long name read in the narrow northern purple III body; selected interior lies immediately below its white label."
+    },
+    {
+      "sourceName": "Deindol",
+      "labelAnchorPixel": [
+        187,
+        214
+      ],
+      "interiorPixel": [
+        188,
+        220
+      ],
+      "confidence": "high",
+      "inspectionCrop": "west-grid",
+      "note": "Eastern northern purple III cell; do not confuse with Kismélyvölgy west of its fine divider."
+    },
+    {
+      "sourceName": "Donátus",
+      "labelAnchorPixel": [
+        185,
+        253
+      ],
+      "interiorPixel": [
+        185,
+        259
+      ],
+      "confidence": "high",
+      "inspectionCrop": "west-grid",
+      "note": "Purple III cell east of Ürög."
+    },
+    {
+      "sourceName": "Ürög",
+      "labelAnchorPixel": [
+        160,
+        272
+      ],
+      "interiorPixel": [
+        159,
+        278
+      ],
+      "confidence": "high",
+      "inspectionCrop": "west-grid",
+      "note": "Clear short label in the central western purple III cell."
+    },
+    {
+      "sourceName": "Patacs",
+      "labelAnchorPixel": [
+        122,
+        309
+      ],
+      "interiorPixel": [
+        121,
+        315
+      ],
+      "confidence": "high",
+      "inspectionCrop": "west-grid",
+      "note": "Purple III cell west of Ürög and above the colored southern strip."
+    },
+    {
+      "sourceName": "Makár",
+      "labelAnchorPixel": [
+        188,
+        292
+      ],
+      "interiorPixel": [
+        189,
+        298
+      ],
+      "confidence": "high",
+      "inspectionCrop": "west-grid",
+      "note": "Southeastern purple III cell; white label is north of the orange II strip."
+    },
+    {
+      "sourceName": "Somogy",
+      "labelAnchorPixel": [
+        451,
+        122
+      ],
+      "interiorPixel": [
+        449,
+        127
+      ],
+      "confidence": "high",
+      "inspectionCrop": "north-grid",
+      "note": "Large detached XII purple body southwest of Vasas; literal source label, not inferred from OSM point."
+    },
+    {
+      "sourceName": "Vasas",
+      "labelAnchorPixel": [
+        500,
+        91
+      ],
+      "interiorPixel": [
+        500,
+        96
+      ],
+      "confidence": "high",
+      "inspectionCrop": "north-grid",
+      "note": "Large northern XII purple body."
+    },
+    {
+      "sourceName": "Hird",
+      "labelAnchorPixel": [
+        532,
+        156
+      ],
+      "interiorPixel": [
+        533,
+        161
+      ],
+      "confidence": "high",
+      "inspectionCrop": "north-grid",
+      "note": "Large eastern XII purple body."
+    },
+    {
+      "sourceName": "Murom",
+      "labelAnchorPixel": [
+        454,
+        176
+      ],
+      "interiorPixel": [
+        454,
+        179
+      ],
+      "confidence": "high",
+      "inspectionCrop": "north-grid",
+      "note": "Small southern oval XII cell linked to Somogy by narrow extent."
+    },
+    {
+      "sourceName": "Újhegy",
+      "labelAnchorPixel": [
+        400,
+        270
+      ],
+      "interiorPixel": [
+        400,
+        276
+      ],
+      "confidence": "high",
+      "inspectionCrop": "central-grid",
+      "note": "Turquoise VII body. Here group VII follows figures 9/12, not table 8 numbering."
+    },
+    {
+      "sourceName": "Gyárváros",
+      "labelAnchorPixel": [
+        362,
+        282
+      ],
+      "interiorPixel": [
+        362,
+        288
+      ],
+      "confidence": "high",
+      "inspectionCrop": "central-grid",
+      "note": "Northern green VIII fine cell, west of turquoise Újhegy."
+    },
+    {
+      "sourceName": "Basamalom",
+      "labelAnchorPixel": [
+        344,
+        319
+      ],
+      "interiorPixel": [
+        346,
+        325
+      ],
+      "confidence": "high",
+      "inspectionCrop": "central-grid",
+      "note": "Western green VIII fine cell south of Gyárváros; label is close to the west boundary."
+    },
+    {
+      "sourceName": "Üszög",
+      "labelAnchorPixel": [
+        371,
+        335
+      ],
+      "interiorPixel": [
+        374,
+        342
+      ],
+      "confidence": "high",
+      "inspectionCrop": "central-grid",
+      "note": "Southern green VIII fine cell. Exact modern Üszögpuszta identity remains unconfirmed."
+    },
+    {
+      "sourceName": "Balokány",
+      "labelAnchorPixel": [
+        302,
+        314
+      ],
+      "interiorPixel": [
+        305,
+        318
+      ],
+      "confidence": "high",
+      "inspectionCrop": "central-grid",
+      "note": "Small northern red IX cell; separate from larger Tüskésrét below."
+    },
+    {
+      "sourceName": "Tüskésrét",
+      "labelAnchorPixel": [
+        310,
+        349
+      ],
+      "interiorPixel": [
+        311,
+        355
+      ],
+      "confidence": "high",
+      "inspectionCrop": "central-grid",
+      "note": "Large southeastern red IX cell."
+    },
+    {
+      "sourceName": "Füzes",
+      "labelAnchorPixel": [
+        205,
+        368
+      ],
+      "interiorPixel": [
+        205,
+        375
+      ],
+      "confidence": "high",
+      "inspectionCrop": "south-grid",
+      "note": "Southwestern red IX cell, west of green Kertváros; label is fully in the red body."
+    },
+    {
+      "sourceName": "Kertváros",
+      "labelAnchorPixel": [
+        254,
+        370
+      ],
+      "interiorPixel": [
+        254,
+        375
+      ],
+      "confidence": "high",
+      "inspectionCrop": "south-grid",
+      "note": "Northwestern green XI fine cell."
+    },
+    {
+      "sourceName": "Köztemető",
+      "labelAnchorPixel": [
+        283,
+        379
+      ],
+      "interiorPixel": [
+        285,
+        383
+      ],
+      "confidence": "high",
+      "inspectionCrop": "south-grid",
+      "note": "Northern central green XI fine cell; cemetery functional area, not automatically residential neighborhood."
+    },
+    {
+      "sourceName": "Nagyárpád",
+      "labelAnchorPixel": [
+        325,
+        394
+      ],
+      "interiorPixel": [
+        328,
+        399
+      ],
+      "confidence": "high",
+      "inspectionCrop": "south-grid",
+      "note": "Eastern green XI fine cell."
+    },
+    {
+      "sourceName": "Megyer",
+      "labelAnchorPixel": [
+        248,
+        404
+      ],
+      "interiorPixel": [
+        246,
+        410
+      ],
+      "confidence": "high",
+      "inspectionCrop": "south-grid",
+      "note": "Western central green XI cell; distinct from IX Észak-Megyer."
+    },
+    {
+      "sourceName": "Árpádváros",
+      "labelAnchorPixel": [
+        292,
+        404
+      ],
+      "interiorPixel": [
+        291,
+        411
+      ],
+      "confidence": "high",
+      "inspectionCrop": "south-grid",
+      "note": "Eastern central green XI cell."
+    },
+    {
+      "sourceName": "Málom",
+      "labelAnchorPixel": [
+        246,
+        443
+      ],
+      "interiorPixel": [
+        245,
+        449
+      ],
+      "confidence": "high",
+      "inspectionCrop": "south-grid",
+      "note": "Southwestern large green XI fine cell."
+    },
+    {
+      "sourceName": "Postavölgy",
+      "labelAnchorPixel": [
+        293,
+        444
+      ],
+      "interiorPixel": [
+        294,
+        451
+      ],
+      "confidence": "high",
+      "inspectionCrop": "south-grid",
+      "note": "Southeastern green XI fine cell."
+    },
+    {
+      "sourceName": "Déli gazdasági terület",
+      "labelAnchorPixel": [
+        244,
+        474
+      ],
+      "interiorPixel": [
+        252,
+        480
+      ],
+      "confidence": "high",
+      "inspectionCrop": "south-grid",
+      "note": "Single blue XIII source economic macro/fine unit; functional planning area, not residential neighborhood."
+    },
+    {
+      "sourceName": "Belváros",
+      "labelAnchorPixel": [
+        267,
+        281
+      ],
+      "interiorPixel": [
+        267,
+        287
+      ],
+      "confidence": "high",
+      "inspectionCrop": "inner-large",
+      "note": "Short name read in the central upper blue I cell."
+    },
+    {
+      "sourceName": "Szigeti külváros",
+      "labelAnchorPixel": [
+        230,
+        295
+      ],
+      "interiorPixel": [
+        227,
+        301
+      ],
+      "confidence": "high",
+      "inspectionCrop": "inner-large",
+      "note": "Long label read in the western upper blue I cell, east of Makár/Újmecsekalja."
+    },
+    {
+      "sourceName": "Ispitaalja",
+      "labelAnchorPixel": [
+        237,
+        315
+      ],
+      "interiorPixel": [
+        233,
+        321
+      ],
+      "confidence": "medium",
+      "inspectionCrop": "inner-large",
+      "note": "Image label and table8 name agree in the southwestern blue I cell; density table spells Ispitalja. Fine boundaries around the lower blue wedges need transformed cell check."
+    },
+    {
+      "sourceName": "Rácváros",
+      "labelAnchorPixel": [
+        152,
+        318
+      ],
+      "interiorPixel": [
+        151,
+        322
+      ],
+      "confidence": "high",
+      "inspectionCrop": "inner-large",
+      "note": "Western orange II fine cell."
+    },
+    {
+      "sourceName": "Újmecsekalja",
+      "labelAnchorPixel": [
+        193,
+        311
+      ],
+      "interiorPixel": [
+        191,
+        316
+      ],
+      "confidence": "high",
+      "inspectionCrop": "inner-large",
+      "note": "Upper eastern orange II fine cell. Source specifically distinguishes this from Uránváros below and Makár above."
+    },
+    {
+      "sourceName": "Uránváros",
+      "labelAnchorPixel": [
+        187,
+        330
+      ],
+      "interiorPixel": [
+        187,
+        334
+      ],
+      "confidence": "high",
+      "inspectionCrop": "inner-large",
+      "note": "Central/lower orange II fine cell; separate source outline from Újmecsekalja."
+    },
+    {
+      "sourceName": "Kovácstelep",
+      "labelAnchorPixel": [
+        169,
+        341
+      ],
+      "interiorPixel": [
+        167,
+        345
+      ],
+      "confidence": "high",
+      "inspectionCrop": "inner-large",
+      "note": "Southwestern orange II fine cell; do not assign it to adjacent blue X functional cells."
+    },
+    {
+      "sourceName": "Bálics",
+      "labelAnchorPixel": [
+        222,
+        234
+      ],
+      "interiorPixel": [
+        224,
+        240
+      ],
+      "confidence": "high",
+      "inspectionCrop": "mid-north-large",
+      "note": "Western upper yellow IV fine cell."
+    },
+    {
+      "sourceName": "Szkókó",
+      "labelAnchorPixel": [
+        211,
+        247
+      ],
+      "interiorPixel": [
+        211,
+        253
+      ],
+      "confidence": "high",
+      "inspectionCrop": "mid-north-large",
+      "note": "Narrow western yellow IV cell west of Rókusdomb."
+    },
+    {
+      "sourceName": "Mecsekoldal",
+      "labelAnchorPixel": [
+        257,
+        239
+      ],
+      "interiorPixel": [
+        259,
+        246
+      ],
+      "confidence": "high",
+      "inspectionCrop": "mid-north-large",
+      "note": "Large central yellow IV fine cell."
+    },
+    {
+      "sourceName": "Havihegy",
+      "labelAnchorPixel": [
+        290,
+        258
+      ],
+      "interiorPixel": [
+        291,
+        264
+      ],
+      "confidence": "high",
+      "inspectionCrop": "mid-north-large",
+      "note": "Southeastern yellow IV fine cell, west of blue I northeastern body."
+    },
+    {
+      "sourceName": "Piricsizma",
+      "labelAnchorPixel": [
+        317,
+        239
+      ],
+      "interiorPixel": [
+        316,
+        244
+      ],
+      "confidence": "medium",
+      "inspectionCrop": "mid-north-large",
+      "note": "Northeastern narrow yellow IV fine cell; source label extends near the blue/orange junction, so verify fine-cell containment carefully."
+    },
+    {
+      "sourceName": "Rókusdomb",
+      "labelAnchorPixel": [
+        235,
+        269
+      ],
+      "interiorPixel": [
+        236,
+        274
+      ],
+      "confidence": "high",
+      "inspectionCrop": "mid-north-large",
+      "note": "Southwestern/central yellow IV fine cell."
+    },
+    {
+      "sourceName": "Csoronika",
+      "labelAnchorPixel": [
+        213,
+        283
+      ],
+      "interiorPixel": [
+        215,
+        281
+      ],
+      "confidence": "medium",
+      "inspectionCrop": "mid-north-large",
+      "note": "Small southwestern yellow IV fine cell; label is long relative to the cell and extends near the III/I junction. Interior anchor must be checked against extracted outlines."
+    }
+  ]
+}

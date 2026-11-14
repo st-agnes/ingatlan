@@ -1,0 +1,30 @@
+{
+  "id": "nyiregyhaza-fine-ksh2003-inferred",
+  "path": "data/neighborhoods/sources/municipal-nyiregyhaza-fine2008-next/fine-historical-candidates.geojson",
+  "sha256": "781f7edab8578c50cb1058738ee9fd002867e9be341849e9bbc928c52c7c1bee",
+  "municipality": "Nyíregyháza",
+  "method": "Two actual upper KSH 2003 map pixel footprints reproduced in the March 2008 municipal IVS: one estimated historical neighborhood candidate (Örökösföld lakótelep), one estimated local-area research candidate (Érkert housing-estate footprint). The lower 11-unit key does not directly label the upper 27-unit components; cross-schema assignments remain inferred. No merged group is cloned. Inferred affine from 11 municipal-outline corners to current OSM relation, with 10 same-outline held-out corners and no independent interior holdouts; unknown absolute accuracy. Current name points support name existence only, with outside-point disagreements retained. Per-feature candidateBoundaryKind remains mixed; no global kind override.",
+  "evidenceUrls": [
+    "https://varoshaza.nyiregyhaza.hu/lib/fooldal/140210_ivs.pdf"
+  ],
+  "license": "Municipal/KSH map open reuse rights unverified; ODbL-1.0 for OSM references.",
+  "propertyOverrides": {
+    "estimated": true,
+    "boundaryKind": "inferred_area",
+    "canonicalNameIsNeighborhood": false,
+    "historicalGeometryOnly": true,
+    "currentWholeExtentValidated": false,
+    "usableForAddressAssignment": false,
+    "claimedAbsoluteAccuracyMetres": null,
+    "confidence": "low",
+    "sourceIsHardBoundary": false,
+    "sourceIsOfficial": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-nyiregyhaza-fine2008-next/independent-review.json",
+  "rightsStatus": "Public municipal publication; no independent open reuse licence established.",
+  "cohortCounts": {
+    "neighborhoodCandidates": 1,
+    "localAreaCandidates": 1,
+    "primaryFeatures": 0
+  }
+}

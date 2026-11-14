@@ -1,0 +1,682 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "working_independent_KSH_Henits_fine_identity_and_number_key_review",
+  "status": "Henits_has_explicit_fine_name_number_keys; KSH2014_number_key_not_independent; incompatible_industrial_resort_numbers_must_remain_source_specific",
+  "sources": [
+    {
+      "id": "henits2013",
+      "localRawPath": ".local/neighborhoods/quarter-map-batch/szeged-henits-ksh-map-2013.pdf",
+      "sha256": "b490214f9f038afe38fb1c74e24c0d5b99aeb04e54f192c417b06018363b3d0f",
+      "pages": 119,
+      "author": "Henits László",
+      "title": "Szubpixel-alapú osztályozás alkalmazása a városi felszínborítás és területhasználat elemzésében",
+      "year": 2013,
+      "sourceRole": "Doctoral dissertation; section3.2 derives internal city division from KSH2003 publication.",
+      "mapPdfPageOneBased": 24,
+      "mapPrintedPage": 23,
+      "figure": "3.2",
+      "nativeImageXref": 249,
+      "nativeImageSizePixels": [
+        1174,
+        1018
+      ],
+      "representation": "One native raster map. Fine black outlines/numeric IDs occur within9functional color categories. Functional colors are not individual quarter IDs.",
+      "rawBodyKeyPagesOneBased": [
+        24,
+        25,
+        26,
+        86,
+        88,
+        89,
+        93,
+        94
+      ]
+    },
+    {
+      "id": "ksh2014",
+      "localRawPath": ".local/neighborhoods/quarter-map-batch/ksh-szeged-map-2014.pdf",
+      "sha256": "9a61caa7d022e0d623bd78f21ce8d8953fa7e47f49ba48be5c18b13c44286995",
+      "pages": 89,
+      "author": "Rácz Attila",
+      "publisher": "KSH",
+      "title": "Szegregáció a fejekben",
+      "year": 2014,
+      "sourceRole": "KSH Műhelytanulmányok4 research publication, using 2001census functional units and citing Kovács2003.",
+      "mapPdfPageOneBased": 54,
+      "mapPrintedPage": 53,
+      "figure": 1,
+      "representation": "Native map raster assembled from5image strips, rotated for viewing. Fine numbered areas are shown in9functional colors; body discusses10categories including other outlying territory.",
+      "rawBodyNameContextPagesOneBased": [
+        53,
+        89
+      ],
+      "explicitIndependentBodyNumberNameKeyFound": false
+    }
+  ],
+  "schemaMeaning": {
+    "commonUpstreamSource": "KSH/Kovács2003, concerning2001census spatial units; publication years2013/2014 are not proven boundary survey dates.",
+    "namedFineAreasSupported": true,
+    "notMerelyNineColorRegions": true,
+    "notActionAreas": true,
+    "fineAreaStatus": "Source-era named neighborhoods/settlement parts occur within a statistical functional-area scheme. Every label still requires identity and scope review; generic functional districts are not automatically current canonical quarters.",
+    "notCurrentLegalBoundaryProof": true,
+    "mapIsNotWholeMunicipalityCoverage": "Blank/generic outside spaces and omitted far-out units must not be filled into fabricated full-city quarters."
+  },
+  "HenitsExplicitBodyNameNumberKey": [
+    {
+      "sourceUnitNumber": 1,
+      "sourceNameAsPrinted": "Történelmi városközpont",
+      "supportPdfPagesOneBased": [
+        24
+      ],
+      "supportPrintedPages": [
+        23
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 2,
+      "sourceNameAsPrinted": "Belső városrész",
+      "supportPdfPagesOneBased": [
+        24
+      ],
+      "supportPrintedPages": [
+        23
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 3,
+      "sourceNameAsPrinted": "Alsóváros",
+      "supportPdfPagesOneBased": [
+        25,
+        86
+      ],
+      "supportPrintedPages": [
+        24,
+        85
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 4,
+      "sourceNameAsPrinted": "Móraváros",
+      "supportPdfPagesOneBased": [
+        25,
+        86
+      ],
+      "supportPrintedPages": [
+        24,
+        85
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 5,
+      "sourceNameAsPrinted": "Rókus-Móraváros",
+      "supportPdfPagesOneBased": [
+        25,
+        86
+      ],
+      "supportPrintedPages": [
+        24,
+        85
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 6,
+      "sourceNameAsPrinted": "Rókus",
+      "supportPdfPagesOneBased": [
+        25,
+        86
+      ],
+      "supportPrintedPages": [
+        24,
+        85
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 7,
+      "sourceNameAsPrinted": "Ófelsőváros",
+      "supportPdfPagesOneBased": [
+        25,
+        86,
+        88
+      ],
+      "supportPrintedPages": [
+        24,
+        85,
+        87
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 8,
+      "sourceNameAsPrinted": "Újszeged",
+      "supportPdfPagesOneBased": [
+        25,
+        93
+      ],
+      "supportPrintedPages": [
+        24,
+        92
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 9,
+      "sourceNameAsPrinted": "Fodor-kert",
+      "supportPdfPagesOneBased": [
+        93
+      ],
+      "supportPrintedPages": [
+        92
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 10,
+      "sourceNameAsPrinted": "Fűvészkert",
+      "supportPdfPagesOneBased": [
+        25,
+        93
+      ],
+      "supportPrintedPages": [
+        24,
+        92
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 11,
+      "sourceNameAsPrinted": "Marostő",
+      "supportPdfPagesOneBased": [
+        25,
+        93,
+        94
+      ],
+      "supportPrintedPages": [
+        24,
+        92,
+        93
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 12,
+      "sourceNameAsPrinted": "Tápé",
+      "supportPdfPagesOneBased": [
+        26,
+        50
+      ],
+      "supportPrintedPages": [
+        25,
+        49
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 13,
+      "sourceNameAsPrinted": "Petőfitelep",
+      "supportPdfPagesOneBased": [
+        26,
+        50
+      ],
+      "supportPrintedPages": [
+        25,
+        49
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 14,
+      "sourceNameAsPrinted": "Új-Petőfitelep",
+      "supportPdfPagesOneBased": [
+        26,
+        93
+      ],
+      "supportPrintedPages": [
+        25,
+        92
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 15,
+      "sourceNameAsPrinted": "Baktó",
+      "supportPdfPagesOneBased": [
+        26,
+        93,
+        94
+      ],
+      "supportPrintedPages": [
+        25,
+        92,
+        93
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 16,
+      "sourceNameAsPrinted": "Béke-telep / Béketelep",
+      "supportPdfPagesOneBased": [
+        25,
+        93
+      ],
+      "supportPrintedPages": [
+        24,
+        92
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 17,
+      "sourceNameAsPrinted": "Gyálarét",
+      "supportPdfPagesOneBased": [
+        26
+      ],
+      "supportPrintedPages": [
+        25
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 18,
+      "sourceNameAsPrinted": "Szőreg",
+      "supportPdfPagesOneBased": [
+        26
+      ],
+      "supportPrintedPages": [
+        25
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 19,
+      "sourceNameAsPrinted": "Klebersberg-telep",
+      "supportPdfPagesOneBased": [
+        26,
+        93
+      ],
+      "supportPrintedPages": [
+        25,
+        92
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 20,
+      "sourceNameAsPrinted": "Kecskés-telep",
+      "supportPdfPagesOneBased": [
+        25,
+        93
+      ],
+      "supportPrintedPages": [
+        24,
+        92
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 21,
+      "sourceNameAsPrinted": "Szentmihály",
+      "supportPdfPagesOneBased": [
+        26
+      ],
+      "supportPrintedPages": [
+        25
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 22,
+      "sourceNameAsPrinted": "Felsőváros",
+      "supportPdfPagesOneBased": [
+        25,
+        89
+      ],
+      "supportPrintedPages": [
+        24,
+        88
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 23,
+      "sourceNameAsPrinted": "Tarján",
+      "supportPdfPagesOneBased": [
+        25,
+        89
+      ],
+      "supportPrintedPages": [
+        24,
+        88
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 24,
+      "sourceNameAsPrinted": "Makkosháza",
+      "supportPdfPagesOneBased": [
+        25,
+        89
+      ],
+      "supportPrintedPages": [
+        24,
+        88
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 25,
+      "sourceNameAsPrinted": "Északi városrész",
+      "supportPdfPagesOneBased": [
+        25,
+        89
+      ],
+      "supportPrintedPages": [
+        24,
+        88
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 26,
+      "sourceNameAsPrinted": "Újrókus",
+      "supportPdfPagesOneBased": [
+        25,
+        89
+      ],
+      "supportPrintedPages": [
+        24,
+        88
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 27,
+      "sourceNameAsPrinted": "Újszőreg",
+      "supportPdfPagesOneBased": [
+        26,
+        93
+      ],
+      "supportPrintedPages": [
+        25,
+        92
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 28,
+      "sourceNameAsPrinted": "Odessza",
+      "supportPdfPagesOneBased": [
+        25,
+        89
+      ],
+      "supportPrintedPages": [
+        24,
+        88
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 29,
+      "sourceNameAsPrinted": "Sárga",
+      "supportPdfPagesOneBased": [
+        26
+      ],
+      "supportPrintedPages": [
+        25
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 30,
+      "sourceNameAsPrinted": "Tömörkény",
+      "supportPdfPagesOneBased": [
+        26
+      ],
+      "supportPrintedPages": [
+        25
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 33,
+      "sourceNameAsPrinted": "Tiszavirág",
+      "supportPdfPagesOneBased": [
+        26
+      ],
+      "supportPrintedPages": [
+        25
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 35,
+      "sourceNameAsPrinted": "Kiskundorozsma",
+      "supportPdfPagesOneBased": [
+        26,
+        50
+      ],
+      "supportPrintedPages": [
+        25,
+        49
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 38,
+      "sourceNameAsPrinted": "Ballagitói kiskertek",
+      "supportPdfPagesOneBased": [
+        26
+      ],
+      "supportPrintedPages": [
+        25
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 39,
+      "sourceNameAsPrinted": "Gyálaréti kiskertek",
+      "supportPdfPagesOneBased": [
+        26
+      ],
+      "supportPrintedPages": [
+        25
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 40,
+      "sourceNameAsPrinted": "Marostői kiskertek",
+      "supportPdfPagesOneBased": [
+        26
+      ],
+      "supportPrintedPages": [
+        25
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 41,
+      "sourceNameAsPrinted": "Szőregi kiskertek",
+      "supportPdfPagesOneBased": [
+        26
+      ],
+      "supportPrintedPages": [
+        25
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 42,
+      "sourceNameAsPrinted": "Tápéi kiskertek",
+      "supportPdfPagesOneBased": [
+        26
+      ],
+      "supportPrintedPages": [
+        25
+      ],
+      "keyType": "explicit_body_name_number_association"
+    },
+    {
+      "sourceUnitNumber": 43,
+      "sourceNameAsPrinted": "Tompaszigeti kiskertek",
+      "supportPdfPagesOneBased": [
+        26
+      ],
+      "supportPrintedPages": [
+        25
+      ],
+      "keyType": "explicit_body_name_number_association"
+    }
+  ],
+  "targetKeyDecisions": [
+    {
+      "number": 19,
+      "HenitsNameAsPrinted": "Klebersberg-telep",
+      "canonicalNameLead": "Klebelsberg-telep / Klebelsbergtelep",
+      "decision": "Strong candidate fine identity. The dissertation repeats a spelling error; retain source spelling and record any normalization explicitly, corroborated by correct KSH2014/local-history/current point names. Do not create a second Klebersberg identity.",
+      "Ksh2014NumberAssociation": "Map19 plus matching garden-suburb location and corresponding name in body; corroborated against Henits, not an independent textual KSH key."
+    },
+    {
+      "number": 20,
+      "HenitsNameAsPrinted": "Kecskés-telep",
+      "decision": "Strong separate fine identity; not an alias of Klebelsberg or Hattyas.",
+      "Ksh2014NumberAssociation": "Map20, matching location/category; name listed in body but number not keyed there."
+    },
+    {
+      "number": 28,
+      "HenitsNameAsPrinted": "Odessza",
+      "decision": "Strong whole source-era estate identity. This map unit is distinct from an IVS action-area scope.",
+      "Ksh2014NumberAssociation": "Map28, matching estate category/location; body names estate without numeric key."
+    },
+    {
+      "number": 7,
+      "HenitsNameAsPrinted": "Ófelsőváros",
+      "decision": "Explicit old residential quarter name, separate from estate22Felsőváros. First compare shape with the frozen four-road Felsővárosi planning polygon; do not silently rename or count a clone.",
+      "Ksh2014NumberAssociation": "Map7 lies corresponding old residential band; KSH body uses broader Felsőváros name, so do not claim an independent Ófelsőváros7text key."
+    },
+    {
+      "number": 11,
+      "HenitsNameAsPrinted": "Marostő",
+      "decision": "Strong named fine garden-suburb identity. Preserve source extent; not the newer Marostői lakópark or Marostői kiskertek40.",
+      "Ksh2014NumberAssociation": "Map11 with matching garden-suburb location; body names Marostő but does not key11."
+    },
+    {
+      "number": 27,
+      "HenitsNameAsPrinted": "Újszőreg",
+      "decision": "Strong repeated explicit association; separate from Szőreg18.",
+      "Ksh2014NumberAssociation": "Map27 with matching garden-suburb location and body name, not independent textual key."
+    },
+    {
+      "number": 6,
+      "HenitsNameAsPrinted": "Rókus",
+      "decision": "Explicit source name is Rókus. No source-supported Órókus/Ó-Rókus name-number alias was established; do not invent that canonical label."
+    }
+  ],
+  "knownKeyAndVersionConflicts": [
+    {
+      "issue": "Industrial/resort32/34 disagreement",
+      "Ksh2014Observation": "Large western gray industrial extent labeled32; detached far-west purple resort extent labeled34.",
+      "HenitsObservation": "Large western gray industrial extent labeled34, with a separate smaller inner gray industrial extent labeled32; the far-west resort34shape is absent.",
+      "rule": "Keep separate source-schema namespaces; do not use one global number-to-name dictionary or equate same-number geometries across maps. Neither gray area is authority to invent an Iparváros canonical neighborhood."
+    },
+    {
+      "issue": "Duplicated27inHenits prose",
+      "observation": "Henits PDF26 explicitly uses27forÚjszőreg and also prints Bodomi kiskertek(27). Repeated PDF93 association supports Újszőreg27; the other association is unresolved/likely a source typo.",
+      "rule": "Quarantine Bodomi27mapping. Do not silently correct it to37or another missing code, or alias Bodomi with Újszőreg."
+    },
+    {
+      "issue": "Unkeyed generic/other units",
+      "observation": "Map31is visually the villa-category extent, but a direct body31name association was not found;32/34are industrial map IDs. KSH-only34/44and omitted labels require original key verification.",
+      "rule": "Defer generic or unkeyed units from the first actual-fine cohort. Do not promote a legend color to multiple named child quarters."
+    }
+  ],
+  "proposedUsefulCohorts": {
+    "firstFiveSourceIdentities": [
+      {
+        "number": 19,
+        "name": "Klebelsberg-telep"
+      },
+      {
+        "number": 20,
+        "name": "Kecskés-telep"
+      },
+      {
+        "number": 28,
+        "name": "Odessza"
+      },
+      {
+        "number": 11,
+        "name": "Marostő"
+      },
+      {
+        "number": 27,
+        "name": "Újszőreg"
+      }
+    ],
+    "why": "Explicit repeated Henits name-number evidence, individually visible source contours, and no existing accepted canonical geometry for these identities. They address concrete unresolved-quarter gaps without Tarján duplication.",
+    "nextNamedCohort": [
+      {
+        "number": 3,
+        "name": "Alsóváros"
+      },
+      {
+        "number": 4,
+        "name": "Móraváros"
+      },
+      {
+        "number": 6,
+        "name": "Rókus"
+      },
+      {
+        "number": 24,
+        "name": "Makkosháza"
+      },
+      {
+        "number": 25,
+        "name": "Északi városrész"
+      },
+      {
+        "number": 26,
+        "name": "Újrókus"
+      }
+    ],
+    "deferUntilIdentityOverlapComparison": [
+      {
+        "number": 23,
+        "name": "Tarján",
+        "reason": "Same identity as accepted source-era Tarjánváros; new source map is a version/refinement, not another quarter."
+      },
+      {
+        "number": 22,
+        "name": "Felsőváros",
+        "reason": "Estate label conflicts with existing planning-only small Felsővárosi circuit; distinguish from7Ófelsőváros before counting."
+      },
+      {
+        "number": 7,
+        "name": "Ófelsőváros",
+        "reason": "Useful fine source identity but may overlap/clarify the existing planning circuit; independent geometry/identity comparison first."
+      },
+      {
+        "number": 5,
+        "name": "Rókus-Móraváros",
+        "reason": "Named statistical intermediate area, not automatically modern Kálvária; no location-only alias."
+      }
+    ]
+  },
+  "georeferenceLimits": [
+    "These are source raster diagrams, not georeferenced quarter vectors. Cleaner Henits linework does not establish a projection or positional accuracy.",
+    "World placement must be independently estimated/calibrated using actual roads/geographic features; quarter label points are identity evidence only.",
+    "Common upstreamKSH2003means the two publications are corroborating renditions, not independent survey confirmation."
+  ],
+  "geometryProduced": false,
+  "frozenExistingGeometryOrCatalogModified": false,
+  "globalRegistryModified": false,
+  "networkCallsPerformed": false,
+  "directNarrativeQuotationWords": 0
+}

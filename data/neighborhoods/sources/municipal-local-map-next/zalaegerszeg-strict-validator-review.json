@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "validator": "scripts/neighborhoods/build.mjs validateGeometry; existing unmodified validator",
+  "sourceSha256": "07a1475da509dcbc8216eb1ca23c91933e8cca376e736911d4494e424ccc0915",
+  "sourceRecords": 7,
+  "strictImportRecords": 5,
+  "quarantinedRecords": 2,
+  "records": [
+    {
+      "name": "Belváros",
+      "sourceUnitNumber": 1,
+      "validation": {
+        "valid": true,
+        "bbox": [
+          16.828486424924897,
+          46.83700435427193,
+          16.852175396859735,
+          46.85086067914179
+        ],
+        "vertices": 814
+      },
+      "preservedInRawSource": true,
+      "geometryChangedForImport": false
+    },
+    {
+      "name": "Ola",
+      "sourceUnitNumber": 2,
+      "validation": {
+        "valid": false,
+        "reason": "hole_outside_shell"
+      },
+      "preservedInRawSource": true,
+      "geometryChangedForImport": false
+    },
+    {
+      "name": "Landorhegy",
+      "sourceUnitNumber": 3,
+      "validation": {
+        "valid": false,
+        "reason": "hole_outside_shell"
+      },
+      "preservedInRawSource": true,
+      "geometryChangedForImport": false
+    },
+    {
+      "name": "Páterdomb",
+      "sourceUnitNumber": 4,
+      "validation": {
+        "valid": true,
+        "bbox": [
+          16.844102957014712,
+          46.82780122322666,
+          16.852574940482782,
+          46.84432992116986
+        ],
+        "vertices": 702
+      },
+      "preservedInRawSource": true,
+      "geometryChangedForImport": false
+    },
+    {
+      "name": "Kertváros",
+      "sourceUnitNumber": 5,
+      "validation": {
+        "valid": true,
+        "bbox": [
+          16.82188405380379,
+          46.8172973248283,
+          16.844778401897596,
+          46.837171503213455
+        ],
+        "vertices": 1147
+      },
+      "preservedInRawSource": true,
+      "geometryChangedForImport": false
+    },
+    {
+      "name": "Csácsbozsok",
+      "sourceUnitNumber": 7,
+      "validation": {
+        "valid": true,
+        "bbox": [
+          16.85206835246152,
+          46.83146463374065,
+          16.87860861789009,
+          46.853153331303325
+        ],
+        "vertices": 1297
+      },
+      "preservedInRawSource": true,
+      "geometryChangedForImport": false
+    },
+    {
+      "name": "Vorhota",
+      "sourceUnitNumber": 8,
+      "validation": {
+        "valid": true,
+        "bbox": [
+          16.786560329905818,
+          46.848184836534784,
+          16.82205270204002,
+          46.85723262831814
+        ],
+        "vertices": 1048
+      },
+      "preservedInRawSource": true,
+      "geometryChangedForImport": false
+    }
+  ]
+}

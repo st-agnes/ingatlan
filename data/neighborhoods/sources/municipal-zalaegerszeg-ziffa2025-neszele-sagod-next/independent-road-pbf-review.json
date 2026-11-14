@@ -1,0 +1,720 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "independent_direct_local_pbf_complete_road_way_verification",
+  "reviewer": "independent child agent zala_semantic_qa",
+  "status": "all86_complete_original_road_ways_match_pinned_local_pbf",
+  "inputs": [
+    {
+      "path": ".local/neighborhoods/hungary-latest.osm.pbf",
+      "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a"
+    },
+    {
+      "path": "road-geographic-reference.geojson",
+      "sha256": "a9c5b4dbd55079275740828d9888ae7289cd35718d369e8e617f4e6a1393d798"
+    },
+    {
+      "path": "independent-road-pbf-review.py",
+      "sha256": "d2dcd87cf5636c7cb167371e3c033e76ca928e3cd9e8ec16b498f85603022e5b"
+    }
+  ],
+  "algorithm": "Entity-restricted FileProcessor plus C++ IdFilter first selects86ways, then all their original node IDs. Compare complete ordered nodeRefs, tags, versions, timestamps and every original node coordinate.",
+  "wayCount": 86,
+  "uniqueNodeCount": 623,
+  "coordinateOccurrencesChecked": 711,
+  "maximumCoordinateDifferenceDegrees": 0.0,
+  "generatedVerticesOrClippedSegments": false,
+  "checks": [
+    {
+      "id": "osm:way:33754353",
+      "nodeCount": 12,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:33754355",
+      "nodeCount": 14,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:33754358",
+      "nodeCount": 7,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:33754359",
+      "nodeCount": 11,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:33754361",
+      "nodeCount": 4,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:33754362",
+      "nodeCount": 4,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:33754364",
+      "nodeCount": 7,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:41819985",
+      "nodeCount": 2,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:113620588",
+      "nodeCount": 14,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822187",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822188",
+      "nodeCount": 14,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822189",
+      "nodeCount": 6,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822190",
+      "nodeCount": 10,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822191",
+      "nodeCount": 6,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822192",
+      "nodeCount": 23,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822193",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822195",
+      "nodeCount": 8,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822196",
+      "nodeCount": 6,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822198",
+      "nodeCount": 17,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822199",
+      "nodeCount": 2,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822200",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822201",
+      "nodeCount": 14,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822203",
+      "nodeCount": 9,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822205",
+      "nodeCount": 5,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822206",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822209",
+      "nodeCount": 11,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822211",
+      "nodeCount": 14,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:148822704",
+      "nodeCount": 13,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:149153759",
+      "nodeCount": 18,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:149153760",
+      "nodeCount": 6,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:149153762",
+      "nodeCount": 42,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:149157491",
+      "nodeCount": 20,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:149157493",
+      "nodeCount": 10,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:149157495",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:149157496",
+      "nodeCount": 11,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:209175688",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:209329533",
+      "nodeCount": 2,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:209364333",
+      "nodeCount": 6,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:209364334",
+      "nodeCount": 14,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:209371097",
+      "nodeCount": 15,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:209390430",
+      "nodeCount": 11,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:209398559",
+      "nodeCount": 2,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:209584328",
+      "nodeCount": 20,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:209587534",
+      "nodeCount": 19,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:216919721",
+      "nodeCount": 20,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:229324208",
+      "nodeCount": 2,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:229324209",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:372274456",
+      "nodeCount": 35,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:372275268",
+      "nodeCount": 10,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:441414762",
+      "nodeCount": 4,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:441416182",
+      "nodeCount": 4,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:441416184",
+      "nodeCount": 9,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:441581537",
+      "nodeCount": 8,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:525934858",
+      "nodeCount": 2,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:647858242",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:647858243",
+      "nodeCount": 4,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:647858268",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:647858269",
+      "nodeCount": 4,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:647858272",
+      "nodeCount": 12,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:647858273",
+      "nodeCount": 4,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:647858286",
+      "nodeCount": 7,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:647864012",
+      "nodeCount": 5,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:840882441",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:912224017",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1025239691",
+      "nodeCount": 5,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1062307677",
+      "nodeCount": 5,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1079489637",
+      "nodeCount": 4,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1089010533",
+      "nodeCount": 2,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1185477286",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1189393354",
+      "nodeCount": 8,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1189393355",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1189393356",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1189393357",
+      "nodeCount": 5,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1309322474",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1309322475",
+      "nodeCount": 8,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1482678032",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1483635039",
+      "nodeCount": 13,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1483635045",
+      "nodeCount": 7,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1483635046",
+      "nodeCount": 6,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1483635047",
+      "nodeCount": 2,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1483948546",
+      "nodeCount": 4,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1483948547",
+      "nodeCount": 11,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1483948548",
+      "nodeCount": 12,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1483948552",
+      "nodeCount": 3,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1483948553",
+      "nodeCount": 2,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    },
+    {
+      "id": "osm:way:1483948555",
+      "nodeCount": 7,
+      "completeNodeRefsEqualInOriginalOrder": true,
+      "allTagsEqual": true,
+      "versionAndTimestampEqual": true,
+      "maximumCoordinateDifferenceDegrees": 0.0
+    }
+  ],
+  "limits": "Confirms local reference fidelity only. It does not establish source-map correspondence, map accuracy, neighborhood boundaries or address suitability.",
+  "networkCallsPerformed": false,
+  "globalRegistryModified": false,
+  "hathazFrozenPacketModified": false
+}

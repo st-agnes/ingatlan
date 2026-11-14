@@ -1,0 +1,4990 @@
+{
+  "schemaVersion": 1,
+  "method": "Native WGS84 literal OSM segment graph plus exact geometric road/river intersections; EPSG23700 used only for length/area and preview; polygonize existing edges; enumerate finite contiguous face unions and choose minimum-area union whose boundary contains every cited named road and the river. No buffer, circle, bounding box, synthetic connector, straight endpoint closure, repair or snapping.",
+  "sourceContourIsObserved": false,
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "sourceLinesSha256": "ecd6e34a526e0ac74dd0c9101358060c4e386917f39d6acb75e30dffbea3ee29",
+  "assumptions": [
+    {
+      "id": "villogo-internal-stagger",
+      "sourceRole": "Continuity within source-named Villogó utca",
+      "chosenExistingRoadPathLengthM": 16.545573010344416,
+      "chosenPathEdges": [
+        {
+          "a": 820854370,
+          "b": 3213014116,
+          "coordinates": [
+            [
+              20.2686123,
+              46.648062
+            ],
+            [
+              20.2685105,
+              46.6481933
+            ]
+          ],
+          "name": "Mátyás király utca",
+          "lengthM": 16.545573010344416,
+          "sourceWayId": 315199398,
+          "sourceNodeIndex": 0
+        }
+      ],
+      "qualification": "The contemporary named Villogó road is split by a stagger across Mátyás király utca. Existing road graph connector only; source does not explicitly name the intermediary modern segment."
+    },
+    {
+      "id": "river-arany",
+      "sourceRole": "Arany János to Kurca",
+      "chosenExistingRoadPathLengthM": 114.3433796639754,
+      "chosenPathEdges": [
+        {
+          "a": 1628612054,
+          "b": 1629558133,
+          "coordinates": [
+            [
+              20.2539653,
+              46.6555851
+            ],
+            [
+              20.2539876,
+              46.655173
+            ]
+          ],
+          "name": "Ifjúsági sétány",
+          "lengthM": 45.841135618829,
+          "sourceWayId": 150014536,
+          "sourceNodeIndex": 2
+        },
+        {
+          "a": 1629558133,
+          "b": 1748655532,
+          "coordinates": [
+            [
+              20.2539876,
+              46.655173
+            ],
+            [
+              20.2540455,
+              46.6546219
+            ]
+          ],
+          "name": "Ifjúsági sétány",
+          "lengthM": 61.420786541769345,
+          "sourceWayId": 150014536,
+          "sourceNodeIndex": 3
+        },
+        {
+          "a": 1748655532,
+          "b": 1888747777,
+          "coordinates": [
+            [
+              20.2540455,
+              46.6546219
+            ],
+            [
+              20.2539531,
+              46.6546251
+            ]
+          ],
+          "name": "",
+          "lengthM": 7.081457503377058,
+          "sourceWayId": 215028505,
+          "sourceNodeIndex": 0
+        }
+      ],
+      "chosenPhysicalBridgeWayId": 178546767,
+      "qualification": "Source does not choose this southward river-adjacent path or current bridge. It is the shortest observed highway path to this nearby physical crossing. The direct text junction is absent from OSM by 37.54 m. This is a low-confidence local detour."
+    },
+    {
+      "id": "apponyi-square",
+      "sourceRole": "Deák–Apponyi tér–Baross",
+      "directSideLengthM": 150.65067250357004,
+      "directSideEdges": [
+        {
+          "a": 1628319577,
+          "b": 11443782358,
+          "coordinates": [
+            [
+              20.2681081,
+              46.6563956
+            ],
+            [
+              20.2685115,
+              46.6559861
+            ]
+          ],
+          "name": "Deák Ferenc utca",
+          "lengthM": 55.00405938601648,
+          "sourceWayId": 370926714,
+          "sourceNodeIndex": 2
+        },
+        {
+          "a": 11443782358,
+          "b": 7802121895,
+          "coordinates": [
+            [
+              20.2685115,
+              46.6559861
+            ],
+            [
+              20.2686044,
+              46.6558918
+            ]
+          ],
+          "name": "Deák Ferenc utca",
+          "lengthM": 12.666601578099863,
+          "sourceWayId": 370926714,
+          "sourceNodeIndex": 3
+        },
+        {
+          "a": 7802121895,
+          "b": 11443782361,
+          "coordinates": [
+            [
+              20.2686044,
+              46.6558918
+            ],
+            [
+              20.2688751,
+              46.6556169
+            ]
+          ],
+          "name": "Deák Ferenc utca",
+          "lengthM": 36.92016287510633,
+          "sourceWayId": 370926714,
+          "sourceNodeIndex": 4
+        },
+        {
+          "a": 11443782361,
+          "b": 625634329,
+          "coordinates": [
+            [
+              20.2688751,
+              46.6556169
+            ],
+            [
+              20.2691942,
+              46.6552656
+            ]
+          ],
+          "name": "Deák Ferenc utca",
+          "lengthM": 46.05984866434737,
+          "sourceWayId": 370926714,
+          "sourceNodeIndex": 5
+        }
+      ],
+      "aroundSquareLengthM": 467.228554012709,
+      "aroundSquareEdges": [
+        {
+          "a": 3744968118,
+          "b": 7802121890,
+          "coordinates": [
+            [
+              20.2658704,
+              46.6554962
+            ],
+            [
+              20.266013,
+              46.6552708
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 27.32979082421348,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 13
+        },
+        {
+          "a": 7802121890,
+          "b": 3790299945,
+          "coordinates": [
+            [
+              20.266013,
+              46.6552708
+            ],
+            [
+              20.266098,
+              46.6551363
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 16.305351920093077,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 14
+        },
+        {
+          "a": 3790299945,
+          "b": 1629494761,
+          "coordinates": [
+            [
+              20.266098,
+              46.6551363
+            ],
+            [
+              20.2663419,
+              46.6545028
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 72.85287369766272,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 15
+        },
+        {
+          "a": 1629494761,
+          "b": 3333745938,
+          "coordinates": [
+            [
+              20.2663419,
+              46.6545028
+            ],
+            [
+              20.2665409,
+              46.6539496
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 63.352529100040414,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 16
+        },
+        {
+          "a": 3333745938,
+          "b": 13006995078,
+          "coordinates": [
+            [
+              20.2665409,
+              46.6539496
+            ],
+            [
+              20.2665923,
+              46.6538048
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 16.5699323066664,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 17
+        },
+        {
+          "a": 13006995078,
+          "b": 3145128816,
+          "coordinates": [
+            [
+              20.2665923,
+              46.6538048
+            ],
+            [
+              20.266624,
+              46.6537259
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 9.10003857602002,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 18
+        },
+        {
+          "a": 3145128816,
+          "b": 1629506882,
+          "coordinates": [
+            [
+              20.266624,
+              46.6537259
+            ],
+            [
+              20.2666459,
+              46.6536754
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 5.858558729014438,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 19
+        },
+        {
+          "a": 1629506882,
+          "b": 820854214,
+          "coordinates": [
+            [
+              20.2666459,
+              46.6536754
+            ],
+            [
+              20.2666723,
+              46.6536287
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 5.570644774683673,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 20
+        },
+        {
+          "a": 3790299942,
+          "b": 820854214,
+          "coordinates": [
+            [
+              20.266715,
+              46.6536317
+            ],
+            [
+              20.2666723,
+              46.6536287
+            ]
+          ],
+          "name": "",
+          "lengthM": 3.2853895497741767,
+          "sourceWayId": 370926717,
+          "sourceNodeIndex": 3
+        },
+        {
+          "a": 1748655530,
+          "b": 3790299942,
+          "coordinates": [
+            [
+              20.2667558,
+              46.6536225
+            ],
+            [
+              20.266715,
+              46.6536317
+            ]
+          ],
+          "name": "",
+          "lengthM": 3.286171644998936,
+          "sourceWayId": 370926717,
+          "sourceNodeIndex": 2
+        },
+        {
+          "a": 12120421502,
+          "b": 1748655530,
+          "coordinates": [
+            [
+              20.2667876,
+              46.6536028
+            ],
+            [
+              20.2667558,
+              46.6536225
+            ]
+          ],
+          "name": "",
+          "lengthM": 3.2741914721021046,
+          "sourceWayId": 370926717,
+          "sourceNodeIndex": 1
+        },
+        {
+          "a": 999302240,
+          "b": 12120421502,
+          "coordinates": [
+            [
+              20.2668051,
+              46.6535759
+            ],
+            [
+              20.2667876,
+              46.6536028
+            ]
+          ],
+          "name": "",
+          "lengthM": 3.276545111163915,
+          "sourceWayId": 370926717,
+          "sourceNodeIndex": 0
+        },
+        {
+          "a": 999302240,
+          "b": 13006995077,
+          "coordinates": [
+            [
+              20.2668051,
+              46.6535759
+            ],
+            [
+              20.2668504,
+              46.6535944
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 4.031402695987234,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 0
+        },
+        {
+          "a": 13006995077,
+          "b": 1765063647,
+          "coordinates": [
+            [
+              20.2668504,
+              46.6535944
+            ],
+            [
+              20.2668858,
+              46.6536155
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 3.583789416647796,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 1
+        },
+        {
+          "a": 1765063647,
+          "b": 3145128814,
+          "coordinates": [
+            [
+              20.2668858,
+              46.6536155
+            ],
+            [
+              20.266935,
+              46.653651
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 5.454811201698871,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 2
+        },
+        {
+          "a": 3145128814,
+          "b": 3213014140,
+          "coordinates": [
+            [
+              20.266935,
+              46.653651
+            ],
+            [
+              20.2670249,
+              46.6537159
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 9.969886306440268,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 3
+        },
+        {
+          "a": 3213014140,
+          "b": 625634327,
+          "coordinates": [
+            [
+              20.2670249,
+              46.6537159
+            ],
+            [
+              20.2671273,
+              46.6537896
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 11.338127907415315,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 4
+        },
+        {
+          "a": 625634327,
+          "b": 11443768540,
+          "coordinates": [
+            [
+              20.2671273,
+              46.6537896
+            ],
+            [
+              20.2674999,
+              46.6540517
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 40.770775650182216,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 5
+        },
+        {
+          "a": 11443768540,
+          "b": 11443768537,
+          "coordinates": [
+            [
+              20.2674999,
+              46.6540517
+            ],
+            [
+              20.2684115,
+              46.6546986
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 100.19867388234418,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 6
+        },
+        {
+          "a": 11443768537,
+          "b": 11535062525,
+          "coordinates": [
+            [
+              20.2684115,
+              46.6546986
+            ],
+            [
+              20.2686093,
+              46.6548537
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 22.945023742890154,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 7
+        },
+        {
+          "a": 11535062525,
+          "b": 11535062526,
+          "coordinates": [
+            [
+              20.2686093,
+              46.6548537
+            ],
+            [
+              20.268702,
+              46.6549097
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 9.439068201655601,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 8
+        },
+        {
+          "a": 11535062526,
+          "b": 11535062528,
+          "coordinates": [
+            [
+              20.268702,
+              46.6549097
+            ],
+            [
+              20.2688059,
+              46.6549555
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 9.44274975793401,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 9
+        },
+        {
+          "a": 11535062528,
+          "b": 11535062527,
+          "coordinates": [
+            [
+              20.2688059,
+              46.6549555
+            ],
+            [
+              20.2689316,
+              46.6549922
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 10.450496160507424,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 10
+        },
+        {
+          "a": 11535062527,
+          "b": 625634331,
+          "coordinates": [
+            [
+              20.2689316,
+              46.6549922
+            ],
+            [
+              20.2690548,
+              46.6550053
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 9.54173138257258,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 11
+        }
+      ],
+      "aroundSquareSearchExcludes": "Footways, paths, cycleways, steps and parking aisles excluded from this road alternative",
+      "qualification": "Two finite existing perimeter routes are tested. The source square reference does not determine which road traversal is intended. Neither is called observed."
+    },
+    {
+      "id": "attila-cadastral4697",
+      "sourceRole": "Attila–4697 cadastral road–Koszta",
+      "chosenExistingRoadPathLengthM": 151.92412002202312,
+      "chosenPathEdges": [
+        {
+          "a": 948212171,
+          "b": 820854325,
+          "coordinates": [
+            [
+              20.2704881,
+              46.6550308
+            ],
+            [
+              20.2704845,
+              46.6550806
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 5.542659071065169,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 7
+        },
+        {
+          "a": 820854439,
+          "b": 948212171,
+          "coordinates": [
+            [
+              20.2705042,
+              46.6547837
+            ],
+            [
+              20.2704881,
+              46.6550308
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 27.495451395387654,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 6
+        },
+        {
+          "a": 4037615006,
+          "b": 820854439,
+          "coordinates": [
+            [
+              20.2704449,
+              46.6539536
+            ],
+            [
+              20.2705042,
+              46.6547837
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 92.38610675796544,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 5
+        },
+        {
+          "a": 4037615008,
+          "b": 4037615006,
+          "coordinates": [
+            [
+              20.2704055,
+              46.6538723
+            ],
+            [
+              20.2704449,
+              46.6539536
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 9.527284306374103,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 4
+        },
+        {
+          "a": 4037615007,
+          "b": 4037615008,
+          "coordinates": [
+            [
+              20.2703363,
+              46.6538147
+            ],
+            [
+              20.2704055,
+              46.6538723
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 8.309801903934906,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 3
+        },
+        {
+          "a": 3743634363,
+          "b": 4037615007,
+          "coordinates": [
+            [
+              20.2702439,
+              46.6537697
+            ],
+            [
+              20.2703363,
+              46.6538147
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 8.662816587295863,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 2
+        }
+      ],
+      "qualification": "The only shortest actual direct road connector is currently Nagyvölgy sor. Asset annex labels 4697 at Attila, without proving parcel-to-OSM identity. Current road geometry is a bounded inferred continuation, not a cadastral match."
+    },
+    {
+      "id": "szilfa-square",
+      "sourceRole": "Szilfa–Vásárhelyi",
+      "chosenExistingRoadPathLengthM": 70.35680236810646,
+      "chosenPathEdges": [
+        {
+          "a": 3203368936,
+          "b": 625634299,
+          "coordinates": [
+            [
+              20.2615767,
+              46.6477154
+            ],
+            [
+              20.2615382,
+              46.6475729
+            ]
+          ],
+          "name": "Lajos tér",
+          "lengthM": 16.112255213260543,
+          "sourceWayId": 49259599,
+          "sourceNodeIndex": 0
+        },
+        {
+          "a": 625634299,
+          "b": 3344998926,
+          "coordinates": [
+            [
+              20.2615382,
+              46.6475729
+            ],
+            [
+              20.2614247,
+              46.6474208
+            ]
+          ],
+          "name": "Lajos tér",
+          "lengthM": 19.00944165871002,
+          "sourceWayId": 49259599,
+          "sourceNodeIndex": 1
+        },
+        {
+          "a": 3344998926,
+          "b": 625634297,
+          "coordinates": [
+            [
+              20.2614247,
+              46.6474208
+            ],
+            [
+              20.2611237,
+              46.647181
+            ]
+          ],
+          "name": "Lajos tér",
+          "lengthM": 35.235105496135894,
+          "sourceWayId": 49259599,
+          "sourceNodeIndex": 2
+        }
+      ],
+      "qualification": "Actual Lajos tér road joins the cited roads over about 70 m. Source does not explicitly name this intermediary square edge."
+    },
+    {
+      "id": "river-szentanna-cadastral5631",
+      "sourceRole": "Szent Anna–5631 cadastral road–Kurca",
+      "chosenExistingRoadPathLengthM": 132.7234323899341,
+      "chosenPathEdges": [
+        {
+          "a": 820854408,
+          "b": 1794163987,
+          "coordinates": [
+            [
+              20.2535661,
+              46.6501588
+            ],
+            [
+              20.2530168,
+              46.6504834
+            ]
+          ],
+          "name": "",
+          "lengthM": 55.407667024758325,
+          "sourceWayId": 168108502,
+          "sourceNodeIndex": 0
+        },
+        {
+          "a": 1794163987,
+          "b": 3744961794,
+          "coordinates": [
+            [
+              20.2530168,
+              46.6504834
+            ],
+            [
+              20.2528895,
+              46.6505515
+            ]
+          ],
+          "name": "",
+          "lengthM": 12.339475468845963,
+          "sourceWayId": 370810716,
+          "sourceNodeIndex": 0
+        },
+        {
+          "a": 3744961794,
+          "b": 3744961784,
+          "coordinates": [
+            [
+              20.2528895,
+              46.6505515
+            ],
+            [
+              20.2528399,
+              46.650515
+            ]
+          ],
+          "name": "Dr. Szalva Péter sétány",
+          "lengthM": 5.556784450994282,
+          "sourceWayId": 370810717,
+          "sourceNodeIndex": 8
+        },
+        {
+          "a": 3744961784,
+          "b": 3744961793,
+          "coordinates": [
+            [
+              20.2528399,
+              46.650515
+            ],
+            [
+              20.2523503,
+              46.6501973
+            ]
+          ],
+          "name": "Dr. Szalva Péter sétány",
+          "lengthM": 51.495763607834164,
+          "sourceWayId": 370810717,
+          "sourceNodeIndex": 9
+        },
+        {
+          "a": 3744961792,
+          "b": 3744961793,
+          "coordinates": [
+            [
+              20.2522771,
+              46.6502477
+            ],
+            [
+              20.2523503,
+              46.6501973
+            ]
+          ],
+          "name": "",
+          "lengthM": 7.923741837501352,
+          "sourceWayId": 370810714,
+          "sourceNodeIndex": 0
+        }
+      ],
+      "chosenPhysicalBridgeWayId": 370667751,
+      "qualification": "The cadastral identity is unverified. Chosen current river-adjacent road/path closure to Eszperantó bridge is an explicit alternative, not a documentary match for 5631. The source-named street remains about 79.20 m from current Kurca centerline."
+    }
+  ],
+  "alternatives": {
+    "appOnyiCandidatesSymmetricDifferenceM2": 41611.41868071687,
+    "deakSideAreaM2": 1156813.0309333175,
+    "aroundSquareAreaM2": 1115201.6122526005,
+    "areaDeltaM2": -41611.418680717004,
+    "finiteAlternativeComparisonIsNotAbsoluteAccuracyBound": true
+  },
+  "candidates": [
+    {
+      "key": "deak-side",
+      "description": "The Apponyi tér place reference is interpreted as the square edge along the continuing named Deák road; actual Nagyvölgy sor and Lajos tér bridge the two inner gaps; actual current paths reach Munkácsy pedestrian bridge and Eszperantó bridge for the two river closures. These source-unspecified choices are estimated, not observed boundaries.",
+      "areaM2": 1156813.0309333175,
+      "perimeterM": 5418.565158459261,
+      "vertices": 99,
+      "valid": true,
+      "polygonFaces": 3,
+      "largestFaceAreasM2": [
+        1134042.5635950235,
+        177396.94840863743,
+        22770.467338292943
+      ],
+      "boundaryOutsideSelectedActualLineGraphM": 0.0,
+      "selectedEdgeCount": 252,
+      "boundaryRoadEdges": [
+        {
+          "a": 3203368936,
+          "b": 625634299,
+          "coordinates": [
+            [
+              20.2615767,
+              46.6477154
+            ],
+            [
+              20.2615382,
+              46.6475729
+            ]
+          ],
+          "name": "Lajos tér",
+          "lengthM": 16.112255213260543,
+          "sourceWayId": 49259599,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 16.112255213260543,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 625634299,
+          "b": 3344998926,
+          "coordinates": [
+            [
+              20.2615382,
+              46.6475729
+            ],
+            [
+              20.2614247,
+              46.6474208
+            ]
+          ],
+          "name": "Lajos tér",
+          "lengthM": 19.00944165871002,
+          "sourceWayId": 49259599,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 19.00944165871002,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3344998926,
+          "b": 625634297,
+          "coordinates": [
+            [
+              20.2614247,
+              46.6474208
+            ],
+            [
+              20.2611237,
+              46.647181
+            ]
+          ],
+          "name": "Lajos tér",
+          "lengthM": 35.235105496135894,
+          "sourceWayId": 49259599,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 35.235105496135894,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854049,
+          "b": 820854109,
+          "coordinates": [
+            [
+              20.2585481,
+              46.6477127
+            ],
+            [
+              20.2591431,
+              46.6483696
+            ]
+          ],
+          "name": "Nyíri köz",
+          "lengthM": 86.06267853278227,
+          "sourceWayId": 68081857,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 86.06267853278227,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634363,
+          "b": 4037615007,
+          "coordinates": [
+            [
+              20.2702439,
+              46.6537697
+            ],
+            [
+              20.2703363,
+              46.6538147
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 8.662816587295863,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 8.662816587295863,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 4037615007,
+          "b": 4037615008,
+          "coordinates": [
+            [
+              20.2703363,
+              46.6538147
+            ],
+            [
+              20.2704055,
+              46.6538723
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 8.309801903934906,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 8.309801903934906,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 4037615008,
+          "b": 4037615006,
+          "coordinates": [
+            [
+              20.2704055,
+              46.6538723
+            ],
+            [
+              20.2704449,
+              46.6539536
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 9.527284306374103,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 9.527284306374103,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 4037615006,
+          "b": 820854439,
+          "coordinates": [
+            [
+              20.2704449,
+              46.6539536
+            ],
+            [
+              20.2705042,
+              46.6547837
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 92.38610675796544,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 5,
+          "overlapOnBoundaryM": 92.38610675796544,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854439,
+          "b": 948212171,
+          "coordinates": [
+            [
+              20.2705042,
+              46.6547837
+            ],
+            [
+              20.2704881,
+              46.6550308
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 27.495451395387654,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 6,
+          "overlapOnBoundaryM": 27.495451395387654,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 948212171,
+          "b": 820854325,
+          "coordinates": [
+            [
+              20.2704881,
+              46.6550308
+            ],
+            [
+              20.2704845,
+              46.6550806
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 5.542659071065169,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 7,
+          "overlapOnBoundaryM": 5.542659071065169,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 2708724395,
+          "b": 3213014105,
+          "coordinates": [
+            [
+              20.2658702,
+              46.6469605
+            ],
+            [
+              20.2671471,
+              46.6475528
+            ]
+          ],
+          "name": "Villogó utca",
+          "lengthM": 117.85629150746841,
+          "sourceWayId": 68081946,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 117.8562915074684,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3213014105,
+          "b": 3213014106,
+          "coordinates": [
+            [
+              20.2671471,
+              46.6475528
+            ],
+            [
+              20.2677025,
+              46.6477299
+            ]
+          ],
+          "name": "Villogó utca",
+          "lengthM": 46.853708399235664,
+          "sourceWayId": 68081946,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 46.853708399235664,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3213014106,
+          "b": 3344998928,
+          "coordinates": [
+            [
+              20.2677025,
+              46.6477299
+            ],
+            [
+              20.2678755,
+              46.6477845
+            ]
+          ],
+          "name": "Villogó utca",
+          "lengthM": 14.56805603725603,
+          "sourceWayId": 68081946,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 14.56805603725603,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3344998928,
+          "b": 820854370,
+          "coordinates": [
+            [
+              20.2678755,
+              46.6477845
+            ],
+            [
+              20.2686123,
+              46.648062
+            ]
+          ],
+          "name": "Villogó utca",
+          "lengthM": 64.28758827054423,
+          "sourceWayId": 68081946,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 64.28758827054423,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854133,
+          "b": 4037615265,
+          "coordinates": [
+            [
+              20.2716021,
+              46.6551372
+            ],
+            [
+              20.2717193,
+              46.656561
+            ]
+          ],
+          "name": "Kolozsvár utca",
+          "lengthM": 158.52469684835444,
+          "sourceWayId": 68081950,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 158.52469684835444,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 4037615265,
+          "b": 820854275,
+          "coordinates": [
+            [
+              20.2717193,
+              46.656561
+            ],
+            [
+              20.2717053,
+              46.6570561
+            ]
+          ],
+          "name": "Kolozsvár utca",
+          "lengthM": 55.046121281843874,
+          "sourceWayId": 68081950,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 55.04612128184388,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854049,
+          "b": 820854386,
+          "coordinates": [
+            [
+              20.2585481,
+              46.6477127
+            ],
+            [
+              20.2571265,
+              46.6484654
+            ]
+          ],
+          "name": "Kisér utca",
+          "lengthM": 137.27292777716673,
+          "sourceWayId": 68081952,
+          "sourceNodeIndex": 9,
+          "overlapOnBoundaryM": 137.27292777716673,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854386,
+          "b": 820854241,
+          "coordinates": [
+            [
+              20.2571265,
+              46.6484654
+            ],
+            [
+              20.2551767,
+              46.6492365
+            ]
+          ],
+          "name": "Kisér utca",
+          "lengthM": 172.12002593869505,
+          "sourceWayId": 68081952,
+          "sourceNodeIndex": 10,
+          "overlapOnBoundaryM": 172.12002593869505,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854241,
+          "b": 3744961774,
+          "coordinates": [
+            [
+              20.2551767,
+              46.6492365
+            ],
+            [
+              20.2548013,
+              46.6494178
+            ]
+          ],
+          "name": "Kisér utca",
+          "lengthM": 35.09939371138279,
+          "sourceWayId": 68081952,
+          "sourceNodeIndex": 11,
+          "overlapOnBoundaryM": 35.09939371138279,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3744961774,
+          "b": 820854147,
+          "coordinates": [
+            [
+              20.2548013,
+              46.6494178
+            ],
+            [
+              20.2540998,
+              46.6500209
+            ]
+          ],
+          "name": "Kisér utca",
+          "lengthM": 85.89601412849936,
+          "sourceWayId": 68081952,
+          "sourceNodeIndex": 12,
+          "overlapOnBoundaryM": 85.89601412849936,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854147,
+          "b": 820854346,
+          "coordinates": [
+            [
+              20.2540998,
+              46.6500209
+            ],
+            [
+              20.2538315,
+              46.6502553
+            ]
+          ],
+          "name": "Kisér utca",
+          "lengthM": 33.177253378010434,
+          "sourceWayId": 68081952,
+          "sourceNodeIndex": 13,
+          "overlapOnBoundaryM": 33.177253378010434,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854408,
+          "b": 820854346,
+          "coordinates": [
+            [
+              20.2535661,
+              46.6501588
+            ],
+            [
+              20.2538315,
+              46.6502553
+            ]
+          ],
+          "name": "Szent Anna utca",
+          "lengthM": 22.97410364964892,
+          "sourceWayId": 68081963,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 22.97410364964892,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 625634297,
+          "b": 8320694203,
+          "coordinates": [
+            [
+              20.2611237,
+              46.647181
+            ],
+            [
+              20.2604269,
+              46.6475727
+            ]
+          ],
+          "name": "Vásárhelyi út",
+          "lengthM": 68.8566402383292,
+          "sourceWayId": 81544932,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 68.85664023832919,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 8320694203,
+          "b": 625634295,
+          "coordinates": [
+            [
+              20.2604269,
+              46.6475727
+            ],
+            [
+              20.2600085,
+              46.6478078
+            ]
+          ],
+          "name": "Vásárhelyi út",
+          "lengthM": 41.33844140061851,
+          "sourceWayId": 81544932,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 41.33844140061851,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 625634295,
+          "b": 625634309,
+          "coordinates": [
+            [
+              20.2600085,
+              46.6478078
+            ],
+            [
+              20.2596684,
+              46.648014
+            ]
+          ],
+          "name": "Vásárhelyi út",
+          "lengthM": 34.68754345426123,
+          "sourceWayId": 81544932,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 34.68754345426123,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 625634309,
+          "b": 3203352356,
+          "coordinates": [
+            [
+              20.2596684,
+              46.648014
+            ],
+            [
+              20.2594259,
+              46.6481549
+            ]
+          ],
+          "name": "Vásárhelyi út",
+          "lengthM": 24.288465759980014,
+          "sourceWayId": 81544932,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 24.288465759980014,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203352356,
+          "b": 3202204626,
+          "coordinates": [
+            [
+              20.2594259,
+              46.6481549
+            ],
+            [
+              20.2592871,
+              46.6482505
+            ]
+          ],
+          "name": "Vásárhelyi út",
+          "lengthM": 15.027658540893247,
+          "sourceWayId": 81544932,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 15.027658540893247,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3202204626,
+          "b": 820854109,
+          "coordinates": [
+            [
+              20.2592871,
+              46.6482505
+            ],
+            [
+              20.2591431,
+              46.6483696
+            ]
+          ],
+          "name": "Vásárhelyi út",
+          "lengthM": 17.22767758591898,
+          "sourceWayId": 81544932,
+          "sourceNodeIndex": 5,
+          "overlapOnBoundaryM": 17.22767758591898,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1628316014,
+          "b": 11443743308,
+          "coordinates": [
+            [
+              20.2660618,
+              46.658672
+            ],
+            [
+              20.264534,
+              46.6579896
+            ]
+          ],
+          "name": "Bajcsy-Zsilinszky utca",
+          "lengthM": 139.38283145477203,
+          "sourceWayId": 149888026,
+          "sourceNodeIndex": 14,
+          "overlapOnBoundaryM": 139.38283145477203,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11443743308,
+          "b": 820854016,
+          "coordinates": [
+            [
+              20.264534,
+              46.6579896
+            ],
+            [
+              20.2643959,
+              46.6579279
+            ]
+          ],
+          "name": "Bajcsy-Zsilinszky utca",
+          "lengthM": 12.60009478775564,
+          "sourceWayId": 149888026,
+          "sourceNodeIndex": 15,
+          "overlapOnBoundaryM": 12.60009478775564,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 625634329,
+          "b": 1765047569,
+          "coordinates": [
+            [
+              20.2691942,
+              46.6552656
+            ],
+            [
+              20.2692985,
+              46.6553404
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 11.526878322471704,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 6,
+          "overlapOnBoundaryM": 11.526878322471704,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1765047569,
+          "b": 820854243,
+          "coordinates": [
+            [
+              20.2692985,
+              46.6553404
+            ],
+            [
+              20.2704288,
+              46.6561372
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 123.8137414128822,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 7,
+          "overlapOnBoundaryM": 123.8137414128822,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854243,
+          "b": 3145050515,
+          "coordinates": [
+            [
+              20.2704288,
+              46.6561372
+            ],
+            [
+              20.2715337,
+              46.6569346
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 122.51056997146223,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 8,
+          "overlapOnBoundaryM": 122.51056997146223,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3145050515,
+          "b": 820854275,
+          "coordinates": [
+            [
+              20.2715337,
+              46.6569346
+            ],
+            [
+              20.2717053,
+              46.6570561
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 18.839251457148,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 9,
+          "overlapOnBoundaryM": 18.839251457148,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1628612054,
+          "b": 1629558133,
+          "coordinates": [
+            [
+              20.2539653,
+              46.6555851
+            ],
+            [
+              20.2539876,
+              46.655173
+            ]
+          ],
+          "name": "Ifjúsági sétány",
+          "lengthM": 45.841135618829,
+          "sourceWayId": 150014536,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 45.841135618829,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1629558133,
+          "b": 1748655532,
+          "coordinates": [
+            [
+              20.2539876,
+              46.655173
+            ],
+            [
+              20.2540455,
+              46.6546219
+            ]
+          ],
+          "name": "Ifjúsági sétány",
+          "lengthM": 61.420786541769345,
+          "sourceWayId": 150014536,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 61.420786541769345,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1628612054,
+          "b": 1629527518,
+          "coordinates": [
+            [
+              20.2539653,
+              46.6555851
+            ],
+            [
+              20.2550737,
+              46.6555699
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 84.85491630864657,
+          "sourceWayId": 150014580,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 84.85491630864657,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854408,
+          "b": 1794163987,
+          "coordinates": [
+            [
+              20.2535661,
+              46.6501588
+            ],
+            [
+              20.2530168,
+              46.6504834
+            ]
+          ],
+          "name": "",
+          "lengthM": 55.407667024758325,
+          "sourceWayId": 168108502,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 55.407667024758325,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1888747777,
+          "b": 1765051810,
+          "coordinates": [
+            [
+              20.2539531,
+              46.6546251
+            ],
+            [
+              20.2534413,
+              46.6546201
+            ]
+          ],
+          "name": "",
+          "lengthM": 39.17834371472198,
+          "sourceWayId": 178546767,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 27.055126871433025,
+          "fullSourceEdgeUsed": false
+        },
+        {
+          "a": 1748655532,
+          "b": 1888747777,
+          "coordinates": [
+            [
+              20.2540455,
+              46.6546219
+            ],
+            [
+              20.2539531,
+              46.6546251
+            ]
+          ],
+          "name": "",
+          "lengthM": 7.081457503377058,
+          "sourceWayId": 215028505,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 7.081457503377058,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854325,
+          "b": 4037705122,
+          "coordinates": [
+            [
+              20.2704845,
+              46.6550806
+            ],
+            [
+              20.271067,
+              46.6551113
+            ]
+          ],
+          "name": "Attila út",
+          "lengthM": 44.71596838679994,
+          "sourceWayId": 309181080,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 44.71596838679994,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 4037705122,
+          "b": 820854133,
+          "coordinates": [
+            [
+              20.271067,
+              46.6551113
+            ],
+            [
+              20.2716021,
+              46.6551372
+            ]
+          ],
+          "name": "Attila út",
+          "lengthM": 41.05852176561972,
+          "sourceWayId": 309181080,
+          "sourceNodeIndex": 5,
+          "overlapOnBoundaryM": 41.05852176561972,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368936,
+          "b": 3203368937,
+          "coordinates": [
+            [
+              20.2615767,
+              46.6477154
+            ],
+            [
+              20.2617308,
+              46.6477578
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 12.703399572529845,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 12.703399572529845,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368937,
+          "b": 3203368938,
+          "coordinates": [
+            [
+              20.2617308,
+              46.6477578
+            ],
+            [
+              20.2621416,
+              46.6478999
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 35.19179518501972,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 35.19179518501972,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368938,
+          "b": 3203368939,
+          "coordinates": [
+            [
+              20.2621416,
+              46.6478999
+            ],
+            [
+              20.262468,
+              46.648001
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 27.39758235831129,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 27.39758235831129,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368939,
+          "b": 3203368951,
+          "coordinates": [
+            [
+              20.262468,
+              46.648001
+            ],
+            [
+              20.2634243,
+              46.6482879
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 79.85151230100972,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 79.85151230100972,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368951,
+          "b": 3203368948,
+          "coordinates": [
+            [
+              20.2634243,
+              46.6482879
+            ],
+            [
+              20.2634985,
+              46.6481426
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 17.121323666644873,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 17.121323666644873,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368948,
+          "b": 3203368944,
+          "coordinates": [
+            [
+              20.2634985,
+              46.6481426
+            ],
+            [
+              20.2635453,
+              46.6481057
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 5.4461142858280835,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 5,
+          "overlapOnBoundaryM": 5.4461142858280835,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368944,
+          "b": 3203368942,
+          "coordinates": [
+            [
+              20.2635453,
+              46.6481057
+            ],
+            [
+              20.2636427,
+              46.6480964
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 7.5274599144056875,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 6,
+          "overlapOnBoundaryM": 7.5274599144056875,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368942,
+          "b": 3203354948,
+          "coordinates": [
+            [
+              20.2636427,
+              46.6480964
+            ],
+            [
+              20.2640222,
+              46.6481191
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 29.160737775181865,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 7,
+          "overlapOnBoundaryM": 29.160737775181865,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203354948,
+          "b": 3203368940,
+          "coordinates": [
+            [
+              20.2640222,
+              46.6481191
+            ],
+            [
+              20.2644475,
+              46.6481217
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 32.558698326893875,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 8,
+          "overlapOnBoundaryM": 32.558698326893875,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368940,
+          "b": 3203368941,
+          "coordinates": [
+            [
+              20.2644475,
+              46.6481217
+            ],
+            [
+              20.2652395,
+              46.6481249
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 60.629944681380465,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 9,
+          "overlapOnBoundaryM": 60.629944681380465,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 2708724395,
+          "b": 3344998927,
+          "coordinates": [
+            [
+              20.2658702,
+              46.6469605
+            ],
+            [
+              20.2655347,
+              46.6474993
+            ]
+          ],
+          "name": "Somogyi Béla utca",
+          "lengthM": 65.16794988566268,
+          "sourceWayId": 314445265,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 65.16794988566268,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3344998927,
+          "b": 3203368941,
+          "coordinates": [
+            [
+              20.2655347,
+              46.6474993
+            ],
+            [
+              20.2652395,
+              46.6481249
+            ]
+          ],
+          "name": "Somogyi Béla utca",
+          "lengthM": 73.12173771448889,
+          "sourceWayId": 314445265,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 73.12173771448889,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854370,
+          "b": 3213014116,
+          "coordinates": [
+            [
+              20.2686123,
+              46.648062
+            ],
+            [
+              20.2685105,
+              46.6481933
+            ]
+          ],
+          "name": "Mátyás király utca",
+          "lengthM": 16.545573010344416,
+          "sourceWayId": 315199398,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 16.545573010344416,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3213014116,
+          "b": 3213014118,
+          "coordinates": [
+            [
+              20.2685105,
+              46.6481933
+            ],
+            [
+              20.2697726,
+              46.6487303
+            ]
+          ],
+          "name": "Villogó utca",
+          "lengthM": 113.5684478311151,
+          "sourceWayId": 327694529,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 113.5684478311151,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634363,
+          "b": 3213014137,
+          "coordinates": [
+            [
+              20.2702439,
+              46.6537697
+            ],
+            [
+              20.2683556,
+              46.6532745
+            ]
+          ],
+          "name": "Koszta József utca",
+          "lengthM": 154.66536326164214,
+          "sourceWayId": 370667736,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 154.6653632616421,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3213014137,
+          "b": 3743634364,
+          "coordinates": [
+            [
+              20.2683556,
+              46.6532745
+            ],
+            [
+              20.2672287,
+              46.6529727
+            ]
+          ],
+          "name": "Koszta József utca",
+          "lengthM": 92.55234984759213,
+          "sourceWayId": 370667736,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 92.55234984759213,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634364,
+          "b": 3743634365,
+          "coordinates": [
+            [
+              20.2672287,
+              46.6529727
+            ],
+            [
+              20.2671547,
+              46.652947
+            ]
+          ],
+          "name": "Koszta József utca",
+          "lengthM": 6.34396729266987,
+          "sourceWayId": 370667736,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 6.34396729266987,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634365,
+          "b": 3743634366,
+          "coordinates": [
+            [
+              20.2671547,
+              46.652947
+            ],
+            [
+              20.2671352,
+              46.6529057
+            ]
+          ],
+          "name": "Zrínyi utca",
+          "lengthM": 4.827488450561818,
+          "sourceWayId": 370667739,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 4.827488450561818,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634366,
+          "b": 3743634367,
+          "coordinates": [
+            [
+              20.2671352,
+              46.6529057
+            ],
+            [
+              20.2671515,
+              46.6528583
+            ]
+          ],
+          "name": "Zrínyi utca",
+          "lengthM": 5.414727467220556,
+          "sourceWayId": 370667739,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 5.414727467220556,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634367,
+          "b": 3743634389,
+          "coordinates": [
+            [
+              20.2671515,
+              46.6528583
+            ],
+            [
+              20.2674075,
+              46.6524551
+            ]
+          ],
+          "name": "Zrínyi utca",
+          "lengthM": 48.91645786112459,
+          "sourceWayId": 370667739,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 48.916457861124584,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634389,
+          "b": 4711943034,
+          "coordinates": [
+            [
+              20.2674075,
+              46.6524551
+            ],
+            [
+              20.2679156,
+              46.651655
+            ]
+          ],
+          "name": "Zrínyi utca",
+          "lengthM": 97.07183539341105,
+          "sourceWayId": 370667739,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 97.07183539341105,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 4711943034,
+          "b": 3213014118,
+          "coordinates": [
+            [
+              20.2679156,
+              46.651655
+            ],
+            [
+              20.2697726,
+              46.6487303
+            ]
+          ],
+          "name": "Zrínyi utca",
+          "lengthM": 354.8303459797304,
+          "sourceWayId": 370667739,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 354.8303459797304,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634406,
+          "b": 1628613113,
+          "coordinates": [
+            [
+              20.261105,
+              46.6573051
+            ],
+            [
+              20.2627018,
+              46.6575852
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 126.12030066406942,
+          "sourceWayId": 370667741,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 126.12030066406942,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1628613113,
+          "b": 3744968116,
+          "coordinates": [
+            [
+              20.2627018,
+              46.6575852
+            ],
+            [
+              20.2641605,
+              46.6578436
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 115.28178862988791,
+          "sourceWayId": 370667741,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 115.28178862988793,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3744968116,
+          "b": 820854016,
+          "coordinates": [
+            [
+              20.2641605,
+              46.6578436
+            ],
+            [
+              20.2643959,
+              46.6579279
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 20.30824335052568,
+          "sourceWayId": 370667741,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 20.30824335052568,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3744961792,
+          "b": 3744961793,
+          "coordinates": [
+            [
+              20.2522771,
+              46.6502477
+            ],
+            [
+              20.2523503,
+              46.6501973
+            ]
+          ],
+          "name": "",
+          "lengthM": 7.923741837501352,
+          "sourceWayId": 370810714,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 7.923741837501352,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1794163987,
+          "b": 3744961794,
+          "coordinates": [
+            [
+              20.2530168,
+              46.6504834
+            ],
+            [
+              20.2528895,
+              46.6505515
+            ]
+          ],
+          "name": "",
+          "lengthM": 12.339475468845963,
+          "sourceWayId": 370810716,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 12.339475468845965,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3744961794,
+          "b": 3744961784,
+          "coordinates": [
+            [
+              20.2528895,
+              46.6505515
+            ],
+            [
+              20.2528399,
+              46.650515
+            ]
+          ],
+          "name": "Dr. Szalva Péter sétány",
+          "lengthM": 5.556784450994282,
+          "sourceWayId": 370810717,
+          "sourceNodeIndex": 8,
+          "overlapOnBoundaryM": 5.556784450994282,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3744961784,
+          "b": 3744961793,
+          "coordinates": [
+            [
+              20.2528399,
+              46.650515
+            ],
+            [
+              20.2523503,
+              46.6501973
+            ]
+          ],
+          "name": "Dr. Szalva Péter sétány",
+          "lengthM": 51.495763607834164,
+          "sourceWayId": 370810717,
+          "sourceNodeIndex": 9,
+          "overlapOnBoundaryM": 51.49576360783417,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1628316014,
+          "b": 1628319577,
+          "coordinates": [
+            [
+              20.2660618,
+              46.658672
+            ],
+            [
+              20.2681081,
+              46.6563956
+            ]
+          ],
+          "name": "Deák Ferenc utca",
+          "lengthM": 297.59428270265164,
+          "sourceWayId": 370926714,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 297.59428270265164,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1628319577,
+          "b": 11443782358,
+          "coordinates": [
+            [
+              20.2681081,
+              46.6563956
+            ],
+            [
+              20.2685115,
+              46.6559861
+            ]
+          ],
+          "name": "Deák Ferenc utca",
+          "lengthM": 55.00405938601648,
+          "sourceWayId": 370926714,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 55.00405938601648,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11443782358,
+          "b": 7802121895,
+          "coordinates": [
+            [
+              20.2685115,
+              46.6559861
+            ],
+            [
+              20.2686044,
+              46.6558918
+            ]
+          ],
+          "name": "Deák Ferenc utca",
+          "lengthM": 12.666601578099863,
+          "sourceWayId": 370926714,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 12.666601578099863,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 7802121895,
+          "b": 11443782361,
+          "coordinates": [
+            [
+              20.2686044,
+              46.6558918
+            ],
+            [
+              20.2688751,
+              46.6556169
+            ]
+          ],
+          "name": "Deák Ferenc utca",
+          "lengthM": 36.92016287510633,
+          "sourceWayId": 370926714,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 36.92016287510633,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11443782361,
+          "b": 625634329,
+          "coordinates": [
+            [
+              20.2688751,
+              46.6556169
+            ],
+            [
+              20.2691942,
+              46.6552656
+            ]
+          ],
+          "name": "Deák Ferenc utca",
+          "lengthM": 46.05984866434737,
+          "sourceWayId": 370926714,
+          "sourceNodeIndex": 5,
+          "overlapOnBoundaryM": 46.05984866434737,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854007,
+          "b": 1629523236,
+          "coordinates": [
+            [
+              20.2577364,
+              46.6560468
+            ],
+            [
+              20.2592205,
+              46.6565976
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 129.04322982560535,
+          "sourceWayId": 372420032,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 129.04322982560532,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1629523236,
+          "b": 1629549144,
+          "coordinates": [
+            [
+              20.2592205,
+              46.6565976
+            ],
+            [
+              20.2603746,
+              46.6570668
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 102.58265932433368,
+          "sourceWayId": 372420032,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 102.58265932433368,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1629549144,
+          "b": 1629514886,
+          "coordinates": [
+            [
+              20.2603746,
+              46.6570668
+            ],
+            [
+              20.260536,
+              46.657116
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 13.5098880527303,
+          "sourceWayId": 372420032,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 13.5098880527303,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1629514886,
+          "b": 3743634413,
+          "coordinates": [
+            [
+              20.260536,
+              46.657116
+            ],
+            [
+              20.2607283,
+              46.6571868
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 16.690458801168717,
+          "sourceWayId": 372420032,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 16.690458801168713,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634413,
+          "b": 3743634414,
+          "coordinates": [
+            [
+              20.2607283,
+              46.6571868
+            ],
+            [
+              20.2610044,
+              46.6572717
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 23.143958861927374,
+          "sourceWayId": 372420032,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 23.143958861927374,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634414,
+          "b": 3743634406,
+          "coordinates": [
+            [
+              20.2610044,
+              46.6572717
+            ],
+            [
+              20.261105,
+              46.6573051
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 8.548177101749301,
+          "sourceWayId": 372420032,
+          "sourceNodeIndex": 5,
+          "overlapOnBoundaryM": 8.548177101749301,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3759789797,
+          "b": 820854007,
+          "coordinates": [
+            [
+              20.2573645,
+              46.6558643
+            ],
+            [
+              20.2577364,
+              46.6560468
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 34.95476490532269,
+          "sourceWayId": 372420037,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 34.95476490532269,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1629527518,
+          "b": 820854254,
+          "coordinates": [
+            [
+              20.2550737,
+              46.6555699
+            ],
+            [
+              20.2564904,
+              46.6556087
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 108.52141387531192,
+          "sourceWayId": 372420038,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 108.52141387531192,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854254,
+          "b": 3144504931,
+          "coordinates": [
+            [
+              20.2564904,
+              46.6556087
+            ],
+            [
+              20.2571734,
+              46.6557705
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 55.28488383392859,
+          "sourceWayId": 372420038,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 55.28488383392859,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3144504931,
+          "b": 3759789797,
+          "coordinates": [
+            [
+              20.2571734,
+              46.6557705
+            ],
+            [
+              20.2573645,
+              46.6558643
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 17.96292933947406,
+          "sourceWayId": 372420038,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 17.962929339474062,
+          "fullSourceEdgeUsed": true
+        }
+      ],
+      "sourceRiverWayId": 591675710,
+      "riverOverlapOnBoundaryM": 501.48841091888806,
+      "sourceContourIsObserved": false,
+      "usableForAddressAssignment": false,
+      "file": "szentes-belvaros-deak-side-inferred-review.geojson",
+      "sha256": "2a2aab8baf53aae2f55b8dfbdec0b6cda8cd13863ae18f1c00bbfc16ec909c69"
+    },
+    {
+      "key": "apponyi-around",
+      "description": "Alternative Apponyi traversal includes its actual named road, then the shortest existing public Rákóczi/Kossuth/Attila road connection to Baross, excluding the direct Deák side of the square. Other source-unspecified choices equal the deak-side candidate.",
+      "areaM2": 1115201.6122526005,
+      "perimeterM": 5966.319939173184,
+      "vertices": 129,
+      "valid": true,
+      "polygonFaces": 3,
+      "largestFaceAreasM2": [
+        1092431.1449143072,
+        219008.36708935437,
+        22770.467338292943
+      ],
+      "boundaryOutsideSelectedActualLineGraphM": 0.0,
+      "selectedEdgeCount": 276,
+      "boundaryRoadEdges": [
+        {
+          "a": 3203368936,
+          "b": 625634299,
+          "coordinates": [
+            [
+              20.2615767,
+              46.6477154
+            ],
+            [
+              20.2615382,
+              46.6475729
+            ]
+          ],
+          "name": "Lajos tér",
+          "lengthM": 16.112255213260543,
+          "sourceWayId": 49259599,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 16.112255213260543,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 625634299,
+          "b": 3344998926,
+          "coordinates": [
+            [
+              20.2615382,
+              46.6475729
+            ],
+            [
+              20.2614247,
+              46.6474208
+            ]
+          ],
+          "name": "Lajos tér",
+          "lengthM": 19.00944165871002,
+          "sourceWayId": 49259599,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 19.00944165871002,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3344998926,
+          "b": 625634297,
+          "coordinates": [
+            [
+              20.2614247,
+              46.6474208
+            ],
+            [
+              20.2611237,
+              46.647181
+            ]
+          ],
+          "name": "Lajos tér",
+          "lengthM": 35.235105496135894,
+          "sourceWayId": 49259599,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 35.235105496135894,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854049,
+          "b": 820854109,
+          "coordinates": [
+            [
+              20.2585481,
+              46.6477127
+            ],
+            [
+              20.2591431,
+              46.6483696
+            ]
+          ],
+          "name": "Nyíri köz",
+          "lengthM": 86.06267853278227,
+          "sourceWayId": 68081857,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 86.06267853278227,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634363,
+          "b": 4037615007,
+          "coordinates": [
+            [
+              20.2702439,
+              46.6537697
+            ],
+            [
+              20.2703363,
+              46.6538147
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 8.662816587295863,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 8.662816587295863,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 4037615007,
+          "b": 4037615008,
+          "coordinates": [
+            [
+              20.2703363,
+              46.6538147
+            ],
+            [
+              20.2704055,
+              46.6538723
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 8.309801903934906,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 8.309801903934906,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 4037615008,
+          "b": 4037615006,
+          "coordinates": [
+            [
+              20.2704055,
+              46.6538723
+            ],
+            [
+              20.2704449,
+              46.6539536
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 9.527284306374103,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 9.527284306374103,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 4037615006,
+          "b": 820854439,
+          "coordinates": [
+            [
+              20.2704449,
+              46.6539536
+            ],
+            [
+              20.2705042,
+              46.6547837
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 92.38610675796544,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 5,
+          "overlapOnBoundaryM": 92.38610675796544,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854439,
+          "b": 948212171,
+          "coordinates": [
+            [
+              20.2705042,
+              46.6547837
+            ],
+            [
+              20.2704881,
+              46.6550308
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 27.495451395387654,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 6,
+          "overlapOnBoundaryM": 27.495451395387654,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 948212171,
+          "b": 820854325,
+          "coordinates": [
+            [
+              20.2704881,
+              46.6550308
+            ],
+            [
+              20.2704845,
+              46.6550806
+            ]
+          ],
+          "name": "Nagyvölgy sor",
+          "lengthM": 5.542659071065169,
+          "sourceWayId": 68081928,
+          "sourceNodeIndex": 7,
+          "overlapOnBoundaryM": 5.542659071065169,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 2708724395,
+          "b": 3213014105,
+          "coordinates": [
+            [
+              20.2658702,
+              46.6469605
+            ],
+            [
+              20.2671471,
+              46.6475528
+            ]
+          ],
+          "name": "Villogó utca",
+          "lengthM": 117.85629150746841,
+          "sourceWayId": 68081946,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 117.8562915074684,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3213014105,
+          "b": 3213014106,
+          "coordinates": [
+            [
+              20.2671471,
+              46.6475528
+            ],
+            [
+              20.2677025,
+              46.6477299
+            ]
+          ],
+          "name": "Villogó utca",
+          "lengthM": 46.853708399235664,
+          "sourceWayId": 68081946,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 46.853708399235664,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3213014106,
+          "b": 3344998928,
+          "coordinates": [
+            [
+              20.2677025,
+              46.6477299
+            ],
+            [
+              20.2678755,
+              46.6477845
+            ]
+          ],
+          "name": "Villogó utca",
+          "lengthM": 14.56805603725603,
+          "sourceWayId": 68081946,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 14.56805603725603,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3344998928,
+          "b": 820854370,
+          "coordinates": [
+            [
+              20.2678755,
+              46.6477845
+            ],
+            [
+              20.2686123,
+              46.648062
+            ]
+          ],
+          "name": "Villogó utca",
+          "lengthM": 64.28758827054423,
+          "sourceWayId": 68081946,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 64.28758827054423,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854133,
+          "b": 4037615265,
+          "coordinates": [
+            [
+              20.2716021,
+              46.6551372
+            ],
+            [
+              20.2717193,
+              46.656561
+            ]
+          ],
+          "name": "Kolozsvár utca",
+          "lengthM": 158.52469684835444,
+          "sourceWayId": 68081950,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 158.52469684835444,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 4037615265,
+          "b": 820854275,
+          "coordinates": [
+            [
+              20.2717193,
+              46.656561
+            ],
+            [
+              20.2717053,
+              46.6570561
+            ]
+          ],
+          "name": "Kolozsvár utca",
+          "lengthM": 55.046121281843874,
+          "sourceWayId": 68081950,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 55.04612128184388,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854049,
+          "b": 820854386,
+          "coordinates": [
+            [
+              20.2585481,
+              46.6477127
+            ],
+            [
+              20.2571265,
+              46.6484654
+            ]
+          ],
+          "name": "Kisér utca",
+          "lengthM": 137.27292777716673,
+          "sourceWayId": 68081952,
+          "sourceNodeIndex": 9,
+          "overlapOnBoundaryM": 137.27292777716673,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854386,
+          "b": 820854241,
+          "coordinates": [
+            [
+              20.2571265,
+              46.6484654
+            ],
+            [
+              20.2551767,
+              46.6492365
+            ]
+          ],
+          "name": "Kisér utca",
+          "lengthM": 172.12002593869505,
+          "sourceWayId": 68081952,
+          "sourceNodeIndex": 10,
+          "overlapOnBoundaryM": 172.12002593869505,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854241,
+          "b": 3744961774,
+          "coordinates": [
+            [
+              20.2551767,
+              46.6492365
+            ],
+            [
+              20.2548013,
+              46.6494178
+            ]
+          ],
+          "name": "Kisér utca",
+          "lengthM": 35.09939371138279,
+          "sourceWayId": 68081952,
+          "sourceNodeIndex": 11,
+          "overlapOnBoundaryM": 35.09939371138279,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3744961774,
+          "b": 820854147,
+          "coordinates": [
+            [
+              20.2548013,
+              46.6494178
+            ],
+            [
+              20.2540998,
+              46.6500209
+            ]
+          ],
+          "name": "Kisér utca",
+          "lengthM": 85.89601412849936,
+          "sourceWayId": 68081952,
+          "sourceNodeIndex": 12,
+          "overlapOnBoundaryM": 85.89601412849936,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854147,
+          "b": 820854346,
+          "coordinates": [
+            [
+              20.2540998,
+              46.6500209
+            ],
+            [
+              20.2538315,
+              46.6502553
+            ]
+          ],
+          "name": "Kisér utca",
+          "lengthM": 33.177253378010434,
+          "sourceWayId": 68081952,
+          "sourceNodeIndex": 13,
+          "overlapOnBoundaryM": 33.177253378010434,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854408,
+          "b": 820854346,
+          "coordinates": [
+            [
+              20.2535661,
+              46.6501588
+            ],
+            [
+              20.2538315,
+              46.6502553
+            ]
+          ],
+          "name": "Szent Anna utca",
+          "lengthM": 22.97410364964892,
+          "sourceWayId": 68081963,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 22.97410364964892,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 625634297,
+          "b": 8320694203,
+          "coordinates": [
+            [
+              20.2611237,
+              46.647181
+            ],
+            [
+              20.2604269,
+              46.6475727
+            ]
+          ],
+          "name": "Vásárhelyi út",
+          "lengthM": 68.8566402383292,
+          "sourceWayId": 81544932,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 68.85664023832919,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 8320694203,
+          "b": 625634295,
+          "coordinates": [
+            [
+              20.2604269,
+              46.6475727
+            ],
+            [
+              20.2600085,
+              46.6478078
+            ]
+          ],
+          "name": "Vásárhelyi út",
+          "lengthM": 41.33844140061851,
+          "sourceWayId": 81544932,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 41.33844140061851,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 625634295,
+          "b": 625634309,
+          "coordinates": [
+            [
+              20.2600085,
+              46.6478078
+            ],
+            [
+              20.2596684,
+              46.648014
+            ]
+          ],
+          "name": "Vásárhelyi út",
+          "lengthM": 34.68754345426123,
+          "sourceWayId": 81544932,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 34.68754345426123,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 625634309,
+          "b": 3203352356,
+          "coordinates": [
+            [
+              20.2596684,
+              46.648014
+            ],
+            [
+              20.2594259,
+              46.6481549
+            ]
+          ],
+          "name": "Vásárhelyi út",
+          "lengthM": 24.288465759980014,
+          "sourceWayId": 81544932,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 24.288465759980014,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203352356,
+          "b": 3202204626,
+          "coordinates": [
+            [
+              20.2594259,
+              46.6481549
+            ],
+            [
+              20.2592871,
+              46.6482505
+            ]
+          ],
+          "name": "Vásárhelyi út",
+          "lengthM": 15.027658540893247,
+          "sourceWayId": 81544932,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 15.027658540893247,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3202204626,
+          "b": 820854109,
+          "coordinates": [
+            [
+              20.2592871,
+              46.6482505
+            ],
+            [
+              20.2591431,
+              46.6483696
+            ]
+          ],
+          "name": "Vásárhelyi út",
+          "lengthM": 17.22767758591898,
+          "sourceWayId": 81544932,
+          "sourceNodeIndex": 5,
+          "overlapOnBoundaryM": 17.22767758591898,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 999302240,
+          "b": 13006995077,
+          "coordinates": [
+            [
+              20.2668051,
+              46.6535759
+            ],
+            [
+              20.2668504,
+              46.6535944
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 4.031402695987234,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 4.031402695987234,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 13006995077,
+          "b": 1765063647,
+          "coordinates": [
+            [
+              20.2668504,
+              46.6535944
+            ],
+            [
+              20.2668858,
+              46.6536155
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 3.583789416647796,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 3.583789416647796,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1765063647,
+          "b": 3145128814,
+          "coordinates": [
+            [
+              20.2668858,
+              46.6536155
+            ],
+            [
+              20.266935,
+              46.653651
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 5.454811201698871,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 5.454811201698871,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3145128814,
+          "b": 3213014140,
+          "coordinates": [
+            [
+              20.266935,
+              46.653651
+            ],
+            [
+              20.2670249,
+              46.6537159
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 9.969886306440268,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 9.969886306440268,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3213014140,
+          "b": 625634327,
+          "coordinates": [
+            [
+              20.2670249,
+              46.6537159
+            ],
+            [
+              20.2671273,
+              46.6537896
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 11.338127907415315,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 11.338127907415313,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 625634327,
+          "b": 11443768540,
+          "coordinates": [
+            [
+              20.2671273,
+              46.6537896
+            ],
+            [
+              20.2674999,
+              46.6540517
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 40.770775650182216,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 5,
+          "overlapOnBoundaryM": 40.770775650182216,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11443768540,
+          "b": 11443768537,
+          "coordinates": [
+            [
+              20.2674999,
+              46.6540517
+            ],
+            [
+              20.2684115,
+              46.6546986
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 100.19867388234418,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 6,
+          "overlapOnBoundaryM": 100.19867388234418,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11443768537,
+          "b": 11535062525,
+          "coordinates": [
+            [
+              20.2684115,
+              46.6546986
+            ],
+            [
+              20.2686093,
+              46.6548537
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 22.945023742890154,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 7,
+          "overlapOnBoundaryM": 22.945023742890154,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11535062525,
+          "b": 11535062526,
+          "coordinates": [
+            [
+              20.2686093,
+              46.6548537
+            ],
+            [
+              20.268702,
+              46.6549097
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 9.439068201655601,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 8,
+          "overlapOnBoundaryM": 9.439068201655601,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11535062526,
+          "b": 11535062528,
+          "coordinates": [
+            [
+              20.268702,
+              46.6549097
+            ],
+            [
+              20.2688059,
+              46.6549555
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 9.44274975793401,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 9,
+          "overlapOnBoundaryM": 9.44274975793401,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11535062528,
+          "b": 11535062527,
+          "coordinates": [
+            [
+              20.2688059,
+              46.6549555
+            ],
+            [
+              20.2689316,
+              46.6549922
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 10.450496160507424,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 10,
+          "overlapOnBoundaryM": 10.450496160507424,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11535062527,
+          "b": 625634331,
+          "coordinates": [
+            [
+              20.2689316,
+              46.6549922
+            ],
+            [
+              20.2690548,
+              46.6550053
+            ]
+          ],
+          "name": "Kossuth Lajos utca",
+          "lengthM": 9.54173138257258,
+          "sourceWayId": 86111303,
+          "sourceNodeIndex": 11,
+          "overlapOnBoundaryM": 9.541731382572582,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1628316014,
+          "b": 11443743308,
+          "coordinates": [
+            [
+              20.2660618,
+              46.658672
+            ],
+            [
+              20.264534,
+              46.6579896
+            ]
+          ],
+          "name": "Bajcsy-Zsilinszky utca",
+          "lengthM": 139.38283145477203,
+          "sourceWayId": 149888026,
+          "sourceNodeIndex": 14,
+          "overlapOnBoundaryM": 139.38283145477203,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11443743308,
+          "b": 820854016,
+          "coordinates": [
+            [
+              20.264534,
+              46.6579896
+            ],
+            [
+              20.2643959,
+              46.6579279
+            ]
+          ],
+          "name": "Bajcsy-Zsilinszky utca",
+          "lengthM": 12.60009478775564,
+          "sourceWayId": 149888026,
+          "sourceNodeIndex": 15,
+          "overlapOnBoundaryM": 12.60009478775564,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 625634331,
+          "b": 11535062524,
+          "coordinates": [
+            [
+              20.2690548,
+              46.6550053
+            ],
+            [
+              20.2690566,
+              46.6550431
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 4.204134553307787,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 4.204134553307787,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11535062524,
+          "b": 11535062520,
+          "coordinates": [
+            [
+              20.2690566,
+              46.6550431
+            ],
+            [
+              20.269056,
+              46.6550889
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 5.091369556525293,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 5.091369556525293,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11535062520,
+          "b": 11535062523,
+          "coordinates": [
+            [
+              20.269056,
+              46.6550889
+            ],
+            [
+              20.2690662,
+              46.6551255
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 4.1427153296778565,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 4.1427153296778565,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11535062523,
+          "b": 11535062522,
+          "coordinates": [
+            [
+              20.2690662,
+              46.6551255
+            ],
+            [
+              20.2690851,
+              46.6551653
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 4.6547058694966745,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 4.6547058694966745,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11535062522,
+          "b": 6340032321,
+          "coordinates": [
+            [
+              20.2690851,
+              46.6551653
+            ],
+            [
+              20.2691127,
+              46.655202
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 4.594125901984225,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 4.594125901984225,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 6340032321,
+          "b": 625634329,
+          "coordinates": [
+            [
+              20.2691127,
+              46.655202
+            ],
+            [
+              20.2691942,
+              46.6552656
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 9.428506442277865,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 5,
+          "overlapOnBoundaryM": 9.428506442277865,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 625634329,
+          "b": 1765047569,
+          "coordinates": [
+            [
+              20.2691942,
+              46.6552656
+            ],
+            [
+              20.2692985,
+              46.6553404
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 11.526878322471704,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 6,
+          "overlapOnBoundaryM": 11.526878322471704,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1765047569,
+          "b": 820854243,
+          "coordinates": [
+            [
+              20.2692985,
+              46.6553404
+            ],
+            [
+              20.2704288,
+              46.6561372
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 123.8137414128822,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 7,
+          "overlapOnBoundaryM": 123.8137414128822,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854243,
+          "b": 3145050515,
+          "coordinates": [
+            [
+              20.2704288,
+              46.6561372
+            ],
+            [
+              20.2715337,
+              46.6569346
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 122.51056997146223,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 8,
+          "overlapOnBoundaryM": 122.51056997146223,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3145050515,
+          "b": 820854275,
+          "coordinates": [
+            [
+              20.2715337,
+              46.6569346
+            ],
+            [
+              20.2717053,
+              46.6570561
+            ]
+          ],
+          "name": "Baross utca",
+          "lengthM": 18.839251457148,
+          "sourceWayId": 149888077,
+          "sourceNodeIndex": 9,
+          "overlapOnBoundaryM": 18.839251457148,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3744968118,
+          "b": 3612065463,
+          "coordinates": [
+            [
+              20.2658704,
+              46.6554962
+            ],
+            [
+              20.2660126,
+              46.655513
+            ]
+          ],
+          "name": "Apponyi tér",
+          "lengthM": 11.043201496973676,
+          "sourceWayId": 149888202,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 11.043201496973676,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3612065463,
+          "b": 11443782359,
+          "coordinates": [
+            [
+              20.2660126,
+              46.655513
+            ],
+            [
+              20.2662165,
+              46.6555989
+            ]
+          ],
+          "name": "Apponyi tér",
+          "lengthM": 18.296111438197933,
+          "sourceWayId": 149888202,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 18.296111438197933,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11443782359,
+          "b": 11443782356,
+          "coordinates": [
+            [
+              20.2662165,
+              46.6555989
+            ],
+            [
+              20.2673287,
+              46.6560673
+            ]
+          ],
+          "name": "Apponyi tér",
+          "lengthM": 99.78934727776169,
+          "sourceWayId": 149888202,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 99.78934727776169,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 11443782356,
+          "b": 1628319577,
+          "coordinates": [
+            [
+              20.2673287,
+              46.6560673
+            ],
+            [
+              20.2681081,
+              46.6563956
+            ]
+          ],
+          "name": "Apponyi tér",
+          "lengthM": 69.93268133857867,
+          "sourceWayId": 149888202,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 69.93268133857867,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1628612054,
+          "b": 1629558133,
+          "coordinates": [
+            [
+              20.2539653,
+              46.6555851
+            ],
+            [
+              20.2539876,
+              46.655173
+            ]
+          ],
+          "name": "Ifjúsági sétány",
+          "lengthM": 45.841135618829,
+          "sourceWayId": 150014536,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 45.841135618829,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1629558133,
+          "b": 1748655532,
+          "coordinates": [
+            [
+              20.2539876,
+              46.655173
+            ],
+            [
+              20.2540455,
+              46.6546219
+            ]
+          ],
+          "name": "Ifjúsági sétány",
+          "lengthM": 61.420786541769345,
+          "sourceWayId": 150014536,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 61.420786541769345,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1628612054,
+          "b": 1629527518,
+          "coordinates": [
+            [
+              20.2539653,
+              46.6555851
+            ],
+            [
+              20.2550737,
+              46.6555699
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 84.85491630864657,
+          "sourceWayId": 150014580,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 84.85491630864657,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854408,
+          "b": 1794163987,
+          "coordinates": [
+            [
+              20.2535661,
+              46.6501588
+            ],
+            [
+              20.2530168,
+              46.6504834
+            ]
+          ],
+          "name": "",
+          "lengthM": 55.407667024758325,
+          "sourceWayId": 168108502,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 55.407667024758325,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1888747777,
+          "b": 1765051810,
+          "coordinates": [
+            [
+              20.2539531,
+              46.6546251
+            ],
+            [
+              20.2534413,
+              46.6546201
+            ]
+          ],
+          "name": "",
+          "lengthM": 39.17834371472198,
+          "sourceWayId": 178546767,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 27.055126871433025,
+          "fullSourceEdgeUsed": false
+        },
+        {
+          "a": 1748655532,
+          "b": 1888747777,
+          "coordinates": [
+            [
+              20.2540455,
+              46.6546219
+            ],
+            [
+              20.2539531,
+              46.6546251
+            ]
+          ],
+          "name": "",
+          "lengthM": 7.081457503377058,
+          "sourceWayId": 215028505,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 7.081457503377058,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854325,
+          "b": 4037705122,
+          "coordinates": [
+            [
+              20.2704845,
+              46.6550806
+            ],
+            [
+              20.271067,
+              46.6551113
+            ]
+          ],
+          "name": "Attila út",
+          "lengthM": 44.71596838679994,
+          "sourceWayId": 309181080,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 44.71596838679994,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 4037705122,
+          "b": 820854133,
+          "coordinates": [
+            [
+              20.271067,
+              46.6551113
+            ],
+            [
+              20.2716021,
+              46.6551372
+            ]
+          ],
+          "name": "Attila út",
+          "lengthM": 41.05852176561972,
+          "sourceWayId": 309181080,
+          "sourceNodeIndex": 5,
+          "overlapOnBoundaryM": 41.05852176561972,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368936,
+          "b": 3203368937,
+          "coordinates": [
+            [
+              20.2615767,
+              46.6477154
+            ],
+            [
+              20.2617308,
+              46.6477578
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 12.703399572529845,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 12.703399572529845,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368937,
+          "b": 3203368938,
+          "coordinates": [
+            [
+              20.2617308,
+              46.6477578
+            ],
+            [
+              20.2621416,
+              46.6478999
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 35.19179518501972,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 35.19179518501972,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368938,
+          "b": 3203368939,
+          "coordinates": [
+            [
+              20.2621416,
+              46.6478999
+            ],
+            [
+              20.262468,
+              46.648001
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 27.39758235831129,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 27.39758235831129,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368939,
+          "b": 3203368951,
+          "coordinates": [
+            [
+              20.262468,
+              46.648001
+            ],
+            [
+              20.2634243,
+              46.6482879
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 79.85151230100972,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 79.85151230100972,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368951,
+          "b": 3203368948,
+          "coordinates": [
+            [
+              20.2634243,
+              46.6482879
+            ],
+            [
+              20.2634985,
+              46.6481426
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 17.121323666644873,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 17.121323666644873,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368948,
+          "b": 3203368944,
+          "coordinates": [
+            [
+              20.2634985,
+              46.6481426
+            ],
+            [
+              20.2635453,
+              46.6481057
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 5.4461142858280835,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 5,
+          "overlapOnBoundaryM": 5.4461142858280835,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368944,
+          "b": 3203368942,
+          "coordinates": [
+            [
+              20.2635453,
+              46.6481057
+            ],
+            [
+              20.2636427,
+              46.6480964
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 7.5274599144056875,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 6,
+          "overlapOnBoundaryM": 7.5274599144056875,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368942,
+          "b": 3203354948,
+          "coordinates": [
+            [
+              20.2636427,
+              46.6480964
+            ],
+            [
+              20.2640222,
+              46.6481191
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 29.160737775181865,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 7,
+          "overlapOnBoundaryM": 29.160737775181865,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203354948,
+          "b": 3203368940,
+          "coordinates": [
+            [
+              20.2640222,
+              46.6481191
+            ],
+            [
+              20.2644475,
+              46.6481217
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 32.558698326893875,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 8,
+          "overlapOnBoundaryM": 32.558698326893875,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3203368940,
+          "b": 3203368941,
+          "coordinates": [
+            [
+              20.2644475,
+              46.6481217
+            ],
+            [
+              20.2652395,
+              46.6481249
+            ]
+          ],
+          "name": "Szilfa utca",
+          "lengthM": 60.629944681380465,
+          "sourceWayId": 314287828,
+          "sourceNodeIndex": 9,
+          "overlapOnBoundaryM": 60.629944681380465,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 2708724395,
+          "b": 3344998927,
+          "coordinates": [
+            [
+              20.2658702,
+              46.6469605
+            ],
+            [
+              20.2655347,
+              46.6474993
+            ]
+          ],
+          "name": "Somogyi Béla utca",
+          "lengthM": 65.16794988566268,
+          "sourceWayId": 314445265,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 65.16794988566268,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3344998927,
+          "b": 3203368941,
+          "coordinates": [
+            [
+              20.2655347,
+              46.6474993
+            ],
+            [
+              20.2652395,
+              46.6481249
+            ]
+          ],
+          "name": "Somogyi Béla utca",
+          "lengthM": 73.12173771448889,
+          "sourceWayId": 314445265,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 73.12173771448889,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854370,
+          "b": 3213014116,
+          "coordinates": [
+            [
+              20.2686123,
+              46.648062
+            ],
+            [
+              20.2685105,
+              46.6481933
+            ]
+          ],
+          "name": "Mátyás király utca",
+          "lengthM": 16.545573010344416,
+          "sourceWayId": 315199398,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 16.545573010344416,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3213014116,
+          "b": 3213014118,
+          "coordinates": [
+            [
+              20.2685105,
+              46.6481933
+            ],
+            [
+              20.2697726,
+              46.6487303
+            ]
+          ],
+          "name": "Villogó utca",
+          "lengthM": 113.5684478311151,
+          "sourceWayId": 327694529,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 113.5684478311151,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634363,
+          "b": 3213014137,
+          "coordinates": [
+            [
+              20.2702439,
+              46.6537697
+            ],
+            [
+              20.2683556,
+              46.6532745
+            ]
+          ],
+          "name": "Koszta József utca",
+          "lengthM": 154.66536326164214,
+          "sourceWayId": 370667736,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 154.6653632616421,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3213014137,
+          "b": 3743634364,
+          "coordinates": [
+            [
+              20.2683556,
+              46.6532745
+            ],
+            [
+              20.2672287,
+              46.6529727
+            ]
+          ],
+          "name": "Koszta József utca",
+          "lengthM": 92.55234984759213,
+          "sourceWayId": 370667736,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 92.55234984759213,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634364,
+          "b": 3743634365,
+          "coordinates": [
+            [
+              20.2672287,
+              46.6529727
+            ],
+            [
+              20.2671547,
+              46.652947
+            ]
+          ],
+          "name": "Koszta József utca",
+          "lengthM": 6.34396729266987,
+          "sourceWayId": 370667736,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 6.34396729266987,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634365,
+          "b": 3743634366,
+          "coordinates": [
+            [
+              20.2671547,
+              46.652947
+            ],
+            [
+              20.2671352,
+              46.6529057
+            ]
+          ],
+          "name": "Zrínyi utca",
+          "lengthM": 4.827488450561818,
+          "sourceWayId": 370667739,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 4.827488450561818,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634366,
+          "b": 3743634367,
+          "coordinates": [
+            [
+              20.2671352,
+              46.6529057
+            ],
+            [
+              20.2671515,
+              46.6528583
+            ]
+          ],
+          "name": "Zrínyi utca",
+          "lengthM": 5.414727467220556,
+          "sourceWayId": 370667739,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 5.414727467220556,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634367,
+          "b": 3743634389,
+          "coordinates": [
+            [
+              20.2671515,
+              46.6528583
+            ],
+            [
+              20.2674075,
+              46.6524551
+            ]
+          ],
+          "name": "Zrínyi utca",
+          "lengthM": 48.91645786112459,
+          "sourceWayId": 370667739,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 48.916457861124584,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634389,
+          "b": 4711943034,
+          "coordinates": [
+            [
+              20.2674075,
+              46.6524551
+            ],
+            [
+              20.2679156,
+              46.651655
+            ]
+          ],
+          "name": "Zrínyi utca",
+          "lengthM": 97.07183539341105,
+          "sourceWayId": 370667739,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 97.07183539341105,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 4711943034,
+          "b": 3213014118,
+          "coordinates": [
+            [
+              20.2679156,
+              46.651655
+            ],
+            [
+              20.2697726,
+              46.6487303
+            ]
+          ],
+          "name": "Zrínyi utca",
+          "lengthM": 354.8303459797304,
+          "sourceWayId": 370667739,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 354.8303459797304,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634406,
+          "b": 1628613113,
+          "coordinates": [
+            [
+              20.261105,
+              46.6573051
+            ],
+            [
+              20.2627018,
+              46.6575852
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 126.12030066406942,
+          "sourceWayId": 370667741,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 126.12030066406942,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1628613113,
+          "b": 3744968116,
+          "coordinates": [
+            [
+              20.2627018,
+              46.6575852
+            ],
+            [
+              20.2641605,
+              46.6578436
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 115.28178862988791,
+          "sourceWayId": 370667741,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 115.28178862988793,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3744968116,
+          "b": 820854016,
+          "coordinates": [
+            [
+              20.2641605,
+              46.6578436
+            ],
+            [
+              20.2643959,
+              46.6579279
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 20.30824335052568,
+          "sourceWayId": 370667741,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 20.30824335052568,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3744961792,
+          "b": 3744961793,
+          "coordinates": [
+            [
+              20.2522771,
+              46.6502477
+            ],
+            [
+              20.2523503,
+              46.6501973
+            ]
+          ],
+          "name": "",
+          "lengthM": 7.923741837501352,
+          "sourceWayId": 370810714,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 7.923741837501352,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1794163987,
+          "b": 3744961794,
+          "coordinates": [
+            [
+              20.2530168,
+              46.6504834
+            ],
+            [
+              20.2528895,
+              46.6505515
+            ]
+          ],
+          "name": "",
+          "lengthM": 12.339475468845963,
+          "sourceWayId": 370810716,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 12.339475468845965,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3744961794,
+          "b": 3744961784,
+          "coordinates": [
+            [
+              20.2528895,
+              46.6505515
+            ],
+            [
+              20.2528399,
+              46.650515
+            ]
+          ],
+          "name": "Dr. Szalva Péter sétány",
+          "lengthM": 5.556784450994282,
+          "sourceWayId": 370810717,
+          "sourceNodeIndex": 8,
+          "overlapOnBoundaryM": 5.556784450994282,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3744961784,
+          "b": 3744961793,
+          "coordinates": [
+            [
+              20.2528399,
+              46.650515
+            ],
+            [
+              20.2523503,
+              46.6501973
+            ]
+          ],
+          "name": "Dr. Szalva Péter sétány",
+          "lengthM": 51.495763607834164,
+          "sourceWayId": 370810717,
+          "sourceNodeIndex": 9,
+          "overlapOnBoundaryM": 51.49576360783417,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1628316014,
+          "b": 1628319577,
+          "coordinates": [
+            [
+              20.2660618,
+              46.658672
+            ],
+            [
+              20.2681081,
+              46.6563956
+            ]
+          ],
+          "name": "Deák Ferenc utca",
+          "lengthM": 297.59428270265164,
+          "sourceWayId": 370926714,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 297.59428270265164,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3744968118,
+          "b": 7802121890,
+          "coordinates": [
+            [
+              20.2658704,
+              46.6554962
+            ],
+            [
+              20.266013,
+              46.6552708
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 27.32979082421348,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 13,
+          "overlapOnBoundaryM": 27.32979082421348,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 7802121890,
+          "b": 3790299945,
+          "coordinates": [
+            [
+              20.266013,
+              46.6552708
+            ],
+            [
+              20.266098,
+              46.6551363
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 16.305351920093077,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 14,
+          "overlapOnBoundaryM": 16.305351920093077,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3790299945,
+          "b": 1629494761,
+          "coordinates": [
+            [
+              20.266098,
+              46.6551363
+            ],
+            [
+              20.2663419,
+              46.6545028
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 72.85287369766272,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 15,
+          "overlapOnBoundaryM": 72.85287369766272,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1629494761,
+          "b": 3333745938,
+          "coordinates": [
+            [
+              20.2663419,
+              46.6545028
+            ],
+            [
+              20.2665409,
+              46.6539496
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 63.352529100040414,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 16,
+          "overlapOnBoundaryM": 63.352529100040414,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3333745938,
+          "b": 13006995078,
+          "coordinates": [
+            [
+              20.2665409,
+              46.6539496
+            ],
+            [
+              20.2665923,
+              46.6538048
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 16.5699323066664,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 17,
+          "overlapOnBoundaryM": 16.5699323066664,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 13006995078,
+          "b": 3145128816,
+          "coordinates": [
+            [
+              20.2665923,
+              46.6538048
+            ],
+            [
+              20.266624,
+              46.6537259
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 9.10003857602002,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 18,
+          "overlapOnBoundaryM": 9.10003857602002,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3145128816,
+          "b": 1629506882,
+          "coordinates": [
+            [
+              20.266624,
+              46.6537259
+            ],
+            [
+              20.2666459,
+              46.6536754
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 5.858558729014438,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 19,
+          "overlapOnBoundaryM": 5.858558729014438,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1629506882,
+          "b": 820854214,
+          "coordinates": [
+            [
+              20.2666459,
+              46.6536754
+            ],
+            [
+              20.2666723,
+              46.6536287
+            ]
+          ],
+          "name": "Rákóczi Ferenc utca",
+          "lengthM": 5.570644774683673,
+          "sourceWayId": 370926715,
+          "sourceNodeIndex": 20,
+          "overlapOnBoundaryM": 5.570644774683673,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 999302240,
+          "b": 12120421502,
+          "coordinates": [
+            [
+              20.2668051,
+              46.6535759
+            ],
+            [
+              20.2667876,
+              46.6536028
+            ]
+          ],
+          "name": "",
+          "lengthM": 3.276545111163915,
+          "sourceWayId": 370926717,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 3.276545111163915,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 12120421502,
+          "b": 1748655530,
+          "coordinates": [
+            [
+              20.2667876,
+              46.6536028
+            ],
+            [
+              20.2667558,
+              46.6536225
+            ]
+          ],
+          "name": "",
+          "lengthM": 3.2741914721021046,
+          "sourceWayId": 370926717,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 3.274191472102105,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1748655530,
+          "b": 3790299942,
+          "coordinates": [
+            [
+              20.2667558,
+              46.6536225
+            ],
+            [
+              20.266715,
+              46.6536317
+            ]
+          ],
+          "name": "",
+          "lengthM": 3.286171644998936,
+          "sourceWayId": 370926717,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 3.2861716449989364,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3790299942,
+          "b": 820854214,
+          "coordinates": [
+            [
+              20.266715,
+              46.6536317
+            ],
+            [
+              20.2666723,
+              46.6536287
+            ]
+          ],
+          "name": "",
+          "lengthM": 3.2853895497741767,
+          "sourceWayId": 370926717,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 3.2853895497741767,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854007,
+          "b": 1629523236,
+          "coordinates": [
+            [
+              20.2577364,
+              46.6560468
+            ],
+            [
+              20.2592205,
+              46.6565976
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 129.04322982560535,
+          "sourceWayId": 372420032,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 129.04322982560532,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1629523236,
+          "b": 1629549144,
+          "coordinates": [
+            [
+              20.2592205,
+              46.6565976
+            ],
+            [
+              20.2603746,
+              46.6570668
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 102.58265932433368,
+          "sourceWayId": 372420032,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 102.58265932433368,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1629549144,
+          "b": 1629514886,
+          "coordinates": [
+            [
+              20.2603746,
+              46.6570668
+            ],
+            [
+              20.260536,
+              46.657116
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 13.5098880527303,
+          "sourceWayId": 372420032,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 13.5098880527303,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1629514886,
+          "b": 3743634413,
+          "coordinates": [
+            [
+              20.260536,
+              46.657116
+            ],
+            [
+              20.2607283,
+              46.6571868
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 16.690458801168717,
+          "sourceWayId": 372420032,
+          "sourceNodeIndex": 3,
+          "overlapOnBoundaryM": 16.690458801168713,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634413,
+          "b": 3743634414,
+          "coordinates": [
+            [
+              20.2607283,
+              46.6571868
+            ],
+            [
+              20.2610044,
+              46.6572717
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 23.143958861927374,
+          "sourceWayId": 372420032,
+          "sourceNodeIndex": 4,
+          "overlapOnBoundaryM": 23.143958861927374,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3743634414,
+          "b": 3743634406,
+          "coordinates": [
+            [
+              20.2610044,
+              46.6572717
+            ],
+            [
+              20.261105,
+              46.6573051
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 8.548177101749301,
+          "sourceWayId": 372420032,
+          "sourceNodeIndex": 5,
+          "overlapOnBoundaryM": 8.548177101749301,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3759789797,
+          "b": 820854007,
+          "coordinates": [
+            [
+              20.2573645,
+              46.6558643
+            ],
+            [
+              20.2577364,
+              46.6560468
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 34.95476490532269,
+          "sourceWayId": 372420037,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 34.95476490532269,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 1629527518,
+          "b": 820854254,
+          "coordinates": [
+            [
+              20.2550737,
+              46.6555699
+            ],
+            [
+              20.2564904,
+              46.6556087
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 108.52141387531192,
+          "sourceWayId": 372420038,
+          "sourceNodeIndex": 0,
+          "overlapOnBoundaryM": 108.52141387531192,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 820854254,
+          "b": 3144504931,
+          "coordinates": [
+            [
+              20.2564904,
+              46.6556087
+            ],
+            [
+              20.2571734,
+              46.6557705
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 55.28488383392859,
+          "sourceWayId": 372420038,
+          "sourceNodeIndex": 1,
+          "overlapOnBoundaryM": 55.28488383392859,
+          "fullSourceEdgeUsed": true
+        },
+        {
+          "a": 3144504931,
+          "b": 3759789797,
+          "coordinates": [
+            [
+              20.2571734,
+              46.6557705
+            ],
+            [
+              20.2573645,
+              46.6558643
+            ]
+          ],
+          "name": "Arany János utca",
+          "lengthM": 17.96292933947406,
+          "sourceWayId": 372420038,
+          "sourceNodeIndex": 2,
+          "overlapOnBoundaryM": 17.962929339474062,
+          "fullSourceEdgeUsed": true
+        }
+      ],
+      "sourceRiverWayId": 591675710,
+      "riverOverlapOnBoundaryM": 501.48841091888806,
+      "sourceContourIsObserved": false,
+      "usableForAddressAssignment": false,
+      "file": "szentes-belvaros-apponyi-around-inferred-review.geojson",
+      "sha256": "21f0f37fa1eece9e16765d0922b45cda8280e6d2e3c57c2824d5d60feb81b8f6"
+    }
+  ],
+  "registryRecommendation": "Review candidates only. Independent source-map/cadastral review is still needed; if retained anywhere, only low-confidence inferred layer with all six assumptions and historical/current mismatch.",
+  "usableForAddressAssignment": false
+}

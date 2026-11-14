@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "manual:szombathely:joskar-inferred-completion",
+      "properties": {
+        "sourceWayId": 112539408,
+        "boundaryRole": "inferred_not_source_named",
+        "lengthM": 42.5669013906784,
+        "nodeIds": [
+          1280828325,
+          2386698034,
+          1278848008
+        ],
+        "geometryUnmodified": true,
+        "usableForAddressAssignment": false
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.633532,
+            47.2301384
+          ],
+          [
+            16.6335343,
+            47.2300638
+          ],
+          [
+            16.6337194,
+            47.2297825
+          ]
+        ]
+      }
+    }
+  ]
+}

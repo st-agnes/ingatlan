@@ -1,0 +1,622 @@
+{
+  "schemaVersion": 1,
+  "sourcePdfSha256": "3dc2a4f4fcf3afd1b387a278be6a7fc7dcccdb75db8f1d4af3a5f07d811d8342",
+  "method": "Literal closed source fill contours from the original July2005KSH PDF page9, including all actual native subpaths and touching micro-triangles. Original decimal PDF vertices are evaluated exactly, then mapped by a three-road-junction EOV similarity and vertexwise EPSG23700→4326. No polygon repair, dropped component, smoothing, buffer, clipping, snapping, missing-edge cap, frame closure or current-name-point fit. Placement remains estimated; one two-control alternative is retained separately. Hódtó is invalid in source and already represented, so it is quarantined rather than repaired or counted again.",
+  "sourceToEovCoordinateOperation": "[PDFx,PDFy,1] @ matrix = [EOVeast,EOVnorth]",
+  "mainMatrixPdfToEov": [
+    [
+      30.88205800794672,
+      -1.4123539850351572
+    ],
+    [
+      -1.4123539850351572,
+      -30.88205800794672
+    ],
+    [
+      741305.0950036449,
+      129612.51245440841
+    ]
+  ],
+  "mainControlIds": [
+    "C1",
+    "C2",
+    "C3"
+  ],
+  "mainScaleMPerPdfPoint": 30.914337298173333,
+  "mainControlRmsM": 15.02818441175499,
+  "controlMetrics": [
+    {
+      "id": "C1",
+      "role": "fit",
+      "sourcePdfPoint": [
+        193.02,
+        288.3
+      ],
+      "targetOsmNodeId": 931592387,
+      "residualEastNorthM": [
+        6.8405348032247275,
+        -11.850717291104957
+      ],
+      "distanceM": 13.683289688807394
+    },
+    {
+      "id": "C2",
+      "role": "fit",
+      "sourcePdfPoint": [
+        218.4,
+        285.06
+      ],
+      "targetOsmNodeId": 330464105,
+      "residualEastNorthM": [
+        -17.369429304846562,
+        7.8659925840911455
+      ],
+      "distanceM": 19.067535596113082
+    },
+    {
+      "id": "C3",
+      "role": "fit",
+      "sourcePdfPoint": [
+        219.48,
+        253.98
+      ],
+      "targetOsmNodeId": 416869829,
+      "residualEastNorthM": [
+        10.528894476476125,
+        3.9847246865392663
+      ],
+      "distanceM": 11.25769291303884
+    },
+    {
+      "id": "H1a",
+      "role": "held_out_not_fit",
+      "sourcePdfPoint": [
+        270.3,
+        272.22
+      ],
+      "targetOsmNodeId": 711942683,
+      "residualEastNorthM": [
+        2.975125945988111,
+        -74.66576553085179
+      ],
+      "distanceM": 74.72501533424149
+    },
+    {
+      "id": "H1b",
+      "role": "held_out_not_fit",
+      "sourcePdfPoint": [
+        270.3,
+        272.22
+      ],
+      "targetOsmNodeId": 711942888,
+      "residualEastNorthM": [
+        -20.171158786397427,
+        -51.978953865822405
+      ],
+      "distanceM": 55.75560323206406
+    }
+  ],
+  "controlSemantics": "Observed native quarter-boundary vertices interpreted as named-road junctions from source text. These are not surveyed source control points.",
+  "C2HistoricalStreetNameAmbiguity": "Current junction includes Teleki east,Pálffy west,Dr.Rapcsák south,Szántó north. Source simplified street description does not establish unchanged naming/geometry.",
+  "alternativeMatrixPdfToEov": [
+    [
+      30.540701025339093,
+      -1.5680633704661364
+    ],
+    [
+      -1.5680633704661364,
+      -30.540701025339093
+    ],
+    [
+      741409.0342094107,
+      129556.0049791739
+    ]
+  ],
+  "alternativeControlIds": [
+    "C1",
+    "C3"
+  ],
+  "alternativeMeaning": "Omit ambiguousC2; exact two-correspondence similarity. Model differences are not confidence bounds.",
+  "sourceNamePointFitControls": 0,
+  "municipalityPerimeterFit": false,
+  "sourceFramesUsedForClosure": false,
+  "geometryRepairs": 0,
+  "droppedNativeSubpaths": 0,
+  "controlHullPdfGeometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          193.02,
+          288.3
+        ],
+        [
+          218.4,
+          285.06
+        ],
+        [
+          219.48,
+          253.98
+        ],
+        [
+          193.02,
+          288.3
+        ]
+      ]
+    ]
+  },
+  "absoluteGroundAccuracyM": null,
+  "wholeCurrentExtentConfirmed": false,
+  "placementUncertainty": "Geographic placement is estimated from three interpreted source-boundary road junctions, not surveyed source controls. C2 has historical/current street-name ambiguity. Main fit RMS15.03m is not an accuracy bound; an ambiguous held-out junction differs55.76–74.73m. The control triangle covers only small portions ofBelváros/Tabán; other candidate footprints are extrapolated. Source cartographic generalization, road-centre convention,2005/current change and unknown survey/CRS remain material. Literal current-street-name line checks diverge up to1014m where simplified historical descriptions do not match the whole mapped border under current names; no aliases or source corrections are inferred. Independent source Susán/Újváros rail135 check differs by up to84.21m. These diagnostics do not establish absolute accuracy or whole current extents. Four detached village depictions are schematic/compressed and are retained only in native source coordinates.",
+  "roadAndRailChecks": [
+    {
+      "sourcePair": [
+        "Tarján",
+        "Tabán"
+      ],
+      "roadNames": [
+        "László utca",
+        "Imre utca"
+      ],
+      "sourceSharedBoundaryGeometryCanonicalSha256": "535de42ca32b334f17cfcedf4e25e4f15ea538e2bacd2b1755bf630467acb0e7",
+      "sourceSharedLengthPdfPoints": 22.37862994531858,
+      "measurementSampleCount": 70,
+      "sourceToRoadDistancePercentilesM": {
+        "p0": 4.2115560907948835,
+        "p50": 51.132840645076776,
+        "p90": 58.39579554620166,
+        "p100": 72.79530830888585
+      },
+      "meaning": "Actual source shared border compared to complete current road ways; source/current naming and centreline convention may differ. Samples do not alter exported geometry.",
+      "independentOfFitEndpoints": false
+    },
+    {
+      "sourcePair": [
+        "Tarján",
+        "Belváros"
+      ],
+      "roadNames": [
+        "Damjanich utca"
+      ],
+      "sourceSharedBoundaryGeometryCanonicalSha256": "de447744399cb751cc84223ed43ae6a0c3549dc2d4591d923b29b4d2d7b80d45",
+      "sourceSharedLengthPdfPoints": 35.89970290741392,
+      "measurementSampleCount": 111,
+      "sourceToRoadDistancePercentilesM": {
+        "p0": 3.5813210483725455,
+        "p50": 33.35776584355611,
+        "p90": 328.1741209968036,
+        "p100": 422.9173346506609
+      },
+      "meaning": "Actual source shared border compared to complete current road ways; source/current naming and centreline convention may differ. Samples do not alter exported geometry.",
+      "independentOfFitEndpoints": false
+    },
+    {
+      "sourcePair": [
+        "Tarján",
+        "Kertváros"
+      ],
+      "roadNames": [
+        "Kodály Zoltán utca"
+      ],
+      "sourceSharedBoundaryGeometryCanonicalSha256": "be5d485cad49c4199c5bb9d924af2622cde27be10385b09d5ad8237cca786b02",
+      "sourceSharedLengthPdfPoints": 42.71174224979124,
+      "measurementSampleCount": 133,
+      "sourceToRoadDistancePercentilesM": {
+        "p0": 13.075408820751667,
+        "p50": 362.65103527605265,
+        "p90": 881.9013724441041,
+        "p100": 1013.7555561863617
+      },
+      "meaning": "Actual source shared border compared to complete current road ways; source/current naming and centreline convention may differ. Samples do not alter exported geometry.",
+      "independentOfFitEndpoints": true
+    },
+    {
+      "sourcePair": [
+        "Tabán",
+        "Csúcs"
+      ],
+      "roadNames": [
+        "Szántó Kovács János utca"
+      ],
+      "sourceSharedBoundaryGeometryCanonicalSha256": "0f04d5fe899d0f1d60e7929f6d7de192d338112d8ebd767517ab23817bacdfd9",
+      "sourceSharedLengthPdfPoints": 31.098758817676323,
+      "measurementSampleCount": 97,
+      "sourceToRoadDistancePercentilesM": {
+        "p0": 0.02030025787101478,
+        "p50": 6.132778751618135,
+        "p90": 15.070600853596138,
+        "p100": 17.772456262812593
+      },
+      "meaning": "Actual source shared border compared to complete current road ways; source/current naming and centreline convention may differ. Samples do not alter exported geometry.",
+      "independentOfFitEndpoints": false
+    },
+    {
+      "sourcePair": [
+        "Csúcs",
+        "Béketelep"
+      ],
+      "roadNames": [
+        "Jókai utca"
+      ],
+      "sourceSharedBoundaryGeometryCanonicalSha256": "26bc3604bbdd8ad36ac58f758e8e4afb6b69bd9f38e29d4457f0ba23d12154f0",
+      "sourceSharedLengthPdfPoints": 54.030624739960544,
+      "measurementSampleCount": 168,
+      "sourceToRoadDistancePercentilesM": {
+        "p0": 0.2842902892568866,
+        "p50": 58.95368676760248,
+        "p90": 69.87354596805197,
+        "p100": 75.38350240075688
+      },
+      "meaning": "Actual source shared border compared to complete current road ways; source/current naming and centreline convention may differ. Samples do not alter exported geometry.",
+      "independentOfFitEndpoints": false
+    },
+    {
+      "sourcePair": [
+        "Belváros",
+        "Csúcs"
+      ],
+      "roadNames": [
+        "Teleki utca"
+      ],
+      "sourceSharedBoundaryGeometryCanonicalSha256": "610c8979c60545281d0a3ae0a015a9738bad1d4920bcf13f173608aacc0ab93e",
+      "sourceSharedLengthPdfPoints": 33.791467543626155,
+      "measurementSampleCount": 105,
+      "sourceToRoadDistancePercentilesM": {
+        "p0": 1.7274077432976893,
+        "p50": 37.74551035958576,
+        "p90": 263.8413147581575,
+        "p100": 364.0134900213182
+      },
+      "meaning": "Actual source shared border compared to complete current road ways; source/current naming and centreline convention may differ. Samples do not alter exported geometry.",
+      "independentOfFitEndpoints": false
+    },
+    {
+      "sourcePair": [
+        "Susán",
+        "Újváros"
+      ],
+      "physicalLine": "Actual current rail135, independently held out of road fit",
+      "sourceSharedLengthPdfPoints": 65.03412774827352,
+      "measurementSampleCount": 202,
+      "sourceToRailDistancePercentilesM": {
+        "p0": 0.2706847509077188,
+        "p50": 29.30459920006541,
+        "p90": 73.37144156377231,
+        "p100": 84.20692579620477
+      },
+      "independentOfFitControls": true,
+      "notAnAbsoluteAccuracyBound": true
+    }
+  ],
+  "features": [
+    {
+      "name": "Belváros",
+      "sourceFillOrdinal": 0,
+      "sourcePaintIndex": 0,
+      "nativeGeometryValid": true,
+      "nativePartCount": 2,
+      "currentNamePointDiagnostics": [
+        {
+          "id": "osm:node:1864706584",
+          "name": "Belváros",
+          "place": "suburb",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsideM": 0.0,
+          "usedForFit": false
+        }
+      ],
+      "rawSourceGeometryCanonicalSha256": "b2394ba262e970f2a918a8c30049c373ab916b06daed6e4a5aec4a8a38fc85bb",
+      "worldCandidateExported": true,
+      "mainGeometryValid": true,
+      "mainWorldGeometryCanonicalSha256": "5f5e80bb1653cbfb8a978144f551533514b6673e9af6fddff7397e6817e94c34",
+      "sourceVerticesIncludingClosingRepeats": 29,
+      "controlHullCoveredFraction": 0.06163564560965387,
+      "twoControlAlternativeMaximumVertexShiftM": 30.80719806441768,
+      "usableForAddressAssignment": false
+    },
+    {
+      "name": "Tarján",
+      "sourceFillOrdinal": 1,
+      "sourcePaintIndex": 1,
+      "nativeGeometryValid": true,
+      "nativePartCount": 1,
+      "currentNamePointDiagnostics": [
+        {
+          "id": "osm:node:1864706612",
+          "name": "Tarján",
+          "place": "suburb",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsideM": 0.0,
+          "usedForFit": false
+        }
+      ],
+      "rawSourceGeometryCanonicalSha256": "cc1acd55ae73172ec0c184f6b3ee7c6e414bf7066f29b6ffc5afb872176e28e9",
+      "worldCandidateExported": true,
+      "mainGeometryValid": true,
+      "mainWorldGeometryCanonicalSha256": "63f9da90d3871a0d25c354457ac7d8e00cebe3fc937051857958a4ceb6eee9a1",
+      "sourceVerticesIncludingClosingRepeats": 24,
+      "controlHullCoveredFraction": 0.0,
+      "twoControlAlternativeMaximumVertexShiftM": 27.645606016291644,
+      "usableForAddressAssignment": false
+    },
+    {
+      "name": "Tabán",
+      "sourceFillOrdinal": 2,
+      "sourcePaintIndex": 2,
+      "nativeGeometryValid": true,
+      "nativePartCount": 1,
+      "currentNamePointDiagnostics": [
+        {
+          "id": "osm:node:1864706598",
+          "name": "Tabán",
+          "place": "suburb",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsideM": 0.0,
+          "usedForFit": false
+        }
+      ],
+      "rawSourceGeometryCanonicalSha256": "26321b16ef1d8b6d1db2938c040abd60c8b1956af2a1273bf046139c6a97154b",
+      "worldCandidateExported": true,
+      "mainGeometryValid": true,
+      "mainWorldGeometryCanonicalSha256": "e5e530fc2e8a761fc3b1317b112dc14490a25a4cb34c75bb655acb6aac2c0043",
+      "sourceVerticesIncludingClosingRepeats": 29,
+      "controlHullCoveredFraction": 0.1302623317814497,
+      "twoControlAlternativeMaximumVertexShiftM": 16.466106243463614,
+      "usableForAddressAssignment": false
+    },
+    {
+      "name": "Csúcs",
+      "sourceFillOrdinal": 3,
+      "sourcePaintIndex": 3,
+      "nativeGeometryValid": true,
+      "nativePartCount": 1,
+      "currentNamePointDiagnostics": [
+        {
+          "id": "osm:node:1864706597",
+          "name": "Csúcs",
+          "place": "suburb",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsideM": 0.0,
+          "usedForFit": false
+        }
+      ],
+      "rawSourceGeometryCanonicalSha256": "55a98068e045c97df50a860018296d8587d31fac3ae8b704a2990cce62dba29e",
+      "worldCandidateExported": true,
+      "mainGeometryValid": true,
+      "mainWorldGeometryCanonicalSha256": "ea7806ca29a15b627372f4e7fcfafbd24b701771c75bb6e054e836414ac78124",
+      "sourceVerticesIncludingClosingRepeats": 18,
+      "controlHullCoveredFraction": 0.0,
+      "twoControlAlternativeMaximumVertexShiftM": 31.399988502551658,
+      "usableForAddressAssignment": false
+    },
+    {
+      "name": "Béketelep",
+      "sourceFillOrdinal": 4,
+      "sourcePaintIndex": 4,
+      "nativeGeometryValid": true,
+      "nativePartCount": 1,
+      "currentNamePointDiagnostics": [
+        {
+          "id": "osm:node:1864706600",
+          "name": "Béketelep",
+          "place": "suburb",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsideM": 0.0,
+          "usedForFit": false
+        }
+      ],
+      "rawSourceGeometryCanonicalSha256": "7d1b0555f935d51259ab5b4b449c227cc0e799223b8980a85faea9adafecbe9a",
+      "worldCandidateExported": true,
+      "mainGeometryValid": true,
+      "mainWorldGeometryCanonicalSha256": "ec60c419a1e4cb68bf3584b20c594457a20b11a37012407d8901123891342d86",
+      "sourceVerticesIncludingClosingRepeats": 21,
+      "controlHullCoveredFraction": 0.0,
+      "twoControlAlternativeMaximumVertexShiftM": 44.10010184518896,
+      "usableForAddressAssignment": false
+    },
+    {
+      "name": "Kertváros",
+      "sourceFillOrdinal": 5,
+      "sourcePaintIndex": 5,
+      "nativeGeometryValid": true,
+      "nativePartCount": 1,
+      "currentNamePointDiagnostics": [
+        {
+          "id": "osm:node:1864706578",
+          "name": "Kertváros",
+          "place": "suburb",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsideM": 0.0,
+          "usedForFit": false
+        }
+      ],
+      "rawSourceGeometryCanonicalSha256": "9855405bc4f94ee79345a1685a29d94962327bd7ab173f156b40490e6988ddd2",
+      "worldCandidateExported": true,
+      "mainGeometryValid": true,
+      "mainWorldGeometryCanonicalSha256": "9abd2cabcaad442ae2d5b82385b757af742c96179fc2ace6dcf7136331f05072",
+      "sourceVerticesIncludingClosingRepeats": 19,
+      "controlHullCoveredFraction": 0.0,
+      "twoControlAlternativeMaximumVertexShiftM": 39.534288912693064,
+      "usableForAddressAssignment": false
+    },
+    {
+      "name": "Hódtó",
+      "sourceFillOrdinal": 6,
+      "sourcePaintIndex": 6,
+      "nativeGeometryValid": false,
+      "nativePartCount": 1,
+      "currentNamePointDiagnostics": [
+        {
+          "id": "osm:node:1864706591",
+          "name": "Hódtó",
+          "place": "suburb",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsideM": 0.0,
+          "usedForFit": false
+        }
+      ],
+      "rawSourceGeometryCanonicalSha256": "287f1b218ef5bd4fddf2b4986c295bf73eb0bbe378828a75b4877e6d737d4f46",
+      "worldCandidateExported": false,
+      "reason": "Invalid literal path and duplicate existing Hódtó estimate"
+    },
+    {
+      "name": "Susán",
+      "sourceFillOrdinal": 7,
+      "sourcePaintIndex": 7,
+      "nativeGeometryValid": true,
+      "nativePartCount": 1,
+      "currentNamePointDiagnostics": [
+        {
+          "id": "osm:node:1864706588",
+          "name": "Susán",
+          "place": "suburb",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsideM": 0.0,
+          "usedForFit": false
+        }
+      ],
+      "rawSourceGeometryCanonicalSha256": "aea055bf5d43f6dff4903e94ae23ef77b536de5851ba692e9ca93503eb16ac5f",
+      "worldCandidateExported": true,
+      "mainGeometryValid": true,
+      "mainWorldGeometryCanonicalSha256": "8072847b377d3ced454c5fed5aa94791934f4fb175cbbf48017f5be022ff25e3",
+      "sourceVerticesIncludingClosingRepeats": 19,
+      "controlHullCoveredFraction": 0.0,
+      "twoControlAlternativeMaximumVertexShiftM": 55.68016891014092,
+      "usableForAddressAssignment": false
+    },
+    {
+      "name": "Újváros",
+      "sourceFillOrdinal": 8,
+      "sourcePaintIndex": 8,
+      "nativeGeometryValid": true,
+      "nativePartCount": 1,
+      "currentNamePointDiagnostics": [
+        {
+          "id": "osm:node:1864706595",
+          "name": "Újváros",
+          "place": "suburb",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsideM": 0.0,
+          "usedForFit": false
+        }
+      ],
+      "rawSourceGeometryCanonicalSha256": "9e765300514fca1c3378a6a08889ab177a49d40e6f120c5a405bab0098d5657a",
+      "worldCandidateExported": true,
+      "mainGeometryValid": true,
+      "mainWorldGeometryCanonicalSha256": "8c7e29c532dc837ff16ceaedf0e0f4ceca8d15a8b11edde5f049a9eecd5e16d3",
+      "sourceVerticesIncludingClosingRepeats": 12,
+      "controlHullCoveredFraction": 0.0,
+      "twoControlAlternativeMaximumVertexShiftM": 62.62730293912741,
+      "usableForAddressAssignment": false
+    },
+    {
+      "name": "Kishomok",
+      "sourceFillOrdinal": 9,
+      "sourcePaintIndex": 9,
+      "nativeGeometryValid": true,
+      "nativePartCount": 1,
+      "currentNamePointDiagnostics": [
+        {
+          "id": "osm:node:712916346",
+          "name": "Kishomok",
+          "place": "suburb",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsideM": 0.0,
+          "usedForFit": false
+        }
+      ],
+      "rawSourceGeometryCanonicalSha256": "60aba0bff1210c58cd19aa8e789e4202686e284bd4973220c33fea727cff2aa7",
+      "worldCandidateExported": true,
+      "mainGeometryValid": true,
+      "mainWorldGeometryCanonicalSha256": "8179796d2a39b40d94f9c86ce0222a337fe8fcf3e9945758bfdf5d223dc06dfc",
+      "sourceVerticesIncludingClosingRepeats": 11,
+      "controlHullCoveredFraction": 0.0,
+      "twoControlAlternativeMaximumVertexShiftM": 54.27789305755918,
+      "usableForAddressAssignment": false
+    },
+    {
+      "name": "Batida",
+      "sourceFillOrdinal": 10,
+      "sourcePaintIndex": 10,
+      "nativeGeometryValid": true,
+      "nativePartCount": 1,
+      "currentNamePointDiagnostics": [],
+      "rawSourceGeometryCanonicalSha256": "7caaa7dc52ff2c6e2e21752d528d954914a88d57d8237370ec0107abf7714860",
+      "worldCandidateExported": false,
+      "reason": "Detached village schematic position/scale cannot use central road fit; no source-to-world polygon emitted"
+    },
+    {
+      "name": "Szikáncs",
+      "sourceFillOrdinal": 11,
+      "sourcePaintIndex": 11,
+      "nativeGeometryValid": true,
+      "nativePartCount": 1,
+      "currentNamePointDiagnostics": [],
+      "rawSourceGeometryCanonicalSha256": "46157bbf77e245be2fedf7e4f9dc4a0786b77e3532382d2d571f8f479c458374",
+      "worldCandidateExported": false,
+      "reason": "Detached village schematic position/scale cannot use central road fit; no source-to-world polygon emitted"
+    },
+    {
+      "name": "Erzsébet",
+      "sourceFillOrdinal": 12,
+      "sourcePaintIndex": 12,
+      "nativeGeometryValid": true,
+      "nativePartCount": 1,
+      "currentNamePointDiagnostics": [
+        {
+          "id": "osm:node:1888550089",
+          "name": "Erzsébet",
+          "place": "suburb",
+          "sourcePolygonCoversPoint": false,
+          "distanceOutsideM": 6771.663478438827,
+          "usedForFit": false
+        }
+      ],
+      "rawSourceGeometryCanonicalSha256": "635d6570f55bd9a48610e506c9e5d8ac36e20d26f691fce3df65fa0c1de9466b",
+      "worldCandidateExported": false,
+      "reason": "Detached village schematic position/scale cannot use central road fit; no source-to-world polygon emitted"
+    },
+    {
+      "name": "Kútvölgy",
+      "sourceFillOrdinal": 13,
+      "sourcePaintIndex": 13,
+      "nativeGeometryValid": true,
+      "nativePartCount": 1,
+      "currentNamePointDiagnostics": [
+        {
+          "id": "osm:node:1888550076",
+          "name": "Kútvölgy",
+          "place": "suburb",
+          "sourcePolygonCoversPoint": false,
+          "distanceOutsideM": 4749.770542403215,
+          "usedForFit": false
+        }
+      ],
+      "rawSourceGeometryCanonicalSha256": "4aef46bd59da1de6f1dec5f17424f4cba3ccb9677f575d797f6f9514927f6ce5",
+      "worldCandidateExported": false,
+      "reason": "Detached village schematic position/scale cannot use central road fit; no source-to-world polygon emitted"
+    },
+    {
+      "name": "Kiskertek",
+      "sourceFillOrdinal": 14,
+      "sourcePaintIndex": 26,
+      "nativeGeometryValid": true,
+      "nativePartCount": 2,
+      "currentNamePointDiagnostics": [],
+      "rawSourceGeometryCanonicalSha256": "06985f8cf12f9a5df2f2e6709f926c55b54d0d7b381afc1b6cc7b4fd2a786c20",
+      "worldCandidateExported": false,
+      "reason": "Garden/local-area identity only, not a distinct fine statistical quarter row"
+    }
+  ],
+  "retainedOnlyNativeVillages": [
+    "Batida",
+    "Szikáncs",
+    "Erzsébet",
+    "Kútvölgy"
+  ],
+  "invalidAndDuplicateHodtoNotAdded": true,
+  "estimatedNeighbourhoodCandidateCount": 9,
+  "primarySourceAdmissionCount": 0,
+  "rightsStatus": "KSH attribution requirement and separate data-transfer permission restriction preserved. Permission status not established.",
+  "usableForAddressAssignment": false
+}

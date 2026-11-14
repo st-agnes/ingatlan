@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Szentes",
+  "name": "Belváros",
+  "sourceContourIsObserved": false,
+  "sourceEra": "2015 municipal reupload of an older IVS containing2009/2010 material; precise edition/adoption date not verified.",
+  "sourceSemanticUnit": "Whole named city quarter in municipal IVS partition, sectionIV.1; not an intervention-only or townscape-protection zone.",
+  "sourceUrl": "https://szentes.hu/wp-content/uploads/2015/01/szentes_ivs.pdf",
+  "sourceLocators": [
+    "Printed147 city-quarter map",
+    "Following Belváros street/river list; first indexed successful read lines4337-4360"
+  ],
+  "sourceStreetCadastralRiverFacts": [
+    "Kurca",
+    "Arany János u.",
+    "Bajcsy Zsilinszky u.",
+    "Deák Ferenc u.",
+    "Apponyi tér",
+    "Baross u.",
+    "Kolozsvár u.",
+    "Attila út",
+    "4697 hrsz. út",
+    "Koszta József u.",
+    "Zrínyi u.",
+    "Villogó u.",
+    "Somogyi Béla u.",
+    "Szilfa u.",
+    "Vásárhelyi út",
+    "Nyíri köz",
+    "Kisér u.",
+    "Szent Anna u.",
+    "5631 hrsz. közút",
+    "Kurca"
+  ],
+  "factAccounting": {
+    "itemsIncludingRepeatedClosureKurca": 20,
+    "uniqueFacts": 19,
+    "explicitNamedRoadsRepresentedOnCandidateBoundary": [
+      "Arany János utca",
+      "Bajcsy-Zsilinszky utca",
+      "Deák Ferenc utca",
+      "Baross utca",
+      "Kolozsvár utca",
+      "Attila út",
+      "Koszta József utca",
+      "Zrínyi utca",
+      "Villogó utca",
+      "Somogyi Béla utca",
+      "Szilfa utca",
+      "Vásárhelyi út",
+      "Nyíri köz",
+      "Kisér utca",
+      "Szent Anna utca"
+    ],
+    "namedRoadCount": 15,
+    "river": "Kurca",
+    "placeRole": {
+      "source": "Apponyi tér",
+      "chosenInterpretation": "Place reference to the square edge along continuing Deák Ferenc utca; source does not choose this side. Named Apponyi road/perimeter retained as finite alternative."
+    },
+    "cadastralRoles": [
+      {
+        "source": "4697 hrsz. út",
+        "assetAnnexName": "Attila út",
+        "selectedCurrentRoadName": "Nagyvölgy sor",
+        "identityVerified": false
+      },
+      {
+        "source": "5631 hrsz. közút",
+        "assetAnnexName2018": "Unnamed",
+        "assetAnnexNameLater": "Szent Anna utca",
+        "selectedCurrentRoute": "Szent Anna side path/steps, Dr. Szalva Péter sétány, Eszperantó physical bridge",
+        "identityVerified": false
+      }
+    ],
+    "nameNormalizationOnly": {
+      "Bajcsy Zsilinszky u.": "Bajcsy-Zsilinszky utca",
+      "Kolozsvár u.": "Kolozsvár utca",
+      "Nyíri köz": "Nyíri köz",
+      "Vásárhelyi út.": "Vásárhelyi út"
+    }
+  },
+  "currentMunicipalNameEvidence": {
+    "url": "https://www.szentes.hu/wp-content/uploads/2025/03/Szentes_FVS_mod_20240627_elfogadott.pdf",
+    "sourceDate": "2024-06-27 modification, municipal upload2025-03",
+    "locators": [
+      "Figure62 printed164",
+      "Figure81 printed285"
+    ],
+    "role": "Indexed maps name Belváros among Szentes city quarters; exact boundary equivalence not established, map pixels not acquired."
+  },
+  "currentOsmNamePoints": [
+    {
+      "name": "Lapistó",
+      "osmNodeId": 658019001,
+      "coordinates": [
+        20.3803299,
+        46.6132011
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Felsőpárt",
+      "osmNodeId": 1629890195,
+      "coordinates": [
+        20.264208,
+        46.6637481
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Kisér",
+      "osmNodeId": 1629890559,
+      "coordinates": [
+        20.2620182,
+        46.64223
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Kertváros",
+      "osmNodeId": 1631392965,
+      "coordinates": [
+        20.2461032,
+        46.6686229
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Hékéd",
+      "osmNodeId": 1631395691,
+      "coordinates": [
+        20.2586753,
+        46.6760421
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Nagyhegy",
+      "osmNodeId": 1631427175,
+      "coordinates": [
+        20.2715059,
+        46.6760561
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Magyartés",
+      "osmNodeId": 1900625150,
+      "coordinates": [
+        20.2125731,
+        46.738806
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Kajánújfalu",
+      "osmNodeId": 3733705912,
+      "coordinates": [
+        20.3549724,
+        46.7302825
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Mentettrét",
+      "osmNodeId": 12088919597,
+      "coordinates": [
+        20.2133607,
+        46.7100685
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Kertvárosi lakótelep",
+      "osmNodeId": 12088919599,
+      "coordinates": [
+        20.248124,
+        46.6647979
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Sárgapart",
+      "osmNodeId": 12088937607,
+      "coordinates": [
+        20.2488595,
+        46.6703522
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Alsórétiújtelep",
+      "osmNodeId": 12088962198,
+      "coordinates": [
+        20.2507419,
+        46.6595258
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Szedertelep",
+      "osmNodeId": 12088963485,
+      "coordinates": [
+        20.2413389,
+        46.6576236
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Gógány",
+      "osmNodeId": 12088963487,
+      "coordinates": [
+        20.2620074,
+        46.6383548
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Belváros",
+      "osmNodeId": 12088970184,
+      "coordinates": [
+        20.2572095,
+        46.6527884
+      ],
+      "coveredByCandidate": true,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Sitér",
+      "osmNodeId": 12088983066,
+      "coordinates": [
+        20.2470514,
+        46.644266
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Alsópárt",
+      "osmNodeId": 12088987531,
+      "coordinates": [
+        20.2651563,
+        46.6468071
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Lőrinchát",
+      "osmNodeId": 12088990432,
+      "coordinates": [
+        20.2543146,
+        46.6374303
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    },
+    {
+      "name": "Iparterület",
+      "osmNodeId": 12088998781,
+      "coordinates": [
+        20.2733939,
+        46.6548713
+      ],
+      "coveredByCandidate": false,
+      "role": "Current name label/identity only; not used for fitting, selecting a face, constructing geometry or validating a boundary location."
+    }
+  ],
+  "numberOfExplicitCurrentGraphAssumptions": 6,
+  "assumptionProof": "raw/szentes-bounded-inference-proof.json",
+  "alternatives": {
+    "appOnyiCandidatesSymmetricDifferenceM2": 41611.41868071687,
+    "deakSideAreaM2": 1156813.0309333175,
+    "aroundSquareAreaM2": 1115201.6122526005,
+    "areaDeltaM2": -41611.418680717004,
+    "finiteAlternativeComparisonIsNotAbsoluteAccuracyBound": true
+  },
+  "exportCount": 1,
+  "notExportedAsSecondNeighborhood": "raw/szentes-belvaros-apponyi-around-inferred-review.geojson",
+  "usableForAddressAssignment": false,
+  "accuracyMeters": null,
+  "calibrationObservations": null
+}

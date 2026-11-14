@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "raw_cycle_plan_Klebelsberg_embankment_and_map_scope_inspection",
+  "status": "specific_historical_alignment_text_confirmed; no_quarter_boundary_or_missing_corner_resolved",
+  "source": {
+    "localOriginalPath": ".local/neighborhoods/quarter-map-batch/szeged-cycle-network-2015.pdf",
+    "sha256": "df9df685757048f4536e64df0789dc7e378e2d805627707394a5454a43ecf83b",
+    "bytes": 4808502,
+    "pageCount": 123,
+    "url": "https://megujul.szeged.hu/data/portal/cikk/miert-pont-igy/szeged_kerekparhalozati_terv_2015.pdf",
+    "title": "Szeged kerékpárforgalmi hálózati terve",
+    "coverDate": "2015-10",
+    "internalRevisionBlock": {
+      "pdfPageOneBased": 2,
+      "dated": "2016-03-21",
+      "version": "V1.1",
+      "projectCode": "SKP956"
+    },
+    "dateMeaning": "Cover is October2015; internal revision block is March2016. These are read from the acquired PDF, not inferred from URL or crawl dates."
+  },
+  "localOnlyInspectionArtifacts": {
+    "inventory": ".local/neighborhoods/szeged-raw-review/cycle-network-2015/inventory.json",
+    "fullText": ".local/neighborhoods/szeged-raw-review/cycle-network-2015/full-text-local-only.txt",
+    "renderedPagesOneBased": [
+      23,
+      24,
+      25,
+      26,
+      35,
+      61
+    ],
+    "selectedNativeImagesExtractedLocally": true,
+    "sourceNarrativeRetainedOnlyLocally": true
+  },
+  "KlebelsbergAlignmentEvidence": [
+    {
+      "pdfPageOneBased": 30,
+      "printedPage": 30,
+      "role": "Discussion of green-corridor cycling routes derived from planning context.",
+      "factParaphrased": "A former narrow-gauge railway embankment is identified between Klebelsberg-telep and the right-bank Tisza flood levee.",
+      "nativeVectorPathCount": 4,
+      "nativeImageCount": 0,
+      "closedQuarterContourPresent": false
+    },
+    {
+      "pdfPageOneBased": 72,
+      "printedPage": 72,
+      "section": "4.2.2",
+      "role": "Proposed secondary cycling-network list.",
+      "factParaphrased": "The same former embankment is listed as a network corridor. The text sends readers to annexes24and25 for proposals.",
+      "nativeVectorPathCount": 0,
+      "nativeImageCount": 0,
+      "closedQuarterContourPresent": false
+    },
+    {
+      "pdfPageOneBased": 88,
+      "printedPage": 88,
+      "role": "Second-phase cycling-development discussion.",
+      "factParaphrased": "The same embankment is part of a green-corridor development concept. No quarter corner, Holt-Tisza endpoint or closed neighborhood boundary is specified.",
+      "nativeVectorPathCount": 2,
+      "nativeImageCount": 0,
+      "closedQuarterContourPresent": false
+    }
+  ],
+  "inspectedMapEvidence": [
+    {
+      "pdfPageOneBased": 23,
+      "figure": "3.1",
+      "role": "National spatial-planning/cycling-route extract around Szeged.",
+      "representation": "Raster map panels;3native paths are page-level graphics, not a fine quarter contour.",
+      "images": [
+        {
+          "xref": 126,
+          "dimensionsPixels": [
+            1476,
+            528
+          ]
+        },
+        {
+          "xref": 125,
+          "dimensionsPixels": [
+            1476,
+            529
+          ]
+        },
+        {
+          "xref": 124,
+          "dimensionsPixels": [
+            469,
+            336
+          ]
+        }
+      ],
+      "fineQuarterGeometrySupported": false
+    },
+    {
+      "pdfPageOneBased": 24,
+      "figure": "3.2",
+      "role": "County spatial-plan extract around Szeged.",
+      "representation": "Raster619x449, xref133;1native path.",
+      "fineQuarterGeometrySupported": false
+    },
+    {
+      "pdfPageOneBased": 25,
+      "figure": "3.3",
+      "role": "Proposed pedestrian/cycling bridge location at Marostorok.",
+      "representation": "Raster417x352, xref139;1native path.",
+      "fineQuarterGeometrySupported": false
+    },
+    {
+      "pdfPageOneBased": 26,
+      "figure": "3.4",
+      "role": "Existing/planned city cycling paths from urban development concept.",
+      "representation": "Raster425x449, xref145;1native path.",
+      "KlebelsbergGapResolution": "Overview thematic cycling network; no explicit Klebelsberg quarter edge/corner or native quarter path.",
+      "fineQuarterGeometrySupported": false
+    },
+    {
+      "pdfPageOneBased": 61,
+      "figure": "3.25",
+      "role": "Citybike station locations and300m service circles.",
+      "representation": "Raster472x326, xref316;128native paths mostly associated table graphics.",
+      "fineQuarterGeometrySupported": false
+    }
+  ],
+  "missingAnnexes": {
+    "pdfPageOneBased": 123,
+    "role": "Annex index only; no annex map sheets follow this final page.",
+    "embeddedFileCount": 0,
+    "documentLinkCount": 0,
+    "selectedAnnexLeads": [
+      {
+        "id": "M-05",
+        "role": "Existing cycling network, scale1:40000"
+      },
+      {
+        "id": "M-06",
+        "role": "Existing cycling network, scale1:20000"
+      },
+      {
+        "id": "M-09",
+        "role": "Other cycling-network elements"
+      },
+      {
+        "id": "M-24",
+        "role": "Proposed linear cycling-network development, scale1:90000"
+      },
+      {
+        "id": "M-25",
+        "role": "Proposed linear cycling-network development, scale1:40000"
+      }
+    ],
+    "exactAnnexDownloadUrlsNotPresentInPdf": true,
+    "noGuessedAnnexUrlsProduced": true
+  },
+  "comparisonWithFrozenGap": {
+    "existingQuarter": "Klebelsbergtelep / historic Hattyas",
+    "existingLiveRailToCurrentHoltBankGapMetresDiagnosticOnly": 625.628276845985,
+    "doesThisPdfResolveEastSoutheastQuarterClosure": false,
+    "reason": "The source corroborates a former physical embankment corridor linking the quarter toward the Tisza levee. That cycling alignment is not itself a whole-quarter boundary and does not identify the southern Holt-Tisza corner. Relevant detailed annex sheets are not included in the acquired123page PDF.",
+    "remainingLead": "Acquire an actual source-era embankment/quarter plan or the separately published detailed cycling annex maps; check complete embankment footprint and source-era waterbody corner. This PDF alone does not authorize a synthetic626m connector."
+  },
+  "newQuarterGeometryProduced": false,
+  "sourceContourExtracted": false,
+  "sourcePointsUsedAsFitControls": false,
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "directNarrativeQuotationWords": 0,
+  "networkCallsPerformed": false,
+  "globalRegistryModified": false,
+  "frozenPacketsModified": false
+}

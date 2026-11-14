@@ -1,0 +1,34 @@
+{
+  "id": "gyor-2006-source-outlines",
+  "path": "data/neighborhoods/sources/municipal-gyor-next/gyor-source-candidates.geojson",
+  "sha256": "4ce29697da5be99269079cd42221242ddc10ed3a96eb697ddf527ebfb10c5f5a",
+  "municipality": "Győr",
+  "method": "Actual closed blue PDF vector path from figure97 of the January2014 Győr ITS, showing the2006 division; affine registration to EPSG:23700 by robust closest-point alignment of actual OPEN black source-stroke endpoints to the current OSM municipal exterior; vertexwise inverse projection to WGS84. No outline repair, clipping, snapping, synthetic closing edge or physical-boundary inference. Explicit source-defined circuit aggregation, where used, is recorded per feature.",
+  "evidenceUrls": [
+    "https://gyor.hu/easy-docs/5dc9829cb6d4c"
+  ],
+  "sourceDocuments": [
+    {
+      "url": "https://gyor.hu/easy-docs/5dc9829cb6d4c",
+      "path": "data/neighborhoods/sources/municipal-gyor-next/gyor-its.source.pdf",
+      "sha256": "40f318435f5719cb5a06b253d6e15fbd5acc7d5a6bec53fc38ae1e199b6ca21d",
+      "documentDate": "2014-01",
+      "depictedDivisionYear": 2006,
+      "printedMapPage": 269,
+      "pdfPageZeroBased": 268,
+      "figure": 97,
+      "printedQuarterCircuitTablePages": [
+        271,
+        272
+      ]
+    }
+  ],
+  "license": "source_map_reuse_not_established; OSM controls ODbL-1.0",
+  "reviewPath": "data/neighborhoods/sources/municipal-gyor-next/independent-review.json",
+  "reviewDatasetId": "gyor-2006-source-outlines",
+  "rightsStatus": "Official-source historical boundaries; municipal map reuse rights unverified; OSM calibration/namepoints ODbL-1.0",
+  "propertyOverrides": {
+    "usableForAddressAssignment": false
+  },
+  "featureClassificationNote": "Preserve per-feature classification:16historical neighbourhood candidates (11single-circuit +5source-defined groups),1Kisbácsa planning_unit falsecanonical. Grouping operations are recorded per feature. No global fine-quarter override."
+}

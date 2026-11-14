@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-11-13",
+  "mode": "offline",
+  "newFineQuarterCount": 1,
+  "newMunicipalities": [
+    "Kecskemét"
+  ],
+  "planningPolygonsAdded": 0,
+  "estimatedPolygonsAdded": 0,
+  "geometryArtifact": "kecskemet-manual.geojson",
+  "geometrySha256": "160a740fb414cb3605ed93adceabfb857bdcadf95661c8ac762284f463d54889",
+  "independentReview": "scout/kecskemet-independent-review.json",
+  "sourceProof": "kecskemet-trace-proof.json",
+  "script": "scripts/neighborhoods/derive-municipal-maps-next.py",
+  "scriptSha256": "443296bb8167e572d75f319e382d0e541a5a20ec3386d9afe204ed55f3e8e9fd",
+  "usableForAddressAssignment": false,
+  "files": [
+    {
+      "path": "README.txt",
+      "bytes": 2107,
+      "sha256": "1ba191b5cc250ed5d95375697425d5c1f09b7ee888a921a17cff92fb01c29464"
+    },
+    {
+      "path": "kecskemet-association-audit.json",
+      "bytes": 439,
+      "sha256": "2ec5543cbaf8522ce948b44958e4906fd02928839f78738e72d80109a63b88ec"
+    },
+    {
+      "path": "kecskemet-boundary-lines.geojson",
+      "bytes": 67859,
+      "sha256": "086190404718999a41506d89fdab5fd2af3515beb7be46047230414e25b8a27f"
+    },
+    {
+      "path": "kecskemet-circuit-source.json",
+      "bytes": 4352,
+      "sha256": "cc545fda6fffebc2b890e47945973d882a179e69d7fc94826600da2e66c2893d"
+    },
+    {
+      "path": "kecskemet-manual.geojson",
+      "bytes": 8345,
+      "sha256": "160a740fb414cb3605ed93adceabfb857bdcadf95661c8ac762284f463d54889"
+    },
+    {
+      "path": "kecskemet-source-pages.pdf",
+      "bytes": 796264,
+      "sha256": "9b8663136f085c0c7ec307c3e92cbad02937336b5c5265f67128d623b45df2ee"
+    },
+    {
+      "path": "kecskemet-trace-proof.json",
+      "bytes": 2162,
+      "sha256": "8388cd59dec15b119882882d3078073cc5962f4bf1eccb386e19d7bc1e9265f4"
+    },
+    {
+      "path": "scout/inspection.json",
+      "bytes": 4466,
+      "sha256": "5dde537b45a99688627b988a904acf643515558288a60065d76942617b96567d"
+    },
+    {
+      "path": "scout/kecskemet-independent-review.json",
+      "bytes": 1750,
+      "sha256": "4c5173350b6c53c0fb05e06ec254ef37b0cdc45d4c5f2c5b03441b95b9122490"
+    },
+    {
+      "path": "scout/miskolc-its-253-original-0.jpeg",
+      "bytes": 74485,
+      "sha256": "ae66dab154832f52a833d7c696a4b10882e8fadbc47a22d9128932ab7d684384"
+    },
+    {
+      "path": "scout/miskolc-its-253.png",
+      "bytes": 126039,
+      "sha256": "7cec6e05fcd8276598d6ba124909c6c0a51d86a6ebff82ca0debe7d320162830"
+    },
+    {
+      "path": "scout/miskolc-its-254.png",
+      "bytes": 30485,
+      "sha256": "ea9d42774bb2bcbdbfd0fa11c463a8f11b8e6a6f833464d1fa25a802fbfe8bea"
+    },
+    {
+      "path": "scout/nagykanizsa-fvs-143.png",
+      "bytes": 55038,
+      "sha256": "582d79870391b22b9d2f9d3fa533d0b447f4ebdb4063e7ce8a6f517e0fb5027d"
+    },
+    {
+      "path": "scout/nagykanizsa-fvs-152.png",
+      "bytes": 26738,
+      "sha256": "6ea8f8a42ec6a2b43d0ac40dd3dbd7d1022b89f64a6ff431a93392ca53af441e"
+    },
+    {
+      "path": "scout/nagykanizsa-fvs-178.png",
+      "bytes": 90943,
+      "sha256": "7ed8182ae36a789bba14f9dfa7aa0e6df90088b2e0bb7cd83375fe8852701b74"
+    },
+    {
+      "path": "scout/nagykanizsa-fvs-271.png",
+      "bytes": 70258,
+      "sha256": "b846696f58524e930eeacf55bbdb59a66290c1a86254358d08c071bcfa3a7e1c"
+    },
+    {
+      "path": "scout/nagykanizsa-fvs-274.png",
+      "bytes": 67101,
+      "sha256": "bcd07422b682186bc17575d035c6dd3f51d8c5d2510495c061e2245d17dae074"
+    },
+    {
+      "path": "scout/pecs-control-network.png",
+      "bytes": 60053,
+      "sha256": "f59e533edaa4726c557ea4bace2e09c277c8228150575c2fb44e131f88d43d0c"
+    },
+    {
+      "path": "scout/pecs-full-control-network.png",
+      "bytes": 131897,
+      "sha256": "e5aa3b71423a5d009e44587cc2f8c7682c520065f84c85e2c9f84e79cb49b216"
+    },
+    {
+      "path": "scout/pecs-grid.png",
+      "bytes": 2173540,
+      "sha256": "b0a2084603cc5e2737de23071bae8b34f98cd40f2685e11e72073c2abcda21f3"
+    },
+    {
+      "path": "scout/pecs-its-46.png",
+      "bytes": 75990,
+      "sha256": "22c36f7ffb55498e425249d78a633fc664b7c39bf309dd9800b55de04e26d0a2"
+    },
+    {
+      "path": "scout/pecs-its-47-original-0.jpeg",
+      "bytes": 8467,
+      "sha256": "ae11e335d9a0d045da41c4eaffcab3dd26af55b98a4830587931195ead8981e3"
+    },
+    {
+      "path": "scout/pecs-its-47-original-1.jpeg",
+      "bytes": 58340,
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "path": "scout/pecs-its-47-original-1.jpeg.png",
+      "bytes": 2170968,
+      "sha256": "5b1120af4425144e5794321c588e5edbe7f5712e6d35bff01f5a40c279e39910"
+    },
+    {
+      "path": "scout/pecs-its-47.png",
+      "bytes": 195935,
+      "sha256": "e9d5bd8990d9f09189ad2b9282b3555ca59858d3fb6ede4e00f2f20ed9c6e227"
+    },
+    {
+      "path": "scout/pecs-network-proof.json",
+      "bytes": 69,
+      "sha256": "f9af76a5a1cc4b1dfac11df8acb5b8b78b671eb886786ea06c4d01cc03504475"
+    },
+    {
+      "path": "scout/pecs-road-controls.geojson",
+      "bytes": 2513781,
+      "sha256": "f8b55c012bc133bc8837802d58c2f8835c620827585e49055276786ff6444966"
+    },
+    {
+      "path": "scout/pecs-south-controls.png",
+      "bytes": 741044,
+      "sha256": "e3528ff89014b2f8f71616d17b8154acba807da4e99521a99432c0ea9f2c41fa"
+    },
+    {
+      "path": "scout/reproduce-inspection.py",
+      "bytes": 3404,
+      "sha256": "56ef58cd5aa8a8919f2dbb967631a21c190410fcd0f0b9ea50e6f943cbcaa390"
+    },
+    {
+      "path": "scout/review-kecskemet.py",
+      "bytes": 3388,
+      "sha256": "b33ae06211af22926c4de9f3bd0d1262f254a4a5d0e9a80e01930e91ddc01848"
+    },
+    {
+      "path": "scout/salgotarjan-its-124-original-0.jpeg",
+      "bytes": 68582,
+      "sha256": "1a98f2f09095fdb4ffa91f9ea35ee34881ab00a48f18405f044e3f57c1824fa6"
+    },
+    {
+      "path": "scout/salgotarjan-its-124.png",
+      "bytes": 118350,
+      "sha256": "d8073dd6131a7b7bab1019d68ea4d3772f9021931ec8fb440d4a82d75eab0f75"
+    },
+    {
+      "path": "scout/salgotarjan-its-125-original-0.jpeg",
+      "bytes": 38701,
+      "sha256": "570aa1432441418fbd5183acf28ed75796bfcbb1a75f368dc1698a3fc6f13921"
+    },
+    {
+      "path": "scout/salgotarjan-its-125.png",
+      "bytes": 94779,
+      "sha256": "7fb3e53dd1875772c907a4bf02a6b38ad8fdf00bf53bbb802885e6aaf818cf35"
+    },
+    {
+      "path": "scout/salgotarjan-its-126.png",
+      "bytes": 63704,
+      "sha256": "6f90fd2e07d9b9cd2428fbcce4bc8269e828b2df7a7112813eef25d1df254139"
+    },
+    {
+      "path": "scout/veszprem-its-74.png",
+      "bytes": 43429,
+      "sha256": "8cd66edba5f443fccc7135cdb267bd02b00280dbfefb87e5751b6c570d66c322"
+    }
+  ]
+}

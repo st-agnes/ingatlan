@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-13",
+  "municipality": "Szombathely",
+  "features": 1,
+  "admission": "One source-supported historical neighborhood perimeter candidate; current/legal/address status unverified.",
+  "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+  "sourceDocumentPeriod": "2013-06-06 IVS2008-13",
+  "geometrySourceSnapshot": "2026-11-12T21:23:05Z",
+  "method": "Official 2013 perimeter text interpreted as an ordered road-centreline circuit on actual 2026 OSM node geometry. Every junction is the unique shared OSM node of successive named roads; every edge is consecutive in an original OSM way. No inferred connectors or geometry repair.",
+  "geometryLicense": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors; perimeter facts: Szombathely MJV IVS annex1,2013-06-06",
+  "sourceDocumentRightsStatus": "Publicly accessible municipal PDF; no explicit open redistribution licence independently verified. ODbL geometry licence does not apply to municipal PDF.",
+  "proof": "trace-proof.json",
+  "registryEntry": "registry-entry.json",
+  "reproduce": "PYTHONPATH=.local/geodata python3 scripts/neighborhoods/derive-szombathely-next.py",
+  "independentReview": {
+    "status": "passed_with_scope_limits",
+    "originalSourceWaysCompared": 34,
+    "coordinatesComparedToActualNodeIds": 53,
+    "edgesComparedToConsecutiveSourceNodes": 52,
+    "sourcePdfHashVerified": true,
+    "printedBoundaryTextPage": 151,
+    "printedMapTopologyCheckPage": 50,
+    "uniqueSharedNodeJunctions": 9,
+    "syntheticEdges": 0,
+    "planarCrossingJunctionsInserted": 0,
+    "fullMunicipalityContainment": true,
+    "municipalitySourceId": "osm:relation:1131673",
+    "limits": [
+      "The PDF describes an actual named residential quarter, rather than an action area or multi-quarter planning cluster.",
+      "Source normalizations: Hámor u. -> Hámor utca; Vas u. -> Vas utca; source typo Akotás u. -> Alkotás utca.",
+      "The repeated Zanati út segments are retained in their specified order and form the southern projection visible on source map page50, quarter15.",
+      "The 480x476-pixel source map was visually checked only as a coarse topology/name check; no map pixels contribute coordinates.",
+      "Road centrelines are an interpretation of textual road boundaries. Parcel-side inclusion, current legal status and address assignment are not verified."
+    ]
+  },
+  "cityCoverageComplete": false,
+  "usableForAddressAssignment": false,
+  "files": [
+    {
+      "path": "registry-entry.json",
+      "bytes": 1430,
+      "sha256": "9c8726d4ef4987c05834e70146ce90a17999b3e6d8920b525b0a67fcea3a3921"
+    },
+    {
+      "path": "source-ways.geojson",
+      "bytes": 50301,
+      "sha256": "396336e9be7e36410e130eac8377d77ae7a3d043496b9f6cd810d7a71d7940ee"
+    },
+    {
+      "path": "szombathely-ehen-gyula.geojson",
+      "bytes": 7202,
+      "sha256": "60a0a7a20b48a421dd695b7a798a0ca474f325cea7d9430bd57210e208768ea8"
+    },
+    {
+      "path": "szombathely-ivs.source.pdf",
+      "bytes": 2413421,
+      "sha256": "aade0d35a60e4ecd230a26c2c7dabcfc26ec76466ab86310e6828f34db714500"
+    },
+    {
+      "path": "trace-proof.json",
+      "bytes": 7170,
+      "sha256": "b9f96b68c47774f283335a830a98c2a50cd8d3cff997fee5d553417bdbf65622"
+    }
+  ],
+  "reproductionScript": {
+    "path": "scripts/neighborhoods/derive-szombathely-next.py",
+    "sha256": "caaae96626d3ea786fce16c8d93f552f53f6aa79484569a066cc8cb95402ce01"
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "metricCrs": "EPSG:23700",
+  "outputCrs": "EPSG:4326",
+  "figure74ToFigure75PhotoAffineRows": [
+    [
+      0.9931232385702942,
+      -2.67279076989513e-05
+    ],
+    [
+      0.0013864380004595352,
+      0.9916187559474866
+    ],
+    [
+      -157.43470819953296,
+      -1125.9070527419672
+    ]
+  ],
+  "figure75ToFigure74Homogeneous": [
+    [
+      1.0069243408411752,
+      -0.0014078376002438226,
+      156.93974549610763
+    ],
+    [
+      2.7140451590304073e-05,
+      1.008452045076489,
+      1135.4275427527557
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "figure75ToFigure73Homogeneous": [
+    [
+      1.4917101663535364,
+      -0.0019369247575319658,
+      622.3389884355554
+    ],
+    [
+      1.3796619338516702e-05,
+      1.494103038468799,
+      401.240925358582
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "inheritedFigure73ToFigure74PhotoAffineRows": [
+    [
+      0.6750133936738995,
+      1.195162242492411e-05
+    ],
+    [
+      -6.71891052936051e-05,
+      0.6749548339446345
+    ],
+    [
+      -263.12044808457625,
+      864.6006026449523
+    ]
+  ],
+  "inheritedFigure74ToFigure73Homogeneous": [
+    [
+      1.4814520831872022,
+      0.00014747274187662228,
+      389.6728309225454
+    ],
+    [
+      -2.6232504826127487e-05,
+      1.4815806153919475,
+      -1280.9823952433815
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "figure73PixelToEovRowsIndependentlyRefitted": [
+    [
+      1.8947350291400653,
+      0.006141250124499827
+    ],
+    [
+      0.0037289284334560925,
+      -1.872700383547181
+    ],
+    [
+      698285.4219558695,
+      175299.1565333398
+    ]
+  ],
+  "composedFigure75PixelToEovRows": [
+    [
+      2.8263955569610055,
+      0.009135128310509418
+    ],
+    [
+      0.0019014441157550032,
+      -2.7980192283389367
+    ],
+    [
+      699466.0856359532,
+      174551.57443791616
+    ]
+  ],
+  "originalSixControlResidualMeters": [
+    3.287598810620155,
+    4.787726003229771,
+    1.1242697205185157,
+    1.9731379398351536,
+    9.735168889125108,
+    8.494347407926316
+  ],
+  "originalMaximumControlResidualMeters": 9.735168889125108,
+  "originalFrozenFigure73CalibrationModified": false,
+  "imageTextureTrainingMatches": 6,
+  "imageTextureHeldOutMatches": 7,
+  "maximumImageTextureHeldOutResidualTargetPixels": 0.23222357979104435,
+  "observedTextureHullFigure75Pixels": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          241.16559945245177,
+          31.758062581525685
+        ],
+        [
+          50.2310979693663,
+          95.17703241532593
+        ],
+        [
+          50.389957646758695,
+          158.75871702984404
+        ],
+        [
+          304.71346905087165,
+          158.79371538621032
+        ],
+        [
+          685.909167097529,
+          158.77067142262402
+        ],
+        [
+          749.5986058191027,
+          158.67587499316585
+        ],
+        [
+          749.636315614421,
+          95.2420269145805
+        ],
+        [
+          241.16559945245177,
+          31.758062581525685
+        ]
+      ]
+    ]
+  },
+  "sourceVerticesOutsideMatchedTextureHull": 366,
+  "sourceVerticesOutsideFigure74ImageRectangle": 366,
+  "sourceVerticesOutsideOriginalFigure73ImageRectangle": 366,
+  "maximumDistanceBeyondMatchedTextureHullSourcePixels": 754.826320983472,
+  "calibrationLeaveOneControlOut": [
+    {
+      "omittedControlId": "node-4170613208",
+      "maximumFigure75VertexDisplacementMeters": 23.131493936278993
+    },
+    {
+      "omittedControlId": "node-4331477437",
+      "maximumFigure75VertexDisplacementMeters": 35.43801563509079
+    },
+    {
+      "omittedControlId": "node-494254692",
+      "maximumFigure75VertexDisplacementMeters": 1.3984188895425058
+    },
+    {
+      "omittedControlId": "node-265343223",
+      "maximumFigure75VertexDisplacementMeters": 14.835549501160829
+    },
+    {
+      "omittedControlId": "node-494064509",
+      "maximumFigure75VertexDisplacementMeters": 25.45973795058963
+    },
+    {
+      "omittedControlId": "node-494254697",
+      "maximumFigure75VertexDisplacementMeters": 0.5258861478277083
+    }
+  ],
+  "diagnosticsNotCalibratedAccuracyBounds": true,
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

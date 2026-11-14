@@ -1,0 +1,93 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "osm:node:984225151",
+      "properties": {
+        "name": "Bethlenváros",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 984225151,
+          "tags": {
+            "name": "Bethlenváros",
+            "place": "suburb"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2026-08-09 18:29:37+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/984225151",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Kecskemét",
+        "municipalityId": "city:Kecskemét",
+        "municipalityOsmId": "osm:relation:1130433",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1130433"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.6931715,
+          46.9158144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:984225154",
+      "properties": {
+        "name": "Rákócziváros",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 984225154,
+          "tags": {
+            "name": "Rákócziváros",
+            "place": "suburb"
+          },
+          "objectVersion": 3,
+          "objectTimestamp": "2026-08-09 18:29:37+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/984225154",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Kecskemét",
+        "municipalityId": "city:Kecskemét",
+        "municipalityOsmId": "osm:relation:1130433",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1130433"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.7007675,
+          46.9066383
+        ]
+      }
+    }
+  ]
+}

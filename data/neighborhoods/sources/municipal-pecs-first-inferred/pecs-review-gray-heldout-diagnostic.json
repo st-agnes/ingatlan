@@ -1,0 +1,295 @@
+{
+  "schemaVersion": 1,
+  "sourceControlsReportSha256": "975b64fb9d4fe92ea345d4819ffddae339b83c2ae072bc61fe571b976e7f1336",
+  "baselineDiagnosticSha256": "8ba7ab1515b94f37253b64bdbe2144e73e540081ede3ae2cf9838f65b7b87f13",
+  "baselineMatrixPixelToEov": [
+    [
+      32.40279765170495,
+      -0.05162721238783206
+    ],
+    [
+      -0.09935096386699437,
+      -32.79278942494659
+    ],
+    [
+      578132.6033487103,
+      90974.06269655228
+    ]
+  ],
+  "sourceControlSelectionWasFrozenBeforeDiagnostic": true,
+  "newPixelsUsedInBaselineFit": false,
+  "diagnosticDoesNotDeleteMoveOrResnapAnySourceControl": true,
+  "meaning": "Held-out eastern/southern source-pixel residuals against the unchanged northwest-only baseline fit. This is a diagnostic of extrapolation/source agreement, not independent absolute accuracy. No new gray source pixel is chosen by distance to this projected boundary.",
+  "records": [
+    {
+      "id": "gray-review-01",
+      "sector": "east",
+      "actualOriginalGrayPixel": [
+        437,
+        210
+      ],
+      "baselineEovCoordinates": [
+        592271.7622200933,
+        84065.01582550001
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 57.2856339051691
+    },
+    {
+      "id": "gray-review-02",
+      "sector": "east",
+      "actualOriginalGrayPixel": [
+        431,
+        221
+      ],
+      "baselineEovCoordinates": [
+        592076.2525735806,
+        83704.60490509993
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 25.572698605797285
+    },
+    {
+      "id": "gray-review-03",
+      "sector": "east",
+      "actualOriginalGrayPixel": [
+        434,
+        226
+      ],
+      "baselineEovCoordinates": [
+        592172.9642117163,
+        83540.48607633803
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 41.453578018458465
+    },
+    {
+      "id": "gray-review-04",
+      "sector": "east",
+      "actualOriginalGrayPixel": [
+        427,
+        233
+      ],
+      "baselineEovCoordinates": [
+        591945.4491714074,
+        83311.29794085013
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 110.44539712230915
+    },
+    {
+      "id": "gray-review-05",
+      "sector": "east",
+      "actualOriginalGrayPixel": [
+        430,
+        244
+      ],
+      "baselineEovCoordinates": [
+        592041.56470376,
+        82950.42237553855
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 53.04572724662476
+    },
+    {
+      "id": "gray-review-06",
+      "sector": "east",
+      "actualOriginalGrayPixel": [
+        429,
+        255
+      ],
+      "baselineEovCoordinates": [
+        592008.0690455057,
+        82589.75331907652
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 62.280347842425215
+    },
+    {
+      "id": "gray-review-07",
+      "sector": "east",
+      "actualOriginalGrayPixel": [
+        432,
+        265
+      ],
+      "baselineEovCoordinates": [
+        592104.2839288221,
+        82261.67054318989
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 24.942131779140606
+    },
+    {
+      "id": "gray-review-08",
+      "sector": "east",
+      "actualOriginalGrayPixel": [
+        427,
+        272
+      ],
+      "baselineEovCoordinates": [
+        591941.5744838165,
+        82032.3791532772
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 66.00673224811243
+    },
+    {
+      "id": "gray-review-09",
+      "sector": "southeast",
+      "actualOriginalGrayPixel": [
+        380,
+        371
+      ],
+      "baselineEovCoordinates": [
+        590408.8072487636,
+        78788.31947918973
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 162.54566559911225
+    },
+    {
+      "id": "gray-review-10",
+      "sector": "southeast",
+      "actualOriginalGrayPixel": [
+        385,
+        391
+      ],
+      "baselineEovCoordinates": [
+        590568.8342177448,
+        78132.20555462885
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 349.18454874624416
+    },
+    {
+      "id": "gray-review-11",
+      "sector": "southeast",
+      "actualOriginalGrayPixel": [
+        386,
+        404
+      ],
+      "baselineEovCoordinates": [
+        590599.9454528661,
+        77705.84766489215
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 255.1509203902589
+    },
+    {
+      "id": "gray-review-12",
+      "sector": "southeast",
+      "actualOriginalGrayPixel": [
+        375,
+        416
+      ],
+      "baselineEovCoordinates": [
+        590242.3224671311,
+        77312.90209112907
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 108.82002872839603
+    },
+    {
+      "id": "gray-review-13",
+      "sector": "southeast",
+      "actualOriginalGrayPixel": [
+        360,
+        426
+      ],
+      "baselineEovCoordinates": [
+        589755.2869927168,
+        76985.74860506541
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 81.0388608918615
+    },
+    {
+      "id": "gray-review-14",
+      "sector": "southeast",
+      "actualOriginalGrayPixel": [
+        353,
+        439
+      ],
+      "baselineEovCoordinates": [
+        589527.1758466245,
+        76559.80373302783
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 103.89554345434503
+    },
+    {
+      "id": "gray-review-15",
+      "sector": "southwest",
+      "actualOriginalGrayPixel": [
+        177,
+        401
+      ],
+      "baselineEovCoordinates": [
+        583828.0587965514,
+        77815.01612055606
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 29.212843860719598
+    },
+    {
+      "id": "gray-review-16",
+      "sector": "southwest",
+      "actualOriginalGrayPixel": [
+        180,
+        413
+      ],
+      "baselineEovCoordinates": [
+        583924.0749779402,
+        77421.34776581953
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 18.355323109107395
+    },
+    {
+      "id": "gray-review-17",
+      "sector": "southwest",
+      "actualOriginalGrayPixel": [
+        180,
+        418
+      ],
+      "baselineEovCoordinates": [
+        583923.5782231209,
+        77257.3838186948
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 27.31955924143975
+    },
+    {
+      "id": "gray-review-18",
+      "sector": "southwest",
+      "actualOriginalGrayPixel": [
+        179,
+        427
+      ],
+      "baselineEovCoordinates": [
+        583890.2812667943,
+        76962.30034108266
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 19.651372789629487
+    },
+    {
+      "id": "gray-review-19",
+      "sector": "southwest",
+      "actualOriginalGrayPixel": [
+        180,
+        442
+      ],
+      "baselineEovCoordinates": [
+        583921.193799988,
+        76470.35687249608
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 10.173420944794184
+    },
+    {
+      "id": "gray-review-20",
+      "sector": "southwest",
+      "actualOriginalGrayPixel": [
+        180,
+        448
+      ],
+      "baselineEovCoordinates": [
+        583920.5976942048,
+        76273.6001359464
+      ],
+      "distanceToArchivedActualMunicipalPerimeterMetres": 16.972638934035164
+    }
+  ],
+  "residualPercentilesMetres": {
+    "0": 10.173420944794184,
+    "50": 55.16568057589693,
+    "80": 109.14510240717865,
+    "90": 171.80619107822704,
+    "95": 259.85260180805824,
+    "100": 349.18454874624416
+  },
+  "absoluteBoundaryAccuracyMetres": null,
+  "usableForAddressAssignment": false
+}

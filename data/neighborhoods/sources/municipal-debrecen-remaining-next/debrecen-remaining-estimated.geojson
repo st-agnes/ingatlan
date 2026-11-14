@@ -1,0 +1,2829 @@
+{
+  "type": "FeatureCollection",
+  "scope": "23additional fine named quarter candidates only; ESTIMATED source placement/current extent, no completeness claim",
+  "coordinateSource": "Literal unchanged published EPSG4326 service coordinates",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-2",
+      "properties": {
+        "name": "Pallag",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 2,
+        "sourceCategory": "egyeb_belteruletek",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:2",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 75,
+          "currentPbfNodeId": "osm:node:968749147",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "f490b59e0dcd7c4a4026064b603def1fb4cbf4c4008c99e90b15ba7e77c46fbd",
+        "nativeGeometryCanonicalSha256": "b32cd4f20d60cc7d531afc29c302995e25090c5a86961d53f678c53000849dfe",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 2
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.6362695789975,
+              47.5958674486339
+            ],
+            [
+              21.645033875286,
+              47.600375212336
+            ],
+            [
+              21.6477078113406,
+              47.597971193564
+            ],
+            [
+              21.6445883243799,
+              47.5959677063932
+            ],
+            [
+              21.6512731285835,
+              47.5915599006534
+            ],
+            [
+              21.6483318934263,
+              47.5898767677876
+            ],
+            [
+              21.6433762967373,
+              47.5898927477728
+            ],
+            [
+              21.639389173756,
+              47.5928621467339
+            ],
+            [
+              21.6362695789975,
+              47.5958674486339
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-10",
+      "properties": {
+        "name": "Epreskert",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 10,
+        "sourceCategory": "lakotelep",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:10",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 11,
+          "currentPbfNodeId": "osm:node:968697801",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "60c0abdcaee631f53102b980bc2353a5c49f66afa9f61774cb879630f6572c37",
+        "nativeGeometryCanonicalSha256": "b46a8c64993993a6cdb59ebfc6a388ae8aa4cff0b526be58a662f2f4cfedbe62",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 10
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.6247865144336,
+              47.5046649357619
+            ],
+            [
+              21.6256855151323,
+              47.5066565863277
+            ],
+            [
+              21.626303411419,
+              47.5098033344935
+            ],
+            [
+              21.6288703383602,
+              47.5098675778595
+            ],
+            [
+              21.6295287307,
+              47.5030386285537
+            ],
+            [
+              21.6247003597097,
+              47.5025772045615
+            ],
+            [
+              21.6247865144336,
+              47.5046649357619
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-29",
+      "properties": {
+        "name": "Nyulas",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 29,
+        "sourceCategory": "kertvaros",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:29",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 42,
+          "currentPbfNodeId": "osm:node:968712525",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "7660bb69572d43033000f1c9728727e73f6115f22a00e4791593e34128586431",
+        "nativeGeometryCanonicalSha256": "face8c6430853a679daf02e8ca3813341d2f188fe2e5931fb5de2004397f468c",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 29
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.6054889351446,
+              47.5559423581836
+            ],
+            [
+              21.602394823794,
+              47.560052534934
+            ],
+            [
+              21.6004933454591,
+              47.562338016502
+            ],
+            [
+              21.598763583684,
+              47.5657694180665
+            ],
+            [
+              21.6016000537194,
+              47.5666857748811
+            ],
+            [
+              21.6023327115803,
+              47.5658501136165
+            ],
+            [
+              21.6044718005961,
+              47.5666118952552
+            ],
+            [
+              21.6085718741479,
+              47.56119918868
+            ],
+            [
+              21.6107613137354,
+              47.557755175316
+            ],
+            [
+              21.6054889351446,
+              47.5559423581836
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-30",
+      "properties": {
+        "name": "Úrrétje",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 30,
+        "sourceCategory": "kertvaros",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:30",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 60,
+          "currentPbfNodeId": "osm:node:968712526",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "41d12e750c6a2ff8c198f90ccfa4937fe9ad0d651aca192a68d4945e40a0e40e",
+        "nativeGeometryCanonicalSha256": "5b0631ecac38fa90a4a472fcdbd8c26d5a8d36ae9abdd09213e9f927dbab6f88",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 30
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.5940378604862,
+              47.5642426793483
+            ],
+            [
+              21.598763583684,
+              47.5657694180665
+            ],
+            [
+              21.6004933454591,
+              47.562338016502
+            ],
+            [
+              21.602394823794,
+              47.560052534934
+            ],
+            [
+              21.6054889351446,
+              47.5560193513764
+            ],
+            [
+              21.5929625160057,
+              47.5553796781905
+            ],
+            [
+              21.5951075401906,
+              47.5584688113493
+            ],
+            [
+              21.5940378604862,
+              47.5642426793483
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-31",
+      "properties": {
+        "name": "Tócóliget",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 31,
+        "sourceCategory": "kertvaros",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:31",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 55,
+          "currentPbfNodeId": "osm:node:7934653257",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "fb2134c58ffef2e485252a9daabd2c42d83047390051c9e191133780301082ed",
+        "nativeGeometryCanonicalSha256": "e04768c701ddbec1c10e258e86cb49c252b160c4d8b10efeaf52d224296f5ac8",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 31
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.5929625160057,
+              47.5553796781905
+            ],
+            [
+              21.5960278507245,
+              47.5555362123696
+            ],
+            [
+              21.5962541740738,
+              47.5521655279965
+            ],
+            [
+              21.5963682933525,
+              47.5506255360661
+            ],
+            [
+              21.594828191985,
+              47.5481229345494
+            ],
+            [
+              21.5934591720684,
+              47.5476993946516
+            ],
+            [
+              21.591462676231,
+              47.5475453636952
+            ],
+            [
+              21.5907782605957,
+              47.5430018450528
+            ],
+            [
+              21.5860297246814,
+              47.5439373834784
+            ],
+            [
+              21.5857919603886,
+              47.5478679857935
+            ],
+            [
+              21.5888223236933,
+              47.5496326804342
+            ],
+            [
+              21.5909613731833,
+              47.5522394849872
+            ],
+            [
+              21.5929625160057,
+              47.5553796781905
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-32",
+      "properties": {
+        "name": "Akadémiakert",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 32,
+        "sourceCategory": "kertvaros",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:32",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 1,
+          "currentPbfNodeId": "osm:node:968712518",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "c248c0d0a22c6268f3a25a05fc580ec7979fae0a212d79f5e952814dddd7d45a",
+        "nativeGeometryCanonicalSha256": "3f61aaff7c9cdeaa8d59dd2cd2d24e3ea51dc74087c2b3f523a03d542cbf37b7",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 32
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.594828191985,
+              47.5481229345494
+            ],
+            [
+              21.5963682933525,
+              47.5506255360661
+            ],
+            [
+              21.5960278507245,
+              47.5555362123696
+            ],
+            [
+              21.6054889351446,
+              47.5559423581836
+            ],
+            [
+              21.6086263704446,
+              47.5523235935596
+            ],
+            [
+              21.6086264737509,
+              47.5476225402139
+            ],
+            [
+              21.594828191985,
+              47.5481229345494
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-33",
+      "properties": {
+        "name": "Kertváros",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 33,
+        "sourceCategory": "kertvaros",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:33",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 24,
+          "currentPbfNodeId": "osm:node:968697765",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "8b7765602a64390c730bf25234bb7732525ebcc399f0ff5726f4741e6815fbcb",
+        "nativeGeometryCanonicalSha256": "374e52b20a99df4ba3219fc10e34f7be6076708aff059ddf5c75d2f740b76f32",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 33
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.594828191985,
+              47.5481229345494
+            ],
+            [
+              21.6086264737509,
+              47.5476225402139
+            ],
+            [
+              21.6082787439892,
+              47.5418435041692
+            ],
+            [
+              21.6003804910083,
+              47.5421596146086
+            ],
+            [
+              21.5907782605957,
+              47.5430018450528
+            ],
+            [
+              21.591462676231,
+              47.5475453636952
+            ],
+            [
+              21.5934591720684,
+              47.5476993946516
+            ],
+            [
+              21.594828191985,
+              47.5481229345494
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-34",
+      "properties": {
+        "name": "Köntöskert",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 34,
+        "sourceCategory": "kertvaros",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:34",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 29,
+          "currentPbfNodeId": "osm:node:968719497",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "b8ddf3bc111a9a963d6c97a19f1116fe462e4b7373e7462c5420a7ff2e38d372",
+        "nativeGeometryCanonicalSha256": "e6342b84e737bc7998816f1560344a7790a24bdbd756875eebb521427f023144",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 34
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.5860297246814,
+              47.5439373834784
+            ],
+            [
+              21.5907782605957,
+              47.5430018450528
+            ],
+            [
+              21.6003804910083,
+              47.5421596146086
+            ],
+            [
+              21.6022344484647,
+              47.5391752856943
+            ],
+            [
+              21.6035892561352,
+              47.537346097261
+            ],
+            [
+              21.6065840623243,
+              47.5346503474401
+            ],
+            [
+              21.5868503644395,
+              47.5355269514331
+            ],
+            [
+              21.5860297246814,
+              47.5439373834784
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-36",
+      "properties": {
+        "name": "Nagysándortelep",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 36,
+        "sourceCategory": "kertvaros",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:36",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 41,
+          "currentPbfNodeId": "osm:node:968697776",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "f13dcfb2e340755e3ee5b55d476eb4083ccd11cac5585ec16da81998be3a73ff",
+        "nativeGeometryCanonicalSha256": "56b1a409d4d5f7d9508ac4ec9c476ecf14604cbb755e865e01108037e6f369fe",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 36
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.5679726891553,
+              47.5313572555691
+            ],
+            [
+              21.5687807237534,
+              47.5347271796554
+            ],
+            [
+              21.5722983700991,
+              47.534534654043
+            ],
+            [
+              21.5739620985144,
+              47.5354653746505
+            ],
+            [
+              21.5758159868005,
+              47.5356900427393
+            ],
+            [
+              21.5780501642857,
+              47.5356900651791
+            ],
+            [
+              21.5798010355717,
+              47.5369336644359
+            ],
+            [
+              21.5837227531154,
+              47.5359709333539
+            ],
+            [
+              21.5834851163834,
+              47.533965101816
+            ],
+            [
+              21.5876446341525,
+              47.5273854874154
+            ],
+            [
+              21.5789392269224,
+              47.529038095102
+            ],
+            [
+              21.5679726891553,
+              47.5313572555691
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-37",
+      "properties": {
+        "name": "Hatvan utcai kert",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 37,
+        "sourceCategory": "kertvaros",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:37",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 16,
+          "currentPbfNodeId": "osm:node:968697785",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "c80e9c751c524a71598c5201dd6f0abb0820dd80b6477846cf10c275e5ea7223",
+        "nativeGeometryCanonicalSha256": "dbc2e766b245a28608677bed3faf41b43d2ce1de0841048fe7ef2f0d8280982d",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 37
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.5876446341525,
+              47.5273854874154
+            ],
+            [
+              21.5868503644395,
+              47.5355269514331
+            ],
+            [
+              21.6065840623243,
+              47.5346503474401
+            ],
+            [
+              21.6112375286338,
+              47.5343598337627
+            ],
+            [
+              21.6099826504539,
+              47.5313942860593
+            ],
+            [
+              21.6103819758522,
+              47.5302388415325
+            ],
+            [
+              21.611579889165,
+              47.5295840878167
+            ],
+            [
+              21.6076279648715,
+              47.5294261101701
+            ],
+            [
+              21.5930250468343,
+              47.5271534726505
+            ],
+            [
+              21.5910145570413,
+              47.5268208108998
+            ],
+            [
+              21.589231964446,
+              47.5269812851959
+            ],
+            [
+              21.5876446341525,
+              47.5273854874154
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-38",
+      "properties": {
+        "name": "Kismacs",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 38,
+        "sourceCategory": "egyeb_belteruletek",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:38",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 71,
+          "currentPbfNodeId": "osm:node:1290057778",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "ed3f2208a9bd22c18ea513b085987d25e36feca3bc0bb7f21156a43a245301f0",
+        "nativeGeometryCanonicalSha256": "17fabb79bb8e99708d0e230b4b4bd7607febfe3c0de683116c7cdef3d4001f1e",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 38
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.5351864603108,
+              47.5552618413527
+            ],
+            [
+              21.5371829516567,
+              47.5556949510085
+            ],
+            [
+              21.540177701252,
+              47.5556468590783
+            ],
+            [
+              21.5411759595014,
+              47.5552619013719
+            ],
+            [
+              21.5442420137707,
+              47.5551656893911
+            ],
+            [
+              21.5457394011447,
+              47.5545882446496
+            ],
+            [
+              21.5458107228867,
+              47.5537701668813
+            ],
+            [
+              21.5450264011172,
+              47.5529520678537
+            ],
+            [
+              21.5446699037983,
+              47.5520377128663
+            ],
+            [
+              21.5445986242772,
+              47.5509308431723
+            ],
+            [
+              21.5428160352751,
+              47.5509308255895
+            ],
+            [
+              21.5392508384065,
+              47.551797036521
+            ],
+            [
+              21.5366125969098,
+              47.5522301287361
+            ],
+            [
+              21.5340456645787,
+              47.5524707230626
+            ],
+            [
+              21.53447345669,
+              47.5538181762622
+            ],
+            [
+              21.5348299558055,
+              47.554684379483
+            ],
+            [
+              21.5351864603108,
+              47.5552618413527
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-41",
+      "properties": {
+        "name": "Tócóvölgy",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 41,
+        "sourceCategory": "lakotelep",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:41",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 58,
+          "currentPbfNodeId": "osm:node:7936513509",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": "The FVS2023 discusses separating Lóskúti from parts of Tócóvölgy/Téglagyár. This ArcGIS footprint has unknown reference period and may reflect another schema; current Tócóvölgy extent is unverified.",
+        "sourceGeometryCanonicalSha256": "4bd7b92a00cc17d0cb17a4c79327c93382855748ae38c7a0210de6050b4fe816",
+        "nativeGeometryCanonicalSha256": "cd65a60c9fa1694f4360c01758b9c4b8e1dd5f621ffccfcaaec2a1edcae527e4",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 41
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.5972095108189,
+              47.5278047064466
+            ],
+            [
+              21.5971592527736,
+              47.5242668138802
+            ],
+            [
+              21.5974445325551,
+              47.5212621885335
+            ],
+            [
+              21.5980720866294,
+              47.517448381176
+            ],
+            [
+              21.5983003404582,
+              47.5136728200249
+            ],
+            [
+              21.5978652010262,
+              47.5109133588256
+            ],
+            [
+              21.5936594101385,
+              47.5088411411802
+            ],
+            [
+              21.5922904342394,
+              47.5064136123677
+            ],
+            [
+              21.5897805907429,
+              47.5045254420833
+            ],
+            [
+              21.5880692444311,
+              47.5073383512716
+            ],
+            [
+              21.5880691968204,
+              47.5094961095138
+            ],
+            [
+              21.588696537994,
+              47.5154680209327
+            ],
+            [
+              21.5902937272978,
+              47.5160074016324
+            ],
+            [
+              21.5914280228205,
+              47.5190256043582
+            ],
+            [
+              21.5930250468343,
+              47.5271534726505
+            ],
+            [
+              21.5972095108189,
+              47.5278047064466
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-43",
+      "properties": {
+        "name": "Sóház",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 43,
+        "sourceCategory": "lakotelep",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:43",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 49,
+          "currentPbfNodeId": "osm:node:968719477",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "c60ba7ac0aaf8b0435446fb6ef56e0d02110ec3844e5cf10a037cbeb112bcf92",
+        "nativeGeometryCanonicalSha256": "eb8871c7a50d0c3c06f790a84fe34247f41df566e51585bb11e5e2018842fbe3",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 43
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.6386752709217,
+              47.5295453977369
+            ],
+            [
+              21.6450079346356,
+              47.5288349853685
+            ],
+            [
+              21.6429282961253,
+              47.5265078793028
+            ],
+            [
+              21.6402158025822,
+              47.5245353417169
+            ],
+            [
+              21.637443158746,
+              47.5259186342004
+            ],
+            [
+              21.6368927448017,
+              47.5266566080427
+            ],
+            [
+              21.6386752709217,
+              47.5295453977369
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-50",
+      "properties": {
+        "name": "Kondoros",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 50,
+        "sourceCategory": "kertvaros",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:50",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 27,
+          "currentPbfNodeId": "osm:node:968719532",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "6c9ffe2b37b152e348429cc990ddfe4ca7883b811a161bae6c57b6d4dc8d8a5f",
+        "nativeGeometryCanonicalSha256": "cc8ab9c0b0eaba2c282cf732be7a62ed68f57cf748880eb9cef6d4daad2fcd80",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 50
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.6736127905985,
+              47.5264052987482
+            ],
+            [
+              21.6752458442417,
+              47.5264242273144
+            ],
+            [
+              21.6751507818234,
+              47.5260390428406
+            ],
+            [
+              21.6886129023318,
+              47.5255769536161
+            ],
+            [
+              21.6876432015253,
+              47.5243443273677
+            ],
+            [
+              21.6859889844723,
+              47.5231501862059
+            ],
+            [
+              21.6850763194999,
+              47.5222256749501
+            ],
+            [
+              21.6839355498189,
+              47.5181807743935
+            ],
+            [
+              21.6825665343939,
+              47.5176028949057
+            ],
+            [
+              21.6741811591703,
+              47.5211854815803
+            ],
+            [
+              21.667036778664,
+              47.5103250871836
+            ],
+            [
+              21.6639345788826,
+              47.5116250654191
+            ],
+            [
+              21.6712621231804,
+              47.5227528190076
+            ],
+            [
+              21.6736127905985,
+              47.5264052987482
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-58",
+      "properties": {
+        "name": "Júliatelep",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 58,
+        "sourceCategory": "kertvaros",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:58",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 21,
+          "currentPbfNodeId": "osm:node:1297068296",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "e58d365374c52ef274729e05ec4a1f7d99f1e4576283983083cc2d5bf84278b2",
+        "nativeGeometryCanonicalSha256": "cf10fd7289ca8a960d5bb0db8d1e27496214dbcbd10e4859c8477523399c76e4",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 58
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.6508553940101,
+              47.5615209544515
+            ],
+            [
+              21.6541392331419,
+              47.5613355450216
+            ],
+            [
+              21.6551850419142,
+              47.5603090769057
+            ],
+            [
+              21.6547097118563,
+              47.5590901035293
+            ],
+            [
+              21.6581322894956,
+              47.5587693521784
+            ],
+            [
+              21.6607942680753,
+              47.5596675738292
+            ],
+            [
+              21.6684950345259,
+              47.5605016757843
+            ],
+            [
+              21.6710620279424,
+              47.5574863174391
+            ],
+            [
+              21.6681829076939,
+              47.5553906180169
+            ],
+            [
+              21.6610526783483,
+              47.5496156925841
+            ],
+            [
+              21.65627538826,
+              47.5474017820346
+            ],
+            [
+              21.6550632330566,
+              47.547161126844
+            ],
+            [
+              21.6482894417409,
+              47.5450433542698
+            ],
+            [
+              21.6488850678934,
+              47.5522504569963
+            ],
+            [
+              21.6508553940101,
+              47.5615209544515
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-62",
+      "properties": {
+        "name": "Boldogfalvikert",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 62,
+        "sourceCategory": "kertvaros",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:62",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 5,
+          "currentPbfNodeId": "osm:node:968697796",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "8b4220f1616eb11130449272a7fb3cb69d95ce0cb91876a808b6a04a780b592d",
+        "nativeGeometryCanonicalSha256": "693bce0f301cab4e4cd0c84361c43487247cf1d7c4c4d8d687f66b9533375a61",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 62
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.6192529982847,
+              47.504866936933
+            ],
+            [
+              21.6196954859357,
+              47.5111206706241
+            ],
+            [
+              21.6204084787767,
+              47.5130952731365
+            ],
+            [
+              21.622476221796,
+              47.5158884976605
+            ],
+            [
+              21.621748347464,
+              47.5169269917332
+            ],
+            [
+              21.6316829608199,
+              47.5208622075313
+            ],
+            [
+              21.6308899810877,
+              47.5186334809801
+            ],
+            [
+              21.6282518069646,
+              47.5159848697078
+            ],
+            [
+              21.6288703383602,
+              47.5098675778595
+            ],
+            [
+              21.626303411419,
+              47.5098033344935
+            ],
+            [
+              21.6256855151323,
+              47.5066565863277
+            ],
+            [
+              21.6247865144336,
+              47.5046649357619
+            ],
+            [
+              21.6192529982847,
+              47.504866936933
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-63",
+      "properties": {
+        "name": "Tégláskert",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 63,
+        "sourceCategory": "kertvaros",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:63",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 53,
+          "currentPbfNodeId": "osm:node:968719539",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "5b6991ce66a0da583991dfccaeec683d819ab2462be0edcf2a266865b52157f7",
+        "nativeGeometryCanonicalSha256": "8c2c413341033955f6a2741ca11c9dbabaa4cefb4285eecdbb73b3d1d35ba19c",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 63
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.608297653526,
+              47.5116518337822
+            ],
+            [
+              21.6170149670268,
+              47.5150706920158
+            ],
+            [
+              21.6173424074395,
+              47.5139621153016
+            ],
+            [
+              21.615987650973,
+              47.5134323479673
+            ],
+            [
+              21.6137059876435,
+              47.5111206111611
+            ],
+            [
+              21.6137773578945,
+              47.5080381675543
+            ],
+            [
+              21.615017925912,
+              47.5047130052841
+            ],
+            [
+              21.6141622958752,
+              47.5041349823359
+            ],
+            [
+              21.614091016354,
+              47.5030271012869
+            ],
+            [
+              21.614518875839,
+              47.5012448152114
+            ],
+            [
+              21.6144832836892,
+              47.4984990060577
+            ],
+            [
+              21.6139129001961,
+              47.4964756802687
+            ],
+            [
+              21.6110607868983,
+              47.4951026404069
+            ],
+            [
+              21.6094921164098,
+              47.4947894765344
+            ],
+            [
+              21.609242524898,
+              47.4961143179553
+            ],
+            [
+              21.6073886303237,
+              47.496234737943
+            ],
+            [
+              21.6073173112766,
+              47.4969091887983
+            ],
+            [
+              21.6070714792143,
+              47.5015214103375
+            ],
+            [
+              21.6069287539836,
+              47.5056794808019
+            ],
+            [
+              21.6070997878238,
+              47.5100721080778
+            ],
+            [
+              21.608297653526,
+              47.5116518337822
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-64",
+      "properties": {
+        "name": "Majorság",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 64,
+        "sourceCategory": "kertvaros",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:64",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 34,
+          "currentPbfNodeId": "osm:node:968719545",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "687232223361ba78e8d7a5039abcba8e7e27144d2c73d1d959b55241d8f0c817",
+        "nativeGeometryCanonicalSha256": "b4566a3dfadf2c760427d27cd4ff4951ded02aaf59aabe98f744b0d6bda5e0d8",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 64
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.6170149670268,
+              47.5150706920158
+            ],
+            [
+              21.621748347464,
+              47.5169269917332
+            ],
+            [
+              21.622476221796,
+              47.5158884976605
+            ],
+            [
+              21.6204084787767,
+              47.5130952731365
+            ],
+            [
+              21.6196954859357,
+              47.5111206706241
+            ],
+            [
+              21.6192529982847,
+              47.504866936933
+            ],
+            [
+              21.615017925912,
+              47.5047130052841
+            ],
+            [
+              21.6145617362579,
+              47.5062078888389
+            ],
+            [
+              21.6137773578945,
+              47.5080381675543
+            ],
+            [
+              21.6137059876435,
+              47.5111206111611
+            ],
+            [
+              21.615987650973,
+              47.5134323479673
+            ],
+            [
+              21.6173424074395,
+              47.5139621153016
+            ],
+            [
+              21.6170149670268,
+              47.5150706920158
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-72",
+      "properties": {
+        "name": "Nagymacs",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 72,
+        "sourceCategory": "egyeb_belteruletek",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:72",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 73,
+          "currentPbfNodeId": "osm:node:968749137",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "1b8ee9536a7936223450dceeee6a2f25a40c3b4769a9d47ee95fdee20f4acc0f",
+        "nativeGeometryCanonicalSha256": "a4058d72a61f2cd3dcaeff564cf39706cf1628b5214662607c656e9fd6542c29",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 72
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.4795603866029,
+              47.5809472450124
+            ],
+            [
+              21.4800166768683,
+              47.583332839756
+            ],
+            [
+              21.4812145632316,
+              47.5839484697825
+            ],
+            [
+              21.4858350398107,
+              47.5836022308931
+            ],
+            [
+              21.4858920990009,
+              47.5829096565658
+            ],
+            [
+              21.4847513005738,
+              47.5802162076878
+            ],
+            [
+              21.4840668786504,
+              47.575983376614
+            ],
+            [
+              21.4772787717824,
+              47.5764066067018
+            ],
+            [
+              21.4764231085079,
+              47.5773301451428
+            ],
+            [
+              21.4727723596849,
+              47.5776764346045
+            ],
+            [
+              21.473171613218,
+              47.5797928253903
+            ],
+            [
+              21.471003980234,
+              47.5799851981101
+            ],
+            [
+              21.4707187507583,
+              47.580716288349
+            ],
+            [
+              21.4732856714113,
+              47.5810241390431
+            ],
+            [
+              21.4763659882323,
+              47.5809087352382
+            ],
+            [
+              21.4795603866029,
+              47.5809472450124
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-73",
+      "properties": {
+        "name": "Nagycsere",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 73,
+        "sourceCategory": "egyeb_belteruletek",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:73",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 72,
+          "currentPbfNodeId": "osm:node:968749162",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "8f1d3c4fa8453331fbb5c21dc9d66a7420cc89d5bdd9ded5df2401ee51540186",
+        "nativeGeometryCanonicalSha256": "8a7a3b03951bab7cd5621d67e536729ab29ce8f47ce527ef755f4f674f5ebb28",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 73
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.7732325671621,
+              47.5332803651953
+            ],
+            [
+              21.775015158859,
+              47.5331199119914
+            ],
+            [
+              21.7766789357833,
+              47.5319163741887
+            ],
+            [
+              21.779174582305,
+              47.5308732978411
+            ],
+            [
+              21.7796499977028,
+              47.5282253348209
+            ],
+            [
+              21.7794123483944,
+              47.526861175944
+            ],
+            [
+              21.7771544104699,
+              47.5264599243697
+            ],
+            [
+              21.7746588025757,
+              47.5257376779954
+            ],
+            [
+              21.7732327135874,
+              47.526540130892
+            ],
+            [
+              21.7732326965194,
+              47.5273425854638
+            ],
+            [
+              21.773351439427,
+              47.5317558658633
+            ],
+            [
+              21.7732325671621,
+              47.5332803651953
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-75",
+      "properties": {
+        "name": "Haláp",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 75,
+        "sourceCategory": "egyeb_belteruletek",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:75",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 70,
+          "currentPbfNodeId": "osm:node:968749159",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "192a32b08155259fd79fd5d949184cca08c4d80129508144286c667bfde9554b",
+        "nativeGeometryCanonicalSha256": "0e1c84b6d472ebb3fc36f747defd7686146e008173af70bcaab1f9211ae03ed6",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 75
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.8228836916921,
+              47.5296136189547
+            ],
+            [
+              21.8273758106951,
+              47.5298062420916
+            ],
+            [
+              21.8337931370313,
+              47.5295174375295
+            ],
+            [
+              21.8333653682762,
+              47.5271101331652
+            ],
+            [
+              21.832438440752,
+              47.526243468782
+            ],
+            [
+              21.8326523790284,
+              47.5250397604344
+            ],
+            [
+              21.8320106630137,
+              47.5242693640789
+            ],
+            [
+              21.8307271977464,
+              47.5243175011783
+            ],
+            [
+              21.8294436983432,
+              47.5259545505798
+            ],
+            [
+              21.8256646161986,
+              47.5256656235072
+            ],
+            [
+              21.8223846506023,
+              47.5257137393077
+            ],
+            [
+              21.822669819891,
+              47.5277840824039
+            ],
+            [
+              21.8228836916921,
+              47.5296136189547
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-76",
+      "properties": {
+        "name": "Bánk",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 76,
+        "sourceCategory": "egyeb_belteruletek",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:76",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 67,
+          "currentPbfNodeId": "osm:node:968749165",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "53f53a2728278fce37bbd78f71dfe80c0ef491084ff42e6bdf63366c72f17619",
+        "nativeGeometryCanonicalSha256": "e06f5200be80690e7e7f29accf1453378b5c5fb33afdd8044e6f1764748d3d4d",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 76
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.7240588621712,
+              47.4764351304099
+            ],
+            [
+              21.7260553490255,
+              47.4770777272198
+            ],
+            [
+              21.7266257657562,
+              47.4775917895379
+            ],
+            [
+              21.727006019921,
+              47.4790054219268
+            ],
+            [
+              21.7282419589199,
+              47.4785556478377
+            ],
+            [
+              21.7346117985135,
+              47.4759854266081
+            ],
+            [
+              21.7354674186688,
+              47.4770135633378
+            ],
+            [
+              21.7400308917532,
+              47.4748930711091
+            ],
+            [
+              21.7394605055652,
+              47.4729652291718
+            ],
+            [
+              21.7406964580387,
+              47.4718727702059
+            ],
+            [
+              21.7427880360575,
+              47.4715514719256
+            ],
+            [
+              21.7431683728673,
+              47.4691736499665
+            ],
+            [
+              21.7412669654993,
+              47.4682096165343
+            ],
+            [
+              21.7400310229072,
+              47.4689165497183
+            ],
+            [
+              21.7383197197145,
+              47.4696877355645
+            ],
+            [
+              21.7298582832375,
+              47.4734792303209
+            ],
+            [
+              21.7240588621712,
+              47.4764351304099
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:debrecen-arcgis-remaining-23-estimated:FID-77",
+      "properties": {
+        "name": "Ondód",
+        "municipality": "Debrecen",
+        "municipalityId": "city:Debrecen",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": true,
+        "sourceCoordinatesUnchangedFromPublished4326": true,
+        "sourceFID": 77,
+        "sourceCategory": "egyeb_belteruletek",
+        "sourceRecordId": "arcgis:a04e2a4ff4d2467c8bb6eb640f515b51:0:77",
+        "sourceNameEvidence": {
+          "exactLiteralNameInMunicipalHistoricalTable": true,
+          "historicalQuarterId": 74,
+          "currentPbfNodeId": "osm:node:925163275",
+          "currentPbfPlace": "suburb",
+          "exactNodeTagsAndCoordinatesVerifiedAgainstPbf": true,
+          "currentSameCityPointInsidePolygon": true,
+          "pointsUsedAsFitControls": false,
+          "identityEvidenceIsNotCurrentWholeExtentProof": true
+        },
+        "georeferencingStatus": "literal_published_coordinates_with_unresolved_source_placement",
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_source_placement_candidate",
+        "sourcePeriod": "Hosted data edit2025-06-02T23:33:23.324Z; original boundary reference period unknown",
+        "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+        "placementUncertainty": "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "specificExtentCaveat": null,
+        "sourceGeometryCanonicalSha256": "fd364b33ab9238b8ff2bbe5007ac88e1654ecbbc53fca361067b46bba30b23fa",
+        "nativeGeometryCanonicalSha256": "b06309e95629442fcf3c3ce5d41f2839e898047ace99cdb52dbe611e2dcc2414",
+        "evidenceUrls": [
+          "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+          "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+            "localNativeResponse": "debrecen-source-native.json",
+            "localPublished4326Response": "debrecen-source-service.geojson",
+            "FID": 77
+          },
+          {
+            "url": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+            "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+            "pdfPageOneBased": 206,
+            "table": 79,
+            "role": "Historical quarter-name identity only",
+            "selectedEvidencePath": "municipal-name-evidence.json"
+          }
+        ],
+        "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for actual OSM identity-point and comparison evidence",
+        "rightsStatus": "Public access is not a reuse licence. Original provider, boundary lineage and reuse rights unestablished."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.4845648642198,
+              47.5390034536645
+            ],
+            [
+              21.4903880008096,
+              47.5383616921824
+            ],
+            [
+              21.497518357716,
+              47.5382815346673
+            ],
+            [
+              21.4970430770655,
+              47.5347513762336
+            ],
+            [
+              21.4959735374983,
+              47.534109493566
+            ],
+            [
+              21.4916953163476,
+              47.5345106217247
+            ],
+            [
+              21.4868229117387,
+              47.534269871569
+            ],
+            [
+              21.4839707391521,
+              47.5357140387348
+            ],
+            [
+              21.4830200098661,
+              47.5364361119512
+            ],
+            [
+              21.4850402526681,
+              47.5375593534432
+            ],
+            [
+              21.4855155953024,
+              47.5382011878168
+            ],
+            [
+              21.4845648642198,
+              47.5390034536645
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

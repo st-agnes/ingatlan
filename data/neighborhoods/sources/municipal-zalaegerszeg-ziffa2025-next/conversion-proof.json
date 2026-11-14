@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_first_useful_subset_unregistered",
+  "counts": {
+    "newEstimatedNeighborhoodCandidates": 1,
+    "observedRasterContours": 1,
+    "primaryFeatures": 0,
+    "placementAlternativesNotCountedAsAdditionalQuarters": 1
+  },
+  "sourceGeometry": {
+    "sourceImage": "p141-xref778.jpeg",
+    "sourceAreaPixels": 55438.0,
+    "sourceVerticesIncludingClosure": 893,
+    "type": "Polygon",
+    "holes": 0,
+    "valid": true,
+    "sourceClosureWasInvented": false,
+    "sourceClippingOrRepair": false
+  },
+  "conversion": {
+    "worldType": "Polygon",
+    "worldValid": true,
+    "worldHoles": 0,
+    "worldVertexCountIncludingClosure": 893,
+    "coordinateArrayExactlyMatchesPinnedSimilarityInverseProjection": true,
+    "maximumInverseRoundtripDiagnosticPixels": 0.00019857502132936133,
+    "roundtripMeaning": "Numerical conversion consistency only; not georeferencing accuracy."
+  },
+  "geographicDiagnostics": {
+    "areaM2": 246569.56932864132,
+    "municipalityOverlapFraction": 1.0,
+    "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+    "namePointInsideCandidate": true,
+    "namePointUsedForFit": false,
+    "municipalityPath": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-calibration-municipality.geojson",
+    "municipalitySha256": "24c706edf9def6ec7d8c5659edf831a2be192bf5bfa2c4ada9f290fdd9f7b734"
+  },
+  "alternative": {
+    "file": "hathaz-placement-alternative.geojson",
+    "sameObservedSourceContour": true,
+    "areaM2": 246611.22711305946,
+    "symmetricDifferenceM2": 7101.889456604685,
+    "hausdorffDistanceMetres": 6.4358696517911715,
+    "meaning": "Variation between two plausible sparse-reference placements of the same raster contour, not a confidence envelope or an absolute accuracy bound."
+  },
+  "identity": {
+    "exactCurrentName": "Hatház",
+    "exactOsmPlaceId": "osm:node:1110266803",
+    "alreadyFrozenNamesCompared": [
+      "Belváros",
+      "Páterdomb",
+      "Kertváros",
+      "Csácsbozsok",
+      "Vorhota",
+      "Ola",
+      "Landorhegy",
+      "Iparterület",
+      "Zalabesenyő",
+      "Botfa",
+      "Bazita",
+      "Ebergény",
+      "Szenterzsébethegy"
+    ],
+    "duplicateExistingFrozenQuarterName": false,
+    "notAliasOfHistoricalUnit17": "2014 ITS unit17 was Nyugati külterület;2025 chapter3.4 unit17 is Hatház."
+  },
+  "limitations": [
+    "All world placement is estimated. Absolute positional accuracy is unknown.",
+    "Source is a municipal consultation-draft study; no statutory neighborhood boundary or cadastral status established.",
+    "Municipal map reuse rights not independently established. OSM calibration/name evidence is ODbL.",
+    "Unregistered source-local package; national coverage remains incomplete and address assignment is not approved."
+  ],
+  "globalRegistriesModified": false,
+  "usableForAddressAssignment": false
+}

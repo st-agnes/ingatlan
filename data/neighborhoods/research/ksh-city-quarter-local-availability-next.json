@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "checkedDate": "2026-11-14",
+  "networkUsed": false,
+  "catalogPath": "data/neighborhoods/research/ksh-city-quarter-source-catalog-next.json",
+  "catalogSha256": "12d901869f7705f98b757d30ea45e113b9e381d943d18df5425f9bd50126f2e7",
+  "scope": "Existing local inventories and local PDF files at the time of this check; later root downloads are outside this snapshot.",
+  "method": "Exact URL and filename/manifest searches; cover/first-three-page text scan of 215 local PDFs excluding release checkpoint; compared known similarly named original PDFs and their source URLs.",
+  "localPdfCountScanned": 215,
+  "unreadablePdfCount": 0,
+  "exactCatalogOriginalsAlreadyAcquired": 0,
+  "rawDownloadsStillNeeded": 6,
+  "sources": [
+    {
+      "id": "ksh-szeged-map-2014",
+      "municipality": "Szeged",
+      "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/pdf/muhelytanulmanyok4.pdf",
+      "alreadyAcquired": false,
+      "existingExactSha256": null,
+      "rawDownloadNeeded": true,
+      "mapLocators": [
+        {
+          "pdfPageOneBased": 54,
+          "printedPage": 53,
+          "figure": "1. ábra",
+          "caption": "Szeged városrészei",
+          "creditedSource": "Kovács 2003",
+          "verification": "Indexed PDF map-caption extraction associates the caption, printed page and numbered map. Screenshot pixels were not available to this research agent."
+        }
+      ]
+    },
+    {
+      "id": "szeged-henits-ksh-map-2013",
+      "municipality": "Szeged",
+      "url": "https://doktori.bibl.u-szeged.hu/id/eprint/1759/1/doktori_HL.pdf",
+      "alreadyAcquired": false,
+      "existingExactSha256": null,
+      "rawDownloadNeeded": true,
+      "mapLocators": [
+        {
+          "pdfPageOneBased": 24,
+          "printedPage": 23,
+          "figure": "3.2. ábra",
+          "caption": "Szeged Belső funkcionális tagozódása (KSH, 2003)",
+          "verification": "Caption and preceding explanation directly readable in PDF text."
+        }
+      ]
+    },
+    {
+      "id": "szolnok-foldi-ksh-map-2012",
+      "municipality": "Szolnok",
+      "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+      "alreadyAcquired": false,
+      "existingExactSha256": null,
+      "rawDownloadNeeded": true,
+      "mapLocators": [
+        {
+          "pdfPageOneBased": 72,
+          "printedPage": 72,
+          "figure": "9. ábra",
+          "caption": "Szolnok város funkcionális tagozódása",
+          "creditedSource": "A nagyvárosok belső tagozódása Szolnok 2003; KSH Jász-Nagykun-Szolnok Megyei Igazgatósága",
+          "verification": "Direct PDF caption and source line."
+        }
+      ]
+    },
+    {
+      "id": "nyiregyhaza-ivs-ksh-reproduction",
+      "municipality": "Nyíregyháza",
+      "url": "https://varoshaza.nyiregyhaza.hu/lib/fooldal/140210_ivs.pdf",
+      "alreadyAcquired": false,
+      "existingExactSha256": null,
+      "rawDownloadNeeded": true,
+      "mapLocators": [
+        {
+          "pdfPageOneBased": null,
+          "printedPage": null,
+          "figure": "7. ábra",
+          "caption": "Nyíregyháza beazonosított városrészei a KSH Nagyvárosok belső tagozódása – Nyíregyháza című kiadványában és az IVS-ben",
+          "creditedSource": "KSH Nagyvárosok belső tagozódása – Nyíregyháza (2003)",
+          "verification": "Exact official PDF search-index caption and source line; numeric page locator requires local download."
+        }
+      ]
+    },
+    {
+      "id": "veszprem-ivs-2008-related-ksh-source",
+      "municipality": "Veszprém",
+      "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+      "alreadyAcquired": false,
+      "existingExactSha256": null,
+      "rawDownloadNeeded": true,
+      "mapLocators": [
+        {
+          "pdfPageOneBased": null,
+          "printedPage": null,
+          "figure": null,
+          "caption": "Veszprém IVS típusú városrészei",
+          "verification": "Exact official PDF search-index map title. Numeric page locator requires local inspection."
+        }
+      ]
+    },
+    {
+      "id": "ksh-hodmezovasarhely-2005",
+      "municipality": "Hódmezővásárhely",
+      "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+      "alreadyAcquired": false,
+      "existingExactSha256": null,
+      "rawDownloadNeeded": true,
+      "mapLocators": [
+        {
+          "pdfPageOneBased": 9,
+          "printedPage": 9,
+          "figure": null,
+          "caption": null,
+          "section": "2. A város fekvése, térbeli tagozódása",
+          "verification": "PDF page text contains mapped quarter labels and surrounding chapter; screenshot call confirms a rendered page exists but image pixels were unavailable to this agent."
+        }
+      ]
+    }
+  ],
+  "similarLocalDocumentsNotDuplicates": [
+    {
+      "id": "veszprem-its",
+      "url": "https://veszprem.hu/wp-content/uploads/2023/08/ITS_Veszprem_v5.0_20140911.pdf",
+      "path": ".local/neighborhoods/nationwide-docs/originals/veszprem-its.pdf",
+      "bytes": 3826021,
+      "sha256": "58b67936ca68196db76d656772d9fbfe526b0be09f5b5750b1000d13957c3d51",
+      "duplicateOfCatalogSource": false,
+      "difference": "September 2014 ITS version 5.0; different from catalog 2008 IVS."
+    },
+    {
+      "id": "nyiregyhaza-its",
+      "url": "https://uj.nyiregyhaza.hu/lib/rend_terv/its/felulvizsg/220804_its_jovahagyott_its.pdf",
+      "path": ".local/neighborhoods/nationwide-docs/originals/nyiregyhaza-its.pdf",
+      "bytes": 4786105,
+      "sha256": "159c8b3112c842f25f6799cf0a34645c90143dd9b5d071000b3160ec499c3a90",
+      "duplicateOfCatalogSource": false,
+      "difference": "July 2022 adopted ITS revision; different from catalog old IVS/KSH comparison."
+    }
+  ],
+  "bestFirstUsefulMapOverall": {
+    "id": "ksh-szeged-map-2014",
+    "pdfPageOneBased": 54,
+    "printedPage": 53,
+    "reason": "Official KSH later map with numbered historical functional units; Henits 2013 PDF24 offers independent reproduction comparison. Native paths and current semantics remain uninspected."
+  },
+  "assignedFirstMapAfterArrival": {
+    "id": "szolnok-foldi-ksh-map-2012",
+    "pdfPageOneBased": 72,
+    "printedPage": 72,
+    "figure": "9. ábra",
+    "reason": "Confirmed Szolnok 2003 KSH map reproduction, separate city from the Szeged extraction effort. Inspect actual native paths/image and whole-quarter identity first."
+  },
+  "existingCatalogAndFrozenSourceArtifactsModified": false
+}

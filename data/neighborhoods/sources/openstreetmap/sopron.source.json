@@ -1,0 +1,31 @@
+{
+  "city": "Sopron",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:30][maxsize:67108864];\nrelation(1491393)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Sopron\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  way(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"](if:is_closed());\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+  "retrievedAt": "2026-11-13T09:40:13.560Z",
+  "sha256": "c437ce42f8a546d01f4fe386afa8086c573f79f06f94db02275305f545942277",
+  "bytes": 25903,
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "municipalityRelationId": 1491393,
+  "municipalityAdminLevel": "8",
+  "candidates": 1,
+  "byAdminLevel": {
+    "place-only": 1
+  },
+  "relationsWithWayGeometry": 1,
+  "closedWays": 0,
+  "osmTimestamp": "2026-11-13T09:39:02Z",
+  "completeCoverage": false,
+  "reviewStatus": "unreviewed",
+  "usableForAddressAssignment": false,
+  "attempts": [
+    {
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "status": "ok"
+    }
+  ],
+  "status": "downloaded",
+  "file": "sopron.json"
+}

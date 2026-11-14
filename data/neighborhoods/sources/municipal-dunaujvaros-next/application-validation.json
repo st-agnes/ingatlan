@@ -1,0 +1,20 @@
+{
+  "validator": "Existing unmodified scripts/neighborhoods/build.mjs validateGeometry",
+  "checks": [
+    {
+      "id": "manual:dunaujvaros:dozsa-vasmu-inference",
+      "name": "Dózsa városrész",
+      "valid": true,
+      "bbox": [
+        18.9318598,
+        46.9625264,
+        18.9401455,
+        46.9693227
+      ],
+      "vertices": 76,
+      "estimated": true,
+      "boundaryKind": "inferred_area",
+      "usableForAddressAssignment": false
+    }
+  ]
+}

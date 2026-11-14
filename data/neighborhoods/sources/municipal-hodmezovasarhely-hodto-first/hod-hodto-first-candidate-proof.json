@@ -1,0 +1,2865 @@
+{
+  "schemaVersion": 1,
+  "candidateName": "Hódtó",
+  "municipality": "Hódmezővásárhely",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "polygonCount": 1,
+  "uniqueFaceUsesAllFourCitedCircuitGroupsAndContainsCurrentNamePoint": true,
+  "currentNamePoint": {
+    "type": "Feature",
+    "properties": {
+      "osmNodeId": 1864706591,
+      "tags": {
+        "name": "Hódtó",
+        "place": "suburb"
+      },
+      "version": 2,
+      "timestamp": "2017-06-16 17:50:56+00:00"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        20.3294796,
+        46.4133477
+      ]
+    }
+  },
+  "namePointRole": "Semantic cross-check only; never used to generate any perimeter coordinate.",
+  "valid": true,
+  "holeCount": 0,
+  "vertexCount": 126,
+  "areaSquareMeters": 634216.374674207,
+  "perimeterMeters": 3346.375057627645,
+  "allBoundaryEdgesHaveOriginalOsmLineSupport": true,
+  "maximumSupportToleranceDegrees": 1e-11,
+  "sourceWayIds": [
+    39993111,
+    57363387,
+    57363389,
+    92239512,
+    175912265,
+    175912267,
+    175912274,
+    175927409,
+    175927410,
+    175933634,
+    175933635,
+    175933637,
+    181650769,
+    183010895,
+    183010896,
+    399541334,
+    399541335,
+    687941834,
+    687941838,
+    843501281,
+    844875089,
+    844875090,
+    845133456,
+    845133467,
+    845133469,
+    912545860,
+    912545861,
+    924452436,
+    924452444,
+    924452445,
+    1020683101,
+    1025682042,
+    1025852216,
+    1065369423,
+    1120676143,
+    1154672113,
+    1206072889,
+    1206073043,
+    1259567252,
+    1259792458,
+    1323167417,
+    1371146952
+  ],
+  "inferredJunctionWayIds": [
+    57363387,
+    57363389,
+    175933637,
+    687941834,
+    687941838,
+    924452444,
+    924452445,
+    1020683101,
+    1025682042,
+    1259567252,
+    1259792458,
+    1371146952
+  ],
+  "inferredJunctionLengthMeters": 115.94184229377554,
+  "orderedEdges": [
+    {
+      "edgeIndex": 0,
+      "coordinates": [
+        [
+          20.3237125,
+          46.411104
+        ],
+        [
+          20.3237669,
+          46.411172
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 39993111,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 8.6390385886213
+    },
+    {
+      "edgeIndex": 1,
+      "coordinates": [
+        [
+          20.3237669,
+          46.411172
+        ],
+        [
+          20.3238593,
+          46.4113391
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 39993111,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 19.887290398983712
+    },
+    {
+      "edgeIndex": 2,
+      "coordinates": [
+        [
+          20.3238593,
+          46.4113391
+        ],
+        [
+          20.3238966,
+          46.4113853
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 39993111,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 5.882160264355536
+    },
+    {
+      "edgeIndex": 3,
+      "coordinates": [
+        [
+          20.3238966,
+          46.4113853
+        ],
+        [
+          20.3239352,
+          46.4114303
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 39993111,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 5.816424161092325
+    },
+    {
+      "edgeIndex": 4,
+      "coordinates": [
+        [
+          20.3239352,
+          46.4114303
+        ],
+        [
+          20.3239669,
+          46.4114447
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1020683101,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.9159916219784785
+    },
+    {
+      "edgeIndex": 5,
+      "coordinates": [
+        [
+          20.3239669,
+          46.4114447
+        ],
+        [
+          20.3239915,
+          46.4114652
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 57363387,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.9615047615853385
+    },
+    {
+      "edgeIndex": 6,
+      "coordinates": [
+        [
+          20.3239915,
+          46.4114652
+        ],
+        [
+          20.3240064,
+          46.4114897
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 57363387,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.954593098199039
+    },
+    {
+      "edgeIndex": 7,
+      "coordinates": [
+        [
+          20.3240064,
+          46.4114897
+        ],
+        [
+          20.3240104,
+          46.4115161
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 57363387,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.950720903684125
+    },
+    {
+      "edgeIndex": 8,
+      "coordinates": [
+        [
+          20.3240104,
+          46.4115161
+        ],
+        [
+          20.3240031,
+          46.4115422
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 57363387,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.9550947768709244
+    },
+    {
+      "edgeIndex": 9,
+      "coordinates": [
+        [
+          20.3240031,
+          46.4115422
+        ],
+        [
+          20.323985,
+          46.4115657
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 57363387,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.9598607755257587
+    },
+    {
+      "edgeIndex": 10,
+      "coordinates": [
+        [
+          20.323985,
+          46.4115657
+        ],
+        [
+          20.3239699,
+          46.411576
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1371146952,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 1.6306046422073421
+    },
+    {
+      "edgeIndex": 11,
+      "coordinates": [
+        [
+          20.3239699,
+          46.411576
+        ],
+        [
+          20.3239897,
+          46.4116952
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133469,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 13.337554234283134
+    },
+    {
+      "edgeIndex": 12,
+      "coordinates": [
+        [
+          20.3239897,
+          46.4116952
+        ],
+        [
+          20.3240078,
+          46.4117549
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133469,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 6.7806590576069885
+    },
+    {
+      "edgeIndex": 13,
+      "coordinates": [
+        [
+          20.3240078,
+          46.4117549
+        ],
+        [
+          20.3240407,
+          46.4118578
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133469,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 11.714832893190675
+    },
+    {
+      "edgeIndex": 14,
+      "coordinates": [
+        [
+          20.3240407,
+          46.4118578
+        ],
+        [
+          20.3240389,
+          46.4119048
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133469,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 5.226397305363825
+    },
+    {
+      "edgeIndex": 15,
+      "coordinates": [
+        [
+          20.3240389,
+          46.4119048
+        ],
+        [
+          20.3245557,
+          46.4131025
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1206072889,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 138.94048788556285
+    },
+    {
+      "edgeIndex": 16,
+      "coordinates": [
+        [
+          20.3245557,
+          46.4131025
+        ],
+        [
+          20.3245831,
+          46.4131693
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1206073043,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 7.718605542311916
+    },
+    {
+      "edgeIndex": 17,
+      "coordinates": [
+        [
+          20.3245831,
+          46.4131693
+        ],
+        [
+          20.3251435,
+          46.4145408
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1206073043,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 158.42862845200003
+    },
+    {
+      "edgeIndex": 18,
+      "coordinates": [
+        [
+          20.3251435,
+          46.4145408
+        ],
+        [
+          20.3251857,
+          46.4146453
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 92239512,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 12.060911216032729
+    },
+    {
+      "edgeIndex": 19,
+      "coordinates": [
+        [
+          20.3251857,
+          46.4146453
+        ],
+        [
+          20.3252298,
+          46.4147566
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 92239512,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 12.828389267354789
+    },
+    {
+      "edgeIndex": 20,
+      "coordinates": [
+        [
+          20.3252298,
+          46.4147566
+        ],
+        [
+          20.3253724,
+          46.4147974
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 912545861,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 11.864643054753135
+    },
+    {
+      "edgeIndex": 21,
+      "coordinates": [
+        [
+          20.3253724,
+          46.4147974
+        ],
+        [
+          20.3266534,
+          46.4155331
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 912545861,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 128.01502034137303
+    },
+    {
+      "edgeIndex": 22,
+      "coordinates": [
+        [
+          20.3266534,
+          46.4155331
+        ],
+        [
+          20.3267376,
+          46.4155837
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 912545861,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 8.575773288829204
+    },
+    {
+      "edgeIndex": 23,
+      "coordinates": [
+        [
+          20.3267376,
+          46.4155837
+        ],
+        [
+          20.3268598,
+          46.4156342
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 912545861,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 10.944366886580125
+    },
+    {
+      "edgeIndex": 24,
+      "coordinates": [
+        [
+          20.3268598,
+          46.4156342
+        ],
+        [
+          20.3269215,
+          46.4156594
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 912545861,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 5.5090021330154135
+    },
+    {
+      "edgeIndex": 25,
+      "coordinates": [
+        [
+          20.3269215,
+          46.4156594
+        ],
+        [
+          20.3269896,
+          46.4156864
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 912545861,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 6.034932079980233
+    },
+    {
+      "edgeIndex": 26,
+      "coordinates": [
+        [
+          20.3269896,
+          46.4156864
+        ],
+        [
+          20.3270704,
+          46.4157149
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 912545861,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 6.9732852441966475
+    },
+    {
+      "edgeIndex": 27,
+      "coordinates": [
+        [
+          20.3270704,
+          46.4157149
+        ],
+        [
+          20.3271191,
+          46.4157218
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1259567252,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 3.8219163351160006
+    },
+    {
+      "edgeIndex": 28,
+      "coordinates": [
+        [
+          20.3271191,
+          46.4157218
+        ],
+        [
+          20.3271616,
+          46.4157396
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 687941838,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 3.8198963880886585
+    },
+    {
+      "edgeIndex": 29,
+      "coordinates": [
+        [
+          20.3271616,
+          46.4157396
+        ],
+        [
+          20.3271931,
+          46.4157661
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 687941838,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 3.813473149204688
+    },
+    {
+      "edgeIndex": 30,
+      "coordinates": [
+        [
+          20.3271931,
+          46.4157661
+        ],
+        [
+          20.3272098,
+          46.4157984
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 687941838,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 3.813155256920689
+    },
+    {
+      "edgeIndex": 31,
+      "coordinates": [
+        [
+          20.3272098,
+          46.4157984
+        ],
+        [
+          20.3272099,
+          46.4158327
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1259792458,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 3.812827590333534
+    },
+    {
+      "edgeIndex": 32,
+      "coordinates": [
+        [
+          20.3272099,
+          46.4158327
+        ],
+        [
+          20.3272127,
+          46.4159015
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 912545860,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 7.6509008932116656
+    },
+    {
+      "edgeIndex": 33,
+      "coordinates": [
+        [
+          20.3272127,
+          46.4159015
+        ],
+        [
+          20.3272722,
+          46.4159796
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 912545860,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 9.813110352831053
+    },
+    {
+      "edgeIndex": 34,
+      "coordinates": [
+        [
+          20.3272722,
+          46.4159796
+        ],
+        [
+          20.3273558,
+          46.4160547
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 912545860,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 10.535774575351185
+    },
+    {
+      "edgeIndex": 35,
+      "coordinates": [
+        [
+          20.3273558,
+          46.4160547
+        ],
+        [
+          20.3273946,
+          46.416083
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 912545860,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 4.335289621533039
+    },
+    {
+      "edgeIndex": 36,
+      "coordinates": [
+        [
+          20.3273946,
+          46.416083
+        ],
+        [
+          20.3274507,
+          46.4160906
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1025682042,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 4.395020583376717
+    },
+    {
+      "edgeIndex": 37,
+      "coordinates": [
+        [
+          20.3274507,
+          46.4160906
+        ],
+        [
+          20.3274932,
+          46.4161083
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1025682042,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 3.814131110522655
+    },
+    {
+      "edgeIndex": 38,
+      "coordinates": [
+        [
+          20.3274932,
+          46.4161083
+        ],
+        [
+          20.3275246,
+          46.4161349
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1025682042,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 3.8171891106162272
+    },
+    {
+      "edgeIndex": 39,
+      "coordinates": [
+        [
+          20.3275246,
+          46.4161349
+        ],
+        [
+          20.3275414,
+          46.4161672
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1025682042,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 3.8157477852657937
+    },
+    {
+      "edgeIndex": 40,
+      "coordinates": [
+        [
+          20.3275414,
+          46.4161672
+        ],
+        [
+          20.3285106,
+          46.4166377
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1120676143,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 91.03647400753998
+    },
+    {
+      "edgeIndex": 41,
+      "coordinates": [
+        [
+          20.3285106,
+          46.4166377
+        ],
+        [
+          20.3286759,
+          46.4166939
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1120676143,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 14.160911067507366
+    },
+    {
+      "edgeIndex": 42,
+      "coordinates": [
+        [
+          20.3286759,
+          46.4166939
+        ],
+        [
+          20.3289375,
+          46.4168254
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933635,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 24.862982238677652
+    },
+    {
+      "edgeIndex": 43,
+      "coordinates": [
+        [
+          20.3289375,
+          46.4168254
+        ],
+        [
+          20.3290756,
+          46.4168927
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933635,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 12.988158519352357
+    },
+    {
+      "edgeIndex": 44,
+      "coordinates": [
+        [
+          20.3290756,
+          46.4168927
+        ],
+        [
+          20.3291455,
+          46.4169229
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933635,
+          "name": "Andrássy út",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 6.336333747286298
+    },
+    {
+      "edgeIndex": 45,
+      "coordinates": [
+        [
+          20.3291455,
+          46.4169229
+        ],
+        [
+          20.3292191,
+          46.4169321
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933637,
+          "name": "Kálvin János tér",
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 5.7500749719351765
+    },
+    {
+      "edgeIndex": 46,
+      "coordinates": [
+        [
+          20.3292191,
+          46.4169321
+        ],
+        [
+          20.3292847,
+          46.4169569
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933637,
+          "name": "Kálvin János tér",
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 5.7476362004987624
+    },
+    {
+      "edgeIndex": 47,
+      "coordinates": [
+        [
+          20.3292847,
+          46.4169569
+        ],
+        [
+          20.3293358,
+          46.4169945
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933637,
+          "name": "Kálvin János tér",
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 5.7361373286289705
+    },
+    {
+      "edgeIndex": 48,
+      "coordinates": [
+        [
+          20.3293358,
+          46.4169945
+        ],
+        [
+          20.3295358,
+          46.4169739
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1025852216,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 15.545650092196773
+    },
+    {
+      "edgeIndex": 49,
+      "coordinates": [
+        [
+          20.3295358,
+          46.4169739
+        ],
+        [
+          20.329621,
+          46.4169579
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1025852216,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 6.787381895707536
+    },
+    {
+      "edgeIndex": 50,
+      "coordinates": [
+        [
+          20.329621,
+          46.4169579
+        ],
+        [
+          20.3300889,
+          46.4168397
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1025852216,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 38.296875875051406
+    },
+    {
+      "edgeIndex": 51,
+      "coordinates": [
+        [
+          20.3300889,
+          46.4168397
+        ],
+        [
+          20.3303988,
+          46.4167348
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1025852216,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 26.525818860603103
+    },
+    {
+      "edgeIndex": 52,
+      "coordinates": [
+        [
+          20.3303988,
+          46.4167348
+        ],
+        [
+          20.3309026,
+          46.4165291
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1025852216,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 44.97840660217734
+    },
+    {
+      "edgeIndex": 53,
+      "coordinates": [
+        [
+          20.3309026,
+          46.4165291
+        ],
+        [
+          20.331819,
+          46.4161125
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1025852216,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 84.31103912693261
+    },
+    {
+      "edgeIndex": 54,
+      "coordinates": [
+        [
+          20.331819,
+          46.4161125
+        ],
+        [
+          20.3326988,
+          46.4157279
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933634,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 80.01896523023558
+    },
+    {
+      "edgeIndex": 55,
+      "coordinates": [
+        [
+          20.3326988,
+          46.4157279
+        ],
+        [
+          20.3332701,
+          46.4154441
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933634,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 54.07829759609308
+    },
+    {
+      "edgeIndex": 56,
+      "coordinates": [
+        [
+          20.3332701,
+          46.4154441
+        ],
+        [
+          20.3335916,
+          46.4152514
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933634,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 32.708034537298296
+    },
+    {
+      "edgeIndex": 57,
+      "coordinates": [
+        [
+          20.3335916,
+          46.4152514
+        ],
+        [
+          20.3337184,
+          46.415173
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933634,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 13.076299234893636
+    },
+    {
+      "edgeIndex": 58,
+      "coordinates": [
+        [
+          20.3337184,
+          46.415173
+        ],
+        [
+          20.3342611,
+          46.4148015
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933634,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 58.70534594972369
+    },
+    {
+      "edgeIndex": 59,
+      "coordinates": [
+        [
+          20.3342611,
+          46.4148015
+        ],
+        [
+          20.3346876,
+          46.4145139
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933634,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 45.79645486638267
+    },
+    {
+      "edgeIndex": 60,
+      "coordinates": [
+        [
+          20.3346876,
+          46.4145139
+        ],
+        [
+          20.3364822,
+          46.4132986
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933634,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 193.101270899545
+    },
+    {
+      "edgeIndex": 61,
+      "coordinates": [
+        [
+          20.3364822,
+          46.4132986
+        ],
+        [
+          20.3368492,
+          46.4130458
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175933634,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 39.82332138910657
+    },
+    {
+      "edgeIndex": 62,
+      "coordinates": [
+        [
+          20.3368492,
+          46.4130458
+        ],
+        [
+          20.3368914,
+          46.4129945
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1154672113,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 6.560983302233821
+    },
+    {
+      "edgeIndex": 63,
+      "coordinates": [
+        [
+          20.3368914,
+          46.4129945
+        ],
+        [
+          20.3368774,
+          46.4129517
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 924452444,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 4.8779344093980965
+    },
+    {
+      "edgeIndex": 64,
+      "coordinates": [
+        [
+          20.3368774,
+          46.4129517
+        ],
+        [
+          20.3368854,
+          46.4129082
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 924452444,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 4.874464377042156
+    },
+    {
+      "edgeIndex": 65,
+      "coordinates": [
+        [
+          20.3368854,
+          46.4129082
+        ],
+        [
+          20.3369145,
+          46.4128693
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 924452445,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 4.868702887878128
+    },
+    {
+      "edgeIndex": 66,
+      "coordinates": [
+        [
+          20.3369145,
+          46.4128693
+        ],
+        [
+          20.3369612,
+          46.4128395
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 924452445,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 4.885243491302201
+    },
+    {
+      "edgeIndex": 67,
+      "coordinates": [
+        [
+          20.3369612,
+          46.4128395
+        ],
+        [
+          20.3370198,
+          46.4128225
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 687941834,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 4.885789948208542
+    },
+    {
+      "edgeIndex": 68,
+      "coordinates": [
+        [
+          20.3370198,
+          46.4128225
+        ],
+        [
+          20.3370905,
+          46.4127278
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 924452436,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 11.847577926242579
+    },
+    {
+      "edgeIndex": 69,
+      "coordinates": [
+        [
+          20.3370905,
+          46.4127278
+        ],
+        [
+          20.3370923,
+          46.4127131
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 843501281,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 1.639915983607224
+    },
+    {
+      "edgeIndex": 70,
+      "coordinates": [
+        [
+          20.3370923,
+          46.4127131
+        ],
+        [
+          20.3371183,
+          46.4126045
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 181650769,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 12.236472838619894
+    },
+    {
+      "edgeIndex": 71,
+      "coordinates": [
+        [
+          20.3371183,
+          46.4126045
+        ],
+        [
+          20.3371691,
+          46.4124941
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 181650769,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 12.878730810514236
+    },
+    {
+      "edgeIndex": 72,
+      "coordinates": [
+        [
+          20.3371691,
+          46.4124941
+        ],
+        [
+          20.3372475,
+          46.4123302
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 181650769,
+          "name": "Bajcsy-Zsilinszky Endre utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 19.190571450429022
+    },
+    {
+      "edgeIndex": 73,
+      "coordinates": [
+        [
+          20.3372475,
+          46.4123302
+        ],
+        [
+          20.3368483,
+          46.4121824
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1323167417,
+          "name": null,
+          "railwayRef": "135",
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 34.81395092893005
+    },
+    {
+      "edgeIndex": 74,
+      "coordinates": [
+        [
+          20.3368483,
+          46.4121824
+        ],
+        [
+          20.3366668,
+          46.4121144
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175912274,
+          "name": null,
+          "railwayRef": "135",
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 15.87074474306541
+    },
+    {
+      "edgeIndex": 75,
+      "coordinates": [
+        [
+          20.3366668,
+          46.4121144
+        ],
+        [
+          20.3329665,
+          46.4107788
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175927409,
+          "name": null,
+          "railwayRef": "135",
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 320.91739226648923
+    },
+    {
+      "edgeIndex": 76,
+      "coordinates": [
+        [
+          20.3329665,
+          46.4107788
+        ],
+        [
+          20.3328176,
+          46.4107259
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175927410,
+          "name": null,
+          "railwayRef": "135",
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 12.870678971440404
+    },
+    {
+      "edgeIndex": 77,
+      "coordinates": [
+        [
+          20.3328176,
+          46.4107259
+        ],
+        [
+          20.3315073,
+          46.4102501
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1065369423,
+          "name": null,
+          "railwayRef": "135",
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 113.78768815776652
+    },
+    {
+      "edgeIndex": 78,
+      "coordinates": [
+        [
+          20.3315073,
+          46.4102501
+        ],
+        [
+          20.3314674,
+          46.4102353
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 1065369423,
+          "name": null,
+          "railwayRef": "135",
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 3.4811904103868323
+    },
+    {
+      "edgeIndex": 79,
+      "coordinates": [
+        [
+          20.3314674,
+          46.4102353
+        ],
+        [
+          20.3283393,
+          46.4090814
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 399541335,
+          "name": null,
+          "railwayRef": "135",
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 272.58701271808195
+    },
+    {
+      "edgeIndex": 80,
+      "coordinates": [
+        [
+          20.3283393,
+          46.4090814
+        ],
+        [
+          20.3281722,
+          46.4090198
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 399541334,
+          "name": null,
+          "railwayRef": "135",
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 14.559353602685183
+    },
+    {
+      "edgeIndex": 81,
+      "coordinates": [
+        [
+          20.3281722,
+          46.4090198
+        ],
+        [
+          20.3234126,
+          46.4072639
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175912267,
+          "name": null,
+          "railwayRef": "135",
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 414.77611028895
+    },
+    {
+      "edgeIndex": 82,
+      "coordinates": [
+        [
+          20.3234126,
+          46.4072639
+        ],
+        [
+          20.32321341709599,
+          46.407190405300256
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 175912265,
+          "name": null,
+          "railwayRef": "135",
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 17.358715928635178
+    },
+    {
+      "edgeIndex": 83,
+      "coordinates": [
+        [
+          20.32321341709599,
+          46.407190405300256
+        ],
+        [
+          20.3227887,
+          46.4076709
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 183010895,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 62.60531370112653
+    },
+    {
+      "edgeIndex": 84,
+      "coordinates": [
+        [
+          20.3227887,
+          46.4076709
+        ],
+        [
+          20.3226903,
+          46.4078266
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 183010895,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 18.88935786574053
+    },
+    {
+      "edgeIndex": 85,
+      "coordinates": [
+        [
+          20.3226903,
+          46.4078266
+        ],
+        [
+          20.3226489,
+          46.4079218
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 183010896,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 11.050961310096557
+    },
+    {
+      "edgeIndex": 86,
+      "coordinates": [
+        [
+          20.3226489,
+          46.4079218
+        ],
+        [
+          20.3226353,
+          46.4079628
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 183010896,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 4.676034992561302
+    },
+    {
+      "edgeIndex": 87,
+      "coordinates": [
+        [
+          20.3226353,
+          46.4079628
+        ],
+        [
+          20.3226074,
+          46.4080469
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 183010896,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 9.591632359712195
+    },
+    {
+      "edgeIndex": 88,
+      "coordinates": [
+        [
+          20.3226074,
+          46.4080469
+        ],
+        [
+          20.3225832,
+          46.4081548
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 183010896,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 12.137754712641476
+    },
+    {
+      "edgeIndex": 89,
+      "coordinates": [
+        [
+          20.3225832,
+          46.4081548
+        ],
+        [
+          20.3225725,
+          46.4082439
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 183010896,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 9.938556131364667
+    },
+    {
+      "edgeIndex": 90,
+      "coordinates": [
+        [
+          20.3225725,
+          46.4082439
+        ],
+        [
+          20.3225726,
+          46.4083185
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 183010896,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 8.292611681938043
+    },
+    {
+      "edgeIndex": 91,
+      "coordinates": [
+        [
+          20.3225726,
+          46.4083185
+        ],
+        [
+          20.3225862,
+          46.408423
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 183010896,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 11.663296441261478
+    },
+    {
+      "edgeIndex": 92,
+      "coordinates": [
+        [
+          20.3225862,
+          46.408423
+        ],
+        [
+          20.3226079,
+          46.4085368
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 183010896,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 12.759686345402008
+    },
+    {
+      "edgeIndex": 93,
+      "coordinates": [
+        [
+          20.3226079,
+          46.4085368
+        ],
+        [
+          20.3226383,
+          46.4086227
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 183010896,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 9.830677168375571
+    },
+    {
+      "edgeIndex": 94,
+      "coordinates": [
+        [
+          20.3226383,
+          46.4086227
+        ],
+        [
+          20.3226956,
+          46.4087035
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 183010896,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 10.004248534960729
+    },
+    {
+      "edgeIndex": 95,
+      "coordinates": [
+        [
+          20.3226956,
+          46.4087035
+        ],
+        [
+          20.3228781,
+          46.4088811
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 844875090,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 24.221336844479225
+    },
+    {
+      "edgeIndex": 96,
+      "coordinates": [
+        [
+          20.3228781,
+          46.4088811
+        ],
+        [
+          20.3229112,
+          46.4089356
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 844875090,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 6.571171929328693
+    },
+    {
+      "edgeIndex": 97,
+      "coordinates": [
+        [
+          20.3229112,
+          46.4089356
+        ],
+        [
+          20.3229328,
+          46.4089842
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 844875090,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 5.651958516883139
+    },
+    {
+      "edgeIndex": 98,
+      "coordinates": [
+        [
+          20.3229328,
+          46.4089842
+        ],
+        [
+          20.3229504,
+          46.4090395
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 844875089,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 6.294401251363707
+    },
+    {
+      "edgeIndex": 99,
+      "coordinates": [
+        [
+          20.3229504,
+          46.4090395
+        ],
+        [
+          20.3229788,
+          46.4091587
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 844875089,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 13.42912444989814
+    },
+    {
+      "edgeIndex": 100,
+      "coordinates": [
+        [
+          20.3229788,
+          46.4091587
+        ],
+        [
+          20.3229924,
+          46.4092333
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 844875089,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 8.358282178615951
+    },
+    {
+      "edgeIndex": 101,
+      "coordinates": [
+        [
+          20.3229924,
+          46.4092333
+        ],
+        [
+          20.32301,
+          46.4093085
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 844875089,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 8.468137634304334
+    },
+    {
+      "edgeIndex": 102,
+      "coordinates": [
+        [
+          20.32301,
+          46.4093085
+        ],
+        [
+          20.3230305,
+          46.4093417
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 844875089,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 4.013071524551588
+    },
+    {
+      "edgeIndex": 103,
+      "coordinates": [
+        [
+          20.3230305,
+          46.4093417
+        ],
+        [
+          20.3230577,
+          46.4093541
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 57363389,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.504815466643354
+    },
+    {
+      "edgeIndex": 104,
+      "coordinates": [
+        [
+          20.3230577,
+          46.4093541
+        ],
+        [
+          20.3230812,
+          46.4093698
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 57363389,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.5121426274227048
+    },
+    {
+      "edgeIndex": 105,
+      "coordinates": [
+        [
+          20.3230812,
+          46.4093698
+        ],
+        [
+          20.3231,
+          46.4093883
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 57363389,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.513707825825854
+    },
+    {
+      "edgeIndex": 106,
+      "coordinates": [
+        [
+          20.3231,
+          46.4093883
+        ],
+        [
+          20.3231137,
+          46.4094087
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 57363389,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.500411691807726
+    },
+    {
+      "edgeIndex": 107,
+      "coordinates": [
+        [
+          20.3231137,
+          46.4094087
+        ],
+        [
+          20.3231216,
+          46.4094306
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 57363389,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.509065235927746
+    },
+    {
+      "edgeIndex": 108,
+      "coordinates": [
+        [
+          20.3231216,
+          46.4094306
+        ],
+        [
+          20.3231236,
+          46.4094531
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 57363389,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.5058448219876714
+    },
+    {
+      "edgeIndex": 109,
+      "coordinates": [
+        [
+          20.3231236,
+          46.4094531
+        ],
+        [
+          20.3231195,
+          46.4094755
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 57363389,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.509882890831313
+    },
+    {
+      "edgeIndex": 110,
+      "coordinates": [
+        [
+          20.3231195,
+          46.4094755
+        ],
+        [
+          20.3231096,
+          46.409497
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 57363389,
+          "name": null,
+          "railwayRef": null,
+          "role": "inferred_physical_junction_arc"
+        }
+      ],
+      "lengthMeters": 2.5082602289411637
+    },
+    {
+      "edgeIndex": 111,
+      "coordinates": [
+        [
+          20.3231096,
+          46.409497
+        ],
+        [
+          20.323127,
+          46.4095431
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133456,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 5.296290396291382
+    },
+    {
+      "edgeIndex": 112,
+      "coordinates": [
+        [
+          20.323127,
+          46.4095431
+        ],
+        [
+          20.3231439,
+          46.409575
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133456,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 3.776631896206845
+    },
+    {
+      "edgeIndex": 113,
+      "coordinates": [
+        [
+          20.3231439,
+          46.409575
+        ],
+        [
+          20.3231612,
+          46.4096051
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133456,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 3.600668163545987
+    },
+    {
+      "edgeIndex": 114,
+      "coordinates": [
+        [
+          20.3231612,
+          46.4096051
+        ],
+        [
+          20.3232552,
+          46.4097484
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133456,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 17.49242019485813
+    },
+    {
+      "edgeIndex": 115,
+      "coordinates": [
+        [
+          20.3232552,
+          46.4097484
+        ],
+        [
+          20.3233172,
+          46.4098306
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133456,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 10.306259840089318
+    },
+    {
+      "edgeIndex": 116,
+      "coordinates": [
+        [
+          20.3233172,
+          46.4098306
+        ],
+        [
+          20.3233299,
+          46.4098847
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133456,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 6.092573768749743
+    },
+    {
+      "edgeIndex": 117,
+      "coordinates": [
+        [
+          20.3233299,
+          46.4098847
+        ],
+        [
+          20.3233476,
+          46.409939
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133467,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 6.187567544479522
+    },
+    {
+      "edgeIndex": 118,
+      "coordinates": [
+        [
+          20.3233476,
+          46.409939
+        ],
+        [
+          20.3233533,
+          46.4099923
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133467,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 5.941066969073538
+    },
+    {
+      "edgeIndex": 119,
+      "coordinates": [
+        [
+          20.3233533,
+          46.4099923
+        ],
+        [
+          20.323359,
+          46.4101454
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133467,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 17.024384974652467
+    },
+    {
+      "edgeIndex": 120,
+      "coordinates": [
+        [
+          20.323359,
+          46.4101454
+        ],
+        [
+          20.3233614,
+          46.4102271
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133467,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 9.083724797623189
+    },
+    {
+      "edgeIndex": 121,
+      "coordinates": [
+        [
+          20.3233614,
+          46.4102271
+        ],
+        [
+          20.3233897,
+          46.4103027
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133467,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 8.680911807078799
+    },
+    {
+      "edgeIndex": 122,
+      "coordinates": [
+        [
+          20.3233897,
+          46.4103027
+        ],
+        [
+          20.3234609,
+          46.4104875
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133467,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 21.259511239695726
+    },
+    {
+      "edgeIndex": 123,
+      "coordinates": [
+        [
+          20.3234609,
+          46.4104875
+        ],
+        [
+          20.3236383,
+          46.410936
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133467,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 51.68794345758166
+    },
+    {
+      "edgeIndex": 124,
+      "coordinates": [
+        [
+          20.3236383,
+          46.410936
+        ],
+        [
+          20.3237125,
+          46.411104
+        ]
+      ],
+      "sourceChoices": [
+        {
+          "osmWayId": 845133467,
+          "name": "Kaszap utca",
+          "railwayRef": null,
+          "role": "explicit_circuit_road_or_rail"
+        }
+      ],
+      "lengthMeters": 19.527054906536453
+    }
+  ],
+  "syntheticConnectors": 0,
+  "endpointSnapping": false,
+  "geometryDerivedFromSourcePdfMap": false,
+  "limitations": [
+    "Explicit quarter circuit is from2014, while open linework is a2026 snapshot. Historical alignment was not independently georeferenced.",
+    "Road and rail centerlines implement a stated tracing convention; source text does not specify road/rail width ownership.",
+    "Modern roundabout arcs close physical junctions missing from the street-name chain; these arcs are inferred and fully identified.",
+    "Subsequent FVS action-area definitions differ and are not treated as full-quarter definitions.",
+    "Municipal PDF text was verified through the web tool; original PDF bytes/screenshot of the selected section were blocked byHTTP403 on subsequent fetch.",
+    "No independent geometry/source review has yet approved this candidate; it is not in any global registry/export."
+  ],
+  "usableForAddressAssignment": false,
+  "files": {
+    "hod-local-lines.geojson": "c485ccbf0352f2a38bc725bf8326f4192ac37d497aaa113d6bafcd477d59fa02",
+    "hod-local-name-points.geojson": "1941dd17fb3271ce50a959583108b5bc7f0d357a4463e86c6d3074edb95c4913",
+    "hod-source-research.json": "8fee1fc26b8316dac87a804dbb74fd700ace753561233f24c361bea5e8c13f23",
+    "hod-hodto-first-candidate.geojson": "5b201c8a8c632f6096934b57d618beaf66db24b3492b0f2eece5d2d4b937d6ff",
+    "hod-hodto-boundary-controls.geojson": "01895315cb593c08186d1ae86370af2db7cdd12d4cbb2f909aca82c5746aa74d"
+  }
+}

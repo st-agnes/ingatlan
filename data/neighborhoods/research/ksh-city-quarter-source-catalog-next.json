@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 1,
+  "status": "FROZEN_BOUNDED_CONFIRMED_URL_CATALOG",
+  "researchDate": "2026-11-14",
+  "purpose": "First bounded acquisition batch for historical KSH city-quarter maps, separating original-series downloads, later KSH republication and institutional reproductions from bibliographic-only references.",
+  "seriesSought": "A nagyvárosok belső tagozódása",
+  "confirmedDownloadCandidateCount": 6,
+  "confirmedOriginalSeriesPdfCount": 1,
+  "laterKshMapPublicationCount": 1,
+  "institutionalReproductionOrRelatedMapCount": 4,
+  "rawDownloadsPerformedByThisResearch": false,
+  "shellNetworkRequestsPerformed": false,
+  "urlExistenceInferredFromFilenameTemplates": false,
+  "geometryExtracted": false,
+  "currentQuarterValidityEstablished": false,
+  "sourceOpenReuseLicenceEstablished": false,
+  "importantDistinction": "Six acquisition candidates are confirmed public PDF URLs, but only Hódmezővásárhely is a confirmed downloadable original volume of the requested series. The other five are explicit later publications/reproductions or related municipal planning maps; they are not presented as original KSH series PDFs.",
+  "downloadCandidates": [
+    {
+      "id": "ksh-szeged-map-2014",
+      "priority": 1,
+      "municipality": "Szeged",
+      "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/pdf/muhelytanulmanyok4.pdf",
+      "publisher": "Központi Statisztikai Hivatal",
+      "sourceKind": "later_ksh_publication_reproducing_historical_division",
+      "title": "Műhelytanulmányok 4. – Szegregáció a fejekben – A statisztikai és a mentális társadalmi és térbeli elkülönülés vizsgálata Szegeden",
+      "author": "Rácz Attila",
+      "publicationYear": 2014,
+      "underlyingKshDivisionYear": 2003,
+      "pdfPageCount": 89,
+      "urlVerification": "Direct PDF reader open succeeded; official KSH publication index also links the exact PDF.",
+      "indexUrl": "https://www.ksh.hu/apps/shop.lista?p_lang=HU&p_temakor_kod=T9",
+      "mapLocators": [
+        {
+          "pdfPageOneBased": 54,
+          "printedPage": 53,
+          "figure": "1. ábra",
+          "caption": "Szeged városrészei",
+          "creditedSource": "Kovács 2003",
+          "verification": "Indexed PDF map-caption extraction associates the caption, printed page and numbered map. Screenshot pixels were not available to this research agent."
+        }
+      ],
+      "additionalLocators": [
+        {"printedPages": [47, 54], "pdfPagesOneBased": [48, 55], "purpose": "Section describing Szeged's structural division; inspect the whole interval, not just the endpoints."},
+        {"printedPage": 87, "pdfPageOneBased": 88, "purpose": "Original KSH 2003 source reference."}
+      ],
+      "mapSemantics": "Historical numbered units grouped into nine functional/land-use categories. Indexed map content includes labels through 44; this is not yet a verified count of usable fine whole-neighborhood polygons.",
+      "nativeGeometryStatus": "Unknown until local PDF path/image inspection.",
+      "rightsEvidence": "PDF page 3 distinguishes source-attributed secondary publication from permission requirements for its graphic/layout solutions. No present-day CC BY licence is assumed.",
+      "currentNameAndBoundaryStatus": "Historical 2003 division reproduced in 2014; current canonical names, whole-quarter semantics and geographic accuracy remain unreviewed."
+    },
+    {
+      "id": "szeged-henits-ksh-map-2013",
+      "priority": 2,
+      "municipality": "Szeged",
+      "url": "https://doktori.bibl.u-szeged.hu/id/eprint/1759/1/doktori_HL.pdf",
+      "publisher": "Szegedi Tudományegyetem doctoral repository",
+      "sourceKind": "institutional_thesis_reproduction_of_ksh_map",
+      "title": "Henits László doktori értekezése",
+      "author": "Henits László",
+      "publicationYear": 2013,
+      "underlyingKshDivisionYear": 2003,
+      "pdfPageCount": 119,
+      "urlVerification": "Direct PDF reader open and the map caption succeeded; exact institutional PDF URL was observed, not inferred.",
+      "mapLocators": [
+        {
+          "pdfPageOneBased": 24,
+          "printedPage": 23,
+          "figure": "3.2. ábra",
+          "caption": "Szeged Belső funkcionális tagozódása (KSH, 2003)",
+          "verification": "Caption and preceding explanation directly readable in PDF text."
+        }
+      ],
+      "additionalLocators": [
+        {"section": "4.2", "purpose": "Inspect vector-input provenance and the treatment of KSH units."},
+        {"pdfPageOneBased": 111, "printedPage": 110, "purpose": "Bibliographic reference to the original 84-page KSH Szeged 2003 volume."}
+      ],
+      "mapSemantics": "Numbered historical functional units, with nine functional categories described in the surrounding text. A higher-detail reproduction is a possible extraction aid; it does not prove present whole-neighborhood identity.",
+      "nativeGeometryStatus": "Unknown until local inspection.",
+      "rightsEvidence": "Institutional public access is established; map and thesis open reuse rights have not been independently established.",
+      "currentNameAndBoundaryStatus": "Unreviewed historical KSH division; no current/address assignment claim."
+    },
+    {
+      "id": "szolnok-foldi-ksh-map-2012",
+      "priority": 3,
+      "municipality": "Szolnok",
+      "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+      "publisher": "Pécsi Tudományegyetem Közgazdaságtudományi Kar",
+      "sourceKind": "institutional_thesis_reproduction_of_ksh_map",
+      "title": "Földi Katalin doktori értekezése",
+      "author": "Földi Katalin",
+      "publicationYear": 2012,
+      "underlyingKshDivisionYear": 2003,
+      "pdfPageCount": 235,
+      "urlVerification": "Direct PDF reader open, cover year and figure caption were readable.",
+      "mapLocators": [
+        {
+          "pdfPageOneBased": 72,
+          "printedPage": 72,
+          "figure": "9. ábra",
+          "caption": "Szolnok város funkcionális tagozódása",
+          "creditedSource": "A nagyvárosok belső tagozódása Szolnok 2003; KSH Jász-Nagykun-Szolnok Megyei Igazgatósága",
+          "verification": "Direct PDF caption and source line."
+        }
+      ],
+      "mapSemantics": "Historical functional division. Inspect unit labels and source context before deciding whether any unit is a fine whole quarter.",
+      "nativeGeometryStatus": "Unknown until local inspection.",
+      "rightsEvidence": "Institutional public access is established; no map or thesis open reuse licence is assumed.",
+      "currentNameAndBoundaryStatus": "Unreviewed historical division; no current/address assignment claim."
+    },
+    {
+      "id": "nyiregyhaza-ivs-ksh-reproduction",
+      "priority": 4,
+      "municipality": "Nyíregyháza",
+      "url": "https://varoshaza.nyiregyhaza.hu/lib/fooldal/140210_ivs.pdf",
+      "alternateOfficialUrl": "https://uj.nyiregyhaza.hu/lib/fooldal/140210_ivs.pdf",
+      "publisher": "Nyíregyháza municipal website",
+      "sourceKind": "official_municipal_reproduction_and_comparison_of_ksh_division",
+      "title": "Nyíregyháza Integrált Városfejlesztési Stratégiája",
+      "publicationYear": null,
+      "underlyingKshDivisionYear": 2003,
+      "pdfPageCount": null,
+      "reportedPdfBytes": 15470929,
+      "urlVerification": "Official PDF is indexed with the relevant caption. Direct reader fetch identified the PDF and byte length, then rejected it because the document exceeds reader size limits; this is not a missing-file result.",
+      "mapLocators": [
+        {
+          "pdfPageOneBased": null,
+          "printedPage": null,
+          "figure": "7. ábra",
+          "caption": "Nyíregyháza beazonosított városrészei a KSH Nagyvárosok belső tagozódása – Nyíregyháza című kiadványában és az IVS-ben",
+          "creditedSource": "KSH Nagyvárosok belső tagozódása – Nyíregyháza (2003)",
+          "verification": "Exact official PDF search-index caption and source line; numeric page locator requires local download."
+        }
+      ],
+      "mapSemantics": "Explicit comparison between KSH and IVS divisions. Preserve the two schemes separately; a comparison image does not prove the boundaries are identical.",
+      "nativeGeometryStatus": "Unknown; full PDF download needed.",
+      "rightsEvidence": "Official municipal publication and cited KSH source; open map reuse licence not independently established.",
+      "currentNameAndBoundaryStatus": "Document/underlying division age and present validity require local review; the upload filename is not treated as a publication date."
+    },
+    {
+      "id": "veszprem-ivs-2008-related-ksh-source",
+      "priority": 5,
+      "municipality": "Veszprém",
+      "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+      "publisher": "Veszprém municipal website",
+      "sourceKind": "official_municipal_planning_map_with_ksh_series_reference",
+      "title": "Veszprém MJV Integrált Városfejlesztési Stratégia",
+      "publicationYear": 2008,
+      "publicationYearBasis": "Official PDF filename/title reference; cover date still needs local verification.",
+      "underlyingKshDivisionYear": 2003,
+      "pdfPageCount": null,
+      "reportedPdfBytes": 12378814,
+      "urlVerification": "Official PDF is indexed with the map title and KSH reference. Direct reader fetch identified the PDF and length, then rejected it for document size.",
+      "mapLocators": [
+        {
+          "pdfPageOneBased": null,
+          "printedPage": null,
+          "figure": null,
+          "caption": "Veszprém IVS típusú városrészei",
+          "verification": "Exact official PDF search-index map title. Numeric page locator requires local inspection."
+        }
+      ],
+      "kshReference": "KSH, Nagyvárosok belső tagozódása, Veszprém, 2003",
+      "mapSemantics": "Indexed IVS map uses Roman-numbered I–IX planning units. The document cites the 2003 KSH series, but this research does not establish that the located IVS map is a verbatim KSH map or a fine-quarter partition.",
+      "nativeGeometryStatus": "Unknown; full PDF download needed.",
+      "rightsEvidence": "Official municipal publication; open map reuse licence not independently established.",
+      "currentNameAndBoundaryStatus": "Historical planning division, potentially coarse; no current fine-quarter or address assignment claim."
+    },
+    {
+      "id": "ksh-hodmezovasarhely-2005",
+      "priority": 6,
+      "municipality": "Hódmezővásárhely",
+      "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+      "publisher": "Központi Statisztikai Hivatal Szegedi Igazgatósága",
+      "sourceKind": "original_ksh_city_series_pdf",
+      "title": "A nagyvárosok belső tagozódása – Hódmezővásárhely",
+      "publicationYear": 2005,
+      "coverMonth": "2005-07",
+      "publicationIndexReleaseDate": "2005-08-08",
+      "publicationNumber": "8/2005",
+      "underlyingStatisticalReferenceDate": "2001-02-01",
+      "pdfPageCount": 72,
+      "urlVerification": "Direct PDF open succeeded, including cover, source/rights page and mapped chapter; official KSH index links the exact PDF.",
+      "indexUrl": "https://www.ksh.hu/apps/shop.lista?p_cimke=&p_lang=HU&p_order=&p_start=26&p_temakor_kod=T9",
+      "mapLocators": [
+        {
+          "pdfPageOneBased": 9,
+          "printedPage": 9,
+          "figure": null,
+          "caption": null,
+          "section": "2. A város fekvése, térbeli tagozódása",
+          "verification": "PDF page text contains mapped quarter labels and surrounding chapter; screenshot call confirms a rendered page exists but image pixels were unavailable to this agent."
+        }
+      ],
+      "additionalLocators": [
+        {"pdfPagesOneBased": [8, 9], "printedPages": [8, 9], "purpose": "Quarter identity/location descriptions, including named physical boundaries."},
+        {"pdfPageOneBased": 2, "purpose": "Original publication, source-attribution and data-transfer wording."}
+      ],
+      "mapSemantics": "Named central quarters, outlying former farm centres, gardens and other areas must be distinguished. Do not turn all map labels or non-quarter classes into independent current neighborhoods automatically.",
+      "nativeGeometryStatus": "Unknown until local PDF extraction; no native-path claim is made by this catalog.",
+      "rightsEvidence": "Historical PDF specifies source-attributed secondary publication and conditions for data transfer. It is not automatically covered by a modern CC BY statement.",
+      "currentNameAndBoundaryStatus": "Historical source and 2001 reference data; current quarter limits and address suitability remain unreviewed."
+    }
+  ],
+  "originalSeriesReferencesWithoutConfirmedOriginalPdf": [
+    {
+      "municipality": "Szeged",
+      "publicationYear": 2003,
+      "reference": "A nagyvárosok belső tagozódása – Szeged; KSH Csongrád Megyei Igazgatósága; 84 pages",
+      "evidence": "Henits thesis printed 110/PDF 111; KSH Rácz 2014 printed 87/PDF 88.",
+      "confirmedOriginalPdfUrl": null,
+      "disposition": "Acquire the two confirmed historical map reproductions first; do not relabel them as the original volume."
+    },
+    {
+      "municipality": "Veszprém",
+      "publicationYear": 2003,
+      "reference": "KSH, Nagyvárosok belső tagozódása, Veszprém, 2003",
+      "evidenceUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+      "confirmedOriginalPdfUrl": null
+    },
+    {
+      "municipality": "Nyíregyháza",
+      "publicationYear": 2003,
+      "reference": "KSH Nagyvárosok belső tagozódása – Nyíregyháza (2003)",
+      "evidenceUrl": "https://varoshaza.nyiregyhaza.hu/lib/fooldal/140210_ivs.pdf",
+      "confirmedOriginalPdfUrl": null
+    },
+    {
+      "municipality": "Békéscsaba",
+      "publicationYear": 2003,
+      "reference": "A nagyvárosok belső tagozódása – Békéscsaba; Majláthné Dénesi Andrea and Szűcs Anna; 39 pages; ISBN 963-215-675-7",
+      "evidenceUrl": "https://oszk.hu/mnb/mnbkb_pdf/2004/08/fuzet.pdf",
+      "evidenceLocator": "Bibliographic entry 3832/[18]",
+      "confirmedOriginalPdfUrl": null,
+      "disposition": "Bibliographic evidence only; no map download is claimed."
+    },
+    {
+      "municipality": "Szolnok",
+      "publicationYear": 2003,
+      "reference": "A nagyvárosok belső tagozódása – Szolnok; KSH Jász-Nagykun-Szolnok Megyei Igazgatósága",
+      "evidenceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+      "evidenceLocator": "Figure 9, printed 72/PDF 72",
+      "confirmedOriginalPdfUrl": null
+    },
+    {
+      "municipality": "Szekszárd",
+      "publicationYear": 2003,
+      "reference": "A nagyvárosok belső tagozódása – Szekszárd; KSH Tolna Megyei Igazgatósága; 92 pages",
+      "evidenceUrl": "https://real-j.mtak.hu/20911/1/TFK_2013_1_1-2_.pdf",
+      "confirmedOriginalPdfUrl": null,
+      "disposition": "Academic bibliographic reference; no original digital map source established."
+    }
+  ],
+  "remainingPriorityCityGaps": [
+    {"municipality": "Békéscsaba", "gap": "Original series publication verified bibliographically; public original PDF and map locator unconfirmed."},
+    {"municipality": "Nagykanizsa", "gap": "No exact original-series title/PDF or KSH map reproduction was confirmed in this bounded search. This is not proof that none exists."},
+    {"municipality": "Szekszárd", "gap": "Original series publication cited; public original PDF and map locator unconfirmed."}
+  ],
+  "excludedOrUnresolvedUrls": [
+    {
+      "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/szeged-demog.pdf",
+      "status": "historically_cited_reader_inaccessible",
+      "reason": "A later scholarly reference cites this old URL, but direct reader access failed. It is not a confirmed original-series download."
+    },
+    {
+      "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/szegeddemog.pdf",
+      "status": "confirmed_pdf_excluded_as_not_quarter_map_source",
+      "reason": "Actual KSH index link opens a 42-page October 2007 city demographic/microcensus report. Reader search finds no városrész occurrence. It must not be substituted for the 2003 city-quarter volume."
+    },
+    {
+      "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/kecskemetdemog.pdf",
+      "status": "confirmed_pdf_excluded_as_not_quarter_map_source",
+      "reason": "Actual KSH index link opens a 33-page demographic report; no quarter-map locator was established."
+    },
+    {
+      "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/szegedpanellet.pdf",
+      "status": "confirmed_pdf_excluded_as_not_quarter_boundary_source",
+      "reason": "2006 regional panel-housing statistics, 24 pages; this research established no whole-quarter boundary map."
+    }
+  ],
+  "nextStep": "Root may batch-download the six confirmed candidates into ignored local storage. Pin PDF hashes and inspect the specified maps for actual native paths/fills, source-unit identity and geographic controls. Preserve source periods and rights uncertainty; do not count any map label as a current fine quarter before review.",
+  "coverageLimit": "This is the first useful bounded batch, not a complete catalog of the KSH series or all major cities. Failure to locate an original PDF does not establish its absence."
+}

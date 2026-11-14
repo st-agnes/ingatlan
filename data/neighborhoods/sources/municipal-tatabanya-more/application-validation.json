@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "scope": "Local application geometry validator and isolated candidate import checks; no shared registry mutation.",
+  "checks": [
+    {
+      "registryCandidate": "registry-entry.json",
+      "sha256Matches": true,
+      "expectedCount": 3,
+      "acceptedNames": [
+        "Galla ipari övezet",
+        "Észak-Vértes",
+        "Nyugat-Gerecse"
+      ],
+      "boundaryKind": "neighbourhood",
+      "validateGeometryAccepted": 3,
+      "collectManualCandidatesAccepted": 3,
+      "rejected": []
+    },
+    {
+      "registryCandidate": "planning-registry-entry.json",
+      "sha256Matches": true,
+      "expectedCount": 4,
+      "acceptedNames": [
+        "Bánhida – Dózsakert",
+        "Szőlőhegy – Újváros – Sárberek",
+        "VI-os telep – Felsőgalla",
+        "Nyugati ipari park – Erőmű ltp."
+      ],
+      "boundaryKind": "planning_unit",
+      "validateGeometryAccepted": 4,
+      "collectManualCandidatesAccepted": 4,
+      "rejected": []
+    }
+  ],
+  "readOnlyConverterCheck": {
+    "command": "PYTHONPATH=.local/geodata python3 scripts/neighborhoods/derive-tatabanya-more.py --check",
+    "passed": true
+  },
+  "existingFourReexported": false,
+  "sourceOverlapsAndReferenceDifferencesAreDocumented": true,
+  "usableForAddressAssignment": false
+}

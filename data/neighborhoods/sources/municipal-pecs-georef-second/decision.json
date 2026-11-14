@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "status": "new_source_features_and_literal_current_targets_documented_registration_not_approved",
+  "scope": "Second control-identification audit only; does not replace frozen inferred polygons or the rejected five-control candidate.",
+  "result": {
+    "newDirectlyObservedEasternFeatureCrossings": 2,
+    "newApprovedGroundControls": 0,
+    "newFittedGeoreferenceModels": 0,
+    "newQuarterGeometries": 0,
+    "primaryRecordsAdded": 0
+  },
+  "sourceCornerFindings": [
+    {
+      "id": "visible-L-corner",
+      "sourcePixelApproximate": [
+        160,
+        167
+      ],
+      "currentOsmNodeId": 684770966,
+      "currentOuterRingVertexIndex": 457,
+      "finding": "Visible L is distinct from rejected straight-limb marker[160,162]/node684770958. Current457 has matching broad direction sequence. Historical/current boundary correspondence remains an assumption.",
+      "usedInFit": false,
+      "geographicControlApproved": false
+    },
+    {
+      "id": "northern-trough",
+      "sourcePixelApproximate": [
+        293,
+        85
+      ],
+      "candidateCurrentOsmNodeId": 684771054,
+      "candidateCurrentOuterRingVertexIndex": 386,
+      "finding": "Actual dark trough spans several pixels. Suggested[294,86] is lighter lower edge. Current386/389 neighbouring troughs cannot be separately identified sufficiently. Do not automatically substitute this for rejected control.",
+      "usedInFit": false,
+      "geographicControlApproved": false
+    }
+  ],
+  "easternCrossingCandidates": [
+    {
+      "id": "eastern-gray-rail-crossing",
+      "sourcePixelApproximate": [
+        565,
+        151
+      ],
+      "sourceReadingEvidence": "independent-source-image-review.json",
+      "currentRawFeatureEvidence": "source-target-topology-proof.json",
+      "currentTargetEov": [
+        596399.0203003698,
+        86028.21741994064
+      ],
+      "currentTargetWgs84": [
+        18.354117330506245,
+        46.11670531679366
+      ],
+      "targetIsLiteralOsmCrossingNode": false,
+      "actualSegmentRefs": {
+        "railSegment": [
+          335393474,
+          6178830650
+        ],
+        "boundarySegment": [
+          684783195,
+          684783212
+        ]
+      },
+      "sourceFeatureDirectlyVisible": true,
+      "currentGraphTargetVerified": true,
+      "sourceCurrentIdentityAssessment": "Crossing types, relative ordering and directions are morphologically consistent. No readable road/rail reference or gray-line identity at this source location. A specific cartographic correspondence hypothesis, not independently verified ground control.",
+      "geographicControlApproved": false,
+      "usedInFit": false
+    },
+    {
+      "id": "eastern-gray-yellow-crossing",
+      "sourcePixelApproximate": [
+        572,
+        163
+      ],
+      "sourceReadingEvidence": "independent-source-image-review.json",
+      "currentRawFeatureEvidence": "source-target-topology-proof.json",
+      "currentTargetEov": [
+        596643.2530804609,
+        85649.03002220455
+      ],
+      "currentTargetWgs84": [
+        18.357319826715592,
+        46.11331386978537
+      ],
+      "targetIsLiteralOsmCrossingNode": false,
+      "actualSegmentRefs": {
+        "roadSegment": [
+          16342134,
+          3181496197
+        ],
+        "boundarySegment": [
+          684783194,
+          684783210
+        ]
+      },
+      "sourceFeatureDirectlyVisible": true,
+      "currentGraphTargetVerified": true,
+      "sourceCurrentIdentityAssessment": "Crossing types, relative ordering and directions are morphologically consistent. No readable road/rail reference or gray-line identity at this source location. A specific cartographic correspondence hypothesis, not independently verified ground control.",
+      "geographicControlApproved": false,
+      "usedInFit": false
+    }
+  ],
+  "easternCrossingPairRelationship": {
+    "currentTargetSeparationMetres": 451.0351798617343,
+    "sourcePixelDeltaRailToRoad": [
+      7,
+      12
+    ],
+    "interpretation": "Supports the same local crossing sequence. Both share one gray administrative feature and do not establish two independent absolute checks. No error bound, transform or confidence interval follows from this separation."
+  },
+  "rejectedPhysicalCrossingCandidate": {
+    "currentRoad6WayId": 312297417,
+    "currentRail64WayId": 31279904,
+    "currentPlanCrossingEov": [
+      593209.5441637711,
+      85083.69280847596
+    ],
+    "currentPlanCrossingWgs84": [
+      18.312977185588714,
+      46.10794649678259
+    ],
+    "sourceApproximateSearchLocation": [
+      467,
+      180
+    ],
+    "actualSourceCrossingDirectlyVisible": false,
+    "reason": "Purple fill and broad contour obscure the joint road/rail crossing. Exposed approaches are not a directly observed source control. No interpolated connector or source intersection created.",
+    "geographicControlApproved": false,
+    "usedInFit": false
+  },
+  "rawVerification": {
+    "independentOriginalPbfRead": true,
+    "rawBoundaryAndCandidateWayCount": 37,
+    "rawReferencedNodeCount": 715,
+    "allArchivedBoundaryAndSelectedWayRefsCoordinatesTagsMatch": true,
+    "planCrossingArithmetic": "Determinants of literal original adjacent source segments; derived plan positions, not literal source OSM nodes."
+  },
+  "sourceMetadataFinding": {
+    "originalPdfAndBothEmbeddedJpegsByteExact": true,
+    "recognizedGeospatialDictionaryTokensFound": false,
+    "jpegGpsMetadataFound": false,
+    "evidence": "source-metadata-review.json",
+    "scopeLimit": "No usable registration in inspected PDF dictionary/JPEG metadata. External original GIS/source files may still exist."
+  },
+  "decisionReason": "This batch improves source localization and current graph identity but does not establish a geographically distributed set of independently tied physical controls. Northern exact vertex remains unresolved; visible eastern pair shares unverified historical/current gray boundary; independent physical road/rail crossing is obscured. A new small-residual fit on these hypotheses would not resolve the missing identities.",
+  "fitResidualOrCorrelatedHoldoutUsedToApproveAbsoluteAccuracy": false,
+  "neighbourhoodNameCoordinatesUsed": false,
+  "networkUsed": false,
+  "georeferenceModelApproved": false,
+  "claimedAbsoluteAccuracy": null,
+  "absoluteBoundaryAccuracyMetres": null,
+  "automaticPrimaryApproval": false,
+  "usableForAddressAssignment": false,
+  "inventedConnectorBufferSnapRepairOrUncertaintyRadiusUsed": false,
+  "frozenFirstInferredGeometrySha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95",
+  "frozenFirstInferredSnapshotChanged": false,
+  "previousRejectedModelChanged": false,
+  "rootRegistriesOrExportsChanged": false,
+  "nextUsefulEvidence": [
+    "A visible physical crossing/unique landmark on original source independently tied to current/historical coordinates, preferably east/northeast, without a gray administrative stroke.",
+    "Original municipal GIS/export or authoring georeference for Figure9/Figure12; documented source-date/current line identity if gray crossings are to be used.",
+    "Higher-resolution original or independently tied source geometry that distinguishes neighbouring northern trough vertices."
+  ],
+  "evidence": [
+    "independent-source-image-review.json",
+    "source-target-topology-proof.json",
+    "source-metadata-review.json",
+    "source-current-separate-panels.png",
+    "independent-road-rail-obscured-source-only.png"
+  ]
+}

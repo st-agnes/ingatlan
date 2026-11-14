@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-14",
+  "scope": [
+    "Hódmezővásárhely",
+    "Szentes",
+    "Baja"
+  ],
+  "scopeLimit": "Bounded positive-source search for these three settlements only. No claim that a source or polygon does not exist elsewhere.",
+  "nationalRegistriesModified": false,
+  "officialNeighborhoodPolygonsAcquired": 0,
+  "geographicSourceGeometryAcquired": [
+    "Literal complete OSM roads/rails/waterways for the Szentes urban area; see szentes-local-lines-proof.json.",
+    "Hódmezővásárhely source extraction and any candidate are documented separately in hod-* files."
+  ],
+  "rights": "Street/river names and factual boundary descriptions are recorded as facts. No municipal map geometry or bulk PDF is redistributed. Any independently reconstructed road-centerline candidate must retain OSM ODbL attribution, inferred status, source-era limits and no address-assignment approval.",
+  "findings": [
+    {
+      "municipality": "Szentes",
+      "status": "explicit_circuit_reconstructed_as_one_low_confidence_estimated_candidate_with_six_disclosed_assumptions",
+      "source": {
+        "title": "Szentes Város Integrált Városfejlesztési Stratégiája",
+        "url": "https://szentes.hu/wp-content/uploads/2015/01/szentes_ivs.pdf",
+        "retrieval": "Web connector returned indexed PDF text (12777 lines) on first open. Subsequent direct open and PDF screenshot requests timed out; original PDF bytes and boundary image were not acquired.",
+        "documentAge": "Municipal upload path is January 2015. This edition contains 2009/2010 material; cover/adoption date was not verified and must not be represented as a 2024 boundary definition.",
+        "locators": [
+          "Section IV.1, printed pages 146-149",
+          "Figure 25, printed page 147",
+          "Belváros boundary list immediately following Figure 25",
+          "Indexed text lines 4337-4360 in first successful result"
+        ],
+        "semanticUnit": "The section explicitly defines named city quarters using functional, historical and development criteria, based on KSH and municipal data. Belváros is a whole named quarter in this partition, not a selected intervention area.",
+        "machinePolygonAvailable": false,
+        "originalGeometryAcquired": false
+      },
+      "belvarosCircuitFactsInSourceOrder": [
+        "Kurca",
+        "Arany János u.",
+        "Bajcsy Zsilinszky u.",
+        "Deák Ferenc u.",
+        "Apponyi tér",
+        "Baross u.",
+        "Kolozsvár u.",
+        "Attila út",
+        "4697 hrsz. út",
+        "Koszta József u.",
+        "Zrínyi u.",
+        "Villogó u.",
+        "Somogyi Béla u.",
+        "Szilfa u.",
+        "Vásárhelyi út",
+        "Nyíri köz",
+        "Kisér u.",
+        "Szent Anna u.",
+        "5631 hrsz. közút",
+        "Kurca"
+      ],
+      "otherCircuitFacts": {
+        "Felsőpárt": [
+          "Kurca",
+          "Dessewffy sor",
+          "Belterületi határvonal",
+          "299/1 hrsz. vasút",
+          "4418/5 hrsz. vasút",
+          "Attila út",
+          "Kolozsvár u.",
+          "Baross u.",
+          "Apponyi tér",
+          "Deák Ferenc u.",
+          "Bajcsy Zsilinszky u.",
+          "Arany János u.",
+          "Kurca"
+        ],
+        "Kisér": [
+          "Kurca",
+          "5631 hrsz. közút",
+          "Szent Anna u.",
+          "Kisér u.",
+          "Nyíri köz",
+          "Vásárhelyi út",
+          "Belterületi határvonal",
+          "Kurca"
+        ],
+        "Kertváros": [
+          "Kurca",
+          "Belterületi határvonal"
+        ],
+        "Nagyhegy": [
+          "Belterületi határvonal",
+          "3963/5 hrsz. közút (Kunszentmártoni út)",
+          "3963/1 hrsz. közút (Kunszentmártoni út)",
+          "4418/5 hrsz. vasút",
+          "299/1 hrsz. vasút",
+          "Belterületi határvonal"
+        ]
+      },
+      "corroboration": [
+        {
+          "title": "2015 ITS megalapozó vizsgálat",
+          "url": "https://www.szentesinfo.hu/testulet/2015/5/eloterjesztes/ITS_megalapozo.pdf",
+          "locator": "Printed pages 142-143, Belváros city-quarter definition; indexed text lines 6429-6441 and 8145-8147",
+          "finding": "The indexed text repeats the eastern/southern Belváros road/cadastral chain, including 4697 and 5631. First indexed read succeeded; later direct fetch timed out.",
+          "originalGeometryAcquired": false
+        },
+        {
+          "title": "Szentes Fenntartható Városfejlesztési Stratégia, modification dated 2024-06-27",
+          "url": "https://www.szentes.hu/wp-content/uploads/2025/03/Szentes_FVS_mod_20240627_elfogadott.pdf",
+          "locators": [
+            "Figure 62, printed page 164",
+            "Figure 81, printed page 285"
+          ],
+          "finding": "Indexed visual descriptions identify colored outlined quarter maps labeled Kertváros, Felsőpárt, Nagyhegy, Iparterület, Belváros, Alsópárt, Kisér. No map pixels/coordinates were acquired; later PDF screenshots timed out. Names and apparent partition persist; exact geometric equivalence to the older circuit is not established.",
+          "originalGeometryAcquired": false
+        },
+        {
+          "title": "Municipal non-transferable property annex",
+          "url": "https://or.njt.hu/download/1919/resources/EJR_70471950-1._mellekletV3.pdf",
+          "locators": [
+            "PDF page index 31, property 4697",
+            "PDF page index 33, row 1347, property 5631"
+          ],
+          "finding": "Property 4697 is listed as public space at Attila út; property 5631 is a public road at Szent Anna utca. The source ties cadastral identifiers to names but does not identify centerline geometry.",
+          "sourceAge": "Web index says approximately seven months old at this review; legal annex adoption/version date was not established.",
+          "originalGeometryAcquired": false
+        },
+        {
+          "title": "2018 municipal asset regulation proposal",
+          "url": "https://www.szentesinfo.hu/testulet/2018/3/eloterjesztes/07_vagyonrendelet.pdf",
+          "locators": [
+            "PDF page index 36, property 4697",
+            "PDF page index 37, row 1312, property 5631"
+          ],
+          "finding": "4697 is a public road at Attila út; 5631 is a public road listed as unnamed in 2018. The later annex name is not sufficient evidence for silently selecting a particular current OSM continuation."
+        }
+      ],
+      "actualRoadGraphAudit": {
+        "file": "szentes-belvaros-first-graph-audit.json",
+        "namedPairsAudited": 17,
+        "intersectingPairs": 12,
+        "disjointPairs": 5,
+        "gapsMeters": {
+          "Kurca-Arany": 37.54419199729461,
+          "Apponyi-Baross": 147.14,
+          "Attila-Koszta": 143.89,
+          "Szilfa-Vasarhelyi": 67.95,
+          "SzentAnna-Kurca": 79.19714254676312
+        },
+        "actualRoadAlternativesFile": "szentes-real-road-gap-alternatives.json",
+        "actualRoadAlternatives": [
+          "Apponyi tér to Baross uses an approximately 150.65 m segment of Deák Ferenc utca.",
+          "Attila to Koszta uses an approximately 151.92 m segment currently named Nagyvölgy sor.",
+          "Szilfa to Vásárhelyi uses an approximately 70.36 m segment currently named Lajos tér."
+        ],
+        "unresolved": [
+          "Apponyi tér refers to a square; its sole OSM-named street does not by itself determine the intended perimeter traversal. A shortest road connection cannot establish the source boundary.",
+          "Property 4697 has a documentary Attila label but the direct connecting present OSM road is named Nagyvölgy sor. Parcel-to-OSM identity remains unverified.",
+          "Unnamed OSM way 68081874 extends Szent Anna toward the river, reducing the remaining nearest-centerline gap to 42.65 m, but cadastral identity and the exact river crossing/shore convention remain unverified.",
+          "Arany ends at Ifjúsági sétány, about 37.54 m from the OSM Kurca centerline. The text does not specify a shoreline-versus-centerline convention."
+        ],
+        "polygonCreated": false,
+        "reason": "An actual source circuit is available, but map/parcel verification or explicit bounded inference is needed at named square, cadastral and river-edge junctions. No straight gap closures or arbitrary connector substitutions were made."
+      },
+      "finalCohort": "../municipal-szentes-belvaros-first",
+      "strictGraphAuditIsHistoricalDiagnostic": true
+    },
+    {
+      "municipality": "Baja",
+      "status": "municipal_macro_quarter_source_and_historical_name_map_leads_found_no_geometry_acquired",
+      "sources": [
+        {
+          "title": "Baja Város Integrált Településfejlesztési Stratégiája, STRATÉGIA",
+          "url": "https://paktum.bajaionkormanyzat.hu/pdf/ITS_DA_Baja_Strategia_vegleges_nokorr0930.pdf",
+          "sourceAge": "Document is a 2015-era ITS according to its indexed publication context; boundary table expressly cites IVS 2008. Exact cover/adoption date was not acquired.",
+          "locators": [
+            "Printed pages 29-30, Városrész / Lehatárolás table",
+            "Printed page 30 cites IVS 2008"
+          ],
+          "retrieval": "First web indexed PDF text read succeeded, 9421 lines; screenshot/direct PDF fetch returned HTTP 403.",
+          "semanticUnit": "Coarse strategic macro-quarters: Keleti, Nyugati, Központi, Déli. Historical neighborhood names are grouped within these units. The long directional street inventories are not automatically a single traversable closed street circuit.",
+          "macroQuarterGroups": {
+            "Nyugati": [
+              "Szentjános",
+              "Józsefváros",
+              "Istvánmegye",
+              "Újváros"
+            ],
+            "Központi": [
+              "Belváros",
+              "Petőfi-sziget"
+            ],
+            "Déli": [
+              "Homokváros",
+              "Szállásváros",
+              "Rókusváros"
+            ]
+          },
+          "originalGeometryAcquired": false,
+          "machinePolygonAvailable": false,
+          "block": "No fine named-neighborhood circuit identified in the inspected table; independent source map and exact road traversal required."
+        },
+        {
+          "title": "Baja Településképi Arculati Kézikönyv 2017",
+          "url": "https://pubhtml5.com/lqzn/ufna/basic/",
+          "sourceAge": "Mayor's foreword dated 2017-10-25; mirror published 2018-01-07.",
+          "locator": "Printed pages 22-23, Baja történeti szerkezete és városrészei",
+          "names": [
+            "Belváros",
+            "Józsefváros",
+            "Istvánmegye",
+            "Kiscsávoly",
+            "Katonaváros",
+            "Rókusváros",
+            "Szállásváros",
+            "Homokváros",
+            "Szentjános",
+            "Szentistván"
+          ],
+          "semanticUnit": "Historical named-quarter description, explicitly referring to Rapcsányi's 1934 monograph and a 1909 map. It is distinct from subsequent townscape character-zone maps.",
+          "retrieval": "Mirror text was read. Page images, source PDF bytes and usable geographic geometry were not acquired.",
+          "block": "Descriptions identify only partial boundaries (for example Kiscsávoly at Szegedi út; Szentjános at Duna/Sugovica). These do not close circuits and were not turned into polygons.",
+          "officialMunicipalLandingPage": "https://www.bajaionkormanyzat.hu/index.php/9-explore/1710-a-telepulesi-arculati-kezikonyv-ertekelo-felulete",
+          "officialLandingPageAccess": "HTTP 403 on direct web open. Search index confirms that the municipality makes the TAK available; this did not supply map bytes."
+        }
+      ],
+      "polygonCreated": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "municipality": "Hódmezővásárhely",
+      "status": "one_hodto_estimated_candidate_frozen_belvaros_and_kertvaros_research_blocked",
+      "evidenceFile": "hod-source-research.json",
+      "note": "Original 2014 ITS says certain action areas are entire named quarters and gives road/rail circuits. Preserve the exact source-era semantic statements in hod-* files. Do not substitute a later action-only area with a similar name. Final geometry outcome is documented by the hod-* reconstruction proof, if present.",
+      "finalCohort": "../municipal-hodmezovasarhely-hodto-first",
+      "continuationEvidenceFile": "hod-next-circuit-research.json"
+    }
+  ],
+  "estimatedCandidateCohorts": [
+    {
+      "municipality": "Hódmezővásárhely",
+      "name": "Hódtó",
+      "path": "data/neighborhoods/sources/municipal-hodmezovasarhely-hodto-first",
+      "registryEntry": "package-registry-entry.json",
+      "featureCount": 1,
+      "geometryStatus": "low_confidence_inferred",
+      "sourceContourIsObserved": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "municipality": "Szentes",
+      "name": "Belváros",
+      "path": "data/neighborhoods/sources/municipal-szentes-belvaros-first",
+      "registryEntry": "registry-entry.json",
+      "featureCount": 1,
+      "geometryStatus": "low_confidence_inferred",
+      "sourceContourIsObserved": false,
+      "usableForAddressAssignment": false,
+      "independentReview": "Passed: complete original PBF line/node fields, both candidate boundaries, source-role review and offline replay."
+    }
+  ]
+}

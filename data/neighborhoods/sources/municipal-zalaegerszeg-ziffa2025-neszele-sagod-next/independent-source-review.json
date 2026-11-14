@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "independent_source_identity_and_semantics_for_two_observed_fine_contours",
+  "reviewer": "independent child agent zala_semantic_qa",
+  "status": "source_supports_two_separately_named_observed_contours_under_one_grouped_chapter_unit",
+  "source": {
+    "localOriginalPath": ".local/neighborhoods/supplement-originals/zalaegerszeg-ziffa2025.pdf",
+    "sha256": "b132fd75d6c95538023ced5eda3ad8ac7f7131c6e27f889ed7206c23e4a44745",
+    "pageCount": 229,
+    "sourceUrl": "https://zalaegerszeg.hu/wp-content/uploads/2025/09/ZEG_ZIFFA_egyeztetesi-valt.pdf",
+    "documentDate": "2025-08-30",
+    "status": "consultation_draft; adoption_not_independently_established",
+    "chapterUnit": 16,
+    "section": "3.4.16",
+    "groupHeading": "Neszele-Ságod",
+    "figure": 53,
+    "mapPageOneBased": 138,
+    "semanticsPagesOneBased": [
+      63,
+      99,
+      139
+    ]
+  },
+  "sourceFactsParaphrased": [
+    {
+      "pdfPageOneBased": 63,
+      "fact": "The methodology defines neighborhood comparison extents using settlement-structure and administrative data."
+    },
+    {
+      "pdfPageOneBased": 99,
+      "fact": "Chapter3.4 characterizes actual named neighborhoods individually; its parameters include urban structure, character, infrastructure and environmental indicators."
+    },
+    {
+      "pdfPageOneBased": 138,
+      "fact": "One chapter heading groups Neszele and Ságod. Its map panels independently label and delineate Neszele and Ságod as two visible source extents, both numbered16."
+    },
+    {
+      "pdfPageOneBased": 139,
+      "fact": "Narrative discussion separately identifies Neszele and Ságod as neighborhoods, while green-space provision is explicitly interpreted using combined statistics. This is an aggregation of indicators, not evidence that the two contours are geometric aliases."
+    }
+  ],
+  "nativePanelsIndependentlyInspected": [
+    {
+      "nativeMapPanel": "p138-xref758.jpeg",
+      "sourcePdfPageOneBased": 138,
+      "sourceImageXref": 758,
+      "name": "Neszele",
+      "role": "satellite map",
+      "dimensionsPixels": [
+        234,
+        199
+      ],
+      "sha256": "2f75ee7dcadf2696b4635eca37b02985868a6756d313bbbf7304b93c0f94a0f8",
+      "bitExactToLocalOriginal": true
+    },
+    {
+      "nativeMapPanel": "p138-xref759.jpeg",
+      "sourcePdfPageOneBased": 138,
+      "sourceImageXref": 759,
+      "name": "Ságod",
+      "role": "satellite map",
+      "dimensionsPixels": [
+        234,
+        360
+      ],
+      "sha256": "08f9b86af6add2f278d11e5e84af63ad28f51530b7311c1c0bd079a05e42c9b6",
+      "bitExactToLocalOriginal": true
+    },
+    {
+      "nativeMapPanel": "p138-xref768.jpeg",
+      "sourcePdfPageOneBased": 138,
+      "sourceImageXref": 768,
+      "name": "Neszele",
+      "role": "black contour and ZI inventory map",
+      "dimensionsPixels": [
+        387,
+        329
+      ],
+      "sha256": "d33dc07a77423c6b72d2a889dad7181db24c366258bb29851b4fe30d3b745019",
+      "bitExactToLocalOriginal": true
+    },
+    {
+      "nativeMapPanel": "p138-xref769.jpeg",
+      "sourcePdfPageOneBased": 138,
+      "sourceImageXref": 769,
+      "name": "Ságod",
+      "role": "black contour and ZI inventory map",
+      "dimensionsPixels": [
+        387,
+        598
+      ],
+      "sha256": "9bc20ed9959fc3b688629475d504e6ce7c9c4bd55415923d9ce4b6af44ac835e",
+      "bitExactToLocalOriginal": true
+    }
+  ],
+  "fineIdentities": [
+    {
+      "name": "Neszele",
+      "sourceUnitNumber": 16,
+      "sourceMapLabel": "16. Neszele",
+      "sourceMapXref": 768,
+      "proposedSourceSchemaId": "zalaegerszeg-ziffa2025-chapter3.4-unit16-neszele",
+      "contourObservation": "Visible individually labeled closed perimeter around Neszele; other clipped neighboring contours also appear in the panel and must not be assigned to Neszele."
+    },
+    {
+      "name": "Ságod",
+      "sourceUnitNumber": 16,
+      "sourceMapLabel": "16. Ságod",
+      "sourceMapXref": 769,
+      "proposedSourceSchemaId": "zalaegerszeg-ziffa2025-chapter3.4-unit16-sagod",
+      "contourObservation": "Visible individually labeled irregular perimeter through residential, industrial and open areas; source contour topology and any raster discontinuities require separate extraction QA."
+    }
+  ],
+  "identityRules": {
+    "actualNamedNeighborhoodsRatherThanActionAreasOrCharacterZones": true,
+    "separateObservedContoursRatherThanInferredChildSplit": true,
+    "sharedUnitNumberIsNotUniqueFeatureIdentity": true,
+    "neitherContourIsAliasOrCloneOfWholeNeszeleSagodGroup": true,
+    "groupedIndicatorRowMustNotBeCountedAsThirdQuarter": true,
+    "historical2014Unit16Continuity": "2014ITS also uses a grouped Neszele-Ságod heading. Name/group continuity does not establish equal old/new extents or authorize splitting an old parent geometry. The2025 native fine contours themselves support the two proposed identities.",
+    "doNotAdmitIfExtractionUsesWholeParentForBothChildren": true
+  },
+  "limits": [
+    "This review establishes source semantics and identity only; no traced geometry or world registration is certified here.",
+    "These are neighborhood analysis extents in a consultation study. Legal/cadastral status, source projection and absolute geographic accuracy remain unproven.",
+    "Current OSM place points may corroborate exact names only and must not serve as geographic fit controls."
+  ],
+  "contentMinimization": {
+    "directNarrativeQuotationWords": 0,
+    "sourceNarrativeTreatment": "English paraphrases only; bibliographic facts and map labels retained. Full source narrative remains only in the ignored local raw PDF.",
+    "mapOnlyPacketRequired": true
+  },
+  "networkCallsPerformed": false,
+  "globalRegistryModified": false,
+  "hathazFrozenPacketModified": false
+}

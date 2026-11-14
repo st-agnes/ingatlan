@@ -1,0 +1,357 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "reviewer": "Independent review_salgotarjan agent",
+  "verdict": "eight_reproducible_source_contours_with_inferred_geographic_placement",
+  "scope": "Independent native pixels, source bytes, refined registration target/residuals, frame-distance arithmetic, and every exported geographic vertex; no producer script imported or run.",
+  "networkUsed": false,
+  "primaryLayerApproved": false,
+  "inferredLayerApproved": true,
+  "absoluteAccuracyMetres": null,
+  "sourceIsOfficial": false,
+  "sourceIsHardBoundary": false,
+  "usableForAddressAssignment": false,
+  "sourcePdfSha256": "d0c46f2a4797517874b770da6d64dba88cf81de5170cf09e2857284644a31a25",
+  "allImageBytesMatchOriginalPdf": true,
+  "frameDiagnosticControlCount": 4716,
+  "frameResidualsReproducedExactly": true,
+  "frameResidualsAreIndependentAbsoluteAccuracy": false,
+  "everyExportCoordinateReproducedExactly": true,
+  "exportFeatureCount": 8,
+  "exportVertexCountIncludingRingClosure": 8180,
+  "records": [
+    {
+      "name": "Somoskő",
+      "sourceRawPixels": 20669,
+      "interiorInterpretationPixels": 31,
+      "newExternalBoundaryLengthPixels": 0,
+      "nativeValid": true,
+      "touchesSourceImageEdge": false,
+      "mainRoiCutsComponent": false,
+      "mainResidualPercentiles": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.0002885913755363845,
+          0.7613501507261162,
+          1.4463423728889553,
+          1.9127898128129117,
+          2.208068304157401,
+          3.126325374861853
+        ]
+      },
+      "allExportCoordinatesReproducedExactly": true,
+      "exportValid": true,
+      "exportVertexCountIncludingRingClosure": 827
+    },
+    {
+      "name": "Rónafalu",
+      "sourceRawPixels": 9519,
+      "interiorInterpretationPixels": 13,
+      "newExternalBoundaryLengthPixels": 0,
+      "nativeValid": true,
+      "touchesSourceImageEdge": false,
+      "mainRoiCutsComponent": false,
+      "mainResidualPercentiles": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.0046076593419002165,
+          0.9037836855542877,
+          1.5244220419531302,
+          1.797775076419498,
+          2.073697165302206,
+          3.571943356917025
+        ]
+      },
+      "allExportCoordinatesReproducedExactly": true,
+      "exportValid": true,
+      "exportVertexCountIncludingRingClosure": 651
+    },
+    {
+      "name": "Rónabánya",
+      "sourceRawPixels": 3622,
+      "interiorInterpretationPixels": 7,
+      "newExternalBoundaryLengthPixels": 0,
+      "nativeValid": true,
+      "touchesSourceImageEdge": false,
+      "mainRoiCutsComponent": false,
+      "mainResidualPercentiles": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.0031814702527981353,
+          0.9700255035625673,
+          1.7223703426806185,
+          1.9807367949369223,
+          2.1989029142936998,
+          3.258218887105473
+        ]
+      },
+      "allExportCoordinatesReproducedExactly": true,
+      "exportValid": true,
+      "exportVertexCountIncludingRingClosure": 332
+    },
+    {
+      "name": "Zagyvaróna",
+      "sourceRawPixels": 32415,
+      "interiorInterpretationPixels": 3,
+      "newExternalBoundaryLengthPixels": 0,
+      "nativeValid": true,
+      "touchesSourceImageEdge": false,
+      "mainRoiCutsComponent": false,
+      "mainResidualPercentiles": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.002147593908773615,
+          0.9594301008177025,
+          1.7577064353890124,
+          2.823952797880833,
+          5.085139582605545,
+          9.848894066898607
+        ]
+      },
+      "allExportCoordinatesReproducedExactly": true,
+      "exportValid": true,
+      "exportVertexCountIncludingRingClosure": 1237
+    },
+    {
+      "name": "Beszterce lakótelep",
+      "sourceRawPixels": 62026,
+      "interiorInterpretationPixels": 9,
+      "newExternalBoundaryLengthPixels": 0,
+      "nativeValid": true,
+      "touchesSourceImageEdge": false,
+      "mainRoiCutsComponent": false,
+      "mainResidualPercentiles": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.00035359122693989775,
+          0.34422671922823156,
+          0.7521875440938288,
+          1.1280433873330935,
+          1.7626068328472,
+          4.314072039552163
+        ]
+      },
+      "allExportCoordinatesReproducedExactly": true,
+      "exportValid": true,
+      "exportVertexCountIncludingRingClosure": 1571
+    },
+    {
+      "name": "Forgáchtelep",
+      "sourceRawPixels": 15680,
+      "interiorInterpretationPixels": 5,
+      "newExternalBoundaryLengthPixels": 0,
+      "nativeValid": true,
+      "touchesSourceImageEdge": false,
+      "mainRoiCutsComponent": false,
+      "mainResidualPercentiles": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.0012284634499337699,
+          0.9423349397781262,
+          2.1290910683078095,
+          2.7938794789685177,
+          4.2504352173864985,
+          10.380148813429267
+        ]
+      },
+      "allExportCoordinatesReproducedExactly": true,
+      "exportValid": true,
+      "exportVertexCountIncludingRingClosure": 888
+    },
+    {
+      "name": "Somlyóbánya",
+      "sourceRawPixels": 10575,
+      "interiorInterpretationPixels": 14,
+      "newExternalBoundaryLengthPixels": 0,
+      "nativeValid": true,
+      "touchesSourceImageEdge": false,
+      "mainRoiCutsComponent": false,
+      "mainResidualPercentiles": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.00011888109719393469,
+          0.48376520302434756,
+          1.1488124941807796,
+          1.5889371382657145,
+          2.2012342697277365,
+          6.811198349238305
+        ]
+      },
+      "allExportCoordinatesReproducedExactly": true,
+      "exportValid": true,
+      "exportVertexCountIncludingRingClosure": 737
+    },
+    {
+      "name": "Baglyasalja",
+      "sourceRawPixels": 33604,
+      "interiorInterpretationPixels": 1,
+      "newExternalBoundaryLengthPixels": 0,
+      "nativeValid": true,
+      "touchesSourceImageEdge": false,
+      "mainRoiCutsComponent": false,
+      "mainResidualPercentiles": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          3.4779537543272454e-06,
+          0.5403294560401832,
+          1.0374493874468476,
+          1.3834162546924285,
+          1.710521558842339,
+          3.4572770256188363
+        ]
+      },
+      "allExportCoordinatesReproducedExactly": true,
+      "exportValid": true,
+      "exportVertexCountIncludingRingClosure": 1937
+    }
+  ],
+  "limits": [
+    "No independently surveyed geographic controls or known original map projection; whole-city silhouette alignment is a manual inference.",
+    "Source-to-source residuals and current municipal-edge residuals are fit diagnostics, not absolute boundary accuracy.",
+    "Forgáchtelep and Zagyvaróna retain visible overview/detail differences; no vertices were adjusted to erase these.",
+    "Tiny dark/cadastral interior mask voids are explicitly interpreted as cartographic interruptions; raw mask geometries remain archived.",
+    "Present-day name occurrence does not validate historical polygon extent; original 2008/2014 delineation reuse and 2022 document date remain separate.",
+    "No Eresztvény shape or compound source-unit copies are invented; clipped neighbouring profile fragments are excluded.",
+    "Source-map reuse licensing remains unresolved."
+  ],
+  "visualInspection": [
+    "profile-main-correspondence-preview.png",
+    "profile-main-registration-refined.png"
+  ],
+  "inputFingerprints": [
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/source-image-inventory.json",
+      "sha256": "38948768c3c5c0f9d499988b13e59d46572464c570c369056ea55a3a4bb9b721"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/source-pages125-137.pdf",
+      "sha256": "b37c08559774bc818069eb048b9a310acf64d12dc1e44402bbef3f5592d2451b"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/profile-main-correspondence-review.json",
+      "sha256": "6851d9c7eb091e67de8df079f1ef5c31f433fa238d61b42a6bd633a0ea6c0020"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/profile-source-pixel-contours.geojson",
+      "sha256": "114319fcc6be22126508a93a4c8418d3db9ba53b4dcb0a210f1cf61d9a5b99bc"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/profile-main-registration-refined.json",
+      "sha256": "725e74a8dc203ae59449e6f26b52e46a5cb89c99fed313793ba046d4813270d2"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/exploratory-frame-registration.json",
+      "sha256": "8b058eb33012df398f76d32d7b7f8f290e5244fb68f1eacea30e7f95108c7015"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/calibration-municipality.geojson",
+      "sha256": "449af490d117d243950acbdabdca21657371e8c1e7168046a31645a9b3915cd8"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/salgotarjan-inferred.geojson",
+      "sha256": "ed18ef0051189ffdb47361cc5c3ee5cb8dff53363182c7b953f585fa3d8403ef"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/conversion-proof.json",
+      "sha256": "bce63d77f958ebae8459a6dd637e892f31d3d6bca7ebed74fd96c24866f37257"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/derive-inferred.py",
+      "sha256": "a6c44b273567449574e10b728b765538579f4ab688a6b97dee15b87fa42bc341"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/refine-profile-registration.py",
+      "sha256": "6670ce4abc401e2befc68598c026e438d7f893b17ea7d4a023454864fa85ec14"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/source-p125-xref924.jpeg",
+      "sha256": "1a98f2f09095fdb4ffa91f9ea35ee34881ab00a48f18405f044e3f57c1824fa6"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/source-p126-xref927.jpeg",
+      "sha256": "570aa1432441418fbd5183acf28ed75796bfcbb1a75f368dc1698a3fc6f13921"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/source-p128-xref931.jpeg",
+      "sha256": "98d670e9427b9c329d1c89e8a42b54c92d598528199639215b2f8245aeab2e03"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/source-p129-xref936.jpeg",
+      "sha256": "fe3bd234d1365e11979484b35d5ce175d2ec7940c0b6a2184b2f787921542529"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/source-p133-xref946.jpeg",
+      "sha256": "dfd94beea1290b8fbcdb6e4c9cc1d843a89052949bd2d1e11c0fc79a068fdd80"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/source-p133-xref950.jpeg",
+      "sha256": "92fa598076bc61541dfef62078dd4e15977349d31b22136dd6a3e49bdbbab444"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/source-p136-xref957.jpeg",
+      "sha256": "9c46094bda1f3255491bf11fc073015eeaecfc6354aee61a5c8bfd4b46b40a38"
+    }
+  ],
+  "fullOriginalHashVerified": true,
+  "allImageBytesMatchArchivedPdfEvidence": true,
+  "pdfVerificationMode": "full_original_pdf_exact_xref_bytes",
+  "conversionProofInputFingerprintsVerified": true,
+  "conversionProofMatricesAndVertexCountsVerified": true,
+  "sourceContourInterpretation": "Actual color-pixel-cell external contour; no claim that this is a literal black boundary stroke or a surveyed line."
+}

@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "status": "FROZEN_SOURCE_GEOMETRY_RETAINED_ONE_CELL_QUARANTINED_BY_STRICT_VALIDATOR",
+  "originalFrozenCohortPath": "data/neighborhoods/sources/municipal-kecskemet-native77-first",
+  "originalFrozenManifestSha256": "bb26990570dfc1730111c6df2d78a1aa15649252b4a7a62afd13305ded09cdfd",
+  "sourceContourCandidateCount": 7,
+  "actualAdmittedInferredFeatureCount": 6,
+  "actualPrimaryFeatureCount": 0,
+  "quarantinedSourceCellCount": 1,
+  "admittedFineResidentialQuarterCount": 3,
+  "admittedLocalEconomicCellCount": 3,
+  "sourceDataBytesModified": false,
+  "strictValidatorPath": "scripts/neighborhoods/build.mjs",
+  "strictValidatorSha256": "7d234a3c4750b6a735483befd02661c6ba199491fec102bd2d301dabf4cb216c",
+  "exactOriginalFormStreamSha256": "1a572f913226e234c8862baa59118bf79468977d7f8bef079775cf4e1bb50d07",
+  "nativeFinding": {
+    "originalPathCount": 7,
+    "sourceCentralCellShapelyValid": true,
+    "originalOuterHoleRolesConfirmed": true,
+    "nativeTouchingCoordinate": [
+      "207.51",
+      "568.81"
+    ],
+    "originalSubpathOccurrences": [
+      {
+        "sourceSubpathIndexZeroBased": 0,
+        "vertexIndexZeroBased": 15,
+        "literalDecimalVertex": [
+          "207.51",
+          "568.81"
+        ],
+        "adjacentSourceVertices": [
+          [
+            "187.52",
+            "572.66"
+          ],
+          [
+            "207.51",
+            "568.81"
+          ],
+          [
+            "206.96",
+            "561.17"
+          ]
+        ]
+      },
+      {
+        "sourceSubpathIndexZeroBased": 0,
+        "vertexIndexZeroBased": 54,
+        "literalDecimalVertex": [
+          "207.51",
+          "568.81"
+        ],
+        "adjacentSourceVertices": [
+          [
+            "211.41",
+            "568.37"
+          ],
+          [
+            "207.51",
+            "568.81"
+          ],
+          [
+            "208.77",
+            "624.74"
+          ]
+        ]
+      }
+    ],
+    "touchingHoleMatchesSeparateKosafaluCellExactly": true,
+    "nativeHoleAreaOutsideShell": 0.0,
+    "geographicTouchingCoordinate": [
+      19.689875496967286,
+      46.88252946016423
+    ],
+    "geometryConstructionBugFound": false
+  },
+  "actualProjectValidatorResults": [
+    {
+      "id": "manual:kecskemet-figure77:kosafalu",
+      "name": "Kósafalu",
+      "result": {
+        "valid": true,
+        "bbox": [
+          19.689444971841063,
+          46.877096233747274,
+          19.69907544747614,
+          46.88297650336703
+        ],
+        "vertices": 40
+      }
+    },
+    {
+      "id": "manual:kecskemet-figure77:muszaj",
+      "name": "Muszáj",
+      "result": {
+        "valid": true,
+        "bbox": [
+          19.69934824687241,
+          46.89262639188418,
+          19.705779118321143,
+          46.89559169916194
+        ],
+        "vertices": 19
+      }
+    },
+    {
+      "id": "manual:kecskemet-figure77:rendorfalu",
+      "name": "Rendőrfalu",
+      "result": {
+        "valid": true,
+        "bbox": [
+          19.682269271492977,
+          46.88252946016423,
+          19.690237729161012,
+          46.89139174439511
+        ],
+        "vertices": 19
+      }
+    },
+    {
+      "id": "manual:kecskemet-figure77:szent-laszlo-belso-forrascella",
+      "name": "Szent László város — belső forráscella",
+      "result": {
+        "valid": false,
+        "reason": "hole_outside_shell"
+      }
+    },
+    {
+      "id": "manual:kecskemet-figure77:deli-iparterulet-1",
+      "name": "Déli iparterület I.",
+      "result": {
+        "valid": true,
+        "bbox": [
+          19.703741281327012,
+          46.87873119992877,
+          19.724104535185756,
+          46.90153175772749
+        ],
+        "vertices": 84
+      }
+    },
+    {
+      "id": "manual:kecskemet-figure77:deli-iparterulet-2",
+      "name": "Déli iparterület II.",
+      "result": {
+        "valid": true,
+        "bbox": [
+          19.686154231188937,
+          46.84972485573985,
+          19.73311781020968,
+          46.87873119992877
+        ],
+        "vertices": 81
+      }
+    },
+    {
+      "id": "manual:kecskemet-figure77:nyugati-iparterulet",
+      "name": "Nyugati iparterület",
+      "result": {
+        "valid": true,
+        "bbox": [
+          19.666894288500355,
+          46.87977239900808,
+          19.686749402341313,
+          46.89502021266369
+        ],
+        "vertices": 114
+      }
+    }
+  ],
+  "quarantine": {
+    "datasetId": "kecskemet-native77-local-inferred",
+    "featureId": "manual:kecskemet-figure77:szent-laszlo-belso-forrascella",
+    "reason": "hole_outside_shell",
+    "actualSourceCondition": "The original Kósafalu hole touches the central source-cell exterior at one original native vertex shared with Rendőrfalu. The project validator intentionally rejects touching holes as well as genuinely outside holes.",
+    "notAReversedShellHoleMapping": true,
+    "noAreaActuallyOutsideShell": true,
+    "action": "Retain the exact frozen source geometry as a quarantined source cell. No hole removal, buffer, coordinate perturbation, repair or forced admission."
+  },
+  "correctionToEarlierAdmissionClaim": "The original frozen batch contains seven archived inferred candidates. The earlier claim that all seven were import-admissible was too broad: the unchanged project validator admits six and quarantines the central touching-hole cell. Native-path preservation and Shapely validity do not override the project validator.",
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

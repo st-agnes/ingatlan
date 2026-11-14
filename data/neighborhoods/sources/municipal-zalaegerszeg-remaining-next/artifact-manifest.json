@@ -1,0 +1,437 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_six_estimated_candidates_unregistered_by_this_batch",
+  "candidateFeatureCount": 6,
+  "candidateExport": "remaining-inferred-import.geojson",
+  "candidateExportSha256": "ad3c6702f5c9d72edd2073c8bd4f8cf40d988489a602c513b944874ddbe1409b",
+  "sourceUrl": "https://zalaegerszeg.hu/wp-content/uploads/2023/05/Zalaegerszeg_ITS.pdf",
+  "originalPdfSha256": "4534775c49466eba0460e583aa45a12127f0a46cd8c0e768ed689b830e4eb035",
+  "sourceImageSha256": "cf259e0c7c54c3b58a0cf1e624ef178432ae734336cd3b676a9c7f2675aa8e37",
+  "pinnedOsmPbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "independentInteriorControlCount": 0,
+  "absoluteAccuracyMetres": null,
+  "globalRegistriesModifiedByThisBatch": false,
+  "frozenExistingFiveModified": false,
+  "artifacts": [
+    {
+      "path": "README.md",
+      "bytes": 6291,
+      "sha256": "a94f7de5cce45bbf24ce0df905f752a4381c03a5236613a31265dda26d1204d3",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "bazita-components.png",
+      "bytes": 587592,
+      "sha256": "31123ab0bee4c89e4eed709fee220e66581b4816ae1fd948b7be7af80a04cb0f",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "bazita-native.png",
+      "bytes": 140837,
+      "sha256": "a213bdaad5c2c667858c1139fe5005eef296f78aa0df97995ee4237aaee0126f",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "bazita-x3.png",
+      "bytes": 189072,
+      "sha256": "540dc8064cee07fa61dd3b963e8700c19516ed4d923107fe1e1617ee461eb5e4",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "botfa-native.png",
+      "bytes": 114493,
+      "sha256": "32a167729352d483f2197aa2e55cf395efb98c7ca2a5db9a6ab57394ac789884",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "botfa-x3.png",
+      "bytes": 145555,
+      "sha256": "7af238ed07b51e83cb30e1b3bcceb632a63c659a039028b07e43afc631fb79b4",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "calibration-municipality.geojson",
+      "bytes": 32108,
+      "sha256": "24c706edf9def6ec7d8c5659edf831a2be192bf5bfa2c4ada9f290fdd9f7b734",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "current-name-evidence.geojson",
+      "bytes": 4152,
+      "sha256": "23b7666f26262370185b9a6213e08d446e92532100f5dcce2b0786677c461da7",
+      "role": "independent_current_name_evidence_not_fit_controls"
+    },
+    {
+      "path": "current-name-evidence.json",
+      "bytes": 2624,
+      "sha256": "be6aaab6e7f99f05387016bb332fa0f85341bba7d8167893d5bd384d6ac54ade",
+      "role": "independent_current_name_evidence_not_fit_controls"
+    },
+    {
+      "path": "derive-remaining.py",
+      "bytes": 15501,
+      "sha256": "a68a00e98a96818ffff7e5d608e740863fc6f61ecdd66a64d0d3e89abc581085",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "ebergeny-components.png",
+      "bytes": 159901,
+      "sha256": "687413b9f2836dcf2b11d4a9da8f5c1cd69f61129cdf28eedc26d38dd3e5995e",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "ebergény-native.png",
+      "bytes": 37550,
+      "sha256": "0dd5e02e48d92c0429bd4edf2a184e2e368ea12753a27b7914769728c29c7dee",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "ebergény-x3.png",
+      "bytes": 47503,
+      "sha256": "37f003ff245744933cd74b7514fc082cbf2e903ef30824528fea610675f75d4f",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "export-inferred.py",
+      "bytes": 4413,
+      "sha256": "ea5e243acc742b1369d2d998c05ec84841e3db01ec2a4699e1b9729e9d5ee6d3",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "extract-current-name-evidence.py",
+      "bytes": 8021,
+      "sha256": "01ef029e2be2ac50ea9fceb88e05bf294f80a044f441a481ec05a175e52862f2",
+      "role": "independent_current_name_evidence_not_fit_controls"
+    },
+    {
+      "path": "finalize-evidence.py",
+      "bytes": 4614,
+      "sha256": "89127efb28e0266080c71e72aa4fdb66357b972476e487e790518ca8b8f48c91",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "independent-review.py",
+      "bytes": 34163,
+      "sha256": "8a37d9ec2236f8de3cd40e1ecfdb6e8afc34fe9fc100d1ffcd6f737aa4015250",
+      "role": "independent_audit"
+    },
+    {
+      "path": "independent-source-registration-review.json",
+      "bytes": 38286,
+      "sha256": "97a4d63ca38e2dbc546cb36a0b12ba658b14f7e465146943245aca5b659012d7",
+      "role": "independent_audit"
+    },
+    {
+      "path": "independent-strict-validator.mjs",
+      "bytes": 685,
+      "sha256": "f0379c8b33e25fbf2481ce50f6537d563ad2c609ad6940a066ff441cecdcd8a4",
+      "role": "independent_audit"
+    },
+    {
+      "path": "industrial-lower-and-zalabesenyő-native.png",
+      "bytes": 297206,
+      "sha256": "5c42c3a6cea2f26ef00c0893c31b1c03be839273fda469c478f074165a9838ae",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "industrial-lower-and-zalabesenyő-x3.png",
+      "bytes": 388031,
+      "sha256": "28b5fa0a0d5dd42a8fc7db0b465f389cd2e386344eea53eafcf97ed2c6332407",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "industrial-upper-native.png",
+      "bytes": 102636,
+      "sha256": "0718112d275d54d76d6df416d41bc5fd626db9ff197797f45c2be4d91f2d56ab",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "industrial-upper-x3.png",
+      "bytes": 135560,
+      "sha256": "d637d8b0722437c75382e2fd52ce3f488466f41a4fe38c5a57cdc2d79b187738",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "input-manifest.json",
+      "bytes": 1736,
+      "sha256": "97de87a1fb1c0a66a0d45e65162006155ae6a659c9bc2682b4153d70c6c2e043",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "inspection-crops.json",
+      "bytes": 692,
+      "sha256": "e43acfd0af65953869a8cd03b5b0c56cbbb3f3c2c46f4b569819c9358b76ecba",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "inspection-free-region-ids.png",
+      "bytes": 3453175,
+      "sha256": "dc710fd6e30db488d14172a72216a73938c418f4a7f32826b11de708a4d0ad6e",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "manifest.py",
+      "bytes": 2353,
+      "sha256": "561add3b8719d7679425adc2d187dd1c9d5c12678eafee0427bb06c68d9cd066",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "remaining-conversion-proof.json",
+      "bytes": 9638,
+      "sha256": "91f2e2891d4dbfe5071acf5a71c657c49e5297fe69e29d9994cb75820813ccc9",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "remaining-ebergeny-omit-lobe70-source-pixels.geojson",
+      "bytes": 14700,
+      "sha256": "7938eb53610b3bafbbe7861484b4f5dd28d26a06745864a3dfa8dbca23247033",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "remaining-inferred-import.geojson",
+      "bytes": 679680,
+      "sha256": "ad3c6702f5c9d72edd2073c8bd4f8cf40d988489a602c513b944874ddbe1409b",
+      "role": "six_estimated_candidate_export"
+    },
+    {
+      "path": "remaining-iparterulet-one-pixel-inference-proof.json",
+      "bytes": 902,
+      "sha256": "d748f8cd90f048b7a63a349bfed5191338bd24e348285ab9d6d468dc2bdf6088",
+      "role": "explicit_estimated_one_pixel_interpretation"
+    },
+    {
+      "path": "remaining-iparterulet-one-pixel-inferred-source-pixels.geojson",
+      "bytes": 218870,
+      "sha256": "a6dab6a5d566d3b81b4d56a366ec734d78ca452db1aa8a7e0cbf1e48c7cc59cd",
+      "role": "explicit_estimated_one_pixel_interpretation"
+    },
+    {
+      "path": "remaining-iparterulet-one-pixel-inferred-world.geojson",
+      "bytes": 283121,
+      "sha256": "349f386678aedeab201742beb64a9fd10759c47012b8141ab4c194b5e3226cc8",
+      "role": "explicit_estimated_one_pixel_interpretation"
+    },
+    {
+      "path": "remaining-literal-checks.json",
+      "bytes": 557,
+      "sha256": "deb4a0d442252af39a1ea06d092fada5ec47ff96028c74626e77964319e1e828",
+      "role": "literal_source_unit6_and_expected_raw_quarantine_evidence"
+    },
+    {
+      "path": "remaining-literal-overlay.png",
+      "bytes": 3440789,
+      "sha256": "f5d3c4f572e0dc493cccbbb6880a3f814b61f7f28ff2bc61356c2ef9168ba159",
+      "role": "literal_source_unit6_and_expected_raw_quarantine_evidence"
+    },
+    {
+      "path": "remaining-literal-source-pixels.geojson",
+      "bytes": 218809,
+      "sha256": "20aa13f53fed4a5774fe7a1f5bf90ba52e502bfe8e8531403b477c841e1198a7",
+      "role": "literal_source_unit6_and_expected_raw_quarantine_evidence"
+    },
+    {
+      "path": "remaining-literal-world.geojson",
+      "bytes": 283084,
+      "sha256": "103dfbfae236c1a74716ede1eaedf78577747237ba43ffdb345d446e07e1c93a",
+      "role": "literal_source_unit6_and_expected_raw_quarantine_evidence"
+    },
+    {
+      "path": "remaining-manual-cap-alternatives-source-pixels.geojson",
+      "bytes": 38596,
+      "sha256": "9054ee189905cb50fb68de66fc3c634821deaf4b3ebabdbc7aed0a14f6e53dca",
+      "role": "manual_reconstruction_source_caps_alternatives_and_proof"
+    },
+    {
+      "path": "remaining-manual-caps-source-pixels.geojson",
+      "bytes": 13333,
+      "sha256": "9dabe4e0b792087367f5380b80e79f9d4e40e34a36a17a06f01fb8549bc50b6f",
+      "role": "manual_reconstruction_source_caps_alternatives_and_proof"
+    },
+    {
+      "path": "remaining-manual-overlay.png",
+      "bytes": 3439117,
+      "sha256": "605f6638f0d34667d4e07dd6a9d3643e678f07b93753a7f13e55fe7794ff1be5",
+      "role": "manual_reconstruction_source_caps_alternatives_and_proof"
+    },
+    {
+      "path": "remaining-manual-reconstruction-proof.json",
+      "bytes": 642340,
+      "sha256": "b794e4c5b9244714835e44f34663660c74dc9000d60a00c4ec304fee9853c841",
+      "role": "manual_reconstruction_source_caps_alternatives_and_proof"
+    },
+    {
+      "path": "remaining-manual-source-pixels.geojson",
+      "bytes": 302826,
+      "sha256": "fb05de46d62d97729efd6943dcf99d338dad8ebd804bd92ef07e4db1579d751c",
+      "role": "manual_reconstruction_source_caps_alternatives_and_proof"
+    },
+    {
+      "path": "remaining-manual-world.geojson",
+      "bytes": 391884,
+      "sha256": "96d082d7f61a3a2b4c349ba0899547b79a38dbb0792aed5f0cfe3f6e6c33bab9",
+      "role": "manual_reconstruction_source_caps_alternatives_and_proof"
+    },
+    {
+      "path": "remaining-raw-manual-lobes-source-pixels.geojson",
+      "bytes": 336102,
+      "sha256": "a77aaa92b200fb44ac87f5ecbd455993f85393a1bc4fcd263b3e3715fed7f9b2",
+      "role": "manual_reconstruction_source_caps_alternatives_and_proof"
+    },
+    {
+      "path": "remaining-registry-entry.json",
+      "bytes": 2453,
+      "sha256": "08443a6f04c5b5f2ffa42633aaf148f3b9b691aa85a027f2838f3e06a1e3ab60",
+      "role": "proposed_inferred_registry_entry_not_applied_here"
+    },
+    {
+      "path": "remaining-strict-validator-review.json",
+      "bytes": 2062,
+      "sha256": "de63e3fe0c7ae002fc477e24772c6840ae0f728ef7d0565655c929e3e360a3ba",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "remaining-unassigned-source-pixels.geojson",
+      "bytes": 14652,
+      "sha256": "4daa3ba5f392e76ddc5ff8f2b24a6d415d8b9b44b290a85ccb44e5717963546a",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "remaining-validator-passing.geojson",
+      "bytes": 675557,
+      "sha256": "663b5599032b6beaa1adab8a9568eb2096fc55ab21358d465f98f988b0ec42ca",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "remaining-validator-quarantine.geojson",
+      "bytes": 283193,
+      "sha256": "41c5a525c0ea273c2f483bd56a389b5de8afcf78450f51848aabc73fb53c336d",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "source-mask-free-labels.npz",
+      "bytes": 156298,
+      "sha256": "cd148c56260933b7320581fdb6911601c94e2968781e3b1fb33ce676eaf2847f",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "szenterzsébethegy-native.png",
+      "bytes": 96102,
+      "sha256": "11b3c4ce16ef5e16494be189724c8390480d22b31e633b2377987bc7d2157003",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "szenterzsébethegy-x3.png",
+      "bytes": 121704,
+      "sha256": "65cccd30e5fe9c35d7a77a299b0bce0384aacddd54cb47420c79085012e21d5e",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "unit10-grid.png",
+      "bytes": 622231,
+      "sha256": "fef23cadb1d47658c20e388fc558179ed968ab0dadcdc2983070076d24e29235",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "unit10-proposal.png",
+      "bytes": 445484,
+      "sha256": "681ec1abc1d8941ad85ee46a45ca61bac099ae42dfcb931fb0c31b10d74bc88f",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "unit11-grid.png",
+      "bytes": 1211412,
+      "sha256": "f25fe608c00a87bf8fa8ee4402e34628493e33389443902633a33f203f0b973e",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "unit11-proposal.png",
+      "bytes": 884553,
+      "sha256": "21f32981f4d1e8a22378b27eb128a2429de2b199cddb054f131bbfb10553d2ab",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "unit12-grid.png",
+      "bytes": 1550851,
+      "sha256": "52e3afc5a1cb555c8bf3cc2d9a77517f6e880c19d98716caa4942a8dd0aaeb9a",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "unit12-proposal.png",
+      "bytes": 1136918,
+      "sha256": "3eaff327dbfc70776d04eccd628f18bde455b87aa3b58d0fe3353812b7eceefd",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "unit13-grid.png",
+      "bytes": 396131,
+      "sha256": "ebb7ed5143f5f8d735ca0f2fca2fb40e69e221c55bbcf4b8aca9989862b60631",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "unit13-proposal.png",
+      "bytes": 291295,
+      "sha256": "67b0466c9b0dfa7f2b7c1224f702beae365ea7a3795b908e7b79138e6a4a40fa",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "unit14-grid.png",
+      "bytes": 1028551,
+      "sha256": "18a1ec353c2b5e26c6bfe113a62f5ed598dc37ceb71129bf791aa0200f86deab",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "unit14-proposal.png",
+      "bytes": 757075,
+      "sha256": "feca4cf40825416e48a94a5cb5b3588f4711cfb2c4ad82514b7b13301698f8bf",
+      "role": "source_pixel_inspection_or_cache"
+    },
+    {
+      "path": "validate-remaining.mjs",
+      "bytes": 1377,
+      "sha256": "c7855527879dbd4dd1509a2c408841129b088d7f49bcb3924e9aeba4b5756e35",
+      "role": "reproducibility_documentation_or_check"
+    },
+    {
+      "path": "zalaegerszeg-import.geojson",
+      "bytes": 491117,
+      "sha256": "70b502949fcc8333ead5ffc0d404cbdd6198ec0a1f09241f88bd3509fc056b6a",
+      "role": "frozen_copied_source_or_historical_reference_input"
+    },
+    {
+      "path": "zalaegerszeg-p12-image0.jpeg",
+      "bytes": 449387,
+      "sha256": "cf259e0c7c54c3b58a0cf1e624ef178432ae734336cd3b676a9c7f2675aa8e37",
+      "role": "frozen_copied_source_or_historical_reference_input"
+    },
+    {
+      "path": "zalaegerszeg-quarantine.geojson",
+      "bytes": 175971,
+      "sha256": "0e5f6d1f016ad295205f27c6fb102b2ef77a4a54d71573ce079b340bd8908a80",
+      "role": "frozen_copied_source_or_historical_reference_input"
+    },
+    {
+      "path": "zalaegerszeg-registration.json",
+      "bytes": 27239,
+      "sha256": "565a5bc9cd6887aedaddd2d6cacbdaff48c8ad8a9e541b11f6b4c555e45aa2a5",
+      "role": "frozen_copied_source_or_historical_reference_input"
+    },
+    {
+      "path": "zalaegerszeg-source-pages12-13.pdf",
+      "bytes": 555415,
+      "sha256": "ae2229f28a3e41985f29044a66bf52a2a8feaa2f4052fb2890ef25c6dce44b80",
+      "role": "frozen_copied_source_or_historical_reference_input"
+    },
+    {
+      "path": "zalaegerszeg-source-pages12-13.txt",
+      "bytes": 1963,
+      "sha256": "a94ff5751f1e66ae405e8b4ad629d37da19ec2fe551f634af40a2cd5e3f4fbc3",
+      "role": "frozen_copied_source_or_historical_reference_input"
+    },
+    {
+      "path": "zalaegerszeg-source-raster.geojson",
+      "bytes": 667034,
+      "sha256": "07a1475da509dcbc8216eb1ca23c91933e8cca376e736911d4494e424ccc0915",
+      "role": "frozen_copied_source_or_historical_reference_input"
+    }
+  ]
+}

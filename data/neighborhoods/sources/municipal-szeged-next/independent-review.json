@@ -1,0 +1,104 @@
+{
+  "reviewedAt": "2026-11-13",
+  "reviewer": "independent child agent /root/szeged_text_boundaries/review_szeged_circuits",
+  "result": "passed_for_source_era_research_geometries_with_scope_limitations",
+  "scope": "Two literal street circuits, not a current cadastral or current exact neighborhood survey. No application integration reviewed.",
+  "reviewedFileSha256": {
+    "source-facts.json": "27c323788f68cbe7eb17d96a108baa7fcd32e47ad75027c8983760b088e81469",
+    "conversion-proof.json": "23b7538c8bc6f8ef621e27c4a61978cf064a264dfdae57d4a621a9f47df3f8d7",
+    "szeged-street-candidates.geojson": "b013b77347086689ec7d68c9fe897b7725e7acc401739e94dd51875dc2ceafc4",
+    "tarjan-circuit-source-lines.geojson": "f9776899cb4e6a95f517b65299d3fed783ca2fa0830d22bf1751c7cbea7cab1b",
+    "municipality.geojson": "cb76286e369acf409619dcc71d209b83ee069640d4e07e0884333363ad42efeb",
+    "boundary-obstacles.json": "4d54ffd4a0a3cfa8897c347966b719c9aa23b2f9a64d1361c356afc933d91f7f"
+  },
+  "scriptSha256": "afe271468516c38b4a48985e488f4dd6aaefeb90b1e1696e43f736b80aaac20b",
+  "checks": {
+    "regenerationCheckPassed": true,
+    "all51ArchivedWaysRecheckedDirectlyAgainstOriginalCountryPbf": true,
+    "comparedWayFields": [
+      "all coordinates in original order",
+      "all node references in original order",
+      "complete tags",
+      "object version",
+      "object timestamp"
+    ],
+    "wayMismatches": [],
+    "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "municipalityArchiveSha256": "fb5f1293628b9eeaabce243ae6ebc884f6bdc93443a2488e5fb213029bf766b7",
+    "savedMunicipalityExactlyMatchesCanonicalSourceFeature": true,
+    "geometries": [
+      {
+        "id": "manual:szeged:tarjanvaros-ivs-2009-2017",
+        "valid": true,
+        "closed": true,
+        "holes": 0,
+        "insideCanonicalSzeged": true,
+        "allEdgesConsecutiveSourceNodes": true,
+        "boundaryEdges": 128,
+        "sourceWays": 33,
+        "corridorNames": [
+          "Csillag tér",
+          "Debreceni utca",
+          "József Attila sugárút",
+          "Körtöltés",
+          "Lugas utca",
+          "Szilléri sugárút"
+        ],
+        "areaM2": 924140.6376985968,
+        "perimeterM": 3884.275319887276,
+        "addressAssignmentAllowed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "currentExactFootprintConfirmed": false
+      },
+      {
+        "id": "manual:szeged:felsovarosi-ivs-2009-2017",
+        "valid": true,
+        "closed": true,
+        "holes": 0,
+        "insideCanonicalSzeged": true,
+        "allEdgesConsecutiveSourceNodes": true,
+        "boundaryEdges": 54,
+        "sourceWays": 20,
+        "corridorNames": [
+          "Debreceni utca",
+          "József Attila sugárút",
+          "Római körút",
+          "Szilléri sugárút"
+        ],
+        "areaM2": 164604.83965526405,
+        "perimeterM": 1643.640754770146,
+        "addressAssignmentAllowed": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "currentExactFootprintConfirmed": false
+      }
+    ],
+    "interiorOverlapAreaDegreesSquared": 0.0
+  },
+  "sourceChecks": [
+    {
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101",
+      "method": "Independent public web search indexed text, exact named subdivision heading and2017 title; printedp96",
+      "finding": "Verified adopted200/2017(IV.28) annex title, numbered six-road Tarjánváros circuit, four-road Felsővárosi lakótelep circuit, and reference to455/2009(IX.25). The indexedp95 actionarea circuit is separately named Belső-Tarján and differs from the exported full Tarjánváros circuit.",
+      "fullPdfBytesAvailable": false,
+      "sourcePdfSha256": null
+    },
+    {
+      "url": "https://szegedfolyoirat.sk-szeged.hu/2019/02/23/toth-marcell-a-tarjan-lakotelep-tortenete/",
+      "method": "Independent full public webpage read; present-day perimeter paragraph",
+      "finding": "2019 historian uses Retek and Murányi plus road-side distinctions. This differs from2017 IVS extent. Export explicitly retains source-era extent, with current exact footprint unconfirmed."
+    },
+    {
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=19546",
+      "method": "Independent public indexed factual text, printedp23",
+      "finding": "Same Római/Szilléri/Debreceni/József Attila circuit described as suburban/garden construction, unlike estate farther out. The naming conflict is real; small export appropriately remains planning_unit, canonicalNameIsNeighborhood false."
+    }
+  ],
+  "remainingLimitations": [
+    "No raw municipal PDF bytes were obtained; public indexed factual paragraphs and precise URLs are evidence, not a substituted original-byte archive.",
+    "Tarjánváros can be accepted as a named source-era subdivision candidate, not an independently confirmed current estate boundary. A catalog that promises only current exact quarters must retain it outside that category.",
+    "Felsővárosi lakótelep label has contradictory source-to-footprint evidence; do not promote the small planning circuit to a verified current quarter.",
+    "Literal real-road geometry proves reproducible construction, not parcel-side boundary truth or absolute metre accuracy.",
+    "Neither geometry may be used for automatic address assignment."
+  ],
+  "geometryFilesModifiedByReviewer": false
+}

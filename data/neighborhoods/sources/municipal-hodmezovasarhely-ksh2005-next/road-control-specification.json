@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "sourceCoordinateSpace": "Original top-left PDFpoint coordinates from exact native boundary vertices",
+  "targetCrs": "EPSG:4326 actual OSM node; transformed toEPSG:23700 for fitting",
+  "sourcePdfPagesForStreetFacts": [
+    8,
+    9
+  ],
+  "sourceFactsParaphrased": true,
+  "sourceNamePointsUsedForFit": false,
+  "fitMethod": "Three observed source-boundary road junction correspondences, similarity inEPSG23700 with y-axis inversion. No municipality-perimeter or current-name-point fit.",
+  "controls": [
+    {
+      "id": "C1",
+      "sourcePdfPoint": [
+        193.02,
+        288.3
+      ],
+      "sourceQuarterJunction": [
+        "Belváros",
+        "Tarján",
+        "Tabán"
+      ],
+      "roads": [
+        "Imre utca",
+        "Damjanich utca"
+      ],
+      "targetOsmNodeId": 931592387,
+      "targetWgs84": [
+        20.3073997,
+        46.4214795
+      ],
+      "role": "fit",
+      "sourceInterpretation": "Tarján north is László/Imre streets; its east boundary is Belváros, whose west is Damjanich. Source common triple vertex is observed. Street-junction identity is interpreted from these facts."
+    },
+    {
+      "id": "C2",
+      "sourcePdfPoint": [
+        218.4,
+        285.06
+      ],
+      "sourceQuarterJunction": [
+        "Belváros",
+        "Tabán",
+        "Csúcs"
+      ],
+      "roads": [
+        "Teleki utca",
+        "Szántó Kovács János utca"
+      ],
+      "targetOsmNodeId": 330464105,
+      "targetWgs84": [
+        20.3179779,
+        46.4217615
+      ],
+      "role": "fit",
+      "sourceInterpretation": "Belváros north is Teleki; Tabán east toCsúcs is SzántóKovácsJános. Exact native triple vertex is observed; source-road correspondence is interpreted."
+    },
+    {
+      "id": "C3",
+      "sourcePdfPoint": [
+        219.48,
+        253.98
+      ],
+      "sourceQuarterJunction": [
+        "Tabán",
+        "Csúcs",
+        "Béketelep"
+      ],
+      "roads": [
+        "Jókai utca",
+        "Szántó Kovács János utca"
+      ],
+      "targetOsmNodeId": 416869829,
+      "targetWgs84": [
+        20.3188232,
+        46.4304088
+      ],
+      "role": "fit",
+      "sourceInterpretation": "Csúcs north/Béketelep south is Jókai; Tabán east is SzántóKovácsJános. Exact source triple vertex is observed."
+    }
+  ],
+  "heldOutAmbiguousChecks": [
+    {
+      "id": "H1a",
+      "sourcePdfPoint": [
+        270.3,
+        272.22
+      ],
+      "sourceContext": "Observed Csúcs/Béketelep corner adjacent toSusán; source has a0.36point cartographic gap among neighboring polygons",
+      "roads": [
+        "Jókai utca",
+        "Kutasi út"
+      ],
+      "targetOsmNodeId": 711942683,
+      "targetWgs84": [
+        20.338883,
+        46.4251754
+      ],
+      "role": "held_out_not_fit"
+    },
+    {
+      "id": "H1b",
+      "sourcePdfPoint": [
+        270.3,
+        272.22
+      ],
+      "sourceContext": "Same source corner, alternative current literal shared road node",
+      "roads": [
+        "Jókai utca",
+        "Kutasi út"
+      ],
+      "targetOsmNodeId": 711942888,
+      "targetWgs84": [
+        20.3391792,
+        46.4249679
+      ],
+      "role": "held_out_not_fit"
+    }
+  ],
+  "uncertainty": "Source road identities are inferred from adjacent named-quarter boundaries and factual text, not a source geodetic control list. Current junctions can differ from2005 geometry; node/line convention, map generalization and untested lateral extrapolation remain uncertainties."
+}

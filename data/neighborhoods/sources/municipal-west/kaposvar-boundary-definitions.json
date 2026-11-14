@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "city": "Kaposvár",
+  "sourceUrl": "https://kph.kaposvar.hu/data/dl/nagyprojektek/TOP_PLUSZ-1.3.1-21-SO1-2022-00001/J%C3%B3v%C3%A1hagyott%20FVS.pdf",
+  "sourceTitle": "Fenntartható Városfejlesztési Stratégia 2021–2027, 2023 July v2.0",
+  "sourcePageNumbersPrinted": [
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188
+  ],
+  "map": {
+    "pdfPageZeroBased": 181,
+    "figure": 30,
+    "title": "Kaposvár városrészei"
+  },
+  "extractedAt": "2026-11-13",
+  "geometryStatus": "Boundary facts only: no coordinates or polygons invented.",
+  "normalization": "Road abbreviations expanded; completeCircuit means source provides an apparent perimeter, not that assembled geographic linework is verified.",
+  "licenseStatus": "Public official municipal boundary facts; no explicit open geodata licence verified.",
+  "neighborhoods": [
+    {
+      "sourceId": 1,
+      "name": "Belváros",
+      "pdfPageZeroBased": 181,
+      "boundaryFeatures": [
+        "Baross Gábor utca",
+        "Hársfa utca",
+        "Virág utca",
+        "Árpád utca",
+        "48-as Ifjúság útja",
+        "Gyékényes railway"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "completeCircuit": true,
+      "notes": [
+        "The road list may omit connecting segments that the source map supplies. Retain actual railway geometry; do not approximate railway edge with a straight chord."
+      ]
+    },
+    {
+      "sourceId": 2,
+      "name": "Északnyugati városrész",
+      "pdfPageZeroBased": 182,
+      "boundaryFeatures": [
+        "Füredi út",
+        "48-as Ifjúság útja",
+        "610 road",
+        "belterületi határ"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "completeCircuit": true,
+      "contains": [
+        "Tüskevár",
+        "Jutai–Raktár utcai gazdasági terület",
+        "volt SÁÉV telep",
+        "Kinizsi lakótelep",
+        "Toldi-Béke lakótelep"
+      ],
+      "notes": [
+        "The five named component areas are finer neighborhoods/areas; whole planning polygon cannot be reused separately for each."
+      ]
+    },
+    {
+      "sourceId": 3,
+      "name": "Északi városrész",
+      "pdfPageZeroBased": 183,
+      "boundaryFeatures": [
+        "48-as Ifjúság útja",
+        "Füredi út",
+        "belterületi határ",
+        "Kisgáti-árok"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "completeCircuit": true
+    },
+    {
+      "sourceId": 4,
+      "name": "Kisgát és környéke",
+      "pdfPageZeroBased": 184,
+      "boundaryFeatures": [
+        "Hársfa utca",
+        "Fő utca",
+        "Virág utca",
+        "Árpád utca",
+        "Kisgáti-árok",
+        "cycle path",
+        "Ózarany",
+        "61 road",
+        "railway",
+        "610 road",
+        "Kapos",
+        "municipal boundary"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "completeCircuit": false,
+      "contains": [
+        "Kisgát",
+        "Ózaranypuszta",
+        "Újaranypuszta",
+        "Feketetanya",
+        "Pécsi utca and Cukorgyár környéke"
+      ],
+      "notes": [
+        "Unspecified cycle path and Ózarany edge require figure30 map."
+      ]
+    },
+    {
+      "sourceId": 5,
+      "name": "Kecelhegy – Cser",
+      "pdfPageZeroBased": 184,
+      "boundaryFeatures": [
+        "Keceli bejáró",
+        "railway",
+        "67 road / Zselici út",
+        "belterületi határ"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "completeCircuit": false,
+      "notes": [
+        "Relative description places area west of Zselici út; full map needed to disambiguate perimeter."
+      ]
+    },
+    {
+      "sourceId": 6,
+      "name": "Donner – Rómahegy",
+      "pdfPageZeroBased": 185,
+      "boundaryFeatures": [
+        "Kapos",
+        "Ivánfai-árok",
+        "belterületi határ",
+        "Szigetvári út",
+        "Zselic-patak"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "completeCircuit": false,
+      "notes": [
+        "Text describes Donner west of Zselic and Rómahegy east of Zselic. Listed closed circuit describes Rómahegy portion; see full map before assigning combined boundary."
+      ]
+    },
+    {
+      "sourceId": 7,
+      "name": "Ivánfahegy – Kaposszentjakab",
+      "pdfPageZeroBased": 185,
+      "boundaryFeatures": [
+        "Kapos"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "completeCircuit": false,
+      "notes": [
+        "Located south of Kapos and east of Rómahegy; only relative location supplied. Requires map."
+      ]
+    },
+    {
+      "sourceId": 8,
+      "name": "Kaposfüred",
+      "pdfPageZeroBased": 186,
+      "boundaryFeatures": [],
+      "geometryStatus": "not-yet-derived",
+      "completeCircuit": false,
+      "notes": [
+        "Former village plus Deseda west shore garden plots and western agricultural site. Requires figure30 map."
+      ]
+    },
+    {
+      "sourceId": 9,
+      "name": "Toponár – Répáspuszta – Fészerlakpuszta – Deseda",
+      "pdfPageZeroBased": 186,
+      "boundaryFeatures": [],
+      "geometryStatus": "not-yet-derived",
+      "completeCircuit": false,
+      "notes": [
+        "Groups former village Toponár with outlying Répáspuszta and Fészerlakpuszta, plus Deseda. Requires figure30 map; do not create separate polygons from grouped unit."
+      ]
+    },
+    {
+      "sourceId": 10,
+      "name": "Töröcske – Zselic kertváros",
+      "pdfPageZeroBased": 187,
+      "boundaryFeatures": [],
+      "geometryStatus": "not-yet-derived",
+      "completeCircuit": false,
+      "notes": [
+        "Combines former Töröcske village and Zselic kertváros garden areas. Requires figure30 map."
+      ]
+    }
+  ]
+}

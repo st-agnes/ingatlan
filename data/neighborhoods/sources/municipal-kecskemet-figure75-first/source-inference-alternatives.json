@@ -1,0 +1,1246 @@
+{
+  "schemaVersion": 1,
+  "selectedSourceCell": "Reptéri lakótelep",
+  "confidence": "low",
+  "gaps": [
+    {
+      "id": "blue-overprint-1",
+      "sourceBlackEndpoints": [
+        [
+          1492,
+          203
+        ],
+        [
+          1488,
+          208
+        ]
+      ],
+      "inferredPixelPath": [
+        [
+          1492,
+          203
+        ],
+        [
+          1491,
+          204
+        ],
+        [
+          1490,
+          205
+        ],
+        [
+          1490,
+          206
+        ],
+        [
+          1489,
+          207
+        ],
+        [
+          1488,
+          208
+        ]
+      ],
+      "endpointDistancePixels": 6.4031242374328485,
+      "confidence": "low",
+      "sourcePixelWindow": [
+        1487,
+        202,
+        1493,
+        209
+      ],
+      "alternativePixelPaths": [
+        [
+          [
+            1492,
+            203
+          ],
+          [
+            1493,
+            203
+          ],
+          [
+            1492,
+            204
+          ],
+          [
+            1491,
+            205
+          ],
+          [
+            1491,
+            206
+          ],
+          [
+            1490,
+            207
+          ],
+          [
+            1489,
+            208
+          ],
+          [
+            1488,
+            208
+          ]
+        ],
+        [
+          [
+            1492,
+            203
+          ],
+          [
+            1491,
+            203
+          ],
+          [
+            1490,
+            204
+          ],
+          [
+            1489,
+            205
+          ],
+          [
+            1489,
+            206
+          ],
+          [
+            1488,
+            207
+          ],
+          [
+            1487,
+            208
+          ],
+          [
+            1488,
+            208
+          ]
+        ]
+      ],
+      "inferenceReason": "A short visible dark boundary approaches and leaves the blue source label; the strict black mask is interrupted by the annotation. The chosen continuation is a manual bounded hypothesis, not an observed black stroke or surveyed accuracy bound.",
+      "alternativeDiagnostics": [
+        {
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": 5.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -5.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ],
+      "sourceRgbOnChosenInferredInteriorPixels": [
+        {
+          "pixel": [
+            1491,
+            204
+          ],
+          "rgb": [
+            0,
+            0,
+            65
+          ]
+        },
+        {
+          "pixel": [
+            1490,
+            205
+          ],
+          "rgb": [
+            10,
+            20,
+            92
+          ]
+        },
+        {
+          "pixel": [
+            1490,
+            206
+          ],
+          "rgb": [
+            0,
+            1,
+            99
+          ]
+        },
+        {
+          "pixel": [
+            1489,
+            207
+          ],
+          "rgb": [
+            0,
+            1,
+            50
+          ]
+        }
+      ],
+      "chosenWorldCoordinates": [
+        [
+          19.75214002887898,
+          46.90804164393772
+        ],
+        [
+          19.752102623110837,
+          46.90801662100888
+        ],
+        [
+          19.75206521737764,
+          46.907991598067696
+        ],
+        [
+          19.75206491175643,
+          46.907966428444404
+        ],
+        [
+          19.752027506075905,
+          46.9079414054907
+        ],
+        [
+          19.75199010043032,
+          46.90791638252473
+        ]
+      ],
+      "alternativeWorldPaths": [
+        [
+          [
+            19.75214002887898,
+            46.90804164393772
+          ],
+          [
+            19.75217712900771,
+            46.9080414972314
+          ],
+          [
+            19.75213972322234,
+            46.9080164743147
+          ],
+          [
+            19.75210231747191,
+            46.907991451385726
+          ],
+          [
+            19.752102011833266,
+            46.90796628176249
+          ],
+          [
+            19.75206460613551,
+            46.907941258820976
+          ],
+          [
+            19.7520272004727,
+            46.90791623586712
+          ],
+          [
+            19.75199010043032,
+            46.90791638252473
+          ]
+        ],
+        [
+          [
+            19.75214002887898,
+            46.90804164393772
+          ],
+          [
+            19.752102928750052,
+            46.90804179063199
+          ],
+          [
+            19.75206552299914,
+            46.908016767690945
+          ],
+          [
+            19.752028117283167,
+            46.907991744737636
+          ],
+          [
+            19.752027811679394,
+            46.907966575114216
+          ],
+          [
+            19.751990406016095,
+            46.907941552148365
+          ],
+          [
+            19.751953000387743,
+            46.9079165291702
+          ],
+          [
+            19.75199010043032,
+            46.90791638252473
+          ]
+        ]
+      ],
+      "alternativesSelectedForRegistry": false,
+      "notAnAbsoluteAccuracyBound": true
+    },
+    {
+      "id": "blue-overprint-2",
+      "sourceBlackEndpoints": [
+        [
+          1488,
+          214
+        ],
+        [
+          1480,
+          224
+        ]
+      ],
+      "inferredPixelPath": [
+        [
+          1488,
+          214
+        ],
+        [
+          1487,
+          215
+        ],
+        [
+          1486,
+          216
+        ],
+        [
+          1486,
+          217
+        ],
+        [
+          1485,
+          218
+        ],
+        [
+          1484,
+          219
+        ],
+        [
+          1483,
+          220
+        ],
+        [
+          1482,
+          221
+        ],
+        [
+          1482,
+          222
+        ],
+        [
+          1481,
+          223
+        ],
+        [
+          1480,
+          224
+        ]
+      ],
+      "endpointDistancePixels": 12.806248474865697,
+      "confidence": "low",
+      "sourcePixelWindow": [
+        1479,
+        213,
+        1489,
+        225
+      ],
+      "alternativePixelPaths": [
+        [
+          [
+            1488,
+            214
+          ],
+          [
+            1489,
+            214
+          ],
+          [
+            1488,
+            215
+          ],
+          [
+            1487,
+            216
+          ],
+          [
+            1487,
+            217
+          ],
+          [
+            1486,
+            218
+          ],
+          [
+            1485,
+            219
+          ],
+          [
+            1484,
+            220
+          ],
+          [
+            1483,
+            221
+          ],
+          [
+            1483,
+            222
+          ],
+          [
+            1482,
+            223
+          ],
+          [
+            1481,
+            224
+          ],
+          [
+            1480,
+            224
+          ]
+        ],
+        [
+          [
+            1488,
+            214
+          ],
+          [
+            1487,
+            214
+          ],
+          [
+            1486,
+            215
+          ],
+          [
+            1485,
+            216
+          ],
+          [
+            1485,
+            217
+          ],
+          [
+            1484,
+            218
+          ],
+          [
+            1483,
+            219
+          ],
+          [
+            1482,
+            220
+          ],
+          [
+            1481,
+            221
+          ],
+          [
+            1481,
+            222
+          ],
+          [
+            1480,
+            223
+          ],
+          [
+            1479,
+            224
+          ],
+          [
+            1480,
+            224
+          ]
+        ]
+      ],
+      "inferenceReason": "A short visible dark boundary approaches and leaves the blue source label; the strict black mask is interrupted by the annotation. The chosen continuation is a manual bounded hypothesis, not an observed black stroke or surveyed accuracy bound.",
+      "alternativeDiagnostics": [
+        {
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": 10.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -10.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ],
+      "sourceRgbOnChosenInferredInteriorPixels": [
+        {
+          "pixel": [
+            1487,
+            215
+          ],
+          "rgb": [
+            0,
+            0,
+            103
+          ]
+        },
+        {
+          "pixel": [
+            1486,
+            216
+          ],
+          "rgb": [
+            6,
+            0,
+            186
+          ]
+        },
+        {
+          "pixel": [
+            1486,
+            217
+          ],
+          "rgb": [
+            21,
+            20,
+            174
+          ]
+        },
+        {
+          "pixel": [
+            1485,
+            218
+          ],
+          "rgb": [
+            3,
+            13,
+            84
+          ]
+        },
+        {
+          "pixel": [
+            1484,
+            219
+          ],
+          "rgb": [
+            0,
+            0,
+            46
+          ]
+        },
+        {
+          "pixel": [
+            1483,
+            220
+          ],
+          "rgb": [
+            0,
+            0,
+            55
+          ]
+        },
+        {
+          "pixel": [
+            1482,
+            221
+          ],
+          "rgb": [
+            0,
+            3,
+            97
+          ]
+        },
+        {
+          "pixel": [
+            1482,
+            222
+          ],
+          "rgb": [
+            24,
+            19,
+            183
+          ]
+        },
+        {
+          "pixel": [
+            1481,
+            223
+          ],
+          "rgb": [
+            8,
+            4,
+            141
+          ]
+        }
+      ],
+      "chosenWorldCoordinates": [
+        [
+          19.7519882669217,
+          46.907765364781284
+        ],
+        [
+          19.751950861417374,
+          46.90774034180194
+        ],
+        [
+          19.751913455948003,
+          46.90771531881028
+        ],
+        [
+          19.751913150399673,
+          46.90769014918583
+        ],
+        [
+          19.751875744982964,
+          46.90766512618166
+        ],
+        [
+          19.7518383396012,
+          46.90764010316516
+        ],
+        [
+          19.751800934254383,
+          46.907615080136345
+        ],
+        [
+          19.75176352894252,
+          46.9075900570952
+        ],
+        [
+          19.751763223465346,
+          46.90756488747003
+        ],
+        [
+          19.75172581820615,
+          46.90753986441634
+        ],
+        [
+          19.75168841298189,
+          46.90751484135036
+        ]
+      ],
+      "alternativeWorldPaths": [
+        [
+          [
+            19.7519882669217,
+            46.907765364781284
+          ],
+          [
+            19.75202536685949,
+            46.90776521812431
+          ],
+          [
+            19.75198796133793,
+            46.90774019515712
+          ],
+          [
+            19.75195055585133,
+            46.907715172177646
+          ],
+          [
+            19.751950250285567,
+            46.90769000255326
+          ],
+          [
+            19.751912844851624,
+            46.9076649795613
+          ],
+          [
+            19.751875439452636,
+            46.907639956557
+          ],
+          [
+            19.751838034088593,
+            46.90761493354031
+          ],
+          [
+            19.751800628759497,
+            46.90758991051132
+          ],
+          [
+            19.7518003232649,
+            46.90756474088623
+          ],
+          [
+            19.751762917988458,
+            46.907539717844756
+          ],
+          [
+            19.75172551274698,
+            46.90751469479094
+          ],
+          [
+            19.75168841298189,
+            46.90751484135036
+          ]
+        ],
+        [
+          [
+            19.7519882669217,
+            46.907765364781284
+          ],
+          [
+            19.751951166983716,
+            46.90776551142618
+          ],
+          [
+            19.751913761496624,
+            46.90774048843469
+          ],
+          [
+            19.75187635604447,
+            46.90771546543087
+          ],
+          [
+            19.751876050513573,
+            46.907690295806304
+          ],
+          [
+            19.7518386451141,
+            46.90766527278998
+          ],
+          [
+            19.75180123974956,
+            46.90764024976131
+          ],
+          [
+            19.75176383441998,
+            46.90761522672035
+          ],
+          [
+            19.75172642912534,
+            46.907590203667
+          ],
+          [
+            19.7517261236656,
+            46.907565034041724
+          ],
+          [
+            19.75168871842363,
+            46.90754001097589
+          ],
+          [
+            19.75165131321661,
+            46.90751498789775
+          ],
+          [
+            19.75168841298189,
+            46.90751484135036
+          ]
+        ]
+      ],
+      "alternativesSelectedForRegistry": false,
+      "notAnAbsoluteAccuracyBound": true
+    },
+    {
+      "id": "blue-overprint-3",
+      "sourceBlackEndpoints": [
+        [
+          1369,
+          224
+        ],
+        [
+          1369,
+          219
+        ]
+      ],
+      "inferredPixelPath": [
+        [
+          1369,
+          224
+        ],
+        [
+          1369,
+          223
+        ],
+        [
+          1369,
+          222
+        ],
+        [
+          1369,
+          221
+        ],
+        [
+          1369,
+          220
+        ],
+        [
+          1369,
+          219
+        ]
+      ],
+      "endpointDistancePixels": 5.0,
+      "confidence": "low",
+      "sourcePixelWindow": [
+        1368,
+        218,
+        1370,
+        225
+      ],
+      "alternativePixelPaths": [
+        [
+          [
+            1369,
+            224
+          ],
+          [
+            1370,
+            224
+          ],
+          [
+            1370,
+            223
+          ],
+          [
+            1370,
+            222
+          ],
+          [
+            1370,
+            221
+          ],
+          [
+            1370,
+            220
+          ],
+          [
+            1370,
+            219
+          ],
+          [
+            1369,
+            219
+          ]
+        ],
+        [
+          [
+            1369,
+            224
+          ],
+          [
+            1368,
+            224
+          ],
+          [
+            1368,
+            223
+          ],
+          [
+            1368,
+            222
+          ],
+          [
+            1368,
+            221
+          ],
+          [
+            1368,
+            220
+          ],
+          [
+            1368,
+            219
+          ],
+          [
+            1369,
+            219
+          ]
+        ]
+      ],
+      "inferenceReason": "A short visible dark boundary approaches and leaves the blue source label; the strict black mask is interrupted by the annotation. The chosen continuation is a manual bounded hypothesis, not an observed black stroke or surveyed accuracy bound.",
+      "alternativeDiagnostics": [
+        {
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -5.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": 5.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ],
+      "sourceRgbOnChosenInferredInteriorPixels": [
+        {
+          "pixel": [
+            1369,
+            223
+          ],
+          "rgb": [
+            3,
+            5,
+            88
+          ]
+        },
+        {
+          "pixel": [
+            1369,
+            222
+          ],
+          "rgb": [
+            17,
+            20,
+            123
+          ]
+        },
+        {
+          "pixel": [
+            1369,
+            221
+          ],
+          "rgb": [
+            12,
+            17,
+            108
+          ]
+        },
+        {
+          "pixel": [
+            1369,
+            220
+          ],
+          "rgb": [
+            0,
+            2,
+            69
+          ]
+        }
+      ],
+      "chosenWorldCoordinates": [
+        [
+          19.74757033780449,
+          46.907531034431415
+        ],
+        [
+          19.747570641311302,
+          46.90755620406786
+        ],
+        [
+          19.74757094481839,
+          46.9075813737042
+        ],
+        [
+          19.747571248325777,
+          46.90760654334045
+        ],
+        [
+          19.747571551833435,
+          46.907631712976695
+        ],
+        [
+          19.74757185534138,
+          46.907656882612834
+        ]
+      ],
+      "alternativeWorldPaths": [
+        [
+          [
+            19.74757033780449,
+            46.907531034431415
+          ],
+          [
+            19.747607437591913,
+            46.907530889211586
+          ],
+          [
+            19.747607741116155,
+            46.90755605884791
+          ],
+          [
+            19.747608044640682,
+            46.90758122848412
+          ],
+          [
+            19.747608348165492,
+            46.90760639812034
+          ],
+          [
+            19.747608651690584,
+            46.90763156775645
+          ],
+          [
+            19.74760895521597,
+            46.907656737392486
+          ],
+          [
+            19.74757185534138,
+            46.907656882612834
+          ]
+        ],
+        [
+          [
+            19.74757033780449,
+            46.907531034431415
+          ],
+          [
+            19.747533238016864,
+            46.9075311796392
+          ],
+          [
+            19.747533541506243,
+            46.907556349275715
+          ],
+          [
+            19.747533844995907,
+            46.90758151891216
+          ],
+          [
+            19.74753414848585,
+            46.90760668854855
+          ],
+          [
+            19.74753445197608,
+            46.90763185818488
+          ],
+          [
+            19.747534755466596,
+            46.90765702782108
+          ],
+          [
+            19.74757185534138,
+            46.907656882612834
+          ]
+        ]
+      ],
+      "alternativesSelectedForRegistry": false,
+      "notAnAbsoluteAccuracyBound": true
+    },
+    {
+      "id": "blue-overprint-4",
+      "sourceBlackEndpoints": [
+        [
+          1369,
+          214
+        ],
+        [
+          1369,
+          210
+        ]
+      ],
+      "inferredPixelPath": [
+        [
+          1369,
+          214
+        ],
+        [
+          1369,
+          213
+        ],
+        [
+          1369,
+          212
+        ],
+        [
+          1369,
+          211
+        ],
+        [
+          1369,
+          210
+        ]
+      ],
+      "endpointDistancePixels": 4.0,
+      "confidence": "low",
+      "sourcePixelWindow": [
+        1368,
+        209,
+        1370,
+        215
+      ],
+      "alternativePixelPaths": [
+        [
+          [
+            1369,
+            214
+          ],
+          [
+            1370,
+            214
+          ],
+          [
+            1370,
+            213
+          ],
+          [
+            1370,
+            212
+          ],
+          [
+            1370,
+            211
+          ],
+          [
+            1370,
+            210
+          ],
+          [
+            1369,
+            210
+          ]
+        ],
+        [
+          [
+            1369,
+            214
+          ],
+          [
+            1368,
+            214
+          ],
+          [
+            1368,
+            213
+          ],
+          [
+            1368,
+            212
+          ],
+          [
+            1368,
+            211
+          ],
+          [
+            1368,
+            210
+          ],
+          [
+            1369,
+            210
+          ]
+        ]
+      ],
+      "inferenceReason": "A short visible dark boundary approaches and leaves the blue source label; the strict black mask is interrupted by the annotation. The chosen continuation is a manual bounded hypothesis, not an observed black stroke or surveyed accuracy bound.",
+      "alternativeDiagnostics": [
+        {
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -4.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": 4.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ],
+      "sourceRgbOnChosenInferredInteriorPixels": [
+        {
+          "pixel": [
+            1369,
+            213
+          ],
+          "rgb": [
+            3,
+            0,
+            118
+          ]
+        },
+        {
+          "pixel": [
+            1369,
+            212
+          ],
+          "rgb": [
+            20,
+            8,
+            146
+          ]
+        },
+        {
+          "pixel": [
+            1369,
+            211
+          ],
+          "rgb": [
+            8,
+            3,
+            83
+          ]
+        }
+      ],
+      "chosenWorldCoordinates": [
+        [
+          19.747573372885387,
+          46.907782730792576
+        ],
+        [
+          19.747573676395046,
+          46.907807900428345
+        ],
+        [
+          19.747573979904978,
+          46.90783307006401
+        ],
+        [
+          19.74757428341521,
+          46.907858239699635
+        ],
+        [
+          19.74757458692571,
+          46.90788340933519
+        ]
+      ],
+      "alternativeWorldPaths": [
+        [
+          [
+            19.747573372885387,
+            46.907782730792576
+          ],
+          [
+            19.747610472847132,
+            46.90778258557176
+          ],
+          [
+            19.747610776374213,
+            46.90780775520739
+          ],
+          [
+            19.74761107990159,
+            46.907832924843
+          ],
+          [
+            19.747611383429245,
+            46.907858094478506
+          ],
+          [
+            19.74761168695719,
+            46.90788326411395
+          ],
+          [
+            19.74757458692571,
+            46.90788340933519
+          ]
+        ],
+        [
+          [
+            19.747573372885387,
+            46.907782730792576
+          ],
+          [
+            19.74753627292344,
+            46.90778287600132
+          ],
+          [
+            19.747536576415662,
+            46.907808045637154
+          ],
+          [
+            19.747536879908175,
+            46.90783321527294
+          ],
+          [
+            19.747537183400965,
+            46.907858384908664
+          ],
+          [
+            19.747537486894043,
+            46.90788355454433
+          ],
+          [
+            19.74757458692571,
+            46.90788340933519
+          ]
+        ]
+      ],
+      "alternativesSelectedForRegistry": false,
+      "notAnAbsoluteAccuracyBound": true
+    }
+  ],
+  "sourceAlternativesAreUnselectedHypotheses": true,
+  "geographicCalibrationOfAlternativesIsAlsoInferred": true,
+  "absoluteAccuracyMeters": null
+}

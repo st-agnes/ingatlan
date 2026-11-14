@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "sourcePdfPath": "data/neighborhoods/sources/municipal-west/tatabanya-map.source.pdf",
+  "sourcePdfSha256": "7a7ca9a8f70f0dcaad90deb3ce27a459a8b70610914c72cc7d9ec98eb2fb76d7",
+  "meaning": "Diagnostic renders of literal original vector source; clipped frames are never used as geometry boundaries.",
+  "crops": [
+    {
+      "path": "north-incomplete-divider.png",
+      "pdfPageOneBased": 1,
+      "sourcePdfClipPoints": [
+        260,
+        150,
+        365,
+        220
+      ],
+      "renderScale": 4,
+      "renderedPixelSize": [
+        420,
+        280
+      ],
+      "sourceGeometryChanged": false,
+      "sha256": "0d1a91c8aee06dc658d870c371b695f46fa4dec6a62f6f10b44b1e27b2aac386"
+    },
+    {
+      "path": "south-incomplete-divider.png",
+      "pdfPageOneBased": 1,
+      "sourcePdfClipPoints": [
+        540,
+        492,
+        605,
+        620
+      ],
+      "renderScale": 4,
+      "renderedPixelSize": [
+        260,
+        512
+      ],
+      "sourceGeometryChanged": false,
+      "sha256": "06923fb218e281481d4113ba3d6318489eee353b6319b594be08aa2bbcfc04fb"
+    },
+    {
+      "path": "galla-retraced-spur.png",
+      "pdfPageOneBased": 1,
+      "sourcePdfClipPoints": [
+        550,
+        500,
+        562,
+        510
+      ],
+      "renderScale": 20,
+      "renderedPixelSize": [
+        240,
+        200
+      ],
+      "sourceGeometryChanged": false,
+      "sha256": "84f204e9a578b02d6cf358c62fadd6fbce18fd77551b5b2d5138a656b0ac7114"
+    },
+    {
+      "path": "west-water-and-label.png",
+      "pdfPageOneBased": 1,
+      "sourcePdfClipPoints": [
+        110,
+        340,
+        230,
+        425
+      ],
+      "renderScale": 4,
+      "renderedPixelSize": [
+        480,
+        340
+      ],
+      "sourceGeometryChanged": false,
+      "sha256": "1fd37f888ad265a1763d4af6a072cb9084c5f3b3a615d152d41c68b84c26763c"
+    },
+    {
+      "path": "forest-explicit-hole.png",
+      "pdfPageOneBased": 1,
+      "sourcePdfClipPoints": [
+        190,
+        490,
+        355,
+        668
+      ],
+      "renderScale": 3,
+      "renderedPixelSize": [
+        495,
+        534
+      ],
+      "sourceGeometryChanged": false,
+      "sha256": "f59aa9f8f4b76e397ab0b24167da8cbf0d000b9ca287af89a28da752cd0803b4"
+    }
+  ]
+}

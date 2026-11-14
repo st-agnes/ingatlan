@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_inferred_candidate_only",
+  "municipality": "Dunaújváros",
+  "sourceEra": "2003 DÉSZ / displayed2015 text; official2020 concept; OSM2026-11-12 snapshot",
+  "primaryCandidateCount": 0,
+  "estimatedCandidateCount": 1,
+  "completeQuarterBoundaryVerified": false,
+  "usableForAddressAssignment": false,
+  "files": [
+    {
+      "path": "README.txt",
+      "bytes": 6038,
+      "sha256": "7c47c0c45b0ff488517a4cb7386bb5c327ed4da50d2e8a3867d386f31d842f3f"
+    },
+    {
+      "path": "application-validation.json",
+      "bytes": 466,
+      "sha256": "67fd25880a480489a79273fbc3246cd8e8d48761be45594c042dee26137f6e37"
+    },
+    {
+      "path": "conversion-proof.json",
+      "bytes": 23447,
+      "sha256": "7b65ddf8db504f046c5301bf4f93b38391fc1ff3b67b9cdf6b08ead105735ce3"
+    },
+    {
+      "path": "dozsa-inference-preview.svg",
+      "bytes": 3574,
+      "sha256": "427c46b6c9751fec08f04ca05c8ded2b8ccf9316465aef726d002dced8a2a46a"
+    },
+    {
+      "path": "dozsa-inferred.geojson",
+      "bytes": 9873,
+      "sha256": "1380c43dee4b916e29e881fcd816852654a8c88e06260076fded364eb57d8d82"
+    },
+    {
+      "path": "dozsa-input-ways.geojson",
+      "bytes": 64565,
+      "sha256": "241835aa107403a3e8dcc2c1cd06118590a950f5e4992749eb115cf32e107a2b"
+    },
+    {
+      "path": "extraction-proof.json",
+      "bytes": 621,
+      "sha256": "d0aa5f8db787c6d4065dffeb5c66aa21e8c441e1e2105a3db16e073d7fa54d39"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 999,
+      "sha256": "549927995c4eb5182c271a70b4aef68093d875fafed9e1a05c4f14b3015d5bc1"
+    },
+    {
+      "path": "inferred-registry-entry.json",
+      "bytes": 1339,
+      "sha256": "c807d3a9cf77fb3e4c9d0a516b424a96138316ea2e5593ebbd2dea76fca0ebe1"
+    },
+    {
+      "path": "municipality.geojson",
+      "bytes": 21763,
+      "sha256": "524df6f5ec0d28132f458a5d3d4e530286677467b8afac7550b73643c0d62034"
+    },
+    {
+      "path": "name-control-point.geojson",
+      "bytes": 1657,
+      "sha256": "9284cdc7be861369603039f1ecaa4ed97627633f547e065302292ac8cb1a0a7c"
+    },
+    {
+      "path": "pbf-way-verification.json",
+      "bytes": 1093,
+      "sha256": "ec9a7350011c765149189f57a0005701b52d584958295082058b34796c57e212"
+    },
+    {
+      "path": "source-facts.json",
+      "bytes": 6623,
+      "sha256": "9ea09f5410315bf9e899e1c13f951f1312d5888cc4ee73b1a8c1f400abe78c36"
+    },
+    {
+      "path": "unproven-boundary-segments.geojson",
+      "bytes": 10032,
+      "sha256": "466828e4a0ac3fc048b562b4d78ad950cc5a70cb84630cc5a5e132611cf31c4c"
+    }
+  ],
+  "converter": {
+    "path": "scripts/neighborhoods/derive-dunaujvaros-next.py",
+    "sha256": "f22440df385ecc1cf29cf449996fad5d240124b403ffcd62c072e8d6a20f8349"
+  },
+  "registryCandidate": "inferred-registry-entry.json",
+  "independentReview": "independent-review.json",
+  "noRootRegistryModified": true
+}

@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "policyObservation": "Current primary source-defined quarter candidates can retain historical dates, unverified current extents and unknown affine georeferencing accuracy. Eger must pass individual quarter-versus-site/group/partial scope checks, but does not require coincidence with current ITS polygons, current legal status, or address accuracy when Tata/Esztergom do not.",
+  "registryFileSha256AtReview": "4660bf16fe430c3d37dad510a9135abeababcdc5d2eaeb86cd45b00adc350487",
+  "entries": [
+    {
+      "id": "tata-statutory-planning-units",
+      "path": "data/neighborhoods/sources/municipal-west/tata-manual.geojson",
+      "sha256": "418ff0d46494f318bef71c095c565d74da6713dfc2b369e2ec8c482f10b21c1b",
+      "municipality": "Tata",
+      "method": "Official statutory PDF filled-vector path extraction; affine georeferencing in EOV(EPSG:23700) against the current Tata municipal boundary; transformed to WGS84. No buffer, residential-extent inference, artificial closing chord, clipping, or arbitrary polygon generation.",
+      "evidenceUrls": [
+        "https://magyaryterv.etata.hu/telepulesrendezes/tesz/7_melleklet_a_19_2022_XI_30_rendelethez_varosreszek_000.pdf",
+        "https://magyaryterv.etata.hu/telepulesrendezes/tesz/"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://magyaryterv.etata.hu/telepulesrendezes/tesz/7_melleklet_a_19_2022_XI_30_rendelethez_varosreszek_000.pdf",
+          "sha256": "88cf8d1af8bbaeb41c78a9ea098fef6f42fce9b93b82a7b15b34abe1064ae979",
+          "page": 1,
+          "pdfPageZeroBased": 0,
+          "localSourceFile": "tata-map.source.pdf"
+        }
+      ],
+      "license": "ODbL-1.0 (OSM-derived georeferencing); official statutory boundary facts",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false,
+        "semanticReviewPath": "data/neighborhoods/research/planning-semantics-recheck.json",
+        "boundaryScopeNote": "The original statutory map explicitly delineates named city quarters. Source-era footprint and unknown absolute georeferencing accuracy retained; not a statement of current legal/address accuracy."
+      },
+      "reviewPath": "data/neighborhoods/manual-review.json",
+      "reviewDatasetId": "tata-statutory-planning-units",
+      "rightsStatus": "Official-source boundary facts; source-map reuse rights not independently established; OSM controls ODbL-1.0",
+      "semanticReclassificationNote": "2026-11-13 review: planning purpose alone does not make these expressly named quarter boundaries generic planning units; coordinates and geometric exclusions unchanged."
+    },
+    {
+      "id": "eger-historical-planning-units",
+      "path": "data/neighborhoods/sources/municipal-east/eger-planning-units.geojson",
+      "sha256": "c3619e702df579b23776b977daf62c0ee1aafb9f629a8b447fb29b64f558011b",
+      "municipality": "Eger",
+      "method": "original_pdf_vector_path_affine_georeferencing",
+      "evidenceUrls": [
+        "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf",
+        "https://www.openstreetmap.org/relation/1418156"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf",
+          "sha256": "7db28b2b5922e6dea7bde9dc3263087534b26e9cd1e52b63335249265df6febe",
+          "page": 1,
+          "referenceDate": "2016-08"
+        }
+      ],
+      "license": "source_map_reuse_not_established; OSM controls ODbL-1.0",
+      "propertyOverrides": {
+        "boundaryKind": "planning_unit",
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/manual-review.json",
+      "reviewDatasetId": "eger-historical-planning-units",
+      "rightsStatus": "Official-source boundary facts; source-map reuse rights not independently established; OSM controls ODbL-1.0"
+    },
+    {
+      "id": "public-vector-esztergom-2013",
+      "path": "data/neighborhoods/sources/public-vector-next/esztergom-candidates.geojson",
+      "sha256": "169bb059c571c1f85e8809b6dd23249d36fe4d41ecc4a5023578207f20d90592",
+      "municipality": "Esztergom",
+      "method": "Unmodified historical Esztergom quarter GeoJSON from a pinned public repository. Metadata cites a2008municipal proposal/decree location; feature timestamps are2013-11-28, not a verified survey date. No coordinate transformation, clipping, snapping, repair, buffer, or generated closing edges.",
+      "evidenceUrls": [
+        "https://github.com/codeforgermany/click_that_hood/blob/48ba05ad4c6969e3b3c25735492169227ae411f1/public/data/esztergom.geojson",
+        "https://github.com/codeforgermany/click_that_hood/blob/48ba05ad4c6969e3b3c25735492169227ae411f1/public/data/esztergom.metadata.json"
+      ],
+      "license": "Individual dataset licence not specified; upstream software MIT; cited municipal source not retrieved",
+      "propertyOverrides": {
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/public-vector-next/esztergom-proof.json",
+      "rightsStatus": "Individual dataset licence not explicit; MIT is preserved as software licence only."
+    }
+  ],
+  "globalChangesApplied": false
+}

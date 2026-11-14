@@ -1,0 +1,29 @@
+{
+  "city": "Szeged",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Szeged\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+  "retrievedAt": "2026-11-12T20:48:16.775Z",
+  "sha256": "868aed99c475fb4c74cb00457123667718d116d4e699b6cb12d83dbee0598a39",
+  "bytes": 675,
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "municipalityRelationId": 1025105,
+  "municipalityAdminLevel": "8",
+  "candidates": 0,
+  "byAdminLevel": {},
+  "relationsWithWayGeometry": 0,
+  "closedWays": 0,
+  "osmTimestamp": "2026-11-12T20:46:50Z",
+  "completeCoverage": false,
+  "reviewStatus": "unreviewed",
+  "usableForAddressAssignment": false,
+  "attempts": [
+    {
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "status": "ok"
+    }
+  ],
+  "status": "downloaded",
+  "file": "szeged.json"
+}

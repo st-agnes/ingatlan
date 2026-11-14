@@ -1,0 +1,30 @@
+{
+  "id": "kecskemet-varoskozpont",
+  "path": "data/neighborhoods/sources/municipal-offline-more/kecskemet-varoskozpont.geojson",
+  "sha256": "a88369fcb74adec953e308822d873c0f429be73b2299d708e697b43e9fc6eba4",
+  "municipality": "Kecskemét",
+  "method": "Municipal2021 source-map-confirmed surface street circuit using literal2026 OSM vertices and consecutive-node edges. Named square transitions and the source-map eastern Bajcsy corridor resolve omissions in the short text. Grade-separated ways are excluded before polygonization; no clipping, repair, hole removal, snap, buffer or invented closure.",
+  "evidenceUrls": [
+    "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+  ],
+  "sourceDocuments": [
+    {
+      "url": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+      "sha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+      "printedPage": 143,
+      "pdfPageOneBased": 145,
+      "corroboratingMapPrintedPage": 141,
+      "corroboratingMapPdfPageOneBased": 143,
+      "figure": 73,
+      "adjacentErzsebetvarosPrintedPage": 150
+    }
+  ],
+  "license": "ODbL-1.0",
+  "propertyOverrides": {
+    "boundaryKind": "neighbourhood",
+    "canonicalNameIsNeighborhood": true,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-offline-more/south-source-review.json",
+  "rightsStatus": "OSM road geometry ODbL-1.0; municipal illustration reuse rights not independently established."
+}

@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "outputCrs": "EPSG:4326",
+  "metricCrs": "EPSG:23700",
+  "sourceFigure73ImageToFigure76ImageAffineRows": [
+    [
+      1.0681857368086907,
+      1.424841254389999e-05
+    ],
+    [
+      -0.0003849783006541218,
+      1.0678327383721176
+    ],
+    [
+      352.1779162578268,
+      -690.2259216333948
+    ]
+  ],
+  "sourceFigure76ImageToFigure73ImageHomogeneous": [
+    [
+      0.936166773934485,
+      0.00033750968743248637,
+      -329.4643057789906
+    ],
+    [
+      -1.2491554084814146e-05,
+      0.9364762469405985,
+      646.3845798818456
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "composedFigure76PixelToEovRows": [
+    [
+      1.7737879331106063,
+      0.005772627255103489
+    ],
+    [
+      0.004131544331925493,
+      -1.7537373540970733
+    ],
+    [
+      697663.5847166977,
+      174086.6485599672
+    ]
+  ],
+  "calibrationFigure73GeoreferenceSha256": "ca53ee79f25c5e44157a7d1271c76d58208672810d5976a424891a71a949711e",
+  "calibrationFigure73FrozenManifestSha256": "ccb04d4774e71a3cc3d3d35f9ce5050214134875dbc406236738bebdcd6363fc",
+  "imageTextureTrainingMatches": 10,
+  "imageTextureHeldOutMatches": 10,
+  "maximumImageTextureHeldOutResidualTargetPixels": 0.46716827203245326,
+  "matchedTextureHullFigure76Pixels": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          1332.0468957122753,
+          120.78693208618277
+        ],
+        [
+          511.7785425722706,
+          120.78699982681704
+        ],
+        [
+          511.7592548455412,
+          667.5590833362444
+        ],
+        [
+          784.8205908691772,
+          761.4576140452838
+        ],
+        [
+          921.302290025568,
+          761.6738042040708
+        ],
+        [
+          1331.9259585091709,
+          761.7181259695769
+        ],
+        [
+          1332.0468957122753,
+          120.78693208618277
+        ]
+      ]
+    ]
+  },
+  "overlapExtrapolationBySourceCell": [
+    {
+      "name": "Külső Árpádváros",
+      "denseVertexCountIncludingClosure": 1617,
+      "maximumMaxRgb": 45,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 1339,
+      "outsideCalibrationImageRectangleVertexCount": 1055,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 522.8227678626655
+    },
+    {
+      "name": "Mezeiváros",
+      "denseVertexCountIncludingClosure": 1996,
+      "maximumMaxRgb": 44,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 954,
+      "outsideCalibrationImageRectangleVertexCount": 415,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 219.2175706754037
+    },
+    {
+      "name": "Ürgés",
+      "denseVertexCountIncludingClosure": 1022,
+      "maximumMaxRgb": 39,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 846,
+      "outsideCalibrationImageRectangleVertexCount": 556,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 351.03031238617615
+    }
+  ],
+  "inheritedSixRoadControlMaximumResidualMeters": 9.735168889125108,
+  "inheritedGeographicCalibrationVerified": false,
+  "inheritedExcludedPriorSourceFeatureIdentityUnconfirmed": true,
+  "geographicRegistrationVerified": false,
+  "imageRelationUsesNoWorldCoordinatesNamesOrBoundaryRings": true,
+  "georeferencingUsesNoNeighborhoodNamePoints": true,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

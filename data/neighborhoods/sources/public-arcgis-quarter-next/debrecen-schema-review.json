@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "itemId": "a04e2a4ff4d2467c8bb6eb640f515b51",
+  "serviceUrl": "https://services5.arcgis.com/lH5T9SRuBL94XELY/arcgis/rest/services/Debrecen_nehézfémszennyezés_városrészek_szerint_WFL1/FeatureServer",
+  "layerId": 0,
+  "layerName": "NehezfemZonal_WGS84",
+  "geometryType": "esriGeometryPolygon",
+  "nativeServiceCrs": {
+    "wkid": 102100,
+    "latestWkid": 3857
+  },
+  "layerExtent": {
+    "xmin": 2390109.4783000015,
+    "ymin": 6017627.278999999,
+    "xmax": 2430526.734100001,
+    "ymax": 6042467.457,
+    "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+    }
+  },
+  "layerNameWgs84IsNotProofOfNativeCrs": true,
+  "objectIdField": "FID",
+  "nameField": "nev",
+  "categoryField": "tipus",
+  "displayField": "tipus",
+  "selectedFields": [
+    {
+      "name": "FID",
+      "type": "esriFieldTypeOID",
+      "alias": "FID",
+      "sqlType": "sqlTypeOther",
+      "nullable": false,
+      "editable": false,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "tipus",
+      "type": "esriFieldTypeString",
+      "alias": "tipus",
+      "sqlType": "sqlTypeOther",
+      "length": 50,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "nev",
+      "type": "esriFieldTypeString",
+      "alias": "nev",
+      "sqlType": "sqlTypeOther",
+      "length": 50,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    }
+  ],
+  "unusedSoilMeasurementFieldsRetrieved": false,
+  "capabilities": "Query",
+  "maxRecordCount": 2000,
+  "supportedQueryFormats": "JSON, geoJSON, PBF",
+  "hasZ": false,
+  "hasM": false,
+  "curveSupportMode": "OGC",
+  "advancedQueryCapabilities": {
+    "supportsPagination": true,
+    "supportsOrderBy": true,
+    "supportsTrueCurve": true
+  },
+  "dataLastEditUtc": "2025-06-02T23:33:23.324000+00:00",
+  "dataEditTimestampIsNotBoundaryReferenceDate": true,
+  "serviceDescription": "",
+  "layerDescription": "",
+  "copyrightText": "",
+  "licenseInfo": "",
+  "accessInformation": "",
+  "access": "public",
+  "sourceSchemaInference": "Named polygons with tipus+nev and joined zonal soil statistics are plausible quarter source geometry; values and actual ring shapes have not yet been inspected. No official status inferred.",
+  "sourceAgeAndOriginalBoundaryDataset": "Unestablished",
+  "geometryInspected": false,
+  "quarterSourceRoleProven": false,
+  "nativeRequestKeepsTrueCurves": true,
+  "generalizationPrecisionQuantizationParametersUsed": false,
+  "rawMetadataReferences": [
+    {
+      "path": ".local/neighborhoods/supplement-feature-services/debrecen-heavy-metals-service.json",
+      "sha256": "15e5b75806d30ae4b42396b4ca144c26c328e527fff106ada0a00c2945c8dff9"
+    },
+    {
+      "path": ".local/neighborhoods/supplement-feature-services/debrecen-heavy-metals-layers.json",
+      "sha256": "dc78499bacad392631b7be9bf548534a4f4ee6f6050ad505ad135d0c0bf6b143"
+    },
+    {
+      "path": ".local/neighborhoods/supplement-feature-services/debrecen-heavy-metals-item.json",
+      "sha256": "ec6110872dc0927baa67913d0ca852f3baaf565937d5c4cf86c5b27fd8f15853"
+    }
+  ],
+  "searchResultSourceLabel": "Debreceni Egyetem MÉK Víz- és Körny. Intézet",
+  "searchResultSourceLabelInterpretation": "A label present in the ArcGIS search response, possibly the university ArcGIS organization. It does not establish the original polygon provider, boundary lineage, official status or a reuse license."
+}

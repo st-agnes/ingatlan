@@ -1,0 +1,31 @@
+{
+  "id": "salgotarjan-2022-source-contours-inferred-registration",
+  "path": "data/neighborhoods/sources/municipal-salgotarjan-next/salgotarjan-inferred.geojson",
+  "sha256": "ed18ef0051189ffdb47361cc5c3ee5cb8dff53363182c7b953f585fa3d8403ef",
+  "municipality": "Salgótarján",
+  "method": "Eight complete separately named municipal profile color-pixel outer contours, with all original components/vertices preserved. Profile→overview similarity then unvalidated approximate overview→EOV municipal-silhouette fit and EPSG:4326. Geographic placement remains inferred; no absolute accuracy, source-name-point controls, invented closing segments or constituent splits.",
+  "evidenceUrls": [
+    "https://www.salgotarjan.hu/wp-content/uploads/fejlesztesidokumentumok_20220629_its.pdf"
+  ],
+  "license": "Municipal-map open-reuse licence unverified; ODbL-1.0 for OSM reference data.",
+  "propertyOverrides": {
+    "estimated": true,
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "canonicalNameIsNeighborhood": false,
+    "georeferenceStatus": "inferred_georeference",
+    "sourceIsOfficial": false,
+    "sourceIsHardBoundary": false,
+    "usableForAddressAssignment": false,
+    "claimedAbsoluteAccuracyMetres": null,
+    "absoluteAccuracyMetres": null
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-salgotarjan-next/independent-review.json",
+  "rightsStatus": "Municipal publication; no independently established open-map reuse licence.",
+  "uncertainties": [
+    "Original map date/CRS unknown; June2022 ITS preserves2008/2014 division.",
+    "4716 overview silhouette calibration pixels are not independent physical controls; absolute accuracy remains unknown.",
+    "Forgáchtelep northwest profile/overview differences remain; no edge correction or repair applied.",
+    "Source name points corroborate names only, never polygon extents."
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Hódmezővásárhely",
+  "scope": "Bounded continuation for Belváros and Kertváros after frozen Hódtófirstcandidate.",
+  "status": "two_explicit_sources_found_but_zero_additional_quarter_polygons_constructed",
+  "newCandidateCount": 0,
+  "frozenHodtoInputsChanged": false,
+  "sourceUrl": "https://hodmezovasarhely.hu/wp-content/uploads/strategiak_koncepciok/Integr%C3%A1lt-Telfejli-Stra%C3%A9gia_2014.pdf",
+  "sourceDate": "2014-09-17",
+  "graphProof": "hod-next-circuit-graph-audit.json",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "Belvaros": {
+    "sourceSection": "2.3.1",
+    "sourcePrintedPage": 53,
+    "semanticExtent": "Document explicitly refers to the entire Belváros quarter.",
+    "boundaryFacts": [
+      "Kaszap utca",
+      "Andrássy út",
+      "Táncsics Mihály út",
+      "Teleki utca",
+      "Holló utca",
+      "Damjanich utca",
+      "Vajda utca",
+      "Árvíz utca",
+      "Kodály Zoltán utca",
+      "Hősök tere",
+      "Tóalj utca"
+    ],
+    "currentRoadIdentity": {
+      "oldName": "Táncsics Mihály út",
+      "currentName": "Bethlen István utca",
+      "literalOsmOldNameWayIds": [
+        78416982,
+        591078117
+      ],
+      "independentCorroborationUrl": "https://www.delmagyar.hu/hodmezovasarhely-es-kornyeke/2017/05/mosoly-lehetne-az-eszperanto-utcabol-vasarhelyen",
+      "corroborationDate": "2017-05-17"
+    },
+    "concreteIssues": [
+      "Teleki→Holló minimum literal road-group gap317.19m; Pálffy is an intermediate actual road omitted by the2014 ITS abbreviated circuit.",
+      "Damjanich→Vajda minimum gap19.81m; Lázár is an intermediate actual road in the2014 secondary report.",
+      "Árvíz→Kodály minimum gap69.51m; floodwall/perimeter interpretation unresolved.",
+      "Hősök tere→Tóalj square-side/physical path choice unresolved.",
+      "Adding expanded roadnames plus connected physical roundabouts still creates no plausible quarter face."
+    ],
+    "expandedCircuitSource": {
+      "url": "https://vasarhelyihirek.hu/hazmento_otlet",
+      "title": "Házmentő ötlet",
+      "date": "2014-06-30",
+      "boundaryFacts": [
+        "Holló utca",
+        "Pálffy utca",
+        "Teleki utca",
+        "Táncsics Mihály utca",
+        "Kálvin tér",
+        "Andrássy út",
+        "Kaszap utca",
+        "Tóalj utca",
+        "Hősök tere",
+        "Kodály Zoltán utca",
+        "Árvíz utca",
+        "Vajda utca",
+        "Lázár utca",
+        "Damjanich utca"
+      ],
+      "semanticLimit": "News report describes housing-subsidy eligibility area as Belváros; the original decree body is needed to establish scope and wording."
+    },
+    "originalLegalSourceLead": {
+      "verifiedIndexUrl": "https://hodmezovasarhely.hu/rendeletek-2/",
+      "decree": "15/2014. (06.18.)",
+      "title": "Hódmezővásárhely Megyei Jogú Város Önkormányzata által nyújtott gyermekvállalást ösztönző ingatlanszerzési támogatás",
+      "indexIdentityVerified": true,
+      "bodyAcquired": false,
+      "block": "Original decree body was not accessible through the web tool; no invented fulltext or boundaries attributed to it."
+    }
+  },
+  "Kertvaros": {
+    "sourceSection": "2.3.3",
+    "sourcePrintedPage": 59,
+    "semanticExtent": "Document equates Kertvárosi actionarea with Kertváros quarter and specifies an enclosed road/rail circuit.",
+    "boundaryFacts": [
+      "Kodály Zoltán utca",
+      "Hősök tere",
+      "Tóalj utca",
+      "Kaszap utca",
+      "135 sz. vasútvonal",
+      "140 sz. vasútvonal"
+    ],
+    "concreteIssues": [
+      "Inspected source extracted text reads140 for the second railway; bounded OSM query returned0 local railwayref140 ways.",
+      "The actual local west-side rail crossing isref130, including way357167460, but replacing140 with130 is a material source interpretation that has not been verified from the original section image.",
+      "Even an explicitly diagnostic extended graph with130 rail and adjoining squareborder streets does not yield a plausible quarter face.",
+      "No source rail-number correction, square-side choice or closing chord has been silently made."
+    ],
+    "expandedRailInput": "hod-130-140-local-crossing-lines.geojson",
+    "retrievalWarning": "The first frozen cityline extraction uses first-node retrieval filtering; a long rail130 way begins far outside the local window and was therefore acquired separately for this later diagnostic. This does not modify frozen Hódtó controls."
+  },
+  "currentNamesConfirmation": {
+    "url": "https://njt.jog.gov.hu/jogszabaly/2023-1-SP-5Y1882.0",
+    "locator": "§2(c), annex1 items1and11",
+    "names": [
+      "Belváros",
+      "Kertváros"
+    ],
+    "namesOnlyNotBoundaries": true
+  },
+  "noNationalOrMunicipalAbsenceClaim": true
+}

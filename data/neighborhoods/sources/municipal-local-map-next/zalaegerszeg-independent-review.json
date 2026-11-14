@@ -1,0 +1,458 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent local_pdf_expand/veszprem_map agent",
+  "reviewDate": "2026-11-13",
+  "scope": "Original archived municipal raster, seven raw source cells, five strict research-import candidates and two quarantined cells. Offline independent exposed-cell-face review; no source or geometry modification.",
+  "overallVerdict": "Five source-defined historical raster-cell geometries pass the existing strict importer with all original residual holes preserved. Two raw geometries remain quarantined. All geography remains review-required and disabled for address assignment.",
+  "sourcePdfPageOneBased": 12,
+  "sourceEmbeddedImageXref": 105,
+  "originalImageExtractedByteIdentically": true,
+  "imageSizePixels": [
+    1663,
+    2360
+  ],
+  "twoPageSourceExcerptContainsByteIdenticalImage": true,
+  "inputFingerprints": [
+    {
+      "path": ".local/neighborhoods/nationwide-docs/originals/zalaegerszeg-its.pdf",
+      "sha256": "4534775c49466eba0460e583aa45a12127f0a46cd8c0e768ed689b830e4eb035"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-p12-image0.jpeg",
+      "sha256": "cf259e0c7c54c3b58a0cf1e624ef178432ae734336cd3b676a9c7f2675aa8e37"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-registration.json",
+      "sha256": "565a5bc9cd6887aedaddd2d6cacbdaff48c8ad8a9e541b11f6b4c555e45aa2a5"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-conversion-proof.json",
+      "sha256": "34711682da599a24fed99b61c88bf9740369ebcfc48e15691a1ada9b96e35ec3"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-source-raster.geojson",
+      "sha256": "07a1475da509dcbc8216eb1ca23c91933e8cca376e736911d4494e424ccc0915"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+      "sha256": "70b502949fcc8333ead5ffc0d404cbdd6198ec0a1f09241f88bd3509fc056b6a"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-quarantine.geojson",
+      "sha256": "0e5f6d1f016ad295205f27c6fb102b2ef77a4a54d71573ce079b340bd8908a80"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-source-pages12-13.pdf",
+      "sha256": "ae2229f28a3e41985f29044a66bf52a2a8feaa2f4052fb2890ef25c6dce44b80"
+    }
+  ],
+  "independentChecks": {
+    "sourceMaskRecomputedFromOriginalRgb": true,
+    "maskRule": "R<135 and G-R>30 and B-R>30 and G>65",
+    "fourNeighborRegionsRecomputed": true,
+    "regionTouchesRasterEdge": false,
+    "onlyEnclosedNumericGraphicRestored": true,
+    "boundaryMethod": "Enumerate every exposed included-pixel north/east/south/west face independently; compare its doubled-integer endpoint set to every unit edge expanded from the saved source polygon. This does not use the producer row-run box union.",
+    "gridBoundaryExactForAllSeven": true,
+    "allBoundaryFacesAdjacentOriginalTeal": true,
+    "noInventedMapEdgeClosureOrUnprovenGapBridge": true,
+    "worldGeometryReconstructedExactly": true,
+    "noPairwiseAreaOverlap": true,
+    "maximumPairwiseOverlapDegreesSquared": 0.0,
+    "importAndQuarantineFeaturesUnchangedFromRaw": true,
+    "strictImportCount": 5,
+    "quarantineCount": 2
+  },
+  "semanticReview": {
+    "sourceFigureTitle": "Zalaegerszeg városrészek szerinti felosztása",
+    "sourcePrintedPage13LegendMatchesAllSevenNumericLabels": true,
+    "sourceSemantics": "Separate statistical city-quarter units used by the 2014 municipal ITS for comparison of 2009 and 2011 data. This is not evidence of current, legally authoritative, surveyed or cadastral boundaries.",
+    "sourceContourInterpretation": "Inside edge of the actual thick teal cartographic band. Stroke width remains excluded between units; output is not a seamless partition and is not a centre-line reconstruction.",
+    "olaCompleteness": "Unresolved. The labelled closed southern cell 2 is reproduced faithfully, but an independently closed, equally tinted northern cell C23 around source pixel x680,y800 is unnumbered and separated partly by a dotted teal line. The raster alone does not prove whether that northern part also belongs to Ola. Ola must remain quarantined for semantic completeness as well as strict-hole validation.",
+    "tinyResidualHoles": "All residual holes remain unchanged. Their areas are one or two original source pixels; point-touching residual holes cause the existing stricter JS validator to reject Ola and Landorhegy although GEOS considers their raw geometries valid. No hole was silently filled."
+  },
+  "georeferencingReview": {
+    "method": "Frozen affine image-to-EOV matrix derived from current municipality perimeter dash matching; then EPSG23700 to EPSG4326.",
+    "verifiedTransformationArithmetic": true,
+    "independentInteriorControlCount": 0,
+    "absoluteBoundaryAccuracyMetres": null,
+    "reason": "Current-road overlays are qualitatively consistent but are not independently identified surveyed image-control pairs. Whole-perimeter residuals are registration diagnostics and do not establish interior accuracy. The historical eastern outline differs from the archived current municipality.",
+    "threeCurrentNamePointsOutsideHistoricalPolygons": [
+      "Páterdomb",
+      "Kertváros",
+      "Csácsbozsok"
+    ],
+    "namePointDisagreementsPreserved": true,
+    "allRegistrationAnchorsMatchActualSmallOriginalTealComponents": true,
+    "verifiedRegistrationAnchorCount": 313,
+    "anchorPixelComponentRule": "Eight-neighbor original-teal components with 15..230 pixels and both bounding dimensions <=32 pixels; each recorded centroid matches an actual component centroid to 1e-9 source pixels. This does not independently establish that every component is a legal/current boundary mark.",
+    "recordedPerimeterResidualsIndependentlyRecomputed": true,
+    "maximumRecomputedResidualDifferenceMetres": 2.8535396268125623e-11,
+    "perimeterResidualsAreIndependentAccuracy": false
+  },
+  "restrictions": {
+    "usableForAddressAssignment": false,
+    "sourceIsHardBoundary": false,
+    "currentLegalBoundaryClaimed": false,
+    "municipalMapReuseRightsIndependentlyEstablished": false,
+    "networkUsed": false,
+    "sourceGeometriesEditedByReviewer": false
+  },
+  "records": [
+    {
+      "name": "Belváros",
+      "sourceUnitNumber": 1,
+      "closedSourceComponent": true,
+      "sourceInteriorCells": 39008,
+      "restoredNumericGraphicCells": 2527,
+      "numericGraphicBboxPixelsInclusive": [
+        817,
+        948,
+        874,
+        1005
+      ],
+      "remainingSourceHoleAreasPixels": [
+        1.0
+      ],
+      "includedPixelCellCount": 41535,
+      "independentCellBoundaryFaceCount": 1074,
+      "exactProofBoundaryEdgeSet": true,
+      "allBoundaryFacesAdjacentOriginalTeal": true,
+      "boundaryFaceMismatchCount": 0,
+      "pixelPolygonAreaEqualsIncludedCells": true,
+      "geosValid": true,
+      "exactWorldReconstruction": true,
+      "geographicSymmetricDifferenceDegreesSquared": 0.0,
+      "geographicHausdorffDistanceDegrees": 0.0,
+      "fullyInsideArchivedCurrentMunicipality": true,
+      "currentNameEvidence": [
+        {
+          "id": "osm:node:1299372922",
+          "name": "Belváros",
+          "coordinates": [
+            16.8448492,
+            46.8408329
+          ],
+          "insideHistoricalSourceArea": true,
+          "distanceFromHistoricalSourceAreaMetres": 0.0,
+          "sourceUrl": "https://www.openstreetmap.org/node/1299372922"
+        }
+      ],
+      "existingJsValidator": {
+        "name": "Belváros",
+        "valid": true,
+        "bbox": [
+          16.828486424924897,
+          46.83700435427193,
+          16.852175396859735,
+          46.85086067914179
+        ],
+        "vertices": 814
+      },
+      "researchImportAdmitted": true
+    },
+    {
+      "name": "Ola",
+      "sourceUnitNumber": 2,
+      "closedSourceComponent": true,
+      "sourceInteriorCells": 10618,
+      "restoredNumericGraphicCells": 2509,
+      "numericGraphicBboxPixelsInclusive": [
+        666,
+        869,
+        722,
+        924
+      ],
+      "remainingSourceHoleAreasPixels": [
+        1.0
+      ],
+      "includedPixelCellCount": 13127,
+      "independentCellBoundaryFaceCount": 728,
+      "exactProofBoundaryEdgeSet": true,
+      "allBoundaryFacesAdjacentOriginalTeal": true,
+      "boundaryFaceMismatchCount": 0,
+      "pixelPolygonAreaEqualsIncludedCells": true,
+      "geosValid": true,
+      "exactWorldReconstruction": true,
+      "geographicSymmetricDifferenceDegreesSquared": 0.0,
+      "geographicHausdorffDistanceDegrees": 0.0,
+      "fullyInsideArchivedCurrentMunicipality": true,
+      "currentNameEvidence": [
+        {
+          "id": "osm:node:990000883",
+          "name": "Ola",
+          "coordinates": [
+            16.8222379,
+            46.8482461
+          ],
+          "insideHistoricalSourceArea": true,
+          "distanceFromHistoricalSourceAreaMetres": 0.0,
+          "sourceUrl": "https://www.openstreetmap.org/node/990000883"
+        }
+      ],
+      "existingJsValidator": {
+        "name": "Ola",
+        "valid": false,
+        "reason": "hole_outside_shell"
+      },
+      "researchImportAdmitted": false
+    },
+    {
+      "name": "Landorhegy",
+      "sourceUnitNumber": 3,
+      "closedSourceComponent": true,
+      "sourceInteriorCells": 28331,
+      "restoredNumericGraphicCells": 2519,
+      "numericGraphicBboxPixelsInclusive": [
+        641,
+        1029,
+        698,
+        1086
+      ],
+      "remainingSourceHoleAreasPixels": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "includedPixelCellCount": 30850,
+      "independentCellBoundaryFaceCount": 1668,
+      "exactProofBoundaryEdgeSet": true,
+      "allBoundaryFacesAdjacentOriginalTeal": true,
+      "boundaryFaceMismatchCount": 0,
+      "pixelPolygonAreaEqualsIncludedCells": true,
+      "geosValid": true,
+      "exactWorldReconstruction": true,
+      "geographicSymmetricDifferenceDegreesSquared": 0.0,
+      "geographicHausdorffDistanceDegrees": 0.0,
+      "fullyInsideArchivedCurrentMunicipality": true,
+      "currentNameEvidence": [
+        {
+          "id": "osm:node:990000895",
+          "name": "Landorhegy",
+          "coordinates": [
+            16.8292614,
+            46.8382643
+          ],
+          "insideHistoricalSourceArea": true,
+          "distanceFromHistoricalSourceAreaMetres": 0.0,
+          "sourceUrl": "https://www.openstreetmap.org/node/990000895"
+        }
+      ],
+      "existingJsValidator": {
+        "name": "Landorhegy",
+        "valid": false,
+        "reason": "hole_outside_shell"
+      },
+      "researchImportAdmitted": false
+    },
+    {
+      "name": "Páterdomb",
+      "sourceUnitNumber": 4,
+      "closedSourceComponent": true,
+      "sourceInteriorCells": 10980,
+      "restoredNumericGraphicCells": 2523,
+      "numericGraphicBboxPixelsInclusive": [
+        902,
+        1094,
+        958,
+        1150
+      ],
+      "remainingSourceHoleAreasPixels": [],
+      "includedPixelCellCount": 13503,
+      "independentCellBoundaryFaceCount": 722,
+      "exactProofBoundaryEdgeSet": true,
+      "allBoundaryFacesAdjacentOriginalTeal": true,
+      "boundaryFaceMismatchCount": 0,
+      "pixelPolygonAreaEqualsIncludedCells": true,
+      "geosValid": true,
+      "exactWorldReconstruction": true,
+      "geographicSymmetricDifferenceDegreesSquared": 0.0,
+      "geographicHausdorffDistanceDegrees": 0.0,
+      "fullyInsideArchivedCurrentMunicipality": true,
+      "currentNameEvidence": [
+        {
+          "id": "osm:node:990000892",
+          "name": "Páterdomb",
+          "coordinates": [
+            16.8518148,
+            46.836078
+          ],
+          "insideHistoricalSourceArea": false,
+          "distanceFromHistoricalSourceAreaMetres": 7.814011581249406,
+          "sourceUrl": "https://www.openstreetmap.org/node/990000892"
+        }
+      ],
+      "existingJsValidator": {
+        "name": "Páterdomb",
+        "valid": true,
+        "bbox": [
+          16.844102957014712,
+          46.82780122322666,
+          16.852574940482782,
+          46.84432992116986
+        ],
+        "vertices": 702
+      },
+      "researchImportAdmitted": true
+    },
+    {
+      "name": "Kertváros",
+      "sourceUnitNumber": 5,
+      "closedSourceComponent": true,
+      "sourceInteriorCells": 36537,
+      "restoredNumericGraphicCells": 2510,
+      "numericGraphicBboxPixelsInclusive": [
+        716,
+        1152,
+        771,
+        1208
+      ],
+      "remainingSourceHoleAreasPixels": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "includedPixelCellCount": 39047,
+      "independentCellBoundaryFaceCount": 1472,
+      "exactProofBoundaryEdgeSet": true,
+      "allBoundaryFacesAdjacentOriginalTeal": true,
+      "boundaryFaceMismatchCount": 0,
+      "pixelPolygonAreaEqualsIncludedCells": true,
+      "geosValid": true,
+      "exactWorldReconstruction": true,
+      "geographicSymmetricDifferenceDegreesSquared": 0.0,
+      "geographicHausdorffDistanceDegrees": 0.0,
+      "fullyInsideArchivedCurrentMunicipality": true,
+      "currentNameEvidence": [
+        {
+          "id": "osm:node:990000891",
+          "name": "Kertváros",
+          "coordinates": [
+            16.8360331,
+            46.8299866
+          ],
+          "insideHistoricalSourceArea": false,
+          "distanceFromHistoricalSourceAreaMetres": 3.834917169569955,
+          "sourceUrl": "https://www.openstreetmap.org/node/990000891"
+        }
+      ],
+      "existingJsValidator": {
+        "name": "Kertváros",
+        "valid": true,
+        "bbox": [
+          16.82188405380379,
+          46.8172973248283,
+          16.844778401897596,
+          46.837171503213455
+        ],
+        "vertices": 1147
+      },
+      "researchImportAdmitted": true
+    },
+    {
+      "name": "Csácsbozsok",
+      "sourceUnitNumber": 7,
+      "closedSourceComponent": true,
+      "sourceInteriorCells": 43965,
+      "restoredNumericGraphicCells": 2517,
+      "numericGraphicBboxPixelsInclusive": [
+        1134,
+        935,
+        1190,
+        991
+      ],
+      "remainingSourceHoleAreasPixels": [
+        1.0
+      ],
+      "includedPixelCellCount": 46482,
+      "independentCellBoundaryFaceCount": 1758,
+      "exactProofBoundaryEdgeSet": true,
+      "allBoundaryFacesAdjacentOriginalTeal": true,
+      "boundaryFaceMismatchCount": 0,
+      "pixelPolygonAreaEqualsIncludedCells": true,
+      "geosValid": true,
+      "exactWorldReconstruction": true,
+      "geographicSymmetricDifferenceDegreesSquared": 0.0,
+      "geographicHausdorffDistanceDegrees": 0.0,
+      "fullyInsideArchivedCurrentMunicipality": true,
+      "currentNameEvidence": [
+        {
+          "id": "osm:node:990019162",
+          "name": "Csácsbozsok",
+          "coordinates": [
+            16.8788457,
+            46.8410183
+          ],
+          "insideHistoricalSourceArea": false,
+          "distanceFromHistoricalSourceAreaMetres": 214.96826937656604,
+          "sourceUrl": "https://www.openstreetmap.org/node/990019162"
+        }
+      ],
+      "existingJsValidator": {
+        "name": "Csácsbozsok",
+        "valid": true,
+        "bbox": [
+          16.85206835246152,
+          46.83146463374065,
+          16.87860861789009,
+          46.853153331303325
+        ],
+        "vertices": 1297
+      },
+      "researchImportAdmitted": true
+    },
+    {
+      "name": "Vorhota",
+      "sourceUnitNumber": 8,
+      "closedSourceComponent": true,
+      "sourceInteriorCells": 18805,
+      "restoredNumericGraphicCells": 2501,
+      "numericGraphicBboxPixelsInclusive": [
+        368,
+        795,
+        424,
+        850
+      ],
+      "remainingSourceHoleAreasPixels": [
+        2.0
+      ],
+      "includedPixelCellCount": 21306,
+      "independentCellBoundaryFaceCount": 1608,
+      "exactProofBoundaryEdgeSet": true,
+      "allBoundaryFacesAdjacentOriginalTeal": true,
+      "boundaryFaceMismatchCount": 0,
+      "pixelPolygonAreaEqualsIncludedCells": true,
+      "geosValid": true,
+      "exactWorldReconstruction": true,
+      "geographicSymmetricDifferenceDegreesSquared": 0.0,
+      "geographicHausdorffDistanceDegrees": 0.0,
+      "fullyInsideArchivedCurrentMunicipality": true,
+      "currentNameEvidence": [
+        {
+          "id": "osm:node:13376247281",
+          "name": "Vorhota",
+          "coordinates": [
+            16.7961709,
+            46.8554316
+          ],
+          "insideHistoricalSourceArea": true,
+          "distanceFromHistoricalSourceAreaMetres": 0.0,
+          "sourceUrl": "https://www.openstreetmap.org/node/13376247281"
+        }
+      ],
+      "existingJsValidator": {
+        "name": "Vorhota",
+        "valid": true,
+        "bbox": [
+          16.786560329905818,
+          46.848184836534784,
+          16.82205270204002,
+          46.85723262831814
+        ],
+        "vertices": 1048
+      },
+      "researchImportAdmitted": true
+    }
+  ]
+}

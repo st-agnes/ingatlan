@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "status": "FROZEN_SUPPLEMENTAL_ADMISSION_CORRECTION",
+  "sourceFrozenCohort": "data/neighborhoods/sources/municipal-kecskemet-native77-first",
+  "sourceFrozenManifestSha256": "bb26990570dfc1730111c6df2d78a1aa15649252b4a7a62afd13305ded09cdfd",
+  "archivedSourceCandidates": 7,
+  "admittedInferredFeatureCount": 6,
+  "primaryFeatureCount": 0,
+  "quarantinedSourceCellCount": 1,
+  "quarantinedFeatureId": "manual:kecskemet-figure77:szent-laszlo-belso-forrascella",
+  "reason": "hole_outside_shell",
+  "underlyingSourceCondition": "original exact point contact between Kósafalu hole and central-cell outer ring",
+  "originalSourceGeometryUnchanged": true,
+  "frozenFileCountExcludingManifest": 5,
+  "frozenFilesSha256": {
+    "README.txt": "a47b3b88a3c6e52c5831bc816a166093224445f5bd02401cf4f1a4fb270180e3",
+    "admission-review.json": "714a3b8efe9034670e0551fdbbdc5d029c34e19e2a436539f5e250cd06a5ca03",
+    "audit-admission.py": "b50b546e89e7c1d3b070f6980f8c677c51a0a2b8ad2fb6f11c893be47abb6a9a",
+    "audit-independent.py": "15fd6f88b3a662025b081b49b2f590a8f8c63a0fd519b06aec507e31eb3aa359",
+    "native77-admission-independent.json": "c1f3cb5477711d8e1e095ef799b0eff094742a3c1634c53fc4525f387c69a4a5"
+  }
+}

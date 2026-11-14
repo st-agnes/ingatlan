@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "reviewScope": "Independent offline arithmetic/raw-link audit and source-image inspection; no new geographic controls or quarter geometry.",
+  "status": "arithmetic_and_archived_raw_links_pass_geographic_correspondence_not_approved",
+  "authorBuildScriptImportedOrInvoked": false,
+  "networkUsed": false,
+  "independentNumericalMethod": "Centered 2x2 covariance solve; determinant segment intersections. Author uses augmented affine least squares and Shapely intersections.",
+  "checkedInputHashes": [
+    {
+      "path": "model.json",
+      "sha256": "df64edde82a50357415fc2524fb8ad4790aea1a60ba3c8742e36b892a897e36f"
+    },
+    {
+      "path": "calculation-proof.json",
+      "sha256": "3676f2f969da7ef9f262d78d0a007271ccb509675bea83546443b88958375261"
+    },
+    {
+      "path": "diagnostics.json",
+      "sha256": "3bc23a8ee54746cdd49b6496042c06947c9db749a0ccaefeff83d4b392f44de9"
+    },
+    {
+      "path": "boundary-source-proof.json",
+      "sha256": "869ba87df37a36b093b758f02011b90e19efaa877d529a7d110f0f645163ebab"
+    },
+    {
+      "path": "source-road-controls.json",
+      "sha256": "c988f1e8c26696c59d0c76dfe589bb3dedb00cb2d9f9374c63ab602017ad2ac1"
+    },
+    {
+      "path": "source-road-ways.geojson",
+      "sha256": "eaa118a93a5768d98ccb4980936b1369829716def21ca0354f372af1f647ff78"
+    },
+    {
+      "path": "source-road-proof.json",
+      "sha256": "c7b7d2c64135bc2d52466f84b6b6e43262a6d6ecb13041288d03f72dba5c0dc0"
+    },
+    {
+      "path": "source-municipality.geojson",
+      "sha256": "f88ce9a098698c26775574013b687dc1e1a15b0b4a3f5c40ff7ec1fceeb3a305"
+    },
+    {
+      "path": "source-corner-candidates.json",
+      "sha256": "6f745c9b954b64370c5da057f66e9b8bbb3f9656848e23e56292a002cb52d18d"
+    },
+    {
+      "path": "source-gray-control-pixels.json",
+      "sha256": "fde575f32906374579ea3095fb90ff97510e9524ee3c1065e74822b7e7524c69"
+    },
+    {
+      "path": "source-name-map.jpeg",
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "path": "source-control-crops.png",
+      "sha256": "e6997bcb7ec6af85e294ac524302ff6ec8b7775727ae8c6ab373bf8288624067"
+    },
+    {
+      "path": "candidate-model-overlay.png",
+      "sha256": "a4d9ff563d60fade64e40454d7dae460b840e5066ae9c81997b6e7e5d0f3bd81"
+    }
+  ],
+  "checkedControls": [
+    {
+      "id": "gray-corner-1",
+      "literalBoundaryNodeIds": [
+        684770958
+      ],
+      "coordinateAndMembershipMatch": true,
+      "imageVertexCorrespondenceApproved": false
+    },
+    {
+      "id": "gray-corner-2",
+      "literalBoundaryNodeIds": [
+        684771052
+      ],
+      "coordinateAndMembershipMatch": true,
+      "imageVertexCorrespondenceApproved": false
+    },
+    {
+      "id": "gray-corner-3",
+      "literalBoundaryNodeIds": [
+        684770855
+      ],
+      "coordinateAndMembershipMatch": true,
+      "imageVertexCorrespondenceApproved": false
+    },
+    {
+      "id": "road-crossing-1",
+      "mainCarriagewayCrossingsRecomputed": true,
+      "isLiteralOsmCrossingNode": false,
+      "absoluteAccuracyApproved": false
+    },
+    {
+      "id": "road-crossing-2",
+      "mainCarriagewayCrossingsRecomputed": true,
+      "isLiteralOsmCrossingNode": false,
+      "absoluteAccuracyApproved": false
+    }
+  ],
+  "fivePairAffineAndResidualsRecomputed": true,
+  "heldoutGrayDistancesRecomputed": true,
+  "heldoutRoadCrossTrackDistancesRecomputed": true,
+  "leaveOneOutRecomputed": true,
+  "seeded2000ScenarioSensitivityRecomputed": true,
+  "rawPbfIndependentlyRescannedByThisAudit": false,
+  "rawPbfEvidenceScope": "This audit checks the complete archived node/way linkage and hashes. Separate source-proof records report independent exact PBF reads; this audit does not claim a third PBF read.",
+  "fitResidualRmsMetres": 33.80920222760616,
+  "heldoutGraySummaryMetres": {
+    "count": 51,
+    "minimum": 0.48568836289218037,
+    "median": 21.146992402128426,
+    "rms": 101.17227277087532,
+    "percentile95": 180.20271321029452,
+    "maximum": 474.7136138558071
+  },
+  "heldoutRoadSummaries": [
+    {
+      "reference": "M60",
+      "summaryMetres": {
+        "count": 16,
+        "minimum": 2.8082956710490135,
+        "median": 26.886373887200584,
+        "rms": 48.020454391458784,
+        "percentile95": 94.48740514265317,
+        "maximum": 101.83166653355961
+      }
+    },
+    {
+      "reference": "66",
+      "summaryMetres": {
+        "count": 8,
+        "minimum": 3.4512601950960136,
+        "median": 4.82966474846635,
+        "rms": 9.573305708633535,
+        "percentile95": 17.579509892181935,
+        "maximum": 19.778695083204262
+      }
+    }
+  ],
+  "sourceImageFindings": [
+    {
+      "control": "gray-corner-1",
+      "imagePixel": [
+        160,
+        162
+      ],
+      "observation": "Marker lies on the approximately vertical gray stroke, not on its visibly sharper L turn at approximately [160,167]. Literal OSM target ring vertex455 is also on a nearly vertical segment; the actual sharp westward turn is vertex457. Thus a coordinate mismatch is NOT established, but a distinctive corner-to-vertex point identity is NOT established either.",
+      "fitPairApproved": false,
+      "readingUncertaintyIsNotCorrespondenceUncertainty": true,
+      "possibleNewControl": {
+        "sourcePixelApproximate": [
+          160,
+          167
+        ],
+        "targetOuterRingVertexIndex": 457,
+        "targetOsmNodeId": 684770966,
+        "targetWgs84": [
+          18.1848498,
+          46.1107725
+        ],
+        "approved": false
+      }
+    },
+    {
+      "control": "gray-corner-2",
+      "imagePixel": [
+        286,
+        83
+      ],
+      "observation": "Marker is on the western side of the wider gray trough, rather than its obvious low bend. Literal target vertex388 is a small zigzag adjacent to the larger low bend. It may correspond, but the blurred thick stroke does not independently distinguish this exact small vertex. No definite coordinate mismatch is asserted.",
+      "fitPairApproved": false,
+      "possibleNewControl": {
+        "sourcePixelApproximate": [
+          294,
+          86
+        ],
+        "targetOuterRingVertexIndex": 386,
+        "targetOsmNodeId": 684771054,
+        "targetWgs84": [
+          18.2401705,
+          46.1351487
+        ],
+        "approved": false
+      }
+    },
+    {
+      "control": "gray-corner-3",
+      "imagePixel": [
+        75,
+        151
+      ],
+      "observation": "Source marker is near the broad northwestern shoulder apex. Its form is consistent with the literal vertex467 and its neighbouring ring directions. The old/current exact boundary correspondence and absolute accuracy remain unverified.",
+      "fitPairApproved": false
+    },
+    {
+      "control": "road-crossing-1",
+      "observation": "Crop visibly places the selected box at the southbound road / red motorway crossing; raw determinant crossings and actual way references agree with the stored target. Source map does not print road references, so raw-graph identity and map reading remain interpretation evidence, not surveyed control.",
+      "absoluteAccuracyApproved": false
+    },
+    {
+      "control": "road-crossing-2",
+      "observation": "Crop visibly places the selected box at the crossroad passing through the motorway interchange loop. Stored current578 raw-way identity and crossing arithmetic are consistent. Source map has no printed578 label, so this audit does not independently establish historical road identity or survey accuracy.",
+      "absoluteAccuracyApproved": false
+    }
+  ],
+  "limitations": [
+    "Fit residuals measure agreement among assumed pairs, not the correctness of manual source-to-world correspondence.",
+    "At least two gray controls are not unambiguous distinctive corners. Their reading boxes cannot substitute for unknown correspondence uncertainty.",
+    "51 heldout gray-stroke pixels share the boundary feature with fit corners and have unverified historical/current correspondence. The maximum approximately475m discrepancy is retained.",
+    "Road-line checks are along-track ambiguous; M60 checks share the physical feature with the two fitted road crossings.",
+    "Eastern and northeastern checkpoints are outside the five-control convex hull. The assumed pixel-reading perturbation scenario gives approximately182m p95 displacement there; these are not confidence intervals or absolute error bounds.",
+    "Current OSM coordinates, old/generalised cartography and municipal map reuse permissions are not transformed into cadastral or legal authority by this numerical audit."
+  ],
+  "georeferenceModelApproved": false,
+  "automaticPrimaryApproval": false,
+  "usableForAddressAssignment": false,
+  "absoluteBoundaryAccuracyMetres": null,
+  "independentNewQuarterGeometriesCreated": 0
+}

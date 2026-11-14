@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Veszprém",
+  "reviewType": "independent_source_semantics_and_pixels",
+  "reviewDate": "2026-11-14",
+  "reviewScope": "Read-only visual assessment of the retained source PDF page14 embedded raster and page134 architectural annex. No boundaries were traced or generated.",
+  "source": {
+    "documentTitle": "Veszprém Település Arculati Kézikönyv 2019",
+    "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+    "localPdfPath": ".local/neighborhoods/supplement-originals/veszprem-tak2019.pdf",
+    "pdfSha256": "dea5b312edd534ffe5b1aca99618c5e5e346e20ad2d62a97bac8d41e15937f9b",
+    "pdfBytes": 23948899,
+    "pdfPages": 134,
+    "pdfPageOneBased": 14,
+    "printedPage": 14,
+    "embeddedImageXref": 47,
+    "embeddedImagePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+    "embeddedImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+    "embeddedImageDimensionsPixels": [
+      792,
+      1087
+    ],
+    "sourceImageCoordinateSystem": "original embedded JPEG pixels, origin top-left; x right and y down"
+  },
+  "semanticEvidence": {
+    "pageHeading": "A JELENKORI VÁROSRÉSZEK",
+    "pageTextMeaning": "Municipal decisions divide the city into official quarters. The handbook distinguishes different character areas separately because official quarters can contain several different characters.",
+    "namedOfficialQuarterCount": 16,
+    "mapHasBlueLineLegend": false,
+    "pageHasLegalBoundaryCitation": false,
+    "centralUnpartitionedLabels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      12
+    ],
+    "centralUnpartitionedMeaning": "These labels occur inside one central blue dashed outer outline, without internal blue boundary divisions assigning each named quarter an extent.",
+    "blueLineInterpretation": "The dashed blue outlines may depict settlement or built-up/cadastral extents rather than the complete official quarter boundaries. This is an interpretation, not a legend-established fact.",
+    "geometryConclusion": "The page supplies source-supported quarter names and locations, but it does not establish complete individual official quarter polygons."
+  },
+  "observations": [
+    {
+      "sourceId": 16,
+      "name": "Gyulafirátót",
+      "mainRingObservation": "The main labelled blue dashed ring is visibly closed across ordinary cartographic dash gaps.",
+      "risk": "A separate northern unlabeled ring cannot be assigned to Gyulafirátót solely from proximity. A closed depicted extent does not prove the complete official quarter boundary.",
+      "generatedGeometry": false
+    },
+    {
+      "sourceId": 13,
+      "name": "Csatár",
+      "mainRingObservation": "The labelled piece is bounded by blue dashes on the north/east and the black municipal outline on the west/south. The black boundary is source geometry, not the image frame.",
+      "risk": "The blue/black closed depicted piece still lacks a legend proving that it equals the complete official quarter.",
+      "generatedGeometry": false
+    },
+    {
+      "sourceId": 15,
+      "name": "Kádárta",
+      "mainRingObservation": "A main labelled ring and southwest tongue can be followed, with several branching dashed paths at the western junction.",
+      "risk": "Branch choice needs explicit source review. The separate southeast unlabeled island remains unassigned.",
+      "generatedGeometry": false
+    },
+    {
+      "sourceId": 11,
+      "name": "Csererdő",
+      "mainRingObservation": "A nearly closed outline is visible, but the label and eastern/southeastern branching obscure some connections.",
+      "risk": "Any closure at obscured sections would be a bounded inference and would require an explicit alternative/uncertainty record. No closure was generated.",
+      "generatedGeometry": false
+    },
+    {
+      "sourceId": 14,
+      "name": "Szabadságpuszta",
+      "mainRingObservation": "A very small outline is partly visible around the label.",
+      "risk": "The label obscures a substantial fraction of this tiny perimeter; a confident raw closed ring cannot be recovered from the visible pixels.",
+      "generatedGeometry": false
+    },
+    {
+      "sourceId": 10,
+      "name": "Jutaspuszta",
+      "mainRingObservation": "The label sits inside a protrusion of the central outer outline.",
+      "risk": "No distinct southern closure separates this labelled quarter from the central mapped extent; generating a polygon would introduce an unsupported boundary.",
+      "generatedGeometry": false
+    }
+  ],
+  "excludedAnnex": {
+    "pdfPageOneBased": 134,
+    "embeddedImageXref": 2536,
+    "embeddedImageDimensionsPixels": [
+      2480,
+      1753
+    ],
+    "meaning": "Településképi Arculati Kézikönyv 1. melléklet: architectural and land-use character map.",
+    "legendMeaning": "Architectural/land-use character categories and local protected-value boundaries, not named official quarter boundaries.",
+    "usableAsOfficialQuarterPolygons": false,
+    "reason": "The annex explicitly delineates the separate character-area schema described by page14, rather than the official quarter schema."
+  },
+  "outcome": {
+    "newPolygons": 0,
+    "worldGeoreferencingPerformed": false,
+    "sourceGapClosuresGenerated": false,
+    "proxyGeometryGenerated": false,
+    "usableForAddressAssignment": false,
+    "recommendedDisposition": "Source-only evidence and 16-name catalog; do not import settlement-piece proxies as official quarter polygons."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Veszprém",
+  "researchStatus": "source-only; unregistered; no import candidates",
+  "referencePeriod": "2019",
+  "sourceIsOfficialMunicipalDocument": true,
+  "officialBoundarySchemaProven": false,
+  "sourcePdfSha256": "dea5b312edd534ffe5b1aca99618c5e5e346e20ad2d62a97bac8d41e15937f9b",
+  "mapImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+  "scope": "Page 14 official name catalog and raster map; page 134 architectural annex checked only to exclude its distinct schema. Native primitive inventory covers 134 pages without bulk PDF text.",
+  "officialMainNames": 16,
+  "sourceSubordinateNamesAfterSlash": 7,
+  "nameCountChangeIsNotPolygonCoverage": true,
+  "literalTextMainPoint": "The city is divided into quarters by municipal decision. The handbook uses a separate character-area schema because official quarters can contain several different characters.",
+  "sourceGeometryMeaningUncertainty": "The blue dashed map has no legend. Central source labels 1–9 and 12 share one unpartitioned outline. The perimeter is consistent with built-up/cadastral or settlement-piece extents, but this is not established in source.",
+  "whyNoQuarterPolygons": "Names and map positions do not establish complete quarter extents. Central splits would be unsupported; closed outer pieces are not proven equivalent to whole official quarters.",
+  "outerPieceObservationFile": "independent-source-review.json",
+  "rejectedShortcutTypes": [
+    "Architectural character zones assigned to official quarter names",
+    "Central labels expanded through Voronoi, bounding boxes, buffers or invented split lines",
+    "Unlabeled detached extents assigned solely by proximity",
+    "Source municipal/image frame used to close missing interior quarter edges",
+    "Compound parent geometry cloned onto subordinate slash names"
+  ],
+  "newGeometries": 0,
+  "newPrimaryPolygons": 0,
+  "newPlanningPolygons": 0,
+  "newEstimatedPolygons": 0,
+  "newResearchProxyPolygons": 0,
+  "fineQuarterCoverageCredit": 0,
+  "registered": false,
+  "usableForAddressAssignment": false,
+  "worldCoordinateAccuracy": null,
+  "worldCoordinatesPresent": false,
+  "sourceMarkersAreOnlyNativePixelObservations": true,
+  "sourceMarkersUsedForWorldFit": false,
+  "sourcePixelLineWidthAndJpegUncertaintyPixelsApprox": [
+    1,
+    3
+  ],
+  "placementUncertainty": "No final world placement or geographic coordinate output is published.",
+  "openNeed": "Legend/legal annex or a source layer that establishes the 16 official quarter boundaries; preferably native GIS polygons or a georeferenced map with those distinct named extents.",
+  "rightsStatus": "Publicly downloadable municipal document; permission to reuse the text/map as application data has not been independently established.",
+  "rightsReviewRequiredBeforePublication": true,
+  "osmPbfUsedForFinalGeometry": false,
+  "osmInputDisposition": "An initial municipality-only exploratory placement used previously archived local OSM geometry. It was discarded and no OSM-derived geometry or controls are included in this source-only archive.",
+  "globalRegistryChanged": false,
+  "fullOriginalRetainedOnlyInIgnoredLocalPath": ".local/neighborhoods/supplement-originals/veszprem-tak2019.pdf",
+  "newMainNamesComparedWithRetained2014ItsCatalog": [
+    "Csererdő",
+    "Csatár"
+  ]
+}

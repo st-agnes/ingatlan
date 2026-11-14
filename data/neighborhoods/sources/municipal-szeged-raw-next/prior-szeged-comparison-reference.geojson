@@ -1,0 +1,912 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "manual:szeged:tarjanvaros-ivs-2009-2017",
+      "properties": {
+        "name": "Tarjánváros",
+        "municipality": "Szeged",
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "sourcePeriod": "IVS2009 subdivisions quoted in adopted ITS annex200/2017(IV.28), printedp96; OSM2026-11-12T21:23:05Z.",
+        "method": "Source-text road circuit polygonized from actual complete named OSM ways; every output edge is a consecutive original node edge.",
+        "sourceDocuments": [
+          {
+            "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101",
+            "documentTitle": "200/2017.(IV.28.)Kgy.sz.határozat1.sz.melléklete",
+            "printedPage": 96,
+            "retrieval": "public_web_search_indexed_text",
+            "fullPdfDownloaded": false,
+            "sourcePdfSha256": null,
+            "factualTranscript": "source-facts.json",
+            "factualTranscriptSha256": "27c323788f68cbe7eb17d96a108baa7fcd32e47ad75027c8983760b088e81469"
+          }
+        ],
+        "evidenceUrls": [
+          "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101"
+        ],
+        "sourceLineIds": [
+          "osm:way:1357141176",
+          "osm:way:1365680702",
+          "osm:way:231722388",
+          "osm:way:231722392",
+          "osm:way:231722406",
+          "osm:way:235059134",
+          "osm:way:369117748",
+          "osm:way:389927166",
+          "osm:way:390489399",
+          "osm:way:39846599",
+          "osm:way:403941598",
+          "osm:way:409575946",
+          "osm:way:415930320",
+          "osm:way:418996063",
+          "osm:way:422308870",
+          "osm:way:422308872",
+          "osm:way:422308876",
+          "osm:way:4795304",
+          "osm:way:495731241",
+          "osm:way:651528139",
+          "osm:way:661051849",
+          "osm:way:661051850",
+          "osm:way:717953002",
+          "osm:way:717953003",
+          "osm:way:717953004",
+          "osm:way:717953005",
+          "osm:way:718024901",
+          "osm:way:718024902",
+          "osm:way:718024903",
+          "osm:way:78360283",
+          "osm:way:83195771",
+          "osm:way:911780453",
+          "osm:way:936405126"
+        ],
+        "sourceNameEvidence": {
+          "status": "municipal_source_era_name",
+          "currentExactFootprintConfirmed": false
+        },
+        "quality": "source-described-historical-street-circuit",
+        "estimated": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "geometryVerificationStatus": "source_circuit_reproduced_not_surveyed",
+        "reviewStatus": "independent_review_required",
+        "reviewNotes": [
+          "The2017 municipality document explicitly describes the whole named Tarjánváros subdivision, separately from the smaller Belső-Tarján action area.",
+          "This reproduces the2009/2017 IVS footprint. A2019 city-library historian defines the current Tarján housing estate differently, using Retek utca and Murányi utca. The source-era footprint is not silently asserted to be today’s estate boundary.",
+          "The underlying text is a municipal source; this derived geometry is not an official municipal GIS or legal boundary.",
+          "Road centerlines and divided carriageways are approximations to broadly stated corridors. Exact parcel-side limits and absolute accuracy remain unknown.",
+          "No clipping, buffer, Voronoi, hull, snapping, arbitrary connector or geometry repair is used."
+        ],
+        "areaM2": 924140.6376985968,
+        "perimeterM": 3884.275319887276,
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors; factual subdivision descriptions Szeged MJV ITS2017,p96."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.1645394,
+              46.2752513
+            ],
+            [
+              20.1651397,
+              46.2755232
+            ],
+            [
+              20.1653387,
+              46.275626
+            ],
+            [
+              20.1654562,
+              46.2756912
+            ],
+            [
+              20.1655576,
+              46.2757548
+            ],
+            [
+              20.1657069,
+              46.2758566
+            ],
+            [
+              20.1658509,
+              46.2759769
+            ],
+            [
+              20.1659597,
+              46.2759242
+            ],
+            [
+              20.1659756,
+              46.2759148
+            ],
+            [
+              20.1660202,
+              46.2758884
+            ],
+            [
+              20.1661068,
+              46.2758373
+            ],
+            [
+              20.1661802,
+              46.2757982
+            ],
+            [
+              20.1662328,
+              46.2757596
+            ],
+            [
+              20.1663566,
+              46.2756683
+            ],
+            [
+              20.1667413,
+              46.2753234
+            ],
+            [
+              20.1669893,
+              46.2751108
+            ],
+            [
+              20.1676314,
+              46.2745282
+            ],
+            [
+              20.167935,
+              46.2742425
+            ],
+            [
+              20.1679881,
+              46.2741915
+            ],
+            [
+              20.1681288,
+              46.2740052
+            ],
+            [
+              20.1683436,
+              46.2737115
+            ],
+            [
+              20.1686261,
+              46.2730352
+            ],
+            [
+              20.168946,
+              46.2720862
+            ],
+            [
+              20.1690815,
+              46.2715245
+            ],
+            [
+              20.1691349,
+              46.2711807
+            ],
+            [
+              20.1692483,
+              46.2707657
+            ],
+            [
+              20.1692678,
+              46.2707101
+            ],
+            [
+              20.169336,
+              46.2705545
+            ],
+            [
+              20.1694457,
+              46.2702881
+            ],
+            [
+              20.1697399,
+              46.2697845
+            ],
+            [
+              20.1700352,
+              46.2694075
+            ],
+            [
+              20.1702419,
+              46.2691437
+            ],
+            [
+              20.1706483,
+              46.268641
+            ],
+            [
+              20.170771,
+              46.2684753
+            ],
+            [
+              20.1713559,
+              46.2677383
+            ],
+            [
+              20.171369,
+              46.2676801
+            ],
+            [
+              20.1714595,
+              46.267557
+            ],
+            [
+              20.1714924,
+              46.2675024
+            ],
+            [
+              20.1703855,
+              46.2672571
+            ],
+            [
+              20.1702844,
+              46.2672356
+            ],
+            [
+              20.1696211,
+              46.2670917
+            ],
+            [
+              20.1688933,
+              46.2669337
+            ],
+            [
+              20.1682353,
+              46.2667968
+            ],
+            [
+              20.1680201,
+              46.2667704
+            ],
+            [
+              20.1678621,
+              46.266748
+            ],
+            [
+              20.1677407,
+              46.2667278
+            ],
+            [
+              20.1675343,
+              46.2666873
+            ],
+            [
+              20.1674524,
+              46.2666689
+            ],
+            [
+              20.1674381,
+              46.2666742
+            ],
+            [
+              20.1674209,
+              46.2666803
+            ],
+            [
+              20.1673802,
+              46.2666874
+            ],
+            [
+              20.1673382,
+              46.266688
+            ],
+            [
+              20.1672971,
+              46.2666819
+            ],
+            [
+              20.1672591,
+              46.2666696
+            ],
+            [
+              20.167226,
+              46.2666517
+            ],
+            [
+              20.1671998,
+              46.266629
+            ],
+            [
+              20.1671767,
+              46.2665914
+            ],
+            [
+              20.1671402,
+              46.2665353
+            ],
+            [
+              20.1671025,
+              46.2664957
+            ],
+            [
+              20.1669503,
+              46.2663943
+            ],
+            [
+              20.1667107,
+              46.2661898
+            ],
+            [
+              20.1665673,
+              46.2660355
+            ],
+            [
+              20.1662609,
+              46.2656887
+            ],
+            [
+              20.1661062,
+              46.265492
+            ],
+            [
+              20.165585,
+              46.264934
+            ],
+            [
+              20.1651794,
+              46.2644923
+            ],
+            [
+              20.1649674,
+              46.2643077
+            ],
+            [
+              20.1647474,
+              46.2640772
+            ],
+            [
+              20.164695,
+              46.2640262
+            ],
+            [
+              20.1646627,
+              46.2639935
+            ],
+            [
+              20.1646266,
+              46.2639948
+            ],
+            [
+              20.1646069,
+              46.2639924
+            ],
+            [
+              20.164588,
+              46.2639877
+            ],
+            [
+              20.1645705,
+              46.2639809
+            ],
+            [
+              20.1645548,
+              46.2639723
+            ],
+            [
+              20.1645415,
+              46.2639619
+            ],
+            [
+              20.1644352,
+              46.2640136
+            ],
+            [
+              20.1642659,
+              46.2640918
+            ],
+            [
+              20.1640802,
+              46.2641631
+            ],
+            [
+              20.1639515,
+              46.264183
+            ],
+            [
+              20.1635694,
+              46.2641907
+            ],
+            [
+              20.1626378,
+              46.2642109
+            ],
+            [
+              20.1624603,
+              46.2642147
+            ],
+            [
+              20.1623461,
+              46.264218
+            ],
+            [
+              20.161242,
+              46.2642503
+            ],
+            [
+              20.1605427,
+              46.2642631
+            ],
+            [
+              20.1602746,
+              46.2642685
+            ],
+            [
+              20.1596361,
+              46.2642814
+            ],
+            [
+              20.1595536,
+              46.2642835
+            ],
+            [
+              20.1590635,
+              46.2642957
+            ],
+            [
+              20.1584336,
+              46.2643092
+            ],
+            [
+              20.1582212,
+              46.2643138
+            ],
+            [
+              20.1578544,
+              46.264322
+            ],
+            [
+              20.1576244,
+              46.2643272
+            ],
+            [
+              20.1576244,
+              46.2643749
+            ],
+            [
+              20.1576194,
+              46.2646276
+            ],
+            [
+              20.1576108,
+              46.2650578
+            ],
+            [
+              20.1576016,
+              46.2657466
+            ],
+            [
+              20.1575923,
+              46.2664396
+            ],
+            [
+              20.1575884,
+              46.2665767
+            ],
+            [
+              20.1575835,
+              46.2666838
+            ],
+            [
+              20.1575691,
+              46.2669732
+            ],
+            [
+              20.1575504,
+              46.2673505
+            ],
+            [
+              20.1575311,
+              46.2677393
+            ],
+            [
+              20.1575173,
+              46.268454
+            ],
+            [
+              20.1575603,
+              46.2686634
+            ],
+            [
+              20.1576397,
+              46.2688919
+            ],
+            [
+              20.1576839,
+              46.2690129
+            ],
+            [
+              20.1578601,
+              46.2694552
+            ],
+            [
+              20.1580961,
+              46.2700571
+            ],
+            [
+              20.1587661,
+              46.271718
+            ],
+            [
+              20.1587841,
+              46.2717626
+            ],
+            [
+              20.1587898,
+              46.271775
+            ],
+            [
+              20.1589588,
+              46.2721439
+            ],
+            [
+              20.1591451,
+              46.2724687
+            ],
+            [
+              20.1592392,
+              46.2725928
+            ],
+            [
+              20.1593303,
+              46.272687
+            ],
+            [
+              20.1594191,
+              46.2727614
+            ],
+            [
+              20.1594819,
+              46.2728219
+            ],
+            [
+              20.1595734,
+              46.2728964
+            ],
+            [
+              20.1598488,
+              46.2730745
+            ],
+            [
+              20.1601332,
+              46.2732465
+            ],
+            [
+              20.160291,
+              46.2733297
+            ],
+            [
+              20.1605862,
+              46.2734748
+            ],
+            [
+              20.161734,
+              46.2739979
+            ],
+            [
+              20.1621707,
+              46.2742004
+            ],
+            [
+              20.1623275,
+              46.2742676
+            ],
+            [
+              20.1638566,
+              46.2749415
+            ],
+            [
+              20.1645394,
+              46.2752513
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:szeged:felsovarosi-ivs-2009-2017",
+      "properties": {
+        "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+        "municipality": "Szeged",
+        "boundaryKind": "planning_unit",
+        "canonicalNameIsNeighborhood": false,
+        "sourcePeriod": "IVS2009 subdivisions quoted in adopted ITS annex200/2017(IV.28), printedp96; OSM2026-11-12T21:23:05Z.",
+        "method": "Source-text road circuit polygonized from actual complete named OSM ways; every output edge is a consecutive original node edge.",
+        "sourceDocuments": [
+          {
+            "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101",
+            "documentTitle": "200/2017.(IV.28.)Kgy.sz.határozat1.sz.melléklete",
+            "printedPage": 96,
+            "retrieval": "public_web_search_indexed_text",
+            "fullPdfDownloaded": false,
+            "sourcePdfSha256": null,
+            "factualTranscript": "source-facts.json",
+            "factualTranscriptSha256": "27c323788f68cbe7eb17d96a108baa7fcd32e47ad75027c8983760b088e81469"
+          }
+        ],
+        "evidenceUrls": [
+          "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101"
+        ],
+        "sourceLineIds": [
+          "osm:way:1068477371",
+          "osm:way:1070139150",
+          "osm:way:1365680702",
+          "osm:way:231722400",
+          "osm:way:231722407",
+          "osm:way:284482222",
+          "osm:way:367018057",
+          "osm:way:367018058",
+          "osm:way:367018059",
+          "osm:way:367018061",
+          "osm:way:367455675",
+          "osm:way:39846599",
+          "osm:way:4435580",
+          "osm:way:618078792",
+          "osm:way:647402316",
+          "osm:way:647402318",
+          "osm:way:718024899",
+          "osm:way:718024900",
+          "osm:way:756567924",
+          "osm:way:759435666"
+        ],
+        "sourceNameEvidence": {
+          "status": "municipal_source_era_name",
+          "currentExactFootprintConfirmed": false
+        },
+        "quality": "source-described-historical-street-circuit",
+        "estimated": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "geometryVerificationStatus": "source_circuit_reproduced_not_surveyed",
+        "reviewStatus": "independent_review_required",
+        "reviewNotes": [
+          "The2017 ITS numbers this circuit as a named subdivision of the Felsőváros macro unit.",
+          "The name/footprint relation conflicts with a municipal concept document: the same four-road area is described as a suburban/garden area, while the housing estate is described farther out. It remains a historical planning subdivision, excluded from verified current-neighborhood counts.",
+          "The underlying text is a municipal source; this derived geometry is not an official municipal GIS or legal boundary.",
+          "Road centerlines and divided carriageways are approximations to broadly stated corridors. Exact parcel-side limits and absolute accuracy remain unknown.",
+          "No clipping, buffer, Voronoi, hull, snapping, arbitrary connector or geometry repair is used."
+        ],
+        "areaM2": 164604.83965526405,
+        "perimeterM": 1643.640754770146,
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors; factual subdivision descriptions Szeged MJV ITS2017,p96."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.161508,
+              46.2604605
+            ],
+            [
+              20.1614145,
+              46.2603496
+            ],
+            [
+              20.1612184,
+              46.2604161
+            ],
+            [
+              20.1608917,
+              46.2605151
+            ],
+            [
+              20.1602546,
+              46.2606923
+            ],
+            [
+              20.1601299,
+              46.2607256
+            ],
+            [
+              20.1594118,
+              46.2609268
+            ],
+            [
+              20.1590659,
+              46.2610237
+            ],
+            [
+              20.1583174,
+              46.2612501
+            ],
+            [
+              20.1581213,
+              46.2613034
+            ],
+            [
+              20.1578923,
+              46.2613598
+            ],
+            [
+              20.1577253,
+              46.2613905
+            ],
+            [
+              20.1577412,
+              46.261539
+            ],
+            [
+              20.1577295,
+              46.2617928
+            ],
+            [
+              20.1577144,
+              46.2621143
+            ],
+            [
+              20.157681,
+              46.2629512
+            ],
+            [
+              20.157651,
+              46.2636958
+            ],
+            [
+              20.1576357,
+              46.2640591
+            ],
+            [
+              20.1576244,
+              46.2643272
+            ],
+            [
+              20.1578544,
+              46.264322
+            ],
+            [
+              20.1582212,
+              46.2643138
+            ],
+            [
+              20.1584336,
+              46.2643092
+            ],
+            [
+              20.1590635,
+              46.2642957
+            ],
+            [
+              20.1595536,
+              46.2642835
+            ],
+            [
+              20.1596361,
+              46.2642814
+            ],
+            [
+              20.1602746,
+              46.2642685
+            ],
+            [
+              20.1605427,
+              46.2642631
+            ],
+            [
+              20.161242,
+              46.2642503
+            ],
+            [
+              20.1623461,
+              46.264218
+            ],
+            [
+              20.1624603,
+              46.2642147
+            ],
+            [
+              20.1626378,
+              46.2642109
+            ],
+            [
+              20.1635694,
+              46.2641907
+            ],
+            [
+              20.1639515,
+              46.264183
+            ],
+            [
+              20.1640802,
+              46.2641631
+            ],
+            [
+              20.1642659,
+              46.2640918
+            ],
+            [
+              20.1644352,
+              46.2640136
+            ],
+            [
+              20.1645415,
+              46.2639619
+            ],
+            [
+              20.1645282,
+              46.2639465
+            ],
+            [
+              20.16452,
+              46.2639296
+            ],
+            [
+              20.1645172,
+              46.2639119
+            ],
+            [
+              20.1645212,
+              46.2638903
+            ],
+            [
+              20.1644412,
+              46.2637823
+            ],
+            [
+              20.1642638,
+              46.2635792
+            ],
+            [
+              20.1641856,
+              46.2634668
+            ],
+            [
+              20.1640807,
+              46.2633101
+            ],
+            [
+              20.1640486,
+              46.2632611
+            ],
+            [
+              20.1630063,
+              46.2621268
+            ],
+            [
+              20.1627605,
+              46.2618373
+            ],
+            [
+              20.1626368,
+              46.2616819
+            ],
+            [
+              20.1625347,
+              46.2615812
+            ],
+            [
+              20.1624591,
+              46.2615041
+            ],
+            [
+              20.1623177,
+              46.261359
+            ],
+            [
+              20.1620565,
+              46.2610661
+            ],
+            [
+              20.1616993,
+              46.2606772
+            ],
+            [
+              20.161508,
+              46.2604605
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

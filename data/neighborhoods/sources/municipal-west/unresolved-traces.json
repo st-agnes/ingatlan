@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "notProduced": [
+    {
+      "city": "Szombathely",
+      "name": "Oladi lakótelep",
+      "reason": "Official2013 circuit names Perint, but current Perint is229m from Simon István utca and536m from Dolgozók útja. Source map interpretation needed; no arbitrary connector inserted."
+    },
+    {
+      "city": "Szombathely",
+      "name": "Derkovits lakótelep",
+      "reason": "Bolyai János utca and Bartók Béla körút are34m apart; available named-road network detours689m. Unnamed crossing geometry or authoritative junction interpretation needed."
+    },
+    {
+      "city": "Sopron",
+      "name": "statutory planning partitions",
+      "reason": "Two-page vector map preserved by root. Individual vernacular-neighborhood boundaries not identical to these broader legal partitions; no unsupported split produced."
+    },
+    {
+      "city": "Tatabánya",
+      "name": "other mapped names",
+      "reason": "Several colored strokes are open/shared, or contain multiple named labels. Only four unambiguous closed residential source paths exported."
+    }
+  ],
+  "producedCounts": {
+    "Szombathely": 1,
+    "Tata": 9,
+    "Tatabánya": 4
+  },
+  "addressAssignmentEnabled": false
+}

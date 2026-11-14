@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "scope": "Only after completing and archiving the independent manual measurements, compare them with the producer NCC image affine. No observation or uncertainty width is changed to the model. No geographic model is consulted.",
+  "manualObservationFileSha256": "051b0bd966ed63c797e32d1dc4e62a8697c6256fd9cce063f38d64af36e18842",
+  "imageRegistrationFileSha256": "0b47627d71b70a76988b0b70dac111759a76d8a32fc0d94471f701fecb33e578",
+  "manualMeasurementsMadeBeforeNccModelRead": true,
+  "manualMeasurementsOrWindowsAdjustedToFitModel": false,
+  "records": [
+    {
+      "id": "retail-roof-nw-four-boxes",
+      "manualFigure79Pixel": [
+        684,
+        1158
+      ],
+      "manualFigure78Pixel": [
+        278,
+        502
+      ],
+      "nccModelPredictedFigure78Pixel": [
+        277.50562545089076,
+        501.1159155452632
+      ],
+      "modelMinusManualTargetPixels": [
+        -0.4943745491092386,
+        -0.8840844547368079
+      ],
+      "euclideanDisagreementTargetPixels": 1.0129222664717377,
+      "combinedManualInterpretationHalfWidthsTargetPixels": [
+        2.8337062597982348,
+        2.8316057894690303
+      ],
+      "insidePreviouslyDeclaredManualInterpretationBoxes": true
+    },
+    {
+      "id": "eastern-small-pale-house-roof",
+      "manualFigure79Pixel": [
+        1458,
+        1127
+      ],
+      "manualFigure78Pixel": [
+        967,
+        474
+      ],
+      "nccModelPredictedFigure78Pixel": [
+        965.5811489239422,
+        473.73645748740205
+      ],
+      "modelMinusManualTargetPixels": [
+        -1.4188510760577628,
+        -0.2635425125979509
+      ],
+      "euclideanDisagreementTargetPixels": 1.4431192022756514,
+      "combinedManualInterpretationHalfWidthsTargetPixels": [
+        4.722843766330392,
+        4.719342982448383
+      ],
+      "insidePreviouslyDeclaredManualInterpretationBoxes": true
+    },
+    {
+      "id": "western-roundabout-green-island",
+      "manualFigure79Pixel": [
+        407,
+        1124
+      ],
+      "manualFigure78Pixel": [
+        33,
+        475
+      ],
+      "nccModelPredictedFigure78Pixel": [
+        31.263470121648368,
+        470.89047090116617
+      ],
+      "modelMinusManualTargetPixels": [
+        -1.7365298783516323,
+        -4.109529098833832
+      ],
+      "euclideanDisagreementTargetPixels": 4.461363629269636,
+      "combinedManualInterpretationHalfWidthsTargetPixels": [
+        5.6674125195964695,
+        5.663211578938061
+      ],
+      "insidePreviouslyDeclaredManualInterpretationBoxes": true
+    },
+    {
+      "id": "larger-blue-hall-roof",
+      "manualFigure79Pixel": [
+        432,
+        1075
+      ],
+      "manualFigure78Pixel": [
+        56,
+        426
+      ],
+      "nccModelPredictedFigure78Pixel": [
+        53.49568404065633,
+        427.40425431401366
+      ],
+      "modelMinusManualTargetPixels": [
+        -2.5043159593436712,
+        1.4042543140136559
+      ],
+      "euclideanDisagreementTargetPixels": 2.871154576585764,
+      "combinedManualInterpretationHalfWidthsTargetPixels": [
+        3.778275013064313,
+        3.7754743859587068
+      ],
+      "insidePreviouslyDeclaredManualInterpretationBoxes": true
+    }
+  ],
+  "allInsidePreviouslyDeclaredManualInterpretation": true,
+  "globalGeographicRegistrationVerified": false,
+  "outsideObservedImageOverlapValidated": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

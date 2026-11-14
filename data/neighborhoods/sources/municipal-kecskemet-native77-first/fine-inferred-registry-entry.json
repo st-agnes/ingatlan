@@ -1,0 +1,21 @@
+{
+  "id": "kecskemet-native77-fine-inferred",
+  "path": "data/neighborhoods/sources/municipal-kecskemet-native77-first/fine-inferred.geojson",
+  "sha256": "08e0b715176fa8b3bd1b804508d46ae6fd0efad72b9ec27eedde4846a33dd1a8",
+  "municipality": "Kecskemét",
+  "featureCount": 3,
+  "method": "Literal decimal m/l paths from the original municipal PDF Figure 77 Form stream. Only original nonzero line segments are polygonized, independently per source stroke object; no noding, buffer, repair, snap, simplification, image-frame closure or invented connecting edge. The central source cell retains both original holes. Six manually interpreted historical-map road junctions and literal current OSM-node coordinates fit an affine transform in EOV/EPSG:23700; a candidate southern road-junction/cycleway attachment is held out, with physical identity unconfirmed. Geographic placement is an explicit unverified estimate. Source contours are transformed to WGS84 without replacing them by current roads.",
+  "evidenceUrls": [
+    "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+  ],
+  "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name points.",
+  "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-native77-first/independent-review.json",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false
+  },
+  "rightsStatus": "Publicly published municipal consultation draft; open reuse rights not independently established."
+}

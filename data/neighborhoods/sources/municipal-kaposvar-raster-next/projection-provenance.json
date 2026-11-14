@@ -1,0 +1,8 @@
+{
+  "metricCrs": "EPSG:23700",
+  "outputCrs": "EPSG:4326",
+  "actualInverseProjectionPipeline": "proj=pipeline step inv proj=somerc lat_0=47.1443937222222 lon_0=19.0485717777778 k_0=0.99993 x_0=650000 y_0=200000 ellps=GRS67 step proj=push v_3 step proj=cart ellps=GRS67 step proj=helmert x=52.17 y=-71.82 z=-14.9 step inv proj=cart ellps=WGS84 step proj=pop v_3 step proj=unitconvert xy_in=rad xy_out=deg",
+  "libraryDatumOperationAccuracyMetadataM": 1.0,
+  "metadataNotSourceBoundaryAccuracy": true,
+  "claimedAbsoluteAccuracyMetres": null
+}

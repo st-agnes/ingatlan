@@ -1,0 +1,1167 @@
+{
+  "schemaVersion": 1,
+  "scope": "Offline independent audit of the remaining country OSM candidates; no geometry edits and no new sources fetched.",
+  "sourceSnapshot": {
+    "pbfPath": ".local/neighborhoods/hungary-latest.osm.pbf",
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "osmTimestamp": "2026-11-12T21:23:05Z"
+  },
+  "inputs": [
+    {
+      "path": ".local/neighborhoods/country-associated/polygons.geojson",
+      "sha256": "555f12d1537c5df370477c4547723d4501bf030835fe758ff72cf9bed8a58683"
+    },
+    {
+      "path": ".local/neighborhoods/country-associated/municipalities.geojson",
+      "sha256": "b9cf74fc6a3a4769f7f4e4d01497fa217c7ee79dfc1c55f1fa6c66eabe281d56"
+    },
+    {
+      "path": ".local/neighborhoods/country-associated/named-nodes.geojson",
+      "sha256": "05c02b8ac8f32df2d917e01f6de81c6133c5e7dd527114f67000b43467a3a048"
+    },
+    {
+      "path": ".local/neighborhoods/country-associated/audit.json",
+      "sha256": "98a7e091ba55646331edd13e2d18d390ae3342d9ca9506877e8257f5d40184db"
+    },
+    {
+      "path": ".local/neighborhoods/continuation-place-node-proof.json",
+      "sha256": "b5ce8683acc1818ea867feebcf53534c5200ea95c02ef26948fb7be99226d2b4"
+    },
+    {
+      "path": "data/neighborhoods/nationwide-inventory.json",
+      "sha256": "1edeb27c215ef5b1f91aba0ed32d2bb951272b4c14693933cf06ec7f70996075"
+    },
+    {
+      "path": "data/neighborhoods/catalog.geojson",
+      "sha256": "58193a56bc517e343f13331de027ea24ad18f7b48c23e3daf1209958c0f21743"
+    },
+    {
+      "path": "data/neighborhoods/osm-association-audit.json",
+      "sha256": "7560986cace38e3f792c049f4cb56c604ed3594f198b310430aa1a033dcbc768"
+    }
+  ],
+  "areaMethod": "Exact original WGS84 polygon intersections; areas projected to ETRS89/LAEA Europe EPSG:3035. Area ratios are area ratios, not vertex ratios.",
+  "summary": {
+    "rawSourcePolygons": 440,
+    "unresolvedPolygons": 21,
+    "domesticBoundaryCrossingPolygons": 9,
+    "foreignBorderPolygons": 12,
+    "rejectedSourceCandidates": 786,
+    "rejectedPlaceNeighborhoodCandidates": 0,
+    "additionalPlaceNodesScanned": 20259,
+    "newFineQuarterAssociationCandidates": 3,
+    "alreadyPresentAssociationCandidate": 1,
+    "outlyingSettlementPartCandidates": 2,
+    "nameEvidenceStillInsufficient": 2,
+    "existingIndustrialSemanticExclusion": 1
+  },
+  "interpretation": [
+    "Three potential new fine-quarter source associations: Csenger Piac and Berekalja; Dorog Akna. They require explicit documented crossing-boundary overrides, not a relaxed bulk overlap threshold.",
+    "Two independently KSH-supported outlying areas must retain their KSH category and cannot silently count as urban quarters.",
+    "OSM label nodes are separate source objects but not an independent data provider or official municipal corroboration.",
+    "All12 foreign-border polygons remain excluded. No automatic clipping, snapping, ring repair, invented closing edges or address-assignment enablement was performed."
+  ],
+  "records": [
+    {
+      "id": "osm:relation:12198768",
+      "name": "Felsőjárás tanya",
+      "sourceTags": {
+        "admin_level": "10",
+        "boundary": "administrative",
+        "name": "Felsőjárás tanya",
+        "type": "boundary"
+      },
+      "sourceGeometrySha256": "8b16e9718a36ec64d68b02e61f1ca6eaceb8be7ee312947823a36f98829fbb63",
+      "geometryChanged": false,
+      "polygonAreaM2": 22208715.733,
+      "candidateParents": [
+        {
+          "municipality": "Orgovány",
+          "municipalitySourceId": "osm:relation:1130371",
+          "kshCode": "16939",
+          "overlapAreaM2": 22134402.915,
+          "polygonOverlapFraction": 0.9966538894294669,
+          "outsideParentAreaM2": 74313.244,
+          "fullContainment": false
+        },
+        {
+          "municipality": "Páhi",
+          "municipalitySourceId": "osm:relation:1130352",
+          "kshCode": "18670",
+          "overlapAreaM2": 57799.832,
+          "polygonOverlapFraction": 0.002602574281448993,
+          "outsideParentAreaM2": 22150916.335,
+          "fullContainment": false
+        },
+        {
+          "municipality": "Izsák",
+          "municipalitySourceId": "osm:relation:1130360",
+          "kshCode": "21999",
+          "overlapAreaM2": 16513.412,
+          "polygonOverlapFraction": 0.0007435554532330946,
+          "outsideParentAreaM2": 22192202.312,
+          "fullContainment": false
+        }
+      ],
+      "separatePointEvidence": [
+        {
+          "polygonId": "osm:relation:12198768",
+          "nodeId": "osm:node:8119491294",
+          "coordinates": [
+            19.4361454,
+            46.7475033
+          ],
+          "tags": {
+            "name": "Felsőjárás",
+            "official_name": "Felsőjárás tanya",
+            "place": "neighbourhood",
+            "wikipedia": "hu:Orgovány"
+          },
+          "objectVersion": 2,
+          "objectTimestamp": "2023-06-17 18:48:03+00:00",
+          "sameNameOrExplicitAlias": true,
+          "coveringCanonicalMunicipalities": [
+            "Orgovány"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        }
+      ],
+      "kshPartEvidence": [
+        {
+          "id": "ksh-hnt-2026:part:8744",
+          "name": "Felsőjárás",
+          "category": "outlying_area",
+          "sourceRow": 8744,
+          "sourceMunicipalityName": "Orgovány",
+          "sourceKshCode": "16939",
+          "postalCode": "6077"
+        }
+      ],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "source_supported_parent_but_outlying_settlement_part",
+      "explanation": "KSH explicitly lists Felsőjárás under Orgovány; inside label adds official_name=Felsőjárás tanya. Retain outlying category, not an urban-neighborhood completeness claim.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:relation:12339502",
+      "name": "Mezővári",
+      "sourceTags": {
+        "admin_level": "9",
+        "boundary": "administrative",
+        "koatuu": "2120481601",
+        "name": "Вари",
+        "name:en": "Vary",
+        "name:hu": "Mezővári",
+        "name:prefix": "село",
+        "name:ru": "Вары",
+        "name:uk": "Вари",
+        "place": "village",
+        "population": "3147",
+        "postal_code": "90255",
+        "source:boundary": "cadastre",
+        "type": "boundary",
+        "wikidata": "Q546133",
+        "wikipedia": "uk:Вари"
+      },
+      "sourceGeometrySha256": "10da1e3226ab6ca360e714715f2c232b71c6c6476700c3d17901d520a88b869e",
+      "geometryChanged": false,
+      "polygonAreaM2": 5915972.983,
+      "candidateParents": [],
+      "separatePointEvidence": [],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "foreign_border_feature_keep_excluded",
+      "explanation": "No intersection with any of the 3155 canonical Hungarian municipality polygons.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:relation:15865189",
+      "name": "Ipari- gazdasági terület",
+      "sourceTags": {
+        "name": "Ipari- gazdasági terület",
+        "place": "suburb",
+        "type": "multipolygon"
+      },
+      "sourceGeometrySha256": "ed07f5efcde1693a866ddb70ffeb009de2e9c0bae393fe5f756a21f7bdba2715",
+      "geometryChanged": false,
+      "polygonAreaM2": 981990.584,
+      "candidateParents": [
+        {
+          "municipality": "Dorog",
+          "municipalitySourceId": "osm:relation:1027821",
+          "kshCode": "10490",
+          "overlapAreaM2": 979757.996,
+          "polygonOverlapFraction": 0.9977264663489339,
+          "outsideParentAreaM2": 2232.552,
+          "fullContainment": false
+        },
+        {
+          "municipality": "Esztergom",
+          "municipalitySourceId": "osm:relation:1027785",
+          "kshCode": "25131",
+          "overlapAreaM2": 2232.552,
+          "polygonOverlapFraction": 0.0022734962550549917,
+          "outsideParentAreaM2": 979757.996,
+          "fullContainment": false
+        }
+      ],
+      "separatePointEvidence": [
+        {
+          "polygonId": "osm:relation:15865189",
+          "nodeId": "osm:node:9164869511",
+          "coordinates": [
+            18.722197,
+            47.7255352
+          ],
+          "tags": {
+            "name": "Ipari- gazdasági terület",
+            "place": "suburb"
+          },
+          "objectVersion": 1,
+          "objectTimestamp": "2021-10-11 12:42:06+00:00",
+          "sameNameOrExplicitAlias": true,
+          "coveringCanonicalMunicipalities": [
+            "Dorog"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        }
+      ],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": "exclude",
+      "recommendation": "retain_existing_semantic_exclusion",
+      "explanation": "Existing manual audit explicitly excludes the industrial area pending neighborhood-name corroboration. Inside OSM label and strong Dorog overlap do not override that semantic decision.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:relation:19565904",
+      "name": "Katastralgemeinde Loipersbach",
+      "sourceTags": {
+        "admin_level": "10",
+        "admin_title": "Katastralgemeinde",
+        "boundary": "administrative",
+        "designation": "Katastralgemeinde",
+        "name": "Katastralgemeinde Loipersbach",
+        "official_name": "Loipersbach",
+        "official_status": "Katastralgemeinde",
+        "ref:at:gkz": "10604",
+        "ref:at:kgnr": "30107",
+        "type": "boundary",
+        "wikidata": "Q133898079"
+      },
+      "sourceGeometrySha256": "3784ec6720ed74aa5235eccc46dc2f227fc23012c6064b995c92df4cf0275c0a",
+      "geometryChanged": false,
+      "polygonAreaM2": 7907244.686,
+      "candidateParents": [],
+      "separatePointEvidence": [],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "foreign_border_feature_keep_excluded",
+      "explanation": "No intersection with any of the 3155 canonical Hungarian municipality polygons.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:relation:19601410",
+      "name": "Katastralgemeinde Luising",
+      "sourceTags": {
+        "admin_level": "10",
+        "admin_title": "Katastralgemeinde",
+        "boundary": "administrative",
+        "designation": "Katastralgemeinde",
+        "name": "Katastralgemeinde Luising",
+        "official_name": "Luising",
+        "official_status": "Katastralgemeinde",
+        "ref:at:gkz": "10407",
+        "ref:at:kgnr": "31028",
+        "type": "boundary",
+        "wikidata": "Q134279397"
+      },
+      "sourceGeometrySha256": "a94dae0e8e8142fe1ca85694355d5192bb1f7a65a9776275c928a5ae2520baac",
+      "geometryChanged": false,
+      "polygonAreaM2": 2707296.099,
+      "candidateParents": [],
+      "separatePointEvidence": [],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "foreign_border_feature_keep_excluded",
+      "explanation": "No intersection with any of the 3155 canonical Hungarian municipality polygons.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:relation:19601412",
+      "name": "Katastralgemeinde Hagensdorf im Burgenland",
+      "sourceTags": {
+        "admin_level": "10",
+        "admin_title": "Katastralgemeinde",
+        "boundary": "administrative",
+        "designation": "Katastralgemeinde",
+        "name": "Katastralgemeinde Hagensdorf im Burgenland",
+        "official_name": "Hagensdorf im Burgenland",
+        "official_status": "Katastralgemeinde",
+        "ref:at:gkz": "10407",
+        "ref:at:kgnr": "31016",
+        "type": "boundary",
+        "wikidata": "Q134279383"
+      },
+      "sourceGeometrySha256": "dc03789b26d6e95f2fb095f7912570740e2eda5dbb8d583e4843c22cd3240d61",
+      "geometryChanged": false,
+      "polygonAreaM2": 9876419.92,
+      "candidateParents": [],
+      "separatePointEvidence": [],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "foreign_border_feature_keep_excluded",
+      "explanation": "No intersection with any of the 3155 canonical Hungarian municipality polygons.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:relation:20978683",
+      "name": "Katastralgemeinde Tschanigraben",
+      "sourceTags": {
+        "admin_level": "10",
+        "admin_title": "Katastralgemeinde",
+        "boundary": "administrative",
+        "designation": "Katastralgemeinde",
+        "name": "Katastralgemeinde Tschanigraben",
+        "official_name": "Tschanigraben",
+        "official_status": "Katastralgemeinde",
+        "ref:at:gkz": "10423",
+        "ref:at:kgnr": "31053",
+        "type": "boundary",
+        "wikidata": "Q133897665"
+      },
+      "sourceGeometrySha256": "07d088c9bfcbc5cc1373772b5f2edab41741fbc6ef03e1bf050070ea9a0e255f",
+      "geometryChanged": false,
+      "polygonAreaM2": 1709140.088,
+      "candidateParents": [],
+      "separatePointEvidence": [],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "foreign_border_feature_keep_excluded",
+      "explanation": "No intersection with any of the 3155 canonical Hungarian municipality polygons.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:relation:20984347",
+      "name": "Katastralgemeinde Ritzing",
+      "sourceTags": {
+        "admin_level": "10",
+        "admin_title": "Katastralgemeinde",
+        "boundary": "administrative",
+        "designation": "Katastralgemeinde",
+        "name": "Katastralgemeinde Ritzing",
+        "official_name": "Ritzing",
+        "official_status": "Katastralgemeinde",
+        "ref:at:gkz": "10820",
+        "ref:at:kgnr": "33049",
+        "type": "boundary",
+        "wikidata": "Q134380333"
+      },
+      "sourceGeometrySha256": "ff6c7e090b1f5434ceb7a3fb36445d01834a5186a1c8c2ef116af30058b14627",
+      "geometryChanged": false,
+      "polygonAreaM2": 17699215.553,
+      "candidateParents": [],
+      "separatePointEvidence": [],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "foreign_border_feature_keep_excluded",
+      "explanation": "No intersection with any of the 3155 canonical Hungarian municipality polygons.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:relation:21213656",
+      "name": "Katastralgemeinde Klingenbach",
+      "sourceTags": {
+        "admin_level": "10",
+        "admin_title": "Katastralgemeinde",
+        "boundary": "administrative",
+        "designation": "Katastralgemeinde",
+        "name": "Katastralgemeinde Klingenbach",
+        "official_name": "Klingenbach",
+        "official_status": "Katastralgemeinde",
+        "ref:at:gkz": "10305",
+        "ref:at:kgnr": "30009",
+        "type": "boundary",
+        "wikidata": "Q133898284"
+      },
+      "sourceGeometrySha256": "e87d46606bb500161c36703a04097eba840ee04dca6f2ad6abb633e1e84a2899",
+      "geometryChanged": false,
+      "polygonAreaM2": 4825369.358,
+      "candidateParents": [],
+      "separatePointEvidence": [],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "foreign_border_feature_keep_excluded",
+      "explanation": "No intersection with any of the 3155 canonical Hungarian municipality polygons.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:relation:3317577",
+      "name": "Nevelek",
+      "sourceTags": {
+        "landuse": "residential",
+        "name": "Nevelek",
+        "place": "suburb",
+        "type": "multipolygon",
+        "wikidata": "Q1217377",
+        "wikipedia": "hu:Nevelek dűlő"
+      },
+      "sourceGeometrySha256": "67e662f63d932ebb1337770cb08bf43611e8716c38efceff2e7def225148d770",
+      "geometryChanged": false,
+      "polygonAreaM2": 632133.895,
+      "candidateParents": [
+        {
+          "municipality": "Göd",
+          "municipalitySourceId": "osm:relation:214933",
+          "kshCode": "23649",
+          "overlapAreaM2": 629560.506,
+          "polygonOverlapFraction": 0.9959290446641235,
+          "outsideParentAreaM2": 2572.927,
+          "fullContainment": false
+        },
+        {
+          "municipality": "Sződliget",
+          "municipalitySourceId": "osm:relation:1375512",
+          "kshCode": "28866",
+          "overlapAreaM2": 2572.927,
+          "polygonOverlapFraction": 0.004070224606156789,
+          "outsideParentAreaM2": 629560.506,
+          "fullContainment": false
+        }
+      ],
+      "separatePointEvidence": [],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "needs_independent_parent_name_evidence",
+      "explanation": "No separate same-name place node or KSH settlement-part record found in the local sources. Göd overlap and the Wikipedia/Wikidata tags alone do not establish an independently reviewed parent assignment.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:relation:9864742",
+      "name": "Рабе",
+      "sourceTags": {
+        "admin_level": "9",
+        "boundary": "administrative",
+        "int_name": "Rabe",
+        "name": "Рабе",
+        "population": "62",
+        "population:census:2022": "62",
+        "population:date": "2022",
+        "ref:RS:naselje": "802719",
+        "source:population": "RZS",
+        "type": "boundary",
+        "wikidata": "Q748374",
+        "wikipedia": "sr:Рабе"
+      },
+      "sourceGeometrySha256": "097c76eef7fc8910c98f3aed37d37d2e87218844e86b22f480c571aafaf43cdd",
+      "geometryChanged": false,
+      "polygonAreaM2": 509104.08,
+      "candidateParents": [],
+      "separatePointEvidence": [],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "foreign_border_feature_keep_excluded",
+      "explanation": "No intersection with any of the 3155 canonical Hungarian municipality polygons.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:relation:9864876",
+      "name": "Gyála",
+      "sourceTags": {
+        "admin_level": "9",
+        "boundary": "administrative",
+        "int_name": "Djala",
+        "name": "Ђала",
+        "name:hu": "Gyála",
+        "name:sr": "Ђала",
+        "name:sr-Latn": "Đala",
+        "population": "518",
+        "population:census:2022": "518",
+        "population:date": "2022",
+        "ref:RS:naselje": "802646",
+        "source:population": "RZS",
+        "type": "boundary"
+      },
+      "sourceGeometrySha256": "7dd36435d607b1ea7360dd8f5274ca459423251a3ac628cff52240176de4c9da",
+      "geometryChanged": false,
+      "polygonAreaM2": 27347599.753,
+      "candidateParents": [],
+      "separatePointEvidence": [],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "foreign_border_feature_keep_excluded",
+      "explanation": "No intersection with any of the 3155 canonical Hungarian municipality polygons.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:way:297974191",
+      "name": "Dunacsún",
+      "sourceTags": {
+        "city_id": "529435",
+        "name": "Čunovo",
+        "name:hu": "Dunacsún",
+        "place": "suburb"
+      },
+      "sourceGeometrySha256": "729c83918bdd0060be0d527239b23715350acc0d193415b0157dde3d2d3c3c86",
+      "geometryChanged": false,
+      "polygonAreaM2": 1135337.346,
+      "candidateParents": [],
+      "separatePointEvidence": [],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "foreign_border_feature_keep_excluded",
+      "explanation": "No intersection with any of the 3155 canonical Hungarian municipality polygons.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:way:521067587",
+      "name": "Rákóczitelep (Pusztavacs)",
+      "sourceTags": {
+        "alt_name": "Bucka",
+        "landuse": "residential",
+        "name": "Rákóczitelep (Pusztavacs)",
+        "place": "neighbourhood"
+      },
+      "sourceGeometrySha256": "66ad243c73510bbddef50ce4f341751461f3e2f99b9b994fc8cc5e38657f588e",
+      "geometryChanged": false,
+      "polygonAreaM2": 578241.808,
+      "candidateParents": [
+        {
+          "municipality": "Pusztavacs",
+          "municipalitySourceId": "osm:relation:1356710",
+          "kshCode": "23083",
+          "overlapAreaM2": 537591.643,
+          "polygonOverlapFraction": 0.9297004060862808,
+          "outsideParentAreaM2": 40650.146,
+          "fullContainment": false
+        },
+        {
+          "municipality": "Hernád",
+          "municipalitySourceId": "osm:relation:1356708",
+          "kshCode": "09849",
+          "overlapAreaM2": 40650.146,
+          "polygonOverlapFraction": 0.07029956215614895,
+          "outsideParentAreaM2": 537591.643,
+          "fullContainment": false
+        }
+      ],
+      "separatePointEvidence": [
+        {
+          "polygonId": "osm:way:521067587",
+          "nodeId": "osm:node:5077532997",
+          "coordinates": [
+            19.4681811,
+            47.1782716
+          ],
+          "tags": {
+            "alt_name": "Bucka",
+            "name": "Rákóczitelep",
+            "name:sr": "Ракоцителеп",
+            "place": "hamlet"
+          },
+          "objectVersion": 3,
+          "objectTimestamp": "2024-08-25 00:24:31+00:00",
+          "sameNameOrExplicitAlias": true,
+          "coveringCanonicalMunicipalities": [
+            "Pusztavacs"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        }
+      ],
+      "kshPartEvidence": [
+        {
+          "id": "ksh-hnt-2026:part:9695",
+          "name": "Rákóczitelep",
+          "category": "outlying_area",
+          "sourceRow": 9695,
+          "sourceMunicipalityName": "Pusztavacs",
+          "sourceKshCode": "23083",
+          "postalCode": "2378"
+        }
+      ],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "source_supported_parent_but_outlying_settlement_part",
+      "explanation": "KSH lists Rákóczitelep under Pusztavacs; inside hamlet node matches polygon name without the parenthetical municipality and shares alt_name Bucka. Retain outlying category.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:way:568189016",
+      "name": "Kovácsi",
+      "sourceTags": {
+        "name": "Kovácsi",
+        "place": "suburb"
+      },
+      "sourceGeometrySha256": "9b10164b7b8a0484496957b333f71e331baff79bba1d9adcf69a67a9a8b9e1a0",
+      "geometryChanged": false,
+      "polygonAreaM2": 1265572.616,
+      "candidateParents": [
+        {
+          "municipality": "Bakonszeg",
+          "municipalitySourceId": "osm:relation:1444178",
+          "kshCode": "15167",
+          "overlapAreaM2": 1263436.085,
+          "polygonOverlapFraction": 0.9983118065302969,
+          "outsideParentAreaM2": 2136.347,
+          "fullContainment": false
+        },
+        {
+          "municipality": "Berettyóújfalu",
+          "municipalitySourceId": "osm:relation:1444181",
+          "kshCode": "12788",
+          "overlapAreaM2": 2136.347,
+          "polygonOverlapFraction": 0.0016880480497613614,
+          "outsideParentAreaM2": 1263436.085,
+          "fullContainment": false
+        }
+      ],
+      "separatePointEvidence": [
+        {
+          "polygonId": "osm:way:568189016",
+          "nodeId": "osm:node:354022359",
+          "coordinates": [
+            21.4454608,
+            47.1895312
+          ],
+          "tags": {
+            "ksh_ref": "15167",
+            "name": "Bakonszeg",
+            "name:sr": "Баконсег",
+            "place": "village",
+            "place:hu": "község",
+            "population": "1082",
+            "population:date": "2024-01-01",
+            "postal_code": "4164",
+            "source:population": "KSH (www.ksh.hu)",
+            "source:population:date": "2024-01-01",
+            "source:postal_code": "Magyar Posta (posta.hu)",
+            "source:postal_code:date": "2009-03-01",
+            "wikidata": "Q788980",
+            "wikipedia": "hu:Bakonszeg"
+          },
+          "objectVersion": 16,
+          "objectTimestamp": "2024-10-22 19:48:00+00:00",
+          "sameNameOrExplicitAlias": false,
+          "coveringCanonicalMunicipalities": [
+            "Bakonszeg"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        }
+      ],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "needs_local_name_corroboration",
+      "explanation": "The polygon contains the Bakonszeg municipality center with ksh_ref15167, and mostly overlaps Bakonszeg. No separate Kovácsi label or KSH part under Bakonszeg was found; parent context is stronger than the neighborhood name corroboration.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:way:905410333",
+      "name": "Szalóka",
+      "sourceTags": {
+        "admin_level": "9",
+        "boundary": "administrative",
+        "koatuu": "2124885901",
+        "name": "Соловка",
+        "name:en": "Solovka",
+        "name:hu": "Szalóka",
+        "name:pl": "Sołowka",
+        "name:prefix": "село",
+        "name:ru": "Соловка",
+        "name:uk": "Соловка",
+        "place": "village",
+        "population": "825",
+        "postal_code": "89462",
+        "wikidata": "Q714466",
+        "wikipedia": "uk:Соловка"
+      },
+      "sourceGeometrySha256": "43d9494dfad42dc87cb7d28cc8226458e0b21bb54d9e4338980ba6343d03d310",
+      "geometryChanged": false,
+      "polygonAreaM2": 4179057.661,
+      "candidateParents": [],
+      "separatePointEvidence": [],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "foreign_border_feature_keep_excluded",
+      "explanation": "No intersection with any of the 3155 canonical Hungarian municipality polygons.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:way:909345242",
+      "name": "Nagypalád",
+      "sourceTags": {
+        "admin_level": "9",
+        "boundary": "administrative",
+        "koatuu": "2121281201",
+        "name": "Велика Паладь",
+        "name:en": "Velyka Palad",
+        "name:hu": "Nagypalád",
+        "name:prefix": "село",
+        "name:ru": "Великая Паладь",
+        "name:uk": "Велика Паладь",
+        "place": "village",
+        "population": "1824",
+        "postal_code": "90370",
+        "source:boundary": "cadastre",
+        "wikidata": "Q831404",
+        "wikipedia": "uk:Велика Паладь"
+      },
+      "sourceGeometrySha256": "9aa6cae2611da9025cc20f565092d0aab533b3435f08043eb13c8a5c98452c5f",
+      "geometryChanged": false,
+      "polygonAreaM2": 7674128.667,
+      "candidateParents": [],
+      "separatePointEvidence": [],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "foreign_border_feature_keep_excluded",
+      "explanation": "No intersection with any of the 3155 canonical Hungarian municipality polygons.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:way:971577592",
+      "name": "Piac",
+      "sourceTags": {
+        "name": "Piac",
+        "place": "suburb"
+      },
+      "sourceGeometrySha256": "a262325991622e91da14cbce04625e0b6903eb85c035da425ac0f43e645259a2",
+      "geometryChanged": false,
+      "polygonAreaM2": 404764.761,
+      "candidateParents": [
+        {
+          "municipality": "Csenger",
+          "municipalitySourceId": "osm:relation:1456960",
+          "kshCode": "30641",
+          "overlapAreaM2": 392233.255,
+          "polygonOverlapFraction": 0.9690400278810914,
+          "outsideParentAreaM2": 12531.511,
+          "fullContainment": false
+        },
+        {
+          "municipality": "Komlódtótfalu",
+          "municipalitySourceId": "osm:relation:1452428",
+          "kshCode": "22336",
+          "overlapAreaM2": 12531.511,
+          "polygonOverlapFraction": 0.03095998416889554,
+          "outsideParentAreaM2": 392233.255,
+          "fullContainment": false
+        }
+      ],
+      "separatePointEvidence": [
+        {
+          "polygonId": "osm:way:971577592",
+          "nodeId": "osm:node:286178341",
+          "coordinates": [
+            22.6794652,
+            47.8363678
+          ],
+          "tags": {
+            "ksh_ref": "30641",
+            "name": "Csenger",
+            "name:ru": "Ченгер",
+            "name:sr": "Ченгер",
+            "place": "town",
+            "place:hu": "város",
+            "population": "4394",
+            "population:date": "2024-01-01",
+            "postal_code": "4765",
+            "source:population": "KSH (www.ksh.hu)",
+            "source:population:date": "2024-01-01",
+            "source:postal_code": "Magyar Posta (posta.hu)",
+            "source:postal_code:date": "2009-03-01"
+          },
+          "objectVersion": 21,
+          "objectTimestamp": "2024-10-22 19:48:00+00:00",
+          "sameNameOrExplicitAlias": false,
+          "coveringCanonicalMunicipalities": [
+            "Csenger"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        },
+        {
+          "polygonId": "osm:way:971577592",
+          "nodeId": "osm:node:8992354720",
+          "coordinates": [
+            22.6827211,
+            47.8353339
+          ],
+          "tags": {
+            "name": "Piac",
+            "place": "suburb"
+          },
+          "objectVersion": 1,
+          "objectTimestamp": "2021-08-09 08:52:32+00:00",
+          "sameNameOrExplicitAlias": true,
+          "coveringCanonicalMunicipalities": [
+            "Csenger"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        }
+      ],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "review_explicit_source_parent_override",
+      "explanation": "Separate same-name suburb node lies inside both actual polygon and Csenger; canonical town node with matching KSH code also lies inside. A source association override can preserve the crossing polygon with explicit review flags; it does not verify the legal boundary.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:way:981846405",
+      "name": "Berekalja",
+      "sourceTags": {
+        "name": "Berekalja",
+        "place": "suburb"
+      },
+      "sourceGeometrySha256": "55d2b30294b70e5478e6f23c90b151ea0847a9950b35ecc92669bc8b13c8fbd2",
+      "geometryChanged": false,
+      "polygonAreaM2": 202156.9,
+      "candidateParents": [
+        {
+          "municipality": "Csenger",
+          "municipalitySourceId": "osm:relation:1456960",
+          "kshCode": "30641",
+          "overlapAreaM2": 199933.911,
+          "polygonOverlapFraction": 0.9890036467940169,
+          "outsideParentAreaM2": 2222.998,
+          "fullContainment": false
+        },
+        {
+          "municipality": "Komlódtótfalu",
+          "municipalitySourceId": "osm:relation:1452428",
+          "kshCode": "22336",
+          "overlapAreaM2": 2222.998,
+          "polygonOverlapFraction": 0.010996397615742063,
+          "outsideParentAreaM2": 199933.911,
+          "fullContainment": false
+        }
+      ],
+      "separatePointEvidence": [
+        {
+          "polygonId": "osm:way:981846405",
+          "nodeId": "osm:node:9080910862",
+          "coordinates": [
+            22.6879116,
+            47.8410063
+          ],
+          "tags": {
+            "name": "Berekalja",
+            "place": "suburb"
+          },
+          "objectVersion": 2,
+          "objectTimestamp": "2021-11-15 19:50:28+00:00",
+          "sameNameOrExplicitAlias": true,
+          "coveringCanonicalMunicipalities": [
+            "Csenger"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        }
+      ],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "review_explicit_source_parent_override",
+      "explanation": "Separate same-name suburb node lies inside both actual polygon and Csenger. A source association override can preserve the crossing polygon with explicit review flags; it does not verify the legal boundary.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:way:988252508",
+      "name": "Kolónia",
+      "sourceTags": {
+        "name": "Kolónia",
+        "place": "suburb"
+      },
+      "sourceGeometrySha256": "f9d3db6dc2565c74b889d15bffbb3cda159720b5368a70b77c4663ef74cbe760",
+      "geometryChanged": false,
+      "polygonAreaM2": 1524667.572,
+      "candidateParents": [
+        {
+          "municipality": "Dorog",
+          "municipalitySourceId": "osm:relation:1027821",
+          "kshCode": "10490",
+          "overlapAreaM2": 1491730.46,
+          "polygonOverlapFraction": 0.9783971845077338,
+          "outsideParentAreaM2": 32936.481,
+          "fullContainment": false
+        },
+        {
+          "municipality": "Esztergom",
+          "municipalitySourceId": "osm:relation:1027785",
+          "kshCode": "25131",
+          "overlapAreaM2": 32936.481,
+          "polygonOverlapFraction": 0.021602401313789123,
+          "outsideParentAreaM2": 1491730.46,
+          "fullContainment": false
+        }
+      ],
+      "separatePointEvidence": [
+        {
+          "polygonId": "osm:way:988252508",
+          "nodeId": "osm:node:5663516434",
+          "coordinates": [
+            18.7408189,
+            47.7227595
+          ],
+          "tags": {
+            "name": "Schmidt Sándor lakótelep",
+            "place": "neighbourhood"
+          },
+          "objectVersion": 5,
+          "objectTimestamp": "2020-11-12 19:24:13+00:00",
+          "sameNameOrExplicitAlias": false,
+          "coveringCanonicalMunicipalities": [
+            "Dorog"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        },
+        {
+          "polygonId": "osm:way:988252508",
+          "nodeId": "osm:node:5663516435",
+          "coordinates": [
+            18.7367731,
+            47.7232329
+          ],
+          "tags": {
+            "name": "Zsigmondy Vilmos Lakótelep",
+            "place": "neighbourhood"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2020-11-12 19:24:13+00:00",
+          "sameNameOrExplicitAlias": false,
+          "coveringCanonicalMunicipalities": [
+            "Dorog"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        },
+        {
+          "polygonId": "osm:way:988252508",
+          "nodeId": "osm:node:6310407850",
+          "coordinates": [
+            18.7423368,
+            47.7189835
+          ],
+          "tags": {
+            "name": "Baross Gábor lakótelep",
+            "place": "neighbourhood"
+          },
+          "objectVersion": 5,
+          "objectTimestamp": "2020-11-12 19:24:13+00:00",
+          "sameNameOrExplicitAlias": false,
+          "coveringCanonicalMunicipalities": [
+            "Dorog"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        },
+        {
+          "polygonId": "osm:way:988252508",
+          "nodeId": "osm:node:6342057526",
+          "coordinates": [
+            18.7290714,
+            47.7294504
+          ],
+          "tags": {
+            "name": "Hám Kálmán lakótelep",
+            "place": "neighbourhood"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2020-12-19 19:35:42+00:00",
+          "sameNameOrExplicitAlias": false,
+          "coveringCanonicalMunicipalities": [
+            "Dorog"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        },
+        {
+          "polygonId": "osm:way:988252508",
+          "nodeId": "osm:node:7879236102",
+          "coordinates": [
+            18.7418886,
+            47.7207645
+          ],
+          "tags": {
+            "name": "Széchenyi István lakótelep",
+            "place": "neighbourhood"
+          },
+          "objectVersion": 3,
+          "objectTimestamp": "2020-11-12 19:24:13+00:00",
+          "sameNameOrExplicitAlias": false,
+          "coveringCanonicalMunicipalities": [
+            "Dorog"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        },
+        {
+          "polygonId": "osm:way:988252508",
+          "nodeId": "osm:node:7894635649",
+          "coordinates": [
+            18.7275153,
+            47.7321221
+          ],
+          "tags": {
+            "name": "Borbála lakótelep",
+            "place": "neighbourhood"
+          },
+          "objectVersion": 3,
+          "objectTimestamp": "2020-11-12 19:24:13+00:00",
+          "sameNameOrExplicitAlias": false,
+          "coveringCanonicalMunicipalities": [
+            "Dorog"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        },
+        {
+          "polygonId": "osm:way:988252508",
+          "nodeId": "osm:node:7894783695",
+          "coordinates": [
+            18.7319311,
+            47.7255787
+          ],
+          "tags": {
+            "name": "Kandó Kálmán lakótelep",
+            "place": "neighbourhood"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2020-11-12 19:24:13+00:00",
+          "sameNameOrExplicitAlias": false,
+          "coveringCanonicalMunicipalities": [
+            "Dorog"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        },
+        {
+          "polygonId": "osm:way:988252508",
+          "nodeId": "osm:node:7894785798",
+          "coordinates": [
+            18.7294288,
+            47.7319801
+          ],
+          "tags": {
+            "name": "Fáy András lakótelep",
+            "place": "neighbourhood"
+          },
+          "objectVersion": 2,
+          "objectTimestamp": "2020-11-12 19:24:13+00:00",
+          "sameNameOrExplicitAlias": false,
+          "coveringCanonicalMunicipalities": [
+            "Dorog"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        },
+        {
+          "polygonId": "osm:way:988252508",
+          "nodeId": "osm:node:9164869508",
+          "coordinates": [
+            18.7405973,
+            47.7218311
+          ],
+          "tags": {
+            "name": "Kolónia",
+            "place": "suburb"
+          },
+          "objectVersion": 2,
+          "objectTimestamp": "2021-10-22 06:43:26+00:00",
+          "sameNameOrExplicitAlias": true,
+          "coveringCanonicalMunicipalities": [
+            "Dorog"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        }
+      ],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": true,
+      "existingAssociationAuditAction": "reassign_municipality",
+      "recommendation": "already_present_no_new_name",
+      "explanation": "Kolónia is already present under Dorog through the existing source-specific audited city snapshot. New country association evidence may supplement, not count a second neighborhood.",
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "osm:way:988254771",
+      "name": "Akna",
+      "sourceTags": {
+        "name": "Akna",
+        "place": "suburb"
+      },
+      "sourceGeometrySha256": "7cefce1c9a48c405ceb31bbe664fc51ac784f29e1a08beb5e74d9b8a1dee9d32",
+      "geometryChanged": false,
+      "polygonAreaM2": 72514.718,
+      "candidateParents": [
+        {
+          "municipality": "Dorog",
+          "municipalitySourceId": "osm:relation:1027821",
+          "kshCode": "10490",
+          "overlapAreaM2": 72171.362,
+          "polygonOverlapFraction": 0.9952650227135711,
+          "outsideParentAreaM2": 343.538,
+          "fullContainment": false
+        },
+        {
+          "municipality": "Csolnok",
+          "municipalitySourceId": "osm:relation:1027815",
+          "kshCode": "18926",
+          "overlapAreaM2": 343.538,
+          "polygonOverlapFraction": 0.004737495604481757,
+          "outsideParentAreaM2": 72171.362,
+          "fullContainment": false
+        }
+      ],
+      "separatePointEvidence": [
+        {
+          "polygonId": "osm:way:988254771",
+          "nodeId": "osm:node:6344717844",
+          "coordinates": [
+            18.7331227,
+            47.7027351
+          ],
+          "tags": {
+            "alt_name": "Akna",
+            "name": "VI. akna lakótelep",
+            "place": "neighbourhood"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2024-02-16 10:07:58+00:00",
+          "sameNameOrExplicitAlias": true,
+          "coveringCanonicalMunicipalities": [
+            "Dorog"
+          ],
+          "pointInsideOriginalPolygon": true,
+          "independentOfOsmProvider": false
+        }
+      ],
+      "kshPartEvidence": [],
+      "alreadyInPrimaryCatalog": false,
+      "existingAssociationAuditAction": null,
+      "recommendation": "review_explicit_source_parent_override",
+      "explanation": "Inside node VI. akna lakótelep has exact alt_name=Akna and is inside Dorog. A source association override can preserve the crossing polygon with explicit review flags; canonical/alias naming should be documented.",
+      "usableForAddressAssignment": false
+    }
+  ]
+}

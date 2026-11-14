@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 5,
+  "checkedAt": "2026-11-14",
+  "status": "partial_nationwide_checkpoint",
+  "completeNationalCoverage": false,
+  "primaryFeatures": 506,
+  "primaryMunicipalities": 48,
+  "planningFeatures": 31,
+  "inferredFeatures": 138,
+  "inferredMunicipalities": 13,
+  "fullSuiteReferencePath": "data/neighborhoods/research/checkpoint-validation-506-137.json",
+  "primaryValidation": {
+    "previousFullNodeTestsPassed": 67,
+    "previousFullPythonTestsPassed": 10,
+    "freshFullSuiteRunAtThisExactInferredCount": false,
+    "unchangedPrimaryCatalogExportPlanningAndNationwideFingerprints": true,
+    "meaning": "The only geometry added since the full 506/137 suite is a separately inferred Reptéri candidate. All four primary output fingerprints remain identical. Secondary regression/export and actual generated preview were checked again."
+  },
+  "updatedChecks": [
+    {
+      "label": "secondary-regression",
+      "cmd": "node tests/neighborhoods-secondary.test.mjs",
+      "exit_code": 0,
+      "output": "✔ an inferred source remains a separate, explicitly unverified geometry without coordinate changes (15.824488ms)\n✔ unknown towns and open source rings stay quarantined even in the inferred layer (0.425163ms)\n✔ estimated city statistics count features rather than components and retain source-level distinctions (83.472768ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 123.254259\n"
+    },
+    {
+      "label": "secondary-138-check",
+      "cmd": "node scripts/neighborhoods/export-secondary.mjs --check",
+      "exit_code": 0,
+      "output": "31 planning units and 138 inferred candidates in separate layers; primary neighbourhood export unchanged.\n"
+    },
+    {
+      "label": "primary-138-check",
+      "cmd": "node scripts/neighborhoods/build.mjs --check",
+      "exit_code": 0,
+      "output": "Verified 572 unreviewed polygons; 5331 excluded records. No boundary is enabled for address assignment.\n"
+    },
+    {
+      "label": "preview-138",
+      "cmd": "node .local/neighborhoods/check-preview.mjs",
+      "exit_code": 0,
+      "output": "{\"status\":\"passed_generated_behavior_checks\",\"inferredFeatures\":138,\"inferredMunicipalities\":13,\"sourceCoverageUnchanged\":true,\"realBrowserLayoutVerified\":false}\n"
+    },
+    {
+      "label": "eger-name-replay",
+      "cmd": "PYTHONPATH=.local/geodata python3 data/neighborhoods/research/eger-current-name-review.py --check",
+      "exit_code": 0,
+      "output": "{\"reviewed\": 23, \"strictMatched\": 14, \"withoutStrictMatch\": 9, \"freshPbfNodes\": 25, \"boundaryApprovals\": 0, \"check\": true}\n"
+    }
+  ],
+  "freshSecondaryRegressionTestCount": 3,
+  "generatedPreviewBehavior": {
+    "status": "passed_actual_generated_script_behavior",
+    "inferredFeatures": 138,
+    "inferredMunicipalities": 13,
+    "sourceCoverageUnchangedByLayerToggle": true,
+    "realBrowserLayoutVerified": false
+  },
+  "nameAudits": {
+    "pecsSourceNames": 67,
+    "pecsCurrentSameCityNamesCorroborated": 59,
+    "egerHistoricalSourceNames": 23,
+    "egerStrictCurrentWholeLabelMatches": 14,
+    "egerWithoutStrictWholeLabelMatch": 9,
+    "nameEvidenceDoesNotApproveBoundaryOrExtent": true
+  },
+  "realBrowserLayout": "not verified: bundled Chromium absent; system Chromium startup denied setsockopt by runtime",
+  "remoteCiRun": false,
+  "applicationDeploymentPerformed": false,
+  "outputFingerprints": {
+    "catalog.geojson": "9c34e39523391ba52ab49877f9a055289a82fa88b5f75c1187c09716e3cc6406",
+    "neighborhoods.geojson": "8eca9d097fb6714c31ca942f57ff0d8f683f8f4fe13af0161b12da19b20e8f74",
+    "planning-units.geojson": "210d68a378ab01d26383825c2beb8896655e43b0e40d39f2add541ac7f090ce5",
+    "nationwide-report.csv": "b3eb4cf9f35d40c70944bc394d9a03b148a45f9d01e46e37c686e0e1a197c4a7",
+    "estimated-candidates.geojson": "5f530b480881856a721b3e9785cf8079841f405ba7e012414ab539ca7fc2c7ee",
+    "estimated-report.csv": "396d2d02d1c1de0be1cc51f91b686a7d94e72361b9390f9b7eb1f2afa18f0056",
+    "estimated-report.json": "4104ed4d4f4bd2c5f4c1f65e34116df85840a0ff2cb2b21a70f97e07c904d076",
+    "review.html": "ade54a3049951949ebddcd50d5c0aa568d42de1bc036776aa7a6c6df3f666def"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "scope": "Qualitative physical-image review made after preliminary NCC and final affine output were available. Not blind, not pre-NCC, not additional fitted or held-out controls. No manual measurement is invented as independent validation.",
+  "sourceImage": "figure74-p154-xref176.jpeg",
+  "sourceImageSha256": "1ecb076700d1be46f1712ca2c0ca1ed986581a99e5d5592b95b0b4511de30cd2",
+  "targetImage": "figure75-p158-xref180.jpeg",
+  "targetImageSha256": "13c9a38ba1b554b7125064ffce3384eb813d9590b9f327a152f1da4b0de4c991",
+  "observations": [
+    {
+      "sourceRawGrid": "74-southwest-roof-detail-grid.png",
+      "targetRawGrid": "75-northwest-roof-detail-grid.png",
+      "physicalDetails": "Same diagonal rows of long pale industrial roofs, narrow long orange/red roof and large rounded bare yard, plus matching paths and green field edges.",
+      "sameLocalPhysicalStructuresVisible": true
+    },
+    {
+      "sourceRawGrid": "74-southern-east-roof-detail-grid.png",
+      "targetRawGrid": "75-northern-east-roof-detail-grid.png",
+      "physicalDetails": "Same small pale-and-blue elongated roof constellation, road crossing and adjacent tree/field/low-house arrangement.",
+      "sameLocalPhysicalStructuresVisible": true
+    }
+  ],
+  "tonalDifference": "Source74 photo outside highlighted quarter is darker; target75 highlights the same structures. Shape and arrangement remain consistent.",
+  "registrationModelAlreadyAvailableAtReview": true,
+  "geographicCoordinatesNamesOrQuarterGeometryUsedForPhotoMatching": false,
+  "separateBlindPhysicalReviewer": false,
+  "manualPreNccObservationClaimed": false,
+  "fullGlobalPhotoFrameIdentityProved": false,
+  "sourcePhotoCaptureDateProved": false,
+  "fullFigure75GeographicCoverageValidated": false,
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

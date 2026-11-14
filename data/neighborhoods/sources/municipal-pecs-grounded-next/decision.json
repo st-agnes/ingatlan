@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "decisionDate": "2026-11-14",
+  "status": "rejected_pending_ground_control_reidentification",
+  "reason": "At least two inherited gray-boundary image/world pairs are not uniquely identifiable distinctive corners. Their source-reading uncertainty boxes do not establish the unknown correspondence uncertainty. A small least-squares residual cannot validate the assumed pairs.",
+  "evidence": [
+    "independent-review.json",
+    "source-control-crops.png",
+    "calculation-proof.json",
+    "diagnostics.json"
+  ],
+  "independentArithmeticAndArchivedRawLinkAuditPassed": true,
+  "independentGeographicCorrespondenceApproved": false,
+  "fitResidualIsAbsoluteAccuracy": false,
+  "absoluteBoundaryAccuracyMetres": null,
+  "automaticPrimaryApproval": false,
+  "usableForAddressAssignment": false,
+  "surveyOrCadastralAccuracyApproved": false,
+  "quarterGeometriesGeneratedOrChanged": false,
+  "firstInferredSnapshotChanged": false,
+  "registriesChanged": false,
+  "primaryRecordsAdded": 0,
+  "nextEvidenceRequired": [
+    "Independently identify the actual visible L-corner and broader trough pixels and their literal current OSM boundary vertices. The audit preserves ring vertices 457 and 386 as possible new, unapproved candidates; do not substitute them automatically.",
+    "Treat historical/current boundary correspondence as a separate uncertainty, not as a two-pixel reading claim.",
+    "Seek an actual independently identifiable eastern/northeastern source-world feature before accepting extrapolated coverage there.",
+    "Recompute fit, heldout distances and sensitivity after any accepted control changes; keep this rejected candidate immutable."
+  ]
+}

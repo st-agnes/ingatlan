@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-13",
+  "reviewer": "independent planning_semantics_recheck agent",
+  "result": "pass_estimated_georeference_only",
+  "scope": "Independent local original-PDF identity, chapter/quarter semantics, raster overlay, pixel-edge membership, projection arithmetic and output classification review. No source or geometry edited.",
+  "primaryAdmissionApproved": false,
+  "estimatedCandidateCountApproved": 5,
+  "verifiedCurrentQuarterBoundaryCount": 0,
+  "nationalMissingInventoryClosed": false,
+  "reviewedInputs": {
+    "sourcePdfLocalPath": ".local/neighborhoods/nationwide-docs/originals/gyongyos-its.pdf",
+    "sourcePdfSha256": "1e215b16a31dd6b97aca1eca765151f27acf691d23ccc5e8adf216bcb19ceef0",
+    "sourceOverviewJpegSha256": "42e7d237cbd3fa6c5fc896ab6766a7d9c79d7c9e962123772784b8f360042e6a",
+    "sourceContoursSha256": "7a5a87db20d524535826b8b5adc04ff215a396f1c19ed6975b28996e7b62cac9",
+    "registrationControlsSha256": "920ba78b6cfe2404f2275523166e66f87dc0b84944d201584998724f7bd1b9c7",
+    "sourceFactsSha256": "57823cfd194281ae1cdd0ed42b2655d4b4fdb0c27d3aaff07b8d453084526822",
+    "proofExcerptPdfSha256": "de9e48bf2cb8c1e1b26f829b7f423bf35f202f5f0831c9e951396b1535cb31b5",
+    "geojsonSha256": "4072e2c4ff5d1ee7da1747d195487392fc15b6be5ebd66fe1bf441dff0502104",
+    "conversionProofSha256": "210aad99a67fa3af9d42af456dfecf8ad9056d82c5765c55bfb87074da6184ed",
+    "manifestSha256": "da7d2770789e55693d79efa31a1e85a647bb0f97615e638adacd88be9dc86187",
+    "converterSha256": "0a601025931f31e8c5ab3af0e8ce324da0d6647541fe2c0454cda4a92a69d714"
+  },
+  "originalSourceChecks": {
+    "originalPdfBytesMatchClaimedHash": true,
+    "sourceOverviewImageExactlyOriginalPdfXref44": true,
+    "sourceMapPdfPageOneBased": 19,
+    "sourceMapPrintedPage": 18,
+    "sourceMapCaption": "Gyöngyös városrészeinek lehatárolása",
+    "sourceIdentificationPdfPages": [
+      17,
+      18
+    ],
+    "sourceIdentificationMeaning": "The original text explicitly presents historically formed, named city quarters of the central settlement; neither electoral districts nor an unnamed development action-area list. Contained smaller names are not given duplicate copies of a parent polygon.",
+    "detailedChapterMaps": [
+      {
+        "originalPdfPageOneBased": 29,
+        "originalImageXref": 66,
+        "headingPdfPageOneBased": 29,
+        "imageBytesExactlyMatchOriginalPdf": true,
+        "imageSha256": "c9c1192786121e27532f1f56100acb9f77e5d8aa8f3fa387e68430362b5b3625"
+      },
+      {
+        "originalPdfPageOneBased": 31,
+        "originalImageXref": 71,
+        "headingPdfPageOneBased": 30,
+        "imageBytesExactlyMatchOriginalPdf": true,
+        "imageSha256": "2bcabef0d4105b735449b8465e6ae940a14b9f9eb5d92f770c090ba5fc05a494"
+      },
+      {
+        "originalPdfPageOneBased": 33,
+        "originalImageXref": 76,
+        "headingPdfPageOneBased": 32,
+        "imageBytesExactlyMatchOriginalPdf": true,
+        "imageSha256": "f35ab4788e391e7da641d7794bd84e0a06e668c2956624d5b800b7fb89d62cc4"
+      },
+      {
+        "originalPdfPageOneBased": 35,
+        "originalImageXref": 81,
+        "headingPdfPageOneBased": 34,
+        "imageBytesExactlyMatchOriginalPdf": true,
+        "imageSha256": "5c8845e861362564faeab5e4904f240c61699daf8c160a8c0c9e1402d9679dd9"
+      },
+      {
+        "originalPdfPageOneBased": 37,
+        "originalImageXref": 86,
+        "headingPdfPageOneBased": 36,
+        "imageBytesExactlyMatchOriginalPdf": true,
+        "imageSha256": "84e60c023ec727267552705d3244bb9e6a38cb56e35f7d7d3ed4594cf3d0ce1b"
+      }
+    ],
+    "headingCitationCorrectionVerified": "The source overview names Városközpont; the detailed red map follows the Központi városrész heading on PDF30. Headings for eastern/southern/western maps occur on preceding PDF32/34/36. Correct heading locations and those heading pages are now preserved in the proof excerpt.",
+    "proofExcerptPageCount": 12,
+    "allManifestFileHashesAndByteLengthsIndependentlyChecked": true
+  },
+  "independentGeometryComputation": {
+    "method": "Separate temporary audit rebuilt the affine using a pseudoinverse, checked every source polygon edge against archived shared paths, independently recomputed all world vertices and rounded coordinates, measured pairwise polygon intersections and original RGB threshold distances. Converter assertions were not accepted as the geometry evidence.",
+    "affineIndependentPseudoinverseMaxCoefficientDifference": 1.1641532182693481e-10,
+    "worldVerticesExactlyRecomputedFromRecordedMatrix": true,
+    "sourcePathsAllFourNeighborSteps": true,
+    "pixelInteriorOverlaps": [],
+    "worldInteriorOverlapsOver1eMinus15SquareDegrees": [],
+    "records": [
+      {
+        "name": "Észak-nyugati városrész",
+        "sourceVerticesIncludingClosure": 849,
+        "sourcePixelArea": 8961.0,
+        "validInPixelsAndWorld": true,
+        "holes": 0,
+        "allPixelEdgesBelongToSharedSourcePaths": true,
+        "allFourNeighborPixelSteps": true,
+        "noFrameContact": true,
+        "worldCoordinatesExactlyIndependentlyRecomputed": true,
+        "sourcePixelsOutsideDeclaredWhiteInkThreshold": 85,
+        "fractionOutsideDeclaredWhiteInkThreshold": 0.10011778563015312,
+        "maxDistancePixelsToThresholdedInk": 3.605551275463989,
+        "meanDistancePixelsToThresholdedInk": 0.1213573404643531,
+        "areaM2": 423685.7579724137,
+        "perimeterM": 5870.25631214362,
+        "inferredOnlyClassificationVerified": true
+      },
+      {
+        "name": "Nyugati városrész",
+        "sourceVerticesIncludingClosure": 1241,
+        "sourcePixelArea": 22710.0,
+        "validInPixelsAndWorld": true,
+        "holes": 0,
+        "allPixelEdgesBelongToSharedSourcePaths": true,
+        "allFourNeighborPixelSteps": true,
+        "noFrameContact": true,
+        "worldCoordinatesExactlyIndependentlyRecomputed": true,
+        "sourcePixelsOutsideDeclaredWhiteInkThreshold": 37,
+        "fractionOutsideDeclaredWhiteInkThreshold": 0.029814665592264304,
+        "maxDistancePixelsToThresholdedInk": 3.605551275463989,
+        "meanDistancePixelsToThresholdedInk": 0.03993043786431645,
+        "areaM2": 1073757.5035398072,
+        "perimeterM": 8586.949284917531,
+        "inferredOnlyClassificationVerified": true
+      },
+      {
+        "name": "Városközpont",
+        "sourceVerticesIncludingClosure": 805,
+        "sourcePixelArea": 21414.0,
+        "validInPixelsAndWorld": true,
+        "holes": 0,
+        "allPixelEdgesBelongToSharedSourcePaths": true,
+        "allFourNeighborPixelSteps": true,
+        "noFrameContact": true,
+        "worldCoordinatesExactlyIndependentlyRecomputed": true,
+        "sourcePixelsOutsideDeclaredWhiteInkThreshold": 10,
+        "fractionOutsideDeclaredWhiteInkThreshold": 0.012422360248447204,
+        "maxDistancePixelsToThresholdedInk": 1.0,
+        "meanDistancePixelsToThresholdedInk": 0.012422360248447204,
+        "areaM2": 1012480.5924104219,
+        "perimeterM": 5549.240801130796,
+        "inferredOnlyClassificationVerified": true
+      },
+      {
+        "name": "Keleti városrész",
+        "sourceVerticesIncludingClosure": 1717,
+        "sourcePixelArea": 41885.0,
+        "validInPixelsAndWorld": true,
+        "holes": 0,
+        "allPixelEdgesBelongToSharedSourcePaths": true,
+        "allFourNeighborPixelSteps": true,
+        "noFrameContact": true,
+        "worldCoordinatesExactlyIndependentlyRecomputed": true,
+        "sourcePixelsOutsideDeclaredWhiteInkThreshold": 31,
+        "fractionOutsideDeclaredWhiteInkThreshold": 0.0180547466511357,
+        "maxDistancePixelsToThresholdedInk": 2.0,
+        "meanDistancePixelsToThresholdedInk": 0.0203843913803145,
+        "areaM2": 1980378.5102110766,
+        "perimeterM": 11853.293656309042,
+        "inferredOnlyClassificationVerified": true
+      },
+      {
+        "name": "Déli városrész",
+        "sourceVerticesIncludingClosure": 2627,
+        "sourcePixelArea": 75939.0,
+        "validInPixelsAndWorld": true,
+        "holes": 0,
+        "allPixelEdgesBelongToSharedSourcePaths": true,
+        "allFourNeighborPixelSteps": true,
+        "noFrameContact": true,
+        "worldCoordinatesExactlyIndependentlyRecomputed": true,
+        "sourcePixelsOutsideDeclaredWhiteInkThreshold": 377,
+        "fractionOutsideDeclaredWhiteInkThreshold": 0.14350970688998857,
+        "maxDistancePixelsToThresholdedInk": 4.123105625617661,
+        "meanDistancePixelsToThresholdedInk": 0.16355163135218292,
+        "areaM2": 3590513.973246432,
+        "perimeterM": 18142.78467174698,
+        "inferredOnlyClassificationVerified": true
+      }
+    ]
+  },
+  "visualReview": {
+    "performed": true,
+    "reviewedImages": [
+      "original source-map.jpeg",
+      "independently drawn temporary all-contour overlay",
+      "original-PDF detailed quarter maps and page images"
+    ],
+    "finding": "The five traces follow the visible colored quarter outlines and their shared cartographic boundaries. Southern industrial extension is retained. The green northern quarter reaches the source frame and is excluded; no frame cap is invented.",
+    "rasterInterpretationLimit": "This is manual cartographic-stroke interpretation, not proof that every chosen pixel meets a literal white-ink predicate. The declared threshold is missed by 1.24%–14.35% of ring vertices, with nearest-threshold-ink distances up to 4.123 source pixels. JPEG stroke width, antialiasing and local line-path choices remain unresolved at sub-stroke scale. No absent quarter-cap is reconstructed."
+  },
+  "georeferenceReview": {
+    "internalFitRmsMetres": 55.845298577016315,
+    "internalFitMaxMetres": 97.07158210393895,
+    "absoluteAccuracyMetres": null,
+    "independentlySurveyedImageControls": 0,
+    "currentExactGeographicExtentVerified": false,
+    "observations": [
+      "All scene and image-to-image control correspondences remain manually approximate. Local map pins and current road/building locations are not exact independent image-ground node identities.",
+      "Earlier exploratory scene fits gave materially different city/lake placement. A lower internal fit residual would not certify the geographic extent, especially under extrapolation to the northern and southern ends.",
+      "Potential source-scene perspective is not solved by asserting that the approximate affine is geodetically accurate. A projective or other model would itself need independent ground controls before primary admission.",
+      "The exported coordinates exactly reproduce the declared approximate transform. That arithmetic does not validate the transform assumptions."
+    ],
+    "originalCountryPbfReprocessedInThisReview": false,
+    "calibrationCoordinateGroundTruthIndependentlySurveyed": false
+  },
+  "validation": {
+    "converterCheckPassedAfterSourceHeadingCorrection": true,
+    "existingUnmodifiedJsValidatorPassedForAllFive": true,
+    "geosValidForAllFive": true,
+    "holes": 0,
+    "classificationVerified": {
+      "boundaryKind": "inferred_area",
+      "candidateBoundaryKind": "neighbourhood",
+      "estimated": true,
+      "canonicalNameIsNeighborhood": false,
+      "primaryLayerAdmission": false,
+      "usableForAddressAssignment": false
+    },
+    "registryTarget": "inferred-candidate-registry.json only"
+  },
+  "rightsAndUseLimits": [
+    "Municipal document publication and real cartographic contour evidence do not establish an open-reuse licence for the embedded Google Earth / DigitalGlobe imagery. The package states this uncertainty.",
+    "OSM calibration data attribution is preserved; it does not supply a licence for the whole municipal/third-party map.",
+    "No legal, cadastral, current-exact or automatic address-assignment approval. No fine-child boundary is inferred by copying a containing quarter shape."
+  ],
+  "sourceOrGeometryFilesModified": false,
+  "reviewFileOnlyWritten": true
+}

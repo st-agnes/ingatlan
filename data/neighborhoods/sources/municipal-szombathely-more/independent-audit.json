@@ -1,0 +1,1077 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-11-14",
+  "reviewer": "independent gyongyos_source_expand agent",
+  "result": "pass_inferred_historical_alternative_only",
+  "geojsonSha256": "2f5286b40b1249281184ed9715c04b583c1de3cc2dbde3bd18a7ccc349501154",
+  "auditScriptSha256": "2eefa8fd5e8e126c522409323912ebceaf14457e0682b72b3b60f80d535366df",
+  "producerInputFingerprintSha256": "75dd6c63c4945c6cedeacb6bb573918a0ea07856f0afff2686474b2d63483c40",
+  "producerInputFingerprintDefinition": "SHA256 of UTF-8 JSON compact sorted path/SHA256 objects, including producer converter; excludes only the three QA files and manifest-wrapper metadata.",
+  "producerInputFingerprints": [
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/conversion-proof.json",
+      "sha256": "41bc054c49426493b60e021bb4764174e5f95b51a8694a14defa44fb85d45573"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/coverage-audit.json",
+      "sha256": "5a34d2f0f318ee0cfa14f52336ddbdbe97870c2aa3d88d148d4a437df7809365"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/existing-joskar-snapshot.geojson",
+      "sha256": "972d51a3fcb57613841a2f59bb05db04063406fba9566634bd792b04d1c72369"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/extraction-proof.json",
+      "sha256": "2a3f88c7b893e2020c845e28aacb8b108ef75a41ee9b646f7bd22d4da1a98641"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/inferred-completion.geojson",
+      "sha256": "b600b2a0460aa0487c9d8d2d1281ff8048100ded010c03d490102cee40b4c476"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/inferred-registry-entry.json",
+      "sha256": "a93b8004803932c0c91e1fded468943d1ac609c311bf297dfc530f13e78b60ba"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/joskar-ola-inferred.geojson",
+      "sha256": "2f5286b40b1249281184ed9715c04b583c1de3cc2dbde3bd18a7ccc349501154"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/junction-alternative.geojson",
+      "sha256": "6f769dcab55f84f6c62c829627b8c5dd514ea6f25848a6dc13534a5730939c2a"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/municipality.geojson",
+      "sha256": "88e248409bbf466d26e3443630d7b992f4b2c86ec496605841ea14f44ed311eb"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/pbf-way-verification.json",
+      "sha256": "c75df757857b096ec6cbd00c387d97e6e580ee5502ebc240f42f982aa3e8ce42"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/source-facts.json",
+      "sha256": "61082151fb44c012ccc18da141c0b8d2774275cd5a423abb488cab1e5614f095"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/source-overview.jpeg",
+      "sha256": "8056b84dd92a0347c497bd12c63a3f4ed88d1e3c98dfe959ab2fd4906eca47f0"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/source-proof-pages.pdf",
+      "sha256": "a65645bea3cbcca2dd1a81105ce696b037a5fab1bd5a1a2cd94dcd2078cc8147"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/source-ways.geojson",
+      "sha256": "2477196a7bda272d802b7ee6bbd96843ab6c9b6594a3da128e469e4dcb7e8c6e"
+    },
+    {
+      "path": "scripts/neighborhoods/derive-szombathely-more.py",
+      "sha256": "7e900078031dae45df4a9c68728b33014bbf09a836636700e2e6899ec72f17ed"
+    }
+  ],
+  "reviewedPreQaManifestSha256": "a32f27b18ea10d51ebf2302f1b32ec9c32dcc139f5f7633ad108b9af9d8bd694",
+  "reproductionMetadataMaintenance": {
+    "date": "2026-11-14",
+    "by": "producer agent, explicitly requested by root after independent geometry QA",
+    "scope": "Reproduction bookkeeping only: replace recursive final-manifest byte hash with a sorted producer path/SHA256 logical fingerprint. Original independent geometry/source checks and producer coordinates unchanged.",
+    "originalIndependentGeometryReviewRetained": true,
+    "freshIndependentReviewOfThisBookkeepingEditClaimed": false
+  },
+  "originalPbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "originalPdfSha256": "aade0d35a60e4ecd230a26c2c7dabcfc26ec76466ab86310e6828f34db714500",
+  "checkedCompleteArchivedWays": 72,
+  "completeWayMetadataAndCoordinatesMatchedPbf": true,
+  "originalRelation8356511MetadataAndMemberWaysMatched": true,
+  "existingSnapshotEdgesMatchedOriginalRelationMemberNodePairs": 68,
+  "boundaryCoordinatesIncludingClosure": 80,
+  "boundaryOriginalNodeEdges": 79,
+  "usedOriginalWays": 35,
+  "allEdgesAreConsecutiveOriginalPbfNodes": true,
+  "syntheticVertices": 0,
+  "syntheticEdges": 0,
+  "clippingOrRepair": false,
+  "geosValid": true,
+  "strictExistingJsValidator": [
+    {
+      "name": "joskar-ola-inferred.geojson",
+      "valid": true,
+      "bbox": [
+        16.6275717,
+        47.2245959,
+        16.6359546,
+        47.2333322
+      ],
+      "vertices": 80
+    },
+    {
+      "name": "junction-alternative.geojson",
+      "valid": true,
+      "bbox": [
+        16.6274338,
+        47.2245959,
+        16.6359546,
+        47.2333322
+      ],
+      "vertices": 80
+    }
+  ],
+  "holes": 0,
+  "insideArchivedMunicipality": true,
+  "areaM2": 296658.87809125055,
+  "perimeterMetres": 2526.2804259590694,
+  "explicitUnprovenBoundaryCompletion": {
+    "sourceWayId": 112539408,
+    "roadName": null,
+    "actualHighway": "residential",
+    "originalNodeEdges": 2,
+    "lengthMetres": 42.5669013906784,
+    "sourceBoundaryRoleNotEstablished": true
+  },
+  "junctionAlternative": {
+    "selectedNode": 5324294304,
+    "alternativeNode": 5324469828,
+    "validAndEveryEdgeOriginal": true,
+    "symmetricDifferenceM2EPSG23700": 299.68659934574873,
+    "sourceDoesNotResolveChoice": true,
+    "notAdditionalCoverage": true
+  },
+  "existingQuarterComparison": {
+    "sourceId": "osm:relation:8356511",
+    "name": "Joskar-Ola-lakótelep",
+    "intersectionOverUnionEPSG23700": 0.43287393960326354,
+    "newDistinctQuarterNames": 0,
+    "newPrimaryFeatures": 0,
+    "historicalEstimatedAlternatives": 1
+  },
+  "originalSourcePages": [
+    {
+      "originalPdfPageOneBased": 49,
+      "excerptPdfPageOneBased": 1,
+      "textExactlyMatches": true,
+      "renderSamplesExactlyMatch": true,
+      "renderSamplesSha256": "1ad78fd982769e6538b5a2038de842bf5c42f05d85e497771aa9314553c216b2"
+    },
+    {
+      "originalPdfPageOneBased": 50,
+      "excerptPdfPageOneBased": 2,
+      "textExactlyMatches": true,
+      "renderSamplesExactlyMatch": true,
+      "renderSamplesSha256": "039928557013f6bdbfc7d1b0b6bb11ec5835cb2806ea32a6eed20aa797be8793"
+    },
+    {
+      "originalPdfPageOneBased": 150,
+      "excerptPdfPageOneBased": 3,
+      "textExactlyMatches": true,
+      "renderSamplesExactlyMatch": true,
+      "renderSamplesSha256": "ba984ed642900bbf069dffa7c85b1454457aeec4c487061f6992ebeedb51ae50"
+    },
+    {
+      "originalPdfPageOneBased": 151,
+      "excerptPdfPageOneBased": 4,
+      "textExactlyMatches": true,
+      "renderSamplesExactlyMatch": true,
+      "renderSamplesSha256": "aba46a8786e1c591bfd2f86661dcb222338814d9e5f0a8abbe73b57067f8e4a4"
+    }
+  ],
+  "overviewExactlyOriginalXref282": true,
+  "sourceSemantics": {
+    "municipalTextExplicitlyNamesQuarterBoundary": true,
+    "originalPdfPageOneBased": 150,
+    "proofPageOneBased": 3,
+    "namedCircuit": [
+      "Szent Márton",
+      "Barátság",
+      "Mikes Kelemen (vasúti sínek mellett végig)",
+      "Károlyi Antal",
+      "Hunyadi János",
+      "Szent Márton"
+    ],
+    "unnamedCompletionAndCarriagewayChoiceNotProvenByText": true,
+    "railwaySideClauseDoesNotProveCadastralRailOwnershipLine": true,
+    "coverageUnitsChecked": 18,
+    "nameCorrespondenceDoesNotProveWholeBoundaryCoverage": true,
+    "exactLabelUnresolvedUnits": [
+      2,
+      10,
+      16
+    ]
+  },
+  "producerConverterCheckPassed": true,
+  "producerManifestEntriesVerified": 14,
+  "producerArtifactsUnchanged": true,
+  "networkUsed": false,
+  "primaryAdmissionApproved": false,
+  "usableForAddressAssignment": false,
+  "claimedAbsoluteAccuracyMetres": null,
+  "boundaryEdges": [
+    {
+      "edgeIndex": 0,
+      "sourceWayId": 785556328,
+      "nodeRefs": [
+        5324294304,
+        5610257235
+      ],
+      "lengthMetres": 27.58295462564918,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 1,
+      "sourceWayId": 785556328,
+      "nodeRefs": [
+        5610257235,
+        5330981473
+      ],
+      "lengthMetres": 35.04780963876593,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 2,
+      "sourceWayId": 785556327,
+      "nodeRefs": [
+        5330981473,
+        7342695617
+      ],
+      "lengthMetres": 28.49823767094524,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 3,
+      "sourceWayId": 551326656,
+      "nodeRefs": [
+        7342695617,
+        2387761803
+      ],
+      "lengthMetres": 11.596598211118698,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 4,
+      "sourceWayId": 552106667,
+      "nodeRefs": [
+        2387761803,
+        5330981406
+      ],
+      "lengthMetres": 14.8441401766379,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 5,
+      "sourceWayId": 552106667,
+      "nodeRefs": [
+        5330981406,
+        337844855
+      ],
+      "lengthMetres": 15.787799523988907,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 6,
+      "sourceWayId": 597467810,
+      "nodeRefs": [
+        337844855,
+        2389989696
+      ],
+      "lengthMetres": 10.907192369179002,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 7,
+      "sourceWayId": 785556324,
+      "nodeRefs": [
+        2389989696,
+        6058417484
+      ],
+      "lengthMetres": 10.84433944999906,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 8,
+      "sourceWayId": 785556324,
+      "nodeRefs": [
+        6058417484,
+        6058417804
+      ],
+      "lengthMetres": 4.6819211280760085,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 9,
+      "sourceWayId": 107683789,
+      "nodeRefs": [
+        6058417804,
+        6058417805
+      ],
+      "lengthMetres": 23.082831393817155,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 10,
+      "sourceWayId": 107683789,
+      "nodeRefs": [
+        6058417805,
+        2387763008
+      ],
+      "lengthMetres": 16.460178347619195,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 11,
+      "sourceWayId": 107683789,
+      "nodeRefs": [
+        2387763008,
+        5838465044
+      ],
+      "lengthMetres": 7.238594351030073,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 12,
+      "sourceWayId": 785556329,
+      "nodeRefs": [
+        5838465044,
+        2387763012
+      ],
+      "lengthMetres": 11.407334486476968,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 13,
+      "sourceWayId": 643906728,
+      "nodeRefs": [
+        2387763012,
+        2387763062
+      ],
+      "lengthMetres": 28.182607779365238,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 14,
+      "sourceWayId": 544133364,
+      "nodeRefs": [
+        2387763062,
+        1280828428
+      ],
+      "lengthMetres": 53.85346223800347,
+      "roadName": "Szent Márton utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 15,
+      "sourceWayId": 307240373,
+      "nodeRefs": [
+        1280828428,
+        14348247032
+      ],
+      "lengthMetres": 25.019114428024867,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 16,
+      "sourceWayId": 307240373,
+      "nodeRefs": [
+        14348247032,
+        1280828407
+      ],
+      "lengthMetres": 0.7488732465465893,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 17,
+      "sourceWayId": 307240373,
+      "nodeRefs": [
+        1280828407,
+        5175161766
+      ],
+      "lengthMetres": 67.92321964457057,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 18,
+      "sourceWayId": 506998480,
+      "nodeRefs": [
+        5175161766,
+        1280828365
+      ],
+      "lengthMetres": 5.2834085350736375,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 19,
+      "sourceWayId": 293706970,
+      "nodeRefs": [
+        1280828365,
+        2973343831
+      ],
+      "lengthMetres": 12.906921843427298,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 20,
+      "sourceWayId": 293706970,
+      "nodeRefs": [
+        2973343831,
+        2972985337
+      ],
+      "lengthMetres": 12.96129626379545,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 21,
+      "sourceWayId": 611110275,
+      "nodeRefs": [
+        2972985337,
+        2973343825
+      ],
+      "lengthMetres": 58.468530657995075,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 22,
+      "sourceWayId": 611110275,
+      "nodeRefs": [
+        2973343825,
+        1280828388
+      ],
+      "lengthMetres": 18.8611883947648,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 23,
+      "sourceWayId": 290056904,
+      "nodeRefs": [
+        1280828388,
+        2386699746
+      ],
+      "lengthMetres": 96.42243399418557,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 24,
+      "sourceWayId": 290056904,
+      "nodeRefs": [
+        2386699746,
+        2386699769
+      ],
+      "lengthMetres": 20.13629212016761,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 25,
+      "sourceWayId": 290056904,
+      "nodeRefs": [
+        2386699769,
+        2386699759
+      ],
+      "lengthMetres": 58.29057903413862,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 26,
+      "sourceWayId": 730129378,
+      "nodeRefs": [
+        2386699759,
+        1280828393
+      ],
+      "lengthMetres": 68.41733092677444,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 27,
+      "sourceWayId": 730129378,
+      "nodeRefs": [
+        1280828393,
+        2386698027
+      ],
+      "lengthMetres": 14.603845851632926,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 28,
+      "sourceWayId": 730129378,
+      "nodeRefs": [
+        2386698027,
+        1280828325
+      ],
+      "lengthMetres": 5.2103065117074525,
+      "roadName": "Barátság utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 29,
+      "sourceWayId": 112539408,
+      "nodeRefs": [
+        1280828325,
+        2386698034
+      ],
+      "lengthMetres": 8.295508266643077,
+      "roadName": "",
+      "boundaryRoleUnproven": true
+    },
+    {
+      "edgeIndex": 30,
+      "sourceWayId": 112539408,
+      "nodeRefs": [
+        2386698034,
+        1278848008
+      ],
+      "lengthMetres": 34.27139312403533,
+      "roadName": "",
+      "boundaryRoleUnproven": true
+    },
+    {
+      "edgeIndex": 31,
+      "sourceWayId": 503231530,
+      "nodeRefs": [
+        1278848008,
+        3298769525
+      ],
+      "lengthMetres": 62.77764250625902,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 32,
+      "sourceWayId": 503231530,
+      "nodeRefs": [
+        3298769525,
+        2935935722
+      ],
+      "lengthMetres": 47.93666085092486,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 33,
+      "sourceWayId": 503231530,
+      "nodeRefs": [
+        2935935722,
+        1278848246
+      ],
+      "lengthMetres": 10.052827249454777,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 34,
+      "sourceWayId": 958596933,
+      "nodeRefs": [
+        1278848246,
+        4935721834
+      ],
+      "lengthMetres": 20.777886553526,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 35,
+      "sourceWayId": 958596933,
+      "nodeRefs": [
+        4935721834,
+        2066555818
+      ],
+      "lengthMetres": 52.82607368936198,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 36,
+      "sourceWayId": 958596933,
+      "nodeRefs": [
+        2066555818,
+        2066555793
+      ],
+      "lengthMetres": 5.121117425900555,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 37,
+      "sourceWayId": 958596933,
+      "nodeRefs": [
+        2066555793,
+        2066555792
+      ],
+      "lengthMetres": 4.269143766647233,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 38,
+      "sourceWayId": 958596933,
+      "nodeRefs": [
+        2066555792,
+        2066555807
+      ],
+      "lengthMetres": 4.273928798900832,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 39,
+      "sourceWayId": 958596933,
+      "nodeRefs": [
+        2066555807,
+        8869607287
+      ],
+      "lengthMetres": 14.403143844109634,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 40,
+      "sourceWayId": 196312638,
+      "nodeRefs": [
+        8869607287,
+        4935721826
+      ],
+      "lengthMetres": 115.8075059003267,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 41,
+      "sourceWayId": 958596934,
+      "nodeRefs": [
+        4935721826,
+        2066555808
+      ],
+      "lengthMetres": 60.76590802082432,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 42,
+      "sourceWayId": 958596934,
+      "nodeRefs": [
+        2066555808,
+        2386795175
+      ],
+      "lengthMetres": 6.316394710397119,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 43,
+      "sourceWayId": 958596934,
+      "nodeRefs": [
+        2386795175,
+        2066555811
+      ],
+      "lengthMetres": 5.221288113743974,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 44,
+      "sourceWayId": 958596934,
+      "nodeRefs": [
+        2066555811,
+        2066555810
+      ],
+      "lengthMetres": 5.014310774693504,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 45,
+      "sourceWayId": 958596934,
+      "nodeRefs": [
+        2066555810,
+        2066555802
+      ],
+      "lengthMetres": 38.56537630819557,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 46,
+      "sourceWayId": 594300913,
+      "nodeRefs": [
+        2066555802,
+        2386795185
+      ],
+      "lengthMetres": 14.603566835590403,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 47,
+      "sourceWayId": 594300913,
+      "nodeRefs": [
+        2386795185,
+        5667356794
+      ],
+      "lengthMetres": 7.315604274375138,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 48,
+      "sourceWayId": 594300913,
+      "nodeRefs": [
+        5667356794,
+        2066555798
+      ],
+      "lengthMetres": 6.123241216273836,
+      "roadName": "Mikes Kelemen utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 49,
+      "sourceWayId": 594300969,
+      "nodeRefs": [
+        2066555798,
+        5642178565
+      ],
+      "lengthMetres": 77.67629058566104,
+      "roadName": "Károlyi Antal utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 50,
+      "sourceWayId": 1524854353,
+      "nodeRefs": [
+        5642178565,
+        1278848185
+      ],
+      "lengthMetres": 153.94389994138612,
+      "roadName": "Károlyi Antal utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 51,
+      "sourceWayId": 112539580,
+      "nodeRefs": [
+        1278848185,
+        2386779633
+      ],
+      "lengthMetres": 34.500150451866105,
+      "roadName": "Károlyi Antal utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 52,
+      "sourceWayId": 112539580,
+      "nodeRefs": [
+        2386779633,
+        2386704176
+      ],
+      "lengthMetres": 13.62737344679125,
+      "roadName": "Károlyi Antal utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 53,
+      "sourceWayId": 112539580,
+      "nodeRefs": [
+        2386704176,
+        2386779632
+      ],
+      "lengthMetres": 25.34459830696898,
+      "roadName": "Károlyi Antal utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 54,
+      "sourceWayId": 112539580,
+      "nodeRefs": [
+        2386779632,
+        2385528767
+      ],
+      "lengthMetres": 57.60338774550193,
+      "roadName": "Károlyi Antal utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 55,
+      "sourceWayId": 112539580,
+      "nodeRefs": [
+        2385528767,
+        2385528777
+      ],
+      "lengthMetres": 14.027118651192165,
+      "roadName": "Károlyi Antal utca",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 56,
+      "sourceWayId": 594300966,
+      "nodeRefs": [
+        2385528777,
+        2385528769
+      ],
+      "lengthMetres": 102.96045887862283,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 57,
+      "sourceWayId": 594300966,
+      "nodeRefs": [
+        2385528769,
+        2385528775
+      ],
+      "lengthMetres": 46.7279439675345,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 58,
+      "sourceWayId": 594300966,
+      "nodeRefs": [
+        2385528775,
+        2386737551
+      ],
+      "lengthMetres": 25.117026209784022,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 59,
+      "sourceWayId": 594300966,
+      "nodeRefs": [
+        2386737551,
+        1278848433
+      ],
+      "lengthMetres": 64.40111672687996,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 60,
+      "sourceWayId": 594300966,
+      "nodeRefs": [
+        1278848433,
+        2386667261
+      ],
+      "lengthMetres": 80.35299595866307,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 61,
+      "sourceWayId": 594300966,
+      "nodeRefs": [
+        2386667261,
+        412133927
+      ],
+      "lengthMetres": 22.788216463844776,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 62,
+      "sourceWayId": 1308786808,
+      "nodeRefs": [
+        412133927,
+        2386667262
+      ],
+      "lengthMetres": 21.612017725621232,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 63,
+      "sourceWayId": 1308786808,
+      "nodeRefs": [
+        2386667262,
+        1248812805
+      ],
+      "lengthMetres": 109.16587436735854,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 64,
+      "sourceWayId": 107683791,
+      "nodeRefs": [
+        1248812805,
+        1248812863
+      ],
+      "lengthMetres": 158.94996099240137,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 65,
+      "sourceWayId": 784606888,
+      "nodeRefs": [
+        1248812863,
+        5324469742
+      ],
+      "lengthMetres": 30.810248498350038,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 66,
+      "sourceWayId": 552831498,
+      "nodeRefs": [
+        5324469742,
+        5324469748
+      ],
+      "lengthMetres": 40.28249388500531,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 67,
+      "sourceWayId": 552831498,
+      "nodeRefs": [
+        5324469748,
+        2386622143
+      ],
+      "lengthMetres": 5.305166419656364,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 68,
+      "sourceWayId": 552831498,
+      "nodeRefs": [
+        2386622143,
+        5324469813
+      ],
+      "lengthMetres": 12.052161126615628,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 69,
+      "sourceWayId": 551326636,
+      "nodeRefs": [
+        5324469813,
+        5324469757
+      ],
+      "lengthMetres": 16.078132217455988,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 70,
+      "sourceWayId": 551326636,
+      "nodeRefs": [
+        5324469757,
+        5324469764
+      ],
+      "lengthMetres": 17.748328362694416,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 71,
+      "sourceWayId": 784606885,
+      "nodeRefs": [
+        5324469764,
+        5324469728
+      ],
+      "lengthMetres": 19.23839721290295,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 72,
+      "sourceWayId": 784606886,
+      "nodeRefs": [
+        5324469728,
+        5324469724
+      ],
+      "lengthMetres": 14.848933933467352,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 73,
+      "sourceWayId": 784606887,
+      "nodeRefs": [
+        5324469724,
+        10959101238
+      ],
+      "lengthMetres": 13.599023515053409,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 74,
+      "sourceWayId": 784606887,
+      "nodeRefs": [
+        10959101238,
+        5324294313
+      ],
+      "lengthMetres": 6.283974943843402,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 75,
+      "sourceWayId": 551326652,
+      "nodeRefs": [
+        5324294313,
+        5324469840
+      ],
+      "lengthMetres": 14.704518789288137,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 76,
+      "sourceWayId": 551326652,
+      "nodeRefs": [
+        5324469840,
+        5330981347
+      ],
+      "lengthMetres": 6.986571826057441,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 77,
+      "sourceWayId": 551326652,
+      "nodeRefs": [
+        5330981347,
+        5330981479
+      ],
+      "lengthMetres": 4.471408150875941,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    },
+    {
+      "edgeIndex": 78,
+      "sourceWayId": 551326652,
+      "nodeRefs": [
+        5330981479,
+        5324294304
+      ],
+      "lengthMetres": 25.064771584064143,
+      "roadName": "Hunyadi János út",
+      "boundaryRoleUnproven": false
+    }
+  ]
+}

@@ -1,0 +1,605 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-13",
+  "scope": "The 18 actual PDF originals currently downloaded in nationwide-docs, 3,489 pages total. Automated file/text/object inventory plus cited actual map visual reviews; all-page visual review is explicitly NOT claimed for every long document.",
+  "networkUsed": false,
+  "allLocalSourcesExhausted": false,
+  "newDownloadsRequiredForAllFurtherProgress": false,
+  "nationwideCompletenessClaimed": false,
+  "finding": "Several real archived contour sources remain usable. Local unreadiness/registration/occlusion/semantic work is not evidence that data does not exist.",
+  "activeNewProcessing": [
+    "Pécs fine source cells",
+    "Sopron native four-face network",
+    "Gyöngyös five fully visible raster contours",
+    "Kaposvár numbered raster cohort (root)"
+  ],
+  "records": [
+    {
+      "id": "eger-map",
+      "path": ".local/neighborhoods/nationwide-docs/originals/eger-map.pdf",
+      "sha256": "7db28b2b5922e6dea7bde9dc3263087534b26e9cd1e52b63335249265df6febe",
+      "pageCount": 1,
+      "pagesWithImages": 1,
+      "textPages": 1,
+      "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [
+        "eger-historical-planning-units"
+      ],
+      "state": "known_one_page_contours_already_processed",
+      "finding": "The original one-page historical map supplies 32 source units, already archived by eger-historical-planning-units. No claim about other Eger sources.",
+      "next": "Review existing source semantics/quality rather than count the same closed faces twice.",
+      "reviewedPdfPagesOneBased": [
+        1
+      ]
+    },
+    {
+      "id": "gyongyos-its",
+      "path": ".local/neighborhoods/nationwide-docs/originals/gyongyos-its.pdf",
+      "sha256": "1e215b16a31dd6b97aca1eca765151f27acf691d23ccc5e8adf216bcb19ceef0",
+      "pageCount": 170,
+      "pagesWithImages": 20,
+      "textPages": 170,
+      "url": "https://gyongyos.hu/wp-content/uploads/2021/01/integralt-telepulesfejlesztesi-strategia-2016-its-gyongyos.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [],
+      "inspectionReport": "data/neighborhoods/research/local-pdf-inventory-north-scout.json",
+      "state": "positive_actual_source_contours",
+      "reviewedPdfPagesOneBased": [
+        19
+      ],
+      "candidate": {
+        "pdfPageOneBased": 19,
+        "printedPage": 18,
+        "caption": "1. ábra: Gyöngyös városrészeinek lehatárolása",
+        "medium": "original embedded JPEG over satellite/aerial base",
+        "xref": 44,
+        "sizePixels": [
+          809,
+          933
+        ],
+        "observedGeometry": "Six differently tinted central-city regions with actual thin white outlines. Five contours are fully visible inside the raster; the northern dark-green region has a narrow extension reaching the source top edge. It must not be closed by the image frame.",
+        "potentialWholeSourceUnits": 6,
+        "fullyVisibleContourCandidates": 5,
+        "clippedSourceRegionCount": 1,
+        "sourceNames": [
+          "Városközpont",
+          "Északi városrész",
+          "Észak-nyugati városrész",
+          "Keleti városrész",
+          "Déli városrész",
+          "Nyugati városrész"
+        ],
+        "labelEvidence": "The image has no legend naming its six colors. Pages17–18 give explicit road-chain definitions for the six regions; a color must be matched through those real roads after geographic registration, not by guessed compass position. Page19 separately mentions Mátrafüred and Benehát, whose polygons this illustration does not supply.",
+        "georeferencingOpportunity": "Actual visible road grid and junctions on aerial base, together with literal street-chain definitions on pp17–18; match at least several real junctions to archived OSM road/node geometry. The displayed colored perimeter is a central built-up-area division, not the entire municipal outline, so municipality-bbox fitting would be unjustified.",
+        "concreteWorkRemaining": [
+          "Prove at least several source-road/world-road control pairs.",
+          "Trace five source-closed contours without image-edge closure.",
+          "Associate actual contours to textual street-chain names.",
+          "Leave the cropped northern polygon unresolved unless another archived map supplies its missing original edge."
+        ],
+        "priority": "positive raster tracing candidate, source naming requires extra controls"
+      },
+      "downloadRequiredForKnownNextStep": false
+    },
+    {
+      "id": "gyor-fvs",
+      "path": ".local/neighborhoods/nationwide-docs/originals/gyor-fvs.pdf",
+      "sha256": "3ad77e86df4ac59ecf253abff76ecddbe89ad79c6f12a74e7003e41d125d2c99",
+      "pageCount": 368,
+      "pagesWithImages": 50,
+      "textPages": 368,
+      "url": "https://gyms.hu/wp-content/uploads/2023/11/GYOR_FVS.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [],
+      "state": "reviewed_page_is_table_not_map_other_rasters_not_exhaustively_sighted",
+      "finding": "PDF49/xref628 (884×863) is a table of higher-education percentages, despite its caption using city-quarter names. It supplies no contour on that page. Full PDF text/caption scan did not identify a new named quarter-boundary caption; this is not a complete visual exhaustion proof for all FVS images.",
+      "next": "Inspect remaining archived raster maps if prioritised; do not label the observed table a polygon or assert no other online source.",
+      "reviewedPdfPagesOneBased": [
+        49
+      ]
+    },
+    {
+      "id": "gyor-its",
+      "path": ".local/neighborhoods/nationwide-docs/originals/gyor-its.pdf",
+      "sha256": "40f318435f5719cb5a06b253d6e15fbd5acc7d5a6bec53fc38ae1e199b6ca21d",
+      "pageCount": 327,
+      "pagesWithImages": 76,
+      "textPages": 327,
+      "url": "https://gyor.hu/easy-docs/5dc9829cb6d4c",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [
+        "gyor-2006-source-outlines"
+      ],
+      "state": "known_map_and_circuits_already_processed",
+      "finding": "The historical map/circuit cohort is archived in gyor-2006-source-outlines. Other pages not claimed exhausted by this report.",
+      "next": "Avoid duplicating the same 17 source units; use the archived map/source proof to resolve any residual semantic issue.",
+      "reviewedPdfPagesOneBased": [
+        269,
+        270,
+        271,
+        272
+      ]
+    },
+    {
+      "id": "kaposvar-its",
+      "path": ".local/neighborhoods/nationwide-docs/originals/kaposvar-its.pdf",
+      "sha256": "8dcf6a39c018d11e9b7283a263d5887f919f7c5ba7c36862a6e83c76a13f159a",
+      "pageCount": 106,
+      "pagesWithImages": 27,
+      "textPages": 106,
+      "url": "https://kph.kaposvar.hu/eloterjesztesek/et20140929/documents/0301.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [],
+      "inspectionReport": "data/neighborhoods/research/local-pdf-inventory-north-scout.json",
+      "state": "positive_actual_source_contours",
+      "reviewedPdfPagesOneBased": [
+        18
+      ],
+      "candidate": {
+        "pdfPageOneBased": 18,
+        "printedPage": 18,
+        "caption": "2.2 A területi célok és tematikus célok közötti összefüggések bemutatása; map title KAPOSVÁR MEGYEI JOGÚ VÁROS VÁROSRÉSZEK",
+        "medium": "original embedded JPEG with colored regions, black boundaries, grey cadastral/street background",
+        "xref": 124,
+        "sizePixels": [
+          625,
+          883
+        ],
+        "potentialWholeSourceUnits": 10,
+        "visuallyDistinctRegionComponents": 14,
+        "observedGeometry": "Ten explicitly numbered source regions. Units1–8 each have one visible component;9 has four separately numbered/tinted components and10 has two. Their real disconnected footprints should remain multipart; no artificial corridor. Numeric labels are inside the regions, not a missing-outline reason.",
+        "sourceNames": [
+          "1 Belváros",
+          "2 Északnyugati városrész",
+          "3 Északi városrész",
+          "4 Kisgát és környéke, Cukorgyár, Pécsi utca és környéke",
+          "5 Kecelhegy – Cser",
+          "6 Donner – Rómahegy",
+          "7 Ivánfahegy – Kaposszentjakab",
+          "8 Kaposfüred",
+          "9 Toponár – Répáspuszta – Fészerlak – Deseda",
+          "10 Töröcske – Zselic kertváros"
+        ],
+        "semantics": "Source explicitly uses10 IVS-derived strategic city-region units. Labels1,2,3,8 are single source labels;4,5,6,7,9,10 collect multiple named neighbourhoods. Preserve each full source label; never clone one group footprint onto its named components.",
+        "georeferencingOpportunity": "Grey roads/rail and cadastral structure allow source-junction controls against locally archived current OSM. The ten colored units cover developed areas and detached settlements rather than a demonstrably complete municipality perimeter; do not force their bounding box to the municipality boundary.",
+        "concreteWorkRemaining": [
+          "Verify labelled source junctions/rail crossings and transform.",
+          "Trace14 original closed components and combine only by actual printed numeric labels.",
+          "Test whether black outline and grey street thresholds leave all original contours closed."
+        ],
+        "priority": "strong positive numbered-raster candidate"
+      },
+      "downloadRequiredForKnownNextStep": false
+    },
+    {
+      "id": "kecskemet-map",
+      "path": ".local/neighborhoods/nationwide-docs/originals/kecskemet-map.pdf",
+      "sha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+      "pageCount": 204,
+      "pagesWithImages": 204,
+      "textPages": 204,
+      "url": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [
+        "kecskemet-erzsebetvaros",
+        "kecskemet-offline-next",
+        "kecskemet-varoskozpont",
+        "kecskemet-petofi-source-raster",
+        "kecskemet-figure81-source-raster"
+      ],
+      "state": "multiple_real_source_maps_partially_processed_active_other_agent",
+      "finding": "Several original named fine-quarter maps exist, including figure79 on PDF169 and figure81 on PDF175. The original full map and neighbourhood chapter contain source outlines beyond a boundary-free name list. Existing agents are handling these exact maps; incomplete or quarantined contours remain distinct from source absence.",
+      "next": "Continue remaining original named contours under the Kecskemét owner; do not count source groups as cloned constituent neighbourhoods.",
+      "reviewedPdfPagesOneBased": [
+        143,
+        145,
+        148,
+        149,
+        150,
+        152,
+        169,
+        175
+      ]
+    },
+    {
+      "id": "miskolc-annex",
+      "path": ".local/neighborhoods/nationwide-docs/originals/miskolc-annex.pdf",
+      "sha256": "c68fe45e74c9caa0ec9d36d5b35d686ee71d6bd75cf5603fb652e9f070e90744",
+      "pageCount": 477,
+      "pagesWithImages": 128,
+      "textPages": 456,
+      "url": "https://www.miskolc.hu/sites/default/files/dokumentumtar/mellekletek/2024-11/197_melleklet.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [
+        "miskolc-source-raster"
+      ],
+      "state": "known_map_and_constituent_semantics_processed",
+      "finding": "The 17-cell source and 32-to-17 constituent table are fully retained in municipal-local-map-next/miskolc artifacts. This does not prove all 477 pages lack further maps.",
+      "next": "Avoid duplicate imports; use a genuine finer source if a separate 32-part geometry is later found.",
+      "reviewedPdfPagesOneBased": [
+        228,
+        229,
+        230,
+        231
+      ]
+    },
+    {
+      "id": "miskolc-its",
+      "path": ".local/neighborhoods/nationwide-docs/originals/miskolc-its.pdf",
+      "sha256": "91ff0fc330d4e375f2b300ab410ab0eed3fc089b61afbedcdc3744003463bd01",
+      "pageCount": 291,
+      "pagesWithImages": 81,
+      "textPages": 290,
+      "url": "https://miskolc.hu/sites/default/files/aktualitas/csatolmanyok/2024-09/megalapozo_vizsgalat_miskolc_mjv_its.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [],
+      "state": "known_map_byte_identical_to_processed_annex_map",
+      "finding": "Original image xref1160 on PDF254 is byte-identical to annex xref3691 on PDF228. The 17 actual cells are archived in miskolc-source-raster, with 5 neighbourhood candidates and 12 planning units.",
+      "next": "This map does not supply 32 separate KSH constituent geometries; do not duplicate the 17 cells.",
+      "reviewedPdfPagesOneBased": [
+        254
+      ]
+    },
+    {
+      "id": "nagykanizsa-fvs",
+      "path": ".local/neighborhoods/nationwide-docs/originals/nagykanizsa-fvs.pdf",
+      "sha256": "d6553f573544fb25395af7275fb33b3d8cbc548553502d216c534b1c37881254",
+      "pageCount": 345,
+      "pagesWithImages": 89,
+      "textPages": 345,
+      "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [],
+      "inspectionReport": "data/neighborhoods/research/local-pdf-inventory-north-scout.json",
+      "state": "positive_actual_source_contours",
+      "reviewedPdfPagesOneBased": [
+        229
+      ],
+      "candidate": {
+        "pdfPageOneBased": 229,
+        "printedPage": 229,
+        "caption": "6.2 Az akcióterületek kijelölése, a kijelölés és a lehatárolás indoklása; map legend Akcióterületek",
+        "medium": "original embedded JPEG with six colored outlined action areas on cadastral/road background",
+        "xref": 1195,
+        "sizePixels": [
+          1385,
+          1958
+        ],
+        "potentialWholeSourceUnits": 6,
+        "observedGeometry": "Six actual colored geographic action areas with a matching legend. All are visibly circumscribed; AT2 has separately colored parts, which should remain source-defined multipart if traced. The map is not a set of six whole neighbourhood boundaries.",
+        "sourceNames": [
+          "AT1 Városközpont Akcióterület",
+          "AT2 Gazdaságfejlesztési Zóna Akcióterület",
+          "AT3 Térségi rekreációs fejlesztési Akcióterület",
+          "AT4 Keleti városrész Közlekedésfejlesztési Akcióterület",
+          "AT5 Palin alközpont Akcióterület",
+          "AT6 Kiskanizsa alközpont Akcióterület"
+        ],
+        "semantics": "Valid planning_unit source candidates. AT5 is an action-area centre inside Palin, not all of Palin; AT6 is an action-area centre inside Kiskanizsa, not all of Kiskanizsa. Source page230 lists actual road/rail/municipal-boundary chains for all six.",
+        "georeferencingOpportunity": "Detailed grey road network and literal street chains on page230 can establish actual junction controls. Examples: AT5 Kastély köz–Lovarda u.–Alkotmány u.–Napsugár u.; AT6 Szent Flórián tér–Templom tér–Homokkomáromi u. The drawn urban/cadastral extent must not be assumed to equal the full city boundary.",
+        "concreteWorkRemaining": [
+          "Match source-road junctions or rail crossings to archived actual road nodes.",
+          "Extract six source-colored action-area footprints without turning colour legend swatches into regions.",
+          "Keep action-area scope and full labels in metadata."
+        ],
+        "priority": "strong positive action-area raster candidate; no fine-neighbourhood claim"
+      },
+      "downloadRequiredForKnownNextStep": false
+    },
+    {
+      "id": "nyiregyhaza-its",
+      "path": ".local/neighborhoods/nationwide-docs/originals/nyiregyhaza-its.pdf",
+      "sha256": "159c8b3112c842f25f6799cf0a34645c90143dd9b5d071000b3160ec499c3a90",
+      "pageCount": 95,
+      "pagesWithImages": 22,
+      "textPages": 94,
+      "url": "https://uj.nyiregyhaza.hu/lib/rend_terv/its/felulvizsg/220804_its_jovahagyott_its.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [],
+      "inspectionReport": "data/neighborhoods/research/local-pdf-inventory-north-scout.json",
+      "state": "positive_actual_source_contours",
+      "reviewedPdfPagesOneBased": [
+        15,
+        16
+      ],
+      "candidate": {
+        "pdfPageOneBased": 15,
+        "printedPage": 15,
+        "caption": "4. ábra: Nyíregyháza Megyei Jogú város városrészei",
+        "medium": "original embedded JPEG with10 numbered fill regions and purple/blue continuous boundaries",
+        "xref": 125,
+        "sizePixels": [
+          598,
+          583
+        ],
+        "potentialWholeSourceUnits": 10,
+        "observedGeometry": "Ten fully shown, numbered colored regions partition the displayed whole city outline. Their original blue/purple separating lines are visibly available for tracing. This is positive raster geometry, not a boundary-free name list.",
+        "sourceNames": [
+          "1 Belső lakóterület (Belváros)",
+          "2 Örökösföld",
+          "3 Malomkert, Déli ipartelep, Huszártelep",
+          "4 Kertváros, Salamonbokor, Szabadságbokor",
+          "5 Jósaváros, Stadion környéke, Hímes",
+          "6 Nyírszőlős, Felsőpázsit",
+          "7 Sóstóhegy, Sóstógyógyfürdő, Korányi kertváros",
+          "8 Kőlapos, Oros, Nagyszállás",
+          "9 Borbánya, Nyírjes, Kistelekiszőlő, Butyka",
+          "10 Bokortanyák, Császárszállás"
+        ],
+        "semantics": "Two single-named units1/2, eight compound planning regions3–10. Page15 explicitly says the city regions cover the whole municipality without gaps/overlaps; page16 gives street, railway, stream and municipal-boundary descriptions. Existing local10 estimated Nyíregyháza geometries must be checked for duplication; the source could improve source-contour proof rather than add10 new unique quarters.",
+        "georeferencingOpportunity": "Full displayed municipal outline can be compared with archived current municipality geometry; street chains and visible roads can add independent internal controls.598×583 source and thick lines mean unknown absolute precision; fitting residuals alone are not independent accuracy.",
+        "concreteWorkRemaining": [
+          "Check relationship to existing10 estimated local records.",
+          "Trace actual original raster contours with all residual holes and documented stroke-side interpretation.",
+          "Register full source outline and independently verify inner street controls where identifiable."
+        ],
+        "priority": "positive full-source raster alternative; likely duplicate cohort"
+      },
+      "downloadRequiredForKnownNextStep": false
+    },
+    {
+      "id": "pecs-its",
+      "path": ".local/neighborhoods/nationwide-docs/originals/pecs-its.pdf",
+      "sha256": "995d0db03e454a34046b248526e0882aee26ffbf40ba916e996afa4c8b49f6b1",
+      "pageCount": 316,
+      "pagesWithImages": 316,
+      "textPages": 316,
+      "url": "https://logoweb.pecs.hu/download/koncepcio/ITS.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [],
+      "state": "positive_fine_contours_under_active_processing",
+      "finding": "PDF48/xref616 (585×514), figure9 has literal fine-quarter names. PDF63/xref642 (1341×946), figure12 contains actual fine-cell outlines inside 13 broad statistical groups. These are distinct from action-area maps on PDF13/16. The 67-name text table, map Roman-numeral mismatch and labels are being independently reviewed.",
+      "next": "Trace source-closed fine cells; prove image-to-image correspondence and actual gray-perimeter/road geographic controls. Do not clone the 13 broad group footprints onto 67 names.",
+      "downloadRequiredForKnownNextStep": false,
+      "reviewedPdfPagesOneBased": [
+        10,
+        11,
+        13,
+        16,
+        47,
+        48,
+        60,
+        61,
+        62,
+        63,
+        65,
+        67
+      ]
+    },
+    {
+      "id": "salgotarjan-its",
+      "path": ".local/neighborhoods/nationwide-docs/originals/salgotarjan-its.pdf",
+      "sha256": "d0c46f2a4797517874b770da6d64dba88cf81de5170cf09e2857284644a31a25",
+      "pageCount": 241,
+      "pagesWithImages": 53,
+      "textPages": 241,
+      "url": "https://www.salgotarjan.hu/wp-content/uploads/fejlesztesidokumentumok_20220629_its.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [],
+      "state": "positive_named_source_rasters_not_yet_georeferenced",
+      "finding": "PDF 125 explicitly maps 10 city-region groups; actual image objects are listed separately. Individual illustrations on PDF 129 for Beszterce lakótelep, PDF 130 for Városközpont and PDF 136 for Baglyasalja show source contours. Other groups combine multiple names and must remain groups. All are actual colored contours over cadastral/street backgrounds.",
+      "next": "Match actual cadastral/road-junction features to archived geographic geometry, then trace source-closed original outlines. Name-point placement alone is insufficient for georeferencing.",
+      "downloadRequiredForKnownNextStep": false,
+      "reviewedPdfPagesOneBased": [
+        125,
+        126,
+        128,
+        129,
+        130,
+        132,
+        133,
+        135,
+        136,
+        137
+      ],
+      "originalImageObjectsReviewed": [
+        {
+          "pdfPageOneBased": 125,
+          "xref": 924,
+          "widthPixels": 761,
+          "heightPixels": 885
+        },
+        {
+          "pdfPageOneBased": 129,
+          "xref": 936,
+          "widthPixels": 411,
+          "heightPixels": 376
+        },
+        {
+          "pdfPageOneBased": 130,
+          "xref": 939,
+          "widthPixels": 375,
+          "heightPixels": 450
+        },
+        {
+          "pdfPageOneBased": 136,
+          "xref": 957,
+          "widthPixels": 357,
+          "heightPixels": 543
+        }
+      ]
+    },
+    {
+      "id": "sopron-map",
+      "path": ".local/neighborhoods/nationwide-docs/originals/sopron-map.pdf",
+      "sha256": "62589313512700af95c98e41af9a7556ebaf97fc0e1eac3240cd0aeaf791ec41",
+      "pageCount": 2,
+      "pagesWithImages": 0,
+      "textPages": 2,
+      "url": "https://njt.jog.gov.hu/document/4f/4fb0LL_EJR_84883813-Sopron_-_HESZmod_1_melleklet__SZT-Atnezeti_tervlapok.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [],
+      "inspectionReport": "data/neighborhoods/research/local-pdf-inventory-north-scout.json",
+      "state": "positive_actual_source_contours",
+      "reviewedPdfPagesOneBased": [
+        1,
+        2
+      ],
+      "candidate": {
+        "pdfPageOneBased": 2,
+        "caption": "A RENDELET TERÜLETI HATÁLYA ÉS AZ EGYES VÁROSRÉSZEINEK LEHATÁROLÁSA;1/B melléklet a39/2021.(XII.28.) önkormányzati rendelethez",
+        "medium": "native vector CAD-like plan, no raster images",
+        "sourceMapScale": "M=1:60.000",
+        "sourceWorkNumber": "TT08518-M1/24",
+        "potentialWholeSourceUnits": 4,
+        "sourceNames": [
+          "1 Észak-nyugat / Észak-nyugati városrész",
+          "4 Bánfalva, Kutyahegy / Bánfalva, Kutyahegy városrész",
+          "5 Lőverek / Lővereki városrész",
+          "13 Dél-keleti gazdasági terület / Dél-keleti gazdasági terület városrész"
+        ],
+        "semantics": "Four actual irregular geographic planning units identified by original source labels. Legend distinguishes red dashed planning-area boundary from continuous blue city-region boundary. They are not four plan-sheet rectangles. Preserve all four as planning_unit conservatively; Bánfalva–Kutyahegy is composite and southeast unit is functional economic area. Page1 instead groups seven regulation scopes and must not be expanded into separate neighbourhood polygons for every constituent in each legend sentence.",
+        "nativeContourProof": {
+          "blueStrokeDrawingIndices": [
+            38799,
+            38800,
+            38801,
+            38802
+          ],
+          "blueStrokeSegmentCounts": [
+            436,
+            199,
+            328,
+            275
+          ],
+          "blueStrokeWidthPdfPoints": 2.820000171661377,
+          "legendBlueLineDrawingExcluded": 38815,
+          "nativeCoordinateSystem": "PDF page points; not yet geographic coordinates",
+          "realSourceNetworkPolygonizeFullFaces": 4,
+          "realSourceNetworkCuts": 0,
+          "realSourceNetworkDangles": 0,
+          "realSourceNetworkInvalidRings": 0,
+          "faceAreasPdfPointsSquaredDescending": [
+            13929.584982945584,
+            9679.508535169996,
+            6604.691395636648,
+            4530.486005898099
+          ],
+          "procedure": "Take only actual line segments from the four listed original blue stroke drawings; unary_union those original segments and polygonize_full. Do not close the three individually open drawing paths with invented straight chords. Source-shared boundary segments close the four network faces exactly."
+        },
+        "georeferencingOpportunity": "Both pages show the actual entire municipal perimeter plus detailed street/parcels. Native source municipal outline against archived current municipality geometry and/or genuinely identified street junctions can provide geographic control. No EOV grid numbers or native geographic registration have yet been demonstrated; do not infer coordinates solely from quarter name points.",
+        "concreteWorkRemaining": [
+          "Extract/archive actual native segment network and four PDF-coordinate closed faces.",
+          "Attach exact labels using source text positions/colored areas.",
+          "Check for embedded georeference or EOV controls; otherwise register actual municipality outline and real street junctions.",
+          "Keep unknown positional accuracy and address assignment disabled."
+        ],
+        "priority": "strongest native-vector positive candidate in this scout"
+      },
+      "downloadRequiredForKnownNextStep": false
+    },
+    {
+      "id": "szombathely-ivs",
+      "path": ".local/neighborhoods/nationwide-docs/originals/szombathely-ivs.pdf",
+      "sha256": "aade0d35a60e4ecd230a26c2c7dabcfc26ec76466ab86310e6828f34db714500",
+      "pageCount": 179,
+      "pagesWithImages": 35,
+      "textPages": 179,
+      "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [
+        "szombathely-belvaros",
+        "szombathely-ehen-gyula"
+      ],
+      "state": "additional_local_source_map_and_text_circuits_not_globally_exhausted",
+      "finding": "PDF50/xref282 (480×476) is a raster overview with 18 numbered quarter units; PDF150–151 gives explicit road/stream/built-up-boundary descriptions. Existing source-derived packages cover two street circuits. Many other descriptions reference historical built-up boundaries, which are not interchangeable with the full current municipality; source50 is low resolution but has actual boundary/road graphics.",
+      "next": "Check which original contours/road chains can be reproduced beyond the two completed circuits; do not reject merely because the overview is raster or assume all historical built-up limits are currently known.",
+      "downloadRequiredForKnownNextStep": false,
+      "reviewedPdfPagesOneBased": [
+        49,
+        50,
+        150,
+        151
+      ]
+    },
+    {
+      "id": "tata-map",
+      "path": ".local/neighborhoods/nationwide-docs/originals/tata-map.pdf",
+      "sha256": "88cf8d1af8bbaeb41c78a9ea098fef6f42fce9b93b82a7b15b34abe1064ae979",
+      "pageCount": 1,
+      "pagesWithImages": 1,
+      "textPages": 1,
+      "url": "https://magyaryterv.etata.hu/telepulesrendezes/tesz/7_melleklet_a_19_2022_XI_30_rendelethez_varosreszek_000.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [
+        "tata-statutory-planning-units"
+      ],
+      "state": "known_one_page_native_source_processed",
+      "finding": "Original one-page statutory source supplies 9 true source faces; 8 admitted and one quarantined by existing conservative validation. That is a documented geometry/topology issue, not missing source lines.",
+      "next": "Preserve the quarantine and avoid counting the same faces again; no conclusion about other Tata sources.",
+      "reviewedPdfPagesOneBased": [
+        1
+      ]
+    },
+    {
+      "id": "tatabanya-map",
+      "path": ".local/neighborhoods/nationwide-docs/originals/tatabanya-map.pdf",
+      "sha256": "7a7ca9a8f70f0dcaad90deb3ce27a459a8b70610914c72cc7d9ec98eb2fb76d7",
+      "pageCount": 1,
+      "pagesWithImages": 0,
+      "textPages": 1,
+      "url": "https://njt.jog.gov.hu/document/c5/c56aLL_EJR_13372578-H_SZ_3.mell_klet.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [
+        "tatabanya-statutory-planning-units"
+      ],
+      "state": "known_one_page_native_source_processed",
+      "finding": "The four original statutory source faces already have a source package. Source is geometric rather than just a name list.",
+      "next": "Do not duplicate the four existing source faces; no conclusion about all other city sources.",
+      "reviewedPdfPagesOneBased": [
+        1
+      ]
+    },
+    {
+      "id": "veszprem-its",
+      "path": ".local/neighborhoods/nationwide-docs/originals/veszprem-its.pdf",
+      "sha256": "58b67936ca68196db76d656772d9fbfe526b0be09f5b5750b1000d13957c3d51",
+      "pageCount": 259,
+      "pagesWithImages": 32,
+      "textPages": 259,
+      "url": "https://veszprem.hu/wp-content/uploads/2023/08/ITS_Veszprem_v5.0_20140911.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [],
+      "state": "specific_document_no_quarter_boundary_map_identified",
+      "finding": "All259 pages were inventoried in veszprem-source-review.json. The14 quarter names on printed75 do not match the20 development-target map on printed76. The actual map is explicitly intervention targets, not a14-quarter boundary map.",
+      "next": "A genuine quarter-outline source or sufficiently specific boundary descriptions are needed for Veszprém; this finding applies to this PDF alone.",
+      "downloadRequiredForKnownNextStep": "unknown; a different local document or later download may supply it",
+      "reviewedPdfPagesOneBased": [
+        75,
+        76
+      ]
+    },
+    {
+      "id": "zalaegerszeg-its",
+      "path": ".local/neighborhoods/nationwide-docs/originals/zalaegerszeg-its.pdf",
+      "sha256": "4534775c49466eba0460e583aa45a12127f0a46cd8c0e768ed689b830e4eb035",
+      "pageCount": 106,
+      "pagesWithImages": 23,
+      "textPages": 106,
+      "url": "https://zalaegerszeg.hu/wp-content/uploads/2023/05/Zalaegerszeg_ITS.pdf",
+      "fileHashVerifiedLocally": true,
+      "existingReviewedSourcePackages": [
+        "zalaegerszeg-source-raster"
+      ],
+      "state": "real_source_map_partially_processed_with_explicit_occlusions",
+      "finding": "Twenty numbered source units are actually drawn. Seven closed individually named source cells were digitised, five pass strict import and two are quarantined. Other narrow units have label disks crossing/occluding their border; groups9/15/16 and outer areas17–20 are not separate fine constituent quarters.",
+      "next": "Further source-aware interpretation may resolve some original occlusions, but do not draw unknown closing segments or clone compound source units. No global absence claim.",
+      "reviewedPdfPagesOneBased": [
+        12,
+        13
+      ]
+    }
+  ],
+  "supportingReports": [
+    "data/neighborhoods/research/local-source-pdf-file-inventory.json",
+    "data/neighborhoods/research/local-pdf-inventory-north-scout.json",
+    "data/neighborhoods/sources/municipal-local-map-next/veszprem-source-review.json"
+  ],
+  "restrictions": [
+    "Never create source closure at a cropped image edge.",
+    "Do not use name labels as final geographic calibration controls.",
+    "Preserve source group semantics and never copy their footprint onto constituents.",
+    "Unknown absolute positional accuracy, current legal validity and reuse rights remain explicit."
+  ]
+}

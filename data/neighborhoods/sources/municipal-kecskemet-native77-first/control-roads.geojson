@@ -1,0 +1,1741 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "osm:way:57771723",
+      "properties": {
+        "name": "Könyves Kálmán körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 57771723,
+          "url": "https://www.openstreetmap.org/way/57771723",
+          "tags": {
+            "highway": "tertiary",
+            "lane_markings": "yes",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Könyves Kálmán körút",
+            "sidewalk": "no",
+            "smoothness": "excellent",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            495569801,
+            1554452862,
+            10810976556,
+            1446134451,
+            314897609,
+            984554265,
+            4209124004,
+            716620846,
+            4209124003,
+            4209123999,
+            314897607,
+            4209124000,
+            4209124002,
+            4209124001,
+            495569829
+          ],
+          "objectVersion": 26,
+          "objectTimestamp": "2026-04-28 10:04:03+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6822703,
+            46.8835553
+          ],
+          [
+            19.6820221,
+            46.8836019
+          ],
+          [
+            19.6819173,
+            46.8836203
+          ],
+          [
+            19.6806477,
+            46.8838437
+          ],
+          [
+            19.6797841,
+            46.8839782
+          ],
+          [
+            19.6790917,
+            46.8840933
+          ],
+          [
+            19.6787336,
+            46.8841593
+          ],
+          [
+            19.6783604,
+            46.884257
+          ],
+          [
+            19.6780738,
+            46.8843425
+          ],
+          [
+            19.6777002,
+            46.8844767
+          ],
+          [
+            19.6773365,
+            46.8846234
+          ],
+          [
+            19.6770931,
+            46.8847411
+          ],
+          [
+            19.6767906,
+            46.8849081
+          ],
+          [
+            19.6764367,
+            46.8851183
+          ],
+          [
+            19.6754204,
+            46.8858738
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:424836628",
+      "properties": {
+        "name": "Kiskőrösi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 424836628,
+          "url": "https://www.openstreetmap.org/way/424836628",
+          "tags": {
+            "cycleway:both": "lane",
+            "cycleway:both:lane": "advisory",
+            "highway": "residential",
+            "maxspeed": "50",
+            "name": "Kiskőrösi út",
+            "smoothness": "excellent",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            10810976557,
+            8458074730,
+            494552057,
+            4045318775,
+            5586983168,
+            4242158335,
+            5586983169,
+            5586983148,
+            4242158337,
+            4242158339,
+            4045319030,
+            4045319043,
+            4242158353,
+            13319155411,
+            13319155413,
+            495569829
+          ],
+          "objectVersion": 15,
+          "objectTimestamp": "2025-11-20 12:43:29+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6795969,
+            46.8966834
+          ],
+          [
+            19.6794379,
+            46.8962673
+          ],
+          [
+            19.6781507,
+            46.8929204
+          ],
+          [
+            19.6776857,
+            46.8916463
+          ],
+          [
+            19.6774738,
+            46.8911082
+          ],
+          [
+            19.6774567,
+            46.8910649
+          ],
+          [
+            19.6774031,
+            46.8909288
+          ],
+          [
+            19.6773591,
+            46.8908171
+          ],
+          [
+            19.6771756,
+            46.8903514
+          ],
+          [
+            19.6771446,
+            46.8902726
+          ],
+          [
+            19.6770937,
+            46.8901436
+          ],
+          [
+            19.6768396,
+            46.8894836
+          ],
+          [
+            19.676557,
+            46.8887649
+          ],
+          [
+            19.6754987,
+            46.8860729
+          ],
+          [
+            19.6754671,
+            46.8859926
+          ],
+          [
+            19.6754204,
+            46.8858738
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:426744463",
+      "properties": {
+        "name": "Kiskőrösi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 426744463,
+          "url": "https://www.openstreetmap.org/way/426744463",
+          "tags": {
+            "cycleway:both": "lane",
+            "cycleway:both:lane": "advisory",
+            "highway": "residential",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Kiskőrösi út",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            495569829,
+            13319155412,
+            496249764,
+            496249766,
+            496249768,
+            1446139534,
+            496249770,
+            496249771
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2025-11-20 12:43:29+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6754204,
+            46.8858738
+          ],
+          [
+            19.675242,
+            46.8857066
+          ],
+          [
+            19.674839,
+            46.8853289
+          ],
+          [
+            19.6742637,
+            46.8847677
+          ],
+          [
+            19.6737422,
+            46.8842147
+          ],
+          [
+            19.6733707,
+            46.8838161
+          ],
+          [
+            19.6732428,
+            46.8836818
+          ],
+          [
+            19.6725735,
+            46.8829776
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:426744464",
+      "properties": {
+        "name": "Könyves Kálmán körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 426744464,
+          "url": "https://www.openstreetmap.org/way/426744464",
+          "tags": {
+            "highway": "tertiary",
+            "maxspeed": "50",
+            "name": "Könyves Kálmán körút",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            495569829,
+            12670616418,
+            496249760,
+            496249787,
+            314897604,
+            5362548561,
+            314897603,
+            4242175797,
+            496249823,
+            496249775,
+            5362548495,
+            5362548560,
+            9804643972,
+            411390734
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2025-09-05 11:18:30+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6754204,
+            46.8858738
+          ],
+          [
+            19.6752383,
+            46.8860022
+          ],
+          [
+            19.673983,
+            46.8868872
+          ],
+          [
+            19.6733616,
+            46.8873475
+          ],
+          [
+            19.6720209,
+            46.888355
+          ],
+          [
+            19.671921,
+            46.888426
+          ],
+          [
+            19.6714504,
+            46.8887608
+          ],
+          [
+            19.6713345,
+            46.8888417
+          ],
+          [
+            19.6706786,
+            46.8893285
+          ],
+          [
+            19.6703225,
+            46.8895842
+          ],
+          [
+            19.669506,
+            46.8901592
+          ],
+          [
+            19.6692953,
+            46.8903164
+          ],
+          [
+            19.6692114,
+            46.8903774
+          ],
+          [
+            19.6683904,
+            46.890974
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:40774484",
+      "properties": {
+        "name": "Szent László körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 40774484,
+          "url": "https://www.openstreetmap.org/way/40774484",
+          "tags": {
+            "highway": "tertiary",
+            "maxspeed": "30",
+            "maxspeed:type": "sign",
+            "name": "Szent László körút",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            495569801,
+            11314922470,
+            2556787677,
+            495569808,
+            4268105831,
+            495569805,
+            5333672041,
+            4398218340,
+            495569823,
+            495569825,
+            495569764
+          ],
+          "objectVersion": 30,
+          "objectTimestamp": "2025-09-05 11:18:30+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6822703,
+            46.8835553
+          ],
+          [
+            19.6824584,
+            46.8835122
+          ],
+          [
+            19.6835505,
+            46.8833164
+          ],
+          [
+            19.6843806,
+            46.8832146
+          ],
+          [
+            19.6847523,
+            46.8831781
+          ],
+          [
+            19.6857832,
+            46.8830336
+          ],
+          [
+            19.6865061,
+            46.8829355
+          ],
+          [
+            19.6870409,
+            46.8828612
+          ],
+          [
+            19.6872836,
+            46.8828274
+          ],
+          [
+            19.6888126,
+            46.8826266
+          ],
+          [
+            19.6898014,
+            46.8824841
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:420918859",
+      "properties": {
+        "name": "Halasi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 420918859,
+          "url": "https://www.openstreetmap.org/way/420918859",
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Halasi út",
+            "priority_road": "yes",
+            "ref": "541",
+            "sidewalk": "left",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            314897620,
+            495569767,
+            495569771,
+            495569772,
+            495569774,
+            495569777,
+            495569780,
+            495569784,
+            495569786,
+            495569788,
+            495569794,
+            2681122416,
+            495569796,
+            1804838612,
+            495569798,
+            11314922469,
+            495569801
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2026-04-28 10:02:22+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6855188,
+            46.8915002
+          ],
+          [
+            19.6852935,
+            46.8908739
+          ],
+          [
+            19.6850355,
+            46.8902388
+          ],
+          [
+            19.6847595,
+            46.8896184
+          ],
+          [
+            19.6844999,
+            46.8889674
+          ],
+          [
+            19.6842449,
+            46.888369
+          ],
+          [
+            19.6839763,
+            46.8877477
+          ],
+          [
+            19.6837237,
+            46.8871321
+          ],
+          [
+            19.6834646,
+            46.8865092
+          ],
+          [
+            19.6831919,
+            46.8858736
+          ],
+          [
+            19.6829376,
+            46.885249
+          ],
+          [
+            19.6828943,
+            46.8851497
+          ],
+          [
+            19.6826762,
+            46.8846272
+          ],
+          [
+            19.6825464,
+            46.8842682
+          ],
+          [
+            19.68245,
+            46.8840099
+          ],
+          [
+            19.6823312,
+            46.8836921
+          ],
+          [
+            19.6822703,
+            46.8835553
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:420918863",
+      "properties": {
+        "name": "Halasi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 420918863,
+          "url": "https://www.openstreetmap.org/way/420918863",
+          "tags": {
+            "highway": "primary",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Halasi út",
+            "priority_road": "yes",
+            "ref": "541",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            495569801,
+            10810976553,
+            2681128773,
+            314897612
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2025-08-13 08:16:49+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6822703,
+            46.8835553
+          ],
+          [
+            19.682141,
+            46.8833269
+          ],
+          [
+            19.6819934,
+            46.8831057
+          ],
+          [
+            19.681789,
+            46.8828433
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:789874841",
+      "properties": {
+        "name": "Matkói út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 789874841,
+          "url": "https://www.openstreetmap.org/way/789874841",
+          "tags": {
+            "cycleway": "lane",
+            "highway": "tertiary",
+            "maxspeed": "50",
+            "name": "Matkói út",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            495569764,
+            4429979390
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2025-10-21 13:27:55+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6898014,
+            46.8824841
+          ],
+          [
+            19.6898265,
+            46.8827796
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:789874842",
+      "properties": {
+        "name": "Szent László körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 789874842,
+          "url": "https://www.openstreetmap.org/way/789874842",
+          "tags": {
+            "highway": "tertiary",
+            "maxspeed": "50",
+            "name": "Szent László körút",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            495569764,
+            4429977983
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2025-10-21 14:03:17+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6898014,
+            46.8824841
+          ],
+          [
+            19.6900539,
+            46.8824508
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:984444564",
+      "properties": {
+        "name": "Matkói út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 984444564,
+          "url": "https://www.openstreetmap.org/way/984444564",
+          "tags": {
+            "cycleway": "lane",
+            "highway": "residential",
+            "name": "Matkói út",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            1804838625,
+            495569765,
+            495569764
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2025-02-07 08:15:15+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6896309,
+            46.8803472
+          ],
+          [
+            19.6897179,
+            46.8813301
+          ],
+          [
+            19.6898014,
+            46.8824841
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:407203997",
+      "properties": {
+        "name": "Matkói út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 407203997,
+          "url": "https://www.openstreetmap.org/way/407203997",
+          "tags": {
+            "cycleway:both": "lane",
+            "cycleway:both:lane": "advisory",
+            "highway": "tertiary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Matkói út",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            4429979390,
+            4208093991,
+            4208093993,
+            1705177790,
+            495569793,
+            2156793145,
+            1804838619,
+            495569828,
+            4429979443,
+            494064578
+          ],
+          "objectVersion": 11,
+          "objectTimestamp": "2025-10-21 13:27:55+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6898265,
+            46.8827796
+          ],
+          [
+            19.689937,
+            46.8840892
+          ],
+          [
+            19.6899758,
+            46.8847537
+          ],
+          [
+            19.6899786,
+            46.8848524
+          ],
+          [
+            19.689993,
+            46.8851046
+          ],
+          [
+            19.6900042,
+            46.8855881
+          ],
+          [
+            19.6900445,
+            46.886486
+          ],
+          [
+            19.6901403,
+            46.8885984
+          ],
+          [
+            19.6902015,
+            46.8899147
+          ],
+          [
+            19.6902386,
+            46.8907068
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:407203998",
+      "properties": {
+        "name": "Matkói út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 407203998,
+          "url": "https://www.openstreetmap.org/way/407203998",
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "residential",
+            "lane_markings": "no",
+            "name": "Matkói út",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            494064578,
+            8503926543,
+            494064594,
+            8503926540,
+            4045202033,
+            4045202023,
+            4045202024,
+            4045202025,
+            4045202026,
+            494064683
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2023-11-04 20:55:29+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6902386,
+            46.8907068
+          ],
+          [
+            19.6902648,
+            46.891654
+          ],
+          [
+            19.6903971,
+            46.8930599
+          ],
+          [
+            19.6904106,
+            46.8932029
+          ],
+          [
+            19.6904231,
+            46.8933344
+          ],
+          [
+            19.6904584,
+            46.8937485
+          ],
+          [
+            19.6905451,
+            46.8944176
+          ],
+          [
+            19.6905631,
+            46.8944455
+          ],
+          [
+            19.6906029,
+            46.8944826
+          ],
+          [
+            19.6906397,
+            46.894501
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:420919721",
+      "properties": {
+        "name": "Mindszenti körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 420919721,
+          "url": "https://www.openstreetmap.org/way/420919721",
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lcn": "proposed",
+            "maxspeed": "50",
+            "maxspeed:type": "HU:urban",
+            "name": "Mindszenti körút",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            494064578,
+            495569807,
+            8503926541,
+            494064580,
+            2681112987,
+            314897620
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2026-09-14 07:42:53+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6902386,
+            46.8907068
+          ],
+          [
+            19.6891339,
+            46.8908932
+          ],
+          [
+            19.6888792,
+            46.8909358
+          ],
+          [
+            19.6877183,
+            46.8911302
+          ],
+          [
+            19.6874515,
+            46.8911712
+          ],
+          [
+            19.6855188,
+            46.8915002
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:426954719",
+      "properties": {
+        "name": "Mindszenti körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 426954719,
+          "url": "https://www.openstreetmap.org/way/426954719",
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lcn": "yes",
+            "maxspeed": "50",
+            "maxspeed:type": "HU:urban",
+            "name": "Mindszenti körút",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            4262057204,
+            1804838631,
+            494064588,
+            4021976685,
+            1804838630,
+            494064608,
+            1804838622,
+            494064597,
+            4021976686,
+            4021976687,
+            494064578
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2025-10-21 13:27:55+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6987088,
+            46.8911458
+          ],
+          [
+            19.6980161,
+            46.8911162
+          ],
+          [
+            19.696472,
+            46.8910367
+          ],
+          [
+            19.6957486,
+            46.8909837
+          ],
+          [
+            19.6943764,
+            46.8909168
+          ],
+          [
+            19.6936927,
+            46.8908893
+          ],
+          [
+            19.6922058,
+            46.8908074
+          ],
+          [
+            19.6920467,
+            46.8907982
+          ],
+          [
+            19.690961,
+            46.8907351
+          ],
+          [
+            19.6904171,
+            46.8907129
+          ],
+          [
+            19.6902386,
+            46.8907068
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:40712326",
+      "properties": {
+        "name": "Halasi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 40712326,
+          "url": "https://www.openstreetmap.org/way/40712326",
+          "tags": {
+            "highway": "primary",
+            "maxspeed": "50",
+            "name": "Halasi út",
+            "priority_road": "yes",
+            "ref": "541",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            330994058,
+            12633146724,
+            314897620
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2025-08-13 08:16:49+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6859935,
+            46.8926802
+          ],
+          [
+            19.6855789,
+            46.8916686
+          ],
+          [
+            19.6855188,
+            46.8915002
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:180183620",
+      "properties": {
+        "name": "Mindszenti körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 180183620,
+          "url": "https://www.openstreetmap.org/way/180183620",
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lcn": "proposed",
+            "maxspeed": "50",
+            "name": "Mindszenti körút",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            1906128067,
+            1943809333,
+            9686047722,
+            4987074725,
+            1261371563,
+            4987074724,
+            4075454914,
+            4987074723,
+            4075454913,
+            494064647,
+            4987250062,
+            4987074722,
+            494064649,
+            4987378235,
+            4262054342,
+            4987378233,
+            4262054341,
+            4987378231,
+            4262054353,
+            1804827556
+          ],
+          "objectVersion": 21,
+          "objectTimestamp": "2026-08-16 15:11:03+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.7223304,
+            46.8930463
+          ],
+          [
+            19.7221346,
+            46.8929508
+          ],
+          [
+            19.721432,
+            46.8925959
+          ],
+          [
+            19.7211412,
+            46.8924514
+          ],
+          [
+            19.7209373,
+            46.8923646
+          ],
+          [
+            19.7208143,
+            46.8923199
+          ],
+          [
+            19.7206429,
+            46.8922671
+          ],
+          [
+            19.7204807,
+            46.892229
+          ],
+          [
+            19.7203601,
+            46.892207
+          ],
+          [
+            19.7201526,
+            46.8921717
+          ],
+          [
+            19.7199264,
+            46.8921387
+          ],
+          [
+            19.7197046,
+            46.8921108
+          ],
+          [
+            19.7194539,
+            46.892096
+          ],
+          [
+            19.7184815,
+            46.8920508
+          ],
+          [
+            19.7171464,
+            46.8919891
+          ],
+          [
+            19.7159242,
+            46.8919245
+          ],
+          [
+            19.715777,
+            46.8919192
+          ],
+          [
+            19.715228,
+            46.8919066
+          ],
+          [
+            19.7151176,
+            46.8919006
+          ],
+          [
+            19.713038,
+            46.8917985
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:183942487",
+      "properties": {
+        "name": "Mester utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 183942487,
+          "url": "https://www.openstreetmap.org/way/183942487",
+          "tags": {
+            "highway": "unclassified",
+            "name": "Mester utca",
+            "oneway": "no"
+          },
+          "nodeRefs": [
+            1943809333,
+            14099224927,
+            9686046203,
+            1943809334,
+            1943809331,
+            4987703541,
+            1943809332
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2026-08-16 15:11:03+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.7221346,
+            46.8929508
+          ],
+          [
+            19.7222607,
+            46.8929123
+          ],
+          [
+            19.7229032,
+            46.8927216
+          ],
+          [
+            19.723373,
+            46.8925725
+          ],
+          [
+            19.7266171,
+            46.8908771
+          ],
+          [
+            19.7289086,
+            46.8897209
+          ],
+          [
+            19.7305719,
+            46.8888379
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:113795931",
+      "properties": {
+        "name": "Daimler út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 113795931,
+          "url": "https://www.openstreetmap.org/way/113795931",
+          "tags": {
+            "highway": "unclassified",
+            "name": "Daimler út"
+          },
+          "nodeRefs": [
+            716620851,
+            716620828,
+            716620796,
+            716620837,
+            11163907854,
+            11163907853,
+            5233860763,
+            11163907856,
+            11163907855,
+            4405130517,
+            4405130497,
+            4405130518
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2023-09-02 22:02:36+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.7012715,
+            46.8725321
+          ],
+          [
+            19.7017678,
+            46.8718034
+          ],
+          [
+            19.7033631,
+            46.8692308
+          ],
+          [
+            19.7055658,
+            46.8655764
+          ],
+          [
+            19.7055805,
+            46.865535
+          ],
+          [
+            19.7055791,
+            46.8654936
+          ],
+          [
+            19.7055616,
+            46.8654521
+          ],
+          [
+            19.7055282,
+            46.8654169
+          ],
+          [
+            19.7054807,
+            46.8653822
+          ],
+          [
+            19.7054132,
+            46.8653544
+          ],
+          [
+            19.7038503,
+            46.8648566
+          ],
+          [
+            19.7027463,
+            46.8645556
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:442866768",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 442866768,
+          "url": "https://www.openstreetmap.org/way/442866768",
+          "tags": {
+            "highway": "cycleway",
+            "lcn": "yes",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            4038636015,
+            5330136332,
+            5330136331,
+            4405139246,
+            4405139247,
+            4405139248,
+            4405139249,
+            4405139250,
+            5330136344,
+            5719448941,
+            5719448573,
+            6468049199,
+            4405139251,
+            10542873316,
+            10542873317,
+            10542873318,
+            4405130517
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2023-09-02 22:02:36+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.6992276,
+            46.8759361
+          ],
+          [
+            19.6993564,
+            46.8756312
+          ],
+          [
+            19.6995281,
+            46.8750378
+          ],
+          [
+            19.6995798,
+            46.8748446
+          ],
+          [
+            19.6996483,
+            46.8746775
+          ],
+          [
+            19.6997708,
+            46.8744854
+          ],
+          [
+            19.7001036,
+            46.8739904
+          ],
+          [
+            19.7002764,
+            46.8737479
+          ],
+          [
+            19.7008621,
+            46.8729394
+          ],
+          [
+            19.7015979,
+            46.8717455
+          ],
+          [
+            19.7031978,
+            46.8691858
+          ],
+          [
+            19.7042279,
+            46.8674705
+          ],
+          [
+            19.7052192,
+            46.8658528
+          ],
+          [
+            19.705416,
+            46.8655431
+          ],
+          [
+            19.7054324,
+            46.8654856
+          ],
+          [
+            19.7053831,
+            46.865435
+          ],
+          [
+            19.7054132,
+            46.8653544
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1100930321",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1100930321,
+          "url": "https://www.openstreetmap.org/way/1100930321",
+          "tags": {
+            "bicycle": "designated",
+            "highway": "cycleway",
+            "segregated": "yes",
+            "smoothness": "excellent",
+            "surface": "concrete"
+          },
+          "nodeRefs": [
+            4405130517,
+            10075764211,
+            10075764210,
+            10075764209,
+            11850572569,
+            10075764208,
+            13545556000,
+            13545556823,
+            10075764206,
+            10075764205,
+            10075764204,
+            10075764203,
+            10075764202,
+            10542873319,
+            10542873320,
+            10671235028,
+            10542873321,
+            10542873322
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2026-02-12 09:38:40+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Literal complete source-way node sequence. Rectangle intersection is acquisition only; no clipping, filtering by name or highway subtype, geometry repair or neighborhood boundary construction.",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "©OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.7054132,
+            46.8653544
+          ],
+          [
+            19.7054493,
+            46.8653071
+          ],
+          [
+            19.7034736,
+            46.864711
+          ],
+          [
+            19.702762,
+            46.8645276
+          ],
+          [
+            19.699974,
+            46.8637541
+          ],
+          [
+            19.6998164,
+            46.8637104
+          ],
+          [
+            19.6973385,
+            46.8630341
+          ],
+          [
+            19.6971277,
+            46.8629766
+          ],
+          [
+            19.6967556,
+            46.8628651
+          ],
+          [
+            19.6937108,
+            46.861984
+          ],
+          [
+            19.6927285,
+            46.8617072
+          ],
+          [
+            19.6926549,
+            46.8616956
+          ],
+          [
+            19.6926197,
+            46.8617144
+          ],
+          [
+            19.6899933,
+            46.8655491
+          ],
+          [
+            19.6876633,
+            46.8692001
+          ],
+          [
+            19.6874849,
+            46.8694274
+          ],
+          [
+            19.6874039,
+            46.8695305
+          ],
+          [
+            19.6866547,
+            46.8702944
+          ]
+        ]
+      }
+    }
+  ]
+}

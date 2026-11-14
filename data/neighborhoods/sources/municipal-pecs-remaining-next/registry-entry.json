@@ -1,0 +1,24 @@
+{
+  "id": "pecs-remaining-source-contours-estimated-placement",
+  "path": "data/neighborhoods/sources/municipal-pecs-remaining-next/source-inferred.geojson",
+  "sha256": "cfdd86a7dc73d6f6a76ebf9a2377a0e7e077992761f3b23fd675abf102c8826a",
+  "municipality": "Pécs",
+  "method": "Twenty-seven additional actual closed historical source-cell contours, independently named from original Figure9 and checked against original Figure12 grid faces. Exactly 37 reviewed cartographic voids (422 pixels) restored with unchanged external edges. Source-defined functional names retain neighbourhood-candidate classification from actual municipal table hierarchy. Frozen first-cohort geographic placement remains an explicitly unverified estimate.",
+  "evidenceUrls": [
+    "https://logoweb.pecs.hu/download/koncepcio/ITS.pdf"
+  ],
+  "license": "Municipal map reuse rights unverified; ODbL for archived OSM calibration evidence.",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-pecs-remaining-next/independent-review.json",
+  "uncertainties": [
+    "No geographic registration or primary approval; inherited northwest-only placement unverified, claimedAbsoluteAccuracy=null.",
+    "Names and actual source exterior contours separately reviewed; present legal footprint, current name usage and municipal map reuse rights remain unverified."
+  ],
+  "rightsStatus": "Municipal publication; unrestricted map redistribution/reuse licence unverified. OSM calibration evidence ODbL.",
+  "registryEntryNotAppliedByThisBatch": true
+}

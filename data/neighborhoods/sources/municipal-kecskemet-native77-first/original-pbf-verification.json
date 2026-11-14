@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 1,
+  "reviewScope": "Independent original-PBF identity check for frozen geographical-control roads and current-name points only. This does not validate historical raster junction identity or neighborhood boundary extent.",
+  "reviewMethod": "A separate C++-filtered osmium FileProcessor pass reads literal original nodes and ways. No derivation script, generated geometry or location interpolation is used.",
+  "sourcePbfPath": ".local/neighborhoods/hungary-latest.osm.pbf",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "sourcePbfBytes": 329791850,
+  "inputSha256": {
+    "control-roads.geojson": "6ca352cd2f35fb3134c3e41e9fa1541179dad82b0bf8407b091dc93e09605faa",
+    "current-name-points.geojson": "1e2573c8e57ae5cb3900337c0b5377cab46cc82a72119ba7c5de3b55408f069e"
+  },
+  "wayCount": 20,
+  "namePointCount": 3,
+  "uniqueComparedNodeCount": 191,
+  "pairedWayNodeCoordinateCountIncludingSharedNodes": 206,
+  "wayRecords": [
+    {
+      "osmWayId": 40712326,
+      "name": "Halasi út",
+      "nodeCount": 3,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 10,
+      "objectTimestamp": "2025-08-13 08:16:49+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 40774484,
+      "name": "Szent László körút",
+      "nodeCount": 11,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 30,
+      "objectTimestamp": "2025-09-05 11:18:30+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 57771723,
+      "name": "Könyves Kálmán körút",
+      "nodeCount": 15,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 26,
+      "objectTimestamp": "2026-04-28 10:04:03+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 113795931,
+      "name": "Daimler út",
+      "nodeCount": 12,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 6,
+      "objectTimestamp": "2023-09-02 22:02:36+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 180183620,
+      "name": "Mindszenti körút",
+      "nodeCount": 20,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 21,
+      "objectTimestamp": "2026-08-16 15:11:03+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 183942487,
+      "name": "Mester utca",
+      "nodeCount": 7,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 4,
+      "objectTimestamp": "2026-08-16 15:11:03+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 407203997,
+      "name": "Matkói út",
+      "nodeCount": 10,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 11,
+      "objectTimestamp": "2025-10-21 13:27:55+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 407203998,
+      "name": "Matkói út",
+      "nodeCount": 10,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 5,
+      "objectTimestamp": "2023-11-04 20:55:29+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 420918859,
+      "name": "Halasi út",
+      "nodeCount": 17,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 8,
+      "objectTimestamp": "2026-04-28 10:02:22+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 420918863,
+      "name": "Halasi út",
+      "nodeCount": 4,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 6,
+      "objectTimestamp": "2025-08-13 08:16:49+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 420919721,
+      "name": "Mindszenti körút",
+      "nodeCount": 6,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 9,
+      "objectTimestamp": "2026-09-14 07:42:53+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 424836628,
+      "name": "Kiskőrösi út",
+      "nodeCount": 16,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 15,
+      "objectTimestamp": "2025-11-20 12:43:29+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 426744463,
+      "name": "Kiskőrösi út",
+      "nodeCount": 8,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 10,
+      "objectTimestamp": "2025-11-20 12:43:29+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 426744464,
+      "name": "Könyves Kálmán körút",
+      "nodeCount": 14,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 9,
+      "objectTimestamp": "2025-09-05 11:18:30+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 426954719,
+      "name": "Mindszenti körút",
+      "nodeCount": 11,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 8,
+      "objectTimestamp": "2025-10-21 13:27:55+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 442866768,
+      "name": "",
+      "nodeCount": 17,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 8,
+      "objectTimestamp": "2023-09-02 22:02:36+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 789874841,
+      "name": "Matkói út",
+      "nodeCount": 2,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 4,
+      "objectTimestamp": "2025-10-21 13:27:55+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 789874842,
+      "name": "Szent László körút",
+      "nodeCount": 2,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 4,
+      "objectTimestamp": "2025-10-21 14:03:17+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 984444564,
+      "name": "Matkói út",
+      "nodeCount": 3,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 2,
+      "objectTimestamp": "2025-02-07 08:15:15+00:00",
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmWayId": 1100930321,
+      "name": "",
+      "nodeCount": 18,
+      "nodeReferenceSequenceMatches": true,
+      "everyNodeCoordinateMatches": true,
+      "tagsMatch": true,
+      "objectVersion": 6,
+      "objectTimestamp": "2026-02-12 09:38:40+00:00",
+      "versionAndTimestampMatch": true
+    }
+  ],
+  "namePointRecords": [
+    {
+      "osmNodeId": 984225121,
+      "name": "Muszáj",
+      "coordinates": [
+        19.7023447,
+        46.8944108
+      ],
+      "objectVersion": 3,
+      "objectTimestamp": "2026-08-09 18:29:37+00:00",
+      "tagsMatch": true,
+      "coordinatesMatch": true,
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmNodeId": 984225124,
+      "name": "Rendőrfalu",
+      "coordinates": [
+        19.6871376,
+        46.8872283
+      ],
+      "objectVersion": 4,
+      "objectTimestamp": "2026-08-09 18:29:37+00:00",
+      "tagsMatch": true,
+      "coordinatesMatch": true,
+      "versionAndTimestampMatch": true
+    },
+    {
+      "osmNodeId": 1306536270,
+      "name": "Kósafalu",
+      "coordinates": [
+        19.6940702,
+        46.8799544
+      ],
+      "objectVersion": 4,
+      "objectTimestamp": "2026-08-09 18:29:37+00:00",
+      "tagsMatch": true,
+      "coordinatesMatch": true,
+      "versionAndTimestampMatch": true
+    }
+  ],
+  "allOriginalWayNodeSequencesAndCoordinatesMatch": true,
+  "allOriginalWayTagsVersionsAndTimestampsMatch": true,
+  "allOriginalNameNodeCoordinatesTagsVersionsAndTimestampsMatch": true,
+  "originalPbfWasActuallyReadToCreateThisProof": true,
+  "historicalSourceFeatureCorrespondenceValidated": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "conclusion": "PASS for literal OSM source identity. Historical map registration and source-cell semantics remain separate review questions."
+}

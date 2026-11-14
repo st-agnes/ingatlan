@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "reviewer": "Independent source-image and name reviewer, separate from density pixel-geometry producer",
+  "reviewScope": "Reassess the two previously unresolved central fine names from their actual labels/outlines and newly recognized separate original density cells89/92.",
+  "status": "two_literal_source_name_cell_pairs_supported",
+  "inputHashes": [
+    {
+      "path": "../municipal-pecs-remaining-next/pecs-p48-names.jpeg",
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "path": "../municipal-pecs-remaining-next/pecs-p63-density.jpeg",
+      "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+    },
+    {
+      "path": "../municipal-pecs-remaining-next/unresolved-name-review.json",
+      "sha256": "eb2470344f75653189b1957881c291f74a5b4240eb2e8544e071146ea31ab92b"
+    },
+    {
+      "path": "pdf65-figure13-xref647.jpeg",
+      "sha256": "f46d9d8c8e40ef73ed185784150343934757c9eea9f64578c5cee9a28c5a9b0b"
+    },
+    {
+      "path": "additional-demographic-map-images.json",
+      "sha256": "4d3effae14a2d755434f54d1c0c3f09d2e8eb1a5a7de346bbafa83e16921636a"
+    }
+  ],
+  "priorReviewCorrection": "The old claim that both names share92 came from treating the left/start label anchor[288,291]as an interior point. That text point is not the Kisbalokany interior. Direct visual outline/adjacency reading and the distinct original89wedge correct the assignment; no new separator is invented. Frozen prior review files remain unchanged.",
+  "independentlyRecomputedMask": "(maxRGB<200 and maxRGB-minRGB<110) OR R<median_filter(R,7)-16; default2D4connectivity of complement",
+  "sourceMaskComponentCount": 221,
+  "supplementaryOriginalFigure13Observation": "The same thin eastern wedge is hatched/no-data, while the broad southwestern body is brown. This supports distinct fine areas and agrees with the demographic context; no Figure13-to12 fit or boundary transfer is used.",
+  "records": [
+    {
+      "sourceName": "Kisbalokány",
+      "reviewedSourceComponentId": 89,
+      "verifiedDensityInteriorPixel": [
+        530,
+        520
+      ],
+      "sourceLabelAnchorPixel": [
+        288,
+        291
+      ],
+      "sourceLabelAnchorRole": "Original literal text anchor only; not assumed to lie inside a cell and not a calibration/GCP.",
+      "semanticKind": "neighbourhood_source_candidate",
+      "canUseUnchangedSourceCell": true,
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "assignmentMethod": "Literal Figure9 fine label plus direct fine-outline/relative-shape reading against original Figure12; component-seed containment checked separately. No projected label-text point or geographic name coordinate decides the name.",
+      "evidence": "The literal Kisbalokany text lies on/across the thin eastern blue-I wedge, with the start of its text extending west beyond that tiny interior. The whole wedge lies below Budaivaros and against the red IX area; it has a diagonal upper side, long southeast outer edge and short stepped western closure. The matching distinct original Figure12 wedge is89, not the broad southwestern92 body.",
+      "sourceComponentPixelCount": 223,
+      "sourceComponentPixelCenterBounds": [
+        515,
+        511,
+        551,
+        534
+      ],
+      "sourceComponentPixelSetSha256": "2c41fba21be7e98c182d97b99afdb076a31e055dfd9e38308e5f02867ac4419a",
+      "sourceComponentPixelSetHashMethod": "UTF8 JSON of lexicographically sorted integer[x,y] pairs, comma/colon separators,no whitespace.",
+      "touchesOriginalImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "currentLegalFootprintConfirmed": false,
+      "geographicRegistrationEvaluated": false,
+      "automaticPrimaryApproval": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "nativeCropEvidence": [
+        {
+          "path": "kis-sik-name-source-native.png",
+          "figure": 9,
+          "sourcePixelBox": [
+            230,
+            265,
+            335,
+            330
+          ],
+          "sha256": "91c2b14b52993e5ac746d49e5bddf5b887f9afce48a95def52e19ba12175bbea"
+        },
+        {
+          "path": "kis-sik-density-source-native.png",
+          "figure": 12,
+          "sourcePixelBox": [
+            440,
+            495,
+            565,
+            585
+          ],
+          "sha256": "49f6120b94583147a2c9cd7605d63fa2fccc7cc252c71826c62a96f3ffee4da9"
+        }
+      ]
+    },
+    {
+      "sourceName": "Siklósi külváros",
+      "reviewedSourceComponentId": 92,
+      "verifiedDensityInteriorPixel": [
+        480,
+        550
+      ],
+      "sourceLabelAnchorPixel": [
+        266,
+        306
+      ],
+      "sourceLabelAnchorRole": "Original literal text anchor only; not assumed to lie inside a cell and not a calibration/GCP.",
+      "semanticKind": "neighbourhood_source_candidate",
+      "canUseUnchangedSourceCell": true,
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "assignmentMethod": "Literal Figure9 fine label plus direct fine-outline/relative-shape reading against original Figure12; component-seed containment checked separately. No projected label-text point or geographic name coordinate decides the name.",
+      "evidence": "The literal Siklosi kulvaros label lies across the broad lower blue-I body west/southwest of the thin Kisbalokany wedge. Its stepped western edge, broad middle and long sloped lower edge over the red IX area match the complete Figure12 cell92. The short eastern separator against89 is present in the original density raster.",
+      "sourceComponentPixelCount": 1573,
+      "sourceComponentPixelCenterBounds": [
+        454,
+        527,
+        517,
+        573
+      ],
+      "sourceComponentPixelSetSha256": "9563b55b954ea747bfc8146af056beba8c89f2728658d8070396dac789c8e6fb",
+      "sourceComponentPixelSetHashMethod": "UTF8 JSON of lexicographically sorted integer[x,y] pairs, comma/colon separators,no whitespace.",
+      "touchesOriginalImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "currentLegalFootprintConfirmed": false,
+      "geographicRegistrationEvaluated": false,
+      "automaticPrimaryApproval": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "nativeCropEvidence": [
+        {
+          "path": "kis-sik-name-source-native.png",
+          "figure": 9,
+          "sourcePixelBox": [
+            230,
+            265,
+            335,
+            330
+          ],
+          "sha256": "91c2b14b52993e5ac746d49e5bddf5b887f9afce48a95def52e19ba12175bbea"
+        },
+        {
+          "path": "kis-sik-density-source-native.png",
+          "figure": 12,
+          "sourcePixelBox": [
+            440,
+            495,
+            565,
+            585
+          ],
+          "sha256": "49f6120b94583147a2c9cd7605d63fa2fccc7cc252c71826c62a96f3ffee4da9"
+        }
+      ]
+    }
+  ],
+  "supportedAdditionalSourceNameCellPairs": 2,
+  "newGeometriesCreatedByNameReview": 0,
+  "geographicRegistrationEvaluated": false,
+  "automaticPrimaryApproval": false,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false,
+  "completedPriorSourcesChanged": false,
+  "registriesOrExportsChanged": false
+}

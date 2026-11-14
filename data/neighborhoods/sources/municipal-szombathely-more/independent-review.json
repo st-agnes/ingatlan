@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "reviewer": "independent gyongyos_source_expand agent",
+  "result": "pass_inferred_historical_alternative_only",
+  "scope": "Independent original municipal PDF/page/image identity, full original-country-PBF way/edge audit, source semantics, alternative-junction and existing-quarter overlap validation. Producer code/geometry unchanged.",
+  "geojsonSha256": "2f5286b40b1249281184ed9715c04b583c1de3cc2dbde3bd18a7ccc349501154",
+  "producerInputFingerprintSha256": "75dd6c63c4945c6cedeacb6bb573918a0ea07856f0afff2686474b2d63483c40",
+  "reviewedPreQaManifestSha256": "a32f27b18ea10d51ebf2302f1b32ec9c32dcc139f5f7633ad108b9af9d8bd694",
+  "reproductionMetadataMaintenance": {
+    "date": "2026-11-14",
+    "by": "producer agent, explicitly requested by root after independent geometry QA",
+    "scope": "Reproduction bookkeeping only: replace recursive final-manifest byte hash with a sorted producer path/SHA256 logical fingerprint. Original independent geometry/source checks and producer coordinates unchanged.",
+    "originalIndependentGeometryReviewRetained": true,
+    "freshIndependentReviewOfThisBookkeepingEditClaimed": false
+  },
+  "auditScriptPath": "data/neighborhoods/sources/municipal-szombathely-more/independent-audit.py",
+  "auditScriptSha256": "2eefa8fd5e8e126c522409323912ebceaf14457e0682b72b3b60f80d535366df",
+  "auditDetailsPath": "data/neighborhoods/sources/municipal-szombathely-more/independent-audit.json",
+  "originalPbfReprocessed": true,
+  "completeArchivedWaysChecked": 72,
+  "literalOriginalNodeBoundaryEdges": 79,
+  "strictJsValidatorPassed": true,
+  "primaryAdmissionApproved": false,
+  "inferredCandidateCountApproved": 1,
+  "newDistinctQuarterCoverageApproved": 0,
+  "sourceQuarterNameAuthentic": true,
+  "sourceBoundaryRoleUnverifiedLengthMetres": 42.5669013906784,
+  "junctionAlternativeAreaDifferenceM2": 299.68659934574873,
+  "existingJoskar8356511IoU": 0.43287393960326354,
+  "notes": [
+    "The five named roads are an authentic 2013 municipal quarter description. The modern unnamed residential road completion, road-centreline interpretation, railway-side clause and divided-road junction choice are not independently established quarter boundaries.",
+    "The inferred completion consists of two literal original PBF node edges; physical road existence does not establish its neighborhood-boundary role.",
+    "The alternative actual-node junction and the existing same-name Joskar-Ola polygon are preserved as separate comparisons. This historical estimate adds no new named-quarter coverage.",
+    "All 18 source-unit headings and page numbers received separate parallel read-only semantic review; 15 name correspondences are not 15 verified source-footprint equivalences.",
+    "No legal, current-exact, cadastral or address-assignment approval; absolute accuracy is unclaimed."
+  ],
+  "reproduce": "PYTHONPATH=.local/geodata python3 data/neighborhoods/sources/municipal-szombathely-more/independent-audit.py --check",
+  "producerFilesModified": false,
+  "networkUsed": false
+}

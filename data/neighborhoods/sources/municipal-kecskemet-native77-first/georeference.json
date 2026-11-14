@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "sourcePageCoordinateSystem": "PDF page points, top-left origin; x right, y down",
+  "geographicFitCrs": "EPSG:23700",
+  "outputCrs": "EPSG:4326",
+  "affinePagePointToEovRows": [
+    [
+      12.587571291459154,
+      -0.012846023399763202
+    ],
+    [
+      0.03316488288552587,
+      -12.395646529185944
+    ],
+    [
+      695962.3573333448,
+      176021.49913599784
+    ]
+  ],
+  "controlCount": 6,
+  "controlResidualMeters": [
+    6.254383675555787,
+    9.113740438590604,
+    7.56222529237411,
+    7.308856212941254,
+    6.402977712063358,
+    3.068062610984873
+  ],
+  "maximumControlResidualMeters": 9.113740438590604,
+  "rmsControlResidualMeters": 6.870169117559825,
+  "heldOutVisualChecks": [
+    {
+      "id": "daimler-held-out",
+      "osmNodeId": 4405130517,
+      "predictedSourcePagePoint": [
+        332.3263920395257,
+        548.2614208689865
+      ],
+      "independentlyInspectedSourcePageWindow": {
+        "x": [
+          333.0,
+          337.0
+        ],
+        "y": [
+          544.4,
+          548.4
+        ]
+      },
+      "insideInspectedWindow": false,
+      "usedInFit": false,
+      "sourceFeatureIdentityVerified": false,
+      "identityCaution": "The modern node is a Daimler út / two-cycleway attachment. The prominent historical raster road junction center has not been proved to be the same physical point. Preserve the first manually measured source point and narrow window as a failed candidate check; do not use as independent registration validation.",
+      "registrationValidationEstablished": false
+    }
+  ],
+  "modelSensitivity": {
+    "leaveOneControlOutAffineFits": [
+      {
+        "omittedControlId": "kiskorosi-konyves",
+        "omittedControlPredictionErrorMeters": 9.686574845310085,
+        "maximumSourceVertexDisplacementMeters": 6.184168936174704,
+        "meanSourceVertexDisplacementMeters": 1.8542255103594185
+      },
+      {
+        "omittedControlId": "halasi-konyves",
+        "omittedControlPredictionErrorMeters": 14.264174385130316,
+        "maximumSourceVertexDisplacementMeters": 27.6789092987016,
+        "meanSourceVertexDisplacementMeters": 6.590360848946685
+      },
+      {
+        "omittedControlId": "matkoi-szent-laszlo",
+        "omittedControlPredictionErrorMeters": 17.756756633753092,
+        "maximumSourceVertexDisplacementMeters": 61.55385506772844,
+        "meanSourceVertexDisplacementMeters": 13.923493684563082
+      },
+      {
+        "omittedControlId": "matkoi-mindszenti",
+        "omittedControlPredictionErrorMeters": 10.57701613687713,
+        "maximumSourceVertexDisplacementMeters": 19.228208481361673,
+        "meanSourceVertexDisplacementMeters": 4.608499214808078
+      },
+      {
+        "omittedControlId": "halasi-mindszenti",
+        "omittedControlPredictionErrorMeters": 12.727212019231148,
+        "maximumSourceVertexDisplacementMeters": 36.61274985266899,
+        "meanSourceVertexDisplacementMeters": 8.316220513527083
+      },
+      {
+        "omittedControlId": "mindszenti-mester",
+        "omittedControlPredictionErrorMeters": 32.15525581711429,
+        "maximumSourceVertexDisplacementMeters": 35.799051297701155,
+        "meanSourceVertexDisplacementMeters": 12.015507948151026
+      }
+    ],
+    "similarityFitPagePointToEovRows": [
+      [
+        12.550136132328078,
+        -0.04664301340014059
+      ],
+      [
+        -0.04664301340014059,
+        -12.550136132328078
+      ],
+      [
+        695999.1905707383,
+        176083.39163178
+      ]
+    ],
+    "similarityVersusAffineMaximumSourceVertexDisplacementMeters": 66.63665002513703,
+    "similarityVersusAffineMeanSourceVertexDisplacementMeters": 15.105644434140414,
+    "interpretation": "Model changes diagnose sensitivity to chosen controls and transform family; they do not bound actual boundary error."
+  },
+  "geoPdfDictionarySearch": {
+    "keysSearchedAcrossOriginalPdfXrefObjects": [
+      "/VP",
+      "/Measure",
+      "/LGIDict",
+      "/GPTS",
+      "/LPTS",
+      "/GCS"
+    ],
+    "matches": 0
+  },
+  "printedCoordinatesScaleOrNorthArrowFound": false,
+  "otherFigureControlsReused": false,
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "limitation": "Manual historical image correspondences and modern road centers are uncalibrated; southern extent is largely extrapolated. A native closed contour is proved separately from approximate placement."
+}

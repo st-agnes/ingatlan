@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-11-14",
+  "scope": "Bounded official-site search log, not an exhaustive negative gazetteer. These are representative exact-name queries actually submitted during this pass; unrelated personal-name homonyms were rejected.",
+  "priorityTargets": [
+    "Üszög",
+    "Déli gazdasági terület",
+    "Újmecsekalja",
+    "Szabolcs",
+    "Budaiváros",
+    "Szigeti tanya",
+    "Nyugati ipari út",
+    "Üszögi tározó-major",
+    "Péterpuszta",
+    "Rücker-akna",
+    "Flóriántelep",
+    "M utca",
+    "Köztemető"
+  ],
+  "queries": [
+    {
+      "q": "site:pecs.hu \"Üszög\" 2026",
+      "result": "Opened 2026 utility article; admitted locality name use."
+    },
+    {
+      "q": "site:pecs.hu \"Déli gazdasági terület\" 2026",
+      "result": "Republished 2018–2022 action-plan PDF only; large FVS PDF reader unavailable; no fresh current admission."
+    },
+    {
+      "q": "site:pecs.hu \"Újmecsekalja\" 2026",
+      "result": "Undated directory and historical broad synonym/tour narrative; historical action-plan list. No dated2026 current admission."
+    },
+    {
+      "q": "site:pecs.hu \"Szabolcs\" városrész 2026",
+      "result": "No admissible exact place-name body; unrelated personal given-name matches rejected."
+    },
+    {
+      "q": "site:pecs.hu \"Budaiváros\" 2026",
+      "result": "Historical Kelet-Pécs plan; Budaiváros kept distinct from Budai külváros/Budai városrész."
+    },
+    {
+      "q": "site:pecs.hu \"Szigeti tanya\"",
+      "result": "Opened undated municipal animal-charity address; freshness unverified."
+    },
+    {
+      "q": "site:pecs.hu \"Nyugati ipari út\" 2026",
+      "result": "Opened 2026 race-route body; road-only role."
+    },
+    {
+      "q": "site:pecs.hu \"Üszögi tározó-major\" 2026",
+      "result": "Historical Kelet-Pécs plan; no dated2026 locality-use admission."
+    },
+    {
+      "q": "site:pecs.hu \"Péterpuszta\"",
+      "result": "Historical Déli-városrészek plan; no dated2026 locality-use admission."
+    },
+    {
+      "q": "site:pecs.hu \"Rücker-akna\" \"2026\"",
+      "result": "No usable exact current locality body found."
+    },
+    {
+      "q": "site:pecs.hu \"Flóriántelep\" \"2026\"",
+      "result": "No usable exact current locality body found."
+    },
+    {
+      "q": "site:pecs.hu \"M utca\" \"2026\"",
+      "result": "No usable exact current locality body found."
+    },
+    {
+      "q": "site:pecs.hu \"Köztemető\" 2026",
+      "result": "Opened dated funeral article using Pécsi Köztemető facility label; no exact full source locality-name admission."
+    },
+    {
+      "q": "site:pecs.hu \"Mecseki Láthatatlanok\" \"2026\" \"Árpádtető\"",
+      "result": "Cached event lead; latest open readback404; municipal containment not established."
+    }
+  ],
+  "broaderQueriesIncluded": [
+    "site:pecs.hu városrészek 2026",
+    "site:pecs.hu \"Kismélyvölgy\" \"Bálics\"",
+    "site:pecs.hu \"Murom\" \"Péterpuszta\"",
+    "site:pecs.hu \"Kisbalokány\" \"Siklósi külváros\""
+  ],
+  "webEvidenceFile": {
+    "path": "data/neighborhoods/research/pecs-current-name-web-evidence.json",
+    "bytes": 94871,
+    "sha256": "7682de314f83d6b655e6e419ec6a76a511269efd46137ee6be620e1346f8c242"
+  },
+  "negativeSearchMeansNameAbsent": false,
+  "networkAccessMethod": "read-only web connector",
+  "shellNetworkUsed": false,
+  "newGeometryCount": 0,
+  "frozenSourceChanges": false
+}

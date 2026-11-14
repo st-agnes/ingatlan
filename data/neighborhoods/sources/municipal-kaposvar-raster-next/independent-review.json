@@ -1,0 +1,871 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent fig81_visual agent; offline native-source and model-mathematics QA",
+  "independentAuditorPath": "data/neighborhoods/sources/municipal-kaposvar-raster-next/independent_audit.py",
+  "independentAuditorSha256": "686123caa37a23776bc18575c00f491e1fde8726f0e9c7900401e1abb95c69d2",
+  "verdict": "PASS_SOURCE_CONSTRUCTION_AND_PROVISIONAL_MODEL_MATHEMATICS_ONLY; GEOGRAPHIC_VALIDITY_UNRESOLVED",
+  "scope": "Native source-mask/dark-stroke construction and calculations are reproducible. No source-image/geographic correspondence, absolute position, current boundary, legal status or address assignment is validated. All ten outputs remain separate inferred candidates; primary0.",
+  "sourceIdentity": {
+    "pdfSha256": "8dcf6a39c018d11e9b7283a263d5887f919f7c5ba7c36862a6e83c76a13f159a",
+    "actualPdfPage": 18,
+    "imageXref": 124,
+    "archivedJpegBytesEqualActualPdfImage": true,
+    "imageSha256": "54dc5dc7a697bafdc3cb662a41ed6f6cfcc21ac98ec38cffa45ac14148477676",
+    "nativeSize": [
+      625,
+      883
+    ],
+    "period": "September2014; source-map projection and underlying data date unknown."
+  },
+  "independentMethods": [
+    "Direct original JPEG RGB to PillowHSV; explicit four-neighbor BFS independently selects each nearest substantial manually seeded color component.",
+    "Independent exterior-background flood determines only enclosed graphic-mask holes. Every raw/filled RLE pixel and hole count is reproduced.",
+    "Exposed directed pixel-cell sides reconstruct cell polygons without the converter row-rectangle union; all area-preserving collinear compression/geometry checks pass.",
+    "Two dark source-centre cycles independently checked against original RGB, documented snap choices,3px search corridor, every actual8-neighbor step and exact collinear compression;165 is a dark threshold, not literal-black45.",
+    "Provisional reflected similarity independently derived by complex division from literal modern node data and unvalidated image assumptions. All sixteen independent per-coordinate±3px scenarios and displacements recomputed.",
+    "Ten whole source legend groups and all WGS84 coordinate construction, area and place/reference diagnostics reproduced; arithmetic checks are not geographic verification."
+  ],
+  "sourceConstruction": {
+    "components": [
+      {
+        "componentId": "1-main",
+        "quarterNumber": 1,
+        "sourceColorPixels": 5683,
+        "filledEnclosedGraphicPixels": 78,
+        "largestEnclosedGraphicHolePixels": 26,
+        "maskPixelCellArea": 5761.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 5761.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 5786.0,
+            "symmetricDifferencePixelArea": 25,
+            "boundaryHausdorffPixels": 2.0
+          },
+          "tighter": {
+            "pixelCellArea": 5730.0,
+            "symmetricDifferencePixelArea": 31,
+            "boundaryHausdorffPixels": 2.8284271247461903
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "2-main",
+        "quarterNumber": 2,
+        "sourceColorPixels": 10509,
+        "filledEnclosedGraphicPixels": 53,
+        "largestEnclosedGraphicHolePixels": 19,
+        "maskPixelCellArea": 10562.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 10562.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 10652.0,
+            "symmetricDifferencePixelArea": 90,
+            "boundaryHausdorffPixels": 3.0
+          },
+          "tighter": {
+            "pixelCellArea": 10479.0,
+            "symmetricDifferencePixelArea": 83,
+            "boundaryHausdorffPixels": 2.23606797749979
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "3-main",
+        "quarterNumber": 3,
+        "sourceColorPixels": 5232,
+        "filledEnclosedGraphicPixels": 62,
+        "largestEnclosedGraphicHolePixels": 34,
+        "maskPixelCellArea": 5294.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 5294.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 5340.0,
+            "symmetricDifferencePixelArea": 46,
+            "boundaryHausdorffPixels": 2.0
+          },
+          "tighter": {
+            "pixelCellArea": 5226.0,
+            "symmetricDifferencePixelArea": 68,
+            "boundaryHausdorffPixels": 2.23606797749979
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "4-main",
+        "quarterNumber": 4,
+        "sourceColorPixels": 16930,
+        "filledEnclosedGraphicPixels": 75,
+        "largestEnclosedGraphicHolePixels": 52,
+        "maskPixelCellArea": 17005.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 17005.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 17104.0,
+            "symmetricDifferencePixelArea": 99,
+            "boundaryHausdorffPixels": 2.8284271247461903
+          },
+          "tighter": {
+            "pixelCellArea": 16882.0,
+            "symmetricDifferencePixelArea": 123,
+            "boundaryHausdorffPixels": 2.0
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "5-main",
+        "quarterNumber": 5,
+        "sourceColorPixels": 13459,
+        "filledEnclosedGraphicPixels": 132,
+        "largestEnclosedGraphicHolePixels": 59,
+        "maskPixelCellArea": 13591.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 13591.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 13691.0,
+            "symmetricDifferencePixelArea": 100,
+            "boundaryHausdorffPixels": 3.0
+          },
+          "tighter": {
+            "pixelCellArea": 13481.0,
+            "symmetricDifferencePixelArea": 110,
+            "boundaryHausdorffPixels": 4.0
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "6-main",
+        "quarterNumber": 6,
+        "sourceColorPixels": 13512,
+        "filledEnclosedGraphicPixels": 60,
+        "largestEnclosedGraphicHolePixels": 21,
+        "maskPixelCellArea": 13572.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 13572.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 13639.0,
+            "symmetricDifferencePixelArea": 67,
+            "boundaryHausdorffPixels": 3.0
+          },
+          "tighter": {
+            "pixelCellArea": 13474.0,
+            "symmetricDifferencePixelArea": 98,
+            "boundaryHausdorffPixels": 2.0
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "7-main",
+        "quarterNumber": 7,
+        "sourceColorPixels": 12072,
+        "filledEnclosedGraphicPixels": 232,
+        "largestEnclosedGraphicHolePixels": 34,
+        "maskPixelCellArea": 12304.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 12304.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 12411.0,
+            "symmetricDifferencePixelArea": 107,
+            "boundaryHausdorffPixels": 2.0
+          },
+          "tighter": {
+            "pixelCellArea": 12171.0,
+            "symmetricDifferencePixelArea": 133,
+            "boundaryHausdorffPixels": 3.605551275463989
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "8-main",
+        "quarterNumber": 8,
+        "sourceColorPixels": 4625,
+        "filledEnclosedGraphicPixels": 101,
+        "largestEnclosedGraphicHolePixels": 93,
+        "maskPixelCellArea": 4726.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 4726.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 4836.0,
+            "symmetricDifferencePixelArea": 110,
+            "boundaryHausdorffPixels": 2.8284271247461903
+          },
+          "tighter": {
+            "pixelCellArea": 4566.0,
+            "symmetricDifferencePixelArea": 160,
+            "boundaryHausdorffPixels": 2.23606797749979
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "8-northwest",
+        "quarterNumber": 8,
+        "sourceColorPixels": 248,
+        "filledEnclosedGraphicPixels": 1,
+        "largestEnclosedGraphicHolePixels": 1,
+        "maskPixelCellArea": 249.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 249.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 262.0,
+            "symmetricDifferencePixelArea": 13,
+            "boundaryHausdorffPixels": 2.0
+          },
+          "tighter": {
+            "pixelCellArea": 227.0,
+            "symmetricDifferencePixelArea": 22,
+            "boundaryHausdorffPixels": 2.0
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "8-northeast",
+        "quarterNumber": 8,
+        "sourceColorPixels": 810,
+        "filledEnclosedGraphicPixels": 58,
+        "largestEnclosedGraphicHolePixels": 44,
+        "maskPixelCellArea": 868.0,
+        "finalContourMethod": "actual_dark_source_pixel_cycle",
+        "finalContourAreaPixels": 1055.5,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 227.25,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 954.0,
+            "symmetricDifferencePixelArea": 86,
+            "boundaryHausdorffPixels": 5.0
+          },
+          "tighter": {
+            "pixelCellArea": 709.0,
+            "symmetricDifferencePixelArea": 159,
+            "boundaryHausdorffPixels": 6.324555320336759
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": false,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "9-central",
+        "quarterNumber": 9,
+        "sourceColorPixels": 10129,
+        "filledEnclosedGraphicPixels": 82,
+        "largestEnclosedGraphicHolePixels": 48,
+        "maskPixelCellArea": 10211.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 10211.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 10379.0,
+            "symmetricDifferencePixelArea": 168,
+            "boundaryHausdorffPixels": 4.0
+          },
+          "tighter": {
+            "pixelCellArea": 10025.0,
+            "symmetricDifferencePixelArea": 186,
+            "boundaryHausdorffPixels": 2.8284271247461903
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "9-northern",
+        "quarterNumber": 9,
+        "sourceColorPixels": 2289,
+        "filledEnclosedGraphicPixels": 98,
+        "largestEnclosedGraphicHolePixels": 81,
+        "maskPixelCellArea": 2387.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 2387.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 2438.0,
+            "symmetricDifferencePixelArea": 51,
+            "boundaryHausdorffPixels": 2.0
+          },
+          "tighter": {
+            "pixelCellArea": 2324.0,
+            "symmetricDifferencePixelArea": 63,
+            "boundaryHausdorffPixels": 3.605551275463989
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "9-north-tip",
+        "quarterNumber": 9,
+        "sourceColorPixels": 516,
+        "filledEnclosedGraphicPixels": 2,
+        "largestEnclosedGraphicHolePixels": 1,
+        "maskPixelCellArea": 518.0,
+        "finalContourMethod": "actual_dark_source_pixel_cycle",
+        "finalContourAreaPixels": 601.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 153.5,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 549.0,
+            "symmetricDifferencePixelArea": 31,
+            "boundaryHausdorffPixels": 4.123105625617661
+          },
+          "tighter": {
+            "pixelCellArea": 500.0,
+            "symmetricDifferencePixelArea": 18,
+            "boundaryHausdorffPixels": 2.0
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": false,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "9-east",
+        "quarterNumber": 9,
+        "sourceColorPixels": 4099,
+        "filledEnclosedGraphicPixels": 55,
+        "largestEnclosedGraphicHolePixels": 19,
+        "maskPixelCellArea": 4154.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 4154.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 4220.0,
+            "symmetricDifferencePixelArea": 66,
+            "boundaryHausdorffPixels": 2.23606797749979
+          },
+          "tighter": {
+            "pixelCellArea": 4089.0,
+            "symmetricDifferencePixelArea": 65,
+            "boundaryHausdorffPixels": 2.8284271247461903
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "10-north",
+        "quarterNumber": 10,
+        "sourceColorPixels": 3375,
+        "filledEnclosedGraphicPixels": 144,
+        "largestEnclosedGraphicHolePixels": 102,
+        "maskPixelCellArea": 3519.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 3519.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 3587.0,
+            "symmetricDifferencePixelArea": 68,
+            "boundaryHausdorffPixels": 2.0
+          },
+          "tighter": {
+            "pixelCellArea": 3438.0,
+            "symmetricDifferencePixelArea": 81,
+            "boundaryHausdorffPixels": 2.23606797749979
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      },
+      {
+        "componentId": "10-south",
+        "quarterNumber": 10,
+        "sourceColorPixels": 2775,
+        "filledEnclosedGraphicPixels": 135,
+        "largestEnclosedGraphicHolePixels": 96,
+        "maskPixelCellArea": 2910.0,
+        "finalContourMethod": "color_mask_pixel_cell_boundary_estimate",
+        "finalContourAreaPixels": 2910.0,
+        "rawMaskVersusFinalContourSymmetricDifferencePixelArea": 0.0,
+        "rawThresholdSensitivity": {
+          "looser": {
+            "pixelCellArea": 2954.0,
+            "symmetricDifferencePixelArea": 44,
+            "boundaryHausdorffPixels": 2.23606797749979
+          },
+          "tighter": {
+            "pixelCellArea": 2839.0,
+            "symmetricDifferencePixelArea": 71,
+            "boundaryHausdorffPixels": 2.8284271247461903
+          }
+        },
+        "thresholdSensitivityAppliesToFinalContour": true,
+        "nativeGeometryValidNoHoles": true,
+        "touchesSourceImageFrame": false
+      }
+    ],
+    "darkSourceCycleChecks": [
+      {
+        "componentId": "8-northeast",
+        "darkThresholdMaxRgb": 165,
+        "searchCorridorPixels": 3,
+        "denseActualSourcePixelCount": 134,
+        "compressedActualSourcePixelCount": 52,
+        "actualMaximumRgbOnPath": 154,
+        "denseCycleAreaPixels": 1055.5,
+        "compressionSymmetricDifferencePixelArea": 0,
+        "allDenseStepsActual8Neighbor": true,
+        "allDenseRgbEvidenceMatchesOriginal": true,
+        "noGapInterpolationOrChord": true,
+        "notLiteralBlack45Threshold": true
+      },
+      {
+        "componentId": "9-north-tip",
+        "darkThresholdMaxRgb": 165,
+        "searchCorridorPixels": 3,
+        "denseActualSourcePixelCount": 101,
+        "compressedActualSourcePixelCount": 38,
+        "actualMaximumRgbOnPath": 153,
+        "denseCycleAreaPixels": 601.0,
+        "compressionSymmetricDifferencePixelArea": 0,
+        "allDenseStepsActual8Neighbor": true,
+        "allDenseRgbEvidenceMatchesOriginal": true,
+        "noGapInterpolationOrChord": true,
+        "notLiteralBlack45Threshold": true
+      }
+    ],
+    "sourceComponentCount": 16,
+    "wholeLegendUnitCount": 10,
+    "maskCellFinalContourCount": 14,
+    "actualDarkSourceCentreCycleCount": 2,
+    "allOutputNativeContoursValidNoHoles": true,
+    "allSourceComponentsAwayFromImageFrame": true,
+    "pairwiseNativeContourInteriorOverlapArea": 0,
+    "noHullBufferFrameClosureOrInventedRuralBridge": true,
+    "actualDrawnOutlineAccuracyCertified": false,
+    "twoUnnumberedCyanComponentAssociationsRemainInferred": true
+  },
+  "visualInspection": {
+    "originalNativeSourceAndFinalOverlayInspected": true,
+    "twoEnlargedDarkCycleOverlaysInspected": true,
+    "observations": [
+      "Final contours preserve all sixteen separate colored areas and ten complete legend names.",
+      "Two corrected outer dark-source cycles follow the small northeast cyan8 and northern orange9 outlines across CAD/digit-occluded color notches. Neither is closed through a missing source-pixel gap.",
+      "Fourteen color-mask contours remain explicit estimates of drawn borders, subject to color/JPEG/line-overlay classification; raw HSV threshold sensitivity is not boundary error.",
+      "Enclosed graphic ink/CAD holes are filled; external white countryside, component gaps and source-frame edges are not used as invented bridges.",
+      "No independently identified physical geographic holdout junction has been established."
+    ]
+  },
+  "provisionalRegistration": {
+    "status": "inferred_georeference",
+    "geographicValidity": "UNRESOLVED",
+    "independentlyAcceptedPhysicalControls": 0,
+    "independentPhysicalHoldouts": 0,
+    "literalModernNodeIds": [
+      325221618,
+      5907787634
+    ],
+    "assumedSourcePixels": [
+      [
+        252.0,
+        478.0
+      ],
+      [
+        259.0,
+        550.0
+      ]
+    ],
+    "independentComplexDivisionMatrixPixelColumnToEov": [
+      [
+        19.269506887157654,
+        -0.09570381351973677,
+        549385.7124124797
+      ],
+      [
+        -0.09570381351973677,
+        -19.269506887157654,
+        123419.33417522696
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "maximumDifferenceFromArchivedMatrix": 1.4551915228366852e-11,
+    "internalTwoReferenceAlgebraicResidualsM": [
+      0.0,
+      0.0
+    ],
+    "twoReferenceClosureDoesNotProveGeographicCorrectness": true,
+    "sourceProjectionKnown": false,
+    "claimedAbsoluteAccuracyMetres": null,
+    "noReviewRadiusAccuracyBoundOrConfidenceIntervalAssigned": true,
+    "pyprojVersion": "3.7.2",
+    "projVersion": "9.5.1",
+    "projNetworkDisabled": true
+  },
+  "registrationSensitivity": {
+    "scenarioCount": 16,
+    "eachOfFourAnchorCoordinatesIndependentlyPerturbedByPixels": [
+      -3,
+      3
+    ],
+    "allScenarioMatricesAndPerComponentDisplacementsReproduced": true,
+    "notSameAsEarlierRadial3pxThoughtExperiment": true,
+    "scenarios": [
+      {
+        "assumedAnchorCoordinateShifts": [
+          -3,
+          -3,
+          -3,
+          -3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 81.75460224418974,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          -3,
+          -3,
+          -3,
+          3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 597.1312023793444,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          -3,
+          -3,
+          3,
+          -3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 692.9373148018996,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          -3,
+          -3,
+          3,
+          3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 869.0116836263861,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          -3,
+          3,
+          -3,
+          -3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 763.8702816073794,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          -3,
+          3,
+          -3,
+          3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 81.75460224416966,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          -3,
+          3,
+          3,
+          -3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 1021.5521402673446,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          -3,
+          3,
+          3,
+          3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 639.1571123274261,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          3,
+          -3,
+          -3,
+          -3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 649.4292831056565,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          3,
+          -3,
+          -3,
+          3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 880.9262239390567,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          3,
+          -3,
+          3,
+          -3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 81.7546022441799,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          3,
+          -3,
+          3,
+          3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 647.3752446475453,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          3,
+          3,
+          -3,
+          -3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 1041.0606943537744,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          3,
+          3,
+          -3,
+          3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 704.0738105068446,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          3,
+          3,
+          3,
+          -3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 704.5848346678639,
+        "notAccuracyOrErrorBound": true
+      },
+      {
+        "assumedAnchorCoordinateShifts": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "maximumModeledDisplacementAcrossComponentsM": 81.75460224418974,
+        "notAccuracyOrErrorBound": true
+      }
+    ],
+    "assumedPerturbationsAreNotMeasuredErrors": true,
+    "notAccuracyErrorOrConfidenceBounds": true
+  },
+  "inferredLegendOutputs": [
+    {
+      "number": 1,
+      "name": "Belváros",
+      "sourceParts": 1,
+      "nativeGeometryAndGroupingExactlyReproduced": true,
+      "worldCoordinateConstructionExactlyReproduced": true,
+      "geographicCorrectnessValidated": false,
+      "provisionalAreaM2": 2139078.0863224054,
+      "provisionalOutsideCurrentMunicipalityFraction": 0.0,
+      "sourceClipped": false
+    },
+    {
+      "number": 2,
+      "name": "Északnyugati városrész",
+      "sourceParts": 1,
+      "nativeGeometryAndGroupingExactlyReproduced": true,
+      "worldCoordinateConstructionExactlyReproduced": true,
+      "geographicCorrectnessValidated": false,
+      "provisionalAreaM2": 3921731.19236927,
+      "provisionalOutsideCurrentMunicipalityFraction": 0.0,
+      "sourceClipped": false
+    },
+    {
+      "number": 3,
+      "name": "Északi városrész",
+      "sourceParts": 1,
+      "nativeGeometryAndGroupingExactlyReproduced": true,
+      "worldCoordinateConstructionExactlyReproduced": true,
+      "geographicCorrectnessValidated": false,
+      "provisionalAreaM2": 1965692.7683854664,
+      "provisionalOutsideCurrentMunicipalityFraction": 0.0,
+      "sourceClipped": false
+    },
+    {
+      "number": 4,
+      "name": "Kisgát és környéke, Cukorgyár, Pécsi utca és környéke",
+      "sourceParts": 1,
+      "nativeGeometryAndGroupingExactlyReproduced": true,
+      "worldCoordinateConstructionExactlyReproduced": true,
+      "geographicCorrectnessValidated": false,
+      "provisionalAreaM2": 6314036.921889121,
+      "provisionalOutsideCurrentMunicipalityFraction": 0.0005423559097285636,
+      "sourceClipped": false
+    },
+    {
+      "number": 5,
+      "name": "Kecelhegy – Cser",
+      "sourceParts": 1,
+      "nativeGeometryAndGroupingExactlyReproduced": true,
+      "worldCoordinateConstructionExactlyReproduced": true,
+      "geographicCorrectnessValidated": false,
+      "provisionalAreaM2": 5046360.8708289405,
+      "provisionalOutsideCurrentMunicipalityFraction": 0.0,
+      "sourceClipped": false
+    },
+    {
+      "number": 6,
+      "name": "Donner – Rómahegy",
+      "sourceParts": 1,
+      "nativeGeometryAndGroupingExactlyReproduced": true,
+      "worldCoordinateConstructionExactlyReproduced": true,
+      "geographicCorrectnessValidated": false,
+      "provisionalAreaM2": 5039289.898643519,
+      "provisionalOutsideCurrentMunicipalityFraction": 0.0,
+      "sourceClipped": false
+    },
+    {
+      "number": 7,
+      "name": "Ivánfahegy – Kaposszentjakab",
+      "sourceParts": 1,
+      "nativeGeometryAndGroupingExactlyReproduced": true,
+      "worldCoordinateConstructionExactlyReproduced": true,
+      "geographicCorrectnessValidated": false,
+      "provisionalAreaM2": 4568490.702323125,
+      "provisionalOutsideCurrentMunicipalityFraction": 0.0,
+      "sourceClipped": false
+    },
+    {
+      "number": 8,
+      "name": "Kaposfüred",
+      "sourceParts": 3,
+      "nativeGeometryAndGroupingExactlyReproduced": true,
+      "worldCoordinateConstructionExactlyReproduced": true,
+      "geographicCorrectnessValidated": false,
+      "provisionalAreaM2": 1455354.6514984928,
+      "provisionalOutsideCurrentMunicipalityFraction": 0.0,
+      "sourceClipped": false
+    },
+    {
+      "number": 9,
+      "name": "Toponár – Répáspuszta – Fészerlak – Deseda",
+      "sourceParts": 4,
+      "nativeGeometryAndGroupingExactlyReproduced": true,
+      "worldCoordinateConstructionExactlyReproduced": true,
+      "geographicCorrectnessValidated": false,
+      "provisionalAreaM2": 5996991.250728739,
+      "provisionalOutsideCurrentMunicipalityFraction": 0.0,
+      "sourceClipped": false
+    },
+    {
+      "number": 10,
+      "name": "Töröcske – Zselic kertváros",
+      "sourceParts": 2,
+      "nativeGeometryAndGroupingExactlyReproduced": true,
+      "worldCoordinateConstructionExactlyReproduced": true,
+      "geographicCorrectnessValidated": false,
+      "provisionalAreaM2": 2387068.3202312132,
+      "provisionalOutsideCurrentMunicipalityFraction": 0.017168880534816675,
+      "sourceClipped": false
+    }
+  ],
+  "coarsePlaceDiagnostics": {
+    "literalPlaceRecordsRecomputed": 15,
+    "usedAsPhysicalControls": false,
+    "notGeographicAccuracyResiduals": true
+  },
+  "classification": {
+    "inferredOnlyFeatures": 10,
+    "primaryFeatures": 0,
+    "primaryRegistryCreated": false,
+    "unsupportedConstituentFineSplits": false,
+    "currentNamesIndependentlyConfirmed": false,
+    "currentLegalOrCadastralBoundaryVerified": false,
+    "sourceReuseRightsIndependentlyEstablished": false,
+    "usableForAddressAssignment": false,
+    "claimedAbsoluteAccuracyMetres": null
+  },
+  "frozenArtifactHashesSha256": {
+    "source-contour-components.json": "a187912b10147887a47d59d91dd697a5e8f6b6b7e5b1280ab8203a27b5f543c7",
+    "registration-sensitivity.json": "f6955c9882816433f9bacde78aadf02bad1c807a493fcc229e38aef748f8d50d",
+    "provisional-georeference.json": "9324037367a125d505780b05270cc01f0bdec768b9d76f71161ee8abf295e260",
+    "inferred-georeference.geojson": "d81c2f8afbf754406af1c3ffc6f1b2e2a6bdd9daf1a196ecd6bbff958c81c862",
+    "native-legend-unit-contours.json": "e76f54030c2809bdb8d34afdf2e6bb4e225fa1161667932cfd293960a9ebfc9a",
+    "coarse-place-diagnostics.json": "d3515d9d13aa89a842e600b4bd388532a87024d67b570da0750e1b3abc86b30b",
+    "projection-provenance.json": "000f6b7dc6c3da215622750bcb0bc4e2f0511110fd51863b53cbfee0285f4d09",
+    "conversion-proof.json": "0b01bf9898a1f621f8d09cd61324766f62af11dd99a8037f67821ba60e28c148",
+    "inferred-registry-entry.json": "4db55a0d0c76f9c774a4d89e9d3d589899a019dd9fcc5495830ddc0e0722f349",
+    "generated-manifest.json": "017505132b40ffab846757fcc6068232c64faf24f693100514f8cb1c9ae88afa",
+    "visual-review.json": "930237c14721264126d41fbf4b2150747b6f7b34314c76ba080494ac535bc5dd",
+    "control-review.json": "df087606841ffc45603b2b6c1447dca3b554410a33ddf9e74b8287519a680b6d"
+  },
+  "limitations": [
+    "All world geometry has unresolved inferred georeferencing. Correct transformation arithmetic cannot establish that assumed road/image associations are true.",
+    "Native raster color classification and dark165 stroke-centre selection are historical-map digitization choices, not surveyed or current cadastral boundaries.",
+    "Two unnumbered cyan islands are associated with Kaposfüred by same-color/context inference.",
+    "Raw HSV threshold changes and hypothetical anchor perturbations measure model sensitivity only; no observed true error, accuracy radius or confidence interval is assigned.",
+    "Unknown source projection, underlying cadastral-map date, current fine-name validity and municipal-map open-reuse license.",
+    "Not usable for automatic address assignment."
+  ]
+}

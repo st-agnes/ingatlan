@@ -1,0 +1,29 @@
+{
+  "city": "Szekszárd",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:30][maxsize:67108864];\nrelation(1501296)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Szekszárd\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  way(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"](if:is_closed());\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+  "retrievedAt": "2026-11-13T09:42:52.573Z",
+  "sha256": "b38041caadfb471697d89c9bc15a73b5a66b629d832634b609ab2ae02298d98c",
+  "bytes": 655,
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "municipalityRelationId": 1501296,
+  "municipalityAdminLevel": "8",
+  "candidates": 0,
+  "byAdminLevel": {},
+  "relationsWithWayGeometry": 0,
+  "closedWays": 0,
+  "osmTimestamp": "2026-11-13T09:41:02Z",
+  "completeCoverage": false,
+  "reviewStatus": "unreviewed",
+  "usableForAddressAssignment": false,
+  "attempts": [
+    {
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "status": "ok"
+    }
+  ],
+  "status": "downloaded",
+  "file": "szekszard.json"
+}

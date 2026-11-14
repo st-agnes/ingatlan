@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "status": "FROZEN_BOUNDED_CATALOG_PROVENANCE",
+  "researchDate": "2026-11-14",
+  "catalogPath": "data/neighborhoods/research/ksh-city-quarter-source-catalog-next.json",
+  "catalogSha256": "12d901869f7705f98b757d30ea45e113b9e381d943d18df5425f9bd50126f2e7",
+  "verificationMethod": "Read-only public web search, exact PDF reader opens, official KSH publication-index link following, and caption/source-line inspection. No shell network requests or raw downloads.",
+  "independentResearch": "Child agent ksh_priority_catalog independently checked Szeged and Szolnok reproduction PDFs and bibliographic-only Békéscsaba/Szekszárd originals.",
+  "originalSeriesDirectPdfCount": 1,
+  "laterKshMapPublicationCount": 1,
+  "institutionalReproductionOrRelatedMapCount": 4,
+  "readerSizeLimitCases": [
+    {
+      "url": "https://varoshaza.nyiregyhaza.hu/lib/fooldal/140210_ivs.pdf",
+      "reportedBytes": 15470929,
+      "confirmation": "The reader identified an actual PDF response and size before refusing to load it; map evidence comes from the exact official URL search index."
+    },
+    {
+      "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+      "reportedBytes": 12378814,
+      "confirmation": "The reader identified an actual PDF response and size before refusing to load it; map evidence comes from the exact official URL search index."
+    }
+  ],
+  "numericMapLocatorsConfirmedFor": [
+    "Hódmezővásárhely 2005 PDF 9",
+    "Szeged KSH 2014 printed 53/PDF 54",
+    "Szeged Henits 2013 printed 23/PDF 24",
+    "Szolnok Földi 2012 printed 72/PDF 72"
+  ],
+  "captionOnlyMapLocators": [
+    "Nyíregyháza IVS figure 7",
+    "Veszprém IVS típusú városrészei"
+  ],
+  "noOriginalPdfUrlInferredFromTemplate": true,
+  "excludedFalseSubstitutions": [
+    "szegeddemog.pdf is a 2007 demographic report, not the 2003 city-quarter volume.",
+    "Szegedi panel-housing statistics are not automatically quarter boundaries.",
+    "An IVS planning map that cites KSH is not automatically a verbatim KSH fine-quarter map."
+  ],
+  "noNativeGeometryOrCurrentValidityClaim": true,
+  "currentSourceRightsUnresolved": true,
+  "originalSeriesPriorityGaps": [
+    "Békéscsaba public original PDF unconfirmed",
+    "Nagykanizsa original-series publication/PDF not confirmed in bounded search",
+    "Szekszárd public original PDF unconfirmed"
+  ],
+  "frozenSourcesRegistriesExportsAndGlobalDocsModified": false,
+  "validation": "JSON parsed; six distinct confirmed acquisition URLs; source-kind counts checked; all candidates have verification and map locators; numeric unknowns remain null."
+}

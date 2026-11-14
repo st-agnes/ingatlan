@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "sourcePbfPath": ".local/neighborhoods/hungary-latest.osm.pbf",
+  "sourcePbfBytes": 329791850,
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "sourcePbfAcquisition": {
+    "version": 1,
+    "provider": "Geofabrik",
+    "source": "OpenStreetMap",
+    "scope": "Hungary country extract",
+    "url": "https://download.geofabrik.de/europe/hungary-latest.osm.pbf",
+    "checksumUrl": "https://download.geofabrik.de/europe/hungary-latest.osm.pbf.md5",
+    "checksumFilename": "hungary-latest.osm.pbf",
+    "file": "hungary-latest.osm.pbf",
+    "retrievedAt": "2026-11-13T12:20:44.741874+00:00",
+    "bytes": 329791850,
+    "md5": "5a6ed18c027725713203b046c2a9bd93",
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "finalUrl": "https://download.geofabrik.de/europe/hungary-261112.osm.pbf",
+    "lastModified": "Fri, 13 Nov 2026 00:00:56 GMT",
+    "etag": "\"13a8396a-6601d1f56d49e\"",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "attributionUrl": "https://www.openstreetmap.org/copyright",
+    "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "notes": [
+      "The latest URL is mutable; SHA256 identifies this exact snapshot.",
+      "MD5 verifies the publisher checksum; SHA256 pins the acquired bytes.",
+      "OSM community boundaries are not necessarily official legal boundaries."
+    ]
+  },
+  "bboxAcquisitionOnly": [
+    19.664,
+    46.842,
+    19.735,
+    46.908
+  ],
+  "selection": "Every source way with a highway tag whose original node/segment geometry intersects the acquisition rectangle. No highway subtype or name restriction. Entire original way-node sequence retained.",
+  "nativeFilter": "osmium.filter.KeyFilter(highway)",
+  "includesUnnamedWays": true,
+  "includesConstructionAndProposedHighwayWays": true,
+  "sourceGeometryClipped": false,
+  "neighborhoodBoundaryGeometryCreated": false,
+  "statistics": {
+    "allHighwayWaysExamined": 1098446,
+    "waysIntersectingAcquisitionRectangle": 3100,
+    "selectedNamedWays": 911,
+    "selectedUnnamedWays": 2189,
+    "selectedWaysWithNodesOutsideAcquisitionRectangle": 170,
+    "selectedHighwayTypes": {
+      "primary": 183,
+      "motorway_link": 11,
+      "service": 1127,
+      "residential": 525,
+      "living_street": 73,
+      "tertiary": 152,
+      "track": 214,
+      "footway": 536,
+      "tertiary_link": 9,
+      "path": 32,
+      "pedestrian": 50,
+      "unclassified": 56,
+      "motorway": 6,
+      "cycleway": 77,
+      "raceway": 5,
+      "proposed": 1,
+      "primary_link": 5,
+      "secondary": 3,
+      "platform": 3,
+      "services": 2,
+      "steps": 30
+    }
+  },
+  "uniqueSourceNodeCount": 13009,
+  "outputs": [
+    {
+      "path": "data/neighborhoods/sources/municipal-kecskemet-raster-more/figure77-all-highways.geojson",
+      "bytes": 5297496,
+      "sha256": "f1c8734cf2d34ada9f1290377b05582e908dd8cc17d0fc7c595a1fa26fe31396"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-kecskemet-raster-more/figure77-highway-nodes.json",
+      "bytes": 2240270,
+      "sha256": "fe7d1d2096390a4291aaae2047cabd6e7b7cbeac42b5163915f5a9989b7680e0"
+    }
+  ],
+  "license": "ODbL-1.0",
+  "attribution": "©OpenStreetMap contributors",
+  "extractorPath": "data/neighborhoods/sources/municipal-kecskemet-raster-more/scout/extract-figure77-control-roads.py",
+  "extractorSha256": "7d1dfb12592c3278e83fc22180f56ed1c5db93f3e3ff81a518b767987da6f496"
+}

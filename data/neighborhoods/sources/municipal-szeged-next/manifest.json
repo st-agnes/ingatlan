@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Szeged",
+  "status": "source_era_circuits_independently_reviewed_current_extent_unconfirmed",
+  "exportedPolygons": 2,
+  "sourceEraNeighborhoodCandidates": 1,
+  "historicalPlanningSubdivisions": 1,
+  "verifiedCurrentExactNeighborhoods": 0,
+  "sourceMunicipalityId": "osm:relation:1025105",
+  "files": [
+    {
+      "path": "README.txt",
+      "bytes": 3061,
+      "sha256": "5f6025b3db4a39eb2f6e0a8bad980829f48cb018aa28ce2f8bc0c22662f8bbf0"
+    },
+    {
+      "path": "boundary-obstacles.json",
+      "bytes": 3811,
+      "sha256": "4d54ffd4a0a3cfa8897c347966b719c9aa23b2f9a64d1361c356afc933d91f7f"
+    },
+    {
+      "path": "conversion-proof.json",
+      "bytes": 3630,
+      "sha256": "23b7538c8bc6f8ef621e27c4a61978cf064a264dfdae57d4a621a9f47df3f8d7"
+    },
+    {
+      "path": "extraction-proof.json",
+      "bytes": 747,
+      "sha256": "500e5b1f8f44f4b3e39b2442e95672256209665c7889b7ec12f2892035a421e6"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 5379,
+      "sha256": "d1716bab050d70356542fb364498aae99b1b43475b6e6e9cc9b1d24581e1349c"
+    },
+    {
+      "path": "municipality.geojson",
+      "bytes": 56379,
+      "sha256": "cb76286e369acf409619dcc71d209b83ee069640d4e07e0884333363ad42efeb"
+    },
+    {
+      "path": "registry-entry.json",
+      "bytes": 1808,
+      "sha256": "63166d0e3b7d6772cef27869e3322f0d0ca902ad3a20d70534e1420bdf16cabd"
+    },
+    {
+      "path": "source-facts.json",
+      "bytes": 3965,
+      "sha256": "27c323788f68cbe7eb17d96a108baa7fcd32e47ad75027c8983760b088e81469"
+    },
+    {
+      "path": "szeged-street-candidates.geojson",
+      "bytes": 22369,
+      "sha256": "b013b77347086689ec7d68c9fe897b7725e7acc401739e94dd51875dc2ceafc4"
+    },
+    {
+      "path": "tarjan-circuit-source-lines.geojson",
+      "bytes": 88167,
+      "sha256": "f9776899cb4e6a95f517b65299d3fed783ca2fa0830d22bf1751c7cbea7cab1b"
+    }
+  ],
+  "script": {
+    "path": "scripts/neighborhoods/derive-szeged-next.py",
+    "sha256": "afe271468516c38b4a48985e488f4dd6aaefeb90b1e1696e43f736b80aaac20b"
+  },
+  "sourceAcquisition": {
+    "tarjanLineSource": "Country construction lines derived from original HungaryPBF, independently checked per-way directly against same PBF",
+    "countryConstructionLineSha256": "a88eae7d237681eeae44c4bd7291777e17c21cfba3babed5677b1e976efcf0b4",
+    "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "selectedActualWays": 51,
+    "boundaryEdges": 182,
+    "originalMunicipalPdfBytesObtained": false,
+    "publicIndexedFactualTranscript": "source-facts.json"
+  },
+  "verifiedGeometryFacts": {
+    "valid": true,
+    "insideCanonicalSzeged": true,
+    "interiorOverlapPairs": 0,
+    "syntheticEdges": 0,
+    "repairs": 0
+  },
+  "networkUsed": "Public web read connector only; no shell network, escalation, permissions or GitHub calls.",
+  "usableForAddressAssignment": false,
+  "readme": "README.txt",
+  "registryEntry": "registry-entry.json",
+  "independentReview": "independent-review.json"
+}

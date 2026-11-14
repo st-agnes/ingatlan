@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "featureCount": 3,
+  "denseOriginalAndWorldVertexCountIncludingClosures": 4635,
+  "records": [
+    {
+      "name": "Külső Árpádváros",
+      "denseVertexCountIncludingClosure": 1617,
+      "maximumMaxRgb": 45,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 1339,
+      "outsideCalibrationImageRectangleVertexCount": 1055,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 522.8227678626655
+    },
+    {
+      "name": "Mezeiváros",
+      "denseVertexCountIncludingClosure": 1996,
+      "maximumMaxRgb": 44,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 954,
+      "outsideCalibrationImageRectangleVertexCount": 415,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 219.2175706754037
+    },
+    {
+      "name": "Ürgés",
+      "denseVertexCountIncludingClosure": 1022,
+      "maximumMaxRgb": 39,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 846,
+      "outsideCalibrationImageRectangleVertexCount": 556,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 351.03031238617615
+    }
+  ],
+  "projectValidatorResults": [
+    {
+      "id": "manual:kecskemet-figure76:kulso-arpadvaros",
+      "valid": true,
+      "bbox": [
+        19.673970701327775,
+        46.89310130354236,
+        19.689137827381728,
+        46.901345300791355
+      ],
+      "vertices": 1617
+    },
+    {
+      "id": "manual:kecskemet-figure76:mezeivaros",
+      "valid": true,
+      "bbox": [
+        19.686862189467675,
+        46.894619826637005,
+        19.704829618515422,
+        46.90273586783943
+      ],
+      "vertices": 1996
+    },
+    {
+      "id": "manual:kecskemet-figure76:urges",
+      "valid": true,
+      "bbox": [
+        19.70380176692297,
+        46.897841353227484,
+        19.71224574128091,
+        46.90282388709237
+      ],
+      "vertices": 1022
+    }
+  ],
+  "sourcePixelInteriorOverlap": 0.0,
+  "allOriginalContoursLiteralBlack8NeighborCircuits": true,
+  "noSourceFrameClosureGapFillInventedChordSnapRepairBufferOrSimplification": true,
+  "estimatedPlacementOnly": true,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

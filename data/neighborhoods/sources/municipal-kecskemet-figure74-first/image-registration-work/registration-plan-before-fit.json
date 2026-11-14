@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "scope": "Fixed final photographic grid/partition declared after two preliminary scale-search patches, before any final grid NCC result or affine model was computed.",
+  "sourceGridX": [
+    640,
+    704,
+    768,
+    832,
+    896,
+    960
+  ],
+  "sourceGridY": [
+    80,
+    160,
+    240,
+    320,
+    400,
+    480,
+    560,
+    640
+  ],
+  "sourcePatchSizePixels": 64,
+  "fixedTemplateSizePixels": 44,
+  "trainingPartition": "(row+column)%2==0",
+  "heldOutPartition": "(row+column)%2==1",
+  "usabilityThresholdNcc": 0.85,
+  "peaksOnSearchEdgesRejected": true,
+  "initialScaleForLocalSearch": 0.6875,
+  "initialOffsetForLocalSearch": [
+    -272,
+    863
+  ],
+  "searchPadTargetPixels": 18,
+  "preliminaryPatchBoxesExcludedFromFinalGrid": [
+    [
+      670,
+      115,
+      734,
+      179
+    ],
+    [
+      648,
+      295,
+      712,
+      359
+    ]
+  ],
+  "preliminaryResultsRetained": "exploratory-scale-search.json",
+  "manualPhotoObservationsAlreadyArchived": "producer-physical-observations-before-fit.json",
+  "geographicCoordinatesNamesOrQuarterGeometryUsed": false
+}

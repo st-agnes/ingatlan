@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "method": "Native625×883 original2014 municipal JPEG color-mask extraction. Manually identified source-colored components use documented HSV classes and4-neighbour connectivity. Small enclosed source-number/CAD-ink mask holes are filled after source review; white exterior/rural gaps and separate components are not bridged. Every native contour edge follows actual classified pixel-cell boundaries; only exactly collinear cell-edge vertices are omitted. Fourteen components retain raster-color estimates of the drawn outline. Two specifically reviewed CAD/digit-occluded silhouettes (northeast8 and northernmost9) instead follow closed8-neighbour cycles of actual dark source pixels (maxRGB165) within3px manually identified outer-stroke corridors; their full RGB/pixel paths are archived. No missing dark-pixel gap is bridged. WGS84 positions use an INFERRED, unvalidated EOV similarity from two assumed source-image/modern-road-node correspondences. Literal modern node coordinates are verified, but no image correspondence or independent physical holdout is established. No hull, image-frame closure, arbitrary closing chord, buffering, repair, current-road boundary substitution or clipping to current municipal limits. Unknown absolute accuracy remains null.",
+  "sourceImageSha256": "54dc5dc7a697bafdc3cb662a41ed6f6cfcc21ac98ec38cffa45ac14148477676",
+  "sourcePdfSha256": "8dcf6a39c018d11e9b7283a263d5887f919f7c5ba7c36862a6e83c76a13f159a",
+  "nativeLegendUnits": 10,
+  "nativeColoredComponents": 16,
+  "provisionalGeographicFeatures": 10,
+  "primaryFeatures": 0,
+  "allRawNativeMasksConvertedWithExactPixelCellArea": true,
+  "colorMaskEstimatedContours": 14,
+  "actualDarkSourcePixelOverrideContours": 2,
+  "sourceFrameClosureUsed": false,
+  "separateComponentsConnectedOrWhiteRuralGapsFilled": false,
+  "allOutputFeaturesInferredGeoreference": true,
+  "independentlyAcceptedPhysicalControlCount": 0,
+  "claimedAbsoluteAccuracyMetres": null,
+  "sourceMaskHelperSha256": "f64afb52606c4ad944db86797cb8dde83e55c956cd5dd65843984c66fe2117dd",
+  "inferredOutputSha256": "d81c2f8afbf754406af1c3ffc6f1b2e2a6bdd9daf1a196ecd6bbff958c81c862",
+  "currentMunicipalityArchiveSha256": "fb5f1293628b9eeaabce243ae6ebc884f6bdc93443a2488e5fb213029bf766b7",
+  "usableForAddressAssignment": false,
+  "reproduce": "PYTHONPATH=.local/geodata python3 scripts/neighborhoods/derive-kaposvar-raster-next.py --check"
+}

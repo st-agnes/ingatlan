@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "status": "all12_closed_source_rings_pass_topology_only_normalized_check; world_admission_pending",
+  "validator": "scripts/neighborhoods/build.mjs validateGeometry, unmodified",
+  "normalizationMeaning": "Divide native source-pixel coordinates by100 in an ephemeral validation copy only, to satisfy validator numeric-domain gates while checking identical topology. No world coordinates or georeferencing are produced.",
+  "rawPixelCoordinateFailureMeaning": "Expected invalid_coordinate because native pixels exceed WGS84 bounds; not a geographic import attempt.",
+  "results": [
+    {
+      "file": "henits-five-black50-source-pixels-working.geojson",
+      "sourceUnitNumber": 19,
+      "rawPixelSpaceResult": {
+        "valid": false,
+        "reason": "invalid_coordinate"
+      },
+      "topologyOnlyNormalizedResult": {
+        "valid": true,
+        "bbox": [
+          4.16,
+          5.55,
+          5.02,
+          6.29
+        ],
+        "vertices": 243
+      }
+    },
+    {
+      "file": "henits-five-black50-source-pixels-working.geojson",
+      "sourceUnitNumber": 20,
+      "rawPixelSpaceResult": {
+        "valid": false,
+        "reason": "invalid_coordinate"
+      },
+      "topologyOnlyNormalizedResult": {
+        "valid": true,
+        "bbox": [
+          3.55,
+          4.54,
+          4.89,
+          5.73
+        ],
+        "vertices": 414
+      }
+    },
+    {
+      "file": "henits-five-black50-source-pixels-working.geojson",
+      "sourceUnitNumber": 28,
+      "rawPixelSpaceResult": {
+        "valid": false,
+        "reason": "invalid_coordinate"
+      },
+      "topologyOnlyNormalizedResult": {
+        "valid": true,
+        "bbox": [
+          7.01,
+          4.1,
+          7.54,
+          4.74
+        ],
+        "vertices": 202
+      }
+    },
+    {
+      "file": "henits-five-black50-source-pixels-working.geojson",
+      "sourceUnitNumber": 11,
+      "rawPixelSpaceResult": {
+        "valid": false,
+        "reason": "invalid_coordinate"
+      },
+      "topologyOnlyNormalizedResult": {
+        "valid": true,
+        "bbox": [
+          8.52,
+          4.6,
+          9.44,
+          5.52
+        ],
+        "vertices": 355
+      }
+    },
+    {
+      "file": "henits-five-black60-source-pixels-working.geojson",
+      "sourceUnitNumber": 19,
+      "rawPixelSpaceResult": {
+        "valid": false,
+        "reason": "invalid_coordinate"
+      },
+      "topologyOnlyNormalizedResult": {
+        "valid": true,
+        "bbox": [
+          4.17,
+          5.56,
+          5.02,
+          6.28
+        ],
+        "vertices": 236
+      }
+    },
+    {
+      "file": "henits-five-black60-source-pixels-working.geojson",
+      "sourceUnitNumber": 20,
+      "rawPixelSpaceResult": {
+        "valid": false,
+        "reason": "invalid_coordinate"
+      },
+      "topologyOnlyNormalizedResult": {
+        "valid": true,
+        "bbox": [
+          3.55,
+          4.54,
+          4.89,
+          5.72
+        ],
+        "vertices": 411
+      }
+    },
+    {
+      "file": "henits-five-black60-source-pixels-working.geojson",
+      "sourceUnitNumber": 28,
+      "rawPixelSpaceResult": {
+        "valid": false,
+        "reason": "invalid_coordinate"
+      },
+      "topologyOnlyNormalizedResult": {
+        "valid": true,
+        "bbox": [
+          7.01,
+          4.1,
+          7.54,
+          4.74
+        ],
+        "vertices": 204
+      }
+    },
+    {
+      "file": "henits-five-black60-source-pixels-working.geojson",
+      "sourceUnitNumber": 11,
+      "rawPixelSpaceResult": {
+        "valid": false,
+        "reason": "invalid_coordinate"
+      },
+      "topologyOnlyNormalizedResult": {
+        "valid": true,
+        "bbox": [
+          8.52,
+          4.6,
+          9.44,
+          5.52
+        ],
+        "vertices": 354
+      }
+    },
+    {
+      "file": "henits-five-black70-source-pixels-working.geojson",
+      "sourceUnitNumber": 19,
+      "rawPixelSpaceResult": {
+        "valid": false,
+        "reason": "invalid_coordinate"
+      },
+      "topologyOnlyNormalizedResult": {
+        "valid": true,
+        "bbox": [
+          4.17,
+          5.56,
+          5.02,
+          6.28
+        ],
+        "vertices": 234
+      }
+    },
+    {
+      "file": "henits-five-black70-source-pixels-working.geojson",
+      "sourceUnitNumber": 20,
+      "rawPixelSpaceResult": {
+        "valid": false,
+        "reason": "invalid_coordinate"
+      },
+      "topologyOnlyNormalizedResult": {
+        "valid": true,
+        "bbox": [
+          3.55,
+          4.54,
+          4.89,
+          5.72
+        ],
+        "vertices": 402
+      }
+    },
+    {
+      "file": "henits-five-black70-source-pixels-working.geojson",
+      "sourceUnitNumber": 28,
+      "rawPixelSpaceResult": {
+        "valid": false,
+        "reason": "invalid_coordinate"
+      },
+      "topologyOnlyNormalizedResult": {
+        "valid": true,
+        "bbox": [
+          7.01,
+          4.11,
+          7.54,
+          4.74
+        ],
+        "vertices": 199
+      }
+    },
+    {
+      "file": "henits-five-black70-source-pixels-working.geojson",
+      "sourceUnitNumber": 11,
+      "rawPixelSpaceResult": {
+        "valid": false,
+        "reason": "invalid_coordinate"
+      },
+      "topologyOnlyNormalizedResult": {
+        "valid": true,
+        "bbox": [
+          8.53,
+          4.6,
+          9.44,
+          5.51
+        ],
+        "vertices": 339
+      }
+    }
+  ],
+  "worldGeometryProduced": false,
+  "sourceGeometryModified": false,
+  "globalRegistryModified": false
+}

@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "kiskunfelegyhaza-its2016-five",
+  "status": "FROZEN_REVIEWED_ESTIMATED_RESEARCH_CANDIDATES",
+  "freezeDate": "2026-11-14",
+  "municipality": "Kiskunfélegyháza",
+  "candidateFile": "kiskunfelegyhaza-inferred-import.geojson",
+  "candidateSha256": "7e4a3160b967a8331016204c50e38dbe2241456fba5876403b06174f9d276462",
+  "registryEntryPath": "inferred-registry-entry.json",
+  "registryEntrySha256": "8e7f1462494056e19ca32b68f4358d63b1dca7a8770be8e14080ac8187322b86",
+  "newPrimaryFeatures": 0,
+  "newEstimatedFineCandidates": 5,
+  "observedClosedContourCandidates": 4,
+  "estimatedSourceContourCandidates": 1,
+  "allWorldPlacementEstimated": true,
+  "sourceNamePointsUsedForFit": false,
+  "sourceCapAlternativesRetained": true,
+  "sourceContourObservationOverridesNotApplied": true,
+  "fullOriginalPdfIncluded": false,
+  "fullPbfIncluded": false,
+  "fullNarrativeSourcePagesIncluded": false,
+  "sourceDatesRemainDistinct": [
+    "2011 census",
+    "2014 municipal submission",
+    "2016 ITS review"
+  ],
+  "absoluteGroundAccuracyEstablished": false,
+  "completeCurrentQuarterExtentEstablished": false,
+  "unrestrictedSourceReuseRightsEstablished": false,
+  "sourceIsOfficialBoundaryClaimed": false,
+  "sourceIsHardBoundaryClaimed": false,
+  "usableForAddressAssignment": false,
+  "globalRegistryOrExportsModifiedByProducer": false,
+  "independentReviews": {
+    "independent-parent-review.json": "2c169ed3eee16f0160434dfdf9c5adc627f37684d6e6484fcdf6e6ddd1e38cd9",
+    "root-world-review.json": "f9a0c4d3296a6dab8486e0ae72697e895a914405f95745429cb105d5c2a3ae6c"
+  },
+  "administrativeReferenceRole": "root-municipality-reference.geojson is one unchanged original municipality geometry used only for independent containment/provenance; never a fit control, quarter, clipping mask or generated closing edge.",
+  "validation": "Read-only validation and isolated 17-output byte reproduction passed again after both independent reviews.",
+  "files": [
+    {
+      "path": "README.txt",
+      "bytes": 4496,
+      "sha256": "ced3d7aa5b126d130b058a145e5bd348f9d82b5e7d269da421d8df87d52f1f24"
+    },
+    {
+      "path": "extract-reference.py",
+      "bytes": 4840,
+      "sha256": "96d1365980772aaff4958c963123bd85bdf6bcbddef57b1221c0cb6f170184e0"
+    },
+    {
+      "path": "extract-source.py",
+      "bytes": 11106,
+      "sha256": "d906abc4017686de6434b8fb01db6a1bf9255a397cf414a9f94b7904472a29dd"
+    },
+    {
+      "path": "independent-parent-review.json",
+      "bytes": 18575,
+      "sha256": "2c169ed3eee16f0160434dfdf9c5adc627f37684d6e6484fcdf6e6ddd1e38cd9"
+    },
+    {
+      "path": "inferred-registry-entry.json",
+      "bytes": 2326,
+      "sha256": "8e7f1462494056e19ca32b68f4358d63b1dca7a8770be8e14080ac8187322b86"
+    },
+    {
+      "path": "input-manifest.json",
+      "bytes": 1913,
+      "sha256": "44c708c4433c264793f3feb74e86fee99c576c5832f7fdcd8b983ec7e6be266d"
+    },
+    {
+      "path": "kiskunfelegyhaza-inferred-import.geojson",
+      "bytes": 98000,
+      "sha256": "7e4a3160b967a8331016204c50e38dbe2241456fba5876403b06174f9d276462"
+    },
+    {
+      "path": "name-and-model-diagnostics.json",
+      "bytes": 2896,
+      "sha256": "cc222f077824a708231c10dc1c8e07ca4211b23a521619293b17f82f2fa7b679"
+    },
+    {
+      "path": "outlying-world-scouts.geojson",
+      "bytes": 25737,
+      "sha256": "767bdb27dcd3afb0c5b214a2d27fcd81af0c294cf554e707c223fd76de7fd85b"
+    },
+    {
+      "path": "petofi-cap-alternative-source-pixels.geojson",
+      "bytes": 6951,
+      "sha256": "d52edd0f54f7da6e6db848e17321af50820c6d903718c5ad95fcd1d2dc61262e"
+    },
+    {
+      "path": "petofi-cap-evidence.json",
+      "bytes": 1043,
+      "sha256": "29d0e0fb1f787ea13b057853af15ca367e3fbb18a53a4a0c2231d1475246e7cf"
+    },
+    {
+      "path": "petofi-contour-alternative-world.geojson",
+      "bytes": 9260,
+      "sha256": "211f76f9b5b431c996b21a9136e70bbe7a3bcfdf5c829f7269c20a4893c31f0b"
+    },
+    {
+      "path": "petofi-label-gap-preview.png",
+      "bytes": 205513,
+      "sha256": "c512b0dda4c20be4ab625301fc32e8061b2aca120be755718ad5335147c3e31e"
+    },
+    {
+      "path": "placement-similarity-alternative.geojson",
+      "bytes": 77110,
+      "sha256": "91585ab0ac9208a89521d1947e05c24c803e31ea09d8a6a9766a16a38d037d4e"
+    },
+    {
+      "path": "reference-extraction-proof.json",
+      "bytes": 969,
+      "sha256": "588051e1c2a49417129f3bd63f3db57e8f7e0506d9fd91a5efdf17f0be4e9fc9"
+    },
+    {
+      "path": "register.py",
+      "bytes": 16650,
+      "sha256": "578b0c88b76df3919b9fb182fa068adc60bfe8d61fe106a4e4c9c6c97bd93d76"
+    },
+    {
+      "path": "registration-road-overlay.png",
+      "bytes": 1369360,
+      "sha256": "7f3041df769b01bc054470e0a668496e188b6d0516fcc15fb8e289e1033dc802"
+    },
+    {
+      "path": "remote-road-placement-evidence.png",
+      "bytes": 208050,
+      "sha256": "5a3fad7cd7a10de2eba08e58107a8c0df156a2b8df061566b3bfb9d08b600e19"
+    },
+    {
+      "path": "reproduce.py",
+      "bytes": 2580,
+      "sha256": "47b1aab1d6817a57e5ae038adbe4de52834fa8700feb76f96dd09b4910e1e84c"
+    },
+    {
+      "path": "reproduction-check.json",
+      "bytes": 4831,
+      "sha256": "a4a5de8883dcab07a603fcc48512e6b37e20df8733b204da1c428af6d218918c"
+    },
+    {
+      "path": "road-registration.json",
+      "bytes": 7607,
+      "sha256": "d076e1349ced085cb0dd72d50033f8a979062caa7da8b9d089afe3f728caae37"
+    },
+    {
+      "path": "root-municipality-reference.geojson",
+      "bytes": 16968,
+      "sha256": "192990b5a0abeac25c61c2e19e6b404814b04ec9dc58a6480e7db9860a29a115"
+    },
+    {
+      "path": "root-world-review.json",
+      "bytes": 1881,
+      "sha256": "f9a0c4d3296a6dab8486e0ae72697e895a914405f95745429cb105d5c2a3ae6c"
+    },
+    {
+      "path": "source-contours-preview.png",
+      "bytes": 1366273,
+      "sha256": "fb46b5b2d39c6d88db1fa8edb20b2b28e09cf5f128fa6c1029b683ffb9bd851f"
+    },
+    {
+      "path": "source-extraction-proof.json",
+      "bytes": 2284,
+      "sha256": "32a1ca08f4f33f7c61147b3121495caeb283f559fbaf7922cbb6469abaeb9365"
+    },
+    {
+      "path": "source-facts.json",
+      "bytes": 3335,
+      "sha256": "375c7dd14089ec53e5df84b9fd10972cd27b71cf61d8b28a5bd189e869da3955"
+    },
+    {
+      "path": "source-manifest.json",
+      "bytes": 7382,
+      "sha256": "874547e6f845ca160df7e86ab0eb48a2b104a70437dc580b8d98d722a4dffd2b"
+    },
+    {
+      "path": "source-map-p25-xref365.jpeg",
+      "bytes": 266594,
+      "sha256": "a7b734e8904b9215a4aba01dc3763ef72b6c21bc4dd813f6e06c8365dbd03e1a"
+    },
+    {
+      "path": "source-name-points.geojson",
+      "bytes": 3150,
+      "sha256": "37e83a4a088b6cb8a6144bfa528a40be2b04cdef3ff402536f24179fabdb1a46"
+    },
+    {
+      "path": "source-pixel-contours.geojson",
+      "bytes": 58452,
+      "sha256": "91224cc95c87ebcce913943cca90f01a8d0ea90c03b58d5f8e90aec2d96cf0f0"
+    },
+    {
+      "path": "source-road-rail-reference.geojson",
+      "bytes": 108624,
+      "sha256": "3cefafe60bf7b3eeeca3b557f9a5b8d2758836333b66d51c085437f87905101b"
+    },
+    {
+      "path": "source-segmentation.npz",
+      "bytes": 49551,
+      "sha256": "a145f802ccabeb6ee813c4d9e93c6d4628b39657ed7e86d515e661aece8fc819"
+    },
+    {
+      "path": "validate.py",
+      "bytes": 6378,
+      "sha256": "2122d9a965483134c546cd6adc4393670c6401a8b15c61d67c7c4449cb815c20"
+    },
+    {
+      "path": "validation-report.json",
+      "bytes": 1788,
+      "sha256": "bc02b31383abbd9c30209e7ffba3b03618468c94dbe2d189fdae8da538d4bbce"
+    }
+  ],
+  "totalFilesExcludingThisManifest": 34,
+  "totalBytesExcludingThisManifest": 3972473
+}

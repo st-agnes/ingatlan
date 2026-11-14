@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "sourceScope": "Public DÉSZ_test service/layers metadata only; no feature data requested",
+  "serviceItemId": "1fa4713b823846ada57d837e6ab6ec02",
+  "actualLayerCount": 128,
+  "maximumLayerId": 145,
+  "nameMatchesForQuarterWords": [],
+  "relevantAdministrativeLayers": [
+    {
+      "id": 3,
+      "name": "Budapest közigazgatási határa",
+      "geometryType": "esriGeometryPolygon"
+    },
+    {
+      "id": 4,
+      "name": "Kerületek",
+      "geometryType": "esriGeometryPolygon"
+    },
+    {
+      "id": 5,
+      "name": "Margitsziget",
+      "geometryType": "esriGeometryPolygon"
+    },
+    {
+      "id": 6,
+      "name": "Belterületi határvonal",
+      "geometryType": "esriGeometryPolygon"
+    },
+    {
+      "id": 7,
+      "name": "Települések",
+      "geometryType": "esriGeometryPolygon"
+    },
+    {
+      "id": 8,
+      "name": "Telekhatár",
+      "geometryType": "esriGeometryPolygon"
+    },
+    {
+      "id": 10,
+      "name": "HRSZ",
+      "geometryType": "esriGeometryPolygon"
+    }
+  ],
+  "conclusion": "Metadata lists Budapest administrative/district, parcel and planning/environment layers. No explicitly named fine-quarter layer identified. Whole districts, built-up boundaries and zoning are not substitutes for quarter polygons.",
+  "rejectedForThisQuarterAcquisition": true,
+  "moreFeatureQueriesRecommended": false,
+  "sourceAbsenceClaimBeyondThisSpecificMetadata": false,
+  "rawMetadataReferences": [
+    {
+      "path": ".local/neighborhoods/supplement-feature-services/desz-test-item.json",
+      "sha256": "8dd10c6d8ff7e175c2473f5c59cf13adf2fac5ee6bc4a854fe30fa384a35bb07"
+    },
+    {
+      "path": ".local/neighborhoods/supplement-feature-services/desz-test-layers.json",
+      "sha256": "dbe1140382f6300554f1e9517e82e0ab22bb09f8e7855648117528c1e6369b84"
+    },
+    {
+      "path": ".local/neighborhoods/supplement-feature-services/desz-test-service.json",
+      "sha256": "df4abc33ce796e31901dc0f5733e584ba20fb86889729885c02c93ff6cfd2459"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "independent_native_raster_contour_and_source_pixel_topology",
+  "reviewer": "independent child agent zala_semantic_qa",
+  "status": "passes_source_raster_closed_contour_and_exact_cell_union_checks",
+  "inputs": [
+    {
+      "path": "p141-xref778.jpeg",
+      "sha256": "030e9fe46f8bce31c9a4f9bbea282a72c66e3af3d29d508c72659583f1569d76"
+    },
+    {
+      "path": "hathaz-mask.npz",
+      "sha256": "504d815820d309fead40d87cdcb0790a9b398eb3abcf9c404381a91a2a81e89b"
+    },
+    {
+      "path": "hathaz-contour-extraction-preview.png",
+      "sha256": "7a2ee8f7cd7657bd6857f258467256afe7081e5ff83cdee61bff30b675300242"
+    },
+    {
+      "path": "independent-raster-review.py",
+      "sha256": "b1ee1b3f0557846e95a7dc101822a00dafb5509687952822775e67f7fbc5a283"
+    }
+  ],
+  "imageDimensionsPixels": [
+    355,
+    451
+  ],
+  "independentReconstruction": {
+    "strokeRule": "Largest 8-neighbor component of source-native pixels whose max(R,G,B) is below120; independently implemented breadth-first labeling.",
+    "sourceStrokePixels": 2053,
+    "sourceStrokeInclusivePixelBounds": [
+      45,
+      49,
+      314,
+      406
+    ],
+    "seedPixelXY": [
+      160,
+      220
+    ],
+    "nonStroke4NeighborComponentSizes": [
+      102614,
+      55438
+    ],
+    "interiorPixels": 55438,
+    "interiorTouchesRasterEdge": false,
+    "independentStrokeEqualsStoredMask": true,
+    "independentInteriorEqualsStoredMask": true,
+    "sourceCellUnion": {
+      "type": "Polygon",
+      "isValid": true,
+      "validityReason": "Valid Geometry",
+      "areaSquarePixels": 55438.0,
+      "holes": 0,
+      "boundsCellEdges": [
+        46.0,
+        51.0,
+        314.0,
+        405.0
+      ]
+    },
+    "noGapBridgingClippingOrGeometryRepair": true
+  },
+  "thresholdSensitivity": [
+    {
+      "maximumRgbExclusiveCutoff": 100,
+      "largestDark8NeighborComponentPixels": 1970,
+      "nonStroke4NeighborComponentSizes": [
+        102656,
+        55479
+      ],
+      "seedInteriorPixels": 55479,
+      "seedInteriorTouchesRasterEdge": false,
+      "symmetricDifferenceFromSelectedInteriorPixels": 41
+    },
+    {
+      "maximumRgbExclusiveCutoff": 140,
+      "largestDark8NeighborComponentPixels": 2141,
+      "nonStroke4NeighborComponentSizes": [
+        102563,
+        55401
+      ],
+      "seedInteriorPixels": 55401,
+      "seedInteriorTouchesRasterEdge": false,
+      "symmetricDifferenceFromSelectedInteriorPixels": 37
+    }
+  ],
+  "visualReview": {
+    "inspected": [
+      "native source image xref778 at355x451",
+      "native satellite image xref773 at194x246",
+      "hathaz-contour-extraction-preview.png"
+    ],
+    "findings": [
+      "Selected mask tracks the visible single closed black Hatház perimeter, including the top stepped projection, east-facing wide lobe, concave east edge and southern narrow strip.",
+      "No detached lobe or alternate boundary arc is visible outside the selected ring; the contour is continuous in the source, and no closure has been manually added.",
+      "The Hatház label and unrelated map marks are excluded from the stroke component but remain ordinary interior cells; they have not been used to reshape the perimeter.",
+      "Inside-edge interpretation excludes the source stroke itself. Threshold sensitivity measures source-pixel variation only, not positional accuracy."
+    ]
+  },
+  "placementReview": "World placement and geographic calibration not reviewed in this source-only check.",
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false
+}

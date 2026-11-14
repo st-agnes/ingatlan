@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "reviewer": "independent child agent audit_kaposvar",
+  "scope": "Read-only independent inspection of the two pinned municipal PDFs, selected map images and page-specific identity evidence; no geographic geometry generated.",
+  "result": "bounded-negative-new-fine-quarter-geometry",
+  "newFineQuarterPolygonCount": 0,
+  "safeForAddressAssignment": false,
+  "inputs": [
+    {
+      "sourceId": "kaposvar-belvaros2009",
+      "localRawPath": ".local/neighborhoods/supplement-originals/kaposvar-belvaros2009.pdf",
+      "url": "https://kph.kaposvar.hu/eloterjesztesek/et20090226/doku/e28m01.pdf",
+      "bytes": 14880108,
+      "sha256": "88ceb3ea0db709ee27a8003f29db3c12937f05ce447161b45e52e8b1b8e1ba3b",
+      "pdfPageCount": 243,
+      "documentDateEvidence": {
+        "filenameAndAgendaUrlYear": 2009,
+        "pdfCreationDate": "D:20090212155858",
+        "pdfModificationDate": "D:20090212155858",
+        "dateInterpretation": "The cover explicitly dates this historical municipal action-plan source to February 2009. PDF metadata is corroborating file-generation evidence, not a legal adoption date.",
+        "coverPdfPage": 1,
+        "coverDateAsPrinted": "2009. FEBRUÁR"
+      },
+      "pagesInspected": [
+        1,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        44
+      ],
+      "map": {
+        "pdfPage": 26,
+        "imageXref": 157,
+        "widthPixels": 944,
+        "heightPixels": 1301,
+        "encoding": "DCTDecode",
+        "extractedImageSha256": "d7b4f06bb3a499219d4580bea61d5b7cdcbfe5107ef6c4d56aab3f41b3566b23",
+        "nativeVectorDrawingCount": 0,
+        "observation": "One raster map image with ten numbered functional-unit contours. Labels for component places occur within compound units, but no new separately identified fine-quarter boundary is supplied by those labels."
+      }
+    },
+    {
+      "sourceId": "kaposvar-fvs",
+      "localRawPath": ".local/neighborhoods/supplement-originals/kaposvar-fvs.pdf",
+      "url": "https://kph.kaposvar.hu/data/adattar/fvs21-27/fvs21-27.pdf",
+      "bytes": 6965334,
+      "sha256": "291aba20ffcc41e604ad737bb6d132ae51b51d70303285e36702e4fc04e6901e",
+      "pdfPageCount": 388,
+      "documentDateEvidence": {
+        "titlePlanningPeriod": "2021-2027",
+        "pdfCreationDate": "D:20240202084234+01'00'",
+        "pdfModificationDate": "D:20240202084234+01'00'",
+        "dateInterpretation": "The cover explicitly dates version 2.0 to July 2023; 2021-2027 is the planning period, and 2024 PDF metadata is separate file-generation evidence. None independently proves a current 2026 canonical fine-neighborhood schema.",
+        "coverPdfPage": 1,
+        "coverDateAsPrinted": "2023. július",
+        "coverVersionAsPrinted": "2.0 verzió"
+      },
+      "pagesInspected": [
+        1,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188
+      ],
+      "map": {
+        "pdfPage": 182,
+        "figure": "30. ábra: Kaposvár városrészei",
+        "imageXref": 991,
+        "widthPixels": 1342,
+        "heightPixels": 1007,
+        "encoding": "DCTDecode",
+        "extractedImageSha256": "94deebd1dde58d970e541999aba1a0ad765f4dfa04bc779a06ac9ed78baddf6b",
+        "nativeVectorDrawingCount": 0,
+        "observation": "Ten numbered raster-fill classes, including six compound labels. Internal cadastral and road lines do not identify separate fine quarters. The four already represented fine units would be duplicates, and the six compound fills cannot be cloned onto their component names."
+      }
+    }
+  ],
+  "identityFindings": [
+    {
+      "sourceId": "kaposvar-fvs",
+      "pdfPage": 181,
+      "shortQuote": "jelen stratégia is megtartja a korábban lehatárolt városrészi felosztást",
+      "interpretation": "The FVS expressly retains the earlier ten-unit functional planning division. Its cover dates version 2.0 to July 2023, so this positively corroborates the division in that 2023 planning document for the 2021-2027 period. It does not independently validate a finer current 2026 neighborhood taxonomy."
+    },
+    {
+      "sourceId": "kaposvar-belvaros2009",
+      "pdfPage": 27,
+      "shortQuote": "Kaposvár Városközpont akcióterület ezen a városrészen belül helyezkedik el",
+      "interpretation": "The whole Belváros quarter and the Városközpont action area are explicitly distinct. The document names four Belváros parts, but pp27-30 provide descriptions rather than four closed, individually identified contours."
+    },
+    {
+      "sourceId": "kaposvar-belvaros2009",
+      "pdfPage": 44,
+      "shortQuote": "Kaposvár Városközpont került kijelölésre város-rehabilitációs akcióterületként",
+      "areaHectaresAsPrinted": 13.85,
+      "interpretation": "The street-number boundary and later intervention maps concern a rehabilitation action area. They cannot establish the boundary of whole Belváros or automatically establish a whole fine quarter named Városközpont."
+    }
+  ],
+  "possibleProseCandidates": [
+    {
+      "name": "Donner",
+      "sourceId": "kaposvar-fvs",
+      "pdfPage": 186,
+      "shortEvidence": "Donner is described south of the Kapos, between the 67 road and the Zselic-csatorna, toward Szigetvári út.",
+      "status": "unclosed-uncertain-prose-lead",
+      "reason": "Wording and feature scope need disambiguation; the map supplies one Donner-Rómahegy fill with no identified separating quarter contour. No closed source polygon or reviewed geographic reconstruction is available from this audit."
+    },
+    {
+      "name": "Rómahegy",
+      "sourceId": "kaposvar-fvs",
+      "pdfPage": 186,
+      "shortQuote": "Kapos-folyó – Ivánfai árok – belterület határ – Szigetvári út – Zselic patak",
+      "status": "unclosed-uncertain-prose-lead",
+      "reason": "The named feature sequence is useful boundary evidence but lacks a corresponding separately identified raster/native contour. Selecting exact historical built-up limits, channels, junctions and a complete ring would require additional evidence and review; no child polygon can be inferred by splitting or cloning the compound parent fill."
+    }
+  ],
+  "geometryDecision": {
+    "emitNewGeojson": false,
+    "duplicateFineUnits": 4,
+    "undividedCompoundUnits": 6,
+    "noPointBuffers": true,
+    "noBoundingBoxes": true,
+    "noFrameClosure": true,
+    "noParentCloning": true,
+    "noInventedInternalBoundary": true,
+    "georeferenceStatus": "not-attempted-because-no-new-eligible-fine-source-contour",
+    "sourceContourAndControlUncertainty": "No new source polygon is emitted, so no geographic controls or extrapolated boundary are asserted. Raster extraction does not confer geographic coordinates or fine-quarter identity."
+  },
+  "limits": [
+    "This bounded negative result concerns the inspected maps and neighborhood sections of these two documents; it is not evidence that no finer source exists elsewhere.",
+    "The source dates, retained planning schema, named-place identity and present-day canonical validation remain separate questions.",
+    "No source-to-address validation, legal boundary verification or independent geographic-control fit was performed."
+  ]
+}

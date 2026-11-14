@@ -1,0 +1,829 @@
+{
+  "type": "FeatureCollection",
+  "source": {
+    "path": ".local/neighborhoods/country-associated/named-nodes.geojson",
+    "sha256": "05c02b8ac8f32df2d917e01f6de81c6133c5e7dd527114f67000b43467a3a048",
+    "archivedCountryCohort": "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz",
+    "method": "Select unchanged original point records by eighteen explicit current-name IDs: twelve single-circuit controls plus six controls for five source-defined quarter groups."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "osm:node:277526312",
+      "properties": {
+        "name": "Gyirmót",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 277526312,
+          "tags": {
+            "name": "Gyirmót",
+            "name:ru": "Дьирмот",
+            "place": "suburb",
+            "postal_code": "9019",
+            "source:postal_code": "Magyar Posta, 2009.03.01",
+            "wikidata": "Q1029586",
+            "wikipedia": "hu:Gyirmót"
+          },
+          "objectVersion": 15,
+          "objectTimestamp": "2023-08-21 21:01:41+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/277526312",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.5955047,
+          47.6357657
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:282455038",
+      "properties": {
+        "name": "Ménfőcsanak",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 282455038,
+          "tags": {
+            "name": "Ménfőcsanak",
+            "name:ru": "Менфёчанак",
+            "place": "suburb",
+            "postal_code": "9012",
+            "source:postal_code": "Magyar Posta, 2009.03.01",
+            "wikidata": "Q1212890",
+            "wikipedia": "hu:Ménfőcsanak"
+          },
+          "objectVersion": 14,
+          "objectTimestamp": "2023-08-21 21:01:41+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/282455038",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6056783,
+          47.6291522
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:282455293",
+      "properties": {
+        "name": "Pinnyéd",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 282455293,
+          "tags": {
+            "name": "Pinnyéd",
+            "place": "suburb",
+            "wikidata": "Q1236240",
+            "wikipedia": "hu:Pinnyéd"
+          },
+          "objectVersion": 7,
+          "objectTimestamp": "2018-09-02 14:28:01+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/282455293",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.5968604,
+          47.698992
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:282457511",
+      "properties": {
+        "name": "Likócs",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 282457511,
+          "tags": {
+            "name": "Likócs",
+            "place": "suburb",
+            "wikidata": "Q1130081",
+            "wikipedia": "hu:Likócs"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2018-09-02 14:28:01+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/282457511",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6747949,
+          47.7114996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:865266939",
+      "properties": {
+        "name": "Adyváros",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 865266939,
+          "tags": {
+            "name": "Adyváros",
+            "place": "suburb",
+            "wikidata": "Q506408",
+            "wikipedia": "hu:Ady-város"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2018-09-02 14:28:01+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/865266939",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6578178,
+          47.674386
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:982117703",
+      "properties": {
+        "name": "Gyárváros",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 982117703,
+          "tags": {
+            "name": "Gyárváros",
+            "place": "suburb",
+            "wikidata": "Q1030002",
+            "wikipedia": "hu:Gyárváros (városrész, Győr)"
+          },
+          "objectVersion": 6,
+          "objectTimestamp": "2021-01-06 12:39:11+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/982117703",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6597711,
+          47.6922561
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:982117707",
+      "properties": {
+        "name": "Kismegyer",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 982117707,
+          "tags": {
+            "name": "Kismegyer",
+            "place": "suburb"
+          },
+          "objectVersion": 2,
+          "objectTimestamp": "2018-06-27 10:25:10+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/982117707",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6657912,
+          47.649406
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:982117710",
+      "properties": {
+        "name": "Szabadhegy",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 982117710,
+          "tags": {
+            "name": "Szabadhegy",
+            "place": "suburb",
+            "wikidata": "Q1030610",
+            "wikipedia": "hu:Győr-Szabadhegy"
+          },
+          "objectVersion": 5,
+          "objectTimestamp": "2018-09-02 14:28:01+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/982117710",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6667442,
+          47.664329
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:982122848",
+      "properties": {
+        "name": "Kisbácsa",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 982122848,
+          "tags": {
+            "name": "Kisbácsa",
+            "place": "suburb"
+          },
+          "objectVersion": 3,
+          "objectTimestamp": "2018-06-27 10:25:11+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/982122848",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6511073,
+          47.7137228
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:982122869",
+      "properties": {
+        "name": "Sziget",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 982122869,
+          "tags": {
+            "name": "Sziget",
+            "place": "suburb",
+            "wikidata": "Q1298082",
+            "wikipedia": "hu:Sziget (Győr)"
+          },
+          "objectVersion": 5,
+          "objectTimestamp": "2022-12-26 16:20:08+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/982122869",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6199999,
+          47.6901469
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:982122870",
+      "properties": {
+        "name": "Révfalu",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 982122870,
+          "tags": {
+            "name": "Révfalu",
+            "place": "suburb",
+            "wikidata": "Q1253160",
+            "wikipedia": "hu:Révfalu (Győr)"
+          },
+          "objectVersion": 3,
+          "objectTimestamp": "2018-09-02 14:28:02+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/982122870",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6322402,
+          47.6994046
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:982122872",
+      "properties": {
+        "name": "Sárás",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 982122872,
+          "tags": {
+            "name": "Sárás",
+            "place": "suburb"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2018-06-27 10:25:11+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/982122872",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6404243,
+          47.715863
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:982141202",
+      "properties": {
+        "name": "Marcalváros II.",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 982141202,
+          "tags": {
+            "name": "Marcalváros II.",
+            "place": "suburb"
+          },
+          "objectVersion": 3,
+          "objectTimestamp": "2018-06-27 10:25:11+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/982141202",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6340727,
+          47.6621324
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:982141205",
+      "properties": {
+        "name": "Górédűlő",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 982141205,
+          "tags": {
+            "name": "Górédűlő",
+            "place": "suburb"
+          },
+          "objectVersion": 2,
+          "objectTimestamp": "2018-06-27 10:25:11+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/982141205",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6183357,
+          47.6568139
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:982141212",
+      "properties": {
+        "name": "Rabkert",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 982141212,
+          "tags": {
+            "name": "Rabkert",
+            "place": "suburb"
+          },
+          "objectVersion": 3,
+          "objectTimestamp": "2018-06-27 10:25:11+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/982141212",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6189361,
+          47.6642819
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:982141218",
+      "properties": {
+        "name": "Marcalváros I.",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 982141218,
+          "tags": {
+            "name": "Marcalváros I.",
+            "place": "suburb"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2018-06-27 10:25:11+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/982141218",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6386038,
+          47.6679293
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:1297130149",
+      "properties": {
+        "name": "Belváros",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 1297130149,
+          "tags": {
+            "name": "Belváros",
+            "place": "suburb",
+            "wikidata": "Q792560",
+            "wikipedia": "hu:Belváros (Győr)"
+          },
+          "objectVersion": 3,
+          "objectTimestamp": "2022-03-15 13:41:13+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/1297130149",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6338706,
+          47.6889375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:1297221629",
+      "properties": {
+        "name": "Bácsa",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 1297221629,
+          "tags": {
+            "name": "Bácsa",
+            "place": "suburb"
+          },
+          "objectVersion": 5,
+          "objectTimestamp": "2021-01-06 12:39:11+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/1297221629",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Győr",
+        "municipalityId": "city:Győr",
+        "municipalityOsmId": "osm:relation:1440627",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1440627"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6630863,
+          47.7283945
+        ]
+      }
+    }
+  ]
+}

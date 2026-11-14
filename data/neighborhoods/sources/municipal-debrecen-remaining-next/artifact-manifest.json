@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "selfContainedReproduction": true,
+  "networkCalls": 0,
+  "globalWrites": false,
+  "sourceRawHashes": {
+    "debrecen-source-native.json": "d97a7d3ca556f3ed554a5e6c70381d196b41199ba1c5b1ee4f692a55e3e00792",
+    "debrecen-source-service.geojson": "fb7d0f0bae18b05263d5658221f0a612a2839193ce47413e05dc71401b18cf3e",
+    "debrecen-source-count.json": "9b3a218b2e4ed1da46308c6dcf68fe028fd0c8353ddcb4866757de12a62f90af",
+    "debrecen-source-ids.json": "f763185f4511f0caaccbb42282a54d75599a3acf6986c8c7e5b142046a1a74d2"
+  },
+  "files": [
+    {
+      "path": "README.txt",
+      "bytes": 4654,
+      "sha256": "be51022e0acc3e4775a489552c7fee8d5846a975b7b26ed3287358173277b0d6"
+    },
+    {
+      "path": "all-736-prior-comparisons.csv",
+      "bytes": 70124,
+      "sha256": "4528f74598f90d5dc80a5af5f203cd022bd9e8e46ca6ce446e8763f281458016"
+    },
+    {
+      "path": "all77-dispositions.json",
+      "bytes": 28121,
+      "sha256": "0c9ade84b790f830dc9567259139c9743c52984c22e0d010174de2ac2f04f4c1"
+    },
+    {
+      "path": "baseline-reference.json",
+      "bytes": 7314,
+      "sha256": "def4fd3a04b4bd7edbc9cabf0a8214accb16a2c5c4c1aaa21b8067ac6496758b"
+    },
+    {
+      "path": "candidate-review.png",
+      "bytes": 509288,
+      "sha256": "f8584b57ed5d11d95c61be82d4adff86ac54a01deb04907cb90cae37274b975e"
+    },
+    {
+      "path": "debrecen-fvs-p208-original.png",
+      "bytes": 350859,
+      "sha256": "c68ad1e06e2254aee46d80bc54fd25bdd91e45d5381e02af2a66e9afef5a3aff"
+    },
+    {
+      "path": "debrecen-municipality-reference.geojson",
+      "bytes": 41949,
+      "sha256": "6efb3ec40f84255db8a5da0c409c4f255476676d5f0a796b6d4b32cf0ee5fe29"
+    },
+    {
+      "path": "debrecen-remaining-estimated.geojson",
+      "bytes": 134651,
+      "sha256": "e3b1c7aae15c4fbfe37acdcb0a604425f28bd9f5d5155979d481da95180d23bc"
+    },
+    {
+      "path": "debrecen-selected-item-metadata.json",
+      "bytes": 1412,
+      "sha256": "696e01d0897a83d2e7c13b05e0f498b2fd2048c6ea175b65c7a27c69135ed3d0"
+    },
+    {
+      "path": "debrecen-source-count.json",
+      "bytes": 14,
+      "sha256": "9b3a218b2e4ed1da46308c6dcf68fe028fd0c8353ddcb4866757de12a62f90af"
+    },
+    {
+      "path": "debrecen-source-ids.json",
+      "bytes": 265,
+      "sha256": "f763185f4511f0caaccbb42282a54d75599a3acf6986c8c7e5b142046a1a74d2"
+    },
+    {
+      "path": "debrecen-source-native.json",
+      "bytes": 36839,
+      "sha256": "d97a7d3ca556f3ed554a5e6c70381d196b41199ba1c5b1ee4f692a55e3e00792"
+    },
+    {
+      "path": "debrecen-source-service.geojson",
+      "bytes": 48128,
+      "sha256": "fb7d0f0bae18b05263d5658221f0a612a2839193ce47413e05dc71401b18cf3e"
+    },
+    {
+      "path": "existing-32-reference-hashes.json",
+      "bytes": 6001,
+      "sha256": "d521da2a57e0918a26abcae95de1aa5727b74f94dea7b2f7e1436e0418ed08cb"
+    },
+    {
+      "path": "existing-32-reference.geojson",
+      "bytes": 213678,
+      "sha256": "1d2825a2123510dcd505b0f53ed215cb42e736ca12d21bc9740e0f1c98dc1c04"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 1978,
+      "sha256": "4707501fd28ad792e72f37a71cf7e9afc55dd92a31f261733ae7ffe70ed78c2b"
+    },
+    {
+      "path": "municipal-name-evidence.json",
+      "bytes": 8739,
+      "sha256": "8d0277dc08402d6603052873003a5fe220cc6b5203d7e7dba0f177166b93f3f1"
+    },
+    {
+      "path": "original-source-revalidation.json",
+      "bytes": 387,
+      "sha256": "b69985632bfb95872e8bc28e5e70ddd2f0bae12fd5c49a6702389faf214dd1c7"
+    },
+    {
+      "path": "prior-all77-independent-geometry-review.json",
+      "bytes": 119197,
+      "sha256": "ef86bd533d7dbc285adf5c7dc6b1a9c15466c45608fe35868ae8487a6f7a1161"
+    },
+    {
+      "path": "prior-all77-vs26-independent-overlap-review.json",
+      "bytes": 111696,
+      "sha256": "0f7082e92183811fac0cb85b4e7ee0ce254aef2b23a64ee29fa4a84e976e469c"
+    },
+    {
+      "path": "prior-independent-metadata-review.json",
+      "bytes": 6724,
+      "sha256": "f745ef9d5acb298cfe8a35cffefcebd9bce5dda4af4fd1916e42d2e455836da5"
+    },
+    {
+      "path": "query-acquisition-proof.json",
+      "bytes": 3612,
+      "sha256": "ce6593562e50314603ee7d0922cee4e87193c60a1ffe303bce8c6ee96a886bc4"
+    },
+    {
+      "path": "registry-entry.json",
+      "bytes": 2854,
+      "sha256": "3cb0677d75198782cd1f65dcf5159e85343b4cae4e1e08ea6f19c983a83dbdc6"
+    },
+    {
+      "path": "render-preview.py",
+      "bytes": 2751,
+      "sha256": "30bd30bb68b74caaaec3ae8f53c8710511837e11db5b3f13e4f771d08b8ea183"
+    },
+    {
+      "path": "reproduce.py",
+      "bytes": 19763,
+      "sha256": "f5208da35c911125e043183418fdd85787f7f76ecfec195de8d1a9213fb93879"
+    },
+    {
+      "path": "selected-osm-name-points.geojson",
+      "bytes": 31785,
+      "sha256": "36645695ea9bf2b50d8406d7a9c3e46175930ee2c75de9fdca032d4a510fe178"
+    },
+    {
+      "path": "selected-table-label-crops.png",
+      "bytes": 82878,
+      "sha256": "347562fbdac5986e66965562820e7a392c577965b7e85384f1325e8953d2a326"
+    },
+    {
+      "path": "selection-review.json",
+      "bytes": 26276,
+      "sha256": "281a24fe761c5d77586114c659acad3387f49a4142d49211aa00995be564cd51"
+    },
+    {
+      "path": "source-manifest.json",
+      "bytes": 3671,
+      "sha256": "a08d65ef0df93c56e47cd3753821b92c467493e376dc66f50d26cfe5e345a848"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 1714,
+      "sha256": "ce1fb8ca2fe805a4349dfddc93b136594040efc49f330faf0e535c4ddd205661"
+    }
+  ]
+}

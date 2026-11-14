@@ -1,0 +1,73 @@
+{
+  "method": "Approximate affine scene registration only; all image identifications unverified. Not independent ground control.",
+  "claimedAbsoluteAccuracyMetres": null,
+  "controls": [
+    {
+      "id": "lake-north",
+      "sourcePixel": [
+        89,
+        478
+      ],
+      "lonLat": [
+        19.9001211,
+        47.777331
+      ],
+      "osmObject": "osm:relation:19385280",
+      "imageIdentification": "Approximate historical lake north water edge; water level and tree cover differ. Scene inspection only."
+    },
+    {
+      "id": "szent-bertalan",
+      "sourcePixel": [
+        385.2839453136459,
+        343.6086064207623
+      ],
+      "lonLat": [
+        19.92548817777778,
+        47.78549058888889
+      ],
+      "osmObject": "osm:way:195804443",
+      "imageIdentification": "Nagytemplom pin in the labelled source-region-p31.jpeg; approximate image-to-image corner correspondence to overview."
+    },
+    {
+      "id": "ferences",
+      "sourcePixel": [
+        389.5281761066107,
+        404.25552734704496
+      ],
+      "lonLat": [
+        19.928232494117648,
+        47.781859358823525
+      ],
+      "osmObject": "osm:way:225443629",
+      "imageIdentification": "Ferences templom pin in the labelled source-region-p31.jpeg; approximate image-to-image corner correspondence to overview."
+    },
+    {
+      "id": "jokai-puskin",
+      "sourcePixel": [
+        346.40796116915976,
+        430.3743268968126
+      ],
+      "lonLat": [
+        19.9231254,
+        47.7806293
+      ],
+      "osmObject": "osm:node:7147642067",
+      "sourceWay": "osm:way:74299513",
+      "imageIdentification": "Jókai-Puskin planned roundabout pin in source-region-p31.jpeg; nearby actual Puskin endpoint, pin and historical junction are not an exact node identity."
+    },
+    {
+      "id": "egri-szurdok",
+      "sourcePixel": [
+        536,
+        420
+      ],
+      "lonLat": [
+        19.93996,
+        47.780415
+      ],
+      "osmObject": "osm:node:494820302",
+      "sourceWay": "osm:way:40726856",
+      "imageIdentification": "Approximate aerial major-road junction; source ink is not used as an OSM vertex constraint."
+    }
+  ]
+}

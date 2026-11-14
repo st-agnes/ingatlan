@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-14",
+  "status": "frozen_name_only_review",
+  "sourceNames": 67,
+  "currentSameCityNameCorroborated": 59,
+  "notStrictlyCorroborated": 8,
+  "newBoundaryApprovals": 0,
+  "mainReview": "data/neighborhoods/research/pecs-current-name-review.json",
+  "replayCheck": "python3 data/neighborhoods/research/pecs-current-name-review.py --check",
+  "fileCount": 12,
+  "files": [
+    {
+      "path": "data/neighborhoods/research/pecs-current-name-independent-osm-audit.py",
+      "bytes": 15856,
+      "sha256": "87fb219f1fe125428ee9cac667fed9f8f1151a5e19e7a8761ced795cbe966807"
+    },
+    {
+      "path": "data/neighborhoods/research/pecs-current-name-independent-osm-review.json",
+      "bytes": 143211,
+      "sha256": "55ca9b8323deb132d5338cc509ee4b835eea674dbcea27ba45c01d91ccbe47bc"
+    },
+    {
+      "path": "data/neighborhoods/research/pecs-current-name-ksh-audit.py",
+      "bytes": 13016,
+      "sha256": "1ece59e3b04937e93bd182f17d53041c7941e23c446adeda76b68583f4e06b1b"
+    },
+    {
+      "path": "data/neighborhoods/research/pecs-current-name-ksh-evidence.json",
+      "bytes": 104412,
+      "sha256": "c767dc585c31735e1c81cb3295eaf9b0a6494403e2bc68b4fb11bde5b62c2a96"
+    },
+    {
+      "path": "data/neighborhoods/research/pecs-current-name-osm-evidence.json",
+      "bytes": 415492,
+      "sha256": "cdeb221d457f66ad741b91bb491b5b5974bdcb30a6afeccd34ba992711f05649"
+    },
+    {
+      "path": "data/neighborhoods/research/pecs-current-name-osm-extract.py",
+      "bytes": 10904,
+      "sha256": "025fdd34daf2e262d5746a78d4bf030c2adc3c492186e3c448cd7c3ada5f963d"
+    },
+    {
+      "path": "data/neighborhoods/research/pecs-current-name-review.csv",
+      "bytes": 6670,
+      "sha256": "0fd9ec73804a749198db65b6b0246a18bbce76e732f55db49d720a9372dcd054"
+    },
+    {
+      "path": "data/neighborhoods/research/pecs-current-name-review.json",
+      "bytes": 531615,
+      "sha256": "e58f3660d6069d0f37267a3ed22c3b5883ca17457c3c17689bd6a6bfd7ca65ab"
+    },
+    {
+      "path": "data/neighborhoods/research/pecs-current-name-review.py",
+      "bytes": 13412,
+      "sha256": "f25a706894d46323bf94869bce87c4b5f145854faf205266b2a005ec2b8725ef"
+    },
+    {
+      "path": "data/neighborhoods/research/pecs-current-name-web-evidence.json",
+      "bytes": 94871,
+      "sha256": "7682de314f83d6b655e6e419ec6a76a511269efd46137ee6be620e1346f8c242"
+    },
+    {
+      "path": "data/neighborhoods/research/pecs-current-name-web-provenance.json",
+      "bytes": 5693,
+      "sha256": "e28d7fef5160567474d34b82687abaef6a7da7adeefb319a0934fc863d765975"
+    },
+    {
+      "path": "data/neighborhoods/research/pecs-current-name-web-search-log.json",
+      "bytes": 3452,
+      "sha256": "57e772702d723f7b40e83f2955d72567273d50ac32733fdcd16347fc9214d22b"
+    }
+  ]
+}

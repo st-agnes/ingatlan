@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent gyongyos_source_expand agent",
+  "artifactSha256": "1380c43dee4b916e29e881fcd816852654a8c88e06260076fded364eb57d8d82",
+  "reviewType": "Independent local artifact and edge audit; original web pages and full national PBF not re-fetched in this review",
+  "result": "pass_inferred_only",
+  "geometryValid": true,
+  "closed": true,
+  "holes": 0,
+  "actualConsecutiveOriginalInputEdges": 75,
+  "allBoundaryEdgesMatchedCompleteArchivedWaySegments": true,
+  "sourceSemanticsReviewed": true,
+  "unprovenCompletionExplicit": true,
+  "sourceFactsFullPdfUnavailableExplicit": true,
+  "primaryAdmissionApproved": false,
+  "notes": [
+    "Vasmű and roundabout arcs remain unproven quarter boundaries even though their physical geometry consists of archived OSM nodes.",
+    "Alternative roundabout arc and parcel-side interpretation unresolved; maintain separate inferred registry only.",
+    "Converter --check passed; no source or geometry modified."
+  ]
+}

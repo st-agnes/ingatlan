@@ -1,0 +1,348 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Veszprém",
+  "scope": "Offline inspection of all 259 retained PDF pages, including image and nondecorative vector inventories, for named-quarter boundary geometry.",
+  "source": {
+    "url": "https://veszprem.hu/wp-content/uploads/2023/08/ITS_Veszprem_v5.0_20140911.pdf",
+    "path": ".local/neighborhoods/nationwide-docs/originals/veszprem-its.pdf",
+    "sha256": "58b67936ca68196db76d656772d9fbfe526b0be09f5b5750b1000d13957c3d51",
+    "bytes": 3826021,
+    "pages": 259,
+    "documentTitle": "Veszprém MJV Integrált Településfejlesztési Stratégia,5.0verzió"
+  },
+  "nameEvidence": {
+    "pdfPageOneBased": 75,
+    "printedPage": 75,
+    "section": "2.11.Városrészek helyzetének elemzése",
+    "citedLaw": "33/1997.(VI.20.)Kr., amended22/2003.(VII.01.)Kr.",
+    "names": [
+      "Belváros",
+      "Dózsaváros",
+      "Jeruzsálemhegy",
+      "Egyetemváros",
+      "Füredidomb",
+      "Cholnokyváros",
+      "Újtelep",
+      "Jutasi úti lakótelep",
+      "Bakonyalja",
+      "Jutaspuszta",
+      "Szabadságpuszta",
+      "Iparváros",
+      "Gyulafirátót",
+      "Kádárta"
+    ],
+    "nameCount": 14,
+    "currentCompletenessVerified": false,
+    "boundaryGeometryPresent": false
+  },
+  "nearbyMap": {
+    "pdfPageOneBased": 76,
+    "printedPage": 76,
+    "imageXref": 572,
+    "path": "data/neighborhoods/sources/municipal-local-map-next/veszprem-page76-image0.jpeg",
+    "sha256": "2a4773790280ecbd55db9bb82cbb8cd6e80d3283c22c38f8ebbb52251c0acf71",
+    "dimensionsPixels": [
+      988,
+      827
+    ],
+    "legend": "Tervezett beavatkozások célterületei",
+    "numberedTargetCount": 20,
+    "semanticType": "development_intervention_targets",
+    "isNamedQuarterBoundaryMap": false,
+    "notes": [
+      "The 14 legal quarter names are followed by 20 strategic intervention target IDs, not a boundary map for those 14 quarters.",
+      "The map includes castle, cultural quarter, stadium, zoo, recreation and other development targets. Assigning their outlines to the 14 legal quarter names would invent an unsupported mapping."
+    ]
+  },
+  "otherMapChecks": [
+    {
+      "pdfPageOneBased": 15,
+      "meaning": "Jelenlegi területhasználat; landuseclasses,notnamedquarterboundaries"
+    },
+    {
+      "pdfPagesOneBased": [
+        209,
+        210,
+        211,
+        212,
+        213
+      ],
+      "meaning": "Annex2project/actionarea maps,not14legalquarterboundaries"
+    }
+  ],
+  "largeImageSurvey": [
+    {
+      "pdfPageOneBased": 10,
+      "largeImages": [
+        {
+          "xref": 62,
+          "width": 779,
+          "height": 601
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 15,
+      "largeImages": [
+        {
+          "xref": 84,
+          "width": 807,
+          "height": 569
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 17,
+      "largeImages": [
+        {
+          "xref": 94,
+          "width": 769,
+          "height": 395
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 20,
+      "largeImages": [
+        {
+          "xref": 113,
+          "width": 1123,
+          "height": 794
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 21,
+      "largeImages": [
+        {
+          "xref": 120,
+          "width": 588,
+          "height": 391
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 22,
+      "largeImages": [
+        {
+          "xref": 127,
+          "width": 1123,
+          "height": 794
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 23,
+      "largeImages": [
+        {
+          "xref": 136,
+          "width": 1123,
+          "height": 794
+        },
+        {
+          "xref": 135,
+          "width": 1123,
+          "height": 794
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 24,
+      "largeImages": [
+        {
+          "xref": 144,
+          "width": 1202,
+          "height": 626
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 25,
+      "largeImages": [
+        {
+          "xref": 152,
+          "width": 1206,
+          "height": 630
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 27,
+      "largeImages": [
+        {
+          "xref": 163,
+          "width": 624,
+          "height": 523
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 30,
+      "largeImages": [
+        {
+          "xref": 179,
+          "width": 786,
+          "height": 557
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 36,
+      "largeImages": [
+        {
+          "xref": 225,
+          "width": 1041,
+          "height": 717
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 48,
+      "largeImages": [
+        {
+          "xref": 375,
+          "width": 728,
+          "height": 629
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 55,
+      "largeImages": [
+        {
+          "xref": 485,
+          "width": 870,
+          "height": 454
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 76,
+      "largeImages": [
+        {
+          "xref": 572,
+          "width": 988,
+          "height": 827
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 86,
+      "largeImages": [
+        {
+          "xref": 614,
+          "width": 555,
+          "height": 405
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 87,
+      "largeImages": [
+        {
+          "xref": 614,
+          "width": 555,
+          "height": 405
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 88,
+      "largeImages": [
+        {
+          "xref": 614,
+          "width": 555,
+          "height": 405
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 102,
+      "largeImages": [
+        {
+          "xref": 684,
+          "width": 770,
+          "height": 648
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 209,
+      "largeImages": [
+        {
+          "xref": 1114,
+          "width": 587,
+          "height": 828
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 210,
+      "largeImages": [
+        {
+          "xref": 1120,
+          "width": 827,
+          "height": 1169
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 211,
+      "largeImages": [
+        {
+          "xref": 1126,
+          "width": 605,
+          "height": 854
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 212,
+      "largeImages": [
+        {
+          "xref": 1132,
+          "width": 827,
+          "height": 1169
+        }
+      ]
+    },
+    {
+      "pdfPageOneBased": 213,
+      "largeImages": [
+        {
+          "xref": 1138,
+          "width": 605,
+          "height": 854
+        }
+      ]
+    }
+  ],
+  "newQuarterGeometries": 0,
+  "geometryGenerated": false,
+  "usableForAddressAssignment": false,
+  "remainingNeed": "Actual annex/map of the cited 33/1997 or 22/2003 quarter boundaries, or another source containing their extents. The local ITS supplies names but not those extents.",
+  "rightsStatus": "Municipal report/map reuse rights not independently established.",
+  "fullPdfPrimitiveSurvey": {
+    "pagesInspected": 259,
+    "largeImagePages": 24,
+    "additionalSmallImagePages": [
+      1,
+      31
+    ],
+    "additionalSmallImageMeanings": [
+      "cover emblem",
+      "road-network illustrations"
+    ],
+    "nonMapVectorChartPages": [
+      37,
+      42,
+      45,
+      46,
+      47,
+      52,
+      53,
+      54
+    ],
+    "actualQuarterBoundaryMapFound": false
+  }
+}

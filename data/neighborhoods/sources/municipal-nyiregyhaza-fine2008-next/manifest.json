@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "status": "FROZEN_REVIEWED_HISTORICAL_INFERRED_MIXED_SCOPE",
+  "freezeDate": "2026-11-14",
+  "municipality": "Nyíregyháza",
+  "featureCount": 2,
+  "estimatedNeighbourhoodCandidateCount": 1,
+  "estimatedLocalAreaCandidateCount": 1,
+  "primaryFeatureCount": 0,
+  "addressAssignmentUsable": false,
+  "candidates": [
+    {
+      "name": "Érkert",
+      "candidateBoundaryKind": "local_area",
+      "sourceScope": "Historical housing-estate-class footprint. Name assignment is inferred across the upper27/lower11 statistical schemas; whole Érkert quarter identity is unverified.",
+      "currentNamePointEvidence": [
+        {
+          "name": "Érkert",
+          "osmNodeId": 984100890,
+          "wgs84": [
+            21.7120972,
+            47.9451037
+          ],
+          "withinHistoricalCandidate": false,
+          "distanceToHistoricalCandidateMetres": 600.8272122872412,
+          "nativeImageCoordinateUnderFit": [
+            448.93074849479524,
+            395.23719891285106
+          ],
+          "usedAsRegistrationControl": false,
+          "interpretation": "A current named point supports existence of the name, not historical or current extent. Outside does not disqualify an explicitly historical estimated footprint and is not corrected by moving the fit."
+        }
+      ]
+    },
+    {
+      "name": "Örökösföld lakótelep",
+      "candidateBoundaryKind": "neighbourhood",
+      "sourceScope": "Estimated historical neighborhood candidate supported by the strong upper-component/lower-unit3 source-map correspondence. The lower legend does not directly label the upper27 map.",
+      "currentNamePointEvidence": [
+        {
+          "name": "Örökösföld",
+          "osmNodeId": 984100891,
+          "wgs84": [
+            21.7402559,
+            47.9544678
+          ],
+          "withinHistoricalCandidate": true,
+          "distanceToHistoricalCandidateMetres": 0.0,
+          "nativeImageCoordinateUnderFit": [
+            528.1536517466358,
+            351.8402250674677
+          ],
+          "usedAsRegistrationControl": false,
+          "interpretation": "A current named point supports existence of the name, not historical or current extent. Outside does not disqualify an explicitly historical estimated footprint and is not corrected by moving the fit."
+        },
+        {
+          "name": "Örökösföld lakótelep",
+          "osmNodeId": 7966635459,
+          "wgs84": [
+            21.7399108,
+            47.9572425
+          ],
+          "withinHistoricalCandidate": false,
+          "distanceToHistoricalCandidateMetres": 86.79896745184092,
+          "nativeImageCoordinateUnderFit": [
+            526.6451586183047,
+            340.21020945414216
+          ],
+          "usedAsRegistrationControl": false,
+          "interpretation": "A current named point supports existence of the name, not historical or current extent. Outside does not disqualify an explicitly historical estimated footprint and is not corrected by moving the fit."
+        }
+      ]
+    }
+  ],
+  "sourceHierarchy": {
+    "underlyingKshPublicationYear": 2003,
+    "statisticalReference": "2001 census",
+    "municipalIvsCoverDate": "2008-03",
+    "pdfModificationMetadata": "2014-02-10",
+    "upperMapSourceUnits": 27,
+    "lowerMapMergedUnits": 11,
+    "lowerLegendDirectlyLabelsUpperMap": false
+  },
+  "sourcePdf": {
+    "path": ".local/neighborhoods/quarter-map-batch/nyiregyhaza-ivs-ksh-reproduction.pdf",
+    "sha256": "71378558090b173cf10e558ca50175c2b1f6aca78a150a3beb42224f785161d1",
+    "bytes": 15470929,
+    "pdfPage": 43
+  },
+  "candidatePath": "fine-historical-candidates.geojson",
+  "candidateSha256": "781f7edab8578c50cb1058738ee9fd002867e9be341849e9bbc928c52c7c1bee",
+  "registryCandidatePath": "inferred-registry-entry.json",
+  "registryCandidateSha256": "b6f875ecec5f0af70050ffeec2e01680839c880d1cc75a24aa6397bd396a7fd5",
+  "rawPdfCommitted": false,
+  "actualUpperSourcePixelComponentsRetained": true,
+  "lowerMergedGroupGeometryCloned": false,
+  "sameColorComponentsGloballyAssignedSameName": false,
+  "georeferenceStatus": "inferred_georeference",
+  "fitMunicipalOutlineCornerCount": 11,
+  "withheldSameOutlineCornerCount": 10,
+  "independentInteriorPhysicalHoldoutCount": 0,
+  "outlineResidualDiagnostics": {
+    "fit": {
+      "count": 11,
+      "medianMetres": 51.62322201319263,
+      "p95Metres": 239.51954196170402,
+      "maximumMetres": 289.5849619216354,
+      "isAbsoluteAccuracyBound": false
+    },
+    "held_out": {
+      "count": 10,
+      "medianMetres": 87.76901748840768,
+      "p95Metres": 215.83458256635518,
+      "maximumMetres": 226.90280200440571,
+      "isAbsoluteAccuracyBound": false
+    }
+  },
+  "outlineResidualsAreAbsoluteAccuracyBounds": false,
+  "claimedAbsoluteAccuracyMetres": null,
+  "sourceAgeControlAndInternalMapDistortionUncertaintyQuantified": false,
+  "sourceNamePointPositionsUsedAsControls": false,
+  "fitShiftedToPlacePoints": false,
+  "currentWholeQuarterExtentsValidated": false,
+  "sourceOpenReuseLicenceEstablished": false,
+  "existingFrozenSourceBatchesOrGlobalFilesModified": false,
+  "reproductionCheck": "PASS",
+  "independentReviewPath": "independent-review.json",
+  "independentReviewSha256": "549a9498b609a6aa80a6ca7515631a76ac7a8812fd1301ac34abb58ef7ae116b",
+  "filesSha256": {
+    "README.txt": "010abf1c7f584d867d211360c45e8c7c4ac5a45a654c40a8bb443bd682e4b32e",
+    "control-specification.json": "a39a19138e8fa06b24b8f15e2972685886c00f54a1ccf3f410b5ac4cbc9924dd",
+    "current-municipality-reference.geojson": "fcc56f1deda0b0454aac02b9664004c2847c3520db60a6fddd8a7dd621c7f373",
+    "current-name-point-evidence.geojson": "10d35d10886deafcb9b942dd016c80261688cb57b49c9680a3ddb9c23201c300",
+    "fine-historical-candidates.geojson": "781f7edab8578c50cb1058738ee9fd002867e9be341849e9bbc928c52c7c1bee",
+    "georeference-proof.json": "cddcfc1c6d54d1716e00d88f3d29d4dc1d053d5c149706a3c65c407e54a5b0ff",
+    "independent-review.json": "549a9498b609a6aa80a6ca7515631a76ac7a8812fd1301ac34abb58ef7ae116b",
+    "inferred-registry-entry.json": "b6f875ecec5f0af70050ffeec2e01680839c880d1cc75a24aa6397bd396a7fd5",
+    "ivs11-native.jpeg": "c7b8fbcad8445cb3520d01a19b1fe8d0e8e32441428e20dcd3aa8b7fa7d28177",
+    "ksh27-native.jpeg": "aa83d4115d7073416088f8e192879ddf2592c5384b5e1b34877074bc232285c8",
+    "native-pixel-contours.json": "17a4c9ed71cbb897eebc1ee373750c5dd46ab42fc0cd244fec2a2ba74ef38959",
+    "reference-extraction.json": "110ff54ea2c68a9ae7112128823f0238ceef4f0384b1669aa7f882ba56a5a366",
+    "registration-review.png": "1c68410aff15a1648b40bd34e692c96f067f2d8f7cf853bb145fb710c3349f0f",
+    "reproduce.py": "174d50ec6a2c312c3d88b7f5f5b83cf937d7bb032433440fdb870e6e42e3b77a",
+    "source-inventory.json": "17efe8bd49f5decea304ab3da2bad68f54b12ea39aca76fd95b2c3b9b29a8108",
+    "source-name-key-proof.json": "8d05ecd0dc421ca39ab9177a7daf6d8eb8e90597dbd3178402a08213085a0921",
+    "source-name-key-review.png": "7792417c00866201f225bf7fed3caed7ddbac81623acce961bf14b5116d1759d"
+  }
+}

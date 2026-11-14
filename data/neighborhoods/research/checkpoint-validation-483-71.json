@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 2,
+  "checkedAt": "2026-11-14",
+  "status": "partial_nationwide_checkpoint",
+  "primaryFeatures": 483,
+  "primaryMunicipalities": 47,
+  "inferredFeatures": 71,
+  "planningFeatures": 54,
+  "completeNationalCoverage": false,
+  "previousCheckpointValidationPath": "data/neighborhoods/research/checkpoint-validation-483-60.json",
+  "primaryValidation": {
+    "nodeTestCountPreviouslyPassed": 66,
+    "pythonTestCountPreviouslyPassed": 10,
+    "freshPrimaryTestRun": false,
+    "meaning": "Primary catalogue, quarter export, planning layer and nationwide CSV must be byte-identical to the fully tested 483/60 checkpoint; fingerprints are checked before packaging.",
+    "unchangedPrimaryOutputFingerprints": {
+      "catalog.geojson": "7257c46808e37d08b5ce8ea32daddbde357d097e977a8aa580714147705cecc4",
+      "neighborhoods.geojson": "8a242edafec268aa55095b5713774d7c28dddf8f41617bcb9eabb375d2253ddf",
+      "planning-units.geojson": "c004c4d622e83fbf570b466bdd83cb48c7a3c8c7bae5d20a7620fb9dd0d44b1b",
+      "nationwide-report.csv": "55b8cbf5835975c510c53ca04b41cd6aa43e0f1bbe6d5b58e2364ee8c0c35bae"
+    }
+  },
+  "updatedChecks": [
+    {
+      "cmd": "node tests/neighborhoods-secondary.test.mjs",
+      "exit_code": 0,
+      "output": "✔ an inferred source remains a separate, explicitly unverified geometry without coordinate changes (2.92403ms)\n✔ unknown towns and open source rings stay quarantined even in the inferred layer (0.702053ms)\nℹ tests 2\nℹ suites 0\nℹ pass 2\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 13.51119\n"
+    },
+    {
+      "cmd": "node tests/neighborhoods-manual.test.mjs",
+      "exit_code": 0,
+      "output": "✔ manual import preserves actual source geometry and evidence while retaining review flags (31.86864ms)\n✔ open rings, missing evidence, unknown municipalities and inferred areas cannot become admitted manual polygons (1.37966ms)\n✔ a planning cluster remains a planning cluster and never counts as a fine neighborhood (0.267004ms)\n✔ manual registry binds exact GeoJSON bytes and rejects changed sources and path traversal (16.809769ms)\nℹ tests 4\nℹ suites 0\nℹ pass 4\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 57.186023\n"
+    },
+    {
+      "cmd": "node scripts/neighborhoods/export-secondary.mjs --check",
+      "exit_code": 0,
+      "output": "54 planning units and 71 inferred candidates in separate layers; primary neighbourhood export unchanged.\n"
+    }
+  ],
+  "generatedPreviewBehavior": {
+    "status": "passed_actual_generated_script_behavior",
+    "inferredFeatures": 71,
+    "inferredMunicipalities": 9,
+    "sourceCoverageUnchanged": true,
+    "details": "Every inferred city renders its exact candidate count, source and inferred layers remain separate, candidate disclosures and public source link work, selection resets, and an empty search stays empty."
+  },
+  "realBrowserLayout": "not verified: bundled Chromium absent; system Chromium startup denied setsockopt by runtime",
+  "remoteCiRun": false,
+  "applicationDeploymentPerformed": false,
+  "outputFingerprints": {
+    "catalog.geojson": "7257c46808e37d08b5ce8ea32daddbde357d097e977a8aa580714147705cecc4",
+    "neighborhoods.geojson": "8a242edafec268aa55095b5713774d7c28dddf8f41617bcb9eabb375d2253ddf",
+    "planning-units.geojson": "c004c4d622e83fbf570b466bdd83cb48c7a3c8c7bae5d20a7620fb9dd0d44b1b",
+    "nationwide-report.csv": "55b8cbf5835975c510c53ca04b41cd6aa43e0f1bbe6d5b58e2364ee8c0c35bae",
+    "estimated-candidates.geojson": "0329c48037a9cda2d4dfe545f85add9bff5bc3117bef7353abca1b8c61547b4d",
+    "review.html": "d528cd2a16dbf6ba5671726ecabc6ed8676673a915952021d10c3669cd3a4d60"
+  }
+}

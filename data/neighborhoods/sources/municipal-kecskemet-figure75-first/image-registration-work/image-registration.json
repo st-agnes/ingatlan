@@ -1,0 +1,833 @@
+{
+  "schemaVersion": 1,
+  "sourceImage": "figure74-p154-xref176.jpeg",
+  "sourceImageSha256": "1ecb076700d1be46f1712ca2c0ca1ed986581a99e5d5592b95b0b4511de30cd2",
+  "targetImage": "figure75-p158-xref180.jpeg",
+  "targetImageSha256": "13c9a38ba1b554b7125064ffce3384eb813d9590b9f327a152f1da4b0de4c991",
+  "sourcePatchSizePixels": 48,
+  "fixedTemplateSizePixels": 48,
+  "initialScaleAndOffsetOnlyForLocalSearch": {
+    "scale": 1.0,
+    "offset": [
+      -160.0,
+      -1136.0
+    ]
+  },
+  "predeclaredPlan": "registration-plan-before-fit.json",
+  "predeclaredPlanSha256": "0c88bcee318a7c7ec13b8b07955f91a2ea76d13d0a68aef479ce94e04463fd41",
+  "method": "Actual grayscale photographic patches with one fixed bicubic template resize and local normalized cross correlation. Alternating fixed image grid assigns training/held-out status before model fitting; only training matches fit the affine. All searches, including rejected texture and search-edge peaks, remain archived. No geographical coordinates, quarter names, rings or geographic model participate. Subpixel residuals diagnose local image overlap, not absolute geographic accuracy.",
+  "usabilityThresholdNcc": 0.85,
+  "searchEdgePeaksUsable": false,
+  "sourceToTargetAffineRows": [
+    [
+      0.9931232385702942,
+      -2.67279076989513e-05
+    ],
+    [
+      0.0013864380004595352,
+      0.9916187559474866
+    ],
+    [
+      -157.43470819953296,
+      -1125.9070527419672
+    ]
+  ],
+  "searchCount": 27,
+  "trainingMatchCount": 6,
+  "heldOutMatchCount": 7,
+  "rejectedSearchCount": 14,
+  "maximumTrainingResidualTargetPixels": 0.11938945446149579,
+  "maximumHeldOutResidualTargetPixels": 0.23222357979104435,
+  "minimumUsableNcc": 0.8935435688450077,
+  "records": [
+    {
+      "id": "r0c0",
+      "sourcePatchCenter": [
+        207.5,
+        1167.5
+      ],
+      "sourcePatchBox": [
+        184,
+        1144,
+        232,
+        1192
+      ],
+      "targetMatchedCenter": [
+        50.22369219415551,
+        31.72623918073983
+      ],
+      "targetSearchBox": [
+        6,
+        0,
+        91,
+        75
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.5032321208742631,
+      "peakOnSearchEdge": false,
+      "trainingPartition": true,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 0.08304507283907749
+    },
+    {
+      "id": "r0c1",
+      "sourcePatchCenter": [
+        271.5,
+        1167.5
+      ],
+      "sourcePatchBox": [
+        248,
+        1144,
+        296,
+        1192
+      ],
+      "targetMatchedCenter": [
+        113.99364332065501,
+        31.707934784124923
+      ],
+      "targetSearchBox": [
+        70,
+        0,
+        155,
+        75
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.5420249249374309,
+      "peakOnSearchEdge": false,
+      "trainingPartition": false,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 0.1995412064973768
+    },
+    {
+      "id": "r0c2",
+      "sourcePatchCenter": [
+        335.5,
+        1167.5
+      ],
+      "sourcePatchBox": [
+        312,
+        1144,
+        360,
+        1192
+      ],
+      "targetMatchedCenter": [
+        177.45182880355327,
+        31.77041420123594
+      ],
+      "targetSearchBox": [
+        134,
+        0,
+        219,
+        75
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.7824764701078267,
+      "peakOnSearchEdge": false,
+      "trainingPartition": true,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 0.08024201525156964
+    },
+    {
+      "id": "r0c3",
+      "sourcePatchCenter": [
+        399.5,
+        1167.5
+      ],
+      "sourcePatchBox": [
+        376,
+        1144,
+        424,
+        1192
+      ],
+      "targetMatchedCenter": [
+        241.16559945245177,
+        31.758062581525685
+      ],
+      "targetSearchBox": [
+        198,
+        0,
+        283,
+        75
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.9193855386701523,
+      "peakOnSearchEdge": false,
+      "trainingPartition": false,
+      "usableTextureMatch": true,
+      "affinePredictionResidualPixels": 0.23222357979104435
+    },
+    {
+      "id": "r0c4",
+      "sourcePatchCenter": [
+        463.5,
+        1167.5
+      ],
+      "sourcePatchBox": [
+        440,
+        1144,
+        488,
+        1192
+      ],
+      "targetMatchedCenter": [
+        304.5582362718558,
+        31.369376665355947
+      ],
+      "targetSearchBox": [
+        262,
+        0,
+        347,
+        75
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.4051376692297462,
+      "peakOnSearchEdge": false,
+      "trainingPartition": true,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 0.43051778686739334
+    },
+    {
+      "id": "r0c5",
+      "sourcePatchCenter": [
+        527.5,
+        1167.5
+      ],
+      "sourcePatchBox": [
+        504,
+        1144,
+        552,
+        1192
+      ],
+      "targetMatchedCenter": [
+        349.5,
+        23.5
+      ],
+      "targetSearchBox": [
+        326,
+        0,
+        411,
+        75
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.4238244029844934,
+      "peakOnSearchEdge": true,
+      "trainingPartition": false,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 20.3255668978499
+    },
+    {
+      "id": "r0c6",
+      "sourcePatchCenter": [
+        655.5,
+        1167.5
+      ],
+      "sourcePatchBox": [
+        632,
+        1144,
+        680,
+        1192
+      ],
+      "targetMatchedCenter": [
+        508.35122486201993,
+        23.5
+      ],
+      "targetSearchBox": [
+        454,
+        0,
+        539,
+        75
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.3203473022962829,
+      "peakOnSearchEdge": true,
+      "trainingPartition": true,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 15.566299554842903
+    },
+    {
+      "id": "r0c7",
+      "sourcePatchCenter": [
+        847.5,
+        1167.5
+      ],
+      "sourcePatchBox": [
+        824,
+        1144,
+        872,
+        1192
+      ],
+      "targetMatchedCenter": [
+        685.6085945312674,
+        31.273046938578688
+      ],
+      "targetSearchBox": [
+        646,
+        0,
+        731,
+        75
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.23179873495046957,
+      "peakOnSearchEdge": false,
+      "trainingPartition": false,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 0.5687309715584239
+    },
+    {
+      "id": "r0c8",
+      "sourcePatchCenter": [
+        911.5,
+        1167.5
+      ],
+      "sourcePatchBox": [
+        888,
+        1144,
+        936,
+        1192
+      ],
+      "targetMatchedCenter": [
+        749.3333322792063,
+        31.597521006938663
+      ],
+      "targetSearchBox": [
+        710,
+        0,
+        795,
+        75
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.5675235767525552,
+      "peakOnSearchEdge": false,
+      "trainingPartition": true,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 0.20342299020258997
+    },
+    {
+      "id": "r1c0",
+      "sourcePatchCenter": [
+        207.5,
+        1231.5
+      ],
+      "sourcePatchBox": [
+        184,
+        1208,
+        232,
+        1256
+      ],
+      "targetMatchedCenter": [
+        50.2310979693663,
+        95.17703241532593
+      ],
+      "targetSearchBox": [
+        6,
+        54,
+        91,
+        139
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.9084502263826959,
+      "peakOnSearchEdge": false,
+      "trainingPartition": false,
+      "usableTextureMatch": true,
+      "affinePredictionResidualPixels": 0.14506958870722003
+    },
+    {
+      "id": "r1c1",
+      "sourcePatchCenter": [
+        271.5,
+        1231.5
+      ],
+      "sourcePatchBox": [
+        248,
+        1208,
+        296,
+        1256
+      ],
+      "targetMatchedCenter": [
+        113.83040893427676,
+        95.23683992501068
+      ],
+      "targetSearchBox": [
+        70,
+        54,
+        155,
+        139
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.40044027111525854,
+      "peakOnSearchEdge": false,
+      "trainingPartition": true,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 0.08005677453439809
+    },
+    {
+      "id": "r1c2",
+      "sourcePatchCenter": [
+        335.5,
+        1231.5
+      ],
+      "sourcePatchBox": [
+        312,
+        1208,
+        360,
+        1256
+      ],
+      "targetMatchedCenter": [
+        177.5802849244751,
+        95.29458389888465
+      ],
+      "targetSearchBox": [
+        134,
+        54,
+        219,
+        139
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.7455914058747801,
+      "peakOnSearchEdge": false,
+      "trainingPartition": false,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 0.11915508936880218
+    },
+    {
+      "id": "r1c3",
+      "sourcePatchCenter": [
+        399.5,
+        1231.5
+      ],
+      "sourcePatchBox": [
+        376,
+        1208,
+        424,
+        1256
+      ],
+      "targetMatchedCenter": [
+        240.93294726162233,
+        94.92699376841549
+      ],
+      "targetSearchBox": [
+        198,
+        54,
+        283,
+        139
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.14668960199040354,
+      "peakOnSearchEdge": false,
+      "trainingPartition": true,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 0.34634778915190406
+    },
+    {
+      "id": "r1c4",
+      "sourcePatchCenter": [
+        463.5,
+        1231.5
+      ],
+      "sourcePatchBox": [
+        440,
+        1208,
+        488,
+        1256
+      ],
+      "targetMatchedCenter": [
+        304.6129507467084,
+        95.27164453460675
+      ],
+      "targetSearchBox": [
+        262,
+        54,
+        347,
+        139
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.9335012167957868,
+      "peakOnSearchEdge": false,
+      "trainingPartition": false,
+      "usableTextureMatch": true,
+      "affinePredictionResidualPixels": 0.0303708887130753
+    },
+    {
+      "id": "r1c5",
+      "sourcePatchCenter": [
+        527.5,
+        1231.5
+      ],
+      "sourcePatchBox": [
+        504,
+        1208,
+        552,
+        1256
+      ],
+      "targetMatchedCenter": [
+        368.1881756248453,
+        95.1459603646545
+      ],
+      "targetSearchBox": [
+        326,
+        54,
+        411,
+        139
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.8935435688450077,
+      "peakOnSearchEdge": false,
+      "trainingPartition": true,
+      "usableTextureMatch": true,
+      "affinePredictionResidualPixels": 0.11938945446149579
+    },
+    {
+      "id": "r1c6",
+      "sourcePatchCenter": [
+        655.5,
+        1231.5
+      ],
+      "sourcePatchBox": [
+        632,
+        1208,
+        680,
+        1256
+      ],
+      "targetMatchedCenter": [
+        495.44179492539496,
+        95.23215296589376
+      ],
+      "targetSearchBox": [
+        454,
+        54,
+        539,
+        139
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.9183378358542177,
+      "peakOnSearchEdge": false,
+      "trainingPartition": false,
+      "usableTextureMatch": true,
+      "affinePredictionResidualPixels": 0.17815720292644194
+    },
+    {
+      "id": "r1c7",
+      "sourcePatchCenter": [
+        847.5,
+        1231.5
+      ],
+      "sourcePatchBox": [
+        824,
+        1208,
+        872,
+        1256
+      ],
+      "targetMatchedCenter": [
+        685.9016578053747,
+        95.36017917698449
+      ],
+      "targetSearchBox": [
+        646,
+        54,
+        731,
+        139
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.9117929229607415,
+      "peakOnSearchEdge": false,
+      "trainingPartition": true,
+      "usableTextureMatch": true,
+      "affinePredictionResidualPixels": 0.11938945446147388
+    },
+    {
+      "id": "r1c8",
+      "sourcePatchCenter": [
+        911.5,
+        1231.5
+      ],
+      "sourcePatchBox": [
+        888,
+        1208,
+        936,
+        1256
+      ],
+      "targetMatchedCenter": [
+        749.636315614421,
+        95.2420269145805
+      ],
+      "targetSearchBox": [
+        710,
+        54,
+        795,
+        139
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.9420756426386292,
+      "peakOnSearchEdge": false,
+      "trainingPartition": false,
+      "usableTextureMatch": true,
+      "affinePredictionResidualPixels": 0.13189039823809814
+    },
+    {
+      "id": "r2c0",
+      "sourcePatchCenter": [
+        207.5,
+        1295.5
+      ],
+      "sourcePatchBox": [
+        184,
+        1272,
+        232,
+        1320
+      ],
+      "targetMatchedCenter": [
+        50.389957646758695,
+        158.75871702984404
+      ],
+      "targetSearchBox": [
+        6,
+        118,
+        91,
+        203
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.9142345197593656,
+      "peakOnSearchEdge": false,
+      "trainingPartition": true,
+      "usableTextureMatch": true,
+      "affinePredictionResidualPixels": 0.053265080909122076
+    },
+    {
+      "id": "r2c1",
+      "sourcePatchCenter": [
+        271.5,
+        1295.5
+      ],
+      "sourcePatchBox": [
+        248,
+        1272,
+        296,
+        1320
+      ],
+      "targetMatchedCenter": [
+        113.80167051666386,
+        158.75832313106793
+      ],
+      "targetSearchBox": [
+        70,
+        118,
+        155,
+        203
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.7563385882155114,
+      "peakOnSearchEdge": false,
+      "trainingPartition": false,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 0.19511499011507819
+    },
+    {
+      "id": "r2c2",
+      "sourcePatchCenter": [
+        335.5,
+        1295.5
+      ],
+      "sourcePatchBox": [
+        312,
+        1272,
+        360,
+        1320
+      ],
+      "targetMatchedCenter": [
+        177.051306113107,
+        158.08552766911254
+      ],
+      "targetSearchBox": [
+        134,
+        118,
+        219,
+        203
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.21704456906063216,
+      "peakOnSearchEdge": false,
+      "trainingPartition": true,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 0.8144179770855119
+    },
+    {
+      "id": "r2c3",
+      "sourcePatchCenter": [
+        399.5,
+        1295.5
+      ],
+      "sourcePatchBox": [
+        376,
+        1272,
+        424,
+        1320
+      ],
+      "targetMatchedCenter": [
+        241.22500746988607,
+        158.68652401990914
+      ],
+      "targetSearchBox": [
+        198,
+        118,
+        283,
+        203
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.8007310873937191,
+      "peakOnSearchEdge": false,
+      "trainingPartition": false,
+      "usableTextureMatch": false,
+      "affinePredictionResidualPixels": 0.11713321733137122
+    },
+    {
+      "id": "r2c4",
+      "sourcePatchCenter": [
+        463.5,
+        1295.5
+      ],
+      "sourcePatchBox": [
+        440,
+        1272,
+        488,
+        1320
+      ],
+      "targetMatchedCenter": [
+        304.71346905087165,
+        158.79371538621032
+      ],
+      "targetSearchBox": [
+        262,
+        118,
+        347,
+        203
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.9574350518368951,
+      "peakOnSearchEdge": false,
+      "trainingPartition": true,
+      "usableTextureMatch": true,
+      "affinePredictionResidualPixels": 0.08126287393849617
+    },
+    {
+      "id": "r2c5",
+      "sourcePatchCenter": [
+        527.5,
+        1295.5
+      ],
+      "sourcePatchBox": [
+        504,
+        1272,
+        552,
+        1320
+      ],
+      "targetMatchedCenter": [
+        368.3542881447287,
+        158.6892805424494
+      ],
+      "targetSearchBox": [
+        326,
+        118,
+        411,
+        203
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.9520296368010505,
+      "peakOnSearchEdge": false,
+      "trainingPartition": false,
+      "usableTextureMatch": true,
+      "affinePredictionResidualPixels": 0.1244535440796698
+    },
+    {
+      "id": "r2c6",
+      "sourcePatchCenter": [
+        655.5,
+        1295.5
+      ],
+      "sourcePatchBox": [
+        632,
+        1272,
+        680,
+        1320
+      ],
+      "targetMatchedCenter": [
+        495.3534643238343,
+        158.65205788535673
+      ],
+      "targetSearchBox": [
+        454,
+        118,
+        539,
+        203
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.9706027425296929,
+      "peakOnSearchEdge": false,
+      "trainingPartition": true,
+      "usableTextureMatch": true,
+      "affinePredictionResidualPixels": 0.06546800195679746
+    },
+    {
+      "id": "r2c7",
+      "sourcePatchCenter": [
+        847.5,
+        1295.5
+      ],
+      "sourcePatchBox": [
+        824,
+        1272,
+        872,
+        1320
+      ],
+      "targetMatchedCenter": [
+        685.909167097529,
+        158.77067142262402
+      ],
+      "targetSearchBox": [
+        646,
+        118,
+        731,
+        203
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.9344537540751138,
+      "peakOnSearchEdge": false,
+      "trainingPartition": false,
+      "usableTextureMatch": true,
+      "affinePredictionResidualPixels": 0.13719289362300352
+    },
+    {
+      "id": "r2c8",
+      "sourcePatchCenter": [
+        911.5,
+        1295.5
+      ],
+      "sourcePatchBox": [
+        888,
+        1272,
+        936,
+        1320
+      ],
+      "targetMatchedCenter": [
+        749.5986058191027,
+        158.67587499316585
+      ],
+      "targetSearchBox": [
+        710,
+        118,
+        795,
+        203
+      ],
+      "targetTemplateSize": 48,
+      "normalizedCrossCorrelation": 0.9330981864674498,
+      "peakOnSearchEdge": false,
+      "trainingPartition": true,
+      "usableTextureMatch": true,
+      "affinePredictionResidualPixels": 0.035217102068601056
+    }
+  ],
+  "manualPreNccOrBlindPhysicalObservationClaimed": false,
+  "geographicCoordinatesUsed": false,
+  "neighborhoodNameOrBoundaryGeometryUsed": false,
+  "georeferenceVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

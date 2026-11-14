@@ -1,0 +1,26 @@
+{
+  "sourcePbfHeader": {
+    "generator": "osmium/1.16.0",
+    "osmosis_replication_timestamp": "2026-11-12T21:23:05Z",
+    "osmosis_replication_sequence_number": "4968",
+    "osmosis_replication_base_url": "https://download.geofabrik.de/europe/hungary-updates"
+  },
+  "candidateValid": true,
+  "candidateInsideMunicipality": true,
+  "candidateOutsideMunicipalitySquareMeters": 0.0,
+  "municipalityReferenceFile": ".local/neighborhoods/country/municipalities.geojson",
+  "municipalityReferenceSha256": "850fcee11e94f67561890d86c05508246a7ac429092f6a0e14fc5f97e5e6935b",
+  "perimeterDifferenceFromOrderedSourceEdgesMeters": 1.8189894035458565e-12,
+  "projectGeometryValidator": {
+    "valid": true,
+    "bbox": [
+      20.3225725,
+      46.407190405300256,
+      20.3372475,
+      46.4169945
+    ],
+    "vertices": 126
+  },
+  "notPromotedOrExported": true,
+  "independentReviewPending": true
+}

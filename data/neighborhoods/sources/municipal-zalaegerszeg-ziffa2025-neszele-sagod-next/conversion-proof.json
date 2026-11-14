@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_second_useful_source_subset_unregistered",
+  "counts": {
+    "newEstimatedNeighborhoodCandidates": 1,
+    "observedQuarterContoursAdmitted": 1,
+    "primaryFeatures": 0,
+    "placementAlternativesNotAdditionalQuarters": 1,
+    "sourcePixelQuarantinesNotWorldCandidates": 1
+  },
+  "Neszele": {
+    "sourceImage": "p138-xref768.jpeg",
+    "sourcePixelArea": 40385.0,
+    "sourceVerticesIncludingClosure": 1035,
+    "sourceType": "Polygon",
+    "sourceHoles": 0,
+    "sourceValid": true,
+    "worldType": "Polygon",
+    "worldValid": true,
+    "worldHoles": 0,
+    "worldVerticesIncludingClosure": 1035,
+    "coordinateArrayExactlyMatchesPinnedSimilarityInverseProjection": true,
+    "inverseRoundtripDiagnosticPixels": 0.0001585068581704263,
+    "roundtripMeaning": "Numerical transformation consistency only; not placement accuracy.",
+    "sourceClosureInvented": false,
+    "sourceClippingOrRepair": false,
+    "areaM2": 279856.86452848953,
+    "municipalityOverlapFraction": 1.0,
+    "outsideMunicipalityAreaM2": 0.0,
+    "namePointInsideCandidate": true,
+    "namePointUsedForFit": false,
+    "municipalityPath": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-calibration-municipality.geojson",
+    "municipalitySha256": "24c706edf9def6ec7d8c5659edf831a2be192bf5bfa2c4ada9f290fdd9f7b734"
+  },
+  "placementAlternative": {
+    "file": "neszele-placement-alternative.geojson",
+    "sameObservedContour": true,
+    "symmetricDifferenceM2": 15313.106149748803,
+    "hausdorffMetres": 13.765649013504953,
+    "meaning": "Illustrative difference between two plausible sparse-road placements, not an absolute accuracy bound or confidence envelope."
+  },
+  "SagodQuarantine": {
+    "file": "sagod-literal-source-pixels.geojson",
+    "worldCandidateProduced": false,
+    "countsAsQuarter": false,
+    "literalMaskPixelArea": 99489.0,
+    "literalHoles": 3,
+    "reason": "Dark connected component contains thematic green-element fills/borders; its three holes and edge slits are not established neighborhood exclusions. No geographic candidate generated.",
+    "failedGrayscaleVariants": 16,
+    "nextWork": "Quarter perimeter requires explicit source-supported classification against purple companion map, with every thematic-edge choice and alternative recorded; no invented closing edge."
+  },
+  "identity": {
+    "sourceUnitNumber": 16,
+    "individualMapName": "Neszele",
+    "distinctMapIdentity": "Ságod has a separate labeled contour; shared unit16/grouped indicators do not establish a grouped polygon or authorize clones.",
+    "frozenFeaturesCompared": [
+      {
+        "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+        "name": "Belváros",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      },
+      {
+        "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+        "name": "Páterdomb",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      },
+      {
+        "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+        "name": "Kertváros",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      },
+      {
+        "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+        "name": "Csácsbozsok",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      },
+      {
+        "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+        "name": "Vorhota",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      },
+      {
+        "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-quarantine.geojson",
+        "name": "Ola",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      },
+      {
+        "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-quarantine.geojson",
+        "name": "Landorhegy",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      },
+      {
+        "path": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+        "name": "Iparterület",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      },
+      {
+        "path": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+        "name": "Zalabesenyő",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      },
+      {
+        "path": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+        "name": "Botfa",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      },
+      {
+        "path": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+        "name": "Bazita",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      },
+      {
+        "path": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+        "name": "Ebergény",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      },
+      {
+        "path": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+        "name": "Szenterzsébethegy",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      },
+      {
+        "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/hathaz-inferred-import.geojson",
+        "name": "Hatház",
+        "sameName": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0
+      }
+    ]
+  },
+  "limitations": [
+    "World placement is explicitly estimated; absolute accuracy is unknown.",
+    "Consultation draft map has no established statutory, cadastral or address-assignment authority.",
+    "Municipal map redistribution rights unknown; ODbL applies to road and name evidence.",
+    "No global admission performed by this source-local batch."
+  ],
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "globalRegistryModified": false
+}

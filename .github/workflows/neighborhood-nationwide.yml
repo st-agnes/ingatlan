@@ -1,0 +1,188 @@
+name: Collect nationwide neighborhood sources
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: neighborhood-nationwide-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  country:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned geometry processors
+        run: python -m pip install osmium==4.1.1 shapely==2.1.2
+      - name: Verify extraction against actual small PBF fixtures
+        run: python tests/neighborhood-country.test.py
+      - name: Fetch and verify complete Hungary source
+        run: python scripts/neighborhoods/fetch-country.py --output .local/neighborhoods/hungary-latest.osm.pbf
+      - name: Extract actual neighborhoods, named points and construction linework
+        run: python scripts/neighborhoods/extract-country.py --input .local/neighborhoods/hungary-latest.osm.pbf --output .local/neighborhoods/country --construction-areas data/neighborhoods/research/construction-areas.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-country-source
+          path: .local/neighborhoods/country/
+          if-no-files-found: warn
+          retention-days: 30
+  documents:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure PDF inspection tools
+        run: |
+          if ! command -v pdftotext >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y poppler-utils
+          fi
+      - name: Fetch cited public documents and preserve useful map pages
+        run: python3 scripts/neighborhoods/fetch-documents.py --sources data/neighborhoods/research/acquisition-sources.json --output .local/neighborhoods/nationwide-docs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-documents-and-text
+          path: |
+            .local/neighborhoods/nationwide-docs/manifest.json
+            .local/neighborhoods/nationwide-docs/text/
+            .local/neighborhoods/nationwide-docs/documents/
+          if-no-files-found: warn
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-nyiregyhaza-its
+          path: .local/neighborhoods/nationwide-docs/pages/nyiregyhaza-its/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-miskolc-its
+          path: .local/neighborhoods/nationwide-docs/pages/miskolc-its/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-miskolc-annex
+          path: .local/neighborhoods/nationwide-docs/pages/miskolc-annex/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-eger-map
+          path: .local/neighborhoods/nationwide-docs/pages/eger-map/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-salgotarjan-its
+          path: .local/neighborhoods/nationwide-docs/pages/salgotarjan-its/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-kecskemet-map
+          path: .local/neighborhoods/nationwide-docs/pages/kecskemet-map/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-szolnok-fvs
+          path: .local/neighborhoods/nationwide-docs/pages/szolnok-fvs/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-gyongyos-its
+          path: .local/neighborhoods/nationwide-docs/pages/gyongyos-its/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-gyor-fvs
+          path: .local/neighborhoods/nationwide-docs/pages/gyor-fvs/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-gyor-its
+          path: .local/neighborhoods/nationwide-docs/pages/gyor-its/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-veszprem-its
+          path: .local/neighborhoods/nationwide-docs/pages/veszprem-its/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-zalaegerszeg-its
+          path: .local/neighborhoods/nationwide-docs/pages/zalaegerszeg-its/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-pecs-its
+          path: .local/neighborhoods/nationwide-docs/pages/pecs-its/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-tatabanya-map
+          path: .local/neighborhoods/nationwide-docs/pages/tatabanya-map/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-sopron-map
+          path: .local/neighborhoods/nationwide-docs/pages/sopron-map/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-tata-map
+          path: .local/neighborhoods/nationwide-docs/pages/tata-map/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-szombathely-ivs
+          path: .local/neighborhoods/nationwide-docs/pages/szombathely-ivs/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-nagykanizsa-fvs
+          path: .local/neighborhoods/nationwide-docs/pages/nagykanizsa-fvs/
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nationwide-pages-kaposvar-its
+          path: .local/neighborhoods/nationwide-docs/pages/kaposvar-its/
+          if-no-files-found: ignore
+          retention-days: 30

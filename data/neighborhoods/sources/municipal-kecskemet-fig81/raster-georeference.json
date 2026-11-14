@@ -1,0 +1,193 @@
+{
+  "sourceImageSha256": "4d9d33cf34268d28653d0955b8619e515653b29cea59914397246eaa7589f1ec",
+  "actualControlRoadInputSha256": "2b3222aa9c78e24c492a1b4e34c5f3ec551d5671d6f1a92a38bcd4e26f3fc0ff",
+  "allControlCoordinatesMatchLiteralOsmNodes": true,
+  "controlWaysUnmodifiedFromOriginalArchive": true,
+  "controlSpecificationSha256": "1781daafee14232f8afb94f29103262672dad366f5287001cdac6227d1690fb4",
+  "controls": [
+    {
+      "osmNodeId": 494552209,
+      "coordinates": [
+        19.6783939,
+        46.9210658
+      ],
+      "sourceImagePixel": [
+        979,
+        453
+      ],
+      "junction": "Budai út / Március 15. utca",
+      "sourceWayIds": [
+        "osm:way:236940590",
+        "osm:way:384537937",
+        "osm:way:1217845996",
+        "osm:way:1460549586"
+      ],
+      "manualImagePlacementUncertaintyPixels": [
+        3,
+        5
+      ],
+      "locationInterpretation": "Approximate old-image road-junction location, not surveyed black-boundary control."
+    },
+    {
+      "osmNodeId": 325657655,
+      "coordinates": [
+        19.682452,
+        46.9184663
+      ],
+      "sourceImagePixel": [
+        1066,
+        535
+      ],
+      "junction": "Budai út / Akadémia körút",
+      "sourceWayIds": [
+        "osm:way:29547881",
+        "osm:way:412223167",
+        "osm:way:428796217"
+      ],
+      "manualImagePlacementUncertaintyPixels": [
+        3,
+        5
+      ],
+      "locationInterpretation": "Approximate old-image road-junction location, not surveyed black-boundary control."
+    },
+    {
+      "osmNodeId": 1251210477,
+      "coordinates": [
+        19.6670287,
+        46.9132077
+      ],
+      "sourceImagePixel": [
+        743,
+        694
+      ],
+      "junction": "Nyíri út / Március 15. utca",
+      "sourceWayIds": [
+        "osm:way:40712267",
+        "osm:way:1528490366",
+        "osm:way:1528599865"
+      ],
+      "manualImagePlacementUncertaintyPixels": [
+        3,
+        5
+      ],
+      "locationInterpretation": "Approximate old-image road-junction location, not surveyed black-boundary control."
+    },
+    {
+      "osmNodeId": 770384253,
+      "coordinates": [
+        19.6530069,
+        46.9202812
+      ],
+      "sourceImagePixel": [
+        441,
+        480
+      ],
+      "junction": "Nyíri út / Széles köz",
+      "sourceWayIds": [
+        "osm:way:65843942",
+        "osm:way:104584730",
+        "osm:way:399341084",
+        "osm:way:728982885"
+      ],
+      "manualImagePlacementUncertaintyPixels": [
+        3,
+        5
+      ],
+      "locationInterpretation": "Approximate old-image road-junction location, not surveyed black-boundary control."
+    },
+    {
+      "osmNodeId": 770384250,
+      "coordinates": [
+        19.6632827,
+        46.929398
+      ],
+      "sourceImagePixel": [
+        660,
+        194
+      ],
+      "junction": "Széles köz / Ladánybenei út",
+      "sourceWayIds": [
+        "osm:way:407204007",
+        "osm:way:495073158",
+        "osm:way:768621226"
+      ],
+      "manualImagePlacementUncertaintyPixels": [
+        3,
+        5
+      ],
+      "locationInterpretation": "Approximate old-image road-junction location, not surveyed black-boundary control."
+    }
+  ],
+  "fitMethod": "Least squares [pixelX,pixelY,1] row vectors to EOV/EPSG:23700; inverse projection to WGS84.",
+  "matrixSourcePixelRowToEov": [
+    [
+      3.5976999485446592,
+      0.02488711744246118
+    ],
+    [
+      0.00528333835466257,
+      -3.5923505699781657
+    ],
+    [
+      694525.4293678841,
+      176999.93331705316
+    ]
+  ],
+  "fitResidualMetres": [
+    3.8916436323433765,
+    6.306818043272746,
+    11.172462639099317,
+    10.277387442321665,
+    7.502613896490219
+  ],
+  "fitResidualSourcePixels": [
+    1.0816045835594215,
+    1.7526695008970485,
+    3.0999618303168255,
+    2.8515694611836793,
+    2.081281862941659
+  ],
+  "heldOutControl": {
+    "osmNodeId": 2298202646,
+    "coordinates": [
+      19.6488187,
+      46.9334497
+    ],
+    "junction": "Ladánybenei út / Máriahegy tanya",
+    "sourceWayIds": [
+      "osm:way:220727832",
+      "osm:way:427611755"
+    ],
+    "sourceImagePixelWindow": {
+      "x": [
+        348,
+        356
+      ],
+      "y": [
+        69,
+        77
+      ]
+    },
+    "usedInAffineFit": false,
+    "locationInterpretation": "Partly occluded dirt-track junction; approximate visual window, not surveyed boundary control.",
+    "predictedSourcePixel": [
+      351.61550094163977,
+      70.36653621377627
+    ],
+    "insideIndependentApproximateVisualWindow": true
+  },
+  "metricProjection": "EPSG:23700",
+  "outputCrs": "EPSG:4326",
+  "pyprojVersion": "3.7.2",
+  "projVersion": "9.5.1",
+  "wgs84ToMetricPipeline": "proj=pipeline step proj=unitconvert xy_in=deg xy_out=rad step proj=push v_3 step proj=cart ellps=WGS84 step proj=helmert x=-52.17 y=71.82 z=14.9 step inv proj=cart ellps=GRS67 step proj=pop v_3 step proj=somerc lat_0=47.1443937222222 lon_0=19.0485717777778 k_0=0.99993 x_0=650000 y_0=200000 ellps=GRS67",
+  "metricToWgs84Pipeline": "proj=pipeline step inv proj=somerc lat_0=47.1443937222222 lon_0=19.0485717777778 k_0=0.99993 x_0=650000 y_0=200000 ellps=GRS67 step proj=push v_3 step proj=cart ellps=GRS67 step proj=helmert x=52.17 y=-71.82 z=-14.9 step inv proj=cart ellps=WGS84 step proj=pop v_3 step proj=unitconvert xy_in=rad xy_out=deg",
+  "projectionOperationAccuracyMetresFromLibrary": {
+    "wgs84ToMetric": 1.0,
+    "metricToWgs84": 1.0,
+    "meaning": "Library datum-transformation metadata only; does not include source-map, manual-control or boundary uncertainty."
+  },
+  "sourceMapProjectionKnown": false,
+  "claimedAbsoluteAccuracyMetres": null,
+  "controlInterpretation": "Literal geographical OSM nodes, with manually approximated source-image junction locations; no surveyed image control or absolute accuracy guarantee."
+}

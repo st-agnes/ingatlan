@@ -1,0 +1,495 @@
+{
+  "schemaVersion": 1,
+  "frozenEarlierProofPath": "data/neighborhoods/sources/municipal-west/tatabanya-georeference-proof.json",
+  "frozenEarlierProofSha256": "e0debc1af65c71699403deaa786efbdfd63337d84d980c37c7128e2705c6aeb8",
+  "affinePdfToEov": [
+    15.99935653800788,
+    -0.014094552993115652,
+    -0.021910550196665587,
+    -16.04162925244336,
+    595977.8961704229,
+    253628.8904821181
+  ],
+  "registrationMethod": "Municipal-outline georegistration: initial source/target full-city bounds, robust affine nearest-boundary refinement with180/100/60/40/30m thresholds. Actual inner source strokes act as outliers and are not used as outer boundary facts.",
+  "frozenCalibrationVertexCount": 779,
+  "frozenCalibrationRmsM": 11.211275086902505,
+  "recomputedSampledControlChecks": [
+    {
+      "sourcePdfPoint": [
+        43.040000915527344,
+        334.3600158691406
+      ],
+      "transformedEovPoint": [
+        596661.7958355042,
+        248264.26804060373
+      ],
+      "referenceEovPoint": [
+        596660.7483974723,
+        248262.83616937685
+      ],
+      "referenceLonLat": [
+        18.33843543405871,
+        47.57607059861396
+      ],
+      "residualM": 1.7740861424880185,
+      "recomputedResidualM": 1.7740861424822398,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        116.0,
+        250.00001525878906
+      ],
+      "transformedEovPoint": [
+        597830.2978903685,
+        249615.9413004086
+      ],
+      "referenceEovPoint": [
+        597826.2152901014,
+        249619.13617773057
+      ],
+      "referenceLonLat": [
+        18.35376621126971,
+        47.588363659214956
+      ],
+      "residualM": 5.184097418425263,
+      "recomputedResidualM": 5.184097418462909,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        130.51998901367188,
+        458.32000732421875
+      ],
+      "transformedEovPoint": [
+        598059.6721943584,
+        246273.8310808749
+      ],
+      "referenceEovPoint": [
+        598059.7808625153,
+        246273.77065908743
+      ],
+      "referenceLonLat": [
+        18.357264827316236,
+        47.55829326721769
+      ],
+      "residualM": 0.1243364818720438,
+      "recomputedResidualM": 0.12433648188434672,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        137.83999633789062,
+        444.52001953125
+      ],
+      "transformedEovPoint": [
+        598176.9821060587,
+        246495.04498335003
+      ],
+      "referenceEovPoint": [
+        598181.4368332747,
+        246492.56806105084
+      ],
+      "referenceLonLat": [
+        18.358855644273373,
+        47.560270860144705
+      ],
+      "residualM": 5.097032337009922,
+      "recomputedResidualM": 5.097032337061291,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        160.8800048828125,
+        128.6800537109375
+      ],
+      "transformedEovPoint": [
+        598550.0590405433,
+        251561.1277988801
+      ],
+      "referenceEovPoint": [
+        598556.617922413,
+        251565.21993326064
+      ],
+      "referenceLonLat": [
+        18.36324990222143,
+        47.605925085367936
+      ],
+      "residualM": 7.730749974615323,
+      "recomputedResidualM": 7.73074997461794,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        191.72000122070312,
+        596.9199829101562
+      ],
+      "transformedEovPoint": [
+        599036.8795050884,
+        244049.12073218808
+      ],
+      "referenceEovPoint": [
+        599025.5561998263,
+        244041.19192973158
+      ],
+      "referenceLonLat": [
+        18.3703547695677,
+        47.538288854521916
+      ],
+      "residualM": 13.823282911586944,
+      "recomputedResidualM": 13.823282911603577,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        234.79998779296875,
+        670.3599853515625
+      ],
+      "transformedEovPoint": [
+        599725.0964659045,
+        242870.07953451626
+      ],
+      "referenceEovPoint": [
+        599727.1932816062,
+        242872.17619984594
+      ],
+      "referenceLonLat": [
+        18.379806959140303,
+        47.527828678377844
+      ],
+      "residualM": 2.96523887596438,
+      "recomputedResidualM": 2.965238875982988,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        272.5999755859375,
+        161.56002807617188
+      ],
+      "transformedEovPoint": [
+        600337.0432556972,
+        251031.23159425711
+      ],
+      "referenceEovPoint": [
+        600337.6354992482,
+        251029.85005832004
+      ],
+      "referenceLonLat": [
+        18.38699639702265,
+        47.601247907482794
+      ],
+      "residualM": 1.503128061428526,
+      "recomputedResidualM": 1.503128061409795,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        409.5199890136719,
+        200.80001831054688
+      ],
+      "transformedEovPoint": [
+        602527.1222975946,
+        250398.75822622064
+      ],
+      "referenceEovPoint": [
+        602537.491863103,
+        250405.85408495177
+      ],
+      "referenceLonLat": [
+        18.416317501009896,
+        47.59579932969556
+      ],
+      "residualM": 12.564995024516197,
+      "recomputedResidualM": 12.564995024500643,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        524.9599609375,
+        233.55999755859375
+      ],
+      "transformedEovPoint": [
+        604373.625829878,
+        249870.70543150618
+      ],
+      "referenceEovPoint": [
+        604376.0939827058,
+        249888.09695326834
+      ],
+      "referenceLonLat": [
+        18.44081854763376,
+        47.59127367791439
+      ],
+      "residualM": 17.56578514000849,
+      "recomputedResidualM": 17.56578514001514,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        611.9599609375,
+        911.4400024414062
+      ],
+      "transformedEovPoint": [
+        605756.0154330329,
+        238994.4994976645
+      ],
+      "referenceEovPoint": [
+        605771.7722991938,
+        238983.98961279853
+      ],
+      "referenceLonLat": [
+        18.460465976543496,
+        47.493293656279675
+      ],
+      "residualM": 18.940340839294315,
+      "recomputedResidualM": 18.940340839274203,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        685.2799682617188,
+        278.6800231933594
+      ],
+      "transformedEovPoint": [
+        606938.0068406418,
+        249143.39400884454
+      ],
+      "referenceEovPoint": [
+        606948.501410681,
+        249153.88698670026
+      ],
+      "referenceLonLat": [
+        18.475092131981096,
+        47.58484482257577
+      ],
+      "residualM": 14.84043747969445,
+      "recomputedResidualM": 14.840437479693046,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        708.6799926757812,
+        694.0
+      ],
+      "transformedEovPoint": [
+        607306.5384248183,
+        242480.4722123695
+      ],
+      "referenceEovPoint": [
+        607305.7206958369,
+        242476.5136384552
+      ],
+      "referenceLonLat": [
+        18.480486278063108,
+        47.52480928719509
+      ],
+      "residualM": 4.042151422450501,
+      "recomputedResidualM": 4.042151422446159,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        740.3599853515625,
+        542.2000122070312
+      ],
+      "transformedEovPoint": [
+        607815.5374757319,
+        244914.89721099997
+      ],
+      "referenceEovPoint": [
+        607808.7251355184,
+        244910.65304448377
+      ],
+      "referenceLonLat": [
+        18.48693340489151,
+        47.54673575882881
+      ],
+      "residualM": 8.026264922282552,
+      "recomputedResidualM": 8.026264922285012,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        763.52001953125,
+        579.0399780273438
+      ],
+      "transformedEovPoint": [
+        608185.5638771547,
+        244323.4166885464
+      ],
+      "referenceEovPoint": [
+        608179.0097490788,
+        244323.22214293928
+      ],
+      "referenceLonLat": [
+        18.49190804423979,
+        47.541475972202875
+      ],
+      "residualM": 6.557014780309747,
+      "recomputedResidualM": 6.5570147802562655,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        772.8800048828125,
+        598.8400268554688
+      ],
+      "transformedEovPoint": [
+        608335.0385471474,
+        244005.58656363646
+      ],
+      "referenceEovPoint": [
+        608336.8295533956,
+        244006.3649367262
+      ],
+      "referenceLonLat": [
+        18.494034261553463,
+        47.53863610464288
+      ],
+      "residualM": 1.9528358988806045,
+      "recomputedResidualM": 1.9528358988432786,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    },
+    {
+      "sourcePdfPoint": [
+        785.8399658203125,
+        684.280029296875
+      ],
+      "transformedEovPoint": [
+        608541.185344263,
+        242634.70576126888
+      ],
+      "referenceEovPoint": [
+        608539.9755257545,
+        242635.8343189372
+      ],
+      "referenceLonLat": [
+        18.496861054107782,
+        47.526321826159915
+      ],
+      "residualM": 1.6544797472910757,
+      "recomputedResidualM": 1.6544797472681276,
+      "frozenAffineReproducesReportedControl": true,
+      "currentParentNearestPointReproducesReportedReference": true
+    }
+  ],
+  "referenceMunicipalitySource": {
+    "osmType": "relation",
+    "osmId": 1027771,
+    "tags": {
+      "ISO3166-2": "HU-TB",
+      "admin_level": "8",
+      "boundary": "administrative",
+      "name": "Tatabánya",
+      "name:ru": "Татабанья",
+      "name:sr": "Татабања",
+      "type": "boundary",
+      "wikidata": "Q187821",
+      "wikipedia": "hu:Tatabánya"
+    },
+    "objectVersion": 25,
+    "objectTimestamp": "2026-10-06 21:41:54+00:00",
+    "changeset": 0,
+    "url": "https://www.openstreetmap.org/relation/1027771",
+    "members": [
+      {
+        "type": "way",
+        "ref": 57882376,
+        "role": "outer"
+      },
+      {
+        "type": "way",
+        "ref": 57879654,
+        "role": "outer"
+      },
+      {
+        "type": "way",
+        "ref": 224371801,
+        "role": "outer"
+      },
+      {
+        "type": "way",
+        "ref": 57880601,
+        "role": "outer"
+      },
+      {
+        "type": "way",
+        "ref": 329178492,
+        "role": "outer"
+      },
+      {
+        "type": "way",
+        "ref": 329178489,
+        "role": "outer"
+      },
+      {
+        "type": "way",
+        "ref": 224371776,
+        "role": "outer"
+      },
+      {
+        "type": "way",
+        "ref": 57875511,
+        "role": "outer"
+      },
+      {
+        "type": "way",
+        "ref": 57875024,
+        "role": "outer"
+      },
+      {
+        "type": "way",
+        "ref": 57879392,
+        "role": "outer"
+      },
+      {
+        "type": "way",
+        "ref": 57882245,
+        "role": "outer"
+      },
+      {
+        "type": "node",
+        "ref": 282420922,
+        "role": "admin_centre"
+      }
+    ],
+    "provider": "openstreetmap",
+    "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "osmTimestamp": "2026-11-12T21:23:05Z",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "attributionUrl": "https://www.openstreetmap.org/copyright",
+    "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+  },
+  "currentReferenceMunicipalityArchivePath": "data/neighborhoods/sources/country-osm/municipalities.geojson.gz",
+  "currentReferenceMunicipalityArchiveSha256": "fb5f1293628b9eeaabce243ae6ebc884f6bdc93443a2488e5fb213029bf766b7",
+  "reoptimisedOrShiftedToFitNewSourceCycles": false,
+  "originalSourceGeographicCrsKnown": false,
+  "metricCrs": "EPSG:23700",
+  "outputCrs": "EPSG:4326",
+  "inverseProjectionPipeline": "proj=pipeline step inv proj=somerc lat_0=47.1443937222222 lon_0=19.0485717777778 k_0=0.99993 x_0=650000 y_0=200000 ellps=GRS67 step proj=push v_3 step proj=cart ellps=GRS67 step proj=helmert x=52.17 y=-71.82 z=-14.9 step inv proj=cart ellps=WGS84 step proj=pop v_3 step proj=unitconvert xy_in=rad xy_out=deg",
+  "projectionOperationAccuracyMetadataM": 1.0,
+  "projectionAccuracyMetadataMeaning": "Library datum operation metadata only, not source-map or boundary accuracy.",
+  "pyprojVersion": "3.7.2",
+  "projVersion": "9.5.1",
+  "projNetworkDisabled": true,
+  "claimedAbsoluteAccuracyMetres": null,
+  "referenceDifferencesAndOverlapsPreserved": true,
+  "usableForAddressAssignment": false
+}

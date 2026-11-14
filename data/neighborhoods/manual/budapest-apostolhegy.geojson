@@ -1,0 +1,552 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "manual:Budapest:Apostolhegy",
+      "properties": {
+        "name": "Apostolhegy",
+        "municipality": "Budapest",
+        "district": 23,
+        "boundaryKind": "neighbourhood",
+        "method": "legal_boundary_classes_polygonized_from_osm_segments_and_actual_intersections",
+        "evidenceUrls": [
+          "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "https://www.openstreetmap.org/way/24187036",
+          "https://www.openstreetmap.org/way/43001647",
+          "https://www.openstreetmap.org/way/123918342",
+          "https://www.openstreetmap.org/way/123918344",
+          "https://www.openstreetmap.org/way/154126126",
+          "https://www.openstreetmap.org/way/171381692",
+          "https://www.openstreetmap.org/way/171381693",
+          "https://www.openstreetmap.org/way/171381695",
+          "https://www.openstreetmap.org/way/288069917",
+          "https://www.openstreetmap.org/way/662525378",
+          "https://www.openstreetmap.org/way/662528722",
+          "https://www.openstreetmap.org/way/662528723",
+          "https://www.openstreetmap.org/way/662528724",
+          "https://www.openstreetmap.org/way/662528738",
+          "https://www.openstreetmap.org/way/662528739",
+          "https://www.openstreetmap.org/way/662529194",
+          "https://www.openstreetmap.org/way/662529195",
+          "https://www.openstreetmap.org/way/662529196",
+          "https://www.openstreetmap.org/way/662529197",
+          "https://www.openstreetmap.org/way/662529198",
+          "https://www.openstreetmap.org/way/662529199",
+          "https://www.openstreetmap.org/way/662530406",
+          "https://www.openstreetmap.org/way/662530409",
+          "https://www.openstreetmap.org/way/662530413",
+          "https://www.openstreetmap.org/way/662530417",
+          "https://www.openstreetmap.org/way/662530422",
+          "https://www.openstreetmap.org/way/1175967474",
+          "https://www.openstreetmap.org/relation/417508",
+          "https://www.openstreetmap.org/way/79701206",
+          "https://www.openstreetmap.org/relation/1550597"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+            "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+            "paragraph": "3. melléklet 23.1."
+          }
+        ],
+        "sourceLineIds": [
+          "osm:way:24187036",
+          "osm:way:43001647",
+          "osm:way:123918342",
+          "osm:way:123918344",
+          "osm:way:154126126",
+          "osm:way:171381692",
+          "osm:way:171381693",
+          "osm:way:171381695",
+          "osm:way:288069917",
+          "osm:way:662525378",
+          "osm:way:662528722",
+          "osm:way:662528723",
+          "osm:way:662528724",
+          "osm:way:662528738",
+          "osm:way:662528739",
+          "osm:way:662529194",
+          "osm:way:662529195",
+          "osm:way:662529196",
+          "osm:way:662529197",
+          "osm:way:662529198",
+          "osm:way:662529199",
+          "osm:way:662530406",
+          "osm:way:662530409",
+          "osm:way:662530413",
+          "osm:way:662530417",
+          "osm:way:662530422",
+          "osm:way:1175967474",
+          "osm:relation:417508",
+          "osm:way:79701206",
+          "osm:relation:1550597"
+        ],
+        "sourceGeometry": {
+          "path": "data/neighborhoods/manual/sources/budapest-apostolhegy-input.geojson",
+          "sha256": "152e5778f34fdea560facc3bb921cd682ea7840f8fa50c4b09b7121f18ba5215",
+          "geometryOperation": "Node true 2D source-segment intersections and polygonize; select the local closed face touching each legal boundary class.",
+          "addedConnectingSegments": 0,
+          "buffersUsed": false,
+          "boundaryClassLengthsDegrees": {
+            "Grassalkovich út": 0.0,
+            "Haraszti út": 0.022579743547884047,
+            "junction": 0.0007502991152150474,
+            "creek": 0.005404914734453578,
+            "river": 0.020654409751224137,
+            "district": 0.0037624320122180903
+          },
+          "candidateFaceAreasSquareDegrees": [
+            8.819619132808744e-05,
+            0.0046640208529278625
+          ],
+          "faceSelection": "The smaller local face bounded by creek, road/junction, southern district boundary and mainland river shoreline; the other face is the complement extending around the district northern/eastern perimeter.",
+          "junctionSourceLineIds": [
+            "osm:way:24188811",
+            "osm:way:662525383",
+            "osm:way:79701205",
+            "osm:way:79701206"
+          ]
+        },
+        "quality": "source_based_inferred_boundary_candidate",
+        "reviewNotes": [
+          "Legal Gyáli-patak is mapped as Gyáli (1.)-csatorna (way 43001647).",
+          "The modern Grassalkovich–Haraszti interchange has unnamed ref=510 approaches. The source ref=510 southbound approach and main Haraszti roadway form the selected road boundary; the mapped highway=primary Grassalkovich centerline crosses the creek about 9 m east of this approach.",
+          "This junction interpretation is an explicit approximation; the legal street-corridor edge and source road centerlines may differ.",
+          "The mapped mainland shoreline is used at the Duna. The polygon does not include the neighboring Molnár-sziget.",
+          "No arbitrary segment closes the ring; every edge lies on a retained road, creek, river shoreline or district boundary segment."
+        ],
+        "usableForAddressAssignment": false,
+        "source": {
+          "provider": "OpenStreetMap via Geofabrik Hungary extract",
+          "url": "https://download.geofabrik.de/europe/hungary-261112.osm.pbf",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "timestamp": "2026-11-12T21:23:05Z",
+          "districtSnapshot": "2026-11-13T09:26:50Z"
+        },
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors",
+        "attributionUrl": "https://www.openstreetmap.org/copyright"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.1152057,
+              47.3924352
+            ],
+            [
+              19.1148213,
+              47.3918484
+            ],
+            [
+              19.1147314,
+              47.3917034
+            ],
+            [
+              19.1146503,
+              47.3915887
+            ],
+            [
+              19.1145091,
+              47.3914046
+            ],
+            [
+              19.1143999,
+              47.3912625
+            ],
+            [
+              19.1142368,
+              47.3910619
+            ],
+            [
+              19.1139638,
+              47.3906627
+            ],
+            [
+              19.1129331,
+              47.3894254
+            ],
+            [
+              19.1119495,
+              47.3882478
+            ],
+            [
+              19.1115092,
+              47.3877335
+            ],
+            [
+              19.1109887,
+              47.3871537
+            ],
+            [
+              19.1109182,
+              47.3870762
+            ],
+            [
+              19.1105367,
+              47.38665
+            ],
+            [
+              19.1101943,
+              47.3862004
+            ],
+            [
+              19.1101751,
+              47.3861765
+            ],
+            [
+              19.1100978,
+              47.3860915
+            ],
+            [
+              19.11005,
+              47.3860382
+            ],
+            [
+              19.1100186,
+              47.3860046
+            ],
+            [
+              19.1098805,
+              47.385857
+            ],
+            [
+              19.1098359,
+              47.3858002
+            ],
+            [
+              19.1097389,
+              47.3856766
+            ],
+            [
+              19.1094876,
+              47.3853829
+            ],
+            [
+              19.1094187,
+              47.3852952
+            ],
+            [
+              19.1092172,
+              47.3850805
+            ],
+            [
+              19.1088617,
+              47.3846425
+            ],
+            [
+              19.1083391,
+              47.3840048
+            ],
+            [
+              19.1076416,
+              47.3832218
+            ],
+            [
+              19.1070537,
+              47.3825079
+            ],
+            [
+              19.1065792,
+              47.3819538
+            ],
+            [
+              19.1064647,
+              47.3818216
+            ],
+            [
+              19.1057173,
+              47.3809507
+            ],
+            [
+              19.1053363,
+              47.3805061
+            ],
+            [
+              19.1047911,
+              47.3798735
+            ],
+            [
+              19.1047265,
+              47.3798011
+            ],
+            [
+              19.1046581,
+              47.3797289
+            ],
+            [
+              19.1044738,
+              47.3795155
+            ],
+            [
+              19.1043303,
+              47.3793494
+            ],
+            [
+              19.103377,
+              47.3783124
+            ],
+            [
+              19.1033412,
+              47.3782735
+            ],
+            [
+              19.1024796,
+              47.3773419
+            ],
+            [
+              19.1018817,
+              47.3767082
+            ],
+            [
+              19.1018246,
+              47.3767406
+            ],
+            [
+              19.1017399,
+              47.3767913
+            ],
+            [
+              19.1011242,
+              47.37716
+            ],
+            [
+              19.1010685,
+              47.3771753
+            ],
+            [
+              19.1010091,
+              47.3771607
+            ],
+            [
+              19.1000568,
+              47.3777365
+            ],
+            [
+              19.1000548,
+              47.3777629
+            ],
+            [
+              19.0995953,
+              47.3780387
+            ],
+            [
+              19.0993546,
+              47.3781679
+            ],
+            [
+              19.0992633,
+              47.3782094
+            ],
+            [
+              19.0991776,
+              47.3782419
+            ],
+            [
+              19.0987075,
+              47.3784033
+            ],
+            [
+              19.098589,
+              47.3784401
+            ],
+            [
+              19.098495296284053,
+              47.37849324909015
+            ],
+            [
+              19.0985,
+              47.3785
+            ],
+            [
+              19.1019747,
+              47.3824776
+            ],
+            [
+              19.1028234,
+              47.3834491
+            ],
+            [
+              19.1063519,
+              47.3872688
+            ],
+            [
+              19.1069788,
+              47.38797
+            ],
+            [
+              19.1076525,
+              47.3887555
+            ],
+            [
+              19.1086891,
+              47.3906272
+            ],
+            [
+              19.1092098,
+              47.3917582
+            ],
+            [
+              19.109454,
+              47.3922886
+            ],
+            [
+              19.1096514,
+              47.392858
+            ],
+            [
+              19.1095741,
+              47.3932532
+            ],
+            [
+              19.1100069,
+              47.3941181
+            ],
+            [
+              19.1105998,
+              47.3948707
+            ],
+            [
+              19.1108386,
+              47.394832
+            ],
+            [
+              19.1109727,
+              47.3947927
+            ],
+            [
+              19.1111674,
+              47.3947256
+            ],
+            [
+              19.1117688,
+              47.3945053
+            ],
+            [
+              19.112051,
+              47.3944026
+            ],
+            [
+              19.1121236,
+              47.3943806
+            ],
+            [
+              19.1122071,
+              47.3943686
+            ],
+            [
+              19.1122917,
+              47.394369
+            ],
+            [
+              19.1123804,
+              47.3943798
+            ],
+            [
+              19.1124673,
+              47.3944013
+            ],
+            [
+              19.1125744,
+              47.3944349
+            ],
+            [
+              19.1126453,
+              47.3944663
+            ],
+            [
+              19.1127147,
+              47.394509
+            ],
+            [
+              19.1128219,
+              47.3945859
+            ],
+            [
+              19.1132385,
+              47.3948953
+            ],
+            [
+              19.1132879,
+              47.394923
+            ],
+            [
+              19.1133339,
+              47.3949402
+            ],
+            [
+              19.1133736,
+              47.3949478
+            ],
+            [
+              19.1134126,
+              47.3949487
+            ],
+            [
+              19.113485,
+              47.3949464
+            ],
+            [
+              19.1137762,
+              47.394935
+            ],
+            [
+              19.1140968,
+              47.394922
+            ],
+            [
+              19.114934,
+              47.3949477
+            ],
+            [
+              19.1153134,
+              47.394966
+            ],
+            [
+              19.115557,
+              47.3949714
+            ],
+            [
+              19.1157566,
+              47.3949646
+            ],
+            [
+              19.11586775818738,
+              47.39497985235139
+            ],
+            [
+              19.1158953,
+              47.3949003
+            ],
+            [
+              19.1160206,
+              47.3944147
+            ],
+            [
+              19.1160687,
+              47.3941706
+            ],
+            [
+              19.1160469,
+              47.3940313
+            ],
+            [
+              19.1159903,
+              47.3938491
+            ],
+            [
+              19.1154453,
+              47.3928208
+            ],
+            [
+              19.1152057,
+              47.3924352
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

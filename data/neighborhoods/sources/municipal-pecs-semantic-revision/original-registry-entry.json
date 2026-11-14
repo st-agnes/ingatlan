@@ -1,0 +1,23 @@
+{
+  "id": "pecs-first-source-contours-estimated-placement",
+  "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/source-inferred.geojson",
+  "sha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95",
+  "municipality": "Pécs",
+  "method": "Thirty-three actual closed historical fine source contours, independently named from original Figure9 and traced from original Figure12 cells; only exact independently approved cartographic-glyph/mask pixels restored with unchanged external edges. Frozen geographic alignment is explicitly estimated and unverified; separate inferred layer only, no primary approval.",
+  "evidenceUrls": [
+    "https://logoweb.pecs.hu/download/koncepcio/ITS.pdf"
+  ],
+  "license": "Municipal map reuse rights unverified; ODbL for archived OSM calibration evidence.",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-pecs-first-inferred/independent-review.json",
+  "uncertainties": [
+    "Geographic placement remains unverified; northwestern calibration extrapolates southeast, with independent gray-perimeter disagreements up to about349m. No absolute positional accuracy is asserted.",
+    "The observed source names and external raster contours are separately reviewed; that is not approval of present legal boundaries or address assignment."
+  ],
+  "rightsStatus": "Municipal publication; unrestricted map redistribution/reuse licence unverified. OSM calibration evidence ODbL."
+}

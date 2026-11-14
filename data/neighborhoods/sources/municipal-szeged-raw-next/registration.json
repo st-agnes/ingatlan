@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_estimated_similarity_candidate_pending_global_review",
+  "sourceImage": "Henits2013 PDF24 image249,1174x1018 native JPEG",
+  "sourceMapCites": "KSH2003",
+  "pixelCoordinates": "Native image pixel corners, x right/y down",
+  "worldCrs": "EPSG:23700 EOV, inverse projected to WGS84",
+  "model": "Four-parameter similarity with reflected pixel-y fitted to six actual road-junction correspondences.",
+  "pixelToEovMatrix": [
+    [
+      12.62539658308391,
+      -0.2778454514774344
+    ],
+    [
+      -0.2778454514774344,
+      -12.62539658308391
+    ]
+  ],
+  "pixelToEovOffset": [
+    726658.581825553,
+    106520.19665887108
+  ],
+  "controls": [
+    {
+      "id": "kossuth_outer",
+      "pixel": [
+        626,
+        330
+      ],
+      "osmNodeId": 27186748,
+      "wgs84": [
+        20.1429872,
+        46.2585463
+      ],
+      "eov": [
+        734467.9437773298,
+        102148.0579456093
+      ],
+      "observedRoadJunction": [
+        "Kossuth Lajos sugárút",
+        "Párizsi körút"
+      ],
+      "sourceWays": [
+        "osm:way:4937501",
+        "osm:way:4937502",
+        "osm:way:182658820",
+        "osm:way:616989347"
+      ],
+      "sourcePixelPickingIsManual": true,
+      "pixelPickingDescription": "A few native pixels, plus unquantified cartographic generalization. This is not an absolute uncertainty bound.",
+      "correspondenceEvidence": "Henits numbered contour-junction geometry, cross-checked against the matching gray road network in KSH2014 figure1 derived from the same KSH2003 scheme. Actual original OSM road nodes provide geographic positions.",
+      "sourcePlacePointUsedForFit": false,
+      "nearbyRingContinuationNotIncidentToChosenNode": "Londoni körút; source junction is the Kossuth/Párizsi intersection node, with Londoni on the adjacent divided outer-ring continuation.",
+      "fitResidualMetresDiagnosticOnly": 31.920542682055014
+    },
+    {
+      "id": "kalvaria_outer",
+      "pixel": [
+        599,
+        390
+      ],
+      "osmNodeId": 27186846,
+      "wgs84": [
+        20.138692,
+        46.2519321
+      ],
+      "eov": [
+        734147.0472613884,
+        101408.25182061575
+      ],
+      "observedRoadJunction": [
+        "Kálvária sugárút",
+        "Londoni körút",
+        "Moszkvai körút"
+      ],
+      "sourceWays": [
+        "osm:way:4806584",
+        "osm:way:38062666",
+        "osm:way:206766790",
+        "osm:way:756576174"
+      ],
+      "sourcePixelPickingIsManual": true,
+      "pixelPickingDescription": "A few native pixels, plus unquantified cartographic generalization. This is not an absolute uncertainty bound.",
+      "correspondenceEvidence": "Henits numbered contour-junction geometry, cross-checked against the matching gray road network in KSH2014 figure1 derived from the same KSH2003 scheme. Actual original OSM road nodes provide geographic positions.",
+      "sourcePlacePointUsedForFit": false,
+      "fitResidualMetresDiagnosticOnly": 40.466367612609695
+    },
+    {
+      "id": "petofi_outer",
+      "pixel": [
+        603,
+        437
+      ],
+      "osmNodeId": 30849519,
+      "wgs84": [
+        20.1383104,
+        46.2470913
+      ],
+      "eov": [
+        734125.1262845302,
+        100869.77947903759
+      ],
+      "observedRoadJunction": [
+        "Petőfi Sándor sugárút",
+        "Moszkvai körút",
+        "Bécsi körút"
+      ],
+      "sourceWays": [
+        "osm:way:231722369",
+        "osm:way:367094768",
+        "osm:way:1086725955",
+        "osm:way:1357186098"
+      ],
+      "sourcePixelPickingIsManual": true,
+      "pixelPickingDescription": "A few native pixels, plus unquantified cartographic generalization. This is not an absolute uncertainty bound.",
+      "correspondenceEvidence": "Henits numbered contour-junction geometry, cross-checked against the matching gray road network in KSH2014 figure1 derived from the same KSH2003 scheme. Actual original OSM road nodes provide geographic positions.",
+      "sourcePlacePointUsedForFit": false,
+      "fitResidualMetresDiagnosticOnly": 42.63160023301315
+    },
+    {
+      "id": "csongradi_outer",
+      "pixel": [
+        654,
+        210
+      ],
+      "osmNodeId": 30752207,
+      "wgs84": [
+        20.1484748,
+        46.2722738
+      ],
+      "eov": [
+        734869.5513651642,
+        103679.82453141469
+      ],
+      "observedRoadJunction": [
+        "Csongrádi sugárút",
+        "Rókusi körút",
+        "Makkosházi körút"
+      ],
+      "sourceWays": [
+        "osm:way:344064456",
+        "osm:way:344064465",
+        "osm:way:344064476",
+        "osm:way:1104675528"
+      ],
+      "sourcePixelPickingIsManual": true,
+      "pixelPickingDescription": "A few native pixels, plus unquantified cartographic generalization. This is not an absolute uncertainty bound.",
+      "correspondenceEvidence": "Henits numbered contour-junction geometry, cross-checked against the matching gray road network in KSH2014 figure1 derived from the same KSH2003 scheme. Actual original OSM road nodes provide geographic positions.",
+      "sourcePlacePointUsedForFit": false,
+      "fitResidualMetresDiagnosticOnly": 14.324048199445027
+    },
+    {
+      "id": "csongradi_inner",
+      "pixel": [
+        675,
+        304
+      ],
+      "osmNodeId": 30452238,
+      "wgs84": [
+        20.1508524,
+        46.2615273
+      ],
+      "eov": [
+        735069.6620975534,
+        102487.92229436543
+      ],
+      "observedRoadJunction": [
+        "Csongrádi sugárút",
+        "Brüsszeli körút"
+      ],
+      "sourceWays": [
+        "osm:way:367094766",
+        "osm:way:515861139",
+        "osm:way:759435668"
+      ],
+      "sourcePixelPickingIsManual": true,
+      "pixelPickingDescription": "A few native pixels, plus unquantified cartographic generalization. This is not an absolute uncertainty bound.",
+      "correspondenceEvidence": "Henits numbered contour-junction geometry, cross-checked against the matching gray road network in KSH2014 figure1 derived from the same KSH2003 scheme. Actual original OSM road nodes provide geographic positions.",
+      "sourcePlacePointUsedForFit": false,
+      "fitResidualMetresDiagnosticOnly": 27.406006885531234
+    },
+    {
+      "id": "jozsef_outermost",
+      "pixel": [
+        720,
+        208
+      ],
+      "osmNodeId": 30766136,
+      "wgs84": [
+        20.1592392,
+        46.2725928
+      ],
+      "eov": [
+        735698.7511166855,
+        103727.01688729464
+      ],
+      "observedRoadJunction": [
+        "József Attila sugárút",
+        "Budapesti körút",
+        "Makkosházi körút"
+      ],
+      "sourceWays": [
+        "osm:way:4795303",
+        "osm:way:218908638",
+        "osm:way:231722388",
+        "osm:way:390489399"
+      ],
+      "sourcePixelPickingIsManual": true,
+      "pixelPickingDescription": "A few native pixels, plus unquantified cartographic generalization. This is not an absolute uncertainty bound.",
+      "correspondenceEvidence": "Henits numbered contour-junction geometry, cross-checked against the matching gray road network in KSH2014 figure1 derived from the same KSH2003 scheme. Actual original OSM road nodes provide geographic positions.",
+      "sourcePlacePointUsedForFit": false,
+      "fitResidualMetresDiagnosticOnly": 33.83360010442734
+    }
+  ],
+  "scaleMetresPerNativePixel": 12.628453467271974,
+  "rmsResidualMetresDiagnosticOnly": 33.10307477551324,
+  "sourcePrintedScaleDiagnostic": {
+    "metres": 4000,
+    "approximateBarLengthNativePixels": 316,
+    "approximateMetresPerPixel": 12.658227848101266,
+    "meaning": "Printed scale consistency check only; manual bar endpoints and unknown map generalization do not establish absolute accuracy."
+  },
+  "sourcePointOrNameControlsUsed": false,
+  "claimedAbsoluteAccuracyMetres": null,
+  "estimatedPlacement": true,
+  "georeferencingIsApproximate": true,
+  "alternatives": {
+    "affineSixControl": {
+      "pixelToEovMatrix": [
+        [
+          12.139768577662919,
+          -0.5358188790982954
+        ],
+        [
+          0.3761774505010881,
+          -12.364812413195454
+        ]
+      ],
+      "pixelToEovOffset": [
+        727053.1671334797,
+        106015.98258452315
+      ],
+      "meaning": "Six-parameter model allows shear/anisotropic scale; retained only as a placement hypothesis."
+    },
+    "threeJunctionSimilarity": {
+      "pixelToEovMatrix": [
+        [
+          12.682277476684208,
+          -0.34450967997603354
+        ],
+        [
+          -0.34450967997603354,
+          -12.682277476684208
+        ]
+      ],
+      "pixelToEovOffset": [
+        726636.6531047969,
+        106593.84140594231
+      ],
+      "controlIds": [
+        "kossuth_outer",
+        "petofi_outer",
+        "jozsef_outermost"
+      ],
+      "meaning": "Alternate sparse-junction placement hypothesis, not an additional quarter or confidence envelope."
+    }
+  },
+  "limitations": [
+    "Source is a generalized2003-era quarter map reproduced in a2013 dissertation; it is not a surveyed current neighborhood boundary.",
+    "Road-junction identification is manual and uses a KSH2014 companion map to identify physical source features; body-source number-key differences remain isolated.",
+    "Six controls cover central/northern Szeged. All four source interiors lie entirely outside the six-control convex hull; every candidate is extrapolated using the map similarity assumption.",
+    "Control residuals, map scale and differences between retained models are diagnostic only; absolute positional accuracy remains unknown.",
+    "Source50/60/70 threshold variants describe inside-edge source-raster interpretation, not geographical accuracy."
+  ]
+}

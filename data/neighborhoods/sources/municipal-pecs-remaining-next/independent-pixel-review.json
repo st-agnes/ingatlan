@@ -1,0 +1,1371 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "reviewer": "Independent remaining_pixel_audit agent",
+  "verdict": "pass_source_pixels_transform_topology_inferred_only_zero_primary",
+  "scope": "Independent original mask/grid-face audit, exact cartographic restoration, frozen affine arithmetic, strict geometry, and disjointness with all 33 frozen first-cohort cells. Literal name semantics reviewed separately.",
+  "producerUnionOrTransformCodeImportedOrInvoked": false,
+  "sourceFeatureCount": 27,
+  "candidateFineNames": 27,
+  "candidatePlanningUnits": 0,
+  "candidateLocalAreas": 0,
+  "sourceImages": [
+    {
+      "originalPdfPageOneBased": 48,
+      "image": "pecs-p48-names.jpeg",
+      "sourceJpegSha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8",
+      "archivedPdfExcerptImageByteIdentical": true,
+      "matchesKnownOriginalEmbeddedImageHash": true
+    },
+    {
+      "originalPdfPageOneBased": 63,
+      "image": "pecs-p63-density.jpeg",
+      "sourceJpegSha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788",
+      "archivedPdfExcerptImageByteIdentical": true,
+      "matchesKnownOriginalEmbeddedImageHash": true
+    }
+  ],
+  "originalFreeCellCount": 221,
+  "allRawExposedFacesAdjacentOriginalMask": true,
+  "allSourceContoursClosedInsideRaster": true,
+  "freeCellCountAfterExplicitRestoration": 221,
+  "freeCellMappingRemainsOneToOne": true,
+  "totalRawExposedUnitFaces": 7738,
+  "totalInterpretedExposedUnitFaces": 7264,
+  "allRawAndInterpretedFaceSetsIndependentlyVerified": true,
+  "independentLiteralNameReviewAssignmentsAndPixelHashesMatched": true,
+  "allNameReviewNativeCropsPixelExact": true,
+  "restoredHoleCount": 37,
+  "restoredExactOriginalPixelCount": 422,
+  "externalSourceFacesChanged": 0,
+  "sourceImageEdgeClosureInvented": false,
+  "strictJsValidCount": 27,
+  "strictJsRejectedCount": 0,
+  "newCellsPixelOverlapWithFrozen33": 0,
+  "newRestorePixelOverlapWithFrozen1076RestoredPixels": 0,
+  "maximumNewNewWorldOverlapDegreesSquared": 0.0,
+  "maximumNewFrozenWorldOverlapDegreesSquared": 0.0,
+  "frozenFirstGeometrySha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95",
+  "frozenFirstGeometryHashUnchanged": true,
+  "independentHomogeneousDensityToEovMatrix": [
+    [
+      19.577810420341596,
+      0.03116452750867288,
+      0.0
+    ],
+    [
+      -0.20754806394509454,
+      -19.73373394690426,
+      0.0
+    ],
+    [
+      577523.2499501936,
+      91751.551014121,
+      1.0
+    ]
+  ],
+  "geographicPlacementVerified": false,
+  "primaryApprovedCount": 0,
+  "claimedAbsoluteAccuracy": null,
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "networkUsed": false,
+  "producerFilesModified": false,
+  "inputFingerprints": [
+    {
+      "path": "source-inferred.geojson",
+      "sha256": "cfdd86a7dc73d6f6a76ebf9a2377a0e7e077992761f3b23fd675abf102c8826a"
+    },
+    {
+      "path": "conversion-proof.json",
+      "sha256": "97455899533fb25c917c3fb60c8f0ac80134491bd11a523e5fbb418db06ffd4b"
+    },
+    {
+      "path": "raw-pixel-cells.json",
+      "sha256": "9fe3806defaebded479e3e7ddc2e20de336e3cdcdb2c2200e5648a7d6ee6e7d7"
+    },
+    {
+      "path": "assignments.json",
+      "sha256": "f34d7dcef5d1ed1cca152467456cf56c16547b27e627333c48ee04b54ec2a40d"
+    },
+    {
+      "path": "cartographic-hole-inventory.json",
+      "sha256": "778f9d637bef58600573dbbb0b463194f6d3356a7b8d8adcf1110548eca60874"
+    },
+    {
+      "path": "cartographic-hole-decisions.json",
+      "sha256": "9ede2cee438fa98f409eac163ebd48d20f216d55d29574b23b9ebc3e58a9beaa"
+    },
+    {
+      "path": "pecs-p63-density.jpeg",
+      "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+    },
+    {
+      "path": "pecs-p48-names.jpeg",
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "path": "pecs-image-alignment.json",
+      "sha256": "bbfeea6e96ef9233058c991533c0572ec0df4c1baeac88db5593c91f336e67b6"
+    },
+    {
+      "path": "pecs-registration-northwest-only-diagnostic.json",
+      "sha256": "8ba7ab1515b94f37253b64bdbe2144e73e540081ede3ae2cf9838f65b7b87f13"
+    },
+    {
+      "path": "first-cohort-exclusions.json",
+      "sha256": "c471b63553eade18a102f536d9170bff6732322acfac6ca3127e9ded5103c016"
+    },
+    {
+      "path": "published-name-exclusions.json",
+      "sha256": "ed874d9d350e9098abe8bac376a51d6cd88fc9b5b4c1fa2499961584a4fdf80f"
+    },
+    {
+      "path": "strict-validator-snapshot.mjs",
+      "sha256": "abf1b564180d9b33593f9ce0d711eb996bf8f3a1d9cbb03b7527167ac515f3d7"
+    },
+    {
+      "path": "independent-audit.py",
+      "sha256": "0a87629dc4ece421b19c4125bd5a465465a6667093d0b4898a9479d58e90c18a"
+    },
+    {
+      "path": "pecs-source-extraction-proof.json",
+      "sha256": "28e5eafffaf661ccd8a6f07678d7e1b081e83a81b14c45d317d478685b972a93"
+    },
+    {
+      "path": "pecs-source-selected-pages.pdf",
+      "sha256": "09db9673a921e73cba1ab1add8ad65aeb0d727dad5bfadfd31946f91ad68d1c9"
+    },
+    {
+      "path": "first-cohort-geometry-reference.geojson",
+      "sha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95"
+    },
+    {
+      "path": "first-cohort-assignments-reference.json",
+      "sha256": "c810f2a53c8367474735fa864b279d5abbc22cc24d2497328bc5d65ea6f4d3f9"
+    },
+    {
+      "path": "first-cohort-conversion-reference.json",
+      "sha256": "129a4ec7ac6373422edf18389d95c799f2c35f30155d81cc846ac6eced091f0b"
+    },
+    {
+      "path": "independent-name-review.json",
+      "sha256": "d9bfb6f2da6c92312c27ad87bd1ad85600762d29d8c271acb51a965e0f41122b"
+    },
+    {
+      "path": "recovered-name-cell-review.json",
+      "sha256": "b3e626b5f0a4496e9a89b69090b0b52edb5e0a0df2027cfe39dcced918d8629e"
+    },
+    {
+      "path": "semantic-source-review.json",
+      "sha256": "a093df02a3f4a4a77e05ec6bb45b6994a108cb289586da25e07254785460ac41"
+    },
+    {
+      "path": "independent-Hird-XII-figure12-native.png",
+      "sha256": "9371ae434534dddca0eb6b3c8194ae6a314ca5c2e058d193aadcd2b320e5f299"
+    },
+    {
+      "path": "independent-Hird-XII-figure9-native.png",
+      "sha256": "a5444e5adeead6abc17980722f534ea9c8330a5d418890605af3412ec6f13590"
+    },
+    {
+      "path": "independent-central-I-figure12-native.png",
+      "sha256": "0dc8936f025a622f199ec93aee29baa6e99bfbe027be8a530cb306a0c5922168"
+    },
+    {
+      "path": "independent-central-I-figure9-native.png",
+      "sha256": "8e2838f1b74b2680833a1b904d8eb51a1005b3b439a5e3882841dbc99d02624d"
+    },
+    {
+      "path": "independent-detached-XII-figure12-native.png",
+      "sha256": "a4436cf5bb63e027b98267a313d976045f3197870243f97dd732e8bc77bea8f5"
+    },
+    {
+      "path": "independent-detached-XII-figure9-native.png",
+      "sha256": "7690f1659e92ad910ac633ef0a85152ebeb38b1e71b5f367ed77f8f35d049f47"
+    },
+    {
+      "path": "independent-eastern-VI-figure12-native.png",
+      "sha256": "9f87684410adde83c105f8158222c2d8f2ad361c70075c01275d867a77d2a25b"
+    },
+    {
+      "path": "independent-eastern-VI-figure9-native.png",
+      "sha256": "f5ea34eb0dfc94eb42b8bb4adf47254a3c9a2b8fccb80d07752e1fc61e3b42d3"
+    },
+    {
+      "path": "independent-northern-IV-V-figure12-native.png",
+      "sha256": "66b06cf626235243d6b2169cb3da117c36fd049845c79fc0b392349b97d3d090"
+    },
+    {
+      "path": "independent-northern-IV-V-figure9-native.png",
+      "sha256": "d9ece33f202b98f6c3030b45caed0bec54c0ec729be0dfc74dfc34f7fa6fdeaf"
+    },
+    {
+      "path": "independent-southeastern-VIII-figure12-native.png",
+      "sha256": "6e893332e08c09fd40da53d87317c6e260040296d65808eda8c94cae1f1da1cc"
+    },
+    {
+      "path": "independent-southeastern-VIII-figure9-native.png",
+      "sha256": "6f6d468e90f16ec0b79f83df5a090e46a0c095688d02fd1d3f349e4bee7560be"
+    },
+    {
+      "path": "independent-southwest-IX-figure12-native.png",
+      "sha256": "f68f5b7a03ef9ee22b7c4eaac831d815bd26a2585504a6c40c29c8d45b40c998"
+    },
+    {
+      "path": "independent-southwest-IX-figure9-native.png",
+      "sha256": "e886226aa0781dac59ea6df433deccc5b2a2ab040ffbc8198d6b42b4a32ad1a8"
+    },
+    {
+      "path": "independent-southwest-XI-figure12-native.png",
+      "sha256": "d8dabebccc288b2909aab4efb5b0f52e6f62cf31a409898f88f24ed935f614cb"
+    },
+    {
+      "path": "independent-southwest-XI-figure9-native.png",
+      "sha256": "4cc83a18efd42ec81b1d75e6746ec263d78a82a5147253583d69bf34a1ea55dc"
+    },
+    {
+      "path": "independent-western-II-X-figure12-native.png",
+      "sha256": "9ceb2804d64444761878af3228a8e5d474bea582a19c4cbcb9ff22186d4dbc95"
+    },
+    {
+      "path": "independent-western-II-X-figure9-native.png",
+      "sha256": "fbe1f49081cdef3a00b78a6b1e2df47d6cdb19625768dabbc948c7269510dce8"
+    },
+    {
+      "path": "independent-western-III-figure12-native.png",
+      "sha256": "4e6e477e72d76a98700b8b0240671995679c6a56cd5ee334ec744836a699b639"
+    },
+    {
+      "path": "independent-western-III-figure9-native.png",
+      "sha256": "90043f095f78e5b7f9bc14ce6a8ac790825ffa5ae81f4ecbac1d97d4c95bf6e1"
+    }
+  ],
+  "frozenComparisonInputs": [
+    {
+      "path": "first-cohort-geometry-reference.geojson",
+      "sha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95"
+    },
+    {
+      "path": "first-cohort-assignments-reference.json",
+      "sha256": "c810f2a53c8367474735fa864b279d5abbc22cc24d2497328bc5d65ea6f4d3f9"
+    },
+    {
+      "path": "first-cohort-conversion-reference.json",
+      "sha256": "129a4ec7ac6373422edf18389d95c799f2c35f30155d81cc846ac6eced091f0b"
+    }
+  ],
+  "records": [
+    {
+      "id": "pecs-remaining:hird",
+      "name": "Hird",
+      "sourceCellId": 49,
+      "originalIncludedPixelCount": 2212,
+      "rawExposedUnitFaces": 484,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "38e1248cb8849a8b49f26213744ef7fad40de7c2f73713eba9b90f4c1d737e00",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 480,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 1.4210854715202004e-14,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:hird",
+        "name": "Hird",
+        "valid": true,
+        "bbox": [
+          18.32987335898526,
+          46.10364809229434,
+          18.345046093477748,
+          46.1219447875106
+        ],
+        "vertices": 398
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:ujmecsekalja",
+      "name": "Újmecsekalja",
+      "sourceCellId": 94,
+      "originalIncludedPixelCount": 531,
+      "rawExposedUnitFaces": 152,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedExposedUnitFaces": 152,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 3.552713678800501e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:ujmecsekalja",
+        "name": "Újmecsekalja",
+        "valid": true,
+        "bbox": [
+          18.194681128403037,
+          46.0660915180351,
+          18.206570788642267,
+          46.07115869251938
+        ],
+        "vertices": 101
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:kovacstelep",
+      "name": "Kovácstelep",
+      "sourceCellId": 107,
+      "originalIncludedPixelCount": 629,
+      "rawExposedUnitFaces": 132,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "5397ee4719a66ee300a4ddb1e4e2b9ae86c080a8870ccfa62887bce226e8279a",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 128,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 2.1316282072803006e-14,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:kovacstelep",
+        "name": "Kovácstelep",
+        "valid": true,
+        "bbox": [
+          18.185325195647984,
+          46.05819616742951,
+          18.192914684454195,
+          46.06426762835433
+        ],
+        "vertices": 104
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:piricsizma",
+      "name": "Piricsizma",
+      "sourceCellId": 68,
+      "originalIncludedPixelCount": 952,
+      "rawExposedUnitFaces": 200,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 2,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "7f40a463a6bd13f3bac59715df1dc9c9d087984e69bd5c6dc7984da12aec48b7",
+          "pixelCount": 2,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 194,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 7.105427357601002e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:piricsizma",
+        "name": "Piricsizma",
+        "valid": true,
+        "bbox": [
+          18.24376717218134,
+          46.08230404834873,
+          18.251109979890842,
+          46.09423603110514
+        ],
+        "vertices": 188
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:szentkut",
+      "name": "Szentkút",
+      "sourceCellId": 56,
+      "originalIncludedPixelCount": 479,
+      "rawExposedUnitFaces": 182,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedExposedUnitFaces": 182,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 7.105427357601002e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:szentkut",
+        "name": "Szentkút",
+        "valid": true,
+        "bbox": [
+          18.179467273154433,
+          46.09652881637412,
+          18.184285253652735,
+          46.106630090445684
+        ],
+        "vertices": 165
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:szentmiklos",
+      "name": "Szentmiklós",
+      "sourceCellId": 98,
+      "originalIncludedPixelCount": 2468,
+      "rawExposedUnitFaces": 290,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedExposedUnitFaces": 290,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 4.973799150320701e-14,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:szentmiklos",
+        "name": "Szentmiklós",
+        "valid": true,
+        "bbox": [
+          18.13776015395415,
+          46.06132996900783,
+          18.15951768599358,
+          46.06920849170391
+        ],
+        "vertices": 184
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:zsebedomb",
+      "name": "Zsebedomb",
+      "sourceCellId": 84,
+      "originalIncludedPixelCount": 2299,
+      "rawExposedUnitFaces": 552,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 7,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "ed6e172d15b4a625dc4eda1d34865553932976ea461dc57ed64c0f79d5c05082",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "f5ce43495056fb77775b09000a20ea36b5caf29dd832e6c1ad5205b254e4392f",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "293b9b416fbd6b40c7e60ef465c1e1cdd10d3eb1eaebb79a47a2496ca631f930",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "d7d5a63696c7f0355715c87e069a525778ffe5467855369c45e2fde90989e042",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "2be639b5cb08d835aff5b47d3b145ca47df124f35290a7ac33d6096fc0a5f7be",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "176782a08a07bee14fd16d0060900fdafacd2845c1864576928087c6ce719ce0",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "4d7b55234bb8bd629419abbd3adf8f9347fc3ada927e56bde7035a582b990e8d",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 524,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 7.105427357601002e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:zsebedomb",
+        "name": "Zsebedomb",
+        "valid": true,
+        "bbox": [
+          18.1461017818099,
+          46.064714561650135,
+          18.17468459367368,
+          46.07833585338762
+        ],
+        "vertices": 405
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:gyukes",
+      "name": "Gyükés",
+      "sourceCellId": 55,
+      "originalIncludedPixelCount": 3279,
+      "rawExposedUnitFaces": 350,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "a6eb8b18657ca6ecd9eaa12f474a1a9f16a40aeeb93dc7fa40ef15b3c911c6e8",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 346,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 7.105427357601002e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:gyukes",
+        "name": "Gyükés",
+        "valid": true,
+        "bbox": [
+          18.23162141515343,
+          46.09117835750895,
+          18.245038025861206,
+          46.10764227948533
+        ],
+        "vertices": 303
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:pecsbanya",
+      "name": "Pécsbánya",
+      "sourceCellId": 50,
+      "originalIncludedPixelCount": 6241,
+      "rawExposedUnitFaces": 668,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 102,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "a1b0778cc876d4996788447802e78167ebb0487af9bad6933f4954ebea361ded",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "c2ba5e470668759fd289dcbd6b2446e8a6310ce8b8f63ee872e95eca2931da0f",
+          "pixelCount": 85,
+          "classification": "original_roman_planning_caption_graphics",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "c59fee179b77fbd1151712be8f68141010d720c7c4d3c25253ec03cc73bc31d5",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "acc46e0ac4a168a7611f378a46f8aff2788531e9c7b763af7314b60136f0e694",
+          "pixelCount": 12,
+          "classification": "original_roman_planning_caption_graphics",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "1de7f9b9f9c2615fa16a43f5cc0bab7999570dc5c1a6bd046c5e1dce59d98255",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "e63756c2e93e1f2d3b3b566b5528f84f5e04c89450705441e9ea133d7baf960b",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "902820f69eee1ea0d8b5260e8f6e0a86e21d3ce6ce0ad9960833504bc97ff31d",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 558,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 1.4210854715202004e-14,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:pecsbanya",
+        "name": "Pécsbánya",
+        "valid": true,
+        "bbox": [
+          18.236939971315184,
+          46.098057315585095,
+          18.263012730131116,
+          46.116671012744504
+        ],
+        "vertices": 474
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:rigoder",
+      "name": "Rigóder",
+      "sourceCellId": 61,
+      "originalIncludedPixelCount": 2000,
+      "rawExposedUnitFaces": 298,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 6,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "81000d4e5368e5a9cb30e4433fb79b5c7dd42554b2988924873e1d4cea078576",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "f7b1afde5afb21fc9da4342fade9ce59a02a590adfb3be7355042b047ac15a87",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "d3ec6f2d9f0fa5ed260efc1dd47cc0fcc39f72cee6695a0f330f21c2b1c56418",
+          "pixelCount": 2,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "0f568d80e538a0fda6e55c45cc8d80ef5aaed38ebea68f5ea719332226e12f5f",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "b00550be7a0a37af32229441862443030dec8ed4d410d1d4195000e41358bab2",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 276,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 1.4210854715202004e-14,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:rigoder",
+        "name": "Rigóder",
+        "valid": true,
+        "bbox": [
+          18.2447833446333,
+          46.090541205482815,
+          18.25946684328802,
+          46.100959152571825
+        ],
+        "vertices": 237
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:szabolcs",
+      "name": "Szabolcs",
+      "sourceCellId": 48,
+      "originalIncludedPixelCount": 5241,
+      "rawExposedUnitFaces": 648,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 171,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "affa6f6a54dbecb4e222c153f643819cecbf757623e3e70e5784a43867489225",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "1e399c4e6b8f6c31b291e368808150be504ed3476f771c89e7291a655d8ce736",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "d8198b2b1295f91028472e73805856c20d6f1f42e8918cff0490090acf3eaa0c",
+          "pixelCount": 169,
+          "classification": "original_roman_planning_caption_graphics",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 508,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 1.4210854715202004e-14,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:szabolcs",
+        "name": "Szabolcs",
+        "valid": true,
+        "bbox": [
+          18.26048669764477,
+          46.09816153462552,
+          18.277189131830504,
+          46.123131947238555
+        ],
+        "vertices": 464
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:szabolcsizartkert",
+      "name": "Szabolcsi zártkert",
+      "sourceCellId": 52,
+      "originalIncludedPixelCount": 2244,
+      "rawExposedUnitFaces": 370,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedExposedUnitFaces": 370,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 1.0658141036401503e-14,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:szabolcsizartkert",
+        "name": "Szabolcsi zártkert",
+        "valid": true,
+        "bbox": [
+          18.27668380207477,
+          46.0975120336533,
+          18.291366040639833,
+          46.11230300422915
+        ],
+        "vertices": 304
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:meszes",
+      "name": "Meszes",
+      "sourceCellId": 58,
+      "originalIncludedPixelCount": 5844,
+      "rawExposedUnitFaces": 536,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 2,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "52b10bc7620d652c31556b79b849736fec3b1b6d58fe5a88685507658c3cc200",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "2fbe5a28eec7f202794b3ba65f591822be260f1c7ff84dbdd2ba3b83d9a6744b",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 528,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 7.105427357601002e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:meszes",
+        "name": "Meszes",
+        "valid": true,
+        "bbox": [
+          18.257185279631067,
+          46.0829838694573,
+          18.28756411978474,
+          46.102557010204855
+        ],
+        "vertices": 442
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:dios",
+      "name": "Diós",
+      "sourceCellId": 72,
+      "originalIncludedPixelCount": 754,
+      "rawExposedUnitFaces": 172,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedExposedUnitFaces": 172,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 1.0658141036401503e-14,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:dios",
+        "name": "Diós",
+        "valid": true,
+        "bbox": [
+          18.254653040040935,
+          46.08171649059728,
+          18.261484364419477,
+          46.09182321728923
+        ],
+        "vertices": 166
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:budaikulvaros",
+      "name": "Budai külváros",
+      "sourceCellId": 76,
+      "originalIncludedPixelCount": 1127,
+      "rawExposedUnitFaces": 214,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 2,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "720d8bb1a8b7b1fba61f93a4d22e2007b613b2894402069bf99bc6ac6aac06bc",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "b2bdaaf3f7fca9fbe5c3ec3e6637cae7fded06b6fef051afa8e504b51032ed17",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 206,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 1.4210854715202004e-14,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:budaikulvaros",
+        "name": "Budai külváros",
+        "valid": true,
+        "bbox": [
+          18.2465511806839,
+          46.07972236232948,
+          18.25768533345563,
+          46.089663930673865
+        ],
+        "vertices": 173
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:budaivaros",
+      "name": "Budaiváros",
+      "sourceCellId": 80,
+      "originalIncludedPixelCount": 1445,
+      "rawExposedUnitFaces": 228,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedExposedUnitFaces": 228,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 1.0658141036401503e-14,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:budaivaros",
+        "name": "Budaiváros",
+        "valid": true,
+        "bbox": [
+          18.236680460137787,
+          46.07481640393785,
+          18.253129664939,
+          46.082696704041076
+        ],
+        "vertices": 154
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:eszakmegyer",
+      "name": "Észak-Megyer",
+      "sourceCellId": 104,
+      "originalIncludedPixelCount": 3223,
+      "rawExposedUnitFaces": 370,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "d138a44e0880445be800a909aa117e7c05bee7da9f6ac0aef0f18cad402266c6",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 366,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 4.263256414560601e-14,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:eszakmegyer",
+        "name": "Észak-Megyer",
+        "valid": true,
+        "bbox": [
+          18.20758681731519,
+          46.05150959537684,
+          18.23161844911399,
+          46.0658703262582
+        ],
+        "vertices": 268
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:szigetitanya",
+      "name": "Szigeti tanya",
+      "sourceCellId": 118,
+      "originalIncludedPixelCount": 1162,
+      "rawExposedUnitFaces": 214,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "b4229adb0feb813d3a8038bd1eae1746a8cc12d45084fbae2826eb2f42a076c9",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 210,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 3.552713678800501e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:szigetitanya",
+        "name": "Szigeti tanya",
+        "valid": true,
+        "bbox": [
+          18.19443287045752,
+          46.05137655711404,
+          18.206321102204452,
+          46.06157220493107
+        ],
+        "vertices": 177
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:fogado",
+      "name": "Fogadó",
+      "sourceCellId": 105,
+      "originalIncludedPixelCount": 2128,
+      "rawExposedUnitFaces": 464,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 111,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "772bea878fca611ab174f8b0a81fabc276b73e113a02058e1c98b4c80fe74b96",
+          "pixelCount": 110,
+          "classification": "original_roman_planning_caption_graphics",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "4943398de052f433f8b17ec7bd02092706ca2d8882ccee48f7935c47f4171abc",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 354,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 7.105427357601002e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:fogado",
+        "name": "Fogadó",
+        "valid": true,
+        "bbox": [
+          18.146114666946442,
+          46.0581179385604,
+          18.177737873677312,
+          46.064598459895656
+        ],
+        "vertices": 173
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:bolgarkert",
+      "name": "Bolgárkert",
+      "sourceCellId": 106,
+      "originalIncludedPixelCount": 1122,
+      "rawExposedUnitFaces": 178,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "bbdf8bbea5f0c052f2739070714a44201370e1d4e196cacad2f338968dedff22",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 174,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 7.105427357601002e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:bolgarkert",
+        "name": "Bolgárkert",
+        "valid": true,
+        "bbox": [
+          18.17570890801311,
+          46.05743696729952,
+          18.186840511240835,
+          46.06433139727759
+        ],
+        "vertices": 114
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:nyugatiipariut",
+      "name": "Nyugati ipari út",
+      "sourceCellId": 122,
+      "originalIncludedPixelCount": 1026,
+      "rawExposedUnitFaces": 216,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedExposedUnitFaces": 216,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 3.552713678800501e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:nyugatiipariut",
+        "name": "Nyugati ipari út",
+        "valid": true,
+        "bbox": [
+          18.176220964961974,
+          46.053833310940774,
+          18.194688856159612,
+          46.05879303866397
+        ],
+        "vertices": 112
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:uszogitarozomajor",
+      "name": "Üszögi tározó-major",
+      "sourceCellId": 95,
+      "originalIncludedPixelCount": 3350,
+      "rawExposedUnitFaces": 440,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 13,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "206e57b7a7e5a33f1f71b7887524bc5317de3daf4179a7c804a7ba3332334596",
+          "pixelCount": 12,
+          "classification": "original_roman_planning_caption_graphics",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        },
+        {
+          "sourcePixelSetSha256": "80d7bfc07a877200e2e6b4b0bd017b54dd101887bb06d2a587bc2cf5b7ad264c",
+          "pixelCount": 1,
+          "classification": "one_or_two_pixel_local_contrast_or_jpeg_mask_artifact",
+          "allOriginalMask": true,
+          "otherMappedFreeCellContainedOrTouched": false
+        }
+      ],
+      "interpretedExposedUnitFaces": 422,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 7.105427357601002e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:uszogitarozomajor",
+        "name": "Üszögi tározó-major",
+        "valid": true,
+        "bbox": [
+          18.276147759338393,
+          46.05473991018186,
+          18.292838963960122,
+          46.07176645409256
+        ],
+        "vertices": 339
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:peterpuszta",
+      "name": "Péterpuszta",
+      "sourceCellId": 177,
+      "originalIncludedPixelCount": 236,
+      "rawExposedUnitFaces": 142,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedExposedUnitFaces": 142,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 7.105427357601002e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:peterpuszta",
+        "name": "Péterpuszta",
+        "valid": true,
+        "bbox": [
+          18.202290570277707,
+          46.02301394378556,
+          18.211643118104714,
+          46.02858697077143
+        ],
+        "vertices": 110
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:jozsefhaza",
+      "name": "Józsefháza",
+      "sourceCellId": 39,
+      "originalIncludedPixelCount": 111,
+      "rawExposedUnitFaces": 62,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedExposedUnitFaces": 62,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 3.552713678800501e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:jozsefhaza",
+        "name": "Józsefháza",
+        "valid": true,
+        "bbox": [
+          18.272411157127554,
+          46.135809799073705,
+          18.27544890451318,
+          46.13918285506528
+        ],
+        "vertices": 54
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:ruckerakna",
+      "name": "Rücker-akna",
+      "sourceCellId": 42,
+      "originalIncludedPixelCount": 38,
+      "rawExposedUnitFaces": 36,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedExposedUnitFaces": 36,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 0.0,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:ruckerakna",
+        "name": "Rücker-akna",
+        "valid": true,
+        "bbox": [
+          18.294950591959537,
+          46.13207821263476,
+          18.29672350997428,
+          46.13384955102068
+        ],
+        "vertices": 34
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:istvanakna",
+      "name": "István-akna",
+      "sourceCellId": 46,
+      "originalIncludedPixelCount": 338,
+      "rawExposedUnitFaces": 112,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedExposedUnitFaces": 112,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 7.105427357601002e-15,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:istvanakna",
+        "name": "István-akna",
+        "valid": true,
+        "bbox": [
+          18.27898615653019,
+          46.12203106895216,
+          18.283543077930492,
+          46.12805500679572
+        ],
+        "vertices": 98
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    },
+    {
+      "id": "pecs-remaining:floriantelep",
+      "name": "Flóriántelep",
+      "sourceCellId": 24,
+      "originalIncludedPixelCount": 31,
+      "rawExposedUnitFaces": 28,
+      "rawFaceMismatchCount": 0,
+      "restoredExactOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedExposedUnitFaces": 28,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "residualHoles": 0,
+      "pixelOverlapWithOldOrOtherNewCells": 0,
+      "worldProjectionMaximumErrorDegrees": 0.0,
+      "geosValid": true,
+      "strictJsValidation": {
+        "id": "pecs-remaining:floriantelep",
+        "name": "Flóriántelep",
+        "valid": true,
+        "bbox": [
+          18.320558891145517,
+          46.147179633620496,
+          18.32182700476748,
+          46.14878123772218
+        ],
+        "vertices": 26
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false
+    }
+  ]
+}

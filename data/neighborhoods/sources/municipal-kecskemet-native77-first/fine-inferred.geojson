@@ -1,0 +1,509 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "manual:kecskemet-figure77:kosafalu",
+      "properties": {
+        "name": "Kósafalu",
+        "sourceLabel": "Kósafalu",
+        "municipality": "Kecskemét",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "sourceSemanticKind": "distinct_residential_quarter",
+        "canonicalNameIsNeighborhood": false,
+        "estimated": true,
+        "sourceNativeContourVerified": true,
+        "sourceScopeNote": "Separately named residential quarter expressly identified in PDF164 prose.",
+        "method": "Literal decimal m/l paths from the original municipal PDF Figure 77 Form stream. Only original nonzero line segments are polygonized, independently per source stroke object; no noding, buffer, repair, snap, simplification, image-frame closure or invented connecting edge. The central source cell retains both original holes. Six manually interpreted historical-map road junctions and literal current OSM-node coordinates fit an affine transform in EOV/EPSG:23700; a candidate southern road-junction/cycleway attachment is held out, with physical identity unconfirmed. Geographic placement is an explicit unverified estimate. Source contours are transformed to WGS84 without replacing them by current roads.",
+        "evidenceUrls": [
+          "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+        ],
+        "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name points.",
+        "sourcePeriod": "2021 May municipal consultation draft; underlying orthophoto date unknown.",
+        "sourceDocuments": [
+          {
+            "url": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+            "sha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+            "pdfPageOneBased": 163,
+            "printedPage": 161,
+            "figure": 77,
+            "originalSourceFormXref": 188,
+            "sourceFormStreamSha256": "1a572f913226e234c8862baa59118bf79468977d7f8bef079775cf4e1bb50d07"
+          }
+        ],
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteAccuracyMeters": null,
+        "usableForAddressAssignment": false,
+        "geometryVerificationStatus": "native_source_contour_verified_geographic_placement_inferred",
+        "reviewStatus": "estimated_candidate_not_verified",
+        "sourcePathContinuesBeyondDisplayedImageCrop": false,
+        "currentNameEvidence": {
+          "status": "exact_current_osm_name_point",
+          "currentNameIndependentlyConfirmed": true,
+          "osmPointId": "osm:node:1306536270",
+          "currentOsmPointCoveredByHistoricalEstimatedPolygon": true,
+          "namePointDoesNotVerifyBoundaryExtent": true
+        },
+        "areaM2": 365908.8031368968,
+        "perimeterM": 2571.0803823808237,
+        "attribution": "Source: Kecskemét MJV Megalapozó Vizsgálat II, May 2021 consultation draft, Figure 77; geographical controls ©OpenStreetMap contributors.",
+        "reviewNotes": [
+          "Every contour edge is an original native PDF line segment, including original portions beyond the displayed map crop.",
+          "Map registration uses manual source junction interpretation. Residuals and a held-out visual match do not calibrate absolute boundary accuracy.",
+          "Industrial function alone is not grounds for discarding a source-named cell; its documented local/economic scope is retained.",
+          "The source-map reuse license, current exact boundary extent, legal status and address assignment remain unverified."
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.689875496967286,
+              46.88252946016423
+            ],
+            [
+              19.690307359788388,
+              46.882493809227235
+            ],
+            [
+              19.691103621572026,
+              46.882438640924654
+            ],
+            [
+              19.691477902182132,
+              46.882407839254995
+            ],
+            [
+              19.692894384211325,
+              46.88231580636663
+            ],
+            [
+              19.69299836983023,
+              46.88297650336703
+            ],
+            [
+              19.69304823121759,
+              46.88297618657961
+            ],
+            [
+              19.693314018732277,
+              46.88295729029947
+            ],
+            [
+              19.693580920174764,
+              46.88293913445789
+            ],
+            [
+              19.693840107851297,
+              46.88292626404908
+            ],
+            [
+              19.69410368487327,
+              46.88290812812636
+            ],
+            [
+              19.69437057970723,
+              46.882889222332444
+            ],
+            [
+              19.694636415124133,
+              46.8828763077959
+            ],
+            [
+              19.69491993613752,
+              46.88285804298683
+            ],
+            [
+              19.69521121315172,
+              46.88283972804594
+            ],
+            [
+              19.69550248385484,
+              46.882820664257416
+            ],
+            [
+              19.695783831036792,
+              46.88280764815051
+            ],
+            [
+              19.69607510748197,
+              46.882789331002094
+            ],
+            [
+              19.696366383728076,
+              46.882771013109405
+            ],
+            [
+              19.69664988521085,
+              46.88275049968769
+            ],
+            [
+              19.69677282702202,
+              46.88274372947347
+            ],
+            [
+              19.6967997889729,
+              46.88292385960294
+            ],
+            [
+              19.696859622551983,
+              46.882923477460125
+            ],
+            [
+              19.69695043802238,
+              46.88291766038649
+            ],
+            [
+              19.697250529804798,
+              46.88289329878546
+            ],
+            [
+              19.697373428900576,
+              46.88288129120099
+            ],
+            [
+              19.69736666474775,
+              46.882056881420006
+            ],
+            [
+              19.697500000167015,
+              46.881831586359155
+            ],
+            [
+              19.697918970995527,
+              46.88022788196569
+            ],
+            [
+              19.69811383323466,
+              46.87953535144847
+            ],
+            [
+              19.698389108401035,
+              46.87892086082753
+            ],
+            [
+              19.698723097264818,
+              46.87803666203384
+            ],
+            [
+              19.69888793639261,
+              46.87760243152244
+            ],
+            [
+              19.69907544747614,
+              46.877096233747274
+            ],
+            [
+              19.695739476414207,
+              46.877381653422894
+            ],
+            [
+              19.689444971841063,
+              46.87791764330669
+            ],
+            [
+              19.689613418533632,
+              46.87902158401281
+            ],
+            [
+              19.68972551128619,
+              46.880693720575685
+            ],
+            [
+              19.689809946895867,
+              46.88195829444907
+            ],
+            [
+              19.689875496967286,
+              46.88252946016423
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:kecskemet-figure77:muszaj",
+      "properties": {
+        "name": "Muszáj",
+        "sourceLabel": "Muszáj",
+        "municipality": "Kecskemét",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "sourceSemanticKind": "distinct_residential_quarter",
+        "canonicalNameIsNeighborhood": false,
+        "estimated": true,
+        "sourceNativeContourVerified": true,
+        "sourceScopeNote": "Separately named residential quarter expressly identified in PDF164 prose.",
+        "method": "Literal decimal m/l paths from the original municipal PDF Figure 77 Form stream. Only original nonzero line segments are polygonized, independently per source stroke object; no noding, buffer, repair, snap, simplification, image-frame closure or invented connecting edge. The central source cell retains both original holes. Six manually interpreted historical-map road junctions and literal current OSM-node coordinates fit an affine transform in EOV/EPSG:23700; a candidate southern road-junction/cycleway attachment is held out, with physical identity unconfirmed. Geographic placement is an explicit unverified estimate. Source contours are transformed to WGS84 without replacing them by current roads.",
+        "evidenceUrls": [
+          "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+        ],
+        "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name points.",
+        "sourcePeriod": "2021 May municipal consultation draft; underlying orthophoto date unknown.",
+        "sourceDocuments": [
+          {
+            "url": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+            "sha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+            "pdfPageOneBased": 163,
+            "printedPage": 161,
+            "figure": 77,
+            "originalSourceFormXref": 188,
+            "sourceFormStreamSha256": "1a572f913226e234c8862baa59118bf79468977d7f8bef079775cf4e1bb50d07"
+          }
+        ],
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteAccuracyMeters": null,
+        "usableForAddressAssignment": false,
+        "geometryVerificationStatus": "native_source_contour_verified_geographic_placement_inferred",
+        "reviewStatus": "estimated_candidate_not_verified",
+        "sourcePathContinuesBeyondDisplayedImageCrop": false,
+        "currentNameEvidence": {
+          "status": "exact_current_osm_name_point",
+          "currentNameIndependentlyConfirmed": true,
+          "osmPointId": "osm:node:984225121",
+          "currentOsmPointCoveredByHistoricalEstimatedPolygon": true,
+          "namePointDoesNotVerifyBoundaryExtent": true
+        },
+        "areaM2": 91032.19048903883,
+        "perimeterM": 1269.0267367221038,
+        "attribution": "Source: Kecskemét MJV Megalapozó Vizsgálat II, May 2021 consultation draft, Figure 77; geographical controls ©OpenStreetMap contributors.",
+        "reviewNotes": [
+          "Every contour edge is an original native PDF line segment, including original portions beyond the displayed map crop.",
+          "Map registration uses manual source junction interpretation. Residuals and a held-out visual match do not calibrate absolute boundary accuracy.",
+          "Industrial function alone is not grounds for discarding a source-named cell; its documented local/economic scope is retained.",
+          "The source-map reuse license, current exact boundary extent, legal status and address assignment remain unverified."
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.70210905271058,
+              46.892994989191166
+            ],
+            [
+              19.700791565367382,
+              46.89262639188418
+            ],
+            [
+              19.699899034300618,
+              46.89419423904375
+            ],
+            [
+              19.69934824687241,
+              46.89514117630239
+            ],
+            [
+              19.699707048873663,
+              46.89523912775174
+            ],
+            [
+              19.700959067658978,
+              46.89559169916194
+            ],
+            [
+              19.70180435051088,
+              46.89541120287334
+            ],
+            [
+              19.70304321249113,
+              46.895112204376424
+            ],
+            [
+              19.704388542285386,
+              46.894822979470355
+            ],
+            [
+              19.704855378599408,
+              46.894717471171965
+            ],
+            [
+              19.705102794383052,
+              46.894615622586976
+            ],
+            [
+              19.705360214891336,
+              46.89451744953759
+            ],
+            [
+              19.70551915512786,
+              46.89443861584043
+            ],
+            [
+              19.705609426273618,
+              46.89436546270181
+            ],
+            [
+              19.705649762779377,
+              46.89428515079226
+            ],
+            [
+              19.705714663300036,
+              46.894093955032766
+            ],
+            [
+              19.705779118321143,
+              46.893982065203325
+            ],
+            [
+              19.70294436158152,
+              46.89322004134255
+            ],
+            [
+              19.70210905271058,
+              46.892994989191166
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:kecskemet-figure77:rendorfalu",
+      "properties": {
+        "name": "Rendőrfalu",
+        "sourceLabel": "Rendőrfalu",
+        "municipality": "Kecskemét",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "sourceSemanticKind": "distinct_residential_quarter",
+        "canonicalNameIsNeighborhood": false,
+        "estimated": true,
+        "sourceNativeContourVerified": true,
+        "sourceScopeNote": "Separately named residential quarter expressly identified in PDF164 prose.",
+        "method": "Literal decimal m/l paths from the original municipal PDF Figure 77 Form stream. Only original nonzero line segments are polygonized, independently per source stroke object; no noding, buffer, repair, snap, simplification, image-frame closure or invented connecting edge. The central source cell retains both original holes. Six manually interpreted historical-map road junctions and literal current OSM-node coordinates fit an affine transform in EOV/EPSG:23700; a candidate southern road-junction/cycleway attachment is held out, with physical identity unconfirmed. Geographic placement is an explicit unverified estimate. Source contours are transformed to WGS84 without replacing them by current roads.",
+        "evidenceUrls": [
+          "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+        ],
+        "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name points.",
+        "sourcePeriod": "2021 May municipal consultation draft; underlying orthophoto date unknown.",
+        "sourceDocuments": [
+          {
+            "url": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+            "sha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+            "pdfPageOneBased": 163,
+            "printedPage": 161,
+            "figure": 77,
+            "originalSourceFormXref": 188,
+            "sourceFormStreamSha256": "1a572f913226e234c8862baa59118bf79468977d7f8bef079775cf4e1bb50d07"
+          }
+        ],
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteAccuracyMeters": null,
+        "usableForAddressAssignment": false,
+        "geometryVerificationStatus": "native_source_contour_verified_geographic_placement_inferred",
+        "reviewStatus": "estimated_candidate_not_verified",
+        "sourcePathContinuesBeyondDisplayedImageCrop": false,
+        "currentNameEvidence": {
+          "status": "exact_current_osm_name_point",
+          "currentNameIndependentlyConfirmed": true,
+          "osmPointId": "osm:node:984225124",
+          "currentOsmPointCoveredByHistoricalEstimatedPolygon": true,
+          "namePointDoesNotVerifyBoundaryExtent": true
+        },
+        "areaM2": 429291.94109126925,
+        "perimeterM": 2762.202130533345,
+        "attribution": "Source: Kecskemét MJV Megalapozó Vizsgálat II, May 2021 consultation draft, Figure 77; geographical controls ©OpenStreetMap contributors.",
+        "reviewNotes": [
+          "Every contour edge is an original native PDF line segment, including original portions beyond the displayed map crop.",
+          "Map registration uses manual source junction interpretation. Residuals and a held-out visual match do not calibrate absolute boundary accuracy.",
+          "Industrial function alone is not grounds for discarding a source-named cell; its documented local/economic scope is retained.",
+          "The source-map reuse license, current exact boundary extent, legal status and address assignment remain unverified."
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.689875496967286,
+              46.88252946016423
+            ],
+            [
+              19.687662871399468,
+              46.882831469828325
+            ],
+            [
+              19.685992548153326,
+              46.88305371526069
+            ],
+            [
+              19.685045020112277,
+              46.883178627330054
+            ],
+            [
+              19.682269271492977,
+              46.883600778834705
+            ],
+            [
+              19.682810310338695,
+              46.884893919676436
+            ],
+            [
+              19.683225988067324,
+              46.885887090994665
+            ],
+            [
+              19.683590852843448,
+              46.88675938058173
+            ],
+            [
+              19.68414357865734,
+              46.88812052264284
+            ],
+            [
+              19.684820603317803,
+              46.88963948727193
+            ],
+            [
+              19.6852361581211,
+              46.89060796339086
+            ],
+            [
+              19.68549225958471,
+              46.891314094925654
+            ],
+            [
+              19.68551726133067,
+              46.89139174439511
+            ],
+            [
+              19.685967858568652,
+              46.891333548398606
+            ],
+            [
+              19.68892425323186,
+              46.890865280142336
+            ],
+            [
+              19.689548376441547,
+              46.89074986314897
+            ],
+            [
+              19.690237729161012,
+              46.89061532643508
+            ],
+            [
+              19.69004886637652,
+              46.886712719703894
+            ],
+            [
+              19.689875496967286,
+              46.88252946016423
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

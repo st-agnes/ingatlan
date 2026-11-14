@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "primaryFeatureCount": 2,
+  "estimatedFeatureCount": 2,
+  "unexportedSourceUnitCount": 2,
+  "inputs": {
+    "page175-xref216.jpeg": "4d9d33cf34268d28653d0955b8619e515653b29cea59914397246eaa7589f1ec",
+    "source-extraction.json": "ac1b1628baa580fbeb32118d7be5088953ea30e24a37f50a83b23aa3ecf7bcea",
+    "control-roads.geojson": "2b3222aa9c78e24c492a1b4e34c5f3ec551d5671d6f1a92a38bcd4e26f3fc0ff",
+    "control-specification.json": "1781daafee14232f8afb94f29103262672dad366f5287001cdac6227d1690fb4",
+    "trace-figure81-pixels.py": "45c09dc41a764993ceeac1891892d466e670c4f371c14d9e58e7570057a7693d",
+    "visual-review.json": "5e837c667741ed1d814de8cc405744c6d69ea8248dfa0e30297fae4bdf220ad0"
+  },
+  "converterPath": "scripts/neighborhoods/derive-kecskemet-fig81.py",
+  "converterSha256": "6931edf776c8f4b62bd90cec3e1898cd9c9dc0da46cc312325401efd5f941789",
+  "generatedArtifactsSha256": {
+    "szechenyi-source-raster.geojson": "06ccbe775220cf9260abcc184c87a7620cfffa5d931d156eda3fa1d3f3a2c000",
+    "szechenyi-label-inferred.geojson": "a141e2a7f899672f9c833c21994d65b1fd512e4484ddacc183b082581e529b85",
+    "raster-pixel-trace.json": "79cef4eb05dc6f0a310dd92986e9eeb4218e8654d2af249f1317c5124475fb67",
+    "raster-georeference.json": "8876f968de1884efcf7e012503711be6e36568f49e0a7d80ba75cd95df61b22f",
+    "conversion-proof.json": "bfcd1c559ff623e52f624de611b4d1c27d0df371a77b952cfb05b813bc5491ed",
+    "registry-entry.json": "d9ffd325147a6dafa8d2861e37c793753ced7a0c0ad29525bd63c3e1ae6d2a2e",
+    "inferred-registry-entry.json": "590b6fec6309f80acd2995bbe1f0734c94528afef06bbbeab1efa80864d0f32c"
+  },
+  "independentReviewPath": "data/neighborhoods/sources/municipal-kecskemet-fig81/raster-independent-review.json",
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false
+}

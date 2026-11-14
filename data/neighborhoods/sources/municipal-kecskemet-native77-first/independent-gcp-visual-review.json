@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "sourceImageSha256": "aade7bbf6f1143e6ebe9b4536061dac806f52418673fd293684354db12993240",
+  "method": "Independent visual inspection of the exact embedded historical JPEG, enlarged with nearest-neighbor sampling and original-image pixel coordinate axes. No geographic model prediction or native boundary/label overlay was drawn on these independent measurement crops. Original proposed source points were known before inspection, so this was model-independent review rather than a blinded localization experiment.",
+  "sourceImagePixelToPdfPagePoint": {
+    "origin": [
+      98.1500015258789,
+      211.8450927734375
+    ],
+    "scale": [
+      0.3600170238597973,
+      0.3600991749322817
+    ]
+  },
+  "fittedControlVisualChecks": [
+    {
+      "id": "kiskorosi-konyves",
+      "osmNodeId": 495569829,
+      "roadCorridorIdentityPlausibleFromHistoricalImageAndCurrentNetwork": true,
+      "sourceImagePixelRoadCenterInspectionBox": [
+        139,
+        425,
+        145,
+        431
+      ],
+      "exactHistoricalAndModernJunctionCenterIdentityVerified": false,
+      "sourceFeatureIdentityUnconfirmed": true,
+      "comment": "The historical image contains a plausible corresponding physical road junction. Road names are supplied by current OSM network context; the unlabelled historical image alone does not independently name or date the precise current node center. Visual localization has several-pixel interpretation width."
+    },
+    {
+      "id": "halasi-konyves",
+      "osmNodeId": 495569801,
+      "roadCorridorIdentityPlausibleFromHistoricalImageAndCurrentNetwork": true,
+      "sourceImagePixelRoadCenterInspectionBox": [
+        256,
+        482,
+        262,
+        491
+      ],
+      "exactHistoricalAndModernJunctionCenterIdentityVerified": false,
+      "sourceFeatureIdentityUnconfirmed": true,
+      "comment": "The historical image contains a plausible corresponding physical road junction. Road names are supplied by current OSM network context; the unlabelled historical image alone does not independently name or date the precise current node center. Visual localization has several-pixel interpretation width."
+    },
+    {
+      "id": "matkoi-szent-laszlo",
+      "osmNodeId": 495569764,
+      "roadCorridorIdentityPlausibleFromHistoricalImageAndCurrentNetwork": true,
+      "sourceImagePixelRoadCenterInspectionBox": [
+        383,
+        503,
+        391,
+        512
+      ],
+      "exactHistoricalAndModernJunctionCenterIdentityVerified": false,
+      "sourceFeatureIdentityUnconfirmed": true,
+      "comment": "The historical image contains a plausible corresponding physical road junction. Road names are supplied by current OSM network context; the unlabelled historical image alone does not independently name or date the precise current node center. Visual localization has several-pixel interpretation width."
+    },
+    {
+      "id": "matkoi-mindszenti",
+      "osmNodeId": 494064578,
+      "roadCorridorIdentityPlausibleFromHistoricalImageAndCurrentNetwork": true,
+      "sourceImagePixelRoadCenterInspectionBox": [
+        388,
+        300,
+        396,
+        309
+      ],
+      "exactHistoricalAndModernJunctionCenterIdentityVerified": false,
+      "sourceFeatureIdentityUnconfirmed": true,
+      "comment": "The historical image contains a plausible corresponding physical road junction. Road names are supplied by current OSM network context; the unlabelled historical image alone does not independently name or date the precise current node center. Visual localization has several-pixel interpretation width."
+    },
+    {
+      "id": "halasi-mindszenti",
+      "osmNodeId": 314897620,
+      "roadCorridorIdentityPlausibleFromHistoricalImageAndCurrentNetwork": true,
+      "sourceImagePixelRoadCenterInspectionBox": [
+        310,
+        283,
+        318,
+        292
+      ],
+      "exactHistoricalAndModernJunctionCenterIdentityVerified": false,
+      "sourceFeatureIdentityUnconfirmed": true,
+      "comment": "The historical image contains a plausible corresponding physical road junction. Road names are supplied by current OSM network context; the unlabelled historical image alone does not independently name or date the precise current node center. Visual localization has several-pixel interpretation width."
+    },
+    {
+      "id": "mindszenti-mester",
+      "osmNodeId": 1943809333,
+      "roadCorridorIdentityPlausibleFromHistoricalImageAndCurrentNetwork": true,
+      "sourceImagePixelRoadCenterInspectionBox": [
+        922,
+        241,
+        932,
+        250
+      ],
+      "exactHistoricalAndModernJunctionCenterIdentityVerified": false,
+      "sourceFeatureIdentityUnconfirmed": true,
+      "comment": "The historical image contains a plausible corresponding physical road junction. Road names are supplied by current OSM network context; the unlabelled historical image alone does not independently name or date the precise current node center. Visual localization has several-pixel interpretation width."
+    }
+  ],
+  "heldOutCandidate": {
+    "osmNodeId": 4405130517,
+    "sourceFeatureIdentityUnconfirmed": true,
+    "exactHistoricalAndModernPointIdentityVerified": false,
+    "actualModernWayTypes": [
+      "unclassified Daimler út",
+      "cycleway",
+      "cycleway"
+    ],
+    "identityCaution": "Modern cycleway attachment versus historical road junction center. The current OSM point is the connection of two cycleways at the southwestern end of a Daimler road bend, not an independently established historical road T-junction center.",
+    "independentlyInspectedVisibleRoadJunctionImagePixelBox": [
+      657,
+      925,
+      666,
+      934
+    ],
+    "approximateVisibleRoadCenterImagePixel": [
+      661,
+      930
+    ],
+    "measuredFeatureIsNotProvedCounterpartOfModernNode": true,
+    "usedInFit": false,
+    "producerSourcePointOrWindowAlteredByReviewer": false,
+    "strictPredictionFailureMustRemainVisible": true
+  },
+  "residualsNotUsedAsIdentityProof": true,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "primaryGeographicRegistrationApproved": false,
+  "approval": "Inferred display only, preserving explicit uncertainty of geographic point identity and southern extrapolation.",
+  "crops": {
+    "independent-six-gcp-original-jpeg-crops.png": "8f1ea7df9c0b5761bc59d84ee28faab2b3a99e32175814951765ee397b3556dd",
+    "independent-heldout-original-jpeg-crop.png": "40153272e8cdc21e35460cb114ff5ea777042af6a1c3f3914d7445bbbe02326e"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "pecs-two-explicit-low-confidence-cap-reconstructions",
+  "path": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/reconstructed-cap-inferred.geojson",
+  "sha256": "2ebf355e13e20b2e57cbe88b18bf12c29fb449bdb62b51cc23f35aad5a49d5df",
+  "municipality": "Pécs",
+  "method": "Two explicitly low-confidence reconstructions with confirmed literal open chains and separately listed uncertain cap segments. Full ring sourceContourIsObserved=false; all inferred edges and alternative chords are retained. Frozen geographic placement is unverified.",
+  "evidenceUrls": [
+    "https://logoweb.pecs.hu/download/koncepcio/ITS.pdf"
+  ],
+  "license": "Municipal map reuse rights unverified; ODbL for archived OSM calibration evidence.",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false,
+    "sourceContourIsObserved": false,
+    "reconstructionConfidence": "low"
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/independent-cap-review.json",
+  "uncertainties": [
+    "Geographic placement remains unverified; claimedAbsoluteAccuracy=null, no primary or automatic address approval.",
+    "Historic names/geometry do not establish current legal boundaries or municipal-map reuse rights.",
+    "The complete rings include explicitly inferred uncertain caps and are not fully observed contours."
+  ],
+  "rightsStatus": "Public municipal publication; unrestricted map redistribution/reuse licence unverified.",
+  "registryEntryAppliedByThisBatch": false
+}

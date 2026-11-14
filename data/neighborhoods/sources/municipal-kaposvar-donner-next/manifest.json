@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "status": "FROZEN_REVIEWED_LOW_CONFIDENCE_INFERRED_CANDIDATE",
+  "freezeDate": "2026-11-14",
+  "municipality": "Kaposvár",
+  "name": "Donner",
+  "newPrimaryFeatureCount": 0,
+  "newEstimatedFineCandidateCount": 1,
+  "usableForAddressAssignment": false,
+  "candidatePath": "donner-candidate.geojson",
+  "candidateSha256": "aef93bcb4722d7d72892dd179e21d5bd4901533cbec4317138602b204b5252bc",
+  "registryCandidatePath": "inferred-registry-entry.json",
+  "sourcePdf": {
+    "path": ".local/neighborhoods/supplement-originals/kaposvar-fvs.pdf",
+    "sha256": "291aba20ffcc41e604ad737bb6d132ae51b51d70303285e36702e4fc04e6901e",
+    "bytes": 6965334,
+    "sourceDate": "2023-07",
+    "documentVersion": "2.0",
+    "planningPeriod": "2021–2027",
+    "pdfPages": [
+      185,
+      186
+    ]
+  },
+  "sourcePbf": {
+    "path": ".local/neighborhoods/hungary-latest.osm.pbf",
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "replicationTimestamp": "2026-11-12T21:23:05Z"
+  },
+  "sourceWayCountUsed": 30,
+  "archivedCompleteWayCount": 120,
+  "ringCoordinateCount": 166,
+  "areaSquareMetresEov": 2728761.492569098,
+  "perimeterMetresEov": 7617.468034357192,
+  "sourceInterpretation": "Distinct Donner identity and four named physical boundaries interpreted from a visibly malformed municipal sentence; same-document p185 equates road67 with Zselici út. No combined Donner–Rómahegy map shape is used.",
+  "sharedCornerNodeRefs": [
+    290209038,
+    27421028
+  ],
+  "analyticalBridgeIntersectionCount": 2,
+  "manualJunctionCapCount": 0,
+  "inventedClosingSegmentCount": 0,
+  "sourceGeoreferencePerformed": false,
+  "geographicGeometryProvenance": "Actual current OpenStreetMap physical-feature coordinates and original node-reference topology.",
+  "geographicAccuracyValidated": false,
+  "claimedAbsoluteAccuracyMetres": null,
+  "sourceAgeUncertaintyMetres": null,
+  "modernRouteCorrespondenceUncertaintyMetres": null,
+  "georeferenceExtrapolationUncertaintyMetres": null,
+  "uncertaintyMeaning": "Null means unquantified, not zero error. Literal current coordinates do not validate the intended historical planning boundary. The two computational intersection models are not physical holdouts.",
+  "confidence": "low",
+  "current2026CanonicalFineNameValidated": false,
+  "compoundParentCloningPerformed": false,
+  "historicalBuiltUpClosureInventedForRomahegy": false,
+  "sourceRights": {
+    "municipalOpenReuseLicenceEstablished": false,
+    "osmGeometryLicence": "ODbL-1.0"
+  },
+  "existingFrozenSourceBatchesModified": false,
+  "globalRegistriesExportsOrDocsModified": false,
+  "independentSourceReviewPath": "independent-source-review.json",
+  "independentGeometryReviewPath": "independent-geometry-review.json",
+  "verification": {
+    "candidateProofPreviewReproduction": "PASS",
+    "pinnedPdfAndSourceCropReproduction": "PASS",
+    "independentNodeTopologyAndCandidateAudit": "PASS",
+    "completePbfReExtractionComparison": "PASS"
+  },
+  "reproductionEnvironment": {
+    "Python": "3.12.14",
+    "PyMuPDF": "1.26.6",
+    "Shapely": "2.1.2",
+    "pyproj": "3.7.2",
+    "PROJ": "9.5.1"
+  },
+  "filesSha256": {
+    "README.txt": "b00cfa73e996a3e5237411c2f896e566ea22dacb19c63936ff8db6a181820d15",
+    "candidate-preview.svg": "814a313b0dc4c593852407f838750c5c68f7aaf898687a803c1aec454408ba17",
+    "construction-proof.json": "0ef21e6c14cf901d0113c1636fbabcd95a45a68fbeaf99908828df490069b2a2",
+    "donner-candidate.geojson": "aef93bcb4722d7d72892dd179e21d5bd4901533cbec4317138602b204b5252bc",
+    "extract_osm.py": "3c80f831ec1df629a2a5dc711b7e2904a5b955a1990d242ad77a9c2bf489d85c",
+    "extract_source_evidence.py": "df7ae5a4ee295018c360674f6fa6dc89d2ba2e4697bf5359860326f662fc6048",
+    "independent-geometry-review.json": "aae35ff3b53f35bf376af1ce9faeb74ccf2b8a8a84a6ae04d0f1288fac0cbd68",
+    "independent-source-review.json": "02324185c090e04248969c2327b42c5eb2d3f39543dfcffbfa2a5c1a73f75119",
+    "independent_audit.py": "d00d645440e58c51481dd544e5bf314ec8818cc8942270387d4eddb10cdeb336",
+    "inferred-registry-entry.json": "646ac483e4c482c46a5970e8c79acfe555fe5d2d94d6c70d72da45f85295f4b1",
+    "literal-roads-waterways.geojson": "b0ad88c5a517f9ddd58ec890a27992544af7853bb6ae235e89d38489e25049a6",
+    "osm-extraction.json": "5b74dee9d95453adf78ef4d2d4de41fe906e73e59027ae026a042b8d6bce64db",
+    "reproduce.py": "946a32dae0dbd8fdc2a76bb3daefc77483f14d00538d6a0865d6e3b0b97bbb9c",
+    "source-evidence.json": "64f6c6ed73f93daac4d2b7c24933d320f74f01e8de3cbb74db76c2491c1794a7",
+    "source-p185-route-name.png": "5646c7ad9f704855c83f11fa0f642ad5a4a51b9e62b04ee051e7605684f49cfe",
+    "source-p186-donner-description.png": "cbdd25a24058e063a21ea785846b1bfd06e8353cb7694e111997a26a350bee70"
+  }
+}

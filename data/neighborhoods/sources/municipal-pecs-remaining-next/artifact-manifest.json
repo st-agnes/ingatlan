@@ -1,0 +1,619 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "status": "frozen_27_additional_observed_source_quarters_inferred_placement_only",
+  "artifactCount": 118,
+  "artifacts": [
+    {
+      "path": "README.txt",
+      "bytes": 7334,
+      "sha256": "4f5c35c493d588b08701cb62444a546689a6383f2e7ef83252d40256348b229d"
+    },
+    {
+      "path": "arpadteto-figure12-native.png",
+      "bytes": 2202,
+      "sha256": "c33f8cf462b24130fd6ad7c43cce8c50e8acbd5939105538b261814992156bf5"
+    },
+    {
+      "path": "arpadteto-figure9-native.png",
+      "bytes": 3970,
+      "sha256": "37cae101b27851654ce966546ee3518d2196b5f73f0d67d07148346007c64d64"
+    },
+    {
+      "path": "assignments.json",
+      "bytes": 91286,
+      "sha256": "f34d7dcef5d1ed1cca152467456cf56c16547b27e627333c48ee04b54ec2a40d"
+    },
+    {
+      "path": "cartographic-hole-decisions.json",
+      "bytes": 49222,
+      "sha256": "9ede2cee438fa98f409eac163ebd48d20f216d55d29574b23b9ebc3e58a9beaa"
+    },
+    {
+      "path": "cartographic-hole-inventory.json",
+      "bytes": 39291,
+      "sha256": "778f9d637bef58600573dbbb0b463194f6d3356a7b8d8adcf1110548eca60874"
+    },
+    {
+      "path": "conversion-proof.json",
+      "bytes": 898529,
+      "sha256": "97455899533fb25c917c3fb60c8f0ac80134491bd11a523e5fbb418db06ffd4b"
+    },
+    {
+      "path": "derive-remaining.py",
+      "bytes": 9941,
+      "sha256": "68eea94e3acfc615ea2c2df502448ce6cc94c45467c01690f3efd66bed095389"
+    },
+    {
+      "path": "first-cohort-assignments-reference.json",
+      "bytes": 31665,
+      "sha256": "c810f2a53c8367474735fa864b279d5abbc22cc24d2497328bc5d65ea6f4d3f9"
+    },
+    {
+      "path": "first-cohort-conversion-reference.json",
+      "bytes": 1442581,
+      "sha256": "129a4ec7ac6373422edf18389d95c799f2c35f30155d81cc846ac6eced091f0b"
+    },
+    {
+      "path": "first-cohort-exclusions.json",
+      "bytes": 4462,
+      "sha256": "c471b63553eade18a102f536d9170bff6732322acfac6ca3127e9ded5103c016"
+    },
+    {
+      "path": "first-cohort-geometry-reference.geojson",
+      "bytes": 974438,
+      "sha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95"
+    },
+    {
+      "path": "first-cohort-semantic-recommendation.json",
+      "bytes": 3300,
+      "sha256": "0e54f646a59226af019152d89b418f479866b3332cafffbf862e53ddfbd25403"
+    },
+    {
+      "path": "freeze-package.py",
+      "bytes": 3175,
+      "sha256": "b57531fcbf18f01e08cc81640147b27f3bfe4ade0a920872d83ba3e97100acec"
+    },
+    {
+      "path": "independent-Hird-XII-figure12-native.png",
+      "bytes": 13067,
+      "sha256": "9371ae434534dddca0eb6b3c8194ae6a314ca5c2e058d193aadcd2b320e5f299"
+    },
+    {
+      "path": "independent-Hird-XII-figure9-native.png",
+      "bytes": 10235,
+      "sha256": "a5444e5adeead6abc17980722f534ea9c8330a5d418890605af3412ec6f13590"
+    },
+    {
+      "path": "independent-audit.py",
+      "bytes": 16589,
+      "sha256": "0a87629dc4ece421b19c4125bd5a465465a6667093d0b4898a9479d58e90c18a"
+    },
+    {
+      "path": "independent-central-I-figure12-native.png",
+      "bytes": 18341,
+      "sha256": "0dc8936f025a622f199ec93aee29baa6e99bfbe027be8a530cb306a0c5922168"
+    },
+    {
+      "path": "independent-central-I-figure9-native.png",
+      "bytes": 9881,
+      "sha256": "8e2838f1b74b2680833a1b904d8eb51a1005b3b439a5e3882841dbc99d02624d"
+    },
+    {
+      "path": "independent-detached-XII-figure12-native.png",
+      "bytes": 23196,
+      "sha256": "a4436cf5bb63e027b98267a313d976045f3197870243f97dd732e8bc77bea8f5"
+    },
+    {
+      "path": "independent-detached-XII-figure9-native.png",
+      "bytes": 26750,
+      "sha256": "7690f1659e92ad910ac633ef0a85152ebeb38b1e71b5f367ed77f8f35d049f47"
+    },
+    {
+      "path": "independent-eastern-VI-figure12-native.png",
+      "bytes": 47430,
+      "sha256": "9f87684410adde83c105f8158222c2d8f2ad361c70075c01275d867a77d2a25b"
+    },
+    {
+      "path": "independent-eastern-VI-figure9-native.png",
+      "bytes": 38700,
+      "sha256": "f5ea34eb0dfc94eb42b8bb4adf47254a3c9a2b8fccb80d07752e1fc61e3b42d3"
+    },
+    {
+      "path": "independent-hole-crops/cell-104-hole-0-native.png",
+      "bytes": 348,
+      "sha256": "fb8a12ec411d2ebcaf07b8b5fbd4f24041e6e0d8c0e642a7244f865cb41af4fa"
+    },
+    {
+      "path": "independent-hole-crops/cell-105-hole-0-native.png",
+      "bytes": 1603,
+      "sha256": "4d4b856e2f281a226e09420f7134c031390b02f27c42d0a9f8c798dde4b85ac0"
+    },
+    {
+      "path": "independent-hole-crops/cell-105-hole-1-native.png",
+      "bytes": 355,
+      "sha256": "a35f01ebff7dd033a70994d996e183c6f7551307ec489798833923974ee1de50"
+    },
+    {
+      "path": "independent-hole-crops/cell-106-hole-0-native.png",
+      "bytes": 326,
+      "sha256": "8d7d06032940fecfe1afc8ef511f715b118cd1946d01653c481a9a25251da847"
+    },
+    {
+      "path": "independent-hole-crops/cell-107-hole-0-native.png",
+      "bytes": 385,
+      "sha256": "dac69ebbafdefdd72f1654d38e918c814d1e5a72ab1f562a466c33eaf2d3a332"
+    },
+    {
+      "path": "independent-hole-crops/cell-118-hole-0-native.png",
+      "bytes": 342,
+      "sha256": "3fea2e29cae44f6df668efdb7d043bf4bdfd0beedb4475adfa31e9065d4d3a0e"
+    },
+    {
+      "path": "independent-hole-crops/cell-48-hole-0-native.png",
+      "bytes": 1783,
+      "sha256": "5abe2f8c25658fa1e65e347555274044a93edf37113e6bd148113b187e91645c"
+    },
+    {
+      "path": "independent-hole-crops/cell-48-hole-1-native.png",
+      "bytes": 381,
+      "sha256": "bb9d3929c74ff2be4b18688506e8a4552b6c4ec534281ecc25fe908b796297f7"
+    },
+    {
+      "path": "independent-hole-crops/cell-48-hole-2-native.png",
+      "bytes": 350,
+      "sha256": "353126016ec6e7b6c3b1289b8d7b17889bdd92f578790b4ff68aa174885e48b5"
+    },
+    {
+      "path": "independent-hole-crops/cell-49-hole-0-native.png",
+      "bytes": 303,
+      "sha256": "ebb60ab467d84f01de2e64acac34d500a2522a21f0530e863107c2f4b291451d"
+    },
+    {
+      "path": "independent-hole-crops/cell-50-hole-0-native.png",
+      "bytes": 375,
+      "sha256": "5f08ecc90e9aa2670a1201bbcefabbd28902f24f8a2ec4b64cb7790d87546465"
+    },
+    {
+      "path": "independent-hole-crops/cell-50-hole-1-native.png",
+      "bytes": 1112,
+      "sha256": "89b1b2539ab8c7fad5983585fcbdf09b523514a808577fda9e5b29271daf65d7"
+    },
+    {
+      "path": "independent-hole-crops/cell-50-hole-2-native.png",
+      "bytes": 496,
+      "sha256": "0566eb1329473363c99cbd984de587072c695613a663072d0adfb2ed427c6791"
+    },
+    {
+      "path": "independent-hole-crops/cell-50-hole-3-native.png",
+      "bytes": 294,
+      "sha256": "2942c584b5dae5e5873b42752106d42f7ae85ada5fc5e341040a6ca1f5b5d5d5"
+    },
+    {
+      "path": "independent-hole-crops/cell-50-hole-4-native.png",
+      "bytes": 291,
+      "sha256": "00db88b2b944f019ea66da78925a3f34bb8d8d408388952e45f422f1189ed6f1"
+    },
+    {
+      "path": "independent-hole-crops/cell-50-hole-5-native.png",
+      "bytes": 304,
+      "sha256": "a1640049268f21776cd2a23b4afd97efec7c9acfe47aad3ebeedb64b145f98bf"
+    },
+    {
+      "path": "independent-hole-crops/cell-50-hole-6-native.png",
+      "bytes": 300,
+      "sha256": "27449ff9b0e7d1c7957022e048780e23072688383646ffe1fc9ae58d9eef390b"
+    },
+    {
+      "path": "independent-hole-crops/cell-55-hole-0-native.png",
+      "bytes": 371,
+      "sha256": "f9235b71e2b80364e343ef716a6f271cb21b1cc34ed4c2f3d6fbba8e9a9729b7"
+    },
+    {
+      "path": "independent-hole-crops/cell-58-hole-0-native.png",
+      "bytes": 400,
+      "sha256": "7936f22c296b28ec0fe67069dc76a8e39913b9bcd91b16bb7db6bb98366578cb"
+    },
+    {
+      "path": "independent-hole-crops/cell-58-hole-1-native.png",
+      "bytes": 406,
+      "sha256": "daa3b084534efa4b8ccba58370d30e85b2d069d3e0c46d5d073b67f015ba5b7b"
+    },
+    {
+      "path": "independent-hole-crops/cell-61-hole-0-native.png",
+      "bytes": 417,
+      "sha256": "7e872f3fbecb600f6b1c98284395a1d0599ab14606289c64c1c89d64beffab57"
+    },
+    {
+      "path": "independent-hole-crops/cell-61-hole-1-native.png",
+      "bytes": 359,
+      "sha256": "eedf777a911406aea939b07ce0c2f4e30380a02c063857aa431b1fe655718527"
+    },
+    {
+      "path": "independent-hole-crops/cell-61-hole-2-native.png",
+      "bytes": 343,
+      "sha256": "9184bfc09912901f96b6faa930c3033ebd1a31ed12776ae4a473e913ee7c59dd"
+    },
+    {
+      "path": "independent-hole-crops/cell-61-hole-3-native.png",
+      "bytes": 382,
+      "sha256": "2d85fa63eefa3a21c6a235f79f56d85d96d7759316f5d99486ffd75b5931cbb1"
+    },
+    {
+      "path": "independent-hole-crops/cell-61-hole-4-native.png",
+      "bytes": 383,
+      "sha256": "c549c5831f3df7b4a1f5910e26b07750c11883e0e096336c80d3b39d0e0dd755"
+    },
+    {
+      "path": "independent-hole-crops/cell-68-hole-0-native.png",
+      "bytes": 351,
+      "sha256": "a8b172b81d6b9387a3fb914c47f05cc85512b2946ab5e0f5c8d74303ad313126"
+    },
+    {
+      "path": "independent-hole-crops/cell-76-hole-0-native.png",
+      "bytes": 397,
+      "sha256": "a2cf44ea2bf8144130343976f86480f48c34a93cf379eb7d37baad4cb6267bf1"
+    },
+    {
+      "path": "independent-hole-crops/cell-76-hole-1-native.png",
+      "bytes": 384,
+      "sha256": "c9de97267131cf1ece661d3a1bede8c883cb3232581e116b8b7b3d879aacaad0"
+    },
+    {
+      "path": "independent-hole-crops/cell-84-hole-0-native.png",
+      "bytes": 416,
+      "sha256": "ba2729ec6e01314c0f5e99eaf6e0d5bab8180dc8c4cad639ddbda9a419382eb8"
+    },
+    {
+      "path": "independent-hole-crops/cell-84-hole-1-native.png",
+      "bytes": 397,
+      "sha256": "e69826f3f9a959c82954ae86c5e4a29139d2e64a5306b79965255b53866f6410"
+    },
+    {
+      "path": "independent-hole-crops/cell-84-hole-2-native.png",
+      "bytes": 329,
+      "sha256": "adfffa41b2700eef38bea6fc8d25fd4f59927205e3f4fafd148fb73420475ed0"
+    },
+    {
+      "path": "independent-hole-crops/cell-84-hole-3-native.png",
+      "bytes": 283,
+      "sha256": "7fade7680752691e62fe3a3daa922b62a48220674166554d8feaa855500e976e"
+    },
+    {
+      "path": "independent-hole-crops/cell-84-hole-4-native.png",
+      "bytes": 376,
+      "sha256": "4dc9408ba4b3db197e432b3b033c875f0d971db24091cb8469f6c6ba6f373861"
+    },
+    {
+      "path": "independent-hole-crops/cell-84-hole-5-native.png",
+      "bytes": 375,
+      "sha256": "ce3cbbbb3ae46a24212b8f342c2d229f9a333251b037e1a2e296745c80ab072b"
+    },
+    {
+      "path": "independent-hole-crops/cell-84-hole-6-native.png",
+      "bytes": 374,
+      "sha256": "b90d05d4e5b0d8b18e8977f92fd71cdb0206dd6574d9fc64c5d04dc6898d979f"
+    },
+    {
+      "path": "independent-hole-crops/cell-95-hole-0-native.png",
+      "bytes": 364,
+      "sha256": "ae18ea388bd3dffb4233ef57767ce422acb5a984ff0fb0516e039537832b7805"
+    },
+    {
+      "path": "independent-hole-crops/cell-95-hole-1-native.png",
+      "bytes": 493,
+      "sha256": "7294db84e0812b9c0ea7175537f6cc355f0ffbbaf2a1857db2da4a57c3fda909"
+    },
+    {
+      "path": "independent-hole-decisions.py",
+      "bytes": 5138,
+      "sha256": "c14d90a77d7141fb57ee269d450fc8426e01caba37d8de9a13587c3d21224fe9"
+    },
+    {
+      "path": "independent-holes-contact-1.png",
+      "bytes": 73968,
+      "sha256": "d00038d6e67a1be3d6b6249d01e9a1e5d5e99baa7d3cf62c68281c3e4c704a66"
+    },
+    {
+      "path": "independent-holes-contact-2.png",
+      "bytes": 46897,
+      "sha256": "99eefa1f1a6f8f2a0c04299889746101e9b79b813a1797d241c12984e19883a4"
+    },
+    {
+      "path": "independent-name-review.json",
+      "bytes": 98414,
+      "sha256": "d9bfb6f2da6c92312c27ad87bd1ad85600762d29d8c271acb51a965e0f41122b"
+    },
+    {
+      "path": "independent-northern-IV-V-figure12-native.png",
+      "bytes": 39475,
+      "sha256": "66b06cf626235243d6b2169cb3da117c36fd049845c79fc0b392349b97d3d090"
+    },
+    {
+      "path": "independent-northern-IV-V-figure9-native.png",
+      "bytes": 26911,
+      "sha256": "d9ece33f202b98f6c3030b45caed0bec54c0ec729be0dfc74dfc34f7fa6fdeaf"
+    },
+    {
+      "path": "independent-pixel-preflight.py",
+      "bytes": 7267,
+      "sha256": "619bf0a14e00a688070b453cbf51a68b0d3e05ebea0a7f5fc8d0fe5f44c69602"
+    },
+    {
+      "path": "independent-pixel-review.json",
+      "bytes": 47466,
+      "sha256": "e1c19f35dc015a73a4303ae71c338d427f3815b63f052fa0ac552f88cccbfc67"
+    },
+    {
+      "path": "independent-review-crop-index.json",
+      "bytes": 5628,
+      "sha256": "a8b8dee2bb93b9b271026a35b3d11a3ba6991dcd0ac059454028b3f0a5ca8e77"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 2647,
+      "sha256": "346629581201c085bc0697d77438a088ce9b2cacc48c3faba1c1e7959fd1c4e3"
+    },
+    {
+      "path": "independent-southeastern-VIII-figure12-native.png",
+      "bytes": 11988,
+      "sha256": "6e893332e08c09fd40da53d87317c6e260040296d65808eda8c94cae1f1da1cc"
+    },
+    {
+      "path": "independent-southeastern-VIII-figure9-native.png",
+      "bytes": 12863,
+      "sha256": "6f6d468e90f16ec0b79f83df5a090e46a0c095688d02fd1d3f349e4bee7560be"
+    },
+    {
+      "path": "independent-southwest-IX-figure12-native.png",
+      "bytes": 24201,
+      "sha256": "f68f5b7a03ef9ee22b7c4eaac831d815bd26a2585504a6c40c29c8d45b40c998"
+    },
+    {
+      "path": "independent-southwest-IX-figure9-native.png",
+      "bytes": 12996,
+      "sha256": "e886226aa0781dac59ea6df433deccc5b2a2ab040ffbc8198d6b42b4a32ad1a8"
+    },
+    {
+      "path": "independent-southwest-XI-figure12-native.png",
+      "bytes": 4389,
+      "sha256": "d8dabebccc288b2909aab4efb5b0f52e6f62cf31a409898f88f24ed935f614cb"
+    },
+    {
+      "path": "independent-southwest-XI-figure9-native.png",
+      "bytes": 4545,
+      "sha256": "4cc83a18efd42ec81b1d75e6746ec263d78a82a5147253583d69bf34a1ea55dc"
+    },
+    {
+      "path": "independent-uszogi-roman-context.png",
+      "bytes": 19629,
+      "sha256": "f34cdf8c7df6fa4b340eda2133ab52792ca334d89bfefca8d162083ed8b0ba28"
+    },
+    {
+      "path": "independent-western-II-X-figure12-native.png",
+      "bytes": 39545,
+      "sha256": "9ceb2804d64444761878af3228a8e5d474bea582a19c4cbcb9ff22186d4dbc95"
+    },
+    {
+      "path": "independent-western-II-X-figure9-native.png",
+      "bytes": 23616,
+      "sha256": "fbe1f49081cdef3a00b78a6b1e2df47d6cdb19625768dabbc948c7269510dce8"
+    },
+    {
+      "path": "independent-western-III-figure12-native.png",
+      "bytes": 38778,
+      "sha256": "4e6e477e72d76a98700b8b0240671995679c6a56cd5ee334ec744836a699b639"
+    },
+    {
+      "path": "independent-western-III-figure9-native.png",
+      "bytes": 36621,
+      "sha256": "90043f095f78e5b7f9bc14ce6a8ac790825ffa5ae81f4ecbac1d97d4c95bf6e1"
+    },
+    {
+      "path": "kisbalokany-figure12-native.png",
+      "bytes": 14532,
+      "sha256": "6ade8ddef27de8526ef7e833ed07f91ea3cc52ae6394615f8c2b38aec21a65ae"
+    },
+    {
+      "path": "kisbalokany-figure9-native.png",
+      "bytes": 12827,
+      "sha256": "b2eb8168329a6bd089370c0dcb2535397ddebd15b2255a38d255735d1a13f0b2"
+    },
+    {
+      "path": "koztemeto-figure12-native.png",
+      "bytes": 7789,
+      "sha256": "0e3e2d12c4fb136b23856975bfaf3d8ac4d6ecc02aabee46c61a5f22e0fa42db"
+    },
+    {
+      "path": "koztemeto-figure9-native.png",
+      "bytes": 9179,
+      "sha256": "cbff4f260d3d62aedf1445336f805d7dcb7372bd680b7a4c8e04d8cd04c04253"
+    },
+    {
+      "path": "m-utca-figure12-native.png",
+      "bytes": 1042,
+      "sha256": "f75e11e45e20f2069e1b649a0ecfc208757161d4fbcf068689e90dcaaea3b9a6"
+    },
+    {
+      "path": "m-utca-figure9-native.png",
+      "bytes": 2004,
+      "sha256": "a1e0426a6011ddc3e1a7cf1e8dd0a530d6f505ccce143d9f07132fad2ba11bf5"
+    },
+    {
+      "path": "murom-figure12-native.png",
+      "bytes": 5951,
+      "sha256": "411646eccbabb5077014436e1571bdc247eb8a0a5480d368cd106ddf09897ad2"
+    },
+    {
+      "path": "murom-figure9-native.png",
+      "bytes": 7138,
+      "sha256": "79a4694c38b8b22407c88edf47c4eb46b5d04ace24ea6872e9a6465235609ce3"
+    },
+    {
+      "path": "pecs-image-alignment.json",
+      "bytes": 419754,
+      "sha256": "bbfeea6e96ef9233058c991533c0572ec0df4c1baeac88db5593c91f336e67b6"
+    },
+    {
+      "path": "pecs-p48-names.jpeg",
+      "bytes": 58340,
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "path": "pecs-p63-density.jpeg",
+      "bytes": 94680,
+      "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+    },
+    {
+      "path": "pecs-registration-northwest-only-diagnostic.json",
+      "bytes": 5222,
+      "sha256": "8ba7ab1515b94f37253b64bdbe2144e73e540081ede3ae2cf9838f65b7b87f13"
+    },
+    {
+      "path": "pecs-source-extraction-proof.json",
+      "bytes": 939,
+      "sha256": "28e5eafffaf661ccd8a6f07678d7e1b081e83a81b14c45d317d478685b972a93"
+    },
+    {
+      "path": "pecs-source-selected-pages.pdf",
+      "bytes": 521135,
+      "sha256": "09db9673a921e73cba1ab1add8ad65aeb0d727dad5bfadfd31946f91ad68d1c9"
+    },
+    {
+      "path": "pecs-source-selected-pages.txt",
+      "bytes": 14674,
+      "sha256": "89acf12f996ec698b7092aba418bfc556a9a6b55806d9860062e2febf151e887"
+    },
+    {
+      "path": "petofi-akna-figure12-native.png",
+      "bytes": 2272,
+      "sha256": "30e099c1fcd81efb2c03539a5e97b3b99b859f0cbd0b14d65f489952b785b5c4"
+    },
+    {
+      "path": "petofi-akna-figure9-native.png",
+      "bytes": 3402,
+      "sha256": "f4faf1fb36536174ea15f405fc5109182a5af306abbb73d56cdb991ebeefb3b1"
+    },
+    {
+      "path": "prepare-inputs.py",
+      "bytes": 3872,
+      "sha256": "324bfa8eb10271ffe9f699ee8f159211e934c53faccc9d0880c9c70c833ecf6b"
+    },
+    {
+      "path": "prior-snapshot-integrity-review.json",
+      "bytes": 59341,
+      "sha256": "189abe8ce0aa0d5a46369c72a37f63208effd7b39a3934d613ffa7fbff77b09a"
+    },
+    {
+      "path": "provisional-remaining-assignments.json",
+      "bytes": 29156,
+      "sha256": "fb3e17eab7f177139c798b2e14a98ecc00f77f6c0157d52d2c2cef1430283add"
+    },
+    {
+      "path": "published-name-exclusions.json",
+      "bytes": 8491,
+      "sha256": "ed874d9d350e9098abe8bac376a51d6cd88fc9b5b4c1fa2499961584a4fdf80f"
+    },
+    {
+      "path": "raw-pixel-cells.json",
+      "bytes": 448684,
+      "sha256": "9fe3806defaebded479e3e7ddc2e20de336e3cdcdb2c2200e5648a7d6ee6e7d7"
+    },
+    {
+      "path": "recovered-additional-label-anchors.json",
+      "bytes": 10980,
+      "sha256": "506f3dbe9b2fb73e423d3cb4ac5e2bd8ca1f9217187d59a76176ccdcd2c592e1"
+    },
+    {
+      "path": "recovered-first-label-anchors.json",
+      "bytes": 13171,
+      "sha256": "aac370662737b28a1e95072e57875df9f87b1e50d152008c54573f210fc80cdd"
+    },
+    {
+      "path": "recovered-name-cell-review.json",
+      "bytes": 68863,
+      "sha256": "b3e626b5f0a4496e9a89b69090b0b52edb5e0a0df2027cfe39dcced918d8629e"
+    },
+    {
+      "path": "registry-entry.json",
+      "bytes": 1690,
+      "sha256": "4b5f3852255c7dcc98c65279724a148f3b013afafdae43d3d13503a9adbb88e1"
+    },
+    {
+      "path": "remaining-pixel-preflight.json",
+      "bytes": 631868,
+      "sha256": "9b8bd1cd8b33b820a02bc5efc68f4a31942163acc0f14eba169356ed45ed6169"
+    },
+    {
+      "path": "review-first-cohort-semantics.py",
+      "bytes": 4128,
+      "sha256": "ad1e434f592a1c1c9b3b57fbe76769a00f2fae437d2d41e1c34e709ddfe5272c"
+    },
+    {
+      "path": "semantic-source-review.json",
+      "bytes": 3786,
+      "sha256": "a093df02a3f4a4a77e05ec6bb45b6994a108cb289586da25e07254785460ac41"
+    },
+    {
+      "path": "siklosi-kulvaros-figure12-native.png",
+      "bytes": 14532,
+      "sha256": "6ade8ddef27de8526ef7e833ed07f91ea3cc52ae6394615f8c2b38aec21a65ae"
+    },
+    {
+      "path": "siklosi-kulvaros-figure9-native.png",
+      "bytes": 12827,
+      "sha256": "b2eb8168329a6bd089370c0dcb2535397ddebd15b2255a38d255735d1a13f0b2"
+    },
+    {
+      "path": "source-inferred.geojson",
+      "bytes": 718723,
+      "sha256": "cfdd86a7dc73d6f6a76ebf9a2377a0e7e077992761f3b23fd675abf102c8826a"
+    },
+    {
+      "path": "source-table-name-inventory.json",
+      "bytes": 20327,
+      "sha256": "96c91c343633dab92a92df73c22d13d1f02610840a4d6ca8d9d93f227e092e21"
+    },
+    {
+      "path": "strict-validator-snapshot.mjs",
+      "bytes": 5435,
+      "sha256": "abf1b564180d9b33593f9ce0d711eb996bf8f3a1d9cbb03b7527167ac515f3d7"
+    },
+    {
+      "path": "summarize-review.py",
+      "bytes": 5040,
+      "sha256": "4a2eac6fe65ff2a2d5c633768586be0509889920510b231f2228008de13e4f3f"
+    },
+    {
+      "path": "unresolved-name-inventory.json",
+      "bytes": 4756,
+      "sha256": "042cb98cbe288c9950bfb16a73edb019a88888586b360784600c50b06195119c"
+    },
+    {
+      "path": "unresolved-name-review.json",
+      "bytes": 18010,
+      "sha256": "eb2470344f75653189b1957881c291f74a5b4240eb2e8544e071146ea31ab92b"
+    }
+  ],
+  "sourceGeojsonSha256": "cfdd86a7dc73d6f6a76ebf9a2377a0e7e077992761f3b23fd675abf102c8826a",
+  "sourceRecordCount": 27,
+  "candidateFineNames": 27,
+  "candidatePlanningUnits": 0,
+  "candidateLocalAreas": 0,
+  "primaryApprovedCount": 0,
+  "geographicPlacementVerified": false,
+  "claimedAbsoluteAccuracy": null,
+  "rootRegistryOrExportsChanged": false,
+  "registryEntryApplied": false,
+  "allRuntimeConversionAndFinalAuditorInputsAreLocalSnapshotFiles": true,
+  "missingExactNames": [
+    "Murom",
+    "Köztemető",
+    "Kisbalokány",
+    "Siklósi külváros",
+    "Árpádtető",
+    "Petőfi-akna",
+    "M utca"
+  ],
+  "separateFirstCohortSemanticRecommendationApplied": false
+}

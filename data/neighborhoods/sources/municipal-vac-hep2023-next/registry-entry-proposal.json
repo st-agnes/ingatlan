@@ -1,0 +1,31 @@
+{
+  "id": "vac-hep2023-marialiget-estimated",
+  "path": "data/neighborhoods/sources/municipal-vac-hep2023-next/marialiget-estimated-proposal.geojson",
+  "sha256": "39f809aa0443eb0bba84d4f8ca4e11520a3dddb6df29ab1a18517066c262c7ab",
+  "municipality": "Vác",
+  "method": "Manual trace of the observed closed dashed Mária-liget perimeter in the original431×523municipal raster, preserving selected source-pixel vertices. Affine source-pixel→EPSG23700 registration uses three physical road/rail crossings from literal same-PBF ways, then EPSG23700→4326. No place points are fit controls; no Voronoi, hull, parcel clone, parent clone, snapping, buffering, repair or clipping. Placement is LOW-CONFIDENCE and extrapolated south of calibration controls. Raster tracing and conventional dash-gap interpolation are explicit estimates, not native geographic source geometry.",
+  "evidenceUrls": [
+    "https://www.vac.hu/docs/VacVarosOnkormanyzatHEP20232028.pdf"
+  ],
+  "license": "Public municipal map reuse rights unestablished; ODbL-1.0 for actual OSM controls/identity evidence",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false,
+    "sourceIsOfficial": false,
+    "sourceIsHardBoundary": false,
+    "georeferencingIsApproximate": true,
+    "claimedAbsoluteAccuracyMetres": null
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-vac-hep2023-next/proposal-review.json",
+  "independentReviewPath": "data/neighborhoods/sources/municipal-vac-hep2023-next/independent-review.json",
+  "uncertaintyPath": "data/neighborhoods/sources/municipal-vac-hep2023-next/proposal-review.json",
+  "uncertainties": [
+    "Source map reference year, survey lineage, CRS, present whole-quarter extent and unrestricted map reuse rights are unknown. HEP horizon2023–2028and PDF creation metadataNovember2022do not date the map or certify adoption. Only three manually read noncollinear controls define an exact affine fit with no independently selected holdout; zero training residual is an algebraic result, not ground accuracy. Both southern scout footprints extrapolate beyond the calibration triangle. Pixel perturbation alternatives are sensitivity scenarios, not confidence limits or extra quarters. Absolute accuracy is unclaimed.",
+    "Manual raster trace follows a conventional dashed perimeter; source pixel readings and southern extrapolation are uncertain. Kisderecske, broader parents and24registration alternatives are not admitted."
+  ],
+  "frozenFeatureCount": 1,
+  "globalRegistryAdmissionPerformed": false
+}

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Public supplemental sources for neighborhood-boundary research; discovery does not establish usable quarter geometry or reuse rights.",
+  "artifactPolicy": "Raw PDF downloads remain ephemeral. Artifacts contain selected map/page extracts, vector paths, short labels and provenance only.",
+  "sources": [
+    {
+      "id": "veszprem-tak2019",
+      "kind": "pdf",
+      "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+      "keywords": ["jelenkori varosreszek", "varosreszek"]
+    },
+    {
+      "id": "zalaegerszeg-ziffa2025",
+      "kind": "pdf",
+      "url": "https://zalaegerszeg.hu/wp-content/uploads/2025/09/ZEG_ZIFFA_egyeztetesi-valt.pdf",
+      "keywords": ["varosreszek", "varosreszei"]
+    },
+    {
+      "id": "kaposvar-belvaros2009",
+      "kind": "pdf",
+      "url": "https://kph.kaposvar.hu/eloterjesztesek/et20090226/doku/e28m01.pdf",
+      "keywords": ["belvaros", "varosreszek"],
+      "pdfPageHints": [27, 28, 29]
+    },
+    {
+      "id": "kaposvar-fvs",
+      "kind": "pdf",
+      "url": "https://kph.kaposvar.hu/data/adattar/fvs21-27/fvs21-27.pdf",
+      "keywords": ["kaposvar varosreszei", "varosreszek"],
+      "pdfPageHints": [181, 182, 183]
+    },
+    {
+      "id": "szentendre-public",
+      "kind": "html",
+      "url": "https://maps.szentendre.hu/gisapp/Public?public=on",
+      "keywords": []
+    },
+    {
+      "id": "szeged-public",
+      "kind": "html",
+      "url": "https://infoterkep.szegedvaros.hu/",
+      "keywords": []
+    },
+    {
+      "id": "arcgis-varosreszek",
+      "kind": "json",
+      "url": "https://www.arcgis.com/sharing/rest/search?f=json&q=varosreszek&num=100",
+      "keywords": []
+    },
+    {
+      "id": "arcgis-varosresz",
+      "kind": "json",
+      "url": "https://www.arcgis.com/sharing/rest/search?f=json&q=varosresz&num=100",
+      "keywords": []
+    }
+  ]
+}

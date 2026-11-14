@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-13",
+  "artifact": "../kecskemet-manual.geojson",
+  "name": "Erzsébetváros",
+  "municipality": "Kecskemét",
+  "sourceWordingIndependentlyRead": true,
+  "textPdfPageZeroBased": 151,
+  "mapPdfPageZeroBased": 142,
+  "mapVisuallyInspected": true,
+  "sourcePeriod": "May2021 consultation version; publication file126/2021(XII16)",
+  "sourceTypeVariantsExplicit": {
+    "Csongrádi utca": "Csongrádi út",
+    "Bajcsy Zsilinszky Endre utca": "Bajcsy-Zsilinszky Endre körút"
+  },
+  "valid": true,
+  "ringVertices": 64,
+  "exactSourceVertices": true,
+  "allBoundarySegmentsCoveredByUsedSourceWays": true,
+  "usedWays": 18,
+  "sourceStreetCount": 5,
+  "usedWayGradeSeparationCount": 0,
+  "boundaryLengthByStreetM_EPSG23700": {
+    "Mezei utca": 374.59066387381563,
+    "Erzsébet körút": 566.9413896711168,
+    "Csongrádi út": 815.7567843511306,
+    "Bajcsy-Zsilinszky Endre körút": 275.52766463139375,
+    "Csányi János körút": 71.78156961054543
+  },
+  "allThreeProofInputHashesVerified": true,
+  "originalPdfHashVerified": true,
+  "decision": "Accept as source-circuit-derived fine-quarter candidate, retaining independent_boundary_review and address-assignment-false flags. Not cadastral precision or current legal verification.",
+  "limitations": [
+    "Five-road centerline circuit is consistent with municipal text and depicted southeastern Belváros subquarter. This review does not independently survey street-side parcel assignment.",
+    "Projected area using EPSG23700 is282346.60m²; original proof area282378.71m² uses its own projection. Difference is below0.02percent.",
+    "No alternate street-name attribution survey or boundary-change register was available offline."
+  ]
+}

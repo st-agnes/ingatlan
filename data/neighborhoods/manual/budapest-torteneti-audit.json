@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Budapest",
+  "district": 23,
+  "name": "Történeti központ",
+  "sourceParagraph": "3. melléklet 23.10.",
+  "boundaryText": "Grassalkovich út–Rézöntő utca–Budapest–Kelebia vasútvonal–Csendes utca–Sínpár utca–Grassalkovich út–Gyáli patak–Ráckevei (Soroksári)–Duna mellékága–Tárcsás utca természetbeni folytatása–Táncsics Mihály utca–Táncsics Mihály utca folytatásában a természetes rézsű határvonala–Dobó utca által határolt városrész",
+  "sourceDocuments": [
+    {
+      "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+      "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+      "paragraph": "3. melléklet 23.10."
+    }
+  ],
+  "status": "unresolved_boundary_chain",
+  "polygonCreated": false,
+  "usableForAddressAssignment": false,
+  "sourceGeometry": {
+    "path": "data/neighborhoods/manual/sources/budapest-torteneti-input.geojson",
+    "sha256": "b703f197102f6221029a2818f9c73a7049993317a28a38f28bb3aa7366854d0c",
+    "osmTimestamp": "2026-11-12T21:23:05Z",
+    "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a"
+  },
+  "gaps": [
+    {
+      "from": "Csendes utca",
+      "to": "Sínpár utca",
+      "reason": "consecutive_named_streets_do_not_meet",
+      "distanceMetres": 620.451,
+      "crsUsedForDistance": "EPSG:23700",
+      "nearestCoordinates": [
+        [
+          19.119956605114478,
+          47.39357960122408
+        ],
+        [
+          19.1266107051135,
+          47.39685560122343
+        ]
+      ],
+      "fromSourceIds": [
+        "osm:way:43031455"
+      ],
+      "toSourceIds": [
+        "osm:way:43059206"
+      ],
+      "connectorCreated": false
+    },
+    {
+      "from": "Sínpár utca",
+      "to": "Grassalkovich út",
+      "reason": "consecutive_named_streets_do_not_meet",
+      "distanceMetres": 769.662,
+      "crsUsedForDistance": "EPSG:23700",
+      "nearestCoordinates": [
+        [
+          19.125203505113717,
+          47.39876360122354
+        ],
+        [
+          19.115262866354705,
+          47.39722330073641
+        ]
+      ],
+      "fromSourceIds": [
+        "osm:way:43059206"
+      ],
+      "toSourceIds": [
+        "osm:way:19727990",
+        "osm:way:24188147",
+        "osm:way:42702259",
+        "osm:way:42702260",
+        "osm:way:60967933",
+        "osm:way:79703824",
+        "osm:way:79703825",
+        "osm:way:128169474",
+        "osm:way:128169475",
+        "osm:way:152905758",
+        "osm:way:152905760",
+        "osm:way:152905761",
+        "osm:way:152905762",
+        "osm:way:152905763",
+        "osm:way:172604944",
+        "osm:way:197050674",
+        "osm:way:197050675",
+        "osm:way:197050676",
+        "osm:way:197050678",
+        "osm:way:197050679",
+        "osm:way:197339403",
+        "osm:way:212846105",
+        "osm:way:223924064",
+        "osm:way:278053660",
+        "osm:way:278053661",
+        "osm:way:325915587",
+        "osm:way:410109447",
+        "osm:way:577436487",
+        "osm:way:625087729",
+        "osm:way:662506249",
+        "osm:way:662506250",
+        "osm:way:662506251",
+        "osm:way:662515209",
+        "osm:way:662515210",
+        "osm:way:662515211",
+        "osm:way:662515212",
+        "osm:way:662515213",
+        "osm:way:662515214",
+        "osm:way:662515215",
+        "osm:way:662515225",
+        "osm:way:662515226",
+        "osm:way:662515227",
+        "osm:way:662515228",
+        "osm:way:662515229",
+        "osm:way:662515230",
+        "osm:way:662515231",
+        "osm:way:662523925",
+        "osm:way:662523928",
+        "osm:way:662525386",
+        "osm:way:683252894",
+        "osm:way:917017151",
+        "osm:way:917017152",
+        "osm:way:917017155"
+      ],
+      "connectorCreated": false
+    },
+    {
+      "from": "Táncsics Mihály utca",
+      "to": "Dobó utca",
+      "reason": "legal_natural_slope_continuation_requires_evidence",
+      "distanceMetres": 184.758,
+      "crsUsedForDistance": "EPSG:23700",
+      "nearestCoordinates": [
+        [
+          19.1108800051159,
+          47.40714860122464
+        ],
+        [
+          19.11088000473732,
+          47.408810501308345
+        ]
+      ],
+      "fromSourceIds": [
+        "osm:way:21395350",
+        "osm:way:324985052",
+        "osm:way:410109451",
+        "osm:way:410109452",
+        "osm:way:1576425651"
+      ],
+      "toSourceIds": [
+        "osm:way:43053851",
+        "osm:way:176006085",
+        "osm:way:176006087",
+        "osm:way:1463147095"
+      ],
+      "connectorCreated": false
+    },
+    {
+      "from": "Tárcsás utca",
+      "to": "Molnársziget mellékág",
+      "reason": "legal_natural_street_continuation_requires_evidence",
+      "distanceMetres": 154.83,
+      "crsUsedForDistance": "EPSG:23700",
+      "nearestCoordinates": [
+        [
+          19.111118805115858,
+          47.40596230122464
+        ],
+        [
+          19.10922041305451,
+          47.40543448291627
+        ]
+      ],
+      "fromSourceIds": [
+        "osm:way:28767889",
+        "osm:way:38868554",
+        "osm:way:43053850",
+        "osm:way:288069935",
+        "osm:way:355651090",
+        "osm:way:1149728676"
+      ],
+      "toSourceIds": [
+        "osm:way:1084440121"
+      ],
+      "connectorCreated": false
+    }
+  ],
+  "requiredEvidence": [
+    "A contemporary or historical municipal street/boundary map identifying the Csendes–Sínpár–Grassalkovich boundary corridor. Present OSM streets have gaps exceeding 600 m, so automatic junction snapping would invent a substantial boundary.",
+    "Mapped natural slope/parcel boundary between the northern Táncsics endpoint and Dobó utca.",
+    "The physical continuation of Tárcsás utca west to the Duna side branch."
+  ],
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors"
+}

@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "Independent remaining_pixel_audit agent",
+  "reviewDate": "2026-11-14",
+  "scope": "Only these three exact original Figure12 single-pixel mask holes in closed source cells89/92. No permission for any other hole/outer-edge change.",
+  "sourceImage": "pdf63-figure12-xref642.jpeg",
+  "sourceImageSha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788",
+  "sourceMask": "(maxRGB<200 and maxRGB-minRGB<110) OR R<median_filter(R,7)-16",
+  "freeCellCountBefore": 221,
+  "reviewedContactSheet": "central-cell-holes-contact.png",
+  "records": [
+    {
+      "sourceComponentId": 89,
+      "sourceNameAtReview": "Kisbalokány",
+      "rawHoleIndexAtReview": 0,
+      "sourcePixelSetSha256": "b0b9b4ee511feb6f05cb8d18a38d69d851342e9a2f97ababc32265f89c22db31",
+      "sourcePixelCount": 1,
+      "pixels": [
+        [
+          528,
+          528
+        ]
+      ],
+      "sourcePixelCellBounds": [
+        527.5,
+        527.5,
+        528.5,
+        528.5
+      ],
+      "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact",
+      "originalRomanLabel": null,
+      "restorationApproved": true,
+      "reviewFinding": "Independently inspected original nearest-neighbour contact and exact native crop. This isolated one-pixel mask spot follows the local mapped fill/antialias texture; it has no enclosing geographic boundary and contains or side-touches no other free source cell. Restoration is restricted to this exact pixel; no external source face may change.",
+      "originalRgb": [
+        204,
+        157,
+        113
+      ],
+      "allOriginalMask": true,
+      "noOtherFreeSourceCellContained": true,
+      "noOtherFreeSourceCellSideAdjacent": true,
+      "nativeCrop": "figure12-cell89-hole0-native.png",
+      "nativeCropSourcePixelBox": [
+        523,
+        523,
+        534,
+        534
+      ],
+      "nativeCropSha256": "b87246235522144ec6fb11608a76de1ce349a8857194ebc41ff6143da942d04d",
+      "externalSourceEdgesMayChange": false,
+      "geographicClippingBufferingOrRepairAuthorised": false
+    },
+    {
+      "sourceComponentId": 92,
+      "sourceNameAtReview": "Siklósi külváros",
+      "rawHoleIndexAtReview": 0,
+      "sourcePixelSetSha256": "bf3ea3e484b0930be143679fa4578f77f87ce38a3cc28e5eafabb7cad633ad26",
+      "sourcePixelCount": 1,
+      "pixels": [
+        [
+          495,
+          533
+        ]
+      ],
+      "sourcePixelCellBounds": [
+        494.5,
+        532.5,
+        495.5,
+        533.5
+      ],
+      "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact",
+      "originalRomanLabel": null,
+      "restorationApproved": true,
+      "reviewFinding": "Independently inspected original nearest-neighbour contact and exact native crop. This isolated one-pixel mask spot follows the local mapped fill/antialias texture; it has no enclosing geographic boundary and contains or side-touches no other free source cell. Restoration is restricted to this exact pixel; no external source face may change.",
+      "originalRgb": [
+        216,
+        149,
+        107
+      ],
+      "allOriginalMask": true,
+      "noOtherFreeSourceCellContained": true,
+      "noOtherFreeSourceCellSideAdjacent": true,
+      "nativeCrop": "figure12-cell92-hole0-native.png",
+      "nativeCropSourcePixelBox": [
+        490,
+        528,
+        501,
+        539
+      ],
+      "nativeCropSha256": "cdb9ecc89188553c75494ad073e33a748a1beabf3759797bd48ddb1428686db3",
+      "externalSourceEdgesMayChange": false,
+      "geographicClippingBufferingOrRepairAuthorised": false
+    },
+    {
+      "sourceComponentId": 92,
+      "sourceNameAtReview": "Siklósi külváros",
+      "rawHoleIndexAtReview": 1,
+      "sourcePixelSetSha256": "fbb54e4724a7885f6073e9d460f1b96747936b885a725272b4902e8c6bc44418",
+      "sourcePixelCount": 1,
+      "pixels": [
+        [
+          459,
+          549
+        ]
+      ],
+      "sourcePixelCellBounds": [
+        458.5,
+        548.5,
+        459.5,
+        549.5
+      ],
+      "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact",
+      "originalRomanLabel": null,
+      "restorationApproved": true,
+      "reviewFinding": "Independently inspected original nearest-neighbour contact and exact native crop. This isolated one-pixel mask spot follows the local mapped fill/antialias texture; it has no enclosing geographic boundary and contains or side-touches no other free source cell. Restoration is restricted to this exact pixel; no external source face may change.",
+      "originalRgb": [
+        208,
+        150,
+        113
+      ],
+      "allOriginalMask": true,
+      "noOtherFreeSourceCellContained": true,
+      "noOtherFreeSourceCellSideAdjacent": true,
+      "nativeCrop": "figure12-cell92-hole1-native.png",
+      "nativeCropSourcePixelBox": [
+        454,
+        544,
+        465,
+        555
+      ],
+      "nativeCropSha256": "a7166775c29fd8802a7b4fa462bac6466a06e0ca7a8034e95c8139abfbb11dab",
+      "externalSourceEdgesMayChange": false,
+      "geographicClippingBufferingOrRepairAuthorised": false
+    }
+  ],
+  "restorationCount": 3,
+  "restoredOriginalSourcePixelCount": 3,
+  "sourceExternalEdgeChangesApproved": 0,
+  "decisionsAreNotGenericPermissionForUnreviewedFutureHoles": true,
+  "claimedAbsoluteAccuracy": null,
+  "networkUsed": false
+}

@@ -1,0 +1,200 @@
+{
+  "reviewedAt": "2026-11-13",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "admittedNewQuarterPolygons": 0,
+  "geometryRepairs": 0,
+  "inventedClosingEdges": 0,
+  "inputSha256": {
+    "klebel-evidence-lines.geojson": "337b33b7f0672fbecb97ff8cae6011e1d513ffc63a8f4b0265526fb0b7a36794",
+    "gyalai-water-source-members.geojson": "c109b6ec14fa3b90d5cd96b88e48742a0d3ef8c953d10aee86fc3d0146b2221f",
+    "tarjan2019-evidence-lines.geojson": "020d3e227e24fbb975cd0440f49485d08e589ec224a516cfd7fadfddeb8f43c0"
+  },
+  "klebel": {
+    "liveDisusedAbandonedRailWays": 183,
+    "waterRelationId": "osm:relation:1483931",
+    "actualWaterBankWays": 54,
+    "actualWaterBankMembersAllOuter": true,
+    "westernDrainAndCulvertLiterallyMeetWaterBank": true,
+    "exactSourceCategoryPolygonizedCells": 50,
+    "closedCellsCoveringActualQuarterLabel": 0,
+    "namedLabel": {
+      "id": "osm:node:982345167",
+      "name": "Klebelsbergtelep",
+      "coordinates": [
+        20.1163732,
+        46.2295209
+      ]
+    },
+    "smallestRailToCurrentWaterBankGaps": [
+      {
+        "id": "osm:way:779607225",
+        "railway": "abandoned",
+        "gapMetresEpsg23700": 586.029595726557,
+        "closestRailEov": [
+          730992.8475195687,
+          99282.16236253815
+        ],
+        "closestBankEov": [
+          731141.439099401,
+          98715.28386632366
+        ]
+      },
+      {
+        "id": "osm:way:803098896",
+        "railway": "rail",
+        "gapMetresEpsg23700": 618.0268441645059,
+        "closestRailEov": [
+          730192.887455822,
+          98811.7387022953
+        ],
+        "closestBankEov": [
+          730702.3046728594,
+          98461.8083105118
+        ]
+      },
+      {
+        "id": "osm:way:430272966",
+        "railway": "rail",
+        "gapMetresEpsg23700": 625.628276845985,
+        "closestRailEov": [
+          732900.77838944,
+          98466.40398878901
+        ],
+        "closestBankEov": [
+          732332.282322585,
+          98205.2087308694
+        ]
+      },
+      {
+        "id": "osm:way:80373558",
+        "railway": "rail",
+        "gapMetresEpsg23700": 802.0777135487767,
+        "closestRailEov": [
+          733201.4262236358,
+          98175.76586255585
+        ],
+        "closestBankEov": [
+          732422.9569517241,
+          97982.59689180502
+        ]
+      },
+      {
+        "id": "osm:way:964931135",
+        "railway": "abandoned",
+        "gapMetresEpsg23700": 921.4230176304002,
+        "closestRailEov": [
+          733071.1555287197,
+          98786.43485852302
+        ],
+        "closestBankEov": [
+          732261.097091594,
+          98347.31561974992
+        ]
+      }
+    ],
+    "plausibleEasternIndustrialRail": {
+      "id": "osm:way:430272966",
+      "railway": "rail",
+      "gapMetresEpsg23700": 625.628276845985,
+      "closestRailEov": [
+        732900.77838944,
+        98466.40398878901
+      ],
+      "closestBankEov": [
+        732332.282322585,
+        98205.2087308694
+      ]
+    },
+    "interpretation": "The primary2007 source says physical railway embankment, not merely track centerline. The unrecorded/evidentially unresolved southeast embankment-to-old-water-basin linkage remains a task. A present water surface is also not guaranteed to equal the historical basin edge. No arbitrary connection is supplied."
+  },
+  "tarjan2019": {
+    "namedMainCorridorsPlusActualRampLargeCells": [
+      {
+        "bounds": [
+          20.1618249,
+          46.2742004,
+          20.1658509,
+          46.2764242
+        ],
+        "areaDegreesSquared": 2.6296543449944903e-06,
+        "sourceCorridorNames": [
+          "",
+          "József Attila sugárút",
+          "Körtöltés",
+          "Murányi utca"
+        ],
+        "actualSourceLineIds": [
+          "osm:way:1357141176",
+          "osm:way:344064472",
+          "osm:way:403941598",
+          "osm:way:455721404",
+          "osm:way:4795304",
+          "osm:way:718024903",
+          "osm:way:749440771",
+          "osm:way:78319291",
+          "osm:way:78490302",
+          "osm:way:911780454"
+        ]
+      },
+      {
+        "bounds": [
+          20.1575173,
+          46.2661898,
+          20.1714924,
+          46.2759769
+        ],
+        "areaDegreesSquared": 8.79087274549961e-05,
+        "sourceCorridorNames": [
+          "Csillag tér",
+          "József Attila sugárút",
+          "Körtöltés",
+          "Lugas utca",
+          "Retek utca",
+          "Szilléri sugárút"
+        ],
+        "actualSourceLineIds": [
+          "osm:way:1137652552",
+          "osm:way:1137652581",
+          "osm:way:1137652582",
+          "osm:way:1357141176",
+          "osm:way:1362385623",
+          "osm:way:231722388",
+          "osm:way:231722392",
+          "osm:way:231722406",
+          "osm:way:35170118",
+          "osm:way:369117747",
+          "osm:way:389927166",
+          "osm:way:390489399",
+          "osm:way:396618498",
+          "osm:way:403941598",
+          "osm:way:415930320",
+          "osm:way:418996063",
+          "osm:way:422308870",
+          "osm:way:422308872",
+          "osm:way:422308876",
+          "osm:way:4795304",
+          "osm:way:495731241",
+          "osm:way:661051849",
+          "osm:way:661051850",
+          "osm:way:717953002",
+          "osm:way:717953003",
+          "osm:way:717953004",
+          "osm:way:717953005",
+          "osm:way:718024902",
+          "osm:way:718024903",
+          "osm:way:78360283",
+          "osm:way:830137361",
+          "osm:way:83195771",
+          "osm:way:911780453",
+          "osm:way:936405126",
+          "osm:way:936405132"
+        ]
+      }
+    ],
+    "actualMuranyiToDykeRampId": "osm:way:749440771",
+    "rampIsOriginalSourceGeometry": true,
+    "rampOpenedTag": "2019-12",
+    "interpretation": "The actual2019 cycleway ramp resolves physical access from Murányi to Körtöltés. It does not establish the quarter limit: house-number-side requirements north of Budapesti, two József Attila/Murányi junctions and the precise outer property corridor remain ambiguous. No union is admitted as a current quarter. This is a source version of existing Tarján, never a second canonical quarter."
+  },
+  "usableForAddressAssignment": false
+}

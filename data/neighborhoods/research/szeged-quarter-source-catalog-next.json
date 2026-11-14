@@ -1,0 +1,307 @@
+{
+  "schemaVersion": 2,
+  "status": "frozen_exact_PDF_URL_catalog_for_root_acquisition",
+  "createdAt": "2026-11-14",
+  "municipality": "Szeged",
+  "counts": {
+    "exactPdfEntries": 11,
+    "newRootConfirmedIndexedOfficialLeads": 3,
+    "previousPublicReadPdfSources": 8,
+    "officialMunicipalPdfEntries": 9,
+    "supportingNonMunicipalPdfEntries": 2
+  },
+  "confirmationMeaning": "All entries are exact observed URLs:3 confirmed by root web search now,8 supported by prior public-read proofs. HTTP download success, original hashes, PDF-page offsets and native contour semantics remain acquisition checks. No URL or map page is guessed.",
+  "entries": [
+    {
+      "id": "szeged-ivs-review-18325",
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18325&as_attachment=1",
+      "kind": "pdf",
+      "priority": 1,
+      "sourceAge": "2008 IVS review; exact review/document year not yet established",
+      "officialMunicipal": true,
+      "title": "IVS aktualizáló felülvizsgálata",
+      "pageHints": [
+        "Indexed contents identify chapterIII: városrészek területi megközelítésben",
+        "Exact PDF/printed/map pages remain unknown until acquisition"
+      ],
+      "status": "confirmed_indexed_by_root_2026-11-14; raw_download_pending",
+      "roles": [
+        "Official revision with a specifically indexed spatial quarter-analysis chapter; high-priority native-map search.",
+        "Determine actual named-quarter contours versus coarse strategic groups/action areas from source pages before any geometry."
+      ],
+      "evidence": "Root read-only web search confirmed exact indexed official URL/title and chapterIII contents on2026-11-14. Crawl/publish dates are not treated as source year.",
+      "suggestedLocalOriginal": ".local/neighborhoods/szeged-quarter-originals/szeged-ivs-review18325.pdf"
+    },
+    {
+      "id": "szeged-ivs2008-update2009-18324",
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=18324",
+      "kind": "pdf",
+      "priority": 2,
+      "sourceAge": "2008 IVS updated2009, as identified in indexed title",
+      "officialMunicipal": true,
+      "title": "2008 IVS aktualizálva2009",
+      "pageHints": [
+        "Inspect spatial quarter-analysis chapter and original diagrams; map pages unknown"
+      ],
+      "status": "confirmed_indexed_by_root_2026-11-14; raw_download_pending",
+      "roles": [
+        "Official2008/2009 IVS version for fine-quarter source-age and original-map comparison.",
+        "Retain original schema and source version; do not clone coarse parent groups or double-count changed source versions."
+      ],
+      "evidence": "Root read-only web search confirmed exact indexed official URL/title on2026-11-14. Source era comes from title, not crawl/publish date.",
+      "suggestedLocalOriginal": ".local/neighborhoods/szeged-quarter-originals/szeged-ivs2008-update2009-18324.pdf"
+    },
+    {
+      "id": "szeged-ivs2008-18320",
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18320",
+      "kind": "pdf",
+      "priority": 3,
+      "sourceAge": 2008,
+      "officialMunicipal": true,
+      "title": "2008 IVS",
+      "pageHints": [
+        "Inspect original city-quarter analysis/maps; exact page numbers unknown"
+      ],
+      "status": "confirmed_indexed_by_root_2026-11-14; raw_download_pending",
+      "roles": [
+        "Official original2008 IVS source version, useful for historical quarter/corridor maps.",
+        "Coarse strategic or action-area geometry remains distinct from fine actual-quarter contours."
+      ],
+      "evidence": "Root read-only web search confirmed exact indexed official URL/title on2026-11-14. Document era is identified as2008, without using search crawl dates.",
+      "suggestedLocalOriginal": ".local/neighborhoods/szeged-quarter-originals/szeged-ivs2008-18320.pdf"
+    },
+    {
+      "id": "szeged-cycle-network-2015",
+      "url": "https://megujul.szeged.hu/data/portal/cikk/miert-pont-igy/szeged_kerekparhalozati_terv_2015.pdf",
+      "kind": "pdf",
+      "priority": 4,
+      "sourceAge": 2015,
+      "officialMunicipal": true,
+      "title": "Szeged kerékpárhálózati terv",
+      "pageHints": [
+        "Map pages unknown; search Klebelsberg, kisvasút, töltés, Tisza, Hattyas"
+      ],
+      "status": "confirmed_prior_public_read; raw_download_pending; current_HTTP_not_rechecked",
+      "roles": [
+        "Actual historical embankment/alignment map lead for Klebelsberg; not a quarter polygon source by itself.",
+        "A cycling route is reference evidence only; it does not establish the complete quarter perimeter or identify a626m closure automatically."
+      ],
+      "evidencePath": "data/neighborhoods/sources/municipal-szeged-more/independent-obstacle-review.json",
+      "suggestedLocalOriginal": ".local/neighborhoods/szeged-quarter-originals/szeged-cycle-network2015.pdf"
+    },
+    {
+      "id": "szeged-estate-map-2001",
+      "url": "https://geography.hu/mfk2001/cikkek/TothKKeseru.pdf",
+      "kind": "pdf",
+      "priority": 5,
+      "sourceAge": 2001,
+      "officialMunicipal": false,
+      "title": "A lakótelepi panellakások árainak területi különbségei Szegeden",
+      "pageHints": [
+        "Printed pages: 4",
+        "Figure1, printed page4: A szegedi lakótelepek áttekintő térképe; map image not yet visually verified"
+      ],
+      "status": "confirmed_prior_public_read; raw_download_pending; current_HTTP_not_rechecked",
+      "roles": [
+        "Only prior proof with a specifically identified housing-estate overview map; promising fine-area contour source pending image inspection.",
+        "Academic map, source era2001; neither current municipal authority nor a present boundary survey is established."
+      ],
+      "evidencePath": "data/neighborhoods/sources/municipal-szeged-more/source-facts.json",
+      "suggestedLocalOriginal": ".local/neighborhoods/szeged-quarter-originals/szeged-estate-map2001.pdf"
+    },
+    {
+      "id": "klebelsberg-history-2007",
+      "url": "https://www.klebelsberg-egyesulet.hu/wp-content/uploads/2016/04/helytortenet.pdf",
+      "kind": "pdf",
+      "priority": 6,
+      "sourceAge": 2007,
+      "officialMunicipal": false,
+      "title": "Szeged-Klebelsberg-telep története",
+      "pageHints": [
+        "Printed pages: 9",
+        "PDF pages one-based: 9"
+      ],
+      "status": "confirmed_prior_public_read; raw_download_pending; current_HTTP_not_rechecked",
+      "roles": [
+        "Direct whole-quarter natural-corridor description; inspect historical map/photo appendix for embankment and channel corners.",
+        "Page9 is textual boundary evidence; no map page has yet been visually established. Source embankment must not be substituted automatically with a current rail centerline."
+      ],
+      "evidencePath": "data/neighborhoods/sources/municipal-szeged-more/source-facts.json",
+      "suggestedLocalOriginal": ".local/neighborhoods/szeged-quarter-originals/klebelsberg-history2007.pdf"
+    },
+    {
+      "id": "szeged-its-adopted-annex-2017",
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101",
+      "kind": "pdf",
+      "priority": 7,
+      "sourceAge": 2017,
+      "officialMunicipal": true,
+      "title": "200/2017. (IV.28.) Kgy. sz. határozat 1. sz. melléklete",
+      "pageHints": [
+        "Printed pages: 96",
+        "Printed page95 is separate Belső-Tarján action-area material; fine subdivision is on96"
+      ],
+      "status": "confirmed_prior_public_read; raw_download_pending; current_HTTP_not_rechecked",
+      "roles": [
+        "Explicit fine named subdivision circuits, separate from Belső-Tarján action area.",
+        "Already frozen Tarján source version; a2019 Tarján estate source differs. Do not count source versions as additional quarters or promote the disputed four-road label."
+      ],
+      "evidencePath": "data/neighborhoods/sources/municipal-szeged-next/source-facts.json",
+      "suggestedLocalOriginal": ".local/neighborhoods/szeged-quarter-originals/szeged-its-annex2017.pdf",
+      "independentEvidencePath": "data/neighborhoods/sources/municipal-szeged-next/independent-review.json"
+    },
+    {
+      "id": "szeged-corroborating-its-20490",
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=20490",
+      "kind": "pdf",
+      "priority": 8,
+      "sourceAge": "unknown; original bytes must establish date",
+      "officialMunicipal": true,
+      "title": "Municipal attachment corroborating fine Felsőváros subdivision paragraph",
+      "pageHints": [
+        "Map pages unknown; search Tarjánváros, Felsővárosi lakótelep, Felsőváros"
+      ],
+      "status": "confirmed_prior_public_read; raw_download_pending; current_HTTP_not_rechecked",
+      "roles": [
+        "Earlier/corroborating municipal fine-subdivision source; exact title/date and possible maps need original acquisition.",
+        "Exact URL was observed; document age and map pages are not confirmed. Do not infer2015 merely from neighboring attachment IDs."
+      ],
+      "evidencePath": "data/neighborhoods/sources/municipal-szeged-next/source-facts.json",
+      "suggestedLocalOriginal": ".local/neighborhoods/szeged-quarter-originals/szeged-attachment20490.pdf"
+    },
+    {
+      "id": "szeged-fvs-2023-kalvaria",
+      "url": "https://www.szegedvaros.hu/storage/document/17/default/3602/FVS_Szeged_MJV_2021_2027_egys_szerk_VFKB_231130.pdf",
+      "kind": "pdf",
+      "priority": 9,
+      "sourceAge": "2023 version; URL suffix231130 indicates version date, internal cover date not inspected",
+      "officialMunicipal": true,
+      "title": "Szeged MJV Fenntartható Városfejlesztési Stratégia2021–2027, unified version",
+      "pageHints": [
+        "Map pages unknown; search Kálvária, Bakay Nándor, 2012"
+      ],
+      "status": "confirmed_prior_public_read; raw_download_pending; current_HTTP_not_rechecked",
+      "roles": [
+        "Municipal confirmation of a distinct Kálvária quarter circuit adopted in2012; map acquisition lead for the Bakay/railway corner.",
+        "Inspect fine Kálvária material only. Coarse FVS strategic units/action areas cannot replace actual fine neighborhoods."
+      ],
+      "evidencePath": "data/neighborhoods/sources/municipal-szeged-next/boundary-obstacles.json",
+      "suggestedLocalOriginal": ".local/neighborhoods/szeged-quarter-originals/szeged-fvs2023.pdf"
+    },
+    {
+      "id": "szeged-ivs-odessza-chapter5",
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18321&as_attachment=1",
+      "kind": "pdf",
+      "priority": 10,
+      "sourceAge": 2009,
+      "officialMunicipal": true,
+      "title": "IVS_5_fejezet_felulvizsgalt",
+      "pageHints": [
+        "Printed pages: 48"
+      ],
+      "status": "confirmed_prior_public_read; raw_download_pending; current_HTTP_not_rechecked",
+      "roles": [
+        "Odessza action-area route/map as corroborating station-yard and road-name transition evidence only.",
+        "The observed perimeter belongs to an explicit action area. It is not an admitted whole-quarter source or permission to relabel that polygon as present Odessza."
+      ],
+      "evidencePath": "data/neighborhoods/sources/municipal-szeged-more/source-facts.json",
+      "suggestedLocalOriginal": ".local/neighborhoods/szeged-quarter-originals/szeged-ivs-chapter5-2009.pdf"
+    },
+    {
+      "id": "szeged-concept-19546",
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=19546&as_attachment=1",
+      "kind": "pdf",
+      "priority": 11,
+      "sourceAge": "unknown; original bytes must establish date",
+      "officialMunicipal": true,
+      "title": "Municipal settlement concept attachment",
+      "pageHints": [
+        "Printed pages: 23"
+      ],
+      "status": "confirmed_prior_public_read; raw_download_pending; current_HTTP_not_rechecked",
+      "roles": [
+        "Name-to-footprint conflict control for Felsővárosi lakótelep; potential supporting source map.",
+        "The observed four-road area is described as suburban/garden construction. A character/morphology zone alone is not an actual fine-quarter polygon."
+      ],
+      "evidencePath": "data/neighborhoods/sources/municipal-szeged-next/source-facts.json",
+      "suggestedLocalOriginal": ".local/neighborhoods/szeged-quarter-originals/szeged-concept19546.pdf",
+      "independentEvidencePath": "data/neighborhoods/sources/municipal-szeged-next/independent-review.json"
+    }
+  ],
+  "unconfirmedDiscoveryLeads": [
+    {
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18327&as_attachment=1",
+      "role": "Official2009 IVS indexed URL; no exact fine chapter/map page yet confirmed. Older alternative if prioritized URLs fail.",
+      "provenancePath": "data/neighborhoods/research/east.json",
+      "confirmedAsActualFineContourMap": false
+    },
+    {
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18319",
+      "role": "Candidate chapter3 attachment. Prior11.25MB estimate and chapter mapping were inferred from an official listing/neighboring IDs; acquisition must confirm identity.",
+      "provenancePath": "data/neighborhoods/research/new-municipal-gis-sources.json",
+      "confirmedAttachmentToChapterMapping": false,
+      "mustNotPresentAsConfirmedChapter3": true
+    }
+  ],
+  "alternatePublicGisLeads": [
+    {
+      "url": "https://terkep.szeged.eu/index.php/view/map/",
+      "status": "Prior public viewer timeout; project/repository/WFS layer not observed. Public HTML/config only if root investigates. No auth-gated endpoint or quarter layer is established."
+    },
+    {
+      "url": "https://www.szegedvaros.hu/terkep/szegedgis.html",
+      "status": "Prior official page returned502; system credits Interspect/Ökomozaik. No public quarter service URL verified."
+    }
+  ],
+  "excludedEndpoint": {
+    "url": "https://services5.arcgis.com/WB7BaTnYFoeERRZC/ArcGIS/rest/services/Szeged/FeatureServer",
+    "reason": "Prior student-service false positive/token requirement; municipal ownership, quarter theme and geometry unavailable. No login/token probing."
+  },
+  "localOriginalInventory": {
+    "actualSzegedRawPdfFound": false,
+    "inventoryEvidencePath": "data/neighborhoods/research/szeged-local-source-scout-next.json",
+    "existingNationwideOriginalPdfBatchContainsSzegedOriginal": false,
+    "currentInfoterkepAssetsAreQuarterSource": false,
+    "currentInfoterkepDisposition": "Already inspected marker-only application;692amenity markers/0polygons reported by root. Not repeated."
+  },
+  "researchAccess": {
+    "webSearchPerformedByThisAgent": false,
+    "rootPerformedReadOnlyWebSearchForThreeNewLeads": true,
+    "networkCommandsOrPermissionRequestsByThisAgent": false
+  },
+  "retention": {
+    "fullRawPdfsStayLocal": ".local/neighborhoods/szeged-quarter-originals/",
+    "publicEvidence": "Selected map/native-vector panels and short bibliographic/page facts only; semantic text paraphrased.",
+    "verbatimNarrativeQuotationWords": 0,
+    "geometryProduced": false,
+    "frozenPacketsModified": false,
+    "globalRegistryModified": false,
+    "usableForAddressAssignment": false
+  },
+  "inputs": [
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/source-facts.json",
+      "sha256": "27c323788f68cbe7eb17d96a108baa7fcd32e47ad75027c8983760b088e81469"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/independent-review.json",
+      "sha256": "d1716bab050d70356542fb364498aae99b1b43475b6e6e9cc9b1d24581e1349c"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/boundary-obstacles.json",
+      "sha256": "4d54ffd4a0a3cfa8897c347966b719c9aa23b2f9a64d1361c356afc933d91f7f"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-more/source-facts.json",
+      "sha256": "b06447d58d364e30c76ce16e1ba6850249c2a8c4bedb44718c848c4b7c13ba56"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-more/independent-obstacle-review.json",
+      "sha256": "9f8640611c10e46020269c9f9533bedefe8b1b63a1845c8bf7823903c12ae2c9"
+    },
+    {
+      "path": "data/neighborhoods/research/szeged-local-source-scout-next.json",
+      "sha256": "0d02ba5f749f8ced8fe33a0452387726d4af88a9cd4da8357b4ce3d03c964b4e"
+    }
+  ]
+}

@@ -1,0 +1,653 @@
+{
+  "schemaVersion": 1,
+  "status": "working_source_only_traces_no_admission_no_world_registration",
+  "source": {
+    "localOriginalPath": ".local/neighborhoods/quarter-map-batch/szeged-henits-ksh-map-2013.pdf",
+    "sha256": "b490214f9f038afe38fb1c74e24c0d5b99aeb04e54f192c417b06018363b3d0f",
+    "nativeImagePath": ".local/neighborhoods/szeged-raw-review/henits2013/p24-xref249.jpeg",
+    "nativeImageSha256": "e3ba7c2ba2d955fbf0ae08c847edba5502ce90d776a649819b33a26f51323c6e",
+    "nativeImageSizePixels": [
+      1174,
+      1018
+    ],
+    "sourcePdfPageOneBased": 24,
+    "nativeImageXref": 249
+  },
+  "method": "For each cutoff, retain complete original8-neighbor maxRGB<cutoff components with at least1000pixels. Disconnected east/west quarter networks remain disconnected; no joins are drawn. Select4-neighbor non-stroke component from explicitly recorded color-fill seed. Exact union of unit pixel cells by row runs, without repair, caps, bridges, snapping, dilation, clipping, simplification or synthetic closure.",
+  "componentSelectionReason": "A globally largest-only component omits the physically separate east-bank quarter network. Retaining the whole large original components restores its existing native bands without joining them. Smaller disconnected numeric annotations are omitted; distant scale/legend strokes do not affect the selected neighborhood interiors.",
+  "initialLargestOnlyExperimentPreservedLocally": ".local/neighborhoods/szeged-raw-review/henits2013/five-traces/largest-only-initial-experiment-proof.json",
+  "annotationHandling": "Disconnected black number annotations are excluded from selected perimeter component, so they remain ordinary cells in source interior. Any annotation that erases a perimeter can cause a literal failure; no missing stroke is drawn.",
+  "resultsByCutoff": [
+    {
+      "cutoffMaximumRgbExclusive": 50,
+      "allDarkPixelCount": 52856,
+      "selected8NeighborStrokeComponentMinimumPixels": 1000,
+      "selected8NeighborStrokeComponentSizes": [
+        12889,
+        1968,
+        3909,
+        1181,
+        1758,
+        5240,
+        3061,
+        1297
+      ],
+      "selected8NeighborStrokePixels": 31303,
+      "darkComponentSizesTop8": [
+        12889,
+        5240,
+        3909,
+        3061,
+        1968,
+        1758,
+        1297,
+        1181
+      ],
+      "free4NeighborComponentSizesTop12": [
+        877193,
+        105727,
+        22475,
+        20607,
+        13838,
+        12393,
+        12145,
+        10540,
+        8795,
+        8551,
+        8499,
+        7454
+      ],
+      "masksPath": ".local/neighborhoods/szeged-raw-review/henits2013/five-traces/black50-masks.npz",
+      "sourceGeometryPath": "henits-five-black50-source-pixels-working.geojson",
+      "results": [
+        {
+          "number": 19,
+          "name": "Klebelsberg-telep",
+          "nameAsPrinted": "Klebersberg-telep",
+          "seedXY": [
+            465,
+            610
+          ],
+          "cutoffMaximumRgbExclusive": 50,
+          "seedRgb": [
+            40,
+            114,
+            1
+          ],
+          "freeComponentId": 22,
+          "sourceInteriorPixels": 4062,
+          "touchesRasterEdge": false,
+          "seedIsOnSelectedStroke": false,
+          "status": "closed_source_component_pending_visual_independent_review",
+          "geometryType": "Polygon",
+          "isValid": true,
+          "validityReason": "Valid Geometry",
+          "holes": 0,
+          "areaSquarePixels": 4062.0,
+          "boundsSourcePixelCellEdges": [
+            416.0,
+            555.0,
+            502.0,
+            629.0
+          ],
+          "sourceContourObserved": true
+        },
+        {
+          "number": 20,
+          "name": "Kecskés-telep",
+          "nameAsPrinted": "Kecskés-telep",
+          "seedXY": [
+            425,
+            540
+          ],
+          "cutoffMaximumRgbExclusive": 50,
+          "seedRgb": [
+            38,
+            115,
+            0
+          ],
+          "freeComponentId": 18,
+          "sourceInteriorPixels": 7454,
+          "touchesRasterEdge": false,
+          "seedIsOnSelectedStroke": false,
+          "status": "closed_source_component_pending_visual_independent_review",
+          "geometryType": "Polygon",
+          "isValid": true,
+          "validityReason": "Valid Geometry",
+          "holes": 0,
+          "areaSquarePixels": 7454.0,
+          "boundsSourcePixelCellEdges": [
+            355.0,
+            454.0,
+            489.0,
+            573.0
+          ],
+          "sourceContourObserved": true
+        },
+        {
+          "number": 28,
+          "name": "Odessza",
+          "nameAsPrinted": "Odessza",
+          "seedXY": [
+            722,
+            461
+          ],
+          "cutoffMaximumRgbExclusive": 50,
+          "seedRgb": [
+            255,
+            162,
+            3
+          ],
+          "freeComponentId": 17,
+          "sourceInteriorPixels": 1824,
+          "touchesRasterEdge": false,
+          "seedIsOnSelectedStroke": false,
+          "status": "closed_source_component_pending_visual_independent_review",
+          "geometryType": "Polygon",
+          "isValid": true,
+          "validityReason": "Valid Geometry",
+          "holes": 0,
+          "areaSquarePixels": 1824.0,
+          "boundsSourcePixelCellEdges": [
+            701.0,
+            410.0,
+            754.0,
+            474.0
+          ],
+          "sourceContourObserved": true
+        },
+        {
+          "number": 11,
+          "name": "Marostő",
+          "nameAsPrinted": "Marostő",
+          "seedXY": [
+            896,
+            540
+          ],
+          "cutoffMaximumRgbExclusive": 50,
+          "seedRgb": [
+            40,
+            114,
+            1
+          ],
+          "freeComponentId": 19,
+          "sourceInteriorPixels": 4601,
+          "touchesRasterEdge": false,
+          "seedIsOnSelectedStroke": false,
+          "status": "closed_source_component_pending_visual_independent_review",
+          "geometryType": "Polygon",
+          "isValid": true,
+          "validityReason": "Valid Geometry",
+          "holes": 0,
+          "areaSquarePixels": 4601.0,
+          "boundsSourcePixelCellEdges": [
+            852.0,
+            460.0,
+            944.0,
+            552.0
+          ],
+          "sourceContourObserved": true
+        },
+        {
+          "number": 27,
+          "name": "Újszőreg",
+          "nameAsPrinted": "Újszőreg",
+          "seedXY": [
+            850,
+            605
+          ],
+          "cutoffMaximumRgbExclusive": 50,
+          "seedRgb": [
+            38,
+            115,
+            0
+          ],
+          "freeComponentId": 1,
+          "sourceInteriorPixels": 877193,
+          "touchesRasterEdge": true,
+          "seedIsOnSelectedStroke": false,
+          "status": "literal_extraction_quarantine",
+          "reason": "seed_component_leaks_to_raster_edge",
+          "sourceContourObserved": false
+        }
+      ]
+    },
+    {
+      "cutoffMaximumRgbExclusive": 60,
+      "allDarkPixelCount": 56431,
+      "selected8NeighborStrokeComponentMinimumPixels": 1000,
+      "selected8NeighborStrokeComponentSizes": [
+        15632,
+        2125,
+        4306,
+        1263,
+        1877,
+        5256,
+        3063,
+        1338
+      ],
+      "selected8NeighborStrokePixels": 34860,
+      "darkComponentSizesTop8": [
+        15632,
+        5256,
+        4306,
+        3063,
+        2125,
+        1877,
+        1338,
+        1263
+      ],
+      "free4NeighborComponentSizesTop12": [
+        800583,
+        105727,
+        49204,
+        22401,
+        20564,
+        13807,
+        12298,
+        12095,
+        10501,
+        9669,
+        8726,
+        8485
+      ],
+      "masksPath": ".local/neighborhoods/szeged-raw-review/henits2013/five-traces/black60-masks.npz",
+      "sourceGeometryPath": "henits-five-black60-source-pixels-working.geojson",
+      "results": [
+        {
+          "number": 19,
+          "name": "Klebelsberg-telep",
+          "nameAsPrinted": "Klebersberg-telep",
+          "seedXY": [
+            465,
+            610
+          ],
+          "cutoffMaximumRgbExclusive": 60,
+          "seedRgb": [
+            40,
+            114,
+            1
+          ],
+          "freeComponentId": 27,
+          "sourceInteriorPixels": 4019,
+          "touchesRasterEdge": false,
+          "seedIsOnSelectedStroke": false,
+          "status": "closed_source_component_pending_visual_independent_review",
+          "geometryType": "Polygon",
+          "isValid": true,
+          "validityReason": "Valid Geometry",
+          "holes": 0,
+          "areaSquarePixels": 4019.0,
+          "boundsSourcePixelCellEdges": [
+            417.0,
+            556.0,
+            502.0,
+            628.0
+          ],
+          "sourceContourObserved": true
+        },
+        {
+          "number": 20,
+          "name": "Kecskés-telep",
+          "nameAsPrinted": "Kecskés-telep",
+          "seedXY": [
+            425,
+            540
+          ],
+          "cutoffMaximumRgbExclusive": 60,
+          "seedRgb": [
+            38,
+            115,
+            0
+          ],
+          "freeComponentId": 23,
+          "sourceInteriorPixels": 7382,
+          "touchesRasterEdge": false,
+          "seedIsOnSelectedStroke": false,
+          "status": "closed_source_component_pending_visual_independent_review",
+          "geometryType": "Polygon",
+          "isValid": true,
+          "validityReason": "Valid Geometry",
+          "holes": 0,
+          "areaSquarePixels": 7382.0,
+          "boundsSourcePixelCellEdges": [
+            355.0,
+            454.0,
+            489.0,
+            572.0
+          ],
+          "sourceContourObserved": true
+        },
+        {
+          "number": 28,
+          "name": "Odessza",
+          "nameAsPrinted": "Odessza",
+          "seedXY": [
+            722,
+            461
+          ],
+          "cutoffMaximumRgbExclusive": 60,
+          "seedRgb": [
+            255,
+            162,
+            3
+          ],
+          "freeComponentId": 22,
+          "sourceInteriorPixels": 1812,
+          "touchesRasterEdge": false,
+          "seedIsOnSelectedStroke": false,
+          "status": "closed_source_component_pending_visual_independent_review",
+          "geometryType": "Polygon",
+          "isValid": true,
+          "validityReason": "Valid Geometry",
+          "holes": 0,
+          "areaSquarePixels": 1812.0,
+          "boundsSourcePixelCellEdges": [
+            701.0,
+            410.0,
+            754.0,
+            474.0
+          ],
+          "sourceContourObserved": true
+        },
+        {
+          "number": 11,
+          "name": "Marostő",
+          "nameAsPrinted": "Marostő",
+          "seedXY": [
+            896,
+            540
+          ],
+          "cutoffMaximumRgbExclusive": 60,
+          "seedRgb": [
+            40,
+            114,
+            1
+          ],
+          "freeComponentId": 24,
+          "sourceInteriorPixels": 4553,
+          "touchesRasterEdge": false,
+          "seedIsOnSelectedStroke": false,
+          "status": "closed_source_component_pending_visual_independent_review",
+          "geometryType": "Polygon",
+          "isValid": true,
+          "validityReason": "Valid Geometry",
+          "holes": 0,
+          "areaSquarePixels": 4553.0,
+          "boundsSourcePixelCellEdges": [
+            852.0,
+            460.0,
+            944.0,
+            552.0
+          ],
+          "sourceContourObserved": true
+        },
+        {
+          "number": 27,
+          "name": "Újszőreg",
+          "nameAsPrinted": "Újszőreg",
+          "seedXY": [
+            850,
+            605
+          ],
+          "cutoffMaximumRgbExclusive": 60,
+          "seedRgb": [
+            38,
+            115,
+            0
+          ],
+          "freeComponentId": 1,
+          "sourceInteriorPixels": 800583,
+          "touchesRasterEdge": true,
+          "seedIsOnSelectedStroke": false,
+          "status": "literal_extraction_quarantine",
+          "reason": "seed_component_leaks_to_raster_edge",
+          "sourceContourObserved": false
+        }
+      ]
+    },
+    {
+      "cutoffMaximumRgbExclusive": 70,
+      "allDarkPixelCount": 59867,
+      "selected8NeighborStrokeComponentMinimumPixels": 1000,
+      "selected8NeighborStrokeComponentSizes": [
+        17273,
+        2220,
+        4665,
+        1333,
+        1994,
+        5322,
+        3064,
+        1376
+      ],
+      "selected8NeighborStrokePixels": 37247,
+      "darkComponentSizesTop8": [
+        17273,
+        5322,
+        4665,
+        3064,
+        2220,
+        1994,
+        1376,
+        1333
+      ],
+      "free4NeighborComponentSizesTop12": [
+        799997,
+        105726,
+        35585,
+        22327,
+        20530,
+        13775,
+        12208,
+        12057,
+        10471,
+        9493,
+        8658,
+        8428
+      ],
+      "masksPath": ".local/neighborhoods/szeged-raw-review/henits2013/five-traces/black70-masks.npz",
+      "sourceGeometryPath": "henits-five-black70-source-pixels-working.geojson",
+      "results": [
+        {
+          "number": 19,
+          "name": "Klebelsberg-telep",
+          "nameAsPrinted": "Klebersberg-telep",
+          "seedXY": [
+            465,
+            610
+          ],
+          "cutoffMaximumRgbExclusive": 70,
+          "seedRgb": [
+            40,
+            114,
+            1
+          ],
+          "freeComponentId": 28,
+          "sourceInteriorPixels": 3994,
+          "touchesRasterEdge": false,
+          "seedIsOnSelectedStroke": false,
+          "status": "closed_source_component_pending_visual_independent_review",
+          "geometryType": "Polygon",
+          "isValid": true,
+          "validityReason": "Valid Geometry",
+          "holes": 0,
+          "areaSquarePixels": 3994.0,
+          "boundsSourcePixelCellEdges": [
+            417.0,
+            556.0,
+            502.0,
+            628.0
+          ],
+          "sourceContourObserved": true
+        },
+        {
+          "number": 20,
+          "name": "Kecskés-telep",
+          "nameAsPrinted": "Kecskés-telep",
+          "seedXY": [
+            425,
+            540
+          ],
+          "cutoffMaximumRgbExclusive": 70,
+          "seedRgb": [
+            38,
+            115,
+            0
+          ],
+          "freeComponentId": 24,
+          "sourceInteriorPixels": 7329,
+          "touchesRasterEdge": false,
+          "seedIsOnSelectedStroke": false,
+          "status": "closed_source_component_pending_visual_independent_review",
+          "geometryType": "Polygon",
+          "isValid": true,
+          "validityReason": "Valid Geometry",
+          "holes": 0,
+          "areaSquarePixels": 7329.0,
+          "boundsSourcePixelCellEdges": [
+            355.0,
+            454.0,
+            489.0,
+            572.0
+          ],
+          "sourceContourObserved": true
+        },
+        {
+          "number": 28,
+          "name": "Odessza",
+          "nameAsPrinted": "Odessza",
+          "seedXY": [
+            722,
+            461
+          ],
+          "cutoffMaximumRgbExclusive": 70,
+          "seedRgb": [
+            255,
+            162,
+            3
+          ],
+          "freeComponentId": 23,
+          "sourceInteriorPixels": 1800,
+          "touchesRasterEdge": false,
+          "seedIsOnSelectedStroke": false,
+          "status": "closed_source_component_pending_visual_independent_review",
+          "geometryType": "Polygon",
+          "isValid": true,
+          "validityReason": "Valid Geometry",
+          "holes": 0,
+          "areaSquarePixels": 1800.0,
+          "boundsSourcePixelCellEdges": [
+            701.0,
+            411.0,
+            754.0,
+            474.0
+          ],
+          "sourceContourObserved": true
+        },
+        {
+          "number": 11,
+          "name": "Marostő",
+          "nameAsPrinted": "Marostő",
+          "seedXY": [
+            896,
+            540
+          ],
+          "cutoffMaximumRgbExclusive": 70,
+          "seedRgb": [
+            40,
+            114,
+            1
+          ],
+          "freeComponentId": 25,
+          "sourceInteriorPixels": 4504,
+          "touchesRasterEdge": false,
+          "seedIsOnSelectedStroke": false,
+          "status": "closed_source_component_pending_visual_independent_review",
+          "geometryType": "Polygon",
+          "isValid": true,
+          "validityReason": "Valid Geometry",
+          "holes": 0,
+          "areaSquarePixels": 4504.0,
+          "boundsSourcePixelCellEdges": [
+            853.0,
+            460.0,
+            944.0,
+            551.0
+          ],
+          "sourceContourObserved": true
+        },
+        {
+          "number": 27,
+          "name": "Újszőreg",
+          "nameAsPrinted": "Újszőreg",
+          "seedXY": [
+            850,
+            605
+          ],
+          "cutoffMaximumRgbExclusive": 70,
+          "seedRgb": [
+            38,
+            115,
+            0
+          ],
+          "freeComponentId": 1,
+          "sourceInteriorPixels": 799997,
+          "touchesRasterEdge": true,
+          "seedIsOnSelectedStroke": false,
+          "status": "literal_extraction_quarantine",
+          "reason": "seed_component_leaks_to_raster_edge",
+          "sourceContourObserved": false
+        }
+      ]
+    }
+  ],
+  "thresholdSensitivity": [
+    {
+      "number": 19,
+      "name": "Klebelsberg-telep",
+      "black50Vs60SymmetricDifferencePixels": 43,
+      "black70Vs60SymmetricDifferencePixels": 25
+    },
+    {
+      "number": 20,
+      "name": "Kecskés-telep",
+      "black50Vs60SymmetricDifferencePixels": 72,
+      "black70Vs60SymmetricDifferencePixels": 53
+    },
+    {
+      "number": 28,
+      "name": "Odessza",
+      "black50Vs60SymmetricDifferencePixels": 12,
+      "black70Vs60SymmetricDifferencePixels": 12
+    },
+    {
+      "number": 11,
+      "name": "Marostő",
+      "black50Vs60SymmetricDifferencePixels": 48,
+      "black70Vs60SymmetricDifferencePixels": 49
+    },
+    {
+      "number": 27,
+      "name": "Újszőreg",
+      "black50Vs60SymmetricDifferencePixels": 76610,
+      "black70Vs60SymmetricDifferencePixels": 586
+    }
+  ],
+  "identityNotes": [
+    "Unit19 is printed Klebersberg-telep in the dissertation body; correction toKlebelsberg is explicit and corroborated by separate sources, never a new identity.",
+    "Unit27 is Újszőreg by repeated body evidence. A conflicting Bodomi(27)text key is quarantined; it is not used here."
+  ],
+  "sourcePixelMasksAndPreview": ".local/neighborhoods/szeged-raw-review/henits2013/five-traces",
+  "worldCoordinatesProduced": false,
+  "georeferencingPerformed": false,
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "independentVisualTopologyReviewPending": true,
+  "strictWorldCoordinateValidatorApplicable": false,
+  "strictWorldCoordinateValidatorReason": "Source pixels are not WGS84; geographic admission validator remains pending world registration. A separate normalized in-memory topology check may be run without producing world geometry.",
+  "directNarrativeQuotationWords": 0,
+  "networkCallsPerformed": false,
+  "globalRegistryModified": false,
+  "frozenPacketsModified": false,
+  "scriptSha256": "7fa2f7b4010aa089032b39a9f01c451d82f9c6892ac6927fab525054b8827948"
+}

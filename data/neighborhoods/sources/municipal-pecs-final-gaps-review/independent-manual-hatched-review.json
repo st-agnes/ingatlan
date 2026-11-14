@@ -1,0 +1,5325 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "scope": "Independent visual whole-fine-unit and original outer-graphic-stroke QA for the two new manual source12 routes, with source9 literal name/shape context.",
+  "reviewer": "Independent source-image reviewer; route author is the parent agent.",
+  "routeAuthorScriptImportedOrInvoked": false,
+  "sourceImage": {
+    "path": "../municipal-pecs-remaining-next/pecs-p63-density.jpeg",
+    "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+  },
+  "sourceNameImage": {
+    "path": "../municipal-pecs-remaining-next/pecs-p48-names.jpeg",
+    "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+  },
+  "candidateInput": {
+    "path": "manual-hatched-stroke-candidates.json",
+    "sha256": "cd7250c5913aca633f5550b63cc82963cfe478668083b0543f35820d7cc99f90"
+  },
+  "assessmentMethod": "Inspect both complete source shapes and all external boundary sectors in native original-raster context, separately from mask/coverage arithmetic. Recheck literal original mask pixels, adjacent steps, segment provenance and simple-ring geometry with independent integer determinant arithmetic. Mask membership/fragment coverage alone do not authorize the whole-footprint conclusion.",
+  "records": [
+    {
+      "sourceName": "Murom",
+      "semanticKind": "neighbourhood_source_candidate",
+      "sourceLabelAnchorFigure9": [
+        454,
+        176
+      ],
+      "sourceWholeFineUnitIdentitySupported": true,
+      "nameAndWholeShapeVisualEvidence": "Murom thin northern stem and broad southwestern lower lobe are separately visible below Somogy in Figure9; its literal label identifies the lower lobe. The complete matching Figure12 shape is a white/no-data stem-and-lobe body, separate from the yellow Somogy area above. The Figure9 label/rail obscuration is a source9-only limitation; the source12 external stroke is continuously visible.",
+      "source12OuterBoundaryVisualEvidence": "The prominent diagonal from the southwestern low point toward the eastern stem/lobe junction remains internal. The route follows the western lobe and entire southern/eastern exterior rather than cutting across this diagonal. The complete thin stem is retained.",
+      "boundarySectorReviews": [
+        {
+          "sourceSegmentIndex": 0,
+          "start": [
+            794,
+            298
+          ],
+          "end": [
+            790,
+            303
+          ],
+          "independentVisualSector": "western thin-stem edge",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 1,
+          "start": [
+            790,
+            303
+          ],
+          "end": [
+            788,
+            307
+          ],
+          "independentVisualSector": "western thin-stem edge",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 2,
+          "start": [
+            788,
+            307
+          ],
+          "end": [
+            789,
+            310
+          ],
+          "independentVisualSector": "western thin-stem edge",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 3,
+          "start": [
+            789,
+            310
+          ],
+          "end": [
+            791,
+            314
+          ],
+          "independentVisualSector": "western thin-stem edge",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 4,
+          "start": [
+            791,
+            314
+          ],
+          "end": [
+            794,
+            318
+          ],
+          "independentVisualSector": "western thin-stem edge",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 5,
+          "start": [
+            794,
+            318
+          ],
+          "end": [
+            795,
+            322
+          ],
+          "independentVisualSector": "western thin-stem edge",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 6,
+          "start": [
+            795,
+            322
+          ],
+          "end": [
+            795,
+            324
+          ],
+          "independentVisualSector": "western thin-stem edge",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 7,
+          "start": [
+            795,
+            324
+          ],
+          "end": [
+            790,
+            325
+          ],
+          "independentVisualSector": "northern lobe edge below the stem",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 8,
+          "start": [
+            790,
+            325
+          ],
+          "end": [
+            784,
+            325
+          ],
+          "independentVisualSector": "northern lobe edge below the stem",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 9,
+          "start": [
+            784,
+            325
+          ],
+          "end": [
+            778,
+            325
+          ],
+          "independentVisualSector": "northern lobe edge below the stem",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 10,
+          "start": [
+            778,
+            325
+          ],
+          "end": [
+            773,
+            326
+          ],
+          "independentVisualSector": "northern lobe edge below the stem",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 11,
+          "start": [
+            773,
+            326
+          ],
+          "end": [
+            770,
+            324
+          ],
+          "independentVisualSector": "northern lobe edge below the stem",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 12,
+          "start": [
+            770,
+            324
+          ],
+          "end": [
+            765,
+            325
+          ],
+          "independentVisualSector": "northern lobe edge below the stem",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 13,
+          "start": [
+            765,
+            325
+          ],
+          "end": [
+            762,
+            326
+          ],
+          "independentVisualSector": "northern lobe edge below the stem",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 14,
+          "start": [
+            762,
+            326
+          ],
+          "end": [
+            760,
+            330
+          ],
+          "independentVisualSector": "northern lobe edge below the stem",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 15,
+          "start": [
+            760,
+            330
+          ],
+          "end": [
+            756,
+            334
+          ],
+          "independentVisualSector": "western lobe exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 16,
+          "start": [
+            756,
+            334
+          ],
+          "end": [
+            756,
+            337
+          ],
+          "independentVisualSector": "western lobe exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 17,
+          "start": [
+            756,
+            337
+          ],
+          "end": [
+            759,
+            340
+          ],
+          "independentVisualSector": "western lobe exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 18,
+          "start": [
+            759,
+            340
+          ],
+          "end": [
+            762,
+            343
+          ],
+          "independentVisualSector": "western lobe exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 19,
+          "start": [
+            762,
+            343
+          ],
+          "end": [
+            765,
+            344
+          ],
+          "independentVisualSector": "western lobe exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 20,
+          "start": [
+            765,
+            344
+          ],
+          "end": [
+            768,
+            342
+          ],
+          "independentVisualSector": "western lobe exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 21,
+          "start": [
+            768,
+            342
+          ],
+          "end": [
+            771,
+            347
+          ],
+          "independentVisualSector": "southern lobed exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 22,
+          "start": [
+            771,
+            347
+          ],
+          "end": [
+            773,
+            348
+          ],
+          "independentVisualSector": "southern lobed exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 23,
+          "start": [
+            773,
+            348
+          ],
+          "end": [
+            778,
+            346
+          ],
+          "independentVisualSector": "southern lobed exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 24,
+          "start": [
+            778,
+            346
+          ],
+          "end": [
+            785,
+            344
+          ],
+          "independentVisualSector": "southern lobed exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 25,
+          "start": [
+            785,
+            344
+          ],
+          "end": [
+            790,
+            346
+          ],
+          "independentVisualSector": "southern lobed exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 26,
+          "start": [
+            790,
+            346
+          ],
+          "end": [
+            795,
+            345
+          ],
+          "independentVisualSector": "southern lobed exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 27,
+          "start": [
+            795,
+            345
+          ],
+          "end": [
+            799,
+            343
+          ],
+          "independentVisualSector": "southern lobed exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 28,
+          "start": [
+            799,
+            343
+          ],
+          "end": [
+            802,
+            340
+          ],
+          "independentVisualSector": "eastern lobe edge",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 29,
+          "start": [
+            802,
+            340
+          ],
+          "end": [
+            803,
+            333
+          ],
+          "independentVisualSector": "eastern lobe edge",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 30,
+          "start": [
+            803,
+            333
+          ],
+          "end": [
+            802,
+            327
+          ],
+          "independentVisualSector": "eastern lobe edge",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 31,
+          "start": [
+            802,
+            327
+          ],
+          "end": [
+            801,
+            321
+          ],
+          "independentVisualSector": "eastern thin-stem edge and top junction",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 32,
+          "start": [
+            801,
+            321
+          ],
+          "end": [
+            801,
+            316
+          ],
+          "independentVisualSector": "eastern thin-stem edge and top junction",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 33,
+          "start": [
+            801,
+            316
+          ],
+          "end": [
+            800,
+            311
+          ],
+          "independentVisualSector": "eastern thin-stem edge and top junction",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 34,
+          "start": [
+            800,
+            311
+          ],
+          "end": [
+            798,
+            305
+          ],
+          "independentVisualSector": "eastern thin-stem edge and top junction",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 35,
+          "start": [
+            798,
+            305
+          ],
+          "end": [
+            796,
+            300
+          ],
+          "independentVisualSector": "eastern thin-stem edge and top junction",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 36,
+          "start": [
+            796,
+            300
+          ],
+          "end": [
+            794,
+            298
+          ],
+          "independentVisualSector": "eastern thin-stem edge and top junction",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        }
+      ],
+      "allBoundarySectorsVisuallyApproved": true,
+      "completeLiteralSourceContourCertified": true,
+      "sourceContourApprovedForInferredDerivation": true,
+      "sourcePixelPath": [
+        [
+          794,
+          298
+        ],
+        [
+          793,
+          299
+        ],
+        [
+          792,
+          300
+        ],
+        [
+          791,
+          301
+        ],
+        [
+          791,
+          302
+        ],
+        [
+          790,
+          303
+        ],
+        [
+          790,
+          304
+        ],
+        [
+          789,
+          305
+        ],
+        [
+          789,
+          306
+        ],
+        [
+          788,
+          307
+        ],
+        [
+          789,
+          308
+        ],
+        [
+          789,
+          309
+        ],
+        [
+          789,
+          310
+        ],
+        [
+          790,
+          311
+        ],
+        [
+          791,
+          312
+        ],
+        [
+          791,
+          313
+        ],
+        [
+          791,
+          314
+        ],
+        [
+          792,
+          315
+        ],
+        [
+          793,
+          316
+        ],
+        [
+          794,
+          317
+        ],
+        [
+          794,
+          318
+        ],
+        [
+          794,
+          319
+        ],
+        [
+          794,
+          320
+        ],
+        [
+          795,
+          321
+        ],
+        [
+          795,
+          322
+        ],
+        [
+          795,
+          323
+        ],
+        [
+          795,
+          324
+        ],
+        [
+          794,
+          324
+        ],
+        [
+          793,
+          324
+        ],
+        [
+          792,
+          324
+        ],
+        [
+          791,
+          324
+        ],
+        [
+          790,
+          325
+        ],
+        [
+          789,
+          325
+        ],
+        [
+          788,
+          325
+        ],
+        [
+          787,
+          325
+        ],
+        [
+          786,
+          325
+        ],
+        [
+          785,
+          325
+        ],
+        [
+          784,
+          325
+        ],
+        [
+          783,
+          325
+        ],
+        [
+          782,
+          325
+        ],
+        [
+          781,
+          325
+        ],
+        [
+          780,
+          325
+        ],
+        [
+          779,
+          325
+        ],
+        [
+          778,
+          325
+        ],
+        [
+          777,
+          326
+        ],
+        [
+          776,
+          326
+        ],
+        [
+          775,
+          326
+        ],
+        [
+          774,
+          326
+        ],
+        [
+          773,
+          326
+        ],
+        [
+          772,
+          326
+        ],
+        [
+          771,
+          325
+        ],
+        [
+          770,
+          324
+        ],
+        [
+          769,
+          325
+        ],
+        [
+          768,
+          325
+        ],
+        [
+          767,
+          325
+        ],
+        [
+          766,
+          325
+        ],
+        [
+          765,
+          325
+        ],
+        [
+          764,
+          326
+        ],
+        [
+          763,
+          326
+        ],
+        [
+          762,
+          326
+        ],
+        [
+          762,
+          327
+        ],
+        [
+          762,
+          328
+        ],
+        [
+          761,
+          329
+        ],
+        [
+          760,
+          330
+        ],
+        [
+          759,
+          331
+        ],
+        [
+          758,
+          332
+        ],
+        [
+          757,
+          333
+        ],
+        [
+          756,
+          334
+        ],
+        [
+          756,
+          335
+        ],
+        [
+          756,
+          336
+        ],
+        [
+          756,
+          337
+        ],
+        [
+          757,
+          338
+        ],
+        [
+          758,
+          339
+        ],
+        [
+          759,
+          340
+        ],
+        [
+          760,
+          341
+        ],
+        [
+          761,
+          342
+        ],
+        [
+          762,
+          343
+        ],
+        [
+          763,
+          343
+        ],
+        [
+          764,
+          343
+        ],
+        [
+          765,
+          344
+        ],
+        [
+          766,
+          344
+        ],
+        [
+          767,
+          343
+        ],
+        [
+          768,
+          342
+        ],
+        [
+          769,
+          343
+        ],
+        [
+          770,
+          344
+        ],
+        [
+          771,
+          345
+        ],
+        [
+          771,
+          346
+        ],
+        [
+          771,
+          347
+        ],
+        [
+          772,
+          347
+        ],
+        [
+          773,
+          348
+        ],
+        [
+          774,
+          348
+        ],
+        [
+          775,
+          347
+        ],
+        [
+          776,
+          346
+        ],
+        [
+          777,
+          346
+        ],
+        [
+          778,
+          346
+        ],
+        [
+          779,
+          346
+        ],
+        [
+          780,
+          346
+        ],
+        [
+          781,
+          346
+        ],
+        [
+          782,
+          346
+        ],
+        [
+          783,
+          346
+        ],
+        [
+          784,
+          345
+        ],
+        [
+          785,
+          344
+        ],
+        [
+          786,
+          344
+        ],
+        [
+          787,
+          344
+        ],
+        [
+          788,
+          344
+        ],
+        [
+          789,
+          345
+        ],
+        [
+          790,
+          346
+        ],
+        [
+          791,
+          346
+        ],
+        [
+          792,
+          346
+        ],
+        [
+          793,
+          345
+        ],
+        [
+          794,
+          345
+        ],
+        [
+          795,
+          345
+        ],
+        [
+          796,
+          345
+        ],
+        [
+          797,
+          344
+        ],
+        [
+          798,
+          344
+        ],
+        [
+          799,
+          343
+        ],
+        [
+          800,
+          342
+        ],
+        [
+          801,
+          341
+        ],
+        [
+          802,
+          340
+        ],
+        [
+          803,
+          339
+        ],
+        [
+          803,
+          338
+        ],
+        [
+          803,
+          337
+        ],
+        [
+          803,
+          336
+        ],
+        [
+          803,
+          335
+        ],
+        [
+          803,
+          334
+        ],
+        [
+          803,
+          333
+        ],
+        [
+          803,
+          332
+        ],
+        [
+          803,
+          331
+        ],
+        [
+          803,
+          330
+        ],
+        [
+          803,
+          329
+        ],
+        [
+          803,
+          328
+        ],
+        [
+          802,
+          327
+        ],
+        [
+          802,
+          326
+        ],
+        [
+          802,
+          325
+        ],
+        [
+          802,
+          324
+        ],
+        [
+          802,
+          323
+        ],
+        [
+          801,
+          322
+        ],
+        [
+          801,
+          321
+        ],
+        [
+          801,
+          320
+        ],
+        [
+          801,
+          319
+        ],
+        [
+          801,
+          318
+        ],
+        [
+          801,
+          317
+        ],
+        [
+          801,
+          316
+        ],
+        [
+          800,
+          315
+        ],
+        [
+          800,
+          314
+        ],
+        [
+          800,
+          313
+        ],
+        [
+          800,
+          312
+        ],
+        [
+          800,
+          311
+        ],
+        [
+          799,
+          310
+        ],
+        [
+          799,
+          309
+        ],
+        [
+          799,
+          308
+        ],
+        [
+          799,
+          307
+        ],
+        [
+          798,
+          306
+        ],
+        [
+          798,
+          305
+        ],
+        [
+          798,
+          304
+        ],
+        [
+          798,
+          303
+        ],
+        [
+          797,
+          302
+        ],
+        [
+          797,
+          301
+        ],
+        [
+          796,
+          300
+        ],
+        [
+          795,
+          299
+        ],
+        [
+          794,
+          298
+        ]
+      ],
+      "sourcePixelPathSha256": "964d2c5c4068d79915669a75c9a22a12f781f0e1fde7a2d135af4abb709e995c",
+      "sourcePixelPathVertexCountIncludingClosure": 161,
+      "allPathPixelsIndependentlyRecheckedAgainstOriginalMask": true,
+      "allPathOriginalRgb": [
+        [
+          16,
+          16,
+          16
+        ],
+        [
+          42,
+          42,
+          42
+        ],
+        [
+          27,
+          27,
+          29
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          65,
+          65,
+          65
+        ],
+        [
+          62,
+          62,
+          62
+        ],
+        [
+          75,
+          75,
+          75
+        ],
+        [
+          64,
+          64,
+          64
+        ],
+        [
+          57,
+          57,
+          57
+        ],
+        [
+          153,
+          153,
+          153
+        ],
+        [
+          119,
+          119,
+          119
+        ],
+        [
+          148,
+          148,
+          148
+        ],
+        [
+          158,
+          158,
+          158
+        ],
+        [
+          118,
+          118,
+          118
+        ],
+        [
+          126,
+          126,
+          126
+        ],
+        [
+          157,
+          157,
+          157
+        ],
+        [
+          176,
+          176,
+          176
+        ],
+        [
+          153,
+          153,
+          153
+        ],
+        [
+          84,
+          84,
+          84
+        ],
+        [
+          58,
+          58,
+          58
+        ],
+        [
+          56,
+          56,
+          56
+        ],
+        [
+          63,
+          63,
+          63
+        ],
+        [
+          74,
+          74,
+          74
+        ],
+        [
+          40,
+          40,
+          40
+        ],
+        [
+          53,
+          53,
+          53
+        ],
+        [
+          59,
+          59,
+          59
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          46,
+          46,
+          46
+        ],
+        [
+          38,
+          38,
+          38
+        ],
+        [
+          57,
+          57,
+          57
+        ],
+        [
+          53,
+          53,
+          53
+        ],
+        [
+          93,
+          93,
+          93
+        ],
+        [
+          71,
+          71,
+          71
+        ],
+        [
+          53,
+          53,
+          53
+        ],
+        [
+          40,
+          40,
+          40
+        ],
+        [
+          38,
+          38,
+          38
+        ],
+        [
+          44,
+          44,
+          44
+        ],
+        [
+          49,
+          49,
+          49
+        ],
+        [
+          66,
+          66,
+          66
+        ],
+        [
+          70,
+          70,
+          70
+        ],
+        [
+          77,
+          77,
+          77
+        ],
+        [
+          81,
+          81,
+          81
+        ],
+        [
+          80,
+          80,
+          80
+        ],
+        [
+          82,
+          82,
+          82
+        ],
+        [
+          76,
+          76,
+          76
+        ],
+        [
+          74,
+          74,
+          74
+        ],
+        [
+          58,
+          58,
+          58
+        ],
+        [
+          97,
+          97,
+          97
+        ],
+        [
+          92,
+          92,
+          92
+        ],
+        [
+          60,
+          60,
+          60
+        ],
+        [
+          56,
+          56,
+          56
+        ],
+        [
+          108,
+          108,
+          108
+        ],
+        [
+          55,
+          55,
+          55
+        ],
+        [
+          43,
+          43,
+          43
+        ],
+        [
+          73,
+          73,
+          73
+        ],
+        [
+          103,
+          103,
+          103
+        ],
+        [
+          125,
+          125,
+          125
+        ],
+        [
+          43,
+          43,
+          43
+        ],
+        [
+          105,
+          105,
+          105
+        ],
+        [
+          179,
+          179,
+          179
+        ],
+        [
+          137,
+          137,
+          137
+        ],
+        [
+          103,
+          103,
+          103
+        ],
+        [
+          139,
+          139,
+          139
+        ],
+        [
+          147,
+          147,
+          147
+        ],
+        [
+          165,
+          165,
+          165
+        ],
+        [
+          167,
+          167,
+          167
+        ],
+        [
+          186,
+          186,
+          186
+        ],
+        [
+          184,
+          184,
+          184
+        ],
+        [
+          144,
+          144,
+          144
+        ],
+        [
+          135,
+          135,
+          135
+        ],
+        [
+          157,
+          157,
+          157
+        ],
+        [
+          150,
+          150,
+          150
+        ],
+        [
+          132,
+          132,
+          132
+        ],
+        [
+          145,
+          145,
+          145
+        ],
+        [
+          139,
+          139,
+          139
+        ],
+        [
+          136,
+          136,
+          136
+        ],
+        [
+          144,
+          144,
+          144
+        ],
+        [
+          75,
+          75,
+          75
+        ],
+        [
+          38,
+          38,
+          38
+        ],
+        [
+          71,
+          71,
+          71
+        ],
+        [
+          56,
+          56,
+          56
+        ],
+        [
+          112,
+          112,
+          112
+        ],
+        [
+          60,
+          60,
+          60
+        ],
+        [
+          109,
+          109,
+          109
+        ],
+        [
+          126,
+          126,
+          126
+        ],
+        [
+          84,
+          84,
+          84
+        ],
+        [
+          120,
+          120,
+          120
+        ],
+        [
+          147,
+          147,
+          147
+        ],
+        [
+          80,
+          80,
+          80
+        ],
+        [
+          36,
+          36,
+          36
+        ],
+        [
+          28,
+          28,
+          28
+        ],
+        [
+          31,
+          31,
+          31
+        ],
+        [
+          33,
+          33,
+          33
+        ],
+        [
+          53,
+          53,
+          53
+        ],
+        [
+          110,
+          110,
+          110
+        ],
+        [
+          160,
+          160,
+          160
+        ],
+        [
+          154,
+          154,
+          154
+        ],
+        [
+          115,
+          115,
+          115
+        ],
+        [
+          78,
+          78,
+          78
+        ],
+        [
+          55,
+          55,
+          55
+        ],
+        [
+          64,
+          64,
+          64
+        ],
+        [
+          118,
+          118,
+          118
+        ],
+        [
+          78,
+          78,
+          78
+        ],
+        [
+          55,
+          55,
+          55
+        ],
+        [
+          27,
+          27,
+          27
+        ],
+        [
+          81,
+          81,
+          81
+        ],
+        [
+          46,
+          46,
+          46
+        ],
+        [
+          63,
+          63,
+          63
+        ],
+        [
+          65,
+          65,
+          65
+        ],
+        [
+          63,
+          63,
+          63
+        ],
+        [
+          45,
+          45,
+          45
+        ],
+        [
+          60,
+          60,
+          60
+        ],
+        [
+          83,
+          83,
+          83
+        ],
+        [
+          43,
+          43,
+          43
+        ],
+        [
+          60,
+          60,
+          60
+        ],
+        [
+          48,
+          48,
+          48
+        ],
+        [
+          78,
+          78,
+          78
+        ],
+        [
+          92,
+          92,
+          92
+        ],
+        [
+          61,
+          61,
+          61
+        ],
+        [
+          51,
+          51,
+          51
+        ],
+        [
+          43,
+          43,
+          43
+        ],
+        [
+          63,
+          63,
+          63
+        ],
+        [
+          53,
+          53,
+          53
+        ],
+        [
+          63,
+          63,
+          63
+        ],
+        [
+          62,
+          62,
+          62
+        ],
+        [
+          60,
+          60,
+          60
+        ],
+        [
+          59,
+          59,
+          59
+        ],
+        [
+          59,
+          59,
+          59
+        ],
+        [
+          58,
+          58,
+          58
+        ],
+        [
+          56,
+          56,
+          56
+        ],
+        [
+          54,
+          54,
+          54
+        ],
+        [
+          141,
+          141,
+          141
+        ],
+        [
+          119,
+          119,
+          119
+        ],
+        [
+          80,
+          80,
+          80
+        ],
+        [
+          46,
+          46,
+          46
+        ],
+        [
+          37,
+          37,
+          37
+        ],
+        [
+          42,
+          42,
+          42
+        ],
+        [
+          29,
+          29,
+          29
+        ],
+        [
+          44,
+          44,
+          44
+        ],
+        [
+          62,
+          62,
+          62
+        ],
+        [
+          51,
+          51,
+          51
+        ],
+        [
+          47,
+          47,
+          47
+        ],
+        [
+          63,
+          63,
+          63
+        ],
+        [
+          65,
+          65,
+          65
+        ],
+        [
+          58,
+          58,
+          58
+        ],
+        [
+          59,
+          59,
+          59
+        ],
+        [
+          63,
+          63,
+          63
+        ],
+        [
+          93,
+          93,
+          93
+        ],
+        [
+          58,
+          58,
+          58
+        ],
+        [
+          47,
+          47,
+          47
+        ],
+        [
+          50,
+          50,
+          50
+        ],
+        [
+          66,
+          66,
+          66
+        ],
+        [
+          67,
+          67,
+          67
+        ],
+        [
+          49,
+          49,
+          49
+        ],
+        [
+          42,
+          42,
+          44
+        ],
+        [
+          66,
+          65,
+          70
+        ],
+        [
+          64,
+          63,
+          69
+        ],
+        [
+          47,
+          46,
+          51
+        ],
+        [
+          119,
+          118,
+          123
+        ],
+        [
+          120,
+          120,
+          122
+        ],
+        [
+          16,
+          16,
+          16
+        ]
+      ],
+      "allStepsIndependentlyRechecked8Neighbour": true,
+      "independentIntegerIntersectionCheckPassed": true,
+      "independentPixelCenterRingArea": 1056.0,
+      "allSegmentProvenanceConcatenatesToExactPath": true,
+      "imageEdgeOrCropClosureInvented": false,
+      "approvedPixelGeometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              794.0,
+              298.0
+            ],
+            [
+              793.0,
+              299.0
+            ],
+            [
+              792.0,
+              300.0
+            ],
+            [
+              791.0,
+              301.0
+            ],
+            [
+              791.0,
+              302.0
+            ],
+            [
+              790.0,
+              303.0
+            ],
+            [
+              790.0,
+              304.0
+            ],
+            [
+              789.0,
+              305.0
+            ],
+            [
+              789.0,
+              306.0
+            ],
+            [
+              788.0,
+              307.0
+            ],
+            [
+              789.0,
+              308.0
+            ],
+            [
+              789.0,
+              309.0
+            ],
+            [
+              789.0,
+              310.0
+            ],
+            [
+              790.0,
+              311.0
+            ],
+            [
+              791.0,
+              312.0
+            ],
+            [
+              791.0,
+              313.0
+            ],
+            [
+              791.0,
+              314.0
+            ],
+            [
+              792.0,
+              315.0
+            ],
+            [
+              793.0,
+              316.0
+            ],
+            [
+              794.0,
+              317.0
+            ],
+            [
+              794.0,
+              318.0
+            ],
+            [
+              794.0,
+              319.0
+            ],
+            [
+              794.0,
+              320.0
+            ],
+            [
+              795.0,
+              321.0
+            ],
+            [
+              795.0,
+              322.0
+            ],
+            [
+              795.0,
+              323.0
+            ],
+            [
+              795.0,
+              324.0
+            ],
+            [
+              794.0,
+              324.0
+            ],
+            [
+              793.0,
+              324.0
+            ],
+            [
+              792.0,
+              324.0
+            ],
+            [
+              791.0,
+              324.0
+            ],
+            [
+              790.0,
+              325.0
+            ],
+            [
+              789.0,
+              325.0
+            ],
+            [
+              788.0,
+              325.0
+            ],
+            [
+              787.0,
+              325.0
+            ],
+            [
+              786.0,
+              325.0
+            ],
+            [
+              785.0,
+              325.0
+            ],
+            [
+              784.0,
+              325.0
+            ],
+            [
+              783.0,
+              325.0
+            ],
+            [
+              782.0,
+              325.0
+            ],
+            [
+              781.0,
+              325.0
+            ],
+            [
+              780.0,
+              325.0
+            ],
+            [
+              779.0,
+              325.0
+            ],
+            [
+              778.0,
+              325.0
+            ],
+            [
+              777.0,
+              326.0
+            ],
+            [
+              776.0,
+              326.0
+            ],
+            [
+              775.0,
+              326.0
+            ],
+            [
+              774.0,
+              326.0
+            ],
+            [
+              773.0,
+              326.0
+            ],
+            [
+              772.0,
+              326.0
+            ],
+            [
+              771.0,
+              325.0
+            ],
+            [
+              770.0,
+              324.0
+            ],
+            [
+              769.0,
+              325.0
+            ],
+            [
+              768.0,
+              325.0
+            ],
+            [
+              767.0,
+              325.0
+            ],
+            [
+              766.0,
+              325.0
+            ],
+            [
+              765.0,
+              325.0
+            ],
+            [
+              764.0,
+              326.0
+            ],
+            [
+              763.0,
+              326.0
+            ],
+            [
+              762.0,
+              326.0
+            ],
+            [
+              762.0,
+              327.0
+            ],
+            [
+              762.0,
+              328.0
+            ],
+            [
+              761.0,
+              329.0
+            ],
+            [
+              760.0,
+              330.0
+            ],
+            [
+              759.0,
+              331.0
+            ],
+            [
+              758.0,
+              332.0
+            ],
+            [
+              757.0,
+              333.0
+            ],
+            [
+              756.0,
+              334.0
+            ],
+            [
+              756.0,
+              335.0
+            ],
+            [
+              756.0,
+              336.0
+            ],
+            [
+              756.0,
+              337.0
+            ],
+            [
+              757.0,
+              338.0
+            ],
+            [
+              758.0,
+              339.0
+            ],
+            [
+              759.0,
+              340.0
+            ],
+            [
+              760.0,
+              341.0
+            ],
+            [
+              761.0,
+              342.0
+            ],
+            [
+              762.0,
+              343.0
+            ],
+            [
+              763.0,
+              343.0
+            ],
+            [
+              764.0,
+              343.0
+            ],
+            [
+              765.0,
+              344.0
+            ],
+            [
+              766.0,
+              344.0
+            ],
+            [
+              767.0,
+              343.0
+            ],
+            [
+              768.0,
+              342.0
+            ],
+            [
+              769.0,
+              343.0
+            ],
+            [
+              770.0,
+              344.0
+            ],
+            [
+              771.0,
+              345.0
+            ],
+            [
+              771.0,
+              346.0
+            ],
+            [
+              771.0,
+              347.0
+            ],
+            [
+              772.0,
+              347.0
+            ],
+            [
+              773.0,
+              348.0
+            ],
+            [
+              774.0,
+              348.0
+            ],
+            [
+              775.0,
+              347.0
+            ],
+            [
+              776.0,
+              346.0
+            ],
+            [
+              777.0,
+              346.0
+            ],
+            [
+              778.0,
+              346.0
+            ],
+            [
+              779.0,
+              346.0
+            ],
+            [
+              780.0,
+              346.0
+            ],
+            [
+              781.0,
+              346.0
+            ],
+            [
+              782.0,
+              346.0
+            ],
+            [
+              783.0,
+              346.0
+            ],
+            [
+              784.0,
+              345.0
+            ],
+            [
+              785.0,
+              344.0
+            ],
+            [
+              786.0,
+              344.0
+            ],
+            [
+              787.0,
+              344.0
+            ],
+            [
+              788.0,
+              344.0
+            ],
+            [
+              789.0,
+              345.0
+            ],
+            [
+              790.0,
+              346.0
+            ],
+            [
+              791.0,
+              346.0
+            ],
+            [
+              792.0,
+              346.0
+            ],
+            [
+              793.0,
+              345.0
+            ],
+            [
+              794.0,
+              345.0
+            ],
+            [
+              795.0,
+              345.0
+            ],
+            [
+              796.0,
+              345.0
+            ],
+            [
+              797.0,
+              344.0
+            ],
+            [
+              798.0,
+              344.0
+            ],
+            [
+              799.0,
+              343.0
+            ],
+            [
+              800.0,
+              342.0
+            ],
+            [
+              801.0,
+              341.0
+            ],
+            [
+              802.0,
+              340.0
+            ],
+            [
+              803.0,
+              339.0
+            ],
+            [
+              803.0,
+              338.0
+            ],
+            [
+              803.0,
+              337.0
+            ],
+            [
+              803.0,
+              336.0
+            ],
+            [
+              803.0,
+              335.0
+            ],
+            [
+              803.0,
+              334.0
+            ],
+            [
+              803.0,
+              333.0
+            ],
+            [
+              803.0,
+              332.0
+            ],
+            [
+              803.0,
+              331.0
+            ],
+            [
+              803.0,
+              330.0
+            ],
+            [
+              803.0,
+              329.0
+            ],
+            [
+              803.0,
+              328.0
+            ],
+            [
+              802.0,
+              327.0
+            ],
+            [
+              802.0,
+              326.0
+            ],
+            [
+              802.0,
+              325.0
+            ],
+            [
+              802.0,
+              324.0
+            ],
+            [
+              802.0,
+              323.0
+            ],
+            [
+              801.0,
+              322.0
+            ],
+            [
+              801.0,
+              321.0
+            ],
+            [
+              801.0,
+              320.0
+            ],
+            [
+              801.0,
+              319.0
+            ],
+            [
+              801.0,
+              318.0
+            ],
+            [
+              801.0,
+              317.0
+            ],
+            [
+              801.0,
+              316.0
+            ],
+            [
+              800.0,
+              315.0
+            ],
+            [
+              800.0,
+              314.0
+            ],
+            [
+              800.0,
+              313.0
+            ],
+            [
+              800.0,
+              312.0
+            ],
+            [
+              800.0,
+              311.0
+            ],
+            [
+              799.0,
+              310.0
+            ],
+            [
+              799.0,
+              309.0
+            ],
+            [
+              799.0,
+              308.0
+            ],
+            [
+              799.0,
+              307.0
+            ],
+            [
+              798.0,
+              306.0
+            ],
+            [
+              798.0,
+              305.0
+            ],
+            [
+              798.0,
+              304.0
+            ],
+            [
+              798.0,
+              303.0
+            ],
+            [
+              797.0,
+              302.0
+            ],
+            [
+              797.0,
+              301.0
+            ],
+            [
+              796.0,
+              300.0
+            ],
+            [
+              795.0,
+              299.0
+            ],
+            [
+              794.0,
+              298.0
+            ]
+          ]
+        ]
+      },
+      "sourceContourInterpretation": "Actual original source12 outer-graphic-stroke pixel-center path, not a union of one hatch fragment or a filled gap. Internal hatching is a no-data graphic overlay, not a geographical hole.",
+      "strokeReadingLimitations": [
+        "Original boundary strokes have several-pixel width; this specific observed path is tied to the stated pixel vertices, not a survey-certified centerline.",
+        "The top[794,298]vertex lies in the thick Somogy/Murom junction. Its local stroke-band location is retained; no blank connector is substituted."
+      ],
+      "evidenceFiles": [
+        {
+          "path": "manual-murom-stroke-candidate.png",
+          "sha256": "8fe5ba70ff5e7e46083142f3035e75f18db58c123f2d452fdb8079c0917e38f3"
+        },
+        {
+          "path": "murom-source9-native.png",
+          "sha256": "ea782cfb6f39bad5225f8766d1449222f1070902ac0790247a63f366fc4bd7df"
+        },
+        {
+          "path": "murom-source12-native.png",
+          "sha256": "411646eccbabb5077014436e1571bdc247eb8a0a5480d368cd106ddf09897ad2"
+        }
+      ],
+      "geographicRegistrationEvaluated": false,
+      "georeferenceModelApproved": false,
+      "automaticPrimaryApproval": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Köztemető",
+      "semanticKind": "neighbourhood_source_candidate",
+      "sourceLabelAnchorFigure9": [
+        283,
+        379
+      ],
+      "sourceWholeFineUnitIdentitySupported": true,
+      "nameAndWholeShapeVisualEvidence": "The literal Koztemeto label is in the green XI fine area below the red district in Figure9. Its narrow northern shoulder, larger lower body and shared western/southern fine separators match the complete no-data Figure12 shape. The Figure9 label band obscures a fine separator; Figure12 supplies the visible complete external stroke independently.",
+      "source12OuterBoundaryVisualEvidence": "The diagonal approximately[483,668]to[503,650]and the diagonal approximately[500,685]to[520,662]remain internal. At their junctions with the thick border, the route continues along the external shoulder/east/base/west cycle rather than crossing the interior.",
+      "boundarySectorReviews": [
+        {
+          "sourceSegmentIndex": 0,
+          "start": [
+            481,
+            634
+          ],
+          "end": [
+            489,
+            633
+          ],
+          "independentVisualSector": "upper narrow cap top",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 1,
+          "start": [
+            489,
+            633
+          ],
+          "end": [
+            497,
+            633
+          ],
+          "independentVisualSector": "upper narrow cap top",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 2,
+          "start": [
+            497,
+            633
+          ],
+          "end": [
+            499,
+            634
+          ],
+          "independentVisualSector": "upper narrow cap top",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 3,
+          "start": [
+            499,
+            634
+          ],
+          "end": [
+            500,
+            640
+          ],
+          "independentVisualSector": "upper cap eastern edge",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 4,
+          "start": [
+            500,
+            640
+          ],
+          "end": [
+            501,
+            646
+          ],
+          "independentVisualSector": "upper cap eastern edge",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 5,
+          "start": [
+            501,
+            646
+          ],
+          "end": [
+            502,
+            650
+          ],
+          "independentVisualSector": "upper cap eastern edge",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 6,
+          "start": [
+            502,
+            650
+          ],
+          "end": [
+            506,
+            652
+          ],
+          "independentVisualSector": "eastern shoulder boundary shared with the pale adjacent cell",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 7,
+          "start": [
+            506,
+            652
+          ],
+          "end": [
+            512,
+            657
+          ],
+          "independentVisualSector": "eastern shoulder boundary shared with the pale adjacent cell",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 8,
+          "start": [
+            512,
+            657
+          ],
+          "end": [
+            515,
+            660
+          ],
+          "independentVisualSector": "eastern shoulder boundary shared with the pale adjacent cell",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 9,
+          "start": [
+            515,
+            660
+          ],
+          "end": [
+            520,
+            662
+          ],
+          "independentVisualSector": "eastern shoulder boundary shared with the pale adjacent cell",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 10,
+          "start": [
+            520,
+            662
+          ],
+          "end": [
+            519,
+            668
+          ],
+          "independentVisualSector": "eastern indented exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 11,
+          "start": [
+            519,
+            668
+          ],
+          "end": [
+            519,
+            674
+          ],
+          "independentVisualSector": "eastern indented exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 12,
+          "start": [
+            519,
+            674
+          ],
+          "end": [
+            517,
+            680
+          ],
+          "independentVisualSector": "eastern indented exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 13,
+          "start": [
+            517,
+            680
+          ],
+          "end": [
+            518,
+            685
+          ],
+          "independentVisualSector": "eastern indented exterior",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 14,
+          "start": [
+            518,
+            685
+          ],
+          "end": [
+            512,
+            685
+          ],
+          "independentVisualSector": "southern base boundary",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 15,
+          "start": [
+            512,
+            685
+          ],
+          "end": [
+            506,
+            685
+          ],
+          "independentVisualSector": "southern base boundary",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 16,
+          "start": [
+            506,
+            685
+          ],
+          "end": [
+            500,
+            686
+          ],
+          "independentVisualSector": "southern base boundary",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 17,
+          "start": [
+            500,
+            686
+          ],
+          "end": [
+            494,
+            687
+          ],
+          "independentVisualSector": "southern base boundary",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 18,
+          "start": [
+            494,
+            687
+          ],
+          "end": [
+            488,
+            687
+          ],
+          "independentVisualSector": "southern base boundary",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 19,
+          "start": [
+            488,
+            687
+          ],
+          "end": [
+            484,
+            687
+          ],
+          "independentVisualSector": "southern base boundary",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 20,
+          "start": [
+            484,
+            687
+          ],
+          "end": [
+            483,
+            678
+          ],
+          "independentVisualSector": "western edge shared with orange/red neighbouring cells",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 21,
+          "start": [
+            483,
+            678
+          ],
+          "end": [
+            483,
+            670
+          ],
+          "independentVisualSector": "western edge shared with orange/red neighbouring cells",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 22,
+          "start": [
+            483,
+            670
+          ],
+          "end": [
+            482,
+            661
+          ],
+          "independentVisualSector": "western edge shared with orange/red neighbouring cells",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 23,
+          "start": [
+            482,
+            661
+          ],
+          "end": [
+            482,
+            652
+          ],
+          "independentVisualSector": "western edge shared with orange/red neighbouring cells",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 24,
+          "start": [
+            482,
+            652
+          ],
+          "end": [
+            481,
+            644
+          ],
+          "independentVisualSector": "western edge shared with orange/red neighbouring cells",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 25,
+          "start": [
+            481,
+            644
+          ],
+          "end": [
+            481,
+            639
+          ],
+          "independentVisualSector": "western edge shared with orange/red neighbouring cells",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        },
+        {
+          "sourceSegmentIndex": 26,
+          "start": [
+            481,
+            639
+          ],
+          "end": [
+            481,
+            634
+          ],
+          "independentVisualSector": "western edge shared with orange/red neighbouring cells",
+          "matchesActualOuterGraphicBoundary": true,
+          "usesInternalHatchAsShortcut": false,
+          "unselectedBlankBridgeObserved": false
+        }
+      ],
+      "allBoundarySectorsVisuallyApproved": true,
+      "completeLiteralSourceContourCertified": true,
+      "sourceContourApprovedForInferredDerivation": true,
+      "sourcePixelPath": [
+        [
+          481,
+          634
+        ],
+        [
+          482,
+          634
+        ],
+        [
+          483,
+          634
+        ],
+        [
+          484,
+          634
+        ],
+        [
+          485,
+          634
+        ],
+        [
+          486,
+          634
+        ],
+        [
+          487,
+          634
+        ],
+        [
+          488,
+          634
+        ],
+        [
+          489,
+          633
+        ],
+        [
+          490,
+          633
+        ],
+        [
+          491,
+          633
+        ],
+        [
+          492,
+          633
+        ],
+        [
+          493,
+          633
+        ],
+        [
+          494,
+          633
+        ],
+        [
+          495,
+          633
+        ],
+        [
+          496,
+          633
+        ],
+        [
+          497,
+          633
+        ],
+        [
+          498,
+          633
+        ],
+        [
+          499,
+          634
+        ],
+        [
+          499,
+          635
+        ],
+        [
+          499,
+          636
+        ],
+        [
+          500,
+          637
+        ],
+        [
+          500,
+          638
+        ],
+        [
+          500,
+          639
+        ],
+        [
+          500,
+          640
+        ],
+        [
+          501,
+          641
+        ],
+        [
+          501,
+          642
+        ],
+        [
+          501,
+          643
+        ],
+        [
+          501,
+          644
+        ],
+        [
+          501,
+          645
+        ],
+        [
+          501,
+          646
+        ],
+        [
+          502,
+          647
+        ],
+        [
+          502,
+          648
+        ],
+        [
+          502,
+          649
+        ],
+        [
+          502,
+          650
+        ],
+        [
+          503,
+          650
+        ],
+        [
+          504,
+          650
+        ],
+        [
+          505,
+          651
+        ],
+        [
+          506,
+          652
+        ],
+        [
+          507,
+          652
+        ],
+        [
+          508,
+          653
+        ],
+        [
+          509,
+          654
+        ],
+        [
+          510,
+          655
+        ],
+        [
+          511,
+          656
+        ],
+        [
+          512,
+          657
+        ],
+        [
+          513,
+          658
+        ],
+        [
+          514,
+          659
+        ],
+        [
+          515,
+          660
+        ],
+        [
+          516,
+          660
+        ],
+        [
+          517,
+          661
+        ],
+        [
+          518,
+          661
+        ],
+        [
+          519,
+          662
+        ],
+        [
+          520,
+          662
+        ],
+        [
+          519,
+          663
+        ],
+        [
+          519,
+          664
+        ],
+        [
+          519,
+          665
+        ],
+        [
+          519,
+          666
+        ],
+        [
+          519,
+          667
+        ],
+        [
+          519,
+          668
+        ],
+        [
+          519,
+          669
+        ],
+        [
+          519,
+          670
+        ],
+        [
+          519,
+          671
+        ],
+        [
+          519,
+          672
+        ],
+        [
+          519,
+          673
+        ],
+        [
+          519,
+          674
+        ],
+        [
+          518,
+          675
+        ],
+        [
+          518,
+          676
+        ],
+        [
+          518,
+          677
+        ],
+        [
+          517,
+          678
+        ],
+        [
+          517,
+          679
+        ],
+        [
+          517,
+          680
+        ],
+        [
+          517,
+          681
+        ],
+        [
+          516,
+          682
+        ],
+        [
+          516,
+          683
+        ],
+        [
+          517,
+          684
+        ],
+        [
+          518,
+          685
+        ],
+        [
+          517,
+          685
+        ],
+        [
+          516,
+          685
+        ],
+        [
+          515,
+          685
+        ],
+        [
+          514,
+          685
+        ],
+        [
+          513,
+          685
+        ],
+        [
+          512,
+          685
+        ],
+        [
+          511,
+          685
+        ],
+        [
+          510,
+          685
+        ],
+        [
+          509,
+          685
+        ],
+        [
+          508,
+          685
+        ],
+        [
+          507,
+          685
+        ],
+        [
+          506,
+          685
+        ],
+        [
+          505,
+          685
+        ],
+        [
+          504,
+          685
+        ],
+        [
+          503,
+          685
+        ],
+        [
+          502,
+          685
+        ],
+        [
+          501,
+          686
+        ],
+        [
+          500,
+          686
+        ],
+        [
+          499,
+          686
+        ],
+        [
+          498,
+          686
+        ],
+        [
+          497,
+          686
+        ],
+        [
+          496,
+          686
+        ],
+        [
+          495,
+          686
+        ],
+        [
+          494,
+          687
+        ],
+        [
+          493,
+          687
+        ],
+        [
+          492,
+          687
+        ],
+        [
+          491,
+          687
+        ],
+        [
+          490,
+          687
+        ],
+        [
+          489,
+          687
+        ],
+        [
+          488,
+          687
+        ],
+        [
+          487,
+          687
+        ],
+        [
+          486,
+          687
+        ],
+        [
+          485,
+          687
+        ],
+        [
+          484,
+          687
+        ],
+        [
+          483,
+          686
+        ],
+        [
+          483,
+          685
+        ],
+        [
+          483,
+          684
+        ],
+        [
+          483,
+          683
+        ],
+        [
+          483,
+          682
+        ],
+        [
+          483,
+          681
+        ],
+        [
+          483,
+          680
+        ],
+        [
+          483,
+          679
+        ],
+        [
+          483,
+          678
+        ],
+        [
+          483,
+          677
+        ],
+        [
+          483,
+          676
+        ],
+        [
+          483,
+          675
+        ],
+        [
+          483,
+          674
+        ],
+        [
+          483,
+          673
+        ],
+        [
+          483,
+          672
+        ],
+        [
+          483,
+          671
+        ],
+        [
+          483,
+          670
+        ],
+        [
+          483,
+          669
+        ],
+        [
+          483,
+          668
+        ],
+        [
+          482,
+          667
+        ],
+        [
+          482,
+          666
+        ],
+        [
+          482,
+          665
+        ],
+        [
+          482,
+          664
+        ],
+        [
+          482,
+          663
+        ],
+        [
+          482,
+          662
+        ],
+        [
+          482,
+          661
+        ],
+        [
+          482,
+          660
+        ],
+        [
+          482,
+          659
+        ],
+        [
+          482,
+          658
+        ],
+        [
+          482,
+          657
+        ],
+        [
+          482,
+          656
+        ],
+        [
+          482,
+          655
+        ],
+        [
+          482,
+          654
+        ],
+        [
+          482,
+          653
+        ],
+        [
+          482,
+          652
+        ],
+        [
+          481,
+          651
+        ],
+        [
+          481,
+          650
+        ],
+        [
+          481,
+          649
+        ],
+        [
+          481,
+          648
+        ],
+        [
+          481,
+          647
+        ],
+        [
+          481,
+          646
+        ],
+        [
+          481,
+          645
+        ],
+        [
+          481,
+          644
+        ],
+        [
+          481,
+          643
+        ],
+        [
+          481,
+          642
+        ],
+        [
+          481,
+          641
+        ],
+        [
+          481,
+          640
+        ],
+        [
+          481,
+          639
+        ],
+        [
+          481,
+          638
+        ],
+        [
+          481,
+          637
+        ],
+        [
+          481,
+          636
+        ],
+        [
+          481,
+          635
+        ],
+        [
+          481,
+          634
+        ]
+      ],
+      "sourcePixelPathSha256": "00f0f502d44c131d7e3f2d4a278f8990dad07acad42d77e519833ea13c858a1f",
+      "sourcePixelPathVertexCountIncludingClosure": 163,
+      "allPathPixelsIndependentlyRecheckedAgainstOriginalMask": true,
+      "allPathOriginalRgb": [
+        [
+          81,
+          69,
+          45
+        ],
+        [
+          92,
+          79,
+          62
+        ],
+        [
+          108,
+          94,
+          81
+        ],
+        [
+          104,
+          90,
+          81
+        ],
+        [
+          89,
+          74,
+          67
+        ],
+        [
+          66,
+          51,
+          44
+        ],
+        [
+          42,
+          29,
+          20
+        ],
+        [
+          67,
+          55,
+          41
+        ],
+        [
+          102,
+          85,
+          57
+        ],
+        [
+          94,
+          77,
+          47
+        ],
+        [
+          99,
+          84,
+          55
+        ],
+        [
+          95,
+          81,
+          55
+        ],
+        [
+          89,
+          74,
+          53
+        ],
+        [
+          88,
+          75,
+          58
+        ],
+        [
+          86,
+          76,
+          66
+        ],
+        [
+          62,
+          58,
+          57
+        ],
+        [
+          34,
+          34,
+          36
+        ],
+        [
+          26,
+          26,
+          26
+        ],
+        [
+          62,
+          62,
+          60
+        ],
+        [
+          46,
+          46,
+          44
+        ],
+        [
+          78,
+          80,
+          79
+        ],
+        [
+          49,
+          49,
+          47
+        ],
+        [
+          53,
+          53,
+          51
+        ],
+        [
+          46,
+          46,
+          44
+        ],
+        [
+          74,
+          74,
+          72
+        ],
+        [
+          67,
+          67,
+          65
+        ],
+        [
+          56,
+          56,
+          54
+        ],
+        [
+          58,
+          58,
+          56
+        ],
+        [
+          75,
+          75,
+          73
+        ],
+        [
+          97,
+          97,
+          95
+        ],
+        [
+          115,
+          115,
+          115
+        ],
+        [
+          53,
+          51,
+          52
+        ],
+        [
+          80,
+          78,
+          81
+        ],
+        [
+          40,
+          38,
+          41
+        ],
+        [
+          28,
+          27,
+          32
+        ],
+        [
+          41,
+          41,
+          43
+        ],
+        [
+          73,
+          73,
+          75
+        ],
+        [
+          92,
+          92,
+          94
+        ],
+        [
+          73,
+          74,
+          76
+        ],
+        [
+          48,
+          50,
+          49
+        ],
+        [
+          51,
+          53,
+          52
+        ],
+        [
+          44,
+          46,
+          43
+        ],
+        [
+          63,
+          65,
+          62
+        ],
+        [
+          56,
+          56,
+          56
+        ],
+        [
+          49,
+          46,
+          53
+        ],
+        [
+          65,
+          63,
+          68
+        ],
+        [
+          54,
+          53,
+          51
+        ],
+        [
+          75,
+          76,
+          71
+        ],
+        [
+          65,
+          66,
+          60
+        ],
+        [
+          67,
+          68,
+          63
+        ],
+        [
+          62,
+          61,
+          57
+        ],
+        [
+          45,
+          44,
+          39
+        ],
+        [
+          64,
+          59,
+          55
+        ],
+        [
+          41,
+          38,
+          33
+        ],
+        [
+          57,
+          54,
+          47
+        ],
+        [
+          53,
+          49,
+          40
+        ],
+        [
+          75,
+          71,
+          60
+        ],
+        [
+          88,
+          84,
+          73
+        ],
+        [
+          74,
+          70,
+          59
+        ],
+        [
+          80,
+          76,
+          64
+        ],
+        [
+          94,
+          90,
+          78
+        ],
+        [
+          87,
+          81,
+          65
+        ],
+        [
+          95,
+          87,
+          66
+        ],
+        [
+          113,
+          103,
+          78
+        ],
+        [
+          159,
+          149,
+          124
+        ],
+        [
+          94,
+          87,
+          68
+        ],
+        [
+          97,
+          90,
+          71
+        ],
+        [
+          131,
+          124,
+          105
+        ],
+        [
+          115,
+          109,
+          95
+        ],
+        [
+          77,
+          71,
+          55
+        ],
+        [
+          85,
+          78,
+          62
+        ],
+        [
+          110,
+          103,
+          85
+        ],
+        [
+          86,
+          79,
+          63
+        ],
+        [
+          120,
+          112,
+          93
+        ],
+        [
+          145,
+          133,
+          109
+        ],
+        [
+          97,
+          81,
+          55
+        ],
+        [
+          97,
+          83,
+          57
+        ],
+        [
+          94,
+          82,
+          58
+        ],
+        [
+          80,
+          69,
+          49
+        ],
+        [
+          70,
+          62,
+          43
+        ],
+        [
+          101,
+          92,
+          75
+        ],
+        [
+          83,
+          76,
+          60
+        ],
+        [
+          77,
+          71,
+          55
+        ],
+        [
+          88,
+          82,
+          66
+        ],
+        [
+          76,
+          73,
+          56
+        ],
+        [
+          80,
+          74,
+          58
+        ],
+        [
+          82,
+          79,
+          62
+        ],
+        [
+          85,
+          79,
+          63
+        ],
+        [
+          85,
+          82,
+          65
+        ],
+        [
+          117,
+          111,
+          95
+        ],
+        [
+          65,
+          62,
+          45
+        ],
+        [
+          113,
+          107,
+          91
+        ],
+        [
+          97,
+          92,
+          70
+        ],
+        [
+          74,
+          68,
+          46
+        ],
+        [
+          127,
+          122,
+          100
+        ],
+        [
+          100,
+          94,
+          72
+        ],
+        [
+          47,
+          42,
+          20
+        ],
+        [
+          66,
+          61,
+          42
+        ],
+        [
+          85,
+          83,
+          71
+        ],
+        [
+          164,
+          161,
+          144
+        ],
+        [
+          127,
+          124,
+          105
+        ],
+        [
+          106,
+          104,
+          83
+        ],
+        [
+          122,
+          115,
+          96
+        ],
+        [
+          108,
+          101,
+          83
+        ],
+        [
+          81,
+          74,
+          58
+        ],
+        [
+          81,
+          77,
+          65
+        ],
+        [
+          80,
+          84,
+          70
+        ],
+        [
+          67,
+          73,
+          59
+        ],
+        [
+          95,
+          99,
+          84
+        ],
+        [
+          145,
+          132,
+          116
+        ],
+        [
+          88,
+          52,
+          40
+        ],
+        [
+          89,
+          51,
+          40
+        ],
+        [
+          88,
+          50,
+          41
+        ],
+        [
+          84,
+          43,
+          39
+        ],
+        [
+          81,
+          40,
+          38
+        ],
+        [
+          97,
+          57,
+          55
+        ],
+        [
+          97,
+          59,
+          58
+        ],
+        [
+          151,
+          117,
+          115
+        ],
+        [
+          143,
+          114,
+          110
+        ],
+        [
+          144,
+          121,
+          115
+        ],
+        [
+          121,
+          104,
+          94
+        ],
+        [
+          141,
+          131,
+          119
+        ],
+        [
+          127,
+          121,
+          105
+        ],
+        [
+          130,
+          129,
+          111
+        ],
+        [
+          121,
+          120,
+          100
+        ],
+        [
+          113,
+          105,
+          86
+        ],
+        [
+          85,
+          72,
+          55
+        ],
+        [
+          52,
+          41,
+          23
+        ],
+        [
+          71,
+          59,
+          43
+        ],
+        [
+          89,
+          71,
+          47
+        ],
+        [
+          77,
+          59,
+          37
+        ],
+        [
+          93,
+          76,
+          56
+        ],
+        [
+          122,
+          105,
+          85
+        ],
+        [
+          115,
+          98,
+          80
+        ],
+        [
+          114,
+          97,
+          79
+        ],
+        [
+          109,
+          93,
+          77
+        ],
+        [
+          108,
+          92,
+          77
+        ],
+        [
+          115,
+          99,
+          86
+        ],
+        [
+          135,
+          119,
+          106
+        ],
+        [
+          160,
+          143,
+          133
+        ],
+        [
+          176,
+          162,
+          151
+        ],
+        [
+          155,
+          145,
+          133
+        ],
+        [
+          158,
+          148,
+          136
+        ],
+        [
+          164,
+          154,
+          142
+        ],
+        [
+          174,
+          164,
+          152
+        ],
+        [
+          95,
+          82,
+          65
+        ],
+        [
+          92,
+          79,
+          62
+        ],
+        [
+          90,
+          77,
+          60
+        ],
+        [
+          90,
+          77,
+          60
+        ],
+        [
+          87,
+          74,
+          57
+        ],
+        [
+          88,
+          75,
+          58
+        ],
+        [
+          99,
+          86,
+          69
+        ],
+        [
+          121,
+          108,
+          91
+        ],
+        [
+          134,
+          121,
+          104
+        ],
+        [
+          113,
+          100,
+          83
+        ],
+        [
+          72,
+          59,
+          42
+        ],
+        [
+          43,
+          30,
+          13
+        ],
+        [
+          73,
+          60,
+          44
+        ],
+        [
+          122,
+          110,
+          96
+        ],
+        [
+          187,
+          178,
+          163
+        ],
+        [
+          170,
+          161,
+          144
+        ],
+        [
+          155,
+          147,
+          128
+        ],
+        [
+          81,
+          69,
+          45
+        ]
+      ],
+      "allStepsIndependentlyRechecked8Neighbour": true,
+      "independentIntegerIntersectionCheckPassed": true,
+      "independentPixelCenterRingArea": 1519.0,
+      "allSegmentProvenanceConcatenatesToExactPath": true,
+      "imageEdgeOrCropClosureInvented": false,
+      "approvedPixelGeometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              481.0,
+              634.0
+            ],
+            [
+              482.0,
+              634.0
+            ],
+            [
+              483.0,
+              634.0
+            ],
+            [
+              484.0,
+              634.0
+            ],
+            [
+              485.0,
+              634.0
+            ],
+            [
+              486.0,
+              634.0
+            ],
+            [
+              487.0,
+              634.0
+            ],
+            [
+              488.0,
+              634.0
+            ],
+            [
+              489.0,
+              633.0
+            ],
+            [
+              490.0,
+              633.0
+            ],
+            [
+              491.0,
+              633.0
+            ],
+            [
+              492.0,
+              633.0
+            ],
+            [
+              493.0,
+              633.0
+            ],
+            [
+              494.0,
+              633.0
+            ],
+            [
+              495.0,
+              633.0
+            ],
+            [
+              496.0,
+              633.0
+            ],
+            [
+              497.0,
+              633.0
+            ],
+            [
+              498.0,
+              633.0
+            ],
+            [
+              499.0,
+              634.0
+            ],
+            [
+              499.0,
+              635.0
+            ],
+            [
+              499.0,
+              636.0
+            ],
+            [
+              500.0,
+              637.0
+            ],
+            [
+              500.0,
+              638.0
+            ],
+            [
+              500.0,
+              639.0
+            ],
+            [
+              500.0,
+              640.0
+            ],
+            [
+              501.0,
+              641.0
+            ],
+            [
+              501.0,
+              642.0
+            ],
+            [
+              501.0,
+              643.0
+            ],
+            [
+              501.0,
+              644.0
+            ],
+            [
+              501.0,
+              645.0
+            ],
+            [
+              501.0,
+              646.0
+            ],
+            [
+              502.0,
+              647.0
+            ],
+            [
+              502.0,
+              648.0
+            ],
+            [
+              502.0,
+              649.0
+            ],
+            [
+              502.0,
+              650.0
+            ],
+            [
+              503.0,
+              650.0
+            ],
+            [
+              504.0,
+              650.0
+            ],
+            [
+              505.0,
+              651.0
+            ],
+            [
+              506.0,
+              652.0
+            ],
+            [
+              507.0,
+              652.0
+            ],
+            [
+              508.0,
+              653.0
+            ],
+            [
+              509.0,
+              654.0
+            ],
+            [
+              510.0,
+              655.0
+            ],
+            [
+              511.0,
+              656.0
+            ],
+            [
+              512.0,
+              657.0
+            ],
+            [
+              513.0,
+              658.0
+            ],
+            [
+              514.0,
+              659.0
+            ],
+            [
+              515.0,
+              660.0
+            ],
+            [
+              516.0,
+              660.0
+            ],
+            [
+              517.0,
+              661.0
+            ],
+            [
+              518.0,
+              661.0
+            ],
+            [
+              519.0,
+              662.0
+            ],
+            [
+              520.0,
+              662.0
+            ],
+            [
+              519.0,
+              663.0
+            ],
+            [
+              519.0,
+              664.0
+            ],
+            [
+              519.0,
+              665.0
+            ],
+            [
+              519.0,
+              666.0
+            ],
+            [
+              519.0,
+              667.0
+            ],
+            [
+              519.0,
+              668.0
+            ],
+            [
+              519.0,
+              669.0
+            ],
+            [
+              519.0,
+              670.0
+            ],
+            [
+              519.0,
+              671.0
+            ],
+            [
+              519.0,
+              672.0
+            ],
+            [
+              519.0,
+              673.0
+            ],
+            [
+              519.0,
+              674.0
+            ],
+            [
+              518.0,
+              675.0
+            ],
+            [
+              518.0,
+              676.0
+            ],
+            [
+              518.0,
+              677.0
+            ],
+            [
+              517.0,
+              678.0
+            ],
+            [
+              517.0,
+              679.0
+            ],
+            [
+              517.0,
+              680.0
+            ],
+            [
+              517.0,
+              681.0
+            ],
+            [
+              516.0,
+              682.0
+            ],
+            [
+              516.0,
+              683.0
+            ],
+            [
+              517.0,
+              684.0
+            ],
+            [
+              518.0,
+              685.0
+            ],
+            [
+              517.0,
+              685.0
+            ],
+            [
+              516.0,
+              685.0
+            ],
+            [
+              515.0,
+              685.0
+            ],
+            [
+              514.0,
+              685.0
+            ],
+            [
+              513.0,
+              685.0
+            ],
+            [
+              512.0,
+              685.0
+            ],
+            [
+              511.0,
+              685.0
+            ],
+            [
+              510.0,
+              685.0
+            ],
+            [
+              509.0,
+              685.0
+            ],
+            [
+              508.0,
+              685.0
+            ],
+            [
+              507.0,
+              685.0
+            ],
+            [
+              506.0,
+              685.0
+            ],
+            [
+              505.0,
+              685.0
+            ],
+            [
+              504.0,
+              685.0
+            ],
+            [
+              503.0,
+              685.0
+            ],
+            [
+              502.0,
+              685.0
+            ],
+            [
+              501.0,
+              686.0
+            ],
+            [
+              500.0,
+              686.0
+            ],
+            [
+              499.0,
+              686.0
+            ],
+            [
+              498.0,
+              686.0
+            ],
+            [
+              497.0,
+              686.0
+            ],
+            [
+              496.0,
+              686.0
+            ],
+            [
+              495.0,
+              686.0
+            ],
+            [
+              494.0,
+              687.0
+            ],
+            [
+              493.0,
+              687.0
+            ],
+            [
+              492.0,
+              687.0
+            ],
+            [
+              491.0,
+              687.0
+            ],
+            [
+              490.0,
+              687.0
+            ],
+            [
+              489.0,
+              687.0
+            ],
+            [
+              488.0,
+              687.0
+            ],
+            [
+              487.0,
+              687.0
+            ],
+            [
+              486.0,
+              687.0
+            ],
+            [
+              485.0,
+              687.0
+            ],
+            [
+              484.0,
+              687.0
+            ],
+            [
+              483.0,
+              686.0
+            ],
+            [
+              483.0,
+              685.0
+            ],
+            [
+              483.0,
+              684.0
+            ],
+            [
+              483.0,
+              683.0
+            ],
+            [
+              483.0,
+              682.0
+            ],
+            [
+              483.0,
+              681.0
+            ],
+            [
+              483.0,
+              680.0
+            ],
+            [
+              483.0,
+              679.0
+            ],
+            [
+              483.0,
+              678.0
+            ],
+            [
+              483.0,
+              677.0
+            ],
+            [
+              483.0,
+              676.0
+            ],
+            [
+              483.0,
+              675.0
+            ],
+            [
+              483.0,
+              674.0
+            ],
+            [
+              483.0,
+              673.0
+            ],
+            [
+              483.0,
+              672.0
+            ],
+            [
+              483.0,
+              671.0
+            ],
+            [
+              483.0,
+              670.0
+            ],
+            [
+              483.0,
+              669.0
+            ],
+            [
+              483.0,
+              668.0
+            ],
+            [
+              482.0,
+              667.0
+            ],
+            [
+              482.0,
+              666.0
+            ],
+            [
+              482.0,
+              665.0
+            ],
+            [
+              482.0,
+              664.0
+            ],
+            [
+              482.0,
+              663.0
+            ],
+            [
+              482.0,
+              662.0
+            ],
+            [
+              482.0,
+              661.0
+            ],
+            [
+              482.0,
+              660.0
+            ],
+            [
+              482.0,
+              659.0
+            ],
+            [
+              482.0,
+              658.0
+            ],
+            [
+              482.0,
+              657.0
+            ],
+            [
+              482.0,
+              656.0
+            ],
+            [
+              482.0,
+              655.0
+            ],
+            [
+              482.0,
+              654.0
+            ],
+            [
+              482.0,
+              653.0
+            ],
+            [
+              482.0,
+              652.0
+            ],
+            [
+              481.0,
+              651.0
+            ],
+            [
+              481.0,
+              650.0
+            ],
+            [
+              481.0,
+              649.0
+            ],
+            [
+              481.0,
+              648.0
+            ],
+            [
+              481.0,
+              647.0
+            ],
+            [
+              481.0,
+              646.0
+            ],
+            [
+              481.0,
+              645.0
+            ],
+            [
+              481.0,
+              644.0
+            ],
+            [
+              481.0,
+              643.0
+            ],
+            [
+              481.0,
+              642.0
+            ],
+            [
+              481.0,
+              641.0
+            ],
+            [
+              481.0,
+              640.0
+            ],
+            [
+              481.0,
+              639.0
+            ],
+            [
+              481.0,
+              638.0
+            ],
+            [
+              481.0,
+              637.0
+            ],
+            [
+              481.0,
+              636.0
+            ],
+            [
+              481.0,
+              635.0
+            ],
+            [
+              481.0,
+              634.0
+            ]
+          ]
+        ]
+      },
+      "sourceContourInterpretation": "Actual original source12 outer-graphic-stroke pixel-center path, not a union of one hatch fragment or a filled gap. Internal hatching is a no-data graphic overlay, not a geographical hole.",
+      "strokeReadingLimitations": [
+        "Original boundary strokes have several-pixel width; this specific observed path is tied to the stated pixel vertices, not a survey-certified centerline."
+      ],
+      "evidenceFiles": [
+        {
+          "path": "manual-cemetery-stroke-candidate.png",
+          "sha256": "9691831e5873650011a77cec045385207f09ec01289e5e1c38e4ba9a6dad9e2b"
+        },
+        {
+          "path": "cemetery-source9-native.png",
+          "sha256": "2ec6f040e5aa07cb6c2d1e6e701ba33f406020462cff135dc0250b79bd311b45"
+        },
+        {
+          "path": "cemetery-source12-native.png",
+          "sha256": "0e3e2d12c4fb136b23856975bfaf3d8ac4d6ecc02aabee46c61a5f22e0fa42db"
+        }
+      ],
+      "geographicRegistrationEvaluated": false,
+      "georeferenceModelApproved": false,
+      "automaticPrimaryApproval": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false
+    }
+  ],
+  "source12ManualWholeContoursApproved": 2,
+  "sourceNames": [
+    "Murom",
+    "Köztemető"
+  ],
+  "previousSource9NegativeReviewRetained": "murom-cemetery-source9-continuity-review.json",
+  "relationshipToEarlierReview": "The earlier source9-only negative audit remains valid for obscured source9 strokes. This new method uses the continuously visible source12 external boundary, independently named by source9 shape/context. It does not invent the missing source9 edge.",
+  "newGeographicPolygonsCreatedByReview": 0,
+  "geographicRegistrationEvaluated": false,
+  "automaticPrimaryApproval": false,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false,
+  "completedPriorSourcePackagesChanged": false,
+  "networkUsed": false
+}

@@ -1,0 +1,4870 @@
+{
+  "schemaVersion": 1,
+  "validatorAuthor": "Same reconstruction author, separate code path; not an independent source/map review.",
+  "parentOsmRelation": 1025074,
+  "parentSourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "results": [
+    {
+      "file": "szentes-belvaros-deak-side-inferred-review.geojson",
+      "sha256": "2a2aab8baf53aae2f55b8dfbdec0b6cda8cd13863ae18f1c00bbfc16ec909c69",
+      "valid": true,
+      "holes": 0,
+      "vertices": 99,
+      "areaM2": 1156813.0309333175,
+      "rawGeosDifferenceFromEntireNodedSourceGraphM": 21.47458537989192,
+      "rawGeosDifferenceNote": "Exact union/difference may miss collinear floating point partial intersections at bridges; every output segment is separately verified against a single original source segment with both endpoint distances below 1e-11 degrees. No geometry was snapped or repaired.",
+      "unsupportedBoundarySegments": 0,
+      "nativeSegmentSupportToleranceDegrees": 1e-11,
+      "nativeSegmentSupport": [
+        {
+          "from": [
+            20.2615382,
+            46.6475729
+          ],
+          "to": [
+            20.2614247,
+            46.6474208
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 49259599,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                625634299,
+                3344998926
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2614247,
+            46.6474208
+          ],
+          "to": [
+            20.2611237,
+            46.647181
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 49259599,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3344998926,
+                625634297
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2611237,
+            46.647181
+          ],
+          "to": [
+            20.2604269,
+            46.6475727
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 81544932,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                625634297,
+                8320694203
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2604269,
+            46.6475727
+          ],
+          "to": [
+            20.2600085,
+            46.6478078
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 81544932,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                8320694203,
+                625634295
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2600085,
+            46.6478078
+          ],
+          "to": [
+            20.2596684,
+            46.648014
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 81544932,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                625634295,
+                625634309
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2596684,
+            46.648014
+          ],
+          "to": [
+            20.2594259,
+            46.6481549
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 81544932,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                625634309,
+                3203352356
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2594259,
+            46.6481549
+          ],
+          "to": [
+            20.2592871,
+            46.6482505
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 81544932,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                3203352356,
+                3202204626
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2592871,
+            46.6482505
+          ],
+          "to": [
+            20.2591431,
+            46.6483696
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 81544932,
+              "sourceNodeIndex": 5,
+              "sourceNodeRefs": [
+                3202204626,
+                820854109
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2591431,
+            46.6483696
+          ],
+          "to": [
+            20.2585481,
+            46.6477127
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081857,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                820854049,
+                820854109
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2585481,
+            46.6477127
+          ],
+          "to": [
+            20.2571265,
+            46.6484654
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081952,
+              "sourceNodeIndex": 9,
+              "sourceNodeRefs": [
+                820854049,
+                820854386
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2571265,
+            46.6484654
+          ],
+          "to": [
+            20.2551767,
+            46.6492365
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081952,
+              "sourceNodeIndex": 10,
+              "sourceNodeRefs": [
+                820854386,
+                820854241
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2551767,
+            46.6492365
+          ],
+          "to": [
+            20.2548013,
+            46.6494178
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081952,
+              "sourceNodeIndex": 11,
+              "sourceNodeRefs": [
+                820854241,
+                3744961774
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2548013,
+            46.6494178
+          ],
+          "to": [
+            20.2540998,
+            46.6500209
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081952,
+              "sourceNodeIndex": 12,
+              "sourceNodeRefs": [
+                3744961774,
+                820854147
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2540998,
+            46.6500209
+          ],
+          "to": [
+            20.2538315,
+            46.6502553
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081952,
+              "sourceNodeIndex": 13,
+              "sourceNodeRefs": [
+                820854147,
+                820854346
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2538315,
+            46.6502553
+          ],
+          "to": [
+            20.2535661,
+            46.6501588
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081963,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                820854408,
+                820854346
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2535661,
+            46.6501588
+          ],
+          "to": [
+            20.2530168,
+            46.6504834
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 168108502,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                820854408,
+                1794163987
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2530168,
+            46.6504834
+          ],
+          "to": [
+            20.2528895,
+            46.6505515
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370810716,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                1794163987,
+                3744961794
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2528895,
+            46.6505515
+          ],
+          "to": [
+            20.2528399,
+            46.650515
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370810717,
+              "sourceNodeIndex": 8,
+              "sourceNodeRefs": [
+                3744961794,
+                3744961784
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2528399,
+            46.650515
+          ],
+          "to": [
+            20.2523503,
+            46.6501973
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370810717,
+              "sourceNodeIndex": 9,
+              "sourceNodeRefs": [
+                3744961784,
+                3744961793
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2523503,
+            46.6501973
+          ],
+          "to": [
+            20.2522771,
+            46.6502477
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370810714,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3744961792,
+                3744961793
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2522771,
+            46.6502477
+          ],
+          "to": [
+            20.252101229375157,
+            46.650378064381435
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667751,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3145074869,
+                3744961792
+              ],
+              "maxEndpointDistanceDegrees": 2.5286083212363555e-15
+            }
+          ]
+        },
+        {
+          "from": [
+            20.252101229375157,
+            46.650378064381435
+          ],
+          "to": [
+            20.2521554,
+            46.6504143
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 225,
+              "sourceNodeRefs": [
+                10207175460,
+                820854308
+              ],
+              "maxEndpointDistanceDegrees": 1.4687497777717096e-15
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2521554,
+            46.6504143
+          ],
+          "to": [
+            20.2526246,
+            46.6506952
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 224,
+              "sourceNodeRefs": [
+                820854210,
+                10207175460
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2526246,
+            46.6506952
+          ],
+          "to": [
+            20.2528938,
+            46.6509092
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 223,
+              "sourceNodeRefs": [
+                10207175459,
+                820854210
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2528938,
+            46.6509092
+          ],
+          "to": [
+            20.2530679,
+            46.6511059
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 222,
+              "sourceNodeRefs": [
+                820854077,
+                10207175459
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2530679,
+            46.6511059
+          ],
+          "to": [
+            20.2532743,
+            46.651378
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 221,
+              "sourceNodeRefs": [
+                10207175458,
+                820854077
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2532743,
+            46.651378
+          ],
+          "to": [
+            20.2534989,
+            46.6518082
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 220,
+              "sourceNodeRefs": [
+                3155003059,
+                10207175458
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2534989,
+            46.6518082
+          ],
+          "to": [
+            20.2536438,
+            46.6523045
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 219,
+              "sourceNodeRefs": [
+                820854179,
+                3155003059
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2536438,
+            46.6523045
+          ],
+          "to": [
+            20.2538222,
+            46.6534239
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 218,
+              "sourceNodeRefs": [
+                3144395680,
+                820854179
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2538222,
+            46.6534239
+          ],
+          "to": [
+            20.2537011,
+            46.6540463
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 217,
+              "sourceNodeRefs": [
+                820854082,
+                3144395680
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2537011,
+            46.6540463
+          ],
+          "to": [
+            20.2536067,
+            46.6545353
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 216,
+              "sourceNodeRefs": [
+                1748655531,
+                820854082
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2536067,
+            46.6545353
+          ],
+          "to": [
+            20.253599669690786,
+            46.65462164718338
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 215,
+              "sourceNodeRefs": [
+                10207143925,
+                1748655531
+              ],
+              "maxEndpointDistanceDegrees": 6.306956032987634e-16
+            }
+          ]
+        },
+        {
+          "from": [
+            20.253599669690786,
+            46.65462164718338
+          ],
+          "to": [
+            20.2539531,
+            46.6546251
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 178546767,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                1888747777,
+                1765051810
+              ],
+              "maxEndpointDistanceDegrees": 2.13475262077578e-15
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2539531,
+            46.6546251
+          ],
+          "to": [
+            20.2540455,
+            46.6546219
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 215028505,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                1748655532,
+                1888747777
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2540455,
+            46.6546219
+          ],
+          "to": [
+            20.2539876,
+            46.655173
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 150014536,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                1629558133,
+                1748655532
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2539876,
+            46.655173
+          ],
+          "to": [
+            20.2539653,
+            46.6555851
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 150014536,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                1628612054,
+                1629558133
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2539653,
+            46.6555851
+          ],
+          "to": [
+            20.2550737,
+            46.6555699
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 150014580,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                1628612054,
+                1629527518
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2550737,
+            46.6555699
+          ],
+          "to": [
+            20.2564904,
+            46.6556087
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420038,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                1629527518,
+                820854254
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2564904,
+            46.6556087
+          ],
+          "to": [
+            20.2571734,
+            46.6557705
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420038,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                820854254,
+                3144504931
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2571734,
+            46.6557705
+          ],
+          "to": [
+            20.2573645,
+            46.6558643
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420038,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3144504931,
+                3759789797
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2573645,
+            46.6558643
+          ],
+          "to": [
+            20.2577364,
+            46.6560468
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420037,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3759789797,
+                820854007
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2577364,
+            46.6560468
+          ],
+          "to": [
+            20.2592205,
+            46.6565976
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420032,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                820854007,
+                1629523236
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2592205,
+            46.6565976
+          ],
+          "to": [
+            20.2603746,
+            46.6570668
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420032,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                1629523236,
+                1629549144
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2603746,
+            46.6570668
+          ],
+          "to": [
+            20.260536,
+            46.657116
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420032,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                1629549144,
+                1629514886
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.260536,
+            46.657116
+          ],
+          "to": [
+            20.2607283,
+            46.6571868
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420032,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                1629514886,
+                3743634413
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2607283,
+            46.6571868
+          ],
+          "to": [
+            20.2610044,
+            46.6572717
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420032,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                3743634413,
+                3743634414
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2610044,
+            46.6572717
+          ],
+          "to": [
+            20.261105,
+            46.6573051
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420032,
+              "sourceNodeIndex": 5,
+              "sourceNodeRefs": [
+                3743634414,
+                3743634406
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.261105,
+            46.6573051
+          ],
+          "to": [
+            20.2627018,
+            46.6575852
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667741,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3743634406,
+                1628613113
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2627018,
+            46.6575852
+          ],
+          "to": [
+            20.2641605,
+            46.6578436
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667741,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                1628613113,
+                3744968116
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2641605,
+            46.6578436
+          ],
+          "to": [
+            20.2643959,
+            46.6579279
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667741,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3744968116,
+                820854016
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2643959,
+            46.6579279
+          ],
+          "to": [
+            20.264534,
+            46.6579896
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888026,
+              "sourceNodeIndex": 15,
+              "sourceNodeRefs": [
+                11443743308,
+                820854016
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.264534,
+            46.6579896
+          ],
+          "to": [
+            20.2660618,
+            46.658672
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888026,
+              "sourceNodeIndex": 14,
+              "sourceNodeRefs": [
+                1628316014,
+                11443743308
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2660618,
+            46.658672
+          ],
+          "to": [
+            20.2681081,
+            46.6563956
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926714,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                1628316014,
+                1628319577
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2681081,
+            46.6563956
+          ],
+          "to": [
+            20.2685115,
+            46.6559861
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926714,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                1628319577,
+                11443782358
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2685115,
+            46.6559861
+          ],
+          "to": [
+            20.2686044,
+            46.6558918
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926714,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                11443782358,
+                7802121895
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2686044,
+            46.6558918
+          ],
+          "to": [
+            20.2688751,
+            46.6556169
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926714,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                7802121895,
+                11443782361
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2688751,
+            46.6556169
+          ],
+          "to": [
+            20.2691942,
+            46.6552656
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926714,
+              "sourceNodeIndex": 5,
+              "sourceNodeRefs": [
+                11443782361,
+                625634329
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2691942,
+            46.6552656
+          ],
+          "to": [
+            20.2692985,
+            46.6553404
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 6,
+              "sourceNodeRefs": [
+                625634329,
+                1765047569
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2692985,
+            46.6553404
+          ],
+          "to": [
+            20.2704288,
+            46.6561372
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 7,
+              "sourceNodeRefs": [
+                1765047569,
+                820854243
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2704288,
+            46.6561372
+          ],
+          "to": [
+            20.2715337,
+            46.6569346
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 8,
+              "sourceNodeRefs": [
+                820854243,
+                3145050515
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2715337,
+            46.6569346
+          ],
+          "to": [
+            20.2717053,
+            46.6570561
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 9,
+              "sourceNodeRefs": [
+                3145050515,
+                820854275
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2717053,
+            46.6570561
+          ],
+          "to": [
+            20.2717193,
+            46.656561
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081950,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                4037615265,
+                820854275
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2717193,
+            46.656561
+          ],
+          "to": [
+            20.2716021,
+            46.6551372
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081950,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                820854133,
+                4037615265
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2716021,
+            46.6551372
+          ],
+          "to": [
+            20.271067,
+            46.6551113
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 309181080,
+              "sourceNodeIndex": 5,
+              "sourceNodeRefs": [
+                4037705122,
+                820854133
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.271067,
+            46.6551113
+          ],
+          "to": [
+            20.2704845,
+            46.6550806
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 309181080,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                820854325,
+                4037705122
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2704845,
+            46.6550806
+          ],
+          "to": [
+            20.2704881,
+            46.6550308
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081928,
+              "sourceNodeIndex": 7,
+              "sourceNodeRefs": [
+                948212171,
+                820854325
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2704881,
+            46.6550308
+          ],
+          "to": [
+            20.2705042,
+            46.6547837
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081928,
+              "sourceNodeIndex": 6,
+              "sourceNodeRefs": [
+                820854439,
+                948212171
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2705042,
+            46.6547837
+          ],
+          "to": [
+            20.2704449,
+            46.6539536
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081928,
+              "sourceNodeIndex": 5,
+              "sourceNodeRefs": [
+                4037615006,
+                820854439
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2704449,
+            46.6539536
+          ],
+          "to": [
+            20.2704055,
+            46.6538723
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081928,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                4037615008,
+                4037615006
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2704055,
+            46.6538723
+          ],
+          "to": [
+            20.2703363,
+            46.6538147
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081928,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                4037615007,
+                4037615008
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2703363,
+            46.6538147
+          ],
+          "to": [
+            20.2702439,
+            46.6537697
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081928,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3743634363,
+                4037615007
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2702439,
+            46.6537697
+          ],
+          "to": [
+            20.2683556,
+            46.6532745
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667736,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3743634363,
+                3213014137
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2683556,
+            46.6532745
+          ],
+          "to": [
+            20.2672287,
+            46.6529727
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667736,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                3213014137,
+                3743634364
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2672287,
+            46.6529727
+          ],
+          "to": [
+            20.2671547,
+            46.652947
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667736,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3743634364,
+                3743634365
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2671547,
+            46.652947
+          ],
+          "to": [
+            20.2671352,
+            46.6529057
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667739,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3743634365,
+                3743634366
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2671352,
+            46.6529057
+          ],
+          "to": [
+            20.2671515,
+            46.6528583
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667739,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                3743634366,
+                3743634367
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2671515,
+            46.6528583
+          ],
+          "to": [
+            20.2674075,
+            46.6524551
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667739,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3743634367,
+                3743634389
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2674075,
+            46.6524551
+          ],
+          "to": [
+            20.2679156,
+            46.651655
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667739,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                3743634389,
+                4711943034
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2679156,
+            46.651655
+          ],
+          "to": [
+            20.2697726,
+            46.6487303
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667739,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                4711943034,
+                3213014118
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2697726,
+            46.6487303
+          ],
+          "to": [
+            20.2685105,
+            46.6481933
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 327694529,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3213014116,
+                3213014118
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2685105,
+            46.6481933
+          ],
+          "to": [
+            20.2686123,
+            46.648062
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 315199398,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                820854370,
+                3213014116
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2686123,
+            46.648062
+          ],
+          "to": [
+            20.2678755,
+            46.6477845
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081946,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                3344998928,
+                820854370
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2678755,
+            46.6477845
+          ],
+          "to": [
+            20.2677025,
+            46.6477299
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081946,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3213014106,
+                3344998928
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2677025,
+            46.6477299
+          ],
+          "to": [
+            20.2671471,
+            46.6475528
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081946,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                3213014105,
+                3213014106
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2671471,
+            46.6475528
+          ],
+          "to": [
+            20.2658702,
+            46.6469605
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081946,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                2708724395,
+                3213014105
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2658702,
+            46.6469605
+          ],
+          "to": [
+            20.2655347,
+            46.6474993
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314445265,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                2708724395,
+                3344998927
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2655347,
+            46.6474993
+          ],
+          "to": [
+            20.2652395,
+            46.6481249
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314445265,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                3344998927,
+                3203368941
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2652395,
+            46.6481249
+          ],
+          "to": [
+            20.2644475,
+            46.6481217
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 9,
+              "sourceNodeRefs": [
+                3203368940,
+                3203368941
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2644475,
+            46.6481217
+          ],
+          "to": [
+            20.2640222,
+            46.6481191
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 8,
+              "sourceNodeRefs": [
+                3203354948,
+                3203368940
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2640222,
+            46.6481191
+          ],
+          "to": [
+            20.2636427,
+            46.6480964
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 7,
+              "sourceNodeRefs": [
+                3203368942,
+                3203354948
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2636427,
+            46.6480964
+          ],
+          "to": [
+            20.2635453,
+            46.6481057
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 6,
+              "sourceNodeRefs": [
+                3203368944,
+                3203368942
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2635453,
+            46.6481057
+          ],
+          "to": [
+            20.2634985,
+            46.6481426
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 5,
+              "sourceNodeRefs": [
+                3203368948,
+                3203368944
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2634985,
+            46.6481426
+          ],
+          "to": [
+            20.2634243,
+            46.6482879
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                3203368951,
+                3203368948
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2634243,
+            46.6482879
+          ],
+          "to": [
+            20.262468,
+            46.648001
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                3203368939,
+                3203368951
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.262468,
+            46.648001
+          ],
+          "to": [
+            20.2621416,
+            46.6478999
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3203368938,
+                3203368939
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2621416,
+            46.6478999
+          ],
+          "to": [
+            20.2617308,
+            46.6477578
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                3203368937,
+                3203368938
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2617308,
+            46.6477578
+          ],
+          "to": [
+            20.2615767,
+            46.6477154
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3203368936,
+                3203368937
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2615767,
+            46.6477154
+          ],
+          "to": [
+            20.2615382,
+            46.6475729
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 49259599,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3203368936,
+                625634299
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        }
+      ],
+      "outsideSzentesParentAreaM2": 0.0,
+      "literalOriginalSourceVertices": 96,
+      "constructedVerticesAtActualLineIntersections": [
+        {
+          "coordinate": [
+            20.252101229375157,
+            46.650378064381435
+          ],
+          "sourceWays": [
+            {
+              "osmWayId": 370667751,
+              "name": "Eszperantó híd",
+              "distanceDegrees": 2.5286083212363555e-15
+            },
+            {
+              "osmWayId": 591675710,
+              "name": "Kurca",
+              "distanceDegrees": 1.4687497777717096e-15
+            }
+          ]
+        },
+        {
+          "coordinate": [
+            20.253599669690786,
+            46.65462164718338
+          ],
+          "sourceWays": [
+            {
+              "osmWayId": 178546767,
+              "name": "",
+              "distanceDegrees": 2.13475262077578e-15
+            },
+            {
+              "osmWayId": 591675710,
+              "name": "Kurca",
+              "distanceDegrees": 6.306956032987634e-16
+            }
+          ]
+        }
+      ],
+      "usableForAddressAssignment": false,
+      "sourceContourIsObserved": false
+    },
+    {
+      "file": "szentes-belvaros-apponyi-around-inferred-review.geojson",
+      "sha256": "21f0f37fa1eece9e16765d0922b45cda8280e6d2e3c57c2824d5d60feb81b8f6",
+      "valid": true,
+      "holes": 0,
+      "vertices": 129,
+      "areaM2": 1115201.6122526005,
+      "rawGeosDifferenceFromEntireNodedSourceGraphM": 21.47458537989192,
+      "rawGeosDifferenceNote": "Exact union/difference may miss collinear floating point partial intersections at bridges; every output segment is separately verified against a single original source segment with both endpoint distances below 1e-11 degrees. No geometry was snapped or repaired.",
+      "unsupportedBoundarySegments": 0,
+      "nativeSegmentSupportToleranceDegrees": 1e-11,
+      "nativeSegmentSupport": [
+        {
+          "from": [
+            20.2615382,
+            46.6475729
+          ],
+          "to": [
+            20.2614247,
+            46.6474208
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 49259599,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                625634299,
+                3344998926
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2614247,
+            46.6474208
+          ],
+          "to": [
+            20.2611237,
+            46.647181
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 49259599,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3344998926,
+                625634297
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2611237,
+            46.647181
+          ],
+          "to": [
+            20.2604269,
+            46.6475727
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 81544932,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                625634297,
+                8320694203
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2604269,
+            46.6475727
+          ],
+          "to": [
+            20.2600085,
+            46.6478078
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 81544932,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                8320694203,
+                625634295
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2600085,
+            46.6478078
+          ],
+          "to": [
+            20.2596684,
+            46.648014
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 81544932,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                625634295,
+                625634309
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2596684,
+            46.648014
+          ],
+          "to": [
+            20.2594259,
+            46.6481549
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 81544932,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                625634309,
+                3203352356
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2594259,
+            46.6481549
+          ],
+          "to": [
+            20.2592871,
+            46.6482505
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 81544932,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                3203352356,
+                3202204626
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2592871,
+            46.6482505
+          ],
+          "to": [
+            20.2591431,
+            46.6483696
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 81544932,
+              "sourceNodeIndex": 5,
+              "sourceNodeRefs": [
+                3202204626,
+                820854109
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2591431,
+            46.6483696
+          ],
+          "to": [
+            20.2585481,
+            46.6477127
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081857,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                820854049,
+                820854109
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2585481,
+            46.6477127
+          ],
+          "to": [
+            20.2571265,
+            46.6484654
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081952,
+              "sourceNodeIndex": 9,
+              "sourceNodeRefs": [
+                820854049,
+                820854386
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2571265,
+            46.6484654
+          ],
+          "to": [
+            20.2551767,
+            46.6492365
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081952,
+              "sourceNodeIndex": 10,
+              "sourceNodeRefs": [
+                820854386,
+                820854241
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2551767,
+            46.6492365
+          ],
+          "to": [
+            20.2548013,
+            46.6494178
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081952,
+              "sourceNodeIndex": 11,
+              "sourceNodeRefs": [
+                820854241,
+                3744961774
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2548013,
+            46.6494178
+          ],
+          "to": [
+            20.2540998,
+            46.6500209
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081952,
+              "sourceNodeIndex": 12,
+              "sourceNodeRefs": [
+                3744961774,
+                820854147
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2540998,
+            46.6500209
+          ],
+          "to": [
+            20.2538315,
+            46.6502553
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081952,
+              "sourceNodeIndex": 13,
+              "sourceNodeRefs": [
+                820854147,
+                820854346
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2538315,
+            46.6502553
+          ],
+          "to": [
+            20.2535661,
+            46.6501588
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081963,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                820854408,
+                820854346
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2535661,
+            46.6501588
+          ],
+          "to": [
+            20.2530168,
+            46.6504834
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 168108502,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                820854408,
+                1794163987
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2530168,
+            46.6504834
+          ],
+          "to": [
+            20.2528895,
+            46.6505515
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370810716,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                1794163987,
+                3744961794
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2528895,
+            46.6505515
+          ],
+          "to": [
+            20.2528399,
+            46.650515
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370810717,
+              "sourceNodeIndex": 8,
+              "sourceNodeRefs": [
+                3744961794,
+                3744961784
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2528399,
+            46.650515
+          ],
+          "to": [
+            20.2523503,
+            46.6501973
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370810717,
+              "sourceNodeIndex": 9,
+              "sourceNodeRefs": [
+                3744961784,
+                3744961793
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2523503,
+            46.6501973
+          ],
+          "to": [
+            20.2522771,
+            46.6502477
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370810714,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3744961792,
+                3744961793
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2522771,
+            46.6502477
+          ],
+          "to": [
+            20.252101229375157,
+            46.650378064381435
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667751,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3145074869,
+                3744961792
+              ],
+              "maxEndpointDistanceDegrees": 2.5286083212363555e-15
+            }
+          ]
+        },
+        {
+          "from": [
+            20.252101229375157,
+            46.650378064381435
+          ],
+          "to": [
+            20.2521554,
+            46.6504143
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 225,
+              "sourceNodeRefs": [
+                10207175460,
+                820854308
+              ],
+              "maxEndpointDistanceDegrees": 1.4687497777717096e-15
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2521554,
+            46.6504143
+          ],
+          "to": [
+            20.2526246,
+            46.6506952
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 224,
+              "sourceNodeRefs": [
+                820854210,
+                10207175460
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2526246,
+            46.6506952
+          ],
+          "to": [
+            20.2528938,
+            46.6509092
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 223,
+              "sourceNodeRefs": [
+                10207175459,
+                820854210
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2528938,
+            46.6509092
+          ],
+          "to": [
+            20.2530679,
+            46.6511059
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 222,
+              "sourceNodeRefs": [
+                820854077,
+                10207175459
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2530679,
+            46.6511059
+          ],
+          "to": [
+            20.2532743,
+            46.651378
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 221,
+              "sourceNodeRefs": [
+                10207175458,
+                820854077
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2532743,
+            46.651378
+          ],
+          "to": [
+            20.2534989,
+            46.6518082
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 220,
+              "sourceNodeRefs": [
+                3155003059,
+                10207175458
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2534989,
+            46.6518082
+          ],
+          "to": [
+            20.2536438,
+            46.6523045
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 219,
+              "sourceNodeRefs": [
+                820854179,
+                3155003059
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2536438,
+            46.6523045
+          ],
+          "to": [
+            20.2538222,
+            46.6534239
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 218,
+              "sourceNodeRefs": [
+                3144395680,
+                820854179
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2538222,
+            46.6534239
+          ],
+          "to": [
+            20.2537011,
+            46.6540463
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 217,
+              "sourceNodeRefs": [
+                820854082,
+                3144395680
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2537011,
+            46.6540463
+          ],
+          "to": [
+            20.2536067,
+            46.6545353
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 216,
+              "sourceNodeRefs": [
+                1748655531,
+                820854082
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2536067,
+            46.6545353
+          ],
+          "to": [
+            20.253599669690786,
+            46.65462164718338
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 591675710,
+              "sourceNodeIndex": 215,
+              "sourceNodeRefs": [
+                10207143925,
+                1748655531
+              ],
+              "maxEndpointDistanceDegrees": 6.306956032987634e-16
+            }
+          ]
+        },
+        {
+          "from": [
+            20.253599669690786,
+            46.65462164718338
+          ],
+          "to": [
+            20.2539531,
+            46.6546251
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 178546767,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                1888747777,
+                1765051810
+              ],
+              "maxEndpointDistanceDegrees": 2.13475262077578e-15
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2539531,
+            46.6546251
+          ],
+          "to": [
+            20.2540455,
+            46.6546219
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 215028505,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                1748655532,
+                1888747777
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2540455,
+            46.6546219
+          ],
+          "to": [
+            20.2539876,
+            46.655173
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 150014536,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                1629558133,
+                1748655532
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2539876,
+            46.655173
+          ],
+          "to": [
+            20.2539653,
+            46.6555851
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 150014536,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                1628612054,
+                1629558133
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2539653,
+            46.6555851
+          ],
+          "to": [
+            20.2550737,
+            46.6555699
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 150014580,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                1628612054,
+                1629527518
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2550737,
+            46.6555699
+          ],
+          "to": [
+            20.2564904,
+            46.6556087
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420038,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                1629527518,
+                820854254
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2564904,
+            46.6556087
+          ],
+          "to": [
+            20.2571734,
+            46.6557705
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420038,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                820854254,
+                3144504931
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2571734,
+            46.6557705
+          ],
+          "to": [
+            20.2573645,
+            46.6558643
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420038,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3144504931,
+                3759789797
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2573645,
+            46.6558643
+          ],
+          "to": [
+            20.2577364,
+            46.6560468
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420037,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3759789797,
+                820854007
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2577364,
+            46.6560468
+          ],
+          "to": [
+            20.2592205,
+            46.6565976
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420032,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                820854007,
+                1629523236
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2592205,
+            46.6565976
+          ],
+          "to": [
+            20.2603746,
+            46.6570668
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420032,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                1629523236,
+                1629549144
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2603746,
+            46.6570668
+          ],
+          "to": [
+            20.260536,
+            46.657116
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420032,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                1629549144,
+                1629514886
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.260536,
+            46.657116
+          ],
+          "to": [
+            20.2607283,
+            46.6571868
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420032,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                1629514886,
+                3743634413
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2607283,
+            46.6571868
+          ],
+          "to": [
+            20.2610044,
+            46.6572717
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420032,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                3743634413,
+                3743634414
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2610044,
+            46.6572717
+          ],
+          "to": [
+            20.261105,
+            46.6573051
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 372420032,
+              "sourceNodeIndex": 5,
+              "sourceNodeRefs": [
+                3743634414,
+                3743634406
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.261105,
+            46.6573051
+          ],
+          "to": [
+            20.2627018,
+            46.6575852
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667741,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3743634406,
+                1628613113
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2627018,
+            46.6575852
+          ],
+          "to": [
+            20.2641605,
+            46.6578436
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667741,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                1628613113,
+                3744968116
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2641605,
+            46.6578436
+          ],
+          "to": [
+            20.2643959,
+            46.6579279
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667741,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3744968116,
+                820854016
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2643959,
+            46.6579279
+          ],
+          "to": [
+            20.264534,
+            46.6579896
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888026,
+              "sourceNodeIndex": 15,
+              "sourceNodeRefs": [
+                11443743308,
+                820854016
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.264534,
+            46.6579896
+          ],
+          "to": [
+            20.2660618,
+            46.658672
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888026,
+              "sourceNodeIndex": 14,
+              "sourceNodeRefs": [
+                1628316014,
+                11443743308
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2660618,
+            46.658672
+          ],
+          "to": [
+            20.2681081,
+            46.6563956
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926714,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                1628316014,
+                1628319577
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2681081,
+            46.6563956
+          ],
+          "to": [
+            20.2673287,
+            46.6560673
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888202,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                11443782356,
+                1628319577
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2673287,
+            46.6560673
+          ],
+          "to": [
+            20.2662165,
+            46.6555989
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888202,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                11443782359,
+                11443782356
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2662165,
+            46.6555989
+          ],
+          "to": [
+            20.2660126,
+            46.655513
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888202,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                3612065463,
+                11443782359
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2660126,
+            46.655513
+          ],
+          "to": [
+            20.2658704,
+            46.6554962
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888202,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3744968118,
+                3612065463
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2658704,
+            46.6554962
+          ],
+          "to": [
+            20.266013,
+            46.6552708
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926715,
+              "sourceNodeIndex": 13,
+              "sourceNodeRefs": [
+                3744968118,
+                7802121890
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.266013,
+            46.6552708
+          ],
+          "to": [
+            20.266098,
+            46.6551363
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926715,
+              "sourceNodeIndex": 14,
+              "sourceNodeRefs": [
+                7802121890,
+                3790299945
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.266098,
+            46.6551363
+          ],
+          "to": [
+            20.2663419,
+            46.6545028
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926715,
+              "sourceNodeIndex": 15,
+              "sourceNodeRefs": [
+                3790299945,
+                1629494761
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2663419,
+            46.6545028
+          ],
+          "to": [
+            20.2665409,
+            46.6539496
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926715,
+              "sourceNodeIndex": 16,
+              "sourceNodeRefs": [
+                1629494761,
+                3333745938
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2665409,
+            46.6539496
+          ],
+          "to": [
+            20.2665923,
+            46.6538048
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926715,
+              "sourceNodeIndex": 17,
+              "sourceNodeRefs": [
+                3333745938,
+                13006995078
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2665923,
+            46.6538048
+          ],
+          "to": [
+            20.266624,
+            46.6537259
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926715,
+              "sourceNodeIndex": 18,
+              "sourceNodeRefs": [
+                13006995078,
+                3145128816
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.266624,
+            46.6537259
+          ],
+          "to": [
+            20.2666459,
+            46.6536754
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926715,
+              "sourceNodeIndex": 19,
+              "sourceNodeRefs": [
+                3145128816,
+                1629506882
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2666459,
+            46.6536754
+          ],
+          "to": [
+            20.2666723,
+            46.6536287
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926715,
+              "sourceNodeIndex": 20,
+              "sourceNodeRefs": [
+                1629506882,
+                820854214
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2666723,
+            46.6536287
+          ],
+          "to": [
+            20.266715,
+            46.6536317
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926717,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                3790299942,
+                820854214
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.266715,
+            46.6536317
+          ],
+          "to": [
+            20.2667558,
+            46.6536225
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926717,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                1748655530,
+                3790299942
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2667558,
+            46.6536225
+          ],
+          "to": [
+            20.2667876,
+            46.6536028
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926717,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                12120421502,
+                1748655530
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2667876,
+            46.6536028
+          ],
+          "to": [
+            20.2668051,
+            46.6535759
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370926717,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                999302240,
+                12120421502
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2668051,
+            46.6535759
+          ],
+          "to": [
+            20.2668504,
+            46.6535944
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 86111303,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                999302240,
+                13006995077
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2668504,
+            46.6535944
+          ],
+          "to": [
+            20.2668858,
+            46.6536155
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 86111303,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                13006995077,
+                1765063647
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2668858,
+            46.6536155
+          ],
+          "to": [
+            20.266935,
+            46.653651
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 86111303,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                1765063647,
+                3145128814
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.266935,
+            46.653651
+          ],
+          "to": [
+            20.2670249,
+            46.6537159
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 86111303,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                3145128814,
+                3213014140
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2670249,
+            46.6537159
+          ],
+          "to": [
+            20.2671273,
+            46.6537896
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 86111303,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                3213014140,
+                625634327
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2671273,
+            46.6537896
+          ],
+          "to": [
+            20.2674999,
+            46.6540517
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 86111303,
+              "sourceNodeIndex": 5,
+              "sourceNodeRefs": [
+                625634327,
+                11443768540
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2674999,
+            46.6540517
+          ],
+          "to": [
+            20.2684115,
+            46.6546986
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 86111303,
+              "sourceNodeIndex": 6,
+              "sourceNodeRefs": [
+                11443768540,
+                11443768537
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2684115,
+            46.6546986
+          ],
+          "to": [
+            20.2686093,
+            46.6548537
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 86111303,
+              "sourceNodeIndex": 7,
+              "sourceNodeRefs": [
+                11443768537,
+                11535062525
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2686093,
+            46.6548537
+          ],
+          "to": [
+            20.268702,
+            46.6549097
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 86111303,
+              "sourceNodeIndex": 8,
+              "sourceNodeRefs": [
+                11535062525,
+                11535062526
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.268702,
+            46.6549097
+          ],
+          "to": [
+            20.2688059,
+            46.6549555
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 86111303,
+              "sourceNodeIndex": 9,
+              "sourceNodeRefs": [
+                11535062526,
+                11535062528
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2688059,
+            46.6549555
+          ],
+          "to": [
+            20.2689316,
+            46.6549922
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 86111303,
+              "sourceNodeIndex": 10,
+              "sourceNodeRefs": [
+                11535062528,
+                11535062527
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2689316,
+            46.6549922
+          ],
+          "to": [
+            20.2690548,
+            46.6550053
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 86111303,
+              "sourceNodeIndex": 11,
+              "sourceNodeRefs": [
+                11535062527,
+                625634331
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2690548,
+            46.6550053
+          ],
+          "to": [
+            20.2690566,
+            46.6550431
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                625634331,
+                11535062524
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2690566,
+            46.6550431
+          ],
+          "to": [
+            20.269056,
+            46.6550889
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                11535062524,
+                11535062520
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.269056,
+            46.6550889
+          ],
+          "to": [
+            20.2690662,
+            46.6551255
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                11535062520,
+                11535062523
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2690662,
+            46.6551255
+          ],
+          "to": [
+            20.2690851,
+            46.6551653
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                11535062523,
+                11535062522
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2690851,
+            46.6551653
+          ],
+          "to": [
+            20.2691127,
+            46.655202
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                11535062522,
+                6340032321
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2691127,
+            46.655202
+          ],
+          "to": [
+            20.2691942,
+            46.6552656
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 5,
+              "sourceNodeRefs": [
+                6340032321,
+                625634329
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2691942,
+            46.6552656
+          ],
+          "to": [
+            20.2692985,
+            46.6553404
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 6,
+              "sourceNodeRefs": [
+                625634329,
+                1765047569
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2692985,
+            46.6553404
+          ],
+          "to": [
+            20.2704288,
+            46.6561372
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 7,
+              "sourceNodeRefs": [
+                1765047569,
+                820854243
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2704288,
+            46.6561372
+          ],
+          "to": [
+            20.2715337,
+            46.6569346
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 8,
+              "sourceNodeRefs": [
+                820854243,
+                3145050515
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2715337,
+            46.6569346
+          ],
+          "to": [
+            20.2717053,
+            46.6570561
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 149888077,
+              "sourceNodeIndex": 9,
+              "sourceNodeRefs": [
+                3145050515,
+                820854275
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2717053,
+            46.6570561
+          ],
+          "to": [
+            20.2717193,
+            46.656561
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081950,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                4037615265,
+                820854275
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2717193,
+            46.656561
+          ],
+          "to": [
+            20.2716021,
+            46.6551372
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081950,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                820854133,
+                4037615265
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2716021,
+            46.6551372
+          ],
+          "to": [
+            20.271067,
+            46.6551113
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 309181080,
+              "sourceNodeIndex": 5,
+              "sourceNodeRefs": [
+                4037705122,
+                820854133
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.271067,
+            46.6551113
+          ],
+          "to": [
+            20.2704845,
+            46.6550806
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 309181080,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                820854325,
+                4037705122
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2704845,
+            46.6550806
+          ],
+          "to": [
+            20.2704881,
+            46.6550308
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081928,
+              "sourceNodeIndex": 7,
+              "sourceNodeRefs": [
+                948212171,
+                820854325
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2704881,
+            46.6550308
+          ],
+          "to": [
+            20.2705042,
+            46.6547837
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081928,
+              "sourceNodeIndex": 6,
+              "sourceNodeRefs": [
+                820854439,
+                948212171
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2705042,
+            46.6547837
+          ],
+          "to": [
+            20.2704449,
+            46.6539536
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081928,
+              "sourceNodeIndex": 5,
+              "sourceNodeRefs": [
+                4037615006,
+                820854439
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2704449,
+            46.6539536
+          ],
+          "to": [
+            20.2704055,
+            46.6538723
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081928,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                4037615008,
+                4037615006
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2704055,
+            46.6538723
+          ],
+          "to": [
+            20.2703363,
+            46.6538147
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081928,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                4037615007,
+                4037615008
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2703363,
+            46.6538147
+          ],
+          "to": [
+            20.2702439,
+            46.6537697
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081928,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3743634363,
+                4037615007
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2702439,
+            46.6537697
+          ],
+          "to": [
+            20.2683556,
+            46.6532745
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667736,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3743634363,
+                3213014137
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2683556,
+            46.6532745
+          ],
+          "to": [
+            20.2672287,
+            46.6529727
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667736,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                3213014137,
+                3743634364
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2672287,
+            46.6529727
+          ],
+          "to": [
+            20.2671547,
+            46.652947
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667736,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3743634364,
+                3743634365
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2671547,
+            46.652947
+          ],
+          "to": [
+            20.2671352,
+            46.6529057
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667739,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3743634365,
+                3743634366
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2671352,
+            46.6529057
+          ],
+          "to": [
+            20.2671515,
+            46.6528583
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667739,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                3743634366,
+                3743634367
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2671515,
+            46.6528583
+          ],
+          "to": [
+            20.2674075,
+            46.6524551
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667739,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3743634367,
+                3743634389
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2674075,
+            46.6524551
+          ],
+          "to": [
+            20.2679156,
+            46.651655
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667739,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                3743634389,
+                4711943034
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2679156,
+            46.651655
+          ],
+          "to": [
+            20.2697726,
+            46.6487303
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 370667739,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                4711943034,
+                3213014118
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2697726,
+            46.6487303
+          ],
+          "to": [
+            20.2685105,
+            46.6481933
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 327694529,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3213014116,
+                3213014118
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2685105,
+            46.6481933
+          ],
+          "to": [
+            20.2686123,
+            46.648062
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 315199398,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                820854370,
+                3213014116
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2686123,
+            46.648062
+          ],
+          "to": [
+            20.2678755,
+            46.6477845
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081946,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                3344998928,
+                820854370
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2678755,
+            46.6477845
+          ],
+          "to": [
+            20.2677025,
+            46.6477299
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081946,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3213014106,
+                3344998928
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2677025,
+            46.6477299
+          ],
+          "to": [
+            20.2671471,
+            46.6475528
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081946,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                3213014105,
+                3213014106
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2671471,
+            46.6475528
+          ],
+          "to": [
+            20.2658702,
+            46.6469605
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 68081946,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                2708724395,
+                3213014105
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2658702,
+            46.6469605
+          ],
+          "to": [
+            20.2655347,
+            46.6474993
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314445265,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                2708724395,
+                3344998927
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2655347,
+            46.6474993
+          ],
+          "to": [
+            20.2652395,
+            46.6481249
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314445265,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                3344998927,
+                3203368941
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2652395,
+            46.6481249
+          ],
+          "to": [
+            20.2644475,
+            46.6481217
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 9,
+              "sourceNodeRefs": [
+                3203368940,
+                3203368941
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2644475,
+            46.6481217
+          ],
+          "to": [
+            20.2640222,
+            46.6481191
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 8,
+              "sourceNodeRefs": [
+                3203354948,
+                3203368940
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2640222,
+            46.6481191
+          ],
+          "to": [
+            20.2636427,
+            46.6480964
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 7,
+              "sourceNodeRefs": [
+                3203368942,
+                3203354948
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2636427,
+            46.6480964
+          ],
+          "to": [
+            20.2635453,
+            46.6481057
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 6,
+              "sourceNodeRefs": [
+                3203368944,
+                3203368942
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2635453,
+            46.6481057
+          ],
+          "to": [
+            20.2634985,
+            46.6481426
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 5,
+              "sourceNodeRefs": [
+                3203368948,
+                3203368944
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2634985,
+            46.6481426
+          ],
+          "to": [
+            20.2634243,
+            46.6482879
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 4,
+              "sourceNodeRefs": [
+                3203368951,
+                3203368948
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2634243,
+            46.6482879
+          ],
+          "to": [
+            20.262468,
+            46.648001
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 3,
+              "sourceNodeRefs": [
+                3203368939,
+                3203368951
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.262468,
+            46.648001
+          ],
+          "to": [
+            20.2621416,
+            46.6478999
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 2,
+              "sourceNodeRefs": [
+                3203368938,
+                3203368939
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2621416,
+            46.6478999
+          ],
+          "to": [
+            20.2617308,
+            46.6477578
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 1,
+              "sourceNodeRefs": [
+                3203368937,
+                3203368938
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2617308,
+            46.6477578
+          ],
+          "to": [
+            20.2615767,
+            46.6477154
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 314287828,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3203368936,
+                3203368937
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        },
+        {
+          "from": [
+            20.2615767,
+            46.6477154
+          ],
+          "to": [
+            20.2615382,
+            46.6475729
+          ],
+          "sourceSegments": [
+            {
+              "osmWayId": 49259599,
+              "sourceNodeIndex": 0,
+              "sourceNodeRefs": [
+                3203368936,
+                625634299
+              ],
+              "maxEndpointDistanceDegrees": 0.0
+            }
+          ]
+        }
+      ],
+      "outsideSzentesParentAreaM2": 0.0,
+      "literalOriginalSourceVertices": 126,
+      "constructedVerticesAtActualLineIntersections": [
+        {
+          "coordinate": [
+            20.252101229375157,
+            46.650378064381435
+          ],
+          "sourceWays": [
+            {
+              "osmWayId": 370667751,
+              "name": "Eszperantó híd",
+              "distanceDegrees": 2.5286083212363555e-15
+            },
+            {
+              "osmWayId": 591675710,
+              "name": "Kurca",
+              "distanceDegrees": 1.4687497777717096e-15
+            }
+          ]
+        },
+        {
+          "coordinate": [
+            20.253599669690786,
+            46.65462164718338
+          ],
+          "sourceWays": [
+            {
+              "osmWayId": 178546767,
+              "name": "",
+              "distanceDegrees": 2.13475262077578e-15
+            },
+            {
+              "osmWayId": 591675710,
+              "name": "Kurca",
+              "distanceDegrees": 6.306956032987634e-16
+            }
+          ]
+        }
+      ],
+      "usableForAddressAssignment": false,
+      "sourceContourIsObserved": false
+    }
+  ],
+  "materialLimits": [
+    "No source contour pixels were observed. Six current street/path/junction choices remain inferred.",
+    "Passing checks establish topology, actual current source-line support and municipal containment; they do not establish historical or present neighborhood correctness."
+  ]
+}

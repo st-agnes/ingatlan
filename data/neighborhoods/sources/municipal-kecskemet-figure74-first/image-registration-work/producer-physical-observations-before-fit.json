@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "scope": "Producer visual photographic observations archived before any NCC or affine-fit computation. No geographic data, quarter names or boundary rings were consulted. These are manual interpretation checks by the producer, not a separate blind reviewer.",
+  "images": {
+    "73": {
+      "path": "figure73-p143-xref172.jpeg",
+      "sha256": "59cbd060c8010a396511cdec69848410b4fee8d6bd8e628500894b5e27565e9c"
+    },
+    "74": {
+      "path": "figure74-p154-xref176.jpeg",
+      "sha256": "1ecb076700d1be46f1712ca2c0ca1ed986581a99e5d5592b95b0b4511de30cd2"
+    }
+  },
+  "landmarks": [
+    {
+      "id": "tall-factory-roof-northwest-corner",
+      "physicalDetail": "Northwest corner of tall narrow pale roof, immediately east of a narrow dark-red roof and north of the broad gray roof.",
+      "figure73Pixel": [
+        720,
+        30
+      ],
+      "figure74Pixel": [
+        224,
+        884
+      ],
+      "manualInterpretationHalfWidthFigure73Pixels": 2,
+      "manualInterpretationHalfWidthFigure74Pixels": 2,
+      "rawGrid73": "73-factory-detail-grid.png",
+      "rawGrid74": "74-factory-detail-grid.png"
+    },
+    {
+      "id": "tall-factory-roof-southeast-corner",
+      "physicalDetail": "Southeast corner of the same tall narrow roof, above the small dark circular/rounded yard detail.",
+      "figure73Pixel": [
+        739,
+        108
+      ],
+      "figure74Pixel": [
+        238,
+        939
+      ],
+      "manualInterpretationHalfWidthFigure73Pixels": 2,
+      "manualInterpretationHalfWidthFigure74Pixels": 2,
+      "rawGrid73": "73-factory-detail-grid.png",
+      "rawGrid74": "74-factory-detail-grid.png"
+    },
+    {
+      "id": "bus-yard-small-loop-center",
+      "physicalDetail": "Center of small tight pale horseshoe/loop west of diagonal rows of elongated bus-bay roofs.",
+      "figure73Pixel": [
+        638,
+        310
+      ],
+      "figure74Pixel": [
+        164,
+        1075
+      ],
+      "manualInterpretationHalfWidthFigure73Pixels": 3,
+      "manualInterpretationHalfWidthFigure74Pixels": 3,
+      "rawGrid73": "73-bus-detail-grid.png",
+      "rawGrid74": "74-bus-detail-grid.png"
+    },
+    {
+      "id": "bus-yard-northern-long-dark-bay-center",
+      "physicalDetail": "Center of a northern elongated dark bus-bay roof in the parallel diagonal row, southeast of the small loop.",
+      "figure73Pixel": [
+        674,
+        326
+      ],
+      "figure74Pixel": [
+        189,
+        1085
+      ],
+      "manualInterpretationHalfWidthFigure73Pixels": 3,
+      "manualInterpretationHalfWidthFigure74Pixels": 3,
+      "rawGrid73": "73-bus-detail-grid.png",
+      "rawGrid74": "74-bus-detail-grid.png"
+    }
+  ],
+  "failedOrUnverifiedObservationCandidates": [],
+  "sameLocalPhotoStructuresObserved": true,
+  "manualObservationsWrittenBeforeAnyNccModelOutputRead": true,
+  "manualMeasurementsAdjustedToNccOrGeographicModel": false,
+  "geographicDataUsed": false,
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

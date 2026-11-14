@@ -1,0 +1,1169 @@
+{
+  "schemaVersion": 1,
+  "reviewPath": "data/neighborhoods/manual-review.json",
+  "admissionMeaning": "Separate estimated research candidates only. These geometries must never enter the source-supported neighborhood or planning-unit layer, exact address assignment, authoritative coverage totals, or verified neighborhood totals.",
+  "datasets": [
+    {
+      "id": "budapest-orban",
+      "path": "data/neighborhoods/manual/budapest-orban.geojson",
+      "sha256": "3b3f9064b252a08f4a56b0402bb9300f6ba69dbf7be530b093769d0872e98eab",
+      "municipality": "Budapest",
+      "method": "legal_street_and_railway_trace_with_explicit_inferred_connections",
+      "evidenceUrls": [
+        "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac"
+        }
+      ],
+      "license": "ODbL-1.0",
+      "propertyOverrides": {
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "reviewStatus": "estimated_candidate_requires_independent_boundary_review"
+      },
+      "uncertainties": [
+        "Five inferred closing/junction connections total 304.85 m; the 176.58 m Millennium continuation has no mapped boundary segment."
+      ],
+      "requirements": [
+        "Replace every inferred connection with an independently supported boundary edge and document the source."
+      ],
+      "reviewPath": "data/neighborhoods/manual-review.json",
+      "reviewDatasetId": "budapest-orban",
+      "calibrationObservations": null
+    },
+    {
+      "id": "budapest-apostolhegy",
+      "path": "data/neighborhoods/manual/budapest-apostolhegy.geojson",
+      "sha256": "dea0f19586a288cd820851d3bd114fb66e785cb320cd72bc81a4ebc2483ba9b8",
+      "municipality": "Budapest",
+      "method": "legal_boundary_classes_polygonized_from_osm_segments_and_actual_intersections",
+      "evidenceUrls": [
+        "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+        "https://www.openstreetmap.org/way/24187036",
+        "https://www.openstreetmap.org/way/43001647",
+        "https://www.openstreetmap.org/way/123918342",
+        "https://www.openstreetmap.org/way/123918344",
+        "https://www.openstreetmap.org/way/154126126",
+        "https://www.openstreetmap.org/way/171381692",
+        "https://www.openstreetmap.org/way/171381693",
+        "https://www.openstreetmap.org/way/171381695",
+        "https://www.openstreetmap.org/way/288069917",
+        "https://www.openstreetmap.org/way/662525378",
+        "https://www.openstreetmap.org/way/662528722",
+        "https://www.openstreetmap.org/way/662528723",
+        "https://www.openstreetmap.org/way/662528724",
+        "https://www.openstreetmap.org/way/662528738",
+        "https://www.openstreetmap.org/way/662528739",
+        "https://www.openstreetmap.org/way/662529194",
+        "https://www.openstreetmap.org/way/662529195",
+        "https://www.openstreetmap.org/way/662529196",
+        "https://www.openstreetmap.org/way/662529197",
+        "https://www.openstreetmap.org/way/662529198",
+        "https://www.openstreetmap.org/way/662529199",
+        "https://www.openstreetmap.org/way/662530406",
+        "https://www.openstreetmap.org/way/662530409",
+        "https://www.openstreetmap.org/way/662530413",
+        "https://www.openstreetmap.org/way/662530417",
+        "https://www.openstreetmap.org/way/662530422",
+        "https://www.openstreetmap.org/way/1175967474",
+        "https://www.openstreetmap.org/relation/417508",
+        "https://www.openstreetmap.org/way/79701206",
+        "https://www.openstreetmap.org/relation/1550597"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+          "paragraph": "3. melléklet 23.1."
+        }
+      ],
+      "license": "ODbL-1.0",
+      "propertyOverrides": {
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "reviewStatus": "estimated_candidate_requires_independent_boundary_review"
+      },
+      "uncertainties": [
+        "The source explicitly labels this an inferred candidate. The chosen unnamed ref 510 approach substitutes a legal street corridor; recorded Grassalkovich boundary length is zero. Source-topological closure does not resolve this semantic choice."
+      ],
+      "requirements": [
+        "Resolve the legal Grassalkovich–Haraszti junction interpretation against an independent municipal boundary map."
+      ],
+      "reviewPath": "data/neighborhoods/manual-review.json",
+      "reviewDatasetId": "budapest-apostolhegy",
+      "calibrationObservations": null
+    },
+    {
+      "id": "budapest-peterimajor",
+      "path": "data/neighborhoods/manual/budapest-peterimajor.geojson",
+      "sha256": "d037ebb80d06d13df1eb9ff9bf7aee8960c5dd1df87683274eeebe2c7dfaa989",
+      "municipality": "Budapest",
+      "method": "legal_named_builtup_area_with_existing_osm_residential_outline_as_explicit_proxy",
+      "evidenceUrls": [
+        "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+        "https://www.openstreetmap.org/way/115726893",
+        "https://www.openstreetmap.org/node/905070343",
+        "https://www.openstreetmap.org/way/574785521",
+        "https://www.openstreetmap.org/way/854074581",
+        "https://www.openstreetmap.org/way/854074582",
+        "https://www.openstreetmap.org/way/854074583",
+        "https://www.openstreetmap.org/way/854074585"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+          "paragraph": "3. melléklet 23.6."
+        }
+      ],
+      "license": "ODbL-1.0",
+      "propertyOverrides": {
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "reviewStatus": "estimated_candidate_requires_independent_boundary_review"
+      },
+      "uncertainties": [
+        "The unmodified source polygon is landuse=residential. A contained named neighborhood point and legal prose do not establish that land-use outline as a neighborhood boundary."
+      ],
+      "requirements": [
+        "Obtain an explicit municipal neighborhood or belterület boundary and establish the relationship to the legal description."
+      ],
+      "reviewPath": "data/neighborhoods/manual-review.json",
+      "reviewDatasetId": "budapest-peterimajor",
+      "calibrationObservations": null
+    },
+    {
+      "id": "nyiregyhaza-raster-planning-units",
+      "path": "data/neighborhoods/sources/municipal-east/nyiregyhaza-planning-units.geojson",
+      "sha256": "3aaa7f60e30c2ba1c0ae1de85eb58bb1e50fbf3c6ce7ca645adc07d260e67126",
+      "municipality": "Nyíregyháza",
+      "method": "original_embedded_raster_color_region_digitization_affine_georeferencing",
+      "evidenceUrls": [
+        "https://uj.nyiregyhaza.hu/lib/rend_terv/its/felulvizsg/220804_its_jovahagyott_its.pdf",
+        "https://www.openstreetmap.org/relation/1447608"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://uj.nyiregyhaza.hu/lib/rend_terv/its/felulvizsg/220804_its_jovahagyott_its.pdf",
+          "sha256": "159c8b3112c842f25f6799cf0a34645c90143dd9b5d071000b3160ec499c3a90",
+          "page": 15,
+          "referenceDate": "2022-07"
+        }
+      ],
+      "license": "source_map_reuse_not_established; OSM controls ODbL-1.0",
+      "propertyOverrides": {
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "planning_unit",
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "reviewStatus": "estimated_candidate_requires_independent_boundary_review"
+      },
+      "uncertainties": [
+        "The 2022 PDF map is only 598 x 583 pixels, about 39.7 m per pixel. Three-pixel mask closing modifies source outlines.",
+        "Municipal-boundary match median 32.939810 m, p 95187.207248 m, maximum 585.775766 m; no independent interior controls. Source regions group multiple commonly named neighborhoods."
+      ],
+      "requirements": [
+        "Use a higher-resolution or vector source, retain original observed edges and document every mask modification.",
+        "Verify independent interior controls and source label-to-region correspondence; retain planning_unit semantics."
+      ],
+      "reviewPath": "data/neighborhoods/manual-review.json",
+      "reviewDatasetId": "nyiregyhaza-raster-planning-units",
+      "calibrationObservations": {
+        "median": 32.939810496946556,
+        "p95": 187.2072482817856,
+        "max": 585.7757655442443
+      }
+    },
+    {
+      "id": "bekescsaba-raster-regions",
+      "path": "data/neighborhoods/sources/municipal-east/bekescsaba-map-derived.geojson",
+      "sha256": "ecc52cb671d33673d3c421ba0156a740ff399e79224e9b0643c0902cbd22540b",
+      "municipality": "Békéscsaba",
+      "method": "municipal_raster_color_footprint_digitization_affine_georeferencing",
+      "evidenceUrls": [
+        "https://bekescsaba.hu/uploads/files/images/Teljes-varos-kitoeltoett.webp",
+        "https://bekescsaba.hu/terkepek",
+        "https://www.openstreetmap.org/relation/1026172"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://bekescsaba.hu/uploads/files/images/Teljes-varos-kitoeltoett.webp",
+          "sha256": "7ccbddf49e33959b17895bb2b85c1ea733f2b19af9e1de53b71a96a0d58cc2b0"
+        }
+      ],
+      "license": "source_map_reuse_not_established; OSM controls ODbL-1.0",
+      "propertyOverrides": {
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "local_area",
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "reviewStatus": "estimated_candidate_requires_independent_boundary_review"
+      },
+      "uncertainties": [
+        "The source illustration has extruded/shadowed colored footprints, so threshold edges may include illustrative rendering rather than a flat map boundary.",
+        "Approximately 26.7 m/pixel;5 pixel mask closing represents about 134 m, with stated uncertainty at least 3 pixels/about 80 m. Output also subtracts overlapping masks.",
+        "Municipal-outline match median 11.477118 m, p 9532.525038 m, maximum 69.979345 m is not independent interior accuracy. Publication date and reuse rights are unestablished."
+      ],
+      "requirements": [
+        "Obtain a flat, dated authoritative map or vector boundary and verify which stroke is the intended area boundary.",
+        "Remove undocumented morphological boundary assumptions and establish independent controls and reuse rights."
+      ],
+      "reviewPath": "data/neighborhoods/manual-review.json",
+      "reviewDatasetId": "bekescsaba-raster-regions",
+      "calibrationObservations": {
+        "median": 11.477118013938895,
+        "p95": 32.525038466980696,
+        "max": 69.97934500815917
+      }
+    },
+    {
+      "id": "kecskemet-figure81-label-inference",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-fig81/szechenyi-label-inferred.geojson",
+      "sha256": "a141e2a7f899672f9c833c21994d65b1fd512e4484ddacc183b082581e529b85",
+      "municipality": "Kecskemét",
+      "method": "Manual interpretation of separately labelled fine-quarter outlines on the exact original embedded JPEG of the 2021 consultation-draft municipal figure 81. Manually identified source-stroke seeds guide continuous 8-neighbor source-pixel paths. For the literal-source layer every dense vertex has maxRGB <= 45. Only exactly collinear vertices are removed. A metric affine fit in EOV/EPSG:23700 using five literal contemporary OSM-node coordinates and manually placed approximate old-image road junctions georeferences the source pixels; the result is converted to WGS84. No current-road replacement, source-frame closure, arbitrary chord, buffer, geometric snapping or geometry repair is used. This candidate has narrowly bounded dark-blue source-label crossings: the underlying black outline is obscured, and its continuation through actual dark-blue source pixels is manually interpreted. It is an explicit estimate, not a literal-black boundary reconstruction; the exact affected pixels and lengths are archived.",
+      "evidenceUrls": [
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ],
+      "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM georeferencing controls.",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-fig81/raster-independent-review.json",
+      "rightsStatus": "Publicly published municipal consultation draft; open-reuse license not independently established."
+    },
+    {
+      "id": "dunaujvaros-dozsa-road-completion-inference",
+      "path": "data/neighborhoods/sources/municipal-dunaujvaros-next/dozsa-inferred.geojson",
+      "sha256": "1380c43dee4b916e29e881fcd816852654a8c88e06260076fded364eb57d8d82",
+      "municipality": "Dunaújváros",
+      "method": "Explicit manual estimated completion of the municipal three-road Dózsa description using actual modern Vasmű út and unnamed roundabout arc. Every boundary edge is an unchanged original PBF node pair; unproven boundary roles and alternative roundabout arc remain documented.",
+      "evidenceUrls": [
+        "https://dunaujvaros.hu/sites/all/files/dokumentumok/8060/35496.pdf",
+        "https://njt.jog.gov.hu/jogszabaly/2003-19-SP-5Y3929",
+        "https://dunaujvaros.com/hirek/201407/korforgo_atadas_utan_vegre"
+      ],
+      "license": "ODbL-1.0 for actual OSM coordinates; manually transcribed municipal street facts.",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-dunaujvaros-next/independent-review.json",
+      "rightsStatus": "OSM coordinates ODbL-1.0; municipal source PDF/news article not reproduced; no municipal-map open-reuse license asserted."
+    },
+    {
+      "id": "gyongyos-2016-source-contours-unverified-registration",
+      "path": "data/neighborhoods/sources/municipal-gyongyos-more/gyongyos-inferred.geojson",
+      "sha256": "4072e2c4ff5d1ee7da1747d195487392fc15b6be5ebd66fe1bf441dff0502104",
+      "municipality": "Gyöngyös",
+      "method": "Five real closed municipal source contours with explicitly unverified manually approximate affine geographic registration; estimated research layer only.",
+      "evidenceUrls": [
+        "https://gyongyos.hu/wp-content/uploads/2021/01/integralt-telepulesfejlesztesi-strategia-2016-its-gyongyos.pdf"
+      ],
+      "license": "Municipal/Google Earth imagery reuse licence unestablished; ODbL-1.0 for OSM calibration",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-gyongyos-more/independent-review.json",
+      "uncertainties": [
+        "All geographic placement remains unverified; no absolute accuracy asserted. Source contours are real and complete. North contour is omitted, not closed at the frame."
+      ],
+      "rightsStatus": "Municipal publication contains Google Earth / 2015 DigitalGlobe imagery. No open-reuse or redistribution licence for imagery/map has been independently established. OSM calibration ODbL-1.0."
+    },
+    {
+      "id": "pecs-first-source-contours-estimated-placement",
+      "path": "data/neighborhoods/sources/municipal-pecs-semantic-revision/source-inferred-reclassified.geojson",
+      "sha256": "10ed5b4c853084185dc593d57bf541837a399645e02eb3584269a2fbd51286ad",
+      "municipality": "Pécs",
+      "method": "Thirty-three actual closed historical fine source contours, independently named from original Figure9 and traced from original Figure12 cells; only exact independently approved cartographic-glyph/mask pixels restored with unchanged external edges. Frozen geographic alignment is explicitly estimated and unverified; separate inferred layer only, no primary approval. Classification-only revision of one source-defined economic quarter; all original geometries are unchanged.",
+      "evidenceUrls": [
+        "https://logoweb.pecs.hu/download/koncepcio/ITS.pdf"
+      ],
+      "license": "Municipal map reuse rights unverified; ODbL for archived OSM calibration evidence.",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-pecs-semantic-revision/review.json",
+      "uncertainties": [
+        "Geographic placement remains unverified; northwestern calibration extrapolates southeast, with independent gray-perimeter disagreements up to about349m. No absolute positional accuracy is asserted.",
+        "The observed source names and external raster contours are separately reviewed; that is not approval of present legal boundaries or address assignment."
+      ],
+      "rightsStatus": "Municipal publication; unrestricted map redistribution/reuse licence unverified. OSM calibration evidence ODbL.",
+      "classificationRevisionFrom": {
+        "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/source-inferred.geojson",
+        "sha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95"
+      }
+    },
+    {
+      "id": "kaposvar-raster-inferred-georeference",
+      "path": "data/neighborhoods/sources/municipal-kaposvar-raster-next/inferred-georeference.geojson",
+      "sha256": "d81c2f8afbf754406af1c3ffc6f1b2e2a6bdd9daf1a196ecd6bbff958c81c862",
+      "municipality": "Kaposvár",
+      "method": "Native625×883 original2014 municipal JPEG color-mask extraction. Manually identified source-colored components use documented HSV classes and4-neighbour connectivity. Small enclosed source-number/CAD-ink mask holes are filled after source review; white exterior/rural gaps and separate components are not bridged. Every native contour edge follows actual classified pixel-cell boundaries; only exactly collinear cell-edge vertices are omitted. Fourteen components retain raster-color estimates of the drawn outline. Two specifically reviewed CAD/digit-occluded silhouettes (northeast8 and northernmost9) instead follow closed8-neighbour cycles of actual dark source pixels (maxRGB165) within3px manually identified outer-stroke corridors; their full RGB/pixel paths are archived. No missing dark-pixel gap is bridged. WGS84 positions use an INFERRED, unvalidated EOV similarity from two assumed source-image/modern-road-node correspondences. Literal modern node coordinates are verified, but no image correspondence or independent physical holdout is established. No hull, image-frame closure, arbitrary closing chord, buffering, repair, current-road boundary substitution or clipping to current municipal limits. Unknown absolute accuracy remains null.",
+      "evidenceUrls": [
+        "https://kph.kaposvar.hu/eloterjesztesek/et20140929/documents/0301.pdf"
+      ],
+      "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM reference data.",
+      "propertyOverrides": {
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "canonicalNameIsNeighborhood": false,
+        "georeferenceStatus": "inferred_georeference",
+        "usableForAddressAssignment": false,
+        "claimedAbsoluteAccuracyMetres": null
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-kaposvar-raster-next/independent-review.json",
+      "rightsStatus": "Public municipal publication; open-map reuse licence not independently established."
+    },
+    {
+      "id": "szombathely-joskar-ola-2013-road-completion-inference",
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/joskar-ola-inferred.geojson",
+      "sha256": "2f5286b40b1249281184ed9715c04b583c1de3cc2dbde3bd18a7ccc349501154",
+      "municipality": "Szombathely",
+      "method": "Estimated historical Joskar-Ola perimeter from IVS2013 annex 1, using named-road centreline paths plus a documented 42.567 m unnamed residential-road completion. Every edge is an original consecutive OSM node pair; divided-road junction choice remains unverified.",
+      "evidenceUrls": [
+        "https://kbr.szombathely.hu/kbrfile/46469.pdf"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+          "title": "Szombathely MJV – Integrált Városfejlesztési Stratégia 2008–13",
+          "sourceDate": "2013-06-06",
+          "originalPdfPageOneBased": 150,
+          "printedPage": 150,
+          "section": "IX. Mellékletek, 1. sz melléklet, 5. Joskar-Ola-lakótelep",
+          "archivedExcerptPath": "data/neighborhoods/sources/municipal-szombathely-more/source-proof-pages.pdf",
+          "excerptPdfPageOneBased": 3,
+          "originalPdfSha256": "aade0d35a60e4ecd230a26c2c7dabcfc26ec76466ab86310e6828f34db714500"
+        }
+      ],
+      "license": "ODbL-1.0 for actual OSM coordinates; municipal perimeter facts transcribed.",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-szombathely-more/independent-review.json",
+      "rightsStatus": "Original OSM ways ODbL-1.0; no open municipal-map reuse licence asserted.",
+      "existingNamedQuarterId": "osm:relation:8356511",
+      "newDistinctQuarterCoverage": false,
+      "historicalAlternativeNotNewFineQuarter": true
+    },
+    {
+      "id": "salgotarjan-2022-source-contours-inferred-registration",
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/salgotarjan-inferred.geojson",
+      "sha256": "ed18ef0051189ffdb47361cc5c3ee5cb8dff53363182c7b953f585fa3d8403ef",
+      "municipality": "Salgótarján",
+      "method": "Eight complete separately named municipal profile color-pixel outer contours, with all original components/vertices preserved. Profile→overview similarity then unvalidated approximate overview→EOV municipal-silhouette fit and EPSG:4326. Geographic placement remains inferred; no absolute accuracy, source-name-point controls, invented closing segments or constituent splits.",
+      "evidenceUrls": [
+        "https://www.salgotarjan.hu/wp-content/uploads/fejlesztesidokumentumok_20220629_its.pdf"
+      ],
+      "license": "Municipal-map open-reuse licence unverified; ODbL-1.0 for OSM reference data.",
+      "propertyOverrides": {
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": false,
+        "georeferenceStatus": "inferred_georeference",
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteAccuracyMetres": null
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-salgotarjan-next/independent-review.json",
+      "rightsStatus": "Municipal publication; no independently established open-map reuse licence.",
+      "uncertainties": [
+        "Original map date/CRS unknown; June2022 ITS preserves2008/2014 division.",
+        "4716 overview silhouette calibration pixels are not independent physical controls; absolute accuracy remains unknown.",
+        "Forgáchtelep northwest profile/overview differences remain; no edge correction or repair applied.",
+        "Source name points corroborate names only, never polygon extents."
+      ]
+    },
+    {
+      "id": "kecskemet-native77-fine-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-native77-first/fine-inferred.geojson",
+      "sha256": "08e0b715176fa8b3bd1b804508d46ae6fd0efad72b9ec27eedde4846a33dd1a8",
+      "municipality": "Kecskemét",
+      "featureCount": 3,
+      "method": "Literal decimal m/l paths from the original municipal PDF Figure 77 Form stream. Only original nonzero line segments are polygonized, independently per source stroke object; no noding, buffer, repair, snap, simplification, image-frame closure or invented connecting edge. The central source cell retains both original holes. Six manually interpreted historical-map road junctions and literal current OSM-node coordinates fit an affine transform in EOV/EPSG:23700; a candidate southern road-junction/cycleway attachment is held out, with physical identity unconfirmed. Geographic placement is an explicit unverified estimate. Source contours are transformed to WGS84 without replacing them by current roads.",
+      "evidenceUrls": [
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ],
+      "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name points.",
+      "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-native77-first/independent-review.json",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "rightsStatus": "Publicly published municipal consultation draft; open reuse rights not independently established.",
+      "admissionReviewPath": "data/neighborhoods/sources/municipal-kecskemet-native77-admission-review/admission-review.json"
+    },
+    {
+      "id": "kecskemet-native77-local-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-native77-first/local-units-inferred.geojson",
+      "sha256": "0f03d75e0482f23769d379fc06fb1d946644490e285505edf8528065aa35f046",
+      "municipality": "Kecskemét",
+      "featureCount": 4,
+      "method": "Literal decimal m/l paths from the original municipal PDF Figure 77 Form stream. Only original nonzero line segments are polygonized, independently per source stroke object; no noding, buffer, repair, snap, simplification, image-frame closure or invented connecting edge. The central source cell retains both original holes. Six manually interpreted historical-map road junctions and literal current OSM-node coordinates fit an affine transform in EOV/EPSG:23700; a candidate southern road-junction/cycleway attachment is held out, with physical identity unconfirmed. Geographic placement is an explicit unverified estimate. Source contours are transformed to WGS84 without replacing them by current roads.",
+      "evidenceUrls": [
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ],
+      "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name points.",
+      "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-native77-first/independent-review.json",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "local_area",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "rightsStatus": "Publicly published municipal consultation draft; open reuse rights not independently established.",
+      "admissionReviewPath": "data/neighborhoods/sources/municipal-kecskemet-native77-admission-review/admission-review.json"
+    },
+    {
+      "id": "pecs-remaining-source-contours-estimated-placement",
+      "path": "data/neighborhoods/sources/municipal-pecs-remaining-next/source-inferred.geojson",
+      "sha256": "cfdd86a7dc73d6f6a76ebf9a2377a0e7e077992761f3b23fd675abf102c8826a",
+      "municipality": "Pécs",
+      "method": "Twenty-seven additional actual closed historical source-cell contours, independently named from original Figure9 and checked against original Figure12 grid faces. Exactly 37 reviewed cartographic voids (422 pixels) restored with unchanged external edges. Source-defined functional names retain neighbourhood-candidate classification from actual municipal table hierarchy. Frozen first-cohort geographic placement remains an explicitly unverified estimate.",
+      "evidenceUrls": [
+        "https://logoweb.pecs.hu/download/koncepcio/ITS.pdf"
+      ],
+      "license": "Municipal map reuse rights unverified; ODbL for archived OSM calibration evidence.",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-pecs-remaining-next/independent-review.json",
+      "uncertainties": [
+        "No geographic registration or primary approval; inherited northwest-only placement unverified, claimedAbsoluteAccuracy=null.",
+        "Names and actual source exterior contours separately reviewed; present legal footprint, current name usage and municipal map reuse rights remain unverified."
+      ],
+      "rightsStatus": "Municipal publication; unrestricted map redistribution/reuse licence unverified. OSM calibration evidence ODbL.",
+      "registryEntryNotAppliedByThisBatch": true
+    },
+    {
+      "id": "kecskemet-figure73-source-pixel-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure73-first/source-inferred.geojson",
+      "sha256": "36cc4e59c1516338ba34928dcffdf871e9f01f2432701506a91b5fceb4a2cb5a",
+      "municipality": "Kecskemét",
+      "featureCount": 2,
+      "method": "Every boundary vertex is an original maxRGB<=45 black pixel on the exact embedded municipal Figure73 JPEG. Dense rings follow only 8-neighbor source-pixel paths guided by manually inspected stroke corridors. A literal black connected-component subset excludes detached photographic specks; no pixel is added, no missing edge is filled and no image-frame closure, buffer, snap, simplification or repair is used. The complete original apartment-back parking zigzag is retained instead of replacing it by an unresolved modern road-node chain. Six approximate historical source-junction observations fit an affine transform to literal current OSM nodes in EPSG:23700. Four old observations are transferred through the exact PDF page-image placement on the same byte-identical Figure73 image; two southern observations are new. A failed earlier same-image Jókai/Piaristák candidate is preserved outside the fit. Exact historical-to-current physical point identity has not been independently validated, so all geographic output remains inferred.",
+      "evidenceUrls": [
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ],
+      "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name points.",
+      "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-figure73-first/independent-review.json",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "rightsStatus": "Public municipal consultation draft; open reuse rights not independently established."
+    },
+    {
+      "id": "kecskemet-figure76-source-pixel-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure76-first/source-inferred.geojson",
+      "sha256": "25fc43ab9733cc89f73b4a4184939a05643f0ba853ed089110a5085a829d63d0",
+      "municipality": "Kecskemét",
+      "featureCount": 3,
+      "method": "Literal original Figure76 maxRGB<=45 black-source-pixel circuits, every dense edge an 8-neighbor source step. Shared dividers are reused exactly; no source-frame closure, label crossing, invented connector, simplification, buffer, snap or repair. Actual photographic texture establishes a Figure73-to-Figure76 image affine relation: ten fitted and ten separately held-out NCC patches, with no world coordinates, names or boundary rings used by image matching. The inverse image relation is composed with the archived Figure73 EOV affine calibration, independently recomputed from its six approximate real-road-node correspondences. The Figure73 geographic placement remains unvalidated, and Figure76 contours partly extend beyond the observed common-image overlap. All output is therefore an explicit inferred geographic candidate; exact source contours are proved separately from placement.",
+      "evidenceUrls": [
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ],
+      "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name points.",
+      "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-figure76-first/independent-review.json",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "rightsStatus": "Public municipal consultation draft; open reuse rights not independently established."
+    },
+    {
+      "id": "pecs-final-five-source-contours-estimated-placement",
+      "path": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/source-inferred.geojson",
+      "sha256": "a27535ffae4e4549f76200e207fa80fc6796dfbe394740eacce57b7df7693acc",
+      "municipality": "Pécs",
+      "method": "Five additional whole original quarter contours:two distinct closed raster cells and three independently approved literal manual outer-stroke paths. Placement remains the frozen unverified estimate.",
+      "evidenceUrls": [
+        "https://logoweb.pecs.hu/download/koncepcio/ITS.pdf"
+      ],
+      "license": "Municipal map reuse rights unverified; ODbL for archived OSM calibration evidence.",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/independent-final-gap-review.json",
+      "uncertainties": [
+        "Geographic placement remains unverified; claimedAbsoluteAccuracy=null, no primary or automatic address approval.",
+        "Historic names/geometry do not establish current legal boundaries or municipal-map reuse rights."
+      ],
+      "rightsStatus": "Public municipal publication; unrestricted map redistribution/reuse licence unverified.",
+      "registryEntryAppliedByThisBatch": false
+    },
+    {
+      "id": "pecs-two-explicit-low-confidence-cap-reconstructions",
+      "path": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/reconstructed-cap-inferred.geojson",
+      "sha256": "2ebf355e13e20b2e57cbe88b18bf12c29fb449bdb62b51cc23f35aad5a49d5df",
+      "municipality": "Pécs",
+      "method": "Two explicitly low-confidence reconstructions with confirmed literal open chains and separately listed uncertain cap segments. Full ring sourceContourIsObserved=false; all inferred edges and alternative chords are retained. Frozen geographic placement is unverified.",
+      "evidenceUrls": [
+        "https://logoweb.pecs.hu/download/koncepcio/ITS.pdf"
+      ],
+      "license": "Municipal map reuse rights unverified; ODbL for archived OSM calibration evidence.",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceContourIsObserved": false,
+        "reconstructionConfidence": "low"
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/independent-cap-review.json",
+      "uncertainties": [
+        "Geographic placement remains unverified; claimedAbsoluteAccuracy=null, no primary or automatic address approval.",
+        "Historic names/geometry do not establish current legal boundaries or municipal-map reuse rights.",
+        "The complete rings include explicitly inferred uncertain caps and are not fully observed contours."
+      ],
+      "rightsStatus": "Public municipal publication; unrestricted map redistribution/reuse licence unverified.",
+      "registryEntryAppliedByThisBatch": false
+    },
+    {
+      "id": "kecskemet-figure78-source-pixel-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure78-first/source-inferred.geojson",
+      "sha256": "1ef7475d6573753e7b273c5e4cee7ed42b2608a655ef8b72450c2b8d32d1a6be",
+      "municipality": "Kecskemét",
+      "featureCount": 4,
+      "method": "Literal original Figure78 maxRGB<=45 black-source-pixel circuits, every dense edge an 8-neighbor source step. Shared dividers are reused exactly; no source-frame closure, label crossing, invented connector, simplification, buffer, snap or repair. Actual photographic texture establishes a Figure79-to-Figure78 image affine relation: fourteen fitted and sixteen separately held-out NCC patches, with no world coordinates, names or boundary rings used by image matching. The inverse image relation is composed with the archived new EOV affine calibration, independently fitted from the five original Figure79 manual source-junction observations and literal OSM coordinates. The frozen Figure79 geographic-degree affine is retained as a model-family comparison and is never modified. Figure78 contours extend beyond the observed common-image overlap and the original calibration image; their full geographic placement is not independently validated. All output is therefore an explicit inferred geographic candidate; exact source contours are proved separately from placement.",
+      "evidenceUrls": [
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ],
+      "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name points.",
+      "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-figure78-first/independent-review.json",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "rightsStatus": "Public municipal consultation draft; open reuse rights not independently established."
+    },
+    {
+      "id": "zalaegerszeg-six-explicit-source-inferences",
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+      "sha256": "ad3c6702f5c9d72edd2073c8bd4f8cf40d988489a602c513b944874ddbe1409b",
+      "municipality": "Zalaegerszeg",
+      "method": "Six explicit low-confidence source-based interpretations:five numbered quarter contours with small separately recorded label-occlusion caps, and two-part historical Iparterület with one original1px corner-touching hole explicitly filled as an estimated interpretation. Original raw6 contour and strict failure retained. Frozen inherited approximate municipal-perimeter affine with zero independent interior controls; unknown absolute accuracy.",
+      "evidenceUrls": [
+        "https://zalaegerszeg.hu/wp-content/uploads/2023/05/Zalaegerszeg_ITS.pdf"
+      ],
+      "license": "Municipal map reuse rights not independently established; ODbL for archived OSM perimeter calibration and independent current-name evidence.",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceContourIsObserved": false,
+        "reconstructionConfidence": "low"
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/independent-source-registration-review.json",
+      "uncertainties": [
+        "The complete candidate boundaries include explicit inferred segments or a single-pixel ambiguity interpretation; neither is wholly observed source geometry.",
+        "The inherited affine has zero independent interior controls and unknown absolute accuracy. Cap lengths measure reconstructed hidden source segments, not positional accuracy.",
+        "The historical table explicitly defines Iparterület as unit6; no exact current OSM named-place match was observed, so current identity remains unknown. Industrial function alone is not an exclusion.",
+        "Ebergény southwest unlabelled lobe70 has low-confidence assignment; an alternative omitting it is retained. Bazita-adjacent unnumbered closed cell92 remains unassigned.",
+        "Source history/name evidence does not establish current legal boundaries or unrestricted map-reuse rights."
+      ],
+      "rightsStatus": "Municipal public publication; open map redistribution licence not independently established.",
+      "registryEntryAppliedByThisBatch": false
+    },
+    {
+      "id": "kecskemet-figure74-source-overprint-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure74-first/source-inferred.geojson",
+      "sha256": "9d689aa4fef30c95e28f50e1984de8b931a0837d41f3b823209dc63bd916717c",
+      "municipality": "Kecskemét",
+      "featureCount": 1,
+      "method": "Manual Figure74 source-stroke guides trace original maxRGB<=45 JPEG pixels. Three explicitly enumerated blue-text-overprint intervals use low-confidence bounded manual continuations with unselected alternative paths; thirteen vertices are not strict source-black observations. No source-frame closure, buffer, repair, geographic snap or simplification is used. A photo-only Figure73-to-Figure74 affine uses thirteen fitted and ten held-out texture patches, with all twenty-five rejected searches and preliminary attempts retained. Its inverse is composed with the archived Figure73 metric EOV affine, independently refitted from its six original manual image observations and literal OSM road coordinates. The new footprint extends beyond the observed photo overlap and the original calibration image. Source-text overprints and full geographic placement remain explicit inferences; photographic residuals are not absolute boundary accuracy.",
+      "evidenceUrls": [
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ],
+      "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name point.",
+      "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-figure74-first/independent-review.json",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "rightsStatus": "Public municipal consultation draft; open source-map reuse rights not independently established."
+    },
+    {
+      "id": "hodmezovasarhely-hodto-2014-circuit-inferred",
+      "path": "data/neighborhoods/sources/municipal-hodmezovasarhely-hodto-first/hod-hodto-first-candidate.geojson",
+      "sha256": "5b201c8a8c632f6096934b57d618beaf66db24b3492b0f2eece5d2d4b937d6ff",
+      "municipality": "Hódmezővásárhely",
+      "featureCount": 1,
+      "method": "Historical 2014 explicit full-quarter street and rail circuit polygonized from literal 2026 OSM centerlines, with 115.941842 m of connected physical roundabout arcs retained as explicit low-confidence junction inference. Every boundary segment is supported by archived original OSM ways. No synthetic connector, snapping, buffer, or rectangle closure.",
+      "evidenceUrls": [
+        "https://hodmezovasarhely.hu/wp-content/uploads/strategiak_koncepciok/Integr%C3%A1lt-Telfejli-Stra%C3%A9gia_2014.pdf",
+        "https://hodmezovasarhely.hu/wp-content/uploads/strategiak_koncepciok/gazdasag_fejlesztesi_strategia/hmvhely_gazdasagi_program_2014-2019.pdf",
+        "https://njt.jog.gov.hu/jogszabaly/2023-1-SP-5Y1882.0"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://hodmezovasarhely.hu/wp-content/uploads/strategiak_koncepciok/Integr%C3%A1lt-Telfejli-Stra%C3%A9gia_2014.pdf",
+          "adoptedAt": "2014-09-17",
+          "adoptionResolution": "217/2014. (09.17) Kgy.",
+          "printedPage": 61,
+          "section": "2.3.4",
+          "bytesAcquired": false,
+          "accessEvidence": "Web tool readable originalPDF text; later section screenshot/original PDF download returnedHTTP403."
+        },
+        {
+          "url": "https://hodmezovasarhely.hu/wp-content/uploads/strategiak_koncepciok/gazdasag_fejlesztesi_strategia/hmvhely_gazdasagi_program_2014-2019.pdf",
+          "printedPage": 154,
+          "section": "4.3.4",
+          "bytesAcquired": false
+        }
+      ],
+      "license": "ODbL-1.0",
+      "rightsStatus": "Geometry is independently reconstructed from OpenStreetMap contributors road and rail ways under ODbL-1.0. Municipal named-boundary facts provide the circuit; no source PDF map paths were copied and no source PDF map reuse license is assumed.",
+      "reviewPath": "data/neighborhoods/sources/municipal-hodmezovasarhely-hodto-first/hod-independent-review.json",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "reviewStatus": "estimated_candidate_with_independent_technical_review"
+      },
+      "uncertainties": [
+        "Explicit quarter circuit is from2014, while open linework is a2026 snapshot. Historical alignment was not independently georeferenced.",
+        "Road and rail centerlines implement a stated tracing convention; source text does not specify road/rail width ownership.",
+        "Modern roundabout arcs close physical junctions missing from the street-name chain; these arcs are inferred and fully identified.",
+        "Subsequent FVS action-area definitions differ and are not treated as full-quarter definitions.",
+        "Municipal PDF text was verified through the web tool; original PDF bytes/screenshot of the selected section were blocked byHTTP403 on subsequent fetch.",
+        "Independent technical linework and PBF checks pass. The original 2014 source geometry and historical alignment remain unverified; this is an estimated research candidate."
+      ],
+      "requirements": [
+        "Independently verify the original municipal PDF section and the 2014/current linework alignment before treating this as a reliable quarter boundary.",
+        "Retain estimated/inferred status, low confidence, and address-assignment prohibition."
+      ],
+      "calibrationObservations": null,
+      "independentTechnicalReview": {
+        "path": "data/neighborhoods/sources/municipal-hodmezovasarhely-hodto-first/hod-independent-review.json",
+        "sha256": "beee674e2357efe1861d592fafc4c09c9b059a1881ff4850f7a0f7a1613fcdd5",
+        "allRequiredTechnicalChecksPassed": true,
+        "sourcePdfOrHistoricalAlignmentIndependentlyVerified": false
+      },
+      "applicationAdmissionReviewPath": "data/neighborhoods/sources/municipal-hodmezovasarhely-hodto-first/hod-independent-review.json"
+    },
+    {
+      "id": "szentes-belvaros-explicit-circuit-inferred",
+      "path": "data/neighborhoods/sources/municipal-szentes-belvaros-first/inferred-candidate.geojson",
+      "sha256": "2a2aab8baf53aae2f55b8dfbdec0b6cda8cd13863ae18f1c00bbfc16ec909c69",
+      "municipality": "Szentes",
+      "featureCount": 1,
+      "method": "LOW-CONFIDENCE older municipal IVS explicit quarter circuit reconstructed from literal current OSM road/path/river segments; six source-unspecified junction interpretations are individually bounded and disclosed. Source contour not observed. No synthetic connectors, snapping, repair, buffers or bounding boxes.",
+      "evidenceUrls": [
+        "https://szentes.hu/wp-content/uploads/2015/01/szentes_ivs.pdf",
+        "https://www.szentesinfo.hu/testulet/2015/5/eloterjesztes/ITS_megalapozo.pdf",
+        "https://www.szentes.hu/wp-content/uploads/2025/03/Szentes_FVS_mod_20240627_elfogadott.pdf",
+        "https://or.njt.hu/download/1919/resources/EJR_70471950-1._mellekletV3.pdf",
+        "https://www.openstreetmap.org/node/12088970184"
+      ],
+      "sourceEra": "Municipal upload2015; older edition containing2009/2010 material; exact adoption/date unknown. Current2026 OSM linework does not establish historical alignment.",
+      "license": "ODbL-1.0",
+      "rightsStatus": "Independently assembled literal OpenStreetMap geometry underODbL; municipal street/river boundary facts only, no source PDF map geometry copied or map reuse license assumed.",
+      "reviewPath": "data/neighborhoods/sources/municipal-szentes-belvaros-first/review.json",
+      "semanticProofPath": "data/neighborhoods/sources/municipal-szentes-belvaros-first/semantic-proof.json",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "sourceContourIsObserved": false,
+        "confidence": "low",
+        "reviewStatus": "independently_reviewed_low_confidence_estimated_candidate"
+      },
+      "uncertainties": [
+        "Historical municipal street facts combined with presentOSM linework; exact source edition/alignment date unknown.",
+        "Apponyi square side and two parcel-to-current-road identities remain inferred.",
+        "Two source river junctions use chosen nearby physical bridge detours, not observed source contours.",
+        "Six current street/path/junction choices require review; alternatives differ by41611.4187m² (3.6% of preferred area), not an absolute positional accuracy bound.",
+        "Original municipalPDF bytes/map pixels not acquired; source text/indexed map descriptions read via web connector.",
+        "Only the Apponyi square interpretation has two reconstructed footprints and the41611.4187m² comparison. The other five assumptions each retain one chosen physical path and an unresolved source choice; the two footprints are not a full uncertainty envelope."
+      ],
+      "requirements": [
+        "Independent technical/source-role review passed for low-confidence inferred treatment only; keep every source-era and junction limitation.",
+        "Only the preferred blue Deák-side candidate may be compiled; orange alternate is the same quarter, never a second count.",
+        "Keep all six junction assumptions and cadastral identity limits explicit."
+      ],
+      "calibrationObservations": null,
+      "accuracyMeters": null,
+      "independentReviewPath": "data/neighborhoods/sources/municipal-szentes-belvaros-first/independent-review.json",
+      "independentReviewSha256": "7561d6cba28d88b8e39bd44511d3883e75bf1c5f6e373c2070142caac5bdf163"
+    },
+    {
+      "id": "kecskemet-figure75-source-overprint-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure75-first/source-inferred.geojson",
+      "sha256": "90e2e9b5fda92a4f1b177d78bcb7bf48b725e3071e55a78c9d3af8c602078f22",
+      "municipality": "Kecskemét",
+      "featureCount": 1,
+      "method": "Manual Figure75 source-stroke guides trace original maxRGB<=45 JPEG pixels. Four explicitly enumerated blue-label-overprint intervals use low-confidence bounded manual continuations with unselected alternative paths; twenty vertices are not strict source-black observations. No source-frame closure, buffer, repair, geographic snap or simplification is used. A photo-only Figure74-to-Figure75 affine uses six fitted and seven held-out texture patches, with all fourteen rejected searches and preliminary attempts retained. Its inverse is composed with the archived Figure74-to-Figure73 photo relation and the Figure73 EOV metric calibration. Both photographic relations and the six original Figure73 manual image observations/literal OSM coordinates are independently refitted. The entire new cell is beyond observed overlap and the calibration image footprints. Source-text overprints and full geographic placement remain explicit inferences; photographic residuals are not absolute boundary accuracy.",
+      "evidenceUrls": [
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ],
+      "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name point.",
+      "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-figure75-first/independent-review.json",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "rightsStatus": "Public municipal consultation draft; open source-map reuse rights not independently established."
+    },
+    {
+      "id": "kaposvar-donner-interpreted-2023",
+      "path": "data/neighborhoods/sources/municipal-kaposvar-donner-next/donner-candidate.geojson",
+      "sha256": "aef93bcb4722d7d72892dd179e21d5bd4901533cbec4317138602b204b5252bc",
+      "municipality": "Kaposvár",
+      "method": "Interpreted July2023 municipal whole-Donner description using actual November2026 OSM Kapos, Zselic-patak, Szigetvári utca and road67/Zselici arcs. Distinct Donner identity is supported separately from eastern Rómahegy. Two common OSM nodes and two analytical bridge-crossing intersections; all other vertices and node-ref connections are original source geometry. The printed source is malformed and route-age/spelling equivalence remains inferred. No compound-map cloning, fabricated child boundary, missing-edge connection, snapping, buffer, hull, frame closure or municipal clipping.",
+      "evidenceUrls": [
+        "https://kph.kaposvar.hu/data/adattar/fvs21-27/fvs21-27.pdf"
+      ],
+      "license": "ODbL-1.0 for OSM geometry; municipal-source open reuse rights unverified.",
+      "propertyOverrides": {
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "confidence": "low",
+        "claimedAbsoluteAccuracyMetres": null,
+        "candidateBoundaryKind": "neighbourhood"
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-kaposvar-donner-next/independent-geometry-review.json",
+      "additionalReviewPath": "data/neighborhoods/sources/municipal-kaposvar-donner-next/independent-source-review.json",
+      "rightsStatus": "Public municipal publication; open reuse licence not independently established. ODbL applies to literal OSM geometry."
+    },
+    {
+      "id": "zalaegerszeg-ziffa2025-hathaz",
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/hathaz-inferred-import.geojson",
+      "sha256": "a941d069ca1e8219eddbac61ad6f2b49cc47425dd06750853b99bd2d4965578e",
+      "municipality": "Zalaegerszeg",
+      "method": "One source-observed closed raster quarter contour with explicitly estimated geographic placement from actual road junctions and building footprints. Balanced six-control EOV similarity retained as main; independent road-only placement alternative remains separate.",
+      "evidenceUrls": [
+        "https://zalaegerszeg.hu/wp-content/uploads/2025/09/ZEG_ZIFFA_egyeztetesi-valt.pdf"
+      ],
+      "sourceDocument": {
+        "date": "2025-08-30",
+        "status": "consultation_draft",
+        "adoptionIndependentlyEstablished": false,
+        "sha256": "b132fd75d6c95538023ced5eda3ad8ac7f7131c6e27f889ed7206c23e4a44745",
+        "figure": 54,
+        "mapPageOneBased": 141,
+        "semanticsPagesOneBased": [
+          63,
+          99,
+          142
+        ]
+      },
+      "license": "Municipal map redistribution rights are unknown; ODbL applies to OSM geographic controls and name evidence.",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourObserved": true,
+        "sourceContourIsObserved": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true,
+        "georeferencingIsApproximate": true,
+        "claimedAbsoluteAccuracyMetres": null,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/independent-registration-review.json",
+      "sourceReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/independent-source-review.json",
+      "rasterReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/independent-raster-review.json",
+      "placementAlternativePath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/hathaz-placement-alternative.geojson",
+      "uncertainties": [
+        "Absolute positional accuracy is unknown; fit residuals measure correspondence consistency only.",
+        "Northern road diagnostics favor the separately retained two-road placement; sparse corridor and off-axis coverage leave unresolved placement ambiguity.",
+        "Source identity is2025 chapter3.4 unit17 Hatház, distinct from2014 unit17 Nyugati külterület.",
+        "Consultation study map does not establish statutory/legal or cadastral neighborhood boundaries.",
+        "Native355×451 raster,1–2pixel boundary band, manual controls, unknown backdrop date and limited lateral reference coverage remain material uncertainties."
+      ],
+      "rightsStatus": "unknown_municipal_map_redistribution_rights; ODbL-1.0_controls_and_name_evidence",
+      "contentMinimizationReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/independent-content-review.json",
+      "registryEntryAppliedByThisBatch": false
+    },
+    {
+      "id": "zalaegerszeg-ziffa2025-neszele",
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/neszele-inferred-import.geojson",
+      "sha256": "7575f4cd8c6f3ea8172069b2ef24c1cc3fc0319d523098102234e97807adea2b",
+      "municipality": "Zalaegerszeg",
+      "method": "One separately observed Neszele source-raster quarter contour with estimated road-junction EOV similarity placement. A two-junction placement alternative remains separate; Ságod thematic-mask extraction is quarantined and contributes no world feature.",
+      "evidenceUrls": [
+        "https://zalaegerszeg.hu/wp-content/uploads/2025/09/ZEG_ZIFFA_egyeztetesi-valt.pdf"
+      ],
+      "sourceDocument": {
+        "date": "2025-08-30",
+        "status": "consultation_draft",
+        "adoptionIndependentlyEstablished": false,
+        "sha256": "b132fd75d6c95538023ced5eda3ad8ac7f7131c6e27f889ed7206c23e4a44745",
+        "figure": 53,
+        "mapPageOneBased": 138,
+        "semanticsPagesOneBased": [
+          63,
+          139
+        ]
+      },
+      "license": "Municipal map redistribution rights unknown; ODbL applies to OSM controls and name evidence.",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": false,
+        "estimated": true,
+        "sourceContourObserved": true,
+        "sourceContourIsObserved": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true,
+        "georeferencingIsApproximate": true,
+        "claimedAbsoluteAccuracyMetres": null,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-registration-review.json",
+      "sourceReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-source-review.json",
+      "rasterReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-raster-review.json",
+      "roadPbfReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-road-pbf-review.json",
+      "contentMinimizationReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-content-review.json",
+      "uncertainties": [
+        "Native387×329 raster and manually selected road junction pixels have unknown positional error.",
+        "Source projection/backdrop age and source-to-current-road correspondence remain uncertain.",
+        "Main and two-junction alternatives are plausible models, not confidence bounds.",
+        "Grouped section16 has two fine map identities; no grouped-parent clone is admitted.",
+        "Consultation draft map does not establish statutory/legal/cadastral boundaries or address approval."
+      ],
+      "rightsStatus": "unknown_municipal_map_redistribution_rights; ODbL-1.0_controls_and_name_evidence",
+      "registryEntryAppliedByThisBatch": false
+    },
+    {
+      "id": "debrecen-arcgis-six-estimated-placement",
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/debrecen-first-six-estimated.geojson",
+      "sha256": "0d2238b780220e2e1b091f6134afe55e26018edf0a4dd9260baf6e67e09f1c6a",
+      "municipality": "Debrecen",
+      "method": "Literal published EPSG:4326 service GeoJSON shell, copied with every coordinate, vertex order and closing repeat unchanged. Original EPSG:3857 JSON is archived and independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement/current extent and lineage remain unresolved; coarse source outlines disagree with the frozen OSM baseline. No new coordinate estimate, datum reinterpretation, fitted shift, correction, snapping, clipping, simplification, buffering, repair, densification or invented edge. Exact current OSM place points corroborate names only and are never fit controls.",
+      "evidenceUrls": [
+        "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+        "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+      ],
+      "license": "Public ArcGIS source geometry reuse rights unestablished; ODbL-1.0 for archived actual OSM name-point identity evidence.",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "georeferencingIsApproximate": true,
+        "claimedAbsoluteAccuracyMetres": null
+      },
+      "reviewPath": "data/neighborhoods/sources/public-arcgis-quarter-next/first-six-review.json",
+      "independentReviewPath": "data/neighborhoods/sources/public-arcgis-quarter-next/first-six-independent-review.json",
+      "sourceGeometryIndependentReviewPath": "data/neighborhoods/sources/public-arcgis-quarter-next/independent-geometry-review.json",
+      "baselineReviewPath": "data/neighborhoods/sources/public-arcgis-quarter-next/baseline-overlap-review.json",
+      "uncertaintyPath": "data/neighborhoods/sources/public-arcgis-quarter-next/first-six-review.json",
+      "uncertainties": [
+        "Original boundary survey/reference period, whole current quarter extent, absolute boundary accuracy, source lineage and reuse rights are unknown. Across25same-name source/baseline pairs the published source centroids are all west of the unreviewed OSM baseline (median source-minus-baseline −61.063mE,−27.218mN); cause and which dataset is more accurate are unestablished. This relative diagnostic is not an accuracy bound. Source coordinates are preserved without correction. Native/service reprojection fidelity does not establish ground accuracy.",
+        "Six names are independently corroborated by actual current OSM source points. Complete current boundaries and official/legal quarter status are not thereby established."
+      ],
+      "rightsStatus": "Original boundary lineage and unrestricted reuse licence unknown. Public access is not a licence. University organization/search-source label is not proof of publisher lineage.",
+      "frozenFeatureCount": 6,
+      "globalRegistryAdmissionPerformed": true
+    },
+    {
+      "id": "debrecen-arcgis-remaining-23-estimated",
+      "path": "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-remaining-estimated.geojson",
+      "sha256": "e3b1c7aae15c4fbfe37acdcb0a604425f28bd9f5d5155979d481da95180d23bc",
+      "municipality": "Debrecen",
+      "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+      "evidenceUrls": [
+        "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+        "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+      ],
+      "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for OSM identity and comparison evidence.",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "georeferencingIsApproximate": true,
+        "claimedAbsoluteAccuracyMetres": null
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-debrecen-remaining-next/selection-review.json",
+      "independentReviewPath": "data/neighborhoods/sources/municipal-debrecen-remaining-next/independent-review.json",
+      "uncertaintyPath": "data/neighborhoods/sources/municipal-debrecen-remaining-next/selection-review.json",
+      "uncertainties": [
+        "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+        "Tócóvölgy current extent is additionally uncertain because FVS2023 describes Lóskúti separation from parts of it. Minor documented source/cohort/baseline overlaps remain unchanged."
+      ],
+      "frozenFeatureCount": 23,
+      "globalRegistryAdmissionPerformed": true
+    },
+    {
+      "id": "hodmezovasarhely-ksh2005-native-estimated-placement",
+      "path": "data/neighborhoods/sources/municipal-hodmezovasarhely-ksh2005-next/estimated-world-candidates.geojson",
+      "sha256": "0c4f5a6358aea2aee2418fdab4664e89511f81f1c132b47eaeaa619612bc8219",
+      "municipality": "Hódmezővásárhely",
+      "featureCount": 9,
+      "method": "Literal closed source fill contours from the original July2005KSH PDF page9, including all actual native subpaths and touching micro-triangles. Original decimal PDF vertices are evaluated exactly, then mapped by a three-road-junction EOV similarity and vertexwise EPSG23700→4326. No polygon repair, dropped component, smoothing, buffer, clipping, snapping, missing-edge cap, frame closure or current-name-point fit. Placement remains estimated; one two-control alternative is retained separately. Hódtó is invalid in source and already represented, so it is quarantined rather than repaired or counted again.",
+      "evidenceUrls": [
+        "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf"
+      ],
+      "license": "KSH2005 attribution required; separate data-transfer permission not established. ODbL-1.0 actual OSM controls/name evidence.",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "georeferencingIsApproximate": true,
+        "claimedAbsoluteAccuracyMetres": null,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-hodmezovasarhely-ksh2005-next/registration-and-uncertainty.json",
+      "independentSourceReviewPath": "data/neighborhoods/sources/municipal-hodmezovasarhely-ksh2005-next/independent-source-review.json",
+      "independentReviewPath": "data/neighborhoods/sources/municipal-hodmezovasarhely-ksh2005-next/independent-world-review.json",
+      "placementAlternativePath": "data/neighborhoods/sources/municipal-hodmezovasarhely-ksh2005-next/alternative-two-control-world.geojson",
+      "uncertainties": [
+        "Geographic placement is estimated from three interpreted source-boundary road junctions, not surveyed source controls. C2 has historical/current street-name ambiguity. Main fit RMS15.03m is not an accuracy bound; an ambiguous held-out junction differs55.76–74.73m. The control triangle covers only small portions ofBelváros/Tabán; other candidate footprints are extrapolated. Source cartographic generalization, road-centre convention,2005/current change and unknown survey/CRS remain material. Literal current-street-name line checks diverge up to1014m where simplified historical descriptions do not match the whole mapped border under current names; no aliases or source corrections are inferred. Independent source Susán/Újváros rail135 check differs by up to84.21m. These diagnostics do not establish absolute accuracy or whole current extents. Four detached village depictions are schematic/compressed and are retained only in native source coordinates.",
+        "Nine historical identities do not establish present complete extents; KSH reuse/data-transfer conditions are not treated as an open licence."
+      ],
+      "rightsStatus": "KSH2005 source-attribution and data-transfer-permission conditions; unrestricted permission unestablished.",
+      "globalRegistryAdmissionPerformed": true
+    },
+    {
+      "id": "nyiregyhaza-fine-ksh2003-inferred",
+      "path": "data/neighborhoods/sources/municipal-nyiregyhaza-fine2008-next/fine-historical-candidates.geojson",
+      "sha256": "781f7edab8578c50cb1058738ee9fd002867e9be341849e9bbc928c52c7c1bee",
+      "municipality": "Nyíregyháza",
+      "method": "Two actual upper KSH 2003 map pixel footprints reproduced in the March 2008 municipal IVS: one estimated historical neighborhood candidate (Örökösföld lakótelep), one estimated local-area research candidate (Érkert housing-estate footprint). The lower 11-unit key does not directly label the upper 27-unit components; cross-schema assignments remain inferred. No merged group is cloned. Inferred affine from 11 municipal-outline corners to current OSM relation, with 10 same-outline held-out corners and no independent interior holdouts; unknown absolute accuracy. Current name points support name existence only, with outside-point disagreements retained. Per-feature candidateBoundaryKind remains mixed; no global kind override.",
+      "evidenceUrls": [
+        "https://varoshaza.nyiregyhaza.hu/lib/fooldal/140210_ivs.pdf"
+      ],
+      "license": "Municipal/KSH map open reuse rights unverified; ODbL-1.0 for OSM references.",
+      "propertyOverrides": {
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "canonicalNameIsNeighborhood": false,
+        "historicalGeometryOnly": true,
+        "currentWholeExtentValidated": false,
+        "usableForAddressAssignment": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "confidence": "low",
+        "sourceIsHardBoundary": false,
+        "sourceIsOfficial": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-nyiregyhaza-fine2008-next/independent-review.json",
+      "rightsStatus": "Public municipal publication; no independent open reuse licence established.",
+      "cohortCounts": {
+        "neighborhoodCandidates": 1,
+        "localAreaCandidates": 1,
+        "primaryFeatures": 0
+      },
+      "globalRegistryAdmissionPerformed": true
+    },
+    {
+      "id": "szeged-henits-ksh2003-four-first",
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/szeged-four-inferred-import.geojson",
+      "sha256": "098f2b9aa742f74113a745a5793733a458e788e34e1b28f025b2859cabf8ab1d",
+      "municipality": "Szeged",
+      "method": "Four actual named fine units from the historicalKSH2003 map reproduced inHenits2013. Exact observed native-raster cell contours, with low-confidence six-road-junction similarity placement. Allfour interiors are outside the control hull; absolute accuracy is unknown.",
+      "evidenceUrls": [
+        "https://doktori.bibl.u-szeged.hu/id/eprint/1759/1/doktori_HL.pdf",
+        "https://www.ksh.hu/docs/hun/xftp/idoszaki/pdf/muhelytanulmanyok4.pdf",
+        "https://www.klebelsberg-egyesulet.hu/wp-content/uploads/2016/04/helytortenet.pdf"
+      ],
+      "sourcePeriod": "KSH2003 scheme reproduced2013; original delineation/survey date and current equivalence not established",
+      "sourceFeatureNumbers": [
+        19,
+        20,
+        28,
+        11
+      ],
+      "license": "Academic/KSH map redistribution rights unknown; ODbL-1.0 for original OSM road controls/current-name evidence.",
+      "rightsStatus": "unknown_academic_and_KSH_map_redistribution_rights; ODbL_controls_and_name_evidence",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourObserved": true,
+        "sourceContourIsObserved": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true,
+        "georeferencingIsApproximate": true,
+        "placementConfidence": "low",
+        "controlHullCoverageFraction": 0.0,
+        "claimedAbsoluteAccuracyMetres": null,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-szeged-raw-next/root-independent-proposal-review.json",
+      "additionalReviewPaths": [
+        "data/neighborhoods/sources/municipal-szeged-raw-next/independent-registration-review.json",
+        "data/neighborhoods/sources/municipal-szeged-raw-next/henits-road-pbf-review-working.json",
+        "data/neighborhoods/sources/municipal-szeged-raw-next/independent-content-review.json",
+        "data/neighborhoods/sources/municipal-szeged-raw-next/working-semantic-review.json",
+        "data/neighborhoods/sources/municipal-szeged-raw-next/strict-world-validator-review.json"
+      ],
+      "placementAlternativePath": "data/neighborhoods/sources/municipal-szeged-raw-next/szeged-four-placement-alternative.geojson",
+      "uncertainties": [
+        "Allfour source interiors lie100percent outside the six-control convex hull; every placement extrapolates the isotropic map assumption.",
+        "Map generalization, original projection/date, manual road correspondence and current-road differences create unknown geographic error.",
+        "Printed scale, fit/holdout residuals and alternative-model differences do not establish metre accuracy or confidence bounds.",
+        "Klebersberg is corrected explicitly using independent correct-name evidence; Kecskés current loc_name alias is explicit; the distinct southern Hattyas point is not merged.",
+        "Source-era map extents are not asserted equal to2007 natural-corridor descriptions, current whole-quarter boundaries, cadastral/legal boundaries or address areas.",
+        "Újszőreg27 remains a source occlusion quarantine; Tarján/Felsőváros and incompatible32/34/Bodomi27 schema interpretations are outside this cohort."
+      ],
+      "registryEntryAppliedByThisBatch": false,
+      "globalRegistryAdmissionPerformed": true
+    },
+    {
+      "id": "vac-hep2023-marialiget-estimated",
+      "path": "data/neighborhoods/sources/municipal-vac-hep2023-next/marialiget-estimated-proposal.geojson",
+      "sha256": "39f809aa0443eb0bba84d4f8ca4e11520a3dddb6df29ab1a18517066c262c7ab",
+      "municipality": "Vác",
+      "method": "Manual trace of the observed closed dashed Mária-liget perimeter in the original431×523municipal raster, preserving selected source-pixel vertices. Affine source-pixel→EPSG23700 registration uses three physical road/rail crossings from literal same-PBF ways, then EPSG23700→4326. No place points are fit controls; no Voronoi, hull, parcel clone, parent clone, snapping, buffering, repair or clipping. Placement is LOW-CONFIDENCE and extrapolated south of calibration controls. Raster tracing and conventional dash-gap interpolation are explicit estimates, not native geographic source geometry.",
+      "evidenceUrls": [
+        "https://www.vac.hu/docs/VacVarosOnkormanyzatHEP20232028.pdf"
+      ],
+      "license": "Public municipal map reuse rights unestablished; ODbL-1.0 for actual OSM controls/identity evidence",
+      "propertyOverrides": {
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "georeferencingIsApproximate": true,
+        "claimedAbsoluteAccuracyMetres": null
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-vac-hep2023-next/proposal-review.json",
+      "independentReviewPath": "data/neighborhoods/sources/municipal-vac-hep2023-next/independent-review.json",
+      "uncertaintyPath": "data/neighborhoods/sources/municipal-vac-hep2023-next/proposal-review.json",
+      "uncertainties": [
+        "Source map reference year, survey lineage, CRS, present whole-quarter extent and unrestricted map reuse rights are unknown. HEP horizon2023–2028and PDF creation metadataNovember2022do not date the map or certify adoption. Only three manually read noncollinear controls define an exact affine fit with no independently selected holdout; zero training residual is an algebraic result, not ground accuracy. Both southern scout footprints extrapolate beyond the calibration triangle. Pixel perturbation alternatives are sensitivity scenarios, not confidence limits or extra quarters. Absolute accuracy is unclaimed.",
+        "Manual raster trace follows a conventional dashed perimeter; source pixel readings and southern extrapolation are uncertain. Kisderecske, broader parents and24registration alternatives are not admitted."
+      ],
+      "frozenFeatureCount": 1,
+      "globalRegistryAdmissionPerformed": true
+    },
+    {
+      "id": "kiskunfelegyhaza-its2016-five",
+      "path": "data/neighborhoods/sources/municipal-kiskunfelegyhaza-its2016-next/kiskunfelegyhaza-inferred-import.geojson",
+      "sha256": "7e4a3160b967a8331016204c50e38dbe2241456fba5876403b06174f9d276462",
+      "municipality": "Kiskunfélegyháza",
+      "method": "Literal source pixel-cell contour placed with one full-map six-parameter EOV affine model from five actual road/rail junction correspondences, then inverse projected to EPSG:4326. Source color barriers and actual pixel cells are retained; Petőfi alone has the separately recorded two-pixel cap under its numeric label. No name-point fitting, per-feature shift, clipping, snapping, repair, smoothing, buffers or frame closures.",
+      "evidenceUrls": [
+        "https://kiskunfelegyhaza.hu/wp-content/uploads/2017/03/its_kiskunfelegyhaza_2016_felulvizsgalt.pdf"
+      ],
+      "propertyOverrides": {
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "estimatedPlacement": true,
+        "georeferencingIsApproximate": true
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-kiskunfelegyhaza-its2016-next/independent-parent-review.json",
+      "uncertainties": [
+        "Native 945×1364 JPEG; colored boundary bands and manual road picks are several pixels wide. Original map projection, cartographic generalization, boundary survey date and current whole-quarter extent are unestablished. Five-control fit residuals and manually picked road holdouts measure correspondence consistency only, not absolute ground accuracy. A separate full-map similarity model illustrates placement variation without defining a confidence envelope. Municipal 2014 submission, census 2011 statistics and ITS 2016 review periods are distinct. No current-name point is used to fit or correct any coordinate.",
+        "Petőfi contains the explicit bounded two-pixel source cap; its alternative is retained separately."
+      ],
+      "license": "Municipal map reuse rights unestablished; ODbL-1.0 controls and identity evidence.",
+      "newPrimaryFeatures": 0,
+      "newEstimatedFineCandidates": 5,
+      "globalRegistryApplied": false,
+      "globalRegistryAdmissionPerformed": true
+    }
+  ]
+}

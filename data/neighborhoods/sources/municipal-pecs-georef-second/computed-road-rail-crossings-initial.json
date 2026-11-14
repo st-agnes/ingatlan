@@ -1,0 +1,82 @@
+{
+  "method": "plan-view intersection of complete original road6 / rail ways; not literal crossing nodes",
+  "records": [
+    {
+      "roadWay": 312297417,
+      "railWay": 31279904,
+      "railTags": {
+        "bridge": "yes",
+        "disused:railway": "rail",
+        "electrified": "no",
+        "gauge": "1435",
+        "layer": "1",
+        "maxspeed": "40",
+        "operator": "MÁV",
+        "passenger_lines": "1",
+        "railway": "disused",
+        "railway:etcs": "no",
+        "railway:evm": "no",
+        "railway:lzb": "no",
+        "railway:pzb": "no",
+        "ref": "64",
+        "usage": "branch"
+      },
+      "eov": [
+        593209.5441637711,
+        85083.69280847596
+      ],
+      "wgs84": [
+        18.312977185588714,
+        46.10794649678259
+      ]
+    },
+    {
+      "roadWay": 312341119,
+      "railWay": 1096494330,
+      "railTags": {
+        "abandoned:railway": "rail",
+        "electrified": "no",
+        "gauge": "1435",
+        "maxspeed": "40",
+        "passenger_lines": "1",
+        "railway": "abandoned",
+        "railway:ballastless": "no",
+        "railway:bidirectional": "regular",
+        "railway:etcs": "no",
+        "railway:evm": "no",
+        "railway:lzb": "no",
+        "railway:preferred_direction": "both",
+        "railway:pzb": "no",
+        "railway:track_type": "main",
+        "ref": "360",
+        "usage": "branch"
+      },
+      "eov": [
+        590045.2041160534,
+        82720.03638225573
+      ],
+      "wgs84": [
+        18.272357597900882,
+        46.08640944503147
+      ]
+    },
+    {
+      "roadWay": 312341135,
+      "railWay": 280133523,
+      "railTags": {
+        "abandoned:railway": "rail",
+        "gauge": "1435",
+        "railway": "abandoned",
+        "service": "spur"
+      },
+      "eov": [
+        589681.6283633899,
+        82554.19875079324
+      ],
+      "wgs84": [
+        18.26767889785989,
+        46.084885115085
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-13T13:04:20.508421+00:00",
+  "sourceSha256": "bd21f7e80f721093d2d471e4037ffc846c29fbb1d393e4edbd7058259417702d",
+  "officialAndPinnedMirrorBytesMatch": true,
+  "independentReader": "openpyxl 3.1.5",
+  "independentComparison": {
+    "sheets": 5,
+    "nonemptyRows": 17001,
+    "cells": 243423,
+    "result": "all cells and row numbers match; numeric floating-point values compared within 1e-14 relative / 1e-12 absolute tolerance"
+  },
+  "countryIdentityChecks": {
+    "canonicalMunicipalitiesMatched": 3155,
+    "uniqueMunicipalityKshCodes": 3155,
+    "uniquePartSourceRows": 13721,
+    "allPartsLinkedExactlyOnce": true,
+    "allMunicipalitiesHaveKshParts": true,
+    "currentCitiesMatched": 348
+  },
+  "taxonomy": {
+    "central_built_up_area": 3178,
+    "other_built_up_area": 1054,
+    "outlying_area": 9489
+  },
+  "rebuildCheck": "python3 scripts/neighborhoods/inventory.py --check passed"
+}

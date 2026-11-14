@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "osm:node:984225130",
+      "properties": {
+        "name": "Hunyadiváros",
+        "source": {
+          "osmType": "node",
+          "osmId": 984225130,
+          "pbfPath": ".local/neighborhoods/hungary-latest.osm.pbf",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "objectVersion": 3,
+          "objectTimestamp": "2026-08-09 18:29:37+00:00",
+          "tags": {
+            "name": "Hunyadiváros",
+            "place": "suburb"
+          },
+          "coordinatesUnmodified": true,
+          "notUsedAsGeometryOrGeoreferencingControl": true
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.7073121,
+          46.9182768
+        ]
+      }
+    }
+  ]
+}

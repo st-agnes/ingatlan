@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "sourcePdfSha256": "5a32552dc02e2bca986d27d97e41633549b5d1f23147f8e00b6abbe7c421b48b",
+  "sourceImagePath": "source-map-p25-xref365.jpeg",
+  "sourceImageSha256": "a7b734e8904b9215a4aba01dc3763ef72b6c21bc4dd813f6e06c8365dbd03e1a",
+  "method": "Select the eight-connected literal RGB outline component at the documented boundary pixel, then its four-neighbor free interior. Exact union of source pixel cells. No morphology, smoothing, buffers, hulls, clipping, snapping or geometric repair. Petőfi has the separately documented bounded cap.",
+  "sourceSeedsArePixelComponentSelectorsNotWorldFitControls": true,
+  "sourceMasks": [
+    {
+      "unit": 2,
+      "rawColorMaskPixels": 2159,
+      "selectedBoundaryComponentPixels": 909,
+      "selectedBoundaryPixel": [
+        316,
+        655
+      ],
+      "interiorPixels": 2963,
+      "sourceContourClosedWithoutAddedCells": true
+    },
+    {
+      "unit": 3,
+      "rawColorMaskPixels": 385,
+      "selectedBoundaryComponentPixels": 384,
+      "selectedBoundaryPixel": [
+        396,
+        630
+      ],
+      "interiorPixels": 416,
+      "sourceContourClosedWithoutAddedCells": false
+    },
+    {
+      "unit": 4,
+      "rawColorMaskPixels": 894,
+      "selectedBoundaryComponentPixels": 881,
+      "selectedBoundaryPixel": [
+        441,
+        576
+      ],
+      "interiorPixels": 2544,
+      "sourceContourClosedWithoutAddedCells": true
+    },
+    {
+      "unit": 13,
+      "rawColorMaskPixels": 19900,
+      "selectedBoundaryComponentPixels": 469,
+      "selectedBoundaryPixel": [
+        195,
+        282
+      ],
+      "interiorPixels": 284,
+      "sourceContourClosedWithoutAddedCells": true
+    },
+    {
+      "unit": 14,
+      "rawColorMaskPixels": 1228,
+      "selectedBoundaryComponentPixels": 217,
+      "selectedBoundaryPixel": [
+        546,
+        874
+      ],
+      "interiorPixels": 145,
+      "sourceContourClosedWithoutAddedCells": true
+    }
+  ],
+  "petofiCapEvidence": "petofi-cap-evidence.json",
+  "petofiAlternativeNotAdditionalQuarter": true,
+  "aranyDisconnectedInteriorColorPixelsNotQuarterExclusions": 9,
+  "mapFrameEdgesUsedForClosure": false,
+  "coordinateRepairPerformed": false,
+  "geometryFileSha256": "91224cc95c87ebcce913943cca90f01a8d0ea90c03b58d5f8e90aec2d96cf0f0"
+}

@@ -1,0 +1,516 @@
+{
+  "schemaVersion": 1,
+  "status": "passes_source_export_and_world_conversion_checks_as_four_low_confidence_estimated_candidates_only",
+  "reviewerRoles": {
+    "sourcePixelGeometry": "Author cross-check with independent pixel-center rasterization and axis/grid checks; source geometry was authored by this agent. Parent/root visual review is separate.",
+    "roadReferenceAndWorldConversion": "Independent of road extraction, source control picking, model fitting and world converter."
+  },
+  "inputs": [
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/registration.json",
+      "sha256": "042bf4088192d2bde038722069df31f6c2341867f325965bc1a5055b7f883763"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/henits-five-black60-source-pixels-working.geojson",
+      "sha256": "1788910d7cbbba8115f75527bf08544a20e86874d4ed889e6bf01531ad9577e9"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/registration-road-controls.geojson",
+      "sha256": "6884fe93171860fcc94a879b27e202969a22732d8d0ecd7de328c02cbc1fdd04"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/municipality.geojson",
+      "sha256": "cb76286e369acf409619dcc71d209b83ee069640d4e07e0884333363ad42efeb"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/szeged-street-candidates.geojson",
+      "sha256": "b013b77347086689ec7d68c9fe897b7725e7acc401739e94dd51875dc2ceafc4"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/current-name-evidence.geojson",
+      "sha256": "8d3cf6a65e484abf9ef40ed7af7f50949e9790fac0e18a649a4e7b6e39e2aa8e"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/szeged-four-inferred-import.geojson",
+      "sha256": "098f2b9aa742f74113a745a5793733a458e788e34e1b28f025b2859cabf8ab1d"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/szeged-four-placement-alternative.geojson",
+      "sha256": "50cd1d39eaf00f83f9ba41afe2f9088c0dd8d61e1fcb0b07003884298bdecb91"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/henits-road-pbf-review-working.json",
+      "sha256": "6615d7ea010c186f1b16786b1c412e021d12525fb240c4f474f78168e4445ca9"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/henits-four-world-strict-review-working.json",
+      "sha256": "fa8edd5860e2ec2918a0bbad09a3d14e6356c99ba06af0d7e1a7bc55ab00f05b"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/review-henits-four-conversion.py",
+      "sha256": "e61570ac39a7e049627ccc60d38d279eb7e35cf8d30a2a92d20504cdd563d722"
+    }
+  ],
+  "limitationsProminent": [
+    "ALL FOUR source interiors lie entirely outside the six-control convex hull. Every placement is extrapolation under the map/model assumption; controlHullCoverageFraction is0 and placementConfidence islow.",
+    "No absolute positional accuracy is established. The map is a generalizedKSH2003-era scheme reproduced in2013, not a survey of current/full historical neighborhood boundaries.",
+    "Main six-control similarity is a plausible preferred estimate supported by source scale consistency. The affine model is weakly constrained outside the control region and is a nonpreferred local diagnostic; it varies by hundreds of metres for eastern/southwestern units.",
+    "Holdouts remain central/northern and cannot independently validate far-southwest/east target placement. No quarter-name point was used as a fit control."
+  ],
+  "authorSourceExportCrossChecks": [
+    {
+      "number": 19,
+      "sourcePixelArea": 4019.0,
+      "sourceCellCentersExactlyEqualMask": true,
+      "allVerticesOnIntegerPixelGrid": true,
+      "allEdgesPixelAxisAligned": true,
+      "valid": true,
+      "holes": 0
+    },
+    {
+      "number": 20,
+      "sourcePixelArea": 7382.0,
+      "sourceCellCentersExactlyEqualMask": true,
+      "allVerticesOnIntegerPixelGrid": true,
+      "allEdgesPixelAxisAligned": true,
+      "valid": true,
+      "holes": 0
+    },
+    {
+      "number": 28,
+      "sourcePixelArea": 1812.0,
+      "sourceCellCentersExactlyEqualMask": true,
+      "allVerticesOnIntegerPixelGrid": true,
+      "allEdgesPixelAxisAligned": true,
+      "valid": true,
+      "holes": 0
+    },
+    {
+      "number": 11,
+      "sourcePixelArea": 4553.0,
+      "sourceCellCentersExactlyEqualMask": true,
+      "allVerticesOnIntegerPixelGrid": true,
+      "allEdgesPixelAxisAligned": true,
+      "valid": true,
+      "holes": 0
+    }
+  ],
+  "independentSimilarityRefit": {
+    "matrixMaximumDifference": 0.0,
+    "offsetMaximumDifference": 0.0
+  },
+  "originalRoadNodeControlChecks": [
+    {
+      "id": "kossuth_outer",
+      "originalNodeId": 27186748,
+      "originalWayNodeCoordinatesAgree": true,
+      "actualIncidentRoadNames": [
+        "Kossuth Lajos sugárút",
+        "Párizsi körút"
+      ],
+      "atLeastTwoNamedPhysicalRoadsMeetAtOriginalNode": true,
+      "allDescribedNamesIncidentAtNode": true
+    },
+    {
+      "id": "kalvaria_outer",
+      "originalNodeId": 27186846,
+      "originalWayNodeCoordinatesAgree": true,
+      "actualIncidentRoadNames": [
+        "Kálvária sugárút",
+        "Londoni körút",
+        "Moszkvai körút"
+      ],
+      "atLeastTwoNamedPhysicalRoadsMeetAtOriginalNode": true,
+      "allDescribedNamesIncidentAtNode": true
+    },
+    {
+      "id": "petofi_outer",
+      "originalNodeId": 30849519,
+      "originalWayNodeCoordinatesAgree": true,
+      "actualIncidentRoadNames": [
+        "Bécsi körút",
+        "Moszkvai körút",
+        "Petőfi Sándor sugárút"
+      ],
+      "atLeastTwoNamedPhysicalRoadsMeetAtOriginalNode": true,
+      "allDescribedNamesIncidentAtNode": true
+    },
+    {
+      "id": "csongradi_outer",
+      "originalNodeId": 30752207,
+      "originalWayNodeCoordinatesAgree": true,
+      "actualIncidentRoadNames": [
+        "Csongrádi sugárút",
+        "Makkosházi körút",
+        "Rókusi körút"
+      ],
+      "atLeastTwoNamedPhysicalRoadsMeetAtOriginalNode": true,
+      "allDescribedNamesIncidentAtNode": true
+    },
+    {
+      "id": "csongradi_inner",
+      "originalNodeId": 30452238,
+      "originalWayNodeCoordinatesAgree": true,
+      "actualIncidentRoadNames": [
+        "Brüsszeli körút",
+        "Csongrádi sugárút"
+      ],
+      "atLeastTwoNamedPhysicalRoadsMeetAtOriginalNode": true,
+      "allDescribedNamesIncidentAtNode": true
+    },
+    {
+      "id": "jozsef_outermost",
+      "originalNodeId": 30766136,
+      "originalWayNodeCoordinatesAgree": true,
+      "actualIncidentRoadNames": [
+        "Budapesti körút",
+        "József Attila sugárút",
+        "Makkosházi körút"
+      ],
+      "atLeastTwoNamedPhysicalRoadsMeetAtOriginalNode": true,
+      "allDescribedNamesIncidentAtNode": true
+    }
+  ],
+  "metadataNotes": [],
+  "physicalCorrespondenceReview": "Six proposed junctions are credible matches to the source road/quarter pattern. The6/7divider is Csongrádi, not József Attila. Three western outer-ring vertices are the Kossuth, Kálvária and Petőfi radials; northern controls agree with the companion gray-road network. This does not establish survey accuracy.",
+  "unusedRoadHoldoutDiagnostics": [
+    {
+      "id": "szilleri_romai",
+      "sourcePixelXYApproximate": [
+        740,
+        314
+      ],
+      "wgs84": [
+        20.1614145,
+        46.2603496
+      ],
+      "originalNodeId": 27225705,
+      "usedForFit": false,
+      "sourcePickingCaveat": "Visible7/22/core triple junction, identified as Szilléri/Római using the KSH gray-road companion. Approximately2–3nativepixel picking/generalization ambiguity.",
+      "mainDifferenceMetresDiagnosticOnly": 33.7536988327909,
+      "alternativeDifferenceMetresDiagnosticOnly": 30.020045339419887
+    },
+    {
+      "id": "retek_jozsef_north_arm",
+      "sourcePixelXYApproximate": [
+        715,
+        256
+      ],
+      "wgs84": [
+        20.1575691,
+        46.2669732
+      ],
+      "originalNodeId": 3994379097,
+      "usedForFit": false,
+      "sourcePickingCaveat": "Visible23/22/7 junction; the present Retek/József intersection has offset north/south arms. This uses the northern arm; source graphic does not resolve carriageway corners precisely.",
+      "mainDifferenceMetresDiagnosticOnly": 37.41800449787854,
+      "alternativeDifferenceMetresDiagnosticOnly": 37.40064613047414
+    }
+  ],
+  "rejectedHoldoutIdea": "József/TiszaLajos and Kossuth/TiszaLajos positions are not clearly marked physical junctions in the cleanHenits image; radial strokes within core2 are omitted. Do not invent their exact Henits pixel positions along a smooth ring.",
+  "worldConversionChecks": [
+    {
+      "variant": "main",
+      "sourceUnitNumber": 19,
+      "name": "Klebelsberg-telep",
+      "sourceForwardTransformHausdorffDegrees": 0.0,
+      "valid": true,
+      "holes": 0,
+      "insideMunicipality": true,
+      "areaM2RecomputedEov": 640941.4266798114,
+      "sourceInteriorFractionOutsideControlHull": 1.0,
+      "nameEvidenceChecks": [
+        {
+          "name": "Klebelsbergtelep",
+          "id": "osm:node:982345167",
+          "inside": true,
+          "usedForFit": false
+        },
+        {
+          "name": "Hattyas",
+          "id": "osm:node:9176083977",
+          "inside": false,
+          "usedForFit": false
+        }
+      ],
+      "existingTarjanAndPlanningComparisons": [
+        {
+          "name": "Tarjánváros",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        },
+        {
+          "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        }
+      ]
+    },
+    {
+      "variant": "main",
+      "sourceUnitNumber": 20,
+      "name": "Kecskés-telep",
+      "sourceForwardTransformHausdorffDegrees": 0.0,
+      "valid": true,
+      "holes": 0,
+      "insideMunicipality": true,
+      "areaM2RecomputedEov": 1177265.392322711,
+      "sourceInteriorFractionOutsideControlHull": 1.0,
+      "nameEvidenceChecks": [
+        {
+          "name": "Kecskés István-telep",
+          "id": "osm:node:982345190",
+          "inside": true,
+          "usedForFit": false
+        }
+      ],
+      "existingTarjanAndPlanningComparisons": [
+        {
+          "name": "Tarjánváros",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        },
+        {
+          "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        }
+      ]
+    },
+    {
+      "variant": "main",
+      "sourceUnitNumber": 28,
+      "name": "Odessza",
+      "sourceForwardTransformHausdorffDegrees": 0.0,
+      "valid": true,
+      "holes": 0,
+      "insideMunicipality": true,
+      "areaM2RecomputedEov": 288973.8405432478,
+      "sourceInteriorFractionOutsideControlHull": 1.0,
+      "nameEvidenceChecks": [
+        {
+          "name": "Odessza",
+          "id": "osm:node:982345136",
+          "inside": true,
+          "usedForFit": false
+        }
+      ],
+      "existingTarjanAndPlanningComparisons": [
+        {
+          "name": "Tarjánváros",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        },
+        {
+          "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        }
+      ]
+    },
+    {
+      "variant": "main",
+      "sourceUnitNumber": 11,
+      "name": "Marostő",
+      "sourceForwardTransformHausdorffDegrees": 0.0,
+      "valid": true,
+      "holes": 0,
+      "insideMunicipality": true,
+      "areaM2RecomputedEov": 726102.5916081718,
+      "sourceInteriorFractionOutsideControlHull": 1.0,
+      "nameEvidenceChecks": [
+        {
+          "name": "Marostő",
+          "id": "osm:node:982369714",
+          "inside": true,
+          "usedForFit": false
+        }
+      ],
+      "existingTarjanAndPlanningComparisons": [
+        {
+          "name": "Tarjánváros",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        },
+        {
+          "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        }
+      ]
+    },
+    {
+      "variant": "three-junction",
+      "sourceUnitNumber": 19,
+      "name": "Klebelsberg-telep",
+      "sourceForwardTransformHausdorffDegrees": 0.0,
+      "valid": true,
+      "holes": 0,
+      "insideMunicipality": true,
+      "areaM2RecomputedEov": 646893.6136656714,
+      "sourceInteriorFractionOutsideControlHull": 1.0,
+      "nameEvidenceChecks": [
+        {
+          "name": "Klebelsbergtelep",
+          "id": "osm:node:982345167",
+          "inside": true,
+          "usedForFit": false
+        },
+        {
+          "name": "Hattyas",
+          "id": "osm:node:9176083977",
+          "inside": false,
+          "usedForFit": false
+        }
+      ],
+      "existingTarjanAndPlanningComparisons": [
+        {
+          "name": "Tarjánváros",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        },
+        {
+          "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        }
+      ]
+    },
+    {
+      "variant": "three-junction",
+      "sourceUnitNumber": 20,
+      "name": "Kecskés-telep",
+      "sourceForwardTransformHausdorffDegrees": 0.0,
+      "valid": true,
+      "holes": 0,
+      "insideMunicipality": true,
+      "areaM2RecomputedEov": 1188198.222463594,
+      "sourceInteriorFractionOutsideControlHull": 1.0,
+      "nameEvidenceChecks": [
+        {
+          "name": "Kecskés István-telep",
+          "id": "osm:node:982345190",
+          "inside": true,
+          "usedForFit": false
+        }
+      ],
+      "existingTarjanAndPlanningComparisons": [
+        {
+          "name": "Tarjánváros",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        },
+        {
+          "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        }
+      ]
+    },
+    {
+      "variant": "three-junction",
+      "sourceUnitNumber": 28,
+      "name": "Odessza",
+      "sourceForwardTransformHausdorffDegrees": 0.0,
+      "valid": true,
+      "holes": 0,
+      "insideMunicipality": true,
+      "areaM2RecomputedEov": 291657.4341789272,
+      "sourceInteriorFractionOutsideControlHull": 1.0,
+      "nameEvidenceChecks": [
+        {
+          "name": "Odessza",
+          "id": "osm:node:982345136",
+          "inside": true,
+          "usedForFit": false
+        }
+      ],
+      "existingTarjanAndPlanningComparisons": [
+        {
+          "name": "Tarjánváros",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        },
+        {
+          "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        }
+      ]
+    },
+    {
+      "variant": "three-junction",
+      "sourceUnitNumber": 11,
+      "name": "Marostő",
+      "sourceForwardTransformHausdorffDegrees": 0.0,
+      "valid": true,
+      "holes": 0,
+      "insideMunicipality": true,
+      "areaM2RecomputedEov": 732845.6389702933,
+      "sourceInteriorFractionOutsideControlHull": 1.0,
+      "nameEvidenceChecks": [
+        {
+          "name": "Marostő",
+          "id": "osm:node:982369714",
+          "inside": true,
+          "usedForFit": false
+        }
+      ],
+      "existingTarjanAndPlanningComparisons": [
+        {
+          "name": "Tarjánváros",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        },
+        {
+          "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        }
+      ]
+    }
+  ],
+  "modelDifferences": [
+    {
+      "sourceUnitNumber": 19,
+      "threeJunctionHausdorffMetresDiagnosticOnly": 39.5921787314064,
+      "threeJunctionSymmetricDifferenceM2": 60017.21585005654,
+      "nonPreferredAffineHausdorffMetresDiagnosticOnly": 93.4243337489096,
+      "meaning": "Retained model hypotheses/sensitivity only; not confidence bounds or absolute accuracy."
+    },
+    {
+      "sourceUnitNumber": 20,
+      "threeJunctionHausdorffMetresDiagnosticOnly": 41.18146220487338,
+      "threeJunctionSymmetricDifferenceM2": 96821.03036459027,
+      "nonPreferredAffineHausdorffMetresDiagnosticOnly": 168.37277044261617,
+      "meaning": "Retained model hypotheses/sensitivity only; not confidence bounds or absolute accuracy."
+    },
+    {
+      "sourceUnitNumber": 28,
+      "threeJunctionHausdorffMetresDiagnosticOnly": 13.322827630062505,
+      "threeJunctionSymmetricDifferenceM2": 17280.685667648224,
+      "nonPreferredAffineHausdorffMetresDiagnosticOnly": 136.97557057323547,
+      "meaning": "Retained model hypotheses/sensitivity only; not confidence bounds or absolute accuracy."
+    },
+    {
+      "sourceUnitNumber": 11,
+      "threeJunctionHausdorffMetresDiagnosticOnly": 19.649105584329504,
+      "threeJunctionSymmetricDifferenceM2": 39054.07377984479,
+      "nonPreferredAffineHausdorffMetresDiagnosticOnly": 301.8713368815469,
+      "meaning": "Retained model hypotheses/sensitivity only; not confidence bounds or absolute accuracy."
+    }
+  ],
+  "pairwiseWorldInteriorOverlaps": 0,
+  "existingPrimaryOrPlanningGeometryOverlaps": 0,
+  "sourceIdentityDisposition": "Four explicitly keyed source identities only. Tarján23 and Felsőváros22/Ófelsőváros7 are deferred; no existing parent geometry was cloned. The distinct southernHattyas point remains separate from Klebelsberg. Unit27literal tracing remains quarantined with no world candidate.",
+  "preferredModelDisposition": "Retain six-junction main only as an explicitly low-confidence estimated placement with the three-junction alternative and affine sensitivity caveat. No coordinate/topology failure requires source-mask quarantine for these four. A current/legal/address-boundary claim would require additional local evidence.",
+  "estimatedIdentityCount": 4,
+  "primaryFeatureCount": 0,
+  "additionalAlternativeIdentityCount": 0,
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "sourceGeometryOrWorldFilesModified": false,
+  "globalRegistryModified": false,
+  "frozenPacketsModified": false,
+  "directNarrativeQuotationWords": 0
+}

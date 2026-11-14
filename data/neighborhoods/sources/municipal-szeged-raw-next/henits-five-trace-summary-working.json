@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "status": "four_closed_observed_source_interiors_and_one_literal_failure; working_only",
+  "sourcePdfPageOneBased": 24,
+  "sourceImageXref": 249,
+  "nativeImageSizePixels": [
+    1174,
+    1018
+  ],
+  "selectedCutoffMaximumRgbExclusive": 60,
+  "selectedStrokeRule": "Complete original8-neighbor maxRGB<60components ofatleast1000pixels. This preserves disconnected east/west perimeter networks, excludes small disconnected numbers and adds no joining edge.",
+  "closedFeatures": [
+    {
+      "sourceUnitNumber": 19,
+      "name": "Klebelsberg-telep",
+      "sourceNameAsPrinted": "Klebersberg-telep",
+      "sourceInteriorSquarePixels": 4019,
+      "geometryType": "Polygon",
+      "valid": true,
+      "holes": 0,
+      "sourceContourObserved": true,
+      "estimatedContour": false
+    },
+    {
+      "sourceUnitNumber": 20,
+      "name": "Kecskés-telep",
+      "sourceNameAsPrinted": "Kecskés-telep",
+      "sourceInteriorSquarePixels": 7382,
+      "geometryType": "Polygon",
+      "valid": true,
+      "holes": 0,
+      "sourceContourObserved": true,
+      "estimatedContour": false
+    },
+    {
+      "sourceUnitNumber": 28,
+      "name": "Odessza",
+      "sourceNameAsPrinted": "Odessza",
+      "sourceInteriorSquarePixels": 1812,
+      "geometryType": "Polygon",
+      "valid": true,
+      "holes": 0,
+      "sourceContourObserved": true,
+      "estimatedContour": false
+    },
+    {
+      "sourceUnitNumber": 11,
+      "name": "Marostő",
+      "sourceNameAsPrinted": "Marostő",
+      "sourceInteriorSquarePixels": 4553,
+      "geometryType": "Polygon",
+      "valid": true,
+      "holes": 0,
+      "sourceContourObserved": true,
+      "estimatedContour": false
+    }
+  ],
+  "quarantine": [
+    {
+      "sourceUnitNumber": 27,
+      "name": "Újszőreg",
+      "sourceContourObserved": false,
+      "noSourcePolygonEmitted": true,
+      "reason": "Native27number/whitehalooverlaps narrowperimeter; literal seedcomponentleaks to rasteredge atall3cutoffs. No source stroke cap, bridge, repair or contour guess was added.",
+      "failurePreviewLocalOnly": ".local/neighborhoods/szeged-raw-review/henits2013/five-traces/unit27-literal-failure-stroke-grid.png"
+    }
+  ],
+  "thresholdAlternatives": [
+    {
+      "cutoff": 50,
+      "features": [
+        {
+          "number": 19,
+          "sourceInteriorSquarePixels": 4062
+        },
+        {
+          "number": 20,
+          "sourceInteriorSquarePixels": 7454
+        },
+        {
+          "number": 28,
+          "sourceInteriorSquarePixels": 1824
+        },
+        {
+          "number": 11,
+          "sourceInteriorSquarePixels": 4601
+        }
+      ]
+    },
+    {
+      "cutoff": 60,
+      "features": [
+        {
+          "number": 19,
+          "sourceInteriorSquarePixels": 4019
+        },
+        {
+          "number": 20,
+          "sourceInteriorSquarePixels": 7382
+        },
+        {
+          "number": 28,
+          "sourceInteriorSquarePixels": 1812
+        },
+        {
+          "number": 11,
+          "sourceInteriorSquarePixels": 4553
+        }
+      ]
+    },
+    {
+      "cutoff": 70,
+      "features": [
+        {
+          "number": 19,
+          "sourceInteriorSquarePixels": 3994
+        },
+        {
+          "number": 20,
+          "sourceInteriorSquarePixels": 7329
+        },
+        {
+          "number": 28,
+          "sourceInteriorSquarePixels": 1800
+        },
+        {
+          "number": 11,
+          "sourceInteriorSquarePixels": 4504
+        }
+      ]
+    }
+  ],
+  "pairwiseSourceInteriorOverlap": [
+    {
+      "units": [
+        19,
+        20
+      ],
+      "intersectionSquarePixels": 0.0
+    },
+    {
+      "units": [
+        19,
+        28
+      ],
+      "intersectionSquarePixels": 0.0
+    },
+    {
+      "units": [
+        19,
+        11
+      ],
+      "intersectionSquarePixels": 0.0
+    },
+    {
+      "units": [
+        20,
+        28
+      ],
+      "intersectionSquarePixels": 0.0
+    },
+    {
+      "units": [
+        20,
+        11
+      ],
+      "intersectionSquarePixels": 0.0
+    },
+    {
+      "units": [
+        28,
+        11
+      ],
+      "intersectionSquarePixels": 0.0
+    }
+  ],
+  "strictTopologyCheck": "All12 closed source rings pass the unchanged JS topology validator after ephemeral division100 to its numeric domain; rawpixels correctly fail WGS84 coordinate gate. No normalized/world geometry is persisted. Actual world-coordinate admission checks remain pending.",
+  "sourceVisualReviewByTracingAgent": "Four selected interiors follow the full observed native inside edge, including source lobes and indentations; no holes or lost detached fragments are visible. Parent independent review is pending.",
+  "artifacts": [
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/trace-henits-five.py",
+      "sha256": "7fa2f7b4010aa089032b39a9f01c451d82f9c6892ac6927fab525054b8827948"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/validate-henits-source-topology.mjs",
+      "sha256": "23bc521845c323922deff00b8f07df320346a7dc0fe510f5f314152b43a77e8f"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/henits-five-trace-proof-working.json",
+      "sha256": "0353219d6e5f953459a7624aaf1d72c99bc1f105026267aaf97bacb1a95051fe"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/henits-five-strict-topology-working.json",
+      "sha256": "d1d2f307877c8e794f825f427aa8d9de7fc551131e3183894d94524e223932a6"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/henits-five-black50-source-pixels-working.geojson",
+      "sha256": "ef5398a0d32bad5586acb7f0b222797a184988896f8866f890c9aae526ee7f45"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/henits-five-black60-source-pixels-working.geojson",
+      "sha256": "1788910d7cbbba8115f75527bf08544a20e86874d4ed889e6bf01531ad9577e9"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/henits-five-black70-source-pixels-working.geojson",
+      "sha256": "60fc2fbac023aadae4ad09a8ccbf14d581eade17228d57b48f137bf2619fc4aa"
+    }
+  ],
+  "masksAndMapOnlyPreviewsLocalDirectory": ".local/neighborhoods/szeged-raw-review/henits2013/five-traces",
+  "worldGeometryProduced": false,
+  "sourceNamePointsUsedForFit": false,
+  "geographicRegistrationPerformed": false,
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "directNarrativeQuotationWords": 0,
+  "frozenPacketsModified": false,
+  "globalRegistryModified": false
+}

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Kaposvár",
+  "assessmentDate": "2026-11-14",
+  "sources": [
+    {
+      "id": "kaposvar-belvaros2009",
+      "url": "https://kph.kaposvar.hu/eloterjesztesek/et20090226/doku/e28m01.pdf",
+      "sha256": "88ceb3ea0db709ee27a8003f29db3c12937f05ce447161b45e52e8b1b8e1ba3b",
+      "bytes": 14880108,
+      "pageCount": 243,
+      "mapPage": 26,
+      "mapXref": 157,
+      "sourceDate": "2009-02",
+      "title": "Kaposvár Városközpont funkcióbővítő városrehabilitációjának akcióterületi terve",
+      "evidencePages": [
+        1,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        44
+      ],
+      "originalPath": ".local/neighborhoods/supplement-originals/kaposvar-belvaros2009.pdf",
+      "pdfCreationDateMetadata": "D:20090212155858",
+      "map": {
+        "output": "kaposvar-belvaros2009-p26-source.jpeg",
+        "sha256": "d7b4f06bb3a499219d4580bea61d5b7cdcbfe5107ef6c4d56aab3f41b3566b23",
+        "bytes": 292188,
+        "width": 944,
+        "height": 1301,
+        "format": "jpeg",
+        "nativeVectorPathCountOnMapPage": 0,
+        "imageRectanglePdfPoints": [
+          [
+            89.0,
+            70.0,
+            541.0,
+            694.0
+          ]
+        ],
+        "nativeImageBytesRetained": true,
+        "pixelCoordinateSystem": "image pixels; x right, y down; not geographic coordinates",
+        "geographicProjectionEmbedded": false,
+        "geographicControlOrAccuracyClaimed": false
+      }
+    },
+    {
+      "id": "kaposvar-fvs",
+      "url": "https://kph.kaposvar.hu/data/adattar/fvs21-27/fvs21-27.pdf",
+      "sha256": "291aba20ffcc41e604ad737bb6d132ae51b51d70303285e36702e4fc04e6901e",
+      "bytes": 6965334,
+      "pageCount": 388,
+      "mapPage": 182,
+      "mapXref": 991,
+      "sourceDate": "2023-07",
+      "planningPeriod": "2021–2027",
+      "documentVersion": "2.0",
+      "title": "Kaposvár Fenntartható Városfejlesztési Stratégiája 2021–2027",
+      "evidencePages": [
+        1,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188
+      ],
+      "originalPath": ".local/neighborhoods/supplement-originals/kaposvar-fvs.pdf",
+      "pdfCreationDateMetadata": "D:20240202084234+01'00'",
+      "map": {
+        "output": "kaposvar-fvs-p182-source.jpeg",
+        "sha256": "94deebd1dde58d970e541999aba1a0ad765f4dfa04bc779a06ac9ed78baddf6b",
+        "bytes": 145986,
+        "width": 1342,
+        "height": 1007,
+        "format": "jpeg",
+        "nativeVectorPathCountOnMapPage": 0,
+        "imageRectanglePdfPoints": [
+          [
+            85.05000305175781,
+            120.49996948242188,
+            524.4000244140625,
+            450.1999816894531
+          ]
+        ],
+        "nativeImageBytesRetained": true,
+        "pixelCoordinateSystem": "image pixels; x right, y down; not geographic coordinates",
+        "geographicProjectionEmbedded": false,
+        "geographicControlOrAccuracyClaimed": false
+      }
+    }
+  ],
+  "rawPdfPolicy": "Original PDFs remain ignored/local; selected native map images retained only.",
+  "sourceRightsStatus": "Public municipal publications; open reuse licence not independently established."
+}

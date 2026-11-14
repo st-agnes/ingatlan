@@ -1,0 +1,1 @@
+Veszprém 2008 IVS: történeti csoportosítás, nem kilenc új egyedi városrész. Az eredeti térképkép változatlan, a teljes PDF helyben marad. A 2023-as PDF-készítés nem a dokumentum kiadási éve. Nincs új földrajzi poligon, illesztés vagy címbesorolási jóváhagyás.

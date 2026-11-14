@@ -1,0 +1,307 @@
+{
+  "schemaVersion": 1,
+  "reviewScope": "Independent source semantics, original native path parsing and source closure only. Geographic transformation and final exported coordinates are outside this review.",
+  "reviewerMethod": "A separately written line-oriented parser reads literal decimal m/l/h/s operations directly from PDF Form xref 188. It does not import the derivation script or its geometry. Decimal equality verifies explicit returns before PDF closure. Float-only polygonization diagnoses original segment topology, then each nonzero native segment is independently transformed by the literal original Form/page matrices and compared in order with PyMuPDF get_drawings().",
+  "sourcePdfPath": ".local/neighborhoods/nationwide-docs/originals/kecskemet-map.pdf",
+  "sourcePdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+  "pdfPageOneBased": 163,
+  "printedPage": 161,
+  "figure": 77,
+  "sourceFormXref": 188,
+  "sourceFormResourceName": "Meta1858",
+  "sourceNativeFormStreamSha256": "1a572f913226e234c8862baa59118bf79468977d7f8bef079775cf4e1bb50d07",
+  "sourceNativeFormMatrix": [
+    "0.12108",
+    "0",
+    "0",
+    "0.085555",
+    "0",
+    "0"
+  ],
+  "sourceFormBoundingBox": [
+    "0",
+    "0",
+    "594.63",
+    "841.56"
+  ],
+  "sourcePageRenderingClipRectangleBeforePlacement": [
+    "98.15",
+    "65.172",
+    "398.98",
+    "564.59"
+  ],
+  "innerNativeClipRectangleForObjects10And12": [
+    "0.000008881",
+    "-0.13818",
+    "595.69",
+    "841.7"
+  ],
+  "clipDiagnosticCaution": "Reported centerline lengths outside the embedded-image rectangle and stated inner clip box are source-coordinate diagnostics. The original Form BBox and outer page clip further constrain rendering; these diagnostics do not assert the full effective visible length.",
+  "sourcePageImagePlacementMatrix": [
+    "5.5413",
+    "0",
+    "0",
+    "7.8417",
+    "98.15",
+    "65.172"
+  ],
+  "pathRecords": [
+    {
+      "fitzDrawingIndexZeroBased": 6,
+      "sourceName": "Szent László város — central source cell",
+      "nativeLineSegmentCountIncludingZeroLength": 150,
+      "nativeNonzeroSegmentCount": 146,
+      "nativeSubpathCount": 2,
+      "allSubpathsExplicitlyReturnWithLineto": true,
+      "additionalImplicitClosureEdgeCount": 0,
+      "decimalNativeBounds": [
+        "118.51",
+        "414.18",
+        "393.96",
+        "770.54"
+      ],
+      "polygonizedCellCount": 3,
+      "polygonizedCellsNativeAreaAndInteriorCount": [
+        {
+          "areaNativeUnitsSquared": 45439.45425000001,
+          "interiorCount": 2
+        },
+        {
+          "areaNativeUnitsSquared": 5209.25235,
+          "interiorCount": 0
+        },
+        {
+          "areaNativeUnitsSquared": 1295.974849999998,
+          "interiorCount": 0
+        }
+      ],
+      "polygonizerCuts": 0,
+      "polygonizerDangles": 0,
+      "polygonizerInvalidRings": 0,
+      "frameClosureUsed": false,
+      "nativeCenterlineLengthBeyondEmbeddedImageNativeBox": 0.0,
+      "nativeCenterlineLengthBeyondStatedInnerClipBox": 0.0,
+      "sourcePathExistsBeyondCrop": false,
+      "fitzAllNonzeroSegmentsMatchedInOriginalOrder": true,
+      "maximumNativeToFitzCoordinateDisagreementPagePoints": 5.363097125155036e-05
+    },
+    {
+      "fitzDrawingIndexZeroBased": 7,
+      "sourceName": "Kósafalu",
+      "nativeLineSegmentCountIncludingZeroLength": 41,
+      "nativeNonzeroSegmentCount": 39,
+      "nativeSubpathCount": 1,
+      "allSubpathsExplicitlyReturnWithLineto": true,
+      "additionalImplicitClosureEdgeCount": 0,
+      "decimalNativeBounds": [
+        "203.96",
+        "496.97",
+        "290.94",
+        "575.05"
+      ],
+      "polygonizedCellCount": 1,
+      "polygonizedCellsNativeAreaAndInteriorCount": [
+        {
+          "areaNativeUnitsSquared": 5209.252349999998,
+          "interiorCount": 0
+        }
+      ],
+      "polygonizerCuts": 0,
+      "polygonizerDangles": 0,
+      "polygonizerInvalidRings": 0,
+      "frameClosureUsed": false,
+      "nativeCenterlineLengthBeyondEmbeddedImageNativeBox": 0.0,
+      "nativeCenterlineLengthBeyondStatedInnerClipBox": 0.0,
+      "sourcePathExistsBeyondCrop": false,
+      "fitzAllNonzeroSegmentsMatchedInOriginalOrder": true,
+      "maximumNativeToFitzCoordinateDisagreementPagePoints": 4.974433562665581e-05
+    },
+    {
+      "fitzDrawingIndexZeroBased": 8,
+      "sourceName": "Déli iparterület I.",
+      "nativeLineSegmentCountIncludingZeroLength": 85,
+      "nativeNonzeroSegmentCount": 83,
+      "nativeSubpathCount": 1,
+      "allSubpathsExplicitlyReturnWithLineto": true,
+      "additionalImplicitClosureEdgeCount": 0,
+      "decimalNativeBounds": [
+        "332.3",
+        "519.81",
+        "516.37",
+        "824.68"
+      ],
+      "polygonizedCellCount": 1,
+      "polygonizedCellsNativeAreaAndInteriorCount": [
+        {
+          "areaNativeUnitsSquared": 33642.78165000001,
+          "interiorCount": 0
+        }
+      ],
+      "polygonizerCuts": 0,
+      "polygonizerDangles": 0,
+      "polygonizerInvalidRings": 0,
+      "frameClosureUsed": false,
+      "nativeCenterlineLengthBeyondEmbeddedImageNativeBox": 0.0,
+      "nativeCenterlineLengthBeyondStatedInnerClipBox": 0.0,
+      "sourcePathExistsBeyondCrop": false,
+      "fitzAllNonzeroSegmentsMatchedInOriginalOrder": true,
+      "maximumNativeToFitzCoordinateDisagreementPagePoints": 5.108983560830893e-05
+    },
+    {
+      "fitzDrawingIndexZeroBased": 9,
+      "sourceName": "Muszáj",
+      "nativeLineSegmentCountIncludingZeroLength": 20,
+      "nativeNonzeroSegmentCount": 18,
+      "nativeSubpathCount": 1,
+      "allSubpathsExplicitlyReturnWithLineto": true,
+      "additionalImplicitClosureEdgeCount": 0,
+      "decimalNativeBounds": [
+        "292.06",
+        "704.7",
+        "350.17",
+        "744.35"
+      ],
+      "polygonizedCellCount": 1,
+      "polygonizedCellsNativeAreaAndInteriorCount": [
+        {
+          "areaNativeUnitsSquared": 1295.9748499999978,
+          "interiorCount": 0
+        }
+      ],
+      "polygonizerCuts": 0,
+      "polygonizerDangles": 0,
+      "polygonizerInvalidRings": 0,
+      "frameClosureUsed": false,
+      "nativeCenterlineLengthBeyondEmbeddedImageNativeBox": 0.0,
+      "nativeCenterlineLengthBeyondStatedInnerClipBox": 0.0,
+      "sourcePathExistsBeyondCrop": false,
+      "fitzAllNonzeroSegmentsMatchedInOriginalOrder": true,
+      "maximumNativeToFitzCoordinateDisagreementPagePoints": 4.326955439637459e-05
+    },
+    {
+      "fitzDrawingIndexZeroBased": 10,
+      "sourceName": "Déli iparterület II.",
+      "nativeLineSegmentCountIncludingZeroLength": 82,
+      "nativeNonzeroSegmentCount": 80,
+      "nativeSubpathCount": 1,
+      "allSubpathsExplicitlyReturnWithLineto": true,
+      "additionalImplicitClosureEdgeCount": 0,
+      "decimalNativeBounds": [
+        "174.76",
+        "131.83",
+        "599.81",
+        "519.81"
+      ],
+      "polygonizedCellCount": 1,
+      "polygonizedCellsNativeAreaAndInteriorCount": [
+        {
+          "areaNativeUnitsSquared": 92163.47435000003,
+          "interiorCount": 0
+        }
+      ],
+      "polygonizerCuts": 0,
+      "polygonizerDangles": 0,
+      "polygonizerInvalidRings": 0,
+      "frameClosureUsed": false,
+      "nativeCenterlineLengthBeyondEmbeddedImageNativeBox": 13.112461885746875,
+      "nativeCenterlineLengthBeyondStatedInnerClipBox": 12.6406573910329,
+      "sourcePathExistsBeyondCrop": true,
+      "fitzAllNonzeroSegmentsMatchedInOriginalOrder": true,
+      "maximumNativeToFitzCoordinateDisagreementPagePoints": 5.812097253965476e-05
+    },
+    {
+      "fitzDrawingIndexZeroBased": 11,
+      "sourceName": "Rendőrfalu",
+      "nativeLineSegmentCountIncludingZeroLength": 20,
+      "nativeNonzeroSegmentCount": 18,
+      "nativeSubpathCount": 1,
+      "allSubpathsExplicitlyReturnWithLineto": true,
+      "additionalImplicitClosureEdgeCount": 0,
+      "decimalNativeBounds": [
+        "138.79",
+        "568.81",
+        "210.19",
+        "686.9"
+      ],
+      "polygonizedCellCount": 1,
+      "polygonizedCellsNativeAreaAndInteriorCount": [
+        {
+          "areaNativeUnitsSquared": 6111.598649999998,
+          "interiorCount": 0
+        }
+      ],
+      "polygonizerCuts": 0,
+      "polygonizerDangles": 0,
+      "polygonizerInvalidRings": 0,
+      "frameClosureUsed": false,
+      "nativeCenterlineLengthBeyondEmbeddedImageNativeBox": 0.0,
+      "nativeCenterlineLengthBeyondStatedInnerClipBox": 0.0,
+      "sourcePathExistsBeyondCrop": false,
+      "fitzAllNonzeroSegmentsMatchedInOriginalOrder": true,
+      "maximumNativeToFitzCoordinateDisagreementPagePoints": 4.9643240629393404e-05
+    },
+    {
+      "fitzDrawingIndexZeroBased": 12,
+      "sourceName": "Nyugati iparterület",
+      "nativeLineSegmentCountIncludingZeroLength": 116,
+      "nativeNonzeroSegmentCount": 113,
+      "nativeSubpathCount": 1,
+      "allSubpathsExplicitlyReturnWithLineto": true,
+      "additionalImplicitClosureEdgeCount": 0,
+      "decimalNativeBounds": [
+        "-0.52131",
+        "531.13",
+        "178.44",
+        "734.44"
+      ],
+      "polygonizedCellCount": 1,
+      "polygonizedCellsNativeAreaAndInteriorCount": [
+        {
+          "areaNativeUnitsSquared": 17995.332579650007,
+          "interiorCount": 0
+        }
+      ],
+      "polygonizerCuts": 0,
+      "polygonizerDangles": 0,
+      "polygonizerInvalidRings": 0,
+      "frameClosureUsed": false,
+      "nativeCenterlineLengthBeyondEmbeddedImageNativeBox": 1.3322043024630112,
+      "nativeCenterlineLengthBeyondStatedInnerClipBox": 1.3322269978005057,
+      "sourcePathExistsBeyondCrop": true,
+      "fitzAllNonzeroSegmentsMatchedInOriginalOrder": true,
+      "maximumNativeToFitzCoordinateDisagreementPagePoints": 4.9643240629393404e-05
+    }
+  ],
+  "smallSourceCellsObject6MatchSeparateNamedPaths": {
+    "Kósafalu": true,
+    "Muszáj": true
+  },
+  "centralSourceHolesExactlyMatchNamedInnerCells": {
+    "Kósafalu": true,
+    "Muszáj": true
+  },
+  "noGeometryRepairBufferSnapOrInventedFrameClosure": true,
+  "sourceSemantics": {
+    "caption": "77. ábra: Szent László Város városrész lehatárolása",
+    "documentStatus": "Egyeztetési változat 2021. május",
+    "threeDistinctResidentialQuartersExactPdf164Quote": "Szent László Város gazdasági zónájába három különálló lakónegyed is beékelődik.",
+    "explicitResidentialQuarterNames": [
+      "Rendőrfalu",
+      "Kósafalu",
+      "Muszáj"
+    ],
+    "industrialMapCellNames": [
+      "Nyugati iparterület",
+      "Déli iparterület I.",
+      "Déli iparterület II."
+    ],
+    "industrialNameCaution": "The map gives separate named closed industrial cells within the captioned urban district. Industrial use alone is not a geometric or naming rejection. The source prose describes an economic/development zone; these cells should retain that source-specific semantic classification rather than acquire an unsupported residential-quarter claim.",
+    "centralCellNameCaution": "The central two-hole cell is labelled Szent László város, but the map caption and PDF164 prose use Szent László Város for the broader district containing all three residential quarters and economic zones. This inner cell must not silently stand for the complete captioned district; preserve a central-source-cell qualifier or an explicit semantic uncertainty.",
+    "currentNameAndBoundaryStatus": "This review proves historical source labels and native source contours. It does not independently verify current exact name use, current boundary extent or legal status."
+  },
+  "cropCaution": "Objects 10 (Déli iparterület II.) and 12 (Nyugati iparterület) contain literal closed native source paths extending beyond the embedded raster/native rendering crop. The missing-looking map-edge pieces are present as original PDF line operators; no image-frame connector is needed or permitted. Preserve and disclose those original path portions rather than clipping, replacing or reconstructing them.",
+  "georeferencingReviewed": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "conclusion": "PASS for original native closure and source-cell identity. Three residential fine names are explicitly supported. Central-cell versus umbrella-name semantics and industrial planning/economic classification require the stated qualifications. Geographic placement remains separately reviewable."
+}

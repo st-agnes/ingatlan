@@ -1,0 +1,1985 @@
+{
+  "frozenSourceCellCount": 27,
+  "allHaveIndependentNameAndShapeSupport": true,
+  "sourceNameReviewSha256": "d9bfb6f2da6c92312c27ad87bd1ad85600762d29d8c271acb51a965e0f41122b",
+  "firstCohortAndPublishedNamesExcluded": true,
+  "records": [
+    {
+      "sourceName": "Hird",
+      "status": "corrected_source_name_cell",
+      "provisionalComponentIdBeforeReview": null,
+      "reviewedSourceComponentId": 49,
+      "verifiedDensityInteriorPixel": [
+        900,
+        300
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        532,
+        156
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Distinct eastern detached XII footprint with northern fingers and southern lobe; the transformed provisional seed fell just on its outer border.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The isolated eastern XII footprint has the same multiple northern fingers, western hook, narrowing waist and separate-looking southern lobe in both originals. The literal Hird label belongs to that whole connected body.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 49,
+      "sourceComponentPixelCount": 2212,
+      "sourceComponentPixelCenterBounds": [
+        872,
+        262,
+        931,
+        364
+      ],
+      "sourceComponentPixelSetSha256": "20450c896264babf72ed076e95f2627a12e611c532a53f7b1257a01c09c99c17",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-Hird-XII-figure9-native.png",
+          "sourcePixelBox": [
+            490,
+            123,
+            555,
+            200
+          ],
+          "sha256": "a5444e5adeead6abc17980722f534ea9c8330a5d418890605af3412ec6f13590",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-Hird-XII-figure12-native.png",
+          "sourcePixelBox": [
+            862,
+            252,
+            942,
+            375
+          ],
+          "sha256": "9371ae434534dddca0eb6b3c8194ae6a314ca5c2e058d193aadcd2b320e5f299",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Újmecsekalja",
+      "status": "corrected_source_name_cell",
+      "provisionalComponentIdBeforeReview": null,
+      "reviewedSourceComponentId": 94,
+      "verifiedDensityInteriorPixel": [
+        361,
+        550
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        193,
+        311
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Thin top strip of II immediately south of Makár, east of Rácváros and north of Uránváros. Do not merge it into Uránváros.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label occupies the thin orange II strip directly below Makar and above Uranvaros. The upper narrow strip has its own separator and is density94; it is not the broader density99 Uranvaros body.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 94,
+      "sourceComponentPixelCount": 531,
+      "sourceComponentPixelCenterBounds": [
+        338,
+        542,
+        384,
+        569
+      ],
+      "sourceComponentPixelSetSha256": "658bca11ce34886122554df6a0d06bb1e668e164491ed59948a31c9f98e606a9",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-western-II-X-figure9-native.png",
+          "sourcePixelBox": [
+            84,
+            299,
+            227,
+            367
+          ],
+          "sha256": "fbe1f49081cdef3a00b78a6b1e2df47d6cdb19625768dabbc948c7269510dce8",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-western-II-X-figure12-native.png",
+          "sourcePixelBox": [
+            136,
+            532,
+            395,
+            649
+          ],
+          "sha256": "9ceb2804d64444761878af3228a8e5d474bea582a19c4cbcb9ff22186d4dbc95",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Kovácstelep",
+      "status": "corrected_source_name_cell",
+      "provisionalComponentIdBeforeReview": null,
+      "reviewedSourceComponentId": 107,
+      "verifiedDensityInteriorPixel": [
+        315,
+        600
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        169,
+        341
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Southwestern orange II triangle, west of Uránváros. Cell122 is the longer industrial X strip to its south and is not Kovácstelep.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label belongs to the southwestern orange II triangle immediately west of Uranvaros. Its triangle is distinct from the long blue X industrial strip south of it.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 107,
+      "sourceComponentPixelCount": 629,
+      "sourceComponentPixelCenterBounds": [
+        301,
+        580,
+        330,
+        613
+      ],
+      "sourceComponentPixelSetSha256": "0e784c05aaafa26d6bb508fa66093b7d811caaacc0e0e8e9029707de9ec7de14",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-western-II-X-figure9-native.png",
+          "sourcePixelBox": [
+            84,
+            299,
+            227,
+            367
+          ],
+          "sha256": "fbe1f49081cdef3a00b78a6b1e2df47d6cdb19625768dabbc948c7269510dce8",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-western-II-X-figure12-native.png",
+          "sourcePixelBox": [
+            136,
+            532,
+            395,
+            649
+          ],
+          "sha256": "9ceb2804d64444761878af3228a8e5d474bea582a19c4cbcb9ff22186d4dbc95",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Piricsizma",
+      "status": "corrected_source_name_cell",
+      "provisionalComponentIdBeforeReview": null,
+      "reviewedSourceComponentId": 68,
+      "verifiedDensityInteriorPixel": [
+        545,
+        440
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        317,
+        239
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Upper narrow eastern IV wedge below Rigóder, west of the upper blue I taper. Adjacent76 belongs to the I blue source group, not Piricsizma.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label is on the narrow eastern IV wedge below Rigoder and left of the blue I upper taper. The wedge is density68; blue I density76 is a separate fine unit.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 68,
+      "sourceComponentPixelCount": 952,
+      "sourceComponentPixelCenterBounds": [
+        532,
+        414,
+        560,
+        480
+      ],
+      "sourceComponentPixelSetSha256": "c5b591125121854cb70d9ea0ba9c36eb784117994f0f90c9bde0ddc951c3400d",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-northern-IV-V-figure9-native.png",
+          "sourcePixelBox": [
+            263,
+            140,
+            348,
+            276
+          ],
+          "sha256": "d9ece33f202b98f6c3030b45caed0bec54c0ec729be0dfc74dfc34f7fa6fdeaf",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-northern-IV-V-figure12-native.png",
+          "sourcePixelBox": [
+            474,
+            278,
+            618,
+            491
+          ],
+          "sha256": "66b06cf626235243d6b2169cb3da117c36fd049845c79fc0b392349b97d3d090",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Szentkút",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 56,
+      "verifiedDensityInteriorPixel": [
+        289,
+        385
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        150,
+        185
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        151,
+        180
+      ],
+      "evidence": "Distinct upper mushroom and narrow northern finger of the purple III area. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal outside/edge label belongs to the upper narrow purple III finger with the mushroom-like cap. The long finger outline in Figure12 is individually closed and distinct from Kismelyvolgy.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 56,
+      "sourceComponentPixelCount": 479,
+      "sourceComponentPixelCenterBounds": [
+        278,
+        341,
+        296,
+        397
+      ],
+      "sourceComponentPixelSetSha256": "9b2fb1406b0a99efb1dd385904f3afb4d5dbef04deb64651f3762c7dc4c4e9df",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-western-III-figure9-native.png",
+          "sourcePixelBox": [
+            37,
+            168,
+            176,
+            337
+          ],
+          "sha256": "90043f095f78e5b7f9bc14ce6a8ac790825ffa5ae81f4ecbac1d97d4c95bf6e1",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-western-III-figure12-native.png",
+          "sourcePixelBox": [
+            103,
+            331,
+            307,
+            604
+          ],
+          "sha256": "4e6e477e72d76a98700b8b0240671995679c6a56cd5ee334ec744836a699b639",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Szentmiklós",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 98,
+      "verifiedDensityInteriorPixel": [
+        142,
+        571
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        66,
+        322
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        62,
+        326
+      ],
+      "evidence": "Westernmost broad purple III body; distinct from Zsebedomb above and Patacs east. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label is inside the westernmost broad purple III body. Both originals show the same broad western cap, with Zsebedomb above and Patacs to the east.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 98,
+      "sourceComponentPixelCount": 2468,
+      "sourceComponentPixelCenterBounds": [
+        113,
+        550,
+        198,
+        593
+      ],
+      "sourceComponentPixelSetSha256": "27a3f73404b57cb6555a12fd2acc7122155f97d5544aadda41bc6c59a83b34e8",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-western-III-figure9-native.png",
+          "sourcePixelBox": [
+            37,
+            168,
+            176,
+            337
+          ],
+          "sha256": "90043f095f78e5b7f9bc14ce6a8ac790825ffa5ae81f4ecbac1d97d4c95bf6e1",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-western-III-figure12-native.png",
+          "sourcePixelBox": [
+            103,
+            331,
+            307,
+            604
+          ],
+          "sha256": "4e6e477e72d76a98700b8b0240671995679c6a56cd5ee334ec744836a699b639",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Zsebedomb",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 84,
+      "verifiedDensityInteriorPixel": [
+        225,
+        530
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        110,
+        295
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        112,
+        300
+      ],
+      "evidence": "Thin upper western purple III corridor, north of Patacs. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label lies in the thin upper western purple III corridor north of Patacs. Its pointed/corrugated upper edge and lower separator match density84.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 84,
+      "sourceComponentPixelCount": 2299,
+      "sourceComponentPixelCenterBounds": [
+        146,
+        500,
+        258,
+        575
+      ],
+      "sourceComponentPixelSetSha256": "61752613e082a8a490037938207935f95299316e255673f8dead04a80c84ef7b",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-western-III-figure9-native.png",
+          "sourcePixelBox": [
+            37,
+            168,
+            176,
+            337
+          ],
+          "sha256": "90043f095f78e5b7f9bc14ce6a8ac790825ffa5ae81f4ecbac1d97d4c95bf6e1",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-western-III-figure12-native.png",
+          "sourcePixelBox": [
+            103,
+            331,
+            307,
+            604
+          ],
+          "sha256": "4e6e477e72d76a98700b8b0240671995679c6a56cd5ee334ec744836a699b639",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Gyükés",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 55,
+      "verifiedDensityInteriorPixel": [
+        511,
+        380
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        286,
+        201
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        286,
+        208
+      ],
+      "evidence": "Western tall green V body, left of Pécsbánya and Rigóder. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label is in the tall western green V body, left of Pecsbanya and Rigoder. Both originals show its indented western side and near-vertical eastern separator.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 55,
+      "sourceComponentPixelCount": 3279,
+      "sourceComponentPixelCenterBounds": [
+        484,
+        338,
+        536,
+        430
+      ],
+      "sourceComponentPixelSetSha256": "fdf386444535fb102484d8022a72381e15bf10fa2a39f4cf9be42c81cd602eb9",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-northern-IV-V-figure9-native.png",
+          "sourcePixelBox": [
+            263,
+            140,
+            348,
+            276
+          ],
+          "sha256": "d9ece33f202b98f6c3030b45caed0bec54c0ec729be0dfc74dfc34f7fa6fdeaf",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-northern-IV-V-figure12-native.png",
+          "sourcePixelBox": [
+            474,
+            278,
+            618,
+            491
+          ],
+          "sha256": "66b06cf626235243d6b2169cb3da117c36fd049845c79fc0b392349b97d3d090",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Pécsbánya",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 50,
+      "verifiedDensityInteriorPixel": [
+        569,
+        331
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        318,
+        173
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        316,
+        180
+      ],
+      "evidence": "Large upper green V body; literal long label Pécsbánya. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The full literal label belongs to the broad upper green V body. The top notches and the long eastern flank next to Szabolcs distinguish its complete density50 outline.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 50,
+      "sourceComponentPixelCount": 6241,
+      "sourceComponentPixelCenterBounds": [
+        505,
+        288,
+        607,
+        392
+      ],
+      "sourceComponentPixelSetSha256": "cf62f3c8e09395f397e3409ffdcf9d05277078cda9e9f3cb6ff97c00d78a8e31",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-northern-IV-V-figure9-native.png",
+          "sourcePixelBox": [
+            263,
+            140,
+            348,
+            276
+          ],
+          "sha256": "d9ece33f202b98f6c3030b45caed0bec54c0ec729be0dfc74dfc34f7fa6fdeaf",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-northern-IV-V-figure12-native.png",
+          "sourcePixelBox": [
+            474,
+            278,
+            618,
+            491
+          ],
+          "sha256": "66b06cf626235243d6b2169cb3da117c36fd049845c79fc0b392349b97d3d090",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Rigóder",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 61,
+      "verifiedDensityInteriorPixel": [
+        571,
+        402
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        320,
+        215
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        319,
+        221
+      ],
+      "evidence": "Southern oval green V body. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label occupies the lower rounded green V cell immediately south of Pecsbanya and east of Gyukes. Its lower taper toward Piricsizma is preserved in density61.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 61,
+      "sourceComponentPixelCount": 2000,
+      "sourceComponentPixelCenterBounds": [
+        536,
+        376,
+        593,
+        434
+      ],
+      "sourceComponentPixelSetSha256": "bbf31e3697cafbf1116ee94c37138a18f231f8757379aef886081b8754a3cb46",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-northern-IV-V-figure9-native.png",
+          "sourcePixelBox": [
+            263,
+            140,
+            348,
+            276
+          ],
+          "sha256": "d9ece33f202b98f6c3030b45caed0bec54c0ec729be0dfc74dfc34f7fa6fdeaf",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-northern-IV-V-figure12-native.png",
+          "sourcePixelBox": [
+            474,
+            278,
+            618,
+            491
+          ],
+          "sha256": "66b06cf626235243d6b2169cb3da117c36fd049845c79fc0b392349b97d3d090",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Szabolcs",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 48,
+      "verifiedDensityInteriorPixel": [
+        628,
+        331
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        365,
+        174
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        365,
+        181
+      ],
+      "evidence": "Upper tall orange VI body. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label belongs to the tall orange VI body with two northern fingers. The same base and eastern separator separate it from Szabolcsi zartkert and Meszes.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 48,
+      "sourceComponentPixelCount": 5241,
+      "sourceComponentPixelCenterBounds": [
+        598,
+        252,
+        663,
+        392
+      ],
+      "sourceComponentPixelSetSha256": "1abed76a826f3f97490ceb442273979075bba439c919abb2e04722a610bc5c15",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-eastern-VI-figure9-native.png",
+          "sourcePixelBox": [
+            324,
+            116,
+            440,
+            276
+          ],
+          "sha256": "f5ea34eb0dfc94eb42b8bb4adf47254a3c9a2b8fccb80d07752e1fc61e3b42d3",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-eastern-VI-figure12-native.png",
+          "sourcePixelBox": [
+            565,
+            242,
+            730,
+            495
+          ],
+          "sha256": "9f87684410adde83c105f8158222c2d8f2ad361c70075c01275d867a77d2a25b",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Szabolcsi zártkert",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 52,
+      "verifiedDensityInteriorPixel": [
+        681,
+        354
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        402,
+        186
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        400,
+        192
+      ],
+      "evidence": "Eastern protruding orange VI body. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label is on the eastern protruding orange VI body with a high northern tab and southeastern pointed extension. It is separate from the taller western Szabolcs.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 52,
+      "sourceComponentPixelCount": 2244,
+      "sourceComponentPixelCenterBounds": [
+        662,
+        314,
+        719,
+        396
+      ],
+      "sourceComponentPixelSetSha256": "26811b767c68db7df51a6b393f28da8a6ebc48e8d7b19ddf31a37bb1aacaa569",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-eastern-VI-figure9-native.png",
+          "sourcePixelBox": [
+            324,
+            116,
+            440,
+            276
+          ],
+          "sha256": "f5ea34eb0dfc94eb42b8bb4adf47254a3c9a2b8fccb80d07752e1fc61e3b42d3",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-eastern-VI-figure12-native.png",
+          "sourcePixelBox": [
+            565,
+            242,
+            730,
+            495
+          ],
+          "sha256": "9f87684410adde83c105f8158222c2d8f2ad361c70075c01275d867a77d2a25b",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Meszes",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 58,
+      "verifiedDensityInteriorPixel": [
+        624,
+        434
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        370,
+        234
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        372,
+        240
+      ],
+      "evidence": "Large southern orange VI body. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label is in the broad southern orange VI body. The long northeastern taper, northern rectangular notch and southern edge over Ujhegy match density58.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 58,
+      "sourceComponentPixelCount": 5844,
+      "sourceComponentPixelCenterBounds": [
+        585,
+        368,
+        704,
+        477
+      ],
+      "sourceComponentPixelSetSha256": "41721568de9d4890ffe91b7d175db285b530ac916e8aca7b0c70c50a80d8fe1b",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-eastern-VI-figure9-native.png",
+          "sourcePixelBox": [
+            324,
+            116,
+            440,
+            276
+          ],
+          "sha256": "f5ea34eb0dfc94eb42b8bb4adf47254a3c9a2b8fccb80d07752e1fc61e3b42d3",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-eastern-VI-figure12-native.png",
+          "sourcePixelBox": [
+            565,
+            242,
+            730,
+            495
+          ],
+          "sha256": "9f87684410adde83c105f8158222c2d8f2ad361c70075c01275d867a77d2a25b",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Diós",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 72,
+      "verifiedDensityInteriorPixel": [
+        593,
+        460
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        334,
+        248
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        338,
+        250
+      ],
+      "evidence": "Very small lower western orange VI cell; white label close to blue I boundary. Validate a transformed interior carefully. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "medium",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The small literal Dios label lies in the narrow western orange VI cell, east of the blue I taper and below the V area. Its slender shape and VI/I adjacency match density72.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 72,
+      "sourceComponentPixelCount": 754,
+      "sourceComponentPixelCenterBounds": [
+        575,
+        428,
+        601,
+        484
+      ],
+      "sourceComponentPixelSetSha256": "454d6bd2fc31d621e7d61810bdc22d4a0141ada8f0289875d57cfe1adf9ea25b",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-eastern-VI-figure9-native.png",
+          "sourcePixelBox": [
+            324,
+            116,
+            440,
+            276
+          ],
+          "sha256": "f5ea34eb0dfc94eb42b8bb4adf47254a3c9a2b8fccb80d07752e1fc61e3b42d3",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-eastern-VI-figure12-native.png",
+          "sourcePixelBox": [
+            565,
+            242,
+            730,
+            495
+          ],
+          "sha256": "9f87684410adde83c105f8158222c2d8f2ad361c70075c01275d867a77d2a25b",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Budai külváros",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 76,
+      "verifiedDensityInteriorPixel": [
+        567,
+        463
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        325,
+        257
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        325,
+        264
+      ],
+      "evidence": "Upper eastern blue I taper, above Budaiváros. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label is on the upper eastern blue I taper, below Piricsizma and left of Dios. Its separate fine boundary over Budaivaros is visible in both originals.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 76,
+      "sourceComponentPixelCount": 1127,
+      "sourceComponentPixelCenterBounds": [
+        543,
+        440,
+        586,
+        495
+      ],
+      "sourceComponentPixelSetSha256": "380d82873a3df8766b694d70e4f78be61e60f901f8379f9b3dc8cc20ed76da12",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-central-I-figure9-native.png",
+          "sourcePixelBox": [
+            278,
+            238,
+            341,
+            298
+          ],
+          "sha256": "8e2838f1b74b2680833a1b904d8eb51a1005b3b439a5e3882841dbc99d02624d",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-central-I-figure12-native.png",
+          "sourcePixelBox": [
+            494,
+            430,
+            597,
+            533
+          ],
+          "sha256": "0dc8936f025a622f199ec93aee29baa6e99bfbe027be8a530cb306a0c5922168",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Budaiváros",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 80,
+      "verifiedDensityInteriorPixel": [
+        547,
+        494
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        300,
+        276
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        303,
+        281
+      ],
+      "evidence": "Middle eastern blue I cell, north of Kisbalokány. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label belongs to the middle eastern blue I body below Budai kulvaros and above Kisbalokany. Its western notch and southern edge match density80; it is not density76.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 80,
+      "sourceComponentPixelCount": 1445,
+      "sourceComponentPixelCenterBounds": [
+        504,
+        479,
+        568,
+        522
+      ],
+      "sourceComponentPixelSetSha256": "646e9083ec926e086cd222a17e1de4b5fc52c9012e6e81b154b127a8bd2ca7e3",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-central-I-figure9-native.png",
+          "sourcePixelBox": [
+            278,
+            238,
+            341,
+            298
+          ],
+          "sha256": "8e2838f1b74b2680833a1b904d8eb51a1005b3b439a5e3882841dbc99d02624d",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-central-I-figure12-native.png",
+          "sourcePixelBox": [
+            494,
+            430,
+            597,
+            533
+          ],
+          "sha256": "0dc8936f025a622f199ec93aee29baa6e99bfbe027be8a530cb306a0c5922168",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Észak-Megyer",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 104,
+      "verifiedDensityInteriorPixel": [
+        419,
+        616
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        235,
+        342
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        235,
+        348
+      ],
+      "evidence": "Long red IX middle strip above green Kertváros. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label is on the long red IX strip below the II cells and above the green XI area. Its eastern kink and internal western separator distinguish density104 from Szigeti tanya.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 104,
+      "sourceComponentPixelCount": 3223,
+      "sourceComponentPixelCenterBounds": [
+        389,
+        573,
+        483,
+        652
+      ],
+      "sourceComponentPixelSetSha256": "600f0345ff6bfe386112b063c775e1e43ff40a4d4c6621011ce275dad37a2afa",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-southwest-IX-figure9-native.png",
+          "sourcePixelBox": [
+            176,
+            331,
+            277,
+            382
+          ],
+          "sha256": "e886226aa0781dac59ea6df433deccc5b2a2ab040ffbc8198d6b42b4a32ad1a8",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-southwest-IX-figure12-native.png",
+          "sourcePixelBox": [
+            327,
+            563,
+            494,
+            663
+          ],
+          "sha256": "f68f5b7a03ef9ee22b7c4eaac831d815bd26a2585504a6c40c29c8d45b40c998",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Szigeti tanya",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 118,
+      "verifiedDensityInteriorPixel": [
+        353,
+        619
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        194,
+        348
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        196,
+        351
+      ],
+      "evidence": "Small red IX strip west of Észak-Megyer and above Füzes; label overlaps a nearby fine border. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "medium",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label lies in the small red IX strip west of Eszak-Megyer. The diagonal western edge and fine eastern separator match density118, distinct from blue X industrial density122.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 118,
+      "sourceComponentPixelCount": 1162,
+      "sourceComponentPixelCenterBounds": [
+        337,
+        596,
+        383,
+        652
+      ],
+      "sourceComponentPixelSetSha256": "6e9af84d3c52fbf62e6f8ddfb21162d963a38166d3c662545168471e3a84816e",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-southwest-IX-figure9-native.png",
+          "sourcePixelBox": [
+            176,
+            331,
+            277,
+            382
+          ],
+          "sha256": "e886226aa0781dac59ea6df433deccc5b2a2ab040ffbc8198d6b42b4a32ad1a8",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-southwest-IX-figure12-native.png",
+          "sourcePixelBox": [
+            327,
+            563,
+            494,
+            663
+          ],
+          "sha256": "f68f5b7a03ef9ee22b7c4eaac831d815bd26a2585504a6c40c29c8d45b40c998",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Fogadó",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 105,
+      "verifiedDensityInteriorPixel": [
+        233,
+        588
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        101,
+        333
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        101,
+        336
+      ],
+      "evidence": "Western blue X horizontal strip. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label occupies the western blue X strip directly below the purple III area. Its long upper/lower edges and eastern separator identify density105.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 105,
+      "sourceComponentPixelCount": 2128,
+      "sourceComponentPixelCenterBounds": [
+        146,
+        577,
+        270,
+        613
+      ],
+      "sourceComponentPixelSetSha256": "9473f87c750ffb757d926fe32b9a3331c3e2376be1f31cf626e8823acc6b0dc6",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-western-II-X-figure9-native.png",
+          "sourcePixelBox": [
+            84,
+            299,
+            227,
+            367
+          ],
+          "sha256": "fbe1f49081cdef3a00b78a6b1e2df47d6cdb19625768dabbc948c7269510dce8",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-western-II-X-figure12-native.png",
+          "sourcePixelBox": [
+            136,
+            532,
+            395,
+            649
+          ],
+          "sha256": "9ceb2804d64444761878af3228a8e5d474bea582a19c4cbcb9ff22186d4dbc95",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Bolgárkert",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 106,
+      "verifiedDensityInteriorPixel": [
+        282,
+        594
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        145,
+        333
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        147,
+        337
+      ],
+      "evidence": "Blue X cell south of Rácváros and west of Kovácstelep. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label occupies the blue X body east of Fogado and west of the orange Kovacstelep triangle. The two approximately vertical side separators identify density106.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 106,
+      "sourceComponentPixelCount": 1122,
+      "sourceComponentPixelCenterBounds": [
+        263,
+        579,
+        306,
+        617
+      ],
+      "sourceComponentPixelSetSha256": "0ad8b925d4d075a98e51b8bd691dfa11861f2509c9dbdcdfbf201c0bf01dde05",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-western-II-X-figure9-native.png",
+          "sourcePixelBox": [
+            84,
+            299,
+            227,
+            367
+          ],
+          "sha256": "fbe1f49081cdef3a00b78a6b1e2df47d6cdb19625768dabbc948c7269510dce8",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-western-II-X-figure12-native.png",
+          "sourcePixelBox": [
+            136,
+            532,
+            395,
+            649
+          ],
+          "sha256": "9ceb2804d64444761878af3228a8e5d474bea582a19c4cbcb9ff22186d4dbc95",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Nyugati ipari út",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 122,
+      "verifiedDensityInteriorPixel": [
+        323,
+        623
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        159,
+        357
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        161,
+        351
+      ],
+      "evidence": "The literal multiword label belongs to the long lower blue X strip below the II orange cells, continuing southeast. It is separate from the red Szigeti tanya label east of it. Table8 Pecs varosreszei lists Nyugati ipari ut as a distinct fine constituent beside Fogado and Bolgarkert. Its functional name does not justify excluding this source cell from neighbourhood candidates.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal multiword label belongs to the long lower blue X strip below the II orange cells, continuing southeast. It is separate from the red Szigeti tanya label east of it. Table8 Pecs varosreszei lists Nyugati ipari ut as a distinct fine constituent beside Fogado and Bolgarkert. Its functional name does not justify excluding this source cell from neighbourhood candidates.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 122,
+      "sourceComponentPixelCount": 1026,
+      "sourceComponentPixelCenterBounds": [
+        265,
+        611,
+        337,
+        638
+      ],
+      "sourceComponentPixelSetSha256": "297766bdf6e9acc7bfd26682be019ff890257859e3d766b878cfac04424ec6a3",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-western-II-X-figure9-native.png",
+          "sourcePixelBox": [
+            84,
+            299,
+            227,
+            367
+          ],
+          "sha256": "fbe1f49081cdef3a00b78a6b1e2df47d6cdb19625768dabbc948c7269510dce8",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-western-II-X-figure12-native.png",
+          "sourcePixelBox": [
+            136,
+            532,
+            395,
+            649
+          ],
+          "sha256": "9ceb2804d64444761878af3228a8e5d474bea582a19c4cbcb9ff22186d4dbc95",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ],
+      "semanticKindBeforeThisSourceTextReview": "planning_unit",
+      "semanticSourceTextReview": {
+        "sourceTextEvidence": "semantic-source-review.json",
+        "decision": "Independent fine named unit in the municipal source neighbourhood partition; source does not justify a planning/local exclusion for this individual cell. Functional land use does not by itself exclude a named neighbourhood source candidate.",
+        "historicalPartitionOnly": true,
+        "currentLegalFootprintConfirmed": false
+      }
+    },
+    {
+      "sourceName": "Üszögi tározó-major",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 95,
+      "verifiedDensityInteriorPixel": [
+        697,
+        571
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        418,
+        325
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        404,
+        333
+      ],
+      "evidence": "The literal label points to the eastern green VIII body, east of Uszog. Its northern staircase and long southeastern notch match density95. Table8 Pecs varosreszei lists Uszogi tarozo-major separately beside Gyarvaros,Basamalom,Uszog and explicitly describes subdivision by land use. Its functional name does not justify excluding this source cell from neighbourhood candidates.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label points to the eastern green VIII body, east of Uszog. Its northern staircase and long southeastern notch match density95. Table8 Pecs varosreszei lists Uszogi tarozo-major separately beside Gyarvaros,Basamalom,Uszog and explicitly describes subdivision by land use. Its functional name does not justify excluding this source cell from neighbourhood candidates.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 95,
+      "sourceComponentPixelCount": 3350,
+      "sourceComponentPixelCenterBounds": [
+        660,
+        542,
+        725,
+        637
+      ],
+      "sourceComponentPixelSetSha256": "c73673d57d583af7c6345bb4742931b3d6922d3240f74c1f6a455712dd01c9bb",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-southeastern-VIII-figure9-native.png",
+          "sourcePixelBox": [
+            362,
+            301,
+            443,
+            376
+          ],
+          "sha256": "6f6d468e90f16ec0b79f83df5a090e46a0c095688d02fd1d3f349e4bee7560be",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-southeastern-VIII-figure12-native.png",
+          "sourcePixelBox": [
+            650,
+            532,
+            736,
+            648
+          ],
+          "sha256": "6e893332e08c09fd40da53d87317c6e260040296d65808eda8c94cae1f1da1cc",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ],
+      "semanticKindBeforeThisSourceTextReview": "local_area",
+      "semanticSourceTextReview": {
+        "sourceTextEvidence": "semantic-source-review.json",
+        "decision": "Independent fine named unit in the municipal source neighbourhood partition; source does not justify a planning/local exclusion for this individual cell. Functional land use does not by itself exclude a named neighbourhood source candidate.",
+        "historicalPartitionOnly": true,
+        "currentLegalFootprintConfirmed": false
+      }
+    },
+    {
+      "sourceName": "Péterpuszta",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 177,
+      "verifiedDensityInteriorPixel": [
+        398,
+        789
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        202,
+        455
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        205,
+        459
+      ],
+      "evidence": "Small green XI southwestern finger; label is outside the tiny original shape. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "medium",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label is outside the small southwestern XI finger. Both originals show the same bent southwest-pointing narrow finger and its junction to the larger XI body, matching density177.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 177,
+      "sourceComponentPixelCount": 236,
+      "sourceComponentPixelCenterBounds": [
+        368,
+        782,
+        404,
+        812
+      ],
+      "sourceComponentPixelSetSha256": "851129edb262054f4bd2af7b5a36da7bee25f4caabafacce911ab88df3a55570",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-southwest-XI-figure9-native.png",
+          "sourcePixelBox": [
+            183,
+            437,
+            230,
+            482
+          ],
+          "sha256": "4cc83a18efd42ec81b1d75e6746ec263d78a82a5147253583d69bf34a1ea55dc",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-southwest-XI-figure12-native.png",
+          "sourcePixelBox": [
+            358,
+            772,
+            415,
+            823
+          ],
+          "sha256": "d8dabebccc288b2909aab4efb5b0f52e6f62cf31a409898f88f24ed935f614cb",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Józsefháza",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 39,
+      "verifiedDensityInteriorPixel": [
+        649,
+        165
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        389,
+        72
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        377,
+        75
+      ],
+      "evidence": "Small detached purple XII L-shaped island northeast of Árpádtető. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "medium",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal outside label belongs to the detached small purple XII L-shaped island, with vertical western limb and short eastward bottom foot. The same isolated L shape is density39.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 39,
+      "sourceComponentPixelCount": 111,
+      "sourceComponentPixelCenterBounds": [
+        645,
+        162,
+        656,
+        180
+      ],
+      "sourceComponentPixelSetSha256": "c74bdddadc83d906fd681359a2bc3765c96b132848cc4356f853b88b5fae325f",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-detached-XII-figure9-native.png",
+          "sourcePixelBox": [
+            360,
+            23,
+            505,
+            139
+          ],
+          "sha256": "7690f1659e92ad910ac633ef0a85152ebeb38b1e71b5f367ed77f8f35d049f47",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-detached-XII-figure12-native.png",
+          "sourcePixelBox": [
+            635,
+            100,
+            850,
+            269
+          ],
+          "sha256": "a4436cf5bb63e027b98267a313d976045f3197870243f97dd732e8bc77bea8f5",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Rücker-akna",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 42,
+      "verifiedDensityInteriorPixel": [
+        736,
+        196
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        444,
+        87
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        428,
+        88
+      ],
+      "evidence": "Tiny purple XII hooked/slender island southwest of Vasas; outside label. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "medium",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal outside label belongs to the very small slender hooked purple XII island southwest of Vasas. Its inclined top and short lower hook match the isolated density42 cell.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 42,
+      "sourceComponentPixelCount": 38,
+      "sourceComponentPixelCenterBounds": [
+        734,
+        193,
+        740,
+        202
+      ],
+      "sourceComponentPixelSetSha256": "702575cde6554b0043c4c70ea0cf257ae06603bc8fe9cbe93fd7aeb2daa4575e",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-detached-XII-figure9-native.png",
+          "sourcePixelBox": [
+            360,
+            23,
+            505,
+            139
+          ],
+          "sha256": "7690f1659e92ad910ac633ef0a85152ebeb38b1e71b5f367ed77f8f35d049f47",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-detached-XII-figure12-native.png",
+          "sourcePixelBox": [
+            635,
+            100,
+            850,
+            269
+          ],
+          "sha256": "a4436cf5bb63e027b98267a313d976045f3197870243f97dd732e8bc77bea8f5",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "István-akna",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 46,
+      "verifiedDensityInteriorPixel": [
+        680,
+        241
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        413,
+        115
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        398,
+        115
+      ],
+      "evidence": "Detached north-south hooked purple XII island west of Somogy. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal outside label belongs to the detached north-south purple XII island west of Somogy. Its leftward shoulder and lower hook match isolated density46.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 46,
+      "sourceComponentPixelCount": 338,
+      "sourceComponentPixelCenterBounds": [
+        671,
+        225,
+        688,
+        258
+      ],
+      "sourceComponentPixelSetSha256": "0b188cb036805129b86d48bc3a06a1e14b1f976dfbdeeb3d4915e692bdd4f19d",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-detached-XII-figure9-native.png",
+          "sourcePixelBox": [
+            360,
+            23,
+            505,
+            139
+          ],
+          "sha256": "7690f1659e92ad910ac633ef0a85152ebeb38b1e71b5f367ed77f8f35d049f47",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-detached-XII-figure12-native.png",
+          "sourcePixelBox": [
+            635,
+            100,
+            850,
+            269
+          ],
+          "sha256": "a4436cf5bb63e027b98267a313d976045f3197870243f97dd732e8bc77bea8f5",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    },
+    {
+      "sourceName": "Flóriántelep",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 24,
+      "verifiedDensityInteriorPixel": [
+        837,
+        114
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        470,
+        38
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        485,
+        37
+      ],
+      "evidence": "Tiny purple XII island south-west of Petőfi-akna; outside label left. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false,
+      "reviewStatus": "independently_supported_original_name_and_unchanged_cell_exterior",
+      "independentLiteralAndShapeEvidence": "The literal label lies left of the tiny purple XII island southwest of Petofi-akna. The complete tiny island is present in both originals and has a distinct enclosed density24 interior.",
+      "sourceNameReadingMethod": "Literal Figure9 label read together with its original fine-outline position; no current name-point/world coordinate used.",
+      "shapeReadingMethod": "Direct visual shape and relative-adjacency comparison of both original rasters; component-seed containment is verified separately and does not by itself approve the name.",
+      "independentMaskRecomputed": true,
+      "recomputedInteriorPixelLabel": 24,
+      "sourceComponentPixelCount": 31,
+      "sourceComponentPixelCenterBounds": [
+        835,
+        110,
+        839,
+        118
+      ],
+      "sourceComponentPixelSetSha256": "68bba3d3524bd12b3da6e4e913f66d6983ab6adc47a6306f1ea6083be20cf9b7",
+      "sourceComponentPixelSetHashMethod": "SHA256 of UTF-8 JSON sorted lexicographically [x,y] integer pairs, separators comma/colon, no whitespace.",
+      "touchesSourceImageEdge": false,
+      "allExternalSourceEdgesMustRemainUnchanged": true,
+      "cartographicHoleRestorationApprovedByThisNameReview": false,
+      "geographicRegistrationEvaluated": false,
+      "primaryApproved": false,
+      "claimedAbsoluteAccuracy": null,
+      "nativeSourceCropEvidence": [
+        {
+          "figure": 9,
+          "path": "independent-detached-XII-figure9-native.png",
+          "sourcePixelBox": [
+            360,
+            23,
+            505,
+            139
+          ],
+          "sha256": "7690f1659e92ad910ac633ef0a85152ebeb38b1e71b5f367ed77f8f35d049f47",
+          "resampling": "none; exact original native-pixel crop"
+        },
+        {
+          "figure": 12,
+          "path": "independent-detached-XII-figure12-native.png",
+          "sourcePixelBox": [
+            635,
+            100,
+            850,
+            269
+          ],
+          "sha256": "a4436cf5bb63e027b98267a313d976045f3197870243f97dd732e8bc77bea8f5",
+          "resampling": "none; exact original native-pixel crop"
+        }
+      ]
+    }
+  ]
+}

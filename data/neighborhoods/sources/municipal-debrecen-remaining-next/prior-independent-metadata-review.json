@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent_metadata_review_before_geometry",
+  "reviewDate": "2026-11-14",
+  "itemId": "a04e2a4ff4d2467c8bb6eb640f515b51",
+  "layerId": 0,
+  "metadataInputs": [
+    {
+      "kind": "service",
+      "path": ".local/neighborhoods/supplement-feature-services/debrecen-heavy-metals-service.json",
+      "sha256": "15e5b75806d30ae4b42396b4ca144c26c328e527fff106ada0a00c2945c8dff9"
+    },
+    {
+      "kind": "layers",
+      "path": ".local/neighborhoods/supplement-feature-services/debrecen-heavy-metals-layers.json",
+      "sha256": "dc78499bacad392631b7be9bf548534a4f4ee6f6050ad505ad135d0c0bf6b143"
+    },
+    {
+      "kind": "item",
+      "path": ".local/neighborhoods/supplement-feature-services/debrecen-heavy-metals-item.json",
+      "sha256": "ec6110872dc0927baa67913d0ca852f3baaf565937d5c4cf86c5b27fd8f15853"
+    }
+  ],
+  "independentlyObserved": {
+    "title": "Debrecen nehézfémszennyezés városrészek szerint_WFL1",
+    "owner": "feherzsoltzoltan123",
+    "access": "public",
+    "layerName": "NehezfemZonal_WGS84",
+    "geometryType": "esriGeometryPolygon",
+    "serviceSpatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+    },
+    "layerExtentSpatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+    },
+    "crsConclusion": "Use EPSG:3857 (wkid102100 alias/latestWkid3857) for native service coordinates. The layer name suffix WGS84 does not identify the native CRS as EPSG:4326.",
+    "nativeServiceUnit": "esriMeters",
+    "objectIdField": "FID",
+    "displayField": "tipus",
+    "candidateNameField": "nev",
+    "candidateCategoryField": "tipus",
+    "fieldDefinitions": [
+      {
+        "name": "FID",
+        "type": "esriFieldTypeOID",
+        "length": null,
+        "nullable": false,
+        "domain": null
+      },
+      {
+        "name": "tipus",
+        "type": "esriFieldTypeString",
+        "length": 50,
+        "nullable": true,
+        "domain": null
+      },
+      {
+        "name": "nev",
+        "type": "esriFieldTypeString",
+        "length": 50,
+        "nullable": true,
+        "domain": null
+      }
+    ],
+    "fieldCount": 128,
+    "categoryAndNameDomainsAbsent": true,
+    "categoryValueInspectionPending": true,
+    "queryCapabilities": "Query",
+    "maxRecordCount": 2000,
+    "supportsPagination": true,
+    "supportsOrderBy": true,
+    "supportedQueryFormats": "JSON, geoJSON, PBF",
+    "trueCurveCapability": true,
+    "trueCurveSupportMode": "OGC",
+    "supportedCurveTypes": [
+      "esriGeometryCircularArc"
+    ],
+    "hasZ": false,
+    "hasM": false,
+    "dataLastEditUtc": "2025-06-02T23:33:23.324000+00:00",
+    "dataLastEditIsBoundaryReferenceDate": false,
+    "rendererField": "As_MIN",
+    "rendererMeaning": "Class breaks of an arsenic statistic field (As_MIN), not a boundary-type or legal-quarter renderer.",
+    "soilStatisticsRole": "Many element-specific MIN/MAX/MEAN and other zonal-statistic fields are attached to named polygons. This is compatible with thematic aggregation by existing named areas, but metadata alone does not prove the origin or quarter status of those areas."
+  },
+  "semanticAndRightsFindings": {
+    "quarterRole": "Plausible from the item title and nev/tipus fields; unproven until actual values and geometries are reviewed.",
+    "fidRole": "Service object ID used to join equivalent native and GeoJSON responses; not evidence of a legal or persistent original quarter identifier.",
+    "officialStatusEstablished": false,
+    "originalBoundaryDatasetEstablished": false,
+    "boundaryReferenceDateEstablished": false,
+    "serviceDescription": "",
+    "layerDescription": "",
+    "copyrightText": "",
+    "licenseInfo": "",
+    "accessInformation": "",
+    "rightsConclusion": "Anonymous public query access is established. Blank licenseInfo, copyrightText and accessInformation do not establish redistribution rights.",
+    "searchResultAttribution": "Debreceni Egyetem MÉK Víz- és Körny. Intézet",
+    "searchAttributionCaveat": "This attribution appears in the retained search result; it is not independently proof of original boundary ownership or municipal official status."
+  },
+  "pendingGeometryQa": {
+    "completeness": "Compare count response, full object-ID inventory, and native/GeoJSON FID sets; require no exceededTransferLimit and obtain later ordered pages if needed.",
+    "nativePreservation": "Retain original Esri JSON including rings or curveRings. No maxAllowableOffset, geometryPrecision, quantizationParameters or simplification should be introduced.",
+    "curveRule": "Actual returned curveRings require a curve-aware preservation/conversion path. Metadata curve support does not mean curves necessarily occur; inspect before claiming linear ring equivalence.",
+    "ringRule": "Check explicit closure, finite coordinates, repeated vertices, signed orientation, containment and shell/hole assignment. Preserve disconnected shells and holes; do not treat every Esri ring as an independent filled polygon.",
+    "nativeVersusGeojson": "Match features by FID and exact nev/tipus values; independently transform native EPSG3857 vertices to EPSG4326 with always_xy. Compare ring topology, vertex counts/coordinates allowing start-index reversal, projected symmetric-difference area and Hausdorff distance. Explain any service densification or ring reorder rather than repairing away the difference.",
+    "baselineDuplicateRule": "Compare all native-derived polygons against the frozen26OSMfeatures, starting with exact source names and then all-to-all overlaps in EPSG23700. Record equality, IoU, reciprocal containment fractions, area ratio and cross-name compounds.",
+    "generatedShapeFingerprint": "Flag regular circular rings/radial-distance consistency, near-uniform arc segments, four-corner rectangles aligned to bbox, repeated area/radius templates, and unnaturally long straight tessellation edges or convex cells shared across a partition. These are review flags, not conclusive proof of a buffer or Voronoi origin.",
+    "mapRole": "Inspect full layer overview and atypical shapes; check named streets or source-map correspondence when available. No substitute bbox, point buffer, Voronoi, frame closure or parent-shape cloning is allowed.",
+    "measurements": "Soil measurement values are unnecessary for quarter geometry assessment; only FID,tipus,nev need be requested."
+  },
+  "outcome": {
+    "metadataReviewPassed": true,
+    "geometryInspected": false,
+    "quarterSourceRoleProven": false,
+    "newPolygons": 0,
+    "usableForAddressAssignment": false,
+    "readyForImport": false,
+    "nextStep": "Review complete native and service GeoJSON query results with their byte hashes once supplied locally."
+  }
+}

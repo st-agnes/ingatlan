@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-13",
+  "scope": "Public GitHub/web source research for additional Hungarian quarter polygons beyond the419-feature snapshot; no shell network grants, paid services, repository writes or external messages.",
+  "actualNewSourceFeatures": 33,
+  "recommendedQuarterCandidates": 32,
+  "otherLocalAreas": 1,
+  "positiveDataset": {
+    "municipality": "Esztergom",
+    "repository": "codeforgermany/click_that_hood",
+    "commit": "48ba05ad4c6969e3b3c25735492169227ae411f1",
+    "sourcePath": "public/data/esztergom.geojson",
+    "sourceGitBlobSha1": "f24bdf1489d74c081b8f78086cf09bfb43016c81",
+    "sourceBytes": 41761,
+    "sourceFeatureTimestamp": "2013-11-28T00:00:00Z",
+    "sourceSurveyDateKnown": false,
+    "originalGovernmentCitationRetrieved": false,
+    "rawPath": "data/neighborhoods/sources/public-vector-next/esztergom.source.geojson",
+    "candidatePath": "data/neighborhoods/sources/public-vector-next/esztergom-candidates.geojson",
+    "registryPath": "data/neighborhoods/sources/public-vector-next/esztergom-registry-entry.json",
+    "proofPath": "data/neighborhoods/sources/public-vector-next/esztergom-proof.json",
+    "convertedSha256": "169bb059c571c1f85e8809b6dd23249d36fe4d41ecc4a5023578207f20d90592",
+    "allSourceCoordinatesUnchanged": true,
+    "geosValidFeatures": 33,
+    "existingJsGeometryValidatorAccepted": 33,
+    "insideCurrentMunicipalityFully": 31,
+    "tinyMunicipalCrossings": [
+      "Kenyérmező",
+      "Tábor"
+    ],
+    "currentOsmNamedMatches": 26,
+    "matchingPointsOutsideOldGeometry": [
+      "Libád",
+      "Bánom",
+      "Szentanna"
+    ],
+    "officialMunicipalNameUse2023": 25,
+    "currentNameEvidenceUnknown": [
+      "Kerektó"
+    ],
+    "fineSemanticReviewPending": [
+      "Ipari park"
+    ],
+    "completeCurrentCityCoverageEstablished": false,
+    "individualDatasetLicenceEstablished": false
+  },
+  "repositoryChecks": [
+    {
+      "repository": "codeforgermany/click_that_hood",
+      "commit": "48ba05ad4c6969e3b3c25735492169227ae411f1",
+      "entries": 603,
+      "treeTruncated": false,
+      "canonicalHungarianMunicipalityFilenameMatches": [
+        "Esztergom"
+      ],
+      "countryHungaryMetadataResults": [
+        "public/data/esztergom.metadata.json",
+        "public/data/hungary.metadata.json"
+      ],
+      "hungaryMeaning": "GADM counties, not quarters"
+    },
+    {
+      "repository": "blackmad/neighborhoods",
+      "commit": "004a9dde98efc1a4a50b44012ae086d8f477a4f5",
+      "entries": 692,
+      "treeTruncated": false,
+      "matchingHungarianFiles": [
+        "esztergom.geojson",
+        "gn-esztergom.geojson",
+        "hungary.geojson"
+      ],
+      "esztergomAndGnEsztergomEveryGeometryExactlyMatchesChosenSource": true,
+      "additionalIndependentQuarterGeometry": 0
+    },
+    {
+      "repository": "integralvision/geo-data-hungary",
+      "commit": "49df251280643de50a7f9508134c818d1fc57e7e",
+      "finding": "Actual tree ends at country, region, county, district(járás); no quarter layer."
+    },
+    {
+      "repository": "wuerdo/geoHungary",
+      "finding": "Readme describes administrative units/settlements/postalcode areas. Not urban quarter boundaries."
+    },
+    {
+      "repository": "ahkimn/subwaybuilder-eu-maps",
+      "commit": "633c9f8b0b8ec2353d684433f2e9275eb35f62d1",
+      "entries": 99,
+      "treeTruncated": false,
+      "finding": "Release manifests and documentation/images only; no committed quarter polygons."
+    },
+    {
+      "repository": "podorgergo/webterkep",
+      "entries": 202,
+      "treeTruncated": false,
+      "finding": "Regional/ethnic/settlement mapping for Carpathian regions; no new Hungarian urban-quarter dataset established."
+    },
+    {
+      "repository": "ingatlancom/api-client",
+      "finding": "Official README points to public city/quarter name referenceZIP; no polygon content verified and no data licence inferred.",
+      "nameReferenceUrl": "https://api.ingatlan.com/doc_references/doc_references.zip"
+    }
+  ],
+  "wofAlternateCheck": {
+    "repository": "whosonfirst-data/whosonfirst-data-admin-hu",
+    "commit": "4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1",
+    "fullRecursiveTreeRequest": "failed_transport_closed; not used as negative evidence",
+    "data112SampledRecords": [
+      1126098169,
+      1125989245,
+      1126092031,
+      1125863183,
+      1125767777,
+      1125816107
+    ],
+    "data112AllSamplesGeometry": "Point",
+    "data112IndexedNeighbourhoodRecords": 111,
+    "data112IndexedPolygonFiles": 0,
+    "data112IndexedMultiPolygonFiles": 0,
+    "data112IndexedAltFilenameFiles": 0,
+    "globalIndexedPolygonAltFiles": [
+      {
+        "path": "data/859/011/83/85901183-alt-quattroshapes.geojson",
+        "nameFromPrimary": "Középdeindol",
+        "primaryGeometry": "Point",
+        "alternativeGeometry": "Polygon",
+        "gitBlobSha1": "130b66447b6551f170b8c4295be7bdae9eaefad0"
+      },
+      {
+        "path": "data/859/013/39/85901339-alt-quattroshapes.geojson",
+        "nameFromPrimary": "Vekerzug",
+        "primaryGeometry": "Point",
+        "alternativeGeometry": "Polygon",
+        "gitBlobSha1": "fad2472f4129fa40da57e8fed2f9bca05d6a0baa"
+      }
+    ],
+    "archivedPath": "data/neighborhoods/sources/public-vector-next/wof-alt",
+    "handoff": "Alternate geometry review/conversion handed to root; not modified or counted as Esztergom features."
+  },
+  "limits": [
+    "Search absence is not proof that no other public datasets exist.",
+    "Source-derived historical candidate means coordinates are sourced, not current/legal/surveyed boundary accuracy.",
+    "Repository software licence does not automatically cover individual dataset or original municipal map reuse.",
+    "Countrywide completeness remains unestablished."
+  ]
+}

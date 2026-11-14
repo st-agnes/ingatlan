@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-11-14",
+  "auditRole": "independent local provenance and bounded official web name-use review",
+  "scope": "Names and city identity only. This provenance review adds no geometry, registration control, current boundary or address approval.",
+  "inputs": [
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/source-coverage-accounting.json",
+      "bytes": 15238,
+      "sha256": "c59c2e0e6e9d7d39c75cebe84f43f25e79573cd59dec6a050a1ac1b5ede74bee"
+    },
+    {
+      "path": "data/neighborhoods/research/manual-current-name-review-next.json",
+      "bytes": 330576,
+      "sha256": "98635fc4b453b29aa2847bae4739766d370d7eb60fb66ece4d0f01fd7f824ce4"
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/manifest.json",
+      "bytes": 5828,
+      "sha256": "2388ec47bb9c528127113c0185dd26d25402596ac3826cb9330f3fd9736511ed"
+    }
+  ],
+  "priorCurrentNameReview": {
+    "path": "data/neighborhoods/research/manual-current-name-review-next.json",
+    "featureCount": 89,
+    "pecsFeatureCount": 0,
+    "scope": "All 89 currently importer-accepted primary neighbourhood features from the pinned 20-dataset manual-source-registry snapshot; only existing primary names, no inferred/planning/local-area promotion.",
+    "applicabilityToPecs67": "The prior 89-feature audit contains no Pécs feature. Its counts and its 68 reprocessed OSM objects cannot be transferred to these 67 source names."
+  },
+  "originalPbf": {
+    "path": ".local/neighborhoods/hungary-latest.osm.pbf",
+    "bytes": 329791850,
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "headerReadFromOriginalBytes": {
+      "generator": "osmium/1.16.0",
+      "osmosis_replication_timestamp": "2026-11-12T21:23:05Z",
+      "osmosis_replication_sequence_number": "4968",
+      "osmosis_replication_base_url": "https://download.geofabrik.de/europe/hungary-updates"
+    },
+    "headerMatchesManifest": true,
+    "bytesAndSha256MatchManifest": true,
+    "acquisitionRecordedInManifest": {
+      "version": 1,
+      "provider": "Geofabrik",
+      "source": "OpenStreetMap",
+      "scope": "Hungary country extract",
+      "url": "https://download.geofabrik.de/europe/hungary-latest.osm.pbf",
+      "checksumUrl": "https://download.geofabrik.de/europe/hungary-latest.osm.pbf.md5",
+      "checksumFilename": "hungary-latest.osm.pbf",
+      "file": "hungary-latest.osm.pbf",
+      "retrievedAt": "2026-11-13T12:20:44.741874+00:00",
+      "bytes": 329791850,
+      "md5": "5a6ed18c027725713203b046c2a9bd93",
+      "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "finalUrl": "https://download.geofabrik.de/europe/hungary-261112.osm.pbf",
+      "lastModified": "Fri, 13 Nov 2026 00:00:56 GMT",
+      "etag": "\"13a8396a-6601d1f56d49e\"",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "attributionUrl": "https://www.openstreetmap.org/copyright",
+      "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "notes": [
+        "The latest URL is mutable; SHA256 identifies this exact snapshot.",
+        "MD5 verifies the publisher checksum; SHA256 pins the acquired bytes.",
+        "OSM community boundaries are not necessarily official legal boundaries."
+      ]
+    }
+  },
+  "archivedDerivedInputsVerified": [
+    {
+      "stored": {
+        "path": "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz",
+        "bytes": 233653,
+        "sha256": "5c9193a72d4327e133f86d9c2625a4caeae3d21ec71d2575a3128b1d97931ecc"
+      },
+      "uncompressedBytes": 3916066,
+      "uncompressedSha256": "05c02b8ac8f32df2d917e01f6de81c6133c5e7dd527114f67000b43467a3a048",
+      "featureCount": 3516,
+      "matchesManifest": true,
+      "matchesPriorAudit": true
+    },
+    {
+      "stored": {
+        "path": "data/neighborhoods/sources/country-osm/municipalities.geojson.gz",
+        "bytes": 3795040,
+        "sha256": "fb5f1293628b9eeaabce243ae6ebc884f6bdc93443a2488e5fb213029bf766b7"
+      },
+      "uncompressedBytes": 15075248,
+      "uncompressedSha256": "b9cf74fc6a3a4769f7f4e4d01497fa217c7ee79dfc1c55f1fa6c66eabe281d56",
+      "featureCount": 3158,
+      "matchesManifest": true,
+      "matchesPriorAudit": true
+    }
+  ],
+  "selection": {
+    "polygons": "Named place=suburb|quarter|neighbourhood or boundary=administrative admin_level=9|10|11",
+    "nodes": "Named place=suburb|quarter|neighbourhood; retained as points only",
+    "municipalities": "Canonical named admin_level=8 plus Budapest admin_level=6 from the same PBF"
+  },
+  "interpretation": [
+    "The original immutable local snapshot represents OSM at replication timestamp 2026-11-12T21:23:05Z, acquired on 2026-11-13; it is not a live 2026-11-14 query.",
+    "The named-nodes archive selects only named place=suburb|quarter|neighbourhood nodes. Missing names may occur in other place classes, ways, relations, addresses or landuse; absence here is not name nonexistence.",
+    "This local audit checks PBF bytes/header and derived archive bytes/counts only. Reprocessing of exact Pécs object tags, coordinates, version and timestamps is handled by the separate Pécs OSM extraction, not asserted by this file.",
+    "The original OSM provider also supplied registration controls; same-provider current name evidence does not independently validate the old source contours or their geographic placement."
+  ],
+  "networkUsedForThisProvenanceCheck": false,
+  "newGeometryCount": 0,
+  "frozenSourceChanges": false,
+  "registryChanges": false,
+  "geographicPlacementVerified": false,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false
+}

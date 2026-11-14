@@ -1,0 +1,918 @@
+{
+  "schemaVersion": 1,
+  "sourcePdfSha256": "6213be7ec2318f03856a102d7791c2e98b3704a26cbc0c0f011df8c6e1bd063b",
+  "method": "Actual grey/black thin native line segments in the same city map area, paired by agreement of both original endpoints after coarse source-scope registration; robust iteration fits one affine page1-to-page2 matrix. Both unmodified native segment IDs/endpoints are preserved. This verifies the cross-page CAD geometry alignment, not independent geographic accuracy.",
+  "initialScopeAlignmentMatrix": [
+    [
+      1.1887834693572328,
+      0.0005280581509111102
+    ],
+    [
+      -0.0003161949572986472,
+      1.1873729347085422
+    ],
+    [
+      -121.52707006965723,
+      -99.56573848058993
+    ]
+  ],
+  "page1PdfPointsToPage2PdfPointsMatrix": [
+    [
+      1.1877139908414465,
+      1.978212111867101e-06
+    ],
+    [
+      -1.1016283039935577e-05,
+      1.1876808265534509
+    ],
+    [
+      -121.15409283204296,
+      -99.42607663003982
+    ]
+  ],
+  "matchedActualSourceSegmentPairs": 4888,
+  "matchedActualEndpointPairs": 9776,
+  "pairedEndpointResidualPercentilesPage2PdfPoints": {
+    "0": 0.0019248884208678573,
+    "50": 0.11536863277354423,
+    "80": 0.1515742682924517,
+    "90": 0.16976161304245213,
+    "95": 0.18341627335594557,
+    "99": 0.24486752592906857,
+    "100": 0.34649934109165437
+  },
+  "eligibleNativeGreyBlackSegmentCounts": [
+    5669,
+    12014
+  ],
+  "iterationCount": 4,
+  "usedGeographicNameCoordinates": false,
+  "fullControlPairsArchive": "cross-page-cad-controls.json.gz",
+  "fullControlPairsArchiveSha256": "a87a51326b79cb6f063af70438a180f30ca78f4185d33b2e017b375b7640d025",
+  "geographicallySpreadSourceExamples": [
+    {
+      "page1": {
+        "drawingIndex": 13398,
+        "segmentIndex": 1,
+        "coordinates": [
+          [
+            741.6000366210938,
+            583.52001953125
+          ],
+          [
+            745.9200439453125,
+            579.199951171875
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 9086,
+        "segmentIndex": 91,
+        "coordinates": [
+          [
+            759.6200561523438,
+            593.6400146484375
+          ],
+          [
+            764.6600341796875,
+            588.3599853515625
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.04048502422226646,
+        0.16918006725072188
+      ],
+      "fullArchiveControlPairIndex": 0
+    },
+    {
+      "page1": {
+        "drawingIndex": 15717,
+        "segmentIndex": 4,
+        "coordinates": [
+          [
+            459.3600158691406,
+            335.1200256347656
+          ],
+          [
+            457.67999267578125,
+            338.0
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 10553,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            422.4200134277344,
+            302.0999755859375
+          ],
+          [
+            424.3399963378906,
+            298.55999755859375
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": true,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.0955244936594397,
+        0.09029907807266385
+      ],
+      "fullArchiveControlPairIndex": 252
+    },
+    {
+      "page1": {
+        "drawingIndex": 14166,
+        "segmentIndex": 5,
+        "coordinates": [
+          [
+            454.8000183105469,
+            645.9199829101562
+          ],
+          [
+            451.20001220703125,
+            645.6799926757812
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 4640,
+        "segmentIndex": 136,
+        "coordinates": [
+          [
+            419.0,
+            667.7999877929688
+          ],
+          [
+            414.739990234375,
+            667.3200073242188
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.07917266357915184,
+        0.1166478847746069
+      ],
+      "fullArchiveControlPairIndex": 169
+    },
+    {
+      "page1": {
+        "drawingIndex": 29091,
+        "segmentIndex": 2,
+        "coordinates": [
+          [
+            715.4400024414062,
+            338.239990234375
+          ],
+          [
+            718.5599975585938,
+            337.27996826171875
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 9588,
+        "segmentIndex": 22,
+        "coordinates": [
+          [
+            732.2000122070312,
+            301.20001220703125
+          ],
+          [
+            728.6600341796875,
+            302.3399658203125
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": true,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.09083307001045418,
+        0.09642127890810434
+      ],
+      "fullArchiveControlPairIndex": 1211
+    },
+    {
+      "page1": {
+        "drawingIndex": 19824,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            572.6400146484375,
+            500.239990234375
+          ],
+          [
+            574.3200073242188,
+            497.3600158691406
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 20913,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            558.8600463867188,
+            494.760009765625
+          ],
+          [
+            560.9000244140625,
+            491.2200012207031
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.1276294590154746,
+        0.09092875782158769
+      ],
+      "fullArchiveControlPairIndex": 322
+    },
+    {
+      "page1": {
+        "drawingIndex": 41785,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            428.3999938964844,
+            484.1600036621094
+          ],
+          [
+            423.3600158691406,
+            478.3999938964844
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 20203,
+        "segmentIndex": 85,
+        "coordinates": [
+          [
+            387.739990234375,
+            475.55999755859375
+          ],
+          [
+            381.5600280761719,
+            468.7200012207031
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.09294703492011044,
+        0.11862929231363753
+      ],
+      "fullArchiveControlPairIndex": 2419
+    },
+    {
+      "page1": {
+        "drawingIndex": 14059,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            591.3600463867188,
+            633.4400024414062
+          ],
+          [
+            588.239990234375,
+            633.9199829101562
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 14647,
+        "segmentIndex": 30,
+        "coordinates": [
+          [
+            581.0599975585938,
+            652.8599853515625
+          ],
+          [
+            577.5800170898438,
+            653.4000244140625
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.1508377125254407,
+        0.10625696356562025
+      ],
+      "fullArchiveControlPairIndex": 152
+    },
+    {
+      "page1": {
+        "drawingIndex": 22093,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            587.2799682617188,
+            370.1600036621094
+          ],
+          [
+            586.3200073242188,
+            366.0799865722656
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 5481,
+        "segmentIndex": 149,
+        "coordinates": [
+          [
+            576.3200073242188,
+            340.1399841308594
+          ],
+          [
+            575.2999877929688,
+            335.3399963378906
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.07935341730939631,
+        0.0804980169773036
+      ],
+      "fullArchiveControlPairIndex": 524
+    },
+    {
+      "page1": {
+        "drawingIndex": 53830,
+        "segmentIndex": 2,
+        "coordinates": [
+          [
+            697.6799926757812,
+            462.55999755859375
+          ],
+          [
+            694.3200073242188,
+            460.1600036621094
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 3335,
+        "segmentIndex": 12,
+        "coordinates": [
+          [
+            707.3600463867188,
+            449.8800048828125
+          ],
+          [
+            703.3400268554688,
+            447.05999755859375
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.1427968899638959,
+        0.1591286981245732
+      ],
+      "fullArchiveControlPairIndex": 2786
+    },
+    {
+      "page1": {
+        "drawingIndex": 21649,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            504.47998046875,
+            423.4399719238281
+          ],
+          [
+            507.8399963378906,
+            423.4399719238281
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 4540,
+        "segmentIndex": 2,
+        "coordinates": [
+          [
+            477.97998046875,
+            403.5
+          ],
+          [
+            482.0,
+            403.5
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.04146671612542634,
+        0.01677675452791572
+      ],
+      "fullArchiveControlPairIndex": 413
+    },
+    {
+      "page1": {
+        "drawingIndex": 19405,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            653.2799682617188,
+            559.760009765625
+          ],
+          [
+            648.239990234375,
+            554.47998046875
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 12019,
+        "segmentIndex": 7,
+        "coordinates": [
+          [
+            648.7999877929688,
+            559.1400146484375
+          ],
+          [
+            654.8600463867188,
+            565.260009765625
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": true,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.1717452311355329,
+        0.04139928570064171
+      ],
+      "fullArchiveControlPairIndex": 273
+    },
+    {
+      "page1": {
+        "drawingIndex": 80401,
+        "segmentIndex": 1,
+        "coordinates": [
+          [
+            514.5599975585938,
+            570.7999877929688
+          ],
+          [
+            512.1600341796875,
+            576.0799560546875
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 9674,
+        "segmentIndex": 52,
+        "coordinates": [
+          [
+            490.0400085449219,
+            578.4599609375
+          ],
+          [
+            487.1600036621094,
+            584.8199462890625
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.06627863513894605,
+        0.05038701649237331
+      ],
+      "fullArchiveControlPairIndex": 4752
+    },
+    {
+      "page1": {
+        "drawingIndex": 79269,
+        "segmentIndex": 3,
+        "coordinates": [
+          [
+            677.2799682617188,
+            643.760009765625
+          ],
+          [
+            678.0,
+            640.4000244140625
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 23547,
+        "segmentIndex": 25,
+        "coordinates": [
+          [
+            683.9600219726562,
+            661.2000122070312
+          ],
+          [
+            683.3600463867188,
+            665.1599731445312
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": true,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.10638790684975302,
+        0.1527298416242561
+      ],
+      "fullArchiveControlPairIndex": 4619
+    },
+    {
+      "page1": {
+        "drawingIndex": 24178,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            658.0800170898438,
+            391.03997802734375
+          ],
+          [
+            662.8800048828125,
+            394.1600036621094
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 12304,
+        "segmentIndex": 5,
+        "coordinates": [
+          [
+            666.260009765625,
+            368.6999816894531
+          ],
+          [
+            660.3800048828125,
+            364.9200134277344
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": true,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.11236272480831072,
+        0.10721073872432227
+      ],
+      "fullArchiveControlPairIndex": 684
+    },
+    {
+      "page1": {
+        "drawingIndex": 41713,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            422.3999938964844,
+            557.8399658203125
+          ],
+          [
+            421.9200134277344,
+            552.5599975585938
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 4044,
+        "segmentIndex": 201,
+        "coordinates": [
+          [
+            380.5400085449219,
+            563.0999755859375
+          ],
+          [
+            379.94000244140625,
+            556.8599853515625
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.014490773612697246,
+        0.028590946022623073
+      ],
+      "fullArchiveControlPairIndex": 2416
+    },
+    {
+      "page1": {
+        "drawingIndex": 79958,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            498.239990234375,
+            499.03997802734375
+          ],
+          [
+            496.0799865722656,
+            502.1600036621094
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 10649,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            468.0799865722656,
+            496.9800109863281
+          ],
+          [
+            470.6600036621094,
+            493.1399841308594
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": true,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.145155117864422,
+        0.03847711613982865
+      ],
+      "fullArchiveControlPairIndex": 4704
+    },
+    {
+      "page1": {
+        "drawingIndex": 74461,
+        "segmentIndex": 1,
+        "coordinates": [
+          [
+            746.4000244140625,
+            513.6799926757812
+          ],
+          [
+            744.47998046875,
+            509.8399963378906
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 7543,
+        "segmentIndex": 10,
+        "coordinates": [
+          [
+            765.260009765625,
+            510.53997802734375
+          ],
+          [
+            762.97998046875,
+            506.2200012207031
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.15264726759790198,
+        0.14769791081966985
+      ],
+      "fullArchiveControlPairIndex": 3895
+    },
+    {
+      "page1": {
+        "drawingIndex": 78130,
+        "segmentIndex": 1,
+        "coordinates": [
+          [
+            735.8400268554688,
+            402.79998779296875
+          ],
+          [
+            731.52001953125,
+            404.7200012207031
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 29101,
+        "segmentIndex": 124,
+        "coordinates": [
+          [
+            752.9000244140625,
+            379.02001953125
+          ],
+          [
+            747.6799926757812,
+            381.29998779296875
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.10239042389351484,
+        0.04647404184546417
+      ],
+      "fullArchiveControlPairIndex": 4405
+    },
+    {
+      "page1": {
+        "drawingIndex": 77444,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            524.8800048828125,
+            340.6399841308594
+          ],
+          [
+            527.2799682617188,
+            337.27996826171875
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 16836,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            502.1600036621094,
+            305.15997314453125
+          ],
+          [
+            504.97998046875,
+            301.0799560546875
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.09047903649058038,
+        0.14202736152423195
+      ],
+      "fullArchiveControlPairIndex": 4308
+    },
+    {
+      "page1": {
+        "drawingIndex": 50027,
+        "segmentIndex": 8,
+        "coordinates": [
+          [
+            630.47998046875,
+            465.91998291015625
+          ],
+          [
+            631.9200439453125,
+            468.79998779296875
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 2771,
+        "segmentIndex": 48,
+        "coordinates": [
+          [
+            629.4200439453125,
+            457.3199768066406
+          ],
+          [
+            627.739990234375,
+            454.0199890136719
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": true,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.10630131922458363,
+        0.055849429769381995
+      ],
+      "fullArchiveControlPairIndex": 2687
+    },
+    {
+      "page1": {
+        "drawingIndex": 56520,
+        "segmentIndex": 0,
+        "coordinates": [
+          [
+            572.6400146484375,
+            432.79998779296875
+          ],
+          [
+            571.4400024414062,
+            429.4399719238281
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 3440,
+        "segmentIndex": 88,
+        "coordinates": [
+          [
+            558.97998046875,
+            414.7200012207031
+          ],
+          [
+            557.4200439453125,
+            410.5799865722656
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.11686688435700568,
+        0.13251319209054224
+      ],
+      "fullArchiveControlPairIndex": 2874
+    },
+    {
+      "page1": {
+        "drawingIndex": 74187,
+        "segmentIndex": 2,
+        "coordinates": [
+          [
+            655.2000122070312,
+            335.8399963378906
+          ],
+          [
+            653.760009765625,
+            328.39996337890625
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 20891,
+        "segmentIndex": 1,
+        "coordinates": [
+          [
+            655.3400268554688,
+            290.70001220703125
+          ],
+          [
+            657.02001953125,
+            299.39996337890625
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": true,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.04762562772174652,
+        0.0921955897366381
+      ],
+      "fullArchiveControlPairIndex": 3862
+    },
+    {
+      "page1": {
+        "drawingIndex": 19698,
+        "segmentIndex": 3,
+        "coordinates": [
+          [
+            594.0,
+            567.9199829101562
+          ],
+          [
+            590.6400146484375,
+            580.4000244140625
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 4590,
+        "segmentIndex": 39,
+        "coordinates": [
+          [
+            584.2999877929688,
+            574.97998046875
+          ],
+          [
+            580.4000244140625,
+            589.8599853515625
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": false,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.11095659343993526,
+        0.06666237865103944
+      ],
+      "fullArchiveControlPairIndex": 301
+    },
+    {
+      "page1": {
+        "drawingIndex": 15501,
+        "segmentIndex": 2,
+        "coordinates": [
+          [
+            443.2799987792969,
+            425.1200256347656
+          ],
+          [
+            444.47998046875,
+            428.0
+          ]
+        ]
+      },
+      "page2": {
+        "drawingIndex": 24770,
+        "segmentIndex": 7,
+        "coordinates": [
+          [
+            406.760009765625,
+            408.9599914550781
+          ],
+          [
+            405.44000244140625,
+            405.47998046875
+          ]
+        ]
+      },
+      "page2EndpointOrderReversed": true,
+      "pairedEndpointResidualsPage2PdfPoints": [
+        0.10893573622849671,
+        0.05791503353842789
+      ],
+      "fullArchiveControlPairIndex": 206
+    }
+  ]
+}

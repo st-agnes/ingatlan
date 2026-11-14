@@ -1,0 +1,345 @@
+{
+  "status": "exploratory_masks_not_admitted_geometry",
+  "seedXY": [
+    100,
+    300
+  ],
+  "rule": "Largest8-neighbor component of native pixels withmaxRGB<cutoff and(maxRGB-minRGB)<spread; free4-neighbor seedcomponent. No caps, closure, morphology, repair or geographic placement.",
+  "results": [
+    {
+      "cutoff": 120,
+      "spread": 10,
+      "darkPixels": 5081,
+      "strokePixels": 2714,
+      "darkComponentSizesTop5": [
+        2714,
+        548,
+        435,
+        425,
+        192
+      ],
+      "seed100300InsidePixels": 228710,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        228710,
+        1,
+        1
+      ]
+    },
+    {
+      "cutoff": 120,
+      "spread": 15,
+      "darkPixels": 5560,
+      "strokePixels": 4464,
+      "darkComponentSizesTop5": [
+        4464,
+        203,
+        94,
+        79,
+        56
+      ],
+      "seed100300InsidePixels": 226960,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        226960,
+        1,
+        1
+      ]
+    },
+    {
+      "cutoff": 120,
+      "spread": 25,
+      "darkPixels": 6280,
+      "strokePixels": 4983,
+      "darkComponentSizesTop5": [
+        4983,
+        223,
+        187,
+        118,
+        88
+      ],
+      "seed100300InsidePixels": 226441,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        226441,
+        1,
+        1
+      ]
+    },
+    {
+      "cutoff": 120,
+      "spread": 40,
+      "darkPixels": 7139,
+      "strokePixels": 5422,
+      "darkComponentSizesTop5": [
+        5422,
+        475,
+        343,
+        187,
+        60
+      ],
+      "seed100300InsidePixels": 225816,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        225816,
+        117,
+        69,
+        1,
+        1
+      ]
+    },
+    {
+      "cutoff": 140,
+      "spread": 10,
+      "darkPixels": 5324,
+      "strokePixels": 2831,
+      "darkComponentSizesTop5": [
+        2831,
+        562,
+        453,
+        447,
+        200
+      ],
+      "seed100300InsidePixels": 228593,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        228593,
+        1,
+        1
+      ]
+    },
+    {
+      "cutoff": 140,
+      "spread": 15,
+      "darkPixels": 5828,
+      "strokePixels": 4726,
+      "darkComponentSizesTop5": [
+        4726,
+        211,
+        101,
+        59,
+        49
+      ],
+      "seed100300InsidePixels": 226698,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        226698,
+        1,
+        1
+      ]
+    },
+    {
+      "cutoff": 140,
+      "spread": 25,
+      "darkPixels": 6597,
+      "strokePixels": 5177,
+      "darkComponentSizesTop5": [
+        5177,
+        231,
+        216,
+        124,
+        92
+      ],
+      "seed100300InsidePixels": 226247,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        226247,
+        1,
+        1
+      ]
+    },
+    {
+      "cutoff": 140,
+      "spread": 40,
+      "darkPixels": 7480,
+      "strokePixels": 5637,
+      "darkComponentSizesTop5": [
+        5637,
+        487,
+        352,
+        216,
+        61
+      ],
+      "seed100300InsidePixels": 225601,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        225601,
+        117,
+        69,
+        1,
+        1
+      ]
+    },
+    {
+      "cutoff": 160,
+      "spread": 10,
+      "darkPixels": 5704,
+      "strokePixels": 2945,
+      "darkComponentSizesTop5": [
+        2945,
+        583,
+        474,
+        468,
+        211
+      ],
+      "seed100300InsidePixels": 228480,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        228480,
+        1
+      ]
+    },
+    {
+      "cutoff": 160,
+      "spread": 15,
+      "darkPixels": 6235,
+      "strokePixels": 4927,
+      "darkComponentSizesTop5": [
+        4927,
+        223,
+        111,
+        59,
+        51
+      ],
+      "seed100300InsidePixels": 226498,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        226498,
+        1
+      ]
+    },
+    {
+      "cutoff": 160,
+      "spread": 25,
+      "darkPixels": 7061,
+      "strokePixels": 5392,
+      "darkComponentSizesTop5": [
+        5392,
+        243,
+        232,
+        124,
+        94
+      ],
+      "seed100300InsidePixels": 226033,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        226033,
+        1
+      ]
+    },
+    {
+      "cutoff": 160,
+      "spread": 40,
+      "darkPixels": 7980,
+      "strokePixels": 5864,
+      "darkComponentSizesTop5": [
+        5864,
+        507,
+        358,
+        232,
+        66
+      ],
+      "seed100300InsidePixels": 225375,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        225375,
+        117,
+        69,
+        1
+      ]
+    },
+    {
+      "cutoff": 180,
+      "spread": 10,
+      "darkPixels": 6429,
+      "strokePixels": 3078,
+      "darkComponentSizesTop5": [
+        3078,
+        604,
+        491,
+        488,
+        221
+      ],
+      "seed100300InsidePixels": 228347,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        228347,
+        1
+      ]
+    },
+    {
+      "cutoff": 180,
+      "spread": 15,
+      "darkPixels": 6997,
+      "strokePixels": 5163,
+      "darkComponentSizesTop5": [
+        5163,
+        233,
+        156,
+        60,
+        57
+      ],
+      "seed100300InsidePixels": 226262,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        226262,
+        1
+      ]
+    },
+    {
+      "cutoff": 180,
+      "spread": 25,
+      "darkPixels": 8074,
+      "strokePixels": 5689,
+      "darkComponentSizesTop5": [
+        5689,
+        504,
+        253,
+        126,
+        97
+      ],
+      "seed100300InsidePixels": 225619,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        225619,
+        51,
+        28,
+        20,
+        3,
+        3,
+        2,
+        2
+      ]
+    },
+    {
+      "cutoff": 180,
+      "spread": 40,
+      "darkPixels": 9165,
+      "strokePixels": 6196,
+      "darkComponentSizesTop5": [
+        6196,
+        566,
+        527,
+        363,
+        67
+      ],
+      "seed100300InsidePixels": 224941,
+      "touchesRasterEdge": true,
+      "freeComponentSizesTop8": [
+        224941,
+        117,
+        69,
+        34,
+        28,
+        20,
+        3,
+        3
+      ]
+    }
+  ],
+  "sourceImage": {
+    "path": "p138-xref769.jpeg",
+    "sha256": "9bc20ed9959fc3b688629475d504e6ce7c9c4bd55415923d9ce4b6af44ac835e"
+  },
+  "reviewer": "independent child agent zala_semantic_qa"
+}

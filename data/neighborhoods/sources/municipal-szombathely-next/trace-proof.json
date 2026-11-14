@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "name": "Éhen Gyula kertváros",
+  "municipality": "Szombathely",
+  "method": "Official 2013 perimeter text interpreted as an ordered road-centreline circuit on actual 2026 OSM node geometry. Every junction is the unique shared OSM node of successive named roads; every edge is consecutive in an original OSM way. No inferred connectors or geometry repair.",
+  "sourceDocuments": [
+    {
+      "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+      "path": "data/neighborhoods/sources/municipal-szombathely-next/szombathely-ivs.source.pdf",
+      "sha256": "aade0d35a60e4ecd230a26c2c7dabcfc26ec76466ab86310e6828f34db714500",
+      "page": 151,
+      "pdfPageZeroBased": 150,
+      "section": "15. Éhen Gyula kertváros"
+    }
+  ],
+  "linework": {
+    "path": "data/neighborhoods/sources/municipal-szombathely-next/source-ways.geojson",
+    "sha256": "396336e9be7e36410e130eac8377d77ae7a3d043496b9f6cd810d7a71d7940ee",
+    "upstreamSource": {
+      "path": ".local/neighborhoods/country-associated/construction-lines.geojson",
+      "sha256": "a88eae7d237681eeae44c4bd7291777e17c21cfba3babed5677b1e976efcf0b4",
+      "method": "Select only unchanged original named OSM ways in the Szombathely construction area; no clipping or coordinate changes.",
+      "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "snapshotTimestamp": "2026-11-12T21:23:05Z",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors"
+    },
+    "geometriesUnchanged": true
+  },
+  "junctionCount": 9,
+  "nodeIdsInCircuit": [
+    1278848190,
+    2383544333,
+    2383544330,
+    1278848453,
+    1278848163,
+    1278848459,
+    2973567083,
+    685881180,
+    1278848243,
+    1278848359,
+    6074551125,
+    3123327968,
+    1278848460,
+    2386848492,
+    1278848047,
+    2386848332,
+    1278848347,
+    2386848415,
+    1278848263,
+    2386848521,
+    2386848515,
+    1278848442,
+    2386848214,
+    2386848491,
+    1278848181,
+    2386848500,
+    2399676708,
+    1278848017,
+    2386848445,
+    1278847949,
+    3123327972,
+    6074551126,
+    1278847895,
+    2223452895,
+    1278848055,
+    2223452897,
+    2399703166,
+    1278848072,
+    685881085,
+    3123327979,
+    1278848116,
+    1278848403,
+    2383540483,
+    2383540487,
+    2383540488,
+    2383540485,
+    1278848094,
+    2383540486,
+    2383540484,
+    2383544332,
+    1278848252,
+    1278847894,
+    1278848190
+  ],
+  "coordinateCountIncludingClosure": 53,
+  "sections": [
+    {
+      "road": "Alkotás utca",
+      "startNodeId": 1278848190,
+      "endNodeId": 1278848163,
+      "nodeIds": [
+        1278848190,
+        2383544333,
+        2383544330,
+        1278848453,
+        1278848163
+      ],
+      "sourceWayIds": [
+        112539543,
+        627398406
+      ],
+      "lengthM": 157.286
+    },
+    {
+      "road": "Sas utca",
+      "startNodeId": 1278848163,
+      "endNodeId": 685881180,
+      "nodeIds": [
+        1278848163,
+        1278848459,
+        2973567083,
+        685881180
+      ],
+      "sourceWayIds": [
+        54442504,
+        465858411
+      ],
+      "lengthM": 557.993
+    },
+    {
+      "road": "Zanati út",
+      "startNodeId": 685881180,
+      "endNodeId": 1278848359,
+      "nodeIds": [
+        685881180,
+        1278848243,
+        1278848359
+      ],
+      "sourceWayIds": [
+        544119517,
+        627398404
+      ],
+      "lengthM": 102.475
+    },
+    {
+      "road": "Vépi út",
+      "startNodeId": 1278848359,
+      "endNodeId": 1278848181,
+      "nodeIds": [
+        1278848359,
+        6074551125,
+        3123327968,
+        1278848460,
+        2386848492,
+        1278848047,
+        2386848332,
+        1278848347,
+        2386848415,
+        1278848263,
+        2386848521,
+        2386848515,
+        1278848442,
+        2386848214,
+        2386848491,
+        1278848181
+      ],
+      "sourceWayIds": [
+        112539542,
+        465858413,
+        1054178477
+      ],
+      "lengthM": 317.913
+    },
+    {
+      "road": "Ikervár utca",
+      "startNodeId": 1278848181,
+      "endNodeId": 1278847895,
+      "nodeIds": [
+        1278848181,
+        2386848500,
+        2399676708,
+        1278848017,
+        2386848445,
+        1278847949,
+        3123327972,
+        6074551126,
+        1278847895
+      ],
+      "sourceWayIds": [
+        112539384,
+        465858418
+      ],
+      "lengthM": 269.617
+    },
+    {
+      "road": "Zanati út",
+      "startNodeId": 1278847895,
+      "endNodeId": 685881085,
+      "nodeIds": [
+        1278847895,
+        2223452895,
+        1278848055,
+        2223452897,
+        2399703166,
+        1278848072,
+        685881085
+      ],
+      "sourceWayIds": [
+        544119517
+      ],
+      "lengthM": 306.403
+    },
+    {
+      "road": "Bártfa utca",
+      "startNodeId": 685881085,
+      "endNodeId": 1278848094,
+      "nodeIds": [
+        685881085,
+        3123327979,
+        1278848116,
+        1278848403,
+        2383540483,
+        2383540487,
+        2383540488,
+        2383540485,
+        1278848094
+      ],
+      "sourceWayIds": [
+        112539458
+      ],
+      "lengthM": 578.929
+    },
+    {
+      "road": "Hámor utca",
+      "startNodeId": 1278848094,
+      "endNodeId": 1278848252,
+      "nodeIds": [
+        1278848094,
+        2383540486,
+        2383540484,
+        2383544332,
+        1278848252
+      ],
+      "sourceWayIds": [
+        112539396
+      ],
+      "lengthM": 292.34
+    },
+    {
+      "road": "Vas utca",
+      "startNodeId": 1278848252,
+      "endNodeId": 1278848190,
+      "nodeIds": [
+        1278848252,
+        1278847894,
+        1278848190
+      ],
+      "sourceWayIds": [
+        112539508
+      ],
+      "lengthM": 68.687
+    }
+  ],
+  "allCoordinatesAreOriginalSourceNodes": true,
+  "allEdgesAreConsecutiveOriginalSourceNodePairs": true,
+  "inferredConnectors": [],
+  "planarCrossingIntersectionsInserted": 0,
+  "closedWithoutSyntheticEdge": true,
+  "geometryValid": true,
+  "areaM2": 315071.5402264651,
+  "sourceMapVisualCheck": {
+    "printedPage": 50,
+    "pdfPageZeroBased": 49,
+    "label": "15",
+    "role": "topology only, no coordinates"
+  },
+  "limitations": [
+    "The PDF describes an actual named residential quarter, rather than an action area or multi-quarter planning cluster.",
+    "Source normalizations: Hámor u. -> Hámor utca; Vas u. -> Vas utca; source typo Akotás u. -> Alkotás utca.",
+    "The repeated Zanati út segments are retained in their specified order and form the southern projection visible on source map page50, quarter15.",
+    "The 480x476-pixel source map was visually checked only as a coarse topology/name check; no map pixels contribute coordinates.",
+    "Road centrelines are an interpretation of textual road boundaries. Parcel-side inclusion, current legal status and address assignment are not verified."
+  ],
+  "usableForAddressAssignment": false,
+  "output": {
+    "path": "data/neighborhoods/sources/municipal-szombathely-next/szombathely-ehen-gyula.geojson",
+    "sha256": "60a0a7a20b48a421dd695b7a798a0ca474f325cea7d9430bd57210e208768ea8"
+  },
+  "reproduce": "PYTHONPATH=.local/geodata python3 scripts/neighborhoods/derive-szombathely-next.py"
+}

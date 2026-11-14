@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "sourceSha256": "5f87062ca249f91d1179c574a6157c380d8ebc9b2dbd484c9df5293bee80436a",
+  "validator": "Existing unmodified scripts/neighborhoods/build.mjs validateGeometry",
+  "records": [
+    {
+      "sourceUnitNumber": 1,
+      "name": "Észak-nyugati városrész",
+      "valid": true,
+      "bbox": [
+        16.543036612758986,
+        47.68110246103087,
+        16.590746016707545,
+        47.70563628799397
+      ],
+      "vertices": 237
+    },
+    {
+      "sourceUnitNumber": 4,
+      "name": "Bánfalva, Kutyahegy városrész",
+      "valid": true,
+      "bbox": [
+        16.531489360466836,
+        47.67372350316217,
+        16.56242393443786,
+        47.68839435139198
+      ],
+      "vertices": 437
+    },
+    {
+      "sourceUnitNumber": 5,
+      "name": "Lővereki városrész",
+      "valid": true,
+      "bbox": [
+        16.558613240615216,
+        47.6433153855575,
+        16.6058551890908,
+        47.68571876344157
+      ],
+      "vertices": 487
+    },
+    {
+      "sourceUnitNumber": 13,
+      "name": "Dél-keleti gazdasági terület városrész",
+      "valid": true,
+      "bbox": [
+        16.592068666198074,
+        47.6536259101789,
+        16.62537514331307,
+        47.67746815523114
+      ],
+      "vertices": 238
+    }
+  ],
+  "passed": 4,
+  "failed": 0,
+  "geometryChanged": false
+}

@@ -1,0 +1,1683 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "scope": "Bounded detailed source-pixel measurement of the two remaining caps before any reconstruction decision. Explicit user-permitted inferred continuation is bracketed and measured; no automatic rejection due merely to a short uncertain interval.",
+  "sourceImage": {
+    "path": "../municipal-pecs-first-inferred/pecs-p48-names.jpeg",
+    "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+  },
+  "source12": {
+    "path": "../municipal-pecs-first-inferred/pecs-p63-density.jpeg",
+    "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+  },
+  "sourceArpManualPathInput": {
+    "path": "manual-islands-author-paths.json",
+    "sha256": "7f8bcb9a7972a86ccd74b51215a358373a6f693f73292ba18d0c9c5a80fb09c5"
+  },
+  "method": "Manually inspect original native source pixels and quarter-map shape context, list every visible-chain vertex and uncertain candidate vertex with its literal RGB, then compute Euclidean step sums/direct chord lengths in source-pixel coordinates. No threshold growth,morphological closing,fill,repair,snap,world point,name-point extent or new registration.",
+  "records": [
+    {
+      "sourceName": "Árpádtető",
+      "sourceLabelAnchorFigure9": [
+        343,
+        80
+      ],
+      "sourceQuarterFineUnitIdentitySupported": true,
+      "sourceWholeIslandInsideFrame": true,
+      "pixelConvention": "Original Figure9 integer source-pixel centers, zero-based upper-left,x right/y down.",
+      "visibleOuterStrokeOpenChain": [
+        {
+          "sourcePixel": [
+            329,
+            83
+          ],
+          "originalRgb": [
+            68,
+            39,
+            85
+          ]
+        },
+        {
+          "sourcePixel": [
+            330,
+            84
+          ],
+          "originalRgb": [
+            128,
+            108,
+            136
+          ]
+        },
+        {
+          "sourcePixel": [
+            330,
+            85
+          ],
+          "originalRgb": [
+            59,
+            34,
+            64
+          ]
+        },
+        {
+          "sourcePixel": [
+            330,
+            86
+          ],
+          "originalRgb": [
+            73,
+            49,
+            75
+          ]
+        },
+        {
+          "sourcePixel": [
+            329,
+            87
+          ],
+          "originalRgb": [
+            79,
+            49,
+            87
+          ]
+        },
+        {
+          "sourcePixel": [
+            328,
+            87
+          ],
+          "originalRgb": [
+            61,
+            20,
+            80
+          ]
+        },
+        {
+          "sourcePixel": [
+            327,
+            88
+          ],
+          "originalRgb": [
+            75,
+            37,
+            96
+          ]
+        },
+        {
+          "sourcePixel": [
+            326,
+            88
+          ],
+          "originalRgb": [
+            72,
+            29,
+            101
+          ]
+        },
+        {
+          "sourcePixel": [
+            325,
+            89
+          ],
+          "originalRgb": [
+            112,
+            79,
+            132
+          ]
+        },
+        {
+          "sourcePixel": [
+            324,
+            89
+          ],
+          "originalRgb": [
+            84,
+            45,
+            100
+          ]
+        },
+        {
+          "sourcePixel": [
+            323,
+            90
+          ],
+          "originalRgb": [
+            118,
+            94,
+            110
+          ]
+        },
+        {
+          "sourcePixel": [
+            322,
+            90
+          ],
+          "originalRgb": [
+            66,
+            35,
+            43
+          ]
+        },
+        {
+          "sourcePixel": [
+            321,
+            90
+          ],
+          "originalRgb": [
+            119,
+            83,
+            83
+          ]
+        },
+        {
+          "sourcePixel": [
+            320,
+            89
+          ],
+          "originalRgb": [
+            172,
+            129,
+            148
+          ]
+        },
+        {
+          "sourcePixel": [
+            320,
+            88
+          ],
+          "originalRgb": [
+            148,
+            95,
+            139
+          ]
+        },
+        {
+          "sourcePixel": [
+            319,
+            87
+          ],
+          "originalRgb": [
+            158,
+            124,
+            138
+          ]
+        },
+        {
+          "sourcePixel": [
+            319,
+            86
+          ],
+          "originalRgb": [
+            156,
+            117,
+            138
+          ]
+        },
+        {
+          "sourcePixel": [
+            319,
+            85
+          ],
+          "originalRgb": [
+            155,
+            112,
+            140
+          ]
+        },
+        {
+          "sourcePixel": [
+            319,
+            84
+          ],
+          "originalRgb": [
+            144,
+            99,
+            132
+          ]
+        },
+        {
+          "sourcePixel": [
+            319,
+            83
+          ],
+          "originalRgb": [
+            148,
+            103,
+            136
+          ]
+        },
+        {
+          "sourcePixel": [
+            319,
+            82
+          ],
+          "originalRgb": [
+            146,
+            103,
+            133
+          ]
+        },
+        {
+          "sourcePixel": [
+            319,
+            81
+          ],
+          "originalRgb": [
+            133,
+            90,
+            118
+          ]
+        },
+        {
+          "sourcePixel": [
+            319,
+            80
+          ],
+          "originalRgb": [
+            145,
+            108,
+            125
+          ]
+        },
+        {
+          "sourcePixel": [
+            319,
+            79
+          ],
+          "originalRgb": [
+            137,
+            109,
+            105
+          ]
+        },
+        {
+          "sourcePixel": [
+            320,
+            78
+          ],
+          "originalRgb": [
+            150,
+            122,
+            144
+          ]
+        },
+        {
+          "sourcePixel": [
+            321,
+            77
+          ],
+          "originalRgb": [
+            152,
+            126,
+            161
+          ]
+        },
+        {
+          "sourcePixel": [
+            322,
+            77
+          ],
+          "originalRgb": [
+            127,
+            100,
+            145
+          ]
+        },
+        {
+          "sourcePixel": [
+            323,
+            76
+          ],
+          "originalRgb": [
+            139,
+            118,
+            157
+          ]
+        },
+        {
+          "sourcePixel": [
+            324,
+            75
+          ],
+          "originalRgb": [
+            151,
+            138,
+            166
+          ]
+        },
+        {
+          "sourcePixel": [
+            325,
+            76
+          ],
+          "originalRgb": [
+            88,
+            70,
+            112
+          ]
+        },
+        {
+          "sourcePixel": [
+            326,
+            77
+          ],
+          "originalRgb": [
+            140,
+            118,
+            165
+          ]
+        },
+        {
+          "sourcePixel": [
+            326,
+            78
+          ],
+          "originalRgb": [
+            61,
+            36,
+            93
+          ]
+        },
+        {
+          "sourcePixel": [
+            327,
+            79
+          ],
+          "originalRgb": [
+            111,
+            81,
+            133
+          ]
+        },
+        {
+          "sourcePixel": [
+            327,
+            80
+          ],
+          "originalRgb": [
+            136,
+            91,
+            158
+          ]
+        },
+        {
+          "sourcePixel": [
+            328,
+            81
+          ],
+          "originalRgb": [
+            99,
+            64,
+            118
+          ]
+        }
+      ],
+      "visibleChainStepCount": 34,
+      "visibleChainLengthPixels": 40.21320343559643,
+      "visibleChainStartPixel": [
+        329,
+        83
+      ],
+      "visibleChainEndPixel": [
+        328,
+        81
+      ],
+      "uncertainIntervalType": "Uncertain quarter-stroke interpretation/visibility; not a claim that these original image pixels are absent.",
+      "uncertainIntervalEndpointPixels": [
+        [
+          328,
+          81
+        ],
+        [
+          329,
+          83
+        ]
+      ],
+      "uncertainIntervalEndpointRoles": [
+        "End of visible chain",
+        "Start of visible chain"
+      ],
+      "uncertainInternalPixelCount": 1,
+      "uncertainIntervalStepCount": 2,
+      "uncertainCandidatePixelPath": [
+        {
+          "sourcePixel": [
+            328,
+            81
+          ],
+          "originalRgb": [
+            99,
+            64,
+            118
+          ]
+        },
+        {
+          "sourcePixel": [
+            329,
+            82
+          ],
+          "originalRgb": [
+            206,
+            181,
+            220
+          ]
+        },
+        {
+          "sourcePixel": [
+            329,
+            83
+          ],
+          "originalRgb": [
+            68,
+            39,
+            85
+          ]
+        }
+      ],
+      "uncertainIntervalChainLengthPixels": 2.414213562373095,
+      "uncertainIntervalDirectChordLengthPixels": 2.23606797749979,
+      "directChordIsMeasurementOnly": true,
+      "directChordAdoptedAsBoundary": false,
+      "candidateInferredEdges": [
+        {
+          "inferredEdgeIndex": 0,
+          "sourceStartPixel": [
+            328,
+            81
+          ],
+          "sourceEndPixel": [
+            329,
+            82
+          ],
+          "sourceLengthPixels": 1.4142135623730951,
+          "startOriginalRgb": [
+            99,
+            64,
+            118
+          ],
+          "endOriginalRgb": [
+            206,
+            181,
+            220
+          ],
+          "quarterOuterStrokeIdentityOfThisEdgeConfirmed": false,
+          "frozenFrameWorldLengthMetres": null
+        },
+        {
+          "inferredEdgeIndex": 1,
+          "sourceStartPixel": [
+            329,
+            82
+          ],
+          "sourceEndPixel": [
+            329,
+            83
+          ],
+          "sourceLengthPixels": 1.0,
+          "startOriginalRgb": [
+            206,
+            181,
+            220
+          ],
+          "endOriginalRgb": [
+            68,
+            39,
+            85
+          ],
+          "quarterOuterStrokeIdentityOfThisEdgeConfirmed": false,
+          "frozenFrameWorldLengthMetres": null
+        }
+      ],
+      "sourceInterpretationEvidence": "One pale mixed outer-edge pixel[329,82] RGB206/181/220 lies between clearly identifiable purple stroke endpoints. Its colour and position support a plausible very short continuation, but exact outer-stroke identity remains uncertain. The northern gray municipal graphic near[327,72–73]is a separate feature and is not used.",
+      "nativeSourceEvidence": {
+        "path": "cap-arpadteto-figure9-native.png",
+        "sourcePixelBox": [
+          316,
+          72,
+          335,
+          94
+        ],
+        "sha256": "14a6fdba67e47dd5bf5550b49b3a5d4a3a13e1205ad4d993d3ab3c6567d0f25d"
+      },
+      "bracketPreview": {
+        "path": "cap-arpadteto-bracket-source-preview.png",
+        "sha256": "637d8c93f9b1275b5d2abcfe1f6bbf302a6a3802271a31dde223e2209a048613",
+        "legend": "cyan=visible manual stroke chain;orange=explicitly uncertain candidate continuation, not certified observed stroke"
+      },
+      "additionalSourceSupport": [
+        {
+          "figure": 12,
+          "pdfPageOneBased": 63,
+          "originalEmbeddedJpeg": "pdf63-figure12-xref642.jpeg",
+          "originalJpegSha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788",
+          "nativeCrop": "cap-arpadteto-figure12-native.png",
+          "cropPixelBox": [
+            530,
+            130,
+            610,
+            220
+          ],
+          "nativeCropSha256": "156fdef031ac42a1c975051df890f789fd6fdb7556068d6c59d85649338e6148",
+          "role": "Same complete isolated named-quarter-map island and cap form; no pixel-coordinate transfer or new interfigure/geographic fit."
+        },
+        {
+          "figure": 13,
+          "pdfPageOneBased": 65,
+          "originalEmbeddedJpeg": "pdf65-figure13-xref647.jpeg",
+          "originalJpegSha256": "f46d9d8c8e40ef73ed185784150343934757c9eea9f64578c5cee9a28c5a9b0b",
+          "nativeCrop": "cap-arpadteto-figure13-native.png",
+          "cropPixelBox": [
+            530,
+            130,
+            610,
+            220
+          ],
+          "nativeCropSha256": "842405d0828b7b6019d935fbb4cff9d65075a142371581e19e354d7ed443dc4a",
+          "role": "Same complete isolated named-quarter-map island and cap form; no pixel-coordinate transfer or new interfigure/geographic fit."
+        },
+        {
+          "figure": 14,
+          "pdfPageOneBased": 67,
+          "originalEmbeddedJpeg": "pdf67-figure14-xref650.jpeg",
+          "originalJpegSha256": "afa974367aba5aeef70d110af05c6f8abfebfd3663e751a3832e16704a30d686",
+          "nativeCrop": "cap-arpadteto-figure14-native.png",
+          "cropPixelBox": [
+            530,
+            130,
+            610,
+            220
+          ],
+          "nativeCropSha256": "38b97717ea2d3ee471abd4c261e26253093d6f64981e2e601dc9c36e07a7b038",
+          "role": "Same complete isolated named-quarter-map island and cap form; no pixel-coordinate transfer or new interfigure/geographic fit."
+        },
+        {
+          "figure": 15,
+          "pdfPageOneBased": 70,
+          "originalEmbeddedJpeg": "pdf70-figure15-xref654.jpeg",
+          "originalJpegSha256": "4d70f3e99955472cb7bd598e2c887fd71f31599c34e5721c21b52e27bb5d1150",
+          "nativeCrop": "cap-arpadteto-figure15-native.png",
+          "cropPixelBox": [
+            530,
+            130,
+            610,
+            220
+          ],
+          "nativeCropSha256": "194da2ca677370eb39742a6ec91694af440ffcd4d6fd63b5b698a23e3ba61da4",
+          "role": "Same complete isolated named-quarter-map island and cap form; no pixel-coordinate transfer or new interfigure/geographic fit."
+        }
+      ],
+      "reconstructedRingCandidate": [
+        [
+          329,
+          83
+        ],
+        [
+          330,
+          84
+        ],
+        [
+          330,
+          85
+        ],
+        [
+          330,
+          86
+        ],
+        [
+          329,
+          87
+        ],
+        [
+          328,
+          87
+        ],
+        [
+          327,
+          88
+        ],
+        [
+          326,
+          88
+        ],
+        [
+          325,
+          89
+        ],
+        [
+          324,
+          89
+        ],
+        [
+          323,
+          90
+        ],
+        [
+          322,
+          90
+        ],
+        [
+          321,
+          90
+        ],
+        [
+          320,
+          89
+        ],
+        [
+          320,
+          88
+        ],
+        [
+          319,
+          87
+        ],
+        [
+          319,
+          86
+        ],
+        [
+          319,
+          85
+        ],
+        [
+          319,
+          84
+        ],
+        [
+          319,
+          83
+        ],
+        [
+          319,
+          82
+        ],
+        [
+          319,
+          81
+        ],
+        [
+          319,
+          80
+        ],
+        [
+          319,
+          79
+        ],
+        [
+          320,
+          78
+        ],
+        [
+          321,
+          77
+        ],
+        [
+          322,
+          77
+        ],
+        [
+          323,
+          76
+        ],
+        [
+          324,
+          75
+        ],
+        [
+          325,
+          76
+        ],
+        [
+          326,
+          77
+        ],
+        [
+          326,
+          78
+        ],
+        [
+          327,
+          79
+        ],
+        [
+          327,
+          80
+        ],
+        [
+          328,
+          81
+        ],
+        [
+          329,
+          82
+        ],
+        [
+          329,
+          83
+        ]
+      ],
+      "reconstructedRingCandidatePixelCenterArea": 112.0,
+      "reconstructedRingLengthPixels": 42.62741699796952,
+      "reconstructedRingCandidateSha256": "f8bbf428904487fb10286496c247f770cb0250d2a8ee2fcae91c066dea28db67",
+      "reconstructedRingCandidateMeaning": "Literal visible chain plus the explicitly bracketed uncertain8-neighbour continuation. It is a proposed inferred reconstruction, not a fully observed source contour and not an adopted geographic output.",
+      "sourceContourIsObserved": false,
+      "wholeReconstructedRingIsFullyObserved": false,
+      "sourceReconstructionCandidateAvailable": true,
+      "reconstructionAdoptedByThisQuantificationReview": false,
+      "inheritedFrameMetreLengthsComputedByThisReview": false,
+      "geographicOutputCreated": false,
+      "automaticPrimaryApproval": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "reconstructedRingSimpleByIntegerSegmentIntersectionCheck": true,
+      "allReconstructedRingSteps8Neighbour": true,
+      "onlyRepeatedVertexIsClosingPoint": true
+    },
+    {
+      "sourceName": "Petőfi-akna",
+      "sourceLabelAnchorFigure9": [
+        515,
+        23
+      ],
+      "sourceQuarterFineUnitIdentitySupported": true,
+      "sourceWholeIslandInsideFrame": true,
+      "pixelConvention": "Original Figure9 integer source-pixel centers, zero-based upper-left,x right/y down.",
+      "visibleOuterStrokeOpenChain": [
+        {
+          "sourcePixel": [
+            503,
+            24
+          ],
+          "originalRgb": [
+            130,
+            95,
+            135
+          ]
+        },
+        {
+          "sourcePixel": [
+            503,
+            25
+          ],
+          "originalRgb": [
+            57,
+            14,
+            68
+          ]
+        },
+        {
+          "sourcePixel": [
+            503,
+            26
+          ],
+          "originalRgb": [
+            52,
+            3,
+            68
+          ]
+        },
+        {
+          "sourcePixel": [
+            504,
+            27
+          ],
+          "originalRgb": [
+            84,
+            57,
+            88
+          ]
+        },
+        {
+          "sourcePixel": [
+            504,
+            28
+          ],
+          "originalRgb": [
+            38,
+            15,
+            41
+          ]
+        },
+        {
+          "sourcePixel": [
+            503,
+            29
+          ],
+          "originalRgb": [
+            80,
+            48,
+            95
+          ]
+        },
+        {
+          "sourcePixel": [
+            502,
+            30
+          ],
+          "originalRgb": [
+            129,
+            93,
+            155
+          ]
+        },
+        {
+          "sourcePixel": [
+            501,
+            30
+          ],
+          "originalRgb": [
+            140,
+            91,
+            183
+          ]
+        },
+        {
+          "sourcePixel": [
+            500,
+            31
+          ],
+          "originalRgb": [
+            40,
+            2,
+            75
+          ]
+        },
+        {
+          "sourcePixel": [
+            500,
+            32
+          ],
+          "originalRgb": [
+            47,
+            30,
+            62
+          ]
+        },
+        {
+          "sourcePixel": [
+            500,
+            33
+          ],
+          "originalRgb": [
+            38,
+            32,
+            44
+          ]
+        },
+        {
+          "sourcePixel": [
+            500,
+            34
+          ],
+          "originalRgb": [
+            91,
+            85,
+            97
+          ]
+        },
+        {
+          "sourcePixel": [
+            499,
+            34
+          ],
+          "originalRgb": [
+            70,
+            64,
+            74
+          ]
+        },
+        {
+          "sourcePixel": [
+            498,
+            33
+          ],
+          "originalRgb": [
+            68,
+            63,
+            69
+          ]
+        },
+        {
+          "sourcePixel": [
+            497,
+            32
+          ],
+          "originalRgb": [
+            62,
+            46,
+            59
+          ]
+        },
+        {
+          "sourcePixel": [
+            497,
+            31
+          ],
+          "originalRgb": [
+            75,
+            41,
+            78
+          ]
+        },
+        {
+          "sourcePixel": [
+            496,
+            30
+          ],
+          "originalRgb": [
+            94,
+            53,
+            97
+          ]
+        },
+        {
+          "sourcePixel": [
+            496,
+            29
+          ],
+          "originalRgb": [
+            105,
+            48,
+            119
+          ]
+        },
+        {
+          "sourcePixel": [
+            495,
+            28
+          ],
+          "originalRgb": [
+            51,
+            20,
+            62
+          ]
+        },
+        {
+          "sourcePixel": [
+            495,
+            27
+          ],
+          "originalRgb": [
+            82,
+            43,
+            98
+          ]
+        },
+        {
+          "sourcePixel": [
+            494,
+            26
+          ],
+          "originalRgb": [
+            128,
+            110,
+            132
+          ]
+        },
+        {
+          "sourcePixel": [
+            494,
+            25
+          ],
+          "originalRgb": [
+            57,
+            34,
+            62
+          ]
+        },
+        {
+          "sourcePixel": [
+            494,
+            24
+          ],
+          "originalRgb": [
+            61,
+            36,
+            66
+          ]
+        },
+        {
+          "sourcePixel": [
+            493,
+            23
+          ],
+          "originalRgb": [
+            52,
+            32,
+            57
+          ]
+        },
+        {
+          "sourcePixel": [
+            493,
+            22
+          ],
+          "originalRgb": [
+            102,
+            82,
+            107
+          ]
+        },
+        {
+          "sourcePixel": [
+            494,
+            22
+          ],
+          "originalRgb": [
+            70,
+            47,
+            75
+          ]
+        },
+        {
+          "sourcePixel": [
+            495,
+            22
+          ],
+          "originalRgb": [
+            53,
+            24,
+            70
+          ]
+        },
+        {
+          "sourcePixel": [
+            496,
+            21
+          ],
+          "originalRgb": [
+            91,
+            64,
+            115
+          ]
+        },
+        {
+          "sourcePixel": [
+            497,
+            20
+          ],
+          "originalRgb": [
+            49,
+            33,
+            70
+          ]
+        },
+        {
+          "sourcePixel": [
+            497,
+            19
+          ],
+          "originalRgb": [
+            41,
+            31,
+            55
+          ]
+        },
+        {
+          "sourcePixel": [
+            498,
+            18
+          ],
+          "originalRgb": [
+            48,
+            34,
+            59
+          ]
+        },
+        {
+          "sourcePixel": [
+            499,
+            18
+          ],
+          "originalRgb": [
+            79,
+            65,
+            91
+          ]
+        },
+        {
+          "sourcePixel": [
+            500,
+            18
+          ],
+          "originalRgb": [
+            68,
+            56,
+            76
+          ]
+        },
+        {
+          "sourcePixel": [
+            501,
+            18
+          ],
+          "originalRgb": [
+            93,
+            86,
+            94
+          ]
+        }
+      ],
+      "visibleChainStepCount": 33,
+      "visibleChainLengthPixels": 38.384776310850235,
+      "visibleChainStartPixel": [
+        503,
+        24
+      ],
+      "visibleChainEndPixel": [
+        501,
+        18
+      ],
+      "uncertainIntervalType": "Uncertain quarter-stroke interpretation/visibility; not a claim that these original image pixels are absent.",
+      "uncertainIntervalEndpointPixels": [
+        [
+          501,
+          18
+        ],
+        [
+          503,
+          24
+        ]
+      ],
+      "uncertainIntervalEndpointRoles": [
+        "End of visible chain",
+        "Start of visible chain"
+      ],
+      "uncertainInternalPixelCount": 5,
+      "uncertainIntervalStepCount": 6,
+      "uncertainCandidatePixelPath": [
+        {
+          "sourcePixel": [
+            501,
+            18
+          ],
+          "originalRgb": [
+            93,
+            86,
+            94
+          ]
+        },
+        {
+          "sourcePixel": [
+            502,
+            19
+          ],
+          "originalRgb": [
+            233,
+            233,
+            223
+          ]
+        },
+        {
+          "sourcePixel": [
+            502,
+            20
+          ],
+          "originalRgb": [
+            123,
+            120,
+            115
+          ]
+        },
+        {
+          "sourcePixel": [
+            502,
+            21
+          ],
+          "originalRgb": [
+            113,
+            102,
+            108
+          ]
+        },
+        {
+          "sourcePixel": [
+            503,
+            22
+          ],
+          "originalRgb": [
+            96,
+            86,
+            87
+          ]
+        },
+        {
+          "sourcePixel": [
+            503,
+            23
+          ],
+          "originalRgb": [
+            195,
+            172,
+            192
+          ]
+        },
+        {
+          "sourcePixel": [
+            503,
+            24
+          ],
+          "originalRgb": [
+            130,
+            95,
+            135
+          ]
+        }
+      ],
+      "uncertainIntervalChainLengthPixels": 6.82842712474619,
+      "uncertainIntervalDirectChordLengthPixels": 6.324555320336759,
+      "directChordIsMeasurementOnly": true,
+      "directChordAdoptedAsBoundary": false,
+      "candidateInferredEdges": [
+        {
+          "inferredEdgeIndex": 0,
+          "sourceStartPixel": [
+            501,
+            18
+          ],
+          "sourceEndPixel": [
+            502,
+            19
+          ],
+          "sourceLengthPixels": 1.4142135623730951,
+          "startOriginalRgb": [
+            93,
+            86,
+            94
+          ],
+          "endOriginalRgb": [
+            233,
+            233,
+            223
+          ],
+          "quarterOuterStrokeIdentityOfThisEdgeConfirmed": false,
+          "frozenFrameWorldLengthMetres": null
+        },
+        {
+          "inferredEdgeIndex": 1,
+          "sourceStartPixel": [
+            502,
+            19
+          ],
+          "sourceEndPixel": [
+            502,
+            20
+          ],
+          "sourceLengthPixels": 1.0,
+          "startOriginalRgb": [
+            233,
+            233,
+            223
+          ],
+          "endOriginalRgb": [
+            123,
+            120,
+            115
+          ],
+          "quarterOuterStrokeIdentityOfThisEdgeConfirmed": false,
+          "frozenFrameWorldLengthMetres": null
+        },
+        {
+          "inferredEdgeIndex": 2,
+          "sourceStartPixel": [
+            502,
+            20
+          ],
+          "sourceEndPixel": [
+            502,
+            21
+          ],
+          "sourceLengthPixels": 1.0,
+          "startOriginalRgb": [
+            123,
+            120,
+            115
+          ],
+          "endOriginalRgb": [
+            113,
+            102,
+            108
+          ],
+          "quarterOuterStrokeIdentityOfThisEdgeConfirmed": false,
+          "frozenFrameWorldLengthMetres": null
+        },
+        {
+          "inferredEdgeIndex": 3,
+          "sourceStartPixel": [
+            502,
+            21
+          ],
+          "sourceEndPixel": [
+            503,
+            22
+          ],
+          "sourceLengthPixels": 1.4142135623730951,
+          "startOriginalRgb": [
+            113,
+            102,
+            108
+          ],
+          "endOriginalRgb": [
+            96,
+            86,
+            87
+          ],
+          "quarterOuterStrokeIdentityOfThisEdgeConfirmed": false,
+          "frozenFrameWorldLengthMetres": null
+        },
+        {
+          "inferredEdgeIndex": 4,
+          "sourceStartPixel": [
+            503,
+            22
+          ],
+          "sourceEndPixel": [
+            503,
+            23
+          ],
+          "sourceLengthPixels": 1.0,
+          "startOriginalRgb": [
+            96,
+            86,
+            87
+          ],
+          "endOriginalRgb": [
+            195,
+            172,
+            192
+          ],
+          "quarterOuterStrokeIdentityOfThisEdgeConfirmed": false,
+          "frozenFrameWorldLengthMetres": null
+        },
+        {
+          "inferredEdgeIndex": 5,
+          "sourceStartPixel": [
+            503,
+            23
+          ],
+          "sourceEndPixel": [
+            503,
+            24
+          ],
+          "sourceLengthPixels": 1.0,
+          "startOriginalRgb": [
+            195,
+            172,
+            192
+          ],
+          "endOriginalRgb": [
+            130,
+            95,
+            135
+          ],
+          "quarterOuterStrokeIdentityOfThisEdgeConfirmed": false,
+          "frozenFrameWorldLengthMetres": null
+        }
+      ],
+      "sourceInterpretationEvidence": "The dark top stroke ends at[501,18] RGB93/86/94. The visible purple eastern body stroke is certain again at[503,24] RGB130/95/135. In between, pale cap pixels and a descending gray administrative/background line are mixed. The candidate interval records five internal source pixels without claiming each belongs to the quarter stroke. The particularly pale[500,19]and[500,20]pixels are cap/interior evidence, not automatically inserted as external boundary vertices.",
+      "nativeSourceEvidence": {
+        "path": "cap-petofi-akna-figure9-native.png",
+        "sourcePixelBox": [
+          490,
+          14,
+          509,
+          37
+        ],
+        "sha256": "125c4dab3e10d28c1da659f901f714e8de7f53a237d6f7bdd5890a4c67a0d6fc"
+      },
+      "bracketPreview": {
+        "path": "cap-petofi-akna-bracket-source-preview.png",
+        "sha256": "4ffdd6e0d4395575ef20523b18c2a8172c939729629885fd625d1177795221a5",
+        "legend": "cyan=visible manual stroke chain;orange=explicitly uncertain candidate continuation, not certified observed stroke"
+      },
+      "additionalSourceSupport": [
+        {
+          "figure": 12,
+          "pdfPageOneBased": 63,
+          "originalEmbeddedJpeg": "pdf63-figure12-xref642.jpeg",
+          "originalJpegSha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788",
+          "nativeCrop": "cap-petofi-akna-figure12-native.png",
+          "cropPixelBox": [
+            820,
+            60,
+            885,
+            140
+          ],
+          "nativeCropSha256": "ad5ec43e3c1f4c106aa7eba35a54600fc4eea269445119034c4ee4f532181a25",
+          "role": "Same complete isolated named-quarter-map island and cap form; no pixel-coordinate transfer or new interfigure/geographic fit."
+        },
+        {
+          "figure": 13,
+          "pdfPageOneBased": 65,
+          "originalEmbeddedJpeg": "pdf65-figure13-xref647.jpeg",
+          "originalJpegSha256": "f46d9d8c8e40ef73ed185784150343934757c9eea9f64578c5cee9a28c5a9b0b",
+          "nativeCrop": "cap-petofi-akna-figure13-native.png",
+          "cropPixelBox": [
+            820,
+            60,
+            885,
+            140
+          ],
+          "nativeCropSha256": "32e7437478849601d55d04f1f2509ef906858b9e9c795620c58c52b479cf74ee",
+          "role": "Same complete isolated named-quarter-map island and cap form; no pixel-coordinate transfer or new interfigure/geographic fit."
+        },
+        {
+          "figure": 14,
+          "pdfPageOneBased": 67,
+          "originalEmbeddedJpeg": "pdf67-figure14-xref650.jpeg",
+          "originalJpegSha256": "afa974367aba5aeef70d110af05c6f8abfebfd3663e751a3832e16704a30d686",
+          "nativeCrop": "cap-petofi-akna-figure14-native.png",
+          "cropPixelBox": [
+            820,
+            60,
+            885,
+            140
+          ],
+          "nativeCropSha256": "eac9b4bad091b6e2958f2d8e592c76f302ef46d51f32c7c5c2072e1b7a239d76",
+          "role": "Same complete isolated named-quarter-map island and cap form; no pixel-coordinate transfer or new interfigure/geographic fit."
+        },
+        {
+          "figure": 15,
+          "pdfPageOneBased": 70,
+          "originalEmbeddedJpeg": "pdf70-figure15-xref654.jpeg",
+          "originalJpegSha256": "4d70f3e99955472cb7bd598e2c887fd71f31599c34e5721c21b52e27bb5d1150",
+          "nativeCrop": "cap-petofi-akna-figure15-native.png",
+          "cropPixelBox": [
+            820,
+            60,
+            885,
+            140
+          ],
+          "nativeCropSha256": "01b82be3b6c379c3f97e4101f7f3fa1c3c11d94feb2c999e024043d1174bdedb",
+          "role": "Same complete isolated named-quarter-map island and cap form; no pixel-coordinate transfer or new interfigure/geographic fit."
+        }
+      ],
+      "reconstructedRingCandidate": [
+        [
+          503,
+          24
+        ],
+        [
+          503,
+          25
+        ],
+        [
+          503,
+          26
+        ],
+        [
+          504,
+          27
+        ],
+        [
+          504,
+          28
+        ],
+        [
+          503,
+          29
+        ],
+        [
+          502,
+          30
+        ],
+        [
+          501,
+          30
+        ],
+        [
+          500,
+          31
+        ],
+        [
+          500,
+          32
+        ],
+        [
+          500,
+          33
+        ],
+        [
+          500,
+          34
+        ],
+        [
+          499,
+          34
+        ],
+        [
+          498,
+          33
+        ],
+        [
+          497,
+          32
+        ],
+        [
+          497,
+          31
+        ],
+        [
+          496,
+          30
+        ],
+        [
+          496,
+          29
+        ],
+        [
+          495,
+          28
+        ],
+        [
+          495,
+          27
+        ],
+        [
+          494,
+          26
+        ],
+        [
+          494,
+          25
+        ],
+        [
+          494,
+          24
+        ],
+        [
+          493,
+          23
+        ],
+        [
+          493,
+          22
+        ],
+        [
+          494,
+          22
+        ],
+        [
+          495,
+          22
+        ],
+        [
+          496,
+          21
+        ],
+        [
+          497,
+          20
+        ],
+        [
+          497,
+          19
+        ],
+        [
+          498,
+          18
+        ],
+        [
+          499,
+          18
+        ],
+        [
+          500,
+          18
+        ],
+        [
+          501,
+          18
+        ],
+        [
+          502,
+          19
+        ],
+        [
+          502,
+          20
+        ],
+        [
+          502,
+          21
+        ],
+        [
+          503,
+          22
+        ],
+        [
+          503,
+          23
+        ],
+        [
+          503,
+          24
+        ]
+      ],
+      "reconstructedRingCandidatePixelCenterArea": 102.5,
+      "reconstructedRingLengthPixels": 45.21320343559643,
+      "reconstructedRingCandidateSha256": "7c5e3a7fd162a480d9297018087d89ea1a57cee1a188bdcc0293ff1f87f19df0",
+      "reconstructedRingCandidateMeaning": "Literal visible chain plus the explicitly bracketed uncertain8-neighbour continuation. It is a proposed inferred reconstruction, not a fully observed source contour and not an adopted geographic output.",
+      "sourceContourIsObserved": false,
+      "wholeReconstructedRingIsFullyObserved": false,
+      "sourceReconstructionCandidateAvailable": true,
+      "reconstructionAdoptedByThisQuantificationReview": false,
+      "inheritedFrameMetreLengthsComputedByThisReview": false,
+      "geographicOutputCreated": false,
+      "automaticPrimaryApproval": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "reconstructedRingSimpleByIntegerSegmentIntersectionCheck": true,
+      "allReconstructedRingSteps8Neighbour": true,
+      "onlyRepeatedVertexIsClosingPoint": true
+    }
+  ],
+  "sourcePixelUnitsAreNotWorldAccuracy": "Any later inherited-frame metre lengths are only coordinate-grid diagnostics and must not become an absolute error bound or accuracy claim.",
+  "newWorldGeometriesCreated": 0,
+  "reconstructionDecisionPending": true,
+  "automaticPrimaryApproval": false,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false,
+  "completedFrozenSourcePackagesChanged": false,
+  "networkUsed": false
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "status": "pass_five_observed_source_contours_plus_two_separate_low_confidence_reconstructions_inferred_only",
+  "scope": "Final index of a bounded source-by-source review of the seven previously missing Pecs names. Complete source evidence, manual traces, exact cell corrections and explicit cap inferences are kept distinct.",
+  "additionalObservedSourceContourCount": 5,
+  "lowConfidenceReconstructedCandidateCount": 2,
+  "newCandidateGeometryCount": 7,
+  "sourceDocumentCoverage": "65 observed source contours +2 reconstructed candidates; not 67 verified/current boundaries.",
+  "firstAndRemainingCohortsChanged": false,
+  "rootRegistryOrExportsChangedByThisBatch": false,
+  "newGeographicModelFitted": false,
+  "primaryApprovedCount": 0,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false,
+  "reviews": [
+    {
+      "path": "pdf-bounded-seven-gap-review.json",
+      "sha256": "bbb3344e2b4f52c80e30a18621fb2123c592e94d563592d1d0692d4552eef496"
+    },
+    {
+      "path": "independent-kisbalokany-siklosi-name-review.json",
+      "sha256": "486c49e828b6f48c8f373151ccfe40cf18b4b9b6c8210a161916a27e4ae63559"
+    },
+    {
+      "path": "independent-manual-islands-review.json",
+      "sha256": "01fb1b4cfeb1064e0b24f2e273eaea36c2f77c916d168b2097a524f7ed9d7f41"
+    },
+    {
+      "path": "independent-manual-hatched-review.json",
+      "sha256": "0b9ff33ad199d66ca582031e4f65bebd4f39e245c6c9a559cec5da01e44fb599"
+    },
+    {
+      "path": "independent-final-gap-review.json",
+      "sha256": "f43eadb757de17ef3bccd6397ad6ebacf2381d4571cbdaafc4a10e98e35a97fc"
+    },
+    {
+      "path": "remaining-cap-source-quantification.json",
+      "sha256": "46e210f5e6c5c3db32f40577fb56c1bf6e55f2394fdd3d62d94943d6dfdac3b3"
+    },
+    {
+      "path": "independent-cap-review.json",
+      "sha256": "2b2db4a81609c93a69c59c9d80303b21645f7ca0c0a7df2889963ac3d837b6b5"
+    }
+  ],
+  "coverageAccounting": "source-coverage-accounting.json",
+  "observedSourceFile": "source-inferred.geojson",
+  "reconstructedSourceFile": "reconstructed-cap-inferred.geojson",
+  "localImportSuggestionsNotApplied": [
+    "registry-entry.json",
+    "registry-entry-caps.json"
+  ]
+}

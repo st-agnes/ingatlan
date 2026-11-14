@@ -1,0 +1,34 @@
+[
+  {
+    "id": "debrecen-count",
+    "url": "https://services5.arcgis.com/lH5T9SRuBL94XELY/arcgis/rest/services/Debrecen_nehézfémszennyezés_városrészek_szerint_WFL1/FeatureServer/0/query?f=json&where=1%3D1&returnCountOnly=true",
+    "kind": "json",
+    "method": "GET",
+    "purpose": "Bounded public read-only query; native curve-preserving original + service WGS84comparison; no soil measurements",
+    "pagination": null
+  },
+  {
+    "id": "debrecen-ids",
+    "url": "https://services5.arcgis.com/lH5T9SRuBL94XELY/arcgis/rest/services/Debrecen_nehézfémszennyezés_városrészek_szerint_WFL1/FeatureServer/0/query?f=json&where=1%3D1&returnIdsOnly=true",
+    "kind": "json",
+    "method": "GET",
+    "purpose": "Bounded public read-only query; native curve-preserving original + service WGS84comparison; no soil measurements",
+    "pagination": null
+  },
+  {
+    "id": "debrecen-native-page0",
+    "url": "https://services5.arcgis.com/lH5T9SRuBL94XELY/arcgis/rest/services/Debrecen_nehézfémszennyezés_városrészek_szerint_WFL1/FeatureServer/0/query?f=json&where=1%3D1&outFields=FID%2Ctipus%2Cnev&returnGeometry=true&returnTrueCurves=true&orderByFields=FID+ASC&resultOffset=0&resultRecordCount=100",
+    "kind": "json",
+    "method": "GET",
+    "purpose": "Bounded public read-only query; native curve-preserving original + service WGS84comparison; no soil measurements",
+    "pagination": "first100orderedIDs; obtain more only if complete count/ID inventory requires it"
+  },
+  {
+    "id": "debrecen-geojson-page0",
+    "url": "https://services5.arcgis.com/lH5T9SRuBL94XELY/arcgis/rest/services/Debrecen_nehézfémszennyezés_városrészek_szerint_WFL1/FeatureServer/0/query?f=geojson&where=1%3D1&outFields=FID%2Ctipus%2Cnev&returnGeometry=true&outSR=4326&orderByFields=FID+ASC&resultOffset=0&resultRecordCount=100",
+    "kind": "json",
+    "method": "GET",
+    "purpose": "Bounded public read-only query; native curve-preserving original + service WGS84comparison; no soil measurements",
+    "pagination": "first100orderedIDs; obtain more only if complete count/ID inventory requires it"
+  }
+]

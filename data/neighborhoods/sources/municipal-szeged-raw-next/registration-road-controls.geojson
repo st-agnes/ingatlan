@@ -1,0 +1,1446 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "osm:way:1086725955",
+      "properties": {
+        "name": "Moszkvai körút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 1086725955,
+          "url": "https://www.openstreetmap.org/way/1086725955",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            459810880,
+            30849519
+          ],
+          "tags": {
+            "access:lanes:backward": "yes|yes|no",
+            "access:lanes:forward": "yes|yes|no",
+            "bicycle:lanes:backward": "no|no|designated",
+            "bicycle:lanes:forward": "no|no|designated",
+            "cycleway:both": "lane",
+            "cycleway:lanes:backward": "no|no|lane",
+            "cycleway:lanes:forward": "no|no|lane",
+            "cycleway:left:lane": "exclusive",
+            "cycleway:right:lane": "exclusive",
+            "highway": "primary",
+            "lanes": "4",
+            "maxspeed": "50",
+            "name": "Moszkvai körút",
+            "priority_road": "yes",
+            "ref": "5",
+            "ref:HU:mkasz": "9203",
+            "sidewalk": "both",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "through|through",
+            "width:lanes:backward": "3|3|1",
+            "width:lanes:forward": "3|3|1"
+          },
+          "objectVersion": 7,
+          "objectTimestamp": "2026-09-24 16:26:48+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1382824,
+            46.2471568
+          ],
+          [
+            20.1383104,
+            46.2470913
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1104675528",
+      "properties": {
+        "name": "Csongrádi sugárút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 1104675528,
+          "url": "https://www.openstreetmap.org/way/1104675528",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            30752207,
+            968058934
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "cycleway:both": "no",
+            "highway": "secondary",
+            "lanes": "5",
+            "lanes:backward": "3",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Csongrádi sugárút",
+            "oneway": "no",
+            "priority_road": "designated",
+            "ref": "4519",
+            "ref:HU:mkasz": "9276",
+            "sidewalk:both": "separate",
+            "smoothness": "good",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes:backward": "left|through|through"
+          },
+          "objectVersion": 5,
+          "objectTimestamp": "2026-09-24 17:58:40+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1484748,
+            46.2722738
+          ],
+          [
+            20.1485412,
+            46.2721995
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1357186098",
+      "properties": {
+        "name": "Petőfi Sándor sugárút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 1357186098,
+          "url": "https://www.openstreetmap.org/way/1357186098",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            30849519,
+            5212328928,
+            12561149997
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Petőfi Sándor sugárút",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|through"
+          },
+          "objectVersion": 1,
+          "objectTimestamp": "2025-02-06 11:03:04+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1383104,
+            46.2470913
+          ],
+          [
+            20.1384847,
+            46.247176
+          ],
+          [
+            20.1390395,
+            46.2474457
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:182658820",
+      "properties": {
+        "name": "Kossuth Lajos sugárút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 182658820,
+          "url": "https://www.openstreetmap.org/way/182658820",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            1403791825,
+            12541065651,
+            4675154940,
+            27186748
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "3",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Kossuth Lajos sugárút",
+            "oneway": "yes",
+            "priority_road": "yes",
+            "ref": "5",
+            "ref:HU:mkasz": "5221",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes": "reverse;left|left|through"
+          },
+          "objectVersion": 13,
+          "objectTimestamp": "2026-09-24 17:58:40+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1425833,
+            46.2587473
+          ],
+          [
+            20.1427656,
+            46.2586548
+          ],
+          [
+            20.1428626,
+            46.2586055
+          ],
+          [
+            20.1429872,
+            46.2585463
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:206766790",
+      "properties": {
+        "name": "Kálvária sugárút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 206766790,
+          "url": "https://www.openstreetmap.org/way/206766790",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            903972345,
+            1111400534,
+            512060221,
+            27186847,
+            6579001852,
+            11343944230,
+            4218349947,
+            27186846
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Kálvária sugárút",
+            "oneway": "yes",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "objectVersion": 13,
+          "objectTimestamp": "2023-11-12 18:33:17+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1436107,
+            46.251132
+          ],
+          [
+            20.1434309,
+            46.2511571
+          ],
+          [
+            20.1427549,
+            46.2512683
+          ],
+          [
+            20.1406806,
+            46.2516
+          ],
+          [
+            20.1405842,
+            46.2516162
+          ],
+          [
+            20.1398633,
+            46.2517358
+          ],
+          [
+            20.1388948,
+            46.2518964
+          ],
+          [
+            20.138692,
+            46.2519321
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:218908638",
+      "properties": {
+        "name": "Budapesti körút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 218908638,
+          "url": "https://www.openstreetmap.org/way/218908638",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            30766136,
+            3990509531,
+            31236832,
+            3930869457
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "cycleway:both": "separate",
+            "highway": "tertiary",
+            "lanes": "5",
+            "lanes:backward": "3",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "maxspeed:type": "sign",
+            "name": "Budapesti körút",
+            "sidewalk:both": "separate",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|through|through"
+          },
+          "objectVersion": 16,
+          "objectTimestamp": "2026-04-12 16:21:34+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1592392,
+            46.2725928
+          ],
+          [
+            20.1594123,
+            46.2725614
+          ],
+          [
+            20.1596859,
+            46.2725156
+          ],
+          [
+            20.1600491,
+            46.2724404
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:231722369",
+      "properties": {
+        "name": "Bécsi körút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 231722369,
+          "url": "https://www.openstreetmap.org/way/231722369",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            30849519,
+            5726687373,
+            6579001843,
+            1403708400
+          ],
+          "tags": {
+            "access:lanes:backward": "yes|yes|no",
+            "access:lanes:forward": "yes|yes|no",
+            "bicycle:lanes:backward": "no|no|designated",
+            "bicycle:lanes:forward": "no|no|designated",
+            "cycleway:both": "lane",
+            "cycleway:lanes:backward": "no|no|lane",
+            "cycleway:lanes:forward": "no|no|lane",
+            "cycleway:left:lane": "exclusive",
+            "cycleway:right:lane": "exclusive",
+            "highway": "tertiary",
+            "lanes": "4",
+            "lanes:backward": "2",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "Bécsi körút",
+            "parking:lane:both": "no",
+            "sidewalk": "both",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "through|through;right",
+            "width:lanes:backward": "3|3|1",
+            "width:lanes:forward": "3|3|1"
+          },
+          "objectVersion": 19,
+          "objectTimestamp": "2023-10-22 12:43:18+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1383104,
+            46.2470913
+          ],
+          [
+            20.1383953,
+            46.2469728
+          ],
+          [
+            20.1384199,
+            46.2469354
+          ],
+          [
+            20.1384525,
+            46.2468929
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:231722388",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 231722388,
+          "url": "https://www.openstreetmap.org/way/231722388",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            30766136,
+            3990509528,
+            3930869465
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "through|through"
+          },
+          "objectVersion": 23,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1592392,
+            46.2725928
+          ],
+          [
+            20.1591451,
+            46.2724687
+          ],
+          [
+            20.1589588,
+            46.2721439
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:344064456",
+      "properties": {
+        "name": "Csongrádi sugárút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 344064456,
+          "url": "https://www.openstreetmap.org/way/344064456",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            3508221185,
+            30752207
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "cycleway:both": "no",
+            "highway": "secondary",
+            "lanes": "4",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Csongrádi sugárút",
+            "ref": "4519",
+            "ref:HU:mkasz": "5810",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "objectVersion": 10,
+          "objectTimestamp": "2026-09-24 17:58:40+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1483619,
+            46.272404
+          ],
+          [
+            20.1484748,
+            46.2722738
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:344064465",
+      "properties": {
+        "name": "Makkosházi körút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 344064465,
+          "url": "https://www.openstreetmap.org/way/344064465",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            30752207,
+            3508221177,
+            3508221179
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "cycleway:left": "no",
+            "cycleway:right": "separate",
+            "highway": "secondary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Makkosházi körút",
+            "oneway": "yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "objectVersion": 15,
+          "objectTimestamp": "2026-02-21 07:09:17+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1484748,
+            46.2722738
+          ],
+          [
+            20.148722,
+            46.2722866
+          ],
+          [
+            20.1492922,
+            46.2723165
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:344064476",
+      "properties": {
+        "name": "Rókusi körút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 344064476,
+          "url": "https://www.openstreetmap.org/way/344064476",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            3508221170,
+            3508221175,
+            30752207
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "cycleway:left": "no",
+            "cycleway:right": "separate",
+            "highway": "secondary",
+            "lanes": "3",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Rókusi körút",
+            "oneway": "yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes": "left|through|through"
+          },
+          "objectVersion": 14,
+          "objectTimestamp": "2026-02-21 07:09:17+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1477647,
+            46.2722366
+          ],
+          [
+            20.1482967,
+            46.2722647
+          ],
+          [
+            20.1484748,
+            46.2722738
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:367094766",
+      "properties": {
+        "name": "Csongrádi sugárút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 367094766,
+          "url": "https://www.openstreetmap.org/way/367094766",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            3710519282,
+            4308628295,
+            30452238
+          ],
+          "tags": {
+            "bicycle:lanes:forward": "yes|yes|designated",
+            "cycleway:both": "lane",
+            "cycleway:both:lane": "exclusive",
+            "cycleway:lanes:forward": "no|no|lane",
+            "highway": "secondary",
+            "lanes": "4",
+            "lanes:backward": "2",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Csongrádi sugárút",
+            "priority_road": "designated",
+            "ref": "4519",
+            "ref:HU:mkasz": "9276",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes:forward": "left|left;through|through",
+            "vehicle:lanes:forward": "yes|yes|no",
+            "width:lanes:forward": "3|3|1.2"
+          },
+          "objectVersion": 17,
+          "objectTimestamp": "2026-09-24 17:58:40+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1508925,
+            46.2619148
+          ],
+          [
+            20.1508632,
+            46.2616321
+          ],
+          [
+            20.1508524,
+            46.2615273
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:367094768",
+      "properties": {
+        "name": "Petőfi Sándor sugárút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 367094768,
+          "url": "https://www.openstreetmap.org/way/367094768",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            2343776604,
+            6579001854,
+            30849519
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "Petőfi Sándor sugárút",
+            "priority_road": "yes",
+            "ref": "5",
+            "ref:HU:mkasz": "9204",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|left;through"
+          },
+          "objectVersion": 7,
+          "objectTimestamp": "2026-09-24 16:26:48+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1379478,
+            46.2469072
+          ],
+          [
+            20.1381993,
+            46.2470349
+          ],
+          [
+            20.1383104,
+            46.2470913
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:38062666",
+      "properties": {
+        "name": "Kálvária sugárút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 38062666,
+          "url": "https://www.openstreetmap.org/way/38062666",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            27186846,
+            1403708589,
+            4218361205
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "1",
+            "maxspeed": "50",
+            "name": "Kálvária sugárút",
+            "oneway": "yes",
+            "priority_road": "yes",
+            "ref": "55",
+            "ref:HU:mkasz": "9890",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "objectVersion": 17,
+          "objectTimestamp": "2026-09-24 16:34:24+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.138692,
+            46.2519321
+          ],
+          [
+            20.1385334,
+            46.2519575
+          ],
+          [
+            20.138361,
+            46.2519867
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:390489399",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 390489399,
+          "url": "https://www.openstreetmap.org/way/390489399",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            3936334501,
+            951665924,
+            30766136
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "4",
+            "lanes:backward": "2",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "9219",
+            "sidewalk:both": "separate",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through"
+          },
+          "objectVersion": 11,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1594191,
+            46.2727614
+          ],
+          [
+            20.1593303,
+            46.272687
+          ],
+          [
+            20.1592392,
+            46.2725928
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:4795303",
+      "properties": {
+        "name": "Makkosházi körút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 4795303,
+          "url": "https://www.openstreetmap.org/way/4795303",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            30766136,
+            11601630163,
+            11601630162,
+            968058928
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "cycleway:both": "separate",
+            "highway": "secondary",
+            "lanes": "6",
+            "lanes:backward": "4",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "maxspeed:type": "sign",
+            "name": "Makkosházi körút",
+            "sidewalk:both": "separate",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|left|through|through"
+          },
+          "objectVersion": 28,
+          "objectTimestamp": "2026-04-12 16:21:31+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1592392,
+            46.2725928
+          ],
+          [
+            20.1590956,
+            46.2726122
+          ],
+          [
+            20.1590468,
+            46.2726189
+          ],
+          [
+            20.1589697,
+            46.2726293
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:4806584",
+      "properties": {
+        "name": "Moszkvai körút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 4806584,
+          "url": "https://www.openstreetmap.org/way/4806584",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            27186846,
+            2429619204
+          ],
+          "tags": {
+            "class:bicycle": "-2",
+            "class:bicycle:non_experienced": "-3",
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "2",
+            "lanes:both_ways": "1",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "Moszkvai körút",
+            "priority_road": "yes",
+            "ref": "5",
+            "ref:HU:mkasz": "3814",
+            "sidewalk": "both",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:both_ways": "reversible",
+            "turn:lanes:forward": "through|through"
+          },
+          "objectVersion": 17,
+          "objectTimestamp": "2026-09-24 16:26:48+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.138692,
+            46.2519321
+          ],
+          [
+            20.1386756,
+            46.2518787
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:4937501",
+      "properties": {
+        "name": "Kossuth Lajos sugárút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 4937501,
+          "url": "https://www.openstreetmap.org/way/4937501",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            27186748,
+            1403709217,
+            6579001846,
+            4672318711,
+            4672318712,
+            410221048,
+            6579001849,
+            1125354042,
+            6900028254,
+            410221052,
+            6579001859,
+            410221057
+          ],
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Kossuth Lajos sugárút",
+            "oneway": "yes",
+            "priority_road": "designated",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "width": "18"
+          },
+          "objectVersion": 23,
+          "objectTimestamp": "2025-01-29 07:34:28+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1429872,
+            46.2585463
+          ],
+          [
+            20.1431978,
+            46.2584418
+          ],
+          [
+            20.1432131,
+            46.2584337
+          ],
+          [
+            20.1436571,
+            46.2581978
+          ],
+          [
+            20.1442085,
+            46.2579049
+          ],
+          [
+            20.1450393,
+            46.2574658
+          ],
+          [
+            20.1451561,
+            46.2574
+          ],
+          [
+            20.1455146,
+            46.2572026
+          ],
+          [
+            20.1460008,
+            46.2569439
+          ],
+          [
+            20.1461923,
+            46.256842
+          ],
+          [
+            20.1463005,
+            46.2567856
+          ],
+          [
+            20.1470679,
+            46.2563856
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:4937502",
+      "properties": {
+        "name": "Párizsi körút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 4937502,
+          "url": "https://www.openstreetmap.org/way/4937502",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            27186748,
+            4675154938,
+            1403791813
+          ],
+          "tags": {
+            "class:bicycle": "-2",
+            "class:bicycle:non_experienced": "-3",
+            "highway": "primary",
+            "lanes": "7",
+            "lanes:backward": "4",
+            "lanes:forward": "3",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Párizsi körút",
+            "priority_road": "yes",
+            "ref": "5",
+            "ref:HU:mkasz": "3814",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes:backward": "left|left|through|through;right"
+          },
+          "objectVersion": 18,
+          "objectTimestamp": "2026-09-24 16:26:48+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1429872,
+            46.2585463
+          ],
+          [
+            20.1429358,
+            46.2584937
+          ],
+          [
+            20.1427551,
+            46.258302
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:515861139",
+      "properties": {
+        "name": "Csongrádi sugárút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 515861139,
+          "url": "https://www.openstreetmap.org/way/515861139",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            5596620395,
+            4308628292,
+            30452238
+          ],
+          "tags": {
+            "bicycle:backward": "use_sidepath",
+            "bicycle:lanes:backward": "no",
+            "bicycle:lanes:forward": "yes|no|designated",
+            "cycleway:lanes:forward": "no|no|lane",
+            "cycleway:left": "separate",
+            "cycleway:right": "lane",
+            "cycleway:right:lane": "exclusive",
+            "highway": "tertiary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Csongrádi sugárút",
+            "oneway": "no",
+            "oneway:bicycle": "yes",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes:forward": "left;through|right;through|right;through",
+            "vehicle:lanes:forward": "yes|yes|no",
+            "width:lanes:backward": "3",
+            "width:lanes:forward": "3|3|1.3"
+          },
+          "objectVersion": 17,
+          "objectTimestamp": "2023-02-04 12:28:53+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1507873,
+            46.2608841
+          ],
+          [
+            20.1508368,
+            46.2613763
+          ],
+          [
+            20.1508524,
+            46.2615273
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:616989347",
+      "properties": {
+        "name": "Párizsi körút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 616989347,
+          "url": "https://www.openstreetmap.org/way/616989347",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            4306682034,
+            7066533929,
+            27186748
+          ],
+          "tags": {
+            "class:bicycle": "-2",
+            "class:bicycle:non_experienced": "-3",
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "4",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Párizsi körút",
+            "priority_road": "yes",
+            "ref": "5",
+            "ref:HU:mkasz": "3814",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "objectVersion": 10,
+          "objectTimestamp": "2026-09-24 16:26:48+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.143041,
+            46.2585945
+          ],
+          [
+            20.1430299,
+            46.2585846
+          ],
+          [
+            20.1429872,
+            46.2585463
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:756576174",
+      "properties": {
+        "name": "Londoni körút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 756576174,
+          "url": "https://www.openstreetmap.org/way/756576174",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            4218361202,
+            1245476336,
+            27186846
+          ],
+          "tags": {
+            "class:bicycle": "-2",
+            "class:bicycle:non_experienced": "-3",
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "2",
+            "lanes:forward": "3",
+            "maxspeed": "50",
+            "name": "Londoni körút",
+            "priority_road": "yes",
+            "ref": "5",
+            "ref:HU:mkasz": "3814",
+            "sidewalk": "both",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through|through"
+          },
+          "objectVersion": 9,
+          "objectTimestamp": "2026-09-24 16:26:48+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.138752,
+            46.2521423
+          ],
+          [
+            20.1387055,
+            46.2519795
+          ],
+          [
+            20.138692,
+            46.2519321
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:759435668",
+      "properties": {
+        "name": "Brüsszeli körút",
+        "source": {
+          "provider": "OpenStreetMap",
+          "osmType": "way",
+          "osmId": 759435668,
+          "url": "https://www.openstreetmap.org/way/759435668",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "nodeRefs": [
+            3710519279,
+            4308628294,
+            30452238
+          ],
+          "tags": {
+            "class:bicycle": "-2",
+            "class:bicycle:non_experienced": "-3",
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "2",
+            "lanes:forward": "3",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Brüsszeli körút",
+            "priority_road": "designated",
+            "ref": "43",
+            "ref:HU:mkasz": "5224",
+            "sidewalk:left": "yes",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes:forward": "slight_left|through|through"
+          },
+          "objectVersion": 8,
+          "objectTimestamp": "2026-09-24 16:26:48+00:00",
+          "geometryUnmodified": true,
+          "geometryProcessing": "Complete original node sequence; selection bounds never used for clipping or generating a contour.",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1516184,
+            46.2615533
+          ],
+          [
+            20.1509748,
+            46.2615344
+          ],
+          [
+            20.1508524,
+            46.2615273
+          ]
+        ]
+      }
+    }
+  ]
+}

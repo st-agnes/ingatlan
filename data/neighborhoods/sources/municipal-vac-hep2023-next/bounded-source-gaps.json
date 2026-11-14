@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "primaryVacFeaturesAtResearchStart": 0,
+  "sourceParents": 5,
+  "sourceFineChildrenListed": 20,
+  "proposedAdditionalFineEstimatedFeatures": 1,
+  "proposedName": "Mária-liget",
+  "promotedParentGeometries": 0,
+  "sourceParentsAndChildNamesPath": "hierarchy-and-source-facts.json",
+  "currentPlacePointInventoryCountPreviouslyObserved": 38,
+  "placePointCountIsNotCompletenessDenominator": true,
+  "unadmittedKisderecske": "Actual source child name; source-bottom-frame closure and positive outside-municipality area remain unresolved. Preserve scout exactly; no clipping/shift.",
+  "mariaRoadChainNotAutomaticallyAssembled": true,
+  "unresolvedProseBoundaryRoadNames": [
+    "Árvácska utca",
+    "0186/3 road"
+  ],
+  "localLiteralArvacskaScan": {
+    "ignoredRawAcquisitionPath": ".local/neighborhoods/vac-hep2023-work/all-local-roads-rails-waterways.geojson",
+    "ignoredRawAcquisitionSha256": "904aca89b457c873a2446fb4ecd7cc54f2c25bde0118b838220aeb63139f7443",
+    "literalLocalWayCount": 8940,
+    "literalArvacskaWays": 2,
+    "literalArvacskaWaysIntersectVac": 0,
+    "actualOutsideWayIds": [
+      "osm:way:645122776",
+      "osm:way:645122778"
+    ],
+    "meaning": "The nearby exact-name roads belong outside the frozen Vác municipality; no road-name alias or invented connector is adopted."
+  },
+  "otherFineNamesDisposition": "Identity labels retained, no polygons admitted where distinct closed child extents cannot be separated confidently at native raster resolution.",
+  "remainingSourceMapGap": "Map reference year/CRS/absolute placement and current extent unknown. Higher-resolution or georeferenced evidence is needed for further fine-child contours.",
+  "completeMunicipalOrNationalCoverageClaimed": false,
+  "currentMáriaLigetPointDiagnostic": "The actual exact map-name place point is just outside the reconciled concave contour under fixed road-only registration. This is a disclosed identity/location disagreement, not a fitted control or reason to alter the source trace."
+}

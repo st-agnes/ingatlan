@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "sourcePbfPath": ".local/neighborhoods/hungary-latest.osm.pbf",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "sourcePbfBytes": 329791850,
+  "osmTimestamp": "2026-11-12T21:23:05Z",
+  "completeWays": 80,
+  "actualPlaceNamePoints": 5,
+  "boundsSelectOnly": [
+    19.7,
+    46.57,
+    20.03,
+    46.87
+  ],
+  "broadLocalWaysInspected": 6590,
+  "broadLocalNamePointsInspected": 53,
+  "retentionMeaning": "Only actual control/holdout streets, road/rail context and five identity points; no way geometry clipping.",
+  "coordinateClippingSnappingOrRepair": false,
+  "namePointsUsedForFit": false,
+  "outputs": [
+    {
+      "path": "source-road-rail-reference.geojson",
+      "sha256": "3cefafe60bf7b3eeeca3b557f9a5b8d2758836333b66d51c085437f87905101b"
+    },
+    {
+      "path": "source-name-points.geojson",
+      "sha256": "37e83a4a088b6cb8a6144bfa528a40be2b04cdef3ff402536f24179fabdb1a46"
+    }
+  ]
+}

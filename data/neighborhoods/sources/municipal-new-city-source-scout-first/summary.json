@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "scope": [
+    "Hódmezővásárhely",
+    "Szentes",
+    "Baja"
+  ],
+  "scopeBounded": true,
+  "officialQuarterPolygonsAcquired": 0,
+  "independentlyReviewedInferredFirstCandidates": 2,
+  "candidates": [
+    {
+      "municipality": "Hódmezővásárhely",
+      "name": "Hódtó",
+      "cohort": "../municipal-hodmezovasarhely-hodto-first",
+      "entry": "package-registry-entry.json",
+      "featureCount": 1,
+      "confidence": "low",
+      "sourceEra": "2014 definition/current OSM linework"
+    },
+    {
+      "municipality": "Szentes",
+      "name": "Belváros",
+      "cohort": "../municipal-szentes-belvaros-first",
+      "entry": "registry-entry.json",
+      "featureCount": 1,
+      "confidence": "low",
+      "sourceEra": "Older2009/2010-era IVS,2015 municipal reupload/current OSM linework"
+    }
+  ],
+  "unresolved": [
+    {
+      "municipality": "Hódmezővásárhely",
+      "name": "Belváros",
+      "reason": "Literal2014 circuit omits observed intermediary streets; later expanded circuit and square/wall interpretation not closed into an approved candidate.",
+      "proof": "hod-next-circuit-research.json"
+    },
+    {
+      "municipality": "Hódmezővásárhely",
+      "name": "Kertváros",
+      "reason": "Source rail-number/current physical-route ambiguity and endpoint gaps remain unresolved.",
+      "proof": "hod-next-circuit-graph-audit.json"
+    },
+    {
+      "municipality": "Baja",
+      "reason": "Coarse macro-quarter inventories and historical partial boundary descriptions found; usable fine-quarter contour or closed circuit not acquired in this bounded scout.",
+      "proof": "source-scout-research.json"
+    }
+  ],
+  "geometryCountInThisResearchPacket": 0,
+  "noNewGeometryConstructed": true,
+  "sourceContourIsObserved": false,
+  "onlineAbsenceClaim": false,
+  "usableForAddressAssignment": false,
+  "reproductionLimit": "This packet preserves bounded source facts, access observations and negative graph diagnostics, not standalone geometry conversion. The two separate inferred first-candidate cohorts contain pinned geometry inputs and replay/audit scripts. Any diagnostics referring to staging construction files are historical research provenance, not acquisition credit."
+}

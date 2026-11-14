@@ -1,0 +1,2656 @@
+{
+  "schemaVersion": 1,
+  "inputPath": "literal-roads-waterways.geojson",
+  "inputSha256": "b0ad88c5a517f9ddd58ec890a27992544af7853bb6ae235e89d38489e25049a6",
+  "junctions": [
+    {
+      "id": "67/Kapos",
+      "before": "67",
+      "after": "Kapos",
+      "coordinate": [
+        17.784604205639365,
+        46.35312674254195
+      ],
+      "type": "analytical_road_water_crossing",
+      "nodeRef": null,
+      "method": "Intersection of actual OSM polyline segments in WGS84 longitude/latitude; no snapping or extension"
+    },
+    {
+      "id": "Kapos/Zselic",
+      "before": "Kapos",
+      "after": "Zselic",
+      "coordinate": [
+        17.8035005,
+        46.3495253
+      ],
+      "type": "shared_osm_node",
+      "nodeRef": 290209038,
+      "method": "Exact common original OSM node"
+    },
+    {
+      "id": "Zselic/Szigetvári",
+      "before": "Zselic",
+      "after": "Szigetvári",
+      "coordinate": [
+        17.799732295342796,
+        46.34176696081987
+      ],
+      "type": "analytical_road_water_crossing",
+      "nodeRef": null,
+      "method": "Intersection of actual OSM polyline segments in WGS84 longitude/latitude; no snapping or extension"
+    },
+    {
+      "id": "Szigetvári/67",
+      "before": "Szigetvári",
+      "after": "67",
+      "coordinate": [
+        17.8054899,
+        46.3315687
+      ],
+      "type": "shared_osm_node",
+      "nodeRef": 27421028,
+      "method": "Exact common original OSM node"
+    }
+  ],
+  "arcs": [
+    {
+      "name": "Kapos",
+      "startJunction": "67/Kapos",
+      "endJunction": "Kapos/Zselic",
+      "pathRule": "Shortest path on actual same-group OSM node-reference topology, split only at the intended end intersections. One-way traffic restrictions do not constrain a boundary trace.",
+      "nodeIds": [
+        "intersection:67/Kapos",
+        "osm:290209044",
+        "osm:8391220672",
+        "osm:290209043",
+        "osm:290209042",
+        "osm:355885768",
+        "osm:290209041",
+        "osm:9335988288",
+        "osm:290209040",
+        "osm:2402794449",
+        "osm:290209039",
+        "osm:12762960449",
+        "osm:290209038"
+      ],
+      "coordinates": [
+        [
+          17.784604205639365,
+          46.35312674254195
+        ],
+        [
+          17.7901068,
+          46.3522721
+        ],
+        [
+          17.7909068,
+          46.3521315
+        ],
+        [
+          17.7913358,
+          46.3520261
+        ],
+        [
+          17.7927993,
+          46.3515524
+        ],
+        [
+          17.7954474,
+          46.350685
+        ],
+        [
+          17.7979142,
+          46.3500539
+        ],
+        [
+          17.7986826,
+          46.3498586
+        ],
+        [
+          17.8009051,
+          46.3492939
+        ],
+        [
+          17.8012893,
+          46.3492598
+        ],
+        [
+          17.801631,
+          46.3492724
+        ],
+        [
+          17.8034245,
+          46.3495056
+        ],
+        [
+          17.8035005,
+          46.3495253
+        ]
+      ],
+      "segments": [
+        {
+          "sourceWayId": 31859977,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            290209045,
+            290209044
+          ],
+          "fromFraction": 0.027157038182156517,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 31859977,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            290209044,
+            8391220672
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 31859977,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            8391220672,
+            290209043
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 31859977,
+          "sourceSegmentIndex": 3,
+          "sourceNodeRefs": [
+            290209043,
+            290209042
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 31859977,
+          "sourceSegmentIndex": 4,
+          "sourceNodeRefs": [
+            290209042,
+            355885768
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 31859977,
+          "sourceSegmentIndex": 5,
+          "sourceNodeRefs": [
+            355885768,
+            290209041
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 31859977,
+          "sourceSegmentIndex": 6,
+          "sourceNodeRefs": [
+            290209041,
+            9335988288
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 31859977,
+          "sourceSegmentIndex": 7,
+          "sourceNodeRefs": [
+            9335988288,
+            290209040
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 31859977,
+          "sourceSegmentIndex": 8,
+          "sourceNodeRefs": [
+            290209040,
+            2402794449
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 31859977,
+          "sourceSegmentIndex": 9,
+          "sourceNodeRefs": [
+            2402794449,
+            290209039
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 31859977,
+          "sourceSegmentIndex": 10,
+          "sourceNodeRefs": [
+            290209039,
+            12762960449
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 31859977,
+          "sourceSegmentIndex": 11,
+          "sourceNodeRefs": [
+            12762960449,
+            290209038
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        }
+      ],
+      "lengthMetresEov": 1533.016945201636,
+      "originalWayIds": [
+        31859977
+      ]
+    },
+    {
+      "name": "Zselic",
+      "startJunction": "Kapos/Zselic",
+      "endJunction": "Zselic/Szigetvári",
+      "pathRule": "Shortest path on actual same-group OSM node-reference topology, split only at the intended end intersections. One-way traffic restrictions do not constrain a boundary trace.",
+      "nodeIds": [
+        "osm:290209038",
+        "osm:12762960451",
+        "osm:361226925",
+        "osm:361226926",
+        "osm:361226927",
+        "osm:361226928",
+        "osm:361226931",
+        "osm:361226935",
+        "osm:361226936",
+        "osm:361226939",
+        "osm:361226940",
+        "osm:361226941",
+        "osm:361226944",
+        "intersection:Zselic/Szigetvári"
+      ],
+      "coordinates": [
+        [
+          17.8035005,
+          46.3495253
+        ],
+        [
+          17.8034431,
+          46.3494787
+        ],
+        [
+          17.8019005,
+          46.3485905
+        ],
+        [
+          17.8012841,
+          46.3481949
+        ],
+        [
+          17.8007283,
+          46.3477553
+        ],
+        [
+          17.8000779,
+          46.3470501
+        ],
+        [
+          17.7992949,
+          46.3461995
+        ],
+        [
+          17.7992463,
+          46.3460991
+        ],
+        [
+          17.7989455,
+          46.344706
+        ],
+        [
+          17.7991475,
+          46.3439924
+        ],
+        [
+          17.7994079,
+          46.3430534
+        ],
+        [
+          17.7996618,
+          46.3421703
+        ],
+        [
+          17.7997078,
+          46.3419195
+        ],
+        [
+          17.799732295342796,
+          46.34176696081987
+        ]
+      ],
+      "segments": [
+        {
+          "sourceWayId": 32212799,
+          "sourceSegmentIndex": 20,
+          "sourceNodeRefs": [
+            12762960451,
+            290209038
+          ],
+          "fromFraction": 1.0,
+          "toFraction": 0.0
+        },
+        {
+          "sourceWayId": 32212799,
+          "sourceSegmentIndex": 19,
+          "sourceNodeRefs": [
+            361226925,
+            12762960451
+          ],
+          "fromFraction": 1.0,
+          "toFraction": 0.0
+        },
+        {
+          "sourceWayId": 32212799,
+          "sourceSegmentIndex": 18,
+          "sourceNodeRefs": [
+            361226926,
+            361226925
+          ],
+          "fromFraction": 1.0,
+          "toFraction": 0.0
+        },
+        {
+          "sourceWayId": 32212799,
+          "sourceSegmentIndex": 17,
+          "sourceNodeRefs": [
+            361226927,
+            361226926
+          ],
+          "fromFraction": 1.0,
+          "toFraction": 0.0
+        },
+        {
+          "sourceWayId": 32212799,
+          "sourceSegmentIndex": 16,
+          "sourceNodeRefs": [
+            361226928,
+            361226927
+          ],
+          "fromFraction": 1.0,
+          "toFraction": 0.0
+        },
+        {
+          "sourceWayId": 32212799,
+          "sourceSegmentIndex": 15,
+          "sourceNodeRefs": [
+            361226931,
+            361226928
+          ],
+          "fromFraction": 1.0,
+          "toFraction": 0.0
+        },
+        {
+          "sourceWayId": 32212799,
+          "sourceSegmentIndex": 14,
+          "sourceNodeRefs": [
+            361226935,
+            361226931
+          ],
+          "fromFraction": 1.0,
+          "toFraction": 0.0
+        },
+        {
+          "sourceWayId": 32212799,
+          "sourceSegmentIndex": 13,
+          "sourceNodeRefs": [
+            361226936,
+            361226935
+          ],
+          "fromFraction": 1.0,
+          "toFraction": 0.0
+        },
+        {
+          "sourceWayId": 32212799,
+          "sourceSegmentIndex": 12,
+          "sourceNodeRefs": [
+            361226939,
+            361226936
+          ],
+          "fromFraction": 1.0,
+          "toFraction": 0.0
+        },
+        {
+          "sourceWayId": 32212799,
+          "sourceSegmentIndex": 11,
+          "sourceNodeRefs": [
+            361226940,
+            361226939
+          ],
+          "fromFraction": 1.0,
+          "toFraction": 0.0
+        },
+        {
+          "sourceWayId": 32212799,
+          "sourceSegmentIndex": 10,
+          "sourceNodeRefs": [
+            361226941,
+            361226940
+          ],
+          "fromFraction": 1.0,
+          "toFraction": 0.0
+        },
+        {
+          "sourceWayId": 32212799,
+          "sourceSegmentIndex": 9,
+          "sourceNodeRefs": [
+            361226944,
+            361226941
+          ],
+          "fromFraction": 1.0,
+          "toFraction": 0.0
+        },
+        {
+          "sourceWayId": 32212799,
+          "sourceSegmentIndex": 8,
+          "sourceNodeRefs": [
+            361226946,
+            361226944
+          ],
+          "fromFraction": 1.0,
+          "toFraction": 0.7348988874963668
+        }
+      ],
+      "lengthMetresEov": 996.762191656144,
+      "originalWayIds": [
+        32212799
+      ]
+    },
+    {
+      "name": "Szigetvári",
+      "startJunction": "Zselic/Szigetvári",
+      "endJunction": "Szigetvári/67",
+      "pathRule": "Shortest path on actual same-group OSM node-reference topology, split only at the intended end intersections. One-way traffic restrictions do not constrain a boundary trace.",
+      "nodeIds": [
+        "intersection:Zselic/Szigetvári",
+        "osm:361227343",
+        "osm:337389050",
+        "osm:337389052",
+        "osm:27421089",
+        "osm:342832625",
+        "osm:8390990892",
+        "osm:342832627",
+        "osm:8478796816",
+        "osm:8478813717",
+        "osm:342832629",
+        "osm:342832631",
+        "osm:361227351",
+        "osm:342832635",
+        "osm:343094528",
+        "osm:27421032",
+        "osm:27421027",
+        "osm:4039262645",
+        "osm:27421026",
+        "osm:3718929095",
+        "osm:8478813722",
+        "osm:3729362262",
+        "osm:27421028"
+      ],
+      "coordinates": [
+        [
+          17.799732295342796,
+          46.34176696081987
+        ],
+        [
+          17.7998586,
+          46.3416484
+        ],
+        [
+          17.8006903,
+          46.3409356
+        ],
+        [
+          17.8012175,
+          46.3404358
+        ],
+        [
+          17.8016912,
+          46.3399053
+        ],
+        [
+          17.8019926,
+          46.3395264
+        ],
+        [
+          17.8021076,
+          46.3392259
+        ],
+        [
+          17.8022718,
+          46.3386521
+        ],
+        [
+          17.8023489,
+          46.3384549
+        ],
+        [
+          17.8026093,
+          46.3378262
+        ],
+        [
+          17.8027758,
+          46.3375067
+        ],
+        [
+          17.8030818,
+          46.3371
+        ],
+        [
+          17.8032462,
+          46.3368511
+        ],
+        [
+          17.8033739,
+          46.3365367
+        ],
+        [
+          17.8034843,
+          46.3360854
+        ],
+        [
+          17.8035675,
+          46.3357793
+        ],
+        [
+          17.8036257,
+          46.3356311
+        ],
+        [
+          17.8053925,
+          46.3322085
+        ],
+        [
+          17.8055334,
+          46.3319416
+        ],
+        [
+          17.8055981,
+          46.331816
+        ],
+        [
+          17.8056022,
+          46.331744
+        ],
+        [
+          17.8055742,
+          46.3316657
+        ],
+        [
+          17.8054899,
+          46.3315687
+        ]
+      ],
+      "segments": [
+        {
+          "sourceWayId": 32212800,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            337389049,
+            361227343
+          ],
+          "fromFraction": 0.465942252835475,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 518942236,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            361227343,
+            337389050
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 518942236,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            337389050,
+            337389052
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 518942236,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            337389052,
+            27421089
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 518942236,
+          "sourceSegmentIndex": 3,
+          "sourceNodeRefs": [
+            27421089,
+            342832625
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 32212801,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            342832625,
+            8390990892
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 32212801,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            8390990892,
+            342832627
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 32212801,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            342832627,
+            8478796816
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 32212801,
+          "sourceSegmentIndex": 3,
+          "sourceNodeRefs": [
+            8478796816,
+            8478813717
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 32212801,
+          "sourceSegmentIndex": 4,
+          "sourceNodeRefs": [
+            8478813717,
+            342832629
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 32212801,
+          "sourceSegmentIndex": 5,
+          "sourceNodeRefs": [
+            342832629,
+            342832631
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 32212801,
+          "sourceSegmentIndex": 6,
+          "sourceNodeRefs": [
+            342832631,
+            361227351
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 32212801,
+          "sourceSegmentIndex": 7,
+          "sourceNodeRefs": [
+            361227351,
+            342832635
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 32212801,
+          "sourceSegmentIndex": 8,
+          "sourceNodeRefs": [
+            342832635,
+            343094528
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 32212801,
+          "sourceSegmentIndex": 9,
+          "sourceNodeRefs": [
+            343094528,
+            27421032
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 32212801,
+          "sourceSegmentIndex": 10,
+          "sourceNodeRefs": [
+            27421032,
+            27421027
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 32212801,
+          "sourceSegmentIndex": 11,
+          "sourceNodeRefs": [
+            27421027,
+            4039262645
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 32212801,
+          "sourceSegmentIndex": 12,
+          "sourceNodeRefs": [
+            4039262645,
+            27421026
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 163471272,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            27421026,
+            3718929095
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 163471272,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            3718929095,
+            8478813722
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 163471272,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            8478813722,
+            3729362262
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 163471272,
+          "sourceSegmentIndex": 3,
+          "sourceNodeRefs": [
+            3729362262,
+            27421028
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        }
+      ],
+      "lengthMetresEov": 1237.5616739146021,
+      "originalWayIds": [
+        32212800,
+        32212801,
+        163471272,
+        518942236
+      ]
+    },
+    {
+      "name": "67",
+      "startJunction": "Szigetvári/67",
+      "endJunction": "67/Kapos",
+      "pathRule": "Shortest path on actual same-group OSM node-reference topology, split only at the intended end intersections. One-way traffic restrictions do not constrain a boundary trace.",
+      "nodeIds": [
+        "osm:27421028",
+        "osm:1371582251",
+        "osm:16771411",
+        "osm:6651206381",
+        "osm:3718929098",
+        "osm:361227354",
+        "osm:9721260563",
+        "osm:16771410",
+        "osm:9721260562",
+        "osm:3718929100",
+        "osm:13950697272",
+        "osm:16771409",
+        "osm:9721260564",
+        "osm:3718929099",
+        "osm:9721260566",
+        "osm:8584769425",
+        "osm:9721260565",
+        "osm:3718929094",
+        "osm:16771406",
+        "osm:8584769426",
+        "osm:342832458",
+        "osm:9721260567",
+        "osm:16771405",
+        "osm:9721260568",
+        "osm:9721260569",
+        "osm:3718929093",
+        "osm:9721260570",
+        "osm:9721260571",
+        "osm:16771404",
+        "osm:9721260572",
+        "osm:8584769421",
+        "osm:3718929097",
+        "osm:8584769423",
+        "osm:16771403",
+        "osm:8584769418",
+        "osm:16771402",
+        "osm:8584769420",
+        "osm:3718929101",
+        "osm:16771401",
+        "osm:16771399",
+        "osm:8584746216",
+        "osm:3400232096",
+        "osm:342832485",
+        "osm:9721260574",
+        "osm:16771398",
+        "osm:9721260573",
+        "osm:16771397",
+        "osm:342832264",
+        "osm:3718929103",
+        "osm:289641112",
+        "osm:16771396",
+        "osm:9765061441",
+        "osm:3718929106",
+        "osm:9765061442",
+        "osm:8584746215",
+        "osm:9765061443",
+        "osm:16771395",
+        "osm:9765061444",
+        "osm:9765061445",
+        "osm:16771394",
+        "osm:9765061446",
+        "osm:337359717",
+        "osm:8584746213",
+        "osm:9765061447",
+        "osm:16771392",
+        "osm:9765061448",
+        "osm:8584746214",
+        "osm:3718929107",
+        "osm:16771391",
+        "osm:16771390",
+        "osm:3718929108",
+        "osm:16771389",
+        "osm:3718929109",
+        "osm:16771388",
+        "osm:16771387",
+        "osm:16771385",
+        "osm:9721260578",
+        "osm:2402794445",
+        "osm:9721260577",
+        "osm:16771384",
+        "osm:9721260576",
+        "osm:2402794446",
+        "osm:9721260575",
+        "osm:16771383",
+        "osm:2462155125",
+        "osm:337415448",
+        "osm:16771382",
+        "osm:3718929111",
+        "osm:337530830",
+        "osm:13950697287",
+        "osm:16771381",
+        "osm:16771380",
+        "osm:13950697286",
+        "osm:2374693506",
+        "osm:13950697285",
+        "osm:16771378",
+        "osm:13950697284",
+        "osm:2374693726",
+        "osm:13950697283",
+        "osm:13950697282",
+        "osm:16771377",
+        "osm:2374693834",
+        "osm:16771376",
+        "osm:9872205159",
+        "osm:337527645",
+        "osm:16771375",
+        "osm:2374693845",
+        "osm:13950697290",
+        "osm:16771374",
+        "osm:13950697288",
+        "osm:13950697289",
+        "osm:2374693846",
+        "osm:16771373",
+        "osm:16771371",
+        "osm:3751431858",
+        "osm:337418662",
+        "osm:325704789",
+        "osm:355885772",
+        "intersection:67/Kapos"
+      ],
+      "coordinates": [
+        [
+          17.8054899,
+          46.3315687
+        ],
+        [
+          17.8051561,
+          46.3317467
+        ],
+        [
+          17.8048744,
+          46.3318671
+        ],
+        [
+          17.804557,
+          46.3319816
+        ],
+        [
+          17.8042869,
+          46.3320781
+        ],
+        [
+          17.8038874,
+          46.3321463
+        ],
+        [
+          17.8035997,
+          46.3321898
+        ],
+        [
+          17.8032747,
+          46.3322256
+        ],
+        [
+          17.8030037,
+          46.3322351
+        ],
+        [
+          17.8026677,
+          46.3322363
+        ],
+        [
+          17.8024198,
+          46.3322216
+        ],
+        [
+          17.8021434,
+          46.3321911
+        ],
+        [
+          17.8018413,
+          46.332145
+        ],
+        [
+          17.8015495,
+          46.3320861
+        ],
+        [
+          17.8013591,
+          46.3320396
+        ],
+        [
+          17.8010547,
+          46.3319615
+        ],
+        [
+          17.8008197,
+          46.3318895
+        ],
+        [
+          17.8003327,
+          46.3317359
+        ],
+        [
+          17.7998882,
+          46.3316156
+        ],
+        [
+          17.7994461,
+          46.3315236
+        ],
+        [
+          17.7989998,
+          46.331459
+        ],
+        [
+          17.7986328,
+          46.3314412
+        ],
+        [
+          17.7983515,
+          46.3314427
+        ],
+        [
+          17.7980944,
+          46.3314597
+        ],
+        [
+          17.7979138,
+          46.3314726
+        ],
+        [
+          17.7977181,
+          46.3314947
+        ],
+        [
+          17.7974788,
+          46.3315334
+        ],
+        [
+          17.7972705,
+          46.3315771
+        ],
+        [
+          17.7970894,
+          46.3316208
+        ],
+        [
+          17.7969323,
+          46.3316686
+        ],
+        [
+          17.7967224,
+          46.3317414
+        ],
+        [
+          17.7963616,
+          46.3318913
+        ],
+        [
+          17.7960867,
+          46.3320278
+        ],
+        [
+          17.795815,
+          46.3321935
+        ],
+        [
+          17.7955455,
+          46.3324002
+        ],
+        [
+          17.7952957,
+          46.3326344
+        ],
+        [
+          17.7950743,
+          46.3329168
+        ],
+        [
+          17.7948874,
+          46.3331952
+        ],
+        [
+          17.7943552,
+          46.3341426
+        ],
+        [
+          17.7940091,
+          46.3346559
+        ],
+        [
+          17.7938595,
+          46.334826
+        ],
+        [
+          17.7936629,
+          46.3350182
+        ],
+        [
+          17.793394,
+          46.3352169
+        ],
+        [
+          17.7931831,
+          46.3353482
+        ],
+        [
+          17.7929282,
+          46.3354816
+        ],
+        [
+          17.792699,
+          46.3355788
+        ],
+        [
+          17.7924425,
+          46.3356701
+        ],
+        [
+          17.7920689,
+          46.3357734
+        ],
+        [
+          17.7916595,
+          46.335859
+        ],
+        [
+          17.790561,
+          46.3360992
+        ],
+        [
+          17.7892766,
+          46.3363689
+        ],
+        [
+          17.7890119,
+          46.3364267
+        ],
+        [
+          17.7887747,
+          46.336491
+        ],
+        [
+          17.7885909,
+          46.3365465
+        ],
+        [
+          17.7883977,
+          46.3366131
+        ],
+        [
+          17.7882577,
+          46.3366664
+        ],
+        [
+          17.7881251,
+          46.336724
+        ],
+        [
+          17.7880056,
+          46.3367823
+        ],
+        [
+          17.7878017,
+          46.3368819
+        ],
+        [
+          17.7876019,
+          46.3370078
+        ],
+        [
+          17.7874089,
+          46.3371403
+        ],
+        [
+          17.7872151,
+          46.3372942
+        ],
+        [
+          17.7870747,
+          46.3374214
+        ],
+        [
+          17.7869441,
+          46.3375572
+        ],
+        [
+          17.7867993,
+          46.3377373
+        ],
+        [
+          17.7867039,
+          46.3378778
+        ],
+        [
+          17.7866148,
+          46.3380139
+        ],
+        [
+          17.7864506,
+          46.3383101
+        ],
+        [
+          17.7857367,
+          46.3396579
+        ],
+        [
+          17.7846823,
+          46.3416054
+        ],
+        [
+          17.7844522,
+          46.3419202
+        ],
+        [
+          17.7842451,
+          46.342144
+        ],
+        [
+          17.7839007,
+          46.3424437
+        ],
+        [
+          17.7835492,
+          46.3427047
+        ],
+        [
+          17.7805951,
+          46.3444915
+        ],
+        [
+          17.7802754,
+          46.3446955
+        ],
+        [
+          17.7801558,
+          46.3447878
+        ],
+        [
+          17.7799893,
+          46.3449152
+        ],
+        [
+          17.7799032,
+          46.3450203
+        ],
+        [
+          17.779812,
+          46.345136
+        ],
+        [
+          17.7797503,
+          46.3452313
+        ],
+        [
+          17.7796828,
+          46.3453513
+        ],
+        [
+          17.7796405,
+          46.3454417
+        ],
+        [
+          17.7795921,
+          46.3455593
+        ],
+        [
+          17.7795551,
+          46.3457212
+        ],
+        [
+          17.7795443,
+          46.3458218
+        ],
+        [
+          17.7795265,
+          46.3461847
+        ],
+        [
+          17.7795314,
+          46.3467196
+        ],
+        [
+          17.7795417,
+          46.3481276
+        ],
+        [
+          17.7795599,
+          46.3484189
+        ],
+        [
+          17.7796114,
+          46.3486842
+        ],
+        [
+          17.7797091,
+          46.3490025
+        ],
+        [
+          17.7798048,
+          46.3492131
+        ],
+        [
+          17.7799332,
+          46.349404
+        ],
+        [
+          17.7800214,
+          46.349538
+        ],
+        [
+          17.7801222,
+          46.3496663
+        ],
+        [
+          17.7802484,
+          46.3497999
+        ],
+        [
+          17.7803916,
+          46.3499246
+        ],
+        [
+          17.7805633,
+          46.3500681
+        ],
+        [
+          17.7806558,
+          46.3501371
+        ],
+        [
+          17.7807556,
+          46.3501996
+        ],
+        [
+          17.781157,
+          46.3504413
+        ],
+        [
+          17.7816501,
+          46.3506534
+        ],
+        [
+          17.7821536,
+          46.350841
+        ],
+        [
+          17.7823193,
+          46.3509028
+        ],
+        [
+          17.7830486,
+          46.3511911
+        ],
+        [
+          17.7834348,
+          46.3513424
+        ],
+        [
+          17.7835912,
+          46.3514296
+        ],
+        [
+          17.7837422,
+          46.3515265
+        ],
+        [
+          17.7838227,
+          46.3515748
+        ],
+        [
+          17.783871,
+          46.3516197
+        ],
+        [
+          17.7839868,
+          46.3517227
+        ],
+        [
+          17.7841281,
+          46.3518866
+        ],
+        [
+          17.7842766,
+          46.3521224
+        ],
+        [
+          17.7843575,
+          46.3523096
+        ],
+        [
+          17.7843891,
+          46.3524079
+        ],
+        [
+          17.7844448,
+          46.3526023
+        ],
+        [
+          17.7845512,
+          46.3529405
+        ],
+        [
+          17.784604205639365,
+          46.35312674254195
+        ]
+      ],
+      "segments": [
+        {
+          "sourceWayId": 368028347,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            27421028,
+            1371582251
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028352,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            1371582251,
+            16771411
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028352,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            16771411,
+            6651206381
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028352,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            6651206381,
+            3718929098
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028357,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            3718929098,
+            361227354
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028357,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            361227354,
+            9721260563
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028357,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            9721260563,
+            16771410
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118544,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            16771410,
+            9721260562
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118544,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            9721260562,
+            3718929100
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118544,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            3718929100,
+            13950697272
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118544,
+          "sourceSegmentIndex": 3,
+          "sourceNodeRefs": [
+            13950697272,
+            16771409
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118544,
+          "sourceSegmentIndex": 4,
+          "sourceNodeRefs": [
+            16771409,
+            9721260564
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118544,
+          "sourceSegmentIndex": 5,
+          "sourceNodeRefs": [
+            9721260564,
+            3718929099
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028345,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            3718929099,
+            9721260566
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028345,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            9721260566,
+            8584769425
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028345,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            8584769425,
+            9721260565
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028345,
+          "sourceSegmentIndex": 3,
+          "sourceNodeRefs": [
+            9721260565,
+            3718929094
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028345,
+          "sourceSegmentIndex": 4,
+          "sourceNodeRefs": [
+            3718929094,
+            16771406
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028345,
+          "sourceSegmentIndex": 5,
+          "sourceNodeRefs": [
+            16771406,
+            8584769426
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028345,
+          "sourceSegmentIndex": 6,
+          "sourceNodeRefs": [
+            8584769426,
+            342832458
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            342832458,
+            9721260567
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            9721260567,
+            16771405
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            16771405,
+            9721260568
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 3,
+          "sourceNodeRefs": [
+            9721260568,
+            9721260569
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 4,
+          "sourceNodeRefs": [
+            9721260569,
+            3718929093
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 5,
+          "sourceNodeRefs": [
+            3718929093,
+            9721260570
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 6,
+          "sourceNodeRefs": [
+            9721260570,
+            9721260571
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 7,
+          "sourceNodeRefs": [
+            9721260571,
+            16771404
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 8,
+          "sourceNodeRefs": [
+            16771404,
+            9721260572
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 9,
+          "sourceNodeRefs": [
+            9721260572,
+            8584769421
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 10,
+          "sourceNodeRefs": [
+            8584769421,
+            3718929097
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 11,
+          "sourceNodeRefs": [
+            3718929097,
+            8584769423
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 12,
+          "sourceNodeRefs": [
+            8584769423,
+            16771403
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 13,
+          "sourceNodeRefs": [
+            16771403,
+            8584769418
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 14,
+          "sourceNodeRefs": [
+            8584769418,
+            16771402
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 15,
+          "sourceNodeRefs": [
+            16771402,
+            8584769420
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 16,
+          "sourceNodeRefs": [
+            8584769420,
+            3718929101
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 17,
+          "sourceNodeRefs": [
+            3718929101,
+            16771401
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118534,
+          "sourceSegmentIndex": 18,
+          "sourceNodeRefs": [
+            16771401,
+            16771399
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028353,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            16771399,
+            8584746216
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028353,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            8584746216,
+            3400232096
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028353,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            3400232096,
+            342832485
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028355,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            342832485,
+            9721260574
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028355,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            9721260574,
+            16771398
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028355,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            16771398,
+            9721260573
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028355,
+          "sourceSegmentIndex": 3,
+          "sourceNodeRefs": [
+            9721260573,
+            16771397
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118540,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            16771397,
+            342832264
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118538,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            342832264,
+            3718929103
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028350,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            3718929103,
+            289641112
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028346,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            289641112,
+            16771396
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028344,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            16771396,
+            9765061441
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028344,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            9765061441,
+            3718929106
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028344,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            3718929106,
+            9765061442
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028344,
+          "sourceSegmentIndex": 3,
+          "sourceNodeRefs": [
+            9765061442,
+            8584746215
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028344,
+          "sourceSegmentIndex": 4,
+          "sourceNodeRefs": [
+            8584746215,
+            9765061443
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028344,
+          "sourceSegmentIndex": 5,
+          "sourceNodeRefs": [
+            9765061443,
+            16771395
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            16771395,
+            9765061444
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            9765061444,
+            9765061445
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            9765061445,
+            16771394
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 3,
+          "sourceNodeRefs": [
+            16771394,
+            9765061446
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 4,
+          "sourceNodeRefs": [
+            9765061446,
+            337359717
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 5,
+          "sourceNodeRefs": [
+            337359717,
+            8584746213
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 6,
+          "sourceNodeRefs": [
+            8584746213,
+            9765061447
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 7,
+          "sourceNodeRefs": [
+            9765061447,
+            16771392
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 8,
+          "sourceNodeRefs": [
+            16771392,
+            9765061448
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 9,
+          "sourceNodeRefs": [
+            9765061448,
+            8584746214
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 10,
+          "sourceNodeRefs": [
+            8584746214,
+            3718929107
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 11,
+          "sourceNodeRefs": [
+            3718929107,
+            16771391
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 12,
+          "sourceNodeRefs": [
+            16771391,
+            16771390
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 13,
+          "sourceNodeRefs": [
+            16771390,
+            3718929108
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 14,
+          "sourceNodeRefs": [
+            3718929108,
+            16771389
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 15,
+          "sourceNodeRefs": [
+            16771389,
+            3718929109
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118535,
+          "sourceSegmentIndex": 16,
+          "sourceNodeRefs": [
+            3718929109,
+            16771388
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028354,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            16771388,
+            16771387
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118543,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            16771387,
+            16771385
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118543,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            16771385,
+            9721260578
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 369118543,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            9721260578,
+            2402794445
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028356,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            2402794445,
+            9721260577
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028356,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            9721260577,
+            16771384
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028356,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            16771384,
+            9721260576
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028356,
+          "sourceSegmentIndex": 3,
+          "sourceNodeRefs": [
+            9721260576,
+            2402794446
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028356,
+          "sourceSegmentIndex": 4,
+          "sourceNodeRefs": [
+            2402794446,
+            9721260575
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028356,
+          "sourceSegmentIndex": 5,
+          "sourceNodeRefs": [
+            9721260575,
+            16771383
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028356,
+          "sourceSegmentIndex": 6,
+          "sourceNodeRefs": [
+            16771383,
+            2462155125
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028356,
+          "sourceSegmentIndex": 7,
+          "sourceNodeRefs": [
+            2462155125,
+            337415448
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028349,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            337415448,
+            16771382
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 4293080,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            16771382,
+            3718929111
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            3718929111,
+            337530830
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            337530830,
+            13950697287
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            13950697287,
+            16771381
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 3,
+          "sourceNodeRefs": [
+            16771381,
+            16771380
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 4,
+          "sourceNodeRefs": [
+            16771380,
+            13950697286
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 5,
+          "sourceNodeRefs": [
+            13950697286,
+            2374693506
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 6,
+          "sourceNodeRefs": [
+            2374693506,
+            13950697285
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 7,
+          "sourceNodeRefs": [
+            13950697285,
+            16771378
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 8,
+          "sourceNodeRefs": [
+            16771378,
+            13950697284
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 9,
+          "sourceNodeRefs": [
+            13950697284,
+            2374693726
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 10,
+          "sourceNodeRefs": [
+            2374693726,
+            13950697283
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 11,
+          "sourceNodeRefs": [
+            13950697283,
+            13950697282
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 12,
+          "sourceNodeRefs": [
+            13950697282,
+            16771377
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028484,
+          "sourceSegmentIndex": 13,
+          "sourceNodeRefs": [
+            16771377,
+            2374693834
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028481,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            2374693834,
+            16771376
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028481,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            16771376,
+            9872205159
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028481,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            9872205159,
+            337527645
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028483,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            337527645,
+            16771375
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 368028483,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            16771375,
+            2374693845
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 29552709,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            2374693845,
+            13950697290
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 29552709,
+          "sourceSegmentIndex": 1,
+          "sourceNodeRefs": [
+            13950697290,
+            16771374
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 29552709,
+          "sourceSegmentIndex": 2,
+          "sourceNodeRefs": [
+            16771374,
+            13950697288
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 29552709,
+          "sourceSegmentIndex": 3,
+          "sourceNodeRefs": [
+            13950697288,
+            13950697289
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 29552709,
+          "sourceSegmentIndex": 4,
+          "sourceNodeRefs": [
+            13950697289,
+            2374693846
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 29552709,
+          "sourceSegmentIndex": 5,
+          "sourceNodeRefs": [
+            2374693846,
+            16771373
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 29552709,
+          "sourceSegmentIndex": 6,
+          "sourceNodeRefs": [
+            16771373,
+            16771371
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 29552709,
+          "sourceSegmentIndex": 7,
+          "sourceNodeRefs": [
+            16771371,
+            3751431858
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 29552709,
+          "sourceSegmentIndex": 8,
+          "sourceNodeRefs": [
+            3751431858,
+            337418662
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 29552709,
+          "sourceSegmentIndex": 9,
+          "sourceNodeRefs": [
+            337418662,
+            325704789
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 29552709,
+          "sourceSegmentIndex": 10,
+          "sourceNodeRefs": [
+            325704789,
+            355885772
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 1.0
+        },
+        {
+          "sourceWayId": 31788365,
+          "sourceSegmentIndex": 0,
+          "sourceNodeRefs": [
+            355885772,
+            3718929113
+          ],
+          "fromFraction": 0.0,
+          "toFraction": 0.6023368109706553
+        }
+      ],
+      "lengthMetresEov": 3850.12722358481,
+      "originalWayIds": [
+        4293080,
+        29552709,
+        31788365,
+        368028344,
+        368028345,
+        368028346,
+        368028347,
+        368028349,
+        368028350,
+        368028352,
+        368028353,
+        368028354,
+        368028355,
+        368028356,
+        368028357,
+        368028481,
+        368028483,
+        368028484,
+        369118534,
+        369118535,
+        369118538,
+        369118540,
+        369118543,
+        369118544
+      ]
+    }
+  ],
+  "validSimpleRing": true,
+  "ringCoordinateCount": 166,
+  "areaMetresSquaredEov": 2728761.492569098,
+  "perimeterMetresEov": 7617.468034357192,
+  "geographicCoordinateCrs": "EPSG:4326",
+  "measurementCrs": "EPSG:23700",
+  "topologyUsesSourceNodeReferences": true,
+  "analyticalIntersectionModel": "Straight source-polyline segments in WGS84 longitude/latitude; original node coordinates retained verbatim. EOV used only for path-length weighting and measurements.",
+  "minorJunctionCapsUsed": false,
+  "unprovedConnectingEdgesAdded": false,
+  "selfIntersectionRepairApplied": false,
+  "parentUnitGeometryUsed": false,
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false
+}

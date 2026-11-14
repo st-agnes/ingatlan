@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "status": "FROZEN_REVIEWED_NATIVE_PIXEL_EVIDENCE_ONLY",
+  "freezeDate": "2026-11-14",
+  "municipality": "Szolnok",
+  "sourceLabel": "Szanda-szőlős",
+  "normalizedCandidateName": "Szandaszőlős",
+  "nativePixelFootprintCount": 1,
+  "newPrimaryFeatureCount": 0,
+  "newEstimatedGeographicFeatureCount": 0,
+  "worldGeometryAdmissionCount": 0,
+  "nativeFootprintPath": "szandaszoelos-native-pixel-contour.json",
+  "nativeCoordinateSpace": "Image pixels only; x right, y down; not geographic",
+  "sourcePdf": {
+    "localPath": ".local/neighborhoods/quarter-map-batch/szolnok-foldi-ksh-map-2012.pdf",
+    "sha256": "a794b371c17810d421cf6bc6a9453d602fd964488ed674a2017cda6472d1f019",
+    "bytes": 3633854,
+    "pdfPage": 72,
+    "imageXref": 153
+  },
+  "sourceHierarchyDates": {
+    "underlyingKshMap": 2003,
+    "thesisCover": 2012,
+    "pdfMetadata": 2013
+  },
+  "rawComponentPixelCount": 5724,
+  "filledEnclosedHolePixelCount": 158,
+  "filledPixelArea": 5882.0,
+  "exteriorCoordinateCount": 207,
+  "thresholdSensitivityMaximumHausdorffPixels": 1.0,
+  "thresholdSensitivityIsAccuracyClaim": false,
+  "georeferencePerformed": false,
+  "geographicControlFitOrExtrapolationUncertaintyMetres": null,
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "wholeQuarterIdentityOrCurrentExtentValidated": false,
+  "sourceOpenReuseLicenceEstablished": false,
+  "sourceClassClonedOntoNamedQuarter": false,
+  "existingFrozenSourcesOrGlobalFilesModified": false,
+  "reproductionCheck": "PASS",
+  "independentReviewPath": "independent-review.json",
+  "independentReviewSha256": "053e355fa49afc7648ffa4df6cdecaa9535a95384c42a3495e3f668130b51440",
+  "filesSha256": {
+    "README.txt": "51fe7f3c17bfa9e4bdf52250d39da67937efad5fbc5c4a8a951a218dd583c69f",
+    "assessment.json": "2682a2bf621a08b66f3e5a26f6abe22b1651f185438a7a9d8217dca67aeccbb1",
+    "figure9-native-pixels.png": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+    "independent-review.json": "053e355fa49afc7648ffa4df6cdecaa9535a95384c42a3495e3f668130b51440",
+    "native-contour-preview.png": "e6a531a9c03be43bb47465ca7a08b43da0078027b0ff04dfabbf749468ce335c",
+    "reproduce.py": "3ff59b647d03b9a67690029798ee133ab170a0ae4a0ea91ca4f908bbce48123e",
+    "source-inventory.json": "6059222085e40acbb2691003456f4c254e53411bdf8d15114aa4487886ddc579",
+    "szandaszoelos-native-pixel-contour.json": "b592a7c14a42ce371c1cc94ce9be9698372b8c7b956f4a403cf2c90a3b89f333"
+  }
+}

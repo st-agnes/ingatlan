@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "independent_source_semantics_and_identity_review",
+  "reviewedAt": "2026-11-14",
+  "reviewer": "independent child agent zala_semantic_qa",
+  "status": "Hathaz_is_explicit_source_neighborhood_analysis_extent; geometry_and_registration_not_reviewed_here",
+  "input": {
+    "localOriginalPath": ".local/neighborhoods/supplement-originals/zalaegerszeg-ziffa2025.pdf",
+    "sha256": "b132fd75d6c95538023ced5eda3ad8ac7f7131c6e27f889ed7206c23e4a44745",
+    "pageCount": 229,
+    "sourceUrl": "https://zalaegerszeg.hu/wp-content/uploads/2025/09/ZEG_ZIFFA_egyeztetesi-valt.pdf",
+    "title": "Zalaegerszeg Zöldinfrastruktúra-fejlesztési és -fenntartási akcióterv",
+    "coverDate": "2025-08-30",
+    "documentAdoptionStatus": "Consultation-version URL (egyeztetesi-valt); adoption not independently established"
+  },
+  "sourceEvidence": [
+    {
+      "pdfPageOneBased": 7,
+      "meaning": "Official municipal commission stated",
+      "paraphrase": "The introduction attributes preparation to HÉTFA and the MATE landscape protection/restoration department under a commission from the Zalaegerszeg municipality."
+    },
+    {
+      "pdfPageOneBased": 63,
+      "meaning": "Method defines neighborhood boundaries for spatial indicator comparison",
+      "paraphrase": "The methodology says neighborhood extents were set using settlement-structure and administrative data and then used to compare environmental indicators spatially."
+    },
+    {
+      "pdfPageOneBased": 99,
+      "meaning": "Chapter 3.4 is neighborhood-by-neighborhood characterization, not a chapter assigning character zones",
+      "paraphrase": "Chapter3.4 characterizes actual named neighborhoods individually; its list of assessed parameters includes urban structure and character alongside infrastructure and environmental indicators."
+    },
+    {
+      "pdfPageOneBased": 141,
+      "section": "3.4.17 HATHÁZ",
+      "figure": 54,
+      "meaning": "Dedicated named source neighborhood and native raster contour; inspected native xrefs 773 and 778",
+      "nativeImagesInspected": [
+        {
+          "xref": 773,
+          "width": 194,
+          "height": 246,
+          "ext": "jpeg",
+          "role": "satellite panel, purple closed neighborhood contour"
+        },
+        {
+          "xref": 778,
+          "width": 355,
+          "height": 451,
+          "ext": "jpeg",
+          "role": "ZI-elements map, black closed contour with label 17. Hatház"
+        }
+      ],
+      "paraphrase": "Section3.4.17 and figure54 identify Hatház as the subject. Native raster panels show the labeled neighborhood contour over satellite imagery and the green-infrastructure inventory map."
+    },
+    {
+      "pdfPageOneBased": 142,
+      "meaning": "Hatház is explicitly a small residential neighborhood beyond the legal built-up area",
+      "paraphrase": "Hatház is described as a small residential neighborhood beyond the legal built-up area, with a village-like pattern of houses and gardens."
+    },
+    {
+      "pdfPageOneBased": 142,
+      "meaning": "Text distinguishes source neighborhood limit from nearby recreational parcel, supporting that contour is neighborhood extent rather than green project area",
+      "paraphrase": "The study places the recreational part of parcel0679/2 beyond the neighborhood limit, separating neighborhood extent from the nearby community recreation location."
+    }
+  ],
+  "sourceSchemaComparison": {
+    "historicalEvidencePath": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-source-pages12-13.txt",
+    "historicalEvidenceSha256": "a94ff5751f1e66ae405e8b4ad629d37da19ec2fe551f634af40a2cd5e3f4fbc3",
+    "historicalSourcePeriod": "ITS 2014-2020, figure1 and table1 pp12-13; units chosen for 2009/2011 statistical comparison",
+    "historicalUnits1Through16": [
+      "Belváros",
+      "Ola",
+      "Landorhegy",
+      "Páterdomb",
+      "Kertváros",
+      "Iparterület",
+      "Csácsbozsok",
+      "Vorhota",
+      "Kaszaháza - Nekeresd - Pózva",
+      "Zalabesenyő",
+      "Botfa",
+      "Bazita",
+      "Ebergény",
+      "Szenterzsébethegy",
+      "Andráshida - Gébárt - Apátfa",
+      "Neszele - Ságod"
+    ],
+    "historicalUnits17Through20": [
+      "Nyugati külterület",
+      "Északi külterület",
+      "Keleti külterület",
+      "Déli külterület"
+    ],
+    "current2025ChapterUnits1Through16": "Same displayed neighborhood names and order as historical1–16; this establishes name/schema continuity only, not equality of polygon coordinates or extents.",
+    "current2025ChapterUnit17": "Hatház; new named neighborhood contour in chapter3.4.17. It is not a rename or alias for historical unit17 Nyugati külterület. Do not reuse source unit numbers as cross-document feature identity.",
+    "historicalOutskirtsReplacement": "No four-way outskirts replacement equivalence is established; do not interpret omission of four 2014 outskirts units as assigning their full space to new2025 neighborhoods."
+  },
+  "groupedNamesAndFineContours": [
+    {
+      "chapterUnit": 9,
+      "heading": "Kaszaháza-Nekeresd-Pózva",
+      "pdfPageOneBased": 122,
+      "inspectedImageXref": 705,
+      "observation": "One combined contour and combined label; no child split lines established. Keep grouped identity; do not clone whole parent into Kaszaháza, Nekeresd or Pózva."
+    },
+    {
+      "chapterUnit": 15,
+      "heading": "Andráshida-Gébárt-Apátfa",
+      "pdfPageOneBased": 135,
+      "inspectedImageXref": 754,
+      "observation": "One combined contour and combined label; no child split lines established. Keep grouped identity; do not clone whole parent into Andráshida, Gébárt or Apátfa."
+    },
+    {
+      "chapterUnit": 16,
+      "heading": "Neszele-Ságod",
+      "pdfPageOneBased": 138,
+      "inspectedImageXrefs": [
+        768,
+        769
+      ],
+      "observation": "Exception: native maps show two separate contours, individually labeled 16. Neszele and 16. Ságod. Fine contours are observable, despite shared chapter unit16 and grouped indicator reporting. Any future extraction must retain this distinction explicitly, not create an inferred split or call the two map contours aliases of the whole parent.",
+      "supportingTextPage139": "Page139 discusses Neszele and Ságod individually as neighborhoods, then states that their green-space provision statistics are interpreted jointly."
+    }
+  ],
+  "HathazDecision": {
+    "sourceCanonicalName": "Hatház",
+    "sourceUnitNumber": 17,
+    "isActualNamedNeighborhoodInSource": true,
+    "isCharacterZone": false,
+    "isActionArea": false,
+    "extentMeaning": "Map contour used by the 2025 green-infrastructure study to compare actual neighborhood indicators; source describes boundary definition using settlement-structure and administrative data.",
+    "doNotInfer": [
+      "legal belterület boundary",
+      "cadastral or surveyed neighborhood boundary",
+      "current statutory official neighborhood boundary",
+      "address-assignment approval",
+      "metre-level absolute positional accuracy",
+      "equivalence with an older unit of the same number"
+    ],
+    "contourObservation": "Hatház xref778 shows a single black closed irregular perimeter, with residential parcels and nearby agricultural land. It is not a bbox, circle, municipality outline or a green-infrastructure element polygon. Exact pixel tracing still requires geometry QA.",
+    "placementReview": "Not performed by this semantic reviewer; actual road/building references are required for georeferencing and label points cannot serve as fit controls."
+  },
+  "externalWritesPerformed": false,
+  "networkCallsPerformed": false,
+  "globalRegistryModified": false,
+  "contentMinimization": {
+    "narrativeTreatment": "English paraphrases only; source full text and original pages remain in ignored local raw PDF. Short titles, place names, page/figure facts and image facts are bibliographic or factual identifiers.",
+    "directNarrativeQuotationWords": 0,
+    "rawSourceCheckedLocally": true
+  }
+}

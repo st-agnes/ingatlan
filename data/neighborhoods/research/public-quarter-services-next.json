@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-14",
+  "scope": "Bounded follow-up research for additional Hungarian urban-quarter polygon services. Discovery/audit only; none of these records is an admitted geometry.",
+  "networkMethod": "Public web search/open READ connector and GitHub READ connector. No shell network calls, network approvals, external writes, account creation, paid APIs, or authentication bypass.",
+  "quarterGeometriesRetrieved": 0,
+  "newPolygonDatasetsAdmitted": 0,
+  "archivedPolygonLayerConfigurationsLocated": 1,
+  "nationalCompletenessEstablished": false,
+  "retrievalRepresentation": "The saved .map artifact is connector-extracted UTF-8 source text from pinned public GitHub content. It concatenates two selected spans and adds explanatory comments. It is not claimed to be the original HTTP byte stream. No feature coordinates were retrieved.",
+  "sources": [
+    {
+      "id": "kobanya-archived-mapserver-varosr",
+      "municipality": "Budapest X. kerület (Kőbánya)",
+      "status": "archived_polygon_layer_configuration_verified_current_service_inaccessible",
+      "admission": "source_configuration_lead_only",
+      "primaryMunicipalCorroborationUrl": "https://www.kobanya.hu/docs/kobanya/hu/news/175465.pdf?v=dfecf99692389b9003d7c1de4e3a58e3",
+      "primaryMunicipalCorroborationMeaning": "A municipal PDF dated 2012-05-11 identifies the district p.mapper digital map and its terkep.kobanya.hu/x/printmap.phtml service. It corroborates the historic municipal mapping host, not the archived quarter layer's current availability.",
+      "configurationSource": {
+        "repository": "geographika/mappyfile",
+        "commit": "28716ec134d30ab5c7f0da5e28d7b3f100a3737d",
+        "path": "tests/mapfiles/large_map1.map",
+        "url": "https://github.com/geographika/mappyfile/blob/28716ec134d30ab5c7f0da5e28d7b3f100a3737d/tests/mapfiles/large_map1.map",
+        "rawUrl": "https://raw.githubusercontent.com/geographika/mappyfile/28716ec134d30ab5c7f0da5e28d7b3f100a3737d/tests/mapfiles/large_map1.map",
+        "nature": "Public software test fixture containing an archived municipal MapServer configuration; it is not an official current municipal service response.",
+        "extractedSourceSpans": {
+          "mapHeaderAndWebLines": [
+            1,
+            52
+          ],
+          "quarterLayerStartLine": 1189,
+          "quarterLayerEndLine": 1371
+        },
+        "localArtifact": "data/neighborhoods/sources/public-quarter-services-next/kobanya-varosr-configuration-extract.map",
+        "localArtifactSha256": "88aacac995fbae7788709abe48bf636bab1dd2235465a280b9d8ca235772dd5f",
+        "localArtifactHashMeaning": "Checksum of the locally saved connector-extracted text with added comments; not an upstream HTTP-byte checksum."
+      },
+      "serviceUrlAsDeclared": "http://terkep.kobanya.hu/cgi-bin/mapserv?map=/web/html/x/pmapper/config/default/x201703.map&",
+      "mapName": "kobanya",
+      "layerName": "varosr",
+      "wmsNameMetadata": "varosreszek",
+      "dataPathAsDeclared": "szelveny/varosreszek",
+      "labelField": "VAROSR",
+      "styleClassField": "ID",
+      "geometryTypeAsDeclared": "POLYGON",
+      "crsAsDeclaredByMap": "EPSG:23700",
+      "crsActualDataVerified": false,
+      "featureCount": null,
+      "styleClassCount": 11,
+      "styleClasses": [
+        {
+          "id": "1",
+          "name": "Laposdűlő"
+        },
+        {
+          "id": "2",
+          "name": "Ligettelek"
+        },
+        {
+          "id": "3",
+          "name": "Felsőrákos"
+        },
+        {
+          "id": "4",
+          "name": "Kőbánya-Kertváros"
+        },
+        {
+          "id": "5",
+          "name": "Keresztúri-dűlő"
+        },
+        {
+          "id": "6",
+          "name": "Újhegy"
+        },
+        {
+          "id": "7",
+          "name": "Téglagyárdűlő"
+        },
+        {
+          "id": "8",
+          "name": "Óhegy"
+        },
+        {
+          "id": "9",
+          "name": "Kúttó"
+        },
+        {
+          "id": "10",
+          "name": "Gyárdűlő"
+        },
+        {
+          "id": "11",
+          "name": "Népliget"
+        }
+      ],
+      "sourceEditDate": null,
+      "sourceEditDateNote": "The configuration filename contains x201703, but that is not treated as a verified source edit timestamp. Pinned Git commit identifies the observed configuration.",
+      "objectIdField": null,
+      "licenseStatus": "geometry_redistribution_not_verified",
+      "accessProbes": [
+        {
+          "url": "https://terkep.kobanya.hu/",
+          "result": "web_reader_inaccessible"
+        },
+        {
+          "url": "http://terkep.kobanya.hu/cgi-bin/mapserv?map=/web/html/x/pmapper/config/default/x201703.map&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities",
+          "result": "web_reader_inaccessible_after_https_normalisation"
+        },
+        {
+          "url": "http://terkep.kobanya.hu/cgi-bin/mapserv?map=/web/html/x/pmapper/config/default/x201703.map&SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities",
+          "result": "web_reader_inaccessible_after_https_normalisation",
+          "endpointStatus": "probe_of_standard_service_operation_not_verified_public_WFS"
+        },
+        {
+          "url": "http://terkep.kobanya.hu/x/data/szelveny/varosreszek.shp",
+          "result": "web_reader_inaccessible_after_https_normalisation",
+          "endpointStatus": "candidate_public_data_path_inferred_from_config_not_verified_download"
+        }
+      ],
+      "nextStep": "Using a permitted direct HTTP acquisition route, first confirm whether the historically advertised municipal MapServer remains public and current. Inspect capabilities for the exact published name before querying. If a public feature/download route exists, acquire geometry and its actual CRS, ObjectIDs, edit date and terms; do not count the 11 style classes as 11 retrieved polygons."
+    },
+    {
+      "id": "kecskemet-public-gis-named-quarter-category",
+      "municipality": "Kecskemét",
+      "applicationUrl": "https://epitomesterialkotas.kecskemet.hu/gisapp/Epitomesterialkotas?public=on",
+      "status": "indexed_named_quarter_category_found_geometry_type_unverified",
+      "admission": "names_category_lead_only",
+      "evidenceMethod": "Web search connector indexed readable content for the exact municipal application URL; direct open returned no readable lines.",
+      "observedCategoryLabel": "Városrészek (7)",
+      "observedCategoryRecords": [
+        "Halasi úti hobbik",
+        "Hetényegyháza",
+        "Homokbánya",
+        "Kadafalva",
+        "Katonatelep",
+        "Matkó",
+        "Méntelek"
+      ],
+      "observedCategoryRecordCount": 7,
+      "featureCount": null,
+      "geometryType": null,
+      "crs": null,
+      "sourceEditDate": null,
+      "licenseStatus": "not_verified",
+      "semanticLimit": "The quarter category is displayed after the layer tree in the indexed text. It could be a search category backed by name points rather than a polygon layer; no layer geometry or endpoint is inferred.",
+      "relatedApplicationUrl": "https://terkep.kecskemet.hu/gisapp/lakossag?public=on&lang=hu",
+      "relatedPrimaryEvidenceUrl": "https://kecskemet.hu/uploaded_files/files/document/2026-05/55-2026_hat%C3%A1rozat_mell%C3%A9klete.pdf",
+      "relatedPrimaryEvidenceMeaning": "The city's 2026-2030 integrated urban water-management plan footnote 88 cites the general public GIS URL. It does not establish a polygon layer.",
+      "accessProbes": [
+        {
+          "url": "https://epitomesterialkotas.kecskemet.hu/gisapp/Epitomesterialkotas?public=on",
+          "result": "html_zero_readable_lines"
+        },
+        {
+          "url": "https://epitomesterialkotas.kecskemet.hu/",
+          "result": "redirects_to_public_application_then_zero_readable_lines"
+        },
+        {
+          "url": "https://terkep.kecskemet.hu/gisapp/lakossag?public=on&lang=hu",
+          "result": "html_zero_readable_lines"
+        },
+        {
+          "url": "https://epitomesterialkotas.kecskemet.hu/geoserver/wfs?service=WFS&request=GetCapabilities",
+          "result": "web_reader_inaccessible",
+          "endpointStatus": "standard_path_probe_only_not_verified_service"
+        }
+      ],
+      "nextStep": "Inspect the public client HTML/JavaScript and layer/search configuration through an allowed direct acquisition route. Confirm whether the named quarter records are polygon features before treating any as new boundaries."
+    },
+    {
+      "id": "debrecen-current-envimap",
+      "municipality": "Debrecen",
+      "applicationUrl": "https://debrecen-megyei-jogu-varos-szabalyozasi-terv.envimap.hu/hu/Admin/landing",
+      "primaryPublisherEvidenceUrl": "https://envirosense.hu/mar-tobb-mint-harom-eve-mukodik-debrecen-megyei-jogu-varos-szabalyozasi-terv-terinformatikai-rendszere/",
+      "status": "public_current_gis_landing_readable_quarter_layer_not_confirmed",
+      "admission": "candidate_application_only",
+      "sourceMeaning": "Developer identifies the public municipal regulatory-plan system and Intermap platform. Its municipal landing page describes public zoning, orthoimagery and height models.",
+      "featureCount": null,
+      "geometryType": null,
+      "crs": null,
+      "quarterLayerIdentified": false,
+      "accessStatus": "Landing page readable. Map continuation is a button following terms; no machine-readable layer link appears in the web extraction.",
+      "nextStep": "Inspect public client/layer configuration if directly accessible. Regulatory-plan cells must not be promoted into quarters."
+    },
+    {
+      "id": "szombathely-mapguide-precise-endpoint",
+      "municipality": "Szombathely",
+      "primaryEvidenceUrl": "https://szombathely.hu/onkormanyzat/terinformatika-telepulesrendezes/muszaki-terinformatikai-rendszer/",
+      "applicationUrl": "http://gis.szombathely.hu/mapguide/szombathely/internet.php",
+      "status": "official_precise_gis_endpoint_verified_access_blocked_quarter_layer_unconfirmed",
+      "admission": "candidate_application_only",
+      "noveltyLimit": "The official discovery page already appeared in west-south.json; this record adds its exact advertised MapGuide URL and explicit public capability probe outcome.",
+      "sourceMeaning": "Official page describes cadastral/address search, utility line display, orthophotos and measurements. It says base-map content is as of April 2024 and page last modified 2024-09-17.",
+      "featureCount": null,
+      "geometryType": null,
+      "crs": null,
+      "quarterLayerIdentified": false,
+      "accessProbes": [
+        {
+          "url": "http://gis.szombathely.hu/mapguide/szombathely/internet.php",
+          "result": "web_reader_inaccessible_after_https_normalisation"
+        },
+        {
+          "url": "https://gis.szombathely.hu/mapguide/mapagent/mapagent.fcgi?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=1.0.0",
+          "result": "web_reader_inaccessible",
+          "endpointStatus": "standard_MapGuide_operation_probe_only_not_verified_public_WFS"
+        }
+      ],
+      "nextStep": "Inspect advertised public map configuration when an allowed raw download route is available; require actual quarter layer metadata."
+    },
+    {
+      "id": "torokbalint-public-gis",
+      "municipality": "Törökbálint",
+      "primaryEvidenceUrl": "https://okosvaros.lechnerkozpont.hu/hu/peldatar/torokbalint-terinformatikai-rendszere",
+      "applicationUrl": "https://terkep.torokbalint.hu/",
+      "status": "primary_public_gis_description_verified_quarter_layer_not_attested",
+      "admission": "candidate_application_only_low_priority",
+      "sourceMeaning": "Lechner project description identifies a public municipal portal and standard XML web services. Listed content covers planning, utilities, transport, medical/educational objects, elections and snow clearing, without confirming quarter boundaries.",
+      "featureCount": null,
+      "geometryType": null,
+      "crs": null,
+      "quarterLayerIdentified": false,
+      "accessStatus": "Direct application open returned zero readable lines. Public description says desktop data access depends on appropriate rights; no authenticated access attempted.",
+      "nextStep": "Only investigate layer configuration if a public raw route becomes available; general XML-service support does not prove public WFS or quarter polygons."
+    },
+    {
+      "id": "szigetszentmiklos-public-gis",
+      "municipality": "Szigetszentmiklós",
+      "applicationUrl": "https://terinfo.szigetszentmiklos.hu/",
+      "primaryEvidenceUrl": "https://okosvaros.lechnerkozpont.hu/hu/peldatar/szigetszentmiklos-terinformatikai-rendszere",
+      "status": "public_gis_indexed_application_502_quarter_layer_unconfirmed",
+      "admission": "candidate_application_only_low_priority",
+      "sourceMeaning": "Lechner search result describes the city's public GIS; indexed application shell lists city map and surveillance-camera controls. This does not establish quarter features.",
+      "featureCount": null,
+      "geometryType": null,
+      "crs": null,
+      "quarterLayerIdentified": false,
+      "accessStatus": "Direct web open returned 502 Bad Gateway; no conclusion about data absence."
+    },
+    {
+      "id": "boda-budapest-quarters-osm-derived",
+      "municipality": "Budapest",
+      "primaryEvidenceUrl": "https://atlo.team/boda/",
+      "status": "semantic_check_complete_existing_osm_derivative",
+      "admission": "do_not_count_as_independent_new_polygon_source",
+      "sourceMeaning": "The publisher offers a GeoJSON download for Kerületek és városrészek and explicitly attributes this map to data2.openstreetmap.hu / OSM. It states GeoJSON exports use WGS84 EPSG:4326.",
+      "geometryRetrieved": false,
+      "reason": "The task already processed nationwide OSM datasets; this advertised derivative is not independent new municipal geometry."
+    },
+    {
+      "id": "civisporta-debrecen-historical-cadastre-semantic-check",
+      "municipality": "Debrecen",
+      "applicationUrl": "https://civisporta.hu/magisterV2/map.html",
+      "status": "public_layer_menu_readable_no_quarter_layer_verified",
+      "admission": "not_a_verified_quarter_dataset",
+      "sourceMeaning": "Readable vector menu lists cadastral parcels, buildings, addresses and streets; historical map overlays and protected architecture are also offered. These are not urban-quarter polygon evidence.",
+      "geometryRetrieved": false
+    }
+  ],
+  "searchAudit": {
+    "webTerms": [
+      "városrészek FeatureServer",
+      "varosresz MapServer",
+      "városrészek WFS",
+      "gisapp Városrészek",
+      "FeatureServer Budapest",
+      "FeatureServer Debrecen",
+      "FeatureServer Belvaros",
+      "FeatureServer Miskolc",
+      "municipal public GIS in Szombathely, Veszprém, Sopron, Debrecen, Törökbálint, Szigetszentmiklós, Érd, Budaörs"
+    ],
+    "githubTerms": [
+      "\"varosreszek\" geojson",
+      "\"városrészek\" polygon",
+      "\"varosresz\" \"FeatureServer\"",
+      "\"varosreszek\" \"TYPE POLYGON\"",
+      "\"városrészek\" \"wfs\"",
+      "\"Városrészek\" \"GetFeature\"",
+      "\"terkep.kecskemet.hu\"",
+      "\"maps.szentendre.hu\""
+    ],
+    "githubOutcome": "Located the pinned Kőbánya polygon-layer configuration. Other returned quarter geometries were known OSM derivatives or irrelevant content. Empty search results do not establish absence.",
+    "arcgisCatalogAttempts": [
+      "https://www.arcgis.com/sharing/rest/search?f=pjson&q=varosresz&num=100",
+      "https://www.arcgis.com/sharing/rest/search?f=json&q=varosresz",
+      "https://hub.arcgis.com/api/v3/datasets?q=varosresz"
+    ],
+    "arcgisCatalogOutcome": "All tested ArcGIS catalog requests were inaccessible through the web reader. No catalog count or nationwide conclusion inferred."
+  },
+  "interpretation": [
+    "Archived source configuration is distinct from a verified current public service and from acquired feature geometry.",
+    "Named-quarter search results may be points. Style-class counts are not feature counts.",
+    "Reader normalisation upgraded several advertised HTTP URLs to HTTPS; failure after that rewrite does not prove the advertised HTTP service is absent.",
+    "Unavailable retrieval, transient 502, or zero readable HTML lines do not establish that no further data exists.",
+    "No coordinate rings, bounding rectangles, circles, Voronoi regions, planning cells, electoral districts, or parcel geometries were manufactured or admitted.",
+    "Public visibility and an open-source software repository do not establish redistribution rights for the underlying municipal data."
+  ]
+}

@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+"""Two transparently reconstructed low-confidence caps; full rings are NOT fully observed."""
+from pathlib import Path
+import argparse,json,hashlib,math,os,unicodedata
+os.environ['PROJ_NETWORK']='OFF'
+import numpy as np
+from PIL import Image
+from shapely.geometry import Polygon,shape,mapping
+from shapely.ops import transform
+from pyproj import Transformer
+P=Path(__file__).resolve().parent
+load=lambda n:json.loads((P/n).read_text())
+sha=lambda n:hashlib.sha256((P/n).read_bytes()).hexdigest()
+enc=lambda d:json.dumps(d,ensure_ascii=False,indent=2,allow_nan=False)+'\n'
+def norm(s):return ''.join(c for c in unicodedata.normalize('NFD',s.lower())if c.isalnum())
+def build():
+ q=load('remaining-cap-source-quantification.json');b=np.array(load('pecs-registration-northwest-only-diagnostic.json')['matrixPixelToEov']);a=np.array(load('pecs-image-alignment.json')['matrixNamesPixelsToDensityPixels']);t=Transformer.from_crs(23700,4326,always_xy=True);image=Image.open(P/'pecs-p48-names.jpeg').convert('RGB')
+ def eov(p):return list(np.array([*p,1.])@b)
+ def world(x,y,z=None):return t.transform(x*b[0,0]+y*b[1,0]+b[2,0],x*b[0,1]+y*b[1,1]+b[2,1])
+ def density(x,y,z=None):return (x*a[0,0]+y*a[1,0]+a[2,0],x*a[0,1]+y*a[1,1]+a[2,1])
+ observed=[f for pfx in ['first','remaining']for f in load(pfx+'-source-inferred.geojson')['features']]+load('source-inferred.geojson')['features'];assert len(observed)==65;oldnames={f['properties']['name']for f in observed};oldworld=[shape(f['geometry'])for f in observed];features=[];proof=[]
+ for r in q['records']:
+  assert r['sourceQuarterFineUnitIdentitySupported']and r['sourceWholeIslandInsideFrame']and not r['sourceContourIsObserved'];name=r['sourceName'];assert name not in oldnames
+  for p in r['visibleOuterStrokeOpenChain']+r['uncertainCandidatePixelPath']:assert list(image.getpixel(tuple(p['sourcePixel'])))==p['originalRgb']
+  visible=[p['sourcePixel']for p in r['visibleOuterStrokeOpenChain']];cap=[p['sourcePixel']for p in r['uncertainCandidatePixelPath']];assert cap[0]==visible[-1]and cap[-1]==visible[0];ring=visible+cap[1:];assert ring==r['reconstructedRingCandidate'];native=Polygon(ring);assert native.is_valid and native.area==r['reconstructedRingCandidatePixelCenterArea'];alternative=Polygon(visible+[visible[0]]);assert alternative.is_valid
+  edges=[]
+  for i,(start,end)in enumerate(zip(cap,cap[1:])):
+   en1,en2=eov(start),eov(end);w1,w2=t.transform(*en1),t.transform(*en2)
+   edges.append({'inferredSegmentIndex':i,'sourceStartPixel':start,'sourceEndPixel':end,'sourceLengthPixels':math.dist(start,end),'startOriginalRgb':list(image.getpixel(tuple(start))),'endOriginalRgb':list(image.getpixel(tuple(end))),'quarterBoundaryInkIdentityVerified':False,'segmentType':'inferred_unverified_cap_continuation','eovGridEndpoints':[en1,en2],'lengthMetresInUnverifiedInheritedGrid':math.dist(en1,en2),'wgs84Endpoints':[list(w1),list(w2)],'lengthIsAbsoluteAccuracyOrErrorBound':False})
+  adopted_world=transform(world,native);alternative_world=transform(world,alternative);assert adopted_world.is_valid
+  alt={'type':'unadopted_endpoint_chord_variant','sourceEndpoints':[cap[0],cap[-1]],'sourceChordLengthPixels':math.dist(cap[0],cap[-1]),'lengthMetresInUnverifiedInheritedGrid':math.dist(eov(cap[0]),eov(cap[-1])),'nativePixelGeometry':mapping(alternative),'worldGeometry':mapping(alternative_world),'sourceAreaPixelsSquared':alternative.area,'sourceAreaDifferenceFromAdoptedPixelsSquared':native.symmetric_difference(alternative).area,'interpretation':'Comparison scenario only: direct chord between the same confirmed endpoints. It is not observed ink, a confidence interval, or an absolute error envelope. The bracketed multistep cap is adopted instead.'}
+  reconstruction={'confidence':'low','fullRingIsFullyObserved':False,'observedOpenChain':r['visibleOuterStrokeOpenChain'],'observedChainStepCount':r['visibleChainStepCount'],'observedChainLengthPixels':r['visibleChainLengthPixels'],'confirmedGapEndpoints':r['uncertainIntervalEndpointPixels'],'uncertainInternalPixelCount':r['uncertainInternalPixelCount'],'inferredSegmentCount':len(edges),'inferredCapPixelPath':r['uncertainCandidatePixelPath'],'inferredSegments':edges,'inferredCapLengthPixels':sum(e['sourceLengthPixels']for e in edges),'inferredCapLengthMetresInUnverifiedInheritedGrid':sum(e['lengthMetresInUnverifiedInheritedGrid']for e in edges),'inferredPerimeterFractionPixels':r['uncertainIntervalChainLengthPixels']/r['reconstructedRingLengthPixels'],'sourceSupport':r['sourceInterpretationEvidence'],'additionalOriginalFigures':r['additionalSourceSupport'],'alternativeEndpointChord':alt,'uncertaintyInterpretation':'The exact quarter-stroke identity within this bracket is unresolved. Intermediate coordinates are an explicit manual inference supported by the adjoining chain and repeated complete-island form, not verified quarter-boundary ink. The alternative chord quantifies one source-space choice, not a statistical or absolute accuracy bound.'}
+  props={'name':name,'municipality':'Pécs','boundaryKind':'inferred_area','candidateBoundaryKind':'neighbourhood','estimated':True,'canonicalNameIsNeighborhood':False,'sourceContourIsObserved':False,'sourceContourType':'partially_observed_open_chain_with_explicit_inferred_cap','reconstructionConfidence':'low','sourceWholeFineUnitIdentitySupported':True,'sourceManualTraceId':'figure9-'+norm(name)+'-visible-chain-plus-inferred-cap','sourceCellId':None,'sourceReconstruction':reconstruction,'sourceNameEvidence':{'sourceLabelAnchorFigure9':r['sourceLabelAnchorFigure9'],'sourceQuarterFineUnitIdentitySupported':True,'sourceWholeIslandInsideFrame':True,'evidence':'remaining-cap-source-quantification.json'},'sourceIsOfficial':False,'sourceIsHardBoundary':False,'usableForAddressAssignment':False,'reviewStatus':'low_confidence_reconstructed_candidate_not_verified','georeferencingStatus':'frozen_first_cohort_estimated_geographic_alignment_not_verified','georeferencingIsApproximate':True,'claimedAbsoluteAccuracy':None,'claimedAbsoluteAccuracyMetres':None,'sourcePeriod':'2021 municipal ITS publication;2011 census themes and2014 map annotation; original boundary survey date unknown','method':'Explicitly low-confidence manual reconstruction of a short bracketed source cap between confirmed original Figure9 outer-chain endpoints. Every inferred edge, original pixel reading and source support is retained separately; full ring is not fully observed. Unchanged frozen first-cohort geographic estimate; no new georeference or current legal-boundary approval.','evidenceUrls':['https://logoweb.pecs.hu/download/koncepcio/ITS.pdf'],'sourceDocuments':[{'url':'https://logoweb.pecs.hu/download/koncepcio/ITS.pdf','sha256':'995d0db03e454a34046b248526e0882aee26ffbf40ba916e996afa4c8b49f6b1','pdfPageOneBased':48,'figure':9}],'license':'Municipal map reuse rights unverified; ODbL for archived OSM calibration evidence.'}
+  features.append({'type':'Feature','id':'pecs-final-cap:'+norm(name),'geometry':mapping(adopted_world),'properties':props});proof.append({'name':name,'sourceContourIsObserved':False,'reconstructionConfidence':'low','nativePixelGeometry':mapping(native),'densityFramePixelGeometry':mapping(transform(density,native)),'sourceVisibleOpenChain':visible,'sourceInferredCapPath':cap,'nativeSourceAreaPixelsSquared':native.area,'inferredSegments':edges,'alternativeEndpointChord':alt,'supportQuantificationSha256':sha('remaining-cap-source-quantification.json'),'sourceFrameSha256':sha('pecs-registration-northwest-only-diagnostic.json'),'geographicPlacementVerified':False})
+ new=[shape(f['geometry'])for f in features];maxold=max(g.intersection(o).area for g in new for o in oldworld);maxnew=new[0].intersection(new[1]).area;maxalt=max(shape(r['alternativeEndpointChord']['worldGeometry']).intersection(o).area for r in proof for o in oldworld);assert maxold<1e-16 and maxnew<1e-16 and maxalt<1e-16
+ return {'type':'FeatureCollection','status':'low_confidence_inferred_cap_reconstructions_not_fully_observed','claimedAbsoluteAccuracy':None,'features':features},{'schemaVersion':1,'sourceFeatureCount':2,'observedSourceContoursInThisFile':0,'lowConfidenceReconstructedCandidates':2,'records':proof,'maximumOverlapWithAll65ObservedContoursDegreesSquared':maxold,'maximumReconstructionPairOverlapDegreesSquared':maxnew,'maximumAlternativeChordOverlapWithAll65ObservedContoursDegreesSquared':maxalt,'claimedAbsoluteAccuracy':None,'newGeoreferenceModelFitted':False,'primaryApprovedCount':0,'usableForAddressAssignment':False,'rootFilesOrPriorCohortsModified':False}
+
+def main():
+ ap=argparse.ArgumentParser();ap.add_argument('--check',action='store_true');args=ap.parse_args();fc,p=build()
+ for n,v in [('reconstructed-cap-inferred.geojson',fc),('cap-conversion-proof.json',p)]:
+  s=enc(v)
+  if args.check:assert(P/n).read_text()==s,n
+  else:(P/n).write_text(s)
+ print(json.dumps({'reconstructedCandidates':2,'fullyObservedSourceContours':0,'lowConfidence':True,'overlapWithObserved65':p['maximumOverlapWithAll65ObservedContoursDegreesSquared'],'claimedAbsoluteAccuracy':None,'check':args.check}))
+if __name__=='__main__':main()

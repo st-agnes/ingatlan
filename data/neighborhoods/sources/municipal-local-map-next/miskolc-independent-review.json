@@ -1,0 +1,1106 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent local_pdf_expand/veszprem_map agent",
+  "reviewDate": "2026-11-13",
+  "scope": "Offline original raster, 17 actual source regions, exact exposed pixel-cell boundary verification, independent strict-validator invocation, and source semantics. No producer geometry changed.",
+  "sourcePdfPageOneBased": 228,
+  "sourceEmbeddedImageXref": 3691,
+  "originalImageExtractedByteIdentically": true,
+  "imageSizePixels": [
+    884,
+    557
+  ],
+  "inputFingerprints": [
+    {
+      "path": ".local/neighborhoods/nationwide-docs/originals/miskolc-annex.pdf",
+      "sha256": "c68fe45e74c9caa0ec9d36d5b35d686ee71d6bd75cf5603fb652e9f070e90744"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-source-raster.geojson",
+      "sha256": "0c8d6fdc7f1f075355b704cf2e376ce3815031b3beb616763c3529bb0a2cf22d"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-conversion-proof.json",
+      "sha256": "84ff38e170a264149a527a51837398aeb00e27de0553b4170ec2af7afdf6d172"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-registration.json",
+      "sha256": "a05fbe258f9215f11f4e5350b78fd8c9bc50ffd9bfd912d9471d8c9ccebf6c19"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-source-semantics.json",
+      "sha256": "53eec0d892cf3952bce546da7687888069f98770b713274a9f96f458ebb9101d"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-p228-original.jpeg",
+      "sha256": "ae66dab154832f52a833d7c696a4b10882e8fadbc47a22d9128932ab7d684384"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-calibration-municipality.geojson",
+      "sha256": "1bec595fa7d1ffab58c237e389b3c3f023681ccbf7c5c4de62bd0efcd012e2cc"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-source-name-points.geojson",
+      "sha256": "857955cfbc6cc8134a182e46b561e353596b9f977fd52d6ee90caad24328b63c"
+    },
+    {
+      "path": ".local/neighborhoods/nationwide-docs/originals/miskolc-its.pdf",
+      "sha256": "91ff0fc330d4e375f2b300ab410ab0eed3fc089b61afbedcdc3744003463bd01"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-source-pages228-231.pdf",
+      "sha256": "9f439afdeefb1a0311fad62574ff2b359673a8d73b4ade7bbc08c474d023b16a"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-source-extraction-proof.json",
+      "sha256": "04118a9298fe6815d2a847512cd5b712401004300e9a6a423ac2305128a58308"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-strict-validator-review.json",
+      "sha256": "966266940f74a67b9c936b50f03dbe86b6148ed93d414643ff994435a9946af0"
+    }
+  ],
+  "independentChecks": {
+    "all17ActualRasterComponentsSeparatelyClosed": true,
+    "sourceMaskRecomputedFromOriginalJpeg": "B-R>40, G-R>24, B>70",
+    "boundaryMethod": "Independently enumerate north/east/south/west faces of included original raster pixels; compare doubled-integer endpoint sets with every unit face expanded from the saved source polygon. This does not use row-run unions.",
+    "all17PixelBoundaryFaceSetsExact": true,
+    "allBoundaryFacesAdjacentOriginalCyan": true,
+    "noRasterEdgeClosure": true,
+    "noSourceHoleFilling": true,
+    "totalResidualPolygonHolesPreserved": 7,
+    "all17WorldGeometriesReconstructedExactly": true,
+    "all17GeosValid": true,
+    "noPairwisePolygonAreaOverlap": true,
+    "maximumPairwiseOverlapDegreesSquared": 0.0,
+    "all32KshConstituentsReferencedExactlyOnce": true,
+    "fiveFineUnits": [
+      8,
+      10,
+      13,
+      14,
+      16
+    ],
+    "twelvePlanningGroups": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      11,
+      12,
+      15,
+      17
+    ],
+    "noConstituentGeometryCopies": true
+  },
+  "thresholdSensitivity": [
+    {
+      "blueMinusRedThresholdExclusive": 20,
+      "greenMinusRedThresholdExclusive": 24,
+      "blueThresholdExclusive": 70,
+      "selectedDistinctNonzeroComponents": 17,
+      "sourceComponentsTouchingAnyRasterEdge": 0,
+      "selectedCellCountsBySourceNumber": [
+        4157,
+        11498,
+        15712,
+        19216,
+        1325,
+        13583,
+        1416,
+        1975,
+        1172,
+        10925,
+        5838,
+        6408,
+        1689,
+        11643,
+        14975,
+        15884,
+        53030
+      ]
+    },
+    {
+      "blueMinusRedThresholdExclusive": 30,
+      "greenMinusRedThresholdExclusive": 24,
+      "blueThresholdExclusive": 70,
+      "selectedDistinctNonzeroComponents": 17,
+      "sourceComponentsTouchingAnyRasterEdge": 0,
+      "selectedCellCountsBySourceNumber": [
+        4191,
+        11569,
+        15788,
+        19298,
+        1340,
+        13637,
+        1438,
+        2007,
+        1186,
+        10990,
+        5881,
+        6451,
+        1726,
+        11710,
+        15038,
+        15946,
+        53134
+      ]
+    },
+    {
+      "blueMinusRedThresholdExclusive": 40,
+      "greenMinusRedThresholdExclusive": 24,
+      "blueThresholdExclusive": 70,
+      "selectedDistinctNonzeroComponents": 17,
+      "sourceComponentsTouchingAnyRasterEdge": 0,
+      "selectedCellCountsBySourceNumber": [
+        4248,
+        11681,
+        15899,
+        19443,
+        1370,
+        13734,
+        1484,
+        2067,
+        1207,
+        11075,
+        5991,
+        6529,
+        1780,
+        11824,
+        15150,
+        16062,
+        53357
+      ]
+    },
+    {
+      "blueMinusRedThresholdExclusive": 50,
+      "greenMinusRedThresholdExclusive": 24,
+      "blueThresholdExclusive": 70,
+      "selectedDistinctNonzeroComponents": 17,
+      "sourceComponentsTouchingAnyRasterEdge": 0,
+      "selectedCellCountsBySourceNumber": [
+        4328,
+        11858,
+        16064,
+        19626,
+        1413,
+        13862,
+        1544,
+        2124,
+        1245,
+        11218,
+        6113,
+        6636,
+        1848,
+        11954,
+        15307,
+        16175,
+        53640
+      ]
+    },
+    {
+      "blueMinusRedThresholdExclusive": 60,
+      "greenMinusRedThresholdExclusive": 24,
+      "blueThresholdExclusive": 70,
+      "selectedDistinctNonzeroComponents": 16,
+      "sourceComponentsTouchingAnyRasterEdge": 0,
+      "selectedCellCountsBySourceNumber": [
+        4411,
+        12031,
+        16226,
+        19813,
+        1461,
+        14021,
+        1620,
+        2186,
+        7525,
+        11350,
+        7525,
+        6754,
+        1939,
+        12108,
+        15472,
+        16349,
+        53961
+      ]
+    }
+  ],
+  "semanticConclusion": "The mapped FVS/ITS regions are 17 real source units. Five singly named statistical neighbourhoods are distinguishable from twelve whole composite planning units. A composite group remains useful under its full source label; its geometry must not be cloned onto its component names. The source is historical and does not establish legal/current/address-grade boundaries.",
+  "georeferencingReview": {
+    "recordedSourceAnchorCount": 3396,
+    "allAnchorPixelsOriginalCyanAndBelowExcludedTopStrip": true,
+    "recordedPerimeterResidualsIndependentlyRecomputed": true,
+    "maximumResidualDifferenceMetres": 5.796607638330897e-11,
+    "outerStrokeReachesTopImageEdge": true,
+    "exportedFreeRegionsTouchImageEdge": false,
+    "sourcePixelScaleApproximatelyMetres": [
+      33.151452579320726,
+      32.88223332025001
+    ],
+    "method": "Frozen affine image-to-EOV registration against archived current municipal perimeter, inverse projection to WGS84. This demonstrates calculation provenance, not independent positional accuracy.",
+    "independentInteriorControlCount": 0,
+    "absoluteBoundaryAccuracyMetres": null,
+    "allAnchorsOnLargestOriginalCyanComponentAndAdjacentToActualExteriorBackground": true,
+    "actualExteriorBackgroundTouchesAllFourImageEdges": true,
+    "noAnchorOnInteriorOnlyQuarterStroke": true,
+    "savedStrictValidatorReportIndependentlyConfirmed": true
+  },
+  "strictJsValidation": {
+    "passing": 17,
+    "failing": 0,
+    "results": [
+      {
+        "number": 1,
+        "name": "Szentpéteri kapu, Észak-keleti városrész",
+        "valid": true,
+        "bbox": [
+          20.768577063694075,
+          48.107687034432814,
+          20.804977024336388,
+          48.13747659158339
+        ],
+        "vertices": 312
+      },
+      {
+        "number": 2,
+        "name": "Selyemrét, Keleti-városrész",
+        "valid": true,
+        "bbox": [
+          20.79562661647672,
+          48.08750037524456,
+          20.855573218521258,
+          48.13528987503384
+        ],
+        "vertices": 599
+      },
+      {
+        "number": 3,
+        "name": "Martin kertváros – Szirma",
+        "valid": true,
+        "bbox": [
+          20.799194157769524,
+          48.043296886926626,
+          20.867515547607308,
+          48.09981844288794
+        ],
+        "vertices": 665
+      },
+      {
+        "number": 4,
+        "name": "Hejőcsaba – Görömböly",
+        "valid": true,
+        "bbox": [
+          20.746926643806322,
+          48.025922370987026,
+          20.821324734802275,
+          48.088409177876294
+        ],
+        "vertices": 764
+      },
+      {
+        "number": 5,
+        "name": "Avas Kelet – Népkert",
+        "valid": true,
+        "bbox": [
+          20.778913937189323,
+          48.08323874562257,
+          20.79954373162637,
+          48.09999378790695
+        ],
+        "vertices": 177
+      },
+      {
+        "number": 6,
+        "name": "Tetemvár - Északi domboldal",
+        "valid": true,
+        "bbox": [
+          20.715474020203768,
+          48.10681825750508,
+          20.78761627209127,
+          48.15260784306961
+        ],
+        "vertices": 533
+      },
+      {
+        "number": 7,
+        "name": "Belváros - Avasalja",
+        "valid": true,
+        "bbox": [
+          20.764451395677778,
+          48.09916178825817,
+          20.799448433469546,
+          48.10906197274092
+        ],
+        "vertices": 167
+      },
+      {
+        "number": 8,
+        "name": "Avas Dél",
+        "valid": true,
+        "bbox": [
+          20.762538544422082,
+          48.075049792504466,
+          20.784387341264054,
+          48.10051515258366
+        ],
+        "vertices": 260
+      },
+      {
+        "number": 9,
+        "name": "Egyetemváros - Ruzsin",
+        "valid": true,
+        "bbox": [
+          20.75612036831554,
+          48.069514424264,
+          20.77379542911849,
+          48.085311985587055
+        ],
+        "vertices": 169
+      },
+      {
+        "number": 10,
+        "name": "Miskolc-Tapolca",
+        "valid": true,
+        "bbox": [
+          20.70653099132473,
+          48.02597556405422,
+          20.756915186203862,
+          48.080293375069935
+        ],
+        "vertices": 559
+      },
+      {
+        "number": 11,
+        "name": "Komlóstető - Vargahegy",
+        "valid": true,
+        "bbox": [
+          20.69233951810699,
+          48.06825514127707,
+          20.768954685833005,
+          48.09395973264812
+        ],
+        "vertices": 390
+      },
+      {
+        "number": 12,
+        "name": "Miskolc Közép városrész",
+        "valid": true,
+        "bbox": [
+          20.70345561814408,
+          48.088292579642946,
+          20.762795167698595,
+          48.10934221098015
+        ],
+        "vertices": 273
+      },
+      {
+        "number": 13,
+        "name": "Lyukóvölgy",
+        "valid": true,
+        "bbox": [
+          20.70040648417478,
+          48.11466363373655,
+          20.721327943941557,
+          48.14749818062111
+        ],
+        "vertices": 327
+      },
+      {
+        "number": 14,
+        "name": "Pereces",
+        "valid": true,
+        "bbox": [
+          20.64666369957269,
+          48.10538742703961,
+          20.72075306180421,
+          48.15038612005825
+        ],
+        "vertices": 510
+      },
+      {
+        "number": 15,
+        "name": "Diósgyőr- Nyugati városrész",
+        "valid": true,
+        "bbox": [
+          20.625657351851885,
+          48.08719504583928,
+          20.712068905081715,
+          48.136625705876355
+        ],
+        "vertices": 560
+      },
+      {
+        "number": 16,
+        "name": "Bükkszentlászló",
+        "valid": true,
+        "bbox": [
+          20.635250203992936,
+          48.04097691454285,
+          20.71801120703779,
+          48.08747877660312
+        ],
+        "vertices": 521
+      },
+      {
+        "number": 17,
+        "name": "Lillafüred-Ómassa",
+        "valid": true,
+        "bbox": [
+          20.48392929623906,
+          48.06947360679341,
+          20.66440405561044,
+          48.13264915710221
+        ],
+        "vertices": 1042
+      }
+    ]
+  },
+  "restrictions": {
+    "usableForAddressAssignment": false,
+    "sourceIsHardBoundary": false,
+    "sourceIsOfficialCurrentGeometry": false,
+    "municipalMapReuseRightsIndependentlyEstablished": false,
+    "networkUsed": false
+  },
+  "records": [
+    {
+      "sourceUnitNumber": 1,
+      "name": "Szentpéteri kapu, Észak-keleti városrész",
+      "semanticType": "planning_group_multi_ksh",
+      "boundaryKind": "planning_unit",
+      "freeComponentId": 5,
+      "includedOriginalSourceCells": 4248,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 402,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 1,
+        "name": "Szentpéteri kapu, Észak-keleti városrész",
+        "valid": true,
+        "bbox": [
+          20.768577063694075,
+          48.107687034432814,
+          20.804977024336388,
+          48.13747659158339
+        ],
+        "vertices": 312
+      }
+    },
+    {
+      "sourceUnitNumber": 2,
+      "name": "Selyemrét, Keleti-városrész",
+      "semanticType": "planning_group_multi_ksh",
+      "boundaryKind": "planning_unit",
+      "freeComponentId": 6,
+      "includedOriginalSourceCells": 11681,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 780,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [
+        1.0
+      ],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 2,
+        "name": "Selyemrét, Keleti-városrész",
+        "valid": true,
+        "bbox": [
+          20.79562661647672,
+          48.08750037524456,
+          20.855573218521258,
+          48.13528987503384
+        ],
+        "vertices": 599
+      }
+    },
+    {
+      "sourceUnitNumber": 3,
+      "name": "Martin kertváros – Szirma",
+      "semanticType": "planning_group_multi_ksh",
+      "boundaryKind": "planning_unit",
+      "freeComponentId": 17,
+      "includedOriginalSourceCells": 15899,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 806,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 3,
+        "name": "Martin kertváros – Szirma",
+        "valid": true,
+        "bbox": [
+          20.799194157769524,
+          48.043296886926626,
+          20.867515547607308,
+          48.09981844288794
+        ],
+        "vertices": 665
+      }
+    },
+    {
+      "sourceUnitNumber": 4,
+      "name": "Hejőcsaba – Görömböly",
+      "semanticType": "planning_group_multi_ksh",
+      "boundaryKind": "planning_unit",
+      "freeComponentId": 21,
+      "includedOriginalSourceCells": 19443,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 858,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 4,
+        "name": "Hejőcsaba – Görömböly",
+        "valid": true,
+        "bbox": [
+          20.746926643806322,
+          48.025922370987026,
+          20.821324734802275,
+          48.088409177876294
+        ],
+        "vertices": 764
+      }
+    },
+    {
+      "sourceUnitNumber": 5,
+      "name": "Avas Kelet – Népkert",
+      "semanticType": "planning_group_single_ksh_composite",
+      "boundaryKind": "planning_unit",
+      "freeComponentId": 18,
+      "includedOriginalSourceCells": 1370,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 216,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 5,
+        "name": "Avas Kelet – Népkert",
+        "valid": true,
+        "bbox": [
+          20.778913937189323,
+          48.08323874562257,
+          20.79954373162637,
+          48.09999378790695
+        ],
+        "vertices": 177
+      }
+    },
+    {
+      "sourceUnitNumber": 6,
+      "name": "Tetemvár - Északi domboldal",
+      "semanticType": "planning_group_multi_ksh",
+      "boundaryKind": "planning_unit",
+      "freeComponentId": 2,
+      "includedOriginalSourceCells": 13734,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 696,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 343.63430040376244,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 6,
+        "name": "Tetemvár - Északi domboldal",
+        "valid": true,
+        "bbox": [
+          20.715474020203768,
+          48.10681825750508,
+          20.78761627209127,
+          48.15260784306961
+        ],
+        "vertices": 533
+      }
+    },
+    {
+      "sourceUnitNumber": 7,
+      "name": "Belváros - Avasalja",
+      "semanticType": "planning_group_multi_ksh",
+      "boundaryKind": "planning_unit",
+      "freeComponentId": 13,
+      "includedOriginalSourceCells": 1484,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 266,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 7,
+        "name": "Belváros - Avasalja",
+        "valid": true,
+        "bbox": [
+          20.764451395677778,
+          48.09916178825817,
+          20.799448433469546,
+          48.10906197274092
+        ],
+        "vertices": 167
+      }
+    },
+    {
+      "sourceUnitNumber": 8,
+      "name": "Avas Dél",
+      "semanticType": "single_named_statistical_neighbourhood",
+      "boundaryKind": "neighbourhood",
+      "freeComponentId": 16,
+      "includedOriginalSourceCells": 2067,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 306,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 8,
+        "name": "Avas Dél",
+        "valid": true,
+        "bbox": [
+          20.762538544422082,
+          48.075049792504466,
+          20.784387341264054,
+          48.10051515258366
+        ],
+        "vertices": 260
+      }
+    },
+    {
+      "sourceUnitNumber": 9,
+      "name": "Egyetemváros - Ruzsin",
+      "semanticType": "planning_group_single_ksh_composite",
+      "boundaryKind": "planning_unit",
+      "freeComponentId": 23,
+      "includedOriginalSourceCells": 1207,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 200,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 9,
+        "name": "Egyetemváros - Ruzsin",
+        "valid": true,
+        "bbox": [
+          20.75612036831554,
+          48.069514424264,
+          20.77379542911849,
+          48.085311985587055
+        ],
+        "vertices": 169
+      }
+    },
+    {
+      "sourceUnitNumber": 10,
+      "name": "Miskolc-Tapolca",
+      "semanticType": "single_named_statistical_neighbourhood",
+      "boundaryKind": "neighbourhood",
+      "freeComponentId": 24,
+      "includedOriginalSourceCells": 11075,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 648,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [
+        3.0
+      ],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [
+        {
+          "id": "osm:node:982074969",
+          "name": "Miskolctapolca",
+          "coordinates": [
+            20.7489199,
+            48.0634155
+          ],
+          "insideHistoricalSourceArea": false,
+          "distanceFromHistoricalSourceAreaMetres": 23.811838492508084,
+          "sourceUrl": "https://www.openstreetmap.org/node/982074969"
+        }
+      ],
+      "existingStrictJsValidator": {
+        "number": 10,
+        "name": "Miskolc-Tapolca",
+        "valid": true,
+        "bbox": [
+          20.70653099132473,
+          48.02597556405422,
+          20.756915186203862,
+          48.080293375069935
+        ],
+        "vertices": 559
+      }
+    },
+    {
+      "sourceUnitNumber": 11,
+      "name": "Komlóstető - Vargahegy",
+      "semanticType": "planning_group_multi_ksh",
+      "boundaryKind": "planning_unit",
+      "freeComponentId": 20,
+      "includedOriginalSourceCells": 5991,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 566,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 11,
+        "name": "Komlóstető - Vargahegy",
+        "valid": true,
+        "bbox": [
+          20.69233951810699,
+          48.06825514127707,
+          20.768954685833005,
+          48.09395973264812
+        ],
+        "vertices": 390
+      }
+    },
+    {
+      "sourceUnitNumber": 12,
+      "name": "Miskolc Közép városrész",
+      "semanticType": "planning_group_multi_ksh",
+      "boundaryKind": "planning_unit",
+      "freeComponentId": 14,
+      "includedOriginalSourceCells": 6529,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 444,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 12,
+        "name": "Miskolc Közép városrész",
+        "valid": true,
+        "bbox": [
+          20.70345561814408,
+          48.088292579642946,
+          20.762795167698595,
+          48.10934221098015
+        ],
+        "vertices": 273
+      }
+    },
+    {
+      "sourceUnitNumber": 13,
+      "name": "Lyukóvölgy",
+      "semanticType": "single_named_statistical_neighbourhood",
+      "boundaryKind": "neighbourhood",
+      "freeComponentId": 4,
+      "includedOriginalSourceCells": 1780,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 344,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [
+        {
+          "id": "osm:node:913092557",
+          "name": "Lyukóvölgy",
+          "coordinates": [
+            20.7160702,
+            48.1218578
+          ],
+          "insideHistoricalSourceArea": true,
+          "distanceFromHistoricalSourceAreaMetres": 0.0,
+          "sourceUrl": "https://www.openstreetmap.org/node/913092557"
+        }
+      ],
+      "existingStrictJsValidator": {
+        "number": 13,
+        "name": "Lyukóvölgy",
+        "valid": true,
+        "bbox": [
+          20.70040648417478,
+          48.11466363373655,
+          20.721327943941557,
+          48.14749818062111
+        ],
+        "vertices": 327
+      }
+    },
+    {
+      "sourceUnitNumber": 14,
+      "name": "Pereces",
+      "semanticType": "single_named_statistical_neighbourhood",
+      "boundaryKind": "neighbourhood",
+      "freeComponentId": 3,
+      "includedOriginalSourceCells": 11824,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 654,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [
+        1.0
+      ],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [
+        {
+          "id": "osm:node:913092535",
+          "name": "Pereces",
+          "coordinates": [
+            20.6908038,
+            48.1255604
+          ],
+          "insideHistoricalSourceArea": true,
+          "distanceFromHistoricalSourceAreaMetres": 0.0,
+          "sourceUrl": "https://www.openstreetmap.org/node/913092535"
+        }
+      ],
+      "existingStrictJsValidator": {
+        "number": 14,
+        "name": "Pereces",
+        "valid": true,
+        "bbox": [
+          20.64666369957269,
+          48.10538742703961,
+          20.72075306180421,
+          48.15038612005825
+        ],
+        "vertices": 510
+      }
+    },
+    {
+      "sourceUnitNumber": 15,
+      "name": "Diósgyőr- Nyugati városrész",
+      "semanticType": "planning_group_single_ksh_composite",
+      "boundaryKind": "planning_unit",
+      "freeComponentId": 7,
+      "includedOriginalSourceCells": 15150,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 742,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 15,
+        "name": "Diósgyőr- Nyugati városrész",
+        "valid": true,
+        "bbox": [
+          20.625657351851885,
+          48.08719504583928,
+          20.712068905081715,
+          48.136625705876355
+        ],
+        "vertices": 560
+      }
+    },
+    {
+      "sourceUnitNumber": 16,
+      "name": "Bükkszentlászló",
+      "semanticType": "single_named_statistical_neighbourhood",
+      "boundaryKind": "neighbourhood",
+      "freeComponentId": 22,
+      "includedOriginalSourceCells": 16062,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 698,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [
+        2.0
+      ],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 0.0,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 16,
+        "name": "Bükkszentlászló",
+        "valid": true,
+        "bbox": [
+          20.635250203992936,
+          48.04097691454285,
+          20.71801120703779,
+          48.08747877660312
+        ],
+        "vertices": 521
+      }
+    },
+    {
+      "sourceUnitNumber": 17,
+      "name": "Lillafüred-Ómassa",
+      "semanticType": "planning_group_multi_ksh",
+      "boundaryKind": "planning_unit",
+      "freeComponentId": 9,
+      "includedOriginalSourceCells": 53357,
+      "touchesRasterEdge": false,
+      "independentlyEnumeratedSourceBoundaryEdges": 1458,
+      "exactProofBoundaryEdgeSet": true,
+      "everyExposedEdgeAdjacentOriginalCyan": true,
+      "inventedMapEdgeClosureOrGapBridge": false,
+      "numericLabelOrOtherHoleFilling": false,
+      "allOriginalResidualHoleCellsRetained": true,
+      "residualHoleAreasPixels": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "geosValid": true,
+      "worldReconstructionExact": true,
+      "symmetricDifferenceDegreesSquared": 0.0,
+      "hausdorffDistanceDegrees": 0.0,
+      "outsideArchivedCurrentMunicipalityAreaM2": 607.4753340950327,
+      "nameEvidencePreserved": [],
+      "existingStrictJsValidator": {
+        "number": 17,
+        "name": "Lillafüred-Ómassa",
+        "valid": true,
+        "bbox": [
+          20.48392929623906,
+          48.06947360679341,
+          20.66440405561044,
+          48.13264915710221
+        ],
+        "vertices": 1042
+      }
+    }
+  ],
+  "overallVerdict": "All 17 source-defined historical raster regions pass independent cell-face reconstruction and the unchanged strict JS validator; five individual named statistical neighbourhood candidates and twelve whole planning groups remain separate. No geometry repair, gap bridge, map-edge closure, hole filling or constituent-footprint duplication was used. Absolute positional accuracy and source reuse rights remain unresolved; address assignment stays disabled.",
+  "sourceEvidence": {
+    "laterPdfImageByteIdentical": true,
+    "fourPageExcerptImageByteIdentical": true,
+    "historical2014PdfImageByteIdentical": true,
+    "historical2014PdfPageOneBased": 254,
+    "historical2014ImageXref": 1160,
+    "allThreeArchivedImageSha256": "ae66dab154832f52a833d7c696a4b10882e8fadbc47a22d9128932ab7d684384"
+  }
+}

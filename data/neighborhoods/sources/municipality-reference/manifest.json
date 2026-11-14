@@ -1,0 +1,151 @@
+{
+  "source": "OpenStreetMap Hungarian administrative boundary export",
+  "sourceCommit": "2f7a91ee1f320e6a08488ef8413715be13abf226",
+  "sourceCommitDate": "2025-08-28T17:51:58Z",
+  "sourceUrl": "https://github.com/ferenci-tamas/BudapestiElerhetoseg/blob/2f7a91ee1f320e6a08488ef8413715be13abf226/kozighatarok.zip",
+  "archive": {
+    "bytes": 6285474,
+    "gitBlobSha1": "e7f24b8ef283cffee740cd3cd3a3c3ec16b71d0d",
+    "sha256": "2c38117de636dc03d7452db14ecb6c8e66a426e05e2a6d7c8932717bf609db7a"
+  },
+  "sourceComponents": [
+    {
+      "archiveMember": "kozighatarok/admin6.cpg",
+      "bytes": 5,
+      "gitBlobSha1": "3ad133c048f2189041151425a73485649e6c32c0",
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "storedInThisDirectory": false
+    },
+    {
+      "archiveMember": "kozighatarok/admin6.dbf",
+      "bytes": 797,
+      "gitBlobSha1": "13b4f548142a02a39557a34f875722c538453002",
+      "sha256": "522150429ed1524353971196a634aa2e9e8652a20e63eb15ccf41864355686c4",
+      "storedInThisDirectory": false
+    },
+    {
+      "archiveMember": "kozighatarok/admin6.prj",
+      "bytes": 677,
+      "gitBlobSha1": "49dc10298e72da81ed6794dfdc272e5deff7812e",
+      "sha256": "4a9baea5d29f6374b8dd5a589d10bd3cddfa19e9f5d2c49646620d774295e3a0",
+      "storedInThisDirectory": false
+    },
+    {
+      "archiveMember": "kozighatarok/admin6.shp",
+      "bytes": 1071768,
+      "gitBlobSha1": "5d8f37dd3db9d3323f245b308e38dc6f65495fe6",
+      "sha256": "905dedbfd12b564827819721712a34d2488e34ff91aac107f549c54f8e7d56b4",
+      "storedInThisDirectory": false
+    },
+    {
+      "archiveMember": "kozighatarok/admin6.shx",
+      "bytes": 260,
+      "gitBlobSha1": "702bfe66f2d1a78e5fb500cc09ed769a4f037e10",
+      "sha256": "a63ffbf7d698c6fb5bad38715fe9c13f686f36bb45898425941f25e3e302df61",
+      "storedInThisDirectory": false
+    },
+    {
+      "archiveMember": "kozighatarok/admin8.cpg",
+      "bytes": 5,
+      "gitBlobSha1": "3ad133c048f2189041151425a73485649e6c32c0",
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "storedInThisDirectory": false
+    },
+    {
+      "archiveMember": "kozighatarok/admin8.dbf",
+      "bytes": 79472,
+      "gitBlobSha1": "6a880a30d5c2fb4d5324107b19246eda29759551",
+      "sha256": "bf413924c396c18397a947648579b5e77970d9cc3abc3f04fe08851b0ea15995",
+      "storedInThisDirectory": false
+    },
+    {
+      "archiveMember": "kozighatarok/admin8.prj",
+      "bytes": 677,
+      "gitBlobSha1": "49dc10298e72da81ed6794dfdc272e5deff7812e",
+      "sha256": "4a9baea5d29f6374b8dd5a589d10bd3cddfa19e9f5d2c49646620d774295e3a0",
+      "storedInThisDirectory": false
+    },
+    {
+      "archiveMember": "kozighatarok/admin8.shp",
+      "bytes": 7186380,
+      "gitBlobSha1": "1215a598638f2cef5f3b5584971326fa51ba84f4",
+      "sha256": "4c50242c6bb7d2d414c21e20b8a3771ae3ffb3d0023a3823d989e2e056dff0cd",
+      "storedInThisDirectory": false
+    },
+    {
+      "archiveMember": "kozighatarok/admin8.shx",
+      "bytes": 25500,
+      "gitBlobSha1": "f7f02cfb58b27143a68bf7b7ef375eff8b6c0191",
+      "sha256": "73e50428ca4f6c03a8e06d5a67069e5b1198393d02bf0462605f1ef89aaef0e2",
+      "storedInThisDirectory": false
+    }
+  ],
+  "inputCrs": "EPSG:3857",
+  "outputCrs": "EPSG:4326",
+  "geojson": {
+    "path": "municipalities.geojson",
+    "bytes": 102357,
+    "sha256": "afe01cc29b6c385e4da025a41b309b5c5e0e5890f6ee8f633a44896767bfa427"
+  },
+  "records": [
+    {
+      "name": "Budapest",
+      "id": "osm-hu-20250828:admin6:5",
+      "sourceRecord": 5,
+      "sourceLayer": "admin6",
+      "geometryType": "Polygon"
+    },
+    {
+      "name": "Esztergom",
+      "id": "osm-hu-20250828:admin8:1",
+      "sourceRecord": 1,
+      "sourceLayer": "admin8",
+      "geometryType": "Polygon"
+    },
+    {
+      "name": "Debrecen",
+      "id": "osm-hu-20250828:admin8:512",
+      "sourceRecord": 512,
+      "sourceLayer": "admin8",
+      "geometryType": "Polygon"
+    },
+    {
+      "name": "Sopron",
+      "id": "osm-hu-20250828:admin8:1643",
+      "sourceRecord": 1643,
+      "sourceLayer": "admin8",
+      "geometryType": "Polygon"
+    },
+    {
+      "name": "Székesfehérvár",
+      "id": "osm-hu-20250828:admin8:3054",
+      "sourceRecord": 3054,
+      "sourceLayer": "admin8",
+      "geometryType": "Polygon"
+    },
+    {
+      "name": "Budaörs",
+      "id": "osm-hu-20250828:admin8:3110",
+      "sourceRecord": 3110,
+      "sourceLayer": "admin8",
+      "geometryType": "Polygon"
+    },
+    {
+      "name": "Dorog",
+      "id": "osm-hu-20250828:admin8:3172",
+      "sourceRecord": 3172,
+      "sourceLayer": "admin8",
+      "geometryType": "Polygon"
+    }
+  ],
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "attribution": "© OpenStreetMap contributors",
+  "copyrightUrl": "https://www.openstreetmap.org/copyright",
+  "limitations": [
+    "Seven selected municipality reference polygons; Budapest uses admin6, the other six use admin8.",
+    "The commit date is not a documented OSM extraction date.",
+    "No original admin6/admin8 components are duplicated here; pinned archive and component hashes make extraction reproducible.",
+    "A query intersecting a municipality is not evidence that its result belongs to that municipality."
+  ]
+}

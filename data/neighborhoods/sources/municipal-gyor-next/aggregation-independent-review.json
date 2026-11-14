@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent final read-only QA of the five explicitly source-defined Győr quarter aggregations and final17feature output.",
+  "result": "passed_as_historical_source_derived_research_candidates_only",
+  "output": {
+    "path": "data/neighborhoods/sources/municipal-gyor-next/gyor-source-candidates.geojson",
+    "sha256": "4ce29697da5be99269079cd42221242ddc10ed3a96eb697ddf527ebfb10c5f5a",
+    "features": 17,
+    "historicalQuarterCandidates": 16,
+    "historicalPlanningCandidates": 1,
+    "allGeometriesValid": true,
+    "allAddressAssignmentDisabled": true
+  },
+  "sourceCrosswalk": {
+    "printedPages": [
+      271,
+      272
+    ],
+    "sourceMapPrintedPage": 269,
+    "mapPeriod": 2006,
+    "documentPublication": "2014-01",
+    "sourceNamedQuarterTotal": 21,
+    "later2008IvsOr2014Statistics23NameInventoryIsDifferent": true,
+    "singleQuarterSourcePaths": 11,
+    "explicitSourceDefinedQuarterGroups": 5,
+    "kisbacsaRemainsPlanningExtent": true,
+    "missingQuarterNamesMustNotBeFilledByGroupComponentAliasInference": true
+  },
+  "checks": [
+    {
+      "name": "Révfalu",
+      "id": "manual:gyor:source-quarter-group-6-13",
+      "sourceTablePrintedPages": [
+        271,
+        272
+      ],
+      "sourceMapCircuitNumbers": [
+        6,
+        13
+      ],
+      "sourceDrawingIndices": [
+        41,
+        90
+      ],
+      "componentSourcePathsValidAndLiterallyClosed": true,
+      "literalMultiPolygonValid": true,
+      "actualOperation": "literal_MultiPolygon",
+      "sourceSpaceOutputBoundaryNotCoveredByOriginalEdgesLength": 0.0,
+      "sourceSpaceSymmetricDifferenceWithExactUnionArea": 0.0,
+      "wgs84OutputSymmetricDifferenceWithIndependentlyReconstructedExpectedArea": 0.0,
+      "wgs84OutputHausdorffDistanceFromExpectedDegrees": 0.0,
+      "sourceInputAreaSumPdfPoints2": 517.5436215545051,
+      "sourceUnionAreaPdfPoints2": 517.5436215545051,
+      "sourceOverlapAreaPdfPoints2": 0,
+      "gapsBridged": false,
+      "outlinesRepaired": false,
+      "componentNamePlacementEvidence": [
+        {
+          "id": "osm:node:982122870",
+          "name": "Révfalu",
+          "coordinates": [
+            17.6322402,
+            47.6994046
+          ],
+          "insideActualOutput": true,
+          "canonicalMunicipality": "Győr"
+        }
+      ],
+      "wholeNameCurrentPointEvidenceAvailable": true,
+      "historicalSourcePeriod": 2006,
+      "usableForAddressAssignment": false,
+      "independentBoundaryAccuracyKnown": false
+    },
+    {
+      "name": "Marcalváros",
+      "id": "manual:gyor:source-quarter-group-8-9-45",
+      "sourceTablePrintedPages": [
+        271,
+        272
+      ],
+      "sourceMapCircuitNumbers": [
+        8,
+        9,
+        45
+      ],
+      "sourceDrawingIndices": [
+        78,
+        45,
+        33
+      ],
+      "componentSourcePathsValidAndLiterallyClosed": true,
+      "literalMultiPolygonValid": false,
+      "actualOperation": "exact_source_space_set_union",
+      "sourceSpaceOutputBoundaryNotCoveredByOriginalEdgesLength": 0.0,
+      "sourceSpaceSymmetricDifferenceWithExactUnionArea": 0.0,
+      "wgs84OutputSymmetricDifferenceWithIndependentlyReconstructedExpectedArea": 0.0,
+      "wgs84OutputHausdorffDistanceFromExpectedDegrees": 0.0,
+      "sourceInputAreaSumPdfPoints2": 337.81525633111596,
+      "sourceUnionAreaPdfPoints2": 337.81525633111596,
+      "sourceOverlapAreaPdfPoints2": 0,
+      "gapsBridged": false,
+      "outlinesRepaired": false,
+      "componentNamePlacementEvidence": [
+        {
+          "id": "osm:node:982141218",
+          "name": "Marcalváros I.",
+          "coordinates": [
+            17.6386038,
+            47.6679293
+          ],
+          "insideActualOutput": true,
+          "canonicalMunicipality": "Győr"
+        },
+        {
+          "id": "osm:node:982141202",
+          "name": "Marcalváros II.",
+          "coordinates": [
+            17.6340727,
+            47.6621324
+          ],
+          "insideActualOutput": true,
+          "canonicalMunicipality": "Győr"
+        }
+      ],
+      "wholeNameCurrentPointEvidenceAvailable": false,
+      "historicalSourcePeriod": 2006,
+      "usableForAddressAssignment": false,
+      "independentBoundaryAccuracyKnown": false
+    },
+    {
+      "name": "Gyárváros",
+      "id": "manual:gyor:source-quarter-group-29-30-31-14-35",
+      "sourceTablePrintedPages": [
+        271,
+        272
+      ],
+      "sourceMapCircuitNumbers": [
+        29,
+        30,
+        31,
+        14,
+        35
+      ],
+      "sourceDrawingIndices": [
+        89,
+        91,
+        39,
+        88,
+        87
+      ],
+      "componentSourcePathsValidAndLiterallyClosed": true,
+      "literalMultiPolygonValid": false,
+      "actualOperation": "exact_source_space_set_union",
+      "sourceSpaceOutputBoundaryNotCoveredByOriginalEdgesLength": 0.0,
+      "sourceSpaceSymmetricDifferenceWithExactUnionArea": 0.0,
+      "wgs84OutputSymmetricDifferenceWithIndependentlyReconstructedExpectedArea": 0.0,
+      "wgs84OutputHausdorffDistanceFromExpectedDegrees": 0.0,
+      "sourceInputAreaSumPdfPoints2": 1140.4442623029463,
+      "sourceUnionAreaPdfPoints2": 1140.4442623029463,
+      "sourceOverlapAreaPdfPoints2": 0,
+      "gapsBridged": false,
+      "outlinesRepaired": false,
+      "componentNamePlacementEvidence": [
+        {
+          "id": "osm:node:982117703",
+          "name": "Gyárváros",
+          "coordinates": [
+            17.6597711,
+            47.6922561
+          ],
+          "insideActualOutput": true,
+          "canonicalMunicipality": "Győr"
+        }
+      ],
+      "wholeNameCurrentPointEvidenceAvailable": true,
+      "historicalSourcePeriod": 2006,
+      "usableForAddressAssignment": false,
+      "independentBoundaryAccuracyKnown": false
+    },
+    {
+      "name": "Szabadhegy",
+      "id": "manual:gyor:source-quarter-group-16-42-36-33-32",
+      "sourceTablePrintedPages": [
+        271,
+        272
+      ],
+      "sourceMapCircuitNumbers": [
+        16,
+        42,
+        36,
+        33,
+        32
+      ],
+      "sourceDrawingIndices": [
+        75,
+        38,
+        85,
+        72,
+        34
+      ],
+      "componentSourcePathsValidAndLiterallyClosed": true,
+      "literalMultiPolygonValid": false,
+      "actualOperation": "exact_source_space_set_union",
+      "sourceSpaceOutputBoundaryNotCoveredByOriginalEdgesLength": 0.0,
+      "sourceSpaceSymmetricDifferenceWithExactUnionArea": 0.0,
+      "wgs84OutputSymmetricDifferenceWithIndependentlyReconstructedExpectedArea": 0.0,
+      "wgs84OutputHausdorffDistanceFromExpectedDegrees": 0.0,
+      "sourceInputAreaSumPdfPoints2": 1255.2404034812935,
+      "sourceUnionAreaPdfPoints2": 1255.2376918502446,
+      "sourceOverlapAreaPdfPoints2": 0.002711631048896379,
+      "gapsBridged": false,
+      "outlinesRepaired": false,
+      "componentNamePlacementEvidence": [
+        {
+          "id": "osm:node:982117710",
+          "name": "Szabadhegy",
+          "coordinates": [
+            17.6667442,
+            47.664329
+          ],
+          "insideActualOutput": true,
+          "canonicalMunicipality": "Győr"
+        }
+      ],
+      "wholeNameCurrentPointEvidenceAvailable": true,
+      "historicalSourcePeriod": 2006,
+      "usableForAddressAssignment": false,
+      "independentBoundaryAccuracyKnown": false
+    },
+    {
+      "name": "Ménfőcsanak",
+      "id": "manual:gyor:source-quarter-group-25-46-38",
+      "sourceTablePrintedPages": [
+        271,
+        272
+      ],
+      "sourceMapCircuitNumbers": [
+        25,
+        46,
+        38
+      ],
+      "sourceDrawingIndices": [
+        24,
+        32,
+        29
+      ],
+      "componentSourcePathsValidAndLiterallyClosed": true,
+      "literalMultiPolygonValid": false,
+      "actualOperation": "exact_source_space_set_union",
+      "sourceSpaceOutputBoundaryNotCoveredByOriginalEdgesLength": 0.0,
+      "sourceSpaceSymmetricDifferenceWithExactUnionArea": 0.0,
+      "wgs84OutputSymmetricDifferenceWithIndependentlyReconstructedExpectedArea": 0.0,
+      "wgs84OutputHausdorffDistanceFromExpectedDegrees": 0.0,
+      "sourceInputAreaSumPdfPoints2": 1128.7341970754787,
+      "sourceUnionAreaPdfPoints2": 1128.7341970754787,
+      "sourceOverlapAreaPdfPoints2": 0,
+      "gapsBridged": false,
+      "outlinesRepaired": false,
+      "componentNamePlacementEvidence": [
+        {
+          "id": "osm:node:282455038",
+          "name": "Ménfőcsanak",
+          "coordinates": [
+            17.6056783,
+            47.6291522
+          ],
+          "insideActualOutput": true,
+          "canonicalMunicipality": "Győr"
+        }
+      ],
+      "wholeNameCurrentPointEvidenceAvailable": true,
+      "historicalSourcePeriod": 2006,
+      "usableForAddressAssignment": false,
+      "independentBoundaryAccuracyKnown": false
+    }
+  ],
+  "rawPathArchive": {
+    "path": "data/neighborhoods/sources/municipal-gyor-next/original-pdf-paths.json",
+    "allArchivedCoordinatesEqualActualPdfPathVertices": true,
+    "selectedPrimitivePaths": 30,
+    "uniqueSourceDrawingIndices": 30,
+    "allArchivedBluePathsLiterallyClosed": true,
+    "municipalityCalibrationBlackStrokeRemainsOpen": true
+  },
+  "marcalvarosNameEvidence": {
+    "wholeNameSource": "Original2006quarter group heading in table23, printed271–272",
+    "currentExactWholeNamePointExistsInArchivedCohort": false,
+    "currentComponentNamePoints": [
+      "osm:node:982141218",
+      "osm:node:982141202"
+    ],
+    "interpretation": "The source explicitly defines Marcalváros from circuits8,9,45. Current points corroborate MarcalvárosI. andII. components only; no nonexistent whole-quarter point or automatic identity with later separateI/IIreference entries is asserted."
+  },
+  "georeferenceLimits": [
+    "No independent interior boundary control survey.",
+    "Municipal perimeter ICP fit residuals do not establish absolute42m positional accuracy.",
+    "Source period2006 andJanuary2014publication retained; current/legal quarter boundaries are not established.",
+    "Exact set union preserves all real source gaps; it may remove internal sharededges/vertices and introduce true line-intersection vertices on existing source edges.",
+    "No buffering, snapping, make-valid, simplification or invented connecting chord was found in the conversion code.",
+    "Municipal source-map reuse rights remain unverified; ODbL attribution applies to the OSM calibration/name controls."
+  ],
+  "inputs": [
+    {
+      "path": "data/neighborhoods/sources/municipal-gyor-next/gyor-source-candidates.geojson",
+      "sha256": "4ce29697da5be99269079cd42221242ddc10ed3a96eb697ddf527ebfb10c5f5a"
+    },
+    {
+      "path": "scripts/neighborhoods/derive-gyor-next.py",
+      "sha256": "636a7167bf94c7caf68aac2ab009f96dacdd52494f22ceddc63c230205f48995"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-gyor-next/original-pdf-paths.json",
+      "sha256": "9e21383d4a236ad7cf68a587b26e178d5c7373743e3c740f279bc22051162f18"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-gyor-next/registration.json",
+      "sha256": "0ea4a456897cd8cd5e80763959395958f7bd7161aa78112ba5eef063f3bc20a3"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-gyor-next/name-control-points.geojson",
+      "sha256": "fa4bab01550bf782bd026ce94baf452db4783eed555444e01f9633cad08967a4"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-gyor-next/gyor-its.source.pdf",
+      "sha256": "40f318435f5719cb5a06b253d6e15fbd5acc7d5a6bec53fc38ae1e199b6ca21d"
+    }
+  ]
+}

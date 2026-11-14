@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "root independent of producer",
+  "accepted": true,
+  "featureCount": 9,
+  "checkedAt": "2026-11-14",
+  "admission": "Separate estimated historical research layer only; zero primary/address approvals.",
+  "checks": {
+    "nativePdfContentHashReadDirectly": true,
+    "nativeToWorldAll9ShapesRecomputed": true,
+    "threeControlSimilarityIndependentlyRefitted": true,
+    "actualArchivedRoadNodeTopologyChecked": true,
+    "allSourcePartsIncludingBelvarosMicroTriangleRetained": true,
+    "schematicVillagesAndInvalidDuplicateHodtoNotAdmitted": true,
+    "actualSourceAndRoadPreviewVisuallyReviewed": true
+  },
+  "limitations": [
+    "Source road-junction correspondences are interpreted, including C2 historical street-name ambiguity.",
+    "Large literal current-street span disagreements remain disclosed; no alias or corridor correction is inferred.",
+    "Most geometry lies outside the small control triangle. Rail holdouts/fit/model differences do not establish ground accuracy.",
+    "Source2005 historical contours/current whole-quarter extent and reuse rights remain qualified."
+  ],
+  "pinnedInputs": {
+    "estimated-world-candidates.geojson": "0c4f5a6358aea2aee2418fdab4664e89511f81f1c132b47eaeaa619612bc8219",
+    "source-native-paths.json": "05eab38486738ae9e87f93f841315b20e27a7e8af337ac7353350068650a7806",
+    "road-control-specification.json": "6b6cf441187bea7d848a120993df1b84e66743b3640bc01c0e99967db0ea7523",
+    "registration-and-uncertainty.json": "41a1a50b7ea06a3296c9263eec1ed3592b3e0b3676a89a5ccc4833a574eeb6d7",
+    "road-pbf-verification.json": "35944030e4660c3a98ad21865f12868e7cb0f91ca48a6f7d2dedbbeb04976674"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "scope": "Only two individually reviewed, exact-source-bound semantic corrections; no keyword or municipality-status filter.",
+  "reviewPath": "data/neighborhoods/research/semantic-quarter-review-next.json",
+  "records": [
+    {
+      "id": "osm:way:500904983",
+      "semanticType": "accommodation_area",
+      "reason": "Generic guest-house label with source tourism=guest_house; no proper quarter-name corroboration.",
+      "evidenceUrls": [
+        "https://www.openstreetmap.org/way/500904983"
+      ],
+      "municipality": "Ágasegyháza",
+      "sourceName": "vendégházak",
+      "sourceSha256": "4d2ba25495811c39b13a04b531500d27f98d33670a7adcc67135131b6447a544",
+      "geometrySha256": "27d549f3f54682bf2ff95d6faab2553988a1fe110a22fc490301f6d91074908c",
+      "action": "retain_as_local_area"
+    },
+    {
+      "id": "osm:way:847121788",
+      "semanticType": "cemetery_subarea",
+      "reason": "Literal Catholic cemetery-section label, with no corroborated proper quarter name. Retain the actual surface as a local-area research candidate.",
+      "evidenceUrls": [
+        "https://www.openstreetmap.org/way/847121788",
+        "https://berhida.hu/doc/onkormanyzat/rendeletek/2023/11_rendelet.pdf"
+      ],
+      "municipality": "Berhida",
+      "sourceName": "katolikus temetőrész",
+      "sourceSha256": "4d2ba25495811c39b13a04b531500d27f98d33670a7adcc67135131b6447a544",
+      "geometrySha256": "4f38359b75f57fae9abd36c71d63ee6634e35c5c2eab14b16b3147bbe5661d83",
+      "action": "retain_as_local_area"
+    }
+  ]
+}

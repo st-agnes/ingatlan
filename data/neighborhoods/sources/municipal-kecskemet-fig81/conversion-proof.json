@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "sourcePublisherPdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+  "sourceImageSha256": "4d9d33cf34268d28653d0955b8619e515653b29cea59914397246eaa7589f1ec",
+  "sourceExtractionProofSha256": "ac1b1628baa580fbeb32118d7be5088953ea30e24a37f50a83b23aa3ecf7bcea",
+  "pixelTraceHelperSha256": "45c09dc41a764993ceeac1891892d466e670c4f371c14d9e58e7570057a7693d",
+  "literalSourceMethod": "Manual interpretation of separately labelled fine-quarter outlines on the exact original embedded JPEG of the 2021 consultation-draft municipal figure 81. Manually identified source-stroke seeds guide continuous 8-neighbor source-pixel paths. For the literal-source layer every dense vertex has maxRGB <= 45. Only exactly collinear vertices are removed. A metric affine fit in EOV/EPSG:23700 using five literal contemporary OSM-node coordinates and manually placed approximate old-image road junctions georeferences the source pixels; the result is converted to WGS84. No current-road replacement, source-frame closure, arbitrary chord, buffer, geometric snapping or geometry repair is used.",
+  "estimatedMethod": "Manual interpretation of separately labelled fine-quarter outlines on the exact original embedded JPEG of the 2021 consultation-draft municipal figure 81. Manually identified source-stroke seeds guide continuous 8-neighbor source-pixel paths. For the literal-source layer every dense vertex has maxRGB <= 45. Only exactly collinear vertices are removed. A metric affine fit in EOV/EPSG:23700 using five literal contemporary OSM-node coordinates and manually placed approximate old-image road junctions georeferences the source pixels; the result is converted to WGS84. No current-road replacement, source-frame closure, arbitrary chord, buffer, geometric snapping or geometry repair is used. This candidate has narrowly bounded dark-blue source-label crossings: the underlying black outline is obscured, and its continuation through actual dark-blue source pixels is manually interpreted. It is an explicit estimate, not a literal-black boundary reconstruction; the exact affected pixels and lengths are archived.",
+  "records": [
+    {
+      "name": "Belső-Máriahegy",
+      "layer": "literal-source",
+      "valid": true,
+      "sourcePixelWalkClosed": true,
+      "allDenseSteps8Neighbor": true,
+      "allDensePixelsMaxRgbAtMost45": true,
+      "darkBlueInterpretedPixelCount": 0,
+      "densePixelCount": 1123,
+      "compressedPixelCount": 450,
+      "sourcePixelArea": 89545.0,
+      "simplificationSymmetricDifferencePixelArea": 0,
+      "canonicalParentContained": true,
+      "areaM2": 1157443.8098933743,
+      "absoluteBoundaryAccuracyMetres": null,
+      "geographicCoordinatesAreOsmVertices": false
+    },
+    {
+      "name": "Széchenyiváros III.",
+      "layer": "literal-source",
+      "valid": true,
+      "sourcePixelWalkClosed": true,
+      "allDenseSteps8Neighbor": true,
+      "allDensePixelsMaxRgbAtMost45": true,
+      "darkBlueInterpretedPixelCount": 0,
+      "densePixelCount": 895,
+      "compressedPixelCount": 317,
+      "sourcePixelArea": 51711.0,
+      "simplificationSymmetricDifferencePixelArea": 0,
+      "canonicalParentContained": true,
+      "areaM2": 668407.3985315337,
+      "absoluteBoundaryAccuracyMetres": null,
+      "geographicCoordinatesAreOsmVertices": false
+    },
+    {
+      "name": "Széchenyiváros II.",
+      "layer": "estimated",
+      "valid": true,
+      "sourcePixelWalkClosed": true,
+      "allDenseSteps8Neighbor": true,
+      "allDensePixelsMaxRgbAtMost45": false,
+      "darkBlueInterpretedPixelCount": 4,
+      "densePixelCount": 695,
+      "compressedPixelCount": 199,
+      "sourcePixelArea": 37915.0,
+      "simplificationSymmetricDifferencePixelArea": 0,
+      "canonicalParentContained": true,
+      "areaM2": 490082.5811445169,
+      "absoluteBoundaryAccuracyMetres": null,
+      "geographicCoordinatesAreOsmVertices": false
+    },
+    {
+      "name": "Széchenyiváros I.",
+      "layer": "estimated",
+      "valid": true,
+      "sourcePixelWalkClosed": true,
+      "allDenseSteps8Neighbor": true,
+      "allDensePixelsMaxRgbAtMost45": false,
+      "darkBlueInterpretedPixelCount": 16,
+      "densePixelCount": 465,
+      "compressedPixelCount": 163,
+      "sourcePixelArea": 17238.0,
+      "simplificationSymmetricDifferencePixelArea": 0,
+      "canonicalParentContained": true,
+      "areaM2": 222815.2376429664,
+      "absoluteBoundaryAccuracyMetres": null,
+      "geographicCoordinatesAreOsmVertices": false
+    }
+  ],
+  "pairwiseOverlapChecks": [
+    {
+      "names": [
+        "Belső-Máriahegy",
+        "Széchenyiváros III."
+      ],
+      "sourcePixelInteriorOverlapArea": 0.0,
+      "geographicInteriorOverlapSquareDegrees": 0.0
+    },
+    {
+      "names": [
+        "Belső-Máriahegy",
+        "Széchenyiváros II."
+      ],
+      "sourcePixelInteriorOverlapArea": 0.0,
+      "geographicInteriorOverlapSquareDegrees": 0.0
+    },
+    {
+      "names": [
+        "Belső-Máriahegy",
+        "Széchenyiváros I."
+      ],
+      "sourcePixelInteriorOverlapArea": 0.0,
+      "geographicInteriorOverlapSquareDegrees": 0.0
+    },
+    {
+      "names": [
+        "Széchenyiváros III.",
+        "Széchenyiváros II."
+      ],
+      "sourcePixelInteriorOverlapArea": 0.0,
+      "geographicInteriorOverlapSquareDegrees": 0.0
+    },
+    {
+      "names": [
+        "Széchenyiváros III.",
+        "Széchenyiváros I."
+      ],
+      "sourcePixelInteriorOverlapArea": 0.0,
+      "geographicInteriorOverlapSquareDegrees": 0.0
+    },
+    {
+      "names": [
+        "Széchenyiváros II.",
+        "Széchenyiváros I."
+      ],
+      "sourcePixelInteriorOverlapArea": 0.0,
+      "geographicInteriorOverlapSquareDegrees": 0.0
+    }
+  ],
+  "sharedSourceSectionsReusedIdentically": true,
+  "geometryRepairPerformed": false,
+  "clippedSourceTipsExported": false,
+  "unresolvedSourceUnits": [
+    {
+      "name": "Külső-Máriahegy",
+      "reason": "Source top tip clipped; black rays do not visibly close."
+    },
+    {
+      "name": "Villanegyed",
+      "reason": "Source bottom tip clipped; disjoint black rays at final photographic row."
+    }
+  ],
+  "primaryFeatureCount": 2,
+  "estimatedFeatureCount": 2,
+  "primaryOutputSha256": "06ccbe775220cf9260abcc184c87a7620cfffa5d931d156eda3fa1d3f3a2c000",
+  "estimatedOutputSha256": "a141e2a7f899672f9c833c21994d65b1fd512e4484ddacc183b082581e529b85",
+  "canonicalMunicipalityInputSha256": "fb5f1293628b9eeaabce243ae6ebc884f6bdc93443a2488e5fb213029bf766b7",
+  "reproduce": "PYTHONPATH=.local/geodata python3 scripts/neighborhoods/derive-kecskemet-fig81.py --check",
+  "usableForAddressAssignment": false
+}

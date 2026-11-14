@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "reviewer": "independent child agent donner_source_review",
+  "status": "POSITIVE_LOW_CONFIDENCE_INFERRED_DONNER_CANDIDATE_WITH_EXPLICIT_SOURCE_UNCERTAINTY",
+  "source": {
+    "path": ".local/neighborhoods/supplement-originals/kaposvar-fvs.pdf",
+    "sha256": "291aba20ffcc41e604ad737bb6d132ae51b51d70303285e36702e4fc04e6901e",
+    "bytes": 6965334,
+    "documentDate": "2023-07",
+    "documentVersion": "2.0",
+    "planningPeriod": "2021–2027",
+    "pdfCreationMetadata": "D:20240202084234+01'00'",
+    "pdfPagesInspected": [
+      1,
+      182,
+      185,
+      186
+    ]
+  },
+  "wholeQuarterIdentity": {
+    "supported": true,
+    "basis": "Page 186 first identifies a quarter named after Donner János, then states that a separately named Rómahegy settlement part adjoins it to the east. Subsequent prose distinguishes the planned-parcelling Donner residential area from Rómahegy. This supports Donner as an individually identified part rather than copying the combined Donner–Rómahegy unit 6 name onto its full map fill.",
+    "scopeLimit": "The subsection heading and city map still represent combined unit 6. Whole compound geometry cannot be assigned to Donner. The prose circuit is a separate, inferred reconstruction of Donner physical edges."
+  },
+  "printedTextReview": {
+    "visualInspectionPerformed": true,
+    "malformedPhraseAsPrinted": "a 67-es út és Kapos a Zselic-csatorna között",
+    "malformedPhraseIsPdfExtractionArtifact": false,
+    "interpretation": "The visibly malformed sentence nevertheless supplies four distinct physical references: south of the Kapos, between road67 and the Zselic channel, as far as Szigetvári road. Reading these as north/west/east/south edges is an explicit human interpretation, not a verbatim clean boundary circuit.",
+    "namedEdges": [
+      "Kapos",
+      "67-es út",
+      "Zselic-csatorna",
+      "Szigetvári út"
+    ],
+    "sameDocumentRoadNameEvidence": {
+      "pdfPage": 185,
+      "shortQuote": "67-es úttól (Zselici út)",
+      "implication": "The adjacent Kecelhegy–Cser description identifies road67 as Zselici út. It supports selecting that physical route rather than silently substituting a historical unnamed street corridor."
+    },
+    "modernFeatureEquivalenceMustRemainExplicit": [
+      "Zselic-csatorna versus OSM Zselic-patak",
+      "Szigetvári út versus OSM Szigetvári utca",
+      "Source road67/Zselici alignment versus modern route geometry"
+    ]
+  },
+  "mapReview": {
+    "pdfPage": 182,
+    "imageXref": 991,
+    "nativeWidth": 1342,
+    "nativeHeight": 1007,
+    "observation": "The city map has one combined unit 6 fill labelled Donner–Rómahegy. Internal street/cadastral ink does not identify a separate Donner contour. The map can at most corroborate shared outer physical edges; it cannot create the Zselic internal split by parent cloning."
+  },
+  "topologyReview": {
+    "finalCandidateGeometryReviewed": true,
+    "candidatePath": "donner-candidate.geojson",
+    "independentGeometryReviewPath": "independent-geometry-review.json",
+    "independentGeometryReviewSha256": "aae35ff3b53f35bf376af1ce9faeb74ccf2b8a8a84a6ae04d0f1288fac0cbd68",
+    "literalInputSha256": "b0ad88c5a517f9ddd58ec890a27992544af7853bb6ae235e89d38489e25049a6",
+    "method": "Complete OSM node-reference graph for each of four named physical edges, with only the two intended analytical river/road crossings inserted on literal edge segments.",
+    "result": "PASS: valid simple 166-coordinate polygon; two actual shared OSM corner nodes; two analytical crossings; no connector, extension, nearest-point snapping, parent geometry or repair.",
+    "sourceArcsAndOsmNodeCoordinatesIndependentlyMatched": true,
+    "candidateBoundaryComparisonHausdorffMetres": 0.0004473586040822569,
+    "comparisonToleranceMetres": 0.01,
+    "comparisonIsGeographicAccuracyClaim": false,
+    "allFourNamedPhysicalEdgesFormCompleteCircuit": true,
+    "route67SzigetvariActualSharedNode": 27421028,
+    "kaposZselicActualSharedNode": 290209038,
+    "extra67ZselicCrossingUsedAsCorner": false,
+    "extraCrossingExplanation": "The additional downstream road 67/Zselic crossing lies outside the selected Zselic boundary arc, which ends at its northern Szigetvári bridge. The selected four-edge ring therefore remains simple."
+  },
+  "sourceAgeAndConfidence": {
+    "proposedStatusIfTopologyPasses": "inferred_area; low confidence; separate candidate batch",
+    "primaryEligible": false,
+    "usableForAddressAssignment": false,
+    "claimedAbsoluteAccuracyMetres": null,
+    "sourceBoundaryAndModernLineworkDatesDiffer": true,
+    "current2026CanonicalBoundaryValidated": false
+  },
+  "nonPrimaryInferredCandidateSupported": true,
+  "approvedAsPrimary": false,
+  "candidateSha256": "aef93bcb4722d7d72892dd179e21d5bd4901533cbec4317138602b204b5252bc",
+  "remainingUncertainties": [
+    "The visibly malformed Donner sentence requires an explicit four-edge human interpretation.",
+    "The 2023 source uses Zselic-csatorna and Szigetvári út; the modern OSM lines are named Zselic-patak and Szigetvári utca. Their equivalence is an inferred physical-feature interpretation supported by the route topology and adjacent Rómahegy description, not an independently certified current boundary.",
+    "Road 67 is identified as Zselici út by the same document on page 185, but exact equivalence between source-age and modern physical routes has not been surveyed.",
+    "The candidate is Donner only. No compound unit 6 fill was copied or split; no Rómahegy built-up-boundary closure is asserted.",
+    "No current 2026 canonical boundary, house/address assignment, geographic accuracy radius or municipal open-reuse licence is established."
+  ]
+}

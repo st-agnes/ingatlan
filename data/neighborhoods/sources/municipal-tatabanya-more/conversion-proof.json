@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "method": "Literal source-vector circuit extraction from the single-page Tatabánya Városrészek településrendezési szempontú lehatárolása map, annex 3 of municipal regulation 8/2018 (IV.19.). Original decimal PDF path operands and graphics matrices are evaluated exactly, rather than snapping MuPDF float32 endpoint approximations. Every exported edge is an actual selected source line item, possibly reversed. Explicit source subcircuits omit documented out-and-back nonboundary strokes; no buffer, make_valid, invented closing edge, smoothing, clipping or geographical snapping is used. The frozen earlier municipal-outline affine georegistration into EOV/EPSG:23700 is preserved and inverse-projected into WGS84. Historical source overlaps and small differences from the current OSM city boundary remain unmodified and recorded.",
+  "sourcePdfSha256": "7a7ca9a8f70f0dcaad90deb3ce27a459a8b70610914c72cc7d9ec98eb2fb76d7",
+  "primaryCount": 3,
+  "compoundGroupCount": 4,
+  "oldFourReexported": false,
+  "parserSha256": "37bc2150ea4d43bf6f63475a1e090ca337ac9d6f5efccda4604ed8939a54307a",
+  "sourceOverlapsPreserved": [
+    {
+      "names": [
+        "Galla ipari övezet",
+        "Észak-Vértes"
+      ],
+      "sourcePdfSquaredPoints": 1.269011605686848,
+      "approximateMetricOverlapM2": 325.6995120693938,
+      "overlapAlreadyInOriginalSource": true,
+      "trimmedOrRepaired": false
+    },
+    {
+      "names": [
+        "Galla ipari övezet",
+        "Nyugat-Gerecse"
+      ],
+      "sourcePdfSquaredPoints": 0.04604651162793029,
+      "approximateMetricOverlapM2": 11.818116006934304,
+      "overlapAlreadyInOriginalSource": true,
+      "trimmedOrRepaired": false
+    },
+    {
+      "names": [
+        "Galla ipari övezet",
+        "VI-os telep – Felsőgalla"
+      ],
+      "sourcePdfSquaredPoints": 0.11382857142856892,
+      "approximateMetricOverlapM2": 29.214792052428706,
+      "overlapAlreadyInOriginalSource": true,
+      "trimmedOrRepaired": false
+    },
+    {
+      "names": [
+        "Galla ipari övezet",
+        "Alsógalla"
+      ],
+      "sourcePdfSquaredPoints": 0.018753488372101904,
+      "approximateMetricOverlapM2": 4.813196337354627,
+      "overlapAlreadyInOriginalSource": true,
+      "trimmedOrRepaired": false
+    },
+    {
+      "names": [
+        "Galla ipari övezet",
+        "Óváros"
+      ],
+      "sourcePdfSquaredPoints": 0.2159999999999584,
+      "approximateMetricOverlapM2": 55.4377078110659,
+      "overlapAlreadyInOriginalSource": true,
+      "trimmedOrRepaired": false
+    },
+    {
+      "names": [
+        "Észak-Vértes",
+        "Nyugat-Gerecse"
+      ],
+      "sourcePdfSquaredPoints": 0.007200000000000543,
+      "approximateMetricOverlapM2": 1.8479235935676535,
+      "overlapAlreadyInOriginalSource": true,
+      "trimmedOrRepaired": false
+    },
+    {
+      "names": [
+        "Észak-Vértes",
+        "Bánhida – Dózsakert"
+      ],
+      "sourcePdfSquaredPoints": 0.007199999999997135,
+      "approximateMetricOverlapM2": 1.8479235937357332,
+      "overlapAlreadyInOriginalSource": true,
+      "trimmedOrRepaired": false
+    },
+    {
+      "names": [
+        "Észak-Vértes",
+        "VI-os telep – Felsőgalla"
+      ],
+      "sourcePdfSquaredPoints": 1.089002706766926,
+      "approximateMetricOverlapM2": 279.49913825277156,
+      "overlapAlreadyInOriginalSource": true,
+      "trimmedOrRepaired": false
+    },
+    {
+      "names": [
+        "Észak-Vértes",
+        "Nyugati ipari park – Erőmű ltp."
+      ],
+      "sourcePdfSquaredPoints": 0.4003200000000167,
+      "approximateMetricOverlapM2": 102.74455180955677,
+      "overlapAlreadyInOriginalSource": true,
+      "trimmedOrRepaired": false
+    },
+    {
+      "names": [
+        "Nyugat-Gerecse",
+        "Szőlőhegy – Újváros – Sárberek"
+      ],
+      "sourcePdfSquaredPoints": 0.31787428571431164,
+      "approximateMetricOverlapM2": 81.58436005335409,
+      "overlapAlreadyInOriginalSource": true,
+      "trimmedOrRepaired": false
+    },
+    {
+      "names": [
+        "Nyugat-Gerecse",
+        "VI-os telep – Felsőgalla"
+      ],
+      "sourcePdfSquaredPoints": 0.748285714285744,
+      "approximateMetricOverlapM2": 192.05205920066356,
+      "overlapAlreadyInOriginalSource": true,
+      "trimmedOrRepaired": false
+    },
+    {
+      "names": [
+        "Szőlőhegy – Újváros – Sárberek",
+        "Alsógalla"
+      ],
+      "sourcePdfSquaredPoints": 0.04320000000000328,
+      "approximateMetricOverlapM2": 11.087541561658373,
+      "overlapAlreadyInOriginalSource": true,
+      "trimmedOrRepaired": false
+    }
+  ],
+  "exactOriginalDecimalOperandsUsed": true,
+  "allExportedEdgesMatchActualSourceLineItems": true,
+  "automaticGeometryRepairOrSourceClipping": false,
+  "primaryOutputSha256": "cbe63fc319cfd2e2a9a60223c742329a5985ba257b4d99bb5d197b39f527a25f",
+  "groupOutputSha256": "72b2ccb919db563ede30c7109bdf69cfdbca8f6deeb532d15be64a78a3ad69f3",
+  "reproduce": "PYTHONPATH=.local/geodata python3 scripts/neighborhoods/derive-tatabanya-more.py --check",
+  "usableForAddressAssignment": false
+}

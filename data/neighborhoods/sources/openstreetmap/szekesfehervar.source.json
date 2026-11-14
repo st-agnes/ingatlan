@@ -1,0 +1,32 @@
+{
+  "city": "Székesfehérvár",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:30][maxsize:67108864];\narea[\"ISO3166-1\"=\"HU\"][\"admin_level\"=\"2\"]->.hungary;\nrelation(area.hungary)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Székesfehérvár\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+  "retrievedAt": "2026-11-12T20:48:57.334Z",
+  "sha256": "496065e8f2c0ba92da78ab11eb00437b2ad7f54c13bffe95d591a08fecf3c6df",
+  "bytes": 65137,
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "municipalityRelationId": 1361450,
+  "municipalityAdminLevel": "8",
+  "candidates": 16,
+  "byAdminLevel": {
+    "11": 1,
+    "place-only": 15
+  },
+  "relationsWithWayGeometry": 1,
+  "closedWays": 15,
+  "osmTimestamp": "2026-11-12T20:47:50Z",
+  "completeCoverage": false,
+  "reviewStatus": "unreviewed",
+  "usableForAddressAssignment": false,
+  "attempts": [
+    {
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "status": "ok"
+    }
+  ],
+  "status": "downloaded",
+  "file": "szekesfehervar.json"
+}

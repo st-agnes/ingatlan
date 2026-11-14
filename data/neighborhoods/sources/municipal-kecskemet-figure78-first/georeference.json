@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "outputCrs": "EPSG:4326",
+  "metricCrs": "EPSG:23700",
+  "sourceFigure79ImageToFigure78ImageAffineRows": [
+    [
+      0.8889801625444879,
+      0.0001744036329177983
+    ],
+    [
+      -0.0001573439876687795,
+      0.8875627893464357
+    ],
+    [
+      -330.3746013918185,
+      -526.8010866028252
+    ]
+  ],
+  "sourceFigure78ImageToFigure79ImageHomogeneous": [
+    [
+      1.1248844545180312,
+      0.00019941553190937366,
+      371.738305592143
+    ],
+    [
+      -0.00022103668364146064,
+      1.1266808131485155,
+      593.4636517149416
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "composedFigure78PixelToEovRows": [
+    [
+      2.3816267416253303,
+      -0.04147183881471387
+    ],
+    [
+      0.05231632862014935,
+      -2.366043151923561
+    ],
+    [
+      694123.1462293325,
+      172864.16516154533
+    ]
+  ],
+  "calibrationFigure79GeoreferenceSha256": "8fe9f800ddeba181fc5ea1316af178a7888138c4c60a77a2ec790f734b06de9f",
+  "calibrationFigure79FrozenManifestSha256": "b5c5c314e1afd96f0de5c2c00b9bb1a7bcf6472e737fcac8addcf61e09a898d8",
+  "imageTextureTrainingMatches": 14,
+  "imageTextureHeldOutMatches": 16,
+  "maximumImageTextureHeldOutResidualTargetPixels": 0.3926250218902124,
+  "matchedTextureHullFigure78Pixels": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          69.1984620973229,
+          138.48297116079613
+        ],
+        [
+          69.23513843252405,
+          365.56486276205163
+        ],
+        [
+          296.56254341880873,
+          479.52596341597894
+        ],
+        [
+          637.8899731943131,
+          479.6391956679533
+        ],
+        [
+          865.5956542430562,
+          479.58516136588906
+        ],
+        [
+          979.5774914468057,
+          479.45157045772777
+        ],
+        [
+          1093.495617897966,
+          365.7048382120766
+        ],
+        [
+          979.640719404396,
+          138.62728731696865
+        ],
+        [
+          865.4557834802775,
+          138.55182179998695
+        ],
+        [
+          69.1984620973229,
+          138.48297116079613
+        ]
+      ]
+    ]
+  },
+  "overlapExtrapolationBySourceCell": [
+    {
+      "name": "Alsócsalános",
+      "denseVertexCountIncludingClosure": 1043,
+      "maximumMaxRgb": 44,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 817,
+      "outsideCalibrationImageRectangleVertexCount": 490,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 299.0619368497172,
+      "metricVsOriginalGeographicalAffineMaximumVertexDifferenceMeters": 0.24423058597442932
+    },
+    {
+      "name": "Homokbánya",
+      "denseVertexCountIncludingClosure": 1617,
+      "maximumMaxRgb": 45,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 1267,
+      "outsideCalibrationImageRectangleVertexCount": 1139,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 408.37078549622237,
+      "metricVsOriginalGeographicalAffineMaximumVertexDifferenceMeters": 0.3040905306113906
+    },
+    {
+      "name": "Alsószéktó",
+      "denseVertexCountIncludingClosure": 1468,
+      "maximumMaxRgb": 43,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 964,
+      "outsideCalibrationImageRectangleVertexCount": 575,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 214.80029809897817,
+      "metricVsOriginalGeographicalAffineMaximumVertexDifferenceMeters": 0.25510804946880106
+    },
+    {
+      "name": "Szeleifalu",
+      "denseVertexCountIncludingClosure": 1662,
+      "maximumMaxRgb": 43,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 1662,
+      "outsideCalibrationImageRectangleVertexCount": 1479,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 643.7843985671267,
+      "metricVsOriginalGeographicalAffineMaximumVertexDifferenceMeters": 0.8238452976071963
+    }
+  ],
+  "fiveOriginalRoadControlResidualMetersNewMetricFit": [
+    1.4244930506974791,
+    2.1414893650628977,
+    4.051178889567548,
+    1.9145874683770563,
+    2.3971022443927708
+  ],
+  "maximumOriginalRoadControlResidualMetersNewMetricFit": 4.051178889567548,
+  "metricCalibrationIsExplicitNewFitFromOriginalObservations": true,
+  "originalFigure79CalibrationFileChanged": false,
+  "fullFigure78GeographicPlacementIndependentlyValidated": false,
+  "geographicRegistrationVerified": false,
+  "imageRelationUsesNoWorldCoordinatesNamesOrBoundaryRings": true,
+  "georeferencingUsesNoNeighborhoodNamePoints": true,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

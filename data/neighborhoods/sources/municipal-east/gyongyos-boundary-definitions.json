@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Gyöngyös",
+  "sourceUrl": "https://gyongyos.hu/wp-content/uploads/2021/01/integralt-telepulesfejlesztesi-strategia-2016-its-gyongyos.pdf",
+  "sourcePrintedPages": [
+    16,
+    17
+  ],
+  "spatialUnit": "ITS central urbanquarter",
+  "geometryStatus": "factual_boundary_elements_only_no_coordinates",
+  "usableForAddressAssignment": false,
+  "definitions": [
+    {
+      "name": "Városközpont",
+      "boundaryElementsInSourceOrder": [
+        "Vachott Sándor utca",
+        "Szent Bertalan utca",
+        "Petőfi Sándor utca",
+        "Vezekényi utca",
+        "Dózsa György utca",
+        "Mátrai út",
+        "Orczy utca",
+        "Dobó István utca",
+        "Kossuth L. utca",
+        "Bornemissza utca",
+        "Könyves K. tér keleti oldala",
+        "Egri út",
+        "Országút utca",
+        "Báthory I. utca",
+        "Kertész utca",
+        "Deák F. utca"
+      ],
+      "boundaryOrderGeometricallyVerified": false,
+      "additionalArea": null
+    },
+    {
+      "name": "Északi városrész",
+      "boundaryElementsInSourceOrder": [
+        "Petőfi Sándor utca",
+        "Dózsa György utca",
+        "Mátrai út",
+        "Bene utca"
+      ],
+      "boundaryOrderGeometricallyVerified": false,
+      "additionalArea": null
+    },
+    {
+      "name": "Észak-nyugati városrész",
+      "boundaryElementsInSourceOrder": [
+        "Szép utca",
+        "Bocskai István utca",
+        "Vachott Sándor utca",
+        "Szent Bertalan utca",
+        "Petőfi Sándor utca",
+        "Vezekényi utca",
+        "Dózsa György utca",
+        "Petőfi Sándor utca"
+      ],
+      "boundaryOrderGeometricallyVerified": false,
+      "additionalArea": null
+    },
+    {
+      "name": "Keleti városrész",
+      "boundaryElementsInSourceOrder": [
+        "Bene utca",
+        "Mátrai út",
+        "Orczy utca",
+        "Dobó István utca",
+        "Kossuth L. utca",
+        "Bornemissza utca",
+        "Könyves K. tér keleti oldala",
+        "Egri út",
+        "Országút utca",
+        "Bethlen G. utca",
+        "Mérges út",
+        "Róbert Károly út",
+        "Platán utca",
+        "Sport utca",
+        "Gyár utca",
+        "Baross G. utca",
+        "Harmadosztály keleti határa",
+        "vasútvonal",
+        "déli belterületi határ"
+      ],
+      "boundaryOrderGeometricallyVerified": false,
+      "additionalArea": null
+    },
+    {
+      "name": "Déli városrész",
+      "boundaryElementsInSourceOrder": [
+        "Pesti út",
+        "Püspöki utca",
+        "Báthori I. utca",
+        "Bethlen Gábor utca",
+        "Mérges út",
+        "Róbert Károly út",
+        "Platán utca",
+        "Sport utca",
+        "Gyár utca",
+        "Baross G. utca",
+        "vasútvonal",
+        "déli belterületi határ"
+      ],
+      "boundaryOrderGeometricallyVerified": false,
+      "additionalArea": "Harmadosztály"
+    },
+    {
+      "name": "Nyugati városrész",
+      "boundaryElementsInSourceOrder": [
+        "Pesti út",
+        "Püspöki utca",
+        "Kertész utca",
+        "Deák F. utca",
+        "Vachott Sándor utca",
+        "Bocskai I. utca",
+        "Szép utca"
+      ],
+      "boundaryOrderGeometricallyVerified": false,
+      "additionalArea": null
+    }
+  ],
+  "qualityStatus": "source_boundary_chain_inconsistent_requires_independent_corroboration",
+  "notes": [
+    "The north four-road list is not a closed chain; the source map adds a northern built-up edge.",
+    "Kertész and Deák Ferenc streets were not found in the current Gyöngyös source street network.",
+    "Other source passages appear to contain copied Harrer/Puskin intersection descriptions. Do not fabricate closing edges from this text."
+  ]
+}

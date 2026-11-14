@@ -1,0 +1,3888 @@
+{
+  "type": "FeatureCollection",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "role": "Physical registration and prose-chain diagnostics only; not generated neighborhood boundaries",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "osm:way:31027821",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 31027821,
+          "tags": {
+            "axle_load": "21",
+            "electrified": "contact_line",
+            "frequency": "50",
+            "gauge": "1435",
+            "loading_gauge": "TSI_GC",
+            "maxspeed": "80",
+            "operator": "MÁV",
+            "passenger_lines": "1",
+            "railway": "rail",
+            "railway:ballastless": "no",
+            "railway:bidirectional": "regular",
+            "railway:etcs": "no",
+            "railway:evm": "no",
+            "railway:lzb": "no",
+            "railway:preferred_direction": "both",
+            "railway:pzb": "no",
+            "railway:radio": "analogue",
+            "railway:rail": "continuous",
+            "railway:track_class": "CM2",
+            "railway:track_type": "main",
+            "railway:traffic_mode": "mixed",
+            "ref": "71",
+            "usage": "main",
+            "voltage": "25000"
+          },
+          "nodeRefs": [
+            3699861091,
+            3699861098,
+            8401880069,
+            8401880066,
+            8401880068,
+            8401880065,
+            1941327026,
+            13009255584,
+            13009255585,
+            13009255591,
+            13009255589,
+            13009255590,
+            1687607383,
+            13009255588,
+            13009255586,
+            7089345238,
+            13009255587,
+            13009255570,
+            1687607757,
+            1687607759,
+            1687607761,
+            1687607764,
+            1751001119,
+            1687607768,
+            1687607771,
+            1751001122,
+            14102617754,
+            928018641,
+            1687607776,
+            1687607472,
+            1687607780
+          ],
+          "objectVersion": 26,
+          "objectTimestamp": "2026-08-18 09:21:56+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/31027821",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.2090125,
+            47.7341657
+          ],
+          [
+            19.2085689,
+            47.7342293
+          ],
+          [
+            19.207252,
+            47.734431
+          ],
+          [
+            19.2064677,
+            47.7345591
+          ],
+          [
+            19.2061557,
+            47.7346086
+          ],
+          [
+            19.2058527,
+            47.7346562
+          ],
+          [
+            19.2034961,
+            47.7349841
+          ],
+          [
+            19.1973993,
+            47.7358579
+          ],
+          [
+            19.1968478,
+            47.7359369
+          ],
+          [
+            19.1966018,
+            47.7359751
+          ],
+          [
+            19.1963566,
+            47.7360157
+          ],
+          [
+            19.1961074,
+            47.7360554
+          ],
+          [
+            19.1958612,
+            47.7360987
+          ],
+          [
+            19.1956514,
+            47.736141
+          ],
+          [
+            19.1954401,
+            47.7361838
+          ],
+          [
+            19.1952825,
+            47.7362192
+          ],
+          [
+            19.1952338,
+            47.7362302
+          ],
+          [
+            19.195026,
+            47.7362791
+          ],
+          [
+            19.1936705,
+            47.7366817
+          ],
+          [
+            19.1924802,
+            47.7371343
+          ],
+          [
+            19.1911704,
+            47.7378059
+          ],
+          [
+            19.1902888,
+            47.7382378
+          ],
+          [
+            19.1893821,
+            47.7387007
+          ],
+          [
+            19.1887326,
+            47.7390647
+          ],
+          [
+            19.1878732,
+            47.73956
+          ],
+          [
+            19.1793496,
+            47.7441568
+          ],
+          [
+            19.1679595,
+            47.7503664
+          ],
+          [
+            19.1677573,
+            47.7504766
+          ],
+          [
+            19.1662466,
+            47.7512994
+          ],
+          [
+            19.1647197,
+            47.7521706
+          ],
+          [
+            19.1642711,
+            47.752448
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:38834348",
+      "properties": {
+        "name": "Gödöllői út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 38834348,
+          "tags": {
+            "highway": "secondary",
+            "lanes": "2",
+            "lanes:backward": "1",
+            "lanes:forward": "1",
+            "maxspeed:backward": "40",
+            "maxspeed:forward": "50",
+            "name": "Gödöllői út",
+            "ref": "2104",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left"
+          },
+          "nodeRefs": [
+            60687572,
+            2851777815,
+            2851777814,
+            471610183
+          ],
+          "objectVersion": 14,
+          "objectTimestamp": "2023-09-02 13:37:06+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/38834348",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1403156,
+            47.7644858
+          ],
+          [
+            19.1404869,
+            47.7645067
+          ],
+          [
+            19.1405562,
+            47.7644924
+          ],
+          [
+            19.1406782,
+            47.7644553
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:39256016",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 39256016,
+          "tags": {
+            "axle_load": "21",
+            "electrified": "contact_line",
+            "frequency": "50",
+            "gauge": "1435",
+            "loading_gauge": "TSI_GC",
+            "maxspeed": "120",
+            "operator": "MÁV",
+            "passenger_lines": "2",
+            "railway": "rail",
+            "railway:ballastless": "no",
+            "railway:bidirectional": "regular",
+            "railway:evm": "yes",
+            "railway:preferred_direction": "forward",
+            "railway:radio": "analogue",
+            "railway:rail": "continuous",
+            "railway:track_class": "CM3",
+            "railway:track_type": "main",
+            "railway:traffic_mode": "mixed",
+            "ref": "70",
+            "usage": "main",
+            "voltage": "25000"
+          },
+          "nodeRefs": [
+            2482929795,
+            2482929796,
+            2482929797,
+            2482929798,
+            9272073168,
+            2482929806,
+            3502833715,
+            2482929811,
+            2482929812,
+            2482929814,
+            2482929815,
+            2482929817,
+            2482929820,
+            2482929822,
+            2482929824,
+            2482929828,
+            2482929831,
+            2482929837,
+            2482929851,
+            2482929854,
+            11950921892,
+            4485948797,
+            4485948793,
+            4485948794,
+            4485948798,
+            6956567934
+          ],
+          "objectVersion": 30,
+          "objectTimestamp": "2025-05-03 12:04:06+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/39256016",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1545197,
+            47.7242841
+          ],
+          [
+            19.154889,
+            47.7278628
+          ],
+          [
+            19.1551773,
+            47.7306223
+          ],
+          [
+            19.1552221,
+            47.7310597
+          ],
+          [
+            19.1560335,
+            47.7383026
+          ],
+          [
+            19.1562601,
+            47.7403485
+          ],
+          [
+            19.156729,
+            47.7445573
+          ],
+          [
+            19.157957,
+            47.7558741
+          ],
+          [
+            19.1581977,
+            47.7578173
+          ],
+          [
+            19.158232,
+            47.7588525
+          ],
+          [
+            19.1581658,
+            47.7596008
+          ],
+          [
+            19.1579224,
+            47.7605732
+          ],
+          [
+            19.157496,
+            47.7615931
+          ],
+          [
+            19.1535919,
+            47.7686182
+          ],
+          [
+            19.153002,
+            47.7696419
+          ],
+          [
+            19.1517669,
+            47.7711917
+          ],
+          [
+            19.1502675,
+            47.7726183
+          ],
+          [
+            19.1495232,
+            47.7733135
+          ],
+          [
+            19.1487212,
+            47.7740594
+          ],
+          [
+            19.1480235,
+            47.7747083
+          ],
+          [
+            19.1472025,
+            47.7754746
+          ],
+          [
+            19.1467135,
+            47.7759209
+          ],
+          [
+            19.1466454,
+            47.7759846
+          ],
+          [
+            19.146593,
+            47.7760349
+          ],
+          [
+            19.1465357,
+            47.776096
+          ],
+          [
+            19.1456738,
+            47.7768945
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:48823554",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 48823554,
+          "tags": {
+            "highway": "primary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szent László út",
+            "priority_road": "yes",
+            "ref": "2",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            3008162011,
+            471610164,
+            6893831828,
+            471610150,
+            60687570,
+            5338334352,
+            5338334350,
+            6893831874,
+            5338334547,
+            471610157,
+            5885688822,
+            6138878697,
+            60687571,
+            6138878698,
+            9721621003,
+            471610177
+          ],
+          "objectVersion": 18,
+          "objectTimestamp": "2025-08-12 17:46:25+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/48823554",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1413287,
+            47.757123
+          ],
+          [
+            19.1412362,
+            47.7577935
+          ],
+          [
+            19.1412299,
+            47.7578464
+          ],
+          [
+            19.1412174,
+            47.757951
+          ],
+          [
+            19.141202,
+            47.7581647
+          ],
+          [
+            19.1411381,
+            47.7585994
+          ],
+          [
+            19.1411,
+            47.758859
+          ],
+          [
+            19.1410386,
+            47.7592771
+          ],
+          [
+            19.140958,
+            47.7598258
+          ],
+          [
+            19.1408613,
+            47.7604842
+          ],
+          [
+            19.1408016,
+            47.7609292
+          ],
+          [
+            19.1407887,
+            47.7610251
+          ],
+          [
+            19.1407459,
+            47.7613446
+          ],
+          [
+            19.1407364,
+            47.7614587
+          ],
+          [
+            19.1406099,
+            47.7623412
+          ],
+          [
+            19.1405837,
+            47.7625239
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78176179",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78176179,
+          "tags": {
+            "HU:ed_direction": "forward",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "maxspeed": "90",
+            "name": "Szent László út",
+            "note": "már nincs kint a kerékpár tiltó tábla",
+            "priority_road": "yes",
+            "ref": "2",
+            "ref:HU:edid": "2u29k208m",
+            "surface": "asphalt",
+            "toll:bus": "yes",
+            "toll:hgv": "yes",
+            "turn:lanes:backward": "left|through"
+          },
+          "nodeRefs": [
+            471610089,
+            60687566,
+            5999367271
+          ],
+          "objectVersion": 13,
+          "objectTimestamp": "2025-08-12 17:46:25+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/78176179",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.141187,
+            47.7486824
+          ],
+          [
+            19.1412054,
+            47.7489397
+          ],
+          [
+            19.1413043,
+            47.7503488
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78176191",
+      "properties": {
+        "name": "Gödöllői út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78176191,
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "secondary",
+            "lanes": "2",
+            "maxspeed": "90",
+            "name": "Gödöllői út",
+            "ref": "2104",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            918298145,
+            2336533984,
+            461061913,
+            3108366265,
+            928018669,
+            470350918,
+            2482929811,
+            928018252,
+            3036347717,
+            11584565887,
+            461061914,
+            461061917,
+            3036490599,
+            3036490594,
+            12683640923,
+            470350920,
+            928018783,
+            8340060944
+          ],
+          "objectVersion": 27,
+          "objectTimestamp": "2025-10-23 12:04:07+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/78176191",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1514236,
+            47.7590525
+          ],
+          [
+            19.1524705,
+            47.758542
+          ],
+          [
+            19.1557272,
+            47.7569268
+          ],
+          [
+            19.1570917,
+            47.7562836
+          ],
+          [
+            19.1574762,
+            47.7561024
+          ],
+          [
+            19.1579035,
+            47.7558999
+          ],
+          [
+            19.157957,
+            47.7558741
+          ],
+          [
+            19.158148,
+            47.7557848
+          ],
+          [
+            19.1585683,
+            47.755601
+          ],
+          [
+            19.1588851,
+            47.7554615
+          ],
+          [
+            19.159204,
+            47.7552971
+          ],
+          [
+            19.1602188,
+            47.7547478
+          ],
+          [
+            19.1615808,
+            47.7540099
+          ],
+          [
+            19.1626149,
+            47.7534496
+          ],
+          [
+            19.1634207,
+            47.753013
+          ],
+          [
+            19.1635441,
+            47.7529461
+          ],
+          [
+            19.1642656,
+            47.752553
+          ],
+          [
+            19.165218,
+            47.7520309
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78176196",
+      "properties": {
+        "name": "Rádi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78176196,
+          "tags": {
+            "bicycle": "no",
+            "cycleway:left": "separate",
+            "cycleway:right": "no",
+            "highway": "tertiary",
+            "maxspeed": "50",
+            "name": "Rádi út",
+            "sidewalk:left": "separate",
+            "sidewalk:right": "no",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            461187641,
+            1423794336,
+            1423794335,
+            1423794333,
+            10856468147,
+            461187643,
+            10856468148,
+            10856468149,
+            470810655,
+            5885688923,
+            10856468151,
+            10856468157,
+            10856468153,
+            470817091,
+            10856468156,
+            470810607
+          ],
+          "objectVersion": 16,
+          "objectTimestamp": "2026-07-28 08:07:40+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/78176196",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1386635,
+            47.7757509
+          ],
+          [
+            19.1387335,
+            47.7757498
+          ],
+          [
+            19.138794,
+            47.7757352
+          ],
+          [
+            19.1390841,
+            47.7756237
+          ],
+          [
+            19.139231,
+            47.7755765
+          ],
+          [
+            19.1394478,
+            47.77552
+          ],
+          [
+            19.1397822,
+            47.7754423
+          ],
+          [
+            19.140088,
+            47.7753837
+          ],
+          [
+            19.1401482,
+            47.7753736
+          ],
+          [
+            19.140415,
+            47.7753305
+          ],
+          [
+            19.1405748,
+            47.7753084
+          ],
+          [
+            19.1411226,
+            47.7752453
+          ],
+          [
+            19.1411799,
+            47.7752381
+          ],
+          [
+            19.1412809,
+            47.7752253
+          ],
+          [
+            19.1413862,
+            47.775212
+          ],
+          [
+            19.1416575,
+            47.775186
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78314967",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78314967,
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szent László út",
+            "parking:lane:left": "no_stopping",
+            "parking:lane:right": "no_stopping",
+            "priority_road": "yes",
+            "ref": "2",
+            "sidewalk": "no",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            919488524,
+            11204856223,
+            919488638,
+            60687573,
+            7439959877,
+            919488627
+          ],
+          "objectVersion": 13,
+          "objectTimestamp": "2025-08-12 17:46:25+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/78314967",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1402082,
+            47.7652012
+          ],
+          [
+            19.1402026,
+            47.765242
+          ],
+          [
+            19.1401754,
+            47.7654388
+          ],
+          [
+            19.140069,
+            47.7660345
+          ],
+          [
+            19.14004,
+            47.7662327
+          ],
+          [
+            19.1397899,
+            47.767939
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78314990",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78314990,
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szent László út",
+            "priority_road": "yes",
+            "ref": "2",
+            "surface": "asphalt",
+            "turn:lanes:backward": "merge_to_right|none"
+          },
+          "nodeRefs": [
+            471610184,
+            60687572
+          ],
+          "objectVersion": 13,
+          "objectTimestamp": "2026-07-28 14:17:09+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/78314990",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1403916,
+            47.7640871
+          ],
+          [
+            19.1403156,
+            47.7644858
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78314992",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78314992,
+          "tags": {
+            "HU:ed_direction": "forward",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed": "90",
+            "name": "Szent László út",
+            "note": "már nincs kint a kerékpár tiltó tábla",
+            "priority_road": "yes",
+            "ref": "2",
+            "ref:HU:edid": "2u29k208m",
+            "shoulder": "no",
+            "surface": "asphalt",
+            "toll:bus": "yes",
+            "toll:hgv": "yes"
+          },
+          "nodeRefs": [
+            60687567,
+            5338334390,
+            5781628820
+          ],
+          "objectVersion": 16,
+          "objectTimestamp": "2025-08-12 17:46:25+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/78314992",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1413908,
+            47.7516788
+          ],
+          [
+            19.1413947,
+            47.751743
+          ],
+          [
+            19.1413986,
+            47.7518078
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78314997",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78314997,
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szent László út",
+            "parking:lane:both": "no_stopping",
+            "priority_road": "yes",
+            "ref": "2",
+            "sidewalk": "no",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            919488627,
+            60686821
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2026-07-28 08:05:04+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/78314997",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1397899,
+            47.767939
+          ],
+          [
+            19.1397213,
+            47.7683681
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:79499828",
+      "properties": {
+        "name": "Homok utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 79499828,
+          "tags": {
+            "highway": "residential",
+            "name": "Homok utca",
+            "surface": "compacted"
+          },
+          "nodeRefs": [
+            8282932727,
+            928018280,
+            928018657,
+            928018584,
+            10927618680,
+            928018258
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2025-03-26 14:28:08+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/79499828",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1631943,
+            47.7533169
+          ],
+          [
+            19.162898,
+            47.7535921
+          ],
+          [
+            19.1622592,
+            47.7541598
+          ],
+          [
+            19.1616991,
+            47.7547946
+          ],
+          [
+            19.1614893,
+            47.7550375
+          ],
+          [
+            19.1611665,
+            47.7554486
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:79499871",
+      "properties": {
+        "name": "Gólyahír utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 79499871,
+          "tags": {
+            "highway": "residential",
+            "name": "Gólyahír utca",
+            "surface": "compacted"
+          },
+          "nodeRefs": [
+            928018539,
+            928018332,
+            3036490584,
+            8282915654,
+            3036490585,
+            3036490586,
+            928018575
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2021-01-02 08:51:24+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/79499871",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1645902,
+            47.7487589
+          ],
+          [
+            19.164209,
+            47.7489143
+          ],
+          [
+            19.1609859,
+            47.7505921
+          ],
+          [
+            19.1587689,
+            47.7517976
+          ],
+          [
+            19.1585971,
+            47.7518988
+          ],
+          [
+            19.1579781,
+            47.752267
+          ],
+          [
+            19.1578545,
+            47.752311
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:79499934",
+      "properties": {
+        "name": "Kamilla utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 79499934,
+          "tags": {
+            "highway": "residential",
+            "name": "Kamilla utca",
+            "surface": "compacted"
+          },
+          "nodeRefs": [
+            3722016275,
+            928018641,
+            928018591,
+            2012616759,
+            2012616761,
+            10975525537,
+            10975525538,
+            2012616765,
+            2012616769,
+            2012616767,
+            928018430,
+            3036381514,
+            928018627,
+            928018539
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2023-06-13 23:49:56+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/79499934",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1678188,
+            47.750528
+          ],
+          [
+            19.1677573,
+            47.7504766
+          ],
+          [
+            19.1677111,
+            47.7504386
+          ],
+          [
+            19.1676626,
+            47.7504162
+          ],
+          [
+            19.1676213,
+            47.7504128
+          ],
+          [
+            19.1675685,
+            47.7504273
+          ],
+          [
+            19.1673037,
+            47.7505571
+          ],
+          [
+            19.1670677,
+            47.7506487
+          ],
+          [
+            19.1669866,
+            47.7506561
+          ],
+          [
+            19.1669244,
+            47.7506493
+          ],
+          [
+            19.1668644,
+            47.7506211
+          ],
+          [
+            19.1665984,
+            47.7503782
+          ],
+          [
+            19.1658661,
+            47.749795
+          ],
+          [
+            19.1645902,
+            47.7487589
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:240778063",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 240778063,
+          "tags": {
+            "axle_load": "21",
+            "electrified": "contact_line",
+            "frequency": "50",
+            "gauge": "1435",
+            "loading_gauge": "TSI_GC",
+            "maxspeed": "120",
+            "operator": "MÁV",
+            "passenger_lines": "2",
+            "railway": "rail",
+            "railway:ballastless": "no",
+            "railway:bidirectional": "regular",
+            "railway:evm": "yes",
+            "railway:preferred_direction": "forward",
+            "railway:radio": "analogue",
+            "railway:rail": "continuous",
+            "railway:track_class": "CM3",
+            "railway:track_type": "main",
+            "railway:traffic_mode": "mixed",
+            "ref": "70",
+            "usage": "main",
+            "voltage": "25000"
+          },
+          "nodeRefs": [
+            6956567932,
+            4485948795,
+            4485948792,
+            11950921891,
+            2482929853,
+            2482929852,
+            2482929836,
+            2482929827,
+            2482929823,
+            2482929821,
+            2482929819,
+            2482929816,
+            1687607802,
+            2482929813,
+            1687607799,
+            470350918,
+            3171015113,
+            1751001121,
+            9272073167,
+            2453530777,
+            412348480,
+            279769584,
+            927010976
+          ],
+          "objectVersion": 27,
+          "objectTimestamp": "2025-05-03 12:04:06+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/240778063",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1459378,
+            47.7765718
+          ],
+          [
+            19.1464963,
+            47.7760691
+          ],
+          [
+            19.1466702,
+            47.7759089
+          ],
+          [
+            19.1471463,
+            47.7754466
+          ],
+          [
+            19.1479726,
+            47.7746837
+          ],
+          [
+            19.1486324,
+            47.7740692
+          ],
+          [
+            19.1504818,
+            47.7723472
+          ],
+          [
+            19.1517098,
+            47.771167
+          ],
+          [
+            19.1529454,
+            47.7696195
+          ],
+          [
+            19.1535405,
+            47.7685999
+          ],
+          [
+            19.1574419,
+            47.7615764
+          ],
+          [
+            19.1578787,
+            47.7605628
+          ],
+          [
+            19.158115,
+            47.7595968
+          ],
+          [
+            19.1581836,
+            47.7588509
+          ],
+          [
+            19.1581422,
+            47.7578213
+          ],
+          [
+            19.1579035,
+            47.7558999
+          ],
+          [
+            19.1566827,
+            47.7445594
+          ],
+          [
+            19.1562066,
+            47.7403679
+          ],
+          [
+            19.1559785,
+            47.7383047
+          ],
+          [
+            19.1551796,
+            47.7310619
+          ],
+          [
+            19.1548571,
+            47.728099
+          ],
+          [
+            19.1548204,
+            47.7278686
+          ],
+          [
+            19.1544579,
+            47.7242886
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:258494347",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 258494347,
+          "tags": {
+            "HU:ed_direction": "forward",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed": "90",
+            "name": "Szent László út",
+            "priority_road": "yes",
+            "ref": "2",
+            "ref:HU:edid": "2u29k208m",
+            "shoulder": "no",
+            "surface": "asphalt",
+            "toll:bus": "yes",
+            "toll:hgv": "yes"
+          },
+          "nodeRefs": [
+            471610155,
+            5781628808,
+            619427813
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2025-08-12 17:46:25+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/258494347",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1415511,
+            47.7552937
+          ],
+          [
+            19.1415358,
+            47.7554636
+          ],
+          [
+            19.1415288,
+            47.7555659
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:283113912",
+      "properties": {
+        "name": "Rádi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 283113912,
+          "tags": {
+            "bicycle": "no",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Rádi út",
+            "sidewalk:left": "separate",
+            "sidewalk:right": "no",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            470332220,
+            8120307721,
+            6919113519,
+            6919113524,
+            469737861
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2026-07-28 08:08:14+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/283113912",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1460684,
+            47.774553
+          ],
+          [
+            19.1468025,
+            47.7744055
+          ],
+          [
+            19.1472912,
+            47.7743073
+          ],
+          [
+            19.1476189,
+            47.7742427
+          ],
+          [
+            19.1479454,
+            47.7741818
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:283127145",
+      "properties": {
+        "name": "Rádi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 283127145,
+          "tags": {
+            "bicycle": "no",
+            "highway": "tertiary",
+            "lane_markings": "no",
+            "maxspeed": "30",
+            "name": "Rádi út",
+            "sidewalk": "no",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            469737861,
+            1907830115
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2026-07-28 08:09:51+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/283127145",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1479454,
+            47.7741818
+          ],
+          [
+            19.1480605,
+            47.7741597
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:283142669",
+      "properties": {
+        "name": "Gödöllői út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 283142669,
+          "tags": {
+            "highway": "secondary",
+            "lanes": "2",
+            "maxspeed:backward": "40",
+            "maxspeed:forward": "50",
+            "name": "Gödöllői út",
+            "ref": "2104",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            471610183,
+            471610187
+          ],
+          "objectVersion": 13,
+          "objectTimestamp": "2023-09-02 13:37:14+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/283142669",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1406782,
+            47.7644553
+          ],
+          [
+            19.1408227,
+            47.7643781
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:283142670",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 283142670,
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szent László út",
+            "parking:lane:left": "no_stopping",
+            "parking:lane:right": "no_stopping",
+            "priority_road": "yes",
+            "ref": "2",
+            "sidewalk": "no",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|through"
+          },
+          "nodeRefs": [
+            2851777818,
+            919488524
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2026-07-28 14:17:11+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/283142670",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1402715,
+            47.7648313
+          ],
+          [
+            19.1402082,
+            47.7652012
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:308748140",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 308748140,
+          "tags": {
+            "HU:ed_direction": "forward",
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed:backward": "60",
+            "maxspeed:forward": "90",
+            "name": "Szent László út",
+            "priority_road": "yes",
+            "ref": "2",
+            "ref:HU:edid": "2u29k208m",
+            "source:maxspeed:backward": "sign",
+            "source:maxspeed:forward": "HU:rural",
+            "surface": "asphalt",
+            "toll:bus": "yes",
+            "toll:hgv": "yes"
+          },
+          "nodeRefs": [
+            3108365987,
+            5973428923,
+            5781628838
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2025-08-12 17:46:25+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/308748140",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.141424,
+            47.7522271
+          ],
+          [
+            19.1414254,
+            47.7522564
+          ],
+          [
+            19.1414705,
+            47.7531691
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:310724660",
+      "properties": {
+        "name": "Búzavirág utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 310724660,
+          "tags": {
+            "access": "private",
+            "highway": "residential",
+            "name": "Búzavirág utca",
+            "surface": "compacted"
+          },
+          "nodeRefs": [
+            928018696,
+            928018686,
+            3036365190,
+            928018546
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2021-01-02 08:47:00+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/310724660",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1699677,
+            47.754027
+          ],
+          [
+            19.1705928,
+            47.7536909
+          ],
+          [
+            19.1713271,
+            47.7532808
+          ],
+          [
+            19.1717727,
+            47.7530445
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:369057515",
+      "properties": {
+        "name": "Kamilla utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 369057515,
+          "tags": {
+            "highway": "residential",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Kamilla utca",
+            "sidewalk": "no",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            10975525534,
+            10975525533,
+            10975525535,
+            3722016273,
+            3722016275,
+            3722016276,
+            10975525536,
+            3722016274
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2023-06-13 23:49:56+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/369057515",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1681126,
+            47.7504605
+          ],
+          [
+            19.1680587,
+            47.7504498
+          ],
+          [
+            19.1680124,
+            47.7504534
+          ],
+          [
+            19.1679188,
+            47.750482
+          ],
+          [
+            19.1678188,
+            47.750528
+          ],
+          [
+            19.1677109,
+            47.7505884
+          ],
+          [
+            19.1676396,
+            47.7506455
+          ],
+          [
+            19.1676039,
+            47.7507374
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:503376947",
+      "properties": {
+        "name": "Rádi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 503376947,
+          "tags": {
+            "destination:backward": "Centrum",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Rádi út",
+            "sidewalk": "no",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            1907830115,
+            12064524182,
+            12064524188,
+            12064524189,
+            12064524183,
+            2482929852,
+            2482929851,
+            2482929850,
+            10856468105,
+            12064524186,
+            12064524187,
+            12064524184,
+            12064524185,
+            1907830104,
+            10856436404,
+            10856468112,
+            10856468106,
+            10856468111,
+            4411598405
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2026-07-28 08:08:39+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/503376947",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1480605,
+            47.7741597
+          ],
+          [
+            19.1482685,
+            47.7741205
+          ],
+          [
+            19.1483675,
+            47.774103
+          ],
+          [
+            19.1484605,
+            47.7740895
+          ],
+          [
+            19.148548,
+            47.7740786
+          ],
+          [
+            19.1486324,
+            47.7740692
+          ],
+          [
+            19.1487212,
+            47.7740594
+          ],
+          [
+            19.148858,
+            47.7740442
+          ],
+          [
+            19.1488971,
+            47.7740399
+          ],
+          [
+            19.1489877,
+            47.7740254
+          ],
+          [
+            19.1490857,
+            47.7740054
+          ],
+          [
+            19.1491766,
+            47.7739832
+          ],
+          [
+            19.149295,
+            47.7739528
+          ],
+          [
+            19.1494469,
+            47.7739097
+          ],
+          [
+            19.1497385,
+            47.7738204
+          ],
+          [
+            19.1500752,
+            47.7737348
+          ],
+          [
+            19.1503058,
+            47.7736816
+          ],
+          [
+            19.1505539,
+            47.7736311
+          ],
+          [
+            19.1506686,
+            47.7736107
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:575361852",
+      "properties": {
+        "name": "Rádi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 575361852,
+          "tags": {
+            "bicycle": "no",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Rádi út",
+            "sidewalk:left": "separate",
+            "sidewalk:right": "no",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            470810607,
+            470810619,
+            6919113575,
+            6919113561,
+            6919113587,
+            470332220
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2026-07-28 08:07:58+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/575361852",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1416575,
+            47.775186
+          ],
+          [
+            19.144122,
+            47.7749053
+          ],
+          [
+            19.1446421,
+            47.7748237
+          ],
+          [
+            19.1454546,
+            47.7746713
+          ],
+          [
+            19.1456875,
+            47.7746264
+          ],
+          [
+            19.1460684,
+            47.774553
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:610516041",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 610516041,
+          "tags": {
+            "HU:ed_direction": "forward",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed:backward": "90",
+            "maxspeed:forward": "60",
+            "name": "Szent László út",
+            "note": "már nincs kint a kerékpár tiltó tábla",
+            "priority_road": "yes",
+            "ref": "2",
+            "ref:HU:edid": "2u29k208m",
+            "source:maxspeed:backward": "HU:rural",
+            "source:maxspeed:forward": "sign",
+            "surface": "asphalt",
+            "toll:bus": "yes",
+            "toll:hgv": "yes"
+          },
+          "nodeRefs": [
+            5781628820,
+            5781628816,
+            3108365987
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2025-08-12 17:46:25+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/610516041",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1413986,
+            47.7518078
+          ],
+          [
+            19.1414191,
+            47.7521454
+          ],
+          [
+            19.141424,
+            47.7522271
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:610516045",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 610516045,
+          "tags": {
+            "HU:ed_direction": "forward",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed": "90",
+            "name": "Szent László út",
+            "priority_road": "yes",
+            "ref": "2",
+            "ref:HU:edid": "2u29k208m",
+            "shoulder": "no",
+            "source:maxspeed": "HU:rural",
+            "surface": "asphalt",
+            "toll:bus": "yes",
+            "toll:hgv": "yes"
+          },
+          "nodeRefs": [
+            5781628838,
+            5781628788,
+            5781628779,
+            471610155
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2025-08-12 17:46:25+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/610516045",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1414705,
+            47.7531691
+          ],
+          [
+            19.1415011,
+            47.7537889
+          ],
+          [
+            19.1415454,
+            47.7549576
+          ],
+          [
+            19.1415511,
+            47.7552937
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:625794798",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 625794798,
+          "tags": {
+            "axle_load": "21",
+            "electrified": "contact_line",
+            "frequency": "50",
+            "gauge": "1435",
+            "loading_gauge": "TSI_GC",
+            "maxspeed": "80",
+            "operator": "MÁV",
+            "passenger_lines": "1",
+            "railway": "rail",
+            "railway:ballastless": "no",
+            "railway:bidirectional": "regular",
+            "railway:etcs": "no",
+            "railway:evm": "no",
+            "railway:lzb": "no",
+            "railway:preferred_direction": "both",
+            "railway:pzb": "no",
+            "railway:radio": "analogue",
+            "railway:rail": "continuous",
+            "railway:track_class": "CM2",
+            "railway:track_type": "main",
+            "railway:traffic_mode": "mixed",
+            "ref": "71",
+            "usage": "main",
+            "voltage": "25000"
+          },
+          "nodeRefs": [
+            1687607786,
+            8282892619,
+            1687607789,
+            3036347715,
+            10945246449,
+            1687607792,
+            3036347716,
+            1687607795,
+            2482929818,
+            1687607805,
+            60146462,
+            2482929825,
+            60146461,
+            2482929833,
+            1687607531,
+            2482929849,
+            2482929850,
+            11950921893,
+            11950921894,
+            2482929855,
+            11950921890,
+            6956567935,
+            6956567928
+          ],
+          "objectVersion": 15,
+          "objectTimestamp": "2025-05-03 12:04:06+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/625794798",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1631393,
+            47.7532477
+          ],
+          [
+            19.1628711,
+            47.7534692
+          ],
+          [
+            19.1624159,
+            47.7538729
+          ],
+          [
+            19.1619242,
+            47.7543927
+          ],
+          [
+            19.1616864,
+            47.7546588
+          ],
+          [
+            19.1614558,
+            47.7549267
+          ],
+          [
+            19.1609754,
+            47.755516
+          ],
+          [
+            19.1605807,
+            47.7561162
+          ],
+          [
+            19.1581079,
+            47.7605875
+          ],
+          [
+            19.1575501,
+            47.7616098
+          ],
+          [
+            19.1536433,
+            47.7686364
+          ],
+          [
+            19.1530587,
+            47.7696642
+          ],
+          [
+            19.1518627,
+            47.7712286
+          ],
+          [
+            19.1503649,
+            47.7726579
+          ],
+          [
+            19.1496237,
+            47.773364
+          ],
+          [
+            19.1490319,
+            47.7738922
+          ],
+          [
+            19.148858,
+            47.7740442
+          ],
+          [
+            19.1484536,
+            47.7743978
+          ],
+          [
+            19.1480788,
+            47.7747351
+          ],
+          [
+            19.1478777,
+            47.7749301
+          ],
+          [
+            19.1472575,
+            47.7755002
+          ],
+          [
+            19.1463231,
+            47.7763776
+          ],
+          [
+            19.1444218,
+            47.7781316
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:636162952",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 636162952,
+          "tags": {
+            "HU:ed_direction": "forward",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed": "90",
+            "name": "Szent László út",
+            "note": "már nincs kint a kerékpár tiltó tábla",
+            "priority_road": "yes",
+            "ref": "2",
+            "ref:HU:edid": "2u29k208m",
+            "shoulder": "no",
+            "smoothness": "excellent",
+            "surface": "asphalt",
+            "toll:bus": "yes",
+            "toll:hgv": "yes"
+          },
+          "nodeRefs": [
+            5999367271,
+            5781628815,
+            60687567
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2025-08-12 17:46:25+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/636162952",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1413043,
+            47.7503488
+          ],
+          [
+            19.14137,
+            47.7513722
+          ],
+          [
+            19.1413908,
+            47.7516788
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:636162955",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 636162955,
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szent László út",
+            "priority_road": "yes",
+            "ref": "2",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|through"
+          },
+          "nodeRefs": [
+            60687572,
+            2851777818
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-07-28 14:17:14+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/636162955",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1403156,
+            47.7644858
+          ],
+          [
+            19.1402715,
+            47.7648313
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:636162956",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 636162956,
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szent László út",
+            "priority_road": "yes",
+            "ref": "2",
+            "surface": "asphalt",
+            "turn:lanes:forward": "through|right"
+          },
+          "nodeRefs": [
+            5999367273,
+            471610184
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-07-28 08:04:27+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/636162956",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1404018,
+            47.7639538
+          ],
+          [
+            19.1403916,
+            47.7640871
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:636162957",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 636162957,
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "4",
+            "lanes:backward": "2",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szent László út",
+            "priority_road": "yes",
+            "ref": "2",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|through;right",
+            "turn:lanes:forward": "through|right"
+          },
+          "nodeRefs": [
+            471610146,
+            5999367273
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-07-28 08:04:24+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/636162957",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.140469,
+            47.7636308
+          ],
+          [
+            19.1404018,
+            47.7639538
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:636162958",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 636162958,
+          "tags": {
+            "highway": "primary",
+            "lanes": "4",
+            "lanes:backward": "2",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szent László út",
+            "priority_road": "yes",
+            "ref": "2",
+            "sidewalk": "left",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|through",
+            "turn:lanes:forward": "through|right"
+          },
+          "nodeRefs": [
+            471610177,
+            5999367274
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2025-08-12 17:46:25+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/636162958",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1405837,
+            47.7625239
+          ],
+          [
+            19.1405265,
+            47.7632461
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:636162959",
+      "properties": {
+        "name": "Szent László út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 636162959,
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "4",
+            "lanes:backward": "1",
+            "lanes:forward": "3",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szent László út",
+            "priority_road": "yes",
+            "ref": "2",
+            "sidewalk": "left",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through|right"
+          },
+          "nodeRefs": [
+            5999367274,
+            471610173,
+            471610146
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-07-28 08:04:18+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/636162959",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1405265,
+            47.7632461
+          ],
+          [
+            19.1404972,
+            47.7634263
+          ],
+          [
+            19.140469,
+            47.7636308
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:636436012",
+      "properties": {
+        "name": "Gödöllői út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 636436012,
+          "tags": {
+            "highway": "secondary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "Gödöllői út",
+            "ref": "2104",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|none"
+          },
+          "nodeRefs": [
+            5998526751,
+            471610180
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2024-09-21 16:45:49+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/636436012",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1467035,
+            47.7614473
+          ],
+          [
+            19.1470521,
+            47.7612726
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:636436013",
+      "properties": {
+        "name": "Gödöllői út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 636436013,
+          "tags": {
+            "highway": "secondary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Gödöllői út",
+            "ref": "2104",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            928018345,
+            8340079037
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2024-09-21 16:45:50+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/636436013",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.147815,
+            47.7608838
+          ],
+          [
+            19.1502931,
+            47.7596262
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:645122776",
+      "properties": {
+        "name": "Árvácska utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 645122776,
+          "tags": {
+            "highway": "track",
+            "name": "Árvácska utca",
+            "surface": "ground"
+          },
+          "nodeRefs": [
+            6065136193,
+            2794692775
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2023-10-15 14:28:43+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/645122776",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.0772204,
+            47.7198672
+          ],
+          [
+            19.0771659,
+            47.7203475
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:645122778",
+      "properties": {
+        "name": "Árvácska utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 645122778,
+          "tags": {
+            "highway": "residential",
+            "name": "Árvácska utca"
+          },
+          "nodeRefs": [
+            2794692775,
+            2897436314,
+            844560703
+          ],
+          "objectVersion": 1,
+          "objectTimestamp": "2018-11-16 01:51:21+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/645122778",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.0771659,
+            47.7203475
+          ],
+          [
+            19.0770528,
+            47.7211936
+          ],
+          [
+            19.0769547,
+            47.7218896
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:731618479",
+      "properties": {
+        "name": "Búzavirág utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 731618479,
+          "tags": {
+            "highway": "residential",
+            "name": "Búzavirág utca",
+            "surface": "compacted"
+          },
+          "nodeRefs": [
+            928018638,
+            10948702403,
+            928018696
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2023-06-03 11:02:26+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/731618479",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1690859,
+            47.7544909
+          ],
+          [
+            19.169141,
+            47.7544619
+          ],
+          [
+            19.1699677,
+            47.754027
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:881433997",
+      "properties": {
+        "name": "Gödöllői út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 881433997,
+          "tags": {
+            "highway": "secondary",
+            "lanes": "2",
+            "maxspeed:backward": "40",
+            "maxspeed:forward": "50",
+            "name": "Gödöllői út",
+            "ref": "2104"
+          },
+          "nodeRefs": [
+            471610187,
+            470333832
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2021-07-21 01:21:33+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/881433997",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1408227,
+            47.7643781
+          ],
+          [
+            19.1410263,
+            47.7642874
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:881433998",
+      "properties": {
+        "name": "Gödöllői út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 881433998,
+          "tags": {
+            "highway": "secondary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Gödöllői út",
+            "ref": "2104"
+          },
+          "nodeRefs": [
+            470333832,
+            8197572203,
+            8146813868,
+            3138867968,
+            10264631065,
+            5885688883,
+            5885688876,
+            5885688869,
+            5338333554,
+            6956518387,
+            5998526732,
+            6956518384,
+            5998526738,
+            5998526758,
+            6956518353,
+            5998526751
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2022-12-15 09:53:08+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/881433998",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1410263,
+            47.7642874
+          ],
+          [
+            19.1414804,
+            47.7640651
+          ],
+          [
+            19.1417734,
+            47.7639182
+          ],
+          [
+            19.1423542,
+            47.7636271
+          ],
+          [
+            19.1425167,
+            47.7635457
+          ],
+          [
+            19.1425548,
+            47.7635266
+          ],
+          [
+            19.1426969,
+            47.7634554
+          ],
+          [
+            19.1433801,
+            47.763113
+          ],
+          [
+            19.1434226,
+            47.7630917
+          ],
+          [
+            19.1438921,
+            47.7628564
+          ],
+          [
+            19.1444071,
+            47.7625983
+          ],
+          [
+            19.1450596,
+            47.7622712
+          ],
+          [
+            19.1456235,
+            47.7619886
+          ],
+          [
+            19.1457592,
+            47.7619206
+          ],
+          [
+            19.1462772,
+            47.761661
+          ],
+          [
+            19.1467035,
+            47.7614473
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:891180177",
+      "properties": {
+        "name": "Homok utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 891180177,
+          "tags": {
+            "highway": "residential",
+            "name": "Homok utca",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            928018783,
+            3036347714,
+            1687607782,
+            928018778,
+            928018382,
+            928018716,
+            8282932727
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2025-03-26 14:28:08+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/891180177",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1642656,
+            47.752553
+          ],
+          [
+            19.1642923,
+            47.7526021
+          ],
+          [
+            19.1642748,
+            47.752648
+          ],
+          [
+            19.1637107,
+            47.7529487
+          ],
+          [
+            19.1635121,
+            47.7530635
+          ],
+          [
+            19.1634028,
+            47.7531402
+          ],
+          [
+            19.1631943,
+            47.7533169
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:895051965",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 895051965,
+          "tags": {
+            "axle_load": "21",
+            "electrified": "contact_line",
+            "frequency": "50",
+            "gauge": "1435",
+            "loading_gauge": "TSI_GC",
+            "maxspeed": "40",
+            "operator": "MÁV",
+            "passenger_lines": "1",
+            "railway": "rail",
+            "railway:ballastless": "no",
+            "railway:bidirectional": "regular",
+            "railway:etcs": "no",
+            "railway:evm": "no",
+            "railway:lzb": "no",
+            "railway:preferred_direction": "both",
+            "railway:pzb": "no",
+            "railway:radio": "analogue",
+            "railway:rail": "continuous",
+            "railway:track_class": "CM2",
+            "railway:track_type": "main",
+            "railway:traffic_mode": "mixed",
+            "ref": "71",
+            "usage": "main",
+            "voltage": "25000"
+          },
+          "nodeRefs": [
+            1687607780,
+            470350920,
+            1687607786
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2024-06-01 22:42:04+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/895051965",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1642711,
+            47.752448
+          ],
+          [
+            19.1635441,
+            47.7529461
+          ],
+          [
+            19.1631393,
+            47.7532477
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:897310695",
+      "properties": {
+        "name": "Gödöllői út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 897310695,
+          "tags": {
+            "highway": "secondary",
+            "lanes": "2",
+            "maxspeed": "90",
+            "name": "Gödöllői út",
+            "ref": "2104",
+            "surface": "asphalt"
+          },
+          "nodeRefs": [
+            8340079037,
+            8282885943,
+            918298145
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2024-09-21 16:45:51+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/897310695",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1502931,
+            47.7596262
+          ],
+          [
+            19.1507955,
+            47.7593712
+          ],
+          [
+            19.1514236,
+            47.7590525
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:931185630",
+      "properties": {
+        "name": "Gödöllői út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 931185630,
+          "tags": {
+            "highway": "secondary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "Gödöllői út",
+            "ref": "2104",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|none"
+          },
+          "nodeRefs": [
+            471610180,
+            928018345
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2024-09-21 16:45:50+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/931185630",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1470521,
+            47.7612726
+          ],
+          [
+            19.147815,
+            47.7608838
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1288799204",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1288799204,
+          "tags": {
+            "axle_load": "21",
+            "electrified": "contact_line",
+            "frequency": "50",
+            "gauge": "1435",
+            "loading_gauge": "TSI_GC",
+            "maxspeed": "80",
+            "operator": "MÁV",
+            "passenger_lines": "1",
+            "railway": "rail",
+            "railway:ballastless": "no",
+            "railway:bidirectional": "regular",
+            "railway:evm": "yes",
+            "railway:preferred_direction": "both",
+            "railway:radio": "analogue",
+            "railway:rail": "continuous",
+            "railway:track_class": "CM2",
+            "railway:track_type": "main",
+            "railway:traffic_mode": "mixed",
+            "ref": "71",
+            "usage": "main",
+            "voltage": "25000"
+          },
+          "nodeRefs": [
+            6956567928,
+            11509288762,
+            11509288766,
+            11509288767,
+            11509288768,
+            11509288765,
+            11509288773,
+            11509288772,
+            11509288774,
+            60146460,
+            8766163038,
+            8766163037,
+            2482929863,
+            8766163036,
+            8766163035,
+            60146459,
+            8766163034,
+            2484817871,
+            2482929868,
+            10700730848,
+            2482929871,
+            3999404599
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2025-05-03 12:04:06+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/1288799204",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1444218,
+            47.7781316
+          ],
+          [
+            19.1440177,
+            47.7785071
+          ],
+          [
+            19.1439,
+            47.7786133
+          ],
+          [
+            19.1437838,
+            47.7787177
+          ],
+          [
+            19.1436601,
+            47.7788237
+          ],
+          [
+            19.1435394,
+            47.7789256
+          ],
+          [
+            19.1434145,
+            47.7790281
+          ],
+          [
+            19.1432797,
+            47.7791313
+          ],
+          [
+            19.1431452,
+            47.7792303
+          ],
+          [
+            19.1430035,
+            47.7793295
+          ],
+          [
+            19.142803,
+            47.7794585
+          ],
+          [
+            19.1425003,
+            47.7796408
+          ],
+          [
+            19.1421797,
+            47.7798085
+          ],
+          [
+            19.1419599,
+            47.7799242
+          ],
+          [
+            19.1417449,
+            47.7800225
+          ],
+          [
+            19.1414592,
+            47.7801451
+          ],
+          [
+            19.141166,
+            47.7802591
+          ],
+          [
+            19.1408597,
+            47.7803707
+          ],
+          [
+            19.1403292,
+            47.7805672
+          ],
+          [
+            19.1399624,
+            47.7806988
+          ],
+          [
+            19.1396076,
+            47.7808233
+          ],
+          [
+            19.1394301,
+            47.7808844
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1383247741",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1383247741,
+          "tags": {
+            "axle_load": "22.5",
+            "electrified": "contact_line",
+            "frequency": "50",
+            "gauge": "1435",
+            "loading_gauge": "TSI_GC",
+            "maxspeed": "100",
+            "operator": "MÁV",
+            "passenger_lines": "2",
+            "railway": "rail",
+            "railway:ballastless": "no",
+            "railway:bidirectional": "regular",
+            "railway:evm": "yes",
+            "railway:preferred_direction": "forward",
+            "railway:radio": "analogue",
+            "railway:rail": "continuous",
+            "railway:track_class": "D3",
+            "railway:track_type": "main",
+            "railway:traffic_mode": "mixed",
+            "ref": "70",
+            "usage": "main",
+            "voltage": "25000"
+          },
+          "nodeRefs": [
+            3339376044,
+            2482929869,
+            2482929866,
+            2484817864,
+            2482929864,
+            2482929861,
+            8766163040,
+            2482929859,
+            11509288785,
+            11509288784,
+            11509288783,
+            11509288782,
+            11509288781,
+            11509288780,
+            11509288779,
+            11509288764,
+            11509288732,
+            6956567930,
+            6956567932
+          ],
+          "objectVersion": 1,
+          "objectTimestamp": "2025-05-03 12:04:06+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/1383247741",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1392108,
+            47.7807684
+          ],
+          [
+            19.1397952,
+            47.7805944
+          ],
+          [
+            19.1403236,
+            47.7804406
+          ],
+          [
+            19.140863,
+            47.7802644
+          ],
+          [
+            19.1414199,
+            47.7800539
+          ],
+          [
+            19.1421146,
+            47.7797477
+          ],
+          [
+            19.1425671,
+            47.7794911
+          ],
+          [
+            19.1429023,
+            47.7792658
+          ],
+          [
+            19.143044,
+            47.7791703
+          ],
+          [
+            19.1431778,
+            47.7790716
+          ],
+          [
+            19.14331,
+            47.7789711
+          ],
+          [
+            19.1434348,
+            47.7788698
+          ],
+          [
+            19.1435569,
+            47.7787679
+          ],
+          [
+            19.1436759,
+            47.7786646
+          ],
+          [
+            19.143792,
+            47.7785603
+          ],
+          [
+            19.1439078,
+            47.7784547
+          ],
+          [
+            19.1443138,
+            47.7780798
+          ],
+          [
+            19.1445847,
+            47.7778271
+          ],
+          [
+            19.1459378,
+            47.7765718
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1383247742",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1383247742,
+          "tags": {
+            "axle_load": "22.5",
+            "electrified": "contact_line",
+            "frequency": "50",
+            "gauge": "1435",
+            "loading_gauge": "TSI_GC",
+            "maxspeed": "100",
+            "operator": "MÁV",
+            "passenger_lines": "2",
+            "railway": "rail",
+            "railway:ballastless": "no",
+            "railway:bidirectional": "regular",
+            "railway:evm": "yes",
+            "railway:preferred_direction": "forward",
+            "railway:radio": "analogue",
+            "railway:rail": "continuous",
+            "railway:track_class": "D3",
+            "railway:track_type": "main",
+            "railway:traffic_mode": "mixed",
+            "ref": "70",
+            "usage": "main",
+            "voltage": "25000"
+          },
+          "nodeRefs": [
+            6956567934,
+            6956567933,
+            6956567931,
+            6956567929,
+            11509288733,
+            11509288763,
+            11509288770,
+            11509288771,
+            11509288769,
+            11509288778,
+            11509288777,
+            11509288776,
+            11509288775,
+            2482929860,
+            8766163039,
+            2482929862,
+            2482929865,
+            2484817866,
+            2482929867,
+            3999404597
+          ],
+          "objectVersion": 1,
+          "objectTimestamp": "2025-05-03 12:04:06+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "url": "https://www.openstreetmap.org/way/1383247742",
+          "geometryProcessing": "Literal complete PBF way vertices and nodeRefs; no clipping, densification, snapping or simplification."
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.1456738,
+            47.7768945
+          ],
+          [
+            19.1454065,
+            47.7771426
+          ],
+          [
+            19.1452274,
+            47.7773076
+          ],
+          [
+            19.1449548,
+            47.7775601
+          ],
+          [
+            19.1443678,
+            47.7781057
+          ],
+          [
+            19.1439627,
+            47.7784809
+          ],
+          [
+            19.1438461,
+            47.7785868
+          ],
+          [
+            19.1437303,
+            47.7786914
+          ],
+          [
+            19.1436091,
+            47.7787961
+          ],
+          [
+            19.1434879,
+            47.7788982
+          ],
+          [
+            19.1433622,
+            47.7789996
+          ],
+          [
+            19.1432297,
+            47.779102
+          ],
+          [
+            19.1430955,
+            47.7792008
+          ],
+          [
+            19.1429529,
+            47.7792977
+          ],
+          [
+            19.1425813,
+            47.7795339
+          ],
+          [
+            19.1421081,
+            47.779797
+          ],
+          [
+            19.1415132,
+            47.7800617
+          ],
+          [
+            19.140876,
+            47.780316
+          ],
+          [
+            19.1403266,
+            47.7805157
+          ],
+          [
+            19.139875,
+            47.7806745
+          ]
+        ]
+      }
+    }
+  ]
+}

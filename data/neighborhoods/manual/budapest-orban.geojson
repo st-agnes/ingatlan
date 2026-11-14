@@ -1,0 +1,1393 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "manual:Budapest:23:Orbanhegy",
+      "properties": {
+        "name": "Orbánhegy (XXIII. kerület)",
+        "referenceName": "Orbánhegy",
+        "municipality": "Budapest",
+        "district": 23,
+        "boundaryKind": "neighbourhood",
+        "method": "legal_street_and_railway_trace_with_explicit_inferred_connections",
+        "sourceDocuments": [
+          {
+            "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+            "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac"
+          }
+        ],
+        "sourceParagraph": "3. melléklet 23.5.",
+        "evidenceUrls": [
+          "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV"
+        ],
+        "sourceLineIds": [
+          "osm:way:1175967474",
+          "osm:way:171381692",
+          "osm:way:171381693",
+          "osm:way:171381695",
+          "osm:way:197050679",
+          "osm:way:197339403",
+          "osm:way:236777721",
+          "osm:way:24187036",
+          "osm:way:288069917",
+          "osm:way:348178874",
+          "osm:way:42702260",
+          "osm:way:43054654",
+          "osm:way:60967933",
+          "osm:way:625087729",
+          "osm:way:662506249",
+          "osm:way:662506250",
+          "osm:way:662506251",
+          "osm:way:662525378",
+          "osm:way:662525386",
+          "osm:way:662528722",
+          "osm:way:662528723",
+          "osm:way:662528724",
+          "osm:way:662528738",
+          "osm:way:662528739",
+          "osm:way:662529196",
+          "osm:way:662529197",
+          "osm:way:662529198",
+          "osm:way:662529199",
+          "osm:way:662530406",
+          "osm:way:662530409",
+          "osm:way:662530413",
+          "osm:way:662530417",
+          "osm:way:662530422",
+          "osm:way:683252894"
+        ],
+        "source": {
+          "provider": "manual-openstreetmap",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "inputPath": "data/neighborhoods/manual/sources/budapest-orban-input.geojson",
+          "inputSha256": "2eabbb2be1f65bfa29f014dd0f655d479aac161840e56ce90055022af69a5ee3",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z"
+        },
+        "quality": "inferred_candidate_boundary",
+        "reviewStatus": "manual_inference_needs_review",
+        "reviewNotes": [
+          "Road and railway centre lines approximate the legally described boundary.",
+          "Present split carriageways require short inferred junction connections.",
+          "The Millennium utca-to-railway continuation is uncertain and explicitly measured."
+        ],
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "constructionProof": {
+          "streetSegments": [
+            {
+              "from": [
+                19.1225428,
+                47.3871412
+              ],
+              "to": [
+                19.1224169,
+                47.3871783
+              ],
+              "sourceLineId": "osm:way:197339403",
+              "inferred": false,
+              "lengthMetres": 10.34
+            },
+            {
+              "from": [
+                19.1224169,
+                47.3871783
+              ],
+              "to": [
+                19.1223721,
+                47.3872008
+              ],
+              "sourceLineId": "osm:way:197339403",
+              "inferred": false,
+              "lengthMetres": 4.2
+            },
+            {
+              "from": [
+                19.1223721,
+                47.3872008
+              ],
+              "to": [
+                19.122341,
+                47.3872239
+              ],
+              "sourceLineId": "osm:way:197339403",
+              "inferred": false,
+              "lengthMetres": 3.48
+            },
+            {
+              "from": [
+                19.122341,
+                47.3872239
+              ],
+              "to": [
+                19.12229217647302,
+                47.387276615369196
+              ],
+              "sourceLineId": "osm:way:197339403",
+              "inferred": false,
+              "lengthMetres": 6.92
+            },
+            {
+              "from": [
+                19.12229217647302,
+                47.387276615369196
+              ],
+              "to": [
+                19.1210752,
+                47.3885906
+              ],
+              "sourceLineId": "osm:way:197339403",
+              "inferred": false,
+              "lengthMetres": 172.47
+            },
+            {
+              "from": [
+                19.1210752,
+                47.3885906
+              ],
+              "to": [
+                19.1207393,
+                47.3888171
+              ],
+              "sourceLineId": null,
+              "inferred": true,
+              "lengthMetres": 35.69,
+              "reason": "Approximate connection across separately mapped carriageways/junction in the legally named street corridor."
+            },
+            {
+              "from": [
+                19.1207393,
+                47.3888171
+              ],
+              "to": [
+                19.1204787,
+                47.389095
+              ],
+              "sourceLineId": "osm:way:683252894",
+              "inferred": false,
+              "lengthMetres": 36.61
+            },
+            {
+              "from": [
+                19.1204787,
+                47.389095
+              ],
+              "to": [
+                19.1203294,
+                47.3892696
+              ],
+              "sourceLineId": "osm:way:662506251",
+              "inferred": false,
+              "lengthMetres": 22.44
+            },
+            {
+              "from": [
+                19.1203294,
+                47.3892696
+              ],
+              "to": [
+                19.1200323,
+                47.3895825
+              ],
+              "sourceLineId": "osm:way:662506250",
+              "inferred": false,
+              "lengthMetres": 41.37
+            },
+            {
+              "from": [
+                19.1200323,
+                47.3895825
+              ],
+              "to": [
+                19.1199168,
+                47.3897037
+              ],
+              "sourceLineId": "osm:way:662506249",
+              "inferred": false,
+              "lengthMetres": 16.04
+            },
+            {
+              "from": [
+                19.1199168,
+                47.3897037
+              ],
+              "to": [
+                19.119805,
+                47.3898301
+              ],
+              "sourceLineId": "osm:way:662506249",
+              "inferred": false,
+              "lengthMetres": 16.38
+            },
+            {
+              "from": [
+                19.119805,
+                47.3898301
+              ],
+              "to": [
+                19.1196881,
+                47.3899642
+              ],
+              "sourceLineId": "osm:way:625087729",
+              "inferred": false,
+              "lengthMetres": 17.32
+            },
+            {
+              "from": [
+                19.1196881,
+                47.3899642
+              ],
+              "to": [
+                19.119604,
+                47.3900611
+              ],
+              "sourceLineId": "osm:way:197050679",
+              "inferred": false,
+              "lengthMetres": 12.5
+            },
+            {
+              "from": [
+                19.119604,
+                47.3900611
+              ],
+              "to": [
+                19.1192992,
+                47.3901838
+              ],
+              "sourceLineId": "osm:way:60967933",
+              "inferred": false,
+              "lengthMetres": 26.7
+            },
+            {
+              "from": [
+                19.1192992,
+                47.3901838
+              ],
+              "to": [
+                19.1191626,
+                47.3902485
+              ],
+              "sourceLineId": "osm:way:60967933",
+              "inferred": false,
+              "lengthMetres": 12.55
+            },
+            {
+              "from": [
+                19.1191626,
+                47.3902485
+              ],
+              "to": [
+                19.1190853,
+                47.3903368
+              ],
+              "sourceLineId": "osm:way:60967933",
+              "inferred": false,
+              "lengthMetres": 11.41
+            },
+            {
+              "from": [
+                19.1190853,
+                47.3903368
+              ],
+              "to": [
+                19.1190106,
+                47.3904367
+              ],
+              "sourceLineId": "osm:way:662525386",
+              "inferred": false,
+              "lengthMetres": 12.45
+            },
+            {
+              "from": [
+                19.1190106,
+                47.3904367
+              ],
+              "to": [
+                19.1187362,
+                47.3907941
+              ],
+              "sourceLineId": "osm:way:662525386",
+              "inferred": false,
+              "lengthMetres": 44.79
+            },
+            {
+              "from": [
+                19.1187362,
+                47.3907941
+              ],
+              "to": [
+                19.1179311,
+                47.3918716
+              ],
+              "sourceLineId": "osm:way:42702260",
+              "inferred": false,
+              "lengthMetres": 134.28
+            },
+            {
+              "from": [
+                19.1179311,
+                47.3918716
+              ],
+              "to": [
+                19.1170684,
+                47.3929485
+              ],
+              "sourceLineId": "osm:way:42702260",
+              "inferred": false,
+              "lengthMetres": 136.24
+            },
+            {
+              "from": [
+                19.1170684,
+                47.3929485
+              ],
+              "to": [
+                19.1167825,
+                47.3933457
+              ],
+              "sourceLineId": "osm:way:42702260",
+              "inferred": false,
+              "lengthMetres": 49.14
+            },
+            {
+              "from": [
+                19.1167825,
+                47.3933457
+              ],
+              "to": [
+                19.1164753,
+                47.3938314
+              ],
+              "sourceLineId": "osm:way:42702260",
+              "inferred": false,
+              "lengthMetres": 58.76
+            },
+            {
+              "from": [
+                19.1164753,
+                47.3938314
+              ],
+              "to": [
+                19.1159903,
+                47.3938491
+              ],
+              "sourceLineId": null,
+              "inferred": true,
+              "lengthMetres": 36.57,
+              "reason": "Approximate connection across separately mapped carriageways/junction in the legally named street corridor."
+            },
+            {
+              "from": [
+                19.1159903,
+                47.3938491
+              ],
+              "to": [
+                19.1154453,
+                47.3928208
+              ],
+              "sourceLineId": "osm:way:662525378",
+              "inferred": false,
+              "lengthMetres": 121.49
+            },
+            {
+              "from": [
+                19.1154453,
+                47.3928208
+              ],
+              "to": [
+                19.1152057,
+                47.3924352
+              ],
+              "sourceLineId": "osm:way:662528739",
+              "inferred": false,
+              "lengthMetres": 46.52
+            },
+            {
+              "from": [
+                19.1152057,
+                47.3924352
+              ],
+              "to": [
+                19.1148213,
+                47.3918484
+              ],
+              "sourceLineId": "osm:way:24187036",
+              "inferred": false,
+              "lengthMetres": 71.38
+            },
+            {
+              "from": [
+                19.1148213,
+                47.3918484
+              ],
+              "to": [
+                19.1147314,
+                47.3917034
+              ],
+              "sourceLineId": "osm:way:24187036",
+              "inferred": false,
+              "lengthMetres": 17.49
+            },
+            {
+              "from": [
+                19.1147314,
+                47.3917034
+              ],
+              "to": [
+                19.1146503,
+                47.3915887
+              ],
+              "sourceLineId": "osm:way:1175967474",
+              "inferred": false,
+              "lengthMetres": 14.14
+            },
+            {
+              "from": [
+                19.1146503,
+                47.3915887
+              ],
+              "to": [
+                19.1145091,
+                47.3914046
+              ],
+              "sourceLineId": "osm:way:662528738",
+              "inferred": false,
+              "lengthMetres": 23.07
+            },
+            {
+              "from": [
+                19.1145091,
+                47.3914046
+              ],
+              "to": [
+                19.1143999,
+                47.3912625
+              ],
+              "sourceLineId": "osm:way:662528724",
+              "inferred": false,
+              "lengthMetres": 17.81
+            },
+            {
+              "from": [
+                19.1143999,
+                47.3912625
+              ],
+              "to": [
+                19.1142368,
+                47.3910619
+              ],
+              "sourceLineId": "osm:way:288069917",
+              "inferred": false,
+              "lengthMetres": 25.46
+            },
+            {
+              "from": [
+                19.1142368,
+                47.3910619
+              ],
+              "to": [
+                19.1139638,
+                47.3906627
+              ],
+              "sourceLineId": "osm:way:288069917",
+              "inferred": false,
+              "lengthMetres": 48.92
+            },
+            {
+              "from": [
+                19.1139638,
+                47.3906627
+              ],
+              "to": [
+                19.1129331,
+                47.3894254
+              ],
+              "sourceLineId": "osm:way:171381693",
+              "inferred": false,
+              "lengthMetres": 157.97
+            },
+            {
+              "from": [
+                19.1129331,
+                47.3894254
+              ],
+              "to": [
+                19.112308042852764,
+                47.3886770599262
+              ],
+              "sourceLineId": "osm:way:171381693",
+              "inferred": false,
+              "lengthMetres": 95.6
+            },
+            {
+              "from": [
+                19.112308042852764,
+                47.3886770599262
+              ],
+              "to": [
+                19.112201683716236,
+                47.388549723082804
+              ],
+              "sourceLineId": "osm:way:171381693",
+              "inferred": false,
+              "lengthMetres": 16.27
+            },
+            {
+              "from": [
+                19.112201683716236,
+                47.388549723082804
+              ],
+              "to": [
+                19.1119495,
+                47.3882478
+              ],
+              "sourceLineId": "osm:way:171381693",
+              "inferred": false,
+              "lengthMetres": 38.57
+            },
+            {
+              "from": [
+                19.1119495,
+                47.3882478
+              ],
+              "to": [
+                19.111826741873244,
+                47.3881044102553
+              ],
+              "sourceLineId": "osm:way:171381693",
+              "inferred": false,
+              "lengthMetres": 18.43
+            },
+            {
+              "from": [
+                19.111826741873244,
+                47.3881044102553
+              ],
+              "to": [
+                19.1115092,
+                47.3877335
+              ],
+              "sourceLineId": "osm:way:171381693",
+              "inferred": false,
+              "lengthMetres": 47.67
+            },
+            {
+              "from": [
+                19.1115092,
+                47.3877335
+              ],
+              "to": [
+                19.1109887,
+                47.3871537
+              ],
+              "sourceLineId": "osm:way:171381693",
+              "inferred": false,
+              "lengthMetres": 75.45
+            },
+            {
+              "from": [
+                19.1109887,
+                47.3871537
+              ],
+              "to": [
+                19.1109182,
+                47.3870762
+              ],
+              "sourceLineId": "osm:way:662530422",
+              "inferred": false,
+              "lengthMetres": 10.12
+            },
+            {
+              "from": [
+                19.1109182,
+                47.3870762
+              ],
+              "to": [
+                19.1105367,
+                47.38665
+              ],
+              "sourceLineId": "osm:way:662530417",
+              "inferred": false,
+              "lengthMetres": 55.42
+            },
+            {
+              "from": [
+                19.1105367,
+                47.38665
+              ],
+              "to": [
+                19.110481833870654,
+                47.38657795615727
+              ],
+              "sourceLineId": "osm:way:662530413",
+              "inferred": false,
+              "lengthMetres": 9.01
+            },
+            {
+              "from": [
+                19.110481833870654,
+                47.38657795615727
+              ],
+              "to": [
+                19.1101943,
+                47.3862004
+              ],
+              "sourceLineId": "osm:way:662530413",
+              "inferred": false,
+              "lengthMetres": 47.24
+            },
+            {
+              "from": [
+                19.1101943,
+                47.3862004
+              ],
+              "to": [
+                19.1101751,
+                47.3861765
+              ],
+              "sourceLineId": "osm:way:662530413",
+              "inferred": false,
+              "lengthMetres": 3.03
+            },
+            {
+              "from": [
+                19.1101751,
+                47.3861765
+              ],
+              "to": [
+                19.1100978,
+                47.3860915
+              ],
+              "sourceLineId": "osm:way:171381695",
+              "inferred": false,
+              "lengthMetres": 11.1
+            },
+            {
+              "from": [
+                19.1100978,
+                47.3860915
+              ],
+              "to": [
+                19.11005,
+                47.3860382
+              ],
+              "sourceLineId": "osm:way:171381695",
+              "inferred": false,
+              "lengthMetres": 6.93
+            },
+            {
+              "from": [
+                19.11005,
+                47.3860382
+              ],
+              "to": [
+                19.1100186,
+                47.3860046
+              ],
+              "sourceLineId": "osm:way:662530406",
+              "inferred": false,
+              "lengthMetres": 4.42
+            },
+            {
+              "from": [
+                19.1100186,
+                47.3860046
+              ],
+              "to": [
+                19.1098805,
+                47.385857
+              ],
+              "sourceLineId": "osm:way:662530406",
+              "inferred": false,
+              "lengthMetres": 19.43
+            },
+            {
+              "from": [
+                19.1098805,
+                47.385857
+              ],
+              "to": [
+                19.1098359,
+                47.3858002
+              ],
+              "sourceLineId": "osm:way:662530409",
+              "inferred": false,
+              "lengthMetres": 7.15
+            },
+            {
+              "from": [
+                19.1098359,
+                47.3858002
+              ],
+              "to": [
+                19.1097389,
+                47.3856766
+              ],
+              "sourceLineId": "osm:way:662530409",
+              "inferred": false,
+              "lengthMetres": 15.56
+            },
+            {
+              "from": [
+                19.1097389,
+                47.3856766
+              ],
+              "to": [
+                19.1094876,
+                47.3853829
+              ],
+              "sourceLineId": "osm:way:662529199",
+              "inferred": false,
+              "lengthMetres": 37.75
+            },
+            {
+              "from": [
+                19.1094876,
+                47.3853829
+              ],
+              "to": [
+                19.1094187,
+                47.3852952
+              ],
+              "sourceLineId": "osm:way:662529198",
+              "inferred": false,
+              "lengthMetres": 11.05
+            },
+            {
+              "from": [
+                19.1094187,
+                47.3852952
+              ],
+              "to": [
+                19.1092172,
+                47.3850805
+              ],
+              "sourceLineId": "osm:way:662528723",
+              "inferred": false,
+              "lengthMetres": 28.29
+            },
+            {
+              "from": [
+                19.1092172,
+                47.3850805
+              ],
+              "to": [
+                19.1088617,
+                47.3846425
+              ],
+              "sourceLineId": "osm:way:662528722",
+              "inferred": false,
+              "lengthMetres": 55.58
+            },
+            {
+              "from": [
+                19.1088617,
+                47.3846425
+              ],
+              "to": [
+                19.1083391,
+                47.3840048
+              ],
+              "sourceLineId": "osm:way:662529197",
+              "inferred": false,
+              "lengthMetres": 81.1
+            },
+            {
+              "from": [
+                19.1083391,
+                47.3840048
+              ],
+              "to": [
+                19.1076416,
+                47.3832218
+              ],
+              "sourceLineId": "osm:way:662529197",
+              "inferred": false,
+              "lengthMetres": 101.68
+            },
+            {
+              "from": [
+                19.1076416,
+                47.3832218
+              ],
+              "to": [
+                19.1070537,
+                47.3825079
+              ],
+              "sourceLineId": "osm:way:662529196",
+              "inferred": false,
+              "lengthMetres": 90.89
+            },
+            {
+              "from": [
+                19.1070537,
+                47.3825079
+              ],
+              "to": [
+                19.1065792,
+                47.3819538
+              ],
+              "sourceLineId": "osm:way:171381692",
+              "inferred": false,
+              "lengthMetres": 71.23
+            },
+            {
+              "from": [
+                19.1065792,
+                47.3819538
+              ],
+              "to": [
+                19.1064647,
+                47.3818216
+              ],
+              "sourceLineId": "osm:way:171381692",
+              "inferred": false,
+              "lengthMetres": 17.04
+            },
+            {
+              "from": [
+                19.1064647,
+                47.3818216
+              ],
+              "to": [
+                19.105863295864484,
+                47.381120820147686
+              ],
+              "sourceLineId": "osm:way:171381692",
+              "inferred": false,
+              "lengthMetres": 90.13
+            },
+            {
+              "from": [
+                19.105863295864484,
+                47.381120820147686
+              ],
+              "to": [
+                19.1061721,
+                47.3809993
+              ],
+              "sourceLineId": null,
+              "inferred": true,
+              "lengthMetres": 26.89,
+              "reason": "Approximate connection across separately mapped carriageways/junction in the legally named street corridor."
+            },
+            {
+              "from": [
+                19.1061721,
+                47.3809993
+              ],
+              "to": [
+                19.1067748,
+                47.3805352
+              ],
+              "sourceLineId": "osm:way:43054654",
+              "inferred": false,
+              "lengthMetres": 68.72
+            },
+            {
+              "from": [
+                19.1067748,
+                47.3805352
+              ],
+              "to": [
+                19.1079383,
+                47.3796393
+              ],
+              "sourceLineId": "osm:way:43054654",
+              "inferred": false,
+              "lengthMetres": 132.67
+            },
+            {
+              "from": [
+                19.1079383,
+                47.3796393
+              ],
+              "to": [
+                19.1091001,
+                47.3787339
+              ],
+              "sourceLineId": "osm:way:43054654",
+              "inferred": false,
+              "lengthMetres": 133.38
+            },
+            {
+              "from": [
+                19.1091001,
+                47.3787339
+              ],
+              "to": [
+                19.1095335,
+                47.3783659
+              ],
+              "sourceLineId": "osm:way:43054654",
+              "inferred": false,
+              "lengthMetres": 52.34
+            },
+            {
+              "from": [
+                19.1095335,
+                47.3783659
+              ],
+              "to": [
+                19.109872,
+                47.3782031
+              ],
+              "sourceLineId": "osm:way:43054654",
+              "inferred": false,
+              "lengthMetres": 31.26
+            },
+            {
+              "from": [
+                19.109872,
+                47.3782031
+              ],
+              "to": [
+                19.1115659,
+                47.3776568
+              ],
+              "sourceLineId": "osm:way:43054654",
+              "inferred": false,
+              "lengthMetres": 141.28
+            },
+            {
+              "from": [
+                19.1115659,
+                47.3776568
+              ],
+              "to": [
+                19.1123427,
+                47.377369
+              ],
+              "sourceLineId": "osm:way:43054654",
+              "inferred": false,
+              "lengthMetres": 66.68
+            },
+            {
+              "from": [
+                19.1123427,
+                47.377369
+              ],
+              "to": [
+                19.1127502,
+                47.3772068
+              ],
+              "sourceLineId": "osm:way:236777721",
+              "inferred": false,
+              "lengthMetres": 35.59
+            }
+          ],
+          "railSourceLineId": "osm:way:348178874",
+          "railSourceStartPosition": 8.9026750952894,
+          "railSourceEndPosition": 16.057541305267222,
+          "inferredSegments": [
+            {
+              "from": [
+                19.1210752,
+                47.3885906
+              ],
+              "to": [
+                19.1207393,
+                47.3888171
+              ],
+              "sourceLineId": null,
+              "inferred": true,
+              "lengthMetres": 35.69,
+              "reason": "Approximate connection across separately mapped carriageways/junction in the legally named street corridor."
+            },
+            {
+              "from": [
+                19.1164753,
+                47.3938314
+              ],
+              "to": [
+                19.1159903,
+                47.3938491
+              ],
+              "sourceLineId": null,
+              "inferred": true,
+              "lengthMetres": 36.57,
+              "reason": "Approximate connection across separately mapped carriageways/junction in the legally named street corridor."
+            },
+            {
+              "from": [
+                19.105863295864484,
+                47.381120820147686
+              ],
+              "to": [
+                19.1061721,
+                47.3809993
+              ],
+              "sourceLineId": null,
+              "inferred": true,
+              "lengthMetres": 26.89,
+              "reason": "Approximate connection across separately mapped carriageways/junction in the legally named street corridor."
+            },
+            {
+              "from": [
+                19.122897338687142,
+                47.387036725136674
+              ],
+              "to": [
+                19.1225428,
+                47.3871412
+              ],
+              "inferred": true,
+              "lengthMetres": 29.12,
+              "reason": "Straight continuation of the final Grassalkovich service-road source segment to the source railway; legal text names their common limit."
+            },
+            {
+              "from": [
+                19.1127502,
+                47.3772068
+              ],
+              "to": [
+                19.11477187572827,
+                47.37640209864265
+              ],
+              "inferred": true,
+              "lengthMetres": 176.58,
+              "reason": "Straight continuation of the final Millennium utca source segment to the source railway. The legal text names Millennium utca/Millenniumtelep but the mapped street stops short; this continuation is inferred and needs review."
+            }
+          ],
+          "inferredSegmentCount": 5,
+          "totalInferredLengthMetres": 304.85
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.122897338687142,
+              47.387036725136674
+            ],
+            [
+              19.1225428,
+              47.3871412
+            ],
+            [
+              19.1224169,
+              47.3871783
+            ],
+            [
+              19.1223721,
+              47.3872008
+            ],
+            [
+              19.122341,
+              47.3872239
+            ],
+            [
+              19.12229217647302,
+              47.387276615369196
+            ],
+            [
+              19.1210752,
+              47.3885906
+            ],
+            [
+              19.1207393,
+              47.3888171
+            ],
+            [
+              19.1204787,
+              47.389095
+            ],
+            [
+              19.1203294,
+              47.3892696
+            ],
+            [
+              19.1200323,
+              47.3895825
+            ],
+            [
+              19.1199168,
+              47.3897037
+            ],
+            [
+              19.119805,
+              47.3898301
+            ],
+            [
+              19.1196881,
+              47.3899642
+            ],
+            [
+              19.119604,
+              47.3900611
+            ],
+            [
+              19.1192992,
+              47.3901838
+            ],
+            [
+              19.1191626,
+              47.3902485
+            ],
+            [
+              19.1190853,
+              47.3903368
+            ],
+            [
+              19.1190106,
+              47.3904367
+            ],
+            [
+              19.1187362,
+              47.3907941
+            ],
+            [
+              19.1179311,
+              47.3918716
+            ],
+            [
+              19.1170684,
+              47.3929485
+            ],
+            [
+              19.1167825,
+              47.3933457
+            ],
+            [
+              19.1164753,
+              47.3938314
+            ],
+            [
+              19.1159903,
+              47.3938491
+            ],
+            [
+              19.1154453,
+              47.3928208
+            ],
+            [
+              19.1152057,
+              47.3924352
+            ],
+            [
+              19.1148213,
+              47.3918484
+            ],
+            [
+              19.1147314,
+              47.3917034
+            ],
+            [
+              19.1146503,
+              47.3915887
+            ],
+            [
+              19.1145091,
+              47.3914046
+            ],
+            [
+              19.1143999,
+              47.3912625
+            ],
+            [
+              19.1142368,
+              47.3910619
+            ],
+            [
+              19.1139638,
+              47.3906627
+            ],
+            [
+              19.1129331,
+              47.3894254
+            ],
+            [
+              19.112308042852764,
+              47.3886770599262
+            ],
+            [
+              19.112201683716236,
+              47.388549723082804
+            ],
+            [
+              19.1119495,
+              47.3882478
+            ],
+            [
+              19.111826741873244,
+              47.3881044102553
+            ],
+            [
+              19.1115092,
+              47.3877335
+            ],
+            [
+              19.1109887,
+              47.3871537
+            ],
+            [
+              19.1109182,
+              47.3870762
+            ],
+            [
+              19.1105367,
+              47.38665
+            ],
+            [
+              19.110481833870654,
+              47.38657795615727
+            ],
+            [
+              19.1101943,
+              47.3862004
+            ],
+            [
+              19.1101751,
+              47.3861765
+            ],
+            [
+              19.1100978,
+              47.3860915
+            ],
+            [
+              19.11005,
+              47.3860382
+            ],
+            [
+              19.1100186,
+              47.3860046
+            ],
+            [
+              19.1098805,
+              47.385857
+            ],
+            [
+              19.1098359,
+              47.3858002
+            ],
+            [
+              19.1097389,
+              47.3856766
+            ],
+            [
+              19.1094876,
+              47.3853829
+            ],
+            [
+              19.1094187,
+              47.3852952
+            ],
+            [
+              19.1092172,
+              47.3850805
+            ],
+            [
+              19.1088617,
+              47.3846425
+            ],
+            [
+              19.1083391,
+              47.3840048
+            ],
+            [
+              19.1076416,
+              47.3832218
+            ],
+            [
+              19.1070537,
+              47.3825079
+            ],
+            [
+              19.1065792,
+              47.3819538
+            ],
+            [
+              19.1064647,
+              47.3818216
+            ],
+            [
+              19.105863295864484,
+              47.381120820147686
+            ],
+            [
+              19.1061721,
+              47.3809993
+            ],
+            [
+              19.1067748,
+              47.3805352
+            ],
+            [
+              19.1079383,
+              47.3796393
+            ],
+            [
+              19.1091001,
+              47.3787339
+            ],
+            [
+              19.1095335,
+              47.3783659
+            ],
+            [
+              19.109872,
+              47.3782031
+            ],
+            [
+              19.1115659,
+              47.3776568
+            ],
+            [
+              19.1123427,
+              47.377369
+            ],
+            [
+              19.1127502,
+              47.3772068
+            ],
+            [
+              19.11477187572827,
+              47.37640209864265
+            ],
+            [
+              19.1148938,
+              47.3765628
+            ],
+            [
+              19.1162648,
+              47.378352
+            ],
+            [
+              19.1171933,
+              47.379565
+            ],
+            [
+              19.1204093,
+              47.3837767
+            ],
+            [
+              19.1210141,
+              47.3845617
+            ],
+            [
+              19.1216336,
+              47.3853726
+            ],
+            [
+              19.1228466,
+              47.3869705
+            ],
+            [
+              19.1228791,
+              47.3870129
+            ],
+            [
+              19.122897338687142,
+              47.387036725136674
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

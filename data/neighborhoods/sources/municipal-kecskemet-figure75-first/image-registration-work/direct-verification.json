@@ -1,0 +1,376 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_LOCAL_PHOTOGRAPHIC_OVERLAP_ONLY",
+  "verificationMethod": "Direct strided-window dot products, sums and sums of squares, rather than producer FFT convolution. Independently implemented numeric path; same agent as producer, not a blind separate visual review.",
+  "provenanceSha256": {
+    "figure74-p154-xref176.jpeg": "1ecb076700d1be46f1712ca2c0ca1ed986581a99e5d5592b95b0b4511de30cd2",
+    "figure75-p158-xref180.jpeg": "13c9a38ba1b554b7125064ffce3384eb813d9590b9f327a152f1da4b0de4c991",
+    "fit-image-registration.py": "f863e710822a5d3ef73790fd01d8ad1ba9b504252fff87501cab0ff71b2c946c",
+    "registration-plan-before-fit.json": "0c88bcee318a7c7ec13b8b07955f91a2ea76d13d0a68aef479ce94e04463fd41",
+    "image-registration.json": "61e5a06c865d635489fd1f5b7d938796b9be60c3aea33342622d5733be09aace",
+    "exploratory-scale-search.json": "f8ad72b768d95e446bdd1b4ee83b496754f5c21785c7d443e484779639ccc6bb",
+    "verify-image-registration-direct.py": "775793040e606bc1047324668c709c242d447da551699e7f9e472288be23ea3c"
+  },
+  "directSearchCount": 27,
+  "trainingCount": 6,
+  "heldOutCount": 7,
+  "rejectedCount": 14,
+  "maximumNccCoefficientDisagreement": 1.2212453270876722e-15,
+  "maximumPeakCenterDisagreementPixels": 0.0,
+  "trainingAffineRecomputedExactly": true,
+  "heldOutMatchesUsedInFit": false,
+  "acceptedHeldOutSourcePatchOverlapWithPreliminaryScaleSearchSquarePixels": 0,
+  "pairwiseFinalGridSourcePatchOverlapSquarePixels": 0,
+  "maximumHeldOutResidualTargetPixels": 0.23222357979104435,
+  "sourceMatchedTextureHullOriginalFigure74Pixels": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          399.5,
+          1167.5
+        ],
+        [
+          207.5,
+          1231.5
+        ],
+        [
+          207.5,
+          1295.5
+        ],
+        [
+          911.5,
+          1295.5
+        ],
+        [
+          911.5,
+          1231.5
+        ],
+        [
+          399.5,
+          1167.5
+        ]
+      ]
+    ]
+  },
+  "targetMatchedTextureHullOriginalFigure75Pixels": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          241.16559945245177,
+          31.758062581525685
+        ],
+        [
+          50.2310979693663,
+          95.17703241532593
+        ],
+        [
+          50.389957646758695,
+          158.75871702984404
+        ],
+        [
+          304.71346905087165,
+          158.79371538621032
+        ],
+        [
+          685.909167097529,
+          158.77067142262402
+        ],
+        [
+          749.5986058191027,
+          158.67587499316585
+        ],
+        [
+          749.636315614421,
+          95.2420269145805
+        ],
+        [
+          241.16559945245177,
+          31.758062581525685
+        ]
+      ]
+    ]
+  },
+  "records": [
+    {
+      "id": "r0c0",
+      "usableTextureMatch": false,
+      "trainingPartition": true,
+      "directNcc": 0.5032321208742627,
+      "directMatchedCenter": [
+        50.22369219415551,
+        31.72623918073983
+      ]
+    },
+    {
+      "id": "r0c1",
+      "usableTextureMatch": false,
+      "trainingPartition": false,
+      "directNcc": 0.5420249249374309,
+      "directMatchedCenter": [
+        113.99364332065501,
+        31.707934784124923
+      ]
+    },
+    {
+      "id": "r0c2",
+      "usableTextureMatch": false,
+      "trainingPartition": true,
+      "directNcc": 0.7824764701078271,
+      "directMatchedCenter": [
+        177.45182880355327,
+        31.77041420123594
+      ]
+    },
+    {
+      "id": "r0c3",
+      "usableTextureMatch": true,
+      "trainingPartition": false,
+      "directNcc": 0.9193855386701523,
+      "directMatchedCenter": [
+        241.16559945245177,
+        31.758062581525685
+      ]
+    },
+    {
+      "id": "r0c4",
+      "usableTextureMatch": false,
+      "trainingPartition": true,
+      "directNcc": 0.4051376692297464,
+      "directMatchedCenter": [
+        304.5582362718558,
+        31.369376665355947
+      ]
+    },
+    {
+      "id": "r0c5",
+      "usableTextureMatch": false,
+      "trainingPartition": false,
+      "directNcc": 0.4238244029844933,
+      "directMatchedCenter": [
+        349.5,
+        23.5
+      ]
+    },
+    {
+      "id": "r0c6",
+      "usableTextureMatch": false,
+      "trainingPartition": true,
+      "directNcc": 0.32034730229628267,
+      "directMatchedCenter": [
+        508.35122486201993,
+        23.5
+      ]
+    },
+    {
+      "id": "r0c7",
+      "usableTextureMatch": false,
+      "trainingPartition": false,
+      "directNcc": 0.23179873495046965,
+      "directMatchedCenter": [
+        685.6085945312674,
+        31.273046938578688
+      ]
+    },
+    {
+      "id": "r0c8",
+      "usableTextureMatch": false,
+      "trainingPartition": true,
+      "directNcc": 0.567523576752555,
+      "directMatchedCenter": [
+        749.3333322792063,
+        31.597521006938663
+      ]
+    },
+    {
+      "id": "r1c0",
+      "usableTextureMatch": true,
+      "trainingPartition": false,
+      "directNcc": 0.9084502263826959,
+      "directMatchedCenter": [
+        50.2310979693663,
+        95.17703241532593
+      ]
+    },
+    {
+      "id": "r1c1",
+      "usableTextureMatch": false,
+      "trainingPartition": true,
+      "directNcc": 0.4004402711152587,
+      "directMatchedCenter": [
+        113.83040893427676,
+        95.23683992501068
+      ]
+    },
+    {
+      "id": "r1c2",
+      "usableTextureMatch": false,
+      "trainingPartition": false,
+      "directNcc": 0.74559140587478,
+      "directMatchedCenter": [
+        177.5802849244751,
+        95.29458389888465
+      ]
+    },
+    {
+      "id": "r1c3",
+      "usableTextureMatch": false,
+      "trainingPartition": true,
+      "directNcc": 0.1466896019904036,
+      "directMatchedCenter": [
+        240.93294726162233,
+        94.92699376841549
+      ]
+    },
+    {
+      "id": "r1c4",
+      "usableTextureMatch": true,
+      "trainingPartition": false,
+      "directNcc": 0.9335012167957871,
+      "directMatchedCenter": [
+        304.6129507467084,
+        95.27164453460675
+      ]
+    },
+    {
+      "id": "r1c5",
+      "usableTextureMatch": true,
+      "trainingPartition": true,
+      "directNcc": 0.8935435688450077,
+      "directMatchedCenter": [
+        368.1881756248453,
+        95.1459603646545
+      ]
+    },
+    {
+      "id": "r1c6",
+      "usableTextureMatch": true,
+      "trainingPartition": false,
+      "directNcc": 0.9183378358542175,
+      "directMatchedCenter": [
+        495.44179492539496,
+        95.23215296589376
+      ]
+    },
+    {
+      "id": "r1c7",
+      "usableTextureMatch": true,
+      "trainingPartition": true,
+      "directNcc": 0.9117929229607415,
+      "directMatchedCenter": [
+        685.9016578053747,
+        95.36017917698449
+      ]
+    },
+    {
+      "id": "r1c8",
+      "usableTextureMatch": true,
+      "trainingPartition": false,
+      "directNcc": 0.942075642638629,
+      "directMatchedCenter": [
+        749.636315614421,
+        95.2420269145805
+      ]
+    },
+    {
+      "id": "r2c0",
+      "usableTextureMatch": true,
+      "trainingPartition": true,
+      "directNcc": 0.914234519759366,
+      "directMatchedCenter": [
+        50.389957646758695,
+        158.75871702984404
+      ]
+    },
+    {
+      "id": "r2c1",
+      "usableTextureMatch": false,
+      "trainingPartition": false,
+      "directNcc": 0.7563385882155114,
+      "directMatchedCenter": [
+        113.80167051666386,
+        158.75832313106793
+      ]
+    },
+    {
+      "id": "r2c2",
+      "usableTextureMatch": false,
+      "trainingPartition": true,
+      "directNcc": 0.2170445690606323,
+      "directMatchedCenter": [
+        177.051306113107,
+        158.08552766911254
+      ]
+    },
+    {
+      "id": "r2c3",
+      "usableTextureMatch": false,
+      "trainingPartition": false,
+      "directNcc": 0.8007310873937203,
+      "directMatchedCenter": [
+        241.22500746988607,
+        158.68652401990914
+      ]
+    },
+    {
+      "id": "r2c4",
+      "usableTextureMatch": true,
+      "trainingPartition": true,
+      "directNcc": 0.9574350518368955,
+      "directMatchedCenter": [
+        304.71346905087165,
+        158.79371538621032
+      ]
+    },
+    {
+      "id": "r2c5",
+      "usableTextureMatch": true,
+      "trainingPartition": false,
+      "directNcc": 0.9520296368010503,
+      "directMatchedCenter": [
+        368.3542881447287,
+        158.6892805424494
+      ]
+    },
+    {
+      "id": "r2c6",
+      "usableTextureMatch": true,
+      "trainingPartition": true,
+      "directNcc": 0.9706027425296928,
+      "directMatchedCenter": [
+        495.3534643238343,
+        158.65205788535673
+      ]
+    },
+    {
+      "id": "r2c7",
+      "usableTextureMatch": true,
+      "trainingPartition": false,
+      "directNcc": 0.9344537540751147,
+      "directMatchedCenter": [
+        685.909167097529,
+        158.77067142262402
+      ]
+    },
+    {
+      "id": "r2c8",
+      "usableTextureMatch": true,
+      "trainingPartition": true,
+      "directNcc": 0.9330981864674499,
+      "directMatchedCenter": [
+        749.5986058191027,
+        158.67587499316585
+      ]
+    }
+  ],
+  "allRejectedSearchesRemainInProducerReport": true,
+  "manualPreNccOrBlindPhysicalObservationClaimed": false,
+  "separateBlindPhysicalReviewer": false,
+  "geographicCoordinatesNamesOrQuarterGeometryUsed": false,
+  "fullFigure75ImageCoverageValidated": false,
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "limits": "A local shared-photograph relation does not establish full image identity, photography date, geographic calibration, boundary extent or accuracy. Source quarter graphic highlighting differs and some labels/linework obscure photo texture."
+}

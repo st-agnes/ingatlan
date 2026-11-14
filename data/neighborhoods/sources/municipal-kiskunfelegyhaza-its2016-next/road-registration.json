@@ -1,0 +1,288 @@
+{
+  "schemaVersion": 1,
+  "sourceCrs": "Native image pixels, x right/y down",
+  "fitWorldCrs": "EPSG:23700",
+  "outputCrs": "EPSG:4326",
+  "mainModel": "Full-map affine; five actual road/rail junctions; no per-feature model",
+  "pixelToEovMatrix": [
+    [
+      19.192715533729896,
+      0.41601005506711386
+    ],
+    [
+      0.21334144543053613,
+      -19.964138308024573
+    ]
+  ],
+  "pixelToEovOffset": [
+    703250.4980859613,
+    165989.6438327215
+  ],
+  "singularScalesMetresPerPixel": [
+    19.979756178675462,
+    19.182154986328985
+  ],
+  "fitRmsMetresDiagnosticOnly": 18.679917532306828,
+  "claimedAbsoluteAccuracyMetres": null,
+  "controls": [
+    {
+      "id": "C1",
+      "sourcePixel": [
+        400,
+        653
+      ],
+      "targetOsmNodeId": 1843236649,
+      "targetWgs84": [
+        19.8477267,
+        46.7189332
+      ],
+      "actualIncidentWayIds": [
+        173528018,
+        187678097,
+        1211563251,
+        1492214888
+      ],
+      "physicalCorrespondence": [
+        "Dr. Holló Lajos utca",
+        "Bercsényi utca"
+      ],
+      "role": "fit",
+      "sourcePickingIsManual": true,
+      "sourcePickUncertaintyPixels": null,
+      "affineResidualMetresDiagnosticOnly": 20.90388208520148,
+      "similarityResidualMetresDiagnosticOnly": 18.869519775004196
+    },
+    {
+      "id": "C2",
+      "sourcePixel": [
+        343,
+        698
+      ],
+      "targetOsmNodeId": 1843235605,
+      "targetWgs84": [
+        19.8338734,
+        46.7106401
+      ],
+      "actualIncidentWayIds": [
+        69331842,
+        173528167,
+        204027316,
+        1315701813
+      ],
+      "physicalCorrespondence": [
+        "Mikszáth Kálmán utca",
+        "Árok utca"
+      ],
+      "role": "fit",
+      "sourcePickingIsManual": true,
+      "sourcePickUncertaintyPixels": null,
+      "affineResidualMetresDiagnosticOnly": 15.105038102618403,
+      "similarityResidualMetresDiagnosticOnly": 68.35385900961741
+    },
+    {
+      "id": "C3",
+      "sourcePixel": [
+        430,
+        589
+      ],
+      "targetOsmNodeId": 1843237905,
+      "targetWgs84": [
+        19.8554072,
+        46.7301412
+      ],
+      "actualIncidentWayIds": [
+        219429915,
+        459888652
+      ],
+      "physicalCorrespondence": [
+        "Kőrösi út",
+        "railway"
+      ],
+      "role": "fit",
+      "sourcePickingIsManual": true,
+      "sourcePickUncertaintyPixels": null,
+      "affineResidualMetresDiagnosticOnly": 24.69173438432142,
+      "similarityResidualMetresDiagnosticOnly": 37.43249557554827
+    },
+    {
+      "id": "C4-north",
+      "sourcePixel": [
+        188.5,
+        285.5
+      ],
+      "targetOsmNodeId": 2208340620,
+      "targetWgs84": [
+        19.7938257,
+        46.7849355
+      ],
+      "actualIncidentWayIds": [
+        210781090,
+        562896874,
+        562896875
+      ],
+      "physicalCorrespondence": [
+        "route 5",
+        "Páka utca / Pintér dűlő junction"
+      ],
+      "role": "fit",
+      "sourcePickingIsManual": true,
+      "sourcePickUncertaintyPixels": null,
+      "affineResidualMetresDiagnosticOnly": 12.663165781578575,
+      "similarityResidualMetresDiagnosticOnly": 23.95579576100722
+    },
+    {
+      "id": "C5-southeast",
+      "sourcePixel": [
+        551,
+        868
+      ],
+      "targetOsmNodeId": 2212985376,
+      "targetWgs84": [
+        19.8865169,
+        46.6804065
+      ],
+      "actualIncidentWayIds": [
+        211274699,
+        219429901,
+        538786403,
+        1312804805
+      ],
+      "physicalCorrespondence": [
+        "Mészöly Gyula utca",
+        "Péteri út",
+        "Móczár bekötőút",
+        "northwest road"
+      ],
+      "role": "fit",
+      "sourcePickingIsManual": true,
+      "sourcePickUncertaintyPixels": null,
+      "affineResidualMetresDiagnosticOnly": 17.593311747301456,
+      "similarityResidualMetresDiagnosticOnly": 16.30086252849055
+    }
+  ],
+  "heldOutManualRoadChecks": [
+    {
+      "id": "H1",
+      "sourcePixel": [
+        360,
+        681
+      ],
+      "targetOsmNodeId": 1843236018,
+      "targetWgs84": [
+        19.8380807,
+        46.7139254
+      ],
+      "actualIncidentWayIds": [
+        173528095,
+        204027317,
+        1274915181
+      ],
+      "physicalCorrespondence": [
+        "Bercsényi utca",
+        "Mikszáth Kálmán utca"
+      ],
+      "role": "not_used_for_fit",
+      "sourcePickingIsManual": true,
+      "affineResidualMetresDiagnosticOnly": 12.726523132362933,
+      "similarityResidualMetresDiagnosticOnly": 42.59401557729534
+    },
+    {
+      "id": "H2",
+      "sourcePixel": [
+        435,
+        633
+      ],
+      "targetOsmNodeId": 5914756408,
+      "targetWgs84": [
+        19.856167,
+        46.7226822
+      ],
+      "actualIncidentWayIds": [
+        204307746,
+        219429889,
+        626515368,
+        1313756944
+      ],
+      "physicalCorrespondence": [
+        "Kőrösi utca",
+        "Tanyasori út"
+      ],
+      "role": "not_used_for_fit",
+      "sourcePickingIsManual": true,
+      "affineResidualMetresDiagnosticOnly": 48.551137961352524,
+      "similarityResidualMetresDiagnosticOnly": 76.84227325797531
+    },
+    {
+      "id": "H3a",
+      "sourcePixel": [
+        449,
+        648
+      ],
+      "targetOsmNodeId": 2139468150,
+      "targetWgs84": [
+        19.8601414,
+        46.7201591
+      ],
+      "actualIncidentWayIds": [
+        203943116,
+        1381993101,
+        1443879596
+      ],
+      "physicalCorrespondence": [
+        "Alpári út",
+        "Tanyasori út"
+      ],
+      "role": "not_used_for_fit",
+      "sourcePickingIsManual": true,
+      "affineResidualMetresDiagnosticOnly": 45.14875875295187,
+      "similarityResidualMetresDiagnosticOnly": 66.06893702875719
+    },
+    {
+      "id": "H3b-current-junction-alternative",
+      "sourcePixel": [
+        449,
+        648
+      ],
+      "targetOsmNodeId": 5914074516,
+      "targetWgs84": [
+        19.8603835,
+        46.7204088
+      ],
+      "actualIncidentWayIds": [
+        203943116,
+        219429889
+      ],
+      "physicalCorrespondence": [
+        "Alpári út",
+        "Tanyasori út"
+      ],
+      "role": "not_used_for_fit",
+      "sourcePickingIsManual": true,
+      "affineResidualMetresDiagnosticOnly": 72.47411633357893,
+      "similarityResidualMetresDiagnosticOnly": 82.68673591498809
+    }
+  ],
+  "sourceNamePointsUsedForFit": false,
+  "alternative": {
+    "model": "Full-map four-parameter similarity using the same five controls",
+    "pixelToEovMatrix": [
+      [
+        19.83181862896081,
+        0.04470602771587515
+      ],
+      [
+        0.04470602771587515,
+        -19.83181862896081
+      ]
+    ],
+    "pixelToEovOffset": [
+      703235.7669538002,
+      165972.28069458142
+    ],
+    "fitRmsMetresDiagnosticOnly": 38.12898848061724
+  },
+  "uncertainty": "Native 945×1364 JPEG; colored boundary bands and manual road picks are several pixels wide. Original map projection, cartographic generalization, boundary survey date and current whole-quarter extent are unestablished. Five-control fit residuals and manually picked road holdouts measure correspondence consistency only, not absolute ground accuracy. A separate full-map similarity model illustrates placement variation without defining a confidence envelope. Municipal 2014 submission, census 2011 statistics and ITS 2016 review periods are distinct. No current-name point is used to fit or correct any coordinate.",
+  "georeferencingIsApproximate": true,
+  "sourceRoadReferencePath": "source-road-rail-reference.geojson",
+  "sourceRoadReferenceSha256": "3cefafe60bf7b3eeeca3b557f9a5b8d2758836333b66d51c085437f87905101b"
+}

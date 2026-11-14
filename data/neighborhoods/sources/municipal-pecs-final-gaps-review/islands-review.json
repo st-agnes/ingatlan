@@ -1,0 +1,335 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "scope": "Bounded source-only extraction experiment for three remaining Pecs islands. Frozen33,completed remaining27,and frozen georeference evidence untouched.",
+  "status": "isolated_raw_pixel_components_reproduced_whole_footprints_not_certified",
+  "networkUsed": false,
+  "inputHashes": [
+    {
+      "path": "../municipal-pecs-first-inferred/pecs-p48-names.jpeg",
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "path": "../municipal-pecs-first-inferred/pecs-p63-density.jpeg",
+      "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+    }
+  ],
+  "method": "Whole-image color/dark-stroke criterion followed by four-connected component labelling and exact unit-square union. Evidence crops are for inspection and do not enter component definition. Three threshold scenarios retained; no selection by geographic residual or name point.",
+  "rawSourcePixelsExplicitlyRetained": true,
+  "morphologicalFillClosingRepairSnap": false,
+  "pixelGeometryCoordinateSpace": "Original Figure9 pixels only; no geographic geometry.",
+  "records": [
+    {
+      "sourceName": "Árpádtető",
+      "sourceLabelAnchorPixel": [
+        343,
+        80
+      ],
+      "sourceWholeIslandVisibleInFrame": true,
+      "literalLabelAndQuarterMapRoleSupported": true,
+      "landuseProxyUsed": false,
+      "closedRawPixelComponentsDemonstrated": true,
+      "sourceObservation": "Figure9 contains a complete isolated purple neighbourhood-map symbol. Its lower and side dark/purple contour can be read; the north tip is close to gray administrative graphics and its light antialias pixels do not yield a unique literal outer edge. Figure12 gives a complete hatched external silhouette, rather than an image-clipped island.",
+      "wholeFootprintCertificationBlocker": "No single intensity/chroma threshold is independently certified as the complete original boundary. Across T150/170/190 the mask contains 126/134/141 pixels and its bounding box changes. This is a source-rendering precision limitation, not geographic accuracy.",
+      "candidateRecords": [
+        {
+          "id": "arpadteto-T150",
+          "sourcePixelCount": 126,
+          "sourcePixelBoundsInclusive": [
+            319,
+            76,
+            330,
+            90
+          ],
+          "interiorRingCount": 0,
+          "sourcePixelSetSha256": "8deaa1e4ed91cc9e001e66aa1321a43347903f17659c702b479d249e625e45b4"
+        },
+        {
+          "id": "arpadteto-T170",
+          "sourcePixelCount": 134,
+          "sourcePixelBoundsInclusive": [
+            319,
+            75,
+            330,
+            90
+          ],
+          "interiorRingCount": 0,
+          "sourcePixelSetSha256": "9b97d372f89a1f7fe187918b8f2c056c2051e9aedfc9b7e0c472904d48e48063"
+        },
+        {
+          "id": "arpadteto-T190",
+          "sourcePixelCount": 141,
+          "sourcePixelBoundsInclusive": [
+            318,
+            75,
+            331,
+            91
+          ],
+          "interiorRingCount": 0,
+          "sourcePixelSetSha256": "907331ae203e5a497c4d85cedae6fd6990f409dd2d2620495972148b7a384547"
+        }
+      ],
+      "completeLiteralSourceContourCertified": false,
+      "approvedForNewInferredQuarterPolygon": false,
+      "geographicApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "sourceName": "Petőfi-akna",
+      "sourceLabelAnchorPixel": [
+        515,
+        23
+      ],
+      "sourceWholeIslandVisibleInFrame": true,
+      "literalLabelAndQuarterMapRoleSupported": true,
+      "landuseProxyUsed": false,
+      "closedRawPixelComponentsDemonstrated": true,
+      "sourceObservation": "Figure9 contains the complete tiny northern island beneath the title. Figure12 retains the full external silhouette, with a hatch through its northern cap. The Figure9 northern cap includes pale, low-chroma pixels which are mixed with the background and adjacent gray graphics.",
+      "wholeFootprintCertificationBlocker": "A demonstrated incompleteness remains in the simple color/dark-stroke masks: T170 and T190 leave a lateral notch in the pale northern cap. At [500,19] RGB 223/211/235 and [500,20] RGB 234/217/251, the pale pixels are not selected. Raising a global threshold does not establish the correct cap-vs-background choice. The valid closed pixel-mask ring is not proof of a whole quarter footprint.",
+      "candidateRecords": [
+        {
+          "id": "petofi-akna-T150",
+          "sourcePixelCount": 112,
+          "sourcePixelBoundsInclusive": [
+            493,
+            18,
+            504,
+            34
+          ],
+          "interiorRingCount": 1,
+          "sourcePixelSetSha256": "20ffa791b3b135399f4a5521251a7eb95523e3fa0b09bef01cdbd3894a91e031"
+        },
+        {
+          "id": "petofi-akna-T170",
+          "sourcePixelCount": 118,
+          "sourcePixelBoundsInclusive": [
+            493,
+            17,
+            504,
+            34
+          ],
+          "interiorRingCount": 0,
+          "sourcePixelSetSha256": "d10a61662a7ea668716218c2249e50a5912c865d845920881afe7be5e23eef53"
+        },
+        {
+          "id": "petofi-akna-T190",
+          "sourcePixelCount": 120,
+          "sourcePixelBoundsInclusive": [
+            493,
+            17,
+            504,
+            34
+          ],
+          "interiorRingCount": 0,
+          "sourcePixelSetSha256": "4be2ebc6f3f6b0a0c426eefc2566360aa33ec91b98f90ba7ffa5a6821015c75d"
+        }
+      ],
+      "completeLiteralSourceContourCertified": false,
+      "approvedForNewInferredQuarterPolygon": false,
+      "geographicApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "sourceName": "M utca",
+      "sourceLabelAnchorPixel": [
+        514,
+        43
+      ],
+      "sourceWholeIslandVisibleInFrame": true,
+      "literalLabelAndQuarterMapRoleSupported": true,
+      "landuseProxyUsed": false,
+      "closedRawPixelComponentsDemonstrated": true,
+      "sourceObservation": "Both quarter-map figures show the same extremely small, fully in-frame curved/vertical island below Petőfi-akna. It is a labelled map footprint, not a land-use proxy. Figure9 has only a few pixels across; the dark outline and gray interior are not independently separable by the frozen density free-cell method.",
+      "wholeFootprintCertificationBlocker": "T150/170/190 give 29/31/34 pixels; at T150 a gray interior pixel region becomes a hole, while T170 includes it directly by its raw color criterion. No restoration or fill was performed. The residual choice of mixed edge pixels is a substantial fraction of the whole tiny symbol. A complete source footprint is not certified from that threshold experiment alone.",
+      "candidateRecords": [
+        {
+          "id": "m-utca-T150",
+          "sourcePixelCount": 29,
+          "sourcePixelBoundsInclusive": [
+            498,
+            38,
+            503,
+            46
+          ],
+          "interiorRingCount": 1,
+          "sourcePixelSetSha256": "9dde4fbe5e8d08b4aed1174b63348a64b88a03381a4b04c0542c0fbe9fa03501"
+        },
+        {
+          "id": "m-utca-T170",
+          "sourcePixelCount": 31,
+          "sourcePixelBoundsInclusive": [
+            498,
+            38,
+            503,
+            46
+          ],
+          "interiorRingCount": 0,
+          "sourcePixelSetSha256": "2cb5c00fcfa76bead388341e857b02af8ffabc44bf8d21ad13a517ca25dff6d8"
+        },
+        {
+          "id": "m-utca-T190",
+          "sourcePixelCount": 34,
+          "sourcePixelBoundsInclusive": [
+            498,
+            38,
+            504,
+            46
+          ],
+          "interiorRingCount": 0,
+          "sourcePixelSetSha256": "1ed8435549d31801f7719ac39167eaf70d40eae954674defd9af0e8a7c8e7682"
+        }
+      ],
+      "completeLiteralSourceContourCertified": false,
+      "approvedForNewInferredQuarterPolygon": false,
+      "geographicApproval": false,
+      "claimedAbsoluteAccuracy": null
+    }
+  ],
+  "files": [
+    {
+      "path": "islands-arpadteto-T150-mask-native.png",
+      "bytes": 124,
+      "sha256": "1ac62a047538b113c8accadfe36b0fc57a4391ad78155699e1dc9ee0ca1d1208"
+    },
+    {
+      "path": "islands-arpadteto-T150-pixel-edge-preview.png",
+      "bytes": 6139,
+      "sha256": "e2d53a4e7fb73ed8ede06e51ccab7677ce776e7151cdcf0d9783a85949a41f45"
+    },
+    {
+      "path": "islands-arpadteto-T170-mask-native.png",
+      "bytes": 125,
+      "sha256": "027d0c0b481d81e90997e15fd8d37bcc08656ba15e5dc80899a4f7f9bca97630"
+    },
+    {
+      "path": "islands-arpadteto-T170-pixel-edge-preview.png",
+      "bytes": 6204,
+      "sha256": "e5afb56381b71b4cc2159db7c990a3ecc505911c045fbbb2d759d076a98e115f"
+    },
+    {
+      "path": "islands-arpadteto-T190-mask-native.png",
+      "bytes": 133,
+      "sha256": "65d3e5f8a832a608a654e9538fee95de95d96a3b8cf341241a794281240f8189"
+    },
+    {
+      "path": "islands-arpadteto-T190-pixel-edge-preview.png",
+      "bytes": 6319,
+      "sha256": "36d17b18637198f7c20d21758219c56d82fc70de6fb0a81022923481b5d458d7"
+    },
+    {
+      "path": "islands-arpadteto-figure12-native.png",
+      "bytes": 2202,
+      "sha256": "c33f8cf462b24130fd6ad7c43cce8c50e8acbd5939105538b261814992156bf5"
+    },
+    {
+      "path": "islands-arpadteto-figure9-native.png",
+      "bytes": 1609,
+      "sha256": "cd6903b952559ef2cfd220744ed33c8b339649585a58ee1521e6c3de8a180347"
+    },
+    {
+      "path": "islands-extract.py",
+      "bytes": 6423,
+      "sha256": "1de3cab7e3ef438b572345f4a7951e9b5aa362b1469f4d5dea6f6d881ef64ee7"
+    },
+    {
+      "path": "islands-extraction-proof.json",
+      "bytes": 10453,
+      "sha256": "9006dc9920e3e015580bb42f1db38dd55838e98692c38bdc224bec2f2d550b81"
+    },
+    {
+      "path": "islands-m-utca-T150-mask-native.png",
+      "bytes": 104,
+      "sha256": "204025897450d34847c5206d3bae786a6716973f0ea8eaea8f28ab1d0b539e1f"
+    },
+    {
+      "path": "islands-m-utca-T150-pixel-edge-preview.png",
+      "bytes": 3240,
+      "sha256": "99b00cbdfcff2b4a01379ed70f0b090fed6c3e435170dc092468b049c6370afd"
+    },
+    {
+      "path": "islands-m-utca-T170-mask-native.png",
+      "bytes": 102,
+      "sha256": "641f8018343fdd1a24aa381aeaac65e68ff4bb9cfeb9dc00dde9c49d08392882"
+    },
+    {
+      "path": "islands-m-utca-T170-pixel-edge-preview.png",
+      "bytes": 3192,
+      "sha256": "cbdd49a405a1ed88020247dfd1df4ea2628393ccd1533608879d7e5ec1faba54"
+    },
+    {
+      "path": "islands-m-utca-T190-mask-native.png",
+      "bytes": 102,
+      "sha256": "26e86d626905148ceb72ef35c5d698fe77e15d028e9069f9c263b3119d071534"
+    },
+    {
+      "path": "islands-m-utca-T190-pixel-edge-preview.png",
+      "bytes": 3208,
+      "sha256": "d34d0433aa361211f22df6443c10b4fbc62a50aa7b8a8c8b3427e55af21cd726"
+    },
+    {
+      "path": "islands-m-utca-figure12-native.png",
+      "bytes": 1042,
+      "sha256": "f75e11e45e20f2069e1b649a0ecfc208757161d4fbcf068689e90dcaaea3b9a6"
+    },
+    {
+      "path": "islands-m-utca-figure9-native.png",
+      "bytes": 892,
+      "sha256": "5f5351be48d44e1e8a05ccbde02b90f67b59f8131395c3510dd9e3ac5c19dc41"
+    },
+    {
+      "path": "islands-petofi-akna-T150-mask-native.png",
+      "bytes": 136,
+      "sha256": "8ecb27c80fceca7a20357bc74742cc4d197766d96463175e0017ddc519e26b69"
+    },
+    {
+      "path": "islands-petofi-akna-T150-pixel-edge-preview.png",
+      "bytes": 6047,
+      "sha256": "ba2f3bd3f3f71698d70e4de8b2fc9627ad4676394661b281d49e785708c7d9ee"
+    },
+    {
+      "path": "islands-petofi-akna-T170-mask-native.png",
+      "bytes": 139,
+      "sha256": "829c2afa26dce5c72108ffb4959b3da9414dcd33f0939f3ddd36ad9a87b780f7"
+    },
+    {
+      "path": "islands-petofi-akna-T170-pixel-edge-preview.png",
+      "bytes": 6062,
+      "sha256": "25dee13e160d39dac43786bc9ead992e92a31cb9ebaa9a3c5c50c875695795f9"
+    },
+    {
+      "path": "islands-petofi-akna-T190-mask-native.png",
+      "bytes": 136,
+      "sha256": "c197559a7544e596c459a6db79cb2b1e1a2bd28ec680834d302d8cdf0c555c28"
+    },
+    {
+      "path": "islands-petofi-akna-T190-pixel-edge-preview.png",
+      "bytes": 6033,
+      "sha256": "21cdf3c3b414601da9ddc77906d81db0daf6d32e00ad281a0fe3dae601f486ce"
+    },
+    {
+      "path": "islands-petofi-akna-figure12-native.png",
+      "bytes": 2272,
+      "sha256": "30e099c1fcd81efb2c03539a5e97b3b99b859f0cbd0b14d65f489952b785b5c4"
+    },
+    {
+      "path": "islands-petofi-akna-figure9-native.png",
+      "bytes": 1661,
+      "sha256": "c02a331feb8029637479e06f91fdbe5913e1c2eb5ff67e1282fa31930bc26c41"
+    },
+    {
+      "path": "islands-source-pixel-candidates.json",
+      "bytes": 76857,
+      "sha256": "13beb844a206434a07ddf4e7599ce6a74cb3dc86ce27e3f6ef88e8de3c753116"
+    }
+  ],
+  "verification": "islands-extract.py and its --check completed offline;9 raw pixel candidate unions valid,exact area equals pixel count,and every external ring closed; no boundary touches original image or evidence crop. These checks establish mask arithmetic, not complete source-footprint semantics.",
+  "sourceMasksWithClosedExterior": 9,
+  "newApprovedWholeFootprints": 0,
+  "newGeographicPolygons": 0,
+  "automaticPrimaryApproval": false,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false,
+  "frozenSourceFoldersChanged": false,
+  "registriesChanged": false,
+  "boundedConclusion": "The three source islands are real labelled quarter-map footprints and are not frame-clipped. A concrete reproducible color/stroke experiment exists, but pixel-mask closure alone is insufficient to certify each complete original silhouette. Petofi northern-cap incompleteness is directly visible; mixed antialias/outline pixels remain unresolved. No automatic closure, fill or repair is introduced to overcome this."
+}

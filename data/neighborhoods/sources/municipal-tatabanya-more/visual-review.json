@@ -1,0 +1,836 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent visual/source-vector investigation by fig81_visual, offline only",
+  "reviewScope": "Source semantics and additional actual vector-boundary feasibility; final geographic output needs separate exact-parser/coordinate QA.",
+  "source": {
+    "path": "data/neighborhoods/sources/municipal-west/tatabanya-map.source.pdf",
+    "sha256": "7a7ca9a8f70f0dcaad90deb3ce27a459a8b70610914c72cc7d9ec98eb2fb76d7",
+    "pdfPageOneBased": 1,
+    "pageRectangle": [
+      0.0,
+      0.0,
+      842.0,
+      1191.0
+    ],
+    "drawingCount": 12864,
+    "mapTitle": "TATABÁNYA VÁROSRÉSZEK – TELEPÜLÉSRENDEZÉSI SZEMPONTÚ LEHATÁROLÁSA",
+    "statutoryCaption": "A 8/2018. (IV.19.) önk.rendelet 3. melléklete",
+    "currentStatusIndependentlyVerified": false
+  },
+  "visualEvidence": {
+    "originalOverviewInspected": true,
+    "northAndSoutheastSourceCropsAt2xInspected": true,
+    "coloredPaths3267_3277_3696And4836_4851_4558OverlayInspected": true,
+    "namedLabelCount": 16,
+    "labels": {
+      "KERTVÁROS": {
+        "sourcePdfTextBBox": [
+          180.4399871826172,
+          224.28823852539062,
+          221.4656982421875,
+          230.8230743408203
+        ],
+        "sourcePdfTextCentre": [
+          200.95284271240234,
+          227.55565643310547
+        ]
+      },
+      "BÁNHIDA": {
+        "sourcePdfTextBBox": [
+          300.5599670410156,
+          389.7682800292969,
+          330.6855163574219,
+          396.3031005859375
+        ],
+        "sourcePdfTextCentre": [
+          315.62274169921875,
+          393.0356903076172
+        ]
+      },
+      "SZŐLŐHEGY": {
+        "sourcePdfTextBBox": [
+          302.8399658203125,
+          185.40829467773438,
+          343.8722229003906,
+          191.94313049316406
+        ],
+        "sourcePdfTextCentre": [
+          323.35609436035156,
+          188.67571258544922
+        ]
+      },
+      "ALSÓGALLA": {
+        "sourcePdfTextBBox": [
+          389.9599609375,
+          374.6482849121094,
+          430.6197814941406,
+          381.18310546875
+        ],
+        "sourcePdfTextCentre": [
+          410.2898712158203,
+          377.9156951904297
+        ]
+      },
+      "ÓVÁROS": {
+        "sourcePdfTextBBox": [
+          383.5999755859375,
+          457.3282775878906,
+          411.92193603515625,
+          463.86309814453125
+        ],
+        "sourcePdfTextCentre": [
+          397.7609558105469,
+          460.59568786621094
+        ]
+      },
+      "VI-OS TELEP": {
+        "sourcePdfTextBBox": [
+          508.03997802734375,
+          544.4482421875,
+          548.7129516601562,
+          550.9830932617188
+        ],
+        "sourcePdfTextCentre": [
+          528.37646484375,
+          547.7156677246094
+        ]
+      },
+      "SÍKVÖLGY": {
+        "sourcePdfTextBBox": [
+          264.7999572753906,
+          586.92822265625,
+          298.5719909667969,
+          593.4630737304688
+        ],
+        "sourcePdfTextCentre": [
+          281.68597412109375,
+          590.1956481933594
+        ]
+      },
+      "NYUGAT-GERECSE": {
+        "sourcePdfTextBBox": [
+          604.6399536132812,
+          365.7682800292969,
+          666.361572265625,
+          372.3031005859375
+        ],
+        "sourcePdfTextCentre": [
+          635.5007629394531,
+          369.0356903076172
+        ]
+      },
+      "GALLA IPARI ÖVEZET": {
+        "sourcePdfTextBBox": [
+          456.4399719238281,
+          486.9682922363281,
+          526.1536254882812,
+          493.50311279296875
+        ],
+        "sourcePdfTextCentre": [
+          491.2967987060547,
+          490.23570251464844
+        ]
+      },
+      "DÓZSAKERT": {
+        "sourcePdfTextBBox": [
+          263.3599548339844,
+          292.6882629394531,
+          304.0197448730469,
+          299.22308349609375
+        ],
+        "sourcePdfTextCentre": [
+          283.6898498535156,
+          295.95567321777344
+        ]
+      },
+      "ÚJVÁROS": {
+        "sourcePdfTextBBox": [
+          303.0799560546875,
+          260.4082336425781,
+          334.66937255859375,
+          266.94305419921875
+        ],
+        "sourcePdfTextCentre": [
+          318.8746643066406,
+          263.67564392089844
+        ]
+      },
+      "ÉSZAK-VÉRTES": {
+        "sourcePdfTextBBox": [
+          435.6799621582031,
+          691.0881958007812,
+          486.1484680175781,
+          697.623046875
+        ],
+        "sourcePdfTextCentre": [
+          460.9142150878906,
+          694.3556213378906
+        ]
+      },
+      "SÁRBEREK": {
+        "sourcePdfTextBBox": [
+          325.27996826171875,
+          345.8482360839844,
+          361.9468994140625,
+          352.383056640625
+        ],
+        "sourcePdfTextCentre": [
+          343.6134338378906,
+          349.1156463623047
+        ]
+      },
+      "ERŐMŰ LTP.": {
+        "sourcePdfTextBBox": [
+          161.83998107910156,
+          360.8482360839844,
+          202.14031982421875,
+          367.383056640625
+        ],
+        "sourcePdfTextCentre": [
+          181.99015045166016,
+          364.1156463623047
+        ]
+      },
+      "FELSŐGALLA": {
+        "sourcePdfTextBBox": [
+          574.2799682617188,
+          564.1282348632812,
+          618.5731811523438,
+          570.6630859375
+        ],
+        "sourcePdfTextCentre": [
+          596.4265747070312,
+          567.3956604003906
+        ]
+      },
+      "NYUGATI IPARI PARK": {
+        "sourcePdfTextBBox": [
+          86.239990234375,
+          306.4882507324219,
+          155.2217559814453,
+          313.0230712890625
+        ],
+        "sourcePdfTextCentre": [
+          120.73087310791016,
+          309.7556610107422
+        ]
+      }
+    }
+  },
+  "classificationPrinciple": "Named separately delineated quarters can include forest or industrial land. Land use alone does not force planning/group classification. Multi-label shared extents must not be assigned to one constituent name; missing source edges must not be replaced by implicit polygon chords.",
+  "positiveAdditionalFeasibility": [
+    {
+      "name": "Galla ipari övezet",
+      "sourceDrawing": 1815,
+      "status": "literal_valid_simple_circuit_extractable",
+      "sourceWalkIssue": "One exactly retraced source spur makes the full walk non-simple. Selecting the actual enclosing simple circuit requires no added edge and no geometry repair.",
+      "sourceSpurIndices": [
+        366,
+        367,
+        368
+      ],
+      "sourceSpurPoints": [
+        [
+          557.239990234375,
+          505.84002685546875
+        ],
+        [
+          557.239990234375,
+          505.72003173828125
+        ],
+        [
+          557.239990234375,
+          505.84002685546875
+        ]
+      ],
+      "sourceSpurOneWayLengthPdfPoints": 0.1199951171875,
+      "closedCircuitCoordinateCount": 516,
+      "closedCircuitAreaPdfSquared": 17758.502866623458,
+      "rawWalkAreaUnchanged": true,
+      "distinctIncludedLabel": "GALLA IPARI ÖVEZET",
+      "newEdgeRequired": false
+    },
+    {
+      "name": "Észak-Vértes",
+      "sourceOuterDrawing": 1286,
+      "sourceHoleDrawing": 6325,
+      "sameHoleBoundaryAsSeparatelyColoredSikvolgyDrawing": 5531,
+      "holeCoordinatesExactlyEqualAtPyMuPdfPrecision": true,
+      "outerRingCounterclockwise": true,
+      "holeRingCounterclockwise": false,
+      "outerCoversHole": true,
+      "resultValid": true,
+      "areaPdfSquared": 131142.00360098877,
+      "sourceRenderSemantics": "Light-green surrounding quarter with separately orange-filled Síkvölgy island; green outline6325 explicitly traces the excluded island, opposite winding to green outer1286.",
+      "forestLabelCentreIncluded": true,
+      "sikvolgyLabelCentreExcluded": true,
+      "newEdgeRequired": false
+    },
+    {
+      "name": "Nyugat-Gerecse",
+      "sourceDrawings": [
+        4557,
+        4558
+      ],
+      "literalSharedClosureEdge": {
+        "drawingIndexZeroBased": 4851,
+        "lineItemIndexZeroBased": 95,
+        "p": [
+          587.36,
+          551.44
+        ],
+        "q": [
+          588.44,
+          552.4
+        ]
+      },
+      "status": "literal_shared_edge_supplies_missing_small_connection_pending_exact_operand_QA",
+      "sourceFloatAliasing": "PyMuPDF Q y differs by 6.103515625e-5 PDF point between drawings; parent is parsing raw integer CAD operands with Decimal rather than snapping.",
+      "newEdgeRequired": false
+    }
+  ],
+  "alreadyExportedFour": [
+    "Kertváros",
+    "Alsógalla",
+    "Óváros",
+    "Síkvölgy"
+  ],
+  "compoundOrUnresolved": [
+    {
+      "names": [
+        "Dózsakert",
+        "Bánhida"
+      ],
+      "drawing": 5528,
+      "status": "One valid closed source outline contains both labels, no independent interior source divider established.",
+      "singleConstituentExportPermitted": false
+    },
+    {
+      "names": [
+        "Újváros",
+        "Sárberek"
+      ],
+      "drawing": 3696,
+      "status": "One open outline covers both; the other colored northern arcs3267/3277 enclose Szőlőhegy. The three arcs together close a larger three-label compound rather than each fine unit.",
+      "singleConstituentExportPermitted": false
+    },
+    {
+      "names": [
+        "Szőlőhegy"
+      ],
+      "drawings": [
+        3267,
+        3277
+      ],
+      "status": "Actual northern/eastern arcs exist; missing northwestern A–B route follows M1 corridor. No exact gray/black divider walk has been established; cannot close with a chord.",
+      "openEndpoints": {
+        "a": [
+          274.52,
+          160.72
+        ],
+        "b": [
+          303.56,
+          199.96
+        ]
+      },
+      "singleConstituentExportPermitted": false
+    },
+    {
+      "names": [
+        "VI-os telep",
+        "Felsőgalla"
+      ],
+      "drawings": [
+        4836,
+        4851
+      ],
+      "status": "Different colored open outer walks share endpoint pair; divider follows curved highway1 ink strip. Joining both outer walks yields a compound. Straight shared closure would invent geometry.",
+      "openEndpoints": {
+        "a": [
+          555.2,
+          535.24
+        ],
+        "b": [
+          597.68,
+          613.36
+        ]
+      },
+      "singleConstituentExportPermitted": false
+    },
+    {
+      "names": [
+        "Nyugati ipari park",
+        "Erőmű Ltp."
+      ],
+      "drawing": 5527,
+      "status": "Closed self-touching source walk encompasses both labels; no separate complete residential outline established.",
+      "singleConstituentExportPermitted": false
+    }
+  ],
+  "waterMisclassificationAvoided": {
+    "drawing6326IsWater": true,
+    "renderColor": "turquoise",
+    "sourceFeature": "Erőmű-tó, not Erőmű Ltp.",
+    "eromuLabelCentreInsideWater6326": false,
+    "eromuLabelCentreInsideCompound5527": true
+  },
+  "dividerStrokeInvestigation": {
+    "method": "All grayscale get_drawings line items were tested for exact/nearest geometric incidence at colored-outline endpoints; road ink strips are often represented by filled quads/triangles, not a literal centerline.",
+    "nearestGreyStrokeDistancePdfPoints": {
+      "northA": 1.52587890625e-05,
+      "northB": 0.013952241094419303,
+      "southA": 0.05300201669976539,
+      "southB": 0.07705404823106926
+    },
+    "candidateGrayDrawings": {
+      "northA": [
+        10145,
+        10146
+      ],
+      "northB": [
+        10108
+      ],
+      "southA": [
+        10127,
+        10128,
+        6434
+      ],
+      "southB": [
+        11718
+      ]
+    },
+    "interpretation": "Only northA incidence may be a binary-float alias. Other positive distances must not be silently snapped; proximity to an ink strip is not an exact source divider proof."
+  },
+  "sourcePathInventory": [
+    {
+      "drawingIndexZeroBased": 1286,
+      "literalLineItemCount": 745,
+      "firstPoint": [
+        485.3599853515625,
+        588.8800048828125
+      ],
+      "lastPoint": [
+        485.3599853515625,
+        588.8800048828125
+      ],
+      "closedAtPyMuPdfPrecision": true,
+      "openEndDistancePdfPoints": 0.0,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 136977.87693428085,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "SÍKVÖLGY",
+        "ÉSZAK-VÉRTES"
+      ],
+      "rgbStroke": [
+        0.9020000100135803,
+        0.9449999928474426,
+        0.7179999947547913
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 1815,
+      "literalLineItemCount": 517,
+      "firstPoint": [
+        465.3199768066406,
+        367.84002685546875
+      ],
+      "lastPoint": [
+        465.3199768066406,
+        367.84002685546875
+      ],
+      "closedAtPyMuPdfPrecision": true,
+      "openEndDistancePdfPoints": 0.0,
+      "validIfImplicitlyClosed": false,
+      "validityExplanation": "Ring Self-intersection[557.239990234375 505.840026855469]",
+      "areaIfImplicitlyClosedPdfSquared": 17758.502866623458,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "GALLA IPARI ÖVEZET"
+      ],
+      "rgbStroke": [
+        0.8629999756813049,
+        0.7649999856948853,
+        0.8119999766349792
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 3267,
+      "literalLineItemCount": 65,
+      "firstPoint": [
+        353.8399963378906,
+        189.6400146484375
+      ],
+      "lastPoint": [
+        274.5199890136719,
+        160.7200164794922
+      ],
+      "closedAtPyMuPdfPrecision": false,
+      "openEndDistancePdfPoints": 84.42766049113239,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 966.0240761719178,
+      "labelCentresInsideIfImplicitlyClosed": [],
+      "rgbStroke": [
+        0.8429999947547913,
+        0.7919999957084656,
+        0.5329999923706055
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 3277,
+      "literalLineItemCount": 308,
+      "firstPoint": [
+        303.55999755859375,
+        199.96002197265625
+      ],
+      "lastPoint": [
+        353.8399963378906,
+        189.6400146484375
+      ],
+      "closedAtPyMuPdfPrecision": false,
+      "openEndDistancePdfPoints": 51.32816798228848,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 6015.109829186695,
+      "labelCentresInsideIfImplicitlyClosed": [],
+      "rgbStroke": [
+        0.8429999947547913,
+        0.7919999957084656,
+        0.5329999923706055
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 3696,
+      "literalLineItemCount": 223,
+      "firstPoint": [
+        274.5199890136719,
+        160.72003173828125
+      ],
+      "lastPoint": [
+        303.55999755859375,
+        199.96002197265625
+      ],
+      "closedAtPyMuPdfPrecision": false,
+      "openEndDistancePdfPoints": 48.816994273336626,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 10464.984315125039,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "ÚJVÁROS",
+        "SÁRBEREK"
+      ],
+      "rgbStroke": [
+        0.9020000100135803,
+        0.8159999847412109,
+        0.6589999794960022
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 4284,
+      "literalLineItemCount": 328,
+      "firstPoint": [
+        259.8800048828125,
+        226.48004150390625
+      ],
+      "lastPoint": [
+        259.8800048828125,
+        226.48004150390625
+      ],
+      "closedAtPyMuPdfPrecision": true,
+      "openEndDistancePdfPoints": 0.0,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 17945.387697784987,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "KERTVÁROS"
+      ],
+      "rgbStroke": [
+        0.9800000190734863,
+        0.8939999938011169,
+        0.7020000219345093
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 4557,
+      "literalLineItemCount": 894,
+      "firstPoint": [
+        587.3599853515625,
+        551.4400024414062
+      ],
+      "lastPoint": [
+        597.3200073242188,
+        613.9600219726562
+      ],
+      "closedAtPyMuPdfPrecision": false,
+      "openEndDistancePdfPoints": 63.30841081470673,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 104611.76850571437,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "NYUGAT-GERECSE",
+        "FELSŐGALLA"
+      ],
+      "rgbStroke": [
+        0.8159999847412109,
+        0.8429999947547913,
+        0.5099999904632568
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 4558,
+      "literalLineItemCount": 140,
+      "firstPoint": [
+        597.3200073242188,
+        613.9600219726562
+      ],
+      "lastPoint": [
+        588.4400024414062,
+        552.4000244140625
+      ],
+      "closedAtPyMuPdfPrecision": false,
+      "openEndDistancePdfPoints": 62.197168634374684,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 2882.6918777320534,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "FELSŐGALLA"
+      ],
+      "rgbStroke": [
+        0.8159999847412109,
+        0.8429999947547913,
+        0.5099999904632568
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 4836,
+      "literalLineItemCount": 223,
+      "firstPoint": [
+        555.2000122070312,
+        535.239990234375
+      ],
+      "lastPoint": [
+        597.6799926757812,
+        613.3599853515625
+      ],
+      "closedAtPyMuPdfPrecision": false,
+      "openEndDistancePdfPoints": 88.9229013119499,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 6866.336498512421,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "VI-OS TELEP"
+      ],
+      "rgbStroke": [
+        0.9800000190734863,
+        0.8939999938011169,
+        0.45899999141693115
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 4851,
+      "literalLineItemCount": 235,
+      "firstPoint": [
+        555.2000122070312,
+        535.239990234375
+      ],
+      "lastPoint": [
+        597.6799926757812,
+        613.3599853515625
+      ],
+      "closedAtPyMuPdfPrecision": false,
+      "openEndDistancePdfPoints": 88.9229013119499,
+      "validIfImplicitlyClosed": false,
+      "validityExplanation": "Ring Self-intersection[557.239990234375 505.839996337891]",
+      "areaIfImplicitlyClosedPdfSquared": 4525.784104687162,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "FELSŐGALLA"
+      ],
+      "rgbStroke": [
+        0.9959999918937683,
+        0.9490000009536743,
+        0.6269999742507935
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 5527,
+      "literalLineItemCount": 339,
+      "firstPoint": [
+        129.9199981689453,
+        429.760009765625
+      ],
+      "lastPoint": [
+        129.9199981689453,
+        429.760009765625
+      ],
+      "closedAtPyMuPdfPrecision": true,
+      "openEndDistancePdfPoints": 0.0,
+      "validIfImplicitlyClosed": false,
+      "validityExplanation": "Ring Self-intersection[129.919998168945 429.760009765625]",
+      "areaIfImplicitlyClosedPdfSquared": 18043.739060669264,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "ERŐMŰ LTP.",
+        "NYUGATI IPARI PARK"
+      ],
+      "rgbStroke": [
+        0.9610000252723694,
+        0.9409999847412109,
+        0.921999990940094
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 5528,
+      "literalLineItemCount": 366,
+      "firstPoint": [
+        270.79998779296875,
+        422.79998779296875
+      ],
+      "lastPoint": [
+        270.79998779296875,
+        422.79998779296875
+      ],
+      "closedAtPyMuPdfPrecision": true,
+      "openEndDistancePdfPoints": 0.0,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 17667.49681724992,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "BÁNHIDA",
+        "DÓZSAKERT"
+      ],
+      "rgbStroke": [
+        0.9290000200271606,
+        0.8820000290870667,
+        0.8040000200271606
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 5529,
+      "literalLineItemCount": 309,
+      "firstPoint": [
+        451.1600036621094,
+        425.67999267578125
+      ],
+      "lastPoint": [
+        451.1600036621094,
+        425.67999267578125
+      ],
+      "closedAtPyMuPdfPrecision": true,
+      "openEndDistancePdfPoints": 0.0,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 7500.722481592093,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "ALSÓGALLA"
+      ],
+      "rgbStroke": [
+        1.0,
+        1.0,
+        0.8820000290870667
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 5530,
+      "literalLineItemCount": 305,
+      "firstPoint": [
+        348.1999816894531,
+        480.8800048828125
+      ],
+      "lastPoint": [
+        348.1999816894531,
+        480.8800048828125
+      ],
+      "closedAtPyMuPdfPrecision": true,
+      "openEndDistancePdfPoints": 0.0,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 8009.452011400834,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "ÓVÁROS"
+      ],
+      "rgbStroke": [
+        0.8629999756813049,
+        0.7059999704360962,
+        0.5289999842643738
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 5531,
+      "literalLineItemCount": 470,
+      "firstPoint": [
+        263.239990234375,
+        573.8800048828125
+      ],
+      "lastPoint": [
+        263.239990234375,
+        573.8800048828125
+      ],
+      "closedAtPyMuPdfPrecision": true,
+      "openEndDistancePdfPoints": 0.0,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 5835.873333292082,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "SÍKVÖLGY"
+      ],
+      "rgbStroke": [
+        0.9919999837875366,
+        0.800000011920929,
+        0.5099999904632568
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 6325,
+      "literalLineItemCount": 470,
+      "firstPoint": [
+        263.239990234375,
+        573.8800048828125
+      ],
+      "lastPoint": [
+        263.239990234375,
+        573.8800048828125
+      ],
+      "closedAtPyMuPdfPrecision": true,
+      "openEndDistancePdfPoints": 0.0,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 5835.873333292082,
+      "labelCentresInsideIfImplicitlyClosed": [
+        "SÍKVÖLGY"
+      ],
+      "rgbStroke": [
+        0.9020000100135803,
+        0.9449999928474426,
+        0.7179999947547913
+      ]
+    },
+    {
+      "drawingIndexZeroBased": 6326,
+      "literalLineItemCount": 106,
+      "firstPoint": [
+        210.9199981689453,
+        361.36004638671875
+      ],
+      "lastPoint": [
+        210.9199981689453,
+        361.36004638671875
+      ],
+      "closedAtPyMuPdfPrecision": true,
+      "openEndDistancePdfPoints": 0.0,
+      "validIfImplicitlyClosed": true,
+      "validityExplanation": "Valid Geometry",
+      "areaIfImplicitlyClosedPdfSquared": 1516.9321772465482,
+      "labelCentresInsideIfImplicitlyClosed": [],
+      "rgbStroke": [
+        0.7409999966621399,
+        0.859000027179718,
+        0.8709999918937683
+      ]
+    }
+  ],
+  "limitations": [
+    "Review does not certify current names, statutory current force, cadastral accuracy, absolute position or reuse license.",
+    "Exact PDF CAD operand mapping and final world-coordinate/overlap/containment checks are assigned separately.",
+    "No new geometry file, shared registry, old frozen source, or network resource was modified."
+  ],
+  "usableForAddressAssignment": false
+}

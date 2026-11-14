@@ -1,0 +1,367 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "reviewScope": "Independent local source-image reading of candidate control features, with separately stated current municipality-ring topology observations. No calibration, fitting or quarter geometry.",
+  "status": "source_features_observed_geographic_control_identity_not_approved",
+  "checkedInputHashes": [
+    {
+      "path": "../municipal-pecs-grounded-next/source-name-map.jpeg",
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8",
+      "use": "Unmodified original source-image inspection and source-only nearest-neighbour crops."
+    },
+    {
+      "path": "../municipal-pecs-grounded-next/independent-review.json",
+      "sha256": "034181262ae1f5c8796b86ef31b574bdb4df3e9d2b336f94b6a890d62e0845a3",
+      "use": "Previously rejected geographic-control audit; candidate identities treated as hypotheses only."
+    },
+    {
+      "path": "../municipal-pecs-grounded-next/source-municipality.geojson",
+      "sha256": "f88ce9a098698c26775574013b687dc1e1a15b0b4a3f5c40ff7ec1fceeb3a305",
+      "use": "Separate world-only inspection of literal ring-vertex directions; no fit or projected source overlay used."
+    },
+    {
+      "path": "../municipal-pecs-grounded-next/boundary-source-proof.json",
+      "sha256": "869ba87df37a36b093b758f02011b90e19efaa877d529a7d110f0f645163ebab",
+      "use": "Archived linkage information only; this image reviewer did not rescan the PBF."
+    }
+  ],
+  "networkUsed": false,
+  "sourcePixelConvention": "Original Figure9 JPEG 585x514 pixels; zero-based x rightwards,y downwards.",
+  "sourceOnlySelectionMethod": "Inspect unmodified source image first; crop with nearest-neighbour scaling only. Source pixel readings did not use a fitted matrix, target projection, neighbourhood name coordinates, target residuals or image/world alignment.",
+  "candidateModelOverlayInspected": false,
+  "authorBuildScriptImportedOrInvoked": false,
+  "sourceOnlyObservations": [
+    {
+      "id": "visible-L-corner",
+      "sourcePixelApproximate": [
+        160,
+        167
+      ],
+      "sourceFeature": "Distinctive broad gray L turn, west/northwest of coloured Pecs districts.",
+      "observation": "The gray stroke descends approximately vertically near x160 from y153 to y166, then turns sharply into the long west-northwest stroke. The source supports this visible turn rather than the old [160,162] marker on its straight limb. The thick antialiased stroke does not provide a surveyed or subpixel point.",
+      "sourceFeaturePresenceConfirmed": true,
+      "sourceToWorldIdentityApproved": false,
+      "crop": "independent-L-source-only.png"
+    },
+    {
+      "id": "northern-trough",
+      "sourcePixelApproximate": [
+        293,
+        85
+      ],
+      "sourceFeature": "Broad gray trough west of the road/Arpad-teto symbol.",
+      "observation": "The lowest visible gray band spans approximately x291 through294 at y84 through85. It is a flattened blurred trough, not a single sharp V vertex. The former suggested [294,86] lies near the lower/light edge. The two small consecutive troughs present in the current ring cannot be individually and decisively identified from this blur.",
+      "samplePixels": [
+        {
+          "pixel": [
+            292,
+            85
+          ],
+          "rgb": [
+            185,
+            185,
+            183
+          ]
+        },
+        {
+          "pixel": [
+            293,
+            85
+          ],
+          "rgb": [
+            185,
+            185,
+            183
+          ]
+        },
+        {
+          "pixel": [
+            294,
+            86
+          ],
+          "rgb": [
+            211,
+            211,
+            209
+          ]
+        }
+      ],
+      "sourceFeaturePresenceConfirmed": true,
+      "sourceToWorldIdentityApproved": false,
+      "crop": "independent-trough-source-only.png"
+    },
+    {
+      "id": "eastern-gray-yellow-crossing",
+      "sourcePixelApproximate": [
+        572,
+        163
+      ],
+      "sourceRegionInspected": [
+        525,
+        130,
+        585,
+        195
+      ],
+      "sourceFeature": "Gray diagonal stroke crossing a yellow curved road symbol near the source eastern edge.",
+      "observation": "A coherent thick gray northwest-southeast diagonal passes through the yellow line as that yellow line comes from the west/southwest and curves toward the northeast. The visible two-dimensional overlap is centered approximately at [572,163] and spans several source pixels. It is not a crossing between two road symbols. The black dashed railway curve lies northwest of this overlap and turns north near approximately[565,151]; it is a separate feature. No road number, crossing name or gray-line statutory identity is legible at the overlap.",
+      "sourceFeaturePresenceConfirmed": true,
+      "sourceCrossingCenterDistinctiveAtRasterResolution": true,
+      "singlePixelOrSurveyedPoint": false,
+      "sourceToWorldIdentityApproved": false,
+      "worldCandidateOrProjectionInspected": false,
+      "readingExtentPixelsDescriptiveOnly": "The overlap occupies approximately2–3pixels; this describes the source rendering, not a probability distribution or geographic error bound.",
+      "crop": "independent-east-crossing-source-only.png"
+    },
+    {
+      "id": "eastern-road-rail-obscured-crossing",
+      "sourceRegionInspected": [
+        435,
+        140,
+        485,
+        205
+      ],
+      "promptedApproximatePixel": [
+        460,
+        180
+      ],
+      "visibleFeatureDescription": "Yellow west-southwest/east-northeast road approaches the southeastern edge of a purple filled cell. Black dashed railway approaches on the east and continues south.",
+      "observation": "The railway is visible near x469 at y174–176, then near x467 at y178–180, and near x465 south of the cell at y183–190. The yellow road is visible east of the rail near x470,y179–180, while its immediate west-southwest continuation is obscured by purple fill/contour at approximately x452–465. The implied meeting is near [467,180], beneath the broad dark contour and fill. This is an approximate search location inferred from exposed approaches, not a directly exposed joint source crossing or approved source-pixel GCP.",
+      "sourceFeaturePresenceConfirmed": true,
+      "jointSourceCrossingDirectlyVisible": false,
+      "reportedApproximateLocationIsAnApprovedControl": false,
+      "sourceToWorldIdentityApproved": false,
+      "worldCandidateOrProjectionInspected": false,
+      "crop": "independent-road-rail-obscured-source-only.png",
+      "inferredSearchLocationApproximate": [
+        467,
+        180
+      ]
+    },
+    {
+      "id": "eastern-gray-rail-crossing",
+      "sourceRegionInspected": [
+        550,
+        136,
+        577,
+        169
+      ],
+      "promptedApproximatePixel": [
+        564,
+        152
+      ],
+      "sourcePixelApproximate": [
+        565,
+        151
+      ],
+      "sourceFeature": "Black dashed railway curve crossing a thick northwest-southeast gray diagonal stroke.",
+      "observation": "Two coherent source features form a crossing at the railway bend. The dark dashed railway approaches from the north near [566,148], then turns southwest toward [563,153]. The gray diagonal approaches from the northwest through approximately[562,148] and continues southeast through approximately[566,152]. Their overlapping raster mark is centered approximately at [565,151]. No coloured cell fill obscures this crossing. The railway dashing, stroke widths and raster antialiasing prevent a claim of a unique surveyed or subpixel center. This is a gray-line/rail crossing, not a road crossing. The source alone does not name the rail or establish the physical/legal identity of the gray line.",
+      "samplePixels": [
+        {
+          "pixel": [
+            565,
+            151
+          ],
+          "rgb": [
+            104,
+            104,
+            102
+          ]
+        },
+        {
+          "pixel": [
+            566,
+            148
+          ],
+          "rgb": [
+            38,
+            38,
+            38
+          ]
+        },
+        {
+          "pixel": [
+            563,
+            153
+          ],
+          "rgb": [
+            72,
+            73,
+            68
+          ]
+        },
+        {
+          "pixel": [
+            562,
+            148
+          ],
+          "rgb": [
+            184,
+            184,
+            182
+          ]
+        },
+        {
+          "pixel": [
+            566,
+            152
+          ],
+          "rgb": [
+            183,
+            183,
+            183
+          ]
+        }
+      ],
+      "sourceFeaturePresenceConfirmed": true,
+      "jointSourceCrossingDirectlyVisible": true,
+      "sourceCrossingCenterDistinctiveAtRasterResolution": true,
+      "singlePixelOrSurveyedPoint": false,
+      "sourceToWorldIdentityApproved": false,
+      "worldCandidateOrProjectionInspected": false,
+      "crop": "independent-gray-rail-crossing-source-only.png"
+    },
+    {
+      "id": "east-northeast-search",
+      "sourceRegionInspected": [
+        390,
+        0,
+        585,
+        293
+      ],
+      "observation": "Several gray zigzag bends and line crossings are visible, but some are on branching neighbouring municipality outlines or close to rail, coloured contours and labels. No newly named, numbered or independently tied source-world northeastern control was established in this inspection. Visible source topology alone does not select a unique current OSM node.",
+      "newApprovedGroundControls": 0
+    }
+  ],
+  "separateWorldTopologyObservations": [
+    {
+      "candidateSourceFeature": "visible-L-corner",
+      "currentOuterRingVertexIndex": 457,
+      "currentOsmNodeId": 684770966,
+      "currentWgs84": [
+        18.1848498,
+        46.1107725
+      ],
+      "observation": "In the current municipality ring, vertices445–452 approach from northwest toward southeast, vertices453–457 follow an almost southward limb, then457–459 run west/northwest. This direction sequence is morphologically consistent with the visible source L. Ring vertex455 is intermediate on the near-vertical limb. This morphological consistency does not independently prove the historical/current physical boundary identity.",
+      "topologyConsistent": true,
+      "historicalCurrentIdentityProven": false,
+      "fitPairApproved": false
+    },
+    {
+      "candidateSourceFeature": "northern-trough",
+      "currentOuterRingVertexIndex": 386,
+      "currentOsmNodeId": 684771054,
+      "currentWgs84": [
+        18.2401705,
+        46.1351487
+      ],
+      "observation": "The current ring has the larger low bend at386, but also a smaller neighbouring low bend at389 separated by388. The source blur is consistent with a trough in this area but does not reliably isolate those exact current vertices as separate features.",
+      "topologyConsistentInBroadForm": true,
+      "exactVertexIdentityProven": false,
+      "fitPairApproved": false
+    },
+    {
+      "candidateSourceFeature": "eastern-gray-yellow-crossing",
+      "observation": "No world candidate for this crossing, target projection or matrix was supplied to this source reading. Its actual geographic identity remains for a separate audit.",
+      "fitPairApproved": false
+    },
+    {
+      "candidateSourceFeature": "eastern-gray-rail-crossing",
+      "observation": "No world candidate, target projection or matrix was supplied to this source reading. The rail/gray-line crossing is only a source feature candidate; its actual geographic identity needs a separate audit.",
+      "fitPairApproved": false
+    }
+  ],
+  "crops": [
+    {
+      "path": "independent-L-source-only.png",
+      "sourceImage": "../municipal-pecs-grounded-next/source-name-map.jpeg",
+      "sourcePixelBox": [
+        70,
+        120,
+        177,
+        180
+      ],
+      "boxConvention": "PIL left,upper inclusive; right,lower exclusive",
+      "nearestNeighbourScale": 8,
+      "sourceOnly": true,
+      "projectionOrWorldOverlay": false,
+      "sha256": "872fe23f5a9e6c10a5ac48cf499d174025cf23c727639ae8727d400e6c8ac907"
+    },
+    {
+      "path": "independent-trough-source-only.png",
+      "sourceImage": "../municipal-pecs-grounded-next/source-name-map.jpeg",
+      "sourcePixelBox": [
+        250,
+        45,
+        355,
+        103
+      ],
+      "boxConvention": "PIL left,upper inclusive; right,lower exclusive",
+      "nearestNeighbourScale": 8,
+      "sourceOnly": true,
+      "projectionOrWorldOverlay": false,
+      "sha256": "2e1e011b7c229810db4e7a592e686fb32ed31027946dccdb4c5cb1d4bd8ffd32"
+    },
+    {
+      "path": "independent-east-crossing-source-only.png",
+      "sourceImage": "../municipal-pecs-grounded-next/source-name-map.jpeg",
+      "sourcePixelBox": [
+        525,
+        130,
+        585,
+        195
+      ],
+      "boxConvention": "PIL left,upper inclusive; right,lower exclusive",
+      "nearestNeighbourScale": 10,
+      "sourceOnly": true,
+      "projectionOrWorldOverlay": false,
+      "sha256": "1f5d52dd46b20f7a11d68171895245f00b8d1ee67f3580c45490c2ffd53cb433"
+    },
+    {
+      "path": "independent-road-rail-obscured-source-only.png",
+      "sourceImage": "../municipal-pecs-grounded-next/source-name-map.jpeg",
+      "sourcePixelBox": [
+        435,
+        140,
+        485,
+        205
+      ],
+      "boxConvention": "PIL left,upper inclusive; right,lower exclusive",
+      "nearestNeighbourScale": 10,
+      "sourceOnly": true,
+      "projectionOrWorldOverlay": false,
+      "sha256": "c427449c5c8be006eadda88a19dc56edb13d65507d9e9e0b50259f5cbb0f80ff"
+    },
+    {
+      "path": "independent-gray-rail-crossing-source-only.png",
+      "sourceImage": "../municipal-pecs-grounded-next/source-name-map.jpeg",
+      "sourcePixelBox": [
+        550,
+        136,
+        577,
+        169
+      ],
+      "boxConvention": "PIL left,upper inclusive; right,lower exclusive",
+      "nearestNeighbourScale": 20,
+      "sourceOnly": true,
+      "projectionOrWorldOverlay": false,
+      "sha256": "8c5304cd12ff5233147b8a1c7c7a209d28fc79e6d0639e3ba57cf5b99dc47332"
+    }
+  ],
+  "limitations": [
+    "Current OSM boundary membership and shape do not establish that an old broad gray map stroke represents the identical physical or legal boundary at its source date.",
+    "Raster reading extent is distinct from image/world correspondence uncertainty. It is not an absolute error estimate.",
+    "No absolute geodetic, cadastral or address-assignment accuracy is established.",
+    "This reviewer inspected archived world geometry and proof records but did not independently rescan the original PBF.",
+    "No fit residual or correlated line holdout was used to approve correspondence."
+  ],
+  "newApprovedGroundControls": 0,
+  "georeferenceModelApproved": false,
+  "automaticPrimaryApproval": false,
+  "claimedAbsoluteAccuracy": null,
+  "absoluteBoundaryAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "quarterGeometriesGeneratedOrChanged": false,
+  "primaryRecordsAdded": 0,
+  "frozenSourceDirectoriesChanged": false,
+  "registriesChanged": false
+}

@@ -1,0 +1,391 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-14",
+  "status": "original_native_paths_and_frozen_geographic_transform_verified",
+  "sourcePdfSha256": "7db28b2b5922e6dea7bde9dc3263087534b26e9cd1e52b63335249265df6febe",
+  "actualNativeSourcePathsChecked": 33,
+  "frozenWorldFeaturesChecked": 32,
+  "originalPathsOrWorldFeaturesChanged": false,
+  "independentInteriorControlCount": 0,
+  "semanticAdmissionDecisionMadeByThisAudit": false,
+  "primaryCoverageCredit": 0,
+  "calibration": {
+    "method": "Independently read actual native perimeter linework and rerun 35 trimmed closest-boundary affine fits; bounding box is only the initial estimate, not the resulting fit.",
+    "sourcePerimeterDrawingIndices": [
+      164771,
+      164772,
+      164773,
+      164774,
+      164775,
+      164776,
+      164777,
+      164778,
+      164779
+    ],
+    "sampleCount": 1200,
+    "trimmedPerIteration": 0.1,
+    "coefficientMaximumDifference": 0.0,
+    "reportedLastPrefitMedianP95MaximumMetres": [
+      7.224128421579061,
+      18.447915790396877,
+      30.438304285958054
+    ],
+    "recomputedFinalMatrixMedianP95MaximumMetres": [
+      7.224125623318941,
+      18.44791520165563,
+      30.43830274571915
+    ],
+    "residualsAreIndependentAccuracyBounds": false,
+    "municipalityInputPath": "data/neighborhoods/sources/municipal-eger-semantic-next/calibration-municipality.geojson",
+    "municipalityInputSha256": "b6a627d9329a45d8d247a589b7f5196552e03b4f4bd2e3c972b480e3e6a2a8ee"
+  },
+  "nativeAndWorldRecords": [
+    {
+      "pdfDrawingIndex": 164815,
+      "nativeLineCount": 507,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Északkeleti külterület és Bikalegelő",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164816,
+      "nativeLineCount": 31,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "OMYA",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164817,
+      "nativeLineCount": 20,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Almár",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164818,
+      "nativeLineCount": 224,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Hajdúhegy",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164819,
+      "nativeLineCount": 49,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Szent Miklós",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164820,
+      "nativeLineCount": 46,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Belváros",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164828,
+      "nativeLineCount": 125,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Lajosváros – nyugat",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164829,
+      "nativeLineCount": 220,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Galagonyás-dűlő",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164830,
+      "nativeLineCount": 295,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Felnémet",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164831,
+      "nativeLineCount": 138,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Nagylapos",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164832,
+      "nativeLineCount": 53,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Volt kemping",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164833,
+      "nativeLineCount": 193,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Rác hóstya",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164834,
+      "nativeLineCount": 100,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Hajdúhegy észak",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164835,
+      "nativeLineCount": 76,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Felsőváros",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164836,
+      "nativeLineCount": 73,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Károlyváros",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164837,
+      "nativeLineCount": 264,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Szépasszonyvölgy",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164838,
+      "nativeLineCount": 163,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Hatvani hóstya",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164839,
+      "nativeLineCount": 170,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "K2 jelű út és környéke",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164842,
+      "nativeLineCount": 242,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Déli iparterület",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164843,
+      "nativeLineCount": 12,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Lajosváros kelet",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164844,
+      "nativeLineCount": 674,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Délkeleti külterület",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164845,
+      "nativeLineCount": 13,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Csákó",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164846,
+      "nativeLineCount": 37,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Tihamér",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164847,
+      "nativeLineCount": 53,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Maklári hóstya",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164848,
+      "nativeLineCount": 92,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Almagyar – Merengő",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164849,
+      "nativeLineCount": 31,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Sánc",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164850,
+      "nativeLineCount": 30,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Belváros kelet",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164851,
+      "nativeLineCount": 35,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Belváros Dobó tér",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164852,
+      "nativeLineCount": 79,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Cifra hóstya – Tetemvár",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 164853,
+      "nativeLineCount": 55,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Vécseyvölgy",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 165652,
+      "nativeLineCount": 200,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0
+    },
+    {
+      "pdfDrawingIndex": 165658,
+      "nativeLineCount": 25,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Északnyugati külterület",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    },
+    {
+      "pdfDrawingIndex": 165659,
+      "nativeLineCount": 1750,
+      "nativeAndArchivedSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeAndArchivedHausdorffPdfPoints": 0.0,
+      "outputName": "Északnyugati külterület – általános tervterület",
+      "outputValid": true,
+      "nativeToFrozenWorldSymmetricDifferenceDegreesSquared": 0.0,
+      "nativeToFrozenWorldHausdorffDegrees": 0.0
+    }
+  ],
+  "absoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "limitations": [
+    "This verifies source geometry and transformation arithmetic; it does not establish that a regulatory plan unit is a full current ordinary quarter.",
+    "The initial municipal bounds are followed by actual perimeter fitting. Neither perimeter agreement nor a printed scale validates the interior independently.",
+    "Frozen reported residuals use the final prefit iteration; the final-matrix distances are reported separately, without changing any frozen source."
+  ],
+  "inputFingerprints": [
+    {
+      "path": "data/neighborhoods/sources/municipal-east/eger-map-2016.pdf",
+      "sha256": "7db28b2b5922e6dea7bde9dc3263087534b26e9cd1e52b63335249265df6febe"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-east/eger-pdf-vector-paths.json",
+      "sha256": "49777221551b60333e8991b4ce3e7b6b40c5f8c6cc501116d62a7cd411b183d0"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-east/eger-planning-units.geojson",
+      "sha256": "c3619e702df579b23776b977daf62c0ee1aafb9f629a8b447fb29b64f558011b"
+    }
+  ]
+}

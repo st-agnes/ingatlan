@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Nyíregyháza",
+  "sourceUrl": "https://uj.nyiregyhaza.hu/lib/rend_terv/its/felulvizsg/220804_its_jovahagyott_its.pdf",
+  "sourcePrintedPage": 16,
+  "sourcePdfPage": 16,
+  "spatialUnit": "ITS planning cluster",
+  "geometryStatus": "factual_boundary_elements_only_no_coordinates",
+  "usableForAddressAssignment": false,
+  "notes": [
+    "Order preserved fromtable; closure andstreetcenterline conventions require mapreview.",
+    "MóriczZigmond typo in firstsource row normalizedto Móricz Zsigmond; source table should bechecked beforegeometrybuild."
+  ],
+  "definitions": [
+    {
+      "sourceNumber": 1,
+      "name": "Belső lakóterület (Belváros)",
+      "containedNames": [
+        "Belső lakóterület",
+        "Belváros"
+      ],
+      "boundaryElementsInSourceOrder": [
+        "Északi körút",
+        "Erdő sor",
+        "Ferenc körút",
+        "László utca",
+        "Inczédy sor",
+        "Kert utca",
+        "Váci Mihály utca",
+        "Móricz Zsigmond utca",
+        "Huszár sor",
+        "Vasgyár utca",
+        "Mező utca"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "sourceNumber": 2,
+      "name": "Örökösföld",
+      "containedNames": [
+        "Örökösföld"
+      ],
+      "boundaryElementsInSourceOrder": [
+        "Pazonyi út",
+        "4. sz. főút",
+        "Kőlapos nyugati határa",
+        "tervezett összekötő út",
+        "Móra Ferenc utca",
+        "Tünde utca",
+        "Kállói út",
+        "Szent István utca",
+        "Kert utca",
+        "Inczédy sor",
+        "László utca"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "sourceNumber": 3,
+      "name": "Malomkert, Déli ipartelep, Huszártelep",
+      "containedNames": [
+        "Malomkert",
+        "Déli ipartelep",
+        "Huszártelep"
+      ],
+      "boundaryElementsInSourceOrder": [
+        "Szent István utca",
+        "Kállói út",
+        "Tünde utca",
+        "Simai utca",
+        "Akácos út",
+        "Kálmánházi út",
+        "Rókabokori út",
+        "Szirom utca",
+        "Legyező utca",
+        "Dugonics utca",
+        "Széchenyi utca",
+        "Petőfi utca",
+        "Állomás tér",
+        "Huszár sor",
+        "Móricz Zsigmond utca",
+        "Váci Mihály utca",
+        "Kert utca"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "sourceNumber": 4,
+      "name": "Kertváros, Salamonbokor, Szabadságbokor",
+      "containedNames": [
+        "Kertváros",
+        "Salamonbokor",
+        "Szabadságbokor"
+      ],
+      "boundaryElementsInSourceOrder": [
+        "Miskolci vasútvonal",
+        "Tiszavasvári úti felüljáró",
+        "Bethlen Gábor utca",
+        "Vasgyár utca",
+        "Széchenyi utca",
+        "Dugonics utca",
+        "Legyező utca",
+        "Szirom utca",
+        "Rókabokori út",
+        "Nyugati elkerülő út"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "sourceNumber": 5,
+      "name": "Jósaváros, Stadion környéke, Hímes",
+      "containedNames": [
+        "Jósaváros",
+        "Stadion környéke",
+        "Hímes"
+      ],
+      "boundaryElementsInSourceOrder": [
+        "Záhonyi vasútvonal",
+        "Sóstói úti kórház déli telekhatára",
+        "Csaló köz",
+        "Korányi Frigyes utca",
+        "Kalevala sétány",
+        "Korányi kertváros feletti belterületi határvonal",
+        "Makay István utca",
+        "Kosbor utca",
+        "Pazonyi út",
+        "Ferenc körút",
+        "Erdő sor",
+        "Északi körút",
+        "Mező utca",
+        "Bethlen Gábor utca",
+        "Tiszavasvári úti felüljáró"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "sourceNumber": 6,
+      "name": "Nyírszőlős, Felsőpázsit",
+      "containedNames": [
+        "Nyírszőlős",
+        "Felsőpázsit"
+      ],
+      "boundaryElementsInSourceOrder": [
+        "Nyíregyháza északnyugati és északi közigazgatási határa",
+        "Érpataki-főfolyás",
+        "Sóstói erdő nyugati határa",
+        "Záhonyi vasútvonal",
+        "Tiszavasvári úti felüljáró",
+        "Miskolci vasútvonal"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "sourceNumber": 7,
+      "name": "Sóstóhegy, Sóstógyógyfürdő, Korányi kertváros",
+      "containedNames": [
+        "Sóstóhegy",
+        "Sóstógyógyfürdő",
+        "Korányi kertváros"
+      ],
+      "boundaryElementsInSourceOrder": [
+        "Nyíregyháza északi és északkeleti közigazgatási határa",
+        "4. sz. főút",
+        "Kosbor utca",
+        "Makay István utca",
+        "Korányi kertváros feletti belterületi határvonal",
+        "Kalevala sétány",
+        "Korányi Frigyes utca",
+        "Csaló köz",
+        "Sóstói úti kórház déli telekhatára",
+        "Záhonyi vasútvonal",
+        "Sóstói erdő nyugati határa",
+        "Érpataki-főfolyás"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "sourceNumber": 8,
+      "name": "Kőlapos, Oros, Nagyszállás",
+      "containedNames": [
+        "Kőlapos",
+        "Oros",
+        "Nagyszállás"
+      ],
+      "boundaryElementsInSourceOrder": [
+        "4. sz. főút",
+        "Nyíregyháza északkeleti és keleti közigazgatási határa",
+        "Kállói út",
+        "Nagyszállási erdő nyugati határa",
+        "Oros belterületének déli határa",
+        "Vásárosnaményi vasútvonal",
+        "Móra Ferenc utca",
+        "Kőlapos nyugati határa"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "sourceNumber": 9,
+      "name": "Borbánya, Nyírjes, Kistelekiszőlő, Butyka",
+      "containedNames": [
+        "Borbánya",
+        "Nyírjes",
+        "Kistelekiszőlő",
+        "Butyka"
+      ],
+      "boundaryElementsInSourceOrder": [
+        "Vásárosnaményi vasútvonal",
+        "Oros belterületének déli határa",
+        "Nagyszállási erdő nyugati határa",
+        "Kállói út",
+        "Nyíregyháza déli közigazgatási határa",
+        "4. sz. főút",
+        "Érpataki-főfolyás",
+        "Simai utca",
+        "Tünde utca"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "sourceNumber": 10,
+      "name": "Bokortanyák, Császárszállás",
+      "containedNames": [
+        "Bokortanyák",
+        "Császárszállás"
+      ],
+      "boundaryElementsInSourceOrder": [
+        "Miskolci vasútvonal",
+        "Nyugati elkerülő út",
+        "Kálmánházi út",
+        "Érpataki-főfolyás",
+        "4. sz. főút",
+        "Nyíregyháza délnyugati és nyugati közigazgatási határa"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    }
+  ]
+}

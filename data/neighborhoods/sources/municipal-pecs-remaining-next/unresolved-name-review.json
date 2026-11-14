@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 1,
+  "reviewScope": "Read-only independent source-image followup of seven unresolved Pecs fine extents. Exact frozen mask recomputed for fragment presence only; no geometry or georeferencing.",
+  "networkUsed": false,
+  "originalMaskRecomputed": true,
+  "originalMask": "(maxRGB<200 and rangeRGB<110) OR R<median_filter(R,7)-16; scipy 4-connected labels of complement",
+  "recomputedLabelCount": 221,
+  "inputHashes": [
+    {
+      "path": "../municipal-pecs-first-inferred/pecs-p48-names.jpeg",
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "path": "../municipal-pecs-first-inferred/pecs-p63-density.jpeg",
+      "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+    }
+  ],
+  "summary": "No seven unresolved record is usable as one unchanged frozen free-cell. Several complete actual outer silhouettes may support a separate future source-contour trace, which is outside this review. No frame-clipped island was established among Árpádtető, Petőfi-akna, M utca.",
+  "records": [
+    {
+      "sourceName": "Murom",
+      "sourceLabelAnchorPixel": [
+        454,
+        176
+      ],
+      "anchorConvention": "Original Figure9 upper-left origin,x right/y down,zero-based; inherited candidate label index independently inspected in context.",
+      "figure9RegionBox": [
+        420,
+        130,
+        480,
+        190
+      ],
+      "figure12RegionBox": [
+        740,
+        280,
+        820,
+        355
+      ],
+      "observation": "Figure9 gives the labelled purple southern lobe with a thin northern stem below Somogy. Figure12 no-data diagonal hatching divides this silhouette. A complete external silhouette is visible inside the image; one 53 or 54 fragment is not the whole labelled area. Recomputed exact original mask also exposes thin upper fragment 51 with bbox [792,301,799,321], in addition to 53 bbox [781,326,801,344]and 54 bbox [761,327,792,344]. The role of the whole stem must be retained in any later explicit outer-contour trace, not discarded by selecting only a bottom half.",
+      "originalMaskComponentsRelevant": [
+        51,
+        53,
+        54
+      ],
+      "unchangedSingleFreeCellUsable": false,
+      "separateOriginalOuterContourTracingMayBePossible": true,
+      "newGeometryCreated": false,
+      "currentLegalFootprintConfirmed": false,
+      "georeferenceEvaluated": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "evidenceCrops": [
+        {
+          "path": "murom-figure9-native.png",
+          "figure": "figure9",
+          "sourcePixelBox": [
+            420,
+            130,
+            480,
+            190
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "79a4694c38b8b22407c88edf47c4eb46b5d04ace24ea6872e9a6465235609ce3"
+        },
+        {
+          "path": "murom-figure12-native.png",
+          "figure": "figure12",
+          "sourcePixelBox": [
+            740,
+            280,
+            820,
+            355
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "411646eccbabb5077014436e1571bdc247eb8a0a5480d368cd106ddf09897ad2"
+        }
+      ],
+      "canUseUnchangedSourceCell": false,
+      "automaticPrimaryApproval": false
+    },
+    {
+      "sourceName": "Köztemető",
+      "sourceLabelAnchorPixel": [
+        283,
+        379
+      ],
+      "anchorConvention": "Original Figure9 upper-left origin,x right/y down,zero-based; inherited candidate label index independently inspected in context.",
+      "figure9RegionBox": [
+        255,
+        345,
+        320,
+        405
+      ],
+      "figure12RegionBox": [
+        470,
+        625,
+        535,
+        695
+      ],
+      "observation": "Figure9 identifies a green cemetery footprint immediately south of the red district and east of southern XI cells. Figure12 hatch cuts across the complete outlined no-data footprint; original source silhouette is fully inside the image. Recomputed mask has upper 131 fragment bbox [482,634,500,666], plus 134 bbox [484,652,516,686]and 143 bbox [503,667,518,684]. Taking only 134 or 143 omits substantial original extent; even the prior 134/143 list is not an exhaustive list of source fragments. Full observed outer perimeter could be traced separately, but this review creates no replacement.",
+      "originalMaskComponentsRelevant": [
+        131,
+        132,
+        134,
+        143,
+        147
+      ],
+      "unchangedSingleFreeCellUsable": false,
+      "separateOriginalOuterContourTracingMayBePossible": true,
+      "newGeometryCreated": false,
+      "currentLegalFootprintConfirmed": false,
+      "georeferenceEvaluated": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "evidenceCrops": [
+        {
+          "path": "koztemeto-figure9-native.png",
+          "figure": "figure9",
+          "sourcePixelBox": [
+            255,
+            345,
+            320,
+            405
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "cbff4f260d3d62aedf1445336f805d7dcb7372bd680b7a4c8e04d8cd04c04253"
+        },
+        {
+          "path": "koztemeto-figure12-native.png",
+          "figure": "figure12",
+          "sourcePixelBox": [
+            470,
+            625,
+            535,
+            695
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "0e3e2d12c4fb136b23856975bfaf3d8ac4d6ecc02aabee46c61a5f22e0fa42db"
+        }
+      ],
+      "canUseUnchangedSourceCell": false,
+      "automaticPrimaryApproval": false
+    },
+    {
+      "sourceName": "Kisbalokány",
+      "sourceLabelAnchorPixel": [
+        288,
+        291
+      ],
+      "anchorConvention": "Original Figure9 upper-left origin,x right/y down,zero-based; inherited candidate label index independently inspected in context.",
+      "figure9RegionBox": [
+        245,
+        270,
+        335,
+        325
+      ],
+      "figure12RegionBox": [
+        425,
+        500,
+        550,
+        580
+      ],
+      "observation": "The Figure9 blue I group has a fine separator near x278 through the lower blue wedge, partly covered by fine labels. It separates the Kisbalokány-side eastern wedge from Siklósi külváros to its west/southwest. Figure12 shows one continuous orange wedge through the corresponding area; the frozen mask assigns both independent interiors to 92. A unique unchanged 92 cannot be assigned twice; reconstructing the missing fine separator would require a distinct literal Figure9 trace and an audit of its obscured label crossings.",
+      "originalMaskComponentsRelevant": [
+        92
+      ],
+      "unchangedSingleFreeCellUsable": false,
+      "separateOriginalOuterContourTracingMayBePossible": false,
+      "newGeometryCreated": false,
+      "currentLegalFootprintConfirmed": false,
+      "georeferenceEvaluated": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "evidenceCrops": [
+        {
+          "path": "kisbalokany-figure9-native.png",
+          "figure": "figure9",
+          "sourcePixelBox": [
+            245,
+            270,
+            335,
+            325
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "b2eb8168329a6bd089370c0dcb2535397ddebd15b2255a38d255735d1a13f0b2"
+        },
+        {
+          "path": "kisbalokany-figure12-native.png",
+          "figure": "figure12",
+          "sourcePixelBox": [
+            425,
+            500,
+            550,
+            580
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "6ade8ddef27de8526ef7e833ed07f91ea3cc52ae6394615f8c2b38aec21a65ae"
+        }
+      ],
+      "canUseUnchangedSourceCell": false,
+      "automaticPrimaryApproval": false
+    },
+    {
+      "sourceName": "Siklósi külváros",
+      "sourceLabelAnchorPixel": [
+        266,
+        306
+      ],
+      "anchorConvention": "Original Figure9 upper-left origin,x right/y down,zero-based; inherited candidate label index independently inspected in context.",
+      "figure9RegionBox": [
+        245,
+        270,
+        335,
+        325
+      ],
+      "figure12RegionBox": [
+        425,
+        500,
+        550,
+        580
+      ],
+      "observation": "Separate Figure9 fine label and western/southwestern side of the lower blue I wedge from Kisbalokány. The source-map fine separator is visible in segments around x278, but crosses a broad white label band near y304–308. Figure12 corresponding orange wedge lacks a closed fine separator under the exact frozen mask, leaving shared92. A shared component is not two quarter footprints. No artificial dividing edge or label-band closure is supplied.",
+      "originalMaskComponentsRelevant": [
+        92
+      ],
+      "unchangedSingleFreeCellUsable": false,
+      "separateOriginalOuterContourTracingMayBePossible": false,
+      "newGeometryCreated": false,
+      "currentLegalFootprintConfirmed": false,
+      "georeferenceEvaluated": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "evidenceCrops": [
+        {
+          "path": "siklosi-kulvaros-figure9-native.png",
+          "figure": "figure9",
+          "sourcePixelBox": [
+            245,
+            270,
+            335,
+            325
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "b2eb8168329a6bd089370c0dcb2535397ddebd15b2255a38d255735d1a13f0b2"
+        },
+        {
+          "path": "siklosi-kulvaros-figure12-native.png",
+          "figure": "figure12",
+          "sourcePixelBox": [
+            425,
+            500,
+            550,
+            580
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "6ade8ddef27de8526ef7e833ed07f91ea3cc52ae6394615f8c2b38aec21a65ae"
+        }
+      ],
+      "canUseUnchangedSourceCell": false,
+      "automaticPrimaryApproval": false
+    },
+    {
+      "sourceName": "Árpádtető",
+      "sourceLabelAnchorPixel": [
+        343,
+        80
+      ],
+      "anchorConvention": "Original Figure9 upper-left origin,x right/y down,zero-based; inherited candidate label index independently inspected in context.",
+      "figure9RegionBox": [
+        305,
+        60,
+        365,
+        100
+      ],
+      "figure12RegionBox": [
+        550,
+        168,
+        590,
+        208
+      ],
+      "observation": "Figure9 has a complete solid-purple island left of its label. Figure12 has a fully visible small outlined island whose diagonal no-data hatch separates 40 and 41. It is not clipped by the image frame. The unchanged 40 or 41 interior is only a fragment; separate full silhouette tracing is possible in principle, and must retain the original exterior rather than closing either half artificially.",
+      "originalMaskComponentsRelevant": [
+        40,
+        41
+      ],
+      "unchangedSingleFreeCellUsable": false,
+      "separateOriginalOuterContourTracingMayBePossible": true,
+      "newGeometryCreated": false,
+      "currentLegalFootprintConfirmed": false,
+      "georeferenceEvaluated": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "evidenceCrops": [
+        {
+          "path": "arpadteto-figure9-native.png",
+          "figure": "figure9",
+          "sourcePixelBox": [
+            305,
+            60,
+            365,
+            100
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "37cae101b27851654ce966546ee3518d2196b5f73f0d67d07148346007c64d64"
+        },
+        {
+          "path": "arpadteto-figure12-native.png",
+          "figure": "figure12",
+          "sourcePixelBox": [
+            550,
+            168,
+            590,
+            208
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "c33f8cf462b24130fd6ad7c43cce8c50e8acbd5939105538b261814992156bf5"
+        }
+      ],
+      "canUseUnchangedSourceCell": false,
+      "automaticPrimaryApproval": false
+    },
+    {
+      "sourceName": "Petőfi-akna",
+      "sourceLabelAnchorPixel": [
+        515,
+        23
+      ],
+      "anchorConvention": "Original Figure9 upper-left origin,x right/y down,zero-based; inherited candidate label index independently inspected in context.",
+      "figure9RegionBox": [
+        486,
+        10,
+        555,
+        37
+      ],
+      "figure12RegionBox": [
+        838,
+        72,
+        873,
+        110
+      ],
+      "observation": "Figure9 shows the complete tiny purple northern island below the title, with readable label to its east. Figure12 whole external outline is in frame; a no-data diagonal passes through its northern cap. Frozen-mask 12 contains 79 pixels with bbox[850,87,859,101]; other isolated free pixels 10 and 11 are in the cap. Cell 12 alone is not the whole footprint. The difficulty is hatch fragmentation and raster size, not frame clipping.",
+      "originalMaskComponentsRelevant": [
+        10,
+        11,
+        12
+      ],
+      "unchangedSingleFreeCellUsable": false,
+      "separateOriginalOuterContourTracingMayBePossible": true,
+      "newGeometryCreated": false,
+      "currentLegalFootprintConfirmed": false,
+      "georeferenceEvaluated": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "evidenceCrops": [
+        {
+          "path": "petofi-akna-figure9-native.png",
+          "figure": "figure9",
+          "sourcePixelBox": [
+            486,
+            10,
+            555,
+            37
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "f4faf1fb36536174ea15f405fc5109182a5af306abbb73d56cdb991ebeefb3b1"
+        },
+        {
+          "path": "petofi-akna-figure12-native.png",
+          "figure": "figure12",
+          "sourcePixelBox": [
+            838,
+            72,
+            873,
+            110
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "30e099c1fcd81efb2c03539a5e97b3b99b859f0cbd0b14d65f489952b785b5c4"
+        }
+      ],
+      "canUseUnchangedSourceCell": false,
+      "automaticPrimaryApproval": false
+    },
+    {
+      "sourceName": "M utca",
+      "sourceLabelAnchorPixel": [
+        514,
+        43
+      ],
+      "anchorConvention": "Original Figure9 upper-left origin,x right/y down,zero-based; inherited candidate label index independently inspected in context.",
+      "figure9RegionBox": [
+        488,
+        34,
+        544,
+        52
+      ],
+      "figure12RegionBox": [
+        846,
+        108,
+        870,
+        132
+      ],
+      "observation": "Both figures show a complete extremely small dark curved/vertical island below Petőfi-akna and east of Flóriántelep. Figure9 literal M utca label is visible. The external silhouette remains inside the image; under the exact frozen mask its small dark interior is fully classified as stroke, so no separate free-cell label occurs in bbox[840,108,871,132]. An independent silhouette treatment could be investigated, but this image review does not certify a reliable unchanged seed or reconstruct a closure.",
+      "originalMaskComponentsRelevant": [],
+      "unchangedSingleFreeCellUsable": false,
+      "separateOriginalOuterContourTracingMayBePossible": false,
+      "newGeometryCreated": false,
+      "currentLegalFootprintConfirmed": false,
+      "georeferenceEvaluated": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "evidenceCrops": [
+        {
+          "path": "m-utca-figure9-native.png",
+          "figure": "figure9",
+          "sourcePixelBox": [
+            488,
+            34,
+            544,
+            52
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "a1e0426a6011ddc3e1a7cf1e8dd0a530d6f505ccce143d9f07132fad2ba11bf5"
+        },
+        {
+          "path": "m-utca-figure12-native.png",
+          "figure": "figure12",
+          "sourcePixelBox": [
+            846,
+            108,
+            870,
+            132
+          ],
+          "pixelConvention": "left/top inclusive,right/bottom exclusive",
+          "nativeResolution": true,
+          "resampling": "none",
+          "sha256": "f75e11e45e20f2069e1b649a0ecfc208757161d4fbcf068689e90dcaaea3b9a6"
+        }
+      ],
+      "canUseUnchangedSourceCell": false,
+      "automaticPrimaryApproval": false
+    }
+  ],
+  "newGeometriesCreated": 0,
+  "automaticPrimaryApproval": false,
+  "claimedAbsoluteAccuracy": null,
+  "reviewDate": "2026-11-14",
+  "missingExactList": [
+    "Murom",
+    "Köztemető",
+    "Kisbalokány",
+    "Siklósi külváros",
+    "Árpádtető",
+    "Petőfi-akna",
+    "M utca"
+  ],
+  "approvedUnchangedCellCount": 0,
+  "geographicRegistrationEvaluated": false,
+  "usableForAddressAssignment": false
+}

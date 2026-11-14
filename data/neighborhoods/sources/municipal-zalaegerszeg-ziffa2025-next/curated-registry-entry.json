@@ -1,0 +1,53 @@
+{
+  "id": "zalaegerszeg-ziffa2025-hathaz",
+  "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/hathaz-inferred-import.geojson",
+  "sha256": "a941d069ca1e8219eddbac61ad6f2b49cc47425dd06750853b99bd2d4965578e",
+  "municipality": "Zalaegerszeg",
+  "method": "One source-observed closed raster quarter contour with explicitly estimated geographic placement from actual road junctions and building footprints. Balanced six-control EOV similarity retained as main; independent road-only placement alternative remains separate.",
+  "evidenceUrls": [
+    "https://zalaegerszeg.hu/wp-content/uploads/2025/09/ZEG_ZIFFA_egyeztetesi-valt.pdf"
+  ],
+  "sourceDocument": {
+    "date": "2025-08-30",
+    "status": "consultation_draft",
+    "adoptionIndependentlyEstablished": false,
+    "sha256": "b132fd75d6c95538023ced5eda3ad8ac7f7131c6e27f889ed7206c23e4a44745",
+    "figure": 54,
+    "mapPageOneBased": 141,
+    "semanticsPagesOneBased": [
+      63,
+      99,
+      142
+    ]
+  },
+  "license": "Municipal map redistribution rights are unknown; ODbL applies to OSM geographic controls and name evidence.",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "sourceContourObserved": true,
+    "sourceContourIsObserved": true,
+    "estimatedContour": false,
+    "estimatedPlacement": true,
+    "georeferencingIsApproximate": true,
+    "claimedAbsoluteAccuracyMetres": null,
+    "sourceIsOfficial": false,
+    "sourceIsHardBoundary": false,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/independent-registration-review.json",
+  "sourceReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/independent-source-review.json",
+  "rasterReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/independent-raster-review.json",
+  "placementAlternativePath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/hathaz-placement-alternative.geojson",
+  "uncertainties": [
+    "Absolute positional accuracy is unknown; fit residuals measure correspondence consistency only.",
+    "Northern road diagnostics favor the separately retained two-road placement; sparse corridor and off-axis coverage leave unresolved placement ambiguity.",
+    "Source identity is2025 chapter3.4 unit17 Hatház, distinct from2014 unit17 Nyugati külterület.",
+    "Consultation study map does not establish statutory/legal or cadastral neighborhood boundaries.",
+    "Native355×451 raster,1–2pixel boundary band, manual controls, unknown backdrop date and limited lateral reference coverage remain material uncertainties."
+  ],
+  "rightsStatus": "unknown_municipal_map_redistribution_rights; ODbL-1.0_controls_and_name_evidence",
+  "contentMinimizationReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/independent-content-review.json",
+  "registryEntryAppliedByThisBatch": false
+}

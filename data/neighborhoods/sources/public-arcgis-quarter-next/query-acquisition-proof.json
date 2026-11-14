@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "readOnlyPublicGet": true,
+  "downloadManifestPath": ".local/neighborhoods/supplement-feature-services/debrecen-quarter-queries/download-manifest.json",
+  "downloadManifestSha256": "f4bde0338fff7e07a059e5e1e104ce466670c2535930954531b1590271f251b9",
+  "requests": [
+    {
+      "requestedUrl": "https://services5.arcgis.com/lH5T9SRuBL94XELY/arcgis/rest/services/Debrecen_neh%C3%A9zf%C3%A9mszennyez%C3%A9s_v%C3%A1rosr%C3%A9szek_szerint_WFL1/FeatureServer/0/query?f=json&where=1%3D1&returnCountOnly=true",
+      "finalUrl": "https://services5.arcgis.com/lH5T9SRuBL94XELY/arcgis/rest/services/Debrecen_neh%C3%A9zf%C3%A9mszennyez%C3%A9s_v%C3%A1rosr%C3%A9szek_szerint_WFL1/FeatureServer/0/query?f=json&where=1%3D1&returnCountOnly=true",
+      "bytes": 14,
+      "sha256": "9b3a218b2e4ed1da46308c6dcf68fe028fd0c8353ddcb4866757de12a62f90af",
+      "httpStatus": 200,
+      "id": "debrecen-count",
+      "status": "downloaded"
+    },
+    {
+      "requestedUrl": "https://services5.arcgis.com/lH5T9SRuBL94XELY/arcgis/rest/services/Debrecen_neh%C3%A9zf%C3%A9mszennyez%C3%A9s_v%C3%A1rosr%C3%A9szek_szerint_WFL1/FeatureServer/0/query?f=json&where=1%3D1&returnIdsOnly=true",
+      "finalUrl": "https://services5.arcgis.com/lH5T9SRuBL94XELY/arcgis/rest/services/Debrecen_neh%C3%A9zf%C3%A9mszennyez%C3%A9s_v%C3%A1rosr%C3%A9szek_szerint_WFL1/FeatureServer/0/query?f=json&where=1%3D1&returnIdsOnly=true",
+      "bytes": 265,
+      "sha256": "f763185f4511f0caaccbb42282a54d75599a3acf6986c8c7e5b142046a1a74d2",
+      "httpStatus": 200,
+      "id": "debrecen-ids",
+      "status": "downloaded"
+    },
+    {
+      "requestedUrl": "https://services5.arcgis.com/lH5T9SRuBL94XELY/arcgis/rest/services/Debrecen_neh%C3%A9zf%C3%A9mszennyez%C3%A9s_v%C3%A1rosr%C3%A9szek_szerint_WFL1/FeatureServer/0/query?f=json&where=1%3D1&outFields=FID%2Ctipus%2Cnev&returnGeometry=true&returnTrueCurves=true&orderByFields=FID+ASC&resultOffset=0&resultRecordCount=100",
+      "finalUrl": "https://services5.arcgis.com/lH5T9SRuBL94XELY/arcgis/rest/services/Debrecen_neh%C3%A9zf%C3%A9mszennyez%C3%A9s_v%C3%A1rosr%C3%A9szek_szerint_WFL1/FeatureServer/0/query?f=json&where=1%3D1&outFields=FID%2Ctipus%2Cnev&returnGeometry=true&returnTrueCurves=true&orderByFields=FID+ASC&resultOffset=0&resultRecordCount=100",
+      "bytes": 36839,
+      "sha256": "d97a7d3ca556f3ed554a5e6c70381d196b41199ba1c5b1ee4f692a55e3e00792",
+      "httpStatus": 200,
+      "id": "debrecen-native-page0",
+      "status": "downloaded"
+    },
+    {
+      "requestedUrl": "https://services5.arcgis.com/lH5T9SRuBL94XELY/arcgis/rest/services/Debrecen_neh%C3%A9zf%C3%A9mszennyez%C3%A9s_v%C3%A1rosr%C3%A9szek_szerint_WFL1/FeatureServer/0/query?f=geojson&where=1%3D1&outFields=FID%2Ctipus%2Cnev&returnGeometry=true&outSR=4326&orderByFields=FID+ASC&resultOffset=0&resultRecordCount=100",
+      "finalUrl": "https://services5.arcgis.com/lH5T9SRuBL94XELY/arcgis/rest/services/Debrecen_neh%C3%A9zf%C3%A9mszennyez%C3%A9s_v%C3%A1rosr%C3%A9szek_szerint_WFL1/FeatureServer/0/query?f=geojson&where=1%3D1&outFields=FID%2Ctipus%2Cnev&returnGeometry=true&outSR=4326&orderByFields=FID+ASC&resultOffset=0&resultRecordCount=100",
+      "bytes": 48128,
+      "sha256": "fb7d0f0bae18b05263d5658221f0a612a2839193ce47413e05dc71401b18cf3e",
+      "httpStatus": 200,
+      "id": "debrecen-geojson-page0",
+      "status": "downloaded"
+    }
+  ],
+  "fullGenericMetadataKeptInIgnoredLocalPath": true,
+  "rawNativeResponsePreservedByteForByte": true,
+  "rawGeojsonResponsePreservedByteForByte": true,
+  "countAndIdsResponsesPreservedByteForByte": true,
+  "additionalNetworkCallsByDeriver": 0
+}

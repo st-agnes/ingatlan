@@ -1,0 +1,707 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-13",
+  "scope": "Read-only semantic screen of every primary source feature name/tag in the input snapshot; targeted independent primary-source checks, not a complete national name or boundary verification.",
+  "inputSnapshot": {
+    "path": "data/neighborhoods/neighborhoods.geojson",
+    "sha256": "adbbaa0f64d6104734c8f171ea3f15b2f87aa735ca8ea715903ee397c5049f16",
+    "featureCount": 419,
+    "municipalityCount": 43
+  },
+  "method": [
+    "Screen all primary labels and available original source tags.",
+    "Check venue/generic-label conflicts individually, not through a blanket name regex.",
+    "Check functional Budaörs names against municipal primary documents before proposing exclusions.",
+    "Compare selected rural names with the preserved2026KSH source categories.",
+    "Native offline cemetery-way audit against the same source PBF; no network shell or permissions requested."
+  ],
+  "summary": {
+    "clearNonquarterRecommendations": 2,
+    "municipalQuarterNamesIndependentlySupported": 11,
+    "keywordFalsePositiveCases": 1,
+    "ruralOrFunctionalCasesKeptForFurtherReview": 9,
+    "catalogOrRegistryMutationsPerformed": false,
+    "sourceGeometryMutationsPerformed": false
+  },
+  "nonquarterRecommendations": [
+    {
+      "sourceFeatureId": "osm:way:500904983",
+      "municipality": "Ágasegyháza",
+      "name": "vendégházak",
+      "sourceTags": {
+        "name": "vendégházak",
+        "place": "neighbourhood",
+        "tourism": "guest_house"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/way/500904983",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "27d549f3f54682bf2ff95d6faab2553988a1fe110a22fc490301f6d91074908c",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "suppress_fine_quarter_count_retain_source_as_nonquarter_area",
+      "recommendedBoundaryKind": "local_area",
+      "canonicalNameIsNeighborhood": false,
+      "semanticReason": "The literal source tags identify guest-house accommodation (tourism=guest_house) and the generic plural name vendégházak. place=neighbourhood alone does not establish a proper quarter name.",
+      "confidence": "high_semantic_tag_conflict",
+      "evidenceBasis": [
+        "Exact pinned OSM source tags and generic source label.",
+        "No supporting individual name audit and no matching proper name in the canonical KSH settlement-part rows."
+      ],
+      "primaryMunicipalBoundaryProof": false
+    },
+    {
+      "sourceFeatureId": "osm:way:847121788",
+      "municipality": "Berhida",
+      "name": "katolikus temetőrész",
+      "sourceTags": {
+        "name": "katolikus temetőrész",
+        "place": "neighbourhood"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/way/847121788",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "4f38359b75f57fae9abd36c71d63ee6634e35c5c2eab14b16b3147bbe5661d83",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "suppress_fine_quarter_count_retain_source_as_cemetery_section",
+      "recommendedBoundaryKind": "local_area",
+      "canonicalNameIsNeighborhood": false,
+      "semanticReason": "The literal source name denotes a Catholic cemetery section, rather than a separately corroborated quarter. The source place tag was accepted without semantic name review.",
+      "confidence": "high_label_semantics",
+      "evidenceUrls": [
+        "https://berhida.hu/doc/onkormanyzat/rendeletek/2023/11_rendelet.pdf"
+      ],
+      "evidenceBasis": [
+        "Pinned OSM label katolikus temetőrész; no individual name audit.",
+        "The official2023municipal character law describes Peremarton as a settlement area and uses the Catholic cemetery as a boundary component. It does not establish this cemetery section as a quarter."
+      ],
+      "geometryContainmentProofLimit": "A native way-only scan of landuse=cemetery/amenity=grave_yard found no separately mapped enclosing Berhida cemetery. No claim of matched parent-cemetery geometry is made.",
+      "primaryMunicipalBoundaryProof": false
+    }
+  ],
+  "keepRecommendations": [
+    {
+      "sourceFeatureId": "osm:relation:10478258",
+      "municipality": "Budaörs",
+      "name": "Az autópálya és a vasút menti kereskedelmi-gazdasági területek",
+      "sourceTags": {
+        "admin_level": "10",
+        "boundary": "administrative",
+        "name": "Az autópálya és a vasút menti kereskedelmi-gazdasági területek",
+        "source": "Budaörs Integrált Városfejlesztési Stratégia",
+        "type": "boundary"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/10478258",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "f25ff3129489646c5b04b9fd713d1aa09e3eada31d92bbea3419c34606fea92e",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "keep_source_defined_municipal_quarter_name",
+      "confidence": "municipal_name_inventory_supported",
+      "evidenceUrls": [
+        "https://budaors.hu/dokumentumok/onkormanyzat/budaors-varos-integralt-telepulesfejlesztesi-strategiaja-160-2017xi15-okt-sz-hatarozattal-elfogadva.pdf",
+        "https://budaors.hu/dokumentumok/onkormanyzat/tak_budaors_2017-09.pdf"
+      ],
+      "sourcePeriod": "2017",
+      "sourcePages": {
+        "its": 14,
+        "tak": 9
+      },
+      "evidenceScope": "Names and semantic municipal-quarter classification only, not exact OSM polygon agreement or current cadastral accuracy.",
+      "reason": "The official documents explicitly enumerate11városrészek, including the industrial, forest and combined functional areas. Rejecting these solely by name, landuse or settlement function would create false negatives."
+    },
+    {
+      "sourceFeatureId": "osm:relation:10477569",
+      "municipality": "Budaörs",
+      "name": "Frankhegy",
+      "sourceTags": {
+        "admin_level": "10",
+        "boundary": "administrative",
+        "name": "Frankhegy",
+        "source": "Budaörs Integrált Városfejlesztési Stratégia",
+        "type": "boundary"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/10477569",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "772ecd405ff8e602c3c12937497225795f717601bd521a0eafb9f7c8ec1a6a47",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "keep_source_defined_municipal_quarter_name",
+      "confidence": "municipal_name_inventory_supported",
+      "evidenceUrls": [
+        "https://budaors.hu/dokumentumok/onkormanyzat/budaors-varos-integralt-telepulesfejlesztesi-strategiaja-160-2017xi15-okt-sz-hatarozattal-elfogadva.pdf",
+        "https://budaors.hu/dokumentumok/onkormanyzat/tak_budaors_2017-09.pdf"
+      ],
+      "sourcePeriod": "2017",
+      "sourcePages": {
+        "its": 14,
+        "tak": 9
+      },
+      "evidenceScope": "Names and semantic municipal-quarter classification only, not exact OSM polygon agreement or current cadastral accuracy.",
+      "reason": "The official documents explicitly enumerate11városrészek, including the industrial, forest and combined functional areas. Rejecting these solely by name, landuse or settlement function would create false negatives."
+    },
+    {
+      "sourceFeatureId": "osm:relation:10478047",
+      "municipality": "Budaörs",
+      "name": "Hegyvidékek",
+      "sourceTags": {
+        "admin_level": "10",
+        "boundary": "administrative",
+        "description": "Törökugrató, Csiki-dűlő, Út-hegy, Odvas-hegy",
+        "name": "Hegyvidékek",
+        "source": "Budaörs Integrált Városfejlesztési Stratégia",
+        "type": "boundary"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/10478047",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "f8b7312bef6b32488c38b20efc27bea5e44beaf4461a7075369b7b03603067ae",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "keep_source_defined_municipal_quarter_name",
+      "confidence": "municipal_name_inventory_supported",
+      "evidenceUrls": [
+        "https://budaors.hu/dokumentumok/onkormanyzat/budaors-varos-integralt-telepulesfejlesztesi-strategiaja-160-2017xi15-okt-sz-hatarozattal-elfogadva.pdf",
+        "https://budaors.hu/dokumentumok/onkormanyzat/tak_budaors_2017-09.pdf"
+      ],
+      "sourcePeriod": "2017",
+      "sourcePages": {
+        "its": 14,
+        "tak": 9
+      },
+      "evidenceScope": "Names and semantic municipal-quarter classification only, not exact OSM polygon agreement or current cadastral accuracy.",
+      "reason": "The official documents explicitly enumerate11városrészek, including the industrial, forest and combined functional areas. Rejecting these solely by name, landuse or settlement function would create false negatives."
+    },
+    {
+      "sourceFeatureId": "osm:relation:10478140",
+      "municipality": "Budaörs",
+      "name": "Hegyvidéki erdőterületek",
+      "sourceTags": {
+        "admin_level": "10",
+        "boundary": "administrative",
+        "name": "Hegyvidéki erdőterületek",
+        "source": "Budaörs Integrált Városfejlesztési Stratégia",
+        "type": "boundary"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/10478140",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "de1c6e5d543bfa94a68c05e1cc3b0ba27c9d8e2ec9abb0c27fd22a7b9e1307b4",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "keep_source_defined_municipal_quarter_name",
+      "confidence": "municipal_name_inventory_supported",
+      "evidenceUrls": [
+        "https://budaors.hu/dokumentumok/onkormanyzat/budaors-varos-integralt-telepulesfejlesztesi-strategiaja-160-2017xi15-okt-sz-hatarozattal-elfogadva.pdf",
+        "https://budaors.hu/dokumentumok/onkormanyzat/tak_budaors_2017-09.pdf"
+      ],
+      "sourcePeriod": "2017",
+      "sourcePages": {
+        "its": 14,
+        "tak": 9
+      },
+      "evidenceScope": "Names and semantic municipal-quarter classification only, not exact OSM polygon agreement or current cadastral accuracy.",
+      "reason": "The official documents explicitly enumerate11városrészek, including the industrial, forest and combined functional areas. Rejecting these solely by name, landuse or settlement function would create false negatives."
+    },
+    {
+      "sourceFeatureId": "osm:relation:10477968",
+      "municipality": "Budaörs",
+      "name": "Intézményi Városközpont és lakótelep",
+      "sourceTags": {
+        "admin_level": "10",
+        "boundary": "administrative",
+        "name": "Intézményi Városközpont és lakótelep",
+        "source": "Budaörs Integrált Városfejlesztési Stratégia",
+        "type": "boundary"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/10477968",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "1bd8bdb0345bda3b17dc118ba74b3e8a2aea29d0d1a010b881efa4550ae406e2",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "keep_source_defined_municipal_quarter_name",
+      "confidence": "municipal_name_inventory_supported",
+      "evidenceUrls": [
+        "https://budaors.hu/dokumentumok/onkormanyzat/budaors-varos-integralt-telepulesfejlesztesi-strategiaja-160-2017xi15-okt-sz-hatarozattal-elfogadva.pdf",
+        "https://budaors.hu/dokumentumok/onkormanyzat/tak_budaors_2017-09.pdf"
+      ],
+      "sourcePeriod": "2017",
+      "sourcePages": {
+        "its": 14,
+        "tak": 9
+      },
+      "evidenceScope": "Names and semantic municipal-quarter classification only, not exact OSM polygon agreement or current cadastral accuracy.",
+      "reason": "The official documents explicitly enumerate11városrészek, including the industrial, forest and combined functional areas. Rejecting these solely by name, landuse or settlement function would create false negatives."
+    },
+    {
+      "sourceFeatureId": "osm:relation:10478302",
+      "municipality": "Budaörs",
+      "name": "Kamaraerdő",
+      "sourceTags": {
+        "admin_level": "10",
+        "boundary": "administrative",
+        "name": "Kamaraerdő",
+        "source": "Budaörs Integrált Városfejlesztési Stratégia",
+        "type": "boundary"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/10478302",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "f7b05ec94ac8f6b78767f10268dcb86a45d35b8f03a47ce049d7c5072e1181ee",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "keep_source_defined_municipal_quarter_name",
+      "confidence": "municipal_name_inventory_supported",
+      "evidenceUrls": [
+        "https://budaors.hu/dokumentumok/onkormanyzat/budaors-varos-integralt-telepulesfejlesztesi-strategiaja-160-2017xi15-okt-sz-hatarozattal-elfogadva.pdf",
+        "https://budaors.hu/dokumentumok/onkormanyzat/tak_budaors_2017-09.pdf"
+      ],
+      "sourcePeriod": "2017",
+      "sourcePages": {
+        "its": 14,
+        "tak": 9
+      },
+      "evidenceScope": "Names and semantic municipal-quarter classification only, not exact OSM polygon agreement or current cadastral accuracy.",
+      "reason": "The official documents explicitly enumerate11városrészek, including the industrial, forest and combined functional areas. Rejecting these solely by name, landuse or settlement function would create false negatives."
+    },
+    {
+      "sourceFeatureId": "osm:relation:10477570",
+      "municipality": "Budaörs",
+      "name": "Kertvárosias lakóterület",
+      "sourceTags": {
+        "admin_level": "10",
+        "boundary": "administrative",
+        "name": "Kertvárosias lakóterület",
+        "source": "Budaörs Integrált Városfejlesztési Stratégia",
+        "type": "boundary"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/10477570",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "2a3eaeecd550958de791d0f237d8e1a9c09f8b908dd1604c07d07271d086733a",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "keep_source_defined_municipal_quarter_name",
+      "confidence": "municipal_name_inventory_supported",
+      "evidenceUrls": [
+        "https://budaors.hu/dokumentumok/onkormanyzat/budaors-varos-integralt-telepulesfejlesztesi-strategiaja-160-2017xi15-okt-sz-hatarozattal-elfogadva.pdf",
+        "https://budaors.hu/dokumentumok/onkormanyzat/tak_budaors_2017-09.pdf"
+      ],
+      "sourcePeriod": "2017",
+      "sourcePages": {
+        "its": 14,
+        "tak": 9
+      },
+      "evidenceScope": "Names and semantic municipal-quarter classification only, not exact OSM polygon agreement or current cadastral accuracy.",
+      "reason": "The official documents explicitly enumerate11városrészek, including the industrial, forest and combined functional areas. Rejecting these solely by name, landuse or settlement function would create false negatives."
+    },
+    {
+      "sourceFeatureId": "osm:relation:10478104",
+      "municipality": "Budaörs",
+      "name": "Nyugati ipari gazdasági terület",
+      "sourceTags": {
+        "admin_level": "10",
+        "boundary": "administrative",
+        "name": "Nyugati ipari gazdasági terület",
+        "source": "Budaörs Integrált Városfejlesztési Stratégia",
+        "type": "boundary"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/10478104",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "476af96dea68e95c63339c0fa43c94e3b8060f268225e4854480cc0f39ca9440",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "keep_source_defined_municipal_quarter_name",
+      "confidence": "municipal_name_inventory_supported",
+      "evidenceUrls": [
+        "https://budaors.hu/dokumentumok/onkormanyzat/budaors-varos-integralt-telepulesfejlesztesi-strategiaja-160-2017xi15-okt-sz-hatarozattal-elfogadva.pdf",
+        "https://budaors.hu/dokumentumok/onkormanyzat/tak_budaors_2017-09.pdf"
+      ],
+      "sourcePeriod": "2017",
+      "sourcePages": {
+        "its": 14,
+        "tak": 9
+      },
+      "evidenceScope": "Names and semantic municipal-quarter classification only, not exact OSM polygon agreement or current cadastral accuracy.",
+      "reason": "The official documents explicitly enumerate11városrészek, including the industrial, forest and combined functional areas. Rejecting these solely by name, landuse or settlement function would create false negatives."
+    },
+    {
+      "sourceFeatureId": "osm:relation:10477768",
+      "municipality": "Budaörs",
+      "name": "Szállások területe",
+      "sourceTags": {
+        "admin_level": "10",
+        "boundary": "administrative",
+        "name": "Szállások területe",
+        "source": "Budaörs Integrált Városfejlesztési Stratégia",
+        "type": "boundary"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/10477768",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "d941ed97615569592978a44cc1ebc3f1fbee1e1db1cfb6e9cf455162721d99c6",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "keep_source_defined_municipal_quarter_name",
+      "confidence": "municipal_name_inventory_supported",
+      "evidenceUrls": [
+        "https://budaors.hu/dokumentumok/onkormanyzat/budaors-varos-integralt-telepulesfejlesztesi-strategiaja-160-2017xi15-okt-sz-hatarozattal-elfogadva.pdf",
+        "https://budaors.hu/dokumentumok/onkormanyzat/tak_budaors_2017-09.pdf"
+      ],
+      "sourcePeriod": "2017",
+      "sourcePages": {
+        "its": 14,
+        "tak": 9
+      },
+      "evidenceScope": "Names and semantic municipal-quarter classification only, not exact OSM polygon agreement or current cadastral accuracy.",
+      "reason": "The official documents explicitly enumerate11városrészek, including the industrial, forest and combined functional areas. Rejecting these solely by name, landuse or settlement function would create false negatives."
+    },
+    {
+      "sourceFeatureId": "osm:relation:10478374",
+      "municipality": "Budaörs",
+      "name": "Szilvás",
+      "sourceTags": {
+        "admin_level": "10",
+        "boundary": "administrative",
+        "name": "Szilvás",
+        "source": "Budaörs Integrált Városfejlesztési Stratégia",
+        "type": "boundary"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/10478374",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "b001fb1fe5bf376b917c85ef09b021659b94499d22829c9d5e18eb4b8a58e1e5",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "keep_source_defined_municipal_quarter_name",
+      "confidence": "municipal_name_inventory_supported",
+      "evidenceUrls": [
+        "https://budaors.hu/dokumentumok/onkormanyzat/budaors-varos-integralt-telepulesfejlesztesi-strategiaja-160-2017xi15-okt-sz-hatarozattal-elfogadva.pdf",
+        "https://budaors.hu/dokumentumok/onkormanyzat/tak_budaors_2017-09.pdf"
+      ],
+      "sourcePeriod": "2017",
+      "sourcePages": {
+        "its": 14,
+        "tak": 9
+      },
+      "evidenceScope": "Names and semantic municipal-quarter classification only, not exact OSM polygon agreement or current cadastral accuracy.",
+      "reason": "The official documents explicitly enumerate11városrészek, including the industrial, forest and combined functional areas. Rejecting these solely by name, landuse or settlement function would create false negatives."
+    },
+    {
+      "sourceFeatureId": "osm:relation:10477896",
+      "municipality": "Budaörs",
+      "name": "Történelmi belváros",
+      "sourceTags": {
+        "admin_level": "10",
+        "boundary": "administrative",
+        "name": "Történelmi belváros",
+        "source": "Budaörs Integrált Városfejlesztési Stratégia",
+        "type": "boundary"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/10477896",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "4c4c7dbb0445c6a47ec371f42735783bb961d28ee9d3bbf038b94fdac5743469",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "keep_source_defined_municipal_quarter_name",
+      "confidence": "municipal_name_inventory_supported",
+      "evidenceUrls": [
+        "https://budaors.hu/dokumentumok/onkormanyzat/budaors-varos-integralt-telepulesfejlesztesi-strategiaja-160-2017xi15-okt-sz-hatarozattal-elfogadva.pdf",
+        "https://budaors.hu/dokumentumok/onkormanyzat/tak_budaors_2017-09.pdf"
+      ],
+      "sourcePeriod": "2017",
+      "sourcePages": {
+        "its": 14,
+        "tak": 9
+      },
+      "evidenceScope": "Names and semantic municipal-quarter classification only, not exact OSM polygon agreement or current cadastral accuracy.",
+      "reason": "The official documents explicitly enumerate11városrészek, including the industrial, forest and combined functional areas. Rejecting these solely by name, landuse or settlement function would create false negatives."
+    },
+    {
+      "sourceFeatureId": "osm:way:981846409",
+      "municipality": "Csenger",
+      "name": "Temető",
+      "sourceTags": {
+        "name": "Temető",
+        "place": "suburb"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/way/981846409",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "be2f0a157c00126fd3fcefe1fc2fae3c426d6533a88d8027b5346fb6549ee1f9",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "keep_existing_unreviewed_status_do_not_keyword_reject",
+      "reason": "Temető alone is not a reliable exclusion keyword. The quarter source surface contains distinct cemetery surfaces and a larger surrounding area; two actual cemetery polygons occupy only about6.9% of its area.",
+      "cemeteryWayAudit": {
+        "source": "Same pinned Hungary PBF, native TagFilter of landuse=cemetery and amenity=grave_yard; original closed way coordinates only.",
+        "records": [
+          {
+            "id": "osm:way:182733478",
+            "name": "Régi Református Temető",
+            "fractionOfQuarterInWgs84PlanarArea": 0.03398585862971012,
+            "sourceVersion": 4,
+            "sourceTimestamp": "2024-03-31 16:04:55+00:00"
+          },
+          {
+            "id": "osm:way:913790729",
+            "name": "Izraelita temető",
+            "fractionOfQuarterInWgs84PlanarArea": 0.03458628232797944,
+            "sourceVersion": 2,
+            "sourceTimestamp": "2022-11-22 09:04:55+00:00"
+          }
+        ],
+        "metricLimit": "Fractions are local WGS84 planar area ratios for semantic diagnosis, not surveyed/metric land area."
+      },
+      "geometryVerifiedAsLegalQuarter": false
+    }
+  ],
+  "otherFlaggedCases": [
+    {
+      "sourceFeatureId": "osm:way:647461416",
+      "municipality": "Almamellék",
+      "name": "Korcsánypuszta",
+      "sourceTags": {
+        "description": "19. sz-ban. Biedermann major volt 150 lakossal, 1960-ban néptelenedett el.",
+        "name": "Korcsánypuszta",
+        "place": "neighbourhood"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/way/647461416",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "f43a0e07b9752291a0ffe6e16b349ccd5973c1b529b4d7795de97468ea19fb64",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "retain_unreviewed_and_preserve_rural_or_functional_semantics",
+      "clearSemanticRejection": false,
+      "kshExactNormalizedNameMatches": [
+        {
+          "id": "ksh-hnt-2026:part:216",
+          "name": "Korcsánypuszta",
+          "category": "outlying_area",
+          "sourceRow": 216
+        }
+      ],
+      "reason": "A named farm, former village part, outlying inhabited place, vineyard area or major urban facility is not disproved as a locality merely by municipal status/landuse. Additional quarter-level boundary/name corroboration is needed; absence of a KSH exact-name match is not evidence of nonexistence.",
+      "requiredChecks": [
+        "Preserve any explicit source description of depopulation/historical status.",
+        "Keep KSH settlement-part category separate from urban-quarter classification.",
+        "Do not equate a farmyard/allotment surface with the complete quarter without source support."
+      ]
+    },
+    {
+      "sourceFeatureId": "osm:way:499987797",
+      "municipality": "Bugyi",
+      "name": "Áporkai tanya",
+      "sourceTags": {
+        "landuse": "residential",
+        "name": "Áporkai tanya",
+        "place": "neighbourhood"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/way/499987797",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "63095316b60b6059795a80ffe2cd1963a90b989f0fd02f44f8aaa6f62a7fb860",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "retain_unreviewed_and_preserve_rural_or_functional_semantics",
+      "clearSemanticRejection": false,
+      "kshExactNormalizedNameMatches": [],
+      "reason": "A named farm, former village part, outlying inhabited place, vineyard area or major urban facility is not disproved as a locality merely by municipal status/landuse. Additional quarter-level boundary/name corroboration is needed; absence of a KSH exact-name match is not evidence of nonexistence.",
+      "requiredChecks": [
+        "Preserve any explicit source description of depopulation/historical status.",
+        "Keep KSH settlement-part category separate from urban-quarter classification.",
+        "Do not equate a farmyard/allotment surface with the complete quarter without source support."
+      ]
+    },
+    {
+      "sourceFeatureId": "osm:way:283772539",
+      "municipality": "Serényfalva",
+      "name": "Pogonypuszta tanya",
+      "sourceTags": {
+        "landuse": "farmyard",
+        "name": "Pogonypuszta tanya",
+        "place": "neighbourhood"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/way/283772539",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "eabb5dbffcfaa59bfb95eb4a58c88e8079226026a04e2d5ae1f238c05ef01d55",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "retain_unreviewed_and_preserve_rural_or_functional_semantics",
+      "clearSemanticRejection": false,
+      "kshExactNormalizedNameMatches": [],
+      "reason": "A named farm, former village part, outlying inhabited place, vineyard area or major urban facility is not disproved as a locality merely by municipal status/landuse. Additional quarter-level boundary/name corroboration is needed; absence of a KSH exact-name match is not evidence of nonexistence.",
+      "requiredChecks": [
+        "Preserve any explicit source description of depopulation/historical status.",
+        "Keep KSH settlement-part category separate from urban-quarter classification.",
+        "Do not equate a farmyard/allotment surface with the complete quarter without source support."
+      ]
+    },
+    {
+      "sourceFeatureId": "osm:way:490748360",
+      "municipality": "Tápiószentmárton",
+      "name": "Sőregpuszta",
+      "sourceTags": {
+        "landuse": "farmyard",
+        "name": "Sőregpuszta",
+        "place": "neighbourhood"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/way/490748360",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "fa4cb3a326c5bad40dfcd04a9c11fdc633f4b8ee49c8d91bf4e8c0375f69b6b4",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "retain_unreviewed_and_preserve_rural_or_functional_semantics",
+      "clearSemanticRejection": false,
+      "kshExactNormalizedNameMatches": [
+        {
+          "id": "ksh-hnt-2026:part:11806",
+          "name": "Sőregpuszta",
+          "category": "outlying_area",
+          "sourceRow": 11806
+        }
+      ],
+      "reason": "A named farm, former village part, outlying inhabited place, vineyard area or major urban facility is not disproved as a locality merely by municipal status/landuse. Additional quarter-level boundary/name corroboration is needed; absence of a KSH exact-name match is not evidence of nonexistence.",
+      "requiredChecks": [
+        "Preserve any explicit source description of depopulation/historical status.",
+        "Keep KSH settlement-part category separate from urban-quarter classification.",
+        "Do not equate a farmyard/allotment surface with the complete quarter without source support."
+      ]
+    },
+    {
+      "sourceFeatureId": "osm:relation:2242506",
+      "municipality": "Pula",
+      "name": "Náczi-hegy",
+      "sourceTags": {
+        "CLC:code": "221",
+        "CLC:id": "HU-22929",
+        "CLC:surfaceoverlap": "4.1459360424",
+        "CLC:year": "2006",
+        "landuse": "allotments",
+        "name": "Náczi-hegy",
+        "place": "neighbourhood",
+        "source": "© EEA, Koppenhága (2009); Készítette a FÖMI a KvVM megbízásából (2009)",
+        "type": "multipolygon"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/2242506",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "8420c27efe4d3ce4d97af372ca90bba69c4441d85e198f668231824d2a1273eb",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "retain_unreviewed_and_preserve_rural_or_functional_semantics",
+      "clearSemanticRejection": false,
+      "kshExactNormalizedNameMatches": [],
+      "reason": "A named farm, former village part, outlying inhabited place, vineyard area or major urban facility is not disproved as a locality merely by municipal status/landuse. Additional quarter-level boundary/name corroboration is needed; absence of a KSH exact-name match is not evidence of nonexistence.",
+      "requiredChecks": [
+        "Preserve any explicit source description of depopulation/historical status.",
+        "Keep KSH settlement-part category separate from urban-quarter classification.",
+        "Do not equate a farmyard/allotment surface with the complete quarter without source support."
+      ]
+    },
+    {
+      "sourceFeatureId": "osm:way:600452177",
+      "municipality": "Lajosmizse",
+      "name": "Gerébi major",
+      "sourceTags": {
+        "landuse": "farmyard",
+        "name": "Gerébi major",
+        "place": "neighbourhood"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/way/600452177",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "91379ff0cc50cb191cdd37b5344e1809a2f9b7632a47867c7e66889ae3b8469a",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "retain_unreviewed_and_preserve_rural_or_functional_semantics",
+      "clearSemanticRejection": false,
+      "kshExactNormalizedNameMatches": [],
+      "reason": "A named farm, former village part, outlying inhabited place, vineyard area or major urban facility is not disproved as a locality merely by municipal status/landuse. Additional quarter-level boundary/name corroboration is needed; absence of a KSH exact-name match is not evidence of nonexistence.",
+      "requiredChecks": [
+        "Preserve any explicit source description of depopulation/historical status.",
+        "Keep KSH settlement-part category separate from urban-quarter classification.",
+        "Do not equate a farmyard/allotment surface with the complete quarter without source support."
+      ]
+    },
+    {
+      "sourceFeatureId": "osm:way:294292762",
+      "municipality": "Dévaványa",
+      "name": "Kősziget",
+      "sourceTags": {
+        "landuse": "farmyard",
+        "name": "Kősziget",
+        "place": "neighbourhood"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/way/294292762",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "6eb3f75187377aacff70f7565652b28a3a5d6ac3b1b66d11f9522afa4c8cbd8a",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "retain_unreviewed_and_preserve_rural_or_functional_semantics",
+      "clearSemanticRejection": false,
+      "kshExactNormalizedNameMatches": [],
+      "reason": "A named farm, former village part, outlying inhabited place, vineyard area or major urban facility is not disproved as a locality merely by municipal status/landuse. Additional quarter-level boundary/name corroboration is needed; absence of a KSH exact-name match is not evidence of nonexistence.",
+      "requiredChecks": [
+        "Preserve any explicit source description of depopulation/historical status.",
+        "Keep KSH settlement-part category separate from urban-quarter classification.",
+        "Do not equate a farmyard/allotment surface with the complete quarter without source support."
+      ]
+    },
+    {
+      "sourceFeatureId": "osm:relation:5375833",
+      "municipality": "Dunakeszi",
+      "name": "Tőzeg horgásztavak",
+      "sourceTags": {
+        "landuse": "residential",
+        "name": "Tőzeg horgásztavak",
+        "place": "neighbourhood",
+        "type": "multipolygon"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/5375833",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "c12380ddeecd50fd2d1c577a9193373644d111666050c95a78fb752c802c8a04",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "retain_unreviewed_and_preserve_rural_or_functional_semantics",
+      "clearSemanticRejection": false,
+      "kshExactNormalizedNameMatches": [
+        {
+          "id": "ksh-hnt-2026:part:2794",
+          "name": "Tőzeghorgásztavak",
+          "category": "outlying_area",
+          "sourceRow": 2794
+        }
+      ],
+      "reason": "A named farm, former village part, outlying inhabited place, vineyard area or major urban facility is not disproved as a locality merely by municipal status/landuse. Additional quarter-level boundary/name corroboration is needed; absence of a KSH exact-name match is not evidence of nonexistence.",
+      "requiredChecks": [
+        "Preserve any explicit source description of depopulation/historical status.",
+        "Keep KSH settlement-part category separate from urban-quarter classification.",
+        "Do not equate a farmyard/allotment surface with the complete quarter without source support."
+      ]
+    },
+    {
+      "sourceFeatureId": "osm:relation:5375843",
+      "municipality": "Dunakeszi",
+      "name": "Alagi Lósport és Tréningközpont",
+      "sourceTags": {
+        "name": "Alagi Lósport és Tréningközpont",
+        "note": "Ez egy óriási terület, sokkal inkább quarter, és ezen belül vannak külön pályák, lovas istállók és lovaglóiskolák.",
+        "place": "quarter",
+        "sport": "equestrian",
+        "type": "multipolygon"
+      },
+      "sourceUrl": "https://www.openstreetmap.org/relation/5375843",
+      "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceGeometrySha256": "12fe39118dc2497d3134213a8bb28100d0e0d6ebce8b92b441967530aa645749",
+      "geometryChanged": false,
+      "hasIndividualNameAudit": false,
+      "recommendation": "retain_unreviewed_and_preserve_rural_or_functional_semantics",
+      "clearSemanticRejection": false,
+      "kshExactNormalizedNameMatches": [],
+      "reason": "A named farm, former village part, outlying inhabited place, vineyard area or major urban facility is not disproved as a locality merely by municipal status/landuse. Additional quarter-level boundary/name corroboration is needed; absence of a KSH exact-name match is not evidence of nonexistence.",
+      "requiredChecks": [
+        "Preserve any explicit source description of depopulation/historical status.",
+        "Keep KSH settlement-part category separate from urban-quarter classification.",
+        "Do not equate a farmyard/allotment surface with the complete quarter without source support."
+      ]
+    }
+  ],
+  "generalSafeguards": [
+    "A current OSM place tag and municipal containment establish mapped source candidates, not an official quarter classification.",
+    "A small settlement or lack of residents does not invalidate a historically named settlement part.",
+    "Industrial/forest/commercial words do not independently invalidate a municipality-defined quarter.",
+    "All remaining input features keep their existing unreviewed state; name screening does not certify them.",
+    "No recommendation deletes original geometry; semantic categories and reported fine-quarter totals should remain separate.",
+    "Web sources support municipal terms and names only; no exact municipal polygon matching is asserted."
+  ]
+}

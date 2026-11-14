@@ -1,0 +1,6198 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "osm:way:4435580",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 4435580,
+          "url": "https://www.openstreetmap.org/way/4435580",
+          "nodeRefs": [
+            27225705,
+            1829701195
+          ],
+          "objectVersion": 24,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "secondary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szilléri sugárút",
+            "oneway": "no",
+            "ref": "4412",
+            "ref:HU:mkasz": "5247",
+            "sidewalk": "both",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes:backward": "left;through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1614145,
+            46.2603496
+          ],
+          [
+            20.161508,
+            46.2604605
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:4795304",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 4795304,
+          "url": "https://www.openstreetmap.org/way/4795304",
+          "nodeRefs": [
+            1403710045,
+            4052011002,
+            30766205,
+            11057233194,
+            30766204
+          ],
+          "objectVersion": 30,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "cycleway": "separate",
+            "embankment": "yes",
+            "highway": "primary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "9219",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1655576,
+            46.2757548
+          ],
+          [
+            20.1654562,
+            46.2756912
+          ],
+          [
+            20.1653387,
+            46.275626
+          ],
+          [
+            20.1651397,
+            46.2755232
+          ],
+          [
+            20.1645394,
+            46.2752513
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:4795305",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 4795305,
+          "url": "https://www.openstreetmap.org/way/4795305",
+          "nodeRefs": [
+            6188909708,
+            4003441560,
+            412524890,
+            30766144,
+            1403709249,
+            30766145,
+            1403709229,
+            9450428986
+          ],
+          "objectVersion": 24,
+          "objectTimestamp": "2025-01-29 07:34:28+00:00",
+          "tags": {
+            "agricultural": "no",
+            "bicycle": "no",
+            "cycleway:both": "separate",
+            "highway": "tertiary",
+            "horse": "no",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "oneway": "no",
+            "overtaking": "no",
+            "priority_road": "designated",
+            "sidewalk:left": "separate",
+            "sidewalk:right": "yes",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1575334,
+            46.2607881
+          ],
+          [
+            20.1573771,
+            46.2603449
+          ],
+          [
+            20.1573526,
+            46.260276
+          ],
+          [
+            20.1571216,
+            46.2596221
+          ],
+          [
+            20.1569259,
+            46.259058
+          ],
+          [
+            20.1569033,
+            46.2589947
+          ],
+          [
+            20.1568818,
+            46.2589343
+          ],
+          [
+            20.1564013,
+            46.2575365
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:35170118",
+      "properties": {
+        "name": "Retek utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 35170118,
+          "url": "https://www.openstreetmap.org/way/35170118",
+          "nodeRefs": [
+            12613610446,
+            5890532674,
+            898088781,
+            898088710,
+            898088787,
+            3709938402,
+            898088866,
+            898089090,
+            898088789,
+            1185636519
+          ],
+          "objectVersion": 26,
+          "objectTimestamp": "2026-02-17 08:47:22+00:00",
+          "tags": {
+            "bicycle:backward": "yes",
+            "bicycle:forward": "use_sidepath",
+            "bicycle:lanes:forward": "no",
+            "cycleway:left": "shared_lane",
+            "cycleway:left:lane": "pictogram",
+            "cycleway:right": "separate",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Retek utca",
+            "oneway": "no",
+            "oneway:bicycle": "-1",
+            "sidewalk:both": "separate",
+            "smoothness": "excellent",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1661283,
+            46.2664033
+          ],
+          [
+            20.1660079,
+            46.2664126
+          ],
+          [
+            20.1658495,
+            46.2664247
+          ],
+          [
+            20.1656155,
+            46.2664377
+          ],
+          [
+            20.1645436,
+            46.2664942
+          ],
+          [
+            20.1643076,
+            46.2665067
+          ],
+          [
+            20.1642157,
+            46.2665115
+          ],
+          [
+            20.1632396,
+            46.266563
+          ],
+          [
+            20.1629934,
+            46.266576
+          ],
+          [
+            20.1625314,
+            46.2666004
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:39846622",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 39846622,
+          "url": "https://www.openstreetmap.org/way/39846622",
+          "nodeRefs": [
+            5835730159,
+            477722952,
+            477722954,
+            4467001873,
+            477722956,
+            6036914499,
+            4467001872,
+            477722959,
+            477722960,
+            9721181431,
+            477722964,
+            477722969,
+            7145665341,
+            477722966,
+            477722927,
+            7145665344,
+            477722925,
+            7145665349,
+            477722862,
+            7145665352,
+            10709362339,
+            477722923,
+            477722921,
+            477722913,
+            7145665354,
+            3987081790,
+            7145665346,
+            477722911
+          ],
+          "objectVersion": 11,
+          "objectTimestamp": "2023-03-04 13:57:10+00:00",
+          "tags": {
+            "highway": "living_street",
+            "lit": "yes",
+            "maxspeed": "20",
+            "name": "Szilléri sugárút",
+            "source:maxspeed": "HU:living_street",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1659236,
+            46.264113
+          ],
+          [
+            20.1655753,
+            46.2639402
+          ],
+          [
+            20.1654867,
+            46.2639245
+          ],
+          [
+            20.1653795,
+            46.2639556
+          ],
+          [
+            20.1653486,
+            46.2639967
+          ],
+          [
+            20.1653617,
+            46.2640398
+          ],
+          [
+            20.16541,
+            46.2640736
+          ],
+          [
+            20.1655636,
+            46.26417
+          ],
+          [
+            20.1656778,
+            46.2642693
+          ],
+          [
+            20.1657368,
+            46.2643188
+          ],
+          [
+            20.1662358,
+            46.2647373
+          ],
+          [
+            20.166083,
+            46.26481
+          ],
+          [
+            20.1662362,
+            46.2649799
+          ],
+          [
+            20.166369,
+            46.2651272
+          ],
+          [
+            20.166503,
+            46.2652272
+          ],
+          [
+            20.1665485,
+            46.2652607
+          ],
+          [
+            20.1668488,
+            46.2654816
+          ],
+          [
+            20.1669055,
+            46.2655122
+          ],
+          [
+            20.1672302,
+            46.2656863
+          ],
+          [
+            20.1672848,
+            46.2657088
+          ],
+          [
+            20.1674656,
+            46.2657859
+          ],
+          [
+            20.1674986,
+            46.2657999
+          ],
+          [
+            20.1675377,
+            46.2658641
+          ],
+          [
+            20.1674361,
+            46.2659868
+          ],
+          [
+            20.1671599,
+            46.265868
+          ],
+          [
+            20.1669632,
+            46.2657834
+          ],
+          [
+            20.1667349,
+            46.2656513
+          ],
+          [
+            20.1665954,
+            46.2655729
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:76133369",
+      "properties": {
+        "name": "Lugas utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 76133369,
+          "url": "https://www.openstreetmap.org/way/76133369",
+          "nodeRefs": [
+            898088740,
+            6564288128,
+            14049854036,
+            898088900,
+            5010050535,
+            4024198234,
+            4024198223,
+            4024198222,
+            4052066317,
+            5352635267,
+            5010050541,
+            5352635265,
+            4052066316,
+            5010050550,
+            898089092
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2026-07-25 21:05:45+00:00",
+          "tags": {
+            "highway": "living_street",
+            "lit": "yes",
+            "maxspeed": "20",
+            "name": "Lugas utca",
+            "source:maxspeed": "HU:living_street",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1707997,
+            46.2679393
+          ],
+          [
+            20.1708021,
+            46.2678905
+          ],
+          [
+            20.1708026,
+            46.267881
+          ],
+          [
+            20.1708174,
+            46.2675745
+          ],
+          [
+            20.1708109,
+            46.2675581
+          ],
+          [
+            20.1708025,
+            46.267537
+          ],
+          [
+            20.1707926,
+            46.2675121
+          ],
+          [
+            20.1707219,
+            46.2674778
+          ],
+          [
+            20.1704947,
+            46.2674719
+          ],
+          [
+            20.1703286,
+            46.2674676
+          ],
+          [
+            20.1702024,
+            46.2674644
+          ],
+          [
+            20.1692608,
+            46.26744
+          ],
+          [
+            20.1689948,
+            46.2674332
+          ],
+          [
+            20.168797,
+            46.2674281
+          ],
+          [
+            20.1686707,
+            46.2674248
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78319238",
+      "properties": {
+        "name": "Murányi utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78319238,
+          "url": "https://www.openstreetmap.org/way/78319238",
+          "nodeRefs": [
+            919515876,
+            919515990
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2022-01-22 19:38:24+00:00",
+          "tags": {
+            "highway": "residential",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Murányi utca",
+            "source:maxspeed": "HU:zone:30",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1586245,
+            46.2737741
+          ],
+          [
+            20.1592889,
+            46.2737876
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78319291",
+      "properties": {
+        "name": "Murányi utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78319291,
+          "url": "https://www.openstreetmap.org/way/78319291",
+          "nodeRefs": [
+            919516122,
+            5749922726,
+            3508221387,
+            3508221385,
+            3508221384,
+            919516015,
+            5602642494,
+            5602642493,
+            919515845,
+            919516202,
+            919516201,
+            4955355914,
+            7274730365,
+            4955355915,
+            3508221376,
+            5614655560,
+            919515954,
+            6863359294,
+            6863359297,
+            457464356
+          ],
+          "objectVersion": 14,
+          "objectTimestamp": "2022-01-22 19:38:24+00:00",
+          "tags": {
+            "highway": "residential",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Murányi utca",
+            "source:maxspeed": "HU:zone:30",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1636102,
+            46.2756199
+          ],
+          [
+            20.1635878,
+            46.275588
+          ],
+          [
+            20.1635675,
+            46.2755501
+          ],
+          [
+            20.1635419,
+            46.2754792
+          ],
+          [
+            20.1635127,
+            46.2754193
+          ],
+          [
+            20.163411,
+            46.2753392
+          ],
+          [
+            20.1632323,
+            46.2752602
+          ],
+          [
+            20.1623372,
+            46.2748643
+          ],
+          [
+            20.1622343,
+            46.2748188
+          ],
+          [
+            20.1618853,
+            46.274659
+          ],
+          [
+            20.1618249,
+            46.2745869
+          ],
+          [
+            20.1617031,
+            46.2745281
+          ],
+          [
+            20.1615909,
+            46.2744845
+          ],
+          [
+            20.1608611,
+            46.2742009
+          ],
+          [
+            20.1603815,
+            46.2740145
+          ],
+          [
+            20.1602933,
+            46.2739915
+          ],
+          [
+            20.1601896,
+            46.2739756
+          ],
+          [
+            20.1596524,
+            46.2739598
+          ],
+          [
+            20.1593943,
+            46.2739522
+          ],
+          [
+            20.1592823,
+            46.2739489
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78360283",
+      "properties": {
+        "name": "Lugas utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78360283,
+          "url": "https://www.openstreetmap.org/way/78360283",
+          "nodeRefs": [
+            11737312301,
+            31236867,
+            31236819
+          ],
+          "objectVersion": 13,
+          "objectTimestamp": "2024-03-16 18:10:33+00:00",
+          "tags": {
+            "cycleway:both": "shared_lane",
+            "cycleway:both:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Lugas utca",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1716382,
+            46.2675329
+          ],
+          [
+            20.1714924,
+            46.2675024
+          ],
+          [
+            20.1703855,
+            46.2672571
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78490296",
+      "properties": {
+        "name": "Murányi utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78490296,
+          "url": "https://www.openstreetmap.org/way/78490296",
+          "nodeRefs": [
+            4955355912,
+            4955355913,
+            7274730366,
+            4902905327,
+            4955355917,
+            4955355916,
+            4955355915
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2022-01-22 19:38:24+00:00",
+          "tags": {
+            "highway": "residential",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Murányi utca",
+            "oneway": "yes",
+            "source:maxspeed": "HU:zone:30",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1620949,
+            46.274972
+          ],
+          [
+            20.1620196,
+            46.2749393
+          ],
+          [
+            20.161431,
+            46.2746837
+          ],
+          [
+            20.1608241,
+            46.2744201
+          ],
+          [
+            20.1607644,
+            46.2743789
+          ],
+          [
+            20.1607577,
+            46.2743298
+          ],
+          [
+            20.1608611,
+            46.2742009
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78490302",
+      "properties": {
+        "name": "Murányi utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78490302,
+          "url": "https://www.openstreetmap.org/way/78490302",
+          "nodeRefs": [
+            919516201,
+            968048911,
+            11601685371,
+            11601630167,
+            919515844
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2024-02-09 09:09:11+00:00",
+          "tags": {
+            "highway": "residential",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Murányi utca",
+            "source:maxspeed": "HU:zone:30",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1618249,
+            46.2745869
+          ],
+          [
+            20.1620266,
+            46.2743622
+          ],
+          [
+            20.1620712,
+            46.2743122
+          ],
+          [
+            20.1620978,
+            46.2742823
+          ],
+          [
+            20.1621707,
+            46.2742004
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78490305",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78490305,
+          "url": "https://www.openstreetmap.org/way/78490305",
+          "nodeRefs": [
+            919516198,
+            3994369259,
+            7008335600,
+            919515871,
+            3994369258,
+            919516004,
+            3994369257,
+            919516092,
+            919516160,
+            3994367953,
+            1403710062
+          ],
+          "objectVersion": 14,
+          "objectTimestamp": "2022-05-29 14:22:11+00:00",
+          "tags": {
+            "bicycle": "designated",
+            "foot": "designated",
+            "highway": "cycleway",
+            "lit": "yes",
+            "segregated": "no",
+            "surface": "paving_stones"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1648377,
+            46.2761987
+          ],
+          [
+            20.1649301,
+            46.2761981
+          ],
+          [
+            20.1649775,
+            46.276191
+          ],
+          [
+            20.1650081,
+            46.2761865
+          ],
+          [
+            20.1650705,
+            46.2761692
+          ],
+          [
+            20.1651494,
+            46.2761343
+          ],
+          [
+            20.1651989,
+            46.2761019
+          ],
+          [
+            20.1652591,
+            46.2760425
+          ],
+          [
+            20.1652959,
+            46.2759768
+          ],
+          [
+            20.165304,
+            46.2759377
+          ],
+          [
+            20.1653033,
+            46.2759086
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:78494877",
+      "properties": {
+        "name": "Lugas utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 78494877,
+          "url": "https://www.openstreetmap.org/way/78494877",
+          "nodeRefs": [
+            919550273,
+            10709362314,
+            10709362320,
+            919550310
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2023-03-04 13:57:10+00:00",
+          "tags": {
+            "highway": "living_street",
+            "lit": "yes",
+            "maxspeed": "20",
+            "name": "Lugas utca",
+            "source:maxspeed": "HU:living_street",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1690325,
+            46.2665703
+          ],
+          [
+            20.1699152,
+            46.2668193
+          ],
+          [
+            20.1700791,
+            46.2668655
+          ],
+          [
+            20.1700958,
+            46.2668702
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:83195771",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 83195771,
+          "url": "https://www.openstreetmap.org/way/83195771",
+          "nodeRefs": [
+            919515843,
+            412524870,
+            6188909707
+          ],
+          "objectVersion": 20,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "parking:lane:both": "no",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:left": "separate",
+            "sidewalk:right": "yes",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1575173,
+            46.268454
+          ],
+          [
+            20.1575311,
+            46.2677393
+          ],
+          [
+            20.1575504,
+            46.2673505
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:231722388",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 231722388,
+          "url": "https://www.openstreetmap.org/way/231722388",
+          "nodeRefs": [
+            30766136,
+            3990509528,
+            3930869465
+          ],
+          "objectVersion": 23,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "through|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1592392,
+            46.2725928
+          ],
+          [
+            20.1591451,
+            46.2724687
+          ],
+          [
+            20.1589588,
+            46.2721439
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:231722392",
+      "properties": {
+        "name": "Lugas utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 231722392,
+          "url": "https://www.openstreetmap.org/way/231722392",
+          "nodeRefs": [
+            8676856019,
+            3958330294,
+            951665877,
+            12144574352,
+            287325019
+          ],
+          "objectVersion": 17,
+          "objectTimestamp": "2024-08-29 16:26:27+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Lugas utca",
+            "oneway": "yes",
+            "parking:both": "no",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "smoothness": "excellent",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1680201,
+            46.2667704
+          ],
+          [
+            20.1678621,
+            46.266748
+          ],
+          [
+            20.1677407,
+            46.2667278
+          ],
+          [
+            20.1675343,
+            46.2666873
+          ],
+          [
+            20.1674524,
+            46.2666689
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:231722406",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 231722406,
+          "url": "https://www.openstreetmap.org/way/231722406",
+          "nodeRefs": [
+            287325016,
+            27225707,
+            4049274320,
+            2281238135,
+            414992785
+          ],
+          "objectVersion": 16,
+          "objectTimestamp": "2024-02-09 09:09:11+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szilléri sugárút",
+            "oneway": "yes",
+            "parking:both": "no",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1671767,
+            46.2665914
+          ],
+          [
+            20.1671402,
+            46.2665353
+          ],
+          [
+            20.1671025,
+            46.2664957
+          ],
+          [
+            20.1669503,
+            46.2663943
+          ],
+          [
+            20.1667107,
+            46.2661898
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:231722407",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 231722407,
+          "url": "https://www.openstreetmap.org/way/231722407",
+          "nodeRefs": [
+            414709673,
+            3846376764,
+            414992806,
+            5842373101
+          ],
+          "objectVersion": 18,
+          "objectTimestamp": "2023-02-04 12:28:54+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szilléri sugárút",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1626368,
+            46.2616819
+          ],
+          [
+            20.1627605,
+            46.2618373
+          ],
+          [
+            20.1630063,
+            46.2621268
+          ],
+          [
+            20.1640486,
+            46.2632611
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:235059111",
+      "properties": {
+        "name": "Csillag tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 235059111,
+          "url": "https://www.openstreetmap.org/way/235059111",
+          "nodeRefs": [
+            287325016,
+            2403635639,
+            3987076259,
+            2400610372,
+            3987076289,
+            3987076264
+          ],
+          "objectVersion": 17,
+          "objectTimestamp": "2026-02-21 09:27:03+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Csillag tér",
+            "parking:both": "no",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1671767,
+            46.2665914
+          ],
+          [
+            20.1671719,
+            46.2665517
+          ],
+          [
+            20.1671851,
+            46.266513
+          ],
+          [
+            20.1672149,
+            46.266479
+          ],
+          [
+            20.1672584,
+            46.2664529
+          ],
+          [
+            20.1673115,
+            46.2664375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:235059134",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 235059134,
+          "url": "https://www.openstreetmap.org/way/235059134",
+          "nodeRefs": [
+            412524850,
+            30766141,
+            8242470968,
+            6743183031
+          ],
+          "objectVersion": 14,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "no",
+            "cycleway:both": "separate",
+            "highway": "primary",
+            "horse": "no",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "through|right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1575884,
+            46.2665767
+          ],
+          [
+            20.1575923,
+            46.2664396
+          ],
+          [
+            20.1576016,
+            46.2657466
+          ],
+          [
+            20.1576108,
+            46.2650578
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:284482222",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 284482222,
+          "url": "https://www.openstreetmap.org/way/284482222",
+          "nodeRefs": [
+            2751567888,
+            4010653365
+          ],
+          "objectVersion": 13,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "secondary",
+            "lanes": "4",
+            "lanes:backward": "2",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szilléri sugárút",
+            "oneway": "no",
+            "ref": "4412",
+            "ref:HU:mkasz": "5247",
+            "sidewalk:left": "yes",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes:backward": "left;through|right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1616993,
+            46.2606772
+          ],
+          [
+            20.1620565,
+            46.2610661
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:344064472",
+      "properties": {
+        "name": "Murányi utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 344064472,
+          "url": "https://www.openstreetmap.org/way/344064472",
+          "nodeRefs": [
+            919516122,
+            13605137299,
+            1403710050,
+            9101644826,
+            4024198278,
+            6013564091,
+            1403710094,
+            6942729182
+          ],
+          "objectVersion": 16,
+          "objectTimestamp": "2026-02-27 10:26:03+00:00",
+          "tags": {
+            "cycleway:both": "shared_lane",
+            "cycleway:both:lane": "pictogram",
+            "highway": "residential",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Murányi utca",
+            "sidewalk": "no",
+            "smoothness": "intermediate",
+            "source:maxspeed": "HU:zone:30",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1636102,
+            46.2756199
+          ],
+          [
+            20.1636922,
+            46.2756622
+          ],
+          [
+            20.1638689,
+            46.2757344
+          ],
+          [
+            20.1640231,
+            46.2758027
+          ],
+          [
+            20.1641197,
+            46.2758614
+          ],
+          [
+            20.1641493,
+            46.2758857
+          ],
+          [
+            20.1643064,
+            46.276021
+          ],
+          [
+            20.1646231,
+            46.276308
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:367018057",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 367018057,
+          "url": "https://www.openstreetmap.org/way/367018057",
+          "nodeRefs": [
+            6743183030,
+            12628086086,
+            414992796
+          ],
+          "objectVersion": 15,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "no",
+            "cycleway:both": "separate",
+            "highway": "primary",
+            "horse": "no",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.157651,
+            46.2636958
+          ],
+          [
+            20.157681,
+            46.2629512
+          ],
+          [
+            20.1577144,
+            46.2621143
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:369117747",
+      "properties": {
+        "name": "Retek utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 369117747,
+          "url": "https://www.openstreetmap.org/way/369117747",
+          "nodeRefs": [
+            10604576250,
+            8242470978,
+            8242470977,
+            1111400576,
+            1111400525
+          ],
+          "objectVersion": 19,
+          "objectTimestamp": "2026-02-17 08:47:22+00:00",
+          "tags": {
+            "cycleway:both": "shared_lane",
+            "cycleway:both:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Retek utca",
+            "parking:lane:both": "no",
+            "sidewalk:both": "separate",
+            "smoothness": "excellent",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1589121,
+            46.2667908
+          ],
+          [
+            20.1585965,
+            46.2668072
+          ],
+          [
+            20.1584557,
+            46.2668137
+          ],
+          [
+            20.1583358,
+            46.2668081
+          ],
+          [
+            20.158206,
+            46.266789
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:369117748",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 369117748,
+          "url": "https://www.openstreetmap.org/way/369117748",
+          "nodeRefs": [
+            414992785,
+            4114654871,
+            6036913975,
+            3987076270
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2025-02-23 21:23:51+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szilléri sugárút",
+            "oneway": "yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1667107,
+            46.2661898
+          ],
+          [
+            20.1665673,
+            46.2660355
+          ],
+          [
+            20.1662609,
+            46.2656887
+          ],
+          [
+            20.1661062,
+            46.265492
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:380409557",
+      "properties": {
+        "name": "Lugas utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 380409557,
+          "url": "https://www.openstreetmap.org/way/380409557",
+          "nodeRefs": [
+            6036914495,
+            11281346115,
+            6036914493,
+            919550273,
+            14079148622,
+            14079148624,
+            919550392
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2026-08-07 19:12:31+00:00",
+          "tags": {
+            "highway": "living_street",
+            "lit": "yes",
+            "maxspeed": "20",
+            "name": "Lugas utca",
+            "source:maxspeed": "HU:living_street",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1686683,
+            46.2664236
+          ],
+          [
+            20.1686855,
+            46.2664543
+          ],
+          [
+            20.1686963,
+            46.2664735
+          ],
+          [
+            20.1690325,
+            46.2665703
+          ],
+          [
+            20.1691268,
+            46.2664482
+          ],
+          [
+            20.1693625,
+            46.266143
+          ],
+          [
+            20.1696073,
+            46.2658261
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:389927166",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 389927166,
+          "url": "https://www.openstreetmap.org/way/389927166",
+          "nodeRefs": [
+            3930869464,
+            30766198,
+            3930869471,
+            3936334501
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "2",
+            "lanes:forward": "3",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "9219",
+            "sidewalk:both": "separate",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through|right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1598488,
+            46.2730745
+          ],
+          [
+            20.1595734,
+            46.2728964
+          ],
+          [
+            20.1594819,
+            46.2728219
+          ],
+          [
+            20.1594191,
+            46.2727614
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:390489399",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 390489399,
+          "url": "https://www.openstreetmap.org/way/390489399",
+          "nodeRefs": [
+            3936334501,
+            951665924,
+            30766136
+          ],
+          "objectVersion": 11,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "4",
+            "lanes:backward": "2",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "9219",
+            "sidewalk:both": "separate",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1594191,
+            46.2727614
+          ],
+          [
+            20.1593303,
+            46.272687
+          ],
+          [
+            20.1592392,
+            46.2725928
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:395907315",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 395907315,
+          "url": "https://www.openstreetmap.org/way/395907315",
+          "nodeRefs": [
+            12613610445,
+            3987076267,
+            3987076266,
+            3987076265,
+            3987076264
+          ],
+          "objectVersion": 13,
+          "objectTimestamp": "2025-02-23 21:23:51+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szilléri sugárút",
+            "oneway": "yes",
+            "parking:both": "no",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1669466,
+            46.2662711
+          ],
+          [
+            20.1670303,
+            46.2663403
+          ],
+          [
+            20.1671052,
+            46.2663888
+          ],
+          [
+            20.1672116,
+            46.2664167
+          ],
+          [
+            20.1673115,
+            46.2664375
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:395907317",
+      "properties": {
+        "name": "Lugas utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 395907317,
+          "url": "https://www.openstreetmap.org/way/395907317",
+          "nodeRefs": [
+            2400610374,
+            3987076278,
+            3987076277,
+            3987076276,
+            3987076275,
+            4114654875,
+            8041710173
+          ],
+          "objectVersion": 16,
+          "objectTimestamp": "2025-02-23 21:23:51+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Lugas utca",
+            "oneway": "yes",
+            "parking:both": "no",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "smoothness": "excellent",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1675386,
+            46.2665455
+          ],
+          [
+            20.1675909,
+            46.2665923
+          ],
+          [
+            20.1676271,
+            46.2666159
+          ],
+          [
+            20.1676737,
+            46.2666441
+          ],
+          [
+            20.1677233,
+            46.2666611
+          ],
+          [
+            20.1677666,
+            46.2666712
+          ],
+          [
+            20.1680323,
+            46.2667329
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:396618498",
+      "properties": {
+        "name": "Retek utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 396618498,
+          "url": "https://www.openstreetmap.org/way/396618498",
+          "nodeRefs": [
+            1111400525,
+            3994379104,
+            3994379103,
+            3994379102,
+            4216229489,
+            4921991301,
+            3994379101,
+            3994379100,
+            3994379099,
+            3994379097
+          ],
+          "objectVersion": 14,
+          "objectTimestamp": "2025-04-08 21:48:54+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary_link",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Retek utca",
+            "oneway": "yes",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.158206,
+            46.266789
+          ],
+          [
+            20.1579807,
+            46.2667911
+          ],
+          [
+            20.1578449,
+            46.2667771
+          ],
+          [
+            20.157797,
+            46.2667803
+          ],
+          [
+            20.1577548,
+            46.2667896
+          ],
+          [
+            20.1577387,
+            46.2667936
+          ],
+          [
+            20.1577117,
+            46.2668045
+          ],
+          [
+            20.1576834,
+            46.2668229
+          ],
+          [
+            20.1576462,
+            46.2668584
+          ],
+          [
+            20.1575691,
+            46.2669732
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:403941598",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 403941598,
+          "url": "https://www.openstreetmap.org/way/403941598",
+          "nodeRefs": [
+            919516127,
+            4193372235,
+            919515844
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "cycleway": "separate",
+            "highway": "primary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "9219",
+            "sidewalk": "separate",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1638566,
+            46.2749415
+          ],
+          [
+            20.1623275,
+            46.2742676
+          ],
+          [
+            20.1621707,
+            46.2742004
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:409575946",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 409575946,
+          "url": "https://www.openstreetmap.org/way/409575946",
+          "nodeRefs": [
+            3987076270,
+            6036913974,
+            3729356770
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2023-02-04 12:28:54+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szilléri sugárút",
+            "sidewalk:both": "separate",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1661062,
+            46.265492
+          ],
+          [
+            20.165585,
+            46.264934
+          ],
+          [
+            20.1651794,
+            46.2644923
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:415930320",
+      "properties": {
+        "name": "Körtöltés",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 415930320,
+          "url": "https://www.openstreetmap.org/way/415930320",
+          "nodeRefs": [
+            4049284777,
+            31052189,
+            4151886651,
+            4466956082,
+            4466956068,
+            3987122833,
+            31052191,
+            5012226784,
+            5596500892,
+            3987122832,
+            9581566685,
+            4024198211,
+            31236867,
+            4024198226,
+            3987122830,
+            3987122831,
+            5820318570,
+            5820318561,
+            31052192,
+            5820318560,
+            3987122829,
+            3987122828,
+            31052193,
+            3085725913,
+            3974134117,
+            31052194,
+            31052195,
+            31052196,
+            31052197,
+            31052198,
+            31052199,
+            3409460062,
+            31052200,
+            31052201,
+            3987122826,
+            4049321993,
+            3987111668,
+            31052202,
+            4781404256,
+            5779289772
+          ],
+          "objectVersion": 19,
+          "objectTimestamp": "2022-03-15 20:40:57+00:00",
+          "tags": {
+            "bicycle": "yes",
+            "embankment": "yes",
+            "highway": "track",
+            "motor_vehicle": "permit",
+            "name": "Körtöltés",
+            "surface": "dirt",
+            "tracktype": "grade5"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1763502,
+            46.2580749
+          ],
+          [
+            20.1763342,
+            46.2581904
+          ],
+          [
+            20.1763057,
+            46.2583353
+          ],
+          [
+            20.1741659,
+            46.263634
+          ],
+          [
+            20.1739487,
+            46.2641737
+          ],
+          [
+            20.1737899,
+            46.2645356
+          ],
+          [
+            20.1734619,
+            46.2650938
+          ],
+          [
+            20.1732898,
+            46.2653221
+          ],
+          [
+            20.1731242,
+            46.2655304
+          ],
+          [
+            20.1717761,
+            46.2672261
+          ],
+          [
+            20.1717145,
+            46.2672812
+          ],
+          [
+            20.1715349,
+            46.2674417
+          ],
+          [
+            20.1714924,
+            46.2675024
+          ],
+          [
+            20.1714595,
+            46.267557
+          ],
+          [
+            20.171369,
+            46.2676801
+          ],
+          [
+            20.1713559,
+            46.2677383
+          ],
+          [
+            20.170771,
+            46.2684753
+          ],
+          [
+            20.1706483,
+            46.268641
+          ],
+          [
+            20.1702419,
+            46.2691437
+          ],
+          [
+            20.1700352,
+            46.2694075
+          ],
+          [
+            20.1697399,
+            46.2697845
+          ],
+          [
+            20.1694457,
+            46.2702881
+          ],
+          [
+            20.169336,
+            46.2705545
+          ],
+          [
+            20.1692678,
+            46.2707101
+          ],
+          [
+            20.1692483,
+            46.2707657
+          ],
+          [
+            20.1691349,
+            46.2711807
+          ],
+          [
+            20.1690815,
+            46.2715245
+          ],
+          [
+            20.168946,
+            46.2720862
+          ],
+          [
+            20.1686261,
+            46.2730352
+          ],
+          [
+            20.1683436,
+            46.2737115
+          ],
+          [
+            20.1681288,
+            46.2740052
+          ],
+          [
+            20.1679881,
+            46.2741915
+          ],
+          [
+            20.167935,
+            46.2742425
+          ],
+          [
+            20.1676314,
+            46.2745282
+          ],
+          [
+            20.1669893,
+            46.2751108
+          ],
+          [
+            20.1667413,
+            46.2753234
+          ],
+          [
+            20.1663566,
+            46.2756683
+          ],
+          [
+            20.1662328,
+            46.2757596
+          ],
+          [
+            20.1661802,
+            46.2757982
+          ],
+          [
+            20.1661068,
+            46.2758373
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:418996063",
+      "properties": {
+        "name": "Lugas utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 418996063,
+          "url": "https://www.openstreetmap.org/way/418996063",
+          "nodeRefs": [
+            31236819,
+            5010050543,
+            8041710143,
+            8041710140,
+            3987076274
+          ],
+          "objectVersion": 13,
+          "objectTimestamp": "2024-03-16 18:10:33+00:00",
+          "tags": {
+            "cycleway:both": "shared_lane",
+            "cycleway:both:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Lugas utca",
+            "sidewalk:both": "separate",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1703855,
+            46.2672571
+          ],
+          [
+            20.1702844,
+            46.2672356
+          ],
+          [
+            20.1696211,
+            46.2670917
+          ],
+          [
+            20.1688933,
+            46.2669337
+          ],
+          [
+            20.1682353,
+            46.2667968
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:418996064",
+      "properties": {
+        "name": "Retek utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 418996064,
+          "url": "https://www.openstreetmap.org/way/418996064",
+          "nodeRefs": [
+            414992785,
+            3987076268
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2026-02-17 08:47:22+00:00",
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "tertiary_link",
+            "lanes": "2",
+            "lanes:backward": "1",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "name": "Retek utca",
+            "sidewalk": "separate",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1667107,
+            46.2661898
+          ],
+          [
+            20.1668037,
+            46.2661414
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:418996065",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 418996065,
+          "url": "https://www.openstreetmap.org/way/418996065",
+          "nodeRefs": [
+            3987076270,
+            3987076269,
+            4114654870,
+            3987076268
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2023-10-22 15:15:54+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szilléri sugárút",
+            "oneway": "yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes": "left|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1661062,
+            46.265492
+          ],
+          [
+            20.1665109,
+            46.2658227
+          ],
+          [
+            20.1666734,
+            46.265989
+          ],
+          [
+            20.1668037,
+            46.2661414
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:422308870",
+      "properties": {
+        "name": "Csillag tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 422308870,
+          "url": "https://www.openstreetmap.org/way/422308870",
+          "nodeRefs": [
+            287325019,
+            4049274325
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2026-02-21 09:27:03+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lane_markings": "no",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Csillag tér",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1674524,
+            46.2666689
+          ],
+          [
+            20.1674381,
+            46.2666742
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:422308871",
+      "properties": {
+        "name": "Csillag tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 422308871,
+          "url": "https://www.openstreetmap.org/way/422308871",
+          "nodeRefs": [
+            3987076264,
+            3987076263
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2026-02-21 09:27:03+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Csillag tér",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1673115,
+            46.2664375
+          ],
+          [
+            20.1673546,
+            46.2664338
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:422308872",
+      "properties": {
+        "name": "Csillag tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 422308872,
+          "url": "https://www.openstreetmap.org/way/422308872",
+          "nodeRefs": [
+            2400610378,
+            287325016
+          ],
+          "objectVersion": 11,
+          "objectTimestamp": "2026-02-21 09:27:03+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Csillag tér",
+            "parking:both": "no",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1671998,
+            46.266629
+          ],
+          [
+            20.1671767,
+            46.2665914
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:422308873",
+      "properties": {
+        "name": "Csillag tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 422308873,
+          "url": "https://www.openstreetmap.org/way/422308873",
+          "nodeRefs": [
+            287325013,
+            3987076290,
+            2400610374
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2026-02-21 09:27:03+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Csillag tér",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1675183,
+            46.2665012
+          ],
+          [
+            20.1675314,
+            46.2665227
+          ],
+          [
+            20.1675386,
+            46.2665455
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:422308874",
+      "properties": {
+        "name": "Csillag tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 422308874,
+          "url": "https://www.openstreetmap.org/way/422308874",
+          "nodeRefs": [
+            2400610374,
+            287325024,
+            2400610376,
+            3987076287,
+            287325019
+          ],
+          "objectVersion": 11,
+          "objectTimestamp": "2026-02-21 09:27:03+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Csillag tér",
+            "parking:both": "no",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1675386,
+            46.2665455
+          ],
+          [
+            20.1675378,
+            46.2665805
+          ],
+          [
+            20.1675233,
+            46.2666141
+          ],
+          [
+            20.1674961,
+            46.2666437
+          ],
+          [
+            20.1674524,
+            46.2666689
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:422308875",
+      "properties": {
+        "name": "Csillag tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 422308875,
+          "url": "https://www.openstreetmap.org/way/422308875",
+          "nodeRefs": [
+            3987076263,
+            287325014,
+            3987076261,
+            2400610370,
+            287325013
+          ],
+          "objectVersion": 11,
+          "objectTimestamp": "2026-02-21 09:27:03+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Csillag tér",
+            "parking:both": "no",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1673546,
+            46.2664338
+          ],
+          [
+            20.1674041,
+            46.2664382
+          ],
+          [
+            20.1674501,
+            46.2664517
+          ],
+          [
+            20.1674891,
+            46.2664733
+          ],
+          [
+            20.1675183,
+            46.2665012
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:422308876",
+      "properties": {
+        "name": "Csillag tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 422308876,
+          "url": "https://www.openstreetmap.org/way/422308876",
+          "nodeRefs": [
+            4049274325,
+            3987076285,
+            4049274321,
+            4049274322,
+            3987076286,
+            287325017,
+            3987076288,
+            2400610378
+          ],
+          "objectVersion": 11,
+          "objectTimestamp": "2026-02-21 09:27:03+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Csillag tér",
+            "parking:both": "no",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1674381,
+            46.2666742
+          ],
+          [
+            20.1674209,
+            46.2666803
+          ],
+          [
+            20.1673802,
+            46.2666874
+          ],
+          [
+            20.1673382,
+            46.266688
+          ],
+          [
+            20.1672971,
+            46.2666819
+          ],
+          [
+            20.1672591,
+            46.2666696
+          ],
+          [
+            20.167226,
+            46.2666517
+          ],
+          [
+            20.1671998,
+            46.266629
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:455721404",
+      "properties": {
+        "name": "Körtöltés",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 455721404,
+          "url": "https://www.openstreetmap.org/way/455721404",
+          "nodeRefs": [
+            30387090,
+            8466128085,
+            3987032526,
+            3938768263,
+            14268908419,
+            3987128596,
+            30387091,
+            30387092,
+            30387093,
+            30387094,
+            6942729183,
+            30387095,
+            6942729184,
+            30387096,
+            457464323,
+            457464298,
+            6213105283,
+            6942738987,
+            14268908450,
+            14268908445,
+            2352549302
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2026-10-09 19:40:59+00:00",
+          "tags": {
+            "embankment": "yes",
+            "highway": "track",
+            "name": "Körtöltés",
+            "surface": "dirt",
+            "tracktype": "grade3"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1658509,
+            46.2759769
+          ],
+          [
+            20.1658287,
+            46.2759901
+          ],
+          [
+            20.1657253,
+            46.2760518
+          ],
+          [
+            20.1656429,
+            46.2761287
+          ],
+          [
+            20.1646289,
+            46.2767396
+          ],
+          [
+            20.1640283,
+            46.2771015
+          ],
+          [
+            20.1635165,
+            46.2773839
+          ],
+          [
+            20.1632543,
+            46.2774963
+          ],
+          [
+            20.162925,
+            46.2776143
+          ],
+          [
+            20.1625803,
+            46.2776972
+          ],
+          [
+            20.162255,
+            46.2777646
+          ],
+          [
+            20.162042,
+            46.2777908
+          ],
+          [
+            20.1615831,
+            46.2778276
+          ],
+          [
+            20.1612053,
+            46.2778381
+          ],
+          [
+            20.1588117,
+            46.2778784
+          ],
+          [
+            20.158752,
+            46.2778794
+          ],
+          [
+            20.1549322,
+            46.2779403
+          ],
+          [
+            20.1535731,
+            46.2779532
+          ],
+          [
+            20.1523044,
+            46.2779647
+          ],
+          [
+            20.1505576,
+            46.2780002
+          ],
+          [
+            20.1501684,
+            46.2780051
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:495731241",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 495731241,
+          "url": "https://www.openstreetmap.org/way/495731241",
+          "nodeRefs": [
+            3508221341,
+            30766199,
+            3930869464
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "cycleway": "separate",
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "2",
+            "lanes:forward": "3",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "9219",
+            "sidewalk:both": "separate",
+            "surface": "asphalt",
+            "turn:lanes:backward": "|merge_to_left",
+            "turn:lanes:forward": "left|through|right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.160291,
+            46.2733297
+          ],
+          [
+            20.1601332,
+            46.2732465
+          ],
+          [
+            20.1598488,
+            46.2730745
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:505648943",
+      "properties": {
+        "name": "Murányi utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 505648943,
+          "url": "https://www.openstreetmap.org/way/505648943",
+          "nodeRefs": [
+            3508221387,
+            919515907
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2022-01-22 19:38:24+00:00",
+          "tags": {
+            "highway": "residential",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Murányi utca",
+            "oneway": "yes",
+            "source:maxspeed": "HU:zone:30",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1635675,
+            46.2755501
+          ],
+          [
+            20.1621376,
+            46.2749274
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:585629994",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 585629994,
+          "url": "https://www.openstreetmap.org/way/585629994",
+          "nodeRefs": [
+            5005367051,
+            6013564092,
+            14268908418,
+            5596105512,
+            5596105849,
+            5596105513,
+            5596105514,
+            5596105515,
+            5596105516,
+            5596105517,
+            5596105518,
+            6013564091,
+            9953214136,
+            5596105837,
+            5596105519
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-10-09 19:40:59+00:00",
+          "tags": {
+            "highway": "footway"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1641601,
+            46.2766254
+          ],
+          [
+            20.1642308,
+            46.2765813
+          ],
+          [
+            20.164369,
+            46.2765045
+          ],
+          [
+            20.1643736,
+            46.2765019
+          ],
+          [
+            20.1643453,
+            46.2764732
+          ],
+          [
+            20.164221,
+            46.2763473
+          ],
+          [
+            20.164084,
+            46.2762293
+          ],
+          [
+            20.1638744,
+            46.2760448
+          ],
+          [
+            20.1639093,
+            46.2760187
+          ],
+          [
+            20.1639636,
+            46.2759879
+          ],
+          [
+            20.1641158,
+            46.2759073
+          ],
+          [
+            20.1641493,
+            46.2758857
+          ],
+          [
+            20.1641798,
+            46.2758675
+          ],
+          [
+            20.1643004,
+            46.2757957
+          ],
+          [
+            20.1643634,
+            46.2757635
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:585700639",
+      "properties": {
+        "name": "Lugas utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 585700639,
+          "url": "https://www.openstreetmap.org/way/585700639",
+          "nodeRefs": [
+            919550392,
+            10709362274,
+            919550091,
+            5834074888,
+            919550248
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2023-03-04 13:57:10+00:00",
+          "tags": {
+            "highway": "living_street",
+            "lit": "yes",
+            "maxspeed": "20",
+            "name": "Lugas utca",
+            "source:maxspeed": "HU:living_street",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1696073,
+            46.2658261
+          ],
+          [
+            20.1694187,
+            46.2657565
+          ],
+          [
+            20.1692,
+            46.2656757
+          ],
+          [
+            20.1689549,
+            46.2655927
+          ],
+          [
+            20.1688109,
+            46.2655432
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:617332102",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 617332102,
+          "url": "https://www.openstreetmap.org/way/617332102",
+          "nodeRefs": [
+            477722951,
+            7765185457,
+            5835730160,
+            7765185454,
+            5835730159
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2020-07-29 11:09:24+00:00",
+          "tags": {
+            "highway": "living_street",
+            "maxspeed": "20",
+            "name": "Szilléri sugárút",
+            "parking:lane:both": "perpendicular",
+            "source:maxspeed": "HU:living_street",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1670562,
+            46.264673
+          ],
+          [
+            20.1669538,
+            46.2646225
+          ],
+          [
+            20.1665136,
+            46.2644051
+          ],
+          [
+            20.1664446,
+            46.2643709
+          ],
+          [
+            20.1659236,
+            46.264113
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:618078792",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 618078792,
+          "url": "https://www.openstreetmap.org/way/618078792",
+          "nodeRefs": [
+            6109391527,
+            5358416178,
+            14268864549,
+            7098022545,
+            6185055440,
+            5842373101
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2026-10-09 19:13:17+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Szilléri sugárút",
+            "oneway": "yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1645212,
+            46.2638903
+          ],
+          [
+            20.1644412,
+            46.2637823
+          ],
+          [
+            20.1642638,
+            46.2635792
+          ],
+          [
+            20.1641856,
+            46.2634668
+          ],
+          [
+            20.1640807,
+            46.2633101
+          ],
+          [
+            20.1640486,
+            46.2632611
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:640903529",
+      "properties": {
+        "name": "Lugas utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 640903529,
+          "url": "https://www.openstreetmap.org/way/640903529",
+          "nodeRefs": [
+            919550358,
+            6036914496,
+            6036914497
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2022-06-09 17:04:25+00:00",
+          "tags": {
+            "highway": "living_street",
+            "lit": "yes",
+            "maxspeed": "20",
+            "name": "Lugas utca",
+            "smoothness": "excellent",
+            "source:maxspeed": "HU:living_street",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1682773,
+            46.2662674
+          ],
+          [
+            20.1685489,
+            46.266381
+          ],
+          [
+            20.168561,
+            46.2664107
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:647402318",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 647402318,
+          "url": "https://www.openstreetmap.org/way/647402318",
+          "nodeRefs": [
+            6079971078,
+            1403709351,
+            30452250
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "no",
+            "cycleway:both": "separate",
+            "highway": "primary",
+            "horse": "no",
+            "lanes": "4",
+            "lanes:backward": "2",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1577295,
+            46.2617928
+          ],
+          [
+            20.1577412,
+            46.261539
+          ],
+          [
+            20.1577253,
+            46.2613905
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:651528139",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 651528139,
+          "url": "https://www.openstreetmap.org/way/651528139",
+          "nodeRefs": [
+            3729356770,
+            7098022542,
+            5358416179,
+            12613610438,
+            6109391520
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2025-02-23 21:23:51+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Szilléri sugárút",
+            "oneway": "yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1651794,
+            46.2644923
+          ],
+          [
+            20.1649674,
+            46.2643077
+          ],
+          [
+            20.1647474,
+            46.2640772
+          ],
+          [
+            20.164695,
+            46.2640262
+          ],
+          [
+            20.1646627,
+            46.2639935
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:661051849",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 661051849,
+          "url": "https://www.openstreetmap.org/way/661051849",
+          "nodeRefs": [
+            412524871,
+            30766140,
+            919515947,
+            919515843
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "parking:lane:both": "no",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:left": "separate",
+            "sidewalk:right": "yes",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|through;right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1576839,
+            46.2690129
+          ],
+          [
+            20.1576397,
+            46.2688919
+          ],
+          [
+            20.1575603,
+            46.2686634
+          ],
+          [
+            20.1575173,
+            46.268454
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:661051850",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 661051850,
+          "url": "https://www.openstreetmap.org/way/661051850",
+          "nodeRefs": [
+            6188909707,
+            3994379097,
+            1403709899,
+            412524850
+          ],
+          "objectVersion": 11,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "parking:both": "no",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:left": "separate",
+            "sidewalk:right": "yes",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "through|right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1575504,
+            46.2673505
+          ],
+          [
+            20.1575691,
+            46.2669732
+          ],
+          [
+            20.1575835,
+            46.2666838
+          ],
+          [
+            20.1575884,
+            46.2665767
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:661051851",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 661051851,
+          "url": "https://www.openstreetmap.org/way/661051851",
+          "nodeRefs": [
+            30452250,
+            2150114460,
+            6349322124,
+            6188909708
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2023-09-23 07:43:37+00:00",
+          "tags": {
+            "agricultural": "no",
+            "bicycle": "no",
+            "cycleway:both": "separate",
+            "highway": "tertiary",
+            "horse": "no",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "oneway": "no",
+            "sidewalk:left": "separate",
+            "sidewalk:right": "yes",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "through|through;right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1577253,
+            46.2613905
+          ],
+          [
+            20.1576888,
+            46.2612288
+          ],
+          [
+            20.1575929,
+            46.260957
+          ],
+          [
+            20.1575334,
+            46.2607881
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:661051852",
+      "properties": {
+        "name": "Retek utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 661051852,
+          "url": "https://www.openstreetmap.org/way/661051852",
+          "nodeRefs": [
+            1111400525,
+            8242470971,
+            8242470976,
+            414992778,
+            1243788737
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2026-02-17 08:47:22+00:00",
+          "tags": {
+            "cycleway:both": "shared_lane",
+            "cycleway:both:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Retek utca",
+            "sidewalk:both": "separate",
+            "smoothness": "excellent",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "slight_left|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.158206,
+            46.266789
+          ],
+          [
+            20.1580873,
+            46.266761
+          ],
+          [
+            20.1579712,
+            46.2667282
+          ],
+          [
+            20.157858,
+            46.2666909
+          ],
+          [
+            20.1577511,
+            46.2666459
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:717953002",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 717953002,
+          "url": "https://www.openstreetmap.org/way/717953002",
+          "nodeRefs": [
+            919515844,
+            6743183032
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "cycleway": "separate",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "9219",
+            "sidewalk": "separate",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1621707,
+            46.2742004
+          ],
+          [
+            20.161734,
+            46.2739979
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:717953003",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 717953003,
+          "url": "https://www.openstreetmap.org/way/717953003",
+          "nodeRefs": [
+            3930869465,
+            12628086078,
+            30766137,
+            4052027391
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "through|through;right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1589588,
+            46.2721439
+          ],
+          [
+            20.1587898,
+            46.271775
+          ],
+          [
+            20.1587841,
+            46.2717626
+          ],
+          [
+            20.1587661,
+            46.271718
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:717953004",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 717953004,
+          "url": "https://www.openstreetmap.org/way/717953004",
+          "nodeRefs": [
+            3987032541,
+            412524871
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through;right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1578601,
+            46.2694552
+          ],
+          [
+            20.1576839,
+            46.2690129
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:717953005",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 717953005,
+          "url": "https://www.openstreetmap.org/way/717953005",
+          "nodeRefs": [
+            4052027391,
+            919516032,
+            3987032541
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1587661,
+            46.271718
+          ],
+          [
+            20.1580961,
+            46.2700571
+          ],
+          [
+            20.1578601,
+            46.2694552
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:718024899",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 718024899,
+          "url": "https://www.openstreetmap.org/way/718024899",
+          "nodeRefs": [
+            414992796,
+            6079971078
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "no",
+            "cycleway:both": "separate",
+            "highway": "primary",
+            "horse": "no",
+            "lanes": "6",
+            "lanes:backward": "3",
+            "lanes:forward": "3",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "|merge_to_left|right",
+            "turn:lanes:forward": "left|through|right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1577144,
+            46.2621143
+          ],
+          [
+            20.1577295,
+            46.2617928
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:718024900",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 718024900,
+          "url": "https://www.openstreetmap.org/way/718024900",
+          "nodeRefs": [
+            412524864,
+            7236575252,
+            6743183030
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "no",
+            "cycleway:both": "separate",
+            "highway": "primary",
+            "horse": "no",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|through;right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1576244,
+            46.2643272
+          ],
+          [
+            20.1576357,
+            46.2640591
+          ],
+          [
+            20.157651,
+            46.2636958
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:718024901",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 718024901,
+          "url": "https://www.openstreetmap.org/way/718024901",
+          "nodeRefs": [
+            6743183031,
+            14018435308,
+            1403709680,
+            412524864
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "no",
+            "cycleway:both": "separate",
+            "highway": "primary",
+            "horse": "no",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "5236",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1576108,
+            46.2650578
+          ],
+          [
+            20.1576194,
+            46.2646276
+          ],
+          [
+            20.1576244,
+            46.2643749
+          ],
+          [
+            20.1576244,
+            46.2643272
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:718024902",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 718024902,
+          "url": "https://www.openstreetmap.org/way/718024902",
+          "nodeRefs": [
+            6743183032,
+            12560824872,
+            3508221341
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "cycleway": "separate",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "9219",
+            "sidewalk": "separate",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.161734,
+            46.2739979
+          ],
+          [
+            20.1605862,
+            46.2734748
+          ],
+          [
+            20.160291,
+            46.2733297
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:718024903",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 718024903,
+          "url": "https://www.openstreetmap.org/way/718024903",
+          "nodeRefs": [
+            30766204,
+            919516127
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "cycleway": "separate",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "9219",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1645394,
+            46.2752513
+          ],
+          [
+            20.1638566,
+            46.2749415
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:732946123",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 732946123,
+          "url": "https://www.openstreetmap.org/way/732946123",
+          "nodeRefs": [
+            919515995,
+            919516115,
+            919516153,
+            919516225,
+            919515928,
+            919516074,
+            13919704785,
+            919515876
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2026-06-08 09:57:16+00:00",
+          "tags": {
+            "highway": "residential",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "József Attila sugárút",
+            "source:maxspeed": "HU:zone:30",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.159252,
+            46.2730028
+          ],
+          [
+            20.1591661,
+            46.2729615
+          ],
+          [
+            20.1590161,
+            46.2729515
+          ],
+          [
+            20.1588274,
+            46.2729487
+          ],
+          [
+            20.1587204,
+            46.2729793
+          ],
+          [
+            20.1586675,
+            46.2730407
+          ],
+          [
+            20.1586557,
+            46.2732426
+          ],
+          [
+            20.1586245,
+            46.2737741
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:741627412",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 741627412,
+          "url": "https://www.openstreetmap.org/way/741627412",
+          "nodeRefs": [
+            6942729182,
+            6942729181
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2023-03-27 08:58:15+00:00",
+          "tags": {
+            "cycleway:both": "shared_lane",
+            "cycleway:both:lane": "pictogram",
+            "highway": "service",
+            "maxspeed": "30",
+            "service": "driveway",
+            "source:maxspeed": "HU:zone:30",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1646231,
+            46.276308
+          ],
+          [
+            20.1646824,
+            46.2762092
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:749440771",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 749440771,
+          "url": "https://www.openstreetmap.org/way/749440771",
+          "nodeRefs": [
+            3987032528,
+            7008335608,
+            7008335607,
+            11057233196,
+            7008335606,
+            7008335605,
+            7008335604,
+            3938768263
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2023-07-20 17:56:07+00:00",
+          "tags": {
+            "embankment": "yes",
+            "highway": "cycleway",
+            "incline": "up",
+            "smoothness": "excellent",
+            "start_date": "2019-12",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1647144,
+            46.2763923
+          ],
+          [
+            20.1647521,
+            46.2764179
+          ],
+          [
+            20.1647863,
+            46.2764242
+          ],
+          [
+            20.1648259,
+            46.2764242
+          ],
+          [
+            20.1648665,
+            46.2764099
+          ],
+          [
+            20.1654696,
+            46.2761443
+          ],
+          [
+            20.1655273,
+            46.2761332
+          ],
+          [
+            20.1656429,
+            46.2761287
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:758309310",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 758309310,
+          "url": "https://www.openstreetmap.org/way/758309310",
+          "nodeRefs": [
+            919516198,
+            7081874997,
+            7081874989,
+            6942729181
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2022-08-09 12:07:43+00:00",
+          "tags": {
+            "bicycle": "designated",
+            "foot": "designated",
+            "highway": "cycleway",
+            "lit": "no",
+            "segregated": "no",
+            "surface": "paving_stones"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1648377,
+            46.2761987
+          ],
+          [
+            20.1647817,
+            46.2762106
+          ],
+          [
+            20.1646985,
+            46.2761994
+          ],
+          [
+            20.1646824,
+            46.2762092
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:759435666",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 759435666,
+          "url": "https://www.openstreetmap.org/way/759435666",
+          "nodeRefs": [
+            4010653365,
+            12486519593,
+            12486519592,
+            12486519591,
+            414709673
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "secondary",
+            "lanes": "4",
+            "lanes:backward": "2",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szilléri sugárút",
+            "oneway": "no",
+            "ref": "4412",
+            "ref:HU:mkasz": "5247",
+            "sidewalk:left": "yes",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes:forward": "left;through|right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1620565,
+            46.2610661
+          ],
+          [
+            20.1623177,
+            46.261359
+          ],
+          [
+            20.1624591,
+            46.2615041
+          ],
+          [
+            20.1625347,
+            46.2615812
+          ],
+          [
+            20.1626368,
+            46.2616819
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:759820844",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 759820844,
+          "url": "https://www.openstreetmap.org/way/759820844",
+          "nodeRefs": [
+            6109391516,
+            14268864592,
+            12613610433,
+            14268864593,
+            6109391524,
+            14268864594,
+            6109391530,
+            14268864595,
+            6109391518,
+            14268864596,
+            12613610434,
+            6109391523
+          ],
+          "objectVersion": 13,
+          "objectTimestamp": "2026-10-09 19:13:17+00:00",
+          "tags": {
+            "cycleway:left": "no",
+            "cycleway:right": "shared_lane",
+            "cycleway:right:lane": "pictogram",
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Szilléri sugárút",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1646496,
+            46.2638285
+          ],
+          [
+            20.1646645,
+            46.2638301
+          ],
+          [
+            20.1646792,
+            46.2638331
+          ],
+          [
+            20.1646971,
+            46.2638388
+          ],
+          [
+            20.1647134,
+            46.2638464
+          ],
+          [
+            20.1647278,
+            46.2638557
+          ],
+          [
+            20.1647397,
+            46.2638665
+          ],
+          [
+            20.1647486,
+            46.2638779
+          ],
+          [
+            20.1647548,
+            46.26389
+          ],
+          [
+            20.1647582,
+            46.2639027
+          ],
+          [
+            20.1647588,
+            46.2639156
+          ],
+          [
+            20.1647565,
+            46.2639281
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:759820846",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 759820846,
+          "url": "https://www.openstreetmap.org/way/759820846",
+          "nodeRefs": [
+            6109391523,
+            7098022544,
+            7098022543,
+            3729356770
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2023-10-22 15:15:53+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Szilléri sugárút",
+            "oneway": "yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1647565,
+            46.2639281
+          ],
+          [
+            20.1648449,
+            46.2640356
+          ],
+          [
+            20.1650445,
+            46.2642799
+          ],
+          [
+            20.1651794,
+            46.2644923
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:759820847",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 759820847,
+          "url": "https://www.openstreetmap.org/way/759820847",
+          "nodeRefs": [
+            5842373101,
+            7098022547,
+            14268864550,
+            7098022546,
+            12613610439,
+            6109391516
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2026-10-09 19:13:17+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Szilléri sugárút",
+            "oneway": "yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1640486,
+            46.2632611
+          ],
+          [
+            20.1642581,
+            46.2634289
+          ],
+          [
+            20.1643667,
+            46.2635229
+          ],
+          [
+            20.1645597,
+            46.2637297
+          ],
+          [
+            20.164617,
+            46.2637851
+          ],
+          [
+            20.1646496,
+            46.2638285
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:830137361",
+      "properties": {
+        "name": "Retek utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 830137361,
+          "url": "https://www.openstreetmap.org/way/830137361",
+          "nodeRefs": [
+            1185636519,
+            414992781,
+            4216250471,
+            8676856020
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2026-02-17 08:47:22+00:00",
+          "tags": {
+            "cycleway:left": "shared_lane",
+            "cycleway:left:lane": "pictogram",
+            "cycleway:right": "lane",
+            "cycleway:right:lane": "exclusive",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Retek utca",
+            "parking:lane:both": "no",
+            "sidewalk:both": "separate",
+            "smoothness": "excellent",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1625314,
+            46.2666004
+          ],
+          [
+            20.1623978,
+            46.2666074
+          ],
+          [
+            20.1622127,
+            46.2666176
+          ],
+          [
+            20.1619339,
+            46.2666319
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:911780453",
+      "properties": {
+        "name": "Körtöltés",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 911780453,
+          "url": "https://www.openstreetmap.org/way/911780453",
+          "nodeRefs": [
+            5779289772,
+            6013563160,
+            8466128084,
+            3801821060,
+            30387090
+          ],
+          "objectVersion": 1,
+          "objectTimestamp": "2021-02-28 12:21:31+00:00",
+          "tags": {
+            "embankment": "yes",
+            "highway": "service",
+            "name": "Körtöltés",
+            "smoothness": "bad",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1661068,
+            46.2758373
+          ],
+          [
+            20.1660202,
+            46.2758884
+          ],
+          [
+            20.1659756,
+            46.2759148
+          ],
+          [
+            20.1659597,
+            46.2759242
+          ],
+          [
+            20.1658509,
+            46.2759769
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:911780454",
+      "properties": {
+        "name": "Murányi utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 911780454,
+          "url": "https://www.openstreetmap.org/way/911780454",
+          "nodeRefs": [
+            6942729182,
+            7008335603,
+            3987032528
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2023-03-27 08:57:43+00:00",
+          "tags": {
+            "cycleway:both": "shared_lane",
+            "cycleway:both:lane": "pictogram",
+            "highway": "residential",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Murányi utca",
+            "source:maxspeed": "HU:zone:30",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1646231,
+            46.276308
+          ],
+          [
+            20.164701,
+            46.2763799
+          ],
+          [
+            20.1647144,
+            46.2763923
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:936405126",
+      "properties": {
+        "name": "Lugas utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 936405126,
+          "url": "https://www.openstreetmap.org/way/936405126",
+          "nodeRefs": [
+            3987076274,
+            8676856019
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2024-03-16 18:10:33+00:00",
+          "tags": {
+            "cycleway:left": "no",
+            "cycleway:right": "shared_lane",
+            "cycleway:right:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Lugas utca",
+            "oneway": "yes",
+            "parking:both": "no",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1682353,
+            46.2667968
+          ],
+          [
+            20.1680201,
+            46.2667704
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:936405127",
+      "properties": {
+        "name": "Lugas utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 936405127,
+          "url": "https://www.openstreetmap.org/way/936405127",
+          "nodeRefs": [
+            8041710173,
+            3987076274
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2024-03-16 18:10:33+00:00",
+          "tags": {
+            "cycleway:left": "no",
+            "cycleway:right": "shared_lane",
+            "cycleway:right:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Lugas utca",
+            "oneway": "yes",
+            "parking:both": "no",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1680323,
+            46.2667329
+          ],
+          [
+            20.1682353,
+            46.2667968
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:936405132",
+      "properties": {
+        "name": "Retek utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 936405132,
+          "url": "https://www.openstreetmap.org/way/936405132",
+          "nodeRefs": [
+            414992785,
+            4114654872,
+            898088871
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2026-02-17 08:47:22+00:00",
+          "tags": {
+            "cycleway:both": "separate",
+            "highway": "tertiary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Retek utca",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1667107,
+            46.2661898
+          ],
+          [
+            20.1666155,
+            46.2662431
+          ],
+          [
+            20.1664278,
+            46.2663486
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1036976661",
+      "properties": {
+        "name": "Retek utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1036976661,
+          "url": "https://www.openstreetmap.org/way/1036976661",
+          "nodeRefs": [
+            1243788737,
+            8755644945,
+            412524850
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2026-02-17 08:47:22+00:00",
+          "tags": {
+            "cycleway:both": "shared_lane",
+            "cycleway:both:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Retek utca",
+            "sidewalk:both": "separate",
+            "smoothness": "good",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "slight_left|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1577511,
+            46.2666459
+          ],
+          [
+            20.157692,
+            46.2666208
+          ],
+          [
+            20.1575884,
+            46.2665767
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1070139150",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1070139150,
+          "url": "https://www.openstreetmap.org/way/1070139150",
+          "nodeRefs": [
+            1829701195,
+            2751567888
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "secondary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szilléri sugárút",
+            "oneway": "no",
+            "ref": "4412",
+            "ref:HU:mkasz": "5247",
+            "sidewalk:left": "yes",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes:backward": "left;through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.161508,
+            46.2604605
+          ],
+          [
+            20.1616993,
+            46.2606772
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1137652552",
+      "properties": {
+        "name": "Retek utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1137652552,
+          "url": "https://www.openstreetmap.org/way/1137652552",
+          "nodeRefs": [
+            414992779,
+            4216233523,
+            10604576250
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-02-17 08:47:22+00:00",
+          "tags": {
+            "cycleway:both": "shared_lane",
+            "cycleway:both:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Retek utca",
+            "parking:lane:left": "no",
+            "parking:lane:right": "parallel",
+            "parking:lane:right:parallel": "on_street",
+            "sidewalk:both": "separate",
+            "smoothness": "excellent",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1595704,
+            46.2667565
+          ],
+          [
+            20.1594943,
+            46.2667605
+          ],
+          [
+            20.1589121,
+            46.2667908
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1137652581",
+      "properties": {
+        "name": "Retek utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1137652581,
+          "url": "https://www.openstreetmap.org/way/1137652581",
+          "nodeRefs": [
+            10604570060,
+            414992779
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-02-17 08:47:22+00:00",
+          "tags": {
+            "cycleway:both": "shared_lane",
+            "cycleway:both:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Retek utca",
+            "parking:lane:both": "parallel",
+            "parking:lane:both:parallel": "street_side",
+            "sidewalk:both": "separate",
+            "smoothness": "excellent",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.161047,
+            46.2666786
+          ],
+          [
+            20.1595704,
+            46.2667565
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1137652582",
+      "properties": {
+        "name": "Retek utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1137652582,
+          "url": "https://www.openstreetmap.org/way/1137652582",
+          "nodeRefs": [
+            8676856020,
+            414992780,
+            10604570060
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2026-02-17 08:47:22+00:00",
+          "tags": {
+            "cycleway:both": "shared_lane",
+            "cycleway:both:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Retek utca",
+            "parking:lane:both": "no",
+            "sidewalk:both": "separate",
+            "smoothness": "excellent",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1619339,
+            46.2666319
+          ],
+          [
+            20.1611893,
+            46.2666711
+          ],
+          [
+            20.161047,
+            46.2666786
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1357141176",
+      "properties": {
+        "name": "József Attila sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1357141176,
+          "url": "https://www.openstreetmap.org/way/1357141176",
+          "nodeRefs": [
+            30387090,
+            7924774044,
+            1403710045
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2026-09-23 18:13:46+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "cycleway": "separate",
+            "embankment": "yes",
+            "highway": "primary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "József Attila sugárút",
+            "priority_road": "yes",
+            "ref": "47",
+            "ref:HU:mkasz": "9219",
+            "surface": "asphalt",
+            "turn:lanes:backward": "through|right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1658509,
+            46.2759769
+          ],
+          [
+            20.1657069,
+            46.2758566
+          ],
+          [
+            20.1655576,
+            46.2757548
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1362385622",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1362385622,
+          "url": "https://www.openstreetmap.org/way/1362385622",
+          "nodeRefs": [
+            3987076268,
+            8428039116,
+            12613610445
+          ],
+          "objectVersion": 1,
+          "objectTimestamp": "2025-02-23 21:23:51+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Szilléri sugárút",
+            "oneway": "yes",
+            "parking:both": "no",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes": "merge_to_right|"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1668037,
+            46.2661414
+          ],
+          [
+            20.1668607,
+            46.2662001
+          ],
+          [
+            20.1669466,
+            46.2662711
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1362385623",
+      "properties": {
+        "name": "Retek utca",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1362385623,
+          "url": "https://www.openstreetmap.org/way/1362385623",
+          "nodeRefs": [
+            898088871,
+            414992784,
+            12613610446
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2026-02-17 08:47:22+00:00",
+          "tags": {
+            "bicycle:backward": "yes",
+            "bicycle:forward": "use_sidepath",
+            "bicycle:lanes:forward": "no",
+            "cycleway:left": "shared_lane",
+            "cycleway:left:lane": "pictogram",
+            "cycleway:right": "separate",
+            "highway": "tertiary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Retek utca",
+            "oneway": "no",
+            "oneway:bicycle": "-1",
+            "sidewalk:both": "separate",
+            "smoothness": "excellent",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1664278,
+            46.2663486
+          ],
+          [
+            20.1662252,
+            46.2663959
+          ],
+          [
+            20.1661283,
+            46.2664033
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1365680702",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1365680702,
+          "url": "https://www.openstreetmap.org/way/1365680702",
+          "nodeRefs": [
+            6109391520,
+            14268864583,
+            6109391522,
+            14268864584,
+            6109391521,
+            14268864585,
+            414992795,
+            14268864586,
+            6109391517,
+            14268864587,
+            6109391527
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2026-10-09 19:13:17+00:00",
+          "tags": {
+            "cycleway:left": "no",
+            "cycleway:right": "shared_lane",
+            "cycleway:right:lane": "pictogram",
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Szilléri sugárút",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1646627,
+            46.2639935
+          ],
+          [
+            20.1646266,
+            46.2639948
+          ],
+          [
+            20.1646069,
+            46.2639924
+          ],
+          [
+            20.164588,
+            46.2639877
+          ],
+          [
+            20.1645705,
+            46.2639809
+          ],
+          [
+            20.1645548,
+            46.2639723
+          ],
+          [
+            20.1645415,
+            46.2639619
+          ],
+          [
+            20.1645282,
+            46.2639465
+          ],
+          [
+            20.16452,
+            46.2639296
+          ],
+          [
+            20.1645172,
+            46.2639119
+          ],
+          [
+            20.1645212,
+            46.2638903
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1365680703",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1365680703,
+          "url": "https://www.openstreetmap.org/way/1365680703",
+          "nodeRefs": [
+            6109391523,
+            14268864580,
+            6109391519,
+            14268864581,
+            6109391529,
+            14268864582,
+            6109391520
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2026-10-09 19:13:17+00:00",
+          "tags": {
+            "cycleway:left": "no",
+            "cycleway:right": "shared_lane",
+            "cycleway:right:lane": "pictogram",
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Szilléri sugárút",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1647565,
+            46.2639281
+          ],
+          [
+            20.1647483,
+            46.2639459
+          ],
+          [
+            20.1647352,
+            46.2639614
+          ],
+          [
+            20.1647202,
+            46.2639729
+          ],
+          [
+            20.1646963,
+            46.2639849
+          ],
+          [
+            20.1646751,
+            46.2639912
+          ],
+          [
+            20.1646627,
+            46.2639935
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1365680704",
+      "properties": {
+        "name": "Szilléri sugárút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1365680704,
+          "url": "https://www.openstreetmap.org/way/1365680704",
+          "nodeRefs": [
+            6109391527,
+            14268864588,
+            6109391526,
+            14268864589,
+            6109391528,
+            14268864590,
+            6109391525,
+            14268864591,
+            6109391516
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2026-10-09 19:13:17+00:00",
+          "tags": {
+            "cycleway:left": "no",
+            "cycleway:right": "shared_lane",
+            "cycleway:right:lane": "pictogram",
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Szilléri sugárút",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1645212,
+            46.2638903
+          ],
+          [
+            20.1645269,
+            46.2638788
+          ],
+          [
+            20.1645353,
+            46.2638677
+          ],
+          [
+            20.1645476,
+            46.2638563
+          ],
+          [
+            20.1645625,
+            46.2638464
+          ],
+          [
+            20.1645797,
+            46.2638385
+          ],
+          [
+            20.1645986,
+            46.2638327
+          ],
+          [
+            20.1646186,
+            46.2638292
+          ],
+          [
+            20.1646496,
+            46.2638285
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1566898432",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1566898432,
+          "url": "https://www.openstreetmap.org/way/1566898432",
+          "nodeRefs": [
+            14268908418,
+            14268908419
+          ],
+          "objectVersion": 1,
+          "objectTimestamp": "2026-10-09 19:40:59+00:00",
+          "tags": {
+            "highway": "path"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.164369,
+            46.2765045
+          ],
+          [
+            20.1646289,
+            46.2767396
+          ]
+        ]
+      }
+    }
+  ]
+}

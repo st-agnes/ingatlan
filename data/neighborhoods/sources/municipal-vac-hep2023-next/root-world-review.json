@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "root independent geometry and source review",
+  "accepted": true,
+  "featureCount": 1,
+  "primaryAdmissions": 0,
+  "checkedAt": "2026-11-14",
+  "checks": {
+    "actualNativeAndPhysicalControlPanelsVisuallyReviewed": true,
+    "threeLiteralRoadRailAnalyticIntersectionsIndependentlyRecomputed": true,
+    "affineIndependentlyRefitted": true,
+    "all33ManualTraceVerticesMappedWithoutAlteration": true,
+    "concaveNorthwestNotchRetained": true,
+    "wholeCandidateInVac": true,
+    "sameNamePointOutsideDistanceIndependentlyRecomputedM": 8.241715275293803,
+    "pointNotUsedForFitOrTraceAdjustment": true,
+    "fullyOutsideControlTriangleExplicit": true,
+    "negativeApprovalGuards": true
+  },
+  "limits": [
+    "Manual dashed-centerline trace and dash-gap interpolation are estimates; native source has431×523pixels.",
+    "Three controls exactly determine an affine transform; zero residual is algebraic and there are no independent holdouts.",
+    "Map year and current whole-quarter extent are unknown; full southern extrapolation and sensitivity variants do not provide accuracy bounds.",
+    "Rejected convex scout/Kisderecske and all24placement variants remain unadmitted."
+  ],
+  "pinnedInputs": {
+    "marialiget-estimated-proposal.geojson": "39f809aa0443eb0bba84d4f8ca4e11520a3dddb6df29ab1a18517066c262c7ab",
+    "native-contour-traces.json": "fcbd41b0092cffcc0328bc8da560d391a453b69e89c7f496534a161f43540ede",
+    "registration-control-specification.json": "a806ef7add269a44069aaafdffcfcdf900d950636297db6aa844b3b2367012f1",
+    "registration-proof.json": "e3f942da1d64f58eb9c4029dc89cb663ce53122a39fb50dba955bd73fd4f0ad3",
+    "proposal-review.json": "77acbf055936bc7314b49afa46b0655a08c5169d9bac0da3192ac03db8f85afc"
+  }
+}

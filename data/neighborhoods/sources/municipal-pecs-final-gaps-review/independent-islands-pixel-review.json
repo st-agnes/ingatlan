@@ -1,0 +1,898 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "status": "raw_pixel_arithmetic_passes_whole_footprint_certification_withheld",
+  "reviewScope": "Independent whole-image source-pixel BFS and exact face audit for three isolated original Figure9 fine units. No author extractor imported/invoked.",
+  "sourceImage": {
+    "path": "../municipal-pecs-remaining-next/pecs-p48-names.jpeg",
+    "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8",
+    "width": 585,
+    "height": 514
+  },
+  "authorOutputInput": {
+    "path": "islands-source-pixel-candidates.json",
+    "sha256": "13beb844a206434a07ddf4e7599ce6a74cb3dc86ce27e3f6ef88e8de3c753116"
+  },
+  "sourceMask": "((min(R,B)-G>=25) and (B-R>=-30)) or (max(R,G,B)<170)",
+  "connectivity": 4,
+  "independentMethod": "Python stack BFS over full original image with direct PIL pixel values; exact oriented square-pixel face cancellation and ring walking. Author output geometry is independently expanded to unit faces. No Shapely, morphology, fill, closing, repair, snap, crop closure or geographic transform.",
+  "authorExtractorImportedOrInvoked": false,
+  "records": [
+    {
+      "sourceName": "Árpádtető",
+      "sourceInteriorSeedPixel": [
+        325,
+        82
+      ],
+      "sourceLabelAnchorPixel": [
+        343,
+        80
+      ],
+      "includedSourcePixelCount": 134,
+      "sourcePixelCenterBounds": [
+        319,
+        75,
+        330,
+        90
+      ],
+      "pixelSetSha256": "9b97d372f89a1f7fe187918b8f2c056c2051e9aedfc9b7e0c472904d48e48063",
+      "allIncludedPixelsPassExplicitMask": true,
+      "allOutgoingFacesHaveUnselectedOppositePixel": true,
+      "outgoingFaceCount": 58,
+      "ringCount": 1,
+      "ringSignedAreasPixelsSquared": [
+        134.0
+      ],
+      "externalPixelEdgeRing": [
+        [
+          318.5,
+          78.5
+        ],
+        [
+          319.5,
+          78.5
+        ],
+        [
+          319.5,
+          77.5
+        ],
+        [
+          320.5,
+          77.5
+        ],
+        [
+          320.5,
+          76.5
+        ],
+        [
+          321.5,
+          76.5
+        ],
+        [
+          322.5,
+          76.5
+        ],
+        [
+          322.5,
+          75.5
+        ],
+        [
+          323.5,
+          75.5
+        ],
+        [
+          323.5,
+          74.5
+        ],
+        [
+          324.5,
+          74.5
+        ],
+        [
+          324.5,
+          75.5
+        ],
+        [
+          325.5,
+          75.5
+        ],
+        [
+          325.5,
+          76.5
+        ],
+        [
+          326.5,
+          76.5
+        ],
+        [
+          326.5,
+          77.5
+        ],
+        [
+          326.5,
+          78.5
+        ],
+        [
+          327.5,
+          78.5
+        ],
+        [
+          327.5,
+          79.5
+        ],
+        [
+          328.5,
+          79.5
+        ],
+        [
+          328.5,
+          80.5
+        ],
+        [
+          328.5,
+          81.5
+        ],
+        [
+          329.5,
+          81.5
+        ],
+        [
+          329.5,
+          82.5
+        ],
+        [
+          329.5,
+          83.5
+        ],
+        [
+          330.5,
+          83.5
+        ],
+        [
+          330.5,
+          84.5
+        ],
+        [
+          330.5,
+          85.5
+        ],
+        [
+          330.5,
+          86.5
+        ],
+        [
+          329.5,
+          86.5
+        ],
+        [
+          329.5,
+          87.5
+        ],
+        [
+          328.5,
+          87.5
+        ],
+        [
+          328.5,
+          88.5
+        ],
+        [
+          327.5,
+          88.5
+        ],
+        [
+          326.5,
+          88.5
+        ],
+        [
+          326.5,
+          89.5
+        ],
+        [
+          325.5,
+          89.5
+        ],
+        [
+          324.5,
+          89.5
+        ],
+        [
+          323.5,
+          89.5
+        ],
+        [
+          323.5,
+          90.5
+        ],
+        [
+          322.5,
+          90.5
+        ],
+        [
+          321.5,
+          90.5
+        ],
+        [
+          320.5,
+          90.5
+        ],
+        [
+          319.5,
+          90.5
+        ],
+        [
+          319.5,
+          89.5
+        ],
+        [
+          320.5,
+          89.5
+        ],
+        [
+          320.5,
+          88.5
+        ],
+        [
+          319.5,
+          88.5
+        ],
+        [
+          319.5,
+          87.5
+        ],
+        [
+          318.5,
+          87.5
+        ],
+        [
+          318.5,
+          86.5
+        ],
+        [
+          318.5,
+          85.5
+        ],
+        [
+          318.5,
+          84.5
+        ],
+        [
+          318.5,
+          83.5
+        ],
+        [
+          318.5,
+          82.5
+        ],
+        [
+          318.5,
+          81.5
+        ],
+        [
+          318.5,
+          80.5
+        ],
+        [
+          318.5,
+          79.5
+        ],
+        [
+          318.5,
+          78.5
+        ]
+      ],
+      "notAtImageEdge": true,
+      "authorRawPixelSetExactlyMatches": true,
+      "authorPixelGeometryExactlyMatchesAllUnitFaces": true,
+      "thresholdRenderingSensitivity": [
+        {
+          "darkThresholdExclusive": 150,
+          "rawPixelCount": 126,
+          "ringCount": 1,
+          "sourcePixelCenterBounds": [
+            319,
+            76,
+            330,
+            90
+          ],
+          "isGeographicErrorBound": false
+        },
+        {
+          "darkThresholdExclusive": 170,
+          "rawPixelCount": 134,
+          "ringCount": 1,
+          "sourcePixelCenterBounds": [
+            319,
+            75,
+            330,
+            90
+          ],
+          "isGeographicErrorBound": false
+        },
+        {
+          "darkThresholdExclusive": 190,
+          "rawPixelCount": 141,
+          "ringCount": 1,
+          "sourcePixelCenterBounds": [
+            318,
+            75,
+            331,
+            91
+          ],
+          "isGeographicErrorBound": false
+        }
+      ],
+      "sourceFineUnitIdentitySupported": true,
+      "sourceFineUnitIdentityMeaning": "Both original quarter maps depict the named complete isolated fine-unit island at this position; it is not a text glyph or generic land-use proxy. This does not certify that this threshold-selected subset is the complete island.",
+      "rawComponentArithmeticPassed": true,
+      "completeLiteralSourceContourCertified": false,
+      "approvedForNewInferredQuarterPolygon": false,
+      "geographicRegistrationEvaluated": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "specificCompletenessBlocker": "Mixed gray/color antialias pixels at the tiny outer stroke remain threshold-dependent. This audit confirms literal mask arithmetic, not a uniquely complete original outer boundary."
+    },
+    {
+      "sourceName": "Petőfi-akna",
+      "sourceInteriorSeedPixel": [
+        499,
+        25
+      ],
+      "sourceLabelAnchorPixel": [
+        515,
+        23
+      ],
+      "includedSourcePixelCount": 118,
+      "sourcePixelCenterBounds": [
+        493,
+        17,
+        504,
+        34
+      ],
+      "pixelSetSha256": "d10a61662a7ea668716218c2249e50a5912c865d845920881afe7be5e23eef53",
+      "allIncludedPixelsPassExplicitMask": true,
+      "allOutgoingFacesHaveUnselectedOppositePixel": true,
+      "outgoingFaceCount": 66,
+      "ringCount": 1,
+      "ringSignedAreasPixelsSquared": [
+        118.0
+      ],
+      "externalPixelEdgeRing": [
+        [
+          492.5,
+          21.5
+        ],
+        [
+          493.5,
+          21.5
+        ],
+        [
+          494.5,
+          21.5
+        ],
+        [
+          495.5,
+          21.5
+        ],
+        [
+          495.5,
+          20.5
+        ],
+        [
+          496.5,
+          20.5
+        ],
+        [
+          496.5,
+          19.5
+        ],
+        [
+          496.5,
+          18.5
+        ],
+        [
+          496.5,
+          17.5
+        ],
+        [
+          497.5,
+          17.5
+        ],
+        [
+          498.5,
+          17.5
+        ],
+        [
+          498.5,
+          16.5
+        ],
+        [
+          499.5,
+          16.5
+        ],
+        [
+          500.5,
+          16.5
+        ],
+        [
+          500.5,
+          17.5
+        ],
+        [
+          501.5,
+          17.5
+        ],
+        [
+          501.5,
+          18.5
+        ],
+        [
+          500.5,
+          18.5
+        ],
+        [
+          499.5,
+          18.5
+        ],
+        [
+          499.5,
+          19.5
+        ],
+        [
+          498.5,
+          19.5
+        ],
+        [
+          498.5,
+          20.5
+        ],
+        [
+          499.5,
+          20.5
+        ],
+        [
+          500.5,
+          20.5
+        ],
+        [
+          500.5,
+          21.5
+        ],
+        [
+          501.5,
+          21.5
+        ],
+        [
+          501.5,
+          22.5
+        ],
+        [
+          502.5,
+          22.5
+        ],
+        [
+          502.5,
+          23.5
+        ],
+        [
+          503.5,
+          23.5
+        ],
+        [
+          503.5,
+          24.5
+        ],
+        [
+          503.5,
+          25.5
+        ],
+        [
+          504.5,
+          25.5
+        ],
+        [
+          504.5,
+          26.5
+        ],
+        [
+          504.5,
+          27.5
+        ],
+        [
+          504.5,
+          28.5
+        ],
+        [
+          504.5,
+          29.5
+        ],
+        [
+          503.5,
+          29.5
+        ],
+        [
+          502.5,
+          29.5
+        ],
+        [
+          502.5,
+          30.5
+        ],
+        [
+          501.5,
+          30.5
+        ],
+        [
+          500.5,
+          30.5
+        ],
+        [
+          500.5,
+          31.5
+        ],
+        [
+          500.5,
+          32.5
+        ],
+        [
+          500.5,
+          33.5
+        ],
+        [
+          500.5,
+          34.5
+        ],
+        [
+          499.5,
+          34.5
+        ],
+        [
+          498.5,
+          34.5
+        ],
+        [
+          498.5,
+          33.5
+        ],
+        [
+          497.5,
+          33.5
+        ],
+        [
+          497.5,
+          32.5
+        ],
+        [
+          496.5,
+          32.5
+        ],
+        [
+          496.5,
+          31.5
+        ],
+        [
+          496.5,
+          30.5
+        ],
+        [
+          495.5,
+          30.5
+        ],
+        [
+          495.5,
+          29.5
+        ],
+        [
+          494.5,
+          29.5
+        ],
+        [
+          494.5,
+          28.5
+        ],
+        [
+          494.5,
+          27.5
+        ],
+        [
+          494.5,
+          26.5
+        ],
+        [
+          493.5,
+          26.5
+        ],
+        [
+          493.5,
+          25.5
+        ],
+        [
+          493.5,
+          24.5
+        ],
+        [
+          492.5,
+          24.5
+        ],
+        [
+          492.5,
+          23.5
+        ],
+        [
+          492.5,
+          22.5
+        ],
+        [
+          492.5,
+          21.5
+        ]
+      ],
+      "notAtImageEdge": true,
+      "authorRawPixelSetExactlyMatches": true,
+      "authorPixelGeometryExactlyMatchesAllUnitFaces": true,
+      "thresholdRenderingSensitivity": [
+        {
+          "darkThresholdExclusive": 150,
+          "rawPixelCount": 112,
+          "ringCount": 2,
+          "sourcePixelCenterBounds": [
+            493,
+            18,
+            504,
+            34
+          ],
+          "isGeographicErrorBound": false
+        },
+        {
+          "darkThresholdExclusive": 170,
+          "rawPixelCount": 118,
+          "ringCount": 1,
+          "sourcePixelCenterBounds": [
+            493,
+            17,
+            504,
+            34
+          ],
+          "isGeographicErrorBound": false
+        },
+        {
+          "darkThresholdExclusive": 190,
+          "rawPixelCount": 120,
+          "ringCount": 1,
+          "sourcePixelCenterBounds": [
+            493,
+            17,
+            504,
+            34
+          ],
+          "isGeographicErrorBound": false
+        }
+      ],
+      "sourceFineUnitIdentitySupported": true,
+      "sourceFineUnitIdentityMeaning": "Both original quarter maps depict the named complete isolated fine-unit island at this position; it is not a text glyph or generic land-use proxy. This does not certify that this threshold-selected subset is the complete island.",
+      "rawComponentArithmeticPassed": true,
+      "completeLiteralSourceContourCertified": false,
+      "approvedForNewInferredQuarterPolygon": false,
+      "geographicRegistrationEvaluated": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "specificCompletenessBlocker": "The pale northern cap pixels[500,19] RGB223/211/235 and[500,20] RGB234/217/251 are excluded at170and190, giving a visible notch. A valid one-ring component does not establish the whole mapped cap."
+    },
+    {
+      "sourceName": "M utca",
+      "sourceInteriorSeedPixel": [
+        501,
+        42
+      ],
+      "sourceLabelAnchorPixel": [
+        514,
+        43
+      ],
+      "includedSourcePixelCount": 31,
+      "sourcePixelCenterBounds": [
+        498,
+        38,
+        503,
+        46
+      ],
+      "pixelSetSha256": "2cb5c00fcfa76bead388341e857b02af8ffabc44bf8d21ad13a517ca25dff6d8",
+      "allIncludedPixelsPassExplicitMask": true,
+      "allOutgoingFacesHaveUnselectedOppositePixel": true,
+      "outgoingFaceCount": 30,
+      "ringCount": 1,
+      "ringSignedAreasPixelsSquared": [
+        31.0
+      ],
+      "externalPixelEdgeRing": [
+        [
+          497.5,
+          37.5
+        ],
+        [
+          498.5,
+          37.5
+        ],
+        [
+          499.5,
+          37.5
+        ],
+        [
+          500.5,
+          37.5
+        ],
+        [
+          501.5,
+          37.5
+        ],
+        [
+          501.5,
+          38.5
+        ],
+        [
+          502.5,
+          38.5
+        ],
+        [
+          502.5,
+          39.5
+        ],
+        [
+          502.5,
+          40.5
+        ],
+        [
+          502.5,
+          41.5
+        ],
+        [
+          502.5,
+          42.5
+        ],
+        [
+          502.5,
+          43.5
+        ],
+        [
+          502.5,
+          44.5
+        ],
+        [
+          503.5,
+          44.5
+        ],
+        [
+          503.5,
+          45.5
+        ],
+        [
+          503.5,
+          46.5
+        ],
+        [
+          502.5,
+          46.5
+        ],
+        [
+          501.5,
+          46.5
+        ],
+        [
+          500.5,
+          46.5
+        ],
+        [
+          500.5,
+          45.5
+        ],
+        [
+          500.5,
+          44.5
+        ],
+        [
+          500.5,
+          43.5
+        ],
+        [
+          500.5,
+          42.5
+        ],
+        [
+          499.5,
+          42.5
+        ],
+        [
+          498.5,
+          42.5
+        ],
+        [
+          498.5,
+          41.5
+        ],
+        [
+          498.5,
+          40.5
+        ],
+        [
+          498.5,
+          39.5
+        ],
+        [
+          497.5,
+          39.5
+        ],
+        [
+          497.5,
+          38.5
+        ],
+        [
+          497.5,
+          37.5
+        ]
+      ],
+      "notAtImageEdge": true,
+      "authorRawPixelSetExactlyMatches": true,
+      "authorPixelGeometryExactlyMatchesAllUnitFaces": true,
+      "thresholdRenderingSensitivity": [
+        {
+          "darkThresholdExclusive": 150,
+          "rawPixelCount": 29,
+          "ringCount": 2,
+          "sourcePixelCenterBounds": [
+            498,
+            38,
+            503,
+            46
+          ],
+          "isGeographicErrorBound": false
+        },
+        {
+          "darkThresholdExclusive": 170,
+          "rawPixelCount": 31,
+          "ringCount": 1,
+          "sourcePixelCenterBounds": [
+            498,
+            38,
+            503,
+            46
+          ],
+          "isGeographicErrorBound": false
+        },
+        {
+          "darkThresholdExclusive": 190,
+          "rawPixelCount": 34,
+          "ringCount": 1,
+          "sourcePixelCenterBounds": [
+            498,
+            38,
+            504,
+            46
+          ],
+          "isGeographicErrorBound": false
+        }
+      ],
+      "sourceFineUnitIdentitySupported": true,
+      "sourceFineUnitIdentityMeaning": "Both original quarter maps depict the named complete isolated fine-unit island at this position; it is not a text glyph or generic land-use proxy. This does not certify that this threshold-selected subset is the complete island.",
+      "rawComponentArithmeticPassed": true,
+      "completeLiteralSourceContourCertified": false,
+      "approvedForNewInferredQuarterPolygon": false,
+      "geographicRegistrationEvaluated": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "specificCompletenessBlocker": "Mixed gray/color antialias pixels at the tiny outer stroke remain threshold-dependent. This audit confirms literal mask arithmetic, not a uniquely complete original outer boundary."
+    }
+  ],
+  "sourcePixelCandidates": 3,
+  "newApprovedWholeFootprints": 0,
+  "source9NegativeOtherNames": [
+    "Murom",
+    "Köztemető"
+  ],
+  "otherNameEvidence": "murom-cemetery-source9-continuity-review.json",
+  "thresholdSensitivityMeaning": "150/190 are alternate literal raster classifications, not geographic uncertainty,error radii,probability or alternate geographic fits.170includes actual observed gray pixels directly; no pixel is fabricated or filled.",
+  "georeferenceModelApproved": false,
+  "automaticPrimaryApproval": false,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false,
+  "newWorldGeometriesCreated": 0,
+  "networkUsed": false
+}

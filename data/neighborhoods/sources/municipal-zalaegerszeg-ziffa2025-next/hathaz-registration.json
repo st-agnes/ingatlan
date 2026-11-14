@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_approximate_estimated_registration",
+  "sourceImage": "p141-xref778.jpeg",
+  "sourcePixelSpace": "native image pixel corner coordinates, x right / y down",
+  "worldCrs": "EPSG:23700 EOV; inverse projected to WGS84",
+  "model": "Four-parameter similarity with reflected pixel-y; no shear. Six manually picked actual road junction/gray building footprint correspondences.",
+  "sourcePointControlsUsed": false,
+  "controls": [
+    {
+      "id": "road_hathazi_vad",
+      "pixel": [
+        141,
+        181
+      ],
+      "wgs84": [
+        16.7931309,
+        46.8893538
+      ],
+      "eov": [
+        478224.75903870823,
+        174158.30761393215
+      ],
+      "osmFeatureId": null,
+      "observedFeature": "Road-center junction, Hatházi utca / Vad utca; original shared node of ways1274060195 and1162939331.",
+      "sourcePixelPickingIsManual": true,
+      "sourcePixelUncertaintyApproximate": 2,
+      "usedAsNamePoint": false,
+      "fitResidualMetres": 4.643641473224334
+    },
+    {
+      "id": "road_turnaround_upper_join",
+      "pixel": [
+        143,
+        337
+      ],
+      "wgs84": [
+        16.793315,
+        46.8863964
+      ],
+      "eov": [
+        478229.2995049286,
+        173829.28815604246
+      ],
+      "osmFeatureId": null,
+      "observedFeature": "Road-center northern join of bus-turnaround service way1162939310 and Hatházi utca.",
+      "sourcePixelPickingIsManual": true,
+      "sourcePixelUncertaintyApproximate": 2,
+      "usedAsNamePoint": false,
+      "fitResidualMetres": 2.4818011298893623
+    },
+    {
+      "id": "building47",
+      "pixel": [
+        146,
+        87.2
+      ],
+      "wgs84": [
+        16.793270574031297,
+        46.891149346348016
+      ],
+      "eov": [
+        478241.1569700076,
+        174357.51466183708
+      ],
+      "osmFeatureId": "osm:way:446978744",
+      "observedFeature": "Centroid of visible simple gray rectangular house footprint, east of main road, immediately north of western northward step.",
+      "sourcePixelPickingIsManual": true,
+      "sourcePixelUncertaintyApproximate": 2,
+      "usedAsNamePoint": false,
+      "fitResidualMetres": 0.21895152413012786
+    },
+    {
+      "id": "building34",
+      "pixel": [
+        126.5,
+        141.2
+      ],
+      "wgs84": [
+        16.792800185339818,
+        46.890115949893215
+      ],
+      "eov": [
+        478202.0108443765,
+        174243.7218928093
+      ],
+      "osmFeatureId": "osm:way:446978798",
+      "observedFeature": "Centroid of L-shaped western house footprint aligned with eastern house35.",
+      "sourcePixelPickingIsManual": true,
+      "sourcePixelUncertaintyApproximate": 2,
+      "usedAsNamePoint": false,
+      "fitResidualMetres": 2.864510520447322
+    },
+    {
+      "id": "building19",
+      "pixel": [
+        148.5,
+        237.8
+      ],
+      "wgs84": [
+        16.79342961508606,
+        46.88830912474195
+      ],
+      "eov": [
+        478244.16434575396,
+        174041.57065773886
+      ],
+      "osmFeatureId": "osm:way:446978745",
+      "observedFeature": "Centroid of eastern rectangular house footprint in first paired row south of broad central open space.",
+      "sourcePixelPickingIsManual": true,
+      "sourcePixelUncertaintyApproximate": 2,
+      "usedAsNamePoint": false,
+      "fitResidualMetres": 1.8155990949197376
+    },
+    {
+      "id": "building5",
+      "pixel": [
+        148.5,
+        304.5
+      ],
+      "wgs84": [
+        16.793520716260417,
+        46.8870357670355
+      ],
+      "eov": [
+        478247.0212929569,
+        173899.87985727086
+      ],
+      "osmFeatureId": "osm:way:446978777",
+      "observedFeature": "Centroid of eastern tall rectangular house footprint, third house-row north of turnaround.",
+      "sourcePixelPickingIsManual": true,
+      "sourcePixelUncertaintyApproximate": 2,
+      "usedAsNamePoint": false,
+      "fitResidualMetres": 3.693489648358938
+    }
+  ],
+  "holdoutChecks": [
+    {
+      "id": "road_northern_westtrack_join",
+      "pixel": [
+        140,
+        89
+      ],
+      "wgs84": [
+        16.7930263,
+        46.8910831
+      ],
+      "observedFeature": "Hatházi utca / westward field-track junction, independent reviewer proposed; not used in fit.",
+      "sourcePixelPickingIsManual": true,
+      "residualMetres": 6.666312620507486
+    },
+    {
+      "id": "road_westtrack_endpoint",
+      "pixel": [
+        33,
+        79
+      ],
+      "wgs84": [
+        16.7900598,
+        46.8912379
+      ],
+      "observedFeature": "Off-axis endpoint of western field track, independent reviewer proposed; not used in fit.",
+      "sourcePixelPickingIsManual": true,
+      "residualMetres": 6.163506414141626
+    },
+    {
+      "id": "road_turnaround_lower_join",
+      "pixel": [
+        143,
+        355
+      ],
+      "wgs84": [
+        16.7933341,
+        46.8860694
+      ],
+      "observedFeature": "Southern bus-turnaround join; not used in fit.",
+      "sourcePixelPickingIsManual": true,
+      "residualMetres": 1.468933676384171
+    },
+    {
+      "id": "building22",
+      "pixel": [
+        129,
+        237
+      ],
+      "wgs84": [
+        16.792929375306095,
+        46.88830730301989
+      ],
+      "observedFeature": "Western rectangular house footprint in paired row south of central open space; not used in fit.",
+      "sourcePixelPickingIsManual": true,
+      "residualMetres": 2.9824439206834477
+    },
+    {
+      "id": "building35",
+      "pixel": [
+        148.5,
+        141.3
+      ],
+      "wgs84": [
+        16.79339005,
+        46.8901266
+      ],
+      "observedFeature": "Eastern rectangular house footprint opposite L-shaped house34; not used in fit.",
+      "sourcePixelPickingIsManual": true,
+      "residualMetres": 1.4766589406421875
+    },
+    {
+      "id": "building20",
+      "pixel": [
+        130,
+        267
+      ],
+      "wgs84": [
+        16.792960200000003,
+        46.887721600000006
+      ],
+      "observedFeature": "Western rectangular house footprint north of green kataszter area; not used in fit.",
+      "sourcePixelPickingIsManual": true,
+      "residualMetres": 1.9703339792533459
+    }
+  ],
+  "pixelToEovMatrix": [
+    [
+      2.108908082781134,
+      -0.01304619087350775
+    ],
+    [
+      -0.01304619087350775,
+      -2.108908082781134
+    ]
+  ],
+  "pixelToEovOffset": [
+    477934.2119299039,
+    174543.19460195253
+  ],
+  "scaleMetresPerSourcePixel": 2.108948435765063,
+  "fitRmsMetres": 2.969690475673895,
+  "fitResidualMeaning": "Internal manual correspondence consistency only; neither independent survey accuracy nor an absolute uncertainty bound. Buildings and roads are current OSM references compared to a 2025 raster backdrop of unknown age.",
+  "claimedAbsoluteAccuracyMetres": null,
+  "georeferencingIsApproximate": true,
+  "estimatedPlacement": true,
+  "roadOnlyAlternative": {
+    "pixelToEovMatrix": [
+      [
+        2.1091255696730222,
+        0.002065481193901697
+      ],
+      [
+        0.002065481193901697,
+        -2.1091255696730222
+      ]
+    ],
+    "pixelToEovOffset": [
+      477926.9984812971,
+      174539.76810916374
+    ],
+    "controlIds": [
+      "road_hathazi_vad",
+      "road_turnaround_upper_join"
+    ],
+    "meaning": "Equally plausible preliminary placement using only two actual roadway junctions; exact fit has zero degrees of freedom and does not measure accuracy."
+  },
+  "uncertainties": [
+    "Native map is355×451pixels; observed black band1–2pixels wide, and source picking approximate2pixels.",
+    "Unknown background age, projection, datum and cartographic generalization; source method does not establish cadastral/legal status.",
+    "Sparse road junctions are close to a north-south line; isotropic similarity assumption is not an independently demonstrated source projection.",
+    "Recorded control and holdout residuals are comparison diagnostics and must not be stated as metre accuracy."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "kecskemet-offline-next",
+  "path": "data/neighborhoods/sources/municipal-offline-next/kecskemet-next.geojson",
+  "sha256": "da90ced61c34c7a1b2b142daf46f8937cce7f00cb0932e9685fc32ce2b3ef05b",
+  "municipality": "Kecskemét",
+  "method": "Municipal source-map-corroborated actual OSM street circuits with exact consecutive-node edges.",
+  "evidenceUrls": [
+    "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+  ],
+  "license": "ODbL-1.0",
+  "propertyOverrides": {
+    "boundaryKind": "neighbourhood",
+    "canonicalNameIsNeighborhood": true,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-offline-next/trace-proof.json",
+  "rightsStatus": "OSM road geometry ODbL-1.0; municipal illustration/document reuse rights not independently established."
+}

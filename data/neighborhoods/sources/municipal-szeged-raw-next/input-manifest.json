@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_selected_native_maps_source_cells_actual_roads_and_four_geographic_estimates",
+  "originalsOutsidePublicPacket": [
+    {
+      "id": "henits2013",
+      "url": "https://doktori.bibl.u-szeged.hu/id/eprint/1759/1/doktori_HL.pdf",
+      "localOriginal": ".local/neighborhoods/quarter-map-batch/szeged-henits-ksh-map-2013.pdf",
+      "sha256": "b490214f9f038afe38fb1c74e24c0d5b99aeb04e54f192c417b06018363b3d0f",
+      "fullRawOriginalStaysLocal": true
+    },
+    {
+      "id": "ksh2014",
+      "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/pdf/muhelytanulmanyok4.pdf",
+      "localOriginal": ".local/neighborhoods/quarter-map-batch/ksh-szeged-map-2014.pdf",
+      "sha256": "9a61caa7d022e0d623bd78f21ce8d8953fa7e47f49ba48be5c18b13c44286995",
+      "fullRawOriginalStaysLocal": true
+    },
+    {
+      "id": "kleb2007",
+      "url": "https://www.klebelsberg-egyesulet.hu/wp-content/uploads/2016/04/helytortenet.pdf",
+      "localOriginal": ".local/neighborhoods/quarter-map-batch/klebelsberg-history-2007.pdf",
+      "sha256": "aa6b8466ea597f604691f6b4def6104b68e000a6348cb85c1f2ec47e33d136f3",
+      "fullRawOriginalStaysLocal": true
+    }
+  ],
+  "selectedInputs": [
+    {
+      "path": "henits-p24-xref249.jpeg",
+      "sha256": "e3ba7c2ba2d955fbf0ae08c847edba5502ce90d776a649819b33a26f51323c6e"
+    },
+    {
+      "path": "ksh-p54-map-assembled.png",
+      "sha256": "56585d091db293434df406d3d75eeb563328faf47d4dbf50697e2d4253d20649"
+    },
+    {
+      "path": "source-map-only.pdf",
+      "sha256": "4e0f5625e56e60170e951834dfe68502fb26aac6ca10f071da45e737d11a2960"
+    },
+    {
+      "path": "source-page-facts.json",
+      "sha256": "985f8546543615c629877f5de5e40863fd2882a9833e9ac0e8754b7bc983db30"
+    },
+    {
+      "path": "henits-five-black50-source-pixels-working.geojson",
+      "sha256": "ef5398a0d32bad5586acb7f0b222797a184988896f8866f890c9aae526ee7f45"
+    },
+    {
+      "path": "henits-five-black60-source-pixels-working.geojson",
+      "sha256": "1788910d7cbbba8115f75527bf08544a20e86874d4ed889e6bf01531ad9577e9"
+    },
+    {
+      "path": "henits-five-black70-source-pixels-working.geojson",
+      "sha256": "60fc2fbac023aadae4ad09a8ccbf14d581eade17228d57b48f137bf2619fc4aa"
+    },
+    {
+      "path": "registration-road-controls.geojson",
+      "sha256": "6884fe93171860fcc94a879b27e202969a22732d8d0ecd7de328c02cbc1fdd04"
+    },
+    {
+      "path": "registration.json",
+      "sha256": "042bf4088192d2bde038722069df31f6c2341867f325965bc1a5055b7f883763"
+    },
+    {
+      "path": "current-name-evidence.geojson",
+      "sha256": "8d3cf6a65e484abf9ef40ed7af7f50949e9790fac0e18a649a4e7b6e39e2aa8e"
+    }
+  ],
+  "referenceOnlyFiles": {
+    "municipality-check-reference.geojson": "Actual archived current OSM municipality for containment QA, never a candidate geometry.",
+    "prior-szeged-comparison-reference.geojson": "Frozen Tarján primary/Felsőváros planning geometries for identity/overlap QA only, never additional candidates."
+  },
+  "pbfProvenance": {
+    "path": ".local/neighborhoods/hungary-latest.osm.pbf",
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "osmSnapshotTimestamp": "2026-11-12T21:23:05Z",
+    "packaged": false,
+    "completeRoadControlWays": 23,
+    "originalControlNodes": 66,
+    "originalCoordinateOccurrences": 83
+  },
+  "export": "szeged-four-inferred-import.geojson",
+  "exportSha256": "098f2b9aa742f74113a745a5793733a458e788e34e1b28f025b2859cabf8ab1d",
+  "featureCount": 4,
+  "estimated": true,
+  "canonicalNameIsNeighborhood": false,
+  "sourceContourObserved": true,
+  "estimatedContour": false,
+  "estimatedPlacement": true,
+  "absoluteAccuracyMetres": null,
+  "currentFullQuarterBoundaryClaim": false,
+  "sourceNamePointsUsedForFit": false,
+  "globalAdmissionPerformedByThisBatch": false,
+  "selfContainedSelectedArtifactCheck": "PYTHONPATH=.local/geodata python data/neighborhoods/sources/municipal-szeged-raw-next/reproduce.py --check",
+  "optionalFullOriginalProvenanceCheck": "python data/neighborhoods/sources/municipal-szeged-raw-next/prepare-source-evidence.py --check",
+  "optionalNationalPbfCheck": "PYTHONPATH=.local/geodata python data/neighborhoods/sources/municipal-szeged-raw-next/review-henits-road-pbf-working.py"
+}

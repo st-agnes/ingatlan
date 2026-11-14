@@ -1,0 +1,582 @@
+{
+  "schemaVersion": 1,
+  "sourceDocuments": [
+    {
+      "url": "https://gyor.hu/easy-docs/5dc9829cb6d4c",
+      "path": "data/neighborhoods/sources/municipal-gyor-next/gyor-its.source.pdf",
+      "sha256": "40f318435f5719cb5a06b253d6e15fbd5acc7d5a6bec53fc38ae1e199b6ca21d",
+      "documentDate": "2014-01",
+      "depictedDivisionYear": 2006,
+      "printedMapPage": 269,
+      "pdfPageZeroBased": 268,
+      "figure": 97,
+      "printedQuarterCircuitTablePages": [
+        271,
+        272
+      ]
+    }
+  ],
+  "method": "Actual closed blue PDF vector path from figure97 of the January2014 Győr ITS, showing the2006 division; affine registration to EPSG:23700 by robust closest-point alignment of actual OPEN black source-stroke endpoints to the current OSM municipal exterior; vertexwise inverse projection to WGS84. No outline repair, clipping, snapping, synthetic closing edge or physical-boundary inference. Explicit source-defined circuit aggregation, where used, is recorded per feature.",
+  "featureCount": 17,
+  "quarterCandidates": 16,
+  "historicalPlanningCandidates": 1,
+  "nationwideCoverageComplete": false,
+  "municipalityQuarterCoverageComplete": false,
+  "sourcePaths": {
+    "path": "data/neighborhoods/sources/municipal-gyor-next/original-pdf-paths.json",
+    "sha256": "9e21383d4a236ad7cf68a587b26e178d5c7373743e3c740f279bc22051162f18"
+  },
+  "registration": {
+    "path": "data/neighborhoods/sources/municipal-gyor-next/registration.json",
+    "sha256": "0ea4a456897cd8cd5e80763959395958f7bd7161aa78112ba5eef063f3bc20a3"
+  },
+  "independentReview": {
+    "path": "data/neighborhoods/sources/municipal-gyor-next/independent-review.json",
+    "sha256": "d11e2c723adc658b056f16fabedb1ee31ff18036ecebe928a98d53ab61686ee8",
+    "scope": "Source classification, original path validity and current point-name placement; no independent interior boundary survey."
+  },
+  "actualNamePointSource": {
+    "path": "data/neighborhoods/sources/municipal-gyor-next/name-control-points.geojson",
+    "sha256": "fa4bab01550bf782bd026ce94baf452db4783eed555444e01f9633cad08967a4",
+    "sourceGeometriesUnchanged": true,
+    "independentBoundaryEvidence": false
+  },
+  "selectionMeaning": "Eleven single-component source table quarters and five explicitly source-defined circuit groups; Kisbácsa is separated as a historical planning extent.",
+  "notSelected": {
+    "invalidBlueDrawingIndices": [
+      76,
+      79,
+      94
+    ],
+    "otherPaths": "Remaining unselected source circuits require separate named-quarter assembly/classification. No aggregation or guessed assignment of those remaining circuits was performed."
+  },
+  "features": [
+    {
+      "id": "manual:gyor:source-circuit-1",
+      "name": "Belváros",
+      "sourceCircuitNumber": 1,
+      "boundaryKind": "neighbourhood",
+      "drawingIndex": 92,
+      "sourceCoordinateCount": 258,
+      "outputCoordinateCount": 258,
+      "sourceExplicitlyClosed": true,
+      "noSourceVerticesRemoved": true,
+      "noSourceVerticesAdded": true,
+      "sourceValid": true,
+      "outputValid": true,
+      "areaM2": 1370608.3727130452,
+      "currentMunicipalityContainedFraction": 0.9999999999999987,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-circuit-12",
+      "name": "Sziget",
+      "sourceCircuitNumber": 12,
+      "boundaryKind": "neighbourhood",
+      "drawingIndex": 93,
+      "sourceCoordinateCount": 218,
+      "outputCoordinateCount": 218,
+      "sourceExplicitlyClosed": true,
+      "noSourceVerticesRemoved": true,
+      "noSourceVerticesAdded": true,
+      "sourceValid": true,
+      "outputValid": true,
+      "areaM2": 732929.5159195061,
+      "currentMunicipalityContainedFraction": 1.0000000000000009,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-circuit-18",
+      "name": "Pinnyéd",
+      "sourceCircuitNumber": 18,
+      "boundaryKind": "neighbourhood",
+      "drawingIndex": 97,
+      "sourceCoordinateCount": 227,
+      "outputCoordinateCount": 227,
+      "sourceExplicitlyClosed": true,
+      "noSourceVerticesRemoved": true,
+      "noSourceVerticesAdded": true,
+      "sourceValid": true,
+      "outputValid": true,
+      "areaM2": 1229530.5399285618,
+      "currentMunicipalityContainedFraction": 0.9999999999999998,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-circuit-19",
+      "name": "Kisbácsa – 2006-os tervezési kiterjedés",
+      "sourceCircuitNumber": 19,
+      "boundaryKind": "planning_unit",
+      "drawingIndex": 44,
+      "sourceCoordinateCount": 199,
+      "outputCoordinateCount": 199,
+      "sourceExplicitlyClosed": true,
+      "noSourceVerticesRemoved": true,
+      "noSourceVerticesAdded": true,
+      "sourceValid": true,
+      "outputValid": true,
+      "areaM2": 1575773.2981696276,
+      "currentMunicipalityContainedFraction": 0.9429886345662295,
+      "outsideCurrentMunicipalityAreaM2": 89836.98734272763,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-circuit-20",
+      "name": "Bácsa",
+      "sourceCircuitNumber": 20,
+      "boundaryKind": "neighbourhood",
+      "drawingIndex": 43,
+      "sourceCoordinateCount": 187,
+      "outputCoordinateCount": 187,
+      "sourceExplicitlyClosed": true,
+      "noSourceVerticesRemoved": true,
+      "noSourceVerticesAdded": true,
+      "sourceValid": true,
+      "outputValid": true,
+      "areaM2": 961191.4697159072,
+      "currentMunicipalityContainedFraction": 0.9999999999999999,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-circuit-26",
+      "name": "Sárás",
+      "sourceCircuitNumber": 26,
+      "boundaryKind": "neighbourhood",
+      "drawingIndex": 31,
+      "sourceCoordinateCount": 68,
+      "outputCoordinateCount": 68,
+      "sourceExplicitlyClosed": true,
+      "noSourceVerticesRemoved": true,
+      "noSourceVerticesAdded": true,
+      "sourceValid": true,
+      "outputValid": true,
+      "areaM2": 346940.4454651866,
+      "currentMunicipalityContainedFraction": 0.9902697076894347,
+      "outsideCurrentMunicipalityAreaM2": 3375.8319487324716,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-circuit-21",
+      "name": "Likócs",
+      "sourceCircuitNumber": 21,
+      "boundaryKind": "neighbourhood",
+      "drawingIndex": 86,
+      "sourceCoordinateCount": 143,
+      "outputCoordinateCount": 143,
+      "sourceExplicitlyClosed": true,
+      "noSourceVerticesRemoved": true,
+      "noSourceVerticesAdded": true,
+      "sourceValid": true,
+      "outputValid": true,
+      "areaM2": 756926.5079720238,
+      "currentMunicipalityContainedFraction": 0.9999999999999997,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-circuit-37",
+      "name": "Rabkert",
+      "sourceCircuitNumber": 37,
+      "boundaryKind": "neighbourhood",
+      "drawingIndex": 27,
+      "sourceCoordinateCount": 91,
+      "outputCoordinateCount": 91,
+      "sourceExplicitlyClosed": true,
+      "noSourceVerticesRemoved": true,
+      "noSourceVerticesAdded": true,
+      "sourceValid": true,
+      "outputValid": true,
+      "areaM2": 270776.8198652264,
+      "currentMunicipalityContainedFraction": 0.9999999999999996,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-circuit-27",
+      "name": "Góré-dűlő",
+      "sourceCircuitNumber": 27,
+      "boundaryKind": "neighbourhood",
+      "drawingIndex": 30,
+      "sourceCoordinateCount": 150,
+      "outputCoordinateCount": 150,
+      "sourceExplicitlyClosed": true,
+      "noSourceVerticesRemoved": true,
+      "noSourceVerticesAdded": true,
+      "sourceValid": true,
+      "outputValid": true,
+      "areaM2": 932968.9494041853,
+      "currentMunicipalityContainedFraction": 0.9999999999999999,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-circuit-7",
+      "name": "Adyváros",
+      "sourceCircuitNumber": 7,
+      "boundaryKind": "neighbourhood",
+      "drawingIndex": 83,
+      "sourceCoordinateCount": 114,
+      "outputCoordinateCount": 114,
+      "sourceExplicitlyClosed": true,
+      "noSourceVerticesRemoved": true,
+      "noSourceVerticesAdded": true,
+      "sourceValid": true,
+      "outputValid": true,
+      "areaM2": 831339.948156121,
+      "currentMunicipalityContainedFraction": 1.0000000000000007,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-circuit-22",
+      "name": "Kismegyer",
+      "sourceCircuitNumber": 22,
+      "boundaryKind": "neighbourhood",
+      "drawingIndex": 73,
+      "sourceCoordinateCount": 235,
+      "outputCoordinateCount": 235,
+      "sourceExplicitlyClosed": true,
+      "noSourceVerticesRemoved": true,
+      "noSourceVerticesAdded": true,
+      "sourceValid": true,
+      "outputValid": true,
+      "areaM2": 1496591.9751814331,
+      "currentMunicipalityContainedFraction": 1.0000000000000002,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-circuit-24",
+      "name": "Gyirmót",
+      "sourceCircuitNumber": 24,
+      "boundaryKind": "neighbourhood",
+      "drawingIndex": 28,
+      "sourceCoordinateCount": 213,
+      "outputCoordinateCount": 213,
+      "sourceExplicitlyClosed": true,
+      "noSourceVerticesRemoved": true,
+      "noSourceVerticesAdded": true,
+      "sourceValid": true,
+      "outputValid": true,
+      "areaM2": 2042897.434798308,
+      "currentMunicipalityContainedFraction": 1.0000000000000007,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-quarter-group-6-13",
+      "name": "Révfalu",
+      "boundaryKind": "neighbourhood",
+      "sourceComponents": [
+        {
+          "drawingIndex": 41,
+          "sourceCircuitNumber": 6,
+          "sourceCoordinateCount": 233,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        },
+        {
+          "drawingIndex": 90,
+          "sourceCircuitNumber": 13,
+          "sourceCoordinateCount": 253,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        }
+      ],
+      "aggregation": "Literal valid MultiPolygon of original closed valid source components; no set union needed.",
+      "allOriginalSourceComponentsValidAndExplicitlyClosed": true,
+      "literalMultiPolygonValid": true,
+      "outputEqualsExactSourceComponentSetUnion": true,
+      "sourceSpaceSymmetricDifferenceAreaPDFPoints2": 0.0,
+      "outputBoundaryCoveredByOriginalSourceEdges": true,
+      "sourceSpaceUncoveredBoundaryLengthPDFPoints": 0.0,
+      "componentSumAreaPDFPoints2": 517.5436215545051,
+      "unionAreaPDFPoints2": 517.5436215545051,
+      "sourceVerticesArchivedUnchanged": true,
+      "outputValid": true,
+      "areaM2": 3510525.4508090476,
+      "currentMunicipalityContainedFraction": 1.0000000000000004,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "actualCurrentNamePointControls": [
+        {
+          "id": "osm:node:982122870",
+          "name": "Révfalu",
+          "coordinates": [
+            17.6322402,
+            47.6994046
+          ],
+          "pointInsideDerivedOutline": true
+        }
+      ],
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-quarter-group-8-9-45",
+      "name": "Marcalváros",
+      "boundaryKind": "neighbourhood",
+      "sourceComponents": [
+        {
+          "drawingIndex": 78,
+          "sourceCircuitNumber": 8,
+          "sourceCoordinateCount": 142,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        },
+        {
+          "drawingIndex": 45,
+          "sourceCircuitNumber": 9,
+          "sourceCoordinateCount": 165,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        },
+        {
+          "drawingIndex": 33,
+          "sourceCircuitNumber": 45,
+          "sourceCoordinateCount": 112,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        }
+      ],
+      "aggregation": "Exact geometric set union of original closed valid source components; removes shared internal edges/overlaps, retains road-corridor gaps.",
+      "allOriginalSourceComponentsValidAndExplicitlyClosed": true,
+      "literalMultiPolygonValid": false,
+      "outputEqualsExactSourceComponentSetUnion": true,
+      "sourceSpaceSymmetricDifferenceAreaPDFPoints2": 0.0,
+      "outputBoundaryCoveredByOriginalSourceEdges": true,
+      "sourceSpaceUncoveredBoundaryLengthPDFPoints": 0.0,
+      "componentSumAreaPDFPoints2": 337.81525633111596,
+      "unionAreaPDFPoints2": 337.81525633111596,
+      "sourceVerticesArchivedUnchanged": true,
+      "outputValid": true,
+      "areaM2": 2291418.5503049,
+      "currentMunicipalityContainedFraction": 0.9999999999999994,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "actualCurrentNamePointControls": [
+        {
+          "id": "osm:node:982141218",
+          "name": "Marcalváros I.",
+          "coordinates": [
+            17.6386038,
+            47.6679293
+          ],
+          "pointInsideDerivedOutline": true
+        },
+        {
+          "id": "osm:node:982141202",
+          "name": "Marcalváros II.",
+          "coordinates": [
+            17.6340727,
+            47.6621324
+          ],
+          "pointInsideDerivedOutline": true
+        }
+      ],
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-quarter-group-29-30-31-14-35",
+      "name": "Gyárváros",
+      "boundaryKind": "neighbourhood",
+      "sourceComponents": [
+        {
+          "drawingIndex": 89,
+          "sourceCircuitNumber": 29,
+          "sourceCoordinateCount": 217,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        },
+        {
+          "drawingIndex": 91,
+          "sourceCircuitNumber": 30,
+          "sourceCoordinateCount": 139,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        },
+        {
+          "drawingIndex": 39,
+          "sourceCircuitNumber": 31,
+          "sourceCoordinateCount": 152,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        },
+        {
+          "drawingIndex": 88,
+          "sourceCircuitNumber": 14,
+          "sourceCoordinateCount": 111,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        },
+        {
+          "drawingIndex": 87,
+          "sourceCircuitNumber": 35,
+          "sourceCoordinateCount": 61,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        }
+      ],
+      "aggregation": "Exact geometric set union of original closed valid source components; removes shared internal edges/overlaps, retains road-corridor gaps.",
+      "allOriginalSourceComponentsValidAndExplicitlyClosed": true,
+      "literalMultiPolygonValid": false,
+      "outputEqualsExactSourceComponentSetUnion": true,
+      "sourceSpaceSymmetricDifferenceAreaPDFPoints2": 0.0,
+      "outputBoundaryCoveredByOriginalSourceEdges": true,
+      "sourceSpaceUncoveredBoundaryLengthPDFPoints": 0.0,
+      "componentSumAreaPDFPoints2": 1140.4442623029463,
+      "unionAreaPDFPoints2": 1140.4442623029463,
+      "sourceVerticesArchivedUnchanged": true,
+      "outputValid": true,
+      "areaM2": 7735693.072631214,
+      "currentMunicipalityContainedFraction": 1.0000000000000002,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "actualCurrentNamePointControls": [
+        {
+          "id": "osm:node:982117703",
+          "name": "Gyárváros",
+          "coordinates": [
+            17.6597711,
+            47.6922561
+          ],
+          "pointInsideDerivedOutline": true
+        }
+      ],
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-quarter-group-16-42-36-33-32",
+      "name": "Szabadhegy",
+      "boundaryKind": "neighbourhood",
+      "sourceComponents": [
+        {
+          "drawingIndex": 75,
+          "sourceCircuitNumber": 16,
+          "sourceCoordinateCount": 528,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        },
+        {
+          "drawingIndex": 38,
+          "sourceCircuitNumber": 42,
+          "sourceCoordinateCount": 425,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        },
+        {
+          "drawingIndex": 85,
+          "sourceCircuitNumber": 36,
+          "sourceCoordinateCount": 204,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        },
+        {
+          "drawingIndex": 72,
+          "sourceCircuitNumber": 33,
+          "sourceCoordinateCount": 208,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        },
+        {
+          "drawingIndex": 34,
+          "sourceCircuitNumber": 32,
+          "sourceCoordinateCount": 116,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        }
+      ],
+      "aggregation": "Exact geometric set union of original closed valid source components; removes shared internal edges/overlaps, retains road-corridor gaps.",
+      "allOriginalSourceComponentsValidAndExplicitlyClosed": true,
+      "literalMultiPolygonValid": false,
+      "outputEqualsExactSourceComponentSetUnion": true,
+      "sourceSpaceSymmetricDifferenceAreaPDFPoints2": 0.0,
+      "outputBoundaryCoveredByOriginalSourceEdges": true,
+      "sourceSpaceUncoveredBoundaryLengthPDFPoints": 0.0,
+      "componentSumAreaPDFPoints2": 1255.2404034812935,
+      "unionAreaPDFPoints2": 1255.2376918502446,
+      "sourceVerticesArchivedUnchanged": true,
+      "outputValid": true,
+      "areaM2": 8514342.90856391,
+      "currentMunicipalityContainedFraction": 1.0000000000000009,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "actualCurrentNamePointControls": [
+        {
+          "id": "osm:node:982117710",
+          "name": "Szabadhegy",
+          "coordinates": [
+            17.6667442,
+            47.664329
+          ],
+          "pointInsideDerivedOutline": true
+        }
+      ],
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "manual:gyor:source-quarter-group-25-46-38",
+      "name": "Ménfőcsanak",
+      "boundaryKind": "neighbourhood",
+      "sourceComponents": [
+        {
+          "drawingIndex": 24,
+          "sourceCircuitNumber": 25,
+          "sourceCoordinateCount": 558,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        },
+        {
+          "drawingIndex": 32,
+          "sourceCircuitNumber": 46,
+          "sourceCoordinateCount": 389,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        },
+        {
+          "drawingIndex": 29,
+          "sourceCircuitNumber": 38,
+          "sourceCoordinateCount": 93,
+          "sourceExplicitlyClosed": true,
+          "sourceValid": true
+        }
+      ],
+      "aggregation": "Exact geometric set union of original closed valid source components; removes shared internal edges/overlaps, retains road-corridor gaps.",
+      "allOriginalSourceComponentsValidAndExplicitlyClosed": true,
+      "literalMultiPolygonValid": false,
+      "outputEqualsExactSourceComponentSetUnion": true,
+      "sourceSpaceSymmetricDifferenceAreaPDFPoints2": 0.0,
+      "outputBoundaryCoveredByOriginalSourceEdges": true,
+      "sourceSpaceUncoveredBoundaryLengthPDFPoints": 0.0,
+      "componentSumAreaPDFPoints2": 1128.7341970754787,
+      "unionAreaPDFPoints2": 1128.7341970754787,
+      "sourceVerticesArchivedUnchanged": true,
+      "outputValid": true,
+      "areaM2": 7656263.087795968,
+      "currentMunicipalityContainedFraction": 0.995899961171092,
+      "outsideCurrentMunicipalityAreaM2": 31390.975944303686,
+      "actualCurrentNamePointControls": [
+        {
+          "id": "osm:node:282455038",
+          "name": "Ménfőcsanak",
+          "coordinates": [
+            17.6056783,
+            47.6291522
+          ],
+          "pointInsideDerivedOutline": true
+        }
+      ],
+      "usableForAddressAssignment": false
+    }
+  ],
+  "rightsStatus": "source_map_reuse_not_established; OSM controls ODbL-1.0",
+  "usableForAddressAssignment": false,
+  "output": {
+    "path": "data/neighborhoods/sources/municipal-gyor-next/gyor-source-candidates.geojson",
+    "sha256": "4ce29697da5be99269079cd42221242ddc10ed3a96eb697ddf527ebfb10c5f5a"
+  },
+  "reproduce": "PYTHONPATH=.local/geodata python3 scripts/neighborhoods/derive-gyor-next.py",
+  "independentAggregationReview": {
+    "path": "data/neighborhoods/sources/municipal-gyor-next/aggregation-independent-review.json",
+    "sha256": "c9be843067a5a5b20163cef1f24ef23de97c126e0cfcace5c63c76d73e132b90"
+  }
+}

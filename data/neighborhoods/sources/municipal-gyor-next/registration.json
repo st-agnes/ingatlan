@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "method": "Actual closed blue PDF vector path from figure97 of the January2014 Győr ITS, showing the2006 division; affine registration to EPSG:23700 by robust closest-point alignment of actual OPEN black source-stroke endpoints to the current OSM municipal exterior; vertexwise inverse projection to WGS84. No outline repair, clipping, snapping, synthetic closing edge or physical-boundary inference. Explicit source-defined circuit aggregation, where used, is recorded per feature.",
+  "coordinateOperation": "[PDFx,PDFy,1] @ matrix = [EOVx,EOVy]; EPSG23700 ->EPSG4326(always_xy)",
+  "matrix": [
+    [
+      82.64329015982716,
+      0.03729352004897961
+    ],
+    [
+      0.0015939355453115575,
+      -82.07626080837866
+    ],
+    [
+      521180.10150577466,
+      290109.34972507943
+    ]
+  ],
+  "matrixUnits": "EOVmetres per PDFpoint",
+  "sourcePdfSha256": "40f318435f5719cb5a06b253d6e15fbd5acc7d5a6bec53fc38ae1e199b6ca21d",
+  "sourceCalibrationDrawingIndex": 217,
+  "sourceCalibrationCoordinates": 1601,
+  "sourceCalibrationStrokeClosed": false,
+  "sourceCalibrationEndpointGapM": 69.15570288220958,
+  "sourceCalibrationStrokeClosedForFit": false,
+  "targetMunicipality": {
+    "path": "data/neighborhoods/sources/municipal-gyor-next/calibration-municipality.geojson",
+    "sha256": "093e12543bbd557f5aad2d6687ed4b6135e06f55770b71a0a0b404ca8fc719fa",
+    "source": {
+      "osmType": "relation",
+      "osmId": 1440627,
+      "tags": {
+        "ISO3166-2": "HU-GY",
+        "admin_level": "8",
+        "boundary": "administrative",
+        "name": "Győr",
+        "name:de": "Raab",
+        "name:ka": "დიორი",
+        "name:ru": "Дьёр",
+        "name:sr": "Ђер",
+        "name:uk": "Дьйор",
+        "source:name:de": "sign",
+        "type": "boundary",
+        "wikidata": "Q134494",
+        "wikipedia": "hu:Győr"
+      },
+      "objectVersion": 34,
+      "objectTimestamp": "2025-10-06 15:20:56+00:00",
+      "changeset": 0,
+      "url": "https://www.openstreetmap.org/relation/1440627",
+      "members": [
+        {
+          "type": "node",
+          "ref": 64624269,
+          "role": "admin_centre"
+        },
+        {
+          "type": "way",
+          "ref": 57878351,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 57879631,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 100955367,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 57879759,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 57878223,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 57876403,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122870237,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122870172,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 459243824,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 172370000,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 174381640,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 172370008,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 174381609,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 57880528,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 966502595,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 126871613,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 126871616,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 459243859,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 1148152854,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122826536,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122826472,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 128993962,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 128993936,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 57882299,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 57876819,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 459243848,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122826355,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 57882719,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 57880929,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 459243830,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 176874236,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122826426,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 57877270,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122826617,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122826728,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 57880770,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 57881576,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 459243814,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122826492,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 126135325,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 126135167,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122826482,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122826766,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 459243815,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 459077820,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122826709,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 178514583,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 459243854,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122826657,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 178022532,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 178022540,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 1009161331,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 122826367,
+          "role": "outer"
+        },
+        {
+          "type": "way",
+          "ref": 459243819,
+          "role": "outer"
+        }
+      ],
+      "provider": "openstreetmap",
+      "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "osmTimestamp": "2026-11-12T21:23:05Z",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "attributionUrl": "https://www.openstreetmap.org/copyright",
+      "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+    },
+    "target": "Largest actual municipality component exterior inEPSG23700"
+  },
+  "algorithm": {
+    "initialization": "Independent source/target bounding scales with y-axis inversion; translation by bounding minima/maxima",
+    "iteration": "Closest target exterior points; retain lowest80%current distances; fit2Daffine leastsquares",
+    "maximumIterations": 80,
+    "convergenceMaximumParameterDelta": 1e-06,
+    "completedIterationIndex": 48
+  },
+  "fitDiagnostics": {
+    "percentiles": [
+      0,
+      50,
+      80,
+      90,
+      95,
+      99,
+      100
+    ],
+    "distancesM": [
+      0.0038511457386873602,
+      10.437183905165783,
+      22.87737890405755,
+      34.877702858892484,
+      41.698479839760466,
+      82.08735767441875,
+      155.98482354766938
+    ],
+    "independentAccuracyEstimate": false
+  },
+  "independentInteriorBoundaryAccuracyM": null,
+  "limits": [
+    "The source black calibration stroke remains open; no invented closing edge is used in alignment.",
+    "Current municipality edges may differ from the2006source boundaries.",
+    "Alignment residuals are not positional confidence limits or independent interior checks."
+  ]
+}

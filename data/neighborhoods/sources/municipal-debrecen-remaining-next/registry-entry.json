@@ -1,0 +1,32 @@
+{
+  "id": "debrecen-arcgis-remaining-23-estimated",
+  "path": "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-remaining-estimated.geojson",
+  "sha256": "e3b1c7aae15c4fbfe37acdcb0a604425f28bd9f5d5155979d481da95180d23bc",
+  "municipality": "Debrecen",
+  "method": "Literal published EPSG:4326 service GeoJSON polygon, copied with every coordinate, vertex order and closing repeat unchanged. Archived original EPSG:3857 rings are independently reprojected vertexwise to verify equivalence. Classified ESTIMATED because source placement, current whole-quarter extent, lineage, reference period and reuse rights remain unresolved. No fitted shift, correction, snapping, clipping, repair, simplification, buffering, densification, closure or invented edge. Current OSM points and municipal historical labels corroborate names only; neither generates nor fits boundaries.",
+  "evidenceUrls": [
+    "https://www.arcgis.com/home/item.html?id=a04e2a4ff4d2467c8bb6eb640f515b51",
+    "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf"
+  ],
+  "license": "ArcGIS geometry reuse licence unestablished; ODbL-1.0 for OSM identity and comparison evidence.",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false,
+    "sourceIsOfficial": false,
+    "sourceIsHardBoundary": false,
+    "georeferencingIsApproximate": true,
+    "claimedAbsoluteAccuracyMetres": null
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-debrecen-remaining-next/selection-review.json",
+  "independentReviewPath": "data/neighborhoods/sources/municipal-debrecen-remaining-next/independent-review.json",
+  "uncertaintyPath": "data/neighborhoods/sources/municipal-debrecen-remaining-next/selection-review.json",
+  "uncertainties": [
+    "Original boundary survey/reference period, present whole-quarter extent, absolute ground accuracy, original publisher lineage and reuse rights are unknown. Existing all77-source/all26-baseline review finds a consistent west/south relative offset across25same-name pairs (median source-minus-baseline -61.063m east,-27.218m north). The cause and the more accurate source are unestablished. This is not an accuracy bound; no correction is fitted. Source/polygon overlaps are retained and reported rather than repaired. Historical2007quarter names in the November2023FVS do not certify current legal status or transfer map accuracy to ArcGIS.",
+    "Tócóvölgy current extent is additionally uncertain because FVS2023 describes Lóskúti separation from parts of it. Minor documented source/cohort/baseline overlaps remain unchanged."
+  ],
+  "frozenFeatureCount": 23,
+  "globalRegistryAdmissionPerformed": false
+}

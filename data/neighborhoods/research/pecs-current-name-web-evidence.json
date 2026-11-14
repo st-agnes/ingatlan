@@ -1,0 +1,2224 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-11-14",
+  "scope": "Bounded official Pécs website review for exact source-name use and city identity only. Ledger includes all 67 source names; searches prioritize the 13 names absent from the narrow archived OSM-place-node cohort. This is separate from the full original-PBF and KSH name audits.",
+  "sourceNameInventory": {
+    "path": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/source-coverage-accounting.json",
+    "bytes": 15238,
+    "sha256": "c59c2e0e6e9d7d39c75cebe84f43f25e79573cd59dec6a050a1ac1b5ede74bee"
+  },
+  "localProvenanceAudit": {
+    "path": "data/neighborhoods/research/pecs-current-name-web-provenance.json",
+    "bytes": 5693,
+    "sha256": "e28d7fef5160567474d34b82687abaef6a7da7adeefb319a0934fc863d765975"
+  },
+  "method": {
+    "nameNormalization": "NFKC, Unicode casefold, retain all alphanumeric code points, accents and complete name words/numerals; discard punctuation and whitespace only. No fuzzy match, prefix stripping, substring-only facility match, nearest point or implicit semantic alias.",
+    "datedCurrentEvidence": "Explicit 2026 publication/event or administrative date in opened body plus exact full locality name use and Pécs identity; ©2026 footer, 2026 upload directory or web crawl date are insufficient.",
+    "roleSeparation": "Locality/service-area use, street route use, facility name, address entry, historical locality list and historical broad alias are recorded separately. Exact locality-use support is not a claim of official quarter status.",
+    "noGeometryInference": true,
+    "webAccess": "read-only search/open connector, no shell network",
+    "rawWebByteFingerprintAvailable": false,
+    "parsedReaderReferencesAreTransient": true,
+    "recordFingerprint": "SHA256 over UTF-8 canonical JSON with sorted keys, ensure_ascii=false, separators comma/colon, excluding that recordContentSha256 field."
+  },
+  "summary": {
+    "sourceNamesRepresented": 67,
+    "priorityNamesTargeted": 13,
+    "dated2026ExactSameCityLocalityNamesSupported": 4,
+    "supportedNames": [
+      "Üszög",
+      "Kertváros",
+      "Belváros",
+      "Uránváros"
+    ],
+    "statusCounts": {
+      "historical_republished_municipal_locality_use_only": 24,
+      "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched": 30,
+      "dated_2026_same_pecs_exact_locality_name_use_supported": 4,
+      "same_pecs_literal_address_locality_use_but_entry_freshness_unverified": 1,
+      "no_admissible_current_exact_locality_use_found_in_bounded_official_web_search": 4,
+      "same_pecs_literal_address_use_but_freshness_and_locality_role_unverified": 1,
+      "dated_2026_street_only_not_admitted_as_locality_name_confirmation": 1,
+      "dated_2026_prefixed_facility_label_only_and_historical_locality_list": 1,
+      "cached_2026_event_venue_lead_open_readback_404_not_admitted": 1
+    },
+    "explicitSemanticAliasesApplied": 0,
+    "newGeometries": 0,
+    "newBoundaryApprovals": 0
+  },
+  "evidence": [
+    {
+      "evidenceId": "municipal-utility-2026",
+      "url": "https://pecs.hu/hirek/junius-12-a-vizikozmuvek-napja-130-ev-egyetlen-csapnyitas-mogott/",
+      "title": "Június 12. – a víziközművek napja: 130 év egyetlen csapnyitás mögött",
+      "publisher": "Pécs Megyei Jogú Város Önkormányzata / official pecs.hu portal",
+      "retrievedOn": "2026-11-14",
+      "accessMethod": "read-only web connector, opened page body",
+      "readerReferences": [
+        "turn125755view0"
+      ],
+      "bodyLocations": [
+        {
+          "lines": [
+            13
+          ],
+          "role": "publication date"
+        },
+        {
+          "lines": [
+            16,
+            19,
+            32,
+            35
+          ],
+          "role": "Pécs utilities context and recent works between named localities"
+        }
+      ],
+      "shortLiteralQuotes": [
+        "Üszög és Kertváros között"
+      ],
+      "sourceNames": [
+        "Üszög",
+        "Kertváros"
+      ],
+      "nameUseRole": "locality names describing location of recently renovated water main",
+      "publicationDateInBody": "2026-06-15",
+      "contentReferencePeriod": "recent works described in 2026 article",
+      "samePecsIdentitySupportedByBody": true,
+      "dated2026BodyEvidence": true,
+      "supportsExactCurrentSameCityLocalityNameUse": true,
+      "semanticAliasApplied": false,
+      "limitations": [
+        "Supports contemporary literal locality use, not legal quarter status or the extent of either historical source cell.",
+        "No relation between Üszög and Üszögpuszta is inferred."
+      ],
+      "rawPageBytesArchived": false,
+      "rawPageSha256": null,
+      "recordContentSha256": "dc145e92cdfe63c11c4f7611fe77d55e5da3117a8a0101d57e3f82db59ec4558"
+    },
+    {
+      "evidenceId": "municipal-bursa-2026",
+      "url": "https://pecs.hu/hirek/bursa-hungarica-felsooktatasi-onkormanyzati-osztondijpalyazat-2027/",
+      "title": "Bursa Hungarica Felsőoktatási Önkormányzati Ösztöndíjpályázat 2027.",
+      "publisher": "Pécs Megyei Jogú Város Önkormányzata / official pecs.hu portal",
+      "retrievedOn": "2026-11-14",
+      "accessMethod": "read-only web connector, opened page body",
+      "readerReferences": [
+        "turn125755view1"
+      ],
+      "bodyLocations": [
+        {
+          "lines": [
+            13,
+            15,
+            18
+          ],
+          "role": "publication date and current municipal scholarship administration"
+        },
+        {
+          "lines": [
+            26,
+            31
+          ],
+          "role": "named social service areas with explicit Pécs addresses"
+        }
+      ],
+      "shortLiteralQuotes": [
+        "Kertváros",
+        "Belváros, Uránváros"
+      ],
+      "sourceNames": [
+        "Kertváros",
+        "Belváros",
+        "Uránváros"
+      ],
+      "nameUseRole": "municipal social-service-area locality labels",
+      "publicationDateInBody": "2026-09-30",
+      "contentReferencePeriod": "2026 application administration for 2027 scholarship",
+      "samePecsIdentitySupportedByBody": true,
+      "dated2026BodyEvidence": true,
+      "supportsExactCurrentSameCityLocalityNameUse": true,
+      "semanticAliasApplied": false,
+      "limitations": [
+        "Service-area labels establish current name use, not equivalence to the fine source cells or present-day boundary authority."
+      ],
+      "rawPageBytesArchived": false,
+      "rawPageSha256": null,
+      "recordContentSha256": "5c35a42a2825b9e0975b7a7224664a6cda8f10a61a48af72c6805190759065b0"
+    },
+    {
+      "evidenceId": "municipal-calendar-2026",
+      "url": "https://pecs.hu/pecs-programkinalata-2026/",
+      "title": "Pécs programkínálata 2026.",
+      "publisher": "Pécs Megyei Jogú Város Önkormányzata / official pecs.hu portal",
+      "retrievedOn": "2026-11-14",
+      "accessMethod": "read-only web connector, opened page body",
+      "readerReferences": [
+        "turn496270view2"
+      ],
+      "bodyLocations": [
+        {
+          "lines": [
+            13,
+            21,
+            23
+          ],
+          "role": "2026 city calendar, dated event and venue"
+        }
+      ],
+      "shortLiteralQuotes": [
+        "helyszín: Belváros"
+      ],
+      "sourceNames": [
+        "Belváros"
+      ],
+      "nameUseRole": "city event locality venue",
+      "publicationDateInBody": null,
+      "contentReferencePeriod": "2026 city event calendar; event 2026-01-17",
+      "samePecsIdentitySupportedByBody": true,
+      "dated2026BodyEvidence": true,
+      "supportsExactCurrentSameCityLocalityNameUse": true,
+      "semanticAliasApplied": false,
+      "limitations": [
+        "No publication timestamp is printed; current-year reference is explicit in the title and event body."
+      ],
+      "rawPageBytesArchived": false,
+      "rawPageSha256": null,
+      "recordContentSha256": "dea6d63915ab6249868ed1adab8ca946159cab5bf63d35127fb26fec0187fc90"
+    },
+    {
+      "evidenceId": "municipal-tour2026-road",
+      "url": "https://pecs.hu/forgalomkorlatozas-tour-de-hongrie-2026/",
+      "title": "Útlezárások",
+      "publisher": "Pécs Megyei Jogú Város Önkormányzata / official pecs.hu portal",
+      "retrievedOn": "2026-11-14",
+      "accessMethod": "read-only web connector, opened page body",
+      "readerReferences": [
+        "turn125755view2"
+      ],
+      "bodyLocations": [
+        {
+          "lines": [
+            16,
+            21
+          ],
+          "role": "2026-05-16 Pécs race route"
+        }
+      ],
+      "shortLiteralQuotes": [
+        "Nyugati Ipari út"
+      ],
+      "sourceNames": [
+        "Nyugati ipari út"
+      ],
+      "nameUseRole": "street/road route name",
+      "publicationDateInBody": null,
+      "contentReferencePeriod": "2026-05-16 race",
+      "samePecsIdentitySupportedByBody": true,
+      "dated2026BodyEvidence": true,
+      "supportsExactCurrentSameCityLocalityNameUse": false,
+      "semanticAliasApplied": false,
+      "limitations": [
+        "The exact normalized source string is used as a road. It is not admitted as current quarter/local-area name evidence."
+      ],
+      "rawPageBytesArchived": false,
+      "rawPageSha256": null,
+      "recordContentSha256": "455a6a42cde326caa24d256d8b25439a9ca157acda4e30a65668e70d3310a6b7"
+    },
+    {
+      "evidenceId": "municipal-obituary2026-facility",
+      "url": "https://pecs.hu/hirek/elhunyt-toth-laszlo-a-pecsi-sportelet-meghatarozo-alakja/",
+      "title": "Elhunyt Tóth László, a pécsi sportélet meghatározó alakja",
+      "publisher": "Pécs Megyei Jogú Város Önkormányzata / official pecs.hu portal",
+      "retrievedOn": "2026-11-14",
+      "accessMethod": "read-only web connector, opened page body",
+      "readerReferences": [
+        "turn568542view2"
+      ],
+      "bodyLocations": [
+        {
+          "lines": [
+            13,
+            27
+          ],
+          "role": "publication date and 2026 funeral at cemetery"
+        }
+      ],
+      "shortLiteralQuotes": [
+        "Pécsi Köztemető"
+      ],
+      "sourceNames": [
+        "Köztemető"
+      ],
+      "nameUseRole": "cemetery/facility name, extra city adjective",
+      "publicationDateInBody": "2026-08-13",
+      "contentReferencePeriod": "funeral 2026-08-24",
+      "samePecsIdentitySupportedByBody": true,
+      "dated2026BodyEvidence": true,
+      "supportsExactCurrentSameCityLocalityNameUse": false,
+      "semanticAliasApplied": false,
+      "limitations": [
+        "The facility label is Pécsi Köztemető, not the complete source label Köztemető. No prefix stripping or automatic quarter-name confirmation is applied."
+      ],
+      "rawPageBytesArchived": false,
+      "rawPageSha256": null,
+      "recordContentSha256": "fa7ac2ce10310a1f08ba4c19f648e02fcd24312af0fd442d7d277b4caa510889"
+    },
+    {
+      "evidenceId": "municipal-animal-directory-undated",
+      "url": "https://pecs.hu/allatvedok/",
+      "title": "Állatvédők",
+      "publisher": "Pécs Megyei Jogú Város Önkormányzata / official pecs.hu portal",
+      "retrievedOn": "2026-11-14",
+      "accessMethod": "read-only web connector, opened page body",
+      "readerReferences": [
+        "turn568542view1"
+      ],
+      "bodyLocations": [
+        {
+          "lines": [
+            19,
+            44,
+            50
+          ],
+          "role": "Pécs animal charity directory and address"
+        }
+      ],
+      "shortLiteralQuotes": [
+        "7633 Pécs, Szigeti Tanya"
+      ],
+      "sourceNames": [
+        "Szigeti tanya"
+      ],
+      "nameUseRole": "street/address label in municipal directory; locality role not established",
+      "publicationDateInBody": null,
+      "contentReferencePeriod": null,
+      "samePecsIdentitySupportedByBody": true,
+      "dated2026BodyEvidence": false,
+      "supportsExactCurrentSameCityLocalityNameUse": false,
+      "semanticAliasApplied": false,
+      "limitations": [
+        "Body has no publication or update date. Live accessibility and ©2026 footer do not establish entry freshness.",
+        "Address locality use does not establish a current official quarter category.",
+        "Szigeti Tanya occurs as a bare address segment. This page alone does not distinguish a street/address name from a quarter/locality name."
+      ],
+      "rawPageBytesArchived": false,
+      "rawPageSha256": null,
+      "recordContentSha256": "d9e22ca3f3fa9b85e595442fae6ce8263cbf3bf621d5ebdf1184e05435cc6d1a"
+    },
+    {
+      "evidenceId": "municipal-bank-directory-undated",
+      "url": "https://pecs.hu/en/banks/",
+      "title": "Banks",
+      "publisher": "Pécs Megyei Jogú Város Önkormányzata / official pecs.hu portal",
+      "retrievedOn": "2026-11-14",
+      "accessMethod": "read-only web connector, opened page body",
+      "readerReferences": [
+        "turn881399view1"
+      ],
+      "bodyLocations": [
+        {
+          "lines": [
+            45,
+            47
+          ],
+          "role": "bank listing with explicit city and locality in address"
+        }
+      ],
+      "shortLiteralQuotes": [
+        "7633 Pécs, Újmecsekalja,Ybl Miklós utca 7/3."
+      ],
+      "sourceNames": [
+        "Újmecsekalja"
+      ],
+      "nameUseRole": "locality/address label in municipal directory",
+      "publicationDateInBody": null,
+      "contentReferencePeriod": null,
+      "samePecsIdentitySupportedByBody": true,
+      "dated2026BodyEvidence": false,
+      "supportsExactCurrentSameCityLocalityNameUse": false,
+      "semanticAliasApplied": false,
+      "limitations": [
+        "No publication/update date in body; ©2026 is a site footer, not an entry date.",
+        "This address entry is not admitted as dated 2026 name corroboration."
+      ],
+      "rawPageBytesArchived": false,
+      "rawPageSha256": null,
+      "recordContentSha256": "124ee33a9a0ba4d81743bb6bdf12827325bfcee6156376991c3356082be0244f"
+    },
+    {
+      "evidenceId": "municipal-tours-historical-alias-undated",
+      "url": "https://pecs.hu/vezetett-turak/",
+      "title": "Vezetett túrák",
+      "publisher": "Pécs Megyei Jogú Város Önkormányzata / official pecs.hu portal",
+      "retrievedOn": "2026-11-14",
+      "accessMethod": "read-only web connector, opened page body",
+      "readerReferences": [
+        "turn881399view2"
+      ],
+      "bodyLocations": [
+        {
+          "lines": [
+            61,
+            63
+          ],
+          "role": "historical story of estate at the former Pécs airport"
+        }
+      ],
+      "shortLiteralQuotes": [
+        "Ez lett Újmecsekalja vagy, ahogy kezdettől mindenki nevezi: Uránváros."
+      ],
+      "sourceNames": [
+        "Újmecsekalja",
+        "Uránváros"
+      ],
+      "nameUseRole": "explicit historical broad-estate synonym narrative",
+      "publicationDateInBody": null,
+      "contentReferencePeriod": null,
+      "samePecsIdentitySupportedByBody": true,
+      "dated2026BodyEvidence": false,
+      "supportsExactCurrentSameCityLocalityNameUse": false,
+      "semanticAliasApplied": false,
+      "limitations": [
+        "Body is undated and this passage concerns the historical estate.",
+        "The source document separately identifies Újmecsekalja and Uránváros fine cells. This broad historical synonym narrative is not applied to merge or rename those source units."
+      ],
+      "rawPageBytesArchived": false,
+      "rawPageSha256": null,
+      "recordContentSha256": "26a04d389e78df7b2f85897238465f3dc229d1f39a5939e7a388e727e0d330b5"
+    },
+    {
+      "evidenceId": "municipal-kelet-project-historical",
+      "url": "https://pecs.hu/app/uploads/2026/02/KELET-PECS.pdf",
+      "title": "Célterületi cselekvési terv – Kelet-Pécs",
+      "publisher": "Pécs Megyei Jogú Város Önkormányzata / official pecs.hu portal",
+      "retrievedOn": "2026-11-14",
+      "accessMethod": "read-only web connector, opened page body",
+      "readerReferences": [
+        "turn114720view0",
+        "turn777537view3",
+        "turn777537view4"
+      ],
+      "bodyLocations": [
+        {
+          "pageIndex": 1,
+          "lines": [
+            14,
+            15
+          ],
+          "role": "list of component localities"
+        },
+        {
+          "pageIndex": 5,
+          "lines": [
+            123,
+            125
+          ],
+          "role": "community process beginning April 2018"
+        },
+        {
+          "pageIndexRange": [
+            23,
+            38
+          ],
+          "role": "2022 project activities"
+        }
+      ],
+      "shortLiteralQuotes": [
+        "Budaiváros, Budai külváros, Kisbalokány, Basamalom, Gyárváros, Üszög, Üszögi tározó-major, Balokány, Tüskésrét, Újhegy."
+      ],
+      "sourceNames": [
+        "Budaiváros",
+        "Budai külváros",
+        "Kisbalokány",
+        "Basamalom",
+        "Gyárváros",
+        "Üszög",
+        "Üszögi tározó-major",
+        "Balokány",
+        "Tüskésrét",
+        "Újhegy"
+      ],
+      "nameUseRole": "historical municipal project fine-locality list",
+      "publicationDateInBody": null,
+      "contentReferencePeriod": "2018–2022 project, see municipal-project-period",
+      "samePecsIdentitySupportedByBody": true,
+      "dated2026BodyEvidence": false,
+      "supportsExactCurrentSameCityLocalityNameUse": false,
+      "semanticAliasApplied": false,
+      "limitations": [
+        "The 2026/02 URL path is not proof of 2026 document issuance or current nomenclature.",
+        "Budaiváros and Budai külváros are separately listed; no automatic alias is applied."
+      ],
+      "rawPageBytesArchived": false,
+      "rawPageSha256": null,
+      "recordContentSha256": "d7600d6a0e1e489ad2a815b0f2d245ba785c1c937a6e4dd6d54f48d07c93056d"
+    },
+    {
+      "evidenceId": "municipal-nyugat-project-historical",
+      "url": "https://pecs.hu/app/uploads/2026/02/NYUGATI-VAROSRESZEK.pdf",
+      "title": "Célterületi cselekvési terv – Nyugati városrészek",
+      "publisher": "Pécs Megyei Jogú Város Önkormányzata / official pecs.hu portal",
+      "retrievedOn": "2026-11-14",
+      "accessMethod": "read-only web connector, opened page body",
+      "readerReferences": [
+        "turn114720view1",
+        "turn777537view5"
+      ],
+      "bodyLocations": [
+        {
+          "pageIndex": 1,
+          "lines": [
+            14,
+            16
+          ],
+          "role": "list of component localities"
+        },
+        {
+          "pageIndex": 1,
+          "lines": [
+            34,
+            36
+          ],
+          "role": "Újmecsekalja and neighboring Uránváros distinguished"
+        },
+        {
+          "pageIndex": 4,
+          "lines": [
+            98
+          ],
+          "role": "community process beginning April 2018"
+        }
+      ],
+      "shortLiteralQuotes": [
+        "Újmecsekalja, Rácváros, Szentkút, Kismélyvölgy, Ürög, Szentmiklós, Patacs, Zsebedomb, Fogadó, Bolgárkert, Nyugati ipari út."
+      ],
+      "sourceNames": [
+        "Újmecsekalja",
+        "Rácváros",
+        "Szentkút",
+        "Kismélyvölgy",
+        "Ürög",
+        "Szentmiklós",
+        "Patacs",
+        "Zsebedomb",
+        "Fogadó",
+        "Bolgárkert",
+        "Nyugati ipari út"
+      ],
+      "nameUseRole": "historical municipal project fine-locality list",
+      "publicationDateInBody": null,
+      "contentReferencePeriod": "2018–2022 project, see municipal-project-period",
+      "samePecsIdentitySupportedByBody": true,
+      "dated2026BodyEvidence": false,
+      "supportsExactCurrentSameCityLocalityNameUse": false,
+      "semanticAliasApplied": false,
+      "limitations": [
+        "The 2026/02 upload path and site footer are not document content dates.",
+        "Source-specific distinct fine units Újmecsekalja and Uránváros remain separate."
+      ],
+      "rawPageBytesArchived": false,
+      "rawPageSha256": null,
+      "recordContentSha256": "a351f0e8e923f066a62e1ba3b78e63ab3604ff496c9de3989032fab0098529bc"
+    },
+    {
+      "evidenceId": "municipal-deli-project-historical",
+      "url": "https://pecs.hu/app/uploads/2026/02/DELI-VAROSRESZEK.pdf",
+      "title": "Célterületi cselekvési terv – Déli-városrészek",
+      "publisher": "Pécs Megyei Jogú Város Önkormányzata / official pecs.hu portal",
+      "retrievedOn": "2026-11-14",
+      "accessMethod": "read-only web connector, opened page body",
+      "readerReferences": [
+        "turn568542view0"
+      ],
+      "bodyLocations": [
+        {
+          "pageIndex": 0,
+          "lines": [
+            5,
+            8
+          ],
+          "role": "list of component localities"
+        },
+        {
+          "pageIndex": 3,
+          "lines": [
+            85,
+            89
+          ],
+          "role": "community process beginning April 2018"
+        },
+        {
+          "pageIndex": 4,
+          "lines": [
+            109
+          ],
+          "role": "2019-06-07 footnote"
+        }
+      ],
+      "shortLiteralQuotes": [
+        "Málom, Postavölgy, Árpádváros, Nagyárpád, Köztemető, Péterpuszta, Déli gazdasági terület"
+      ],
+      "sourceNames": [
+        "Málom",
+        "Postavölgy",
+        "Árpádváros",
+        "Nagyárpád",
+        "Köztemető",
+        "Péterpuszta",
+        "Déli gazdasági terület"
+      ],
+      "nameUseRole": "historical municipal project fine-locality list",
+      "publicationDateInBody": null,
+      "contentReferencePeriod": "2018–2022 project, see municipal-project-period",
+      "samePecsIdentitySupportedByBody": true,
+      "dated2026BodyEvidence": false,
+      "supportsExactCurrentSameCityLocalityNameUse": false,
+      "semanticAliasApplied": false,
+      "limitations": [
+        "The 2026/02 upload path does not date the original locality-list content to 2026.",
+        "Historical fine-locality list support is kept separate from current exact name use."
+      ],
+      "rawPageBytesArchived": false,
+      "rawPageSha256": null,
+      "recordContentSha256": "b60cec0e62aa11acee67a4cb9e2c075e788305a68264b0b50253d87457fa9c82"
+    },
+    {
+      "evidenceId": "municipal-project-period",
+      "url": "https://pecs.hu/helyi-identitas-es-kohezio-erositese-pecs-varosaban/",
+      "title": "Helyi identitás és kohézió erősítése Pécs Városában",
+      "publisher": "Pécs Megyei Jogú Város Önkormányzata / official pecs.hu portal",
+      "retrievedOn": "2026-11-14",
+      "accessMethod": "read-only web connector, opened page body",
+      "readerReferences": [
+        "turn496270view1"
+      ],
+      "bodyLocations": [
+        {
+          "lines": [
+            18,
+            22,
+            25,
+            30
+          ],
+          "role": "municipal project owner, original implementation period and city scope"
+        },
+        {
+          "lines": [
+            112,
+            140
+          ],
+          "role": "links to area action plans"
+        }
+      ],
+      "shortLiteralQuotes": [
+        "2018.03.01. – 2022.08.31."
+      ],
+      "sourceNames": [],
+      "nameUseRole": "source-period provenance for three republished historical action plans",
+      "publicationDateInBody": null,
+      "contentReferencePeriod": "2018-03-01 to 2022-08-31",
+      "samePecsIdentitySupportedByBody": true,
+      "dated2026BodyEvidence": false,
+      "supportsExactCurrentSameCityLocalityNameUse": false,
+      "semanticAliasApplied": false,
+      "limitations": [
+        "A currently accessible project landing page does not refresh the dates of the historical project documents."
+      ],
+      "rawPageBytesArchived": false,
+      "rawPageSha256": null,
+      "recordContentSha256": "ac4fa571ab638d8d58a756075b4f2e72a75f4ecd071ef5ff5588e57a3c5b113e"
+    }
+  ],
+  "records": [
+    {
+      "sourceName": "Kismélyvölgy",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "kismélyvölgy",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-nyugat-project-historical": "a351f0e8e923f066a62e1ba3b78e63ab3604ff496c9de3989032fab0098529bc"
+      },
+      "recordContentSha256": "9559d1fcf37e28e47922d918aa46897f4022b458bd9dfb5a9f49363ff491d14e"
+    },
+    {
+      "sourceName": "Deindol",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "deindol",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "f11c983bc7e54f504ee233b57e097c731367a56d212ec0128cd588b17516a86c"
+    },
+    {
+      "sourceName": "Donátus",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "donátus",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "ad96f9c5cc81413db2e986fde8b28c43356e60f17f78263a059ccb0317213d70"
+    },
+    {
+      "sourceName": "Ürög",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "ürög",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-nyugat-project-historical": "a351f0e8e923f066a62e1ba3b78e63ab3604ff496c9de3989032fab0098529bc"
+      },
+      "recordContentSha256": "49609ff6950328eef50b0a26df8f70245cb735f75240f9c580c7f9b000706184"
+    },
+    {
+      "sourceName": "Patacs",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "patacs",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-nyugat-project-historical": "a351f0e8e923f066a62e1ba3b78e63ab3604ff496c9de3989032fab0098529bc"
+      },
+      "recordContentSha256": "4071c6a23901e460b817a5d71d6214c077064e7008e6e58770ce4d427063761e"
+    },
+    {
+      "sourceName": "Makár",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "makár",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "ea706378a52b7628a83a7fdee2351fa8a877b53d8e19c6c93138cb80a5ed2858"
+    },
+    {
+      "sourceName": "Somogy",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "somogy",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "d7513050bcb65e4cdef084cdd05f65c385d016cb4221701670cefaad4153e94f"
+    },
+    {
+      "sourceName": "Vasas",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "vasas",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "8bcfe9cce309c7712423f2e06e992b3eb463f25ba6a5f950d0fec57dd8d99573"
+    },
+    {
+      "sourceName": "Újhegy",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "újhegy",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-kelet-project-historical": "d7600d6a0e1e489ad2a815b0f2d245ba785c1c937a6e4dd6d54f48d07c93056d"
+      },
+      "recordContentSha256": "c4d6f6d1685daa038e0862d91d1b6081ea8f6c3c193a8048f4be5dac7dbf7c96"
+    },
+    {
+      "sourceName": "Gyárváros",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "gyárváros",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-kelet-project-historical": "d7600d6a0e1e489ad2a815b0f2d245ba785c1c937a6e4dd6d54f48d07c93056d"
+      },
+      "recordContentSha256": "7012296bfd1936b83fe83d6dfd38753c6d4d2e092ff061184949242aace1605a"
+    },
+    {
+      "sourceName": "Basamalom",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "basamalom",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-kelet-project-historical": "d7600d6a0e1e489ad2a815b0f2d245ba785c1c937a6e4dd6d54f48d07c93056d"
+      },
+      "recordContentSha256": "878b8801382e58dc19744f5f81581cd60ece6009f60c260b10e758e9cfe8ab95"
+    },
+    {
+      "sourceName": "Üszög",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "üszög",
+      "webPassConclusion": "dated_2026_same_pecs_exact_locality_name_use_supported",
+      "currentDatedExactSameCityLocalityNameSupported": true,
+      "currentSupportEvidenceIds": [
+        "municipal-utility-2026"
+      ],
+      "allReadEvidenceIds": [
+        "municipal-utility-2026",
+        "municipal-kelet-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "among13PriorityTargets": true,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-utility-2026": "dc145e92cdfe63c11c4f7611fe77d55e5da3117a8a0101d57e3f82db59ec4558",
+        "municipal-kelet-project-historical": "d7600d6a0e1e489ad2a815b0f2d245ba785c1c937a6e4dd6d54f48d07c93056d"
+      },
+      "recordContentSha256": "b000886813133036109b9da3712badc07d475b69bbfb730b701faa2de4e74b93"
+    },
+    {
+      "sourceName": "Balokány",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "balokány",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-kelet-project-historical": "d7600d6a0e1e489ad2a815b0f2d245ba785c1c937a6e4dd6d54f48d07c93056d"
+      },
+      "recordContentSha256": "f46e4d28034f47234687063899f693d58c8e0461e51bdf285fb98ada4748cc19"
+    },
+    {
+      "sourceName": "Tüskésrét",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "tüskésrét",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-kelet-project-historical": "d7600d6a0e1e489ad2a815b0f2d245ba785c1c937a6e4dd6d54f48d07c93056d"
+      },
+      "recordContentSha256": "ea882eea2c20ff99d317b367b1c91b035f0165230355fcacf015816d598d1de1"
+    },
+    {
+      "sourceName": "Füzes",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "füzes",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "b659141d0768b8008000e1065fa722d6bded0a547c7d43daf495c0e890f2b0e2"
+    },
+    {
+      "sourceName": "Kertváros",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "kertváros",
+      "webPassConclusion": "dated_2026_same_pecs_exact_locality_name_use_supported",
+      "currentDatedExactSameCityLocalityNameSupported": true,
+      "currentSupportEvidenceIds": [
+        "municipal-utility-2026",
+        "municipal-bursa-2026"
+      ],
+      "allReadEvidenceIds": [
+        "municipal-utility-2026",
+        "municipal-bursa-2026"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-utility-2026": "dc145e92cdfe63c11c4f7611fe77d55e5da3117a8a0101d57e3f82db59ec4558",
+        "municipal-bursa-2026": "5c35a42a2825b9e0975b7a7224664a6cda8f10a61a48af72c6805190759065b0"
+      },
+      "recordContentSha256": "2c43ec716465d3de268e74291a20305cc53be794d95b551cc0a862e3af7adbcc"
+    },
+    {
+      "sourceName": "Nagyárpád",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "nagyárpád",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-deli-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-deli-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-deli-project-historical": "b60cec0e62aa11acee67a4cb9e2c075e788305a68264b0b50253d87457fa9c82"
+      },
+      "recordContentSha256": "c55f82310c7f3bacfeca641203805d7eef74050e5df6a80856a8cc23438939fe"
+    },
+    {
+      "sourceName": "Megyer",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "megyer",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "95426d96e9335e67c48d406b8e538eccae09027a26b66705e224d85f212247ae"
+    },
+    {
+      "sourceName": "Árpádváros",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "árpádváros",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-deli-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-deli-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-deli-project-historical": "b60cec0e62aa11acee67a4cb9e2c075e788305a68264b0b50253d87457fa9c82"
+      },
+      "recordContentSha256": "c59694fdd7db8d041f1c9433bbac2917472368f2edf8b38e983ac5ac18b8029f"
+    },
+    {
+      "sourceName": "Málom",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "málom",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-deli-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-deli-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-deli-project-historical": "b60cec0e62aa11acee67a4cb9e2c075e788305a68264b0b50253d87457fa9c82"
+      },
+      "recordContentSha256": "878f520a0d339d86cb06e8a1a70d54cfbc444cc139305a7d63d934c484617240"
+    },
+    {
+      "sourceName": "Postavölgy",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "postavölgy",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-deli-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-deli-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-deli-project-historical": "b60cec0e62aa11acee67a4cb9e2c075e788305a68264b0b50253d87457fa9c82"
+      },
+      "recordContentSha256": "5628e19dad30890c3d72f64f1f8c07f55a4dc3876315fd128509b9d7c830a662"
+    },
+    {
+      "sourceName": "Déli gazdasági terület",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "déligazdaságiterület",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-deli-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-deli-project-historical"
+      ],
+      "among13PriorityTargets": true,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-deli-project-historical": "b60cec0e62aa11acee67a4cb9e2c075e788305a68264b0b50253d87457fa9c82"
+      },
+      "recordContentSha256": "6276047570e2521f56049a90b891f92ccaef8cef8b98c7ba4c5769695c2d6a03"
+    },
+    {
+      "sourceName": "Belváros",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "belváros",
+      "webPassConclusion": "dated_2026_same_pecs_exact_locality_name_use_supported",
+      "currentDatedExactSameCityLocalityNameSupported": true,
+      "currentSupportEvidenceIds": [
+        "municipal-bursa-2026",
+        "municipal-calendar-2026"
+      ],
+      "allReadEvidenceIds": [
+        "municipal-bursa-2026",
+        "municipal-calendar-2026"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-bursa-2026": "5c35a42a2825b9e0975b7a7224664a6cda8f10a61a48af72c6805190759065b0",
+        "municipal-calendar-2026": "dea6d63915ab6249868ed1adab8ca946159cab5bf63d35127fb26fec0187fc90"
+      },
+      "recordContentSha256": "117194b1febbe77631312759fa53d3e8cee685464ff47dc5b102d5a25ee834b6"
+    },
+    {
+      "sourceName": "Szigeti külváros",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "szigetikülváros",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "3b72cd8e06435707c49748044b1390181e3c5a582c47407c0b24e70d8d84892c"
+    },
+    {
+      "sourceName": "Ispitaalja",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "ispitaalja",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "a4be0d4af8922d17bfc9cfe82d9608f733000fe802c18822ed88ea0e99dea50a"
+    },
+    {
+      "sourceName": "Rácváros",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "rácváros",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-nyugat-project-historical": "a351f0e8e923f066a62e1ba3b78e63ab3604ff496c9de3989032fab0098529bc"
+      },
+      "recordContentSha256": "88d7cbd419374c33464e2f8ede25df9b7b228580f1458d17dae5cf5b5d2be609"
+    },
+    {
+      "sourceName": "Uránváros",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "uránváros",
+      "webPassConclusion": "dated_2026_same_pecs_exact_locality_name_use_supported",
+      "currentDatedExactSameCityLocalityNameSupported": true,
+      "currentSupportEvidenceIds": [
+        "municipal-bursa-2026"
+      ],
+      "allReadEvidenceIds": [
+        "municipal-bursa-2026",
+        "municipal-tours-historical-alias-undated"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-bursa-2026": "5c35a42a2825b9e0975b7a7224664a6cda8f10a61a48af72c6805190759065b0",
+        "municipal-tours-historical-alias-undated": "26a04d389e78df7b2f85897238465f3dc229d1f39a5939e7a388e727e0d330b5"
+      },
+      "recordContentSha256": "9a1d3527e7b74efe9ea333331d45c19f7b451894a27aeb3799be462cacef86e0"
+    },
+    {
+      "sourceName": "Bálics",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "bálics",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "b52f49c9af4daafc58714f7e4139378ec92589a84df74e49fcd2cca6f0335ae5"
+    },
+    {
+      "sourceName": "Szkókó",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "szkókó",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "c3f356f29004745f65f26635fd0811bcb175662b630d896ec29952a74baacc0e"
+    },
+    {
+      "sourceName": "Mecsekoldal",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "mecsekoldal",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "6d2ef58b55b03289e574736dd126d6f92d8b6f0624b01d97f1e651d3a598ee33"
+    },
+    {
+      "sourceName": "Havihegy",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "havihegy",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "c868e08e4047bbdbc1841f55bc24d1191b0046d15c2f63080894313e95512945"
+    },
+    {
+      "sourceName": "Rókusdomb",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "rókusdomb",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "3b3a42730eaaccaaa45203260d386860fbc891cee7f9d1372889c31a700411f9"
+    },
+    {
+      "sourceName": "Csoronika",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "csoronika",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "54bf25901e9bba45eb28481c1edfe150558fd0c711f43326b3addcdc442df4c8"
+    },
+    {
+      "sourceName": "Hird",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "hird",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "3a861759851638535aeba3c792e191f303a776d86c3120d875fece9c14ca1b7f"
+    },
+    {
+      "sourceName": "Újmecsekalja",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "újmecsekalja",
+      "webPassConclusion": "same_pecs_literal_address_locality_use_but_entry_freshness_unverified",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-bank-directory-undated",
+        "municipal-tours-historical-alias-undated",
+        "municipal-nyugat-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [
+        "municipal-bank-directory-undated"
+      ],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "among13PriorityTargets": true,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-bank-directory-undated": "124ee33a9a0ba4d81743bb6bdf12827325bfcee6156376991c3356082be0244f",
+        "municipal-tours-historical-alias-undated": "26a04d389e78df7b2f85897238465f3dc229d1f39a5939e7a388e727e0d330b5",
+        "municipal-nyugat-project-historical": "a351f0e8e923f066a62e1ba3b78e63ab3604ff496c9de3989032fab0098529bc"
+      },
+      "recordContentSha256": "02516f95bf2a10f947a99c97cff9d867bc095a76849c62e3a645bcd5440cf3e6"
+    },
+    {
+      "sourceName": "Kovácstelep",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "kovácstelep",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "4e3281a19ec4f5b421628a3dbcd5a6f210258b6ee00b5c7b1319b20bd3387949"
+    },
+    {
+      "sourceName": "Piricsizma",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "piricsizma",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "d736c6561667076d392463f02abd775283f8557690312daf3aee86622788a083"
+    },
+    {
+      "sourceName": "Szentkút",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "szentkút",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-nyugat-project-historical": "a351f0e8e923f066a62e1ba3b78e63ab3604ff496c9de3989032fab0098529bc"
+      },
+      "recordContentSha256": "4255b2adc69dabc36ca9e881a5cbc882cc6faa5a5d2c8642e71eb9a6f0eab1b5"
+    },
+    {
+      "sourceName": "Szentmiklós",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "szentmiklós",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-nyugat-project-historical": "a351f0e8e923f066a62e1ba3b78e63ab3604ff496c9de3989032fab0098529bc"
+      },
+      "recordContentSha256": "da539166b0ace77abd6afe2698375fcca02064bfba2772f0a6a64b22583e1d2d"
+    },
+    {
+      "sourceName": "Zsebedomb",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "zsebedomb",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-nyugat-project-historical": "a351f0e8e923f066a62e1ba3b78e63ab3604ff496c9de3989032fab0098529bc"
+      },
+      "recordContentSha256": "486dcb7f2ef3af6c4e4f10b23488d5d10672314434947b3e47306a07c82f08d8"
+    },
+    {
+      "sourceName": "Gyükés",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "gyükés",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "cb3e0ccb79500630bd9876eb65ff4915b455e3b9839fad82acff855f4020a585"
+    },
+    {
+      "sourceName": "Pécsbánya",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "pécsbánya",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "03534be6a80477a4a92f9a66f91c4fcbffdc5f260bf23a654f07d33c711fba00"
+    },
+    {
+      "sourceName": "Rigóder",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "rigóder",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "dc815ef0f9a46b9146837e3a31a6fbab12b8f2a7d2ed167327f78abd461f558d"
+    },
+    {
+      "sourceName": "Szabolcs",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "szabolcs",
+      "webPassConclusion": "no_admissible_current_exact_locality_use_found_in_bounded_official_web_search",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": true,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "4ff56b2375cb2cbfa8e48f3bbb482a6fdedcae3141354856b5a084a33a2e6bf8"
+    },
+    {
+      "sourceName": "Szabolcsi zártkert",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "szabolcsizártkert",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "e872f6b5d62fefc0957188d4e4e752dbcf6b6cd2f30e94b09f20beed2885f025"
+    },
+    {
+      "sourceName": "Meszes",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "meszes",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "701704bf3729670802a351b341f20f83bc8237ab84a32fc4b1d306e162754e6d"
+    },
+    {
+      "sourceName": "Diós",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "diós",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "380678a7f5fd0a6107eb8c3dfbc1f8296e3f2651ad1d28639f3fcfacbcb6b3a7"
+    },
+    {
+      "sourceName": "Budai külváros",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "budaikülváros",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-kelet-project-historical": "d7600d6a0e1e489ad2a815b0f2d245ba785c1c937a6e4dd6d54f48d07c93056d"
+      },
+      "recordContentSha256": "116d437cb5bd2914462d038c0b76923036fe8c91df2ac71110683cb45f1e88f0"
+    },
+    {
+      "sourceName": "Budaiváros",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "budaiváros",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "among13PriorityTargets": true,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-kelet-project-historical": "d7600d6a0e1e489ad2a815b0f2d245ba785c1c937a6e4dd6d54f48d07c93056d"
+      },
+      "recordContentSha256": "a730f3e33230b46c0d55be5838c47d81660ed59fd2248ef24905543795d48a96"
+    },
+    {
+      "sourceName": "Észak-Megyer",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "északmegyer",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "1a6826579a0fe2e826c9319f28fb90b392c4a0aa99c9b7009b8ea3a09a25ba92"
+    },
+    {
+      "sourceName": "Szigeti tanya",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "szigetitanya",
+      "webPassConclusion": "same_pecs_literal_address_use_but_freshness_and_locality_role_unverified",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-animal-directory-undated"
+      ],
+      "undatedAddressUseEvidenceIds": [
+        "municipal-animal-directory-undated"
+      ],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": true,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-animal-directory-undated": "d9e22ca3f3fa9b85e595442fae6ce8263cbf3bf621d5ebdf1184e05435cc6d1a"
+      },
+      "recordContentSha256": "fbad8f829e03ef3b85bafb69a13e4edfc32ff06391f2590ee5b59609ebe4a974"
+    },
+    {
+      "sourceName": "Fogadó",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "fogadó",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-nyugat-project-historical": "a351f0e8e923f066a62e1ba3b78e63ab3604ff496c9de3989032fab0098529bc"
+      },
+      "recordContentSha256": "f9e4a0d2f6bd2cd3d6437c281f59ec1c86a37cf386766aba6520ed015c9c4c29"
+    },
+    {
+      "sourceName": "Bolgárkert",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "bolgárkert",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-nyugat-project-historical": "a351f0e8e923f066a62e1ba3b78e63ab3604ff496c9de3989032fab0098529bc"
+      },
+      "recordContentSha256": "0eab9af51bcad7854899f3e7a3a7fb55587b4eeced9fad7acd1751e2f4ddbe5e"
+    },
+    {
+      "sourceName": "Nyugati ipari út",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "nyugatiipariút",
+      "webPassConclusion": "dated_2026_street_only_not_admitted_as_locality_name_confirmation",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-tour2026-road",
+        "municipal-nyugat-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-nyugat-project-historical"
+      ],
+      "among13PriorityTargets": true,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-tour2026-road": "455a6a42cde326caa24d256d8b25439a9ca157acda4e30a65668e70d3310a6b7",
+        "municipal-nyugat-project-historical": "a351f0e8e923f066a62e1ba3b78e63ab3604ff496c9de3989032fab0098529bc"
+      },
+      "recordContentSha256": "2f0c002b278341eba6ed3904da4af243d35cd730d4bf946b009ddb974a54b6ce"
+    },
+    {
+      "sourceName": "Üszögi tározó-major",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "üszögitározómajor",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "among13PriorityTargets": true,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-kelet-project-historical": "d7600d6a0e1e489ad2a815b0f2d245ba785c1c937a6e4dd6d54f48d07c93056d"
+      },
+      "recordContentSha256": "2164d768518cb1a169e9dfd586e78fd86d5835d0c86a534d44de24819af62cc5"
+    },
+    {
+      "sourceName": "Péterpuszta",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "péterpuszta",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-deli-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-deli-project-historical"
+      ],
+      "among13PriorityTargets": true,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-deli-project-historical": "b60cec0e62aa11acee67a4cb9e2c075e788305a68264b0b50253d87457fa9c82"
+      },
+      "recordContentSha256": "69fcd679aeb449d3650b4ead14d611c7e7e602c9de5ae809fbdcd349eb267335"
+    },
+    {
+      "sourceName": "Józsefháza",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "józsefháza",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "683dfeea91909f972306e51656d0e416fb1b366221a6f62492a4a95eefbbcbf0"
+    },
+    {
+      "sourceName": "Rücker-akna",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "rückerakna",
+      "webPassConclusion": "no_admissible_current_exact_locality_use_found_in_bounded_official_web_search",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": true,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "b35c380a607a6a086f7bd21199eeb8fcae93b2b9b6f47cf56ae5d1a7cd4eca57"
+    },
+    {
+      "sourceName": "István-akna",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "istvánakna",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "8d7cb2e307d81105d2575e124223ca26c344f3693ab733784f7de984c10dc6a2"
+    },
+    {
+      "sourceName": "Flóriántelep",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "flóriántelep",
+      "webPassConclusion": "no_admissible_current_exact_locality_use_found_in_bounded_official_web_search",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": true,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "e186d808f2891bdeeef2ab963fc7d32d83da895c2dcd53f3408380cfc735e05a"
+    },
+    {
+      "sourceName": "Kisbalokány",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "kisbalokány",
+      "webPassConclusion": "historical_republished_municipal_locality_use_only",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-kelet-project-historical"
+      ],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-kelet-project-historical": "d7600d6a0e1e489ad2a815b0f2d245ba785c1c937a6e4dd6d54f48d07c93056d"
+      },
+      "recordContentSha256": "14f6cd06616c0b167910eb38de37c4aa26da3ec63248271596cbb378e81509e4"
+    },
+    {
+      "sourceName": "Siklósi külváros",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "siklósikülváros",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "346f6f702b7875d2c5558545c446da6c07b78b61603f62bd10bd0199b0acc57a"
+    },
+    {
+      "sourceName": "M utca",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "mutca",
+      "webPassConclusion": "no_admissible_current_exact_locality_use_found_in_bounded_official_web_search",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": true,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "6d0887be71c693e5bd32c5b53539f9fe8627f728d38666689779ff7a69671d03"
+    },
+    {
+      "sourceName": "Murom",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "murom",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "32bf433d213af96efb082fde6c2ea4c21c3435d1cfa31741c4011ee2f993538e"
+    },
+    {
+      "sourceName": "Köztemető",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "köztemető",
+      "webPassConclusion": "dated_2026_prefixed_facility_label_only_and_historical_locality_list",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [
+        "municipal-obituary2026-facility",
+        "municipal-deli-project-historical"
+      ],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [
+        "municipal-deli-project-historical"
+      ],
+      "among13PriorityTargets": true,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {
+        "municipal-obituary2026-facility": "fa7ac2ce10310a1f08ba4c19f648e02fcd24312af0fd442d7d277b4caa510889",
+        "municipal-deli-project-historical": "b60cec0e62aa11acee67a4cb9e2c075e788305a68264b0b50253d87457fa9c82"
+      },
+      "recordContentSha256": "5e0b6c08cc1404e278c6ee52d83c8cecb10acf0e043fab2455cee946b1a1c5a6"
+    },
+    {
+      "sourceName": "Árpádtető",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "árpádtető",
+      "webPassConclusion": "cached_2026_event_venue_lead_open_readback_404_not_admitted",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "015fc6538ceb747c84d365f3b705740b88a6bd81e78cd0a1676e8bfd89560987"
+    },
+    {
+      "sourceName": "Petőfi-akna",
+      "sourceMunicipality": "Pécs",
+      "normalizedWholeNameKey": "petőfiakna",
+      "webPassConclusion": "no_admissible_record_from_this_bounded_web_pass_not_exhaustively_searched",
+      "currentDatedExactSameCityLocalityNameSupported": false,
+      "currentSupportEvidenceIds": [],
+      "allReadEvidenceIds": [],
+      "undatedAddressUseEvidenceIds": [],
+      "historicalLocalityListEvidenceIds": [],
+      "among13PriorityTargets": false,
+      "semanticAliasesApplied": [],
+      "absenceOrNegativeSearchProvesNameDiscontinued": false,
+      "sourceCellIdentityOrExtentApproved": false,
+      "geographicPlacementVerified": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false,
+      "readEvidenceRecordContentSha256": {},
+      "recordContentSha256": "c67c9d0687a739ce43cc1c664b011a9049ae27b00f56d2b5390cbf93d56fe645"
+    }
+  ],
+  "excludedOrUnavailableLeads": [
+    {
+      "sourceName": "Árpádtető",
+      "url": "https://pecs.hu/programok/mecseki-lathatatlanok-nyomaban-teljesitmenytura/",
+      "searchReaderReference": "turn826301search0",
+      "priorOpenedReaderReference": "turn495572view0",
+      "latestOpenReaderReferences": [
+        "turn881399view0",
+        "turn496270view0"
+      ],
+      "latestOpenResult": "404 Not Found",
+      "interpretation": "Search index and an earlier reader body describe a 2026-11-07 hiking venue named Árpádtető. Current open readback fails; the event page also does not establish municipal containment. It is not counted as admitted current same-city evidence."
+    },
+    {
+      "url": "https://pecs.hu/app/uploads/2024/04/FVS_Pecs_250219.pdf",
+      "readerReference": "turn863637view0",
+      "openResult": "Reader rejected source as content length too large (14036983 bytes)",
+      "interpretation": "Search-index snippets exist but were not used for current-name admission; no source PDF byte hash is claimed."
+    }
+  ],
+  "limitations": [
+    "Bounded web search is not a complete current Pécs gazetteer; no admissible web record is not evidence a source name has disappeared.",
+    "All 67 names remain in the ledger; only four have dated 2026 exact locality-use support from this web pass. Original-PBF and KSH evidence must be combined separately by exact source name.",
+    "No raw web-page bytes were archived by the connector. URLs, retrieval date, transient reader refs, body locations, short literal excerpts and decisions are retained; raw-page SHA256 remains null.",
+    "Current name use does not certify historical cell extent, geographic registration, current boundary position or address classification.",
+    "The source fine labels Újmecsekalja / Uránváros and Budaiváros / Budai külváros stay distinct. No undocumented Szabolcs / Szabolcsfalu or Üszög / Üszögpuszta alias is used."
+  ],
+  "networkUsed": "read-only web connector only",
+  "shellNetworkUsed": false,
+  "frozenSourceChanges": false,
+  "registryChanges": false,
+  "geometryChanges": false,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false
+}

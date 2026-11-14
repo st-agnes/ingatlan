@@ -1,0 +1,56 @@
+name: Collect draft neighborhood data
+
+on:
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: Cities to inspect (core is seven cities; all is 26)
+        type: choice
+        options:
+          - core
+          - all
+        default: all
+
+permissions:
+  contents: read
+
+concurrency:
+  group: neighborhood-data-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  historical-archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and fingerprint pinned public national archive
+        run: python3 scripts/neighborhoods/fetch-national.py --output .local/neighborhoods/national-archive
+      - uses: actions/upload-artifact@v4
+        with:
+          name: neighborhood-national-archive
+          path: .local/neighborhoods/national-archive/
+          if-no-files-found: error
+          retention-days: 30
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      COLLECTION_SCOPE: ${{ inputs.scope || 'all' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check acquisition safeguards without network
+        run: node tests/neighborhoods-fetch.test.mjs
+      - name: Collect current public OpenStreetMap source records
+        run: node scripts/neighborhoods/fetch-osm.mjs --scope "$COLLECTION_SCOPE" --output .local/neighborhoods/osm
+      - name: Retain source records and explicit coverage results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: neighborhood-osm-draft
+          path: .local/neighborhoods/osm/
+          if-no-files-found: warn
+          retention-days: 30

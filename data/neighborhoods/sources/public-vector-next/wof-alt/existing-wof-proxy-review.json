@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "scope": "Nine retained WOF large/local-area source geometries, already excluded from primary quarter counts.",
+  "reviewedFeatures": 9,
+  "literalPointBufferSignatureFeatures": 1,
+  "additionalPrimaryQuarterSuppressions": 0,
+  "records": [
+    {
+      "id": "wof:85901077",
+      "name": "Csepel",
+      "sourcePath": "data/neighborhoods/sources/whosonfirst/85901077.geojson",
+      "sourceSha256": "21a6c958f7163eca785f9fd47f3c6600d55e976c291cff0033a6e1a65e76ac76",
+      "sourceGitBlobSha": "b98b849d3838da7a18ad7cfe59c3d1b3659981fc",
+      "circlePatterns": [],
+      "existingCanonicalNameIsNeighborhood": false,
+      "contributesToPrimaryQuarterCount": false,
+      "recommendation": "no_targeted_circle_signature_detected_not_independent_boundary_verification"
+    },
+    {
+      "id": "wof:85901111",
+      "name": "Ferencváros",
+      "sourcePath": "data/neighborhoods/sources/whosonfirst/85901111.geojson",
+      "sourceSha256": "61300d69ed20a9df79e773eccb195e11e23478cc7a6131dc898239b55b308ab6",
+      "sourceGitBlobSha": "ad4885e5b6125ce90784ea796e33f573369a97dc",
+      "circlePatterns": [],
+      "existingCanonicalNameIsNeighborhood": false,
+      "contributesToPrimaryQuarterCount": false,
+      "recommendation": "no_targeted_circle_signature_detected_not_independent_boundary_verification"
+    },
+    {
+      "id": "wof:85901165",
+      "name": "Kőbánya",
+      "sourcePath": "data/neighborhoods/sources/whosonfirst/85901165.geojson",
+      "sourceSha256": "c86c228be801487e452f6d95095f7078e5084c09ab6a121da59aa79c7e3242f0",
+      "sourceGitBlobSha": "329e851bb71f95c06906015f60767475587eb2a9",
+      "circlePatterns": [],
+      "existingCanonicalNameIsNeighborhood": false,
+      "contributesToPrimaryQuarterCount": false,
+      "recommendation": "no_targeted_circle_signature_detected_not_independent_boundary_verification"
+    },
+    {
+      "id": "wof:85901203",
+      "name": "Pesterzsébet",
+      "sourcePath": "data/neighborhoods/sources/whosonfirst/85901203.geojson",
+      "sourceSha256": "425325c443f493746f904ad4a887c64a2952a14cd236b136d9c8b91dfdd5d993",
+      "sourceGitBlobSha": "b165252492339058c83213c6ba8855b5316809a2",
+      "circlePatterns": [],
+      "existingCanonicalNameIsNeighborhood": false,
+      "contributesToPrimaryQuarterCount": false,
+      "recommendation": "no_targeted_circle_signature_detected_not_independent_boundary_verification"
+    },
+    {
+      "id": "wof:85901243",
+      "name": "Pesthidegkút",
+      "sourcePath": "data/neighborhoods/sources/whosonfirst/85901243.geojson",
+      "sourceSha256": "663b8ff494350e0be193bc631141349abbc53c386c77320693496cbe35fb6a86",
+      "sourceGitBlobSha": "7429f055066455d136be611599f5badab8fcf57f",
+      "circlePatterns": [
+        {
+          "ring": 0,
+          "uniqueVertices": 161,
+          "fittedCenterDegrees": [
+            18.91571044920451,
+            47.53389261250448
+          ],
+          "fittedRadiusDegrees": 0.010000000006084633,
+          "targetRadiusDegrees": 0.01,
+          "radialToleranceDegrees": 1e-09,
+          "angularToleranceDegrees": 1e-05,
+          "onCircleVertices": 18,
+          "longestConsecutiveCircleRun": 18,
+          "regular11_25DegreeSteps": 17,
+          "maxMatchingVertexRadialResidualDegrees": 6.148753381451932e-12
+        }
+      ],
+      "existingCanonicalNameIsNeighborhood": false,
+      "contributesToPrimaryQuarterCount": false,
+      "recommendation": "retain_source_bound_research_classification_with_provider_circle_warning"
+    },
+    {
+      "id": "wof:85901253",
+      "name": "Pestszentlőrinc",
+      "sourcePath": "data/neighborhoods/sources/whosonfirst/85901253.geojson",
+      "sourceSha256": "47076fd81f2f831572473521acc035c20189195b4d9dcf9c3b74b7414171461a",
+      "sourceGitBlobSha": "200674fdd7fd333914360cdf1b280950066309b6",
+      "circlePatterns": [],
+      "existingCanonicalNameIsNeighborhood": false,
+      "contributesToPrimaryQuarterCount": false,
+      "recommendation": "no_targeted_circle_signature_detected_not_independent_boundary_verification"
+    },
+    {
+      "id": "wof:85901347",
+      "name": "Zugló",
+      "sourcePath": "data/neighborhoods/sources/whosonfirst/85901347.geojson",
+      "sourceSha256": "cf6cbe4879683d6653f4359f9d84635eff5394530b66ebc7b2a82e2d64ea88ed",
+      "sourceGitBlobSha": "8f50746fb8d63f33ff95625481553da3eaf8e1c6",
+      "circlePatterns": [],
+      "existingCanonicalNameIsNeighborhood": false,
+      "contributesToPrimaryQuarterCount": false,
+      "recommendation": "no_targeted_circle_signature_detected_not_independent_boundary_verification"
+    },
+    {
+      "id": "wof:85906441",
+      "name": "Gubacsidűlő",
+      "sourcePath": "data/neighborhoods/sources/whosonfirst/85906441.geojson",
+      "sourceSha256": "7a41a3fb421f01e8da95dc5c965ca337b1444c859f7495224e1b0ddd8c653770",
+      "sourceGitBlobSha": "082558ef667421a327222601739678a116a5ff54",
+      "circlePatterns": [],
+      "existingCanonicalNameIsNeighborhood": false,
+      "contributesToPrimaryQuarterCount": false,
+      "recommendation": "no_targeted_circle_signature_detected_not_independent_boundary_verification"
+    },
+    {
+      "id": "wof:85906443",
+      "name": "Józsefváros",
+      "sourcePath": "data/neighborhoods/sources/whosonfirst/85906443.geojson",
+      "sourceSha256": "f48c2c03bda4c5de289780c1ac9af66bd701d7de1f53db874c87e39cf114dc47",
+      "sourceGitBlobSha": "b44fc0070a12ab680e18372d3e085815abe0f3da",
+      "circlePatterns": [],
+      "existingCanonicalNameIsNeighborhood": false,
+      "contributesToPrimaryQuarterCount": false,
+      "recommendation": "no_targeted_circle_signature_detected_not_independent_boundary_verification"
+    }
+  ],
+  "limits": [
+    "A negative0.01-degree/11.25-degree signature does not verify a physical boundary.",
+    "The positive Pesthidegkút signature is an additional geometry warning, not a new primary-quarter suppression."
+  ]
+}

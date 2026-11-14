@@ -1,0 +1,39 @@
+{
+  "status": "explicit_inference_not_literal_source",
+  "removedSourceMaskHolePixels": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          931.5,
+          1223.5
+        ],
+        [
+          931.5,
+          1224.5
+        ],
+        [
+          930.5,
+          1224.5
+        ],
+        [
+          930.5,
+          1223.5
+        ],
+        [
+          931.5,
+          1223.5
+        ]
+      ]
+    ]
+  },
+  "areaDifferencePixels": 1.0,
+  "areaDifferenceM2": 47.890705009922385,
+  "unchangedExteriorRings": true,
+  "remainingInteriorHoles": [
+    0,
+    1
+  ],
+  "reason": "Original1px hole touches exterior at one point and fails project hole_outside_shell; this explicit estimated interpretation fills it. Literal contour remains retained with failure recorded.",
+  "alternative": "Keep the literal source contour quarantined; do not use this inferred interpretation."
+}

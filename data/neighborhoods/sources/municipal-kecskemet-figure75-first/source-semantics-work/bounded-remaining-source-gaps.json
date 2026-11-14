@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "scope": "Bounded local Kecskemét source-gap research in the already archived May2021 municipal PDF. This is not all Kecskemét names, all sources or national completion.",
+  "snapshotDateUtc": "2026-11-14",
+  "sourceOriginalPdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+  "reviewedSupportingEvidenceSha256": {
+    "data/neighborhoods/sources/municipal-kecskemet-raster-more/source-image-inventory.json": "82481667232ab489c51b809bff5138c09084cf2d874d0a735484e499715a0859",
+    "data/neighborhoods/sources/municipal-kecskemet-raster-more/scout/other-2021-figure-shortlist.json": "f21c407621a9c53f253bcb4d49637ef5b246a0d846d13259d19341ef851d4e0f"
+  },
+  "registeredSourceDatasetSnapshot": [
+    {
+      "registry": "data/neighborhoods/manual-source-registry.json",
+      "datasetId": "kecskemet-erzsebetvaros",
+      "path": "data/neighborhoods/sources/municipal-maps-next/kecskemet-manual.geojson",
+      "sha256": "160a740fb414cb3605ed93adceabfb857bdcadf95661c8ac762284f463d54889",
+      "names": [
+        "Erzsébetváros"
+      ]
+    },
+    {
+      "registry": "data/neighborhoods/manual-source-registry.json",
+      "datasetId": "kecskemet-offline-next",
+      "path": "data/neighborhoods/sources/municipal-offline-next/kecskemet-next.geojson",
+      "sha256": "da90ced61c34c7a1b2b142daf46f8937cce7f00cb0932e9685fc32ce2b3ef05b",
+      "names": [
+        "Bethlenváros",
+        "Homoki-domb",
+        "Rákócziváros"
+      ]
+    },
+    {
+      "registry": "data/neighborhoods/manual-source-registry.json",
+      "datasetId": "kecskemet-varoskozpont",
+      "path": "data/neighborhoods/sources/municipal-offline-more/kecskemet-varoskozpont.geojson",
+      "sha256": "a88369fcb74adec953e308822d873c0f429be73b2299d708e697b43e9fc6eba4",
+      "names": [
+        "Városközpont"
+      ]
+    },
+    {
+      "registry": "data/neighborhoods/manual-source-registry.json",
+      "datasetId": "kecskemet-petofi-source-raster",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-outer-next/petofi-source-raster.geojson",
+      "sha256": "46c456e00e409d722289fe3d25d9cf3c756ff40a782db1dd08d82328769ff417",
+      "names": [
+        "Petőfiváros I.",
+        "Petőfiváros II."
+      ]
+    },
+    {
+      "registry": "data/neighborhoods/manual-source-registry.json",
+      "datasetId": "kecskemet-figure81-source-raster",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-fig81/szechenyi-source-raster.geojson",
+      "sha256": "06ccbe775220cf9260abcc184c87a7620cfffa5d931d156eda3fa1d3f3a2c000",
+      "names": [
+        "Belső-Máriahegy",
+        "Széchenyiváros III."
+      ]
+    },
+    {
+      "registry": "data/neighborhoods/inferred-candidate-registry.json",
+      "datasetId": "kecskemet-figure81-label-inference",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-fig81/szechenyi-label-inferred.geojson",
+      "sha256": "a141e2a7f899672f9c833c21994d65b1fd512e4484ddacc183b082581e529b85",
+      "names": [
+        "Széchenyiváros II.",
+        "Széchenyiváros I."
+      ]
+    },
+    {
+      "registry": "data/neighborhoods/inferred-candidate-registry.json",
+      "datasetId": "kecskemet-native77-fine-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-native77-first/fine-inferred.geojson",
+      "sha256": "08e0b715176fa8b3bd1b804508d46ae6fd0efad72b9ec27eedde4846a33dd1a8",
+      "names": [
+        "Kósafalu",
+        "Muszáj",
+        "Rendőrfalu"
+      ]
+    },
+    {
+      "registry": "data/neighborhoods/inferred-candidate-registry.json",
+      "datasetId": "kecskemet-native77-local-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-native77-first/local-units-inferred.geojson",
+      "sha256": "0f03d75e0482f23769d379fc06fb1d946644490e285505edf8528065aa35f046",
+      "names": [
+        "Szent László város — belső forráscella",
+        "Déli iparterület I.",
+        "Déli iparterület II.",
+        "Nyugati iparterület"
+      ]
+    },
+    {
+      "registry": "data/neighborhoods/inferred-candidate-registry.json",
+      "datasetId": "kecskemet-figure73-source-pixel-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure73-first/source-inferred.geojson",
+      "sha256": "36cc4e59c1516338ba34928dcffdf871e9f01f2432701506a91b5fceb4a2cb5a",
+      "names": [
+        "Árpádváros",
+        "Kossuthváros"
+      ]
+    },
+    {
+      "registry": "data/neighborhoods/inferred-candidate-registry.json",
+      "datasetId": "kecskemet-figure76-source-pixel-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure76-first/source-inferred.geojson",
+      "sha256": "25fc43ab9733cc89f73b4a4184939a05643f0ba853ed089110a5085a829d63d0",
+      "names": [
+        "Külső Árpádváros",
+        "Mezeiváros",
+        "Ürgés"
+      ]
+    },
+    {
+      "registry": "data/neighborhoods/inferred-candidate-registry.json",
+      "datasetId": "kecskemet-figure78-source-pixel-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure78-first/source-inferred.geojson",
+      "sha256": "1ef7475d6573753e7b273c5e4cee7ed42b2608a655ef8b72450c2b8d32d1a6be",
+      "names": [
+        "Alsócsalános",
+        "Homokbánya",
+        "Alsószéktó",
+        "Szeleifalu"
+      ]
+    },
+    {
+      "registry": "data/neighborhoods/inferred-candidate-registry.json",
+      "datasetId": "kecskemet-figure74-source-overprint-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure74-first/source-inferred.geojson",
+      "sha256": "9d689aa4fef30c95e28f50e1984de8b931a0837d41f3b823209dc63bd916717c",
+      "names": [
+        "Hunyadiváros"
+      ]
+    }
+  ],
+  "registeredPrimaryFeatureCount": 9,
+  "registeredInferredFeatureCount": 19,
+  "conditionalNextSubset": {
+    "figure": 75,
+    "name": "Reptéri lakótelep",
+    "count": 1,
+    "integrationApprovedByThisReport": false,
+    "remainingListAssumesSuccessfulLaterCompletionAndIntegration": true,
+    "KülsőRákóczivárosStillPending": true
+  },
+  "coarseFigure72TranscribedLabelCount": 49,
+  "inventorySpellingLinksOnlyNotExactCurrentAliasProof": [
+    {
+      "figure72": "Homokidomb",
+      "existingRegistered": "Homoki-domb"
+    },
+    {
+      "figure72": "Belső Máriahegy",
+      "existingRegistered": "Belső-Máriahegy"
+    },
+    {
+      "figure72": "Szent László város",
+      "existingRegistered": "Szent László város — belső forráscella",
+      "scopeCaveat": "Inner two-hole source cell only; not complete Szent László Város umbrella."
+    }
+  ],
+  "conditionalRemainingFigure72LabelCandidatesCount": 20,
+  "remainingLocalSourceCandidates": [
+    {
+      "sourceName": "Máriaváros",
+      "preferredFigure": 80,
+      "sourcePdfPageOneBased": 171,
+      "status": "detailed_source_candidate",
+      "note": "Individually labelled complete-looking source cells; exact source scope and contours need tracing.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Széktó",
+      "preferredFigure": 80,
+      "sourcePdfPageOneBased": 171,
+      "status": "detailed_source_candidate",
+      "note": "Individually labelled complete-looking source cells; exact source scope and contours need tracing.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Arborétum lakópark",
+      "preferredFigure": 80,
+      "sourcePdfPageOneBased": 171,
+      "status": "detailed_source_candidate",
+      "note": "Small residential source cell; blue label meets divider, so observed versus inferred stroke intervals need separation.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Széktói szabadidőközpont",
+      "preferredFigure": 80,
+      "sourcePdfPageOneBased": 171,
+      "status": "detailed_source_candidate",
+      "note": "Distinct functional/institutional/corridor source cells. Preserve actual source scope, without automatic functional rejection or whole-quarter promotion.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Kórház",
+      "preferredFigure": 80,
+      "sourcePdfPageOneBased": 171,
+      "status": "detailed_source_candidate",
+      "note": "Distinct functional/institutional/corridor source cells. Preserve actual source scope, without automatic functional rejection or whole-quarter promotion.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Izsáki út",
+      "preferredFigure": 80,
+      "sourcePdfPageOneBased": 171,
+      "status": "detailed_source_candidate",
+      "note": "Distinct functional/institutional/corridor source cells. Preserve actual source scope, without automatic functional rejection or whole-quarter promotion.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Vacsiköz",
+      "preferredFigure": 82,
+      "sourcePdfPageOneBased": 178,
+      "status": "detailed_source_candidate",
+      "note": "Remaining large inner source cell differs from complete umbrella captioned Vacsi-közi városrész / graphic title Budaihegy–Vacsihegy.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Dárdai-Wolker Telep",
+      "preferredFigure": 82,
+      "sourcePdfPageOneBased": 178,
+      "status": "detailed_source_candidate",
+      "note": "One combined cell; Figure82 spells Dárdai-Woelker Telep. Never clone it as separate Dárdaitelep and Woelkertelep shapes.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Ceglédi út",
+      "preferredFigure": 74,
+      "sourcePdfPageOneBased": 154,
+      "status": "detailed_source_candidate",
+      "note": "Remaining separately mapped corridor/economic source cells; source74 Hunyadiváros first subset did not include them.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Békéscsaba úti gazdasági övezet",
+      "preferredFigure": 74,
+      "sourcePdfPageOneBased": 154,
+      "status": "detailed_source_candidate",
+      "note": "Remaining separately mapped corridor/economic source cells; source74 Hunyadiváros first subset did not include them.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Vasútkert és pályaudvar",
+      "preferredFigure": 74,
+      "sourcePdfPageOneBased": 154,
+      "status": "detailed_source_candidate",
+      "note": "Figure72 name; detailed74 label is Vasútpark. Exact alias/scope equivalence is unverified; retain station-side broad cell scope.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Külső Rákócziváros",
+      "preferredFigure": 75,
+      "sourcePdfPageOneBased": 158,
+      "status": "detailed_source_candidate",
+      "note": "Not included in planned Reptéri-only first subset; distinct from central Rákócziváros.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Kisfái gazdasági övezet",
+      "preferredFigure": 75,
+      "sourcePdfPageOneBased": 158,
+      "status": "detailed_source_candidate",
+      "note": "Complete-looking separately named economic source cells; do not use as whole Kisfái/Parasztfőiskola proxies.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Parasztfőiskola gazdasági övezet",
+      "preferredFigure": 75,
+      "sourcePdfPageOneBased": 158,
+      "status": "detailed_source_candidate",
+      "note": "Complete-looking separately named economic source cells; do not use as whole Kisfái/Parasztfőiskola proxies.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Felsőszéktó-Felsőcsalános",
+      "preferredFigure": 79,
+      "sourcePdfPageOneBased": 169,
+      "status": "detailed_source_candidate",
+      "note": "Actual Figure79 image visually has western road, southern cap and northern apex inside image with tight top margin. Check literal closure; retain ONE compound source cell, not two component-name shapes.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Külső-Máriahegy",
+      "preferredFigure": 72,
+      "sourcePdfPageOneBased": 142,
+      "status": "coarser_alternate_source_needed",
+      "note": "Detailed81 crops the relevant extent; complete-looking alternative contours exist in separate coarser Figure72. Do not frame-close81 or silently transfer its registration.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Villanegyed",
+      "preferredFigure": 72,
+      "sourcePdfPageOneBased": 142,
+      "status": "coarser_alternate_source_needed",
+      "note": "Detailed81 crops the relevant extent; complete-looking alternative contours exist in separate coarser Figure72. Do not frame-close81 or silently transfer its registration.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Arborétum - Kápolnarét",
+      "preferredFigure": 72,
+      "sourcePdfPageOneBased": 142,
+      "status": "coarser_alternate_source_needed",
+      "note": "Detailed80 northern extent clipped; one compound cell in coarser72, not separate Arborétum and Kápolnarét polygons.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Alsószéktói kiskertek",
+      "preferredFigure": 72,
+      "sourcePdfPageOneBased": 142,
+      "status": "coarser_alternate_source_needed",
+      "note": "Detailed78 eastern edge clipped; complete-looking coarser72 source cell requires independent tracing and georeference.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    },
+    {
+      "sourceName": "Szolnokihegy",
+      "preferredFigure": 72,
+      "sourcePdfPageOneBased": 142,
+      "status": "coarser_alternate_source_needed",
+      "note": "Detailed75 top clipped. Overview72 source extent is separate and does not supply Műkertváros fine boundary.",
+      "literalPixelClosureAndGeographicRegistrationYetRequired": true
+    }
+  ],
+  "additionalUnresolvedScopesOutsideThat20LabelCount": [
+    {
+      "scope": "Műkertváros",
+      "status": "Residential identity explicit in75 prose, but no separate fine source contour. Do not use broad Szolnokihegy boundary."
+    },
+    {
+      "scope": "Leninváros",
+      "status": "Described within Külső Árpádváros in76 prose; no separately mapped cell in76."
+    },
+    {
+      "scope": "Dárdaitelep, Woelkertelep/Volkertelep, Miklovicstelep, Székelytelep",
+      "status": "Source82 prose names; no independent separate contour for each. Dárdai-Woelker map cell is combined."
+    },
+    {
+      "scope": "Szent László Város umbrella",
+      "status": "Current inferred layer intentionally contains only central inner source cell, plus separately named77cells; not an approved whole-district union."
+    },
+    {
+      "scope": "Figure71 ten orange satellite built-up units and yellow airport",
+      "status": "Separate built-up/local/regulatory source scopes remain available. They must not be promoted to whole similarly named outlying quarters. Orange labels include Méntelek belterület, Talfája belterület, Katonatelep, Borbás belterület, Kisfái belterület, Matkó belterület, Kadafalva, Hetény, Szarkás belterület and Halasi úti kiskertek."
+    }
+  ],
+  "suggestedNextLocalDetailedReview": [
+    "Figure80 Máriaváros, Széktó and Arborétum lakópark",
+    "Figure82 Vacsiköz and one combined Dárdai-Woelker Telep source cell",
+    "Figure79 one compound Felsőszéktó-Felsőcsalános source cell",
+    "Remaining source74/source75 corridor, station-side and economic cells with explicit scope"
+  ],
+  "allKecskemetNamesOrSourcesExhausted": false,
+  "nationwideCompletenessVerified": false,
+  "allGeographicAccuracyAndCurrentExactScopeStillSeparateReview": true,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

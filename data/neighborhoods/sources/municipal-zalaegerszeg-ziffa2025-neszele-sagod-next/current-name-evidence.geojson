@@ -1,0 +1,98 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "osm:node:347301131",
+      "properties": {
+        "name": "Neszele",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 347301131,
+          "tags": {
+            "name": "Neszele",
+            "place": "suburb"
+          },
+          "objectVersion": 5,
+          "objectTimestamp": "2018-05-31 19:37:11+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/347301131",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Zalaegerszeg",
+        "municipalityId": "city:Zalaegerszeg",
+        "municipalityOsmId": "osm:relation:1357195",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1357195"
+        ],
+        "hierarchyMunicipalityOsmIds": [],
+        "usedForGeoreferencing": false,
+        "establishesSourceBoundary": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.827674,
+          46.8570588
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:node:990000897",
+      "properties": {
+        "name": "Ságod",
+        "place": "suburb",
+        "reviewStatus": "unreviewed",
+        "hasSourcePolygon": false,
+        "source": {
+          "osmType": "node",
+          "osmId": 990000897,
+          "tags": {
+            "name": "Ságod",
+            "name:ru": "Шагод",
+            "place": "suburb"
+          },
+          "objectVersion": 17,
+          "objectTimestamp": "2023-08-21 21:01:41+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/node/990000897",
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+        },
+        "municipality": "Zalaegerszeg",
+        "municipalityId": "city:Zalaegerszeg",
+        "municipalityOsmId": "osm:relation:1357195",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1357195"
+        ],
+        "hierarchyMunicipalityOsmIds": [],
+        "usedForGeoreferencing": false,
+        "establishesSourceBoundary": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.8237829,
+          46.8725434
+        ]
+      }
+    }
+  ]
+}

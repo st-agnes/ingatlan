@@ -1,0 +1,1081 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "scope": "Prior frozen source snapshots remain unchanged. Mutable root review/export snapshots recorded by the prior georef manifest are separately reported and are not conversion/audit dependencies of this remaining batch.",
+  "priorSourceSnapshotFilesChecked": 153,
+  "allPriorSourceSnapshotFilesExact": true,
+  "priorGeoreferenceSecondArtifactsChecked": 19,
+  "allPriorGeoreferenceSecondArtifactsExact": true,
+  "oldFrozenSources": [
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/README.txt",
+      "expectedSha256": "8826e9679e0881b9f895a5961cba4f42d702da5ee5760efb98fb4b7c0a769e11",
+      "actualSha256": "8826e9679e0881b9f895a5961cba4f42d702da5ee5760efb98fb4b7c0a769e11",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/artifact-manifest.json",
+      "expectedSha256": "11fa425cefe6539dbe1fcfdd99583ede3b5c024530bac7d7c98bbd75d8173686",
+      "actualSha256": "11fa425cefe6539dbe1fcfdd99583ede3b5c024530bac7d7c98bbd75d8173686",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/assignments.json",
+      "expectedSha256": "c810f2a53c8367474735fa864b279d5abbc22cc24d2497328bc5d65ea6f4d3f9",
+      "actualSha256": "c810f2a53c8367474735fa864b279d5abbc22cc24d2497328bc5d65ea6f4d3f9",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/conversion-proof.json",
+      "expectedSha256": "129a4ec7ac6373422edf18389d95c799f2c35f30155d81cc846ac6eced091f0b",
+      "actualSha256": "129a4ec7ac6373422edf18389d95c799f2c35f30155d81cc846ac6eced091f0b",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/derive.py",
+      "expectedSha256": "bd4d350aaa21468403a59e28af2f0ca68bdb73530295045d4e3637671364ee0c",
+      "actualSha256": "bd4d350aaa21468403a59e28af2f0ca68bdb73530295045d4e3637671364ee0c",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/independent-review.json",
+      "expectedSha256": "1fe8b001f16916de26e6dadd7dae761f68215214b607e48aef6729c274c8d9aa",
+      "actualSha256": "1fe8b001f16916de26e6dadd7dae761f68215214b607e48aef6729c274c8d9aa",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/independent_audit.py",
+      "expectedSha256": "5798031363abf0c1717cf606f53c02bc3547533a7304b0d959d9cd1f65d6d47d",
+      "actualSha256": "5798031363abf0c1717cf606f53c02bc3547533a7304b0d959d9cd1f65d6d47d",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-calibration-municipality.geojson",
+      "expectedSha256": "f88ce9a098698c26775574013b687dc1e1a15b0b4a3f5c40ff7ec1fceeb3a305",
+      "actualSha256": "f88ce9a098698c26775574013b687dc1e1a15b0b4a3f5c40ff7ec1fceeb3a305",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-cartographic-hole-decisions.json",
+      "expectedSha256": "e6a5dc985de35b4ab2b0249e80af68ece59485504541f75cccf912d3bbf9f4b0",
+      "actualSha256": "e6a5dc985de35b4ab2b0249e80af68ece59485504541f75cccf912d3bbf9f4b0",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-cartographic-hole-review.json",
+      "expectedSha256": "9ab48e4ad029e3f1aa0fe0bdf1e8437c6b70625816efa0a5360d2a5105c95c2f",
+      "actualSha256": "9ab48e4ad029e3f1aa0fe0bdf1e8437c6b70625816efa0a5360d2a5105c95c2f",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-image-alignment.json",
+      "expectedSha256": "bbfeea6e96ef9233058c991533c0572ec0df4c1baeac88db5593c91f336e67b6",
+      "actualSha256": "bbfeea6e96ef9233058c991533c0572ec0df4c1baeac88db5593c91f336e67b6",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-independent-name-cell-review.json",
+      "expectedSha256": "b3e626b5f0a4496e9a89b69090b0b52edb5e0a0df2027cfe39dcced918d8629e",
+      "actualSha256": "b3e626b5f0a4496e9a89b69090b0b52edb5e0a0df2027cfe39dcced918d8629e",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-p48-names.jpeg",
+      "expectedSha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8",
+      "actualSha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-p63-density.jpeg",
+      "expectedSha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788",
+      "actualSha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-registration-northwest-only-diagnostic.json",
+      "expectedSha256": "8ba7ab1515b94f37253b64bdbe2144e73e540081ede3ae2cf9838f65b7b87f13",
+      "actualSha256": "8ba7ab1515b94f37253b64bdbe2144e73e540081ede3ae2cf9838f65b7b87f13",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-gray-heldout-diagnostic.json",
+      "expectedSha256": "122b334d1086fe4e56f88aeb94607269ec44d4977dda473d40b153a302f85f62",
+      "actualSha256": "122b334d1086fe4e56f88aeb94607269ec44d4977dda473d40b153a302f85f62",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-101-hole-0-raw.png",
+      "expectedSha256": "23ea88872e7d7383b70346dd1d08ed764fd7ba4c56f2938a3eed2384fb0aaa2b",
+      "actualSha256": "23ea88872e7d7383b70346dd1d08ed764fd7ba4c56f2938a3eed2384fb0aaa2b",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-101-hole-1-raw.png",
+      "expectedSha256": "a55169f43b7da8a62a630edec328d7f9a9c7a644a97933fbcb2206782df51ca1",
+      "actualSha256": "a55169f43b7da8a62a630edec328d7f9a9c7a644a97933fbcb2206782df51ca1",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-103-hole-0-raw.png",
+      "expectedSha256": "a45a22faea7fada94e71ac815baf3f0b5fe6568913b0a5370436f09ba5836f77",
+      "actualSha256": "a45a22faea7fada94e71ac815baf3f0b5fe6568913b0a5370436f09ba5836f77",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-120-hole-0-raw.png",
+      "expectedSha256": "334977d3ef913e51919bc513dd029d6912951bf5f5349a9f58edd089bdf2a4f6",
+      "actualSha256": "334977d3ef913e51919bc513dd029d6912951bf5f5349a9f58edd089bdf2a4f6",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-120-hole-1-raw.png",
+      "expectedSha256": "0303fbe87fa3e0d49694898f7b91944e40d5ba6bde13204c8572f78f47d5234e",
+      "actualSha256": "0303fbe87fa3e0d49694898f7b91944e40d5ba6bde13204c8572f78f47d5234e",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-120-hole-2-raw.png",
+      "expectedSha256": "5bd256e62af0492f0f80c5cfa2f4314004bc51b44aedf24e49d07b1da8ec1ce4",
+      "actualSha256": "5bd256e62af0492f0f80c5cfa2f4314004bc51b44aedf24e49d07b1da8ec1ce4",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-121-hole-0-raw.png",
+      "expectedSha256": "c2696f842a912bc8125f356e06c91b23d8a6c1313a414b7e407a7138eba79bf4",
+      "actualSha256": "c2696f842a912bc8125f356e06c91b23d8a6c1313a414b7e407a7138eba79bf4",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-135-hole-0-raw.png",
+      "expectedSha256": "c1220315828b6afb7d3a340dba9764d0a4db47f9ee2dfd3c782c27ba1d392ae6",
+      "actualSha256": "c1220315828b6afb7d3a340dba9764d0a4db47f9ee2dfd3c782c27ba1d392ae6",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-135-hole-1-raw.png",
+      "expectedSha256": "ff916278682f0df3134b2d6896f33303191c90259c2a484c0ddcac0ae63d70e4",
+      "actualSha256": "ff916278682f0df3134b2d6896f33303191c90259c2a484c0ddcac0ae63d70e4",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-144-hole-0-raw.png",
+      "expectedSha256": "7659f59eec7b357747ab18a021dba7d009690acaa63c473b6e54871e689f2639",
+      "actualSha256": "7659f59eec7b357747ab18a021dba7d009690acaa63c473b6e54871e689f2639",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-144-hole-1-raw.png",
+      "expectedSha256": "f165708923d13ffa1f6db367a3e4b692bbd211e17ca78937da024cd626d30fb1",
+      "actualSha256": "f165708923d13ffa1f6db367a3e4b692bbd211e17ca78937da024cd626d30fb1",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-148-hole-0-raw.png",
+      "expectedSha256": "217f16231b6c5c898c1e51bb3972831f88d07554164506620976d96077c7b3db",
+      "actualSha256": "217f16231b6c5c898c1e51bb3972831f88d07554164506620976d96077c7b3db",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-148-hole-1-raw.png",
+      "expectedSha256": "b435256499de54629c5380e174347380dde11561c080cd5a0d4732f5c246845a",
+      "actualSha256": "b435256499de54629c5380e174347380dde11561c080cd5a0d4732f5c246845a",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-148-hole-2-raw.png",
+      "expectedSha256": "55c5e93279b58127a655889f4ce5724f5e7b92e73a684e64a77c427003f3253a",
+      "actualSha256": "55c5e93279b58127a655889f4ce5724f5e7b92e73a684e64a77c427003f3253a",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-148-hole-3-raw.png",
+      "expectedSha256": "f65df6cd30ed3063b617d47c64e686d10ab1091ed89d30f604e31c7c0c89afcc",
+      "actualSha256": "f65df6cd30ed3063b617d47c64e686d10ab1091ed89d30f604e31c7c0c89afcc",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-158-hole-0-raw.png",
+      "expectedSha256": "7b3830bf3ba027101737834c292eb6820f726f2210636dc7736be117b17f4b58",
+      "actualSha256": "7b3830bf3ba027101737834c292eb6820f726f2210636dc7736be117b17f4b58",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-158-hole-1-raw.png",
+      "expectedSha256": "ddcf339b9fafb04e10f2b4fb10f42f6a62e9a2b1fa571068ad684476e17baca9",
+      "actualSha256": "ddcf339b9fafb04e10f2b4fb10f42f6a62e9a2b1fa571068ad684476e17baca9",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-158-hole-2-raw.png",
+      "expectedSha256": "4cd599c1c2b68b324d7fb10d7721235fc40cc369f3d885aea397adff417919e2",
+      "actualSha256": "4cd599c1c2b68b324d7fb10d7721235fc40cc369f3d885aea397adff417919e2",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-158-hole-3-raw.png",
+      "expectedSha256": "9ec4734a317436f2dfb91ef0c8966712bddd7c3c4c35b595872b8bddef9e9315",
+      "actualSha256": "9ec4734a317436f2dfb91ef0c8966712bddd7c3c4c35b595872b8bddef9e9315",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-158-hole-4-raw.png",
+      "expectedSha256": "b01bf27b19fd2980e48763fb9db38e6366de09c708e593e2a976301c7b2bb593",
+      "actualSha256": "b01bf27b19fd2980e48763fb9db38e6366de09c708e593e2a976301c7b2bb593",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-159-hole-0-raw.png",
+      "expectedSha256": "55dde9307dead8f6bf2bcf98049dfad0063762cd2424a261aca334d4b990a8c6",
+      "actualSha256": "55dde9307dead8f6bf2bcf98049dfad0063762cd2424a261aca334d4b990a8c6",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-159-hole-1-raw.png",
+      "expectedSha256": "515c19e20fae5a7a88d19050410b155cbb0d0d5647d268eb026ba8c36b44d67d",
+      "actualSha256": "515c19e20fae5a7a88d19050410b155cbb0d0d5647d268eb026ba8c36b44d67d",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-184-hole-0-raw.png",
+      "expectedSha256": "264eac8673f80533424e48a2fe787103e4f1621dd73eef822956bec4c3953a6d",
+      "actualSha256": "264eac8673f80533424e48a2fe787103e4f1621dd73eef822956bec4c3953a6d",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-184-hole-1-raw.png",
+      "expectedSha256": "ef3220781bc4f6641a23693f7e6ba374cb44df2e56e3322f4e121a1a0d5bdbbb",
+      "actualSha256": "ef3220781bc4f6641a23693f7e6ba374cb44df2e56e3322f4e121a1a0d5bdbbb",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-184-hole-2-raw.png",
+      "expectedSha256": "5735950c8e31b6fc9a7a397868d513cf3b11b345bc73fda4bc8fbd7b8e6a46b3",
+      "actualSha256": "5735950c8e31b6fc9a7a397868d513cf3b11b345bc73fda4bc8fbd7b8e6a46b3",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-184-hole-3-raw.png",
+      "expectedSha256": "c0bf4d68586ef784fb4a07778d399e0d25f06695173d446f9e30e0da16c0ea88",
+      "actualSha256": "c0bf4d68586ef784fb4a07778d399e0d25f06695173d446f9e30e0da16c0ea88",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-184-hole-4-raw.png",
+      "expectedSha256": "93904b7be2073cc3fb87706d72c72b66767102b5eadd456b931855e5e1616611",
+      "actualSha256": "93904b7be2073cc3fb87706d72c72b66767102b5eadd456b931855e5e1616611",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-184-hole-5-raw.png",
+      "expectedSha256": "d3bf4cc3798d8c690c9d74511e762f05e4607694c017ccaf9eb1eaa43ac1423d",
+      "actualSha256": "d3bf4cc3798d8c690c9d74511e762f05e4607694c017ccaf9eb1eaa43ac1423d",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-184-hole-6-raw.png",
+      "expectedSha256": "a2cbdb3b74e7d154f36266f3b8220d7823778c623d49789e75a2beda3660e622",
+      "actualSha256": "a2cbdb3b74e7d154f36266f3b8220d7823778c623d49789e75a2beda3660e622",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-184-hole-7-raw.png",
+      "expectedSha256": "87b30c649dc0af61015a7ebae86c6162fbecd177535e0438afcff203f5f6a4a0",
+      "actualSha256": "87b30c649dc0af61015a7ebae86c6162fbecd177535e0438afcff203f5f6a4a0",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-184-hole-8-raw.png",
+      "expectedSha256": "34725156fa6864f152e397e437ab094cb4eb6fc8788455a6a4be139ac386e831",
+      "actualSha256": "34725156fa6864f152e397e437ab094cb4eb6fc8788455a6a4be139ac386e831",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-38-hole-0-raw.png",
+      "expectedSha256": "7de78bdcfe4c339bd0b9d84dd77ce67d7b72e2dcba823626e10dc71dc7624fc7",
+      "actualSha256": "7de78bdcfe4c339bd0b9d84dd77ce67d7b72e2dcba823626e10dc71dc7624fc7",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-38-hole-1-raw.png",
+      "expectedSha256": "c66b802fa293b3f20c1e84e41d9dd86824302396b32917ec5ae23df10e02edef",
+      "actualSha256": "c66b802fa293b3f20c1e84e41d9dd86824302396b32917ec5ae23df10e02edef",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-45-hole-0-raw.png",
+      "expectedSha256": "84655e63eabec76dedbb95a31767434c5384fdbd335316585b9a4e9637a53a9b",
+      "actualSha256": "84655e63eabec76dedbb95a31767434c5384fdbd335316585b9a4e9637a53a9b",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-57-hole-0-raw.png",
+      "expectedSha256": "01319fd0ede1e7f9786c2d2ed4cd3302278bdc48a4755932c292b25f2c5d7889",
+      "actualSha256": "01319fd0ede1e7f9786c2d2ed4cd3302278bdc48a4755932c292b25f2c5d7889",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-57-hole-1-raw.png",
+      "expectedSha256": "36b08b98feff0a53b570b2058e1582ca2703859eba92b8e9079ea86e1ea6bec6",
+      "actualSha256": "36b08b98feff0a53b570b2058e1582ca2703859eba92b8e9079ea86e1ea6bec6",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-57-hole-2-raw.png",
+      "expectedSha256": "aabe849b63100201ae43b7534ec94410dcd186f9529037b802306c19ad31b835",
+      "actualSha256": "aabe849b63100201ae43b7534ec94410dcd186f9529037b802306c19ad31b835",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-57-hole-3-raw.png",
+      "expectedSha256": "6a70643db8fc71e7dca0c779fecd6820f2f33fcc7e44092be4d468b61d8ebddd",
+      "actualSha256": "6a70643db8fc71e7dca0c779fecd6820f2f33fcc7e44092be4d468b61d8ebddd",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-59-hole-0-raw.png",
+      "expectedSha256": "e396a9aeb322646f288905567172b385597496d268b7b4f6b35dce290b0dfd5b",
+      "actualSha256": "e396a9aeb322646f288905567172b385597496d268b7b4f6b35dce290b0dfd5b",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-63-hole-0-raw.png",
+      "expectedSha256": "ed78ce85cd3fcd2ca2c9f549222cc7eaad274ad4eb184a2b3e7326364e5518d8",
+      "actualSha256": "ed78ce85cd3fcd2ca2c9f549222cc7eaad274ad4eb184a2b3e7326364e5518d8",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-63-hole-1-raw.png",
+      "expectedSha256": "ba637c89aaf1d8de9b7297bafbb8eedcf3a073b7b41ba5c2318019089fcdbb47",
+      "actualSha256": "ba637c89aaf1d8de9b7297bafbb8eedcf3a073b7b41ba5c2318019089fcdbb47",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-63-hole-2-raw.png",
+      "expectedSha256": "8c06524393792b61aa0a113cc0e20cb33a1f36ca515efe7ab8a1504248d081fe",
+      "actualSha256": "8c06524393792b61aa0a113cc0e20cb33a1f36ca515efe7ab8a1504248d081fe",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-63-hole-3-raw.png",
+      "expectedSha256": "b7984048b6efda006fb3f85f825528ac4341804392257175f385dcb683b5e2a5",
+      "actualSha256": "b7984048b6efda006fb3f85f825528ac4341804392257175f385dcb683b5e2a5",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-63-hole-4-raw.png",
+      "expectedSha256": "c81768e5ae155abb89590b6ed1cc3c4b5f884ce6079762d5ab4b36b553a8b1d8",
+      "actualSha256": "c81768e5ae155abb89590b6ed1cc3c4b5f884ce6079762d5ab4b36b553a8b1d8",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-64-hole-0-raw.png",
+      "expectedSha256": "3f9a7b3dc8f2b78e5a544dc424100298cb23185caaedc7715a57b29a5776a560",
+      "actualSha256": "3f9a7b3dc8f2b78e5a544dc424100298cb23185caaedc7715a57b29a5776a560",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-64-hole-1-raw.png",
+      "expectedSha256": "1c788cd7d318bf3a5567d23cc75da0475df5788e083734b8513b8cfb4d9a95bc",
+      "actualSha256": "1c788cd7d318bf3a5567d23cc75da0475df5788e083734b8513b8cfb4d9a95bc",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-65-hole-0-raw.png",
+      "expectedSha256": "bb141a4fae8ece10d5c5b62f1d02dbd593bf790c2a212eb2344a9c1f332f557c",
+      "actualSha256": "bb141a4fae8ece10d5c5b62f1d02dbd593bf790c2a212eb2344a9c1f332f557c",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-65-hole-1-raw.png",
+      "expectedSha256": "ddd939ae468380f0bf92989076c784960570acb5eb5792894bf9e86ab097a503",
+      "actualSha256": "ddd939ae468380f0bf92989076c784960570acb5eb5792894bf9e86ab097a503",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-65-hole-2-raw.png",
+      "expectedSha256": "711006d26c50cd2ea05d6f5ac9e87dd8355abc192ab5601591b6ba93262d84d5",
+      "actualSha256": "711006d26c50cd2ea05d6f5ac9e87dd8355abc192ab5601591b6ba93262d84d5",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-65-hole-3-raw.png",
+      "expectedSha256": "5426422efd294abc09a63f51827f4b2ca914154bb957a3015c0dfc6ec04ef8a7",
+      "actualSha256": "5426422efd294abc09a63f51827f4b2ca914154bb957a3015c0dfc6ec04ef8a7",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-65-hole-4-raw.png",
+      "expectedSha256": "c210b5dcac94b50aa606e4f47bb051d708b8272b430ecb8c0711fbfb3a02b535",
+      "actualSha256": "c210b5dcac94b50aa606e4f47bb051d708b8272b430ecb8c0711fbfb3a02b535",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-65-hole-5-raw.png",
+      "expectedSha256": "fcaec379ef63f150a9325a57fee5f80a958fa68d67158cde2071bd433eda6e42",
+      "actualSha256": "fcaec379ef63f150a9325a57fee5f80a958fa68d67158cde2071bd433eda6e42",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-66-hole-0-raw.png",
+      "expectedSha256": "f11dda7d9031f9bb8208b45d30630488548ff2097a5f8a399e16106e54137757",
+      "actualSha256": "f11dda7d9031f9bb8208b45d30630488548ff2097a5f8a399e16106e54137757",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-69-hole-0-raw.png",
+      "expectedSha256": "fbe8739043dd169cbcfd6b7827a5c2016c696b370aac0ebfad7f4ffc1fda7009",
+      "actualSha256": "fbe8739043dd169cbcfd6b7827a5c2016c696b370aac0ebfad7f4ffc1fda7009",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-69-hole-1-raw.png",
+      "expectedSha256": "6a81419064cb6e30ed3a83f45c69e9a743c00d3020ec03a8c70984ef32d4497c",
+      "actualSha256": "6a81419064cb6e30ed3a83f45c69e9a743c00d3020ec03a8c70984ef32d4497c",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-69-hole-2-raw.png",
+      "expectedSha256": "2ab16c8a2659ffad24898d5924d1bc2cf5af4fb01b41f3fd96de1f3add6c2d03",
+      "actualSha256": "2ab16c8a2659ffad24898d5924d1bc2cf5af4fb01b41f3fd96de1f3add6c2d03",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-69-hole-3-raw.png",
+      "expectedSha256": "5908bf901e6772d340e8e42e8241be3975f5a9c28480d0ffbae8a1933ef3239d",
+      "actualSha256": "5908bf901e6772d340e8e42e8241be3975f5a9c28480d0ffbae8a1933ef3239d",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-69-hole-4-raw.png",
+      "expectedSha256": "05765f324c8d7e56991f38921ce8af263787d1096fdbe0bae51970263b845a53",
+      "actualSha256": "05765f324c8d7e56991f38921ce8af263787d1096fdbe0bae51970263b845a53",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-71-hole-0-raw.png",
+      "expectedSha256": "efcada62ebadcd37501590a1e221b77b1a157d990d78c329b28b2888e7eae0f3",
+      "actualSha256": "efcada62ebadcd37501590a1e221b77b1a157d990d78c329b28b2888e7eae0f3",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-71-hole-1-raw.png",
+      "expectedSha256": "367107a740ae794e182c99d7adfece295b89fac0c6c1a617b93147aa4e85039d",
+      "actualSha256": "367107a740ae794e182c99d7adfece295b89fac0c6c1a617b93147aa4e85039d",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-71-hole-2-raw.png",
+      "expectedSha256": "faf27c1994135e6db6702d43ae9d69649c3e3263091145c9336ff20bc8408aa1",
+      "actualSha256": "faf27c1994135e6db6702d43ae9d69649c3e3263091145c9336ff20bc8408aa1",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-71-hole-3-raw.png",
+      "expectedSha256": "7c7a6786a7f8ec28dd139a5fed17bc2f2f8ac066deef39cef050f3736ed46d53",
+      "actualSha256": "7c7a6786a7f8ec28dd139a5fed17bc2f2f8ac066deef39cef050f3736ed46d53",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-71-hole-4-raw.png",
+      "expectedSha256": "fbb882fb0b0308c444e0781bf8bc8f81e4df94416a1539f9c28ebdaba5f0a53c",
+      "actualSha256": "fbb882fb0b0308c444e0781bf8bc8f81e4df94416a1539f9c28ebdaba5f0a53c",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-71-hole-5-raw.png",
+      "expectedSha256": "c297f86a6cd2f13674e8cf7ae5ac5e564bc2abb06f2670e4940bcc73c6ffb434",
+      "actualSha256": "c297f86a6cd2f13674e8cf7ae5ac5e564bc2abb06f2670e4940bcc73c6ffb434",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-71-hole-6-raw.png",
+      "expectedSha256": "6e4bedf82b53c53867bfea1cfd86b161610902df5af4c810ac09a2eba7e2ce40",
+      "actualSha256": "6e4bedf82b53c53867bfea1cfd86b161610902df5af4c810ac09a2eba7e2ce40",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-77-hole-0-raw.png",
+      "expectedSha256": "3ae72631af795d624e4c6ffce33b536ce55c25437d63e8edf796637ddb02a239",
+      "actualSha256": "3ae72631af795d624e4c6ffce33b536ce55c25437d63e8edf796637ddb02a239",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-77-hole-1-raw.png",
+      "expectedSha256": "bb9d6a22e459668ac74d6a512800605b54a34c990aa82008aba0713861b533df",
+      "actualSha256": "bb9d6a22e459668ac74d6a512800605b54a34c990aa82008aba0713861b533df",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-77-hole-2-raw.png",
+      "expectedSha256": "92705f28b21718f8f4e740b8b0db5606becf824e58673df30cd9b0b419606bcc",
+      "actualSha256": "92705f28b21718f8f4e740b8b0db5606becf824e58673df30cd9b0b419606bcc",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-77-hole-3-raw.png",
+      "expectedSha256": "55549d0d43aa61ca300890ba93c36c8205fe1c0a70ff2ff489ff5f3d71ce80b7",
+      "actualSha256": "55549d0d43aa61ca300890ba93c36c8205fe1c0a70ff2ff489ff5f3d71ce80b7",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-77-hole-4-raw.png",
+      "expectedSha256": "db74df7045a71c570ded70252c0bc83ca742cd35fb33940c3ba7e7e5eb7e38f4",
+      "actualSha256": "db74df7045a71c570ded70252c0bc83ca742cd35fb33940c3ba7e7e5eb7e38f4",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-77-hole-5-raw.png",
+      "expectedSha256": "0da2a04bf3d11f0e66db3dadec49c179dbb3a89a1bb8a9b7d4fed9cd98c2abf6",
+      "actualSha256": "0da2a04bf3d11f0e66db3dadec49c179dbb3a89a1bb8a9b7d4fed9cd98c2abf6",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-81-hole-0-raw.png",
+      "expectedSha256": "efd3942c2e03d66908666abdf2b535b0a0dfdb0b06b6cf4f3942ef154fefe9aa",
+      "actualSha256": "efd3942c2e03d66908666abdf2b535b0a0dfdb0b06b6cf4f3942ef154fefe9aa",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-82-hole-0-raw.png",
+      "expectedSha256": "e30f4e79f5a8b94e482afb56a917e02a54cc11c712bf06538e93e068848252ba",
+      "actualSha256": "e30f4e79f5a8b94e482afb56a917e02a54cc11c712bf06538e93e068848252ba",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-83-hole-0-raw.png",
+      "expectedSha256": "f5e57fb4d436377c15829f21d9bfc2f3cdec7bec7312603bcc6dacabc2d21752",
+      "actualSha256": "f5e57fb4d436377c15829f21d9bfc2f3cdec7bec7312603bcc6dacabc2d21752",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-86-hole-0-raw.png",
+      "expectedSha256": "fe513039eb506b3039954576562b6b376b5adfd2c75cfae2e5f5c8153985b5d8",
+      "actualSha256": "fe513039eb506b3039954576562b6b376b5adfd2c75cfae2e5f5c8153985b5d8",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-86-hole-1-raw.png",
+      "expectedSha256": "b7f09a038c52ce2f57f73a11004240afc1976470ea5fcb24000ddcba0651c6f5",
+      "actualSha256": "b7f09a038c52ce2f57f73a11004240afc1976470ea5fcb24000ddcba0651c6f5",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-86-hole-2-raw.png",
+      "expectedSha256": "475bcfc1891d60f93ab0bbce82ddab541f27f11b8537e45f810db86e056df90a",
+      "actualSha256": "475bcfc1891d60f93ab0bbce82ddab541f27f11b8537e45f810db86e056df90a",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-86-hole-3-raw.png",
+      "expectedSha256": "8881cc128617e8f316d5634d46afb29885446304f17168da1bcd6f235d44b9ee",
+      "actualSha256": "8881cc128617e8f316d5634d46afb29885446304f17168da1bcd6f235d44b9ee",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-86-hole-4-raw.png",
+      "expectedSha256": "4923c949ed3f09f27aa3cc6e770ebe1f13a213afeaf83984fb3f4772665260f6",
+      "actualSha256": "4923c949ed3f09f27aa3cc6e770ebe1f13a213afeaf83984fb3f4772665260f6",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-87-hole-0-raw.png",
+      "expectedSha256": "7cd7e6c9389998e421872625e4d227e2a49af813d4299846042b0dbc645e4656",
+      "actualSha256": "7cd7e6c9389998e421872625e4d227e2a49af813d4299846042b0dbc645e4656",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-87-hole-1-raw.png",
+      "expectedSha256": "513dfc5ba3b9699ce3d559ad568fb09de8178314643b8c01ba01e615060a8c16",
+      "actualSha256": "513dfc5ba3b9699ce3d559ad568fb09de8178314643b8c01ba01e615060a8c16",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-87-hole-2-raw.png",
+      "expectedSha256": "cd242c0b6ff721003ffd509125a493c76fdd3e539c54bd02c3e2f853ca8d4599",
+      "actualSha256": "cd242c0b6ff721003ffd509125a493c76fdd3e539c54bd02c3e2f853ca8d4599",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-90-hole-0-raw.png",
+      "expectedSha256": "241b7a89cfbdf6d6ba9903286a703947ef93b984c7ab1d5ee99d9922da2b6623",
+      "actualSha256": "241b7a89cfbdf6d6ba9903286a703947ef93b984c7ab1d5ee99d9922da2b6623",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-96-hole-0-raw.png",
+      "expectedSha256": "db732be80e3020e197388704706cce4ce09cc109d4d69b07e88b1cf861c43220",
+      "actualSha256": "db732be80e3020e197388704706cce4ce09cc109d4d69b07e88b1cf861c43220",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-99-hole-0-raw.png",
+      "expectedSha256": "5c7f23b20dd620f82d25c72b6fd7a511836c34ecf16327557c13ec750153c5a4",
+      "actualSha256": "5c7f23b20dd620f82d25c72b6fd7a511836c34ecf16327557c13ec750153c5a4",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/component-99-hole-1-raw.png",
+      "expectedSha256": "e42ac0940dfd2d67368479bf63dc8db04209ac2ebd7611a3595f5bf719c141d4",
+      "actualSha256": "e42ac0940dfd2d67368479bf63dc8db04209ac2ebd7611a3595f5bf719c141d4",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/roman-I-raw.png",
+      "expectedSha256": "41ba0abd6f4758097950c080683b899ec616071ea1f457aec826b83caa0abc03",
+      "actualSha256": "41ba0abd6f4758097950c080683b899ec616071ea1f457aec826b83caa0abc03",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/roman-II-raw.png",
+      "expectedSha256": "2ce9156975956157ad1a7e123c3b6e6395913c188bab49a7dc9f7430bce1ad13",
+      "actualSha256": "2ce9156975956157ad1a7e123c3b6e6395913c188bab49a7dc9f7430bce1ad13",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/roman-III-raw.png",
+      "expectedSha256": "a234360ae7bdd59f71f6107694c88907e5a8c103e18f10bd0f41574947b1259a",
+      "actualSha256": "a234360ae7bdd59f71f6107694c88907e5a8c103e18f10bd0f41574947b1259a",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/roman-IV-raw.png",
+      "expectedSha256": "cb3cd285d9a576262e02b543fb73abd1a0d156e7cb3a91b73f9d78aea40ad025",
+      "actualSha256": "cb3cd285d9a576262e02b543fb73abd1a0d156e7cb3a91b73f9d78aea40ad025",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/roman-IX-raw.png",
+      "expectedSha256": "36683799928c04a3cf301de92659fe494e8c8bb900208de1694476adbc83991f",
+      "actualSha256": "36683799928c04a3cf301de92659fe494e8c8bb900208de1694476adbc83991f",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/roman-V-raw.png",
+      "expectedSha256": "2e8cb750f5d4c9c29b9c08d399331faa8d9a5f35b03f9a1728d5f3dd8c6d3b20",
+      "actualSha256": "2e8cb750f5d4c9c29b9c08d399331faa8d9a5f35b03f9a1728d5f3dd8c6d3b20",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/roman-VI-raw.png",
+      "expectedSha256": "61e2653853ec1db9229fa2592d989436fa31f5249ccc5d2480c4d0fadaf04999",
+      "actualSha256": "61e2653853ec1db9229fa2592d989436fa31f5249ccc5d2480c4d0fadaf04999",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/roman-VII-raw.png",
+      "expectedSha256": "2104aa0c86c75e0c5f95ff97b083247ff40d3583706bc49ff9b787ac798c289a",
+      "actualSha256": "2104aa0c86c75e0c5f95ff97b083247ff40d3583706bc49ff9b787ac798c289a",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/roman-VIII-raw.png",
+      "expectedSha256": "cb7d6286dd3cff5a78f123c0083dd8daa3d176b14bcc7f121cf799bd6491d352",
+      "actualSha256": "cb7d6286dd3cff5a78f123c0083dd8daa3d176b14bcc7f121cf799bd6491d352",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/roman-X-raw.png",
+      "expectedSha256": "3bb9dd8bfc59dfac8aef922645b880c7717c67e1c4bcde1ec7867d25aedfc44e",
+      "actualSha256": "3bb9dd8bfc59dfac8aef922645b880c7717c67e1c4bcde1ec7867d25aedfc44e",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/roman-XI-raw.png",
+      "expectedSha256": "2d14369729c56671389bf8705828c2b409a32169e15151b3d1ff6a42ffebd9b5",
+      "actualSha256": "2d14369729c56671389bf8705828c2b409a32169e15151b3d1ff6a42ffebd9b5",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/roman-XII-raw.png",
+      "expectedSha256": "cb91c219a4cfb04f885abfde2d8b1bc8cbece8e316004e346145ddafb96b8db8",
+      "actualSha256": "cb91c219a4cfb04f885abfde2d8b1bc8cbece8e316004e346145ddafb96b8db8",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-hole-crops/roman-XIII-raw.png",
+      "expectedSha256": "23f9110cc50b81ed69729138bde2ba7de3acfdd1023d1da7e3f228c512fff6b3",
+      "actualSha256": "23f9110cc50b81ed69729138bde2ba7de3acfdd1023d1da7e3f228c512fff6b3",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-roman-source-graphics-contact.png",
+      "expectedSha256": "29417e85e2cf995a35b84b6d25379a18797f1c0c07d652a74039a56a0f9ffede",
+      "actualSha256": "29417e85e2cf995a35b84b6d25379a18797f1c0c07d652a74039a56a0f9ffede",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-review-single-pixel-holes-contact.png",
+      "expectedSha256": "e86a5b6253b1509c197c34333e62fb8aadf6d0158e3de37ecd221c5e156fd17d",
+      "actualSha256": "e86a5b6253b1509c197c34333e62fb8aadf6d0158e3de37ecd221c5e156fd17d",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-source-extraction-proof.json",
+      "expectedSha256": "28e5eafffaf661ccd8a6f07678d7e1b081e83a81b14c45d317d478685b972a93",
+      "actualSha256": "28e5eafffaf661ccd8a6f07678d7e1b081e83a81b14c45d317d478685b972a93",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-source-selected-pages.pdf",
+      "expectedSha256": "09db9673a921e73cba1ab1add8ad65aeb0d727dad5bfadfd31946f91ad68d1c9",
+      "actualSha256": "09db9673a921e73cba1ab1add8ad65aeb0d727dad5bfadfd31946f91ad68d1c9",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/pecs-source-selected-pages.txt",
+      "expectedSha256": "89acf12f996ec698b7092aba418bfc556a9a6b55806d9860062e2febf151e887",
+      "actualSha256": "89acf12f996ec698b7092aba418bfc556a9a6b55806d9860062e2febf151e887",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/raw-pixel-cells.json",
+      "expectedSha256": "a43471de5978eed0ce9796c763ab5cfeaf71ca498630faa0f9dde83cc6fd33e3",
+      "actualSha256": "a43471de5978eed0ce9796c763ab5cfeaf71ca498630faa0f9dde83cc6fd33e3",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/registry-entry.json",
+      "expectedSha256": "ecadc9685acdeea8d73ad24e04171b1a17baeafbcc1a0e7a450c184efa4dcec2",
+      "actualSha256": "ecadc9685acdeea8d73ad24e04171b1a17baeafbcc1a0e7a450c184efa4dcec2",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/source-inferred.geojson",
+      "expectedSha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95",
+      "actualSha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/strict-validator-snapshot.mjs",
+      "expectedSha256": "abf1b564180d9b33593f9ce0d711eb996bf8f3a1d9cbb03b7527167ac515f3d7",
+      "actualSha256": "abf1b564180d9b33593f9ce0d711eb996bf8f3a1d9cbb03b7527167ac515f3d7",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/strict-validator-source-proof.json",
+      "expectedSha256": "d5a6db73d89a4ecb9d5ae7377c1ddabf29bedd8e8ccd1c99c37225415849d6ab",
+      "actualSha256": "d5a6db73d89a4ecb9d5ae7377c1ddabf29bedd8e8ccd1c99c37225415849d6ab",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/README.txt",
+      "expectedSha256": "12fccdf74ce8daa9f2bab91fd5bda01b6733700412d9378e44fede98a01a12f4",
+      "actualSha256": "12fccdf74ce8daa9f2bab91fd5bda01b6733700412d9378e44fede98a01a12f4",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/boundary-source-proof.json",
+      "expectedSha256": "869ba87df37a36b093b758f02011b90e19efaa877d529a7d110f0f645163ebab",
+      "actualSha256": "869ba87df37a36b093b758f02011b90e19efaa877d529a7d110f0f645163ebab",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/build-model.py",
+      "expectedSha256": "b6d3e8df1afac629e9d25a7628ea91e5afadd9ec5ef674d835ee4a47a28ae019",
+      "actualSha256": "b6d3e8df1afac629e9d25a7628ea91e5afadd9ec5ef674d835ee4a47a28ae019",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/calculation-proof.json",
+      "expectedSha256": "3676f2f969da7ef9f262d78d0a007271ccb509675bea83546443b88958375261",
+      "actualSha256": "3676f2f969da7ef9f262d78d0a007271ccb509675bea83546443b88958375261",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/candidate-model-overlay.png",
+      "expectedSha256": "a4d9ff563d60fade64e40454d7dae460b840e5066ae9c81997b6e7e5d0f3bd81",
+      "actualSha256": "a4d9ff563d60fade64e40454d7dae460b840e5066ae9c81997b6e7e5d0f3bd81",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/comparison-all54-model.json",
+      "expectedSha256": "2d5bd37a05baa504b40cf360aa35c7c3a55ccf9df67e60622f9a860b6b727e04",
+      "actualSha256": "2d5bd37a05baa504b40cf360aa35c7c3a55ccf9df67e60622f9a860b6b727e04",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/comparison-northwest-model.json",
+      "expectedSha256": "8ba7ab1515b94f37253b64bdbe2144e73e540081ede3ae2cf9838f65b7b87f13",
+      "actualSha256": "8ba7ab1515b94f37253b64bdbe2144e73e540081ede3ae2cf9838f65b7b87f13",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/control-pairs.geojson",
+      "expectedSha256": "e4a1220e3e65741eb732ded43fdc11925c8fffb6e0886b725d67ca927a991389",
+      "actualSha256": "e4a1220e3e65741eb732ded43fdc11925c8fffb6e0886b725d67ca927a991389",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/decision.json",
+      "expectedSha256": "0e6b9b1de3b5c20b64b0f41bddc0b342ac436dabca055d6e04dceac5f71543ec",
+      "actualSha256": "0e6b9b1de3b5c20b64b0f41bddc0b342ac436dabca055d6e04dceac5f71543ec",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/diagnostics.json",
+      "expectedSha256": "3bc23a8ee54746cdd49b6496042c06947c9db749a0ccaefeff83d4b392f44de9",
+      "actualSha256": "3bc23a8ee54746cdd49b6496042c06947c9db749a0ccaefeff83d4b392f44de9",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/extract-boundary-controls.py",
+      "expectedSha256": "20b0f57dab2fd9627dd7eeea856f0aa1cd7832ae3af7810fe464c4521aa959e5",
+      "actualSha256": "20b0f57dab2fd9627dd7eeea856f0aa1cd7832ae3af7810fe464c4521aa959e5",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/freeze-package.py",
+      "expectedSha256": "47442d7dc607c447f7ca7e0022d3b178250fdef6006be3cd37006ec253e09b8b",
+      "actualSha256": "47442d7dc607c447f7ca7e0022d3b178250fdef6006be3cd37006ec253e09b8b",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/independent-audit.py",
+      "expectedSha256": "fc0d569aac4ea44388af46165f83ebe66875f025a4863c533e5bca06740708cf",
+      "actualSha256": "fc0d569aac4ea44388af46165f83ebe66875f025a4863c533e5bca06740708cf",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/independent-review.json",
+      "expectedSha256": "034181262ae1f5c8796b86ef31b574bdb4df3e9d2b336f94b6a890d62e0845a3",
+      "actualSha256": "034181262ae1f5c8796b86ef31b574bdb4df3e9d2b336f94b6a890d62e0845a3",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/input-copy-proof.json",
+      "expectedSha256": "4551f94b0e9655156906a85b8d5e4d4240e7abb02ec73016c7e68cac7961fdfa",
+      "actualSha256": "4551f94b0e9655156906a85b8d5e4d4240e7abb02ec73016c7e68cac7961fdfa",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/manifest.json",
+      "expectedSha256": "f385f6b928cc5378a627c9839b04113c6ae35cce3e59908c65420658cab747f6",
+      "actualSha256": "f385f6b928cc5378a627c9839b04113c6ae35cce3e59908c65420658cab747f6",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/model.json",
+      "expectedSha256": "df64edde82a50357415fc2524fb8ad4790aea1a60ba3c8742e36b892a897e36f",
+      "actualSha256": "df64edde82a50357415fc2524fb8ad4790aea1a60ba3c8742e36b892a897e36f",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/render-diagnostics.py",
+      "expectedSha256": "49921e0185bf32f112b888f863edd3eea8d283d50706ac8cbb4198911f793afa",
+      "actualSha256": "49921e0185bf32f112b888f863edd3eea8d283d50706ac8cbb4198911f793afa",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/runtime-proof.json",
+      "expectedSha256": "7c11a9d42fb720f896f307f0ee3729205af5196471185ef988fca375e83e5850",
+      "actualSha256": "7c11a9d42fb720f896f307f0ee3729205af5196471185ef988fca375e83e5850",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/source-control-crops.png",
+      "expectedSha256": "e6997bcb7ec6af85e294ac524302ff6ec8b7775727ae8c6ab373bf8288624067",
+      "actualSha256": "e6997bcb7ec6af85e294ac524302ff6ec8b7775727ae8c6ab373bf8288624067",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/source-corner-candidates.json",
+      "expectedSha256": "6f745c9b954b64370c5da057f66e9b8bbb3f9656848e23e56292a002cb52d18d",
+      "actualSha256": "6f745c9b954b64370c5da057f66e9b8bbb3f9656848e23e56292a002cb52d18d",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/source-gray-control-pixels.json",
+      "expectedSha256": "fde575f32906374579ea3095fb90ff97510e9524ee3c1065e74822b7e7524c69",
+      "actualSha256": "fde575f32906374579ea3095fb90ff97510e9524ee3c1065e74822b7e7524c69",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/source-gray-control-review.json",
+      "expectedSha256": "975b64fb9d4fe92ea345d4819ffddae339b83c2ae072bc61fe571b976e7f1336",
+      "actualSha256": "975b64fb9d4fe92ea345d4819ffddae339b83c2ae072bc61fe571b976e7f1336",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/source-municipality.geojson",
+      "expectedSha256": "f88ce9a098698c26775574013b687dc1e1a15b0b4a3f5c40ff7ec1fceeb3a305",
+      "actualSha256": "f88ce9a098698c26775574013b687dc1e1a15b0b4a3f5c40ff7ec1fceeb3a305",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/source-name-map.jpeg",
+      "expectedSha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8",
+      "actualSha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/source-road-controls.json",
+      "expectedSha256": "c988f1e8c26696c59d0c76dfe589bb3dedb00cb2d9f9374c63ab602017ad2ac1",
+      "actualSha256": "c988f1e8c26696c59d0c76dfe589bb3dedb00cb2d9f9374c63ab602017ad2ac1",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/source-road-proof.json",
+      "expectedSha256": "c7b7d2c64135bc2d52466f84b6b6e43262a6d6ecb13041288d03f72dba5c0dc0",
+      "actualSha256": "c7b7d2c64135bc2d52466f84b6b6e43262a6d6ecb13041288d03f72dba5c0dc0",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/source-road-ways.geojson",
+      "expectedSha256": "eaa118a93a5768d98ccb4980936b1369829716def21ca0354f372af1f647ff78",
+      "actualSha256": "eaa118a93a5768d98ccb4980936b1369829716def21ca0354f372af1f647ff78",
+      "matches": true
+    }
+  ],
+  "georeferenceSecondFrozenArtifacts": [
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/README.txt",
+      "expectedSha256": "004a5b50a4305fc4c8313bbb65ec57f8a89a321483395dc906ddaa65c2205d8a",
+      "actualSha256": "004a5b50a4305fc4c8313bbb65ec57f8a89a321483395dc906ddaa65c2205d8a",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/audit-current-controls.py",
+      "expectedSha256": "72497c486ea0b59cd5d553f845ad2b15ff0a05ce0e88e9209e52cc73e5486117",
+      "actualSha256": "72497c486ea0b59cd5d553f845ad2b15ff0a05ce0e88e9209e52cc73e5486117",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/audit-source-metadata.py",
+      "expectedSha256": "4f560f6416226ce4f06d64dde51504f9790f45f7389292936e1467d8e19302cb",
+      "actualSha256": "4f560f6416226ce4f06d64dde51504f9790f45f7389292936e1467d8e19302cb",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/check-audit.py",
+      "expectedSha256": "b8d74f969ae052736ce43058263f380d223d30a1d7bbc2cf551e8c48c0b580db",
+      "actualSha256": "b8d74f969ae052736ce43058263f380d223d30a1d7bbc2cf551e8c48c0b580db",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/computed-eastern-rail-boundary-crossings-initial.json",
+      "expectedSha256": "22810b3a31912b7a5fe655f08a5174867892fe4f0c03caf8cb0292d1c98ae70a",
+      "actualSha256": "22810b3a31912b7a5fe655f08a5174867892fe4f0c03caf8cb0292d1c98ae70a",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/computed-road-rail-crossings-initial.json",
+      "expectedSha256": "c868f1b667fa312b76d94f900e74b26b284b8af5066650fd375876982e8e2698",
+      "actualSha256": "c868f1b667fa312b76d94f900e74b26b284b8af5066650fd375876982e8e2698",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/decision.json",
+      "expectedSha256": "268995804a591e5521c6f84180a76dec4b21822ed0620756f2cbc79c9a553623",
+      "actualSha256": "268995804a591e5521c6f84180a76dec4b21822ed0620756f2cbc79c9a553623",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/extract-local-rail.py",
+      "expectedSha256": "9fe8640dcb846bd62e69abfb69799144a7ad3445b4af6fa0b342c9cf2c191203",
+      "actualSha256": "9fe8640dcb846bd62e69abfb69799144a7ad3445b4af6fa0b342c9cf2c191203",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/independent-L-source-only.png",
+      "expectedSha256": "872fe23f5a9e6c10a5ac48cf499d174025cf23c727639ae8727d400e6c8ac907",
+      "actualSha256": "872fe23f5a9e6c10a5ac48cf499d174025cf23c727639ae8727d400e6c8ac907",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/independent-east-crossing-source-only.png",
+      "expectedSha256": "1f5d52dd46b20f7a11d68171895245f00b8d1ee67f3580c45490c2ffd53cb433",
+      "actualSha256": "1f5d52dd46b20f7a11d68171895245f00b8d1ee67f3580c45490c2ffd53cb433",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/independent-gray-rail-crossing-source-only.png",
+      "expectedSha256": "8c5304cd12ff5233147b8a1c7c7a209d28fc79e6d0639e3ba57cf5b99dc47332",
+      "actualSha256": "8c5304cd12ff5233147b8a1c7c7a209d28fc79e6d0639e3ba57cf5b99dc47332",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/independent-road-rail-obscured-source-only.png",
+      "expectedSha256": "c427449c5c8be006eadda88a19dc56edb13d65507d9e9e0b50259f5cbb0f80ff",
+      "actualSha256": "c427449c5c8be006eadda88a19dc56edb13d65507d9e9e0b50259f5cbb0f80ff",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/independent-source-image-review.json",
+      "expectedSha256": "bf422317caf5ee182690d7341fd8d824f05770d206b8d36022e36861476fa938",
+      "actualSha256": "bf422317caf5ee182690d7341fd8d824f05770d206b8d36022e36861476fa938",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/independent-trough-source-only.png",
+      "expectedSha256": "2e1e011b7c229810db4e7a592e686fb32ed31027946dccdb4c5cb1d4bd8ffd32",
+      "actualSha256": "2e1e011b7c229810db4e7a592e686fb32ed31027946dccdb4c5cb1d4bd8ffd32",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/local-rail-original.geojson",
+      "expectedSha256": "676033f894238030a1f17e400c33ecd61ad10203fc58d7069747c157ba5e5ff6",
+      "actualSha256": "676033f894238030a1f17e400c33ecd61ad10203fc58d7069747c157ba5e5ff6",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/render-comparison.py",
+      "expectedSha256": "81778ff3c17a83e883b9ed3c9f084305fbf36240fd7ee95604e9a11ff391762e",
+      "actualSha256": "81778ff3c17a83e883b9ed3c9f084305fbf36240fd7ee95604e9a11ff391762e",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/source-current-separate-panels.png",
+      "expectedSha256": "167fcd4a9e199d22177714d13fdce596fa6d89cc6477feae6bebfaa73299913f",
+      "actualSha256": "167fcd4a9e199d22177714d13fdce596fa6d89cc6477feae6bebfaa73299913f",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/source-metadata-review.json",
+      "expectedSha256": "f45b41221e3b8fa0317d846af1ff3232452e41d0e5a143cfd4e2f0929ee74a60",
+      "actualSha256": "f45b41221e3b8fa0317d846af1ff3232452e41d0e5a143cfd4e2f0929ee74a60",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-georef-second/source-target-topology-proof.json",
+      "expectedSha256": "f69ed508ea35e881a07f5f9284d5c0ebb5bd87e1c62b05545bb7f74d9eda26cc",
+      "actualSha256": "f69ed508ea35e881a07f5f9284d5c0ebb5bd87e1c62b05545bb7f74d9eda26cc",
+      "matches": true
+    }
+  ],
+  "mutableRootFileSnapshotComparison": [
+    {
+      "path": "data/neighborhoods/manual-source-registry.json",
+      "expectedSha256": "4660bf16fe430c3d37dad510a9135abeababcdc5d2eaeb86cd45b00adc350487",
+      "actualSha256": "4660bf16fe430c3d37dad510a9135abeababcdc5d2eaeb86cd45b00adc350487",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/manual-review.json",
+      "expectedSha256": "18a7ef5794a0b121f749d96b73d18799ed9acf5c2563b6234c998dd126138ef6",
+      "actualSha256": "5e34471c03e8482e1a0b4a4a2887bc288fb03177fdf7b122d02b545984bef8aa",
+      "matches": false
+    },
+    {
+      "path": "data/neighborhoods/neighborhoods.geojson",
+      "expectedSha256": "8a242edafec268aa55095b5713774d7c28dddf8f41617bcb9eabb375d2253ddf",
+      "actualSha256": "8a242edafec268aa55095b5713774d7c28dddf8f41617bcb9eabb375d2253ddf",
+      "matches": true
+    },
+    {
+      "path": "data/neighborhoods/estimated-candidates.geojson",
+      "expectedSha256": "0329c48037a9cda2d4dfe545f85add9bff5bc3117bef7353abca1b8c61547b4d",
+      "actualSha256": "7c1eac78c6a3980f8569f1afc1f6b184ef6fe04a7b68d27f6efbb4df826e85ef",
+      "matches": false
+    },
+    {
+      "path": "data/neighborhoods/planning-units.geojson",
+      "expectedSha256": "c004c4d622e83fbf570b466bdd83cb48c7a3c8c7bae5d20a7620fb9dd0d44b1b",
+      "actualSha256": "c004c4d622e83fbf570b466bdd83cb48c7a3c8c7bae5d20a7620fb9dd0d44b1b",
+      "matches": true
+    }
+  ],
+  "interpretation": "The old frozen georef checker also requires its former root metadata hashes; a subsequent legitimate manual-review.json edit can fail that broad checker without changing any old frozen source artifact. That old audit was not edited. This batch uses its own local fixed snapshots.",
+  "oldFrozenSourceOrGeoreferenceArtifactsChanged": false,
+  "rootFilesWrittenByThisBatch": false,
+  "claimedAbsoluteAccuracy": null
+}

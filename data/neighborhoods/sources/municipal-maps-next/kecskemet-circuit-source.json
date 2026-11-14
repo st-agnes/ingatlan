@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "city": "Kecskemét",
+  "sourceUrl": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+  "sourceTitle": "Megalapozó Vizsgálat – II. kötet: Helyzetelemzés-Helyzetértékelés",
+  "sourcePeriod": "Egyeztetési változat 2021. május; municipal publication filename126/2021(XII.16), uploaded2022-11",
+  "sourcePdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+  "archivedSourcePages": {
+    "path": "kecskemet-source-pages.pdf",
+    "sha256": "9b8663136f085c0c7ec307c3e92cbad02937336b5c5265f67128d623b45df2ee",
+    "originalPdfPagesZeroBased": [
+      141,
+      142,
+      144,
+      146,
+      147,
+      148,
+      149,
+      151,
+      152
+    ],
+    "note": "Verbatim PDF page subset, in listed original page order; original publisher PDF hash preserved separately."
+  },
+  "constructionLines": {
+    "path": "kecskemet-boundary-lines.geojson",
+    "sha256": "086190404718999a41506d89fdab5fd2af3515beb7be46047230414e25b8a27f",
+    "features": 42,
+    "sourceCountryArchive": "data/neighborhoods/sources/country-osm/construction-lines.geojson.gz",
+    "sourceCountryArchiveSha256": "be22cdba05791340db532180286c8f2c14aac2fe57bbdf737d7c9e4545bcb494",
+    "note": "Actual complete country OSM source features selected by constructionAreaIds=kecskemet and exact listed names; acquisition bbox never defines a neighborhood."
+  },
+  "derivation": {
+    "name": "Erzsébetváros",
+    "originalPdfPageOneBased": 152,
+    "printedPage": 150,
+    "archivedSubsetPageOneBased": 8,
+    "boundaryQuote": "Erzsébet körút - Mezei utca - Bajcsy Zsilinszky Endre utca - Csányi János körút - Csongrádi utca",
+    "sourceStreetNames": [
+      "Erzsébet körút",
+      "Mezei utca",
+      "Bajcsy-Zsilinszky Endre körút",
+      "Csányi János körút",
+      "Csongrádi út"
+    ],
+    "nameAliases": {
+      "Bajcsy Zsilinszky Endre utca": "Bajcsy-Zsilinszky Endre körút",
+      "Csongrádi utca": "Csongrádi út"
+    },
+    "mapCorroboration": {
+      "originalPdfPageOneBased": 143,
+      "printedPage": 141,
+      "figure": 73,
+      "note": "Source map explicitly labels Erzsébetváros east ofVárosközpont, south ofRákócziváros, northeast ofKossuthváros; street-type aliases are the same connected street circuit, not a move to a different road."
+    }
+  },
+  "manualScope": {
+    "fineSourceSubquartersOnFigure73": [
+      "Városközpont",
+      "Árpádváros",
+      "Homokidomb",
+      "Bethlenváros",
+      "Rákócziváros",
+      "Erzsébetváros",
+      "Kossuthváros"
+    ],
+    "sourceParentQuarter": "Belváros",
+    "sourceParentDistinctFromFineNames": true,
+    "cityComplete": false
+  },
+  "unresolved": [
+    {
+      "name": "Homoki-domb",
+      "reason": "Published four-road text omits junction streets; naive shortest trace makes an unsupported detour. Need source-map-guided resolution."
+    },
+    {
+      "name": "Bethlenváros",
+      "reason": "Naive multicarriageway street trace self-intersects. Original named perimeters retained; no repair or synthetic closure accepted."
+    },
+    {
+      "name": "Rákócziváros",
+      "reason": "Kuruc körút/Csongrádi connection requires a map-guided real junction route beyond naive nearest endpoints."
+    },
+    {
+      "name": "Kossuthváros",
+      "reason": "Magyar utca/Batthyány boundary crosses Rávágy tér and is not resolved by the six-road text alone."
+    },
+    {
+      "name": "Városközpont",
+      "reason": "Circuit text and current segmented streets require resolution around Dobó/Horváth Döme junction; no long detour accepted."
+    },
+    {
+      "name": "Árpádváros",
+      "reason": "Source uses an unnamed parking street behindBatthyány apartment blocks. Requires manual identification on source map."
+    },
+    {
+      "name": "Belváros",
+      "reason": "Broad parent perimeter has current junction-name changes; not counted as a substitute for seven fine subquarters."
+    }
+  ],
+  "licenseStatus": {
+    "geometry": "ODbL-1.0; ©OpenStreetMap contributors",
+    "municipalDocument": "Public official publication, no explicit open-geodata reuse licence independently established. Factual boundary street list used; no cadastral geometry copied."
+  },
+  "usableForAddressAssignment": false
+}

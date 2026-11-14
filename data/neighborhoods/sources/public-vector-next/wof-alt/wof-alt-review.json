@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "scope": "Two WOF Quattroshapes alternatives; no accepted new boundary.",
+  "inputs": [
+    {
+      "path": "85901183-primary.source.geojson",
+      "sha256": "30537fb94cbf41c37a1692b9ea2b3cb7ec4f605db5a368dd4123cb892df6e169",
+      "bytes": 2893,
+      "localGitBlobSha": "b75335e4ad199867b44ef34e42cd55c544e3222d"
+    },
+    {
+      "path": "85901183-alt-quattroshapes.source.geojson",
+      "sha256": "3ccda268d403d446d44f27790c01aabd21ca95b6229abae0d3ea7059b9bb3709",
+      "bytes": 861,
+      "localGitBlobSha": "cd64e293e847ba924df459a7dc4950cc80d25d64"
+    },
+    {
+      "path": "85901339-primary.source.geojson",
+      "sha256": "bca2ff9505c0458c63630c3216017c3c77865e018d1bc73cdb59723e053ccb6a",
+      "bytes": 2808,
+      "localGitBlobSha": "2f9a9fe517bbf30d4d8151ab7e451ff4ee41fba4"
+    },
+    {
+      "path": "85901339-alt-quattroshapes.source.geojson",
+      "sha256": "2892d31e236901c1d6c941069d2c64062b89d21924280d61baa4e0b03a7111cd",
+      "bytes": 1318,
+      "localGitBlobSha": "b2a20e4f170ac6b0469d617ac8442cdade8bf135"
+    }
+  ],
+  "sourceLicencePath": "data/neighborhoods/sources/whosonfirst/LICENSE.md",
+  "sourceRepresentation": "Archived connector snapshots differ in byte serialization from declared remote Git blobs; byte-exact remote equivalence is not established.",
+  "evidenceInterpretation": "Consecutive 11.25-degree steps on a literal0.01-degree circle strongly identify a clipped coordinate-space point-buffer construction, not a physical quarter boundary.",
+  "records": [
+    {
+      "id": 85901183,
+      "name": "Középdeindol",
+      "municipality": "Pécs",
+      "wofLocalityId": 101751663,
+      "primaryGeometryType": "Point",
+      "primaryAreaSquareMetres": 0.0,
+      "primaryCurrentFlag": -1,
+      "primaryCurrentMeaning": "unknown",
+      "alternativeGeometryValid": true,
+      "fullyInsideCanonicalMunicipality": true,
+      "sourceMunicipalityId": "osm:relation:575380",
+      "primaryPointInsideAlternative": true,
+      "primaryParsedValuesEqualPinnedOlderArchive": true,
+      "circlePatterns": [
+        {
+          "ring": 0,
+          "uniqueVertices": 11,
+          "fittedCenterDegrees": [
+            18.20159912110499,
+            46.09418611629954
+          ],
+          "fittedRadiusDegrees": 0.010000000004752096,
+          "targetRadiusDegrees": 0.01,
+          "radialToleranceDegrees": 1e-09,
+          "angularToleranceDegrees": 1e-05,
+          "onCircleVertices": 4,
+          "longestConsecutiveCircleRun": 4,
+          "regular11_25DegreeSteps": 3,
+          "maxMatchingVertexRadialResidualDegrees": 4.751541174408125e-12
+        }
+      ],
+      "kshNameEvidence": [],
+      "decision": "quarantine_provider_point_buffer_proxy",
+      "acceptedBoundaryCandidate": false,
+      "eligibleForInferredBoundaryLayer": false,
+      "usableForAddressAssignment": false,
+      "declaredRemoteAltGitBlobSha": "130b66447b6551f170b8c4295be7bdae9eaefad0",
+      "localAltGitBlobSha": "cd64e293e847ba924df459a7dc4950cc80d25d64",
+      "byteExactRemoteGitBlobMatch": false
+    },
+    {
+      "id": 85901339,
+      "name": "Vekerzug",
+      "municipality": "Szentes",
+      "wofLocalityId": 101790385,
+      "primaryGeometryType": "Point",
+      "primaryAreaSquareMetres": 0.0,
+      "primaryCurrentFlag": -1,
+      "primaryCurrentMeaning": "unknown",
+      "alternativeGeometryValid": true,
+      "fullyInsideCanonicalMunicipality": true,
+      "sourceMunicipalityId": "osm:relation:1025074",
+      "primaryPointInsideAlternative": true,
+      "primaryParsedValuesEqualPinnedOlderArchive": true,
+      "circlePatterns": [
+        {
+          "ring": 0,
+          "uniqueVertices": 23,
+          "fittedCenterDegrees": [
+            20.272521972640323,
+            46.63623658265006
+          ],
+          "fittedRadiusDegrees": 0.010000000009775887,
+          "targetRadiusDegrees": 0.01,
+          "radialToleranceDegrees": 1e-09,
+          "angularToleranceDegrees": 1e-05,
+          "onCircleVertices": 18,
+          "longestConsecutiveCircleRun": 18,
+          "regular11_25DegreeSteps": 17,
+          "maxMatchingVertexRadialResidualDegrees": 9.906955464322742e-12
+        }
+      ],
+      "kshNameEvidence": [
+        {
+          "name": "Vekerzug",
+          "category": "outlying_area",
+          "sourceRow": 11280
+        }
+      ],
+      "decision": "quarantine_provider_point_buffer_proxy",
+      "acceptedBoundaryCandidate": false,
+      "eligibleForInferredBoundaryLayer": false,
+      "usableForAddressAssignment": false,
+      "declaredRemoteAltGitBlobSha": "fad2472f4129fa40da57e8fed2f9bca05d6a0baa",
+      "localAltGitBlobSha": "b2a20e4f170ac6b0469d617ac8442cdade8bf135",
+      "byteExactRemoteGitBlobMatch": false
+    }
+  ],
+  "acceptedNewBoundaryCandidates": 0,
+  "limits": [
+    "A real place name does not validate its provider proxy geometry.",
+    "No source circles were generated here; original alternative coordinates are retained only in quarantine.",
+    "A missing KSH urban-quarter row does not disprove a quarter name.",
+    "No root registry or existing catalog is modified by this script."
+  ]
+}

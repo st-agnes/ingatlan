@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "sourceSchemeCounts": {
+    "upperKsh": 27,
+    "lowerIvs": 11
+  },
+  "sourceTextEvidence": {
+    "pdfPage41": "KSH identified 27 quarters based on 2001 census data.",
+    "pdfPage42": "The IVS formed 11 quarters by merging KSH units."
+  },
+  "candidateNames": [
+    {
+      "name": "Érkert",
+      "upperSeedPixel": [
+        438,
+        429
+      ],
+      "upperMapRole": "One finer KSH27 housing-estate-class component; the class is not a name.",
+      "lowerIvsNumber": 2,
+      "lowerPrintedLegendName": "Érkert",
+      "lowerSeedPixel": [
+        438,
+        435
+      ],
+      "identityBasis": "Explicit numbered name in the lower legend, corresponding small footprint in the same city sector, and upper/lower source-map comparison. Source text says the 11 units merge KSH 27 units. The lower11 key does not directly label the upper27 components; cross-schema name assignment remains an inference. No class color is assigned one name globally.",
+      "candidateBoundaryKind": "local_area",
+      "scope": "Historical housing-estate-class footprint. Name assignment is inferred across the upper27/lower11 statistical schemas; whole Érkert quarter identity is unverified.",
+      "lowerLegendDirectlyLabelsUpperComponent": false,
+      "comparisonIntersectionOverUnion": 0.7150281561052528,
+      "comparisonModel": "Affine between maps from seven paired municipal-outline corners, separate from geographic fit.",
+      "exactPixelGeometryEqualityClaimed": false,
+      "lowerGeometryUsedToConstructUpperCandidate": false,
+      "wholeHistoricalSourceUnitIdentityRequiresIndependentVisualReview": true
+    },
+    {
+      "name": "Örökösföld lakótelep",
+      "upperSeedPixel": [
+        522,
+        368
+      ],
+      "upperMapRole": "One finer KSH27 housing-estate-class component; the class is not a name.",
+      "lowerIvsNumber": 3,
+      "lowerPrintedLegendName": "Örökösföld lakótelep",
+      "lowerSeedPixel": [
+        518,
+        362
+      ],
+      "identityBasis": "Explicit numbered name in the lower legend, corresponding small footprint in the same city sector, and upper/lower source-map comparison. Source text says the 11 units merge KSH 27 units. The lower11 key does not directly label the upper27 components; cross-schema name assignment remains an inference. No class color is assigned one name globally.",
+      "candidateBoundaryKind": "neighbourhood",
+      "scope": "Estimated historical neighborhood candidate supported by the strong upper-component/lower-unit3 source-map correspondence. The lower legend does not directly label the upper27 map.",
+      "lowerLegendDirectlyLabelsUpperComponent": false,
+      "comparisonIntersectionOverUnion": 0.9177805528934679,
+      "comparisonModel": "Affine between maps from seven paired municipal-outline corners, separate from geographic fit.",
+      "exactPixelGeometryEqualityClaimed": false,
+      "lowerGeometryUsedToConstructUpperCandidate": false,
+      "wholeHistoricalSourceUnitIdentityRequiresIndependentVisualReview": true
+    }
+  ],
+  "unkeyedOtherUpperComponentsAdmitted": false,
+  "allSameColorComponentsAssignedSameName": false
+}

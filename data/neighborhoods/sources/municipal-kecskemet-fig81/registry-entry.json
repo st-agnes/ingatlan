@@ -1,0 +1,18 @@
+{
+  "id": "kecskemet-figure81-source-raster",
+  "path": "data/neighborhoods/sources/municipal-kecskemet-fig81/szechenyi-source-raster.geojson",
+  "sha256": "06ccbe775220cf9260abcc184c87a7620cfffa5d931d156eda3fa1d3f3a2c000",
+  "municipality": "Kecskemét",
+  "method": "Manual interpretation of separately labelled fine-quarter outlines on the exact original embedded JPEG of the 2021 consultation-draft municipal figure 81. Manually identified source-stroke seeds guide continuous 8-neighbor source-pixel paths. For the literal-source layer every dense vertex has maxRGB <= 45. Only exactly collinear vertices are removed. A metric affine fit in EOV/EPSG:23700 using five literal contemporary OSM-node coordinates and manually placed approximate old-image road junctions georeferences the source pixels; the result is converted to WGS84. No current-road replacement, source-frame closure, arbitrary chord, buffer, geometric snapping or geometry repair is used.",
+  "evidenceUrls": [
+    "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+  ],
+  "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM georeferencing controls.",
+  "propertyOverrides": {
+    "boundaryKind": "neighbourhood",
+    "canonicalNameIsNeighborhood": true,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-fig81/raster-independent-review.json",
+  "rightsStatus": "Publicly published municipal consultation draft; open-reuse license not independently established."
+}

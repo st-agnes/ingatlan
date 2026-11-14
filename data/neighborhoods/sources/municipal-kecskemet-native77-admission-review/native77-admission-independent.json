@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "status": "CONFIRMED_CENTRAL_CELL_REJECTED_BY_PROJECT_VALIDATOR",
+  "scope": "Independent supplemental project-admission correction. The existing frozen native77-first batch is read-only and remains byte-identical. No source geometry, ring role, export, validator or registry is modified.",
+  "frozenBatchPath": "data/neighborhoods/sources/municipal-kecskemet-native77-first",
+  "frozenBatchFileCountReadOnlyVerified": 33,
+  "allFrozenFilesSha256UnchangedDuringAudit": true,
+  "inputsSha256": {
+    "data/neighborhoods/sources/municipal-kecskemet-native77-first/source-form188-stream.txt": "1a572f913226e234c8862baa59118bf79468977d7f8bef079775cf4e1bb50d07",
+    "data/neighborhoods/sources/municipal-kecskemet-native77-first/source-pages163-164.pdf": "931b3a6a14b22ec4281fb871d219e3ef0b0de4cfdb8ff5fd152d732828b92731",
+    "data/neighborhoods/sources/municipal-kecskemet-native77-first/fine-inferred.geojson": "08e0b715176fa8b3bd1b804508d46ae6fd0efad72b9ec27eedde4846a33dd1a8",
+    "data/neighborhoods/sources/municipal-kecskemet-native77-first/local-units-inferred.geojson": "0f03d75e0482f23769d379fc06fb1d946644490e285505edf8528065aa35f046",
+    "data/neighborhoods/sources/municipal-kecskemet-native77-first/georeference.json": "b95e198864f276dcd8a23cae7034f969d795feea9520df5a821a70f9336ccb7b",
+    "scripts/neighborhoods/build.mjs": "7d234a3c4750b6a735483befd02661c6ba199491fec102bd2d301dabf4cb216c",
+    "data/neighborhoods/sources/municipal-kecskemet-native77-admission-review/audit-independent.py": "15fd6f88b3a662025b081b49b2f590a8f8c63a0fd519b06aec507e31eb3aa359"
+  },
+  "rawNativeFinding": {
+    "sourceFormStreamSha256": "1a572f913226e234c8862baa59118bf79468977d7f8bef079775cf4e1bb50d07",
+    "archivedSourceFormXref": 44,
+    "drawingIndexZeroBased": 6,
+    "subpathIndexZeroBased": 0,
+    "literalDecimalPoint": [
+      "207.51",
+      "568.81"
+    ],
+    "literalRepeatedVertexIndicesZeroBased": [
+      15,
+      54
+    ],
+    "sourceFirstSubpathVertexCountIncludingMovetoAndRepeatedLineReturns": 131,
+    "pointContactAlreadyPresentInOriginalSource": true,
+    "namedHoleContacts": [
+      {
+        "holeIndexZeroBased": 0,
+        "separateSourceCellName": "Kósafalu",
+        "shellIntersectionWkt": "POINT (207.51 568.81)",
+        "shellIntersectionEmpty": false
+      },
+      {
+        "holeIndexZeroBased": 1,
+        "separateSourceCellName": "Muszáj",
+        "shellIntersectionWkt": "LINESTRING EMPTY",
+        "shellIntersectionEmpty": true
+      }
+    ],
+    "rendőrfaluOriginalBoundaryMeetsSamePoint": true,
+    "shapelyCentralPolygonValid": true,
+    "shapelyValidityExplanation": "Valid Geometry"
+  },
+  "exportedFinding": {
+    "independentlyTransformedPagePoint": [
+      237.37688473604,
+      395.135280210765
+    ],
+    "independentlyTransformedWgs84Point": [
+      19.689875496967286,
+      46.88252946016423
+    ],
+    "exportedShellHoleContacts": [
+      {
+        "holeIndexZeroBased": 0,
+        "shellIntersectionWkt": "POINT (19.689875496967286 46.88252946016423)"
+      }
+    ],
+    "shapelyWorldPolygonValid": true,
+    "introducedByGeoreferencingRoundingOrRepair": false
+  },
+  "actualProjectValidator": {
+    "modulePath": "scripts/neighborhoods/build.mjs",
+    "sha256": "7d234a3c4750b6a735483befd02661c6ba199491fec102bd2d301dabf4cb216c",
+    "actualExportedValidateGeometryFunctionCalled": true,
+    "validationResults": [
+      {
+        "sourceFile": "fine-inferred.geojson",
+        "id": "manual:kecskemet-figure77:kosafalu",
+        "name": "Kósafalu",
+        "valid": true,
+        "reason": null
+      },
+      {
+        "sourceFile": "fine-inferred.geojson",
+        "id": "manual:kecskemet-figure77:muszaj",
+        "name": "Muszáj",
+        "valid": true,
+        "reason": null
+      },
+      {
+        "sourceFile": "fine-inferred.geojson",
+        "id": "manual:kecskemet-figure77:rendorfalu",
+        "name": "Rendőrfalu",
+        "valid": true,
+        "reason": null
+      },
+      {
+        "sourceFile": "local-units-inferred.geojson",
+        "id": "manual:kecskemet-figure77:szent-laszlo-belso-forrascella",
+        "name": "Szent László város — belső forráscella",
+        "valid": false,
+        "reason": "hole_outside_shell"
+      },
+      {
+        "sourceFile": "local-units-inferred.geojson",
+        "id": "manual:kecskemet-figure77:deli-iparterulet-1",
+        "name": "Déli iparterület I.",
+        "valid": true,
+        "reason": null
+      },
+      {
+        "sourceFile": "local-units-inferred.geojson",
+        "id": "manual:kecskemet-figure77:deli-iparterulet-2",
+        "name": "Déli iparterület II.",
+        "valid": true,
+        "reason": null
+      },
+      {
+        "sourceFile": "local-units-inferred.geojson",
+        "id": "manual:kecskemet-figure77:nyugati-iparterulet",
+        "name": "Nyugati iparterület",
+        "valid": true,
+        "reason": null
+      }
+    ],
+    "acceptedCount": 6,
+    "rejectedCount": 1,
+    "strictPolicy": "pointInside returns false on shell boundary, and ringsIntersect treats any shell-hole point contact as intersection. Either condition rejects with hole_outside_shell. This exact name does not mean the hole has positive area outside the shell.",
+    "ringRotationOrOrientationDoesNotRemoveContact": true
+  },
+  "correctionToEarlierIndependentReview": "The frozen earlier independent review verified Shapely validity and source-preserving geometry, but did not invoke the actual project validateGeometry admission function. Its all-seven inferred-layer approval therefore exceeds the project admission result. Preserve it as historical evidence and apply this supplemental correction: six records pass project geometry validation; the central two-hole source cell does not.",
+  "safeAdmissionDecision": {
+    "fineInferredRecordsPassingGeometry": 3,
+    "localInferredRecordsPassingGeometry": 3,
+    "centralSourceCellAdmitted": false,
+    "centralSourceCellMustRemainQuarantined": true,
+    "allOtherSixRecordsStillRequireTheirDocumentedInferredOnlyStatus": true,
+    "sourceGeometryPreserved": true,
+    "noRepairHoleDeletionRingRoleChangeOrForceAdmission": true
+  },
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}
