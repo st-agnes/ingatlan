@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-14",
+  "branch": "codex/neighborhood-research-506-191",
+  "status": "collecting_under_relaxed_user_authorized_policy",
+  "baseline": {"sourceNeighborhoods": 506, "estimatedFeatures": 191, "sourcePlanningUnits": 31},
+  "tasks": [
+    {"id": "machine", "status": "in_progress", "scope": "Previously excluded native OSM, municipal and other machine polygons nationwide"},
+    {"id": "debrecen", "status": "in_progress", "scope": "All useful names from raw77; no extra geographic review"},
+    {"id": "szeged-miskolc", "status": "in_progress", "scope": "Major-city source maps and existing geometry"},
+    {"id": "szolnok-veszprem", "status": "in_progress", "scope": "Previously unexported native/raster source maps"},
+    {"id": "major-city-maps", "status": "in_progress", "scope": "Győr, Nyíregyháza, Budapest gaps, Pécs"},
+    {"id": "inventory", "status": "in_progress", "scope": "Known names and top-city gaps, no invented national denominator"},
+    {"id": "unified_export", "status": "in_progress", "scope": "Stable municipality/name deduplication, selected polygons, provenance, MySQL export"}
+  ],
+  "resume": "Read STRATEGY.md, inspect committed task summaries and git status; regenerate unified export after completed source packets, then commit/push. Do not restart the earlier source collection or discard existing raw polygons.",
+  "completeNationalCoverage": false
+}
