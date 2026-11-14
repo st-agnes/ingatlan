@@ -112,7 +112,7 @@ def main():
   if not world.is_valid or world.is_empty:raise ValueError(f'Invalid world geometry: {name}')
   pixels[number]=geom
   aliases={9:['Fodor-kert'],10:['Fűvészkert'],14:['Új-Petőfi-telep','Újpetőfitelep'],
-           19:['Klebelsbergtelep','Klebersberg-telep'],20:['Kecskés István-telep'],
+           19:['Klebelsbergtelep','Klebersberg-telep'],20:['Kecskés István-telep'],23:['Tarjánváros'],
            37:['Bodom'],38:['Ballagi-tói kiskertek']}.get(number,[])
   note=''
   if number==37:note='Bodomi(27) is a body-text numbering typo: the southwestern cell37 matches the Bodom place position; cell27 remains Újszőreg as repeatedly keyed in the body.'

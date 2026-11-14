@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "aliases": [
+    {
+      "municipality": "Budapest",
+      "name": "Gercse",
+      "aliases": [
+        "Gerce"
+      ],
+      "reason": "Historic/reference spelling variant of the same district-II place; not the separate Vas-county municipality.",
+      "evidence": [
+        "data/neighborhoods/budapest-current-reference.json",
+        "data/neighborhoods/expansion-20261114/inventory/reference-benchmarks.json"
+      ]
+    },
+    {
+      "municipality": "Debrecen",
+      "name": "Debreceni Egyetem tud-tech park",
+      "aliases": [
+        "Debreceni Egyetemi Ipari Park"
+      ],
+      "reason": "Same named university industrial/science park in the ArcGIS source and municipal FVS map; accepted as a broad search-name alias.",
+      "evidence": [
+        "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson"
+      ]
+    },
+    {
+      "municipality": "Debrecen",
+      "name": "Déli ipari terület",
+      "aliases": [
+        "Déli Ipari Park",
+        "Déli Gazdasági Övezet"
+      ],
+      "reason": "Alternative source names for the southern economic/industrial area; approximate source extent retained without imposing a new partition.",
+      "evidence": [
+        "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson"
+      ]
+    },
+    {
+      "municipality": "Debrecen",
+      "name": "Akadémiakert",
+      "aliases": [
+        "Akadémiaikert"
+      ],
+      "reason": "Minor spelling/word-formation variant in the historical municipal reference inventory; the ArcGIS and selected catalogue use Akadémiakert.",
+      "evidence": [
+        "data/neighborhoods/reference-inventories.json",
+        "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson"
+      ]
+    },
+    {
+      "municipality": "Debrecen",
+      "name": "Nagycsere",
+      "aliases": [
+        "Nagycserte"
+      ],
+      "reason": "The reference inventory explicitly flags Nagycserte as a transcription anomaly; the same municipal-part series and source polygons use Nagycsere. Keep the anomalous source spelling as a searchable alias, not another area.",
+      "evidence": [
+        "data/neighborhoods/reference-inventories.json",
+        "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson"
+      ]
+    },
+    {
+      "municipality": "Debrecen",
+      "name": "Nagyerdőtölgyes",
+      "aliases": [
+        "Nagyerdőtőlgyes"
+      ],
+      "reason": "The reference inventory explicitly flags this source spelling as a transcription anomaly; the source polygon and current catalogue use the ordinary tölgyes spelling.",
+      "evidence": [
+        "data/neighborhoods/reference-inventories.json",
+        "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson"
+      ]
+    },
+    {
+      "municipality": "Debrecen",
+      "name": "Tócórét",
+      "aliases": [
+        "Tócóret"
+      ],
+      "reason": "Accent-only reference transcription variant of the same named Tócó area.",
+      "evidence": [
+        "data/neighborhoods/reference-inventories.json",
+        "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson"
+      ]
+    },
+    {
+      "municipality": "Szombathely",
+      "name": "KISZ-lakótelep",
+      "aliases": [
+        "Ifjúsági lakótelep",
+        "Ifjúsági (KISZ) lakótelep"
+      ],
+      "reason": "The OSM named-place source explicitly has alt_name=Ifjúsági lakótelep; the municipal list itself supplies KISZ parenthetically.",
+      "evidence": [
+        "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz",
+        "data/neighborhoods/sources/nationwide-inventory/municipal-inventories.json"
+      ]
+    }
+  ]
+}

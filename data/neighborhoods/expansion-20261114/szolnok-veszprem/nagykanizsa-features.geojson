@@ -1,0 +1,1559 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:regional:1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.979201334648142,
+              46.504753239042266
+            ],
+            [
+              16.984774978373377,
+              46.50475214183344
+            ],
+            [
+              16.9896368690473,
+              46.50095898853492
+            ],
+            [
+              16.991347229855858,
+              46.493137581449446
+            ],
+            [
+              16.989921167012326,
+              46.48484303383276
+            ],
+            [
+              16.987117721365344,
+              46.48034078210706
+            ],
+            [
+              16.98259754664762,
+              46.48200077377878
+            ],
+            [
+              16.98053801414144,
+              46.489822111942374
+            ],
+            [
+              16.978820835137416,
+              46.49622136696851
+            ],
+            [
+              16.979201334648142,
+              46.504753239042266
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Palin",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 151,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1086.jpeg",
+          "mapSha256": "c24726995d36a3a9ed735a432fbcc019059a6c25428d347da01258d08e994887",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Palin",
+          "coordinates": [
+            16.984303,
+            46.4965833
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/1096115434"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-regional"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:regional:2",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.940399465130582,
+              46.460671607511685
+            ],
+            [
+              16.951890371734383,
+              46.462094974554674
+            ],
+            [
+              16.962326964357974,
+              46.46043622862725
+            ],
+            [
+              16.974837258918193,
+              46.45498429332274
+            ],
+            [
+              16.97168861720601,
+              46.45048170813059
+            ],
+            [
+              16.962626585762038,
+              46.446453338184796
+            ],
+            [
+              16.94766886327629,
+              46.448111719072635
+            ],
+            [
+              16.940722882505376,
+              46.45261372802503
+            ],
+            [
+              16.940399465130582,
+              46.460671607511685
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Kiskanizsa",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 151,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1086.jpeg",
+          "mapSha256": "c24726995d36a3a9ed735a432fbcc019059a6c25428d347da01258d08e994887",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Kiskanizsa",
+          "coordinates": [
+            16.9605236,
+            46.4570938
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/1096115210"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-regional"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:regional:3",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.983516151777824,
+              46.449294848345865
+            ],
+            [
+              16.997086019796185,
+              46.44881718353587
+            ],
+            [
+              17.001588097240212,
+              46.443601651305556
+            ],
+            [
+              16.99565735146595,
+              46.43981172430933
+            ],
+            [
+              16.9866212497952,
+              46.442421211638504
+            ],
+            [
+              16.98176169798722,
+              46.445503236303544
+            ],
+            [
+              16.983516151777824,
+              46.449294848345865
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "MAORT-telep",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 151,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1086.jpeg",
+          "mapSha256": "c24726995d36a3a9ed735a432fbcc019059a6c25428d347da01258d08e994887",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "MAORT-telep",
+          "coordinates": [
+            16.9945581,
+            46.4464866
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/2499824677"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-regional"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:regional:4",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.977181457369266,
+              46.430336170517045
+            ],
+            [
+              16.991099219758635,
+              46.431044159159065
+            ],
+            [
+              16.99733669792149,
+              46.42511731093069
+            ],
+            [
+              16.994880658884156,
+              46.41990415019602
+            ],
+            [
+              16.985489896114704,
+              46.41990667988943
+            ],
+            [
+              16.978894065374792,
+              46.42322595895406
+            ],
+            [
+              16.977181457369266,
+              46.430336170517045
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Ligetváros",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 151,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1086.jpeg",
+          "mapSha256": "c24726995d36a3a9ed735a432fbcc019059a6c25428d347da01258d08e994887",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Ligetváros",
+          "coordinates": [
+            16.988301,
+            46.4268259
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/1096115036"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-regional"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:regional:5",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.98131261403169,
+              46.4189595635061
+            ],
+            [
+              16.996965552960496,
+              46.41942948724123
+            ],
+            [
+              17.005980135915976,
+              46.41279022251367
+            ],
+            [
+              17.000401184199063,
+              46.40923740233655
+            ],
+            [
+              16.989625078834063,
+              46.41018875628201
+            ],
+            [
+              16.982680197643568,
+              46.41279735372902
+            ],
+            [
+              16.98131261403169,
+              46.4189595635061
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Miklósfa",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 151,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1086.jpeg",
+          "mapSha256": "c24726995d36a3a9ed735a432fbcc019059a6c25428d347da01258d08e994887",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Miklósfa",
+          "coordinates": [
+            16.9914969,
+            46.4145649
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/412432543"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-regional"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:regional:6",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.019960197488626,
+              46.428188493813
+            ],
+            [
+              17.028308817618978,
+              46.428183738011136
+            ],
+            [
+              17.037327896304674,
+              46.422963954694175
+            ],
+            [
+              17.033480324845446,
+              46.41846357187791
+            ],
+            [
+              17.024445252693805,
+              46.420128089673526
+            ],
+            [
+              17.018547445815024,
+              46.423449281098584
+            ],
+            [
+              17.019960197488626,
+              46.428188493813
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Bagola",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 151,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1086.jpeg",
+          "mapSha256": "c24726995d36a3a9ed735a432fbcc019059a6c25428d347da01258d08e994887",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Bagola",
+          "coordinates": [
+            17.0282927,
+            46.4222787
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/412432730"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-regional"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:regional:7",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.069025042940254,
+              46.431232682630885
+            ],
+            [
+              17.07806324850757,
+              46.43003859431827
+            ],
+            [
+              17.083607563243238,
+              46.4262406872145
+            ],
+            [
+              17.079072250917395,
+              46.42387558596284
+            ],
+            [
+              17.072120830383337,
+              46.42483070228379
+            ],
+            [
+              17.067266459123775,
+              46.42767939934079
+            ],
+            [
+              17.069025042940254,
+              46.431232682630885
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Nagyfakos",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 151,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1086.jpeg",
+          "mapSha256": "c24726995d36a3a9ed735a432fbcc019059a6c25428d347da01258d08e994887",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Nagyfakos",
+          "coordinates": [
+            17.0747907,
+            46.4271775
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/412435833"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-regional"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:regional:8",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.051654120732262,
+              46.43575110134806
+            ],
+            [
+              17.057917697265516,
+              46.43598283371259
+            ],
+            [
+              17.064855576001374,
+              46.43218462817885
+            ],
+            [
+              17.0620549063234,
+              46.42886922599213
+            ],
+            [
+              17.055449184710362,
+              46.42958600533322
+            ],
+            [
+              17.050245621319874,
+              46.43243426621465
+            ],
+            [
+              17.051654120732262,
+              46.43575110134806
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Kisfakos",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 151,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1086.jpeg",
+          "mapSha256": "c24726995d36a3a9ed735a432fbcc019059a6c25428d347da01258d08e994887",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Kisfakos",
+          "coordinates": [
+            17.0590829,
+            46.4323634
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/412435849"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-regional"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:regional:9",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.01798468872982,
+              46.45307431311877
+            ],
+            [
+              17.02773033827637,
+              46.453305871263
+            ],
+            [
+              17.033976570212037,
+              46.44950997430237
+            ],
+            [
+              17.031518133582786,
+              46.44477160125249
+            ],
+            [
+              17.024213030961622,
+              46.445249998755976
+            ],
+            [
+              17.017271678959297,
+              46.44928270979275
+            ],
+            [
+              17.01798468872982,
+              46.45307431311877
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Sánc",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 151,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1086.jpeg",
+          "mapSha256": "c24726995d36a3a9ed735a432fbcc019059a6c25428d347da01258d08e994887",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Sánc",
+          "coordinates": [
+            17.0252951,
+            46.4492661
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/1096114991"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-regional"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:regional:10",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.017349128909093,
+              46.466583529225225
+            ],
+            [
+              17.03545864672619,
+              46.468231841831845
+            ],
+            [
+              17.03961402891124,
+              46.463726018657724
+            ],
+            [
+              17.035064967011653,
+              46.45875217936817
+            ],
+            [
+              17.028450794052954,
+              46.458519393374054
+            ],
+            [
+              17.021152428045554,
+              46.460893573239915
+            ],
+            [
+              17.017349128909093,
+              46.466583529225225
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Szabadhegy",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 151,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1086.jpeg",
+          "mapSha256": "c24726995d36a3a9ed735a432fbcc019059a6c25428d347da01258d08e994887",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Szabadhegy",
+          "coordinates": [
+            17.028855,
+            46.4632441
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/1096115131"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-regional"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:regional:11",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.034296184804397,
+              46.443584813550046
+            ],
+            [
+              17.044389331085977,
+              46.44405170377704
+            ],
+            [
+              17.050977635134355,
+              46.43954361714217
+            ],
+            [
+              17.047824747180083,
+              46.43528015376926
+            ],
+            [
+              17.03843362518307,
+              46.43576107644478
+            ],
+            [
+              17.03253722733918,
+              46.43955699409986
+            ],
+            [
+              17.034296184804397,
+              46.443584813550046
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Látóhegy",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 151,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1086.jpeg",
+          "mapSha256": "c24726995d36a3a9ed735a432fbcc019059a6c25428d347da01258d08e994887",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Látóhegy",
+          "coordinates": [
+            17.0424453,
+            46.4386666
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/1096115213"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-regional"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:regional:12",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.98153122196805,
+              46.476313028534925
+            ],
+            [
+              16.99476357926975,
+              46.47678369963067
+            ],
+            [
+              17.001015832547555,
+              46.473226617977936
+            ],
+            [
+              16.996464675730433,
+              46.4670662366167
+            ],
+            [
+              16.98428450155354,
+              46.468017529723134
+            ],
+            [
+              16.978728918593042,
+              46.47181056960994
+            ],
+            [
+              16.98153122196805,
+              46.476313028534925
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Ipari park",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 151,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1086.jpeg",
+          "mapSha256": "c24726995d36a3a9ed735a432fbcc019059a6c25428d347da01258d08e994887",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Ipari park",
+          "coordinates": [
+            16.9915834,
+            46.4724366
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/10803297783"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-regional"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:core:1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.985813112673675,
+              46.46665480936464
+            ],
+            [
+              16.99200166077135,
+              46.46672058415189
+            ],
+            [
+              16.99919811173344,
+              46.46666906545018
+            ],
+            [
+              17.000092894246784,
+              46.463632148871156
+            ],
+            [
+              16.99889850549668,
+              46.46168439066921
+            ],
+            [
+              16.998850569633284,
+              46.459708289279014
+            ],
+            [
+              16.993652818174592,
+              46.45990937786481
+            ],
+            [
+              16.991913477089955,
+              46.45902272934929
+            ],
+            [
+              16.988576487808857,
+              46.458665187902746
+            ],
+            [
+              16.986828431377216,
+              46.45957754494677
+            ],
+            [
+              16.98628346370306,
+              46.461287549317746
+            ],
+            [
+              16.985813112673675,
+              46.46665480936464
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Északi városrész",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 152,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1091.jpeg",
+          "mapSha256": "af65e5c17469c85aca66884a878cfe1dd0059d1420493d0e5cfdfb720a82942f",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Északi városrész",
+          "coordinates": [
+            16.9928094,
+            46.4623356
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/1300513570"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-core"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:core:2",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.98687260049478,
+              46.45957759420565
+            ],
+            [
+              16.988576487808857,
+              46.458665187902746
+            ],
+            [
+              16.991913477089955,
+              46.45902272934929
+            ],
+            [
+              16.993608648780818,
+              46.459909331253314
+            ],
+            [
+              16.998850569633284,
+              46.459708289279014
+            ],
+            [
+              16.99924286108808,
+              46.45835199142882
+            ],
+            [
+              16.998408624314457,
+              46.45714192295204
+            ],
+            [
+              16.997965820345183,
+              46.45584376712845
+            ],
+            [
+              16.9970209607444,
+              46.454309149278146
+            ],
+            [
+              16.99136534795577,
+              46.453624861803405
+            ],
+            [
+              16.98745703172121,
+              46.45394501767502
+            ],
+            [
+              16.987353799796796,
+              46.45565551629034
+            ],
+            [
+              16.987107922330424,
+              46.457218389554335
+            ],
+            [
+              16.98687260049478,
+              46.45957759420565
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Belváros",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 152,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1091.jpeg",
+          "mapSha256": "af65e5c17469c85aca66884a878cfe1dd0059d1420493d0e5cfdfb720a82942f",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Belváros",
+          "coordinates": [
+            16.9913421,
+            46.4554943
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/1300515926"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-core"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:core:3",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.998942676345376,
+              46.461684435215076
+            ],
+            [
+              17.000092894246784,
+              46.463632148871156
+            ],
+            [
+              17.004200290339583,
+              46.462987320636984
+            ],
+            [
+              17.0066895532138,
+              46.46257678084976
+            ],
+            [
+              17.00943093540527,
+              46.46325767042811
+            ],
+            [
+              17.0099690700029,
+              46.461459069130505
+            ],
+            [
+              17.010395779032127,
+              46.460604150653474
+            ],
+            [
+              17.008686730271933,
+              46.460160187669715
+            ],
+            [
+              17.006539424058385,
+              46.459125920750445
+            ],
+            [
+              17.003545497339534,
+              46.458621676743604
+            ],
+            [
+              16.99924286108808,
+              46.45835199142882
+            ],
+            [
+              16.998850569633284,
+              46.459708289279014
+            ],
+            [
+              16.998942676345376,
+              46.461684435215076
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Északkeleti városrész",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 152,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1091.jpeg",
+          "mapSha256": "af65e5c17469c85aca66884a878cfe1dd0059d1420493d0e5cfdfb720a82942f",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Északkeleti városrész",
+          "coordinates": [
+            17.0021607,
+            46.460624
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/1300513569"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-core"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:core:4",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.0099690700029,
+              46.461459069130505
+            ],
+            [
+              17.011953402379607,
+              46.46205072554914
+            ],
+            [
+              17.014495668975485,
+              46.462406887782166
+            ],
+            [
+              17.0168334611832,
+              46.462998765764226
+            ],
+            [
+              17.018634286307677,
+              46.4628528157641
+            ],
+            [
+              17.018928764479842,
+              46.46072954217943
+            ],
+            [
+              17.018970478640984,
+              46.458783018016085
+            ],
+            [
+              17.01854147929162,
+              46.45769140791812
+            ],
+            [
+              17.015716796312844,
+              46.457718506998155
+            ],
+            [
+              17.013312078346086,
+              46.458070332958776
+            ],
+            [
+              17.009995405912818,
+              46.458008374554275
+            ],
+            [
+              17.010179623467263,
+              46.45939472821068
+            ],
+            [
+              17.0099690700029,
+              46.461459069130505
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Keleti városrész",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 152,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1091.jpeg",
+          "mapSha256": "af65e5c17469c85aca66884a878cfe1dd0059d1420493d0e5cfdfb720a82942f",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Keleti városrész",
+          "coordinates": [
+            17.0155932,
+            46.459913
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/1300513571"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-core"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:core:5",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.009995405912818,
+              46.458008374554275
+            ],
+            [
+              17.013312078346086,
+              46.458070332958776
+            ],
+            [
+              17.015716796312844,
+              46.457718506998155
+            ],
+            [
+              17.01854147929162,
+              46.45769140791812
+            ],
+            [
+              17.01873410472689,
+              46.456010449741285
+            ],
+            [
+              17.018569310456606,
+              46.45427020684294
+            ],
+            [
+              17.017300442421448,
+              46.4525290349042
+            ],
+            [
+              17.014993734678995,
+              46.452379592893905
+            ],
+            [
+              17.012448594669493,
+              46.45261330516706
+            ],
+            [
+              17.009505959945123,
+              46.452846597146696
+            ],
+            [
+              17.009945647170383,
+              46.45473457089006
+            ],
+            [
+              17.009995405912818,
+              46.458008374554275
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Thury-városrész",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 152,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1091.jpeg",
+          "mapSha256": "af65e5c17469c85aca66884a878cfe1dd0059d1420493d0e5cfdfb720a82942f",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Thury-városrész",
+          "coordinates": [
+            17.0137552,
+            46.4546775
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/2494730817"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-core"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:nagykanizsa:core:6",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.99795248838713,
+              46.4543690873234
+            ],
+            [
+              17.00018455227627,
+              46.454076402552715
+            ],
+            [
+              17.00289222077808,
+              46.45363667119125
+            ],
+            [
+              17.00543745039849,
+              46.45340317392786
+            ],
+            [
+              17.00756887551189,
+              46.452933287882175
+            ],
+            [
+              17.009505959945123,
+              46.452846597146696
+            ],
+            [
+              17.009917620910752,
+              46.45113636085412
+            ],
+            [
+              17.009579227296175,
+              46.45007429260824
+            ],
+            [
+              17.00467731617708,
+              46.450069703536954
+            ],
+            [
+              17.002622088544076,
+              46.45036264944174
+            ],
+            [
+              17.000321616894862,
+              46.45030139411414
+            ],
+            [
+              16.998877064577734,
+              46.451125758578435
+            ],
+            [
+              16.997703544520075,
+              46.45203886126648
+            ],
+            [
+              16.997248800876214,
+              46.45312964971826
+            ],
+            [
+              16.99795248838713,
+              46.4543690873234
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Nagykanizsa",
+        "name": "Katonarét",
+        "estimated": true,
+        "method": "map_partition_estimate",
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "qualityScore": 35,
+        "sourcePeriod": "FVS2024 retained road map (original basemap snapshot date unknown)",
+        "sourceUrl": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+        "evidenceUrls": [
+          "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "https://merretekerjek.hu/"
+        ],
+        "source": {
+          "url": "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf",
+          "pdfPageOneBased": 152,
+          "nativeMap": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-fvs-xref1091.jpeg",
+          "mapSha256": "af65e5c17469c85aca66884a878cfe1dd0059d1420493d0e5cfdfb720a82942f",
+          "basemapProviderUrl": "https://merretekerjek.hu/",
+          "provider": "municipal-document-basemap-inference",
+          "license": "Map image explicitly credits merretekerjek.hu; OSM-derived placement ODbL-1.0; map-specific reuse licence not identified."
+        },
+        "nameEvidence": {
+          "name": "Katonarét",
+          "coordinates": [
+            17.0055081,
+            46.4514279
+          ],
+          "osmUrl": "https://www.openstreetmap.org/node/1300513568"
+        },
+        "coordinateReferenceSystem": "EPSG:4326",
+        "absoluteAccuracyMetres": null,
+        "approximationNote": "Coarse hand-inferred quarter footprint following built-up patches, main roads, railways and terrain visible in the retained street map. These are NOT quarter outlines explicitly drawn by the source. Regional outlying neighborhoods use visible settlement footprints; central parts use main-road divisions. Labels obscuring edges are bridged by eye.",
+        "pointRadiusFallback": false,
+        "georeferencingMethod": "approximate affine named-place correspondence",
+        "sourceKey": "nagykanizsa-core"
+      }
+    }
+  ]
+}

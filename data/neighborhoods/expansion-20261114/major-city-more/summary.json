@@ -1,8 +1,34 @@
 {
-  "status": "working_checkpoint",
-  "featureCount": 9,
+  "status": "complete_local_major_city_more_batch",
+  "featureCount": 26,
   "cities": {
-    "Tatabánya": 9
+    "Tatabánya": 9,
+    "Kaposvár": 9,
+    "Dunaújváros": 8
   },
-  "circleFallbackCount": 0
+  "circleFallbackCount": 0,
+  "packets": [
+    {
+      "path": "features.geojson",
+      "featureCount": 9,
+      "sha256": "c1ac345a8e99b98a46b2f52b3229b996d956ad128222bf3d4fc7ba146bb04a25"
+    },
+    {
+      "path": "kaposvar-features.geojson",
+      "featureCount": 9,
+      "sha256": "b12a782934c33ce16e265f105bb3e76cfd141de9bf3d1e1c035a89115a9222e6"
+    },
+    {
+      "path": "dunaujvaros-features.geojson",
+      "featureCount": 8,
+      "sha256": "a3f7a5718848a3ea2edc1c92e7fd545d1b7b5075a5c911131bb1d2d165779831"
+    }
+  ],
+  "validation": "All26 WGS84Polygon/MultiPolygon valid, nonempty, Hungarianbounds, allretainedsourcehashesmatch. No detailedprecision/currentnameauditperformed asrequested.",
+  "qualityNotes": [
+    "Tatabánya9: threeactualopenvectorpathsclosedapproximately; sixcoarsemanualdividerswithinactualsourceoutlines.",
+    "Kaposvár9: sixactualsource-mapcomponentsplusKecelhegy/CsersplitandRómahegyparent-minusDonner.",
+    "Dunaújváros8: LOWCONFIDENCE broad actualroad-corridorestimates; sixmanualinteriordividers. Replacewithquartermapfootprintswhenavailable.",
+    "Oldfrozen79batchunchanged."
+  ]
 }

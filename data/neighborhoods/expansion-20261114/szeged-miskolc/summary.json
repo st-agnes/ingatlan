@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-11-14",
+  "status": "rough_source_map_estimates_under_user_collection_policy",
+  "featureCount": 72,
+  "cityCounts": {
+    "Szeged": 45,
+    "Miskolc": 27
+  },
+  "pointRadiusFallbackCount": 0,
+  "allWorldGeometryValid": true,
+  "methods": {
+    "source_map_interior_estimate": 36,
+    "manual_visible_map_outline": 6,
+    "source_map_parent_union": 3,
+    "manual_parent_partition_estimate": 26,
+    "manual_map_context_estimate": 1
+  },
+  "cities": {
+    "Szeged": {
+      "count": 45,
+      "names": [
+        "Történelmi városközpont",
+        "Belső városrész",
+        "Alsóváros",
+        "Móraváros",
+        "Rókus-Móraváros",
+        "Rókus",
+        "Ófelsőváros",
+        "Újszeged kertváros",
+        "Fodorkert",
+        "Füvészkert",
+        "Marostő",
+        "Tápé",
+        "Petőfitelep",
+        "Új-Petőfitelep",
+        "Baktó",
+        "Béketelep",
+        "Gyálarét",
+        "Szőreg",
+        "Klebelsberg-telep",
+        "Kecskés-telep",
+        "Szentmihály",
+        "Felsőváros",
+        "Tarján",
+        "Makkosháza",
+        "Északi városrész",
+        "Újrókus",
+        "Újszőreg",
+        "Odessza",
+        "Sárga üdülőtelep",
+        "Tömörkény-üdülőtelep",
+        "Villanegyed",
+        "Belső ipari övezet",
+        "Tiszavirág üdülőtelep",
+        "Külső ipari övezet",
+        "Kiskundorozsma",
+        "Bodomi kiskertek",
+        "Ballagitói kiskertek",
+        "Gyálaréti kiskertek",
+        "Marostői kiskertek",
+        "Szőregi kiskertek",
+        "Tápéi kiskertek",
+        "Tompaszigeti kiskertek",
+        "Belváros",
+        "Újszeged",
+        "Ipari övezet"
+      ]
+    },
+    "Miskolc": {
+      "count": 27,
+      "names": [
+        "Martinkertváros",
+        "Szirma",
+        "Hejőcsaba",
+        "Görömböly",
+        "Vargahegy",
+        "Komlóstető",
+        "Egyetemváros",
+        "Ruzsin",
+        "Szentpéteri kapu",
+        "Zsarnai-telep",
+        "Selyemrét",
+        "Szondi-telep",
+        "Tetemvár",
+        "Bábonyibérc",
+        "Bodótető",
+        "Vologda",
+        "Jókai-lakótelep",
+        "Belváros",
+        "Avasalja",
+        "Népkert",
+        "Csabai kapu",
+        "Kilián",
+        "Újdiósgyőr",
+        "Győri kapu",
+        "Diósgyőr",
+        "Berekalja",
+        "Majláth"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "path": "szeged-features.geojson",
+      "sha256": "f591ec4a02ccc626aecfdda6d63448b1b1da6dcbbba606d61e5c0ceee15a069a"
+    },
+    {
+      "path": "miskolc-features.geojson",
+      "sha256": "f1e6f2256655af49e348a266083e42eb928c1c2a4ecc24351eb5c905bda9695c"
+    }
+  ],
+  "sourceMapEvidence": [
+    "../../sources/municipal-szeged-raw-next/henits-p24-xref249.jpeg",
+    "../../sources/municipal-szeged-raw-next/registration.json",
+    "../../sources/municipal-local-map-next/miskolc-p228-original.jpeg",
+    "../../sources/municipal-local-map-next/miskolc-registration.json"
+  ],
+  "importantLimits": [
+    "Szeged42observedmapcells plus3broaderunions, with6explicit manualgapcompletions.",
+    "Miskolc27fine-area estimates use the municipal17groupmap; newlydrawn internalcuts are approximate interpretations, not authentic KSH32linework.",
+    "No absolute accuracy claim and no current official completeness claim.",
+    "Broader and smaller areas may overlap intentionally. Deduplicate names during combined catalogue export."
+  ]
+}

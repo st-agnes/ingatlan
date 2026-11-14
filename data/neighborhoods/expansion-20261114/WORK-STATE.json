@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updatedAt": "2026-11-14",
   "branch": "codex/neighborhood-research-506-191",
-  "status": "checkpoint_with_continued_collection",
+  "status": "second_major_expansion_checkpoint_ready",
   "baseline": {
     "sourceNeighborhoods": 506,
     "estimatedFeatures": 191,
@@ -48,15 +48,15 @@
   "resume": "Read STRATEGY.md, inspect committed task summaries and git status; regenerate unified export after completed source packets, then commit/push. Do not restart the earlier source collection or discard existing raw polygons.",
   "completeNationalCoverage": false,
   "latestCheckpoint": {
-    "featureCount": 1333,
-    "municipalityCount": 251,
+    "featureCount": 2240,
+    "municipalityCount": 509,
     "methods": {
-      "map_or_text_estimate": 337,
-      "named_source_footprint": 383,
-      "source_map_polygon": 125,
-      "source_polygon": 488
+      "map_or_text_estimate": 455,
+      "named_source_footprint": 1164,
+      "source_map_polygon": 132,
+      "source_polygon": 489
     },
-    "duplicateVariantsPreserved": 90
+    "duplicateVariantsPreserved": 265
   },
   "additionalCompletedPackets": [
     "major-city-maps/budapest-features.geojson",
@@ -70,5 +70,6 @@
     "National unnamed OSM residential footprints",
     "Additional major-city maps",
     "Optional separately marked point-radius fallbacks"
-  ]
+  ],
+  "networkWorkPolicy": "Root handles any new internet download; child agents work from saved files to avoid hidden approval waits."
 }

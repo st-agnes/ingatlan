@@ -39,16 +39,31 @@ def main():
     municipalities={r['municipality']:r for r in inv['municipalities']}
     points=load(BASE/'sources/country-osm/named-nodes.geojson.gz')['features']
     names={}
+    files=[args.catalog] if args.catalog else [BASE/'neighborhoods.geojson',BASE/'estimated-candidates.geojson',BASE/'planning-units.geojson']
+    geometries=[(path,f) for path in files for f in load(path)['features']]
+    alias_targets={}
+    canonical_keys=set()
+    for path,f in geometries:
+        p=f['properties']; city=p.get('municipality'); name=p.get('name')
+        if city not in municipalities or not name: continue
+        canonical_keys.add((city,key(name)))
+        for alias in [name]+p.get('aliases',[]):
+            if isinstance(alias,str): alias_targets.setdefault((city,key(alias)),set()).add(name)
 
     def ensure(city,name):
         if city not in municipalities or not name or not key(name): return None
+        original_name=name
+        targets=alias_targets.get((city,key(name)),set())
+        if (city,key(name)) not in canonical_keys and len(targets)==1:
+            name=next(iter(targets))
         k=(city,key(name))
         if k not in names:
             names[k]={'municipality':city,'name':name,'nameKey':key(name),
               'sourceNames':[],'pointCandidates':[],'nameReferences':[],
               'collectedGeometries':[]}
         row=names[k]
-        if name not in row['sourceNames']: row['sourceNames'].append(name)
+        for source_name in [name,original_name]:
+            if source_name not in row['sourceNames']: row['sourceNames'].append(source_name)
         return row
 
     for p in points:
@@ -74,15 +89,15 @@ def main():
                   'completeForReferencePeriod':ref.get('completeForReferencePeriod',False),
                   'currentCompletenessVerified':ref.get('currentCompletenessVerified',False)})
 
-    files=[args.catalog] if args.catalog else [BASE/'neighborhoods.geojson',BASE/'estimated-candidates.geojson',BASE/'planning-units.geojson']
-    for path in files:
-        for f in load(path)['features']:
-            p=f['properties']; row=ensure(p.get('municipality'),p.get('name'))
-            if row is None: continue
-            row['collectedGeometries'].append({'sourceId':f.get('id',p.get('id')),
-              'sourceFile':str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path),
-              'method':p.get('method',p.get('source',{}).get('method')),
-              'estimated':p.get('estimated',False)})
+    for path,f in geometries:
+        p=f['properties']; row=ensure(p.get('municipality'),p.get('name'))
+        if row is None: continue
+        for alias in p.get('aliases',[]):
+            if isinstance(alias,str) and alias not in row['sourceNames']: row['sourceNames'].append(alias)
+        row['collectedGeometries'].append({'sourceId':f.get('id',p.get('id')),
+          'sourceFile':str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path),
+          'method':p.get('method',p.get('source',{}).get('method')),
+          'estimated':p.get('estimated',False)})
 
     ordered=sorted(names.values(),key=lambda r:(r['municipality'],r['nameKey']))
     for row in ordered:
@@ -118,9 +133,31 @@ def main():
     metadata={'schemaVersion':1,'date':'2026-11-14','scope':note,'summary':global_summary,
        'inputs':{s:hashlib.sha256((BASE/s).read_bytes()).hexdigest() for s in inputs},
        'geometryInputs':[str(p.relative_to(ROOT)) if p.is_relative_to(ROOT) else str(p) for p in files]}
+    reference_benchmarks=[]
+    covered_keys={(r['municipality'],r['nameKey']) for r in ordered if r['hasCollectedPolygon']}
+    for city,meta in municipalities.items():
+        for ref in meta.get('nameReferences',[]):
+            raw_names=ref.get('names',[]); ref_names={key(n):n for n in raw_names}
+            def represented(n):
+                targets=alias_targets.get((city,key(n)),set())
+                return (city,key(n)) in covered_keys or any((city,key(t)) in covered_keys for t in targets)
+            missing=[n for k,n in sorted(ref_names.items()) if not represented(n)]
+            identities=ref.get('identities',[])
+            reference_benchmarks.append({'municipality':city,'sourceId':ref.get('id'),
+              'title':ref.get('title'),'sourceUrl':ref.get('sourceUrl'),'category':ref.get('category'),
+              'referencePeriod':ref.get('referencePeriod'),
+              'completeForReferencePeriod':ref.get('completeForReferencePeriod',False),
+              'currentCompleteCityReferenceEstablished':bool(ref.get('sourceIsOfficial') and ref.get('currentCompletenessVerified') and ref.get('completeForReferencePeriod') and ref.get('category')=='urban_neighborhood'),
+              'sourceNameEntries':len(raw_names),'distinctNameKeys':len(ref_names),
+              'sourceIdentityCount':len(identities) if identities else None,
+              'namesWithCollectedPolygon':len(ref_names)-len(missing),'missingNames':missing,
+              'knownReferenceNameCoveragePercent':round((len(ref_names)-len(missing))/len(ref_names)*100,1) if ref_names else None,
+              'allSourceIdentitiesCovered':None,
+              'note':'Name/alias coverage only. Same literal name may denote distinct district-qualified identities; historical/planning references are useful alternate search-area schemes, not a current-city-completeness assertion.'})
     dump(OUT/'known-names.json',{**metadata,'names':ordered})
     dump(OUT/'priority-cities.json',{**metadata,'cities':priority})
     dump(OUT/'municipality-backlog.json',{**metadata,'municipalities':[summary(c) for c in sorted(groups)]})
+    dump(OUT/'reference-benchmarks.json',{**metadata,'references':reference_benchmarks})
     with (OUT/'priority-cities.csv').open('w',newline='') as fh:
         fields=['municipality','knownNameCount','namesWithCollectedPolygon','namesWithPointOnly','namesWithoutPointOrPolygon','referenceNameCount','referenceNamesWithCollectedPolygon','knownNameCoveragePercent','missingNames']
         w=csv.DictWriter(fh,fieldnames=fields,extrasaction='ignore'); w.writeheader()

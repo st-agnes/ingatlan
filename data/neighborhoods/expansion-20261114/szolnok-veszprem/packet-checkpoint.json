@@ -1,0 +1,29 @@
+{
+  "status": "four_packets_complete",
+  "totalSourceAlternatives": 118,
+  "packets": [
+    {
+      "path": "features.geojson",
+      "features": 48,
+      "sha256": "dcbbbde0ecb88eb27736a549c0905c3058fa5dc045ee537ec90a35c910e0c0cd"
+    },
+    {
+      "path": "additional-features.geojson",
+      "features": 26,
+      "sha256": "34c3e72a1a9c508d32f77ed389f4545bba066c8eb6ac6573c75f94f54db7e551"
+    },
+    {
+      "path": "nagykanizsa-features.geojson",
+      "features": 18,
+      "sha256": "3dcbabc4fb3f7b74d98d71af9759af39f4e0ba18b223e6cfb13d3ebb3c07df4e"
+    },
+    {
+      "path": "erd-features.geojson",
+      "features": 26,
+      "sha256": "9e653e631be9ae3141c1e0d8cc9ade4be622689fd4108725dc9e5166c7b5e12e"
+    }
+  ],
+  "newAdditionalAfterFrozenFirst48": 70,
+  "networkRequiredForReproduction": false,
+  "resume": "Read per-packet README and rerun only the appropriate reproduction script. Original features.geojson with48 has not changed. Coordinate and geometry validity checked; polygons are intentionally approximate. Root integrates deduplication and SQL export."
+}

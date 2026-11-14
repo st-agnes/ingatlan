@@ -58,7 +58,9 @@ def source_priority(properties, layer):
     if 'radius' in method or 'circle' in method:
         return 90, 'point_radius_fallback'
     if footprint:
-        return 40, 'named_source_footprint'
+        # An explicitly named source surface is preferable to a name inferred from a point.
+        inferred_label = method == 'named_point_source_footprint_estimate'
+        return (45 if inferred_label else 40), 'named_source_footprint'
     if method == 'source_polygon' or provider in ('openstreetmap', 'public-arcgis', 'whosonfirst'):
         administrative = tags.get('boundary') == 'administrative' or properties.get('sourceRole') == 'district'
         return (10 if administrative else 20), 'source_polygon'
@@ -96,6 +98,9 @@ class Names:
 def build():
     municipalities = set(json.loads((ROOT / 'dist/data/settlements.json').read_text())['settlements'])
     candidates, rejected, inputs, names = [], [], {}, Names()
+    alias_path = EXPANSION / 'name-aliases.json'
+    declared_aliases = json.loads(alias_path.read_text())['aliases'] if alias_path.exists() else []
+    if alias_path.exists(): inputs[alias_path.relative_to(ROOT).as_posix()] = sha(alias_path.read_bytes())
     for path in input_paths():
         raw = path.read_bytes(); relative = path.relative_to(ROOT).as_posix()
         inputs[relative] = sha(raw)
@@ -111,6 +116,10 @@ def build():
                 continue
             aliases = p.get('aliases') or []
             aliases = [x for x in aliases if isinstance(x, str) and x.strip()]
+            for declaration in declared_aliases:
+                values = [declaration['name']] + declaration['aliases']
+                if city == declaration['municipality'] and name_key(name) in {name_key(x) for x in values}:
+                    aliases += values
             key = (city, name_key(name))
             names.find(key)
             for alias in aliases: names.merge(key, (city, name_key(alias)))
@@ -228,6 +237,9 @@ if __name__ == '__main__':
     for filename, content in files.items():
         path = DATA / filename
         if args.check:
-            if path.read_bytes() != content: raise SystemExit('Stale search area export: ' + filename)
+            actual = path.read_bytes()
+            if filename.endswith('.gz'):
+                actual, content = gzip.decompress(actual), gzip.decompress(content)
+            if actual != content: raise SystemExit('Stale search area export: ' + filename)
         else: path.write_bytes(content)
     print(packed({k: report[k] for k in ('featureCount', 'municipalityCount', 'methods', 'duplicateVariantsPreserved')}))
