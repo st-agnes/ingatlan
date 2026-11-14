@@ -1,0 +1,16 @@
+{
+  "status": "working_checkpoint_gyor_complete_nyiregyhaza_and_budapest_next",
+  "featureCount": 50,
+  "cities": {
+    "Győr": 50
+  },
+  "sources": [
+    "https://gyor.hu/easy-docs/5dc9829cb6d4c"
+  ],
+  "notes": [
+    "42 named source circuits plus8 multi-circuit parent quarters; overlaps intentional.",
+    "2006 source division in2014 municipal ITS, approximate existing georeference.",
+    "Three source selfcrossings repaired via make_valid; all original paths remain archived.",
+    "Generic cemetery/shoppingcenters and unqualified Iparterület not emitted as standalone names; included inside namedparents."
+  ]
+}

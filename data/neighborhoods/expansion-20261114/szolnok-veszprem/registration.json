@@ -1,0 +1,536 @@
+[
+  {
+    "sourceKey": "szolnok",
+    "method": "approximate_affine_using_named_place_correspondences",
+    "anchors": [
+      {
+        "name": "Széchenyi-lakótelep",
+        "pixel": [
+          240,
+          81
+        ],
+        "coordinates": [
+          20.1821255,
+          47.1944667
+        ],
+        "eov": [
+          735976.5534879491,
+          206219.20679380585
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986381621"
+      },
+      {
+        "name": "Pletykafalu",
+        "pixel": [
+          154,
+          170
+        ],
+        "coordinates": [
+          20.1574239,
+          47.1752366
+        ],
+        "eov": [
+          734135.3174578617,
+          204054.8167062308
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986381545"
+      },
+      {
+        "name": "Szandaszőlős",
+        "pixel": [
+          319,
+          345
+        ],
+        "coordinates": [
+          20.2104418,
+          47.1244222
+        ],
+        "eov": [
+          738237.7244933535,
+          198464.95858964365
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986381560"
+      },
+      {
+        "name": "Alcsi városrész",
+        "pixel": [
+          330,
+          136
+        ],
+        "coordinates": [
+          20.2202176,
+          47.1771124
+        ],
+        "eov": [
+          738891.5740343351,
+          204332.75728070957
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986381613"
+      },
+      {
+        "name": "Kertváros",
+        "pixel": [
+          314,
+          219
+        ],
+        "coordinates": [
+          20.2079609,
+          47.1603218
+        ],
+        "eov": [
+          737990.3137074055,
+          202452.55120660007
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986403874"
+      },
+      {
+        "name": "Belváros",
+        "pixel": [
+          269,
+          159
+        ],
+        "coordinates": [
+          20.1922712,
+          47.1800789
+        ],
+        "eov": [
+          736768.6622247861,
+          204631.12503552123
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986381593"
+      },
+      {
+        "name": "TVM-lakótelep",
+        "pixel": [
+          168,
+          304
+        ],
+        "coordinates": [
+          20.1511479,
+          47.1359635
+        ],
+        "eov": [
+          733721.2164861497,
+          199682.66461180625
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986381573"
+      }
+    ],
+    "pixelToEovMatrix": [
+      [
+        27.76569743548352,
+        -1.3190727129453352
+      ],
+      [
+        -1.1609004880505098,
+        -29.739317023380426
+      ],
+      [
+        729650.1734260982,
+        209179.4129917717
+      ]
+    ],
+    "anchorResidualsMetres": [
+      338.1214770388503,
+      428.16277152532666,
+      135.0522300580577,
+      436.50188247067604,
+      235.55004266052003,
+      560.2219382698936,
+      335.9561680288173
+    ],
+    "anchorRmsMetres": 375.80798287577994,
+    "absoluteAccuracyMetres": null,
+    "note": "Name locations are approximate area representatives, not physical survey controls. Residuals quantify fit to those representatives, not true boundary accuracy. Source map distortion and historical extent differences remain."
+  },
+  {
+    "sourceKey": "veszprem-ivs",
+    "method": "approximate_affine_using_named_place_correspondences",
+    "anchors": [
+      {
+        "name": "Dózsaváros",
+        "pixel": [
+          443,
+          357
+        ],
+        "coordinates": [
+          17.8955671,
+          47.1022935
+        ],
+        "eov": [
+          562568.3673239377,
+          195995.31026469488
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986558763"
+      },
+      {
+        "name": "Iparváros",
+        "pixel": [
+          395,
+          288
+        ],
+        "coordinates": [
+          17.8887941,
+          47.1111189
+        ],
+        "eov": [
+          562068.8707776122,
+          196983.8898873205
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/1129396331"
+      },
+      {
+        "name": "Jeruzsálemhegy",
+        "pixel": [
+          376,
+          412
+        ],
+        "coordinates": [
+          17.900419,
+          47.0891031
+        ],
+        "eov": [
+          562915.0758889639,
+          194523.73000020688
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986554633"
+      },
+      {
+        "name": "Egyetemváros",
+        "pixel": [
+          443,
+          498
+        ],
+        "coordinates": [
+          17.9061178,
+          47.0851897
+        ],
+        "eov": [
+          563341.3496789233,
+          194082.40218824343
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986554675"
+      },
+      {
+        "name": "Cholnokyváros",
+        "pixel": [
+          535,
+          446
+        ],
+        "coordinates": [
+          17.9237613,
+          47.0924097
+        ],
+        "eov": [
+          564692.4315394049,
+          194865.50334525236
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986554657"
+      },
+      {
+        "name": "Jutasi úti lakótelep",
+        "pixel": [
+          517,
+          342
+        ],
+        "coordinates": [
+          17.9211288,
+          47.1084874
+        ],
+        "eov": [
+          564518.3733463017,
+          196655.48358204204
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986554695"
+      },
+      {
+        "name": "Kádárta",
+        "pixel": [
+          617,
+          243
+        ],
+        "coordinates": [
+          17.9492813,
+          47.1211943
+        ],
+        "eov": [
+          566674.7124536459,
+          198037.48195674986
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986558781"
+      },
+      {
+        "name": "Gyulafirátót",
+        "pixel": [
+          657,
+          91
+        ],
+        "coordinates": [
+          17.9489852,
+          47.1444169
+        ],
+        "eov": [
+          566688.5638618874,
+          200619.11027066255
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/371171565"
+      },
+      {
+        "name": "Csatárhegy",
+        "pixel": [
+          210,
+          353
+        ],
+        "coordinates": [
+          17.8486877,
+          47.1024116
+        ],
+        "eov": [
+          559010.5545551389,
+          196061.99489456238
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986558777"
+      },
+      {
+        "name": "Belváros",
+        "pixel": [
+          471,
+          415
+        ],
+        "coordinates": [
+          17.9073959,
+          47.0913683
+        ],
+        "eov": [
+          563448.4133997913,
+          194767.75759473935
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986554680"
+      }
+    ],
+    "pixelToEovMatrix": [
+      [
+        17.78529879960557,
+        1.329697337102547
+      ],
+      [
+        0.8238465065750599,
+        -16.02100087113385
+      ],
+      [
+        555013.7928009015,
+        201158.33036052543
+      ]
+    ],
+    "anchorResidualsMetres": [
+      619.2835771441968,
+      224.36328862159354,
+      1024.6780017529509,
+      315.8168107536184,
+      248.0157481830416,
+      290.2190027171266,
+      489.5709801794048,
+      96.33825602797086,
+      281.33681159548445,
+      465.05125434272054
+    ],
+    "anchorRmsMetres": 476.8311079669948,
+    "absoluteAccuracyMetres": null,
+    "note": "Name locations are approximate area representatives, not physical survey controls. Residuals quantify fit to those representatives, not true boundary accuracy. Source map distortion and historical extent differences remain."
+  },
+  {
+    "sourceKey": "veszprem-tak",
+    "method": "approximate_affine_using_named_place_correspondences",
+    "anchors": [
+      {
+        "name": "Gyulafirátót",
+        "pixel": [
+          576,
+          430
+        ],
+        "coordinates": [
+          17.9489852,
+          47.1444169
+        ],
+        "eov": [
+          566688.5638618874,
+          200619.11027066255
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/371171565"
+      },
+      {
+        "name": "Kádárta",
+        "pixel": [
+          576,
+          587
+        ],
+        "coordinates": [
+          17.9492813,
+          47.1211943
+        ],
+        "eov": [
+          566674.7124536459,
+          198037.48195674986
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986558781"
+      },
+      {
+        "name": "Jutaspuszta",
+        "pixel": [
+          357,
+          575
+        ],
+        "coordinates": [
+          17.9006271,
+          47.1234817
+        ],
+        "eov": [
+          562987.0012998186,
+          198344.80629090904
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986554687"
+      },
+      {
+        "name": "Csererdő",
+        "pixel": [
+          229,
+          612
+        ],
+        "coordinates": [
+          17.872561,
+          47.1154395
+        ],
+        "eov": [
+          560844.2522825529,
+          197482.54627029426
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/1124777592"
+      },
+      {
+        "name": "Iparváros",
+        "pixel": [
+          316,
+          651
+        ],
+        "coordinates": [
+          17.8887941,
+          47.1111189
+        ],
+        "eov": [
+          562068.8707776122,
+          196983.8898873205
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/1129396331"
+      },
+      {
+        "name": "Dózsaváros",
+        "pixel": [
+          347,
+          706
+        ],
+        "coordinates": [
+          17.8955671,
+          47.1022935
+        ],
+        "eov": [
+          562568.3673239377,
+          195995.31026469488
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986558763"
+      },
+      {
+        "name": "Belváros",
+        "pixel": [
+          391,
+          750
+        ],
+        "coordinates": [
+          17.9073959,
+          47.0913683
+        ],
+        "eov": [
+          563448.4133997913,
+          194767.75759473935
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986554680"
+      },
+      {
+        "name": "Szabadságpuszta",
+        "pixel": [
+          428,
+          985
+        ],
+        "coordinates": [
+          17.917009,
+          47.059745
+        ],
+        "eov": [
+          564127.2835582331,
+          191242.10703700662
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986562266"
+      },
+      {
+        "name": "Cholnokyváros",
+        "pixel": [
+          466,
+          781
+        ],
+        "coordinates": [
+          17.9237613,
+          47.0924097
+        ],
+        "eov": [
+          564692.4315394049,
+          194865.50334525236
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986554657"
+      },
+      {
+        "name": "Csatárhegy",
+        "pixel": [
+          114,
+          709
+        ],
+        "coordinates": [
+          17.8486877,
+          47.1024116
+        ],
+        "eov": [
+          559010.5545551389,
+          196061.99489456238
+        ],
+        "osmUrl": "https://www.openstreetmap.org/node/986558777"
+      }
+    ],
+    "pixelToEovMatrix": [
+      [
+        16.67366552750078,
+        -0.14360509748649414
+      ],
+      [
+        -0.23151759251168957,
+        -17.08036068318276
+      ],
+      [
+        557132.1600430326,
+        208085.35347787273
+      ]
+    ],
+    "anchorResidualsMetres": [
+      64.92298201771507,
+      96.23752034807205,
+      136.61104969514741,
+      122.02258804255533,
+      192.1511150670865,
+      187.0227098064104,
+      452.13993518812936,
+      96.62540569855202,
+      189.04456966562336,
+      175.20708385998898
+    ],
+    "anchorRmsMetres": 199.78254462945614,
+    "absoluteAccuracyMetres": null,
+    "note": "Name locations are approximate area representatives, not physical survey controls. Residuals quantify fit to those representatives, not true boundary accuracy. Source map distortion and historical extent differences remain."
+  }
+]

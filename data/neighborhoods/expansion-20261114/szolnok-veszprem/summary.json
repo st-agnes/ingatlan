@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-14",
+  "strategy": "coarse source-map inference accepted under user instructions; overlaps and historical alternatives retained; final city+name dedup delegated to combined exporter",
+  "featureCount": 48,
+  "cityCountsBeforeFinalDeduplication": {
+    "Szolnok": 21,
+    "Veszprém": 27
+  },
+  "distinctCityNames": 40,
+  "sourceMapCounts": {
+    "szolnok": 21,
+    "veszprem-ivs": 11,
+    "veszprem-tak": 16
+  },
+  "allFeaturesEstimated": true,
+  "pointRadiusFallbacks": 0,
+  "absoluteAccuracyMetres": null,
+  "validation": {
+    "allGeometryValid": true,
+    "allGeometryTypesPolygonOrMultiPolygon": true,
+    "allCoordinatesHungaryRange": true
+  },
+  "openWork": [
+    "Veszprém 2019 source lists seven subordinate area names; these do not have separate depicted outlines and are not cloned from parent shapes.",
+    "Szolnok source map is schematic and low-resolution; actual quarter limits may differ materially.",
+    "Nagykanizsa local FVS map inspected is an action-area map, not a quarter partition; no unlabelled action polygon promoted to neighborhood here."
+  ],
+  "sourceInputs": [
+    {
+      "sourceKey": "szolnok",
+      "path": "sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+      "sha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+      "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+      "period": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72"
+    },
+    {
+      "sourceKey": "veszprem-ivs",
+      "path": "sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+      "sha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+      "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+      "period": "Municipal IVS 2008-10-15, page10"
+    },
+    {
+      "sourceKey": "veszprem-tak",
+      "path": "sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+      "sha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+      "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+      "period": "Municipal TAK2019 page14 official-quarter name map"
+    }
+  ]
+}
