@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
   "policyVersion": "20261114-throughput",
-  "featureCount": 2240,
+  "featureCount": 2267,
   "municipalityCount": 509,
   "methods": {
-    "map_or_text_estimate": 455,
-    "named_source_footprint": 1164,
-    "source_map_polygon": 132,
-    "source_polygon": 489
+    "map_or_text_estimate": 488,
+    "named_source_footprint": 1167,
+    "source_map_polygon": 134,
+    "source_polygon": 478
   },
-  "inputFeatureCount": 2505,
-  "duplicateVariantsPreserved": 265,
-  "duplicateNameGroups": 245,
+  "inputFeatureCount": 2554,
+  "duplicateVariantsPreserved": 287,
+  "duplicateNameGroups": 266,
   "rejectedTechnicalRecords": [],
   "completeNationalCoverage": false,
   "nationalCoveragePercentage": null,
   "inputsSha256": {
-    "data/neighborhoods/expansion-20261114/name-aliases.json": "9346af6981247e0834f9b1777d0e88467621951dde12228565a4244a9082883a",
+    "data/neighborhoods/expansion-20261114/name-aliases.json": "0e7f50c7d815ed3e380e492e1ed0d8d620421e529d2842bae072baa53d12c400",
     "data/neighborhoods/neighborhoods.geojson": "8eca9d097fb6714c31ca942f57ff0d8f683f8f4fe13af0161b12da19b20e8f74",
     "data/neighborhoods/planning-units.geojson": "210d68a378ab01d26383825c2beb8896655e43b0e40d39f2add541ac7f090ce5",
     "data/neighborhoods/estimated-candidates.geojson": "a9e6d9bd870d997571c5638d5dbdcb8a44c92bb72926f0c85ee2dbccbf38dfe3",
@@ -37,7 +37,12 @@
     "data/neighborhoods/expansion-20261114/major-city-more/dunaujvaros-features.geojson": "a3f7a5718848a3ea2edc1c92e7fd545d1b7b5075a5c911131bb1d2d165779831",
     "data/neighborhoods/expansion-20261114/machine-footprints/features.geojson": "acaec8d04b0ba756cf7582ccf63663ff430a980c57a9a0eed1514bfb11bd6f85",
     "data/neighborhoods/expansion-20261114/machine-other-footprints/features.geojson": "88590c643e185014852d848369646744d200c9972506e2707781359c6390f378",
-    "data/neighborhoods/expansion-20261114/szolnok-veszprem/erd-features.geojson": "9e653e631be9ae3141c1e0d8cc9ade4be622689fd4108725dc9e5166c7b5e12e"
+    "data/neighborhoods/expansion-20261114/szolnok-veszprem/erd-features.geojson": "9e653e631be9ae3141c1e0d8cc9ade4be622689fd4108725dc9e5166c7b5e12e",
+    "data/neighborhoods/expansion-20261114/major-city-more/sopron-features.geojson": "d68467e3a4b6989b5ab4b457c92a5a990aca1e2916a126d9b0d65df075a1fb51",
+    "data/neighborhoods/expansion-20261114/debrecen/maps80-82-features.geojson": "370aa93db720d09e72fd9accf6d7879a28bd42deecc3d41a09dd710b36aeeaca",
+    "data/neighborhoods/expansion-20261114/debrecen/rural-features.geojson": "934c21949bff059184fe31d4a066fde8f7b89b9c70a0ece3d90ca2e7a1c3820f",
+    "data/neighborhoods/expansion-20261114/physical-cells-small/features.geojson": "d8452437efb162325d7382a911b00718ba3333e4ef28e5558635ffaa30340312",
+    "data/neighborhoods/search-area-identities.json": "927fd5e05a8a0cde339f79169c8362bf39b35914db8bc8089ae4baae5738eb80"
   },
   "selectionOrder": [
     "OSM administrative named boundary",
@@ -141,9 +146,9 @@
     },
     {
       "municipality": "Baja",
-      "count": 3,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 3
+        "named_source_footprint": 7
       }
     },
     {
@@ -441,12 +446,12 @@
     },
     {
       "municipality": "Budapest",
-      "count": 353,
+      "count": 342,
       "methods": {
         "map_or_text_estimate": 7,
         "named_source_footprint": 93,
         "source_map_polygon": 2,
-        "source_polygon": 251
+        "source_polygon": 240
       }
     },
     {
@@ -580,9 +585,9 @@
     },
     {
       "municipality": "Cegléd",
-      "count": 9,
+      "count": 10,
       "methods": {
-        "named_source_footprint": 9
+        "named_source_footprint": 10
       }
     },
     {
@@ -801,9 +806,9 @@
     },
     {
       "municipality": "Dunakeszi",
-      "count": 14,
+      "count": 15,
       "methods": {
-        "named_source_footprint": 7,
+        "named_source_footprint": 8,
         "source_polygon": 7
       }
     },
@@ -1481,10 +1486,10 @@
     },
     {
       "municipality": "Kecskemét",
-      "count": 48,
+      "count": 67,
       "methods": {
-        "map_or_text_estimate": 36,
-        "named_source_footprint": 11,
+        "map_or_text_estimate": 62,
+        "named_source_footprint": 4,
         "source_map_polygon": 1
       }
     },
@@ -2485,9 +2490,9 @@
     },
     {
       "municipality": "Pápa",
-      "count": 5,
+      "count": 8,
       "methods": {
-        "named_source_footprint": 5
+        "named_source_footprint": 8
       }
     },
     {
@@ -2704,10 +2709,11 @@
     },
     {
       "municipality": "Sopron",
-      "count": 18,
+      "count": 24,
       "methods": {
-        "map_or_text_estimate": 4,
-        "named_source_footprint": 13,
+        "map_or_text_estimate": 11,
+        "named_source_footprint": 10,
+        "source_map_polygon": 2,
         "source_polygon": 1
       }
     },
@@ -2785,9 +2791,9 @@
     },
     {
       "municipality": "Szekszárd",
-      "count": 3,
+      "count": 6,
       "methods": {
-        "named_source_footprint": 3
+        "named_source_footprint": 6
       }
     },
     {
@@ -3616,9 +3622,9 @@
     },
     {
       "municipality": "Ózd",
-      "count": 7,
+      "count": 8,
       "methods": {
-        "named_source_footprint": 5,
+        "named_source_footprint": 6,
         "source_polygon": 2
       }
     },
@@ -3679,5 +3685,6 @@
       }
     }
   ],
-  "outputGeojsonSha256": "aac28ea74911f1a113e01396a786ffb1f9c9681938bfa48913e907f59b7946d9"
+  "retiredIdentityCount": 11,
+  "outputGeojsonSha256": "c2eb2e0becc0d19f572730c5c22b27746d9dcb527b2fb7ac12b6f5a59c786873"
 }

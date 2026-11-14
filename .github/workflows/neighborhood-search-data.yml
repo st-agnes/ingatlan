@@ -5,12 +5,16 @@ on:
     paths:
       - 'data/neighborhoods/**'
       - 'scripts/neighborhoods/build-search-areas.py'
+      - 'scripts/neighborhoods/package-search-areas.py'
+      - 'downloads/neighborhoods/otthonra-keresheto-varosreszek.zip*'
       - 'tests/neighborhoods-search-areas.test.py'
       - '.github/workflows/neighborhood-search-data.yml'
   pull_request:
     paths:
       - 'data/neighborhoods/**'
       - 'scripts/neighborhoods/build-search-areas.py'
+      - 'scripts/neighborhoods/package-search-areas.py'
+      - 'downloads/neighborhoods/otthonra-keresheto-varosreszek.zip*'
       - 'tests/neighborhoods-search-areas.test.py'
       - '.github/workflows/neighborhood-search-data.yml'
   workflow_dispatch:
@@ -35,3 +39,5 @@ jobs:
         run: python3 scripts/neighborhoods/build-search-areas.py --check
       - name: Verify deduplication, aliases and spatial export safeguards
         run: python3 tests/neighborhoods-search-areas.test.py
+      - name: Verify downloadable package contents and SHA-256
+        run: python3 scripts/neighborhoods/package-search-areas.py --check

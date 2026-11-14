@@ -12,7 +12,7 @@ class SearchAreaReleaseTests(unittest.TestCase):
         MODULE.ROOT = self.root; MODULE.DATA = self.root / 'data/neighborhoods'
         MODULE.EXPANSION = MODULE.DATA / 'expansion-20261114'
         MODULE.EXPANSION.mkdir(parents=True); (self.root / 'dist/data').mkdir(parents=True)
-        (self.root / 'dist/data/settlements.json').write_text(json.dumps({'settlements': ['Debrecen', 'Győr']}))
+        (self.root / 'dist/data/settlements.json').write_text(json.dumps({'settlements': ['Debrecen', 'Győr', 'Budapest']}))
         for file in ('neighborhoods.geojson', 'estimated-candidates.geojson', 'planning-units.geojson'):
             self.write(file, [])
         self.registry([])
@@ -56,6 +56,15 @@ class SearchAreaReleaseTests(unittest.TestCase):
         self.registry([path]); files, _ = MODULE.build()
         self.assertEqual(json.loads(files['search-areas.geojson'])['features'][0]['properties']['method'], 'map_or_text_estimate')
 
+    def test_named_residential_proxy_beats_physical_barrier_cell(self):
+        proxy = self.feature('Vénkert', method='named_point_source_footprint_estimate', semanticFootprint=True)
+        barrier = self.feature('Vénkert', method='physical_barrier_cell_estimate', semanticFootprint=True, qualityScore=15)
+        barrier['geometry']['coordinates'][0][1][0] = 21.64
+        path = self.write('expansion-20261114/native/features.geojson', [barrier, proxy]); self.registry([path])
+        files, _ = MODULE.build(); selected = json.loads(files['search-areas.geojson'])['features'][0]
+        self.assertEqual(selected['geometry'], proxy['geometry'])
+        self.assertEqual(MODULE.source_priority(barrier['properties'], 'features.geojson')[0], 50)
+
     def test_registered_source_cannot_change_silently(self):
         path = self.write('expansion-20261114/native/features.geojson', [self.feature('Vénkert')])
         self.registry([path]); path.write_text(path.read_text() + '\n')
@@ -78,6 +87,15 @@ class SearchAreaReleaseTests(unittest.TestCase):
         files, _ = MODULE.build()
         self.assertEqual(json.loads(files['search-areas.geojson'])['features'][0]['geometry'], baseline['geometry'])
 
+    def test_district_alias_uses_whole_district_geometry(self):
+        quarter = self.feature('Újpest', 'Budapest', method='source_polygon', source={'provider':'openstreetmap','tags':{'boundary':'administrative'}})
+        district = self.feature('IV. kerület', 'Budapest', method='source_polygon', sourceRole='district', aliases=['Újpest'])
+        district['geometry']['coordinates'][0][1][0] = 21.65
+        self.write('neighborhoods.geojson', [quarter])
+        path = self.write('expansion-20261114/native/features.geojson', [district]); self.registry([path])
+        files, _ = MODULE.build(); rows = json.loads(files['search-areas.geojson'])['features']
+        self.assertEqual(len(rows), 1); self.assertEqual(rows[0]['geometry'], district['geometry'])
+
     def test_invalid_coordinates_rejected_and_holes_preserved_in_mysql(self):
         feature = self.feature('Vénkert'); hole = [[21.605,47.555],[21.605,47.56],[21.61,47.56],[21.61,47.555],[21.605,47.555]]
         feature['geometry']['coordinates'].append(hole)
@@ -88,5 +106,59 @@ class SearchAreaReleaseTests(unittest.TestCase):
         self.assertIn(MODULE.packed(feature['geometry']).encode().hex(), sql)
         self.assertIn('SPATIAL INDEX', sql); self.assertIn('SRID 4326', sql)
         self.assertIn('ST_Intersects', sql); self.assertNotIn('DROP TABLE', sql)
+
+    def persist_identities(self, files):
+        (MODULE.DATA / 'search-area-identities.json').write_bytes(files['search-area-identities.json'])
+
+    def test_new_earlier_alias_and_better_geometry_preserve_identity(self):
+        self.write('estimated-candidates.geojson', [self.feature('Vénkert', method='map_trace')])
+        first, _ = MODULE.build(); self.persist_identities(first)
+        before = json.loads(first['search-areas.geojson'])['features'][0]
+        better = self.feature('A-kert', method='source_polygon', aliases=['Vénkert'])
+        better['geometry']['coordinates'][0][1][0] = 21.64
+        self.write('neighborhoods.geojson', [better])
+        second, _ = MODULE.build(); after = json.loads(second['search-areas.geojson'])['features'][0]
+        self.assertEqual(after['id'], before['id'])
+        self.assertEqual(after['properties']['canonicalNameKey'], before['properties']['canonicalNameKey'])
+        self.assertEqual(after['geometry'], better['geometry'])
+        self.assertEqual(json.loads(second['search-area-identities.json'])['redirects'], [])
+
+    def test_explicit_merge_retires_only_losing_id_and_equivalence_survives(self):
+        self.write('neighborhoods.geojson', [self.feature('Jamina'), self.feature('Erzsébethely')])
+        first, _ = MODULE.build(); self.persist_identities(first)
+        original = json.loads(first['search-areas.geojson'])['features']
+        target, retired = sorted(f['id'] for f in original)
+        canonical = next(f['properties']['canonicalNameKey'] for f in original if f['id'] == target)
+        self.write('neighborhoods.geojson', [self.feature('Jamina', aliases=['Erzsébethely']), self.feature('Erzsébethely')])
+        merged, report = MODULE.build(); self.persist_identities(merged)
+        features = json.loads(merged['search-areas.geojson'])['features']
+        self.assertEqual(len(features), 1); self.assertEqual(features[0]['id'], target)
+        self.assertEqual(features[0]['properties']['canonicalNameKey'], canonical)
+        redirects = json.loads(merged['search-area-identities.json'])['redirects']
+        self.assertEqual(redirects, [{'retiredId': retired, 'targetId': target}])
+        self.assertEqual(report['retiredIdentityCount'], 1)
+        sql = gzip.decompress(merged['search-areas.mysql.sql.gz']).decode()
+        deletion = next(line for line in sql.splitlines() if line.startswith('DELETE '))
+        self.assertEqual(deletion, 'DELETE FROM NeighborhoodSearchAreas WHERE Id IN (' + MODULE.sql_text(retired) + ');')
+        self.assertNotIn(MODULE.sql_text(target), deletion)
+        self.assertLess(sql.index('START TRANSACTION;'), sql.index(deletion))
+        self.assertLess(sql.index(deletion), sql.index('INSERT INTO'))
+        # A later source no longer supplying the alias must not split the identity.
+        self.write('neighborhoods.geojson', [self.feature('Jamina'), self.feature('Erzsébethely')])
+        later, _ = MODULE.build(); result = json.loads(later['search-areas.geojson'])['features']
+        self.assertEqual([f['id'] for f in result], [target])
+        self.assertEqual(later['search-area-identities.json'], merged['search-area-identities.json'])
+
+    def test_redirect_chain_flattens_after_another_explicit_merge(self):
+        self.write('neighborhoods.geojson', [self.feature(name) for name in ['A', 'B', 'C']])
+        initial, _ = MODULE.build(); self.persist_identities(initial)
+        ordered = sorted(json.loads(initial['search-areas.geojson'])['features'], key=lambda f: f['id'])
+        names = [f['properties']['name'] for f in ordered]
+        self.write('neighborhoods.geojson', [self.feature(names[0]), self.feature(names[1], aliases=[names[2]]), self.feature(names[2])])
+        middle, _ = MODULE.build(); self.persist_identities(middle)
+        self.write('neighborhoods.geojson', [self.feature(names[0], aliases=[names[1]]), self.feature(names[1]), self.feature(names[2])])
+        final, _ = MODULE.build(); redirects = json.loads(final['search-area-identities.json'])['redirects']
+        self.assertEqual(len(redirects), 2)
+        self.assertEqual({r['targetId'] for r in redirects}, {ordered[0]['id']})
 
 if __name__ == '__main__': unittest.main()

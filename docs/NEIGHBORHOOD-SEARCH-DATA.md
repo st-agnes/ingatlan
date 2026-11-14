@@ -10,6 +10,8 @@ A 2026. november 14-én megadott gyűjtési stratégia alapján a korábbi kutat
 - `data/neighborhoods/search-areas.mysql.sql.gz`: MySQL 8.0/8.4 táblaséma és idempotens adatfeltöltés. A tömörítés a GitHub-mentések méretét csökkenti.
 - `data/neighborhoods/search-areas-report.csv` és `.json`: kiválasztott területek településenként és módszerenként.
 - `data/neighborhoods/search-areas-deduplication.json`: melyik változatot választottuk és mely forrásváltozatok maradtak meg alternatívaként.
+- `data/neighborhoods/search-area-identities.json`: tartós azonosítók és korábban összevont nevek; új névváltozat vagy jobb geometria nem hoz létre új azonosítót.
+- `downloads/neighborhoods/otthonra-keresheto-varosreszek.zip`: az aktuális poligonok, névjegyzék, import és külön tartalékkörök letölthető csomagja, belső SHA-256-jegyzékkel.
 
 A korábbi `neighborhoods.geojson`, `estimated-candidates.geojson` és a hozzájuk tartozó jelentések megmaradnak történeti kutatási állapotként. Az új, bővebb keresési állomány számait a `search-areas-report` mutatja.
 
@@ -25,7 +27,7 @@ A névvel ellátott lakóterület, kerttelep vagy ipari felszín körvonala hasz
 
 A cím koordinátáját külön geokódolási lépés adja meg. Ez az állomány a koordináta területen belüliségét teszi vizsgálhatóvá; címadatbázist és geokódoló szolgáltatást nem tartalmaz. Egy cím több, egymást átfedő városrészhez is tartozhat.
 
-A SQL-csomag kizárólag a `NeighborhoodSearchAreas` táblát hozza létre vagy tölti. Nem változtatja meg az alkalmazás meglévő tábláit, és nem töröl adatokat. A névazonosságot egyedi index, a geometriát SRID 4326 és térbeli index tárolja. A betöltés például:
+A SQL-csomag kizárólag a `NeighborhoodSearchAreas` táblát hozza létre vagy tölti. Nem változtatja meg az alkalmazás meglévő tábláit. Ha egy későbbi névazonosítás két korábbi katalógusazonosítót összevon, a tartós nyilvántartás rögzíti az átirányítást; az import csak ezeket a kifejezetten visszavont katalógusazonosítókat törölheti a saját táblájából. Más sorokat nem töröl. A névazonosságot egyedi index, a geometriát SRID 4326 és térbeli index tárolja. A betöltés például:
 
 ```sh
 gzip -dc data/neighborhoods/search-areas.mysql.sql.gz | mysql --database=ingatlan
@@ -52,6 +54,9 @@ Ez a munka az adatgyűjtést és az importcsomagot készíti elő. Az alkalmazá
 python3 scripts/neighborhoods/build-search-areas.py
 python3 scripts/neighborhoods/build-search-areas.py --check
 python3 tests/neighborhoods-search-areas.test.py
+python3 scripts/neighborhoods/package-search-areas.py --check
 ```
+
+Új forráscsomag vagy névváltozat felvétele után `python3 scripts/neighborhoods/build-search-areas.py --update-identities` menti az új névazonosságokat és újragenerálja az exportot. A tartós nyilvántartást az adatokkal együtt kell megőrizni. Az import előkészített állomány; tényleges MySQL-szerveren ebben a munkamenetben nem futtattuk.
 
 A források elfogadott kész csomagjait az `expansion-20261114/input-registry.json` SHA-256-tal rögzíti. A még feldolgozás alatt álló fájlok ezért nem változtatják meg észrevétlenül a kiadást. A részeredmények és a következő munkák az ugyanott tárolt `WORK-STATE.json` fájlban szerepelnek. Az országos teljes városrészszám továbbra sem ismert; az ismert névjegyzékek lefedése külön mérőszám, nem országos teljességi állítás.

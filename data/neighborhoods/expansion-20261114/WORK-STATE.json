@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updatedAt": "2026-11-14",
   "branch": "codex/neighborhood-research-506-191",
-  "status": "second_major_expansion_checkpoint_ready",
+  "status": "checkpoint_complete_nationwide_collection_incomplete",
   "baseline": {
     "sourceNeighborhoods": 506,
     "estimatedFeatures": 191,
@@ -11,65 +11,237 @@
   "tasks": [
     {
       "id": "machine",
-      "status": "first_packet_complete_more_collection_in_progress",
+      "status": "completed_for_this_checkpoint",
       "scope": "Previously excluded native OSM, municipal and other machine polygons nationwide"
     },
     {
       "id": "debrecen",
-      "status": "first_packet_complete_more_collection_in_progress",
+      "status": "completed_for_this_checkpoint",
       "scope": "All useful names from raw77; no extra geographic review"
     },
     {
       "id": "szeged-miskolc",
-      "status": "szeged_45_complete_miskolc_in_progress",
+      "status": "completed_for_this_checkpoint",
       "scope": "Major-city source maps and existing geometry"
     },
     {
       "id": "szolnok-veszprem",
-      "status": "first_packet_complete_more_collection_in_progress",
+      "status": "completed_for_this_checkpoint",
       "scope": "Previously unexported native/raster source maps"
     },
     {
       "id": "major-city-maps",
-      "status": "gyor_50_nyiregyhaza_24_complete_budapest_in_progress",
+      "status": "completed_for_this_checkpoint",
       "scope": "Győr, Nyíregyháza, Budapest gaps, Pécs"
     },
     {
       "id": "inventory",
-      "status": "in_progress",
+      "status": "completed_for_this_checkpoint",
       "scope": "Known names and top-city gaps, no invented national denominator"
     },
     {
       "id": "unified_export",
-      "status": "first_packet_complete_more_collection_in_progress",
+      "status": "completed_for_this_checkpoint",
       "scope": "Stable municipality/name deduplication, selected polygons, provenance, MySQL export"
     }
   ],
-  "resume": "Read STRATEGY.md, inspect committed task summaries and git status; regenerate unified export after completed source packets, then commit/push. Do not restart the earlier source collection or discard existing raw polygons.",
+  "resume": "Use the real Git checkout /workspace/ingatlan-github-publish or clone branch codex/neighborhood-research-506-191. Read STRATEGY.md, this state and inventory/priority-cities.csv. Retain persistent search-area-identities.json. Register newly completed source packets with SHA256, run build-search-areas.py --update-identities, refresh inventory/fallbacks, validate and commit/push. Prefer local stored sources; root handles public downloads so approval waits remain visible.",
   "completeNationalCoverage": false,
   "latestCheckpoint": {
-    "featureCount": 2240,
+    "featureCount": 2267,
     "municipalityCount": 509,
     "methods": {
-      "map_or_text_estimate": 455,
-      "named_source_footprint": 1164,
-      "source_map_polygon": 132,
-      "source_polygon": 489
+      "map_or_text_estimate": 488,
+      "named_source_footprint": 1167,
+      "source_map_polygon": 134,
+      "source_polygon": 478
     },
-    "duplicateVariantsPreserved": 265
+    "duplicateVariantsPreserved": 287
   },
   "additionalCompletedPackets": [
     "major-city-maps/budapest-features.geojson",
     "major-city-more/features.geojson",
     "root-town-maps/features.geojson"
   ],
-  "collectionContinues": [
-    "Remaining Debrecen/Kecskemét source parts",
-    "Miskolc fine map",
-    "Nagykanizsa/Érd/Békéscsaba maps",
-    "National unnamed OSM residential footprints",
-    "Additional major-city maps",
-    "Optional separately marked point-radius fallbacks"
+  "collectionContinues": [],
+  "networkWorkPolicy": "Root handles any new internet download; child agents work from saved files to avoid hidden approval waits.",
+  "knownNameInventory": {
+    "knownNameCount": 4213,
+    "municipalitiesWithKnownNames": 609,
+    "namesWithCollectedPolygon": 2267,
+    "namesWithKnownPoint": 3489,
+    "pointOnlyNames": 1869,
+    "unlocatedUncollectedNames": 77,
+    "nationalCompletionPercent": null,
+    "targetNationalCoveragePercent": [
+      80,
+      90
+    ]
+  },
+  "optionalFallbackLayer": "inventory/provisional-fallback-features.geojson; not part of primary search-areas or its SQL import",
+  "completedSourcePackets": [
+    {
+      "path": "data/neighborhoods/expansion-20261114/debrecen/features.geojson",
+      "sha256": "4698c5731838e806f57ef802bc277782758b58b7eb4833425ba8e861367f4a43"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/machine/features.geojson",
+      "sha256": "f347905548d013536783b6dc7d6c985f32dd59fafb808f20638d6e6a8564dc74"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/szeged-miskolc/szeged-features.geojson",
+      "sha256": "f591ec4a02ccc626aecfdda6d63448b1b1da6dcbbba606d61e5c0ceee15a069a"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/szolnok-veszprem/features.geojson",
+      "sha256": "dcbbbde0ecb88eb27736a549c0905c3058fa5dc045ee537ec90a35c910e0c0cd"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/major-city-maps/features.geojson",
+      "sha256": "bef16e591a6b086c7c1b2d5b4c03b1a94b68a2d5197f3e6956c02d308227b318"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/major-city-maps/additional-features.geojson",
+      "sha256": "b0c5cbed284bc1588571f94e41eaaf9423cc79e76a7df336c3a277a16bcadc30"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/major-city-maps/budapest-features.geojson",
+      "sha256": "3cc123203c641f314606477bbdb7e93ebb2e0bd4a8540dc1a7e826c6f7d62008"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/major-city-more/features.geojson",
+      "sha256": "c1ac345a8e99b98a46b2f52b3229b996d956ad128222bf3d4fc7ba146bb04a25"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/root-town-maps/features.geojson",
+      "sha256": "e68cc1fcff18726df3688a7036ba2b6035c86e2457d7fa7fd7266fbe684dd872"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/debrecen/additional-features.geojson",
+      "sha256": "cb1bfccd1e962973dcce88a5ad26e409dcbe7d0edfb97f51f49088af9c146e16"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/szeged-miskolc/miskolc-features.geojson",
+      "sha256": "f1e6f2256655af49e348a266083e42eb928c1c2a4ecc24351eb5c905bda9695c"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/szolnok-veszprem/additional-features.geojson",
+      "sha256": "34c3e72a1a9c508d32f77ed389f4545bba066c8eb6ac6573c75f94f54db7e551"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/szolnok-veszprem/nagykanizsa-features.geojson",
+      "sha256": "3dcbabc4fb3f7b74d98d71af9759af39f4e0ba18b223e6cfb13d3ebb3c07df4e"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/major-city-more/kaposvar-features.geojson",
+      "sha256": "b12a782934c33ce16e265f105bb3e76cfd141de9bf3d1e1c035a89115a9222e6"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/major-city-more/dunaujvaros-features.geojson",
+      "sha256": "a3f7a5718848a3ea2edc1c92e7fd545d1b7b5075a5c911131bb1d2d165779831"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/machine-footprints/features.geojson",
+      "sha256": "acaec8d04b0ba756cf7582ccf63663ff430a980c57a9a0eed1514bfb11bd6f85"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/machine-other-footprints/features.geojson",
+      "sha256": "88590c643e185014852d848369646744d200c9972506e2707781359c6390f378"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/szolnok-veszprem/erd-features.geojson",
+      "sha256": "9e653e631be9ae3141c1e0d8cc9ade4be622689fd4108725dc9e5166c7b5e12e"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/major-city-more/sopron-features.geojson",
+      "sha256": "d68467e3a4b6989b5ab4b457c92a5a990aca1e2916a126d9b0d65df075a1fb51"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/debrecen/maps80-82-features.geojson",
+      "sha256": "370aa93db720d09e72fd9accf6d7879a28bd42deecc3d41a09dd710b36aeeaca"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/debrecen/rural-features.geojson",
+      "sha256": "934c21949bff059184fe31d4a066fde8f7b89b9c70a0ece3d90ca2e7a1c3820f"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114/physical-cells-small/features.geojson",
+      "sha256": "d8452437efb162325d7382a911b00718ba3333e4ef28e5558635ffaa30340312"
+    }
   ],
-  "networkWorkPolicy": "Root handles any new internet download; child agents work from saved files to avoid hidden approval waits."
+  "nextPriorityCities": [
+    {
+      "municipality": "Budapest",
+      "knownNames": 458,
+      "mappedNames": 342,
+      "remainingNames": 116
+    },
+    {
+      "municipality": "Miskolc",
+      "knownNames": 108,
+      "mappedNames": 55,
+      "remainingNames": 53
+    },
+    {
+      "municipality": "Kaposvár",
+      "knownNames": 85,
+      "mappedNames": 32,
+      "remainingNames": 53
+    },
+    {
+      "municipality": "Kecskemét",
+      "knownNames": 113,
+      "mappedNames": 67,
+      "remainingNames": 46
+    },
+    {
+      "municipality": "Nyíregyháza",
+      "knownNames": 84,
+      "mappedNames": 44,
+      "remainingNames": 40
+    },
+    {
+      "municipality": "Zalaegerszeg",
+      "knownNames": 57,
+      "mappedNames": 20,
+      "remainingNames": 37
+    },
+    {
+      "municipality": "Székesfehérvár",
+      "knownNames": 65,
+      "mappedNames": 29,
+      "remainingNames": 36
+    },
+    {
+      "municipality": "Ózd",
+      "knownNames": 44,
+      "mappedNames": 8,
+      "remainingNames": 36
+    },
+    {
+      "municipality": "Gyula",
+      "knownNames": 33,
+      "mappedNames": 5,
+      "remainingNames": 28
+    },
+    {
+      "municipality": "Salgótarján",
+      "knownNames": 44,
+      "mappedNames": 18,
+      "remainingNames": 26
+    },
+    {
+      "municipality": "Debrecen",
+      "knownNames": 120,
+      "mappedNames": 95,
+      "remainingNames": 25
+    },
+    {
+      "municipality": "Pécs",
+      "knownNames": 100,
+      "mappedNames": 75,
+      "remainingNames": 25
+    }
+  ],
+  "retiredIdentityRedirects": 11
 }

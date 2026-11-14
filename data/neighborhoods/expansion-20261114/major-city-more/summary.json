@@ -1,10 +1,11 @@
 {
   "status": "complete_local_major_city_more_batch",
-  "featureCount": 26,
+  "featureCount": 35,
   "cities": {
     "Tatabánya": 9,
     "Kaposvár": 9,
-    "Dunaújváros": 8
+    "Dunaújváros": 8,
+    "Sopron": 9
   },
   "circleFallbackCount": 0,
   "packets": [
@@ -22,13 +23,19 @@
       "path": "dunaujvaros-features.geojson",
       "featureCount": 8,
       "sha256": "a3f7a5718848a3ea2edc1c92e7fd545d1b7b5075a5c911131bb1d2d165779831"
+    },
+    {
+      "path": "sopron-features.geojson",
+      "featureCount": 9,
+      "sha256": "d68467e3a4b6989b5ab4b457c92a5a990aca1e2916a126d9b0d65df075a1fb51"
     }
   ],
-  "validation": "All26 WGS84Polygon/MultiPolygon valid, nonempty, Hungarianbounds, allretainedsourcehashesmatch. No detailedprecision/currentnameauditperformed asrequested.",
+  "validation": "All35 WGS84Polygon/MultiPolygon valid, nonempty, Hungarianbounds, allretainedsourcehashesmatch. No detailedprecision/currentnameauditperformed asrequested.",
   "qualityNotes": [
     "Tatabánya9: threeactualopenvectorpathsclosedapproximately; sixcoarsemanualdividerswithinactualsourceoutlines.",
     "Kaposvár9: sixactualsource-mapcomponentsplusKecelhegy/CsersplitandRómahegyparent-minusDonner.",
     "Dunaújváros8: LOWCONFIDENCE broad actualroad-corridorestimates; sixmanualinteriordividers. Replacewithquartermapfootprintswhenavailable.",
-    "Oldfrozen79batchunchanged."
+    "Oldfrozen79batchunchanged.",
+    "Sopron9: actualnativeCADcoloredfillsjoinedby0.25PDFpointcrackclosure; broadplanningregions anddocumentedcoarsefinesplits. Sourcelegends/CADstreetmapretained."
   ]
 }

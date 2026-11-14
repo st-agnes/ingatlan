@@ -96,6 +96,316 @@
         "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz",
         "data/neighborhoods/sources/nationwide-inventory/municipal-inventories.json"
       ]
+    },
+    {
+      "municipality": "Cegléd",
+      "name": "Kenderföld",
+      "aliases": [
+        "Kenderföldek"
+      ],
+      "reason": "Singular/plural source labels for the same local area; keep the explicitly named residential source outline rather than adding another search identity for the rough barrier cell.",
+      "evidence": [
+        "https://www.openstreetmap.org/relation/17763739",
+        "https://www.openstreetmap.org/node/10657991745",
+        "data/neighborhoods/expansion-20261114/physical-cells-small/features.geojson"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XXI. kerület",
+      "aliases": [
+        "21. kerület",
+        "Csepel"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/215618"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XXII. kerület",
+      "aliases": [
+        "22. kerület",
+        "Budafok-Tétény"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/215621"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "III. kerület",
+      "aliases": [
+        "3. kerület",
+        "Óbuda-Békásmegyer"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/221976"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "II. kerület",
+      "aliases": [
+        "2. kerület"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/221980"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "I. kerület",
+      "aliases": [
+        "1. kerület",
+        "Budavár"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/221984"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XII. kerület",
+      "aliases": [
+        "12. kerület",
+        "Hegyvidék"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/221995"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XI. kerület",
+      "aliases": [
+        "11. kerület",
+        "Újbuda"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/221998"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "IV. kerület",
+      "aliases": [
+        "4. kerület",
+        "Újpest"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/367963"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XXIII. kerület",
+      "aliases": [
+        "23. kerület",
+        "Soroksár"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1550597"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XVIII. kerület",
+      "aliases": [
+        "18. kerület",
+        "Pestszentlőrinc‑Pestszentimre"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1550598"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XVII. kerület",
+      "aliases": [
+        "17. kerület",
+        "Rákosmente"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1550599"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XIX. kerület",
+      "aliases": [
+        "19. kerület",
+        "Kispest"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1551290"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XX. kerület",
+      "aliases": [
+        "20. kerület",
+        "Pesterzsébet"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1551291"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "IX. kerület",
+      "aliases": [
+        "9. kerület",
+        "Ferencváros"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1552462"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "X. kerület",
+      "aliases": [
+        "10. kerület",
+        "Kőbánya"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1552463"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XVI. kerület",
+      "aliases": [
+        "16. kerület"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1552464"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XIII. kerület",
+      "aliases": [
+        "13. kerület",
+        "Újlipótváros-Angyalföld"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1605916"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XV. kerület",
+      "aliases": [
+        "15. kerület",
+        "Rákospalota-Pestújhely-Újpalota"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1606009"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XIV. kerület",
+      "aliases": [
+        "14. kerület",
+        "Zugló"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1606043"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "VIII. kerület",
+      "aliases": [
+        "8. kerület",
+        "Józsefváros"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1606100"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "VI. kerület",
+      "aliases": [
+        "6. kerület",
+        "Terézváros"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1606101"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "VII. kerület",
+      "aliases": [
+        "7. kerület",
+        "Erzsébetváros"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1606102"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "V. kerület",
+      "aliases": [
+        "5. kerület",
+        "Belváros-Lipótváros"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1606103"
+      ]
     }
   ]
 }

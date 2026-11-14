@@ -1,6 +1,6 @@
 # További nagyvárosi területek – 2026. november 14.
 
-A csomag **26 bemeneti alakzatot** tartalmaz, kör alapú becslés nélkül. Ez a közös deduplikálás előtti darabszám.
+A csomag **35 bemeneti alakzatot** tartalmaz, kör alapú becslés nélkül. Ez a közös deduplikálás előtti darabszám.
 
 - `features.geojson`: **Tatabánya, 9**. A 2018-as önkormányzati térképről megőrzött három nyitott vektoros körvonal egyszerű lezárása, valamint hat névhez becsült belső elválasztó a tényleges közös külső körvonalon belül. Az eredeti rajzokon felirat vagy út takarta részek egyszerű becslése megengedett; a program nem állítja, hogy a becsült elválasztó mért vagy jogi határ.
 - `kaposvar-features.geojson`: **Kaposvár, 9**. A meglévő tízrészes térkép hat különálló kontúrjából Toponár, Deseda, Répáspuszta, Fészerlakpuszta, Zselic-kertváros és Töröcske. Kecelhegy és Cser közös körvonalának hozzávetőleges kettéosztása. Rómahegy a közös Donner–Rómahegy alakzatnak a korábban megőrzött Donner-terület levonása után maradó nagyobb része.
@@ -9,3 +9,5 @@ A csomag **26 bemeneti alakzatot** tartalmaz, kör alapú becslés nélkül. Ez 
 A programok: `build.py`, `kaposvar.py`, `dunaujvaros.py`. Python, Shapely és pyproj szükséges. A kimenetek és a források SHA256-azonosítói a `summary.json`, valamint az egyes rekordok részei. Az `evidence/` könyvtár megőrzi a becsült elválasztókat és a tényleges dunai útvonalakat.
 
 A csomag nem módosítja az előző, 79 alakzatos nagyvárosi bővítést vagy az alkalmazás működését. A kontúrok földrajzi érvényessége ellenőrizve, hajszálpontos mai/jogi hitelesítés nem történt. Az átfedések és a többféle felosztás szándékosan megmaradnak.
+
+- `sopron-features.geojson`: **Sopron, 9**. A meglévő kétoldalas önkormányzati PDF első oldalán szereplő natív színes CAD-kitöltésekből Virágvölgy tág környéke, illetve a Sopronkőhida–Tómalom–Sand–Aranyhegy folyosó négy becsült része. A zöld központi térképcsoportban a látható Várkerület mentén körberajzolt Belváros, a tágabb külső központ, Szentmihálydomb és Deák tér környékének durva becslése. A CAD-kitöltések apró repedéseit 0,25 PDF-pontnyi zárás helyettesíti, az adott illesztésben körülbelül 6 méter. A belső felosztás és a tágabb terület névhez rendelése becslés; a forrás nem állít pontos városrészhatárt minden egyes belső névhez. A `sopron.py` reprodukálja, a natív, nem földrajzi felületeket és a kézi körvonalakat az `evidence/` megőrzi.
