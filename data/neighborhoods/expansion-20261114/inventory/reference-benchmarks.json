@@ -3,12 +3,12 @@
   "date": "2026-11-14",
   "scope": "Worklist of currently known names from OSM suburb/neighbourhood/quarter points, municipal reference lists and collected polygons. Name coverage measures this finite worklist only. It is not a count of every Hungarian neighbourhood, and neither point-only names nor urban planning groups establish official neighbourhood boundaries. Names, aliases, historical schemes and overlapping areas are retained under the user-authorized broad search-area policy. No point was converted into a circle by this script.",
   "summary": {
-    "knownNameCount": 4235,
-    "municipalitiesWithKnownNames": 609,
-    "namesWithCollectedPolygon": 2589,
-    "namesWithKnownPoint": 3489,
-    "pointOnlyNames": 1591,
-    "unlocatedUncollectedNames": 55,
+    "knownNameCount": 4316,
+    "municipalitiesWithKnownNames": 618,
+    "namesWithCollectedPolygon": 3283,
+    "namesWithKnownPoint": 3488,
+    "pointOnlyNames": 981,
+    "unlocatedUncollectedNames": 52,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
       80,
@@ -35,15 +35,14 @@
       "sourceNameEntries": 5,
       "distinctNameKeys": 5,
       "sourceIdentityCount": null,
-      "namesWithCollectedPolygon": 0,
+      "namesWithCollectedPolygon": 1,
       "missingNames": [
         "Bakonygyepes (Ajkarendekkel)",
         "Belváros (Lakóteleppel és Szőlőheggyel)",
         "Bódé (Csingerrel, Csikólegelővel és Iparteleppel)",
-        "Padragkút",
         "Tósokberénd"
       ],
-      "knownReferenceNameCoveragePercent": 0.0,
+      "knownReferenceNameCoveragePercent": 20.0,
       "allSourceIdentitiesCovered": null,
       "note": "Name/alias coverage only. Same literal name may denote distinct district-qualified identities; historical/planning references are useful alternate search-area schemes, not a current-city-completeness assertion."
     },
@@ -95,7 +94,7 @@
       "sourceNameEntries": 11,
       "distinctNameKeys": 11,
       "sourceIdentityCount": null,
-      "namesWithCollectedPolygon": 2,
+      "namesWithCollectedPolygon": 4,
       "missingNames": [
         "Belváros",
         "Egyéb, belvárost övező városi területek",
@@ -103,11 +102,9 @@
         "Kakasdomb",
         "Kertváros",
         "Külterületek",
-        "Mászlony",
-        "Szuhay-domb",
-        "Újdombóvár"
+        "Szuhay-domb"
       ],
-      "knownReferenceNameCoveragePercent": 18.2,
+      "knownReferenceNameCoveragePercent": 36.4,
       "allSourceIdentitiesCovered": null,
       "note": "Name/alias coverage only. Same literal name may denote distinct district-qualified identities; historical/planning references are useful alternate search-area schemes, not a current-city-completeness assertion."
     },
@@ -123,14 +120,9 @@
       "sourceNameEntries": 22,
       "distinctNameKeys": 22,
       "sourceIdentityCount": null,
-      "namesWithCollectedPolygon": 18,
-      "missingNames": [
-        "Almagyar",
-        "Cifra hóstya",
-        "Lajosváros",
-        "Tetemvár"
-      ],
-      "knownReferenceNameCoveragePercent": 81.8,
+      "namesWithCollectedPolygon": 22,
+      "missingNames": [],
+      "knownReferenceNameCoveragePercent": 100.0,
       "allSourceIdentitiesCovered": null,
       "note": "Name/alias coverage only. Same literal name may denote distinct district-qualified identities; historical/planning references are useful alternate search-area schemes, not a current-city-completeness assertion."
     },
@@ -205,12 +197,9 @@
       "sourceNameEntries": 10,
       "distinctNameKeys": 10,
       "sourceIdentityCount": null,
-      "namesWithCollectedPolygon": 8,
-      "missingNames": [
-        "Kisgát és környéke",
-        "Toponár – Répáspuszta – Fészerlakpuszta – Deseda"
-      ],
-      "knownReferenceNameCoveragePercent": 80.0,
+      "namesWithCollectedPolygon": 10,
+      "missingNames": [],
+      "knownReferenceNameCoveragePercent": 100.0,
       "allSourceIdentitiesCovered": null,
       "note": "Name/alias coverage only. Same literal name may denote distinct district-qualified identities; historical/planning references are useful alternate search-area schemes, not a current-city-completeness assertion."
     },
@@ -325,15 +314,13 @@
       "sourceNameEntries": 25,
       "distinctNameKeys": 25,
       "sourceIdentityCount": null,
-      "namesWithCollectedPolygon": 20,
+      "namesWithCollectedPolygon": 22,
       "missingNames": [
         "Belső lakóterület",
-        "Bokortanyák",
-        "Nyírjes",
         "Salamonbokor",
         "Szabadságbokor"
       ],
-      "knownReferenceNameCoveragePercent": 80.0,
+      "knownReferenceNameCoveragePercent": 88.0,
       "allSourceIdentitiesCovered": null,
       "note": "Name/alias coverage only. Same literal name may denote distinct district-qualified identities; historical/planning references are useful alternate search-area schemes, not a current-city-completeness assertion."
     },
@@ -443,12 +430,11 @@
       "sourceNameEntries": 10,
       "distinctNameKeys": 10,
       "sourceIdentityCount": null,
-      "namesWithCollectedPolygon": 8,
+      "namesWithCollectedPolygon": 9,
       "missingNames": [
-        "Külterületek",
-        "Tóváros"
+        "Külterületek"
       ],
-      "knownReferenceNameCoveragePercent": 80.0,
+      "knownReferenceNameCoveragePercent": 90.0,
       "allSourceIdentitiesCovered": null,
       "note": "Name/alias coverage only. Same literal name may denote distinct district-qualified identities; historical/planning references are useful alternate search-area schemes, not a current-city-completeness assertion."
     },

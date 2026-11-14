@@ -25,3 +25,17 @@ python3 data/neighborhoods/expansion-20261114-next/medium-cities/build.py
 ```
 
 A részletezett, régebbi forráskivonatok a `sources/municipal-vac-hep2023-next/` és `sources/municipal-kiskunfelegyhaza-its2016-next/` könyvtárban maradnak. A mostani munka csak ezt az új csomagot írja; a központi név szerinti összevonást és GitHub-mentést a fő munkafolyamat végzi.
+
+## Pápa – további 21 alakzat
+
+A `papa-features.geojson` külön lefagyasztott csomag, nem módosítja a fenti 51 alakzatot. A 2015-ös önkormányzati ITS 120. oldalán levő színezett városrésztérkép natív képe 719×832 képpont. A nagyobb területek egyszerűsített, kézzel követett színkontúrjai és az ismertetett utca szerinti határok adják az alapot. A lakótelepi alrészek a térképen látható utcatömbök és a kapcsolódó névpontok alapján becsült belső felosztások; a forráskép nem állít külön határt mindegyik lakótelephez.
+
+Négy, a forrásképen megkülönböztethető lakótelepi jelölő és a mai megfelelő névpont segíti az EOV-affin elhelyezést. A 22,4 méteres illesztési maradék csak ennek az elhelyezésnek a diagnosztikája, **nem abszolút pontossági garancia**. A térképi jelölő azonosítása és a névpont elhelyezése is közelítő. Az eredeti teljes, 343 oldalas PDF, a natív JPEG, a képpontkontúrok, a kontrollok és a mátrix itt megmaradnak. A jelenlegi 3404 OSM-útszakasz, vízfolyás és vasút, a településhatár és a 27 névpont is megőrzött forrásadat.
+
+Pápa nagy területei és a kisebb lakótelepek szándékosan átfedhetnek. A Várkert szülőterület a külön megtartott Belső és Külső Várkert uniója. A Tókert/Tókertváros és Malomkert/Malomkerti lakópark névváltozatok ugyanahhoz a területhez tartoznak. Kishegy és Öreghegy a színezett térképi kiterjedésen kívül marad; ezekhez ebből a csomagból nem állítunk elő találomra teljes városrészhatárt.
+
+```sh
+python3 data/neighborhoods/expansion-20261114-next/medium-cities/papa-build.py
+```
+
+A bemeneti országos PBF nélkül újraépíthető minden kimeneti poligon a megőrzött képpontlistából, mátrixból és forrásképből. A `papa-extract-roads.py` csak az eredeti, kiegészítő OSM-utak kivonatolásához kell; a poligonok újraépítése nem futtatja.

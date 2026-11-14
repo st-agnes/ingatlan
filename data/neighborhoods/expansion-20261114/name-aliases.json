@@ -406,6 +406,81 @@
         "data/neighborhoods/sources/openstreetmap/budapest.json",
         "https://www.openstreetmap.org/relation/1606103"
       ]
+    },
+    {
+      "municipality": "Szeged",
+      "name": "Makkosháza",
+      "aliases": [
+        "Makkosház"
+      ],
+      "reason": "The same local quarter appears as Makkosháza in the Henits2013/KSH2003 figure24 unit24 and Makkosház in the saved current OSM suburb point. The point lies in the already selected broad quarter outline. Treat the ending variation as a search alias, not another polygon.",
+      "evidence": [
+        "https://www.openstreetmap.org/node/982335824",
+        "data/neighborhoods/sources/municipal-szeged-raw-next/henits-p24-xref249.jpeg",
+        "data/neighborhoods/expansion-20261114/szeged-miskolc/szeged-features.geojson"
+      ]
+    },
+    {
+      "municipality": "Kaposvár",
+      "name": "Kisgát és környéke, Cukorgyár, Pécsi utca és környéke",
+      "aliases": [
+        "Kisgát és környéke"
+      ],
+      "reason": "The same FVS 2023 source group number4 has the long constituent legend title and the short section heading; section description explicitly includes Cukorgyár and Pécsi utca. Do not alias the smaller Kisgát quarter to the whole group.",
+      "evidence": [
+        "data/neighborhoods/sources/municipal-west/kaposvar-boundary-definitions.json",
+        "data/neighborhoods/sources/municipal-kaposvar-supplement-next/kaposvar-fvs-p182-source.jpeg"
+      ]
+    },
+    {
+      "municipality": "Kaposvár",
+      "name": "Toponár – Répáspuszta – Fészerlak – Deseda",
+      "aliases": [
+        "Toponár – Répáspuszta – Fészerlakpuszta – Deseda"
+      ],
+      "reason": "Same source planning group number9, with Fészerlak/Fészerlakpuszta as a constituent-name spelling variation. Does not merge the separate constituent quarters.",
+      "evidence": [
+        "data/neighborhoods/sources/municipal-west/kaposvar-boundary-definitions.json",
+        "data/neighborhoods/sources/municipal-kaposvar-supplement-next/kaposvar-fvs-p182-source.jpeg"
+      ]
+    },
+    {
+      "municipality": "Eger",
+      "name": "Felsőváros",
+      "aliases": [
+        "Felsőváros (Északi városrész)",
+        "Északi városrész"
+      ],
+      "reason": "Documented source name equivalence; see retained evidence.",
+      "evidence": {
+        "literalSavedName": "Felsőváros (Északi városrész)",
+        "sourceUrl": "https://www.openstreetmap.org/node/1288766289",
+        "sourcePoint": {
+          "sourceId": "osm:node:1288766289",
+          "coordinates": [
+            20.3748039,
+            47.9170799
+          ],
+          "placeKind": "suburb",
+          "sourceUrl": "https://www.openstreetmap.org/node/1288766289",
+          "snapshotDate": "2026-11-12T21:23:05Z"
+        },
+        "existingPolygonSourceUrl": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf",
+        "reason": "The retained named-place source explicitly writes Északi városrész as the parenthetical alternative of Felsőváros. The existing municipal polygon already uses Felsőváros. This declares a scoped name equivalence, not an assertion of independently surveyed boundaries."
+      }
+    },
+    {
+      "municipality": "Győr",
+      "name": "Győrszentiván-Kertváros",
+      "aliases": [
+        "Kertváros"
+      ],
+      "reason": "Circuit39 is named Győrszentiván-Kertváros in the same municipal document that calls the adjoining northern garden colony Kertváros. Preserve a searchable alias rather than importing a second place geometry.",
+      "evidence": [
+        "data/neighborhoods/sources/municipal-gyor-next/gyor-its.source.pdf",
+        "data/neighborhoods/expansion-20261114/major-city-maps/evidence/gyor-crosswalk.json",
+        "https://gyor.hu/easy-docs/5dc9829cb6d4c"
+      ]
     }
   ]
 }

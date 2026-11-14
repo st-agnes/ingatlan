@@ -46,104 +46,104 @@
   "resume": "Preserve completed packets; register their GeoJSON paths and SHA256 in expansion-20261114/input-registry.json, run build-search-areas.py --update-identities, refresh inventory/fallbacks and package, validate, commit and push. Continue the remaining priority-city names; national collection is not complete.",
   "completeNationalCoverage": false,
   "latestCheckpoint": {
-    "featureCount": 2589,
-    "municipalityCount": 509,
+    "featureCount": 3283,
+    "municipalityCount": 564,
     "methods": {
-      "map_or_text_estimate": 725,
-      "named_source_footprint": 1219,
-      "source_map_polygon": 167,
-      "source_polygon": 478
+      "map_or_text_estimate": 835,
+      "named_source_footprint": 1801,
+      "source_map_polygon": 168,
+      "source_polygon": 479
     },
-    "duplicateVariantsPreserved": 297
+    "duplicateVariantsPreserved": 339
   },
   "knownNameInventory": {
-    "knownNameCount": 4235,
-    "municipalitiesWithKnownNames": 609,
-    "namesWithCollectedPolygon": 2589,
-    "namesWithKnownPoint": 3489,
-    "pointOnlyNames": 1591,
-    "unlocatedUncollectedNames": 55,
+    "knownNameCount": 4316,
+    "municipalitiesWithKnownNames": 618,
+    "namesWithCollectedPolygon": 3283,
+    "namesWithKnownPoint": 3488,
+    "pointOnlyNames": 981,
+    "unlocatedUncollectedNames": 52,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
       80,
       90
     ]
   },
-  "newAreasNet": 322,
-  "fallbackCircleReduction": 278,
+  "newAreasNet": 1016,
+  "fallbackCircleReduction": 888,
   "baselineCommit": "50988ce52abd3bbd010f1383d94c03f08b3f4c87",
   "nextPriorityCities": [
     {
       "municipality": "Budapest",
-      "knownNames": 458,
-      "mappedNames": 388,
-      "remainingNames": 70
-    },
-    {
-      "municipality": "Kecskemét",
-      "knownNames": 113,
-      "mappedNames": 67,
-      "remainingNames": 46
+      "knownNames": 463,
+      "mappedNames": 402,
+      "remainingNames": 61
     },
     {
       "municipality": "Miskolc",
-      "knownNames": 106,
-      "mappedNames": 79,
-      "remainingNames": 27
-    },
-    {
-      "municipality": "Debrecen",
-      "knownNames": 120,
-      "mappedNames": 95,
-      "remainingNames": 25
-    },
-    {
-      "municipality": "Pécs",
-      "knownNames": 100,
-      "mappedNames": 75,
-      "remainingNames": 25
+      "knownNames": 109,
+      "mappedNames": 88,
+      "remainingNames": 21
     },
     {
       "municipality": "Nyíregyháza",
       "knownNames": 84,
-      "mappedNames": 60,
-      "remainingNames": 24
+      "mappedNames": 70,
+      "remainingNames": 14
     },
     {
-      "municipality": "Győr",
-      "knownNames": 81,
-      "mappedNames": 59,
-      "remainingNames": 22
+      "municipality": "Szombathely",
+      "knownNames": 70,
+      "mappedNames": 56,
+      "remainingNames": 14
     },
     {
-      "municipality": "Sopron",
-      "knownNames": 46,
-      "mappedNames": 24,
-      "remainingNames": 22
-    },
-    {
-      "municipality": "Pápa",
+      "municipality": "Budaörs",
       "knownNames": 27,
-      "mappedNames": 8,
-      "remainingNames": 19
+      "mappedNames": 15,
+      "remainingNames": 12
+    },
+    {
+      "municipality": "Kecskemét",
+      "knownNames": 112,
+      "mappedNames": 101,
+      "remainingNames": 11
     },
     {
       "municipality": "Ajka",
       "knownNames": 22,
-      "mappedNames": 5,
-      "remainingNames": 17
+      "mappedNames": 11,
+      "remainingNames": 11
     },
     {
-      "municipality": "Székesfehérvár",
-      "knownNames": 82,
-      "mappedNames": 67,
-      "remainingNames": 15
+      "municipality": "Szentes",
+      "knownNames": 20,
+      "mappedNames": 9,
+      "remainingNames": 11
     },
     {
-      "municipality": "Szombathely",
-      "knownNames": 68,
-      "mappedNames": 54,
-      "remainingNames": 14
+      "municipality": "Ózd",
+      "knownNames": 48,
+      "mappedNames": 38,
+      "remainingNames": 10
+    },
+    {
+      "municipality": "Szekszárd",
+      "knownNames": 16,
+      "mappedNames": 6,
+      "remainingNames": 10
+    },
+    {
+      "municipality": "Tatabánya",
+      "knownNames": 39,
+      "mappedNames": 30,
+      "remainingNames": 9
+    },
+    {
+      "municipality": "Dunakeszi",
+      "knownNames": 24,
+      "mappedNames": 16,
+      "remainingNames": 8
     }
   ],
   "additionalTasks": [

@@ -16,3 +16,20 @@ python3 data/neighborhoods/expansion-20261114-next/miskolc-ozd/build-ozd.py
 ```
 
 A globális deduplikáció, tartós azonosítás és importálás a központi `build-search-areas.py` feladata. E csomag önmagában nem állítja egyik város teljes mai lefedését sem. Ózd külterületi/északi településrészeihez további térképi forráskutatás szükséges; a 2024-es városmag-térkép kiterjedésén kívül nem találtunk ki határt.
+
+## Külön 2015-ös kiegészítés
+
+Az `additional-features.geojson` további 7 ózdi alakzatot tartalmaz: a 2015-ös megalapozó vizsgálat 247. oldalának négy nagy városrészcsoportját, valamint Susa, Uraj és Szenna becsült lakott foltját. Ez a fájl a változatlan első 50 mellé vehető fel. A színes térképen látható nagy körvonalak megmaradnak, a színes feliratdobozok nem kerülnek a geometriákba. Az egész térkép elhelyezése durva becslés; a képi illesztés 13 egyező utcahálózati foltot használ, a helynévfeliratokkal végzett végső illesztés nem jelent független pontosságellenőrzést.
+
+A három kisebb foltnál a forrás völgyes településszerkezetének alakját használtuk fel, és a meglévő helynévponthoz igazítottuk. A név és a képi folt kapcsolata is becsült. Ezek nem hivatalos, teljes külterületre kiterjedő határok, és nem egyszerű sugaras körök. A nagy és kisebb egységek átfedése itt is szándékos. A 2015-ös teljes PDF és az eredeti térképkép megmarad a csomagban.
+
+**A `ozd-2015-native-pixel-polygons.geojson` kizárólag forrásképpont-koordinátát tartalmaz. Ez nem WGS84, az alkalmazás földrajzi katalógusába közvetlenül nem importálható.**
+
+A kiegészítés reprodukálása `numpy`, `scipy`, `Pillow`, `pyproj`, `shapely` csomagokkal:
+
+```sh
+python3 data/neighborhoods/expansion-20261114-next/miskolc-ozd/extract-ozd2015-native.py
+python3 data/neighborhoods/expansion-20261114-next/miskolc-ozd/build-ozd2015-additional.py
+```
+
+A későbbi folytatás fő hiányai Ózdon: a 2015-ös vizsgálat részletes külső településrészi térképei (pl. Bánszállás, Center), illetve a jelenlegi 50+7-en kívüli kisebb nevek. A négy nagy csoport megléte nem jelenti az összes belső név külön határának elkészültét.

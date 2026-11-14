@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen-ready-for-parent-checkpoint",
+  "registrationRule": "Register features.geojson OR the three disjoint split layers; never both.",
+  "files": [
+    {
+      "path": "features.geojson",
+      "bytes": 8644526,
+      "sha256": "b2df89cb193a34f0e9da054d86efad2292b1d5ae8ac5b40bb7c576be9ded17e9"
+    },
+    {
+      "path": "source-own-name-features.geojson",
+      "bytes": 167889,
+      "sha256": "d06f07ed816103c8dfb257cf82497a1890c3ef9213b2f237ec8a7164716782ad"
+    },
+    {
+      "path": "single-label-features.geojson",
+      "bytes": 29244,
+      "sha256": "da3cb179dc5ffe136a4c3c4504b2cd06044bcc4aba54c041a18a38ead139f817"
+    },
+    {
+      "path": "multi-label-features.geojson",
+      "bytes": 8448057,
+      "sha256": "6b91a959b78f7813aefe1d06d141bd20121c117cd016ca2e496ae41f27870210"
+    },
+    {
+      "path": "raw-source-areas.geojson",
+      "bytes": 1919299,
+      "sha256": "e972587f426a48343be5029d88eb899e4f12ccb06bbebb287ca88bd934c82671"
+    },
+    {
+      "path": "raw-associations.json",
+      "bytes": 1421760,
+      "sha256": "ba3cdaf96762ebbdcf2f50475c5e15f4c470034e079953f9cb14b6115f1d3e20"
+    },
+    {
+      "path": "scale-rejected-associations.json",
+      "bytes": 239325,
+      "sha256": "16c50312c678f1518d4323b298360f271624d360e8717e8907bf76ab2a00f923"
+    },
+    {
+      "path": "baseline-keys.json",
+      "bytes": 81627,
+      "sha256": "84bb9eb63d9db5dd72c5c0eef4137719e734ab2c02baa72a3b0f38a0031c4eaa"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 547,
+      "sha256": "75f430bbfa958de3c25f6cbdc381f3f429a0c95ca1f353bf628475e48ef0f0a3"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 4840,
+      "sha256": "112fe42095db83edf04d6a1b539e853831d631cacd1c3fb1e586c7a1b959f2c4"
+    },
+    {
+      "path": "extract.py",
+      "bytes": 16504,
+      "sha256": "bed81252435e540b15b6298bbe1a8dfbb96795c72fde49825f9f3ae8f5ce4200"
+    },
+    {
+      "path": "validate-and-split.py",
+      "bytes": 3062,
+      "sha256": "91d27b4d5a7df516b2f5baf499ef196dca402460e54a906b1e6e0d39185bbed0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2305,
+      "sha256": "93ae261aa423e2b0983b8883353e7ec6813327d52f317a5131a6c7feeeba5c2b"
+    }
+  ]
+}

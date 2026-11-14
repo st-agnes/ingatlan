@@ -1,0 +1,141 @@
+{
+  "controls": [
+    {
+      "name": "Ózd",
+      "pixels": [
+        709,
+        8
+      ],
+      "id": 268215944,
+      "place": "town",
+      "coordinates": [
+        20.2810727,
+        48.2191757
+      ],
+      "sourceUrl": "https://www.openstreetmap.org/node/268215944"
+    },
+    {
+      "name": "Arló",
+      "pixels": [
+        440,
+        636
+      ],
+      "id": 354944808,
+      "place": "village",
+      "coordinates": [
+        20.2541957,
+        48.176668
+      ],
+      "sourceUrl": "https://www.openstreetmap.org/node/354944808"
+    },
+    {
+      "name": "Farkaslyuk",
+      "pixels": [
+        899,
+        470
+      ],
+      "id": 354944813,
+      "place": "village",
+      "coordinates": [
+        20.3100333,
+        48.1856615
+      ],
+      "sourceUrl": "https://www.openstreetmap.org/node/354944813"
+    },
+    {
+      "name": "Borsodszentgyörgy",
+      "pixels": [
+        101,
+        449
+      ],
+      "id": 354944819,
+      "place": "village",
+      "coordinates": [
+        20.2033107,
+        48.1880952
+      ],
+      "sourceUrl": "https://www.openstreetmap.org/node/354944819"
+    },
+    {
+      "name": "Hódoscsépány",
+      "pixels": [
+        527,
+        183
+      ],
+      "id": 1362704961,
+      "place": "suburb",
+      "coordinates": [
+        20.2646841,
+        48.2090574
+      ],
+      "sourceUrl": "https://www.openstreetmap.org/node/1362704961"
+    },
+    {
+      "name": "Somsály",
+      "pixels": [
+        703,
+        553
+      ],
+      "id": 1362704955,
+      "place": "suburb",
+      "coordinates": [
+        20.2778274,
+        48.1862394
+      ],
+      "sourceUrl": "https://www.openstreetmap.org/node/1362704955"
+    }
+  ],
+  "matrixSatellitePixelToEov": [
+    [
+      9.53646799902286,
+      0.24144495924067777
+    ],
+    [
+      0.25533433882087825,
+      -7.485770199014705
+    ],
+    [
+      735071.1537875278,
+      320181.63971110096
+    ]
+  ],
+  "matrixMasterPixelToEov": [
+    [
+      11.292747013337575,
+      0.3218880165956514
+    ],
+    [
+      -0.15884696209721846,
+      -9.203027327602598
+    ],
+    [
+      737579.0013136576,
+      325696.19271815126
+    ]
+  ],
+  "matrixNative2015PixelToEov": [
+    [
+      18.82215615103594,
+      0.5529743675736498
+    ],
+    [
+      -0.27061491643126895,
+      -15.310338723693985
+    ],
+    [
+      735410.7869275269,
+      325711.7977897165
+    ]
+  ],
+  "fitResidualMetres": [
+    163.46686169404808,
+    324.8178465842055,
+    345.71229487844363,
+    243.180279071384,
+    372.40885410464546,
+    563.6170194647598
+  ],
+  "rmsFitMetres": 357.5924557688851,
+  "absoluteAccuracyEstablished": false,
+  "note": "Approximate printed place-label positions fitted to literal source OSM locality points; label offsets and historic map distortion remain. Photographic13patches transfer2015 native frame to2024 master. This is a coarse estimate, not independent validation."
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "featureCount": 34,
+  "cities": {
+    "Sopron": 19,
+    "Győr": 15
+  },
+  "methods": {
+    "manual_cad_street_context_estimate": 19,
+    "named_point_source_footprint_estimate": 10,
+    "manual_street_map_text_estimate": 5
+  },
+  "circleCount": 0,
+  "voronoiCount": 0,
+  "allValidPolygonal": true,
+  "allOwnNamedPointsInside": true,
+  "noNormalizedCityNameDuplicates": true,
+  "absoluteAccuracyEstablished": false,
+  "finalInputFiles": [
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/gyor-sopron/sopron-features.geojson",
+      "sha256": "11b748c16fe832c093f28a4661b8be25ec0a09f8695d57079b5bb13e0bc02dd4",
+      "features": 19
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/gyor-sopron/gyor-surface-features.geojson",
+      "sha256": "fd92423de55a12861d76d9efb19cbd1fb969e3d512646f3d80a527f66640c12e",
+      "features": 10
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/gyor-sopron/gyor-manual-features.geojson",
+      "sha256": "d19fd75851f8b3af2e91fb8c4a54a7dccd5b117b3ba1be0e40e5b4204761fc35",
+      "features": 5
+    }
+  ],
+  "alternativesAreNotImportInputs": [
+    "surface-features.geojson",
+    "raw-surface-features.geojson"
+  ],
+  "limit": "Valid rings, named-point inclusion and source-context preservation are integrity checks. They do not establish exact neighborhood boundaries or positional accuracy."
+}

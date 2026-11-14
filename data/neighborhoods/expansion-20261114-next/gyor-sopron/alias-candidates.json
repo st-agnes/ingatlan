@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "aliases": [
+    {
+      "municipality": "Győr",
+      "name": "Kertváros",
+      "canonicalCandidate": "Győrszentiván-Kertváros",
+      "geometryImport": false,
+      "sourcePaths": ["data/neighborhoods/sources/municipal-gyor-next/gyor-its.source.pdf", "data/neighborhoods/expansion-20261114/major-city-maps/evidence/gyor-crosswalk.json"],
+      "sourcePrintedPages": [269, 271, 272, 291],
+      "sourceUrl": "https://gyor.hu/easy-docs/5dc9829cb6d4c",
+      "note": "Circuit39 is named Győrszentiván-Kertváros in the same municipal document that calls the adjoining northern garden colony Kertváros. Preserve a searchable alias rather than importing a second place geometry."
+    }
+  ]
+}
