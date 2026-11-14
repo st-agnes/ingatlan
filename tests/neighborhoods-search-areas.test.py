@@ -96,6 +96,13 @@ class SearchAreaReleaseTests(unittest.TestCase):
         files, _ = MODULE.build(); rows = json.loads(files['search-areas.geojson'])['features']
         self.assertEqual(len(rows), 1); self.assertEqual(rows[0]['geometry'], district['geometry'])
 
+    def test_hand_inferred_osm_road_partition_is_not_a_native_boundary(self):
+        inferred = self.feature('Tettye', method='rough_manual_map_partition', estimated=True, source={'provider':'openstreetmap'})
+        path = self.write('expansion-20261114/native/features.geojson', [inferred]); self.registry([path])
+        files, _ = MODULE.build(); row = json.loads(files['search-areas.geojson'])['features'][0]
+        self.assertEqual(row['properties']['method'], 'map_or_text_estimate')
+        self.assertTrue(row['properties']['estimated'])
+
     def test_invalid_coordinates_rejected_and_holes_preserved_in_mysql(self):
         feature = self.feature('Vénkert'); hole = [[21.605,47.555],[21.605,47.56],[21.61,47.56],[21.61,47.555],[21.605,47.555]]
         feature['geometry']['coordinates'].append(hole)

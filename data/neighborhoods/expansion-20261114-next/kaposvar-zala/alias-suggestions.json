@@ -1,0 +1,7 @@
+{
+ "schemaVersion":1,
+ "aliases":[
+  {"municipality":"Kaposvár","name":"Kisgát és környéke, Cukorgyár, Pécsi utca és környéke","aliases":["Kisgát és környéke"],"reason":"The same FVS 2023 source group number4 has the long constituent legend title and the short section heading; section description explicitly includes Cukorgyár and Pécsi utca. Do not alias the smaller Kisgát quarter to the whole group.","evidence":["data/neighborhoods/sources/municipal-west/kaposvar-boundary-definitions.json","data/neighborhoods/sources/municipal-kaposvar-supplement-next/kaposvar-fvs-p182-source.jpeg"]},
+  {"municipality":"Kaposvár","name":"Toponár – Répáspuszta – Fészerlak – Deseda","aliases":["Toponár – Répáspuszta – Fészerlakpuszta – Deseda"],"reason":"Same source planning group number9, with Fészerlak/Fészerlakpuszta as a constituent-name spelling variation. Does not merge the separate constituent quarters.","evidence":["data/neighborhoods/sources/municipal-west/kaposvar-boundary-definitions.json","data/neighborhoods/sources/municipal-kaposvar-supplement-next/kaposvar-fvs-p182-source.jpeg"]}
+ ]
+}

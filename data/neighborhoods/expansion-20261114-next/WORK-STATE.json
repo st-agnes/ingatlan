@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Continue replacing the prior checkpoint's 1869 point-radius fallback areas with source/map/text-informed polygons.",
+  "branch": "codex/neighborhood-research-506-191",
+  "baseline": {
+    "coreAreas": 2267,
+    "municipalities": 509,
+    "fallbackCircles": 1869
+  },
+  "status": "collecting_and_checkpointing",
+  "tasks": [
+    {
+      "id": "budapest",
+      "owner": "collect_budapest_missing",
+      "status": "first_30_ready_more_in_progress"
+    },
+    {
+      "id": "miskolc-ozd",
+      "owner": "collect_miskolc_ozd",
+      "status": "in_progress"
+    },
+    {
+      "id": "kaposvar-zala",
+      "owner": "collect_kaposvar_zala",
+      "status": "first_30_zala_ready_kaposvar_in_progress"
+    },
+    {
+      "id": "fehervar-nyiregyhaza",
+      "owner": "collect_fehervar_nyiregyhaza",
+      "status": "in_progress"
+    },
+    {
+      "id": "gyula-salgo",
+      "owner": "collect_gyula_salgo",
+      "status": "in_progress"
+    },
+    {
+      "id": "medium-cities",
+      "owner": "collect_medium_cities",
+      "status": "in_progress"
+    }
+  ],
+  "networkPolicy": "Only root launches internet downloads. Workers use the web connector for search and send binary source URLs to the central queue, preventing hidden permission waits.",
+  "downloadQueue": ".local/neighborhoods-next-downloads/queue.json",
+  "downloadStatus": ".local/neighborhoods-next-downloads/status.json",
+  "resume": "Preserve completed packets; register their GeoJSON paths and SHA256 in expansion-20261114/input-registry.json, run build-search-areas.py --update-identities, refresh inventory/fallbacks and package, validate, commit and push. Continue the remaining priority-city names; national collection is not complete.",
+  "completeNationalCoverage": false,
+  "latestCheckpoint": {
+    "featureCount": 2589,
+    "municipalityCount": 509,
+    "methods": {
+      "map_or_text_estimate": 725,
+      "named_source_footprint": 1219,
+      "source_map_polygon": 167,
+      "source_polygon": 478
+    },
+    "duplicateVariantsPreserved": 297
+  },
+  "knownNameInventory": {
+    "knownNameCount": 4235,
+    "municipalitiesWithKnownNames": 609,
+    "namesWithCollectedPolygon": 2589,
+    "namesWithKnownPoint": 3489,
+    "pointOnlyNames": 1591,
+    "unlocatedUncollectedNames": 55,
+    "nationalCompletionPercent": null,
+    "targetNationalCoveragePercent": [
+      80,
+      90
+    ]
+  },
+  "newAreasNet": 322,
+  "fallbackCircleReduction": 278,
+  "baselineCommit": "50988ce52abd3bbd010f1383d94c03f08b3f4c87",
+  "nextPriorityCities": [
+    {
+      "municipality": "Budapest",
+      "knownNames": 458,
+      "mappedNames": 388,
+      "remainingNames": 70
+    },
+    {
+      "municipality": "Kecskemét",
+      "knownNames": 113,
+      "mappedNames": 67,
+      "remainingNames": 46
+    },
+    {
+      "municipality": "Miskolc",
+      "knownNames": 106,
+      "mappedNames": 79,
+      "remainingNames": 27
+    },
+    {
+      "municipality": "Debrecen",
+      "knownNames": 120,
+      "mappedNames": 95,
+      "remainingNames": 25
+    },
+    {
+      "municipality": "Pécs",
+      "knownNames": 100,
+      "mappedNames": 75,
+      "remainingNames": 25
+    },
+    {
+      "municipality": "Nyíregyháza",
+      "knownNames": 84,
+      "mappedNames": 60,
+      "remainingNames": 24
+    },
+    {
+      "municipality": "Győr",
+      "knownNames": 81,
+      "mappedNames": 59,
+      "remainingNames": 22
+    },
+    {
+      "municipality": "Sopron",
+      "knownNames": 46,
+      "mappedNames": 24,
+      "remainingNames": 22
+    },
+    {
+      "municipality": "Pápa",
+      "knownNames": 27,
+      "mappedNames": 8,
+      "remainingNames": 19
+    },
+    {
+      "municipality": "Ajka",
+      "knownNames": 22,
+      "mappedNames": 5,
+      "remainingNames": 17
+    },
+    {
+      "municipality": "Székesfehérvár",
+      "knownNames": 82,
+      "mappedNames": 67,
+      "remainingNames": 15
+    },
+    {
+      "municipality": "Szombathely",
+      "knownNames": 68,
+      "mappedNames": 54,
+      "remainingNames": 14
+    }
+  ],
+  "additionalTasks": [
+    {
+      "id": "pecs-szeged",
+      "owner": "collect_kaposvar_zala",
+      "status": "in_progress"
+    },
+    {
+      "id": "debrecen-kecskemet",
+      "owner": "collect_gyula_salgo",
+      "status": "in_progress"
+    },
+    {
+      "id": "gyor-sopron",
+      "owner": "collect_budapest_missing",
+      "status": "in_progress"
+    }
+  ]
+}

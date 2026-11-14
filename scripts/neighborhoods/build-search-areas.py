@@ -65,13 +65,15 @@ def source_priority(properties, layer):
         # An explicitly named source surface is preferable to a name inferred from a point.
         inferred_label = method == 'named_point_source_footprint_estimate'
         return (45 if inferred_label else 40), 'named_source_footprint'
+    if method != 'source_polygon' and any(x in method.lower() for x in ('infer', 'trace', 'raster', 'approx', 'estimate', 'rough', 'partition')):
+        return 30, 'map_or_text_estimate'
     if method == 'source_polygon' or provider in ('openstreetmap', 'public-arcgis', 'whosonfirst'):
         administrative = tags.get('boundary') == 'administrative' or properties.get('sourceRole') == 'district'
         if properties.get('sourceRole') == 'district': return 5, 'source_polygon'
         return (10 if administrative else 20), 'source_polygon'
     if layer == 'neighborhoods.geojson' and source.get('osmType'):
         return 10, 'source_polygon'
-    if layer == 'estimated-candidates.geojson' or any(x in method.lower() for x in ('infer', 'trace', 'raster', 'approx', 'estimate')):
+    if layer == 'estimated-candidates.geojson':
         return 30, 'map_or_text_estimate'
     return 25, 'source_map_polygon'
 

@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
   "policyVersion": "20261114-throughput",
-  "featureCount": 2267,
+  "featureCount": 2589,
   "municipalityCount": 509,
   "methods": {
-    "map_or_text_estimate": 488,
-    "named_source_footprint": 1167,
-    "source_map_polygon": 134,
+    "map_or_text_estimate": 725,
+    "named_source_footprint": 1219,
+    "source_map_polygon": 167,
     "source_polygon": 478
   },
-  "inputFeatureCount": 2554,
-  "duplicateVariantsPreserved": 287,
-  "duplicateNameGroups": 266,
+  "inputFeatureCount": 2886,
+  "duplicateVariantsPreserved": 297,
+  "duplicateNameGroups": 276,
   "rejectedTechnicalRecords": [],
   "completeNationalCoverage": false,
   "nationalCoveragePercentage": null,
@@ -42,7 +42,21 @@
     "data/neighborhoods/expansion-20261114/debrecen/maps80-82-features.geojson": "370aa93db720d09e72fd9accf6d7879a28bd42deecc3d41a09dd710b36aeeaca",
     "data/neighborhoods/expansion-20261114/debrecen/rural-features.geojson": "934c21949bff059184fe31d4a066fde8f7b89b9c70a0ece3d90ca2e7a1c3820f",
     "data/neighborhoods/expansion-20261114/physical-cells-small/features.geojson": "d8452437efb162325d7382a911b00718ba3333e4ef28e5558635ffaa30340312",
-    "data/neighborhoods/search-area-identities.json": "927fd5e05a8a0cde339f79169c8362bf39b35914db8bc8089ae4baae5738eb80"
+    "data/neighborhoods/expansion-20261114-next/budapest/features.geojson": "954e76c8f07e30c28233dcff28410d515839111657140ef3d025f62d6915f714",
+    "data/neighborhoods/expansion-20261114-next/kaposvar-zala/features.geojson": "7ba2338bafb0b19f61c96e4ca12cc233e65d2177cc1dfbef08b63ebf0260e2dd",
+    "data/neighborhoods/expansion-20261114-next/miskolc-ozd/miskolc-features.geojson": "eea284e80c6bf0c07ea9ce2089afdc4bba2db9ec53d88973d29701acbe281b00",
+    "data/neighborhoods/expansion-20261114-next/medium-cities/vac-features.geojson": "74ea68b171d2ffbb4d5e44ff9d077e1d95a77a787426298c185c8225f959b297",
+    "data/neighborhoods/expansion-20261114-next/gyula-salgo/salgotarjan-features.geojson": "de7d5f86a8aba901aeb33cb073ee6665474f496b04e6134a1658538fc4d5ebcb",
+    "data/neighborhoods/expansion-20261114-next/fehervar-nyiregyhaza/street-block-features.geojson": "866193145c46ef0b3d453638d3f9cb99bc8f1b0f066888b24536c9436b68a48a",
+    "data/neighborhoods/expansion-20261114-next/kaposvar-zala/kaposvar-features.geojson": "a85b46ec10028648ebce8ce63fbc25f43b615fd4202a63e4ebb3c2e88b73bd84",
+    "data/neighborhoods/expansion-20261114-next/medium-cities/kiskun-features.geojson": "86f5d17c5c134395f7823421d28c3d66deaf01c2ad679d5669f022042afbed46",
+    "data/neighborhoods/expansion-20261114-next/budapest/additional-features.geojson": "ab34103dc79ae9faf14a5e44d90ac715184866bbfa43c137166f5751df2015ad",
+    "data/neighborhoods/expansion-20261114-next/gyula-salgo/gyula-features.geojson": "f83e8807a7ca24c6d9542806bb54df3162ce7bc0eb56a767400cdb3561cd14a9",
+    "data/neighborhoods/expansion-20261114-next/miskolc-ozd/ozd-features.geojson": "67a6817b11827a480b8cf13e4915aa6f9fe3400ef9e6ca9fe97f08217bcaabd0",
+    "data/neighborhoods/expansion-20261114-next/kaposvar-zala/remaining-features.geojson": "7bcf37b9e05adb11028eaee6664f7bb7f306b4c32bcba18246748082eccf0721",
+    "data/neighborhoods/expansion-20261114-next/fehervar-nyiregyhaza/fehervar-native-features.geojson": "4e351eb5b6cb05f12cc276c5f421cbb6a1dab3d3ec12d73180fbccb269695301",
+    "data/neighborhoods/expansion-20261114-next/fehervar-nyiregyhaza/fehervar-subarea-features.geojson": "1be0fd80b5e975f990cf7178a47a1f7e12debc8bcbd9ea2c72396e8e37825036",
+    "data/neighborhoods/search-area-identities.json": "81c7e20345d282d72b23ec8da658e1ad3ca0bddb954899c9c7e4781236f1f7ca"
   },
   "selectionOrder": [
     "OSM administrative named boundary",
@@ -446,11 +460,11 @@
     },
     {
       "municipality": "Budapest",
-      "count": 342,
+      "count": 388,
       "methods": {
-        "map_or_text_estimate": 7,
-        "named_source_footprint": 93,
-        "source_map_polygon": 2,
+        "map_or_text_estimate": 23,
+        "named_source_footprint": 121,
+        "source_map_polygon": 4,
         "source_polygon": 240
       }
     },
@@ -1070,8 +1084,9 @@
     },
     {
       "municipality": "Gyula",
-      "count": 5,
+      "count": 25,
       "methods": {
+        "map_or_text_estimate": 20,
         "named_source_footprint": 5
       }
     },
@@ -1448,9 +1463,9 @@
     },
     {
       "municipality": "Kaposvár",
-      "count": 32,
+      "count": 83,
       "methods": {
-        "map_or_text_estimate": 13,
+        "map_or_text_estimate": 64,
         "named_source_footprint": 12,
         "source_map_polygon": 7
       }
@@ -1558,9 +1573,9 @@
     },
     {
       "municipality": "Kiskunfélegyháza",
-      "count": 10,
+      "count": 35,
       "methods": {
-        "map_or_text_estimate": 5,
+        "map_or_text_estimate": 30,
         "named_source_footprint": 5
       }
     },
@@ -1994,10 +2009,11 @@
     },
     {
       "municipality": "Miskolc",
-      "count": 55,
+      "count": 79,
       "methods": {
-        "map_or_text_estimate": 44,
-        "named_source_footprint": 11
+        "map_or_text_estimate": 66,
+        "named_source_footprint": 11,
+        "source_map_polygon": 2
       }
     },
     {
@@ -2222,10 +2238,10 @@
     },
     {
       "municipality": "Nyíregyháza",
-      "count": 44,
+      "count": 60,
       "methods": {
         "map_or_text_estimate": 34,
-        "named_source_footprint": 10
+        "named_source_footprint": 26
       }
     },
     {
@@ -2631,9 +2647,9 @@
     },
     {
       "municipality": "Salgótarján",
-      "count": 18,
+      "count": 39,
       "methods": {
-        "map_or_text_estimate": 8,
+        "map_or_text_estimate": 29,
         "named_source_footprint": 10
       }
     },
@@ -2992,9 +3008,10 @@
     },
     {
       "municipality": "Székesfehérvár",
-      "count": 29,
+      "count": 67,
       "methods": {
-        "named_source_footprint": 13,
+        "named_source_footprint": 24,
+        "source_map_polygon": 27,
         "source_polygon": 16
       }
     },
@@ -3417,10 +3434,10 @@
     },
     {
       "municipality": "Vác",
-      "count": 16,
+      "count": 39,
       "methods": {
-        "map_or_text_estimate": 1,
-        "named_source_footprint": 15
+        "map_or_text_estimate": 27,
+        "named_source_footprint": 12
       }
     },
     {
@@ -3495,10 +3512,11 @@
     },
     {
       "municipality": "Zalaegerszeg",
-      "count": 20,
+      "count": 54,
       "methods": {
-        "map_or_text_estimate": 13,
-        "named_source_footprint": 7
+        "map_or_text_estimate": 45,
+        "named_source_footprint": 7,
+        "source_map_polygon": 2
       }
     },
     {
@@ -3622,8 +3640,9 @@
     },
     {
       "municipality": "Ózd",
-      "count": 8,
+      "count": 32,
       "methods": {
+        "map_or_text_estimate": 24,
         "named_source_footprint": 6,
         "source_polygon": 2
       }
@@ -3686,5 +3705,5 @@
     }
   ],
   "retiredIdentityCount": 11,
-  "outputGeojsonSha256": "c2eb2e0becc0d19f572730c5c22b27746d9dcb527b2fb7ac12b6f5a59c786873"
+  "outputGeojsonSha256": "0477863f57d9930c02d94cbf09651481ed49e7b68a7a7369ea16a163c3651172"
 }

@@ -15,6 +15,8 @@ FILES=['search-areas.geojson','search-area-names.json','search-areas-report.csv'
 
 def contents():
     files={'data/neighborhoods/'+name:(DATA/name).read_bytes() for name in FILES}
+    next_state=DATA/'expansion-20261114-next/WORK-STATE.json'
+    if next_state.exists():files['data/neighborhoods/expansion-20261114-next/WORK-STATE.json']=next_state.read_bytes()
     files['docs/NEIGHBORHOOD-SEARCH-DATA.md']=(ROOT/'docs/NEIGHBORHOOD-SEARCH-DATA.md').read_bytes()
     report=json.loads(files['data/neighborhoods/search-areas-report.json'])
     note=f'''Otthonra – kereshető városrészek és területek

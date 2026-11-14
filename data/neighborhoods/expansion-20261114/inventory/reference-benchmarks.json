@@ -3,12 +3,12 @@
   "date": "2026-11-14",
   "scope": "Worklist of currently known names from OSM suburb/neighbourhood/quarter points, municipal reference lists and collected polygons. Name coverage measures this finite worklist only. It is not a count of every Hungarian neighbourhood, and neither point-only names nor urban planning groups establish official neighbourhood boundaries. Names, aliases, historical schemes and overlapping areas are retained under the user-authorized broad search-area policy. No point was converted into a circle by this script.",
   "summary": {
-    "knownNameCount": 4213,
+    "knownNameCount": 4235,
     "municipalitiesWithKnownNames": 609,
-    "namesWithCollectedPolygon": 2267,
+    "namesWithCollectedPolygon": 2589,
     "namesWithKnownPoint": 3489,
-    "pointOnlyNames": 1869,
-    "unlocatedUncollectedNames": 77,
+    "pointOnlyNames": 1591,
+    "unlocatedUncollectedNames": 55,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
       80,
@@ -303,22 +303,13 @@
       "sourceNameEntries": 32,
       "distinctNameKeys": 32,
       "sourceIdentityCount": null,
-      "namesWithCollectedPolygon": 20,
+      "namesWithCollectedPolygon": 29,
       "missingNames": [
-        "Avas Dél városrész",
-        "Bedegvölgy-Bodótető",
-        "Békeszálló telep – Muszkás telep",
-        "Diósgyőr – Berekalja – Majláth",
-        "Lillafüred",
         "Martin kertvárosi felüljáró",
-        "Szentpéteri kapu Kelet",
-        "Szentpéteri kapu Nyugat",
         "Szondi telep – Csorbatelep",
-        "Vologda–Jókai lakótelep",
-        "Zsarnai telep – Repülőtér",
-        "Ómassa – Jávorkút"
+        "Vologda–Jókai lakótelep"
       ],
-      "knownReferenceNameCoveragePercent": 62.5,
+      "knownReferenceNameCoveragePercent": 90.6,
       "allSourceIdentitiesCovered": null,
       "note": "Name/alias coverage only. Same literal name may denote distinct district-qualified identities; historical/planning references are useful alternate search-area schemes, not a current-city-completeness assertion."
     },
@@ -376,17 +367,11 @@
       "sourceNameEntries": 10,
       "distinctNameKeys": 10,
       "sourceIdentityCount": null,
-      "namesWithCollectedPolygon": 3,
+      "namesWithCollectedPolygon": 9,
       "missingNames": [
-        "Acélgyár, Zagyvaróna, Ferenctelep, Művésztelep és Pintértelep",
-        "Forgách-telep és Somlyóbányatelep",
-        "Külterület (Eresztvény nélkül)",
-        "Kőváralja és Idegértelep",
-        "Rákóczi út környéke",
-        "Somoskő, Eresztvény, Salgóbánya, Rónafalu és Rónabánya",
-        "Városközpont"
+        "Külterület (Eresztvény nélkül)"
       ],
-      "knownReferenceNameCoveragePercent": 30.0,
+      "knownReferenceNameCoveragePercent": 90.0,
       "allSourceIdentitiesCovered": null,
       "note": "Name/alias coverage only. Same literal name may denote distinct district-qualified identities; historical/planning references are useful alternate search-area schemes, not a current-city-completeness assertion."
     },
@@ -515,19 +500,9 @@
       "sourceNameEntries": 20,
       "distinctNameKeys": 20,
       "sourceIdentityCount": null,
-      "namesWithCollectedPolygon": 11,
-      "missingNames": [
-        "Andráshida – Gébárt – Apátfa",
-        "Déli külterület",
-        "Kaszaháza – Nekeresd – Pózva",
-        "Keleti külterület",
-        "Landorhegy",
-        "Neszele – Ságod",
-        "Nyugati külterület",
-        "Ola",
-        "Északi külterület"
-      ],
-      "knownReferenceNameCoveragePercent": 55.0,
+      "namesWithCollectedPolygon": 20,
+      "missingNames": [],
+      "knownReferenceNameCoveragePercent": 100.0,
       "allSourceIdentitiesCovered": null,
       "note": "Name/alias coverage only. Same literal name may denote distinct district-qualified identities; historical/planning references are useful alternate search-area schemes, not a current-city-completeness assertion."
     }

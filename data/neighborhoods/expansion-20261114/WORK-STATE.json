@@ -48,15 +48,15 @@
   "resume": "Use the real Git checkout /workspace/ingatlan-github-publish or clone branch codex/neighborhood-research-506-191. Read STRATEGY.md, this state and inventory/priority-cities.csv. Retain persistent search-area-identities.json. Register newly completed source packets with SHA256, run build-search-areas.py --update-identities, refresh inventory/fallbacks, validate and commit/push. Prefer local stored sources; root handles public downloads so approval waits remain visible.",
   "completeNationalCoverage": false,
   "latestCheckpoint": {
-    "featureCount": 2267,
+    "featureCount": 2589,
     "municipalityCount": 509,
     "methods": {
-      "map_or_text_estimate": 488,
-      "named_source_footprint": 1167,
-      "source_map_polygon": 134,
+      "map_or_text_estimate": 725,
+      "named_source_footprint": 1219,
+      "source_map_polygon": 167,
       "source_polygon": 478
     },
-    "duplicateVariantsPreserved": 287
+    "duplicateVariantsPreserved": 297
   },
   "additionalCompletedPackets": [
     "major-city-maps/budapest-features.geojson",
@@ -66,12 +66,12 @@
   "collectionContinues": [],
   "networkWorkPolicy": "Root handles any new internet download; child agents work from saved files to avoid hidden approval waits.",
   "knownNameInventory": {
-    "knownNameCount": 4213,
+    "knownNameCount": 4235,
     "municipalitiesWithKnownNames": 609,
-    "namesWithCollectedPolygon": 2267,
+    "namesWithCollectedPolygon": 2589,
     "namesWithKnownPoint": 3489,
-    "pointOnlyNames": 1869,
-    "unlocatedUncollectedNames": 77,
+    "pointOnlyNames": 1591,
+    "unlocatedUncollectedNames": 55,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
       80,
@@ -167,26 +167,70 @@
     {
       "path": "data/neighborhoods/expansion-20261114/physical-cells-small/features.geojson",
       "sha256": "d8452437efb162325d7382a911b00718ba3333e4ef28e5558635ffaa30340312"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/budapest/features.geojson",
+      "sha256": "954e76c8f07e30c28233dcff28410d515839111657140ef3d025f62d6915f714"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/kaposvar-zala/features.geojson",
+      "sha256": "7ba2338bafb0b19f61c96e4ca12cc233e65d2177cc1dfbef08b63ebf0260e2dd"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/miskolc-ozd/miskolc-features.geojson",
+      "sha256": "eea284e80c6bf0c07ea9ce2089afdc4bba2db9ec53d88973d29701acbe281b00"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/medium-cities/vac-features.geojson",
+      "sha256": "74ea68b171d2ffbb4d5e44ff9d077e1d95a77a787426298c185c8225f959b297"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/gyula-salgo/salgotarjan-features.geojson",
+      "sha256": "de7d5f86a8aba901aeb33cb073ee6665474f496b04e6134a1658538fc4d5ebcb"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/fehervar-nyiregyhaza/street-block-features.geojson",
+      "sha256": "866193145c46ef0b3d453638d3f9cb99bc8f1b0f066888b24536c9436b68a48a"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/kaposvar-zala/kaposvar-features.geojson",
+      "sha256": "a85b46ec10028648ebce8ce63fbc25f43b615fd4202a63e4ebb3c2e88b73bd84"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/medium-cities/kiskun-features.geojson",
+      "sha256": "86f5d17c5c134395f7823421d28c3d66deaf01c2ad679d5669f022042afbed46"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/budapest/additional-features.geojson",
+      "sha256": "ab34103dc79ae9faf14a5e44d90ac715184866bbfa43c137166f5751df2015ad"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/gyula-salgo/gyula-features.geojson",
+      "sha256": "f83e8807a7ca24c6d9542806bb54df3162ce7bc0eb56a767400cdb3561cd14a9"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/miskolc-ozd/ozd-features.geojson",
+      "sha256": "67a6817b11827a480b8cf13e4915aa6f9fe3400ef9e6ca9fe97f08217bcaabd0"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/kaposvar-zala/remaining-features.geojson",
+      "sha256": "7bcf37b9e05adb11028eaee6664f7bb7f306b4c32bcba18246748082eccf0721"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/fehervar-nyiregyhaza/fehervar-native-features.geojson",
+      "sha256": "4e351eb5b6cb05f12cc276c5f421cbb6a1dab3d3ec12d73180fbccb269695301"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/fehervar-nyiregyhaza/fehervar-subarea-features.geojson",
+      "sha256": "1be0fd80b5e975f990cf7178a47a1f7e12debc8bcbd9ea2c72396e8e37825036"
     }
   ],
   "nextPriorityCities": [
     {
       "municipality": "Budapest",
       "knownNames": 458,
-      "mappedNames": 342,
-      "remainingNames": 116
-    },
-    {
-      "municipality": "Miskolc",
-      "knownNames": 108,
-      "mappedNames": 55,
-      "remainingNames": 53
-    },
-    {
-      "municipality": "Kaposvár",
-      "knownNames": 85,
-      "mappedNames": 32,
-      "remainingNames": 53
+      "mappedNames": 388,
+      "remainingNames": 70
     },
     {
       "municipality": "Kecskemét",
@@ -195,40 +239,10 @@
       "remainingNames": 46
     },
     {
-      "municipality": "Nyíregyháza",
-      "knownNames": 84,
-      "mappedNames": 44,
-      "remainingNames": 40
-    },
-    {
-      "municipality": "Zalaegerszeg",
-      "knownNames": 57,
-      "mappedNames": 20,
-      "remainingNames": 37
-    },
-    {
-      "municipality": "Székesfehérvár",
-      "knownNames": 65,
-      "mappedNames": 29,
-      "remainingNames": 36
-    },
-    {
-      "municipality": "Ózd",
-      "knownNames": 44,
-      "mappedNames": 8,
-      "remainingNames": 36
-    },
-    {
-      "municipality": "Gyula",
-      "knownNames": 33,
-      "mappedNames": 5,
-      "remainingNames": 28
-    },
-    {
-      "municipality": "Salgótarján",
-      "knownNames": 44,
-      "mappedNames": 18,
-      "remainingNames": 26
+      "municipality": "Miskolc",
+      "knownNames": 106,
+      "mappedNames": 79,
+      "remainingNames": 27
     },
     {
       "municipality": "Debrecen",
@@ -241,7 +255,50 @@
       "knownNames": 100,
       "mappedNames": 75,
       "remainingNames": 25
+    },
+    {
+      "municipality": "Nyíregyháza",
+      "knownNames": 84,
+      "mappedNames": 60,
+      "remainingNames": 24
+    },
+    {
+      "municipality": "Győr",
+      "knownNames": 81,
+      "mappedNames": 59,
+      "remainingNames": 22
+    },
+    {
+      "municipality": "Sopron",
+      "knownNames": 46,
+      "mappedNames": 24,
+      "remainingNames": 22
+    },
+    {
+      "municipality": "Pápa",
+      "knownNames": 27,
+      "mappedNames": 8,
+      "remainingNames": 19
+    },
+    {
+      "municipality": "Ajka",
+      "knownNames": 22,
+      "mappedNames": 5,
+      "remainingNames": 17
+    },
+    {
+      "municipality": "Székesfehérvár",
+      "knownNames": 82,
+      "mappedNames": 67,
+      "remainingNames": 15
+    },
+    {
+      "municipality": "Szombathely",
+      "knownNames": 68,
+      "mappedNames": 54,
+      "remainingNames": 14
     }
   ],
-  "retiredIdentityRedirects": 11
+  "retiredIdentityRedirects": 11,
+  "currentCollectionState": "data/neighborhoods/expansion-20261114-next/WORK-STATE.json"
 }

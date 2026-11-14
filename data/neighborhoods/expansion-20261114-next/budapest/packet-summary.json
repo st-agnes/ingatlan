@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "featureCount": 46,
+  "municipality": "Budapest",
+  "inputFiles": [
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/budapest/features.geojson",
+      "featureCount": 30,
+      "sha256": "954e76c8f07e30c28233dcff28410d515839111657140ef3d025f62d6915f714"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/budapest/additional-features.geojson",
+      "featureCount": 16,
+      "sha256": "ab34103dc79ae9faf14a5e44d90ac715184866bbfa43c137166f5751df2015ad"
+    }
+  ],
+  "counts": {
+    "features.geojson": 30,
+    "additional-features.geojson": 16
+  },
+  "circleCount": 0,
+  "validGeometryCount": 46,
+  "duplicateLiteralCityNameCount": 0,
+  "sourceRoadWays": 9712,
+  "reproductionFromSavedSourcesPassed": true,
+  "finerContoursAreManuallyInferredNotPrintedSourceLines": true,
+  "completeCityCoverageClaimed": false
+}
