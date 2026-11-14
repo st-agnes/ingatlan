@@ -3,12 +3,12 @@
   "date": "2026-11-14",
   "scope": "Worklist of currently known names from OSM suburb/neighbourhood/quarter points, municipal reference lists and collected polygons. Name coverage measures this finite worklist only. It is not a count of every Hungarian neighbourhood, and neither point-only names nor urban planning groups establish official neighbourhood boundaries. Names, aliases, historical schemes and overlapping areas are retained under the user-authorized broad search-area policy. No point was converted into a circle by this script.",
   "summary": {
-    "knownNameCount": 4316,
+    "knownNameCount": 4313,
     "municipalitiesWithKnownNames": 618,
-    "namesWithCollectedPolygon": 3283,
-    "namesWithKnownPoint": 3488,
-    "pointOnlyNames": 981,
-    "unlocatedUncollectedNames": 52,
+    "namesWithCollectedPolygon": 3404,
+    "namesWithKnownPoint": 3487,
+    "pointOnlyNames": 861,
+    "unlocatedUncollectedNames": 48,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
       80,
@@ -35,14 +35,13 @@
       "sourceNameEntries": 5,
       "distinctNameKeys": 5,
       "sourceIdentityCount": null,
-      "namesWithCollectedPolygon": 1,
+      "namesWithCollectedPolygon": 2,
       "missingNames": [
         "Bakonygyepes (Ajkarendekkel)",
         "Belváros (Lakóteleppel és Szőlőheggyel)",
-        "Bódé (Csingerrel, Csikólegelővel és Iparteleppel)",
-        "Tósokberénd"
+        "Bódé (Csingerrel, Csikólegelővel és Iparteleppel)"
       ],
-      "knownReferenceNameCoveragePercent": 20.0,
+      "knownReferenceNameCoveragePercent": 40.0,
       "allSourceIdentitiesCovered": null,
       "note": "Name/alias coverage only. Same literal name may denote distinct district-qualified identities; historical/planning references are useful alternate search-area schemes, not a current-city-completeness assertion."
     },
@@ -176,12 +175,9 @@
       "sourceNameEntries": 14,
       "distinctNameKeys": 14,
       "sourceIdentityCount": null,
-      "namesWithCollectedPolygon": 12,
-      "missingNames": [
-        "Batida",
-        "Szikáncs"
-      ],
-      "knownReferenceNameCoveragePercent": 85.7,
+      "namesWithCollectedPolygon": 14,
+      "missingNames": [],
+      "knownReferenceNameCoveragePercent": 100.0,
       "allSourceIdentitiesCovered": null,
       "note": "Name/alias coverage only. Same literal name may denote distinct district-qualified identities; historical/planning references are useful alternate search-area schemes, not a current-city-completeness assertion."
     },
@@ -215,18 +211,16 @@
       "sourceNameEntries": 19,
       "distinctNameKeys": 19,
       "sourceIdentityCount": null,
-      "namesWithCollectedPolygon": 11,
+      "namesWithCollectedPolygon": 13,
       "missingNames": [
         "Beretvásköz",
         "Bordás",
         "Budaihegy-Vacshegy",
         "Bödögsor",
         "Csalanosi erdő",
-        "Repülőtér",
-        "Északi ipari övezet",
-        "Űrhegy"
+        "Északi ipari övezet"
       ],
-      "knownReferenceNameCoveragePercent": 57.9,
+      "knownReferenceNameCoveragePercent": 68.4,
       "allSourceIdentitiesCovered": null,
       "note": "Name/alias coverage only. Same literal name may denote distinct district-qualified identities; historical/planning references are useful alternate search-area schemes, not a current-city-completeness assertion."
     },

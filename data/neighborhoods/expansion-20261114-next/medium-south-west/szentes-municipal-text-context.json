@@ -1,0 +1,58 @@
+{
+  "sourceFile": "data/neighborhoods/sources/municipal-szentes-belvaros-first/raw/source-facts.json",
+  "source": {
+    "title": "Szentes Város Integrált Városfejlesztési Stratégiája",
+    "url": "https://szentes.hu/wp-content/uploads/2015/01/szentes_ivs.pdf",
+    "retrieval": "Web connector returned indexed PDF text (12777 lines) on first open. Subsequent direct open and PDF screenshot requests timed out; original PDF bytes and boundary image were not acquired.",
+    "documentAge": "Municipal upload path is January 2015. This edition contains 2009/2010 material; cover/adoption date was not verified and must not be represented as a 2024 boundary definition.",
+    "locators": [
+      "Section IV.1, printed pages 146-149",
+      "Figure 25, printed page 147",
+      "Belváros boundary list immediately following Figure 25",
+      "Indexed text lines 4337-4360 in first successful result"
+    ],
+    "semanticUnit": "The section explicitly defines named city quarters using functional, historical and development criteria, based on KSH and municipal data. Belváros is a whole named quarter in this partition, not a selected intervention area.",
+    "machinePolygonAvailable": false,
+    "originalGeometryAcquired": false
+  },
+  "circuits": {
+    "Felsőpárt": [
+      "Kurca",
+      "Dessewffy sor",
+      "Belterületi határvonal",
+      "299/1 hrsz. vasút",
+      "4418/5 hrsz. vasút",
+      "Attila út",
+      "Kolozsvár u.",
+      "Baross u.",
+      "Apponyi tér",
+      "Deák Ferenc u.",
+      "Bajcsy Zsilinszky u.",
+      "Arany János u.",
+      "Kurca"
+    ],
+    "Kisér": [
+      "Kurca",
+      "5631 hrsz. közút",
+      "Szent Anna u.",
+      "Kisér u.",
+      "Nyíri köz",
+      "Vásárhelyi út",
+      "Belterületi határvonal",
+      "Kurca"
+    ],
+    "Kertváros": [
+      "Kurca",
+      "Belterületi határvonal"
+    ],
+    "Nagyhegy": [
+      "Belterületi határvonal",
+      "3963/5 hrsz. közút (Kunszentmártoni út)",
+      "3963/1 hrsz. közút (Kunszentmártoni út)",
+      "4418/5 hrsz. vasút",
+      "299/1 hrsz. vasút",
+      "Belterületi határvonal"
+    ]
+  },
+  "caveat": "Retained indexed text evidence only; original PDF map pixels were not acquired by the earlier collector. Road/river facts can guide rough inference without claiming a printed contour."
+}

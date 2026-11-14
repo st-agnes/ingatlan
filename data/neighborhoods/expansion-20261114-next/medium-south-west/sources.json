@@ -1,0 +1,109 @@
+{
+  "collectedOn": "2026-11-14",
+  "inputs": [
+    {
+      "path": "road-extraction.json",
+      "sha256": "98b5f3c5004de9614abad42ddf63ba5efd89932ae08d186442dbc82519d2de45",
+      "bytes": 638
+    },
+    {
+      "path": "target-name-points.json",
+      "sha256": "cb2f43bb7eb10392eaf67b8c9200581ea4312e4b87a27c9fc506dce650987fe6",
+      "bytes": 18474
+    },
+    {
+      "path": "broader-source-contexts.geojson",
+      "sha256": "47536a91b99ca042e10f18eca1f396d3bb9d23c3958beba0c60ebb22d88c60d4",
+      "bytes": 184115
+    },
+    {
+      "path": "szentes-municipal-text-context.json",
+      "sha256": "c9267223b7097c6fa35b5ca3ab8f7676c9ccf52e238b3ec5f66b1b9e80988a8e",
+      "bytes": 2330
+    },
+    {
+      "path": "szentes-extra-water-context.geojson",
+      "sha256": "565c2ca82c82cc7bc8d252238232ca2ff83dc00e6e8650d6e8ee4b11cf8b6d64",
+      "bytes": 11602
+    },
+    {
+      "path": "ajka-roads.geojson",
+      "sha256": "80fc3d41525f67831be8955a02c25b4f0221ab74c90c8c4b7a0a49263cba89d3",
+      "bytes": 837611
+    },
+    {
+      "path": "ajka-areas.geojson",
+      "sha256": "83786316a5ba833df2becf2972cf0c9e2650cf83e45564f581e0c01e0b0f5896",
+      "bytes": 86860
+    },
+    {
+      "path": "ajka-registration.json",
+      "sha256": "a57c8e151dfafd7d8ed7650f6c677467f3ee6eafd315d0a3980c72cf73cf8754",
+      "bytes": 3604
+    },
+    {
+      "path": "ajka-traces.json",
+      "sha256": "36c3af420ea7f5e10705cfc80545eac0d73af20b622fb10639e89b87a3af14ae",
+      "bytes": 6329
+    },
+    {
+      "path": "szentes-roads.geojson",
+      "sha256": "a5f954e860bc24a53a6932868df8fdc78d11bb7395d31227fa709c8c8b3bc0e4",
+      "bytes": 898220
+    },
+    {
+      "path": "szentes-areas.geojson",
+      "sha256": "32f87573c9a02db18bab2199c394f9e45570dd7d3097424dced73b6a5d2631e4",
+      "bytes": 231678
+    },
+    {
+      "path": "szentes-registration.json",
+      "sha256": "81c18d91651be7dc2581df47bf112b51b80c9f94d8e77edabfc152ece88deacb",
+      "bytes": 4881
+    },
+    {
+      "path": "szentes-traces.json",
+      "sha256": "09c13494cf65942975a721fd3416d5c5ccf2b4c3017279b686f0bb4204b5bece",
+      "bytes": 11699
+    },
+    {
+      "path": "baja-roads.geojson",
+      "sha256": "47ff1900f422833e3a4697b070a131fd9c8427e412fd0e0593f9a910543d1d31",
+      "bytes": 1240979
+    },
+    {
+      "path": "baja-areas.geojson",
+      "sha256": "364839187949e576a6fcd30f9816bedb5a2728ecbc3cc94e49794b7ab9fe246c",
+      "bytes": 168604
+    },
+    {
+      "path": "baja-registration.json",
+      "sha256": "02eff71a4589292d7c19e0e3189c59fc151e642928ffe4eac01abf06fad7c468",
+      "bytes": 3190
+    },
+    {
+      "path": "baja-traces.json",
+      "sha256": "6559016f250b25512d1b8a0fd3d090e4baec745fc018fd23c294ab4786988be9",
+      "bytes": 7673
+    }
+  ],
+  "sourcePbf": {
+    "url": "https://download.geofabrik.de/europe/hungary.html",
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "snapshot": "2026-11-12T21:23:05Z",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "municipalText": {
+    "url": "https://szentes.hu/wp-content/uploads/2015/01/szentes_ivs.pdf",
+    "retainedOriginalEvidencePath": "data/neighborhoods/sources/municipal-szentes-belvaros-first/raw/source-facts.json",
+    "retainedOriginalEvidenceSha256": "32566d65a559de009213f3a274b0adefd579995ce3cb262c2b8c11fb101fb03a",
+    "status": "Previously acquired indexed text facts only; this pass did not acquire original PDF geometry and does not claim its fine polygons are printed contours."
+  },
+  "extraWater": {
+    "sourcePath": "data/neighborhoods/sources/municipal-szentes-belvaros-first/raw/szentes-local-lines.geojson",
+    "wayId": 591675710,
+    "status": "Literal long Kurca source line preserved from earlier saved local extraction; its first source node lies outside the new scan selection box."
+  },
+  "reproduction": "Final GeoJSON uses only saved registrations and trace vertices; no network, city Voronoi, circle or global-city copying."
+}

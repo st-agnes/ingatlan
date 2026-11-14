@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
   "policyVersion": "20261114-throughput",
-  "featureCount": 3283,
+  "featureCount": 3404,
   "municipalityCount": 564,
   "methods": {
-    "map_or_text_estimate": 835,
-    "named_source_footprint": 1801,
+    "map_or_text_estimate": 915,
+    "named_source_footprint": 1842,
     "source_map_polygon": 168,
     "source_polygon": 479
   },
-  "inputFeatureCount": 3622,
-  "duplicateVariantsPreserved": 339,
-  "duplicateNameGroups": 318,
+  "inputFeatureCount": 3747,
+  "duplicateVariantsPreserved": 343,
+  "duplicateNameGroups": 322,
   "rejectedTechnicalRecords": [],
   "completeNationalCoverage": false,
   "nationalCoveragePercentage": null,
   "inputsSha256": {
-    "data/neighborhoods/expansion-20261114/name-aliases.json": "19b32855abcfcd1dde8db4a59804730fe5fd49164de1127acf2283852691bc4f",
+    "data/neighborhoods/expansion-20261114/name-aliases.json": "e061d1b59e683ffe4545cd4260c187f2491526634cf507d959bd7028a3e5626a",
     "data/neighborhoods/neighborhoods.geojson": "8eca9d097fb6714c31ca942f57ff0d8f683f8f4fe13af0161b12da19b20e8f74",
     "data/neighborhoods/planning-units.geojson": "210d68a378ab01d26383825c2beb8896655e43b0e40d39f2add541ac7f090ce5",
     "data/neighborhoods/estimated-candidates.geojson": "a9e6d9bd870d997571c5638d5dbdcb8a44c92bb72926f0c85ee2dbccbf38dfe3",
@@ -71,7 +71,16 @@
     "data/neighborhoods/expansion-20261114-next/medium-cities/national-surfaces/bounded-multi-label-features.geojson": "0a3d5d99ca86e29be039a92ab069902dfa6b6e0edad33779602e33ca5ed50f35",
     "data/neighborhoods/expansion-20261114-next/fehervar-nyiregyhaza/remaining-features.geojson": "31ac9501d9e66297fe617d67d5114f068fe93120643922319ee5c6f3d8e2ce6f",
     "data/neighborhoods/expansion-20261114-next/medium-cities/national-barrier-cells/features.geojson": "fdcc1c2c04f3049503b784d474613dd194f5de5faac09ddc0ebc0759bea65848",
-    "data/neighborhoods/search-area-identities.json": "a22dbeea9692d2a6c1233e60c3d80374d95cbdd00ef402376c7fef27e82d819f"
+    "data/neighborhoods/expansion-20261114-next/budapest-remaining/features.geojson": "195715610f94ad63aa8978264740022a8a4ce30996b211d1ad815f834d471578",
+    "data/neighborhoods/expansion-20261114-next/miskolc-dunaujvaros-remaining/features.geojson": "01c733423baf53530a5a0f0608fc2027ee1906a28e72911056f50657f09a85b2",
+    "data/neighborhoods/expansion-20261114-next/medium-south-west/ajka-features.geojson": "7ffaea7588e4ce14bbd4945377b0c81f3ec65b4cfc0be4a8da2869d40b50f048",
+    "data/neighborhoods/expansion-20261114-next/medium-south-west/szentes-features.geojson": "1fa1e21a71a468ca268275076a78774a300175105fb4674b8ea0225ec1ccbe52",
+    "data/neighborhoods/expansion-20261114-next/medium-south-west/baja-features.geojson": "aa700758e119a1e34a8c066a2fb9e859e6d27b086a9c7855781f915eccc4def2",
+    "data/neighborhoods/expansion-20261114-next/commuter-towns/budaors-features.geojson": "724db6a6a6bada341bc9992dc288eaba0d17e6940e5de8020954ebe19dbb89ef",
+    "data/neighborhoods/expansion-20261114-next/commuter-towns/tatabanya-features.geojson": "c7c149631d492caf3551c89848b21264426b4d9162f0e7c3e2d2f883ad7257b0",
+    "data/neighborhoods/expansion-20261114-next/commuter-towns/dunakeszi-features.geojson": "adf3fd00348d9a2b873d5dd2a360f678d2dfb5e75320a5050d8a55bc43e6cc61",
+    "data/neighborhoods/expansion-20261114-next/small-remaining/features.geojson": "eb7776fd7134a96b447c3839dd1b34e536e1221f5f5aa9904d4ba49a801f4bc2",
+    "data/neighborhoods/search-area-identities.json": "b8f05d6f604cd909b3110ed876cb65038c0148b5e3224931cc419344a99b506b"
   },
   "selectionOrder": [
     "OSM administrative named boundary",
@@ -111,8 +120,9 @@
     },
     {
       "municipality": "Ajka",
-      "count": 11,
+      "count": 19,
       "methods": {
+        "map_or_text_estimate": 8,
         "named_source_footprint": 11
       }
     },
@@ -210,8 +220,9 @@
     },
     {
       "municipality": "Baja",
-      "count": 8,
+      "count": 15,
       "methods": {
+        "map_or_text_estimate": 7,
         "named_source_footprint": 8
       }
     },
@@ -531,19 +542,19 @@
     },
     {
       "municipality": "Budapest",
-      "count": 402,
+      "count": 437,
       "methods": {
-        "map_or_text_estimate": 23,
-        "named_source_footprint": 135,
+        "map_or_text_estimate": 60,
+        "named_source_footprint": 133,
         "source_map_polygon": 4,
         "source_polygon": 240
       }
     },
     {
       "municipality": "Budaörs",
-      "count": 15,
+      "count": 27,
       "methods": {
-        "named_source_footprint": 4,
+        "named_source_footprint": 16,
         "source_polygon": 11
       }
     },
@@ -810,10 +821,10 @@
     },
     {
       "municipality": "Debrecen",
-      "count": 125,
+      "count": 126,
       "methods": {
         "map_or_text_estimate": 3,
-        "named_source_footprint": 45,
+        "named_source_footprint": 46,
         "source_polygon": 77
       }
     },
@@ -912,9 +923,9 @@
     },
     {
       "municipality": "Dunakeszi",
-      "count": 16,
+      "count": 24,
       "methods": {
-        "named_source_footprint": 9,
+        "named_source_footprint": 17,
         "source_polygon": 7
       }
     },
@@ -934,10 +945,10 @@
     },
     {
       "municipality": "Dunaújváros",
-      "count": 17,
+      "count": 21,
       "methods": {
         "map_or_text_estimate": 9,
-        "named_source_footprint": 8
+        "named_source_footprint": 12
       }
     },
     {
@@ -1213,10 +1224,10 @@
     },
     {
       "municipality": "Gyula",
-      "count": 27,
+      "count": 31,
       "methods": {
         "map_or_text_estimate": 20,
-        "named_source_footprint": 7
+        "named_source_footprint": 11
       }
     },
     {
@@ -1464,10 +1475,10 @@
     },
     {
       "municipality": "Hódmezővásárhely",
-      "count": 19,
+      "count": 22,
       "methods": {
         "map_or_text_estimate": 10,
-        "named_source_footprint": 9
+        "named_source_footprint": 12
       }
     },
     {
@@ -2215,9 +2226,9 @@
     },
     {
       "municipality": "Miskolc",
-      "count": 88,
+      "count": 105,
       "methods": {
-        "map_or_text_estimate": 66,
+        "map_or_text_estimate": 83,
         "named_source_footprint": 20,
         "source_map_polygon": 2
       }
@@ -2952,10 +2963,10 @@
     },
     {
       "municipality": "Salgótarján",
-      "count": 41,
+      "count": 43,
       "methods": {
         "map_or_text_estimate": 29,
-        "named_source_footprint": 12
+        "named_source_footprint": 14
       }
     },
     {
@@ -3161,9 +3172,9 @@
     },
     {
       "municipality": "Szentes",
-      "count": 9,
+      "count": 20,
       "methods": {
-        "map_or_text_estimate": 1,
+        "map_or_text_estimate": 12,
         "named_source_footprint": 8
       }
     },
@@ -3493,10 +3504,10 @@
     },
     {
       "municipality": "Tatabánya",
-      "count": 30,
+      "count": 39,
       "methods": {
         "map_or_text_estimate": 20,
-        "named_source_footprint": 10
+        "named_source_footprint": 19
       }
     },
     {
@@ -4109,5 +4120,5 @@
     }
   ],
   "retiredIdentityCount": 11,
-  "outputGeojsonSha256": "21d9abf916fd3abea6fca355d05b6b8fc02109fc86ea283acb6008ea362c268e"
+  "outputGeojsonSha256": "999ce37780beeb258e570c3a58587e63dedb0be8219144812db6426d66d96844"
 }

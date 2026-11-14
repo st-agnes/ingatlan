@@ -1,0 +1,875 @@
+{
+  "schemaVersion": 1,
+  "scope": "Rough hand interpretations of the retained street/landuse map. Pixel vertices reference the retained town context registration, not named-point buffers.",
+  "towns": {
+    "Budaörs": [
+      {
+        "name": "Csikidűlő",
+        "points": [
+          [
+            107,
+            581
+          ],
+          [
+            241,
+            560
+          ],
+          [
+            308,
+            579
+          ],
+          [
+            365,
+            611
+          ],
+          [
+            398,
+            683
+          ],
+          [
+            448,
+            739
+          ],
+          [
+            319,
+            769
+          ],
+          [
+            257,
+            757
+          ],
+          [
+            183,
+            780
+          ],
+          [
+            104,
+            808
+          ],
+          [
+            30,
+            808
+          ],
+          [
+            31,
+            710
+          ],
+          [
+            73,
+            632
+          ]
+        ],
+        "clipParent": "Hegyvidékek",
+        "note": "Residential Csiki-dűlő slope between the mapped valley/estate edges and Szabadság út; north and west transitions are approximate."
+      },
+      {
+        "name": "Felsőszállás",
+        "candidate": "candidate:53",
+        "note": "Retain the closed Felsőszállás street cell clipped to the native Szállások parent; no copy of the entire parent."
+      },
+      {
+        "name": "Ganztelep",
+        "points": [
+          [
+            1434,
+            527
+          ],
+          [
+            1501,
+            496
+          ],
+          [
+            1535,
+            389
+          ],
+          [
+            1604,
+            352
+          ],
+          [
+            1694,
+            358
+          ],
+          [
+            1762,
+            404
+          ],
+          [
+            1822,
+            491
+          ],
+          [
+            1854,
+            592
+          ],
+          [
+            1627,
+            624
+          ],
+          [
+            1556,
+            575
+          ],
+          [
+            1505,
+            592
+          ]
+        ],
+        "clipParent": "Kertvárosias lakóterület",
+        "note": "Approximate northern residential street fabric of Ganztelep, bounded south by Budapesti út and adjacent slopes; not the whole broader Kertvárosias parent."
+      },
+      {
+        "name": "Kertváros",
+        "candidate": "candidate:48",
+        "note": "Broad southern residential section of the native Kertvárosias parent, separated from its northern hill neighbourhoods by Budapesti út and motorway edge."
+      },
+      {
+        "name": "Kőhegy",
+        "points": [
+          [
+            1043,
+            612
+          ],
+          [
+            1100,
+            523
+          ],
+          [
+            1181,
+            459
+          ],
+          [
+            1242,
+            414
+          ],
+          [
+            1311,
+            427
+          ],
+          [
+            1344,
+            495
+          ],
+          [
+            1407,
+            549
+          ],
+          [
+            1448,
+            617
+          ],
+          [
+            1357,
+            658
+          ],
+          [
+            1268,
+            676
+          ],
+          [
+            1180,
+            701
+          ],
+          [
+            1070,
+            731
+          ]
+        ],
+        "clipParent": "Történelmi belváros",
+        "note": "Rough Kőhegy slope and neighbouring old residential fabric, using the visibly distinct hill/road transitions. Southern transition to Ófalu is approximate and may overlap."
+      },
+      {
+        "name": "Lakótelep",
+        "points": [
+          [
+            626,
+            734
+          ],
+          [
+            790,
+            707
+          ],
+          [
+            960,
+            680
+          ],
+          [
+            969,
+            768
+          ],
+          [
+            985,
+            886
+          ],
+          [
+            920,
+            906
+          ],
+          [
+            825,
+            932
+          ],
+          [
+            619,
+            1007
+          ],
+          [
+            538,
+            1006
+          ],
+          [
+            560,
+            927
+          ],
+          [
+            584,
+            840
+          ]
+        ],
+        "clipParent": "Intézményi Városközpont és lakótelep",
+        "evidenceUrls": [
+          "https://budaors.hu/dokumentumok/onkormanyzat/rendeletek/a-kozteruletek-hasznalatarol-25-2018-ix21.pdf"
+        ],
+        "boundaryTextFacts": [
+          "Szabadság út",
+          "Bretzfeld utca",
+          "Baross utca",
+          "Árok utca"
+        ],
+        "note": "The four-road municipal ordinance perimeter is traced approximately on retained OSM roads. The source groups describe the wider institutional centre separately."
+      },
+      {
+        "name": "Naphegy",
+        "candidate": "candidate:33",
+        "note": "Closed mapped residential/track cell on the Naphegy slope; not the whole broad native Kertvárosias parent."
+      },
+      {
+        "name": "Odvashegy",
+        "candidate": "candidate:43",
+        "note": "Actual closed local road/track cell in the native Hegyvidékek parent, following the mapped hill-side street and open-land edge."
+      },
+      {
+        "name": "Törökugrató",
+        "points": [
+          [
+            183,
+            987
+          ],
+          [
+            248,
+            847
+          ],
+          [
+            303,
+            801
+          ],
+          [
+            394,
+            782
+          ],
+          [
+            462,
+            776
+          ],
+          [
+            521,
+            868
+          ],
+          [
+            625,
+            1007
+          ],
+          [
+            577,
+            1071
+          ],
+          [
+            461,
+            1112
+          ],
+          [
+            346,
+            1117
+          ],
+          [
+            253,
+            1080
+          ]
+        ],
+        "clipParent": "Hegyvidékek",
+        "note": "Rough developed Törökugrató hill slope; the native parent and visible road/open-land boundary constrain the outline. Not a copy of the entire 1 km² southwest parent."
+      },
+      {
+        "name": "Ófalu",
+        "points": [
+          [
+            1004,
+            740
+          ],
+          [
+            1197,
+            695
+          ],
+          [
+            1432,
+            624
+          ],
+          [
+            1490,
+            650
+          ],
+          [
+            1505,
+            701
+          ],
+          [
+            1460,
+            779
+          ],
+          [
+            1410,
+            875
+          ],
+          [
+            1264,
+            894
+          ],
+          [
+            1201,
+            961
+          ],
+          [
+            1093,
+            990
+          ],
+          [
+            1010,
+            950
+          ]
+        ],
+        "clipParent": "Történelmi belváros",
+        "evidenceUrls": [
+          "https://budaorsiinfo.hu/blog/2019/09/06/on-tudja-melyik-valasztokorzetbe-tartozik/"
+        ],
+        "note": "Rough central historical village fabric around Szabadság út and Templom tér; retained separately from the northern Kőhegy slope rather than aliasing the entire Történelmi belváros parent."
+      },
+      {
+        "name": "Öröm-völgy",
+        "candidate": "candidate:44",
+        "note": "Mapped valley street cell, limited by the native Hegyvidékek parent and Tárogató/Sóska/Orchidea/Fügefa/Szüret street fabric."
+      },
+      {
+        "name": "Úthegy",
+        "candidate": "candidate:42",
+        "note": "Mapped closed road/track cell on Úthegy inside the native Hegyvidékek parent. Approximate local footprint."
+      }
+    ],
+    "Tatabánya": [
+      {
+        "name": "Bánhidai lakótelep",
+        "points": [
+          [
+            844,
+            638
+          ],
+          [
+            951,
+            531
+          ],
+          [
+            1007,
+            496
+          ],
+          [
+            1030,
+            574
+          ],
+          [
+            1050,
+            645
+          ],
+          [
+            1049,
+            779
+          ],
+          [
+            965,
+            772
+          ],
+          [
+            950,
+            745
+          ],
+          [
+            914,
+            727
+          ]
+        ],
+        "clipParent": "Dózsakert",
+        "note": "Rough estate street blocks between Dózsa György út, the mapped stream/railway corridor and the native quarter division. This is a smaller estate inside the broader Dózsakert scheme, not an alias of its parent."
+      },
+      {
+        "name": "Gál István-lakótelep",
+        "points": [
+          [
+            1496,
+            1308
+          ],
+          [
+            1627,
+            1293
+          ],
+          [
+            1728,
+            1302
+          ],
+          [
+            1807,
+            1343
+          ],
+          [
+            1783,
+            1388
+          ],
+          [
+            1715,
+            1392
+          ],
+          [
+            1612,
+            1395
+          ],
+          [
+            1556,
+            1373
+          ]
+        ],
+        "clipParent": "Óváros",
+        "evidenceUrls": [
+          "https://www.jamk.hu/ek/public/08030601/ki_kicsoda.pdf"
+        ],
+        "note": "Approximate compact block-estate south of the railway and north of the separate Paletta/Ságvári residential areas. Local library publication identifies the Gál estate and Bárdos school; the displayed local roads constrain the hand trace."
+      },
+      {
+        "name": "Kertvárosi lakótelep",
+        "candidate": "candidate:18",
+        "note": "Small mapped closed estate street cell around Dr. Vitális István and Verebély László streets, retained inside the broader Kertváros parent."
+      },
+      {
+        "name": "Kossuthkert",
+        "candidate": "candidate:12",
+        "note": "A bounded local residential street cell in Bánhida, not a copy of the whole Bánhida parent; this modest practical footprint can be narrower than everyday Kossuthkert."
+      },
+      {
+        "name": "Millennium lakópark",
+        "candidate": "candidate:11",
+        "note": "Bounded local estate cell limited by the retained Bánhida–Dózsakert map parent; it may capture only the physically separated part of the estate."
+      },
+      {
+        "name": "Paletta lakópark",
+        "candidate": "candidate:24",
+        "note": "Actual compact closed local street cell of Paletta, distinct from the adjacent larger Gál István and Ságvári estates inside Óváros."
+      },
+      {
+        "name": "Panoráma lakópark",
+        "candidate": "candidate:17",
+        "note": "Actual small closed estate-road cell inside the native Kertváros quarter, not the broader Kertváros polygon."
+      },
+      {
+        "name": "Ságvári-lakótelep",
+        "points": [
+          [
+            1537,
+            1411
+          ],
+          [
+            1630,
+            1407
+          ],
+          [
+            1698,
+            1414
+          ],
+          [
+            1776,
+            1440
+          ],
+          [
+            1815,
+            1490
+          ],
+          [
+            1817,
+            1538
+          ],
+          [
+            1754,
+            1592
+          ],
+          [
+            1670,
+            1555
+          ],
+          [
+            1614,
+            1510
+          ],
+          [
+            1568,
+            1467
+          ]
+        ],
+        "clipParent": "Óváros",
+        "note": "Rough visible housing-street fabric around the Ságvári label and Szent Borbála út, south of Paletta; green/open transitions and the native Óváros outline constrain the approximate estate extent."
+      },
+      {
+        "name": "Sárberki lakótelep",
+        "points": [
+          [
+            1100,
+            738
+          ],
+          [
+            1173,
+            733
+          ],
+          [
+            1282,
+            810
+          ],
+          [
+            1345,
+            872
+          ],
+          [
+            1390,
+            963
+          ],
+          [
+            1343,
+            1112
+          ],
+          [
+            1252,
+            1070
+          ],
+          [
+            1178,
+            1013
+          ],
+          [
+            1118,
+            917
+          ],
+          [
+            1070,
+            804
+          ]
+        ],
+        "clipParent": "Sárberek",
+        "note": "Rough dense residential estate inside the larger Sárberek municipal-map quarter, bounded in context by railway/stream and Köztársaság/Összekötő roads. Open peripheral parts of the broader quarter are excluded."
+      }
+    ],
+    "Dunakeszi": [
+      {
+        "name": "Dombliget-lakópark",
+        "candidate": "candidate:79",
+        "note": "Actual small closed local street cell at Dombliget, kept distinct from nearby Toldi-lakópark and the much broader Alag parent."
+      },
+      {
+        "name": "Felsőtabán",
+        "candidate": "candidate:70",
+        "note": "Bounded local older residential street cell west of Fő út. This is a practical partial footprint of Felsőtabán, not the whole municipal settlement."
+      },
+      {
+        "name": "Malomárok",
+        "points": [
+          [
+            252,
+            80
+          ],
+          [
+            343,
+            76
+          ],
+          [
+            447,
+            135
+          ],
+          [
+            517,
+            146
+          ],
+          [
+            611,
+            155
+          ],
+          [
+            660,
+            115
+          ],
+          [
+            681,
+            173
+          ],
+          [
+            674,
+            312
+          ],
+          [
+            670,
+            450
+          ],
+          [
+            599,
+            509
+          ],
+          [
+            514,
+            514
+          ],
+          [
+            447,
+            483
+          ],
+          [
+            371,
+            438
+          ],
+          [
+            291,
+            412
+          ],
+          [
+            178,
+            445
+          ],
+          [
+            225,
+            297
+          ],
+          [
+            249,
+            185
+          ]
+        ],
+        "note": "Rough northern residential quarter using the mapped Danube-side edge, northern Nagycsurgó stream, southern Csurgó/Kiscsurgó stream fabric and Fő út. Includes the smaller Malomárok lakópark as an intentionally overlapping parent scale."
+      },
+      {
+        "name": "Malomárok lakópark",
+        "points": [
+          [
+            352,
+            307
+          ],
+          [
+            433,
+            276
+          ],
+          [
+            533,
+            285
+          ],
+          [
+            631,
+            318
+          ],
+          [
+            647,
+            412
+          ],
+          [
+            593,
+            455
+          ],
+          [
+            520,
+            449
+          ],
+          [
+            453,
+            422
+          ],
+          [
+            400,
+            410
+          ],
+          [
+            358,
+            367
+          ]
+        ],
+        "note": "Rough compact estate blocks around the separate housing-estate label, inside the wider Malomárok quarter. The local street grid and southern stream establish useful approximate limits."
+      },
+      {
+        "name": "Révdűlő",
+        "points": [
+          [
+            180,
+            445
+          ],
+          [
+            290,
+            412
+          ],
+          [
+            372,
+            440
+          ],
+          [
+            449,
+            485
+          ],
+          [
+            518,
+            513
+          ],
+          [
+            596,
+            512
+          ],
+          [
+            649,
+            554
+          ],
+          [
+            648,
+            686
+          ],
+          [
+            641,
+            817
+          ],
+          [
+            634,
+            970
+          ],
+          [
+            586,
+            1004
+          ],
+          [
+            492,
+            956
+          ],
+          [
+            415,
+            968
+          ],
+          [
+            346,
+            946
+          ],
+          [
+            265,
+            932
+          ],
+          [
+            170,
+            883
+          ],
+          [
+            164,
+            698
+          ],
+          [
+            157,
+            592
+          ]
+        ],
+        "note": "Approximate Danube-side residential fabric south of the Csurgó stream and around Rév utca, west of Fő út and north of the large Barátság estate context. Outer north/south transitions are rough estimates rather than observed complete quarter borders."
+      },
+      {
+        "name": "Tiszti lakótelep",
+        "points": [
+          [
+            1267,
+            2006
+          ],
+          [
+            1369,
+            2010
+          ],
+          [
+            1424,
+            2076
+          ],
+          [
+            1479,
+            2100
+          ],
+          [
+            1436,
+            2145
+          ],
+          [
+            1370,
+            2195
+          ],
+          [
+            1308,
+            2136
+          ],
+          [
+            1255,
+            2086
+          ],
+          [
+            1225,
+            2064
+          ]
+        ],
+        "clipParent": "Alag",
+        "evidenceUrls": [
+          "https://utcak-magyarorszag.openalfa.com/utcak/janek-geza-utca-tiszti-lakotelep-dunakeszi",
+          "https://utcak-magyarorszag.openalfa.com/utcak/keszthelyi-istvan-utca-tiszti-lakotelep-dunakeszi"
+        ],
+        "note": "Rough estate footprint around Janek Géza, Keszthelyi István, Shejbal József, Nyereg and Pejachevich streets, south of Fóti út. The too-large 638000 m² diagnostic cell was rejected because it also includes riding/open land."
+      },
+      {
+        "name": "Toldi-lakópark",
+        "candidate": "candidate:80",
+        "note": "Actual compact closed estate street cell near Toldi utca, distinct from adjacent Dombliget and the wider Alag quarter."
+      },
+      {
+        "name": "Tóváros",
+        "points": [
+          [
+            1378,
+            1410
+          ],
+          [
+            1457,
+            1456
+          ],
+          [
+            1533,
+            1531
+          ],
+          [
+            1600,
+            1585
+          ],
+          [
+            1667,
+            1646
+          ],
+          [
+            1374,
+            1718
+          ],
+          [
+            1286,
+            1658
+          ],
+          [
+            1317,
+            1569
+          ]
+        ],
+        "clipParent": "Tóváros (Barackos)",
+        "note": "Rough developed residential portion around the Tóváros label and Kossuth Lajos út, constrained by the retained native Tóváros (Barackos) outline. Does not blindly duplicate the complete wider source parent."
+      }
+    ]
+  }
+}

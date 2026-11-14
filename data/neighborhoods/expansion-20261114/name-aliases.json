@@ -481,6 +481,31 @@
         "data/neighborhoods/expansion-20261114/major-city-maps/evidence/gyor-crosswalk.json",
         "https://gyor.hu/easy-docs/5dc9829cb6d4c"
       ]
+    },
+    {
+      "municipality": "Kecskemét",
+      "name": "Úrihegy",
+      "aliases": [
+        "Űrhegy"
+      ],
+      "reason": "The archived Figure71 label plainly reads Úrihegy. Current literal OSM node984273243 also has name Úrihegy. This is not a newly discovered separate quarter.",
+      "evidence": [
+        "data/neighborhoods/expansion-20261114-next/small-remaining/kecskemet-alias-review.json",
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ]
+    },
+    {
+      "municipality": "Kecskemét",
+      "name": "Kecskeméti Katonai Repülőtér",
+      "aliases": [
+        "Repülőtér",
+        "MH 59. Szentgyörgyi Dezső Repülőbázis"
+      ],
+      "reason": "Figure71 explicitly labels its yellow northeastern airfield polygon Repülőtér; it is east of Hunyadiváros/Ceglédi út and north of Szentistvánváros/Szolnokihegy. Matkó is separately shown far to the south. Applying the existing rough source-map registration places this printed label inside the exact current military-airfield polygon. The binding is contextual, not a statement that the old and current polygon edges coincide.",
+      "evidence": [
+        "data/neighborhoods/expansion-20261114-next/small-remaining/kecskemet-alias-review.json",
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ]
     }
   ]
 }

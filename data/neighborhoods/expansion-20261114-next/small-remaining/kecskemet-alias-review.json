@@ -1,0 +1,65 @@
+{
+  "municipality": "Kecskemét",
+  "reviews": [
+    {
+      "referenceName": "Űrhegy",
+      "canonicalName": "Úrihegy",
+      "decision": "reference_transcription_error",
+      "evidence": "The archived Figure71 label plainly reads Úrihegy. Current literal OSM node984273243 also has name Úrihegy. This is not a newly discovered separate quarter.",
+      "sourceMapPath": "data/neighborhoods/expansion-20261114/debrecen/figure71-p138-xref164.png",
+      "sourceMapSha256": "ac8e7a992d4132ff3dc391279bb0a21d8fa02247587741c9b3bbc51927e344c5",
+      "cropPath": "data/neighborhoods/expansion-20261114-next/small-remaining/kecskemet-urihegy-source-crop.png",
+      "cropOriginalPixelBounds": [
+        390,
+        260,
+        560,
+        380
+      ],
+      "sourceUrl": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+      "sourcePdfPage": 138,
+      "sourceFigure": 71,
+      "namePointUrl": "https://www.openstreetmap.org/node/984273243"
+    },
+    {
+      "referenceName": "Repülőtér",
+      "canonicalName": "Kecskeméti Katonai Repülőtér",
+      "otherSameFacilityName": "MH 59. Szentgyörgyi Dezső Repülőbázis",
+      "decision": "same_source_mapped_facility_alias",
+      "evidence": "Figure71 explicitly labels its yellow northeastern airfield polygon Repülőtér; it is east of Hunyadiváros/Ceglédi út and north of Szentistvánváros/Szolnokihegy. Matkó is separately shown far to the south. Applying the existing rough source-map registration places this printed label inside the exact current military-airfield polygon. The binding is contextual, not a statement that the old and current polygon edges coincide.",
+      "sourceFigure": 71,
+      "sourcePdfPage": 138,
+      "sourceMapPath": "data/neighborhoods/expansion-20261114/debrecen/figure71-p138-xref164.png",
+      "cropPath": "data/neighborhoods/expansion-20261114-next/small-remaining/kecskemet-airport-source-crop.png",
+      "cropOriginalPixelBounds": [
+        740,
+        255,
+        925,
+        390
+      ],
+      "mapRegistrationPath": "data/neighborhoods/expansion-20261114/debrecen/rural-registration.json",
+      "labelMeasured1000pxPreviewCoordinate": [
+        645,
+        254
+      ],
+      "approxLabelCoordinateWgs84": [
+        19.74823602494711,
+        46.918365603641874
+      ],
+      "labelWithinCurrentNamedMilitaryAirfield": true,
+      "currentNamedAirfieldSourceUrl": "https://www.openstreetmap.org/relation/2763405",
+      "currentNamedAirfieldTags": {
+        "CLC:id": "HU-24368",
+        "CLC:year": "2006",
+        "aerodrome:type": "military",
+        "aeroway": "aerodrome",
+        "icao": "LHKE",
+        "landuse": "military",
+        "military": "airfield",
+        "name": "Kecskeméti Katonai Repülőtér",
+        "name:mk": "Воен аеродром Кечкемет",
+        "source": "CLC_HUN"
+      },
+      "sourceUrl": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+    }
+  ]
+}

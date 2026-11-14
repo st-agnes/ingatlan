@@ -1,0 +1,99 @@
+{
+  "status": "final_frozen",
+  "featureCount": 10,
+  "municipalities": {
+    "Debrecen": 1,
+    "Gyula": 4,
+    "Salgótarján": 2,
+    "Hódmezővásárhely": 3
+  },
+  "methods": {
+    "rough_street_map_partition_estimate": 2,
+    "source_polygon": 1,
+    "named_source_footprint": 7
+  },
+  "radiusFallbackCount": 0,
+  "validPolygonCount": 10,
+  "uniqueMunicipalityNameCount": 10,
+  "unresolvedCount": 3,
+  "aliasReferenceCorrections": [
+    "Kecskemét:Űrhegy→Úrihegy",
+    "Kecskemét:Repülőtér→Kecskeméti Katonai Repülőtér"
+  ],
+  "sourceContext": {
+    "source-areas.geojson.gz": {
+      "featureCount": 4859,
+      "sha256": "9329262c571ec221f9f2e525b8adca79eab2d64646a542772f1a7fc42a03e160"
+    },
+    "source-roads.geojson.gz": {
+      "featureCount": 18413,
+      "sha256": "bfb74282ab10eca5a9b520d7c75ac41c943a91fa9eccd99e9eaec1bdc2eceb6c"
+    },
+    "source-buildings.geojson.gz": {
+      "featureCount": 578,
+      "sha256": "b9e9afc7b68f2decba65c3af93088bb4e534a0f114589e04e74e569d991cb638"
+    },
+    "source-name-points.geojson": {
+      "featureCount": 260,
+      "sha256": "0bd425b44648a56930c1713437e7a83077de2014bf20aefed18b65a49b68e02c"
+    }
+  },
+  "derivedFrom": [
+    "feszek-features.geojson",
+    "rural-features.geojson",
+    "kincsestelep-features.geojson"
+  ],
+  "outputSha256": "eb7776fd7134a96b447c3839dd1b34e536e1221f5f5aa9904d4ba49a801f4bc2",
+  "names": [
+    {
+      "municipality": "Debrecen",
+      "name": "Fészek lakópark",
+      "areaSquareMetres": 61754.5
+    },
+    {
+      "municipality": "Gyula",
+      "name": "Mályvádi Őstölgyes",
+      "areaSquareMetres": 15062.7
+    },
+    {
+      "municipality": "Gyula",
+      "name": "Dénesmajor",
+      "areaSquareMetres": 336308.6
+    },
+    {
+      "municipality": "Gyula",
+      "name": "Városerdő",
+      "areaSquareMetres": 239030.0
+    },
+    {
+      "municipality": "Gyula",
+      "name": "Mályvádi erdészkolónia",
+      "areaSquareMetres": 18037.1
+    },
+    {
+      "municipality": "Salgótarján",
+      "name": "Csókáspuszta",
+      "areaSquareMetres": 62430.4
+    },
+    {
+      "municipality": "Salgótarján",
+      "name": "Ponyipuszta",
+      "areaSquareMetres": 31220.8
+    },
+    {
+      "municipality": "Hódmezővásárhely",
+      "name": "Batida",
+      "areaSquareMetres": 212644.2
+    },
+    {
+      "municipality": "Hódmezővásárhely",
+      "name": "Szikáncs",
+      "areaSquareMetres": 479272.5
+    },
+    {
+      "municipality": "Hódmezővásárhely",
+      "name": "Kincsestelep",
+      "areaSquareMetres": 734742.8
+    }
+  ]
+}

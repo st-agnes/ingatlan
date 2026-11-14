@@ -1,0 +1,44 @@
+{
+  "featureCount": 26,
+  "byMunicipality": {
+    "Ajka": 8,
+    "Szentes": 11,
+    "Baja": 7
+  },
+  "method": "map_road_grid_inferred_area",
+  "radiusFallbackCount": 0,
+  "voronoiCount": 0,
+  "wholeCityCopiedAsChildCount": 0,
+  "retainedMunicipalTextCircuitGuidedCount": 3,
+  "outputFiles": [
+    {
+      "path": "ajka-features.geojson",
+      "count": 8,
+      "sha256": "7ffaea7588e4ce14bbd4945377b0c81f3ec65b4cfc0be4a8da2869d40b50f048"
+    },
+    {
+      "path": "szentes-features.geojson",
+      "count": 11,
+      "sha256": "1fa1e21a71a468ca268275076a78774a300175105fb4674b8ea0225ec1ccbe52"
+    },
+    {
+      "path": "baja-features.geojson",
+      "count": 7,
+      "sha256": "aa700758e119a1e34a8c066a2fb9e859e6d27b086a9c7855781f915eccc4def2"
+    }
+  ],
+  "validation": {
+    "allStructurallyValid": true,
+    "scopedNamesUnique": true,
+    "savedPointContainedCount": 26,
+    "pointContainmentIsNotIndependentAccuracyValidation": true,
+    "allOutputBytesReproduced": true,
+    "topologyRepairAppliedCount": 0
+  },
+  "remainingNamedParentGroupsNotFabricated": [
+    "Ajka: Bakonygyepes (Ajkarendekkel)",
+    "Ajka: Belváros (Lakóteleppel és Szőlőheggyel)",
+    "Ajka: Bódé (Csingerrel, Csikólegelővel és Iparteleppel)"
+  ],
+  "integration": "Research dataset only; root controls catalogue intake and GitHub checkpoint."
+}
