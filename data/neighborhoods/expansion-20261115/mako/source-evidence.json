@@ -1,0 +1,108 @@
+{
+  "collectionDate": "2026-11-15",
+  "sourcePbf": {
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "snapshot": "2026-11-12T21:23:05Z",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "sources": [
+    {
+      "path": "data/neighborhoods/expansion-20261115/downloaded-sources/mako-fvs2024.pdf",
+      "url": "https://mako.hu/wp-content/uploads/2024/04/melleklet-fvs-mako-0706-fin-30.pdf",
+      "sha256": "3c8f3bf050e175a0d887bcf9ba0315b3386168b4335275feb3551717ed6a34d0",
+      "bytes": 7138788,
+      "pdfPages": [
+        282,
+        283,
+        284
+      ],
+      "role": "Eight genuine municipal source-group outlines and named group description"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115/downloaded-sources/mako-historic-museum-study.pdf",
+      "url": "https://epa.oszk.hu/01600/01609/00016/pdf/MFME_EPA01609_1972_1973_1_041-081.pdf",
+      "sha256": "a577b95d153d1904318a3889928edba8777f194468c34787216274b79d900b83",
+      "bytes": 4906137,
+      "pdfPages": [
+        40,
+        41
+      ],
+      "role": "Actual historical town-quarter and rural district maps; figure30 on PDFp40/printedp79 supplies17 populated footprints"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115/downloaded-sources/mako-heritage2021.pdf",
+      "url": "https://mako.hu/wp-content/uploads/2021/12/06-oroksegvedelmi-hatastanulmany.pdf",
+      "sha256": "200e5595999496959cec837ace08dc31970f322f38360f8e37a6cb222463b5a4",
+      "bytes": 62457452,
+      "pdfPages": [
+        16
+      ],
+      "role": "Primary municipal historical/road description for minor neighbourhood identities"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115/downloaded-sources/mako-planning2019.pdf",
+      "url": "https://mako.hu/wp-content/uploads/2019/06/04-tszt-alatamaszto-munkareszek.pdf",
+      "sha256": "690e024e1d5d925b286085c5bc8c97552f0f2d23418c47df2960addd72d43de1",
+      "bytes": 23894908,
+      "pdfPages": [
+        7,
+        8,
+        64,
+        70
+      ],
+      "role": "Retained contextual planning source; not relabelled land-use polygons as whole quarters"
+    }
+  ],
+  "localGeometrySources": [
+    {
+      "path": "source-areas.geojson.gz",
+      "sha256": "2966a92fe3008a78dfcd195f9578c639c4d37a084f678d4e1cd46279b6d8b577",
+      "bytes": 190988
+    },
+    {
+      "path": "source-municipality.geojson.gz",
+      "sha256": "d9403ea7ac12f175915e6276252cd698f9e2195e3691ef2fde6d0332b821a7af",
+      "bytes": 2794
+    },
+    {
+      "path": "source-points.geojson.gz",
+      "sha256": "dae7e59aff964b0c2cde797c95e312d29d773fc626843799f4c1c6387ef09c94",
+      "bytes": 2271
+    },
+    {
+      "path": "source-roads.geojson.gz",
+      "sha256": "6fae782a2d3a5819d9b49007d8eb64efbebd467d7ab11ce073e16e436ac98e27",
+      "bytes": 155445
+    }
+  ],
+  "sourceSelection": {
+    "roadsAndSurfaces": "Focused pinned-PBF extraction: complete ways whose first node is inside20.43–20.53E/46.18–46.25N. Actual highway/rail/water lines and closed land-use/building surfaces; no circle or artificial closure. Source ways retain IDs, tags, nodes, versions and timestamp.",
+    "pointsAndMunicipality": "Existing country-osm archive; source containment already identifies Makó."
+  },
+  "completeModernQuarterAccuracyClaimed": false,
+  "originalImages": [
+    {
+      "path": "fvs-p282-image1.jpeg",
+      "sha256": "756121b32fa57c382ed73408ab23e34a03ca39282b49aa0d3dd5536964f11e92"
+    },
+    {
+      "path": "historic-p40-image0.jpeg",
+      "sha256": "fad765c8f2d7beb731c6af8c2db07951b85684b93d088c680477f1c53840e5e5"
+    },
+    {
+      "path": "historic-p41-image0.jpeg",
+      "sha256": "25c68569fd55ba34973ba7434d412ca9a5ec8ca5eb2db4b35d7556fb6e06ba61"
+    }
+  ],
+  "museumSourceImage": {
+    "originalPdfImageXref": 117,
+    "sizePixels": [
+      974,
+      1418
+    ],
+    "sourcePrintedPage": 79,
+    "sourcePdfPage": 40,
+    "figure": 30
+  }
+}

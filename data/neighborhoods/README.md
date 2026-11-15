@@ -2,7 +2,7 @@
 
 **Az új gyűjtési stratégia aktuális, összevont állománya:** [kereshető területek és poligonok](search-areas.geojson), [településenkénti darabszámok](search-areas-report.csv), [MySQL-import](search-areas.mysql.sql.gz). A név szerint egyesített állomány gépi határokat, térképi becsléseket és átfedő felosztásokat is tartalmaz. A mindenkori pontos darabszám a [gépi jelentésben](search-areas-report.json) található.
 
-**Legutóbbi mentés: 3724 kereshető terület 567 településről**, kör alapú pótlás nélkül. Külön tartalékrétegben 557 pontból becsült kör marad. [Letölthető teljes adatcsomag](../../downloads/neighborhoods/otthonra-keresheto-varosreszek.zip).
+**Legutóbbi mentés: 3771 kereshető terület 567 településről**, kör alapú pótlás nélkül. Külön tartalékrétegben 510 pontból becsült kör marad. [Letölthető teljes adatcsomag](../../downloads/neighborhoods/otthonra-keresheto-varosreszek.zip).
 
 - [Új adatmodell, névazonosság, forrásválasztás és importálás](../../docs/NEIGHBORHOOD-SEARCH-DATA.md)
 - [A november 15-i folytatás forrásai, becslési korlátai és állapota](expansion-20261115/README.md)

@@ -5,9 +5,9 @@
   "summary": {
     "knownNameCount": 4312,
     "municipalitiesWithKnownNames": 618,
-    "namesWithCollectedPolygon": 3724,
+    "namesWithCollectedPolygon": 3771,
     "namesWithKnownPoint": 3487,
-    "pointOnlyNames": 557,
+    "pointOnlyNames": 510,
     "unlocatedUncollectedNames": 31,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
@@ -70081,10 +70081,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:0c9c14de622aadcb6fc97b70",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70106,10 +70113,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:b693784d4decd6bd715caf9d",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70131,10 +70145,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:017c4eea161276acb9b1175e",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70156,10 +70177,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:c3666d7de931b670f5af7126",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70181,10 +70209,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:c87e8fa1a1f5466e2c6fae1e",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70206,10 +70241,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:aa048b500fb2c2af76d838de",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70231,10 +70273,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:6cb07aa86363478b79507de0",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70256,10 +70305,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:15a0b67e7ad2a92d536f10a0",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70281,10 +70337,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:10169b7bfbca03720a7057b4",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70306,10 +70369,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:00367c34c401aca299894d7b",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70331,10 +70401,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:657b262aaf3ba577642ba964",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70356,10 +70433,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:f8edc2cb7d27a016bd3a402b",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70381,10 +70465,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:b5e75b5f8eea9e9a82bef9fe",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70406,10 +70497,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:48de9b3fc62eff3fa8ea3381",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70431,10 +70529,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:61334a3eecaac02a61492a66",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70456,10 +70561,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:b4b17172f355d293cc569aab",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70481,10 +70593,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:89e8ab163474a4a2287adda4",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70506,10 +70625,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:378d77a39e48f631130291cd",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70531,10 +70657,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:b20e0b9f098fff16e591139d",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70556,10 +70689,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7d450e3e0d29c9a7a38a980d",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70581,10 +70721,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:6ab5356512eaba02b3559986",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70606,10 +70753,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:2c32e93436f79d991cbcc5cf",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70631,10 +70785,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:b66b7cce1797f2538e55d949",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70656,10 +70817,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:56f22e278a9f70c0802c8c8b",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70681,10 +70849,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:c3c1545cf7dbb06f79edf0c0",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70706,10 +70881,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:4118c16a64ddf9abe7b13a01",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70731,10 +70913,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:88714591190e79c604c1d4f7",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70756,10 +70945,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:385b8e7980295a5ffd400bba",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70781,10 +70977,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:5857d95adb3ac7a1955a2c5d",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70806,10 +71009,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9c210d446b3496f8575a7035",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70831,10 +71041,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:e119a9372d50296944079f3f",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70856,10 +71073,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:c5805bbc37c1d0e859b029c0",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70881,10 +71105,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:fc91974c9a66059436392ca0",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Makó",
@@ -70910,7 +71141,7 @@
         {
           "sourceId": "neighborhood:162f5e81b99de7a1221a99ad",
           "sourceFile": "data/neighborhoods/search-areas.geojson",
-          "method": "named_source_footprint",
+          "method": "map_or_text_estimate",
           "estimated": true
         }
       ],
@@ -76183,10 +76414,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:2baef1252f3b45a9b2f542cd",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -76234,10 +76472,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:b8c348adaef27bc10254e220",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -76259,10 +76504,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:5c6659f2d530ee02abe85239",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -76316,10 +76568,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:2388a500b7b640fc0e558e13",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -76341,10 +76600,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:84094bdd9561f9f4708a0396",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -76366,10 +76632,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:5c323e015a69e54e2d15ed71",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -76391,10 +76664,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7f54ccb108c5920891e22e52",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -76416,10 +76696,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:33e9873d9a6f0db63b87800b",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -76441,10 +76728,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:3e407572be5bc3ba80ddc518",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -76466,10 +76760,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:54fdb0ef94f46df0e6644f62",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -76491,10 +76792,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:22aa4850224aed70b84fe643",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -76516,10 +76824,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9e8197b869c42ae60b5fea66",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -76541,10 +76856,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7f0198552407b2420dbc45e0",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -76566,10 +76888,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:544ddd2406dd38492f1701de",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "map_or_text_estimate",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mosonszentmiklós",
@@ -101393,7 +101722,7 @@
         {
           "sourceId": "neighborhood:731f5836eeb364ee8b301139",
           "sourceFile": "data/neighborhoods/search-areas.geojson",
-          "method": "named_source_footprint",
+          "method": "map_or_text_estimate",
           "estimated": true
         }
       ],

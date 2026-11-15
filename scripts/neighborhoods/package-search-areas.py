@@ -17,6 +17,8 @@ def contents():
     files={'data/neighborhoods/'+name:(DATA/name).read_bytes() for name in FILES}
     for state in sorted(DATA.glob('expansion-*/WORK-STATE.json')):
         files['data/neighborhoods/'+str(state.relative_to(DATA))]=state.read_bytes()
+        note=state.parent/'README.md'
+        if note.exists():files['data/neighborhoods/'+str(note.relative_to(DATA))]=note.read_bytes()
     files['docs/NEIGHBORHOOD-SEARCH-DATA.md']=(ROOT/'docs/NEIGHBORHOOD-SEARCH-DATA.md').read_bytes()
     report=json.loads(files['data/neighborhoods/search-areas-report.json'])
     note=f'''Otthonra – kereshető városrészek és területek

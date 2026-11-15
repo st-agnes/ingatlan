@@ -7,7 +7,7 @@
     "municipalities": 509,
     "fallbackCircles": 1869
   },
-  "status": "collecting_and_checkpointing",
+  "status": "checkpoint_complete_national_collection_incomplete",
   "tasks": [
     {
       "id": "budapest",
@@ -46,22 +46,22 @@
   "resume": "Preserve completed packets; register their GeoJSON paths and SHA256 in expansion-20261114/input-registry.json, run build-search-areas.py --update-identities, refresh inventory/fallbacks and package, validate, commit and push. Continue the remaining priority-city names; national collection is not complete.",
   "completeNationalCoverage": false,
   "latestCheckpoint": {
-    "featureCount": 3724,
+    "featureCount": 3771,
     "municipalityCount": 567,
     "methods": {
-      "map_or_text_estimate": 974,
-      "named_source_footprint": 2103,
+      "map_or_text_estimate": 997,
+      "named_source_footprint": 2127,
       "source_map_polygon": 168,
       "source_polygon": 479
     },
-    "duplicateVariantsPreserved": 343
+    "duplicateVariantsPreserved": 345
   },
   "knownNameInventory": {
     "knownNameCount": 4312,
     "municipalitiesWithKnownNames": 618,
-    "namesWithCollectedPolygon": 3724,
+    "namesWithCollectedPolygon": 3771,
     "namesWithKnownPoint": 3487,
-    "pointOnlyNames": 557,
+    "pointOnlyNames": 510,
     "unlocatedUncollectedNames": 31,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
@@ -69,8 +69,8 @@
       90
     ]
   },
-  "newAreasNet": 1457,
-  "fallbackCircleReduction": 1312,
+  "newAreasNet": 1504,
+  "fallbackCircleReduction": 1359,
   "baselineCommit": "50988ce52abd3bbd010f1383d94c03f08b3f4c87",
   "nextPriorityCities": [
     {

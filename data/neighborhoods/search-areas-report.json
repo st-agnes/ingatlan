@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
   "policyVersion": "20261114-throughput",
-  "featureCount": 3724,
+  "featureCount": 3771,
   "municipalityCount": 567,
   "methods": {
-    "map_or_text_estimate": 974,
-    "named_source_footprint": 2103,
+    "map_or_text_estimate": 997,
+    "named_source_footprint": 2127,
     "source_map_polygon": 168,
     "source_polygon": 479
   },
-  "inputFeatureCount": 4067,
-  "duplicateVariantsPreserved": 343,
-  "duplicateNameGroups": 322,
+  "inputFeatureCount": 4116,
+  "duplicateVariantsPreserved": 345,
+  "duplicateNameGroups": 324,
   "rejectedTechnicalRecords": [],
   "completeNationalCoverage": false,
   "nationalCoveragePercentage": null,
@@ -85,7 +85,10 @@
     "data/neighborhoods/expansion-20261115/szombathely/features.geojson": "b9e57f5785da3d4c730cef8b636ef10d305d3aa6f6f14b5db36ab73cdb58a37c",
     "data/neighborhoods/expansion-20261115/ozd-szekszard/features.geojson": "174ae1be05329f1dfa654bb60813af4511810bffe3de333ddfe16fe8e92cbd11",
     "data/neighborhoods/expansion-20261115/nyiregyhaza/features.geojson": "1fe8fb5fef738236a160cb8a17912d9d23892b873b4501ba109772320619e568",
-    "data/neighborhoods/search-area-identities.json": "df5557855a1ae09badd70da79a89b6ba12c6c5a8256a59ed00cf791986fbead2"
+    "data/neighborhoods/expansion-20261115/mosonmagyarovar/features.geojson": "f1d506a82cca685d4f594aa81662ac3ee5475419d70fb4363400e9918b2c2c89",
+    "data/neighborhoods/expansion-20261115/mako/features.geojson": "59d8742a58fe3ec9a5f35b85bd93c2ee236008caec5dcb8b1f8502539028e9b6",
+    "data/neighborhoods/expansion-20261115/szekszard-csorge/features.geojson": "05514ac97e5202b6d54077d9b28814a312fdec86baa836c46f3dc71bc9f2366c",
+    "data/neighborhoods/search-area-identities.json": "0ffb6f5313b8973590ba0c6f41e65718461de02884a2769386510366bf161e4e"
   },
   "selectionOrder": [
     "OSM administrative named boundary",
@@ -2140,9 +2143,10 @@
     },
     {
       "municipality": "Makó",
-      "count": 1,
+      "count": 34,
       "methods": {
-        "named_source_footprint": 1
+        "map_or_text_estimate": 8,
+        "named_source_footprint": 26
       }
     },
     {
@@ -2276,8 +2280,9 @@
     },
     {
       "municipality": "Mosonmagyaróvár",
-      "count": 1,
+      "count": 15,
       "methods": {
+        "map_or_text_estimate": 14,
         "named_source_footprint": 1
       }
     },
@@ -3151,8 +3156,8 @@
       "municipality": "Szekszárd",
       "count": 16,
       "methods": {
-        "map_or_text_estimate": 9,
-        "named_source_footprint": 7
+        "map_or_text_estimate": 10,
+        "named_source_footprint": 6
       }
     },
     {
@@ -4147,5 +4152,5 @@
     }
   ],
   "retiredIdentityCount": 11,
-  "outputGeojsonSha256": "eeff220b26f86b12df5133ab7b24f4cadec32dc6a53cfa8bef9a3e0554974629"
+  "outputGeojsonSha256": "e81d10c9f3213fbf9a3378b011c0f3ed0e7c6bc068cd8c8710296f1462fde83f"
 }

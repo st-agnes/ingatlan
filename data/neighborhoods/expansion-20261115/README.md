@@ -36,7 +36,7 @@ URL-eket is őrzünk, ezek nem bizonyítják egy forrás végleges elérhetetlen
 Egy névhez gyűjtött poligon nem feltétlenül fedi a teljes városrészt.
 Az úthálózati cellák kisebb tömbcsoportok lehetnek; egyes külterületi neveknél
 csak a ténylegesen térképezett tanyaudvarok beépített felszíne ismert.
-Ezek `estimated`, `lowConfidence`, illetve `partialSourceFootprint` vagy
+Ezek `estimated`, `lowConfidence` vagy `confidence: low`, illetve `partialSourceFootprint` vagy
 `partialSettlementFootprint` jelölést kapnak. A fő export megőrzi ezeket a
 `sourceProperties` mezőben, a forrásokkal és az egyedi indokolással együtt.
 Az ismert névjegyzék feldolgozottsága ezért nem azonos a teljes országos

@@ -1,0 +1,674 @@
+{
+  "units": [
+    {
+      "name": "Gyöngyös-telep",
+      "id": "estimated:mosonmagyarovar:street:11587334152",
+      "method": "Estimated enclosing street block from archived OSM geometry of the named locality streets and adjacent through streets; polygonize this explicit street list and select the closed block containing the source name point.",
+      "sourceUrl": "https://www.openstreetmap.org/node/11587334152",
+      "supportingUrls": [
+        "https://www.mve1985.hu/images/CLLD/I_resz.pdf",
+        "https://www.movinnov.hu/docs/IVS-1.pdf"
+      ],
+      "sourceLineIds": [
+        "way/81033911",
+        "way/81033913",
+        "way/314640800",
+        "way/644960326"
+      ],
+      "sourcePeriod": "OSM snapshot 2026-11-12",
+      "approximationNote": "Rough local search envelope bounded by Halászi út, Várallyai György utca, Sólyom utca, Gyöngyös utca, Platán sor, Gazdász utca. These streets identify a recognizable block around the named locality; the full named estate/neighbourhood may span additional blocks. This is an explicit street-network interpretation, not an official boundary or a point-radius approximation.",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.2873155,
+              47.8847314
+            ],
+            [
+              17.2881302,
+              47.8841908
+            ],
+            [
+              17.288311,
+              47.8840708
+            ],
+            [
+              17.2893163,
+              47.8834211
+            ],
+            [
+              17.2895888,
+              47.8832436
+            ],
+            [
+              17.2894703,
+              47.8831692
+            ],
+            [
+              17.2860211,
+              47.8809969
+            ],
+            [
+              17.2858912,
+              47.8809146
+            ],
+            [
+              17.2856194,
+              47.8811253
+            ],
+            [
+              17.2846602,
+              47.8818109
+            ],
+            [
+              17.2839807,
+              47.8822694
+            ],
+            [
+              17.2839294,
+              47.8823383
+            ],
+            [
+              17.2839123,
+              47.8824622
+            ],
+            [
+              17.2839202,
+              47.8825686
+            ],
+            [
+              17.2839681,
+              47.8826512
+            ],
+            [
+              17.2855696,
+              47.8836496
+            ],
+            [
+              17.2873155,
+              47.8847314
+            ]
+          ]
+        ]
+      },
+      "roadsConsidered": [
+        "Halászi út",
+        "Várallyai György utca",
+        "Sólyom utca",
+        "Gyöngyös utca",
+        "Platán sor",
+        "Gazdász utca"
+      ]
+    },
+    {
+      "name": "Halászi úti lakótelep",
+      "id": "estimated:mosonmagyarovar:street:11587277364",
+      "method": "Estimated enclosing street block from archived OSM geometry of the named locality streets and adjacent through streets; polygonize this explicit street list and select the closed block containing the source name point.",
+      "sourceUrl": "https://www.openstreetmap.org/node/11587277364",
+      "supportingUrls": [
+        "https://www.mve1985.hu/images/CLLD/I_resz.pdf",
+        "https://www.movinnov.hu/docs/IVS-1.pdf"
+      ],
+      "sourceLineIds": [
+        "way/59511483",
+        "way/214458970",
+        "way/214458971",
+        "way/214458972",
+        "way/314640802",
+        "way/644960326"
+      ],
+      "sourcePeriod": "OSM snapshot 2026-11-12",
+      "approximationNote": "Rough local search envelope bounded by Halászi út, Gyöngyvirág utca, Csokonai Vitéz Mihály utca, Lehel utca, Kálnoki út, Tündérfátyol utca, Szellőrózsa utca. These streets identify a recognizable block around the named locality; the full named estate/neighbourhood may span additional blocks. This is an explicit street-network interpretation, not an official boundary or a point-radius approximation.",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.2888351,
+              47.881992
+            ],
+            [
+              17.2897406,
+              47.8802098
+            ],
+            [
+              17.2897945,
+              47.8800789
+            ],
+            [
+              17.2898103,
+              47.8799793
+            ],
+            [
+              17.2897857,
+              47.8798796
+            ],
+            [
+              17.2896451,
+              47.8796085
+            ],
+            [
+              17.2891846,
+              47.8787049
+            ],
+            [
+              17.2887683,
+              47.8777941
+            ],
+            [
+              17.2887347,
+              47.877725
+            ],
+            [
+              17.2886435,
+              47.8775981
+            ],
+            [
+              17.2884554,
+              47.87745
+            ],
+            [
+              17.2883129,
+              47.8773783
+            ],
+            [
+              17.2880039,
+              47.8772245
+            ],
+            [
+              17.2871016,
+              47.8768245
+            ],
+            [
+              17.28605,
+              47.8763456
+            ],
+            [
+              17.2845442,
+              47.8756577
+            ],
+            [
+              17.2843585,
+              47.8755731
+            ],
+            [
+              17.2840841,
+              47.8758349
+            ],
+            [
+              17.2836481,
+              47.8762508
+            ],
+            [
+              17.283344,
+              47.8765409
+            ],
+            [
+              17.2826971,
+              47.8771677
+            ],
+            [
+              17.2826399,
+              47.8772231
+            ],
+            [
+              17.2818979,
+              47.877942
+            ],
+            [
+              17.2815757,
+              47.8782755
+            ],
+            [
+              17.2811732,
+              47.8786499
+            ],
+            [
+              17.2810472,
+              47.878819
+            ],
+            [
+              17.2810038,
+              47.8789178
+            ],
+            [
+              17.2809865,
+              47.879025
+            ],
+            [
+              17.2809847,
+              47.8791186
+            ],
+            [
+              17.2809911,
+              47.8791632
+            ],
+            [
+              17.2812846,
+              47.8791064
+            ],
+            [
+              17.2815859,
+              47.8790643
+            ],
+            [
+              17.2820678,
+              47.8790614
+            ],
+            [
+              17.2822991,
+              47.8790767
+            ],
+            [
+              17.2825324,
+              47.8791062
+            ],
+            [
+              17.2829154,
+              47.879192
+            ],
+            [
+              17.2830374,
+              47.8792262
+            ],
+            [
+              17.2832137,
+              47.8792885
+            ],
+            [
+              17.2834234,
+              47.8793757
+            ],
+            [
+              17.2836113,
+              47.8794835
+            ],
+            [
+              17.2845525,
+              47.8800696
+            ],
+            [
+              17.2846332,
+              47.880121
+            ],
+            [
+              17.2858912,
+              47.8809146
+            ],
+            [
+              17.2860211,
+              47.8809969
+            ],
+            [
+              17.2894703,
+              47.8831692
+            ],
+            [
+              17.2895261,
+              47.8831004
+            ],
+            [
+              17.2899006,
+              47.8826445
+            ],
+            [
+              17.2897744,
+              47.8825664
+            ],
+            [
+              17.2895883,
+              47.8824543
+            ],
+            [
+              17.2888351,
+              47.881992
+            ]
+          ]
+        ]
+      },
+      "roadsConsidered": [
+        "Halászi út",
+        "Gyöngyvirág utca",
+        "Csokonai Vitéz Mihály utca",
+        "Lehel utca",
+        "Kálnoki út",
+        "Tündérfátyol utca",
+        "Szellőrózsa utca"
+      ]
+    },
+    {
+      "name": "Manninger János lakótelep",
+      "id": "estimated:mosonmagyarovar:road-estate:Manninger János lakótelep",
+      "method": "Explicitly estimated envelope of the archived named estate street network: convex hull of the source vertices of the documented/identified local estate streets; no neighbourhood-point buffer or Voronoi construction.",
+      "sourceUrl": "https://njt.jog.gov.hu/jogszabaly/2017-42-SP-5Y3437.3",
+      "supportingUrls": [
+        "https://www.openstreetmap.org/node/3187630933"
+      ],
+      "sourceLineIds": [
+        "way/83423090",
+        "way/83423093",
+        "way/83423095",
+        "way/1232146747"
+      ],
+      "sourcePeriod": "2021 city-history context and OSM snapshot 2026-11-12",
+      "approximationNote": "The municipal townscape ordinance separately names Manninger lakótelep as a housing estate. The estimate uses the envelope of the four source road ways explicitly carrying the full estate name. It is a coarse interior estate extent, not the larger surrounding block also containing the Móra locality. Straight segments between the outer source street vertices are an estimate, not surveyed estate boundaries.",
+      "roadsConsidered": [
+        "Manninger János lakótelep"
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.2724141,
+              47.8685682
+            ],
+            [
+              17.2717266,
+              47.8698472
+            ],
+            [
+              17.2714372,
+              47.8704498
+            ],
+            [
+              17.2731592,
+              47.8697681
+            ],
+            [
+              17.2733268,
+              47.8694163
+            ],
+            [
+              17.2724141,
+              47.8685682
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Móra Ferenc-lakótelep",
+      "id": "estimated:mosonmagyarovar:road-estate:Móra Ferenc-lakótelep",
+      "method": "Explicitly estimated envelope of the archived named estate street network: convex hull of the source vertices of the documented/identified local estate streets; no neighbourhood-point buffer or Voronoi construction.",
+      "sourceUrl": "https://njt.jog.gov.hu/jogszabaly/2019-33-SP-5Y3437.0",
+      "supportingUrls": [
+        "https://www.openstreetmap.org/node/11587440434"
+      ],
+      "sourceLineIds": [
+        "way/83423720",
+        "way/83423724",
+        "way/83423729"
+      ],
+      "sourcePeriod": "2021 city-history context and OSM snapshot 2026-11-12",
+      "approximationNote": "Municipal street/constituency documentation names Móra Ferenc lakótelep separately. The three internal estate-named road ways define this coarse envelope. The source neighbourhood label lies north-west of these named estate roads; it is not used to stretch the geometry into the separately named Manninger estate. Buildings outside the internal road envelope may be omitted. Straight segments between the outer source street vertices are an estimate, not surveyed estate boundaries.",
+      "roadsConsidered": [
+        "Móra Ferenc lakótelep"
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.2742563,
+              47.8677796
+            ],
+            [
+              17.2739009,
+              47.8685432
+            ],
+            [
+              17.2744919,
+              47.8689285
+            ],
+            [
+              17.2759142,
+              47.8692384
+            ],
+            [
+              17.2773472,
+              47.8695397
+            ],
+            [
+              17.2775009,
+              47.8692912
+            ],
+            [
+              17.2776394,
+              47.8689941
+            ],
+            [
+              17.2778204,
+              47.8685053
+            ],
+            [
+              17.277097,
+              47.8683488
+            ],
+            [
+              17.2742563,
+              47.8677796
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Duna lakópark",
+      "id": "estimated:mosonmagyarovar:road-estate:Duna lakópark",
+      "method": "Explicitly estimated envelope of the archived named estate street network: convex hull of the source vertices of the documented/identified local estate streets; no neighbourhood-point buffer or Voronoi construction.",
+      "sourceUrl": "https://www.mve1985.hu/images/CLLD/I_resz.pdf",
+      "supportingUrls": [
+        "https://mosonvarmegye.net/hirek/hetvezer-ut-es-cirbolya-koz",
+        "https://www.openstreetmap.org/node/3354084134"
+      ],
+      "sourceLineIds": [
+        "way/217335119",
+        "way/217336894",
+        "way/217336896",
+        "way/217337365",
+        "way/217337367",
+        "way/217338094",
+        "way/217338095",
+        "way/217415676",
+        "way/217415678",
+        "way/263626476",
+        "way/581214129",
+        "way/581214131",
+        "way/581214463",
+        "way/1235232827",
+        "way/1235259130",
+        "way/1294833353",
+        "way/1294834954",
+        "way/1294834955",
+        "way/1294834956",
+        "way/1294834957",
+        "way/1294835862",
+        "way/1294835863",
+        "way/1294835864",
+        "way/1294835865",
+        "way/1294835866",
+        "way/1294835869",
+        "way/1355255781",
+        "way/1525305291",
+        "way/1525305292",
+        "way/1525305293",
+        "way/1525305294",
+        "way/1525305295",
+        "way/1525309033"
+      ],
+      "sourcePeriod": "2021 city-history context and OSM snapshot 2026-11-12",
+      "approximationNote": "The 2021 city history identifies Duna lakópark as a separate northern extension of Majorok; the local municipal-news report explains that its streets take the names of Hungarian monarchs and historical figures. The envelope of this explicit, locally connected estate street set estimates the built estate rather than copying the entire Majorok quarter. Parcel edges and later phases are not resolved. Straight segments between the outer source street vertices are an estimate, not surveyed estate boundaries.",
+      "roadsConsidered": [
+        "Erzsébet királyné út",
+        "Konrád utca",
+        "Géza fejedelem utca",
+        "Bocskai István utca",
+        "Bethlen Gábor utca",
+        "Zsigmond király utca",
+        "Nagy Lajos király út",
+        "Zita királyné utca",
+        "Gizella királyné út",
+        "Zsófia királyné utca",
+        "Wathay Ferenc út",
+        "Károly Róbert út",
+        "Sőtér Ágost tér",
+        "Bornemissza Péter utca",
+        "Albert Kázmér utca",
+        "Akadémia tér"
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.290222,
+              47.8883021
+            ],
+            [
+              17.288619,
+              47.888334
+            ],
+            [
+              17.2844968,
+              47.8894479
+            ],
+            [
+              17.2834671,
+              47.8928069
+            ],
+            [
+              17.2853588,
+              47.8936393
+            ],
+            [
+              17.2905839,
+              47.8950911
+            ],
+            [
+              17.2988344,
+              47.892275
+            ],
+            [
+              17.3002062,
+              47.8897583
+            ],
+            [
+              17.2989424,
+              47.8895475
+            ],
+            [
+              17.2967231,
+              47.889226
+            ],
+            [
+              17.290222,
+              47.8883021
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Lajta lakókert",
+      "id": "estimated:mosonmagyarovar:road-estate:Lajta lakókert",
+      "method": "Explicitly estimated envelope of the archived named estate street network: convex hull of the source vertices of the documented/identified local estate streets; no neighbourhood-point buffer or Voronoi construction.",
+      "sourceUrl": "https://www.mve1985.hu/images/CLLD/I_resz.pdf",
+      "supportingUrls": [
+        "https://njt.jog.gov.hu/jogszabaly/2014-20-SP-5Y3437.3",
+        "https://www.mosonmagyarovar.hu/websites/www.mosonmagyarovar.hu/files/dokumentumok/telepulesrendezes/Telepulesfejlesztesi-eszkozok/2_FVS_Strategiai_munkaresz.pdf",
+        "https://www.openstreetmap.org/node/2692495938"
+      ],
+      "sourceLineIds": [
+        "way/59496683",
+        "way/61849873",
+        "way/61885457",
+        "way/61885949",
+        "way/80924503",
+        "way/83401682",
+        "way/187938497",
+        "way/193120314",
+        "way/263625688",
+        "way/263625689",
+        "way/263625690",
+        "way/313820067",
+        "way/313820069",
+        "way/331111915",
+        "way/671075345",
+        "way/671075361",
+        "way/1182581183",
+        "way/1237038117",
+        "way/1237038118",
+        "way/1237629553"
+      ],
+      "sourcePeriod": "2021 city-history context and OSM snapshot 2026-11-12",
+      "approximationNote": "The city history describes Lajta lakókert as the new housing quarter across the Lajta bridge from Mofém; the FVS identifies its Lomb utcai park. The envelope follows the connected small residential street set visible on the source map and archived OSM street plan. The Dohy and Háncs limits may include neighbouring plots; riverbank and parcel-side boundaries remain approximate. Straight segments between the outer source street vertices are an estimate, not surveyed estate boundaries.",
+      "roadsConsidered": [
+        "Háncs utca",
+        "Pázsit utca",
+        "Dohy János utca",
+        "Zsilip utca",
+        "Lomb utca",
+        "Inda utca",
+        "Kalász utca",
+        "Pacsirta utca",
+        "Sárvíz utca",
+        "Bokréta utca",
+        "Bryozoa utca",
+        "Venus utca"
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.2682516,
+              47.8806712
+            ],
+            [
+              17.2634464,
+              47.8819092
+            ],
+            [
+              17.257965,
+              47.8844032
+            ],
+            [
+              17.2578876,
+              47.8844592
+            ],
+            [
+              17.2577849,
+              47.8845772
+            ],
+            [
+              17.2571984,
+              47.8854485
+            ],
+            [
+              17.2572216,
+              47.8855156
+            ],
+            [
+              17.2593883,
+              47.8886704
+            ],
+            [
+              17.267585,
+              47.8858429
+            ],
+            [
+              17.2682981,
+              47.8844507
+            ],
+            [
+              17.2682516,
+              47.8806712
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

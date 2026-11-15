@@ -23,6 +23,15 @@ Az azonos helyet leíró alternatívák közül elsőbbséget kap az OSM köziga
 
 A névvel ellátott lakóterület, kerttelep vagy ipari felszín körvonala hasznos kereshető terület lehet, de nem feltétlenül fedi egy tágabb, azonos nevű köznyelvi városrész teljes kiterjedését. Ezért ezek a rekordok külön `named_source_footprint` módszerjelölést kapnak, és egy teljesebb térképi városrészhatár megelőzi őket.
 
+Az úthálózatból képzett zárt cellák csak néhány tömböt, a külterületi forrásfelszínek
+pedig esetenként csak a térképezett tanyaudvarokat fedik. Az új csomagok ezeknél
+`lowConfidence`/`confidence: low`, `partialSourceFootprint` vagy `partialSettlementFootprint`
+jelzőt és egyedi indokolást tárolnak a `sourceProperties` mezőben. Az ilyen
+poligonból kimaradó cím ezért még tartozhat a köznyelvi városrészhez. A névjegyzék
+feldolgozottságát és a teljes területi lefedettséget külön kell kezelni.
+Az elnevezési pont és a forrás szerinti határ eltérése szintén megmarad a
+metaadatokban; a geometriát nem tágítjuk pusztán a névpont befogadásához.
+
 ## Címvizsgálat és adatbázis
 
 A cím koordinátáját külön geokódolási lépés adja meg. Ez az állomány a koordináta területen belüliségét teszi vizsgálhatóvá; címadatbázist és geokódoló szolgáltatást nem tartalmaz. Egy cím több, egymást átfedő városrészhez is tartozhat.
@@ -60,3 +69,8 @@ python3 scripts/neighborhoods/package-search-areas.py --check
 Új forráscsomag vagy névváltozat felvétele után `python3 scripts/neighborhoods/build-search-areas.py --update-identities` menti az új névazonosságokat és újragenerálja az exportot. A tartós nyilvántartást az adatokkal együtt kell megőrizni. Az import előkészített állomány; tényleges MySQL-szerveren ebben a munkamenetben nem futtattuk.
 
 A források elfogadott kész csomagjait az `expansion-20261114/input-registry.json` SHA-256-tal rögzíti. A még feldolgozás alatt álló fájlok ezért nem változtatják meg észrevétlenül a kiadást. A részeredmények és a következő munkák az ugyanott tárolt `WORK-STATE.json` fájlban szerepelnek. Az országos teljes városrészszám továbbra sem ismert; az ismert névjegyzékek lefedése külön mérőszám, nem országos teljességi állítás.
+
+A november 15-i folytatás saját állapota és részletes módszertana:
+`data/neighborhoods/expansion-20261115/WORK-STATE.json`, illetve az ugyanott lévő
+`README.md`. A közös regisztert és stabil azonosítókat ez a gyűjtési kör is
+megtartja. A ZIP a gyűjtési körök mentett állapotát is tartalmazza.
