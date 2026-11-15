@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
   "policyVersion": "20261114-throughput",
-  "featureCount": 3651,
+  "featureCount": 3724,
   "municipalityCount": 567,
   "methods": {
-    "map_or_text_estimate": 915,
-    "named_source_footprint": 2089,
+    "map_or_text_estimate": 974,
+    "named_source_footprint": 2103,
     "source_map_polygon": 168,
     "source_polygon": 479
   },
-  "inputFeatureCount": 3994,
+  "inputFeatureCount": 4067,
   "duplicateVariantsPreserved": 343,
   "duplicateNameGroups": 322,
   "rejectedTechnicalRecords": [],
   "completeNationalCoverage": false,
   "nationalCoveragePercentage": null,
   "inputsSha256": {
-    "data/neighborhoods/expansion-20261114/name-aliases.json": "e061d1b59e683ffe4545cd4260c187f2491526634cf507d959bd7028a3e5626a",
+    "data/neighborhoods/expansion-20261114/name-aliases.json": "4f06cdf3139a6d64d13502a706d6eba050210c98f4c76d01f2e68b23d66ad176",
     "data/neighborhoods/neighborhoods.geojson": "8eca9d097fb6714c31ca942f57ff0d8f683f8f4fe13af0161b12da19b20e8f74",
     "data/neighborhoods/planning-units.geojson": "210d68a378ab01d26383825c2beb8896655e43b0e40d39f2add541ac7f090ce5",
     "data/neighborhoods/estimated-candidates.geojson": "a9e6d9bd870d997571c5638d5dbdcb8a44c92bb72926f0c85ee2dbccbf38dfe3",
@@ -81,7 +81,11 @@
     "data/neighborhoods/expansion-20261114-next/commuter-towns/dunakeszi-features.geojson": "adf3fd00348d9a2b873d5dd2a360f678d2dfb5e75320a5050d8a55bc43e6cc61",
     "data/neighborhoods/expansion-20261114-next/small-remaining/features.geojson": "eb7776fd7134a96b447c3839dd1b34e536e1221f5f5aa9904d4ba49a801f4bc2",
     "data/neighborhoods/expansion-20261115/national-cells/features.geojson": "fea92c302ae5a269ec7943600e7c03ee10900f2d8dc1f30b9f4cdfd379159978",
-    "data/neighborhoods/search-area-identities.json": "3a26ba5181316d674931b648d32494d77eb5ab7f4456d585b02885123839ec68"
+    "data/neighborhoods/expansion-20261115/budapest/features.geojson": "6fd659c3093c31c85ba32b9211de17fc29496f1f0c3afa6ccbb88e92bd5e0ffa",
+    "data/neighborhoods/expansion-20261115/szombathely/features.geojson": "b9e57f5785da3d4c730cef8b636ef10d305d3aa6f6f14b5db36ab73cdb58a37c",
+    "data/neighborhoods/expansion-20261115/ozd-szekszard/features.geojson": "174ae1be05329f1dfa654bb60813af4511810bffe3de333ddfe16fe8e92cbd11",
+    "data/neighborhoods/expansion-20261115/nyiregyhaza/features.geojson": "1fe8fb5fef738236a160cb8a17912d9d23892b873b4501ba109772320619e568",
+    "data/neighborhoods/search-area-identities.json": "df5557855a1ae09badd70da79a89b6ba12c6c5a8256a59ed00cf791986fbead2"
   },
   "selectionOrder": [
     "OSM administrative named boundary",
@@ -543,9 +547,9 @@
     },
     {
       "municipality": "Budapest",
-      "count": 437,
+      "count": 463,
       "methods": {
-        "map_or_text_estimate": 60,
+        "map_or_text_estimate": 86,
         "named_source_footprint": 133,
         "source_map_polygon": 4,
         "source_polygon": 240
@@ -2505,10 +2509,10 @@
     },
     {
       "municipality": "Nyíregyháza",
-      "count": 70,
+      "count": 83,
       "methods": {
         "map_or_text_estimate": 34,
-        "named_source_footprint": 36
+        "named_source_footprint": 49
       }
     },
     {
@@ -3145,9 +3149,10 @@
     },
     {
       "municipality": "Szekszárd",
-      "count": 6,
+      "count": 16,
       "methods": {
-        "named_source_footprint": 6
+        "map_or_text_estimate": 9,
+        "named_source_footprint": 7
       }
     },
     {
@@ -3309,9 +3314,9 @@
     },
     {
       "municipality": "Szombathely",
-      "count": 56,
+      "count": 70,
       "methods": {
-        "map_or_text_estimate": 1,
+        "map_or_text_estimate": 15,
         "named_source_footprint": 10,
         "source_polygon": 45
       }
@@ -4063,9 +4068,9 @@
     },
     {
       "municipality": "Ózd",
-      "count": 38,
+      "count": 48,
       "methods": {
-        "map_or_text_estimate": 24,
+        "map_or_text_estimate": 34,
         "named_source_footprint": 12,
         "source_polygon": 2
       }
@@ -4142,5 +4147,5 @@
     }
   ],
   "retiredIdentityCount": 11,
-  "outputGeojsonSha256": "8d264ffa72d3cdb430a5681b5d0747d310f59a8becad84932393baa3dc1cebd8"
+  "outputGeojsonSha256": "eeff220b26f86b12df5133ab7b24f4cadec32dc6a53cfa8bef9a3e0554974629"
 }

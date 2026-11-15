@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "proposals": [
+    {
+      "municipality": "Nyíregyháza",
+      "alias": "Belső lakóterület",
+      "canonicalName": "Belső lakóterület (Belváros)",
+      "status": "source_verified_proposal",
+      "sameGeographyEvidence": "In the same official ITS, map/list p15 and boundary table p16 both identify numbered unit1, using the long and short names respectively; p16 prose explicitly pairs downtown and inner residential area. This proposal is restricted to the planning-unit pair, not every narrower use of Belváros.",
+      "sourceUrl": "https://uj.nyiregyhaza.hu/lib/rend_terv/its/felulvizsg/220804_its_jovahagyott_its.pdf",
+      "sourcePdfPages": [
+        15,
+        16,
+        32
+      ],
+      "sourcePath": "data/neighborhoods/sources/municipal-east/nyiregyhaza-its-2022.pdf",
+      "sourceSha256": "159c8b3112c842f25f6799cf0a34645c90143dd9b5d071000b3160ec499c3a90",
+      "newGeometryCreated": false
+    }
+  ]
+}

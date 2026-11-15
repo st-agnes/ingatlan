@@ -8,11 +8,13 @@
     "fallbackCircles": 861
   },
   "tasks": {
-    "budapest": "collect_budapest_20261115",
-    "nyiregyhaza": "collect_nyiregyhaza_20261115",
-    "szombathely": "collect_szombathely_20261115",
-    "ozd-szekszard": "collect_ozd_szekszard_20261115",
-    "national-cells": "frozen:247 candidates from actual residential-road cells across66 municipalities; partial low-confidence search extents, not full mapped neighborhood boundaries"
+    "budapest": "frozen and registered;26 estimated polygons",
+    "nyiregyhaza": "frozen and registered;13 low-confidence polygons plus1 source-verified alias",
+    "szombathely": "frozen and registered;14 estimated polygons",
+    "ozd-szekszard": "frozen and registered;20 estimated polygons",
+    "national-cells": "frozen:247 candidates from actual residential-road cells across66 municipalities; partial low-confidence search extents, not full mapped neighborhood boundaries",
+    "mako": "collect_ozd_szekszard_20261115 additional packet in progress",
+    "mosonmagyarovar": "collect_szombathely_20261115 additional packet in progress"
   },
   "scope": "Data collection only; application/MySQL integration remains separate. Machine polygons plus explicitly marked map/text/road estimates; circles remain separate.",
   "resume": "Read each packet README/summary/unresolved. Register frozen WGS84features.geojson paths with SHA256 in expansion-20261114/input-registry.json; preserve stable identities. Rebuild inventory/fallback/package; validate; commit and push codex/neighborhood-research-506-191.",
@@ -21,26 +23,42 @@
     {
       "path": "data/neighborhoods/expansion-20261115/national-cells/features.geojson",
       "sha256": "fea92c302ae5a269ec7943600e7c03ee10900f2d8dc1f30b9f4cdfd379159978"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115/budapest/features.geojson",
+      "sha256": "6fd659c3093c31c85ba32b9211de17fc29496f1f0c3afa6ccbb88e92bd5e0ffa"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115/szombathely/features.geojson",
+      "sha256": "b9e57f5785da3d4c730cef8b636ef10d305d3aa6f6f14b5db36ab73cdb58a37c"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115/ozd-szekszard/features.geojson",
+      "sha256": "174ae1be05329f1dfa654bb60813af4511810bffe3de333ddfe16fe8e92cbd11"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115/nyiregyhaza/features.geojson",
+      "sha256": "1fe8fb5fef738236a160cb8a17912d9d23892b873b4501ba109772320619e568"
     }
   ],
   "latestCheckpoint": {
-    "featureCount": 3651,
+    "featureCount": 3724,
     "municipalityCount": 567,
     "methods": {
-      "map_or_text_estimate": 915,
-      "named_source_footprint": 2089,
+      "map_or_text_estimate": 974,
+      "named_source_footprint": 2103,
       "source_map_polygon": 168,
       "source_polygon": 479
     },
     "duplicateVariantsPreserved": 343
   },
   "knownNameInventory": {
-    "knownNameCount": 4313,
+    "knownNameCount": 4312,
     "municipalitiesWithKnownNames": 618,
-    "namesWithCollectedPolygon": 3651,
+    "namesWithCollectedPolygon": 3724,
     "namesWithKnownPoint": 3487,
-    "pointOnlyNames": 614,
-    "unlocatedUncollectedNames": 48,
+    "pointOnlyNames": 557,
+    "unlocatedUncollectedNames": 31,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
       80,
@@ -48,36 +66,6 @@
     ]
   },
   "nextPriorityCities": [
-    {
-      "municipality": "Budapest",
-      "knownNames": 463,
-      "mappedNames": 437,
-      "remainingNames": 26
-    },
-    {
-      "municipality": "Nyíregyháza",
-      "knownNames": 84,
-      "mappedNames": 70,
-      "remainingNames": 14
-    },
-    {
-      "municipality": "Szombathely",
-      "knownNames": 70,
-      "mappedNames": 56,
-      "remainingNames": 14
-    },
-    {
-      "municipality": "Ózd",
-      "knownNames": 48,
-      "mappedNames": 38,
-      "remainingNames": 10
-    },
-    {
-      "municipality": "Szekszárd",
-      "knownNames": 16,
-      "mappedNames": 6,
-      "remainingNames": 10
-    },
     {
       "municipality": "Kecskemét",
       "knownNames": 110,
@@ -119,8 +107,60 @@
       "knownNames": 85,
       "mappedNames": 82,
       "remainingNames": 3
+    },
+    {
+      "municipality": "Zalaegerszeg",
+      "knownNames": 58,
+      "mappedNames": 55,
+      "remainingNames": 3
+    },
+    {
+      "municipality": "Ajka",
+      "knownNames": 22,
+      "mappedNames": 19,
+      "remainingNames": 3
+    },
+    {
+      "municipality": "Sopron",
+      "knownNames": 46,
+      "mappedNames": 44,
+      "remainingNames": 2
+    },
+    {
+      "municipality": "Gyula",
+      "knownNames": 33,
+      "mappedNames": 31,
+      "remainingNames": 2
+    },
+    {
+      "municipality": "Esztergom",
+      "knownNames": 49,
+      "mappedNames": 47,
+      "remainingNames": 2
     }
   ],
-  "newAreasNet": 247,
-  "fallbackCircleReduction": 247
+  "newAreasNet": 320,
+  "fallbackCircleReduction": 304,
+  "firstThreeCityBacklogs": {
+    "Budapest": {
+      "previousMissingNames": 26,
+      "newPolygons": 26
+    },
+    "Nyíregyháza": {
+      "previousMissingNames": 14,
+      "newPolygons": 13,
+      "verifiedAliases": 1
+    },
+    "Szombathely": {
+      "previousMissingNames": 14,
+      "newPolygons": 14
+    }
+  },
+  "coverageCaveats": [
+    "Name-list completion is not complete geographic coverage or authoritative boundary accuracy.",
+    "247 residential-street cells may cover only part of a neighborhood.",
+    "5 Nyíregyháza rural entries cover only mapped farmyard surfaces; wider dispersed settlement extent is unresolved.",
+    "Csörge-tó covers the literal lake footprint only, not the whole surrounding quarter.",
+    "Budapest Európa lakókert and Nagyiccetelep source bounds intentionally disagree with current label points."
+  ]
 }

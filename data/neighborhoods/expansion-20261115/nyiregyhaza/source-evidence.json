@@ -1,0 +1,103 @@
+{
+  "sourcePbf": {
+    "path": "/workspace/ingatlan/.local/neighborhoods/hungary-latest.osm.pbf",
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "snapshotTimestamp": "2026-11-12T21:23:05Z",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "municipalCharacterMap": {
+    "url": "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf",
+    "pdfPage": 28,
+    "path": "data/neighborhoods/expansion-20261114-next/fehervar-nyiregyhaza/nyiregyhaza-tak2017.pdf",
+    "role": "Broad physical/rural character and lake/urban/rural map context, not independent named-quarter boundaries"
+  },
+  "officialItsAlias": {
+    "municipality": "Nyíregyháza",
+    "alias": "Belső lakóterület",
+    "canonicalName": "Belső lakóterület (Belváros)",
+    "status": "source_verified_proposal",
+    "sameGeographyEvidence": "In the same official ITS, map/list p15 and boundary table p16 both identify numbered unit1, using the long and short names respectively; p16 prose explicitly pairs downtown and inner residential area. This proposal is restricted to the planning-unit pair, not every narrower use of Belváros.",
+    "sourceUrl": "https://uj.nyiregyhaza.hu/lib/rend_terv/its/felulvizsg/220804_its_jovahagyott_its.pdf",
+    "sourcePdfPages": [
+      15,
+      16,
+      32
+    ],
+    "sourcePath": "data/neighborhoods/sources/municipal-east/nyiregyhaza-its-2022.pdf",
+    "sourceSha256": "159c8b3112c842f25f6799cf0a34645c90143dd9b5d071000b3160ec499c3a90",
+    "newGeometryCreated": false
+  },
+  "evidenceReviewedAt": "2026-11-15",
+  "evidenceNotes": [
+    {
+      "names": [
+        "Salamonbokor"
+      ],
+      "url": "https://hajduszabolcsiegyhazmegye.lutheran.hu/egyhazkozsegek-alkalmai/",
+      "supports": "The church district lists its Salamonbokor congregation at Soltész István utca1. The road joins the mapped Salamonbokor road inside the selected residential footprint. No church district boundary is inferred."
+    },
+    {
+      "names": [
+        "Salamonbokor",
+        "Szabadságbokor"
+      ],
+      "url": "https://www.nyiregyhaza.hu/post/tudja-hol-szavazhat-osszegyujtottuk-a-legfontosabb-tudnivalokat-a-szavazokorokrol-2024-06-02",
+      "supports": "Municipal voting information treats the two named bokors separately, corroborating that they should not be aliases of the whole combined Kertváros planning unit."
+    },
+    {
+      "names": [
+        "Felsőbadúrbokor"
+      ],
+      "url": "https://archeodatabase.hnm.hu/en/node/21577",
+      "supports": "National Museum locality title corroborates the Felső-Pázsit/Felsőbadurbokor name on the west side of Westsik Vilmos road. It is a place association, not a contemporary neighborhood polygon."
+    },
+    {
+      "names": [
+        "Báthory-lakópark"
+      ],
+      "url": "https://www.nyiregyhaza.hu/post/bemutatjuk-a-nyiregyhazi-valasztokeruleteket-11.-kertvaros-2026-11-08",
+      "supports": "Municipal account places the estate in Kertváros and describes bus access on Alkotás and planned Tagló street extension. Those mapped streets orient the rough trace."
+    },
+    {
+      "names": [
+        "Kun lakópark"
+      ],
+      "urls": [
+        "https://utcak-magyarorszag.openalfa.com/utcak/lejto-utca-kun-lakopark-nyiregyhaza",
+        "https://utcak-magyarorszag.openalfa.com/utcak/szoloszem-utca-kun-lakopark-nyiregyhaza"
+      ],
+      "supports": "Street-guide pages place Lejtő and Szőlőszem in this estate, corroborating the small mapped street cluster rather than a whole Kistelekiszőlő parent."
+    },
+    {
+      "names": [
+        "Kerti lak",
+        "Tópart"
+      ],
+      "urls": [
+        "https://utcak-magyarorszag.openalfa.com/utcak/zivatar-utca-kerti-lak-nyiregyhaza",
+        "https://www.holahaz.hu/varos/nyiregyhaza/topart"
+      ],
+      "supports": "The first associates Zivatar street with Kerti lak; the second names Tópart and its nearby Kerti lak. Their independent OSM labels are only61m apart. No exact internal boundary or alias identity is established; rough overlapping lake/street areas are retained."
+    },
+    {
+      "names": [
+        "Őzdomb-lakókert"
+      ],
+      "urls": [
+        "https://ozdomb.hu/",
+        "https://ozdomb.hu/gyik/",
+        "https://ozdomb.hu/wp-content/uploads/2026/09/teljes-terkep-modositott-2.png",
+        "https://varoshaza.nyiregyhaza.hu/lib/adattar/hatarozatok/2017/170606_h_122.pdf"
+      ],
+      "supports": "Developer identifies the Sóstóhegy estate and links a phased parcel map. The municipal decision references access from Muskotály street. The trace remains estimated, particularly planned phase edges."
+    },
+    {
+      "names": [
+        "Sóstóhegyi lakópark"
+      ],
+      "url": "https://mapcarta.com/N13304387267",
+      "supports": "OSM-derived locality page corroborates the source point. The outline of the small northern residential lobe is inferred from source-landuse and roads; no independent quarter border was found."
+    }
+  ]
+}

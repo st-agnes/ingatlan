@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+  "sourcePdfSha256": "aade0d35a60e4ecd230a26c2c7dabcfc26ec76466ab86310e6828f34db714500",
+  "constructionGeometry": {
+    "path": ".local/neighborhoods/country/construction-lines.geojson",
+    "sha256": "a88eae7d237681eeae44c4bd7291777e17c21cfba3babed5677b1e976efcf0b4"
+  },
+  "algorithm": "trace_szombathely.py: source network noding, ordered per-road traces and actual junction connectors.",
+  "features": [
+    {
+      "name": "Belváros",
+      "segments": [
+        {
+          "sourceLineIds": [
+            108958386,
+            108958426,
+            327301968,
+            327301969,
+            551326650,
+            767602254,
+            1181302192,
+            1181302198
+          ],
+          "vertices": 33,
+          "lengthM": 599.758,
+          "otherNamedSegments": [
+            {
+              "sourceLineId": "way/1181302198",
+              "name": "Batthyány tér",
+              "lengthM": 2.066,
+              "junction": "roundabout"
+            },
+            {
+              "sourceLineId": "way/1181302198",
+              "name": "Batthyány tér",
+              "lengthM": 2.06,
+              "junction": "roundabout"
+            },
+            {
+              "sourceLineId": "way/1181302198",
+              "name": "Batthyány tér",
+              "lengthM": 3.192,
+              "junction": "roundabout"
+            },
+            {
+              "sourceLineId": "way/1181302198",
+              "name": "Batthyány tér",
+              "lengthM": 2.869,
+              "junction": "roundabout"
+            },
+            {
+              "sourceLineId": "way/1181302198",
+              "name": "Batthyány tér",
+              "lengthM": 2.464,
+              "junction": "roundabout"
+            },
+            {
+              "sourceLineId": "way/1181302198",
+              "name": "Batthyány tér",
+              "lengthM": 2.524,
+              "junction": "roundabout"
+            }
+          ],
+          "boundaryRoad": "Zrínyi Ilona utca"
+        },
+        {
+          "sourceLineIds": [
+            551326636,
+            551326652,
+            784606885,
+            784606886,
+            784606887
+          ],
+          "vertices": 11,
+          "lengthM": 138.781,
+          "otherNamedSegments": [],
+          "boundaryRoad": "Hunyadi János út"
+        },
+        {
+          "sourceLineIds": [
+            551326656,
+            785556327,
+            785556328
+          ],
+          "vertices": 5,
+          "lengthM": 102.482,
+          "otherNamedSegments": [],
+          "boundaryRoad": "Szent Márton utca"
+        },
+        {
+          "sourceLineIds": [
+            230253276,
+            543955979,
+            543957814,
+            587887916,
+            785556323
+          ],
+          "vertices": 15,
+          "lengthM": 442.353,
+          "otherNamedSegments": [],
+          "boundaryRoad": "Vörösmarty Mihály utca"
+        },
+        {
+          "sourceLineIds": [
+            327301952,
+            327301954,
+            543957810,
+            614130439
+          ],
+          "vertices": 16,
+          "lengthM": 397.417,
+          "otherNamedSegments": [],
+          "boundaryRoad": "Szelestey László utca"
+        },
+        {
+          "sourceLineIds": [
+            99583990,
+            299911599,
+            299911600,
+            299911601,
+            543940440,
+            543988934,
+            614130449,
+            625104568,
+            1547240852
+          ],
+          "vertices": 38,
+          "lengthM": 614.249,
+          "otherNamedSegments": [],
+          "boundaryRoad": "Petőfi Sándor utca"
+        },
+        {
+          "sourceLineIds": [
+            96559164,
+            544131536,
+            1348479384,
+            1348479385,
+            1348479386,
+            1348479387
+          ],
+          "vertices": 17,
+          "lengthM": 240.713,
+          "otherNamedSegments": [],
+          "boundaryRoad": "Sörház utca"
+        },
+        {
+          "sourceLineIds": [
+            222282183,
+            334635093
+          ],
+          "vertices": 13,
+          "lengthM": 176.483,
+          "otherNamedSegments": [],
+          "boundaryRoad": "Hollán Ernő utca"
+        },
+        {
+          "sourceLineIds": [
+            543998077,
+            620382826,
+            625272425,
+            625272452,
+            626934864,
+            673214134,
+            1181732683,
+            1187616599
+          ],
+          "vertices": 33,
+          "lengthM": 238.763,
+          "otherNamedSegments": [],
+          "boundaryRoad": "Kiskar utca"
+        },
+        {
+          "sourceLineIds": [
+            625374831,
+            625374832,
+            625379818,
+            625379821,
+            953323640,
+            1183407077,
+            1183407078,
+            1183407085
+          ],
+          "vertices": 31,
+          "lengthM": 272.461,
+          "otherNamedSegments": [],
+          "boundaryRoad": "Mátyás király út"
+        }
+      ],
+      "closed": true,
+      "valid": true,
+      "areaM2": 662055.9180867267
+    }
+  ]
+}

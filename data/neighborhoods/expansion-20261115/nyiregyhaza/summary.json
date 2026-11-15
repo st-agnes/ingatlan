@@ -1,0 +1,41 @@
+{
+  "municipality": "Nyíregyháza",
+  "featureCount": 13,
+  "newPolygonNames": [
+    "Alispántanya",
+    "Báthory-lakópark",
+    "Felsőbadúrbokor",
+    "Kerti lak",
+    "Kun lakópark",
+    "Nagylapos",
+    "Salamonbokor",
+    "Samókabokor",
+    "Szabadságbokor",
+    "Sóstóhegyi lakópark",
+    "Tópart",
+    "Vadastanya",
+    "Őzdomb-lakókert"
+  ],
+  "estimatedCount": 13,
+  "lowConfidenceCount": 13,
+  "methods": {
+    "source_footprint_locality_association_estimate": 7,
+    "manual_physical_map_trace_estimate": 6
+  },
+  "unchangedSourceFootprintAssociations": 7,
+  "roughPhysicalMapTraces": 6,
+  "partialRuralSettlementFootprints": 5,
+  "missingNamesBaseline": 14,
+  "sourceVerifiedAliasCount": 1,
+  "remainingUnresolvedNames": [],
+  "circleBufferVoronoiHullCount": 0,
+  "completeCityCoverageEstablished": false,
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "validation": {
+    "validPolygonOrMultiPolygonCount": 13,
+    "containedInSourceMunicipalityCount": 13,
+    "nonEmptyCount": 13,
+    "duplicateMunicipalityNameCount": 0
+  },
+  "caveat": "The14 baseline name gaps are covered by13 low-confidence polygon associations/traces and1 verified alias. This is name-list completion, not complete spatial or authoritative neighbourhood coverage."
+}

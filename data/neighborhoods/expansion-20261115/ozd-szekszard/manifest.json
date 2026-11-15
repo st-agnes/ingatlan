@@ -1,0 +1,234 @@
+{
+  "inputGeoJson": "features.geojson",
+  "featureCount": 20,
+  "municipalities": {
+    "Ózd": 10,
+    "Szekszárd": 10
+  },
+  "allEstimated": true,
+  "confidence": "low",
+  "frozen": true,
+  "modernAccuracyEstablished": false,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3883,
+      "sha256": "c3464f53f1657e3ae8d90391242849fcd32941c2bcc8df74c48fdee8971c986c"
+    },
+    {
+      "path": "alias-proposals.json",
+      "bytes": 89,
+      "sha256": "8612622ef2ecb7f959d025b50d5349487e531226a20ae02cdd8d1b22e1a060bc"
+    },
+    {
+      "path": "build-ozd-outer.py",
+      "bytes": 3333,
+      "sha256": "c0ddb8529ee01dea941256263e5ee2658177783478ceb755ae1e166ccb88c64b"
+    },
+    {
+      "path": "build-szekszard-extra.py",
+      "bytes": 3003,
+      "sha256": "2e891a20f56bc948676e207e046d77a7cd2d0c8848f70b66431eb435519a1f2e"
+    },
+    {
+      "path": "build-szekszard.py",
+      "bytes": 5520,
+      "sha256": "de3b16e0c0830321aac461cb86975b508c58add9b7388b48a7c85d74abd6c6b2"
+    },
+    {
+      "path": "build.py",
+      "bytes": 2889,
+      "sha256": "ca78e7763d96da9ea9fa13e0f9f52d4422576e93e03d4f06cbbdca81efc0bd72"
+    },
+    {
+      "path": "extract-ozd-source.py",
+      "bytes": 1439,
+      "sha256": "b9ec158b3ce99f11f643f9eecbe163c12a227814dbcd3dd1568afe2704856c27"
+    },
+    {
+      "path": "features.geojson",
+      "bytes": 97893,
+      "sha256": "174ae1be05329f1dfa654bb60813af4511810bffe3de333ddfe16fe8e92cbd11"
+    },
+    {
+      "path": "ozd-map-p54.jpeg",
+      "bytes": 200510,
+      "sha256": "0989f7ccf7c6256dad00aa0328343e3d60cd4bfee44e829288c9ba4611cd5038"
+    },
+    {
+      "path": "ozd-name-map-points.json",
+      "bytes": 11708,
+      "sha256": "22c26e0256028c8afdf2a75cf05f4e74343e8670812a583880918e603fc66056"
+    },
+    {
+      "path": "ozd-outer-features.geojson",
+      "bytes": 3498,
+      "sha256": "492a9be229403c5e423150512bfc27125ad67366147ed6e9e3f7a6d8c77a1f10"
+    },
+    {
+      "path": "ozd-outer-road-context.png",
+      "bytes": 271647,
+      "sha256": "3438896a3e369304ac26adc7f06799c8504880d8d1ae3f24d16c47e81bf6b1be"
+    },
+    {
+      "path": "ozd-outer-traces.json",
+      "bytes": 3266,
+      "sha256": "09a4a1d79207e028a7fe86f39532e85b51643a55ba8e39e36ee09e04e5a646c3"
+    },
+    {
+      "path": "ozd-p247.png",
+      "bytes": 415706,
+      "sha256": "22d1f8ba20ae82712a799dc62f19597fd3b5bd672cfb7fadcd31641180985e85"
+    },
+    {
+      "path": "ozd-p250.png",
+      "bytes": 183924,
+      "sha256": "c1a1a12cdd5f5230cc1aa9b685733d95f6009cab749d7016261bb6754179a6d4"
+    },
+    {
+      "path": "ozd-p251.png",
+      "bytes": 124079,
+      "sha256": "c16209a6f278481da52b234575958b511078c5045df3268b1867e32a90d2eb27"
+    },
+    {
+      "path": "ozd-p277.png",
+      "bytes": 252127,
+      "sha256": "552ac4accb7b32a3375a7fe1eed6f03fb633a4ddf8e5f9d440c231993032213b"
+    },
+    {
+      "path": "ozd-p283.png",
+      "bytes": 192694,
+      "sha256": "ceb5df6bb4495b9d7ca1711ad00d99d08e84eae0993d173aef6f0a00d761752c"
+    },
+    {
+      "path": "ozd-rough-registration.json",
+      "bytes": 1397,
+      "sha256": "3dc5bf0726d31bf5bd1218bada52384cbfc8eba48eea5ccbb9e1e2c8b43161d3"
+    },
+    {
+      "path": "ozd-source-areas.geojson.gz",
+      "bytes": 1092245,
+      "sha256": "4d83f9f1e59b9af8eeab90b820943a91139ce6d44bdb44db9947c86580d1ee04"
+    },
+    {
+      "path": "ozd-source-municipality.geojson",
+      "bytes": 20370,
+      "sha256": "a01180575f310a180f41012323d6aec7a855ebef9128089e7ff15c18dbf643c9"
+    },
+    {
+      "path": "ozd-source-points.geojson",
+      "bytes": 48905,
+      "sha256": "870e78d23b65d094aa73f31508b3d362b63fdba6181ffae549add8e0af3b9a61"
+    },
+    {
+      "path": "ozd-source-roads.geojson.gz",
+      "bytes": 472230,
+      "sha256": "e26946b6d75bcb3049d201331c429f30584fb5495075641cfece8a0e212b5228"
+    },
+    {
+      "path": "ozd-traces.json",
+      "bytes": 6388,
+      "sha256": "ad5d56f907354fdfdff07f8ad43d15922bda472e34fe2a0ca082a7706591e57d"
+    },
+    {
+      "path": "render-context.py",
+      "bytes": 1293,
+      "sha256": "47237f5483b7114652b851230bc792e37452aee38d574c3b7dfb82748182aa63"
+    },
+    {
+      "path": "render-szekszard.py",
+      "bytes": 1290,
+      "sha256": "70ecf52dc1becdc9d00d524eddd4a87705b2bd6c0ea337930df09799495d62f7"
+    },
+    {
+      "path": "source-evidence.json",
+      "bytes": 3535,
+      "sha256": "4ec0991cedca7c9d7cf127ac13950e048ac7977f09ac25b3b88377c2a7a0840b"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 1747,
+      "sha256": "8de19b23831b9b2eb5a6ba841c2635935fa698b51904b9934fa9a019a4270fa5"
+    },
+    {
+      "path": "szekszard-extra-features.geojson",
+      "bytes": 3750,
+      "sha256": "253829e1868b6726704dbf9a8b16f70db7e93e39940958b3dcc43903c1497b0f"
+    },
+    {
+      "path": "szekszard-extraction-proof.json",
+      "bytes": 2150,
+      "sha256": "d0d3cc856df74ff23fb9658aeefbb0629c0cc8fcbf377cda262661dbd5639146"
+    },
+    {
+      "path": "szekszard-features.geojson",
+      "bytes": 80306,
+      "sha256": "f16e90ad360e528732436322dd3eaa90b1453b6b431841215074835799c7390d"
+    },
+    {
+      "path": "szekszard-native-pixel-polygons.geojson",
+      "bytes": 25214,
+      "sha256": "5301538ecca96903a3a84fba537e69e2cd47b2b9618a049fc324812a22ef0142"
+    },
+    {
+      "path": "szekszard-registration.json",
+      "bytes": 2230,
+      "sha256": "0ae61d290f90ecf49065449990e1214b9edb6ef3939fb2717d194eb76dcdc4f2"
+    },
+    {
+      "path": "szekszard-road-context.png",
+      "bytes": 1166441,
+      "sha256": "fbd8208e415aebd2b05ba9c3c51566507ed80af3aae93820864db2607d962e83"
+    },
+    {
+      "path": "szekszard-source-municipality.geojson",
+      "bytes": 10156,
+      "sha256": "a3847611c77f4d2f521e05d3aee713d3e86a5b1924eaeb218afce6038a3f8a31"
+    },
+    {
+      "path": "szekszard-source-points.geojson",
+      "bytes": 16412,
+      "sha256": "6781d51045f6586d19cbdd18e5e96cebdde425f67a6a3dbe45e656e487b3e61c"
+    },
+    {
+      "path": "szekszard-source-roads.geojson.gz",
+      "bytes": 308625,
+      "sha256": "2ca0528bb3d6104293886d3c0a30f3efe6cae81b2f57b310df6615c9c00a4bbc"
+    },
+    {
+      "path": "szekszard-sump-p49-image0.png",
+      "bytes": 5802,
+      "sha256": "cd21726c714b3d5a7f84e671f5ac5df1f41a2124e36508f3ea5969168c154345"
+    },
+    {
+      "path": "szekszard-sump-p49-image1.jpeg",
+      "bytes": 29429,
+      "sha256": "752bd892ec82b12d3db1203887f12eeab233bbced0700abaa0ad05991fd08538"
+    },
+    {
+      "path": "szekszard-sump-p49-image2.png",
+      "bytes": 55667,
+      "sha256": "bdb4a51bd7383c53f40ced32b1b9a4032e26d709fa6529148066f918fa1e0f64"
+    },
+    {
+      "path": "szekszard-sump-p49.png",
+      "bytes": 675316,
+      "sha256": "5432c778b9bd9f48684ca47af1b7386c7fd0092cebe83bd35d0e67931f43363f"
+    },
+    {
+      "path": "unresolved.json",
+      "bytes": 516,
+      "sha256": "5cea89215fcee1b4b24e571072c3aa66f49f89170e318ae0df63e5a02cc46f80"
+    },
+    {
+      "path": "validate.py",
+      "bytes": 2565,
+      "sha256": "6dba79084daafc396ffb537ccac93f79c33f5b8ad305a5394552a4f23035908d"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 4385,
+      "sha256": "8fa1d44b37da2e210775c860144b1bf90df6c3749186113e0619c6c5c874869f"
+    }
+  ]
+}

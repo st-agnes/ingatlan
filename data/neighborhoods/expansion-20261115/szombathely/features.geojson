@@ -1,0 +1,2886 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:ivs2013:1",
+      "properties": {
+        "name": "Belváros (városmag)",
+        "municipality": "Szombathely",
+        "method": "Reuse of archived documentary road-centreline trace of municipal IVS annex1 unit1; source road geometry and ordered street-circuit proof are archived alongside this packet.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/copyright"
+        ],
+        "approximationNote": "Historical municipal unit1 is the narrower core described as Belváros (városmag). It is retained separately from the currently selected modern OSM Belváros footprint: areas approximately 0.662 versus 1.222 km² and intersection-over-union 0.483. Documentary street-side interpretation remains approximate. Existing archived coordinates are reused without alteration.",
+        "sourcePeriod": "Municipal IVS 2013; OSM street geometry 2026",
+        "sourceUnitId": 1,
+        "sourceDocuments": [
+          {
+            "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+            "path": "data/neighborhoods/expansion-20261115/szombathely/source-proof-pages.pdf",
+            "originalPdfPageOneBased": 150,
+            "section": "1. Belváros (városmag)"
+          }
+        ],
+        "sourceLineIds": [
+          "way/96559164",
+          "way/99583990",
+          "way/108958386",
+          "way/108958426",
+          "way/222282183",
+          "way/230253276",
+          "way/299911599",
+          "way/299911600",
+          "way/299911601",
+          "way/327301952",
+          "way/327301954",
+          "way/327301968",
+          "way/327301969",
+          "way/334635093",
+          "way/543940440",
+          "way/543955979",
+          "way/543957810",
+          "way/543957814",
+          "way/543988934",
+          "way/543998077",
+          "way/544131536",
+          "way/551326636",
+          "way/551326650",
+          "way/551326652",
+          "way/551326656",
+          "way/587887916",
+          "way/614130439",
+          "way/614130449",
+          "way/620382826",
+          "way/625104568",
+          "way/625272425",
+          "way/625272452",
+          "way/625374831",
+          "way/625374832",
+          "way/625379818",
+          "way/625379821",
+          "way/626934864",
+          "way/673214134",
+          "way/767602254",
+          "way/784606885",
+          "way/784606886",
+          "way/784606887",
+          "way/785556323",
+          "way/785556327",
+          "way/785556328",
+          "way/953323640",
+          "way/1181302192",
+          "way/1181302198",
+          "way/1181732683",
+          "way/1183407077",
+          "way/1183407078",
+          "way/1183407085",
+          "way/1187616599",
+          "way/1348479384",
+          "way/1348479385",
+          "way/1348479386",
+          "way/1348479387",
+          "way/1547240852"
+        ],
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-documentary-street-trace",
+        "usableForAddressAssignment": false,
+        "areaM2": 662056,
+        "license": "ODbL-1.0",
+        "attribution": "Municipal IVS2013; © OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.6218793,
+              47.2271643
+            ],
+            [
+              16.6219339,
+              47.2271933
+            ],
+            [
+              16.6219512,
+              47.2272027
+            ],
+            [
+              16.6230081,
+              47.2277906
+            ],
+            [
+              16.6232162,
+              47.2278625
+            ],
+            [
+              16.6233057,
+              47.2278813
+            ],
+            [
+              16.6233972,
+              47.2278977
+            ],
+            [
+              16.6234306,
+              47.2278986
+            ],
+            [
+              16.6234621,
+              47.2279044
+            ],
+            [
+              16.6234956,
+              47.2279166
+            ],
+            [
+              16.6235264,
+              47.2279363
+            ],
+            [
+              16.6235414,
+              47.2279518
+            ],
+            [
+              16.6235522,
+              47.2279689
+            ],
+            [
+              16.6235872,
+              47.2280415
+            ],
+            [
+              16.6236384,
+              47.2281035
+            ],
+            [
+              16.6236841,
+              47.2281395
+            ],
+            [
+              16.6237441,
+              47.2281775
+            ],
+            [
+              16.6237746,
+              47.2281947
+            ],
+            [
+              16.6254886,
+              47.2291611
+            ],
+            [
+              16.6257089,
+              47.2292853
+            ],
+            [
+              16.6258631,
+              47.2293726
+            ],
+            [
+              16.6259741,
+              47.2294355
+            ],
+            [
+              16.627145,
+              47.2300693
+            ],
+            [
+              16.6274256,
+              47.2302196
+            ],
+            [
+              16.6275425,
+              47.2302845
+            ],
+            [
+              16.6276128,
+              47.2303247
+            ],
+            [
+              16.6276452,
+              47.230342
+            ],
+            [
+              16.627776,
+              47.2304144
+            ],
+            [
+              16.6278046,
+              47.2304309
+            ],
+            [
+              16.6278401,
+              47.2304511
+            ],
+            [
+              16.6278668,
+              47.2304649
+            ],
+            [
+              16.6278759,
+              47.2304697
+            ],
+            [
+              16.628006,
+              47.230537
+            ],
+            [
+              16.6279291,
+              47.2306718
+            ],
+            [
+              16.6278442,
+              47.2308206
+            ],
+            [
+              16.6277522,
+              47.2309819
+            ],
+            [
+              16.6276812,
+              47.2311064
+            ],
+            [
+              16.6276161,
+              47.2312204
+            ],
+            [
+              16.6275861,
+              47.2312731
+            ],
+            [
+              16.6275717,
+              47.231405
+            ],
+            [
+              16.6275838,
+              47.2314673
+            ],
+            [
+              16.6275988,
+              47.2315062
+            ],
+            [
+              16.6277434,
+              47.231709
+            ],
+            [
+              16.6280224,
+              47.2318685
+            ],
+            [
+              16.6283664,
+              47.2320794
+            ],
+            [
+              16.6286461,
+              47.2322509
+            ],
+            [
+              16.6287599,
+              47.2323207
+            ],
+            [
+              16.6287987,
+              47.2324453
+            ],
+            [
+              16.6288449,
+              47.2325904
+            ],
+            [
+              16.6288529,
+              47.2326709
+            ],
+            [
+              16.628859,
+              47.2327494
+            ],
+            [
+              16.6286256,
+              47.2332092
+            ],
+            [
+              16.6284118,
+              47.2336305
+            ],
+            [
+              16.628351,
+              47.2337503
+            ],
+            [
+              16.6283181,
+              47.2338151
+            ],
+            [
+              16.6279171,
+              47.2346052
+            ],
+            [
+              16.6279071,
+              47.2346249
+            ],
+            [
+              16.6278469,
+              47.2347435
+            ],
+            [
+              16.6278148,
+              47.2348064
+            ],
+            [
+              16.627793,
+              47.2348492
+            ],
+            [
+              16.627139,
+              47.2361011
+            ],
+            [
+              16.6252355,
+              47.2356292
+            ],
+            [
+              16.6251542,
+              47.235609
+            ],
+            [
+              16.6245805,
+              47.2354697
+            ],
+            [
+              16.6245311,
+              47.2354582
+            ],
+            [
+              16.624466,
+              47.2354397
+            ],
+            [
+              16.6243863,
+              47.2354213
+            ],
+            [
+              16.6242644,
+              47.2354052
+            ],
+            [
+              16.6241674,
+              47.2353951
+            ],
+            [
+              16.6232884,
+              47.235351
+            ],
+            [
+              16.623062,
+              47.2353372
+            ],
+            [
+              16.6228606,
+              47.2353229
+            ],
+            [
+              16.6223177,
+              47.2352656
+            ],
+            [
+              16.6222427,
+              47.2352582
+            ],
+            [
+              16.6221678,
+              47.2352598
+            ],
+            [
+              16.6220681,
+              47.2352729
+            ],
+            [
+              16.6220462,
+              47.2352346
+            ],
+            [
+              16.6220094,
+              47.2352021
+            ],
+            [
+              16.6219606,
+              47.2351779
+            ],
+            [
+              16.6219037,
+              47.235164
+            ],
+            [
+              16.6218434,
+              47.2351614
+            ],
+            [
+              16.6217992,
+              47.235167
+            ],
+            [
+              16.6217548,
+              47.2351375
+            ],
+            [
+              16.6216896,
+              47.235112
+            ],
+            [
+              16.6216007,
+              47.2350863
+            ],
+            [
+              16.6211419,
+              47.2349676
+            ],
+            [
+              16.6209695,
+              47.2349367
+            ],
+            [
+              16.6205046,
+              47.2348328
+            ],
+            [
+              16.6203554,
+              47.2348016
+            ],
+            [
+              16.6202741,
+              47.2347888
+            ],
+            [
+              16.6202307,
+              47.234782
+            ],
+            [
+              16.62021,
+              47.2347788
+            ],
+            [
+              16.6201775,
+              47.2347721
+            ],
+            [
+              16.6201208,
+              47.234767
+            ],
+            [
+              16.6197368,
+              47.2347231
+            ],
+            [
+              16.6194533,
+              47.23469
+            ],
+            [
+              16.6191094,
+              47.2346446
+            ],
+            [
+              16.618852,
+              47.2346165
+            ],
+            [
+              16.6187562,
+              47.2346051
+            ],
+            [
+              16.6185968,
+              47.2345825
+            ],
+            [
+              16.6184079,
+              47.2345468
+            ],
+            [
+              16.6182574,
+              47.2345101
+            ],
+            [
+              16.6180913,
+              47.2344714
+            ],
+            [
+              16.6177991,
+              47.2343898
+            ],
+            [
+              16.6175469,
+              47.2343201
+            ],
+            [
+              16.6172639,
+              47.2342341
+            ],
+            [
+              16.6170222,
+              47.2341462
+            ],
+            [
+              16.6167506,
+              47.2340423
+            ],
+            [
+              16.6166349,
+              47.2339959
+            ],
+            [
+              16.616465,
+              47.2339279
+            ],
+            [
+              16.6158623,
+              47.2336722
+            ],
+            [
+              16.6154389,
+              47.2334846
+            ],
+            [
+              16.6146991,
+              47.2331487
+            ],
+            [
+              16.614767,
+              47.2330565
+            ],
+            [
+              16.6148161,
+              47.2329782
+            ],
+            [
+              16.6149412,
+              47.2327375
+            ],
+            [
+              16.6151091,
+              47.2324199
+            ],
+            [
+              16.615131,
+              47.2323789
+            ],
+            [
+              16.6151577,
+              47.2323203
+            ],
+            [
+              16.6151762,
+              47.2322728
+            ],
+            [
+              16.6151955,
+              47.2322076
+            ],
+            [
+              16.6152128,
+              47.2321428
+            ],
+            [
+              16.6152402,
+              47.2320535
+            ],
+            [
+              16.6153205,
+              47.2317915
+            ],
+            [
+              16.6154567,
+              47.2313826
+            ],
+            [
+              16.615479,
+              47.2313177
+            ],
+            [
+              16.6155121,
+              47.2312293
+            ],
+            [
+              16.6155481,
+              47.231147
+            ],
+            [
+              16.6155868,
+              47.2310723
+            ],
+            [
+              16.6156391,
+              47.2309636
+            ],
+            [
+              16.6157092,
+              47.2308568
+            ],
+            [
+              16.6157919,
+              47.2307401
+            ],
+            [
+              16.6158948,
+              47.2306163
+            ],
+            [
+              16.615981,
+              47.2305618
+            ],
+            [
+              16.6160541,
+              47.2305156
+            ],
+            [
+              16.6162218,
+              47.2304485
+            ],
+            [
+              16.6169565,
+              47.2302778
+            ],
+            [
+              16.6170978,
+              47.2302434
+            ],
+            [
+              16.6171908,
+              47.2302139
+            ],
+            [
+              16.617245,
+              47.2301899
+            ],
+            [
+              16.6173194,
+              47.230153
+            ],
+            [
+              16.6173873,
+              47.2301095
+            ],
+            [
+              16.6174145,
+              47.230066
+            ],
+            [
+              16.6174333,
+              47.2300192
+            ],
+            [
+              16.6174784,
+              47.2299414
+            ],
+            [
+              16.6174991,
+              47.2299012
+            ],
+            [
+              16.6175365,
+              47.2298371
+            ],
+            [
+              16.6176196,
+              47.2297073
+            ],
+            [
+              16.6177046,
+              47.2295765
+            ],
+            [
+              16.6178085,
+              47.2294136
+            ],
+            [
+              16.6178861,
+              47.2292933
+            ],
+            [
+              16.6178957,
+              47.2292764
+            ],
+            [
+              16.6179085,
+              47.2292576
+            ],
+            [
+              16.6179857,
+              47.229137
+            ],
+            [
+              16.6180339,
+              47.2290543
+            ],
+            [
+              16.618057,
+              47.2290169
+            ],
+            [
+              16.6180723,
+              47.2289972
+            ],
+            [
+              16.6180922,
+              47.228978
+            ],
+            [
+              16.618113,
+              47.228963
+            ],
+            [
+              16.6181506,
+              47.2289366
+            ],
+            [
+              16.6181884,
+              47.228899
+            ],
+            [
+              16.618291,
+              47.228727
+            ],
+            [
+              16.6183038,
+              47.2287055
+            ],
+            [
+              16.6183264,
+              47.2286677
+            ],
+            [
+              16.6183687,
+              47.2285909
+            ],
+            [
+              16.6183817,
+              47.2285665
+            ],
+            [
+              16.6184275,
+              47.228488
+            ],
+            [
+              16.6184545,
+              47.2284445
+            ],
+            [
+              16.6184803,
+              47.2284075
+            ],
+            [
+              16.6185365,
+              47.228335
+            ],
+            [
+              16.6185658,
+              47.2283044
+            ],
+            [
+              16.6186025,
+              47.2282696
+            ],
+            [
+              16.6186668,
+              47.2282243
+            ],
+            [
+              16.6187109,
+              47.2281988
+            ],
+            [
+              16.6187686,
+              47.2281723
+            ],
+            [
+              16.6188189,
+              47.2281555
+            ],
+            [
+              16.6188757,
+              47.228139
+            ],
+            [
+              16.6189499,
+              47.2281227
+            ],
+            [
+              16.6190281,
+              47.2281122
+            ],
+            [
+              16.6191165,
+              47.2281061
+            ],
+            [
+              16.6192122,
+              47.2281026
+            ],
+            [
+              16.6192685,
+              47.2280976
+            ],
+            [
+              16.6193235,
+              47.228091
+            ],
+            [
+              16.6193727,
+              47.2280858
+            ],
+            [
+              16.6194224,
+              47.2280793
+            ],
+            [
+              16.6194549,
+              47.2280742
+            ],
+            [
+              16.6194905,
+              47.2280651
+            ],
+            [
+              16.61953,
+              47.2280507
+            ],
+            [
+              16.6195632,
+              47.2280351
+            ],
+            [
+              16.61959,
+              47.2280285
+            ],
+            [
+              16.6196239,
+              47.228026
+            ],
+            [
+              16.6196471,
+              47.2280189
+            ],
+            [
+              16.6196703,
+              47.2280098
+            ],
+            [
+              16.619701,
+              47.2279963
+            ],
+            [
+              16.6197393,
+              47.2279766
+            ],
+            [
+              16.6197725,
+              47.2279602
+            ],
+            [
+              16.6198488,
+              47.2279228
+            ],
+            [
+              16.6199215,
+              47.2278897
+            ],
+            [
+              16.6201948,
+              47.2277928
+            ],
+            [
+              16.620674,
+              47.2276099
+            ],
+            [
+              16.6209711,
+              47.2275005
+            ],
+            [
+              16.6216481,
+              47.2272495
+            ],
+            [
+              16.6218793,
+              47.2271643
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:ivs2013:2",
+      "properties": {
+        "name": "Hagyományos beépítésű belső lakóterület",
+        "municipality": "Szombathely",
+        "method": "Manual coarse trace of numbered historical municipal IVS overview-map unit; affine georeferencing to three archived OSM road junctions.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/copyright"
+        ],
+        "approximationNote": "Historical surrounding inner residential unit; the concave trace leaves Belváros, the separately numbered housing estates and their visible separators outside. Cadastral road 2606 is unresolved at street-side precision. The 480×476 raster supports only rough search-area geometry, with likely local uncertainty of tens to hundreds of metres. No point buffer or parent-place geometry was used.",
+        "sourcePeriod": "KSH 2001 census / 2003 internal divisions, reproduced in municipal IVS 2013",
+        "sourceUnitId": 2,
+        "sourceDocuments": [
+          {
+            "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+            "path": "data/neighborhoods/expansion-20261115/szombathely/source-proof-pages.pdf",
+            "originalPdfPageOneBased": 50,
+            "section": "Szombathely város belső tagozódása; numbered unit 2"
+          }
+        ],
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-historical-map-trace",
+        "usableForAddressAssignment": false,
+        "areaM2": 3139316,
+        "license": "Source document evidence; OSM reference geometry ODbL-1.0",
+        "attribution": "Municipal IVS2013 / KSH2003; © OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.612772114333872,
+              47.24409668823735
+            ],
+            [
+              16.620966222950614,
+              47.2452535576812
+            ],
+            [
+              16.627529199153027,
+              47.246935012030626
+            ],
+            [
+              16.629373784546917,
+              47.246723113374564
+            ],
+            [
+              16.630890380662038,
+              47.243926172637345
+            ],
+            [
+              16.63223917765007,
+              47.23991208276655
+            ],
+            [
+              16.633572756687276,
+              47.23619948052378
+            ],
+            [
+              16.621963802065608,
+              47.2345731441295
+            ],
+            [
+              16.62120169952034,
+              47.23604698640511
+            ],
+            [
+              16.610347238468524,
+              47.23309755154922
+            ],
+            [
+              16.609462990648638,
+              47.232449781807205
+            ],
+            [
+              16.60999642226352,
+              47.230964740910096
+            ],
+            [
+              16.612122941415674,
+              47.22970883417746
+            ],
+            [
+              16.614005571686622,
+              47.22874321645134
+            ],
+            [
+              16.61562148615013,
+              47.22852011917379
+            ],
+            [
+              16.617061992511136,
+              47.22723061657666
+            ],
+            [
+              16.618868533027968,
+              47.22777243699065
+            ],
+            [
+              16.622107970930394,
+              47.22717549862153
+            ],
+            [
+              16.62487484902123,
+              47.22685765063743
+            ],
+            [
+              16.626124729328907,
+              47.22480323034876
+            ],
+            [
+              16.62280119102892,
+              47.22252483763021
+            ],
+            [
+              16.616184951998626,
+              47.22189858997885
+            ],
+            [
+              16.610902693673573,
+              47.22209325312651
+            ],
+            [
+              16.607137433131676,
+              47.224024488578735
+            ],
+            [
+              16.605392166086173,
+              47.226810230694454
+            ],
+            [
+              16.603372574257815,
+              47.230489237072746
+            ],
+            [
+              16.603228003724993,
+              47.23335336953893
+            ],
+            [
+              16.604996499364766,
+              47.234648909022965
+            ],
+            [
+              16.609730108124115,
+              47.236240774400436
+            ],
+            [
+              16.608221120984403,
+              47.238886971323645
+            ],
+            [
+              16.613160573747898,
+              47.24094226676464
+            ],
+            [
+              16.613823759612814,
+              47.24142809407115
+            ],
+            [
+              16.612772114333872,
+              47.24409668823735
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:ivs2013:7",
+      "properties": {
+        "name": "Herényi kertváros",
+        "municipality": "Szombathely",
+        "method": "Manual coarse trace of numbered historical municipal IVS overview-map unit; affine georeferencing to three archived OSM road junctions.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/copyright"
+        ],
+        "approximationNote": "Numbered historical garden-city unit north of Kámoni kertváros; perimeter follows Perint, the garden-city street divider and the historical built-up edge, rather than the full modern Herény polygon. The 480×476 raster supports only rough search-area geometry, with likely local uncertainty of tens to hundreds of metres. No point buffer or parent-place geometry was used.",
+        "sourcePeriod": "KSH 2001 census / 2003 internal divisions, reproduced in municipal IVS 2013",
+        "sourceUnitId": 7,
+        "sourceDocuments": [
+          {
+            "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+            "path": "data/neighborhoods/expansion-20261115/szombathely/source-proof-pages.pdf",
+            "originalPdfPageOneBased": 50,
+            "section": "Szombathely város belső tagozódása; numbered unit 7"
+          }
+        ],
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-historical-map-trace",
+        "usableForAddressAssignment": false,
+        "areaM2": 867143,
+        "license": "Source document evidence; OSM reference geometry ODbL-1.0",
+        "attribution": "Municipal IVS2013 / KSH2003; © OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.59662939265373,
+              47.25962671251027
+            ],
+            [
+              16.596240531571667,
+              47.2582476209412
+            ],
+            [
+              16.596621382010284,
+              47.255243943282494
+            ],
+            [
+              16.597444356358842,
+              47.252564150494806
+            ],
+            [
+              16.59829776660905,
+              47.24928138245107
+            ],
+            [
+              16.602391016429713,
+              47.24993518908
+            ],
+            [
+              16.602086255745213,
+              47.25143142859861
+            ],
+            [
+              16.603298091175837,
+              47.25013072737999
+            ],
+            [
+              16.606903563234088,
+              47.25136511202197
+            ],
+            [
+              16.606530321770887,
+              47.25421804586666
+            ],
+            [
+              16.605509112393587,
+              47.25628366477682
+            ],
+            [
+              16.60426684106132,
+              47.25818734125147
+            ],
+            [
+              16.603710582520204,
+              47.26012461359061
+            ],
+            [
+              16.603573620962795,
+              47.26283800224279
+            ],
+            [
+              16.602636110315025,
+              47.26324543919884
+            ],
+            [
+              16.6010734586794,
+              47.262413329778326
+            ],
+            [
+              16.59970904207251,
+              47.26219539423535
+            ],
+            [
+              16.597407114817855,
+              47.262384895648424
+            ],
+            [
+              16.59662939265373,
+              47.25962671251027
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:ivs2013:8",
+      "properties": {
+        "name": "Kámoni kertváros",
+        "municipality": "Szombathely",
+        "method": "Manual coarse trace of numbered historical municipal IVS overview-map unit; affine georeferencing to three archived OSM road junctions.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/copyright"
+        ],
+        "approximationNote": "Numbered historical garden-city unit; northern and eastern historical built-up edges and cadastral roads 768 and 1636/5 are taken from the coarse overview map, not equated to the municipality or modern Kámon boundary. The 480×476 raster supports only rough search-area geometry, with likely local uncertainty of tens to hundreds of metres. No point buffer or parent-place geometry was used.",
+        "sourcePeriod": "KSH 2001 census / 2003 internal divisions, reproduced in municipal IVS 2013",
+        "sourceUnitId": 8,
+        "sourceDocuments": [
+          {
+            "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+            "path": "data/neighborhoods/expansion-20261115/szombathely/source-proof-pages.pdf",
+            "originalPdfPageOneBased": 50,
+            "section": "Szombathely város belső tagozódása; numbered unit 8"
+          }
+        ],
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-historical-map-trace",
+        "usableForAddressAssignment": false,
+        "areaM2": 2574652,
+        "license": "Source document evidence; OSM reference geometry ODbL-1.0",
+        "attribution": "Municipal IVS2013 / KSH2003; © OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.598534046514843,
+              47.249141837258556
+            ],
+            [
+              16.60284835829048,
+              47.24995758632299
+            ],
+            [
+              16.606918781184913,
+              47.25106362439395
+            ],
+            [
+              16.607688894373624,
+              47.25397255134611
+            ],
+            [
+              16.608024492627806,
+              47.256406849613256
+            ],
+            [
+              16.611187840776115,
+              47.25731734938423
+            ],
+            [
+              16.613253488124975,
+              47.25726739316367
+            ],
+            [
+              16.619381949392857,
+              47.25847421882808
+            ],
+            [
+              16.621706301905714,
+              47.25329897293119
+            ],
+            [
+              16.627308940534125,
+              47.2558400956787
+            ],
+            [
+              16.630578814338197,
+              47.254640182053535
+            ],
+            [
+              16.631173117756372,
+              47.251949190644346
+            ],
+            [
+              16.633269201006883,
+              47.251296259167745
+            ],
+            [
+              16.631287252387548,
+              47.2496880334342
+            ],
+            [
+              16.629663327280593,
+              47.24552836148398
+            ],
+            [
+              16.62753680812844,
+              47.246784268216615
+            ],
+            [
+              16.625478769754988,
+              47.24668348062317
+            ],
+            [
+              16.621187284905584,
+              47.24541550011671
+            ],
+            [
+              16.61323706517005,
+              47.24396834166633
+            ],
+            [
+              16.601978926753382,
+              47.24447481591117
+            ],
+            [
+              16.600561247318613,
+              47.24531208706626
+            ],
+            [
+              16.599318975986346,
+              47.247215763540915
+            ],
+            [
+              16.598534046514843,
+              47.249141837258556
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:ivs2013:9",
+      "properties": {
+        "name": "Oladi kertváros",
+        "municipality": "Szombathely",
+        "method": "Manual coarse trace of numbered historical municipal IVS overview-map unit; affine georeferencing to three archived OSM road junctions.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/copyright"
+        ],
+        "approximationNote": "Historical unit 9 west of Oladi lakótelep and the Perint/lake corridor, south to the Homok/Jégpince divider. This includes source-period garden-city land beyond modern Olad's village core. The 480×476 raster supports only rough search-area geometry, with likely local uncertainty of tens to hundreds of metres. No point buffer or parent-place geometry was used.",
+        "sourcePeriod": "KSH 2001 census / 2003 internal divisions, reproduced in municipal IVS 2013",
+        "sourceUnitId": 9,
+        "sourceDocuments": [
+          {
+            "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+            "path": "data/neighborhoods/expansion-20261115/szombathely/source-proof-pages.pdf",
+            "originalPdfPageOneBased": 50,
+            "section": "Szombathely város belső tagozódása; numbered unit 9"
+          }
+        ],
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-historical-map-trace",
+        "usableForAddressAssignment": false,
+        "areaM2": 2717013,
+        "license": "Source document evidence; OSM reference geometry ODbL-1.0",
+        "attribution": "Municipal IVS2013 / KSH2003; © OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.577465483349894,
+              47.244181026295315
+            ],
+            [
+              16.58225996391253,
+              47.24456694116071
+            ],
+            [
+              16.58572807274534,
+              47.24398120141308
+            ],
+            [
+              16.588266279905792,
+              47.243652154807485
+            ],
+            [
+              16.593007095972517,
+              47.240559763329166
+            ],
+            [
+              16.596055907821615,
+              47.2391979072685
+            ],
+            [
+              16.600217638420986,
+              47.23849501957134
+            ],
+            [
+              16.602275676794438,
+              47.238595807164785
+            ],
+            [
+              16.602930852015906,
+              47.23469886524352
+            ],
+            [
+              16.603593636212786,
+              47.23065117950825
+            ],
+            [
+              16.599256497510915,
+              47.230287661885846
+            ],
+            [
+              16.593997066112095,
+              47.23003009359147
+            ],
+            [
+              16.589888598340607,
+              47.22967777459056
+            ],
+            [
+              16.585726867741236,
+              47.230380662287715
+            ],
+            [
+              16.582723709744606,
+              47.230838055464325
+            ],
+            [
+              16.57867611377641,
+              47.22927978595134
+            ],
+            [
+              16.575268876746893,
+              47.228659575186896
+            ],
+            [
+              16.574483947275393,
+              47.23058564890454
+            ],
+            [
+              16.57596290018149,
+              47.23307594027916
+            ],
+            [
+              16.57513231685752,
+              47.23590647688086
+            ],
+            [
+              16.573722246398162,
+              47.23659300422194
+            ],
+            [
+              16.57339465878743,
+              47.23854147518257
+            ],
+            [
+              16.576603660788205,
+              47.23854751206948
+            ],
+            [
+              16.57747269065727,
+              47.23949676943952
+            ],
+            [
+              16.577891987640978,
+              47.24027288575256
+            ],
+            [
+              16.577465483349894,
+              47.244181026295315
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:ivs2013:10",
+      "properties": {
+        "name": "Alsóhegy-Középhegy kertváros",
+        "municipality": "Szombathely",
+        "method": "Manual coarse trace of numbered historical municipal IVS overview-map unit; affine georeferencing to three archived OSM road junctions.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/copyright"
+        ],
+        "approximationNote": "Combined historical unit 10 is traced as one source-defined area, without copying either modern Alsóhegy or Középhegy. Pap-árok and Külső Pozsonyi street-side inclusion remains approximate. The 480×476 raster supports only rough search-area geometry, with likely local uncertainty of tens to hundreds of metres. No point buffer or parent-place geometry was used.",
+        "sourcePeriod": "KSH 2001 census / 2003 internal divisions, reproduced in municipal IVS 2013",
+        "sourceUnitId": 10,
+        "sourceDocuments": [
+          {
+            "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+            "path": "data/neighborhoods/expansion-20261115/szombathely/source-proof-pages.pdf",
+            "originalPdfPageOneBased": 50,
+            "section": "Szombathely város belső tagozódása; numbered unit 10"
+          }
+        ],
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-historical-map-trace",
+        "usableForAddressAssignment": false,
+        "areaM2": 2860327,
+        "license": "Source document evidence; OSM reference geometry ODbL-1.0",
+        "attribution": "Municipal IVS2013 / KSH2003; © OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.589888598340607,
+              47.22967777459056
+            ],
+            [
+              16.60360885416361,
+              47.23034969188023
+            ],
+            [
+              16.60543781993864,
+              47.225905767810396
+            ],
+            [
+              16.60856272154186,
+              47.22303647360963
+            ],
+            [
+              16.612510999161668,
+              47.22202089966296
+            ],
+            [
+              16.618242990372075,
+              47.2219993775723
+            ],
+            [
+              16.619081182671458,
+              47.21901809715659
+            ],
+            [
+              16.621260964651494,
+              47.216706983725885
+            ],
+            [
+              16.620749958294812,
+              47.213206280139175
+            ],
+            [
+              16.619248178462477,
+              47.21116822020659
+            ],
+            [
+              16.614689977805636,
+              47.21064276014868
+            ],
+            [
+              16.61035283910376,
+              47.210279242526276
+            ],
+            [
+              16.60881301439437,
+              47.208994901663736
+            ],
+            [
+              16.606511087139715,
+              47.20918440307681
+            ],
+            [
+              16.60391961715138,
+              47.21056865638047
+            ],
+            [
+              16.60223522190917,
+              47.21214844798411
+            ],
+            [
+              16.60145029243767,
+              47.214074521701754
+            ],
+            [
+              16.599194019035483,
+              47.21335956023077
+            ],
+            [
+              16.59772307677283,
+              47.21525203808393
+            ],
+            [
+              16.598493189961545,
+              47.2181609650361
+            ],
+            [
+              16.597007029748067,
+              47.220354930517274
+            ],
+            [
+              16.59666422418651,
+              47.22260488910593
+            ],
+            [
+              16.595399125928008,
+              47.22496079702261
+            ],
+            [
+              16.5938901387883,
+              47.22760699394582
+            ],
+            [
+              16.589888598340607,
+              47.22967777459056
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:ivs2013:11",
+      "properties": {
+        "name": "Újperint kertváros",
+        "municipality": "Szombathely",
+        "method": "Manual coarse trace of numbered historical municipal IVS overview-map unit; affine georeferencing to three archived OSM road junctions.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/copyright"
+        ],
+        "approximationNote": "Historical unit 11 between Pap-árok, Külső Pozsonyi/Körmendi route and the source-period built-up edge. It is distinct in source extent from modern Újperint. The 480×476 raster supports only rough search-area geometry, with likely local uncertainty of tens to hundreds of metres. No point buffer or parent-place geometry was used.",
+        "sourcePeriod": "KSH 2001 census / 2003 internal divisions, reproduced in municipal IVS 2013",
+        "sourceUnitId": 11,
+        "sourceDocuments": [
+          {
+            "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+            "path": "data/neighborhoods/expansion-20261115/szombathely/source-proof-pages.pdf",
+            "originalPdfPageOneBased": 50,
+            "section": "Szombathely város belső tagozódása; numbered unit 11"
+          }
+        ],
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-historical-map-trace",
+        "usableForAddressAssignment": false,
+        "areaM2": 1377460,
+        "license": "Source document evidence; OSM reference geometry ODbL-1.0",
+        "attribution": "Municipal IVS2013 / KSH2003; © OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.6024943287412,
+              47.21155667134957
+            ],
+            [
+              16.605825074348566,
+              47.209150807212325
+            ],
+            [
+              16.608599561414813,
+              47.20868221541422
+            ],
+            [
+              16.610825398915352,
+              47.21000015214124
+            ],
+            [
+              16.61947684939286,
+              47.21117941882808
+            ],
+            [
+              16.61865347337627,
+              47.20932569857399
+            ],
+            [
+              16.618051159314646,
+              47.2076339207554
+            ],
+            [
+              16.62445394536538,
+              47.207947482157245
+            ],
+            [
+              16.62462895179985,
+              47.20448037443502
+            ],
+            [
+              16.619864907138854,
+              47.20349148431359
+            ],
+            [
+              16.618279428576994,
+              47.203111606335106
+            ],
+            [
+              16.614369195834243,
+              47.203373461211726
+            ],
+            [
+              16.60981860415281,
+              47.20269725733981
+            ],
+            [
+              16.60907171955837,
+              47.2038696119874
+            ],
+            [
+              16.60677740127912,
+              47.20390836958647
+            ],
+            [
+              16.60644180302494,
+              47.201474071319325
+            ],
+            [
+              16.60484871548767,
+              47.201244937154854
+            ],
+            [
+              16.603339326679926,
+              47.19935762103628
+            ],
+            [
+              16.601304115232708,
+              47.19880460200079
+            ],
+            [
+              16.60073263874077,
+              47.201043361967955
+            ],
+            [
+              16.601731422859864,
+              47.20396348754161
+            ],
+            [
+              16.600473933576772,
+              47.20616865164428
+            ],
+            [
+              16.600588469875984,
+              47.208441007475926
+            ],
+            [
+              16.59963574127739,
+              47.209149932059994
+            ],
+            [
+              16.6024943287412,
+              47.21155667134957
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:ivs2013:12",
+      "properties": {
+        "name": "Gyöngyösszőlős kertváros",
+        "municipality": "Szombathely",
+        "method": "Manual coarse trace of numbered historical municipal IVS overview-map unit; affine georeferencing to three archived OSM road junctions.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/copyright"
+        ],
+        "approximationNote": "Historical unit 12, east of separately numbered KISZ estate; its stepped housing-street edge and southern undeveloped/built-up limit are coarse map estimates. Modern Gyöngyösszőlős was not substituted. The 480×476 raster supports only rough search-area geometry, with likely local uncertainty of tens to hundreds of metres. No point buffer or parent-place geometry was used.",
+        "sourcePeriod": "KSH 2001 census / 2003 internal divisions, reproduced in municipal IVS 2013",
+        "sourceUnitId": 12,
+        "sourceDocuments": [
+          {
+            "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+            "path": "data/neighborhoods/expansion-20261115/szombathely/source-proof-pages.pdf",
+            "originalPdfPageOneBased": 50,
+            "section": "Szombathely város belső tagozódása; numbered unit 12"
+          }
+        ],
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-historical-map-trace",
+        "usableForAddressAssignment": false,
+        "areaM2": 1467288,
+        "license": "Source document evidence; OSM reference geometry ODbL-1.0",
+        "attribution": "Municipal IVS2013 / KSH2003; © OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.625911276349346,
+              47.224490544099254
+            ],
+            [
+              16.62866293648936,
+              47.224474183743176
+            ],
+            [
+              16.63129245135475,
+              47.222336211369466
+            ],
+            [
+              16.633205517527344,
+              47.22076761838731
+            ],
+            [
+              16.63665079943392,
+              47.22063411008171
+            ],
+            [
+              16.638297149799072,
+              47.21980803754812
+            ],
+            [
+              16.638959933995952,
+              47.21576035181284
+            ],
+            [
+              16.639157767356654,
+              47.21184101264859
+            ],
+            [
+              16.640666754496365,
+              47.20919481572538
+            ],
+            [
+              16.641649918996603,
+              47.20788291588527
+            ],
+            [
+              16.64126105791454,
+              47.206503824316194
+            ],
+            [
+              16.634012068920978,
+              47.20478877410228
+            ],
+            [
+              16.632968032617445,
+              47.20730662445447
+            ],
+            [
+              16.632343293297623,
+              47.21060059111969
+            ],
+            [
+              16.629675733555175,
+              47.21349228256345
+            ],
+            [
+              16.62751116952596,
+              47.215501908366136
+            ],
+            [
+              16.623593729475832,
+              47.22044802009856
+            ],
+            [
+              16.625834784927196,
+              47.221464469197564
+            ],
+            [
+              16.62485162042696,
+              47.22277636903767
+            ],
+            [
+              16.625911276349346,
+              47.224490544099254
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:ivs2013:13",
+      "properties": {
+        "name": "Gyöngyöshermán kertváros",
+        "municipality": "Szombathely",
+        "method": "Manual coarse trace of numbered historical municipal IVS overview-map unit; affine georeferencing to three archived OSM road junctions.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/copyright"
+        ],
+        "approximationNote": "Source unit 13 between the two rail corridors, road 86 and the historical built-up edge. The source scheme predates later development and differs from the modern place polygon. The 480×476 raster supports only rough search-area geometry, with likely local uncertainty of tens to hundreds of metres. No point buffer or parent-place geometry was used.",
+        "sourcePeriod": "KSH 2001 census / 2003 internal divisions, reproduced in municipal IVS 2013",
+        "sourceUnitId": 13,
+        "sourceDocuments": [
+          {
+            "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+            "path": "data/neighborhoods/expansion-20261115/szombathely/source-proof-pages.pdf",
+            "originalPdfPageOneBased": 50,
+            "section": "Szombathely város belső tagozódása; numbered unit 13"
+          }
+        ],
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-historical-map-trace",
+        "usableForAddressAssignment": false,
+        "areaM2": 876250,
+        "license": "Source document evidence; OSM reference geometry ODbL-1.0",
+        "attribution": "Municipal IVS2013 / KSH2003; © OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.64148211986951,
+              47.2066657667517
+            ],
+            [
+              16.642724792869814,
+              47.20929560331883
+            ],
+            [
+              16.64266392106652,
+              47.21050155383091
+            ],
+            [
+              16.645324273501593,
+              47.21229411924295
+            ],
+            [
+              16.647184076846308,
+              47.211780732958864
+            ],
+            [
+              16.6493334229247,
+              47.2100725947842
+            ],
+            [
+              16.651025427142322,
+              47.208342059366544
+            ],
+            [
+              16.652953711265738,
+              47.206471978756376
+            ],
+            [
+              16.65488960436457,
+              47.20445115433219
+            ],
+            [
+              16.65703895044296,
+              47.20274301615753
+            ],
+            [
+              16.654119491175855,
+              47.20154222738003
+            ],
+            [
+              16.65049880116678,
+              47.20060933036607
+            ],
+            [
+              16.646397942370704,
+              47.20010626755115
+            ],
+            [
+              16.64440117746858,
+              47.20333304248741
+            ],
+            [
+              16.64148211986951,
+              47.2066657667517
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:ivs2013:14",
+      "properties": {
+        "name": "Szentkirály kertváros",
+        "municipality": "Szombathely",
+        "method": "Manual coarse trace of numbered historical municipal IVS overview-map unit; affine georeferencing to three archived OSM road junctions.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/copyright"
+        ],
+        "approximationNote": "Full numbered source-map unit 14 east of the railway, extending through the historically grouped eastern settlements; annex text supplies only the railway and the map supplies the remaining perimeter. Not aliased to the smaller modern Szentkirály village. The 480×476 raster supports only rough search-area geometry, with likely local uncertainty of tens to hundreds of metres. No point buffer or parent-place geometry was used.",
+        "sourcePeriod": "KSH 2001 census / 2003 internal divisions, reproduced in municipal IVS 2013",
+        "sourceUnitId": 14,
+        "sourceDocuments": [
+          {
+            "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+            "path": "data/neighborhoods/expansion-20261115/szombathely/source-proof-pages.pdf",
+            "originalPdfPageOneBased": 50,
+            "section": "Szombathely város belső tagozódása; numbered unit 14"
+          }
+        ],
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-historical-map-trace",
+        "usableForAddressAssignment": false,
+        "areaM2": 1859130,
+        "license": "Source document evidence; OSM reference geometry ODbL-1.0",
+        "attribution": "Municipal IVS2013 / KSH2003; © OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.645552944431977,
+              47.21230531786444
+            ],
+            [
+              16.64925733317058,
+              47.211580032924296
+            ],
+            [
+              16.651986166384358,
+              47.21201590401025
+            ],
+            [
+              16.657177117004473,
+              47.213630166630715
+            ],
+            [
+              16.66038611900525,
+              47.21363620351762
+            ],
+            [
+              16.659859894697746,
+              47.210436987558936
+            ],
+            [
+              16.664212251350442,
+              47.210499017553325
+            ],
+            [
+              16.669974678462495,
+              47.209874520206625
+            ],
+            [
+              16.677101522181438,
+              47.209467958402904
+            ],
+            [
+              16.677596908919263,
+              47.20873663657584
+            ],
+            [
+              16.676171218841045,
+              47.20519113850316
+            ],
+            [
+              16.67564499453354,
+              47.20199192254447
+            ],
+            [
+              16.66990539434772,
+              47.20216418844914
+            ],
+            [
+              16.665766490674585,
+              47.202414844704265
+            ],
+            [
+              16.662786159604188,
+              47.20242000643885
+            ],
+            [
+              16.661711285730977,
+              47.20100731900529
+            ],
+            [
+              16.657107431221664,
+              47.201386321831436
+            ],
+            [
+              16.656802670537164,
+              47.202882561350044
+            ],
+            [
+              16.653921657815154,
+              47.20546156654429
+            ],
+            [
+              16.651757093785942,
+              47.20747119234697
+            ],
+            [
+              16.64982120068711,
+              47.20949201677115
+            ],
+            [
+              16.645552944431977,
+              47.21230531786444
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:ivs2013:16",
+      "properties": {
+        "name": "Ipartelep",
+        "municipality": "Szombathely",
+        "method": "Manual coarse trace of numbered historical municipal IVS overview-map unit; affine georeferencing to three archived OSM road junctions.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/copyright"
+        ],
+        "approximationNote": "Historical broad industrial unit 16. The separately numbered Éhen Gyula kertváros is removed using its archived documentary street trace; the source map resolves the unreadable road-number part of the annex. Broad mixed land use is intentional in this historical source-defined unit. The 480×476 raster supports only rough search-area geometry, with likely local uncertainty of tens to hundreds of metres. No point buffer or parent-place geometry was used.",
+        "sourcePeriod": "KSH 2001 census / 2003 internal divisions, reproduced in municipal IVS 2013",
+        "sourceUnitId": 16,
+        "sourceDocuments": [
+          {
+            "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+            "path": "data/neighborhoods/expansion-20261115/szombathely/source-proof-pages.pdf",
+            "originalPdfPageOneBased": 50,
+            "section": "Szombathely város belső tagozódása; numbered unit 16"
+          }
+        ],
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-historical-map-trace",
+        "usableForAddressAssignment": false,
+        "areaM2": 4792687,
+        "license": "Source document evidence; OSM reference geometry ODbL-1.0",
+        "attribution": "Municipal IVS2013 / KSH2003; © OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.630509530223424,
+              47.24692985029605
+            ],
+            [
+              16.633200318560142,
+              47.24811944045205
+            ],
+            [
+              16.635265965909003,
+              47.248069484231486
+            ],
+            [
+              16.63893991874596,
+              47.24794717454738
+            ],
+            [
+              16.642865369439537,
+              47.247383832042736
+            ],
+            [
+              16.64816284571541,
+              47.24688768126706
+            ],
+            [
+              16.6512040485891,
+              47.245676569020404
+            ],
+            [
+              16.65339904851996,
+              47.243063967961675
+            ],
+            [
+              16.65470219165552,
+              47.23995434097495
+            ],
+            [
+              16.656005334791082,
+              47.23684471398821
+            ],
+            [
+              16.656294877524758,
+              47.23564996209763
+            ],
+            [
+              16.65265896956486,
+              47.235018552711686
+            ],
+            [
+              16.653459116987182,
+              47.23279099136602
+            ],
+            [
+              16.655776262192663,
+              47.23230000232493
+            ],
+            [
+              16.65696527069705,
+              47.23145153254835
+            ],
+            [
+              16.656393392537076,
+              47.22915677947372
+            ],
+            [
+              16.6553413455901,
+              47.22729186059813
+            ],
+            [
+              16.65588238618039,
+              47.22565607588701
+            ],
+            [
+              16.657528736545544,
+              47.22483000335341
+            ],
+            [
+              16.656423426770687,
+              47.22402029117589
+            ],
+            [
+              16.653031407691994,
+              47.22309859278342
+            ],
+            [
+              16.651019023171013,
+              47.22209334230592
+            ],
+            [
+              16.652962525245254,
+              47.21992177406772
+            ],
+            [
+              16.652322166306575,
+              47.21898371531918
+            ],
+            [
+              16.645987861034545,
+              47.21731345959125
+            ],
+            [
+              16.641925047115524,
+              47.216056677706284
+            ],
+            [
+              16.64040084202499,
+              47.21900436225751
+            ],
+            [
+              16.638510602778634,
+              47.22012072379763
+            ],
+            [
+              16.636414519528124,
+              47.22077365527423
+            ],
+            [
+              16.633426579482318,
+              47.22092956082282
+            ],
+            [
+              16.63192520131802,
+              47.22342501393202
+            ],
+            [
+              16.629791073190454,
+              47.224831664478664
+            ],
+            [
+              16.63633122246663,
+              47.22696535027012
+            ],
+            [
+              16.63592754510178,
+              47.23042125937085
+            ],
+            [
+              16.63509696177781,
+              47.233251795972556
+            ],
+            [
+              16.63448744040881,
+              47.23624427500976
+            ],
+            [
+              16.632490675506688,
+              47.23947104994602
+            ],
+            [
+              16.630928425539096,
+              47.2431724535673
+            ],
+            [
+              16.62969376318224,
+              47.24492538622794
+            ],
+            [
+              16.630509530223424,
+              47.24692985029605
+            ]
+          ],
+          [
+            [
+              16.6353803,
+              47.2406505
+            ],
+            [
+              16.635286,
+              47.2406331
+            ],
+            [
+              16.6346462,
+              47.2404611
+            ],
+            [
+              16.6335219,
+              47.2401467
+            ],
+            [
+              16.6344221,
+              47.2380714
+            ],
+            [
+              16.6355419,
+              47.2354021
+            ],
+            [
+              16.6355616,
+              47.2353243
+            ],
+            [
+              16.6366587,
+              47.23575
+            ],
+            [
+              16.6367382,
+              47.2357797
+            ],
+            [
+              16.6367773,
+              47.2357347
+            ],
+            [
+              16.6367884,
+              47.235722
+            ],
+            [
+              16.6372984,
+              47.2350878
+            ],
+            [
+              16.637521,
+              47.2348277
+            ],
+            [
+              16.6376707,
+              47.2346862
+            ],
+            [
+              16.6378124,
+              47.2345874
+            ],
+            [
+              16.6380298,
+              47.234475
+            ],
+            [
+              16.6382499,
+              47.2343872
+            ],
+            [
+              16.6384055,
+              47.2343449
+            ],
+            [
+              16.6385579,
+              47.2343203
+            ],
+            [
+              16.6387324,
+              47.2343074
+            ],
+            [
+              16.6390849,
+              47.2342933
+            ],
+            [
+              16.6392719,
+              47.2342767
+            ],
+            [
+              16.6394775,
+              47.2342521
+            ],
+            [
+              16.6398272,
+              47.234196
+            ],
+            [
+              16.6397032,
+              47.2343746
+            ],
+            [
+              16.6394004,
+              47.2349122
+            ],
+            [
+              16.6393496,
+              47.234991
+            ],
+            [
+              16.6392505,
+              47.2351277
+            ],
+            [
+              16.638833,
+              47.2356814
+            ],
+            [
+              16.6383262,
+              47.2363212
+            ],
+            [
+              16.6383141,
+              47.2363366
+            ],
+            [
+              16.638282,
+              47.2363775
+            ],
+            [
+              16.6384091,
+              47.2364272
+            ],
+            [
+              16.6391856,
+              47.2367448
+            ],
+            [
+              16.6401144,
+              47.2371166
+            ],
+            [
+              16.6405168,
+              47.2372648
+            ],
+            [
+              16.6410232,
+              47.2374544
+            ],
+            [
+              16.6418022,
+              47.2377355
+            ],
+            [
+              16.6417568,
+              47.2378135
+            ],
+            [
+              16.6413534,
+              47.2384964
+            ],
+            [
+              16.6406528,
+              47.2397434
+            ],
+            [
+              16.6391527,
+              47.2419552
+            ],
+            [
+              16.6389813,
+              47.2422445
+            ],
+            [
+              16.6388489,
+              47.2424457
+            ],
+            [
+              16.6388077,
+              47.2424795
+            ],
+            [
+              16.6387565,
+              47.242498
+            ],
+            [
+              16.6386786,
+              47.2424975
+            ],
+            [
+              16.6385972,
+              47.2424725
+            ],
+            [
+              16.6369215,
+              47.2418495
+            ],
+            [
+              16.6353508,
+              47.2412722
+            ],
+            [
+              16.635401,
+              47.2409394
+            ],
+            [
+              16.6354558,
+              47.2406586
+            ],
+            [
+              16.6353803,
+              47.2406505
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:estate:gefin-lakopark",
+      "properties": {
+        "name": "Géfin Lakópark",
+        "municipality": "Szombathely",
+        "method": "Estimated source-defined street-block envelope: polygonize the archived real OSM geometry of Gagarin út, Géfin Gyula utca, Kálvária utca, Szent László király utca and select the closed block containing the archived named neighbourhood node. The point selects a block; it is not buffered.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://kbr.szombathely.hu/kbrfile/55465.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/5696692619",
+          "https://szombathely.hu/downloads/472/",
+          "https://utcak-magyarorszag.openalfa.com/utcak/szent-laszlo-kiraly-utca-gefin-lakopark-operint-szombathely"
+        ],
+        "approximationNote": "Rough search area for the former barracks/Remix redevelopment block bounded by Gagarin út, Géfin Gyula utca, Kálvária utca and Szent László király utca. Municipal history supports the site and OSM supports the estate name within it. The complete historical block is used because individual development phases have no verified perimeter; northern nonresidential parts may be included.",
+        "sourcePeriod": "OSM snapshot 2026-11-12; contemporary textual location evidence",
+        "sourceLineIds": [
+          "way/99583980",
+          "way/99584009",
+          "way/112539563",
+          "way/665672895",
+          "way/1348021881"
+        ],
+        "namedPointSourceUrl": "https://www.openstreetmap.org/node/5696692619",
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-source-street-block",
+        "usableForAddressAssignment": false,
+        "areaM2": 65990,
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.6077731,
+              47.2305213
+            ],
+            [
+              16.6082485,
+              47.2298018
+            ],
+            [
+              16.6085399,
+              47.2293678
+            ],
+            [
+              16.6091096,
+              47.2284863
+            ],
+            [
+              16.6096838,
+              47.2276047
+            ],
+            [
+              16.6106719,
+              47.2266552
+            ],
+            [
+              16.6083515,
+              47.2261649
+            ],
+            [
+              16.6078902,
+              47.2271016
+            ],
+            [
+              16.6071054,
+              47.2287645
+            ],
+            [
+              16.6063704,
+              47.2303788
+            ],
+            [
+              16.6077731,
+              47.2305213
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:estate:ontode",
+      "properties": {
+        "name": "Öntöde",
+        "municipality": "Szombathely",
+        "method": "Estimated source-defined street-block envelope: polygonize the archived real OSM geometry of Gagarin út, Géfin Gyula utca, Esze Tamás utca, Szinyei Merse Pál utca and select the closed block containing the archived named neighbourhood node. The point selects a block; it is not buffered.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://www.openstreetmap.org/node/5696692620",
+        "supportingUrls": [
+          "https://www.holahaz.hu/varos/szombathely/ontode",
+          "https://ontodesport.hu/kapcsolat/",
+          "https://utcak-magyarorszag.openalfa.com/utcak/fuerdo-utca-ontoede-operint-szombathely"
+        ],
+        "approximationNote": "Estimated local street block containing the named Öntöde neighbourhood point, between Gagarin út, Géfin Gyula utca, Esze Tamás utca and Szinyei Merse Pál utca. The primary local landmark confirms Öntöde at Géfin Gyula utca 24. These are recognizable enclosing streets, not a verified administrative or development perimeter; the neighbourhood may extend beyond them.",
+        "sourcePeriod": "OSM snapshot 2026-11-12; contemporary textual location evidence",
+        "sourceLineIds": [
+          "way/99583966",
+          "way/99583980",
+          "way/212501033",
+          "way/1348021882"
+        ],
+        "namedPointSourceUrl": "https://www.openstreetmap.org/node/5696692620",
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-source-street-block",
+        "usableForAddressAssignment": false,
+        "areaM2": 33553,
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.6108829,
+              47.2279923
+            ],
+            [
+              16.6096838,
+              47.2276047
+            ],
+            [
+              16.6091096,
+              47.2284863
+            ],
+            [
+              16.6085399,
+              47.2293678
+            ],
+            [
+              16.6082485,
+              47.2298018
+            ],
+            [
+              16.6077731,
+              47.2305213
+            ],
+            [
+              16.6091143,
+              47.2306575
+            ],
+            [
+              16.6094538,
+              47.2301449
+            ],
+            [
+              16.6096675,
+              47.2298272
+            ],
+            [
+              16.6097313,
+              47.2297157
+            ],
+            [
+              16.6103752,
+              47.2287286
+            ],
+            [
+              16.6107633,
+              47.2281337
+            ],
+            [
+              16.6108829,
+              47.2279923
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:szombathely:estate:lovasiskola-lakopark",
+      "properties": {
+        "name": "Lovasiskola lakópark",
+        "municipality": "Szombathely",
+        "method": "Estimated source-defined street-block envelope: polygonize the archived real OSM geometry of Jégpince út, Brenner János utca, Lovagló utca, Mélykúti út and select the closed block containing the archived named neighbourhood node. The point selects a block; it is not buffered.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://www.openstreetmap.org/node/8123953068",
+        "supportingUrls": [
+          "https://www.holahaz.hu/varos/szombathely/lovasiskola-lakopark",
+          "https://utcak-magyarorszag.openalfa.com/utcak/jegpince-ut-koezephegy-szombathely",
+          "https://www.zsolt-lak.hu/index.php?kod=3024&modul=ingatlanok"
+        ],
+        "approximationNote": "Estimated estate envelope between Jégpince út, Brenner János utca, Lovagló utca and Mélykúti út, enclosing Rákosi Jenő and Matók Leó streets and the named estate point. Local text identifies those central streets and describes adjacent garden land around Brenner/Lovagló. The road envelope includes the neighbouring riding ground and some gardens; individual parcel edges and the full estate extent remain uncertain.",
+        "sourcePeriod": "OSM snapshot 2026-11-12; contemporary textual location evidence",
+        "sourceLineIds": [
+          "way/96559159",
+          "way/304002652",
+          "way/312840478",
+          "way/312840496",
+          "way/599409690",
+          "way/599409691"
+        ],
+        "namedPointSourceUrl": "https://www.openstreetmap.org/node/8123953068",
+        "boundaryKind": "neighbourhood",
+        "quality": "estimated-source-street-block",
+        "usableForAddressAssignment": false,
+        "areaM2": 170052,
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.5904035,
+              47.2273769
+            ],
+            [
+              16.5921293,
+              47.2276032
+            ],
+            [
+              16.5925709,
+              47.2276428
+            ],
+            [
+              16.592886,
+              47.2276583
+            ],
+            [
+              16.5933028,
+              47.227663
+            ],
+            [
+              16.59481,
+              47.2276497
+            ],
+            [
+              16.5952198,
+              47.2276889
+            ],
+            [
+              16.5953515,
+              47.2277137
+            ],
+            [
+              16.595399,
+              47.2275288
+            ],
+            [
+              16.595764,
+              47.2264982
+            ],
+            [
+              16.5958536,
+              47.2260547
+            ],
+            [
+              16.5960585,
+              47.2256242
+            ],
+            [
+              16.5972601,
+              47.2238615
+            ],
+            [
+              16.5970855,
+              47.2238644
+            ],
+            [
+              16.5968915,
+              47.2238754
+            ],
+            [
+              16.5964415,
+              47.2239015
+            ],
+            [
+              16.5959997,
+              47.2238859
+            ],
+            [
+              16.5959147,
+              47.2238829
+            ],
+            [
+              16.5954976,
+              47.2238568
+            ],
+            [
+              16.5949378,
+              47.2237785
+            ],
+            [
+              16.5944069,
+              47.2236574
+            ],
+            [
+              16.5937341,
+              47.2235108
+            ],
+            [
+              16.593549,
+              47.2234726
+            ],
+            [
+              16.593326,
+              47.223389
+            ],
+            [
+              16.593109,
+              47.2233183
+            ],
+            [
+              16.5928986,
+              47.2232754
+            ],
+            [
+              16.5926603,
+              47.2232381
+            ],
+            [
+              16.5924738,
+              47.2231747
+            ],
+            [
+              16.5923695,
+              47.2231226
+            ],
+            [
+              16.5921808,
+              47.2231246
+            ],
+            [
+              16.591989,
+              47.223558
+            ],
+            [
+              16.5916538,
+              47.2243155
+            ],
+            [
+              16.5915687,
+              47.2246047
+            ],
+            [
+              16.5913572,
+              47.2250405
+            ],
+            [
+              16.5906169,
+              47.2268721
+            ],
+            [
+              16.5904035,
+              47.2273769
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

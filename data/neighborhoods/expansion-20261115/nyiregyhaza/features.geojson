@@ -1,0 +1,2068 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-20261115:Alispántanya",
+      "properties": {
+        "name": "Alispántanya",
+        "municipality": "Nyíregyháza",
+        "municipalityId": "city:Nyíregyháza",
+        "method": "source_footprint_locality_association_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "semanticFootprint": true,
+        "candidateBoundaryKind": "neighbourhood",
+        "pointRadiusFallback": false,
+        "sourceGeometryUnmodified": true,
+        "partialSettlementFootprint": true,
+        "sourceUrl": "https://www.openstreetmap.org/way/324059121",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/way/324059121",
+          "https://www.openstreetmap.org/way/324059119",
+          "https://www.openstreetmap.org/way/324059118",
+          "https://www.openstreetmap.org/way/324060470",
+          "https://www.openstreetmap.org/way/324059123",
+          "https://www.openstreetmap.org/node/8920465723",
+          "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf"
+        ],
+        "approximationNote": "Five actual farmyards around the preserved Alispántanya locality, east of Butyka. This deliberately discontinuous built-up footprint excludes the surrounding agricultural fields. The association of the individual farms with the locality is inferred; the locality point is a label, not a polygon generator. Source farmyard rings are unchanged; their union preserves separate islands. No circle, point buffer, Voronoi region or convex hull is used.",
+        "sourceFootprintIds": [
+          "osm:way:324059121",
+          "osm:way:324059119",
+          "osm:way:324059118",
+          "osm:way:324060470",
+          "osm:way:324059123"
+        ],
+        "sourceRoadIds": [],
+        "source": {
+          "provider": "osm-physical-map-and-local-evidence",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceLandusePath": "data/neighborhoods/expansion-20261115/nyiregyhaza/source-landuse.geojson",
+          "selectionPath": "data/neighborhoods/expansion-20261115/nyiregyhaza/selection.json"
+        },
+        "approximateAreaSquareMetres": 15901.6,
+        "nameEvidence": [
+          {
+            "name": "Alispántanya",
+            "coordinates": [
+              21.7410616,
+              47.8595437
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/8920465723"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                21.7360148,
+                47.8590624
+              ],
+              [
+                21.7352136,
+                47.8590449
+              ],
+              [
+                21.7352006,
+                47.8595344
+              ],
+              [
+                21.7359692,
+                47.8595737
+              ],
+              [
+                21.7360148,
+                47.8590624
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.7384759,
+                47.8593443
+              ],
+              [
+                21.7381596,
+                47.8593257
+              ],
+              [
+                21.7381121,
+                47.8596733
+              ],
+              [
+                21.7384364,
+                47.8596865
+              ],
+              [
+                21.7384759,
+                47.8593443
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.742658,
+                47.8593418
+              ],
+              [
+                21.7420066,
+                47.8592981
+              ],
+              [
+                21.7419154,
+                47.8598181
+              ],
+              [
+                21.7426059,
+                47.8598662
+              ],
+              [
+                21.742658,
+                47.8593418
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.7496674,
+                47.86064
+              ],
+              [
+                21.749713,
+                47.8602904
+              ],
+              [
+                21.7490486,
+                47.8602554
+              ],
+              [
+                21.7489053,
+                47.8611425
+              ],
+              [
+                21.7499279,
+                47.8611906
+              ],
+              [
+                21.7500126,
+                47.8606662
+              ],
+              [
+                21.7496674,
+                47.86064
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.7375939,
+                47.8630848
+              ],
+              [
+                21.7375418,
+                47.8635349
+              ],
+              [
+                21.7381541,
+                47.8635392
+              ],
+              [
+                21.7381997,
+                47.8631154
+              ],
+              [
+                21.7375939,
+                47.8630848
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-20261115:Báthory-lakópark",
+      "properties": {
+        "name": "Báthory-lakópark",
+        "municipality": "Nyíregyháza",
+        "municipalityId": "city:Nyíregyháza",
+        "method": "manual_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "semanticFootprint": true,
+        "candidateBoundaryKind": "neighbourhood",
+        "pointRadiusFallback": false,
+        "sourceGeometryUnmodified": false,
+        "partialSettlementFootprint": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/4766090577",
+        "supportingUrls": [
+          "https://www.nyiregyhaza.hu/post/bemutatjuk-a-nyiregyhazi-valasztokeruleteket-11.-kertvaros-2026-11-08",
+          "https://utcak-magyarorszag.openalfa.com/utcak/suba-utca-bathory-lakopark-nyiregyhaza",
+          "https://www.openstreetmap.org/way/145010681",
+          "https://www.openstreetmap.org/way/145010682",
+          "https://www.openstreetmap.org/way/145010701",
+          "https://www.openstreetmap.org/way/145010713",
+          "https://www.openstreetmap.org/way/145010714",
+          "https://www.openstreetmap.org/way/299348873",
+          "https://www.openstreetmap.org/way/299348874",
+          "https://www.openstreetmap.org/way/300805055",
+          "https://www.openstreetmap.org/way/313831696",
+          "https://www.openstreetmap.org/way/442464107",
+          "https://www.openstreetmap.org/node/4766090577",
+          "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf"
+        ],
+        "approximationNote": "Rough manual outline of the estate's actual local-street fabric north of Tiszavasvári út, including the Suba/Fokos/Játék and Alkotás/Tagló streets up to Levél utca. Municipal reporting explicitly places the estate on the Alkotás/Tagló bus extension. Northern and western edges are estimated transitions to rural land; street axes and estate perimeter need not coincide. The whole2.8km² CLC parent is not reused.",
+        "sourceFootprintIds": [],
+        "sourceRoadIds": [
+          "osm:way:145010681",
+          "osm:way:145010682",
+          "osm:way:145010701",
+          "osm:way:145010713",
+          "osm:way:145010714",
+          "osm:way:299348873",
+          "osm:way:299348874",
+          "osm:way:300805055",
+          "osm:way:313831696",
+          "osm:way:442464107"
+        ],
+        "source": {
+          "provider": "osm-physical-map-and-local-evidence",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceLandusePath": "data/neighborhoods/expansion-20261115/nyiregyhaza/source-landuse.geojson",
+          "selectionPath": "data/neighborhoods/expansion-20261115/nyiregyhaza/selection.json"
+        },
+        "approximateAreaSquareMetres": 649206.2,
+        "nameEvidence": [
+          {
+            "name": "Báthory-lakópark",
+            "coordinates": [
+              21.677751,
+              47.9620413
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/4766090577"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.6753,
+              47.957
+            ],
+            [
+              21.6802,
+              47.957
+            ],
+            [
+              21.6846,
+              47.9572
+            ],
+            [
+              21.6852,
+              47.9582
+            ],
+            [
+              21.685,
+              47.9627
+            ],
+            [
+              21.6859,
+              47.9654
+            ],
+            [
+              21.6799,
+              47.9651
+            ],
+            [
+              21.6753,
+              47.9642
+            ],
+            [
+              21.6753,
+              47.957
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-20261115:Felsőbadúrbokor",
+      "properties": {
+        "name": "Felsőbadúrbokor",
+        "municipality": "Nyíregyháza",
+        "municipalityId": "city:Nyíregyháza",
+        "method": "source_footprint_locality_association_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "semanticFootprint": true,
+        "candidateBoundaryKind": "neighbourhood",
+        "pointRadiusFallback": false,
+        "sourceGeometryUnmodified": true,
+        "partialSettlementFootprint": true,
+        "sourceUrl": "https://www.openstreetmap.org/way/316700615",
+        "supportingUrls": [
+          "https://archeodatabase.hnm.hu/en/node/21577",
+          "https://www.openstreetmap.org/way/316700615",
+          "https://www.openstreetmap.org/way/750931435",
+          "https://www.openstreetmap.org/way/316700616",
+          "https://www.openstreetmap.org/way/917164795",
+          "https://www.openstreetmap.org/way/917164794",
+          "https://www.openstreetmap.org/way/316700614",
+          "https://www.openstreetmap.org/way/316700617",
+          "https://www.openstreetmap.org/node/3048723339",
+          "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf"
+        ],
+        "approximationNote": "Actual separate farmyards west of Westsik Vilmos út around the Felsőbadúrbokor label. The Hungarian National Museum archaeological locality corroborates Felső-Pázsit-Felsőbadurbokor on the west side of Westsik Vilmos utca. Partial built-up footprint; name association and which farms belong are low-confidence inferences. Source farmyard rings are unchanged; their union preserves separate islands. No circle, point buffer, Voronoi region or convex hull is used.",
+        "sourceFootprintIds": [
+          "osm:way:316700615",
+          "osm:way:750931435",
+          "osm:way:316700616",
+          "osm:way:917164795",
+          "osm:way:917164794",
+          "osm:way:316700614",
+          "osm:way:316700617"
+        ],
+        "sourceRoadIds": [],
+        "source": {
+          "provider": "osm-physical-map-and-local-evidence",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceLandusePath": "data/neighborhoods/expansion-20261115/nyiregyhaza/source-landuse.geojson",
+          "selectionPath": "data/neighborhoods/expansion-20261115/nyiregyhaza/selection.json"
+        },
+        "approximateAreaSquareMetres": 17651.8,
+        "nameEvidence": [
+          {
+            "name": "Felsőbadúrbokor",
+            "coordinates": [
+              21.696579,
+              47.9973986
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/3048723339"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                21.6997934,
+                47.9932804
+              ],
+              [
+                21.6991849,
+                47.9932722
+              ],
+              [
+                21.699172,
+                47.9936673
+              ],
+              [
+                21.6997968,
+                47.9936587
+              ],
+              [
+                21.6997934,
+                47.9932804
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.6925307,
+                47.993527
+              ],
+              [
+                21.6925629,
+                47.9937834
+              ],
+              [
+                21.6929654,
+                47.9937718
+              ],
+              [
+                21.6929875,
+                47.9941161
+              ],
+              [
+                21.6930058,
+                47.9944941
+              ],
+              [
+                21.6935341,
+                47.9944819
+              ],
+              [
+                21.6934977,
+                47.9941009
+              ],
+              [
+                21.6934744,
+                47.9937571
+              ],
+              [
+                21.6939011,
+                47.9937448
+              ],
+              [
+                21.6938556,
+                47.9934783
+              ],
+              [
+                21.6925307,
+                47.993527
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.6985951,
+                47.9947527
+              ],
+              [
+                21.6980826,
+                47.9947704
+              ],
+              [
+                21.6981003,
+                47.9951015
+              ],
+              [
+                21.6986216,
+                47.9950838
+              ],
+              [
+                21.6985951,
+                47.9947527
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.6941556,
+                47.9956138
+              ],
+              [
+                21.6941371,
+                47.9969657
+              ],
+              [
+                21.6947764,
+                47.9969696
+              ],
+              [
+                21.6947953,
+                47.9956177
+              ],
+              [
+                21.6941556,
+                47.9956138
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.6966891,
+                47.9983125
+              ],
+              [
+                21.6966623,
+                47.9986032
+              ],
+              [
+                21.6971183,
+                47.9985996
+              ],
+              [
+                21.697129,
+                47.9983125
+              ],
+              [
+                21.6966891,
+                47.9983125
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-20261115:Kerti lak",
+      "properties": {
+        "name": "Kerti lak",
+        "municipality": "Nyíregyháza",
+        "municipalityId": "city:Nyíregyháza",
+        "method": "manual_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "semanticFootprint": true,
+        "candidateBoundaryKind": "neighbourhood",
+        "pointRadiusFallback": false,
+        "sourceGeometryUnmodified": false,
+        "partialSettlementFootprint": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/4891873037",
+        "supportingUrls": [
+          "https://utcak-magyarorszag.openalfa.com/utcak/zivatar-utca-kerti-lak-nyiregyhaza",
+          "https://busmaps.com/en/hungary/public_transit-stop-Ny%C3%ADregyh%C3%A1za-Beren%C3%A1t-utca-7743416069000611628",
+          "https://www.openstreetmap.org/way/100277170",
+          "https://www.openstreetmap.org/way/107335884",
+          "https://www.openstreetmap.org/way/107335919",
+          "https://www.openstreetmap.org/way/117885694",
+          "https://www.openstreetmap.org/way/176310459",
+          "https://www.openstreetmap.org/way/262883165",
+          "https://www.openstreetmap.org/way/274707333",
+          "https://www.openstreetmap.org/way/304575019",
+          "https://www.openstreetmap.org/way/304575020",
+          "https://www.openstreetmap.org/way/304593030",
+          "https://www.openstreetmap.org/way/445062920",
+          "https://www.openstreetmap.org/way/445062921",
+          "https://www.openstreetmap.org/way/750602263",
+          "https://www.openstreetmap.org/way/1004430227",
+          "https://www.openstreetmap.org/way/1004430228",
+          "https://www.openstreetmap.org/way/1150164483",
+          "https://www.openstreetmap.org/way/1150164484",
+          "https://www.openstreetmap.org/way/1160482571",
+          "https://www.openstreetmap.org/way/1346613456",
+          "https://www.openstreetmap.org/way/1376090576",
+          "https://www.openstreetmap.org/way/1419124582",
+          "https://www.openstreetmap.org/way/1420422392",
+          "https://www.openstreetmap.org/way/1420422395",
+          "https://www.openstreetmap.org/way/1548092309",
+          "https://www.openstreetmap.org/way/1548092310",
+          "https://www.openstreetmap.org/node/4891873037",
+          "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf"
+        ],
+        "approximationNote": "Rough local-street/lakeside district outline west of Kemecsei út, south of Berenát utca and north of the railway/Kemecsei junction, including the documented Zivatar utca address association. Western channel/shore-side transition is approximate. The name point is close to Tópart's; distinct overlapping historical/local labels are retained, without asserting they are synonyms.",
+        "sourceFootprintIds": [],
+        "sourceRoadIds": [
+          "osm:way:100277170",
+          "osm:way:107335884",
+          "osm:way:107335919",
+          "osm:way:117885694",
+          "osm:way:176310459",
+          "osm:way:262883165",
+          "osm:way:274707333",
+          "osm:way:304575019",
+          "osm:way:304575020",
+          "osm:way:304593030",
+          "osm:way:445062920",
+          "osm:way:445062921",
+          "osm:way:750602263",
+          "osm:way:1004430227",
+          "osm:way:1004430228",
+          "osm:way:1150164483",
+          "osm:way:1150164484",
+          "osm:way:1160482571",
+          "osm:way:1346613456",
+          "osm:way:1376090576",
+          "osm:way:1419124582",
+          "osm:way:1420422392",
+          "osm:way:1420422395",
+          "osm:way:1548092309",
+          "osm:way:1548092310"
+        ],
+        "source": {
+          "provider": "osm-physical-map-and-local-evidence",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceLandusePath": "data/neighborhoods/expansion-20261115/nyiregyhaza/source-landuse.geojson",
+          "selectionPath": "data/neighborhoods/expansion-20261115/nyiregyhaza/selection.json"
+        },
+        "approximateAreaSquareMetres": 407434.6,
+        "nameEvidence": [
+          {
+            "name": "Kerti lak",
+            "coordinates": [
+              21.7304876,
+              48.0055196
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/4891873037"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.7295,
+              48.005
+            ],
+            [
+              21.7298,
+              48.0035
+            ],
+            [
+              21.7306,
+              48.0012
+            ],
+            [
+              21.7312,
+              47.9999
+            ],
+            [
+              21.7331,
+              48.0011
+            ],
+            [
+              21.7353,
+              48.0036
+            ],
+            [
+              21.736,
+              48.0048
+            ],
+            [
+              21.7372,
+              48.0073
+            ],
+            [
+              21.73735,
+              48.00861
+            ],
+            [
+              21.73274,
+              48.00899
+            ],
+            [
+              21.7295,
+              48.00924
+            ],
+            [
+              21.7295,
+              48.005
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-20261115:Kun lakópark",
+      "properties": {
+        "name": "Kun lakópark",
+        "municipality": "Nyíregyháza",
+        "municipalityId": "city:Nyíregyháza",
+        "method": "manual_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "semanticFootprint": true,
+        "candidateBoundaryKind": "neighbourhood",
+        "pointRadiusFallback": false,
+        "sourceGeometryUnmodified": false,
+        "partialSettlementFootprint": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/3287609301",
+        "supportingUrls": [
+          "https://utcak-magyarorszag.openalfa.com/utcak/lejto-utca-kun-lakopark-nyiregyhaza",
+          "https://utcak-magyarorszag.openalfa.com/utcak/szoloszem-utca-kun-lakopark-nyiregyhaza",
+          "https://www.openstreetmap.org/way/104785565",
+          "https://www.openstreetmap.org/way/153057369",
+          "https://www.openstreetmap.org/way/160396863",
+          "https://www.openstreetmap.org/way/160396865",
+          "https://www.openstreetmap.org/way/160396972",
+          "https://www.openstreetmap.org/way/303929988",
+          "https://www.openstreetmap.org/way/1149679764",
+          "https://www.openstreetmap.org/way/1152634252",
+          "https://www.openstreetmap.org/way/1152634253",
+          "https://www.openstreetmap.org/node/3287609301",
+          "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf"
+        ],
+        "approximationNote": "Rough outline of the small Szőlőszem street estate south of Lejtő utca, west of the Koszorú continuation and the mapped residential edge. The street guide corroborates both street names in Kun lakópark. Southern garden edges are estimated. This is an internal estate, intentionally overlapping Kistelekiszőlő's larger district.",
+        "sourceFootprintIds": [],
+        "sourceRoadIds": [
+          "osm:way:104785565",
+          "osm:way:153057369",
+          "osm:way:160396863",
+          "osm:way:160396865",
+          "osm:way:160396972",
+          "osm:way:303929988",
+          "osm:way:1149679764",
+          "osm:way:1152634252",
+          "osm:way:1152634253"
+        ],
+        "source": {
+          "provider": "osm-physical-map-and-local-evidence",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceLandusePath": "data/neighborhoods/expansion-20261115/nyiregyhaza/source-landuse.geojson",
+          "selectionPath": "data/neighborhoods/expansion-20261115/nyiregyhaza/selection.json"
+        },
+        "approximateAreaSquareMetres": 56665.5,
+        "nameEvidence": [
+          {
+            "name": "Kun lakópark",
+            "coordinates": [
+              21.7335015,
+              47.9202322
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/3287609301"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.73245,
+              47.9192
+            ],
+            [
+              21.7351,
+              47.91935
+            ],
+            [
+              21.7367,
+              47.9199
+            ],
+            [
+              21.7359,
+              47.92117
+            ],
+            [
+              21.73255,
+              47.92113
+            ],
+            [
+              21.73245,
+              47.9192
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-20261115:Nagylapos",
+      "properties": {
+        "name": "Nagylapos",
+        "municipality": "Nyíregyháza",
+        "municipalityId": "city:Nyíregyháza",
+        "method": "source_footprint_locality_association_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "semanticFootprint": true,
+        "candidateBoundaryKind": "neighbourhood",
+        "pointRadiusFallback": false,
+        "sourceGeometryUnmodified": true,
+        "partialSettlementFootprint": true,
+        "sourceUrl": "https://www.openstreetmap.org/way/376501524",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/way/376501524",
+          "https://www.openstreetmap.org/way/376501525",
+          "https://www.openstreetmap.org/way/376501523",
+          "https://www.openstreetmap.org/node/4307074589",
+          "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf"
+        ],
+        "approximationNote": "The three separately mapped farms immediately north and east of the Nagylapos map label. This is a partial settlement footprint, not a complete field-name district. The municipal 2017 map also prints Nagylapos in this western rural part of Nyíregyháza. Source farmyard rings are unchanged; their union preserves separate islands. No circle, point buffer, Voronoi region or convex hull is used.",
+        "sourceFootprintIds": [
+          "osm:way:376501524",
+          "osm:way:376501525",
+          "osm:way:376501523"
+        ],
+        "sourceRoadIds": [],
+        "source": {
+          "provider": "osm-physical-map-and-local-evidence",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceLandusePath": "data/neighborhoods/expansion-20261115/nyiregyhaza/source-landuse.geojson",
+          "selectionPath": "data/neighborhoods/expansion-20261115/nyiregyhaza/selection.json"
+        },
+        "approximateAreaSquareMetres": 9051.0,
+        "nameEvidence": [
+          {
+            "name": "Nagylapos",
+            "coordinates": [
+              21.5714077,
+              47.9166202
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/4307074589"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                21.5750549,
+                47.9185332
+              ],
+              [
+                21.5760738,
+                47.9181528
+              ],
+              [
+                21.5754625,
+                47.917626
+              ],
+              [
+                21.5748657,
+                47.9183381
+              ],
+              [
+                21.5750549,
+                47.9185332
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.5704184,
+                47.9185024
+              ],
+              [
+                21.5701507,
+                47.9181802
+              ],
+              [
+                21.5693506,
+                47.9184788
+              ],
+              [
+                21.5696183,
+                47.918801
+              ],
+              [
+                21.5704184,
+                47.9185024
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.5718867,
+                47.9197761
+              ],
+              [
+                21.5716382,
+                47.919443
+              ],
+              [
+                21.5710592,
+                47.919637
+              ],
+              [
+                21.5713077,
+                47.9199701
+              ],
+              [
+                21.5718867,
+                47.9197761
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-20261115:Salamonbokor",
+      "properties": {
+        "name": "Salamonbokor",
+        "municipality": "Nyíregyháza",
+        "municipalityId": "city:Nyíregyháza",
+        "method": "source_footprint_locality_association_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "semanticFootprint": true,
+        "candidateBoundaryKind": "neighbourhood",
+        "pointRadiusFallback": false,
+        "sourceGeometryUnmodified": true,
+        "partialSettlementFootprint": false,
+        "sourceUrl": "https://www.openstreetmap.org/way/320064914",
+        "supportingUrls": [
+          "https://hajduszabolcsiegyhazmegye.lutheran.hu/egyhazkozsegek-alkalmai/",
+          "https://www.nyiregyhaza.hu/post/tudja-hol-szavazhat-osszegyujtottuk-a-legfontosabb-tudnivalokat-a-szavazokorokrol-2024-06-02",
+          "https://www.openstreetmap.org/way/145010692",
+          "https://www.openstreetmap.org/way/160464816",
+          "https://www.openstreetmap.org/way/160464827",
+          "https://www.openstreetmap.org/way/320064914",
+          "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf"
+        ],
+        "approximationNote": "Unchanged rural-residential source footprint crossed lengthwise by the mapped Salamonbokor road, south of Tiszavasvári út. The church source locates the Salamonbokor congregation at Soltész István utca1, meeting that road. Association is inferred; this is the principal residential footprint and does not claim the complete southern agricultural extent. It is distinct from Szabadságbokor and from the combined ITS planning unit.",
+        "sourceFootprintIds": [
+          "osm:way:320064914"
+        ],
+        "sourceRoadIds": [
+          "osm:way:145010692",
+          "osm:way:160464816",
+          "osm:way:160464827"
+        ],
+        "source": {
+          "provider": "osm-physical-map-and-local-evidence",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceLandusePath": "data/neighborhoods/expansion-20261115/nyiregyhaza/source-landuse.geojson",
+          "selectionPath": "data/neighborhoods/expansion-20261115/nyiregyhaza/selection.json"
+        },
+        "approximateAreaSquareMetres": 189082.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.6573334,
+              47.9439344
+            ],
+            [
+              21.6585399,
+              47.9436649
+            ],
+            [
+              21.6592616,
+              47.944417
+            ],
+            [
+              21.6597042,
+              47.9446798
+            ],
+            [
+              21.6604798,
+              47.9450552
+            ],
+            [
+              21.6618323,
+              47.9448423
+            ],
+            [
+              21.6620891,
+              47.9453826
+            ],
+            [
+              21.6613858,
+              47.9455246
+            ],
+            [
+              21.6622319,
+              47.9465842
+            ],
+            [
+              21.6633516,
+              47.9463984
+            ],
+            [
+              21.6639516,
+              47.9478642
+            ],
+            [
+              21.662683,
+              47.9481229
+            ],
+            [
+              21.6628107,
+              47.9488051
+            ],
+            [
+              21.6632536,
+              47.9494772
+            ],
+            [
+              21.6640427,
+              47.9493461
+            ],
+            [
+              21.6641857,
+              47.9504534
+            ],
+            [
+              21.6634841,
+              47.9505881
+            ],
+            [
+              21.6636367,
+              47.9511777
+            ],
+            [
+              21.6637523,
+              47.9518046
+            ],
+            [
+              21.6642301,
+              47.9526215
+            ],
+            [
+              21.6647656,
+              47.953274
+            ],
+            [
+              21.6651533,
+              47.9541008
+            ],
+            [
+              21.6651748,
+              47.9542316
+            ],
+            [
+              21.6653973,
+              47.9542259
+            ],
+            [
+              21.6657076,
+              47.9549657
+            ],
+            [
+              21.6657664,
+              47.955998
+            ],
+            [
+              21.6657614,
+              47.9565869
+            ],
+            [
+              21.6655791,
+              47.9567879
+            ],
+            [
+              21.6641655,
+              47.9567479
+            ],
+            [
+              21.6635221,
+              47.9545286
+            ],
+            [
+              21.663208,
+              47.9538753
+            ],
+            [
+              21.6629577,
+              47.9534421
+            ],
+            [
+              21.6631748,
+              47.9533839
+            ],
+            [
+              21.6630262,
+              47.9531472
+            ],
+            [
+              21.6635253,
+              47.953025
+            ],
+            [
+              21.6634069,
+              47.9528346
+            ],
+            [
+              21.6629214,
+              47.9529634
+            ],
+            [
+              21.6627866,
+              47.9527378
+            ],
+            [
+              21.6631819,
+              47.9526102
+            ],
+            [
+              21.6630805,
+              47.9524316
+            ],
+            [
+              21.663471,
+              47.9523394
+            ],
+            [
+              21.663085,
+              47.9514375
+            ],
+            [
+              21.662463,
+              47.9515845
+            ],
+            [
+              21.6620198,
+              47.9506778
+            ],
+            [
+              21.6624101,
+              47.9505879
+            ],
+            [
+              21.6622322,
+              47.9502349
+            ],
+            [
+              21.6620904,
+              47.9498186
+            ],
+            [
+              21.661715,
+              47.9487164
+            ],
+            [
+              21.6603414,
+              47.9458458
+            ],
+            [
+              21.6599324,
+              47.945945
+            ],
+            [
+              21.6594684,
+              47.9450985
+            ],
+            [
+              21.6578029,
+              47.9455393
+            ],
+            [
+              21.6575541,
+              47.9451746
+            ],
+            [
+              21.6584091,
+              47.9449484
+            ],
+            [
+              21.6582903,
+              47.944723
+            ],
+            [
+              21.6578663,
+              47.9448408
+            ],
+            [
+              21.6576537,
+              47.9445133
+            ],
+            [
+              21.6574731,
+              47.9441869
+            ],
+            [
+              21.6573334,
+              47.9439344
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-20261115:Samókabokor",
+      "properties": {
+        "name": "Samókabokor",
+        "municipality": "Nyíregyháza",
+        "municipalityId": "city:Nyíregyháza",
+        "method": "source_footprint_locality_association_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "semanticFootprint": true,
+        "candidateBoundaryKind": "neighbourhood",
+        "pointRadiusFallback": false,
+        "sourceGeometryUnmodified": true,
+        "partialSettlementFootprint": true,
+        "sourceUrl": "https://www.openstreetmap.org/way/322234761",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/way/322234761",
+          "https://www.openstreetmap.org/way/322234760",
+          "https://www.openstreetmap.org/way/405149194",
+          "https://www.openstreetmap.org/way/322234763",
+          "https://www.openstreetmap.org/way/405149189",
+          "https://www.openstreetmap.org/way/405149195",
+          "https://www.openstreetmap.org/node/12994392240",
+          "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf"
+        ],
+        "approximationNote": "Six actual farmyards forming the mapped southwest-to-northeast rural cluster at the Samókabokor label. Partial built-up footprint; name-to-farm association is inferred and surrounding agricultural land is excluded. Source farmyard rings are unchanged; their union preserves separate islands. No circle, point buffer, Voronoi region or convex hull is used.",
+        "sourceFootprintIds": [
+          "osm:way:322234761",
+          "osm:way:322234760",
+          "osm:way:405149194",
+          "osm:way:322234763",
+          "osm:way:405149189",
+          "osm:way:405149195"
+        ],
+        "sourceRoadIds": [],
+        "source": {
+          "provider": "osm-physical-map-and-local-evidence",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceLandusePath": "data/neighborhoods/expansion-20261115/nyiregyhaza/source-landuse.geojson",
+          "selectionPath": "data/neighborhoods/expansion-20261115/nyiregyhaza/selection.json"
+        },
+        "approximateAreaSquareMetres": 24215.8,
+        "nameEvidence": [
+          {
+            "name": "Samókabokor",
+            "coordinates": [
+              21.6024224,
+              47.9244444
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/12994392240"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                21.5997464,
+                47.9217317
+              ],
+              [
+                21.5993829,
+                47.9213394
+              ],
+              [
+                21.598705,
+                47.9216119
+              ],
+              [
+                21.5990624,
+                47.9219877
+              ],
+              [
+                21.5997464,
+                47.9217317
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.5997596,
+                47.9221044
+              ],
+              [
+                21.5992874,
+                47.9223128
+              ],
+              [
+                21.5995584,
+                47.9225885
+              ],
+              [
+                21.6000305,
+                47.9223801
+              ],
+              [
+                21.5997596,
+                47.9221044
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.6006274,
+                47.9225247
+              ],
+              [
+                21.5998724,
+                47.9228368
+              ],
+              [
+                21.6002809,
+                47.9232689
+              ],
+              [
+                21.6010232,
+                47.9229763
+              ],
+              [
+                21.6006274,
+                47.9225247
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.6044145,
+                47.9253756
+              ],
+              [
+                21.604007,
+                47.9247709
+              ],
+              [
+                21.6029881,
+                47.9251025
+              ],
+              [
+                21.6033957,
+                47.9256585
+              ],
+              [
+                21.6044145,
+                47.9253756
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.6069791,
+                47.926778
+              ],
+              [
+                21.6073533,
+                47.9266388
+              ],
+              [
+                21.6069325,
+                47.9262339
+              ],
+              [
+                21.6064376,
+                47.9264192
+              ],
+              [
+                21.6058991,
+                47.9262339
+              ],
+              [
+                21.6054042,
+                47.926468
+              ],
+              [
+                21.6069391,
+                47.927153
+              ],
+              [
+                21.6072336,
+                47.9270127
+              ],
+              [
+                21.6069791,
+                47.926778
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.6055009,
+                47.9266799
+              ],
+              [
+                21.6050942,
+                47.9268327
+              ],
+              [
+                21.6054763,
+                47.9272084
+              ],
+              [
+                21.6062096,
+                47.9269607
+              ],
+              [
+                21.6055009,
+                47.9266799
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-20261115:Szabadságbokor",
+      "properties": {
+        "name": "Szabadságbokor",
+        "municipality": "Nyíregyháza",
+        "municipalityId": "city:Nyíregyháza",
+        "method": "source_footprint_locality_association_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "semanticFootprint": true,
+        "candidateBoundaryKind": "neighbourhood",
+        "pointRadiusFallback": false,
+        "sourceGeometryUnmodified": true,
+        "partialSettlementFootprint": false,
+        "sourceUrl": "https://www.openstreetmap.org/way/398182018",
+        "supportingUrls": [
+          "https://www.nyiregyhaza.hu/post/tudja-hol-szavazhat-osszegyujtottuk-a-legfontosabb-tudnivalokat-a-szavazokorokrol-2024-06-02",
+          "https://www.nyiregyhaza.hu/naplok/naplok/2018-10-12.pdf",
+          "https://www.openstreetmap.org/way/157874750",
+          "https://www.openstreetmap.org/way/238290131",
+          "https://www.openstreetmap.org/way/1150145532",
+          "https://www.openstreetmap.org/way/1150145534",
+          "https://www.openstreetmap.org/way/1235835451",
+          "https://www.openstreetmap.org/way/1376115617",
+          "https://www.openstreetmap.org/way/398182018",
+          "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf"
+        ],
+        "approximationNote": "Unchanged rural-residential source footprint crossed by the mapped Szabadságbokor road north of Tiszavasvári út. City address/voting publications corroborate the locality. Association is inferred; this is the principal built-up footprint, not all of the named rural district. The western source footprint around Zomboribokor is not silently added.",
+        "sourceFootprintIds": [
+          "osm:way:398182018"
+        ],
+        "sourceRoadIds": [
+          "osm:way:157874750",
+          "osm:way:238290131",
+          "osm:way:1150145532",
+          "osm:way:1150145534",
+          "osm:way:1235835451",
+          "osm:way:1376115617"
+        ],
+        "source": {
+          "provider": "osm-physical-map-and-local-evidence",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceLandusePath": "data/neighborhoods/expansion-20261115/nyiregyhaza/source-landuse.geojson",
+          "selectionPath": "data/neighborhoods/expansion-20261115/nyiregyhaza/selection.json"
+        },
+        "approximateAreaSquareMetres": 92892.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.6592771,
+              47.9588274
+            ],
+            [
+              21.6608005,
+              47.9583078
+            ],
+            [
+              21.6601734,
+              47.957464
+            ],
+            [
+              21.6609974,
+              47.957161
+            ],
+            [
+              21.6610315,
+              47.9573034
+            ],
+            [
+              21.6611006,
+              47.9575203
+            ],
+            [
+              21.6612534,
+              47.9577639
+            ],
+            [
+              21.6625396,
+              47.9577501
+            ],
+            [
+              21.6628428,
+              47.9577469
+            ],
+            [
+              21.6629054,
+              47.9581124
+            ],
+            [
+              21.6629051,
+              47.9584401
+            ],
+            [
+              21.6624711,
+              47.9584462
+            ],
+            [
+              21.6625815,
+              47.9588751
+            ],
+            [
+              21.6638624,
+              47.9587874
+            ],
+            [
+              21.6640162,
+              47.9595707
+            ],
+            [
+              21.6650059,
+              47.9594997
+            ],
+            [
+              21.6650866,
+              47.9602679
+            ],
+            [
+              21.6622109,
+              47.9606588
+            ],
+            [
+              21.6613987,
+              47.9608028
+            ],
+            [
+              21.6613231,
+              47.9605545
+            ],
+            [
+              21.6618639,
+              47.9604037
+            ],
+            [
+              21.661731,
+              47.9597696
+            ],
+            [
+              21.6605193,
+              47.9600999
+            ],
+            [
+              21.6607655,
+              47.9607098
+            ],
+            [
+              21.6598127,
+              47.9608647
+            ],
+            [
+              21.6596736,
+              47.9603365
+            ],
+            [
+              21.6593501,
+              47.9591078
+            ],
+            [
+              21.6592771,
+              47.9588274
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-20261115:Sóstóhegyi lakópark",
+      "properties": {
+        "name": "Sóstóhegyi lakópark",
+        "municipality": "Nyíregyháza",
+        "municipalityId": "city:Nyíregyháza",
+        "method": "manual_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "semanticFootprint": true,
+        "candidateBoundaryKind": "neighbourhood",
+        "pointRadiusFallback": false,
+        "sourceGeometryUnmodified": false,
+        "partialSettlementFootprint": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/13304387267",
+        "supportingUrls": [
+          "https://mapcarta.com/N13304387267",
+          "https://www.openstreetmap.org/way/176316175",
+          "https://www.openstreetmap.org/way/304589838",
+          "https://www.openstreetmap.org/way/1416718554",
+          "https://www.openstreetmap.org/way/1450463549",
+          "https://www.openstreetmap.org/node/13304387267",
+          "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf"
+        ],
+        "approximationNote": "Manual trace of the small northern residential lobe in the actual source landuse map at the Sóstóhegyi lakópark label, immediately north of the Cseresznyés köz/Igrice street bend. Its outer sides follow the mapped residential/rural transition at rough map precision; the southern neck closure is inferred. Name-to-lobe association has low confidence; the large city-wide residential relation is not assigned wholesale.",
+        "sourceFootprintIds": [],
+        "sourceRoadIds": [
+          "osm:way:176316175",
+          "osm:way:304589838",
+          "osm:way:1416718554",
+          "osm:way:1450463549"
+        ],
+        "source": {
+          "provider": "osm-physical-map-and-local-evidence",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceLandusePath": "data/neighborhoods/expansion-20261115/nyiregyhaza/source-landuse.geojson",
+          "selectionPath": "data/neighborhoods/expansion-20261115/nyiregyhaza/selection.json"
+        },
+        "approximateAreaSquareMetres": 74272.3,
+        "nameEvidence": [
+          {
+            "name": "Sóstóhegyi lakópark",
+            "coordinates": [
+              21.7518532,
+              48.0142223
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/13304387267"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.7504,
+              48.0132
+            ],
+            [
+              21.75375,
+              48.0131
+            ],
+            [
+              21.7539,
+              48.0158
+            ],
+            [
+              21.7507,
+              48.01595
+            ],
+            [
+              21.7504,
+              48.0132
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-20261115:Tópart",
+      "properties": {
+        "name": "Tópart",
+        "municipality": "Nyíregyháza",
+        "municipalityId": "city:Nyíregyháza",
+        "method": "manual_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "semanticFootprint": true,
+        "candidateBoundaryKind": "neighbourhood",
+        "pointRadiusFallback": false,
+        "sourceGeometryUnmodified": false,
+        "partialSettlementFootprint": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/4891873036",
+        "supportingUrls": [
+          "https://www.holahaz.hu/varos/nyiregyhaza/topart",
+          "https://www.bergfex.com/sommer/szabolcs-szatmar-bereg/touren/wanderung/4213006%2Cnyiregyhaza--kerti-lak--topart/",
+          "https://www.openstreetmap.org/way/100277170",
+          "https://www.openstreetmap.org/way/117885694",
+          "https://www.openstreetmap.org/way/176310459",
+          "https://www.openstreetmap.org/way/262883165",
+          "https://www.openstreetmap.org/way/304593030",
+          "https://www.openstreetmap.org/way/1150164484",
+          "https://www.openstreetmap.org/way/1419124582",
+          "https://www.openstreetmap.org/way/1420422392",
+          "https://www.openstreetmap.org/way/1420422395",
+          "https://www.openstreetmap.org/node/4891873036",
+          "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf"
+        ],
+        "approximationNote": "Rough manual lakeside search area around the Tópart label, extending along the Sóstói lake edge toward Berenát utca and east to Fürdő utca. Shore and park transitions are estimated from the saved OSM physical map and municipal character map. Tópart and Kerti lak have close but different source points and partially overlapping inferred extents; neither is asserted to be an official quarter border or a verified alias.",
+        "sourceFootprintIds": [],
+        "sourceRoadIds": [
+          "osm:way:100277170",
+          "osm:way:117885694",
+          "osm:way:176310459",
+          "osm:way:262883165",
+          "osm:way:304593030",
+          "osm:way:1150164484",
+          "osm:way:1419124582",
+          "osm:way:1420422392",
+          "osm:way:1420422395"
+        ],
+        "source": {
+          "provider": "osm-physical-map-and-local-evidence",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceLandusePath": "data/neighborhoods/expansion-20261115/nyiregyhaza/source-landuse.geojson",
+          "selectionPath": "data/neighborhoods/expansion-20261115/nyiregyhaza/selection.json"
+        },
+        "approximateAreaSquareMetres": 284794.6,
+        "nameEvidence": [
+          {
+            "name": "Tópart",
+            "coordinates": [
+              21.7297889,
+              48.0052388
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/4891873036"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.725,
+              48.0043
+            ],
+            [
+              21.7265,
+              48.0041
+            ],
+            [
+              21.7296,
+              48.0042
+            ],
+            [
+              21.7322,
+              48.0042
+            ],
+            [
+              21.73274,
+              48.00899
+            ],
+            [
+              21.7295,
+              48.00924
+            ],
+            [
+              21.72794,
+              48.00863
+            ],
+            [
+              21.7264,
+              48.0089
+            ],
+            [
+              21.7253,
+              48.0078
+            ],
+            [
+              21.725,
+              48.0043
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-20261115:Vadastanya",
+      "properties": {
+        "name": "Vadastanya",
+        "municipality": "Nyíregyháza",
+        "municipalityId": "city:Nyíregyháza",
+        "method": "source_footprint_locality_association_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "semanticFootprint": true,
+        "candidateBoundaryKind": "neighbourhood",
+        "pointRadiusFallback": false,
+        "sourceGeometryUnmodified": true,
+        "partialSettlementFootprint": true,
+        "sourceUrl": "https://www.openstreetmap.org/way/334196723",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/way/334196723",
+          "https://www.openstreetmap.org/way/334196720",
+          "https://www.openstreetmap.org/way/832715954",
+          "https://www.openstreetmap.org/way/399572821",
+          "https://www.openstreetmap.org/way/399572820",
+          "https://www.openstreetmap.org/node/8920399468",
+          "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf"
+        ],
+        "approximationNote": "Mapped farmyards of the dispersed settlement northwest of Császárszállás, selected from the local source map. A partial built-up search footprint; no claim to delimit all farms or the surrounding arable land. Source farmyard rings are unchanged; their union preserves separate islands. No circle, point buffer, Voronoi region or convex hull is used.",
+        "sourceFootprintIds": [
+          "osm:way:334196723",
+          "osm:way:334196720",
+          "osm:way:832715954",
+          "osm:way:399572821",
+          "osm:way:399572820"
+        ],
+        "sourceRoadIds": [],
+        "source": {
+          "provider": "osm-physical-map-and-local-evidence",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceLandusePath": "data/neighborhoods/expansion-20261115/nyiregyhaza/source-landuse.geojson",
+          "selectionPath": "data/neighborhoods/expansion-20261115/nyiregyhaza/selection.json"
+        },
+        "approximateAreaSquareMetres": 21160.6,
+        "nameEvidence": [
+          {
+            "name": "Vadastanya",
+            "coordinates": [
+              21.6701162,
+              47.8715627
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/8920399468"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                21.6699385,
+                47.8682139
+              ],
+              [
+                21.6692393,
+                47.8681494
+              ],
+              [
+                21.6690661,
+                47.8689498
+              ],
+              [
+                21.6697653,
+                47.8690143
+              ],
+              [
+                21.6699385,
+                47.8682139
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.6709607,
+                47.8679909
+              ],
+              [
+                21.6702183,
+                47.8678928
+              ],
+              [
+                21.6699311,
+                47.8692677
+              ],
+              [
+                21.6706185,
+                47.8693305
+              ],
+              [
+                21.6709607,
+                47.8679909
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.6702599,
+                47.8706104
+              ],
+              [
+                21.6696351,
+                47.8705361
+              ],
+              [
+                21.6695323,
+                47.8709659
+              ],
+              [
+                21.670165,
+                47.8710189
+              ],
+              [
+                21.6702599,
+                47.8706104
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.6651124,
+                47.8709195
+              ],
+              [
+                21.6649894,
+                47.8714267
+              ],
+              [
+                21.665835,
+                47.871519
+              ],
+              [
+                21.665958,
+                47.8710117
+              ],
+              [
+                21.6651124,
+                47.8709195
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                21.6648736,
+                47.8719887
+              ],
+              [
+                21.6647759,
+                47.872443
+              ],
+              [
+                21.6653295,
+                47.8725042
+              ],
+              [
+                21.6654533,
+                47.8720367
+              ],
+              [
+                21.6648736,
+                47.8719887
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-20261115:Őzdomb-lakókert",
+      "properties": {
+        "name": "Őzdomb-lakókert",
+        "municipality": "Nyíregyháza",
+        "municipalityId": "city:Nyíregyháza",
+        "method": "manual_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "semanticFootprint": true,
+        "candidateBoundaryKind": "neighbourhood",
+        "pointRadiusFallback": false,
+        "sourceGeometryUnmodified": false,
+        "partialSettlementFootprint": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/5499282879",
+        "supportingUrls": [
+          "https://ozdomb.hu/",
+          "https://ozdomb.hu/gyik/",
+          "https://ozdomb.hu/wp-content/uploads/2026/09/teljes-terkep-modositott-2.png",
+          "https://varoshaza.nyiregyhaza.hu/lib/adattar/hatarozatok/2017/170606_h_122.pdf",
+          "https://www.openstreetmap.org/way/107335957",
+          "https://www.openstreetmap.org/way/176316173",
+          "https://www.openstreetmap.org/way/176316175",
+          "https://www.openstreetmap.org/way/304589838",
+          "https://www.openstreetmap.org/way/1416718554",
+          "https://www.openstreetmap.org/way/1450463549",
+          "https://www.openstreetmap.org/way/1450645410",
+          "https://www.openstreetmap.org/node/5499282879",
+          "https://uj.nyiregyhaza.hu/lib/adattar/hatalyos/180516_2017_hr_31.pdf"
+        ],
+        "approximationNote": "Rough manual estate outline in the Muskotály/Új kenyér street area at the preserved Őzdomb label. The developer confirms the estate in Sóstóhegy and publishes a phased parcel map; the municipal2017 decision refers to its Muskotály access road. North/east undeveloped phase edges are estimated from the source residential transition and estate-map context. This is a search approximation, not cadastral parcel geometry.",
+        "sourceFootprintIds": [],
+        "sourceRoadIds": [
+          "osm:way:107335957",
+          "osm:way:176316173",
+          "osm:way:176316175",
+          "osm:way:304589838",
+          "osm:way:1416718554",
+          "osm:way:1450463549",
+          "osm:way:1450645410"
+        ],
+        "source": {
+          "provider": "osm-physical-map-and-local-evidence",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceLandusePath": "data/neighborhoods/expansion-20261115/nyiregyhaza/source-landuse.geojson",
+          "selectionPath": "data/neighborhoods/expansion-20261115/nyiregyhaza/selection.json"
+        },
+        "approximateAreaSquareMetres": 247049.2,
+        "nameEvidence": [
+          {
+            "name": "Őzdomb-lakókert",
+            "coordinates": [
+              21.7544027,
+              48.009944
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/5499282879"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.75165,
+              48.00932
+            ],
+            [
+              21.75282,
+              48.00827
+            ],
+            [
+              21.7545,
+              48.008
+            ],
+            [
+              21.7589,
+              48.0089
+            ],
+            [
+              21.7587,
+              48.0108
+            ],
+            [
+              21.7579,
+              48.0118
+            ],
+            [
+              21.7537,
+              48.013
+            ],
+            [
+              21.7527,
+              48.012
+            ],
+            [
+              21.75085,
+              48.0119
+            ],
+            [
+              21.7501,
+              48.01006
+            ],
+            [
+              21.75165,
+              48.00932
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

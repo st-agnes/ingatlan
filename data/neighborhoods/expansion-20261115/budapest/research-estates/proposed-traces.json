@@ -1,0 +1,459 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-15",
+  "features": [
+    {
+      "name": "Kisszentmihály",
+      "municipality": "Budapest",
+      "method": "source_map_polygon",
+      "estimated": true,
+      "lowConfidence": true,
+      "ring": [
+        [
+          19.2034636,
+          47.5373749
+        ],
+        [
+          19.1883913,
+          47.5319145
+        ],
+        [
+          19.1814398,
+          47.5349544
+        ],
+        [
+          19.1773461,
+          47.5368899
+        ],
+        [
+          19.1769276,
+          47.537188
+        ],
+        [
+          19.1707379,
+          47.5423012
+        ],
+        [
+          19.1717542,
+          47.5428333
+        ],
+        [
+          19.1737609,
+          47.5440594
+        ],
+        [
+          19.1738079,
+          47.5441109
+        ],
+        [
+          19.1737665,
+          47.5441922
+        ],
+        [
+          19.1773626,
+          47.5461324
+        ],
+        [
+          19.1842072,
+          47.5422383
+        ],
+        [
+          19.186635,
+          47.5410128
+        ],
+        [
+          19.190302,
+          47.5389938
+        ],
+        [
+          19.1904218,
+          47.5389946
+        ],
+        [
+          19.1914463,
+          47.5394247
+        ],
+        [
+          19.1949325,
+          47.5375716
+        ],
+        [
+          19.1959576,
+          47.538178
+        ],
+        [
+          19.1985332,
+          47.5398106
+        ],
+        [
+          19.2034636,
+          47.5373749
+        ]
+      ],
+      "anchors": [
+        "Szlovák út",
+        "Timur utca",
+        "XVI. kerület / Rákospalotai határút"
+      ],
+      "sourceUrl": "https://www.bp16.hu/sites/default/files/hir/2013/dokumentum/2013_09_11_17_pdf_10615.pdf",
+      "supportingUrls": [
+        "https://www.openstreetmap.org/relation/1552464",
+        "https://www.openstreetmap.org/way/57046849",
+        "https://www.openstreetmap.org/way/126986136",
+        "https://www.openstreetmap.org/way/154551772",
+        "https://www.openstreetmap.org/way/154551773",
+        "https://www.openstreetmap.org/way/326161150",
+        "https://www.openstreetmap.org/way/331495841",
+        "https://www.openstreetmap.org/way/384222065",
+        "https://www.openstreetmap.org/way/384222066",
+        "https://www.openstreetmap.org/way/440564694",
+        "https://www.openstreetmap.org/way/733814559",
+        "https://www.openstreetmap.org/way/764583446",
+        "https://www.openstreetmap.org/way/764583447",
+        "https://www.openstreetmap.org/way/764584965",
+        "https://www.openstreetmap.org/way/766109271",
+        "https://www.openstreetmap.org/way/819269916",
+        "https://www.openstreetmap.org/way/819269917",
+        "https://www.openstreetmap.org/way/984803690",
+        "https://www.openstreetmap.org/way/1149268490",
+        "https://www.openstreetmap.org/way/1149268491",
+        "https://www.openstreetmap.org/way/1149268492",
+        "https://www.openstreetmap.org/way/1149268493"
+      ],
+      "approximationNote": "Historical boundary convention from the 2013 district history article: Rákospalotai határút / district boundary / Timur utca / Szlovák út. The article also discusses a later proposed Timur-to-Csömöri boundary change. Adopted extent is the historical alternative, not an alias for all Árpádföld. The saved district boundary supplies the northern cadastral edge; its short NW portion follows Rákospalotai határút.",
+      "derivation": "Polygonize union of saved named road/stream lines and frozen native XVI district boundary, select existing name point only to identify the source-bounded cell, simplify 0.000025 degree. The point does not create the boundary.",
+      "areaSquareMetres": 1579483
+    },
+    {
+      "name": "Szent György-telep",
+      "municipality": "Budapest",
+      "method": "source_map_polygon",
+      "estimated": true,
+      "lowConfidence": true,
+      "ring": [
+        [
+          19.1671023,
+          47.5283877
+        ],
+        [
+          19.1603533,
+          47.5351997
+        ],
+        [
+          19.1608194,
+          47.535612
+        ],
+        [
+          19.1611467,
+          47.5359987
+        ],
+        [
+          19.1612602,
+          47.5363194
+        ],
+        [
+          19.1612284,
+          47.5366988
+        ],
+        [
+          19.1613857,
+          47.536648
+        ],
+        [
+          19.1615836,
+          47.5367127
+        ],
+        [
+          19.1621233,
+          47.5367241
+        ],
+        [
+          19.1625439,
+          47.5368564
+        ],
+        [
+          19.16705822,
+          47.53994673
+        ],
+        [
+          19.1784698,
+          47.534977
+        ],
+        [
+          19.17995655,
+          47.53426701
+        ],
+        [
+          19.1671023,
+          47.5283877
+        ]
+      ],
+      "anchors": [
+        "János utca",
+        "Csömöri út",
+        "Szilas-patak",
+        "XVI. kerület / Rákospalotai határút"
+      ],
+      "sourceUrl": "https://www.bp16.hu/sites/default/files/hir/2013/dokumentum/2013_09_11_17_pdf_10615.pdf",
+      "supportingUrls": [
+        "https://www.openstreetmap.org/relation/1552464",
+        "https://www.openstreetmap.org/way/4904917",
+        "https://www.openstreetmap.org/way/8044888",
+        "https://www.openstreetmap.org/way/11693469",
+        "https://www.openstreetmap.org/way/16714237",
+        "https://www.openstreetmap.org/way/115602920",
+        "https://www.openstreetmap.org/way/115604044",
+        "https://www.openstreetmap.org/way/126985955",
+        "https://www.openstreetmap.org/way/126985959",
+        "https://www.openstreetmap.org/way/126986026",
+        "https://www.openstreetmap.org/way/127059997",
+        "https://www.openstreetmap.org/way/127170438",
+        "https://www.openstreetmap.org/way/127170439",
+        "https://www.openstreetmap.org/way/127553901",
+        "https://www.openstreetmap.org/way/127553967",
+        "https://www.openstreetmap.org/way/210794204",
+        "https://www.openstreetmap.org/way/210794239",
+        "https://www.openstreetmap.org/way/239633033",
+        "https://www.openstreetmap.org/way/323059068",
+        "https://www.openstreetmap.org/way/325416353",
+        "https://www.openstreetmap.org/way/405844296",
+        "https://www.openstreetmap.org/way/405844297",
+        "https://www.openstreetmap.org/way/426440864",
+        "https://www.openstreetmap.org/way/439055495",
+        "https://www.openstreetmap.org/way/464564690",
+        "https://www.openstreetmap.org/way/464564691",
+        "https://www.openstreetmap.org/way/491526738",
+        "https://www.openstreetmap.org/way/536161267",
+        "https://www.openstreetmap.org/way/625108052",
+        "https://www.openstreetmap.org/way/625108207",
+        "https://www.openstreetmap.org/way/625108283",
+        "https://www.openstreetmap.org/way/625108606",
+        "https://www.openstreetmap.org/way/638601501",
+        "https://www.openstreetmap.org/way/1134113034",
+        "https://www.openstreetmap.org/way/1134113037",
+        "https://www.openstreetmap.org/way/1136148159",
+        "https://www.openstreetmap.org/way/1136160299",
+        "https://www.openstreetmap.org/way/1145297988",
+        "https://www.openstreetmap.org/way/1145297989",
+        "https://www.openstreetmap.org/way/1145297991",
+        "https://www.openstreetmap.org/way/1149268485",
+        "https://www.openstreetmap.org/way/1274683738",
+        "https://www.openstreetmap.org/way/1274683740",
+        "https://www.openstreetmap.org/way/1350536040"
+      ],
+      "approximationNote": "Historical four-side extent from district history: Rákospalotai határút / Szilas-patak / Csömöri út / János utca. Exact frozen road and stream intersections form the ring; the district boundary follows Rákospalotai határút on its NW side. Street-centerline and watercourse convention is an estimated search area, not a parcel boundary.",
+      "derivation": "Polygonize union of saved named road/stream lines and frozen native XVI district boundary, select existing name point only to identify the source-bounded cell, simplify 0.000025 degree. The point does not create the boundary.",
+      "areaSquareMetres": 958825
+    },
+    {
+      "name": "Óhegyi lakótelep",
+      "municipality": "Budapest",
+      "method": "source_map_polygon",
+      "estimated": true,
+      "lowConfidence": true,
+      "ring": [
+        [
+          19.146576,
+          47.4748639
+        ],
+        [
+          19.1478573,
+          47.4756969
+        ],
+        [
+          19.149395,
+          47.476695
+        ],
+        [
+          19.150195,
+          47.4772117
+        ],
+        [
+          19.1517901,
+          47.4782381
+        ],
+        [
+          19.152604,
+          47.4777294
+        ],
+        [
+          19.1534716,
+          47.4771708
+        ],
+        [
+          19.1518753,
+          47.4749395
+        ],
+        [
+          19.1516221,
+          47.4750809
+        ],
+        [
+          19.1516435,
+          47.4746893
+        ],
+        [
+          19.1515604,
+          47.4743984
+        ],
+        [
+          19.1515055,
+          47.4742915
+        ],
+        [
+          19.1513383,
+          47.4741091
+        ],
+        [
+          19.1508102,
+          47.4736879
+        ],
+        [
+          19.1504952,
+          47.4735521
+        ],
+        [
+          19.1496702,
+          47.4733648
+        ],
+        [
+          19.1494541,
+          47.4732248
+        ],
+        [
+          19.1492936,
+          47.4730845
+        ],
+        [
+          19.1485151,
+          47.4735888
+        ],
+        [
+          19.1479234,
+          47.4739749
+        ],
+        [
+          19.146576,
+          47.4748639
+        ]
+      ],
+      "anchors": [
+        "Petrőczy utca",
+        "Kada utca",
+        "Száraz utca",
+        "Harmat utca",
+        "Csombor utca",
+        "Sorház utca",
+        "Noszlopy utca"
+      ],
+      "sourceUrl": "https://net.jogtar.hu/rendelet?council=x-kerulet&dbnum=553&docid=A1300012.10R",
+      "supportingUrls": [
+        "https://www.openstreetmap.org/way/26354113",
+        "https://www.openstreetmap.org/way/47658772",
+        "https://www.openstreetmap.org/way/47658830",
+        "https://www.openstreetmap.org/way/58721887",
+        "https://www.openstreetmap.org/way/101166308",
+        "https://www.openstreetmap.org/way/101166315",
+        "https://www.openstreetmap.org/way/101166317",
+        "https://www.openstreetmap.org/way/127060035",
+        "https://www.openstreetmap.org/way/127170545",
+        "https://www.openstreetmap.org/way/254871858",
+        "https://www.openstreetmap.org/way/275221903",
+        "https://www.openstreetmap.org/way/464717800",
+        "https://www.openstreetmap.org/way/863990485"
+      ],
+      "approximationNote": "Estimated estate envelope anchored to official street membership in X district regulation 12/2013 Annex2 G. Follows Petrőczy and Kada to Harmat, then the ends of Csombor and Sorház; the eastern link from Sorház to the eastern Noszlopy loop is a manual approximate estate edge. Noszlopy and Petrőczy form the south edge. This includes all named official estate streets; it is broader than the smaller four-road core and intentionally estimated. No parcel precision is claimed.",
+      "derivation": "Manual WGS84 road-intersection/end-point ring, including approximate eastern connector; all anchors checked against frozen southeast road geometry.",
+      "areaSquareMetres": 141875
+    },
+    {
+      "name": "EcoLiget lakópark",
+      "municipality": "Budapest",
+      "method": "source_map_polygon",
+      "estimated": true,
+      "lowConfidence": true,
+      "ring": [
+        [
+          18.981872,
+          47.4627148
+        ],
+        [
+          18.9826266,
+          47.4627092
+        ],
+        [
+          18.9826239,
+          47.4626135
+        ],
+        [
+          18.9825919,
+          47.462379
+        ],
+        [
+          18.9825426,
+          47.4621778
+        ],
+        [
+          18.982478,
+          47.461901
+        ],
+        [
+          18.9824396,
+          47.4617146
+        ],
+        [
+          18.9824865,
+          47.4617094
+        ],
+        [
+          18.982474,
+          47.4616765
+        ],
+        [
+          18.9823193,
+          47.4616493
+        ],
+        [
+          18.9822618,
+          47.4617886
+        ],
+        [
+          18.9822137,
+          47.4619058
+        ],
+        [
+          18.9820988,
+          47.4621852
+        ],
+        [
+          18.982005,
+          47.4624086
+        ],
+        [
+          18.9819649,
+          47.4625011
+        ],
+        [
+          18.981872,
+          47.4627148
+        ]
+      ],
+      "anchors": [
+        "Alsóhatár utca 5 estate private driveways, OSM ways743704119/743704120",
+        "Eastern private estate footway, OSM way648297931",
+        "Alsóhatár frontage sidewalk, OSM way743704125"
+      ],
+      "sourceUrl": "https://budaors.hu/dokumentumok/onkormanyzat/jegyzokonyvek/kepviselo-testulet/kt_jegyzokonyv_2017-04-26.pdf",
+      "supportingUrls": [
+        "https://kozigazgatas.ujbuda.hu/sites/default/files/attachments/files/kozigazgatasujbudahu/2022_10/01megalapozo_1.pdf",
+        "https://www.openstreetmap.org/way/648297931",
+        "https://www.openstreetmap.org/way/743704119",
+        "https://www.openstreetmap.org/way/743704120",
+        "https://www.openstreetmap.org/way/743704125"
+      ],
+      "approximationNote": "Estimated actual estate circulation envelope at officially identified Alsóhatár utca5 / project parcel1151/5. Northern edge follows private entrance driveway; eastern and southern edges follow private estate paths; western edge follows the Alsóhatár frontage sidewalk. A short eastern gap between driveway end and private path is joined manually. This is a small circulation-derived approximation within the estate, not a claim to reproduce parcel1151/5. No outline was inferred from the name point.",
+      "derivation": "Manual ring from frozen actual private driveway/path vertices, including short connector.",
+      "areaSquareMetres": 3930
+    }
+  ]
+}
