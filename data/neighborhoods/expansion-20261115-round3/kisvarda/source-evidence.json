@@ -1,0 +1,122 @@
+{
+  "reviewDate": "2026-11-15",
+  "municipality": "Kisvárda",
+  "municipalIts": {
+    "url": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+    "documentYear": 2015,
+    "uploadedYear": 2025,
+    "pdfPages": [
+      20,
+      21,
+      22,
+      44
+    ],
+    "accessMethod": "web_connector_open_find",
+    "localPdfAvailable": false,
+    "textEvidence": "Source p20 explicitly defines six units by functional and geographic criteria, without administrative/legal status. Source p21 numbers I–VI; p22 provides six street/rail boundary lists, repeated in action-area discussion p44. These are the primary identity and placement evidence; current OSM lines guide approximate coordinates.",
+    "geometryRole": "Text-supported physical-map traces; not extracted native PDF paths or a precise raster-map trace."
+  },
+  "sourceSpellingInterpretations": [
+    {
+      "source": [
+        "Liptai Béla utca",
+        "Liptay Béla utca"
+      ],
+      "currentMap": "Liptay Béla út",
+      "evidence": "Same source document uses both spellings in adjacent city-center/northern rows; actual road mapped as Liptay connects their common boundary. This supports geometric matching, not a global alias change."
+    },
+    {
+      "source": [
+        "Jéki út"
+      ],
+      "currentMap": [
+        "Jéki út",
+        "Jékei út"
+      ],
+      "evidence": "Both current tagged segments are preserved; route continuity is visible in the saved physical map."
+    },
+    {
+      "source": [
+        "Halasy Gyula utca",
+        "Halassy Gyula utca"
+      ],
+      "currentMap": "Halasy Gyula utca",
+      "evidence": "Source table/action-area prose spelling varies; physical map provides the road location."
+    },
+    {
+      "source": [
+        "Móser Ernő utca"
+      ],
+      "currentMap": "Mózer Ernő utca",
+      "evidence": "Inferred local map-name correspondence only; not independently established official renaming."
+    },
+    {
+      "source": [
+        "Széchenyi István utca",
+        "Rákóczi Ferenc utca",
+        "Csokonai Vitéz Mihály utca"
+      ],
+      "currentMap": [
+        "Széchenyi utca",
+        "Rákóczi utca",
+        "Csokonai utca"
+      ],
+      "evidence": "Short current road tags in the described local network are used to locate the longer source names; not separate global locality aliases."
+    },
+    {
+      "source": [
+        "Vásártér utca",
+        "Ipari út"
+      ],
+      "currentMap": [
+        "Vásár tér",
+        "Ipari utca"
+      ],
+      "evidence": "Current street/area-name interpretation in the southern map. Outer area extent remains low-confidence."
+    },
+    {
+      "source": [
+        "Kereszt utca",
+        "Városmajor utca"
+      ],
+      "currentMapConnector": "Andy Vajna utca",
+      "evidence": "Current visible northern road connection for the service quarter; source does not verify a name change, so this is only an inferred physical connector."
+    }
+  ],
+  "osmSnapshot": {
+    "path": "/workspace/ingatlan/.local/neighborhoods/hungary-latest.osm.pbf",
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "snapshotTimestamp": "2026-11-12T21:23:05Z",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "focusedWayScanBounds": [
+      22.025,
+      48.18,
+      22.145,
+      48.27
+    ],
+    "geometryPolicy": "Actual source way coordinates preserved in source layers. Nearby same-named roads outside the city are not automatically assigned to a quarter; distance to the trace filters supporting lines."
+  },
+  "files": [
+    {
+      "path": "selection.json",
+      "sha256": "f22708a4d0409a0bdb54692f9eb6f6693fb1052635a9710fa0734f37e8b99baf"
+    },
+    {
+      "path": "source-boundary-definitions.json",
+      "sha256": "b1d1b0f4631262bfc2a10fe98bef53d484a7459f058ea8ce83b51a8365d955e3"
+    },
+    {
+      "path": "source-municipality.geojson",
+      "sha256": "4e90d02f52f6742bfe9baf868ba8315abb7836ef8ea0adb19da5caea1354cfbc"
+    },
+    {
+      "path": "source-lines.geojson",
+      "sha256": "aaf9317c775971a4a11960afd9a59d3dc5d67a057e7b199f1b559958560e0779"
+    },
+    {
+      "path": "source-areas.geojson",
+      "sha256": "a370509cf3ff2fcb913574fd161ae066f098a7a784bf5dbc1309fe8021154055"
+    }
+  ]
+}

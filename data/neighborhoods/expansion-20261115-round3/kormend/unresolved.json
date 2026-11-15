@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "unresolvedNames": [],
+  "boundaryLimitations": [
+    {
+      "name": "Belváros",
+      "remaining": "Exact quarter perimeter is not published in the retrieved evidence; use the explicitly low-confidence estimate.",
+      "detail": "The municipal notice explicitly calls the streets south of Rákóczi utca (to Kauz rét) and north of the Rába Belváros. This estimates the whole central quarter, including its residential streets, historic core and castle/park side, rather than using only the castle footprint. The western Munkácsy-side continuation and eastern Sport/Kauz-side continuation to the river are inferred straight outer-edge closures; street sides, floodplain edge and quarter extremities remain low confidence."
+    },
+    {
+      "name": "Bartók Béla lakótelep",
+      "remaining": "Exact quarter perimeter is not published in the retrieved evidence; use the explicitly low-confidence estimate.",
+      "detail": "The municipal calendar separately names this estate. Its three actually named estate-access streets and the entire mapped common grass/open-land polygon define a whole estate envelope. The latter is an estate context input, not by itself a claimed neighborhood boundary. The envelope includes internal open space and street-front housing; a 20 m outer frontage allowance and outer joins are inferred. Exact estate limits remain uncertain; this is not a building footprint or a point buffer."
+    },
+    {
+      "name": "Kis Amerika",
+      "remaining": "Exact quarter perimeter is not published in the retrieved evidence; use the explicitly low-confidence estimate.",
+      "detail": "The municipal calendar recognizes Kis-Amerika separately, and the archived OSM-derived street list associates the local street cluster with Kis Amerika. The estimate spans the whole small residential grid around Képúti liget, Ötház, Meggyfa and Gyümölcsöskert, with its local Mátyás/Ady/Vasútmellék approaches. Longer town-wide streets are clipped to this source street cluster, not treated as quarter-wide limits. The convex joins and 35 m frontage depth are inferred; industrial margins and the Rokkant transition remain uncertain."
+    },
+    {
+      "name": "Rokkant telep",
+      "remaining": "Exact quarter perimeter is not published in the retrieved evidence; use the explicitly low-confidence estimate.",
+      "detail": "The municipal calendar confirms this distinct historical quarter. An OSM-derived street guide associates local Ady, Erkel, Hunyadi, Thököly and Vasútmellék streets with it. This envelope estimates the residential/station-side area around that local cluster, rather than using its place label as a ring. Local segment scopes, the joins between perimeter streets, the 35 m frontage depth, and especially the northern/western transition toward Kis Amerika and Vasúton túl are inferred at very low confidence. No source publishes an exact perimeter. The eastern extent is additionally constrained to the actual main Hunyadi road, using the municipal description of Tisztviselő to its east as supporting context; this Rokkant-side division is an explicit inference, not an official Rokkant boundary."
+    },
+    {
+      "name": "Tisztviselő telep",
+      "remaining": "Exact quarter perimeter is not published in the retrieved evidence; use the explicitly low-confidence estimate.",
+      "detail": "The municipal notice identifies the Hunyadi/east-side quarter; the official transit map text labels Tisztviselő telep. The archived street guide lists Árpád, Bacsó, Keleti, Rózsa, Vörösmarty, Móricz, Hunyadi and Vasútmellék; adjoining Táncsics and Mártírok extend the estimate over the connected residential grid. Scope windows select the local parts of longer streets. The whole-quarter convex joins and 35 m frontage allowance are inferred. The historic/modern limits and transition to Bartók and Vasúton túl remain uncertain; overlaps are intentional and do not imply alias identity."
+    },
+    {
+      "name": "Vasúton túl",
+      "remaining": "Exact quarter perimeter is not published in the retrieved evidence; use the explicitly low-confidence estimate.",
+      "detail": "The official transit map text labels Vasúton túl and the municipal notices recognize the beyond-railway quarters. This estimate uses the northern/eastern residential grid actually associated with the singular Vasúton túl name in the archived OSM-derived street list, spanning Erkel/Petőfi through Gárdonyi/Diófa and Avar/Arasz. It does not copy the entire plural municipal collection area or alias its distinct child quarters. The street envelope, outer joins and 35 m frontage depth are inferred; historical broad usage can overlap Tisztviselő/Rokkant and exact southern/eastern margins remain uncertain."
+    }
+  ]
+}

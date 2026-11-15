@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Kisvárda",
+  "sourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+  "sourcePrintedPage": 22,
+  "sourcePdfPage": 22,
+  "sourceAttribution": "Önkormányzati adatszolgáltatás",
+  "spatialUnit": "ITS functional/geographic urban planning quarter",
+  "geometryStatus": "factual_boundary_elements_only_no_coordinates",
+  "usableForAddressAssignment": false,
+  "notes": [
+    "The source excludes administrative/legal status for this six-part subdivision.",
+    "Street-order continuity has not been verified against the source map.",
+    "Source uses Liptai in one row and Liptay in another; preserve the source and resolve the spelling before matching street geometry."
+  ],
+  "definitions": [
+    {
+      "name": "Városközpont",
+      "boundaryElementsInSourceOrder": [
+        "Ostrom utca",
+        "Arany János utca",
+        "Kossuth Lajos utca",
+        "Petőfi Sándor utca",
+        "Széchenyi István utca",
+        "Liptai Béla utca",
+        "vasúti pályatest",
+        "Gyár utca",
+        "Aradi Vértanúk tere",
+        "Rákóczi Ferenc utca a Szent György térig: külső oldal",
+        "Szent László utca: külső oldal",
+        "Várday István utca: külső oldal",
+        "Váralja utca"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "name": "Nyugati Kertvárosi rész",
+      "boundaryElementsInSourceOrder": [
+        "Városmajor utca",
+        "Krucsay Márton utca",
+        "Várday István utca",
+        "Bajcsy Zsilinszky utca",
+        "Labanc utca",
+        "Kodály Zoltán utca",
+        "Kölcsey utca",
+        "Várday István utca",
+        "Vörösmarty tér",
+        "Dózsa György utca",
+        "Attila utca",
+        "Diófás utca",
+        "Darusziget utca",
+        "Móricz Zsigmond utca",
+        "Csokonai Vitéz Mihály utca",
+        "Móser Ernő utca",
+        "Bolgár utca",
+        "Szív utca",
+        "Török utca",
+        "Kákastó utca",
+        "Rétalja utca"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "name": "Északi Kertvárosi rész",
+      "boundaryElementsInSourceOrder": [
+        "Mátyás király utca",
+        "Nagyboldogasszony utca",
+        "Mária utca",
+        "Liliom utca",
+        "Ady Endre utca",
+        "Sorompó utca",
+        "vasúti pályatest",
+        "Liptay Béla utca",
+        "Széchenyi István utca",
+        "Petőfi Sándor utca",
+        "Kossuth Lajos utca",
+        "Kereszt utca"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "name": "Kiemelt Szolgáltatói városrész",
+      "boundaryElementsInSourceOrder": [
+        "Városmajor utca",
+        "Kereszt utca",
+        "Váralja utca",
+        "Ostrom utca",
+        "Krucsay Márton utca"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "name": "Keleti városrész",
+      "boundaryElementsInSourceOrder": [
+        "Halasy Gyula utca",
+        "Litki út",
+        "Jéki út",
+        "Tulipán utca",
+        "Papi út",
+        "Váry Emil utca",
+        "Pacsirta utca",
+        "Kinizsi Pál utca",
+        "Gagarin utca",
+        "Szüret utca",
+        "Nagymező utca",
+        "Wesselényi utca",
+        "vasúti pályatest"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    },
+    {
+      "name": "Déli Ipari Szolgáltatói Városrész",
+      "boundaryElementsInSourceOrder": [
+        "Aradi Vértanúk tere",
+        "Gyár utca",
+        "vasúti pályatest",
+        "Szüret utca",
+        "Vásártér utca",
+        "Ipari út",
+        "Attila utca"
+      ],
+      "boundaryOrderGeometricallyVerified": false
+    }
+  ]
+}

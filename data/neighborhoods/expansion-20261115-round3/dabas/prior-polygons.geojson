@@ -1,0 +1,1103 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "neighborhood:a9ab244416fd28bab4d24213",
+      "bbox": [
+        19.2598162,
+        47.224059,
+        19.2618976,
+        47.2254263
+      ],
+      "properties": {
+        "id": "neighborhood:a9ab244416fd28bab4d24213",
+        "municipality": "Dabas",
+        "municipalityId": "city:Dabas",
+        "name": "Dabasi ipari park",
+        "label": "Dabasi ipari park (Dabas)",
+        "canonicalNameKey": "dabasiiparipark",
+        "aliases": [],
+        "method": "named_source_footprint",
+        "boundaryKind": "named_area",
+        "estimated": true,
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 533129100,
+          "url": "https://www.openstreetmap.org/way/533129100",
+          "tags": {
+            "highway": "service",
+            "name": "Dabasi ipari park"
+          },
+          "objectVersion": 1,
+          "objectTimestamp": "2017-10-17 09:53:37+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "sourceProperties": {
+          "sourceAreaId": "osm:way:533129100",
+          "name": "Dabasi ipari park",
+          "municipality": "Dabas",
+          "aliases": [],
+          "associationKind": "source_area_name",
+          "sourceRole": "named_industrial_park",
+          "municipalityEvidence": "representative_point_in_source_municipality",
+          "municipalityOsmId": "osm:relation:1356707",
+          "sourceSurfaceEntirelyInsideMunicipality": true,
+          "containedNamePoints": [],
+          "namePoint": null,
+          "containedQuarterLabels": [],
+          "method": "named_source_footprint",
+          "estimated": true,
+          "semanticFootprint": true,
+          "searchable": true,
+          "qualityScore": 55,
+          "sourceGeometryUnmodified": true,
+          "source": {
+            "provider": "openstreetmap",
+            "osmType": "way",
+            "osmId": 533129100,
+            "url": "https://www.openstreetmap.org/way/533129100",
+            "tags": {
+              "highway": "service",
+              "name": "Dabasi ipari park"
+            },
+            "objectVersion": 1,
+            "objectTimestamp": "2017-10-17 09:53:37+00:00",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors"
+          },
+          "sourceAreaSquareMetresApprox": 12002.7,
+          "approximationNote": "The actual named residential/allotment/estate/industrial-park surface is a useful named search footprint; it is not asserted to cover the entire conventional neighbourhood."
+        },
+        "selectedSource": {
+          "path": "data/neighborhoods/expansion-20261114-next/medium-cities/national-surfaces/source-own-name-features.geojson",
+          "featureId": "national-surface:d485f2d9c4defb6a83173d",
+          "featureIndex": 11,
+          "name": "Dabasi ipari park",
+          "geometrySha256": "ef1301810d7d1ae636be3d67fb22825bafa70ab081e3155321a80c651ebd1f51",
+          "method": "named_source_footprint",
+          "priority": 40
+        },
+        "sourceAlternatives": [
+          {
+            "path": "data/neighborhoods/expansion-20261114-next/medium-cities/national-surfaces/source-own-name-features.geojson",
+            "featureId": "national-surface:d485f2d9c4defb6a83173d",
+            "featureIndex": 11,
+            "name": "Dabasi ipari park",
+            "geometrySha256": "ef1301810d7d1ae636be3d67fb22825bafa70ab081e3155321a80c651ebd1f51",
+            "method": "named_source_footprint",
+            "priority": 40
+          }
+        ],
+        "geometrySha256": "ef1301810d7d1ae636be3d67fb22825bafa70ab081e3155321a80c651ebd1f51",
+        "usableForApproximateAddressFiltering": true,
+        "exactOrOfficialBoundaryGuaranteed": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                19.2598162,
+                47.2247927
+              ],
+              [
+                19.2608065,
+                47.224059
+              ],
+              [
+                19.2618976,
+                47.2246616
+              ],
+              [
+                19.2608569,
+                47.2254263
+              ],
+              [
+                19.2605067,
+                47.225213
+              ],
+              [
+                19.2598162,
+                47.2247927
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "neighborhood:33d095a52625f8b61b45cf27",
+      "bbox": [
+        19.3670672,
+        47.1896104,
+        19.3877739,
+        47.2027492
+      ],
+      "properties": {
+        "id": "neighborhood:33d095a52625f8b61b45cf27",
+        "municipality": "Dabas",
+        "municipalityId": "city:Dabas",
+        "name": "Dabasiszőlők",
+        "label": "Dabasiszőlők (Dabas)",
+        "canonicalNameKey": "dabasiszőlők",
+        "aliases": [],
+        "method": "named_source_footprint",
+        "boundaryKind": "named_area",
+        "estimated": true,
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "relation",
+          "osmId": 8392022,
+          "url": "https://www.openstreetmap.org/relation/8392022",
+          "tags": {
+            "landuse": "residential"
+          },
+          "objectVersion": 5,
+          "objectTimestamp": "2021-12-20 20:12:59+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "sourceProperties": {
+          "name": "Dabasiszőlők",
+          "municipality": "Dabas",
+          "municipalityId": "city:Dabas",
+          "method": "named_point_source_footprint_estimate",
+          "estimated": true,
+          "semanticFootprint": true,
+          "sourceRole": "landuse_residential",
+          "searchable": true,
+          "sourceGeometryUnmodified": true,
+          "sourceUrl": "https://www.openstreetmap.org/relation/8392022",
+          "source": {
+            "provider": "openstreetmap",
+            "osmType": "relation",
+            "osmId": 8392022,
+            "url": "https://www.openstreetmap.org/relation/8392022",
+            "tags": {
+              "landuse": "residential"
+            },
+            "objectVersion": 5,
+            "objectTimestamp": "2021-12-20 20:12:59+00:00",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors"
+          },
+          "sourceAreaSquareMetresApprox": 1095450.9,
+          "namePoint": {
+            "id": "osm:node:1362335986",
+            "name": "Dabasiszőlők",
+            "place": "suburb",
+            "coordinates": [
+              19.3778916,
+              47.1939882
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/1362335986",
+            "path": "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz"
+          },
+          "containedDistinctQuarterNames": 1,
+          "containedNamePointIds": [
+            "osm:node:1362335986"
+          ],
+          "coordinateAccuracyNote": "Actual unchanged unnamed residential/allotment source outline containing exactly one distinct named quarter/suburb/neighbourhood point. Assigning that name to the containing footprint is an approximation; source outline is not asserted to be a full or official neighbourhood boundary. No circle, Voronoi, clipping, hull or shape fitting.",
+          "license": "ODbL-1.0"
+        },
+        "selectedSource": {
+          "path": "data/neighborhoods/expansion-20261114/machine-footprints/features.geojson",
+          "featureId": "osm:relation:8392022",
+          "featureIndex": 116,
+          "name": "Dabasiszőlők",
+          "geometrySha256": "27ff823962d8268781c4ff51b60306a2c687c34da5a613c97aff05f32433e5c5",
+          "method": "named_source_footprint",
+          "priority": 45
+        },
+        "sourceAlternatives": [
+          {
+            "path": "data/neighborhoods/expansion-20261114/machine-footprints/features.geojson",
+            "featureId": "osm:relation:8392022",
+            "featureIndex": 116,
+            "name": "Dabasiszőlők",
+            "geometrySha256": "27ff823962d8268781c4ff51b60306a2c687c34da5a613c97aff05f32433e5c5",
+            "method": "named_source_footprint",
+            "priority": 45
+          }
+        ],
+        "geometrySha256": "27ff823962d8268781c4ff51b60306a2c687c34da5a613c97aff05f32433e5c5",
+        "usableForApproximateAddressFiltering": true,
+        "exactOrOfficialBoundaryGuaranteed": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                19.3670672,
+                47.1969192
+              ],
+              [
+                19.3678558,
+                47.1962631
+              ],
+              [
+                19.3676358,
+                47.1962266
+              ],
+              [
+                19.3677378,
+                47.1960589
+              ],
+              [
+                19.3680167,
+                47.1961245
+              ],
+              [
+                19.3705058,
+                47.1942837
+              ],
+              [
+                19.3701839,
+                47.1942765
+              ],
+              [
+                19.3703073,
+                47.1940031
+              ],
+              [
+                19.3708116,
+                47.1940359
+              ],
+              [
+                19.3718029,
+                47.1931959
+              ],
+              [
+                19.3725772,
+                47.1933253
+              ],
+              [
+                19.3724906,
+                47.1935401
+              ],
+              [
+                19.3725443,
+                47.193737
+              ],
+              [
+                19.3726891,
+                47.1937443
+              ],
+              [
+                19.3732524,
+                47.1939921
+              ],
+              [
+                19.3736386,
+                47.1937661
+              ],
+              [
+                19.3738693,
+                47.1938755
+              ],
+              [
+                19.3743091,
+                47.1936714
+              ],
+              [
+                19.3734025,
+                47.1930776
+              ],
+              [
+                19.3722604,
+                47.1929891
+              ],
+              [
+                19.3737781,
+                47.1922205
+              ],
+              [
+                19.3751192,
+                47.1914696
+              ],
+              [
+                19.3777692,
+                47.1896578
+              ],
+              [
+                19.3788475,
+                47.1896104
+              ],
+              [
+                19.3792552,
+                47.189738
+              ],
+              [
+                19.3795073,
+                47.1896396
+              ],
+              [
+                19.3799472,
+                47.1898765
+              ],
+              [
+                19.3808377,
+                47.1907113
+              ],
+              [
+                19.3803763,
+                47.1909629
+              ],
+              [
+                19.3822914,
+                47.1927418
+              ],
+              [
+                19.3827206,
+                47.1925304
+              ],
+              [
+                19.3829352,
+                47.192545
+              ],
+              [
+                19.3837023,
+                47.1922934
+              ],
+              [
+                19.3838954,
+                47.1925194
+              ],
+              [
+                19.3833965,
+                47.1927236
+              ],
+              [
+                19.383257,
+                47.1925741
+              ],
+              [
+                19.3826348,
+                47.1926689
+              ],
+              [
+                19.3822324,
+                47.1928876
+              ],
+              [
+                19.3825221,
+                47.193161
+              ],
+              [
+                19.3822914,
+                47.1932631
+              ],
+              [
+                19.3820554,
+                47.1930662
+              ],
+              [
+                19.3812185,
+                47.1934891
+              ],
+              [
+                19.381991,
+                47.194178
+              ],
+              [
+                19.3816316,
+                47.1943967
+              ],
+              [
+                19.3818033,
+                47.1946483
+              ],
+              [
+                19.3826079,
+                47.1955195
+              ],
+              [
+                19.382785,
+                47.1956215
+              ],
+              [
+                19.3830264,
+                47.1954648
+              ],
+              [
+                19.3828171,
+                47.1952315
+              ],
+              [
+                19.383021,
+                47.1951331
+              ],
+              [
+                19.3832195,
+                47.1953518
+              ],
+              [
+                19.3837291,
+                47.1950529
+              ],
+              [
+                19.383139,
+                47.1944952
+              ],
+              [
+                19.3835038,
+                47.1943457
+              ],
+              [
+                19.3840992,
+                47.1949472
+              ],
+              [
+                19.3838632,
+                47.1950784
+              ],
+              [
+                19.3852901,
+                47.1963724
+              ],
+              [
+                19.3856603,
+                47.1961829
+              ],
+              [
+                19.385848,
+                47.1963505
+              ],
+              [
+                19.3860573,
+                47.1962558
+              ],
+              [
+                19.3854833,
+                47.1957819
+              ],
+              [
+                19.3857408,
+                47.1956689
+              ],
+              [
+                19.3863255,
+                47.1962084
+              ],
+              [
+                19.3860309,
+                47.1964014
+              ],
+              [
+                19.3850809,
+                47.1969948
+              ],
+              [
+                19.3844466,
+                47.1973602
+              ],
+              [
+                19.3839197,
+                47.1977214
+              ],
+              [
+                19.3806258,
+                47.1999791
+              ],
+              [
+                19.3804139,
+                47.2001085
+              ],
+              [
+                19.3789977,
+                47.2010633
+              ],
+              [
+                19.3766856,
+                47.2026488
+              ],
+              [
+                19.3765669,
+                47.2025503
+              ],
+              [
+                19.3761421,
+                47.2022932
+              ],
+              [
+                19.3755032,
+                47.2027492
+              ],
+              [
+                19.3747276,
+                47.2022552
+              ],
+              [
+                19.3752479,
+                47.2018251
+              ],
+              [
+                19.3741268,
+                47.2011873
+              ],
+              [
+                19.3722301,
+                47.1999761
+              ],
+              [
+                19.3718952,
+                47.1997622
+              ],
+              [
+                19.3706399,
+                47.2005823
+              ],
+              [
+                19.3695348,
+                47.1999226
+              ],
+              [
+                19.3689877,
+                47.2002943
+              ],
+              [
+                19.3677646,
+                47.1996419
+              ],
+              [
+                19.3683099,
+                47.1992465
+              ],
+              [
+                19.3686743,
+                47.1989822
+              ],
+              [
+                19.3687999,
+                47.1988911
+              ],
+              [
+                19.3684566,
+                47.1987252
+              ],
+              [
+                19.3688804,
+                47.1983662
+              ],
+              [
+                19.3692639,
+                47.1985557
+              ],
+              [
+                19.3694973,
+                47.1983954
+              ],
+              [
+                19.3689769,
+                47.1981366
+              ],
+              [
+                19.3693632,
+                47.1978486
+              ],
+              [
+                19.3680382,
+                47.1971306
+              ],
+              [
+                19.3675983,
+                47.1969629
+              ],
+              [
+                19.3675232,
+                47.1970686
+              ],
+              [
+                19.3670672,
+                47.1969192
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                19.3846282,
+                47.1945146
+              ],
+              [
+                19.3850219,
+                47.1942983
+              ],
+              [
+                19.3852687,
+                47.1945025
+              ],
+              [
+                19.3861484,
+                47.1940286
+              ],
+              [
+                19.3864971,
+                47.1943967
+              ],
+              [
+                19.3868566,
+                47.1942327
+              ],
+              [
+                19.3871623,
+                47.1945498
+              ],
+              [
+                19.387334,
+                47.1944733
+              ],
+              [
+                19.3877739,
+                47.194918
+              ],
+              [
+                19.3871945,
+                47.195195
+              ],
+              [
+                19.386878,
+                47.1949107
+              ],
+              [
+                19.3866849,
+                47.1949362
+              ],
+              [
+                19.3861109,
+                47.1951805
+              ],
+              [
+                19.3859446,
+                47.19498
+              ],
+              [
+                19.3866098,
+                47.1946191
+              ],
+              [
+                19.3862021,
+                47.1942874
+              ],
+              [
+                19.3855315,
+                47.1947029
+              ],
+              [
+                19.3853116,
+                47.1945498
+              ],
+              [
+                19.38492,
+                47.1947503
+              ],
+              [
+                19.3846282,
+                47.1945146
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "neighborhood:50601eaa5490d6bfb870851c",
+      "bbox": [
+        19.2814949,
+        47.2206655,
+        19.2940636,
+        47.2292478
+      ],
+      "properties": {
+        "id": "neighborhood:50601eaa5490d6bfb870851c",
+        "municipality": "Dabas",
+        "municipalityId": "city:Dabas",
+        "name": "Felsőbesnyő",
+        "label": "Felsőbesnyő (Dabas)",
+        "canonicalNameKey": "felsőbesnyő",
+        "aliases": [],
+        "method": "named_source_footprint",
+        "boundaryKind": "named_area",
+        "estimated": true,
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 158548690,
+          "url": "https://www.openstreetmap.org/way/158548690",
+          "tags": {
+            "landuse": "residential"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2017-02-03 00:13:19+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "sourceProperties": {
+          "name": "Felsőbesnyő",
+          "municipality": "Dabas",
+          "municipalityId": "city:Dabas",
+          "method": "named_point_source_footprint_estimate",
+          "estimated": true,
+          "semanticFootprint": true,
+          "sourceRole": "landuse_residential",
+          "searchable": true,
+          "sourceGeometryUnmodified": true,
+          "sourceUrl": "https://www.openstreetmap.org/way/158548690",
+          "source": {
+            "provider": "openstreetmap",
+            "osmType": "way",
+            "osmId": 158548690,
+            "url": "https://www.openstreetmap.org/way/158548690",
+            "tags": {
+              "landuse": "residential"
+            },
+            "objectVersion": 4,
+            "objectTimestamp": "2017-02-03 00:13:19+00:00",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors"
+          },
+          "sourceAreaSquareMetresApprox": 390418.6,
+          "namePoint": {
+            "id": "osm:node:1362335985",
+            "name": "Felsőbesnyő",
+            "place": "suburb",
+            "coordinates": [
+              19.2903009,
+              47.2247804
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/1362335985",
+            "path": "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz"
+          },
+          "containedDistinctQuarterNames": 1,
+          "containedNamePointIds": [
+            "osm:node:1362335985"
+          ],
+          "coordinateAccuracyNote": "Actual unchanged unnamed residential/allotment source outline containing exactly one distinct named quarter/suburb/neighbourhood point. Assigning that name to the containing footprint is an approximation; source outline is not asserted to be a full or official neighbourhood boundary. No circle, Voronoi, clipping, hull or shape fitting.",
+          "license": "ODbL-1.0"
+        },
+        "selectedSource": {
+          "path": "data/neighborhoods/expansion-20261114/machine-footprints/features.geojson",
+          "featureId": "osm:way:158548690",
+          "featureIndex": 117,
+          "name": "Felsőbesnyő",
+          "geometrySha256": "d901361377d62854395db411775056c754c1995022a83df786f7dfb1a202346f",
+          "method": "named_source_footprint",
+          "priority": 45
+        },
+        "sourceAlternatives": [
+          {
+            "path": "data/neighborhoods/expansion-20261114/machine-footprints/features.geojson",
+            "featureId": "osm:way:158548690",
+            "featureIndex": 117,
+            "name": "Felsőbesnyő",
+            "geometrySha256": "d901361377d62854395db411775056c754c1995022a83df786f7dfb1a202346f",
+            "method": "named_source_footprint",
+            "priority": 45
+          }
+        ],
+        "geometrySha256": "d901361377d62854395db411775056c754c1995022a83df786f7dfb1a202346f",
+        "usableForApproximateAddressFiltering": true,
+        "exactOrOfficialBoundaryGuaranteed": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                19.2814949,
+                47.2280633
+              ],
+              [
+                19.2818967,
+                47.2272211
+              ],
+              [
+                19.2860994,
+                47.223296
+              ],
+              [
+                19.2852818,
+                47.2230327
+              ],
+              [
+                19.2869148,
+                47.2206655
+              ],
+              [
+                19.287816,
+                47.2209971
+              ],
+              [
+                19.2864963,
+                47.2231138
+              ],
+              [
+                19.2886379,
+                47.2237869
+              ],
+              [
+                19.2892173,
+                47.2231712
+              ],
+              [
+                19.2934547,
+                47.2245342
+              ],
+              [
+                19.2932086,
+                47.2248981
+              ],
+              [
+                19.293413,
+                47.225003
+              ],
+              [
+                19.2934585,
+                47.22524
+              ],
+              [
+                19.2940636,
+                47.2254004
+              ],
+              [
+                19.2931678,
+                47.2263148
+              ],
+              [
+                19.2921214,
+                47.2259307
+              ],
+              [
+                19.2884468,
+                47.2292478
+              ],
+              [
+                19.2846107,
+                47.2281481
+              ],
+              [
+                19.2841628,
+                47.2287146
+              ],
+              [
+                19.2814949,
+                47.2280633
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "neighborhood:a85c54c8c9223755218df21f",
+      "bbox": [
+        19.3086862,
+        47.2004802,
+        19.3172559,
+        47.2062168
+      ],
+      "properties": {
+        "id": "neighborhood:a85c54c8c9223755218df21f",
+        "municipality": "Dabas",
+        "municipalityId": "city:Dabas",
+        "name": "Szőlőhegy",
+        "label": "Szőlőhegy (Dabas)",
+        "canonicalNameKey": "szőlőhegy",
+        "aliases": [],
+        "method": "named_source_footprint",
+        "boundaryKind": "named_area",
+        "estimated": true,
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 711138296,
+          "url": "https://www.openstreetmap.org/way/711138296",
+          "tags": {
+            "landuse": "residential"
+          },
+          "objectVersion": 1,
+          "objectTimestamp": "2019-08-05 22:32:04+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "sourceProperties": {
+          "name": "Szőlőhegy",
+          "municipality": "Dabas",
+          "municipalityId": "city:Dabas",
+          "method": "named_point_source_footprint_estimate",
+          "estimated": true,
+          "semanticFootprint": true,
+          "sourceRole": "landuse_residential",
+          "searchable": true,
+          "sourceGeometryUnmodified": true,
+          "sourceUrl": "https://www.openstreetmap.org/way/711138296",
+          "source": {
+            "provider": "openstreetmap",
+            "osmType": "way",
+            "osmId": 711138296,
+            "url": "https://www.openstreetmap.org/way/711138296",
+            "tags": {
+              "landuse": "residential"
+            },
+            "objectVersion": 1,
+            "objectTimestamp": "2019-08-05 22:32:04+00:00",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors"
+          },
+          "sourceAreaSquareMetresApprox": 169228.6,
+          "namePoint": {
+            "id": "osm:node:9514085461",
+            "name": "Szőlőhegy",
+            "place": "suburb",
+            "coordinates": [
+              19.3126856,
+              47.2033516
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9514085461",
+            "path": "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz"
+          },
+          "containedDistinctQuarterNames": 1,
+          "containedNamePointIds": [
+            "osm:node:9514085461"
+          ],
+          "coordinateAccuracyNote": "Actual unchanged unnamed residential/allotment source outline containing exactly one distinct named quarter/suburb/neighbourhood point. Assigning that name to the containing footprint is an approximation; source outline is not asserted to be a full or official neighbourhood boundary. No circle, Voronoi, clipping, hull or shape fitting.",
+          "license": "ODbL-1.0"
+        },
+        "selectedSource": {
+          "path": "data/neighborhoods/expansion-20261114/machine-footprints/features.geojson",
+          "featureId": "osm:way:711138296",
+          "featureIndex": 118,
+          "name": "Szőlőhegy",
+          "geometrySha256": "fabeef58fa522af8c25835fea37dbde04b981eb44b41755576ad4e3e7cac065b",
+          "method": "named_source_footprint",
+          "priority": 45
+        },
+        "sourceAlternatives": [
+          {
+            "path": "data/neighborhoods/expansion-20261114/machine-footprints/features.geojson",
+            "featureId": "osm:way:711138296",
+            "featureIndex": 118,
+            "name": "Szőlőhegy",
+            "geometrySha256": "fabeef58fa522af8c25835fea37dbde04b981eb44b41755576ad4e3e7cac065b",
+            "method": "named_source_footprint",
+            "priority": 45
+          }
+        ],
+        "geometrySha256": "fabeef58fa522af8c25835fea37dbde04b981eb44b41755576ad4e3e7cac065b",
+        "usableForApproximateAddressFiltering": true,
+        "exactOrOfficialBoundaryGuaranteed": false
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                19.3086862,
+                47.2026452
+              ],
+              [
+                19.30933,
+                47.2020912
+              ],
+              [
+                19.3105852,
+                47.2004802
+              ],
+              [
+                19.3108427,
+                47.200626
+              ],
+              [
+                19.3130314,
+                47.201734
+              ],
+              [
+                19.3121731,
+                47.2024702
+              ],
+              [
+                19.3143511,
+                47.2036948
+              ],
+              [
+                19.3152469,
+                47.2029295
+              ],
+              [
+                19.3172559,
+                47.2040082
+              ],
+              [
+                19.3157887,
+                47.2052328
+              ],
+              [
+                19.3155634,
+                47.2051089
+              ],
+              [
+                19.3141258,
+                47.2062168
+              ],
+              [
+                19.31198,
+                47.2048319
+              ],
+              [
+                19.311465,
+                47.204606
+              ],
+              [
+                19.3112183,
+                47.2047372
+              ],
+              [
+                19.3097699,
+                47.2039135
+              ],
+              [
+                19.3102956,
+                47.2035272
+              ],
+              [
+                19.3091261,
+                47.2029003
+              ],
+              [
+                19.3086862,
+                47.2026452
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

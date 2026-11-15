@@ -1,0 +1,27 @@
+{
+  "municipality": "Hajdúböszörmény",
+  "targetName": "Belváros",
+  "collectedAt": "2026-11-15",
+  "primarySource": {
+    "url": "https://njt.jog.gov.hu/jogszabaly/2025-25-SP-5Y1592",
+    "title": "Hajdúböszörmény Város Önkormányzata Képviselő-testületének 25/2025. (VI. 30.) önkormányzati rendelete a közterületek használatáról és rendjéről",
+    "section": "4. § 6. pont",
+    "versionDisplayedBySource": "2025.08.01.",
+    "unitInSource": "Kiskörút és azon belüli, turisztikailag kiemelt központi városrész",
+    "boundaryRoadsInSourceOrder": ["Bethlen Gábor utca", "Újfehértói utca", "Ady Endre tér", "Korpona utca", "Kálvin tér", "Szent István tér", "Árpád utca", "Vörösmarty Mihály utca", "Polgári utca"],
+    "literalShortExcerpt": "a Kiskörút és azon belüli városrész, amely a Bethlen Gábor utca, Újfehértói utca, Ady Endre tér, Korpona utca, Kálvin tér, Szent István tér, Árpád utca, Vörösmarty Mihály utca és Polgári utca által határolt területet jelenti",
+    "access": "Read through web connector as text; no local PDF or native municipal polygon claimed."
+  },
+  "semanticSource": {
+    "url": "https://njt.jog.gov.hu/jogszabaly/2019-35-SP-5Y1592",
+    "title": "35/2019. (XI. 28.) önkormányzati rendelet Hajdúböszörmény Város településképének védelméről",
+    "section": "15. § (2) a)–b)",
+    "sourceCategories": ["Belváros településrész vegyes karakterrel", "Kiskörúton kívüli vegyes karakterű településrész"],
+    "interpretation": "The city explicitly separates the central Belváros character area from the area outside the Kiskörút. This supports interpreting the primary nine-road central circuit as a Belváros neighbourhood estimate; no cadastral identity is asserted."
+  },
+  "osmStreetLabelVariants": {"Újfehértói utca": ["Újfehértói út"]},
+  "sourceNamePoint": {"osmId": 12087291859, "sourceUrl": "https://www.openstreetmap.org/node/12087291859", "coordinates": [21.5066435,47.6748665]},
+  "pointRole": "Select the whole closed source street circuit; does not determine size or generate geometry.",
+  "noNativePdfGeometryUsed": true,
+  "noAliasesProposed": true
+}

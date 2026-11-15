@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
   "policyVersion": "20261114-throughput",
-  "featureCount": 3899,
+  "featureCount": 3924,
   "municipalityCount": 567,
   "methods": {
-    "map_or_text_estimate": 1078,
+    "map_or_text_estimate": 1103,
     "named_source_footprint": 2170,
     "source_map_polygon": 172,
     "source_polygon": 479
   },
-  "inputFeatureCount": 4244,
+  "inputFeatureCount": 4269,
   "duplicateVariantsPreserved": 345,
   "duplicateNameGroups": 324,
   "rejectedTechnicalRecords": [],
   "completeNationalCoverage": false,
   "nationalCoveragePercentage": null,
   "inputsSha256": {
-    "data/neighborhoods/expansion-20261114/name-aliases.json": "62a95bdd7455f490a92b3dccdd7c74406ca6e300f999328ac5d8ccb1f223461f",
+    "data/neighborhoods/expansion-20261114/name-aliases.json": "643d63f320c8c6d2293aa94c96f4e25553dbb8e8e5266f72883209e7f2110d73",
     "data/neighborhoods/neighborhoods.geojson": "8eca9d097fb6714c31ca942f57ff0d8f683f8f4fe13af0161b12da19b20e8f74",
     "data/neighborhoods/planning-units.geojson": "210d68a378ab01d26383825c2beb8896655e43b0e40d39f2add541ac7f090ce5",
     "data/neighborhoods/estimated-candidates.geojson": "a9e6d9bd870d997571c5638d5dbdcb8a44c92bb72926f0c85ee2dbccbf38dfe3",
@@ -94,7 +94,14 @@
     "data/neighborhoods/expansion-20261115-round2/east-small/features.geojson": "e14829617a728f5633a5ca2ac7bf05cdff0b8883d1fbfdf156de248f13d33351",
     "data/neighborhoods/expansion-20261115-round2/dorog-jaszbereny/features.geojson": "2f1b2f94c350644340866a50a02716524c0ef8d53ea0fe136616818d3b936df8",
     "data/neighborhoods/expansion-20261115-round2/south-danube/features.geojson": "4eae7043189450aa7df789ec381c1564949bb38cb99f07153d6ff8b23c98dadb",
-    "data/neighborhoods/search-area-identities.json": "2030d951baa8416c51e2c75fd54d5dbdae383ba030d056e2934c01d71c0e239e"
+    "data/neighborhoods/expansion-20261115-round3/hajduboszormeny/features.geojson": "27357438c9c8108752f6eba8f8be4e06085bc1aa72318e35943c29af09e5a8d3",
+    "data/neighborhoods/expansion-20261115-round3/mezobereny/features.geojson": "0da7cd25fbc5b2dd7957e4b6fe1d98000839b83849f6ad629d9e97c644c3aaf1",
+    "data/neighborhoods/expansion-20261115-round3/dabas/features.geojson": "d7403f5b3dc15386676963eb3e33607d7bbce8b437a56deb8d3b79a6e4b68c27",
+    "data/neighborhoods/expansion-20261115-round3/mosonmagyarovar-centre/features.geojson": "a8b9fcda21f10d5a2e586f913581cd5bb3cdce521dcdbd998b57e3e153b914d5",
+    "data/neighborhoods/expansion-20261115-round3/tokaj-centre/features.geojson": "f5ab66bacdeaeeabfeda4f43e6e2e6aa444021e559ce051385769caa23a38c8c",
+    "data/neighborhoods/expansion-20261115-round3/kisvarda/features.geojson": "e806edf836bd362a88df51401e69513d2ab68ad07e54f1f51e1983d3eb6ceccb",
+    "data/neighborhoods/expansion-20261115-round3/kormend/features.geojson": "ac141c932051810de0c4285d1299919a3f680dc059d8a3017b2e19fd8bf65b46",
+    "data/neighborhoods/search-area-identities.json": "a7fdcddc8553945b4b73d29d0545bf641994523cb24811c8fa0d899e46dbcf84"
   },
   "selectionOrder": [
     "OSM administrative named boundary",
@@ -822,8 +829,9 @@
     },
     {
       "municipality": "Dabas",
-      "count": 4,
+      "count": 12,
       "methods": {
+        "map_or_text_estimate": 8,
         "named_source_footprint": 4
       }
     },
@@ -1355,8 +1363,9 @@
     },
     {
       "municipality": "Hajdúböszörmény",
-      "count": 11,
+      "count": 12,
       "methods": {
+        "map_or_text_estimate": 1,
         "named_source_footprint": 11
       }
     },
@@ -1835,8 +1844,9 @@
     },
     {
       "municipality": "Kisvárda",
-      "count": 1,
+      "count": 7,
       "methods": {
+        "map_or_text_estimate": 6,
         "named_source_footprint": 1
       }
     },
@@ -1955,8 +1965,9 @@
     },
     {
       "municipality": "Körmend",
-      "count": 10,
+      "count": 16,
       "methods": {
+        "map_or_text_estimate": 6,
         "named_source_footprint": 10
       }
     },
@@ -2208,8 +2219,9 @@
     },
     {
       "municipality": "Mezőberény",
-      "count": 6,
+      "count": 7,
       "methods": {
+        "map_or_text_estimate": 1,
         "named_source_footprint": 6
       }
     },
@@ -2295,9 +2307,9 @@
     },
     {
       "municipality": "Mosonmagyaróvár",
-      "count": 15,
+      "count": 17,
       "methods": {
-        "map_or_text_estimate": 14,
+        "map_or_text_estimate": 16,
         "named_source_footprint": 1
       }
     },
@@ -3661,8 +3673,9 @@
     },
     {
       "municipality": "Tokaj",
-      "count": 4,
+      "count": 5,
       "methods": {
+        "map_or_text_estimate": 1,
         "named_source_footprint": 4
       }
     },
@@ -4171,5 +4184,5 @@
     }
   ],
   "retiredIdentityCount": 11,
-  "outputGeojsonSha256": "52e7939154d15c82fe28c43e7e6c44887c3a3bf349ae76717628746ab4dad143"
+  "outputGeojsonSha256": "a9328172dccd72d2ce86e3f518294ff15effca692ea7016058437ffc41027461"
 }

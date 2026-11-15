@@ -1,0 +1,873 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "estimated:kormend:belvaros:municipal-rakoczi-raba",
+      "properties": {
+        "name": "Belváros",
+        "municipality": "Körmend",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "method": "Whole city-centre interpretation of the municipal Rákóczi-utca-to-Rába description: original named Rákóczi/Sport street-node paths and Rába river arc, with two explicit inferred outer side closures.",
+        "sourceUrl": "https://www.kormend.hu/Hirek/2021_evi_hulladekszallitassal_kapcsolatos_tajekoztato.html",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/way/38415576"
+        ],
+        "approximationNote": "The municipal notice explicitly calls the streets south of Rákóczi utca (to Kauz rét) and north of the Rába Belváros. This estimates the whole central quarter, including its residential streets, historic core and castle/park side, rather than using only the castle footprint. The western Munkácsy-side continuation and eastern Sport/Kauz-side continuation to the river are inferred straight outer-edge closures; street sides, floodplain edge and quarter extremities remain low confidence.",
+        "sourcePeriod": "Municipal 2021 spatial description; OSM2026-11-12 geometry",
+        "boundaryKind": "neighbourhood",
+        "partialFootprint": false,
+        "usableForAddressAssignment": false,
+        "areaM2": 1402334,
+        "license": "ODbL-1.0",
+        "attribution": "Körmend municipal spatial facts; © OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.593189,
+              47.0095483
+            ],
+            [
+              16.5933442,
+              47.0095548
+            ],
+            [
+              16.5942953,
+              47.009635
+            ],
+            [
+              16.5954666,
+              47.0097492
+            ],
+            [
+              16.5967315,
+              47.00987
+            ],
+            [
+              16.5976751,
+              47.0099586
+            ],
+            [
+              16.5979005,
+              47.0099798
+            ],
+            [
+              16.5982017,
+              47.0100128
+            ],
+            [
+              16.5991755,
+              47.010106
+            ],
+            [
+              16.5995303,
+              47.0101411
+            ],
+            [
+              16.6005236,
+              47.0102504
+            ],
+            [
+              16.6005457,
+              47.0102529
+            ],
+            [
+              16.601418,
+              47.0103582
+            ],
+            [
+              16.6018237,
+              47.0103985
+            ],
+            [
+              16.6021686,
+              47.0104321
+            ],
+            [
+              16.6022455,
+              47.0104403
+            ],
+            [
+              16.6037529,
+              47.0106019
+            ],
+            [
+              16.6041056,
+              47.0106496
+            ],
+            [
+              16.6046181,
+              47.0107308
+            ],
+            [
+              16.6046352,
+              47.0107348
+            ],
+            [
+              16.6048823,
+              47.0107852
+            ],
+            [
+              16.6051216,
+              47.0108352
+            ],
+            [
+              16.6051368,
+              47.0108389
+            ],
+            [
+              16.6052056,
+              47.0108548
+            ],
+            [
+              16.6057529,
+              47.0109871
+            ],
+            [
+              16.6059925,
+              47.0110474
+            ],
+            [
+              16.6062068,
+              47.0111055
+            ],
+            [
+              16.6065859,
+              47.011228
+            ],
+            [
+              16.6069038,
+              47.0113647
+            ],
+            [
+              16.6071706,
+              47.0114923
+            ],
+            [
+              16.607423,
+              47.0116383
+            ],
+            [
+              16.6077429,
+              47.0118459
+            ],
+            [
+              16.6081749,
+              47.0121755
+            ],
+            [
+              16.608496,
+              47.0124146
+            ],
+            [
+              16.6089705,
+              47.0127815
+            ],
+            [
+              16.6093511,
+              47.0131191
+            ],
+            [
+              16.6095159,
+              47.0132928
+            ],
+            [
+              16.6097818,
+              47.013599
+            ],
+            [
+              16.6100264,
+              47.0138907
+            ],
+            [
+              16.6102432,
+              47.0141915
+            ],
+            [
+              16.6106141,
+              47.0147208
+            ],
+            [
+              16.6108514,
+              47.0150593
+            ],
+            [
+              16.6108651,
+              47.0150784
+            ],
+            [
+              16.6122373,
+              47.0149615
+            ],
+            [
+              16.6124386,
+              47.0149435
+            ],
+            [
+              16.6127585,
+              47.0149161
+            ],
+            [
+              16.6129102,
+              47.0149102
+            ],
+            [
+              16.61301,
+              47.0149241
+            ],
+            [
+              16.6131499,
+              47.0149647
+            ],
+            [
+              16.6131946,
+              47.0149794
+            ],
+            [
+              16.6137428,
+              47.015208
+            ],
+            [
+              16.6142562,
+              47.0154087
+            ],
+            [
+              16.6148226,
+              47.0156074
+            ],
+            [
+              16.6157382,
+              47.0159099
+            ],
+            [
+              16.6157785,
+              47.015941
+            ],
+            [
+              16.6157873,
+              47.0159611
+            ],
+            [
+              16.6146448,
+              47.0085264
+            ],
+            [
+              16.614425,
+              47.0085547
+            ],
+            [
+              16.6140954,
+              47.0085321
+            ],
+            [
+              16.613747,
+              47.0084557
+            ],
+            [
+              16.6133697,
+              47.0083129
+            ],
+            [
+              16.6113544,
+              47.0070029
+            ],
+            [
+              16.6090815,
+              47.0057008
+            ],
+            [
+              16.6084791,
+              47.0053807
+            ],
+            [
+              16.6073569,
+              47.004916
+            ],
+            [
+              16.6060948,
+              47.0045443
+            ],
+            [
+              16.6055407,
+              47.0043646
+            ],
+            [
+              16.6050555,
+              47.0042175
+            ],
+            [
+              16.6045911,
+              47.0040394
+            ],
+            [
+              16.6033732,
+              47.0033645
+            ],
+            [
+              16.6019338,
+              47.0025961
+            ],
+            [
+              16.6011247,
+              47.0021826
+            ],
+            [
+              16.6006768,
+              47.0019974
+            ],
+            [
+              16.6005323,
+              47.0019377
+            ],
+            [
+              16.6001916,
+              47.0018266
+            ],
+            [
+              16.599877,
+              47.0017653
+            ],
+            [
+              16.5992118,
+              47.0017538
+            ],
+            [
+              16.5989083,
+              47.0016877
+            ],
+            [
+              16.598389,
+              47.0015419
+            ],
+            [
+              16.5980848,
+              47.0013998
+            ],
+            [
+              16.5978193,
+              47.0011606
+            ],
+            [
+              16.5974834,
+              47.0007244
+            ],
+            [
+              16.5972908,
+              47.0005664
+            ],
+            [
+              16.5970844,
+              47.0004669
+            ],
+            [
+              16.596627,
+              47.0003154
+            ],
+            [
+              16.5963594,
+              47.0002853
+            ],
+            [
+              16.5960195,
+              47.0002992
+            ],
+            [
+              16.5957078,
+              47.0004173
+            ],
+            [
+              16.5954412,
+              47.0005189
+            ],
+            [
+              16.595158,
+              47.0005747
+            ],
+            [
+              16.5947886,
+              47.0005929
+            ],
+            [
+              16.5944412,
+              47.0005561
+            ],
+            [
+              16.593189,
+              47.0095483
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:kormend:bartok-bela-lakotelep:source-street-envelope",
+      "properties": {
+        "name": "Bartók Béla lakótelep",
+        "municipality": "Körmend",
+        "method": "Estimated whole-quarter street-grid envelope: convex envelope of archived named street segments and any specified estate open-land polygon, plus an explicitly inferred square-cornered outer frontage allowance.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://www.kormend.hu/editor_up/Hirek/2025/hulladek/Kormend-naptar-2025.V2mod.pdf",
+        "supportingUrls": [
+          "https://www.kormend.hu/Hirek/2021_evi_hulladekszallitassal_kapcsolatos_tajekoztato.html",
+          "https://www.openstreetmap.org/way/622369123",
+          "https://www.openstreetmap.org/way/336679293"
+        ],
+        "approximationNote": "The municipal calendar separately names this estate. Its three actually named estate-access streets and the entire mapped common grass/open-land polygon define a whole estate envelope. The latter is an estate context input, not by itself a claimed neighborhood boundary. The envelope includes internal open space and street-front housing; a 20 m outer frontage allowance and outer joins are inferred. Exact estate limits remain uncertain; this is not a building footprint or a point buffer.",
+        "sourcePeriod": "Municipal 2021/2025 quarter names and descriptions; OSM snapshot 2026-11-12",
+        "boundaryKind": "neighbourhood",
+        "partialFootprint": false,
+        "usableForAddressAssignment": false,
+        "areaM2": 45384,
+        "frontageAllowanceM": 20,
+        "license": "ODbL-1.0",
+        "attribution": "Körmend municipality; © OpenStreetMap contributors; OSM-derived Openalfa street associations"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.607761459305436,
+              47.01232507350659
+            ],
+            [
+              16.60747031927883,
+              47.01278617982297
+            ],
+            [
+              16.60667578183866,
+              47.01428302779093
+            ],
+            [
+              16.607461649369363,
+              47.01447348451984
+            ],
+            [
+              16.60844396946261,
+              47.0147114894775
+            ],
+            [
+              16.609330144392732,
+              47.014926146240214
+            ],
+            [
+              16.61007049262938,
+              47.01393801178767
+            ],
+            [
+              16.609463387315337,
+              47.01325497900222
+            ],
+            [
+              16.608258926176536,
+              47.01224334164382
+            ],
+            [
+              16.607957615668642,
+              47.01209660935911
+            ],
+            [
+              16.607761459305436,
+              47.01232507350659
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:kormend:kis-amerika:source-street-envelope",
+      "properties": {
+        "name": "Kis Amerika",
+        "municipality": "Körmend",
+        "method": "Estimated whole-quarter street-grid envelope: convex envelope of archived named street segments and any specified estate open-land polygon, plus an explicitly inferred square-cornered outer frontage allowance.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://www.kormend.hu/editor_up/Hirek/2025/hulladek/Kormend-naptar-2025.V2mod.pdf",
+        "supportingUrls": [
+          "https://www.kormend.hu/Hirek/2021_evi_hulladekszallitassal_kapcsolatos_tajekoztato.html",
+          "https://utcak-magyarorszag.openalfa.com/kis-amerika"
+        ],
+        "approximationNote": "The municipal calendar recognizes Kis-Amerika separately, and the archived OSM-derived street list associates the local street cluster with Kis Amerika. The estimate spans the whole small residential grid around Képúti liget, Ötház, Meggyfa and Gyümölcsöskert, with its local Mátyás/Ady/Vasútmellék approaches. Longer town-wide streets are clipped to this source street cluster, not treated as quarter-wide limits. The convex joins and 35 m frontage depth are inferred; industrial margins and the Rokkant transition remain uncertain.",
+        "sourcePeriod": "Municipal 2021/2025 quarter names and descriptions; OSM snapshot 2026-11-12",
+        "boundaryKind": "neighbourhood",
+        "partialFootprint": false,
+        "usableForAddressAssignment": false,
+        "areaM2": 288255,
+        "frontageAllowanceM": 35,
+        "license": "ODbL-1.0",
+        "attribution": "Körmend municipality; © OpenStreetMap contributors; OSM-derived Openalfa street associations"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.591759857649027,
+              47.01457237984597
+            ],
+            [
+              16.590497000542634,
+              47.015766972706786
+            ],
+            [
+              16.592015131073705,
+              47.0194906709174
+            ],
+            [
+              16.59272307585242,
+              47.01967243166344
+            ],
+            [
+              16.594436243609184,
+              47.020091418907676
+            ],
+            [
+              16.597333572500393,
+              47.01930979283805
+            ],
+            [
+              16.598760374448666,
+              47.017752250910355
+            ],
+            [
+              16.59876035625178,
+              47.01563841808783
+            ],
+            [
+              16.595232575797088,
+              47.01489231473843
+            ],
+            [
+              16.592112394390515,
+              47.01456535183141
+            ],
+            [
+              16.591759857649027,
+              47.01457237984597
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:kormend:rokkant-telep:source-street-envelope",
+      "properties": {
+        "name": "Rokkant telep",
+        "municipality": "Körmend",
+        "method": "Estimated whole-quarter street-grid envelope: convex envelope of archived named street segments and any specified estate open-land polygon, plus an explicitly inferred square-cornered outer frontage allowance.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://www.kormend.hu/editor_up/Hirek/2025/hulladek/Kormend-naptar-2025.V2mod.pdf",
+        "supportingUrls": [
+          "https://www.kormend.hu/Hirek/2021_evi_hulladekszallitassal_kapcsolatos_tajekoztato.html",
+          "https://utcak-magyarorszag.openalfa.com/rokkant-telep",
+          "https://utcak-magyarorszag.openalfa.com/utcak/vasutmellek-utca-rokkant-telep-koermend"
+        ],
+        "approximationNote": "The municipal calendar confirms this distinct historical quarter. An OSM-derived street guide associates local Ady, Erkel, Hunyadi, Thököly and Vasútmellék streets with it. This envelope estimates the residential/station-side area around that local cluster, rather than using its place label as a ring. Local segment scopes, the joins between perimeter streets, the 35 m frontage depth, and especially the northern/western transition toward Kis Amerika and Vasúton túl are inferred at very low confidence. No source publishes an exact perimeter. The eastern extent is additionally constrained to the actual main Hunyadi road, using the municipal description of Tisztviselő to its east as supporting context; this Rokkant-side division is an explicit inference, not an official Rokkant boundary.",
+        "sourcePeriod": "Municipal 2021/2025 quarter names and descriptions; OSM snapshot 2026-11-12",
+        "boundaryKind": "neighbourhood",
+        "partialFootprint": false,
+        "usableForAddressAssignment": false,
+        "areaM2": 172042,
+        "frontageAllowanceM": 35,
+        "license": "ODbL-1.0",
+        "attribution": "Körmend municipality; © OpenStreetMap contributors; OSM-derived Openalfa street associations"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.59753963703223,
+              47.01769078490764
+            ],
+            [
+              16.600657016253592,
+              47.02055380204684
+            ],
+            [
+              16.6008478,
+              47.0201962
+            ],
+            [
+              16.6012486,
+              47.0194448
+            ],
+            [
+              16.6012693,
+              47.019406
+            ],
+            [
+              16.6017216,
+              47.0185581
+            ],
+            [
+              16.6017391,
+              47.0185254
+            ],
+            [
+              16.6017594,
+              47.0184873
+            ],
+            [
+              16.6020887,
+              47.01787
+            ],
+            [
+              16.6021981,
+              47.0177658
+            ],
+            [
+              16.6023508,
+              47.0177086
+            ],
+            [
+              16.6024851,
+              47.0177039
+            ],
+            [
+              16.6026515,
+              47.0177203
+            ],
+            [
+              16.6046207,
+              47.0181474
+            ],
+            [
+              16.6047563,
+              47.0181515
+            ],
+            [
+              16.6048503,
+              47.0181299
+            ],
+            [
+              16.6049235,
+              47.0180765
+            ],
+            [
+              16.6049603766908,
+              47.01801296211756
+            ],
+            [
+              16.604960370088264,
+              47.01724600742678
+            ],
+            [
+              16.6048318,
+              47.0172089
+            ],
+            [
+              16.6045067,
+              47.0171417
+            ],
+            [
+              16.6041414,
+              47.0170671
+            ],
+            [
+              16.6031514,
+              47.0168596
+            ],
+            [
+              16.6027183,
+              47.0167529
+            ],
+            [
+              16.6027397,
+              47.0167108
+            ],
+            [
+              16.602752,
+              47.0166764
+            ],
+            [
+              16.60306375679688,
+              47.016085421591896
+            ],
+            [
+              16.601559294756765,
+              47.01538023984498
+            ],
+            [
+              16.59753965574016,
+              47.01551762358827
+            ],
+            [
+              16.59753963703223,
+              47.01769078490764
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:kormend:tisztviselo-telep:source-street-envelope",
+      "properties": {
+        "name": "Tisztviselő telep",
+        "municipality": "Körmend",
+        "method": "Estimated whole-quarter street-grid envelope: convex envelope of archived named street segments and any specified estate open-land polygon, plus an explicitly inferred square-cornered outer frontage allowance.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://www.kormend.hu/editor_up/Hirek/2025/hulladek/Kormend-naptar-2025.V2mod.pdf",
+        "supportingUrls": [
+          "https://www.kormend.hu/Hirek/2021_evi_hulladekszallitassal_kapcsolatos_tajekoztato.html",
+          "https://helyimenetrend.mavcsoport.hu/files/public/helyi_menetrendek/kormend/Kormend_tkp_A3_251119.pdf",
+          "https://utcak-magyarorszag.openalfa.com/kepvisel%C5%91-telep"
+        ],
+        "approximationNote": "The municipal notice identifies the Hunyadi/east-side quarter; the official transit map text labels Tisztviselő telep. The archived street guide lists Árpád, Bacsó, Keleti, Rózsa, Vörösmarty, Móricz, Hunyadi and Vasútmellék; adjoining Táncsics and Mártírok extend the estimate over the connected residential grid. Scope windows select the local parts of longer streets. The whole-quarter convex joins and 35 m frontage allowance are inferred. The historic/modern limits and transition to Bartók and Vasúton túl remain uncertain; overlaps are intentional and do not imply alias identity.",
+        "sourcePeriod": "Municipal 2021/2025 quarter names and descriptions; OSM snapshot 2026-11-12",
+        "boundaryKind": "neighbourhood",
+        "partialFootprint": false,
+        "usableForAddressAssignment": false,
+        "areaM2": 344270,
+        "frontageAllowanceM": 35,
+        "license": "ODbL-1.0",
+        "attribution": "Körmend municipality; © OpenStreetMap contributors; OSM-derived Openalfa street associations"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.603442378755307,
+              47.014603047149805
+            ],
+            [
+              16.600539649403025,
+              47.01625379475057
+            ],
+            [
+              16.60053963924258,
+              47.0174340532516
+            ],
+            [
+              16.601178088755905,
+              47.01921484594797
+            ],
+            [
+              16.60449159715943,
+              47.019214851020415
+            ],
+            [
+              16.60716752113488,
+              47.01912715021163
+            ],
+            [
+              16.609900166988318,
+              47.017756251711795
+            ],
+            [
+              16.60780603988199,
+              47.012727260735204
+            ],
+            [
+              16.603442378755307,
+              47.014603047149805
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:kormend:vasuton-tul:source-street-envelope",
+      "properties": {
+        "name": "Vasúton túl",
+        "municipality": "Körmend",
+        "method": "Estimated whole-quarter street-grid envelope: convex envelope of archived named street segments and any specified estate open-land polygon, plus an explicitly inferred square-cornered outer frontage allowance.",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "sourceUrl": "https://www.kormend.hu/editor_up/Hirek/2025/hulladek/Kormend-naptar-2025.V2mod.pdf",
+        "supportingUrls": [
+          "https://www.kormend.hu/Hirek/2021_evi_hulladekszallitassal_kapcsolatos_tajekoztato.html",
+          "https://helyimenetrend.mavcsoport.hu/files/public/helyi_menetrendek/kormend/Kormend_tkp_A3_251119.pdf",
+          "https://utcak-magyarorszag.openalfa.com/vasuton-tul"
+        ],
+        "approximationNote": "The official transit map text labels Vasúton túl and the municipal notices recognize the beyond-railway quarters. This estimate uses the northern/eastern residential grid actually associated with the singular Vasúton túl name in the archived OSM-derived street list, spanning Erkel/Petőfi through Gárdonyi/Diófa and Avar/Arasz. It does not copy the entire plural municipal collection area or alias its distinct child quarters. The street envelope, outer joins and 35 m frontage depth are inferred; historical broad usage can overlap Tisztviselő/Rokkant and exact southern/eastern margins remain uncertain.",
+        "sourcePeriod": "Municipal 2021/2025 quarter names and descriptions; OSM snapshot 2026-11-12",
+        "boundaryKind": "neighbourhood",
+        "partialFootprint": false,
+        "usableForAddressAssignment": false,
+        "areaM2": 507047,
+        "frontageAllowanceM": 35,
+        "license": "ODbL-1.0",
+        "attribution": "Körmend municipality; © OpenStreetMap contributors; OSM-derived Openalfa street associations"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.601394662125248,
+              47.01825248427859
+            ],
+            [
+              16.599182928635976,
+              47.022397079514015
+            ],
+            [
+              16.60086144345552,
+              47.023722503960975
+            ],
+            [
+              16.603921123380637,
+              47.024618393093824
+            ],
+            [
+              16.60711651884784,
+              47.025268439491384
+            ],
+            [
+              16.610008045844676,
+              47.02421363457603
+            ],
+            [
+              16.6100857159315,
+              47.023282751272994
+            ],
+            [
+              16.610076859902964,
+              47.02243656448494
+            ],
+            [
+              16.609961719142134,
+              47.02160166270693
+            ],
+            [
+              16.6096488053857,
+              47.020726236001906
+            ],
+            [
+              16.607529785676046,
+              47.018120611819775
+            ],
+            [
+              16.604923265152568,
+              47.01775506526338
+            ],
+            [
+              16.601394662125248,
+              47.01825248427859
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

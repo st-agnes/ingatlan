@@ -1,0 +1,1296 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "kisvarda-its2015-estimate:Városközpont",
+      "properties": {
+        "name": "Városközpont",
+        "municipality": "Kisvárda",
+        "municipalityId": "city:Kisvárda",
+        "method": "text_boundary_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 20,
+        "candidateBoundaryKind": "planning_unit",
+        "sourceYear": 2015,
+        "sourcePdfPages": [
+          20,
+          21,
+          22,
+          44
+        ],
+        "sourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+        "supportingUrls": [
+          "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+          "https://www.openstreetmap.org/way/100280965",
+          "https://www.openstreetmap.org/way/194798993",
+          "https://www.openstreetmap.org/way/194799032",
+          "https://www.openstreetmap.org/way/194799041",
+          "https://www.openstreetmap.org/way/194799056",
+          "https://www.openstreetmap.org/way/194799065",
+          "https://www.openstreetmap.org/way/194799081",
+          "https://www.openstreetmap.org/way/194799084",
+          "https://www.openstreetmap.org/way/194799089",
+          "https://www.openstreetmap.org/way/194799109",
+          "https://www.openstreetmap.org/way/194799128",
+          "https://www.openstreetmap.org/way/236461503",
+          "https://www.openstreetmap.org/way/274709468",
+          "https://www.openstreetmap.org/way/295578435",
+          "https://www.openstreetmap.org/way/301992615",
+          "https://www.openstreetmap.org/way/301992616",
+          "https://www.openstreetmap.org/way/301993737",
+          "https://www.openstreetmap.org/way/301993739",
+          "https://www.openstreetmap.org/way/314483835",
+          "https://www.openstreetmap.org/way/321483086",
+          "https://www.openstreetmap.org/way/321483087",
+          "https://www.openstreetmap.org/way/365389295",
+          "https://www.openstreetmap.org/way/386143961",
+          "https://www.openstreetmap.org/way/386148021",
+          "https://www.openstreetmap.org/way/629138194",
+          "https://www.openstreetmap.org/way/783736603",
+          "https://www.openstreetmap.org/way/1267983952",
+          "https://www.openstreetmap.org/way/1320429825",
+          "https://www.openstreetmap.org/way/1345141765",
+          "https://www.openstreetmap.org/way/1345141771"
+        ],
+        "approximationNote": "Rough whole-center outline guided by the explicit ITS street list and actual mapped Ostrom/Arany/Kossuth/Petőfi/Széchenyi/Liptay, railway, Gyár/Aradi and Várday routes. The source includes outer-side frontages of Rákóczi, Szent László and Várday; these are represented by the broader historical center street area, without inventing cadastral frontage offsets. Railway curves, short junction connections and the southwestern frontage transition are generalized. This is an estimated functional/geographic planning quarter, not a surveyed or administrative boundary.",
+        "boundaryElementsInSourceOrder": [
+          "Ostrom utca",
+          "Arany János utca",
+          "Kossuth Lajos utca",
+          "Petőfi Sándor utca",
+          "Széchenyi István utca",
+          "Liptai Béla utca",
+          "vasúti pályatest",
+          "Gyár utca",
+          "Aradi Vértanúk tere",
+          "Rákóczi Ferenc utca a Szent György térig: külső oldal",
+          "Szent László utca: külső oldal",
+          "Várday István utca: külső oldal",
+          "Váralja utca"
+        ],
+        "sourceWayIds": [
+          "osm:way:100280965",
+          "osm:way:194798993",
+          "osm:way:194799032",
+          "osm:way:194799041",
+          "osm:way:194799056",
+          "osm:way:194799065",
+          "osm:way:194799081",
+          "osm:way:194799084",
+          "osm:way:194799089",
+          "osm:way:194799109",
+          "osm:way:194799128",
+          "osm:way:236461503",
+          "osm:way:274709468",
+          "osm:way:295578435",
+          "osm:way:301992615",
+          "osm:way:301992616",
+          "osm:way:301993737",
+          "osm:way:301993739",
+          "osm:way:314483835",
+          "osm:way:321483086",
+          "osm:way:321483087",
+          "osm:way:365389295",
+          "osm:way:386143961",
+          "osm:way:386148021",
+          "osm:way:629138194",
+          "osm:way:783736603",
+          "osm:way:1267983952",
+          "osm:way:1320429825",
+          "osm:way:1345141765",
+          "osm:way:1345141771"
+        ],
+        "source": {
+          "provider": "municipal-ITS-street-definition-with-OSM-map-trace",
+          "municipalSourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+          "boundaryDefinitionPath": "data/neighborhoods/expansion-20261115-round3/kisvarda/source-boundary-definitions.json",
+          "sourceLinesPath": "data/neighborhoods/expansion-20261115-round3/kisvarda/source-lines.geojson",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0 for OSM physical-map inputs",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "approximateAreaSquareMetres": 1304010.7,
+        "sourceMunicipalityClipped": false,
+        "pointRadiusFallback": false,
+        "legalAdministrativeBoundary": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.0757719,
+              48.2279003
+            ],
+            [
+              22.077566,
+              48.2277697
+            ],
+            [
+              22.0778448,
+              48.2276073
+            ],
+            [
+              22.0792934,
+              48.2276814
+            ],
+            [
+              22.0797518,
+              48.2282187
+            ],
+            [
+              22.0837213,
+              48.2287424
+            ],
+            [
+              22.0853952,
+              48.2289644
+            ],
+            [
+              22.0855245,
+              48.228146
+            ],
+            [
+              22.0852102,
+              48.2269689
+            ],
+            [
+              22.0854621,
+              48.2267154
+            ],
+            [
+              22.0916858,
+              48.2285418
+            ],
+            [
+              22.0922135,
+              48.2286942
+            ],
+            [
+              22.0911,
+              48.2258
+            ],
+            [
+              22.0893,
+              48.2226
+            ],
+            [
+              22.088,
+              48.2185
+            ],
+            [
+              22.0871,
+              48.2159
+            ],
+            [
+              22.0845691,
+              48.2137688
+            ],
+            [
+              22.0838861,
+              48.2148944
+            ],
+            [
+              22.0832129,
+              48.2162825
+            ],
+            [
+              22.0813868,
+              48.216018
+            ],
+            [
+              22.0793104,
+              48.2149393
+            ],
+            [
+              22.0777154,
+              48.2192869
+            ],
+            [
+              22.0760103,
+              48.2218535
+            ],
+            [
+              22.0757701,
+              48.2233378
+            ],
+            [
+              22.0756601,
+              48.225063
+            ],
+            [
+              22.0757916,
+              48.225885
+            ],
+            [
+              22.0755181,
+              48.2266196
+            ],
+            [
+              22.0757719,
+              48.2279003
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kisvarda-its2015-estimate:Kiemelt Szolgáltatói városrész",
+      "properties": {
+        "name": "Kiemelt Szolgáltatói városrész",
+        "municipality": "Kisvárda",
+        "municipalityId": "city:Kisvárda",
+        "method": "text_boundary_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 20,
+        "candidateBoundaryKind": "planning_unit",
+        "sourceYear": 2015,
+        "sourcePdfPages": [
+          20,
+          21,
+          22,
+          44
+        ],
+        "sourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+        "supportingUrls": [
+          "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+          "https://www.openstreetmap.org/way/39761122",
+          "https://www.openstreetmap.org/way/194798993",
+          "https://www.openstreetmap.org/way/194799033",
+          "https://www.openstreetmap.org/way/194799041",
+          "https://www.openstreetmap.org/way/194799054",
+          "https://www.openstreetmap.org/way/194799058",
+          "https://www.openstreetmap.org/way/194799059",
+          "https://www.openstreetmap.org/way/194799064",
+          "https://www.openstreetmap.org/way/194799070",
+          "https://www.openstreetmap.org/way/194799105",
+          "https://www.openstreetmap.org/way/235366597",
+          "https://www.openstreetmap.org/way/235366600",
+          "https://www.openstreetmap.org/way/235366602",
+          "https://www.openstreetmap.org/way/235366604",
+          "https://www.openstreetmap.org/way/277628225",
+          "https://www.openstreetmap.org/way/451189802",
+          "https://www.openstreetmap.org/way/1118743969",
+          "https://www.openstreetmap.org/way/1118743970",
+          "https://www.openstreetmap.org/way/1203220283",
+          "https://www.openstreetmap.org/way/1203220285",
+          "https://www.openstreetmap.org/way/1203220288",
+          "https://www.openstreetmap.org/way/1320058236",
+          "https://www.openstreetmap.org/way/1320058242",
+          "https://www.openstreetmap.org/way/1430067181"
+        ],
+        "approximationNote": "Rough complete special-service quarter northwest of the historical center, guided by the ITS Városmajor/Kereszt/Váralja/Ostrom/Krucsay definition and actual mapped castle, baths and service-area street fabric. The modern Andy Vajna road provides the visible northern connection between Városmajor and Kereszt; this is an inferred physical-map connector, not a verified street-renaming alias. Junction gaps and curves are generalized. This planning unit can overlap historical center frontage estimates; no administrative status is asserted.",
+        "boundaryElementsInSourceOrder": [
+          "Városmajor utca",
+          "Kereszt utca",
+          "Váralja utca",
+          "Ostrom utca",
+          "Krucsay Márton utca"
+        ],
+        "sourceWayIds": [
+          "osm:way:39761122",
+          "osm:way:194798993",
+          "osm:way:194799033",
+          "osm:way:194799041",
+          "osm:way:194799054",
+          "osm:way:194799058",
+          "osm:way:194799059",
+          "osm:way:194799064",
+          "osm:way:194799070",
+          "osm:way:194799105",
+          "osm:way:235366597",
+          "osm:way:235366600",
+          "osm:way:235366602",
+          "osm:way:235366604",
+          "osm:way:277628225",
+          "osm:way:451189802",
+          "osm:way:1118743969",
+          "osm:way:1118743970",
+          "osm:way:1203220283",
+          "osm:way:1203220285",
+          "osm:way:1203220288",
+          "osm:way:1320058236",
+          "osm:way:1320058242",
+          "osm:way:1430067181"
+        ],
+        "source": {
+          "provider": "municipal-ITS-street-definition-with-OSM-map-trace",
+          "municipalSourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+          "boundaryDefinitionPath": "data/neighborhoods/expansion-20261115-round3/kisvarda/source-boundary-definitions.json",
+          "sourceLinesPath": "data/neighborhoods/expansion-20261115-round3/kisvarda/source-lines.geojson",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0 for OSM physical-map inputs",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "approximateAreaSquareMetres": 502963.8,
+        "sourceMunicipalityClipped": false,
+        "pointRadiusFallback": false,
+        "legalAdministrativeBoundary": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.0664298,
+              48.2318597
+            ],
+            [
+              22.0726523,
+              48.2337239
+            ],
+            [
+              22.0747954,
+              48.2341933
+            ],
+            [
+              22.0774119,
+              48.234686
+            ],
+            [
+              22.078291,
+              48.2329449
+            ],
+            [
+              22.0790407,
+              48.2318982
+            ],
+            [
+              22.079098,
+              48.2316191
+            ],
+            [
+              22.0780047,
+              48.230317
+            ],
+            [
+              22.0772689,
+              48.2292215
+            ],
+            [
+              22.0760004,
+              48.2281936
+            ],
+            [
+              22.0757719,
+              48.2279003
+            ],
+            [
+              22.0755181,
+              48.2266196
+            ],
+            [
+              22.0757916,
+              48.225885
+            ],
+            [
+              22.0751102,
+              48.2260646
+            ],
+            [
+              22.0736519,
+              48.2256764
+            ],
+            [
+              22.0714779,
+              48.2253218
+            ],
+            [
+              22.07124,
+              48.2258856
+            ],
+            [
+              22.071868,
+              48.2282857
+            ],
+            [
+              22.0699195,
+              48.2296106
+            ],
+            [
+              22.0678406,
+              48.2309449
+            ],
+            [
+              22.0664298,
+              48.2318597
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kisvarda-its2015-estimate:Északi Kertvárosi rész",
+      "properties": {
+        "name": "Északi Kertvárosi rész",
+        "municipality": "Kisvárda",
+        "municipalityId": "city:Kisvárda",
+        "method": "text_boundary_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 20,
+        "candidateBoundaryKind": "planning_unit",
+        "sourceYear": 2015,
+        "sourcePdfPages": [
+          20,
+          21,
+          22,
+          44
+        ],
+        "sourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+        "supportingUrls": [
+          "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+          "https://www.openstreetmap.org/way/194798986",
+          "https://www.openstreetmap.org/way/194799044",
+          "https://www.openstreetmap.org/way/194799053",
+          "https://www.openstreetmap.org/way/194799056",
+          "https://www.openstreetmap.org/way/194799065",
+          "https://www.openstreetmap.org/way/194799081",
+          "https://www.openstreetmap.org/way/194799084",
+          "https://www.openstreetmap.org/way/194799093",
+          "https://www.openstreetmap.org/way/194799105",
+          "https://www.openstreetmap.org/way/194799109",
+          "https://www.openstreetmap.org/way/194799119",
+          "https://www.openstreetmap.org/way/194799128",
+          "https://www.openstreetmap.org/way/365389295",
+          "https://www.openstreetmap.org/way/386143961",
+          "https://www.openstreetmap.org/way/386148021",
+          "https://www.openstreetmap.org/way/386149801",
+          "https://www.openstreetmap.org/way/1157885065",
+          "https://www.openstreetmap.org/way/1157885066",
+          "https://www.openstreetmap.org/way/1267983952",
+          "https://www.openstreetmap.org/way/1320429788",
+          "https://www.openstreetmap.org/way/1320429795",
+          "https://www.openstreetmap.org/way/1320429825",
+          "https://www.openstreetmap.org/way/1321905265",
+          "https://www.openstreetmap.org/way/1321905266",
+          "https://www.openstreetmap.org/way/1430545626"
+        ],
+        "approximationNote": "Rough whole northern garden-residential quarter based on the ITS Mátyás király/Nagyboldogasszony/Mária/Liliom/Ady/Sorompó/railway and Liptay/Széchenyi/Petőfi/Kossuth/Kereszt street definition. Current road courses anchor the southern and eastern perimeter; the northern garden/road-end transitions and the link toward Kereszt are inferred at neighborhood scale. The source street names are not treated as full-length straight boundary edges or a legal ring. No point-generated outline is used.",
+        "boundaryElementsInSourceOrder": [
+          "Mátyás király utca",
+          "Nagyboldogasszony utca",
+          "Mária utca",
+          "Liliom utca",
+          "Ady Endre utca",
+          "Sorompó utca",
+          "vasúti pályatest",
+          "Liptay Béla utca",
+          "Széchenyi István utca",
+          "Petőfi Sándor utca",
+          "Kossuth Lajos utca",
+          "Kereszt utca"
+        ],
+        "sourceWayIds": [
+          "osm:way:194798986",
+          "osm:way:194799044",
+          "osm:way:194799053",
+          "osm:way:194799056",
+          "osm:way:194799065",
+          "osm:way:194799081",
+          "osm:way:194799084",
+          "osm:way:194799093",
+          "osm:way:194799105",
+          "osm:way:194799109",
+          "osm:way:194799119",
+          "osm:way:194799128",
+          "osm:way:365389295",
+          "osm:way:386143961",
+          "osm:way:386148021",
+          "osm:way:386149801",
+          "osm:way:1157885065",
+          "osm:way:1157885066",
+          "osm:way:1267983952",
+          "osm:way:1320429788",
+          "osm:way:1320429795",
+          "osm:way:1320429825",
+          "osm:way:1321905265",
+          "osm:way:1321905266",
+          "osm:way:1430545626"
+        ],
+        "source": {
+          "provider": "municipal-ITS-street-definition-with-OSM-map-trace",
+          "municipalSourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+          "boundaryDefinitionPath": "data/neighborhoods/expansion-20261115-round3/kisvarda/source-boundary-definitions.json",
+          "sourceLinesPath": "data/neighborhoods/expansion-20261115-round3/kisvarda/source-lines.geojson",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0 for OSM physical-map inputs",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "approximateAreaSquareMetres": 852232.9,
+        "sourceMunicipalityClipped": false,
+        "pointRadiusFallback": false,
+        "legalAdministrativeBoundary": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.0797518,
+              48.2282187
+            ],
+            [
+              22.0792934,
+              48.2276814
+            ],
+            [
+              22.079098,
+              48.2316191
+            ],
+            [
+              22.0790407,
+              48.2318982
+            ],
+            [
+              22.0774119,
+              48.234686
+            ],
+            [
+              22.0807,
+              48.2355
+            ],
+            [
+              22.0813,
+              48.2377
+            ],
+            [
+              22.0837,
+              48.2372
+            ],
+            [
+              22.0863041,
+              48.235052
+            ],
+            [
+              22.090251,
+              48.2341948
+            ],
+            [
+              22.0909404,
+              48.2326817
+            ],
+            [
+              22.094441,
+              48.2333274
+            ],
+            [
+              22.0947,
+              48.2334
+            ],
+            [
+              22.0922135,
+              48.2286942
+            ],
+            [
+              22.0916858,
+              48.2285418
+            ],
+            [
+              22.0854621,
+              48.2267154
+            ],
+            [
+              22.0852102,
+              48.2269689
+            ],
+            [
+              22.0855245,
+              48.228146
+            ],
+            [
+              22.0853952,
+              48.2289644
+            ],
+            [
+              22.0837213,
+              48.2287424
+            ],
+            [
+              22.0797518,
+              48.2282187
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kisvarda-its2015-estimate:Keleti városrész",
+      "properties": {
+        "name": "Keleti városrész",
+        "municipality": "Kisvárda",
+        "municipalityId": "city:Kisvárda",
+        "method": "text_boundary_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 20,
+        "candidateBoundaryKind": "planning_unit",
+        "sourceYear": 2015,
+        "sourcePdfPages": [
+          20,
+          21,
+          22,
+          44
+        ],
+        "sourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+        "supportingUrls": [
+          "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+          "https://www.openstreetmap.org/way/194798981",
+          "https://www.openstreetmap.org/way/194798985",
+          "https://www.openstreetmap.org/way/194798991",
+          "https://www.openstreetmap.org/way/194799028",
+          "https://www.openstreetmap.org/way/194799057",
+          "https://www.openstreetmap.org/way/236455151",
+          "https://www.openstreetmap.org/way/236812166",
+          "https://www.openstreetmap.org/way/239099929",
+          "https://www.openstreetmap.org/way/239099931",
+          "https://www.openstreetmap.org/way/274191798",
+          "https://www.openstreetmap.org/way/300962238",
+          "https://www.openstreetmap.org/way/365389295",
+          "https://www.openstreetmap.org/way/598061522",
+          "https://www.openstreetmap.org/way/624327432",
+          "https://www.openstreetmap.org/way/624327433",
+          "https://www.openstreetmap.org/way/624330248",
+          "https://www.openstreetmap.org/way/624330562",
+          "https://www.openstreetmap.org/way/624330563",
+          "https://www.openstreetmap.org/way/624330565",
+          "https://www.openstreetmap.org/way/624334084",
+          "https://www.openstreetmap.org/way/1157885065",
+          "https://www.openstreetmap.org/way/1157885066",
+          "https://www.openstreetmap.org/way/1267983952",
+          "https://www.openstreetmap.org/way/1320429800",
+          "https://www.openstreetmap.org/way/1320429802",
+          "https://www.openstreetmap.org/way/1320429805"
+        ],
+        "approximationNote": "Rough complete eastern residential/garden quarter east of the railway, guided by the ITS Halasy/Litki/Jéki/Tulipán/Papi/Váry/Pacsirta/Kinizsi/Gagarin/Szüret/Nagymező/Wesselényi list and actual mapped road and garden edges. The outer northern and eastern road-end/garden transitions are inferred; short links are generalized rather than claiming that the source street list forms an unambiguous current ring. Different historical planning subdivisions may overlap. Functional/geographic 2015 ITS unit, not an administrative border.",
+        "boundaryElementsInSourceOrder": [
+          "Halasy Gyula utca",
+          "Litki út",
+          "Jéki út",
+          "Tulipán utca",
+          "Papi út",
+          "Váry Emil utca",
+          "Pacsirta utca",
+          "Kinizsi Pál utca",
+          "Gagarin utca",
+          "Szüret utca",
+          "Nagymező utca",
+          "Wesselényi utca",
+          "vasúti pályatest"
+        ],
+        "sourceWayIds": [
+          "osm:way:194798981",
+          "osm:way:194798985",
+          "osm:way:194798991",
+          "osm:way:194799028",
+          "osm:way:194799057",
+          "osm:way:236455151",
+          "osm:way:236812166",
+          "osm:way:239099929",
+          "osm:way:239099931",
+          "osm:way:274191798",
+          "osm:way:300962238",
+          "osm:way:365389295",
+          "osm:way:598061522",
+          "osm:way:624327432",
+          "osm:way:624327433",
+          "osm:way:624330248",
+          "osm:way:624330562",
+          "osm:way:624330563",
+          "osm:way:624330565",
+          "osm:way:624334084",
+          "osm:way:1157885065",
+          "osm:way:1157885066",
+          "osm:way:1267983952",
+          "osm:way:1320429800",
+          "osm:way:1320429802",
+          "osm:way:1320429805"
+        ],
+        "source": {
+          "provider": "municipal-ITS-street-definition-with-OSM-map-trace",
+          "municipalSourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+          "boundaryDefinitionPath": "data/neighborhoods/expansion-20261115-round3/kisvarda/source-boundary-definitions.json",
+          "sourceLinesPath": "data/neighborhoods/expansion-20261115-round3/kisvarda/source-lines.geojson",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0 for OSM physical-map inputs",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "approximateAreaSquareMetres": 1047516.3,
+        "sourceMunicipalityClipped": false,
+        "pointRadiusFallback": false,
+        "legalAdministrativeBoundary": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.0947,
+              48.2334
+            ],
+            [
+              22.0970161,
+              48.2338192
+            ],
+            [
+              22.0995888,
+              48.2350368
+            ],
+            [
+              22.1016067,
+              48.2313262
+            ],
+            [
+              22.1032298,
+              48.2288684
+            ],
+            [
+              22.0985582,
+              48.2294639
+            ],
+            [
+              22.0978078,
+              48.2273548
+            ],
+            [
+              22.0953717,
+              48.2240461
+            ],
+            [
+              22.094,
+              48.2205
+            ],
+            [
+              22.0957279,
+              48.2157444
+            ],
+            [
+              22.0918052,
+              48.2146572
+            ],
+            [
+              22.0870385,
+              48.217378
+            ],
+            [
+              22.088,
+              48.2185
+            ],
+            [
+              22.0892755,
+              48.2239191
+            ],
+            [
+              22.0902,
+              48.2262
+            ],
+            [
+              22.0922135,
+              48.2286942
+            ],
+            [
+              22.0947,
+              48.2334
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kisvarda-its2015-estimate:Déli Ipari Szolgáltatói Városrész",
+      "properties": {
+        "name": "Déli Ipari Szolgáltatói Városrész",
+        "municipality": "Kisvárda",
+        "municipalityId": "city:Kisvárda",
+        "method": "text_boundary_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 20,
+        "candidateBoundaryKind": "planning_unit",
+        "sourceYear": 2015,
+        "sourcePdfPages": [
+          20,
+          21,
+          22,
+          44
+        ],
+        "sourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+        "supportingUrls": [
+          "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+          "https://www.openstreetmap.org/way/194799089",
+          "https://www.openstreetmap.org/way/236461503",
+          "https://www.openstreetmap.org/way/239099929",
+          "https://www.openstreetmap.org/way/274193454",
+          "https://www.openstreetmap.org/way/274709468",
+          "https://www.openstreetmap.org/way/301992615",
+          "https://www.openstreetmap.org/way/301992616",
+          "https://www.openstreetmap.org/way/301993737",
+          "https://www.openstreetmap.org/way/309264087",
+          "https://www.openstreetmap.org/way/309264088",
+          "https://www.openstreetmap.org/way/309265364",
+          "https://www.openstreetmap.org/way/309861941",
+          "https://www.openstreetmap.org/way/314483834",
+          "https://www.openstreetmap.org/way/314483835",
+          "https://www.openstreetmap.org/way/314483836",
+          "https://www.openstreetmap.org/way/314485153",
+          "https://www.openstreetmap.org/way/321483086",
+          "https://www.openstreetmap.org/way/321483087",
+          "https://www.openstreetmap.org/way/321504536",
+          "https://www.openstreetmap.org/way/354968073",
+          "https://www.openstreetmap.org/way/365389295",
+          "https://www.openstreetmap.org/way/512969584",
+          "https://www.openstreetmap.org/way/548703270",
+          "https://www.openstreetmap.org/way/554198768",
+          "https://www.openstreetmap.org/way/554202657",
+          "https://www.openstreetmap.org/way/554202659",
+          "https://www.openstreetmap.org/way/554257824",
+          "https://www.openstreetmap.org/way/629137434",
+          "https://www.openstreetmap.org/way/629137435",
+          "https://www.openstreetmap.org/way/629138194",
+          "https://www.openstreetmap.org/way/1267983952",
+          "https://www.openstreetmap.org/way/1338331666",
+          "https://www.openstreetmap.org/way/1345141765"
+        ],
+        "approximationNote": "Rough whole southern industrial/service quarter using the ITS Aradi/Gyár/railway/Szüret/Vásártér/Ipari/Attila definition. Actual southern residential streets, railway and industrial-parcel setting guide the area. The southern factory/field transition is inferred beyond the Ipari street axes to retain whole industrial sites; the source does not resolve cadastral outer-side offsets. The eastern road links and rail curves are generalized. This is a low-confidence historical functional search area and can overlap adjacent planning units.",
+        "boundaryElementsInSourceOrder": [
+          "Aradi Vértanúk tere",
+          "Gyár utca",
+          "vasúti pályatest",
+          "Szüret utca",
+          "Vásártér utca",
+          "Ipari út",
+          "Attila utca"
+        ],
+        "sourceWayIds": [
+          "osm:way:194799089",
+          "osm:way:236461503",
+          "osm:way:239099929",
+          "osm:way:274193454",
+          "osm:way:274709468",
+          "osm:way:301992615",
+          "osm:way:301992616",
+          "osm:way:301993737",
+          "osm:way:309264087",
+          "osm:way:309264088",
+          "osm:way:309265364",
+          "osm:way:309861941",
+          "osm:way:314483834",
+          "osm:way:314483835",
+          "osm:way:314483836",
+          "osm:way:314485153",
+          "osm:way:321483086",
+          "osm:way:321483087",
+          "osm:way:321504536",
+          "osm:way:354968073",
+          "osm:way:365389295",
+          "osm:way:512969584",
+          "osm:way:548703270",
+          "osm:way:554198768",
+          "osm:way:554202657",
+          "osm:way:554202659",
+          "osm:way:554257824",
+          "osm:way:629137434",
+          "osm:way:629137435",
+          "osm:way:629138194",
+          "osm:way:1267983952",
+          "osm:way:1338331666",
+          "osm:way:1345141765"
+        ],
+        "source": {
+          "provider": "municipal-ITS-street-definition-with-OSM-map-trace",
+          "municipalSourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+          "boundaryDefinitionPath": "data/neighborhoods/expansion-20261115-round3/kisvarda/source-boundary-definitions.json",
+          "sourceLinesPath": "data/neighborhoods/expansion-20261115-round3/kisvarda/source-lines.geojson",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0 for OSM physical-map inputs",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "approximateAreaSquareMetres": 3352866.4,
+        "sourceMunicipalityClipped": false,
+        "pointRadiusFallback": false,
+        "legalAdministrativeBoundary": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.0812752,
+              48.2156309
+            ],
+            [
+              22.0793104,
+              48.2149393
+            ],
+            [
+              22.0756007,
+              48.21045
+            ],
+            [
+              22.0699143,
+              48.2048629
+            ],
+            [
+              22.0671825,
+              48.2029099
+            ],
+            [
+              22.0668508,
+              48.2026011
+            ],
+            [
+              22.0685,
+              48.1985
+            ],
+            [
+              22.071,
+              48.1958
+            ],
+            [
+              22.078,
+              48.1955
+            ],
+            [
+              22.085,
+              48.196
+            ],
+            [
+              22.092,
+              48.1982
+            ],
+            [
+              22.0921228,
+              48.2013945
+            ],
+            [
+              22.0932,
+              48.205
+            ],
+            [
+              22.0920174,
+              48.2108432
+            ],
+            [
+              22.0890283,
+              48.2137903
+            ],
+            [
+              22.0918052,
+              48.2146572
+            ],
+            [
+              22.0905256,
+              48.2226904
+            ],
+            [
+              22.0892755,
+              48.2239191
+            ],
+            [
+              22.0893,
+              48.2226
+            ],
+            [
+              22.088,
+              48.2185
+            ],
+            [
+              22.0871,
+              48.2159
+            ],
+            [
+              22.0845691,
+              48.2137688
+            ],
+            [
+              22.0838861,
+              48.2148944
+            ],
+            [
+              22.0832129,
+              48.2162825
+            ],
+            [
+              22.0812752,
+              48.2156309
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kisvarda-its2015-estimate:Nyugati Kertvárosi rész",
+      "properties": {
+        "name": "Nyugati Kertvárosi rész",
+        "municipality": "Kisvárda",
+        "municipalityId": "city:Kisvárda",
+        "method": "text_boundary_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 20,
+        "candidateBoundaryKind": "planning_unit",
+        "sourceYear": 2015,
+        "sourcePdfPages": [
+          20,
+          21,
+          22,
+          44
+        ],
+        "sourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+        "supportingUrls": [
+          "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+          "https://www.openstreetmap.org/way/39761122",
+          "https://www.openstreetmap.org/way/100280965",
+          "https://www.openstreetmap.org/way/194798977",
+          "https://www.openstreetmap.org/way/194798980",
+          "https://www.openstreetmap.org/way/194798989",
+          "https://www.openstreetmap.org/way/194798996",
+          "https://www.openstreetmap.org/way/194799018",
+          "https://www.openstreetmap.org/way/194799033",
+          "https://www.openstreetmap.org/way/194799034",
+          "https://www.openstreetmap.org/way/194799039",
+          "https://www.openstreetmap.org/way/194799054",
+          "https://www.openstreetmap.org/way/194799058",
+          "https://www.openstreetmap.org/way/194799059",
+          "https://www.openstreetmap.org/way/194799062",
+          "https://www.openstreetmap.org/way/194799064",
+          "https://www.openstreetmap.org/way/194799066",
+          "https://www.openstreetmap.org/way/194799070",
+          "https://www.openstreetmap.org/way/194799082",
+          "https://www.openstreetmap.org/way/194799085",
+          "https://www.openstreetmap.org/way/194799113",
+          "https://www.openstreetmap.org/way/194799125",
+          "https://www.openstreetmap.org/way/194799129",
+          "https://www.openstreetmap.org/way/194799133",
+          "https://www.openstreetmap.org/way/235366600",
+          "https://www.openstreetmap.org/way/235366602",
+          "https://www.openstreetmap.org/way/235366604",
+          "https://www.openstreetmap.org/way/277628225",
+          "https://www.openstreetmap.org/way/295578737",
+          "https://www.openstreetmap.org/way/303100583",
+          "https://www.openstreetmap.org/way/451189802",
+          "https://www.openstreetmap.org/way/554257824",
+          "https://www.openstreetmap.org/way/598059044",
+          "https://www.openstreetmap.org/way/1118743969",
+          "https://www.openstreetmap.org/way/1118743970",
+          "https://www.openstreetmap.org/way/1203220283",
+          "https://www.openstreetmap.org/way/1203220285",
+          "https://www.openstreetmap.org/way/1203220288",
+          "https://www.openstreetmap.org/way/1320058236",
+          "https://www.openstreetmap.org/way/1320058242",
+          "https://www.openstreetmap.org/way/1320129608",
+          "https://www.openstreetmap.org/way/1338331666",
+          "https://www.openstreetmap.org/way/1345141771",
+          "https://www.openstreetmap.org/way/1430067181",
+          "https://www.openstreetmap.org/way/1457128913"
+        ],
+        "approximationNote": "Rough whole western garden-residential planning quarter, anchored by the ITS Városmajor/Krucsay/Várday estate-side streets and the Dózsa/Attila/Diófás/Darusziget/Móricz/Csokonai/Mózer/Bolgár/Szív/Török/Kákástó/Rétalja local street fabric. The source list repeats Várday and includes current disconnected street-name segments; it is not forced into a fictitiously exact ordered ring. Western/northwestern rural edges and short garden/estate connections are inferred from the physical map. Some broad historical-center frontage and adjoining industrial planning areas can overlap. No circle, buffer or convex hull is used.",
+        "boundaryElementsInSourceOrder": [
+          "Városmajor utca",
+          "Krucsay Márton utca",
+          "Várday István utca",
+          "Bajcsy Zsilinszky utca",
+          "Labanc utca",
+          "Kodály Zoltán utca",
+          "Kölcsey utca",
+          "Várday István utca",
+          "Vörösmarty tér",
+          "Dózsa György utca",
+          "Attila utca",
+          "Diófás utca",
+          "Darusziget utca",
+          "Móricz Zsigmond utca",
+          "Csokonai Vitéz Mihály utca",
+          "Móser Ernő utca",
+          "Bolgár utca",
+          "Szív utca",
+          "Török utca",
+          "Kákastó utca",
+          "Rétalja utca"
+        ],
+        "sourceWayIds": [
+          "osm:way:39761122",
+          "osm:way:100280965",
+          "osm:way:194798977",
+          "osm:way:194798980",
+          "osm:way:194798989",
+          "osm:way:194798996",
+          "osm:way:194799018",
+          "osm:way:194799033",
+          "osm:way:194799034",
+          "osm:way:194799039",
+          "osm:way:194799054",
+          "osm:way:194799058",
+          "osm:way:194799059",
+          "osm:way:194799062",
+          "osm:way:194799064",
+          "osm:way:194799066",
+          "osm:way:194799070",
+          "osm:way:194799082",
+          "osm:way:194799085",
+          "osm:way:194799113",
+          "osm:way:194799125",
+          "osm:way:194799129",
+          "osm:way:194799133",
+          "osm:way:235366600",
+          "osm:way:235366602",
+          "osm:way:235366604",
+          "osm:way:277628225",
+          "osm:way:295578737",
+          "osm:way:303100583",
+          "osm:way:451189802",
+          "osm:way:554257824",
+          "osm:way:598059044",
+          "osm:way:1118743969",
+          "osm:way:1118743970",
+          "osm:way:1203220283",
+          "osm:way:1203220285",
+          "osm:way:1203220288",
+          "osm:way:1320058236",
+          "osm:way:1320058242",
+          "osm:way:1320129608",
+          "osm:way:1338331666",
+          "osm:way:1345141771",
+          "osm:way:1430067181",
+          "osm:way:1457128913"
+        ],
+        "source": {
+          "provider": "municipal-ITS-street-definition-with-OSM-map-trace",
+          "municipalSourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+          "boundaryDefinitionPath": "data/neighborhoods/expansion-20261115-round3/kisvarda/source-boundary-definitions.json",
+          "sourceLinesPath": "data/neighborhoods/expansion-20261115-round3/kisvarda/source-lines.geojson",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0 for OSM physical-map inputs",
+          "attribution": "© OpenStreetMap contributors"
+        },
+        "approximateAreaSquareMetres": 2174523.7,
+        "sourceMunicipalityClipped": false,
+        "pointRadiusFallback": false,
+        "legalAdministrativeBoundary": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.064,
+              48.2325
+            ],
+            [
+              22.0653963,
+              48.2323019
+            ],
+            [
+              22.0678406,
+              48.2309449
+            ],
+            [
+              22.0699195,
+              48.2296106
+            ],
+            [
+              22.071868,
+              48.2282857
+            ],
+            [
+              22.07124,
+              48.2258856
+            ],
+            [
+              22.0714779,
+              48.2253218
+            ],
+            [
+              22.0736519,
+              48.2256764
+            ],
+            [
+              22.0757916,
+              48.225885
+            ],
+            [
+              22.0757701,
+              48.2233378
+            ],
+            [
+              22.0783,
+              48.2224
+            ],
+            [
+              22.0800662,
+              48.2201462
+            ],
+            [
+              22.0769888,
+              48.2204026
+            ],
+            [
+              22.0777154,
+              48.2192869
+            ],
+            [
+              22.0793104,
+              48.2149393
+            ],
+            [
+              22.0798491,
+              48.2145567
+            ],
+            [
+              22.0756007,
+              48.21045
+            ],
+            [
+              22.0699143,
+              48.2048629
+            ],
+            [
+              22.068019,
+              48.2086384
+            ],
+            [
+              22.0671096,
+              48.2084017
+            ],
+            [
+              22.0681489,
+              48.2122932
+            ],
+            [
+              22.0690393,
+              48.2124978
+            ],
+            [
+              22.0703411,
+              48.2143893
+            ],
+            [
+              22.0574792,
+              48.2182055
+            ],
+            [
+              22.0635,
+              48.221
+            ],
+            [
+              22.0645,
+              48.226
+            ],
+            [
+              22.064,
+              48.2325
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

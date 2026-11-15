@@ -1,0 +1,24 @@
+{
+  "collectionDate": "2026-11-15",
+  "primaryTextFacts": "source-definition.json",
+  "sourceGeometryArchive": "data/neighborhoods/expansion-20261115/national-cells/source-barriers.geojson",
+  "sourceGeometryArchiveSha256": "1d65f300d24ebc1e0ebc094c1a74f66141f4d5d6e83ccc32e0297b8ade8876aa",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "sourceSnapshot": "2026-11-12T21:23:05Z",
+  "retainedLocalRoadSubset": "source-roads.geojson",
+  "selectionBoundingBox": [
+    21.49,
+    47.659,
+    21.532,
+    47.691
+  ],
+  "selectionMeaning": "Complete literal archived ways intersecting local centre context; selection rectangle is not an output polygon.",
+  "actualBoundarySourceWays": "boundary-source-ways.geojson",
+  "coordinateSystem": "EPSG:4326, unchanged source geometry; line intersections noded, outer ring polygonized",
+  "allOuterEdgesComeFromActualSourceLinework": true,
+  "syntheticOuterClosure": false,
+  "nativeMunicipalPdfGeometryClaimed": false,
+  "independentCadastralAccuracyEstablished": false,
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors"
+}

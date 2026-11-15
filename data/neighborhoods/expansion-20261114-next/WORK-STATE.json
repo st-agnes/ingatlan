@@ -46,10 +46,10 @@
   "resume": "Preserve completed packets; register their GeoJSON paths and SHA256 in expansion-20261114/input-registry.json, run build-search-areas.py --update-identities, refresh inventory/fallbacks and package, validate, commit and push. Continue the remaining priority-city names; national collection is not complete.",
   "completeNationalCoverage": false,
   "latestCheckpoint": {
-    "featureCount": 3899,
+    "featureCount": 3924,
     "municipalityCount": 567,
     "methods": {
-      "map_or_text_estimate": 1078,
+      "map_or_text_estimate": 1103,
       "named_source_footprint": 2170,
       "source_map_polygon": 172,
       "source_polygon": 479
@@ -59,18 +59,18 @@
   "knownNameInventory": {
     "knownNameCount": 4311,
     "municipalitiesWithKnownNames": 618,
-    "namesWithCollectedPolygon": 3899,
+    "namesWithCollectedPolygon": 3924,
     "namesWithKnownPoint": 3487,
-    "pointOnlyNames": 391,
-    "unlocatedUncollectedNames": 21,
+    "pointOnlyNames": 372,
+    "unlocatedUncollectedNames": 15,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
       80,
       90
     ]
   },
-  "newAreasNet": 1632,
-  "fallbackCircleReduction": 1478,
+  "newAreasNet": 1657,
+  "fallbackCircleReduction": 1497,
   "baselineCommit": "50988ce52abd3bbd010f1383d94c03f08b3f4c87",
   "nextPriorityCities": [
     {

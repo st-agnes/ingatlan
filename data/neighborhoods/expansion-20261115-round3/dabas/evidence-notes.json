@@ -1,0 +1,113 @@
+{
+  "date": "2026-11-15",
+  "primarySources": [
+    {
+      "url": "https://mail.dabas.hu/images/stories/Letoltesek/onkormanyzat009.pdf",
+      "title": "Dabas integrált városfejlesztési stratégiája, 2008",
+      "access": "Full PDF text successfully opened through web connector; no binary download or native boundary digitizing. Screenshot requests returned placeholders.",
+      "observedFacts": [
+        {
+          "pages": [
+            48,
+            49
+          ],
+          "fact": "The combined Dabas district includes Alsódabas, Felsődabas, Szőlőhegy and Öregországút. Its outer transitions toward Sári and Gyón are Tulipán and Határ streets."
+        },
+        {
+          "pages": [
+            41
+          ],
+          "fact": "Sári lies between the woodland/canal setting, the industrial-park edge and Felsődabas; its old core lies between Hajcsár and Tabáni streets."
+        },
+        {
+          "pages": [
+            23,
+            49,
+            56
+          ],
+          "fact": "The functional civic center follows Bartók Béla toward route 5 and includes institutions around Szent István tér; it differs from the older mansion district."
+        },
+        {
+          "pages": [
+            49
+          ],
+          "fact": "Öregországút is a small, separately named former-road settlement."
+        },
+        {
+          "pages": [
+            61,
+            62
+          ],
+          "fact": "Gyón meets Dabas at Határ street. Vasút and Luther define its old core; Vacsi, Rabárerdő and Örkényi identify its wider development."
+        }
+      ],
+      "archive": [
+        "research/primary-observed-excerpts.json",
+        "research/primary-pdf-find.json",
+        "research/search-historical-localities.json"
+      ]
+    },
+    {
+      "url": "https://mail.dabas.hu/images/stories/Varosunk/DabasTerkep2015k.pdf",
+      "title": "Municipal tourism/street map, 2015",
+      "access": "PDF text/street index successfully opened, no drawn boundary digitization.",
+      "observedFacts": [
+        "Street index confirms named anchor streets across the town.",
+        "Tourism text identifies the city-center institutions, the four historical villages, and Mánteleki lake."
+      ],
+      "archive": [
+        "research/municipal-tourism-map.json"
+      ]
+    },
+    {
+      "url": "https://mail.dabas.hu/images/stories/Varosunk/Dabas_egeszseghaz_partnersegi_250711_VEGLEGES.pdf",
+      "access": "Indexed municipal PDF text observed through search, not a downloaded/native map.",
+      "observedFacts": [
+        "Mántelek is identified as a detached historical settlement alongside Sári-Besnyő and Dabasi-Szőlő."
+      ],
+      "archive": [
+        "research/search-historical-localities.json"
+      ]
+    },
+    {
+      "url": "https://www.dabas.hu/images/stories/Hivatal/hesz/DABAS_TSZT_leiras_velemenyezesi_2021_10.pdf",
+      "access": "Indexed municipal PDF text only; direct alternate opening unavailable.",
+      "observedFacts": [
+        "The planning text separately names Páskom and a cadastral parcel. No cadastral coordinates were acquired or invented."
+      ],
+      "archive": [
+        "research/search-detail.json"
+      ]
+    }
+  ],
+  "supplementalSources": [
+    {
+      "url": "https://archive.pestvarmegye.hu/ertektar/4122-az-elso-szines-jatekfilm-pest-megyei-forgatasa-dabas",
+      "access": "Indexed county heritage text",
+      "observedFacts": [
+        "Páskom is described as a pasture/meadow at the edge of Sári."
+      ],
+      "archive": [
+        "research/search-detail.json"
+      ]
+    },
+    {
+      "url": "https://www.openstreetmap.org/copyright",
+      "access": "Preserved exact local source geometry from frozen PBF extraction",
+      "observedFacts": [
+        "Complete real roads, railways, waterways and closed landuse/farm/building surfaces locate the street groups and outer countryside context. All manual outer joins are estimates."
+      ],
+      "archive": [
+        "input-provenance.json",
+        "source-roads.geojson.gz",
+        "source-surfaces.geojson.gz"
+      ]
+    }
+  ],
+  "notEstablished": [
+    "Exact legal or surveyed neighborhood lines",
+    "An authoritative complete list of all Dabas neighborhoods",
+    "Full former historical estate/jurisdiction extents",
+    "Any child/parent or similarly named street alias equivalence"
+  ]
+}

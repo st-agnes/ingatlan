@@ -1,0 +1,1295 @@
+{
+  "schemaVersion": 1,
+  "method": "Actual street network envelope with explicit inferred frontage allowance; no place-point geometry construction",
+  "crsForMetricOperations": "EPSG:23700",
+  "quarters": [
+    {
+      "name": "Bartók Béla lakótelep",
+      "recipe": {
+        "name": "Bartók Béla lakótelep",
+        "id": "estimated:kormend:bartok-bela-lakotelep:source-street-envelope",
+        "roads": [
+          {
+            "name": "Bartók Béla lakótelep"
+          }
+        ],
+        "areas": [
+          622369123
+        ],
+        "frontageAllowanceM": 20,
+        "sourceUrl": "https://www.kormend.hu/editor_up/Hirek/2025/hulladek/Kormend-naptar-2025.V2mod.pdf",
+        "supportingUrls": [
+          "https://www.kormend.hu/Hirek/2021_evi_hulladekszallitassal_kapcsolatos_tajekoztato.html",
+          "https://www.openstreetmap.org/way/622369123",
+          "https://www.openstreetmap.org/way/336679293"
+        ],
+        "approximationNote": "The municipal calendar separately names this estate. Its three actually named estate-access streets and the entire mapped common grass/open-land polygon define a whole estate envelope. The latter is an estate context input, not by itself a claimed neighborhood boundary. The envelope includes internal open space and street-front housing; a 20 m outer frontage allowance and outer joins are inferred. Exact estate limits remain uncertain; this is not a building footprint or a point buffer."
+      },
+      "usedSourceObjects": [
+        {
+          "name": "Bartók Béla lakótelep",
+          "wayId": 313029574,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/313029574"
+        },
+        {
+          "name": "Bartók Béla lakótelep",
+          "wayId": 336679293,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/336679293"
+        },
+        {
+          "name": "Bartók Béla lakótelep",
+          "wayId": 622370566,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/622370566"
+        },
+        {
+          "areaWayId": 622369123,
+          "sourceUrl": "https://www.openstreetmap.org/way/622369123"
+        }
+      ],
+      "sourceObjectCount": 4,
+      "areaM2": 45384,
+      "inferredEnvelopeEdges": true,
+      "pointBuffersCreated": 0
+    },
+    {
+      "name": "Kis Amerika",
+      "recipe": {
+        "name": "Kis Amerika",
+        "id": "estimated:kormend:kis-amerika:source-street-envelope",
+        "roads": [
+          {
+            "name": "Ötház utca"
+          },
+          {
+            "name": "Képúti liget"
+          },
+          {
+            "name": "Meggyfa utca"
+          },
+          {
+            "name": "Gyümölcsöskert"
+          },
+          {
+            "name": "Mátyás köz"
+          },
+          {
+            "name": "Mátyás király utca",
+            "scopeBbox": [
+              16.591,
+              47.0152,
+              16.599,
+              47.0202
+            ]
+          },
+          {
+            "name": "Ady Endre utca",
+            "scopeBbox": [
+              16.591,
+              47.0152,
+              16.5983,
+              47.0202
+            ]
+          },
+          {
+            "name": "Vasútmellék utca",
+            "scopeBbox": [
+              16.592,
+              47.0148,
+              16.5983,
+              47.017
+            ]
+          }
+        ],
+        "areas": [],
+        "frontageAllowanceM": 35,
+        "sourceUrl": "https://www.kormend.hu/editor_up/Hirek/2025/hulladek/Kormend-naptar-2025.V2mod.pdf",
+        "supportingUrls": [
+          "https://www.kormend.hu/Hirek/2021_evi_hulladekszallitassal_kapcsolatos_tajekoztato.html",
+          "https://utcak-magyarorszag.openalfa.com/kis-amerika"
+        ],
+        "approximationNote": "The municipal calendar recognizes Kis-Amerika separately, and the archived OSM-derived street list associates the local street cluster with Kis Amerika. The estimate spans the whole small residential grid around Képúti liget, Ötház, Meggyfa and Gyümölcsöskert, with its local Mátyás/Ady/Vasútmellék approaches. Longer town-wide streets are clipped to this source street cluster, not treated as quarter-wide limits. The convex joins and 35 m frontage depth are inferred; industrial margins and the Rokkant transition remain uncertain."
+      },
+      "usedSourceObjects": [
+        {
+          "name": "Ötház utca",
+          "wayId": 206303270,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/206303270"
+        },
+        {
+          "name": "Képúti liget",
+          "wayId": 206302439,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/206302439"
+        },
+        {
+          "name": "Képúti liget",
+          "wayId": 206307816,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/206307816"
+        },
+        {
+          "name": "Képúti liget",
+          "wayId": 294866927,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/294866927"
+        },
+        {
+          "name": "Meggyfa utca",
+          "wayId": 206303267,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/206303267"
+        },
+        {
+          "name": "Gyümölcsöskert",
+          "wayId": 206303266,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/206303266"
+        },
+        {
+          "name": "Mátyás köz",
+          "wayId": 206150749,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/206150749"
+        },
+        {
+          "name": "Mátyás köz",
+          "wayId": 294866930,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/294866930"
+        },
+        {
+          "name": "Mátyás köz",
+          "wayId": 655676271,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/655676271"
+        },
+        {
+          "name": "Mátyás király utca",
+          "wayId": 206303268,
+          "scopeBbox": [
+            16.591,
+            47.0152,
+            16.599,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/206303268"
+        },
+        {
+          "name": "Mátyás király utca",
+          "wayId": 294866929,
+          "scopeBbox": [
+            16.591,
+            47.0152,
+            16.599,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/294866929"
+        },
+        {
+          "name": "Mátyás király utca",
+          "wayId": 624261866,
+          "scopeBbox": [
+            16.591,
+            47.0152,
+            16.599,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/624261866"
+        },
+        {
+          "name": "Mátyás király utca",
+          "wayId": 645959252,
+          "scopeBbox": [
+            16.591,
+            47.0152,
+            16.599,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/645959252"
+        },
+        {
+          "name": "Mátyás király utca",
+          "wayId": 645959628,
+          "scopeBbox": [
+            16.591,
+            47.0152,
+            16.599,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/645959628"
+        },
+        {
+          "name": "Mátyás király utca",
+          "wayId": 1263521998,
+          "scopeBbox": [
+            16.591,
+            47.0152,
+            16.599,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/1263521998"
+        },
+        {
+          "name": "Ady Endre utca",
+          "wayId": 196941569,
+          "scopeBbox": [
+            16.591,
+            47.0152,
+            16.5983,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/196941569"
+        },
+        {
+          "name": "Ady Endre utca",
+          "wayId": 655676222,
+          "scopeBbox": [
+            16.591,
+            47.0152,
+            16.5983,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/655676222"
+        },
+        {
+          "name": "Ady Endre utca",
+          "wayId": 655676223,
+          "scopeBbox": [
+            16.591,
+            47.0152,
+            16.5983,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/655676223"
+        },
+        {
+          "name": "Vasútmellék utca",
+          "wayId": 196941560,
+          "scopeBbox": [
+            16.592,
+            47.0148,
+            16.5983,
+            47.017
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/196941560"
+        },
+        {
+          "name": "Vasútmellék utca",
+          "wayId": 294866933,
+          "scopeBbox": [
+            16.592,
+            47.0148,
+            16.5983,
+            47.017
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/294866933"
+        },
+        {
+          "name": "Vasútmellék utca",
+          "wayId": 627540484,
+          "scopeBbox": [
+            16.592,
+            47.0148,
+            16.5983,
+            47.017
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/627540484"
+        },
+        {
+          "name": "Vasútmellék utca",
+          "wayId": 1024387403,
+          "scopeBbox": [
+            16.592,
+            47.0148,
+            16.5983,
+            47.017
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/1024387403"
+        },
+        {
+          "name": "Vasútmellék utca",
+          "wayId": 1262978059,
+          "scopeBbox": [
+            16.592,
+            47.0148,
+            16.5983,
+            47.017
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/1262978059"
+        }
+      ],
+      "sourceObjectCount": 23,
+      "areaM2": 288255,
+      "inferredEnvelopeEdges": true,
+      "pointBuffersCreated": 0
+    },
+    {
+      "name": "Rokkant telep",
+      "recipe": {
+        "name": "Rokkant telep",
+        "id": "estimated:kormend:rokkant-telep:source-street-envelope",
+        "roads": [
+          {
+            "name": "Ady Endre utca",
+            "scopeBbox": [
+              16.598,
+              47.016,
+              16.604,
+              47.02
+            ]
+          },
+          {
+            "name": "Hunyadi János utca",
+            "scopeBbox": [
+              16.598,
+              47.0164,
+              16.6045,
+              47.0202
+            ]
+          },
+          {
+            "name": "Vasútmellék utca",
+            "scopeBbox": [
+              16.598,
+              47.0158,
+              16.604,
+              47.017
+            ]
+          },
+          {
+            "name": "Thököly Imre utca",
+            "scopeBbox": [
+              16.6007,
+              47.0157,
+              16.602,
+              47.017
+            ]
+          },
+          {
+            "name": "Erkel Ferenc utca",
+            "scopeBbox": [
+              16.6005,
+              47.018,
+              16.6044,
+              47.0193
+            ]
+          }
+        ],
+        "areas": [],
+        "frontageAllowanceM": 35,
+        "sourceUrl": "https://www.kormend.hu/editor_up/Hirek/2025/hulladek/Kormend-naptar-2025.V2mod.pdf",
+        "supportingUrls": [
+          "https://www.kormend.hu/Hirek/2021_evi_hulladekszallitassal_kapcsolatos_tajekoztato.html",
+          "https://utcak-magyarorszag.openalfa.com/rokkant-telep",
+          "https://utcak-magyarorszag.openalfa.com/utcak/vasutmellek-utca-rokkant-telep-koermend"
+        ],
+        "approximationNote": "The municipal calendar confirms this distinct historical quarter. An OSM-derived street guide associates local Ady, Erkel, Hunyadi, Thököly and Vasútmellék streets with it. This envelope estimates the residential/station-side area around that local cluster, rather than using its place label as a ring. Local segment scopes, the joins between perimeter streets, the 35 m frontage depth, and especially the northern/western transition toward Kis Amerika and Vasúton túl are inferred at very low confidence. No source publishes an exact perimeter. The eastern extent is additionally constrained to the actual main Hunyadi road, using the municipal description of Tisztviselő to its east as supporting context; this Rokkant-side division is an explicit inference, not an official Rokkant boundary.",
+        "westOfHunyadi": true
+      },
+      "usedSourceObjects": [
+        {
+          "name": "Ady Endre utca",
+          "wayId": 655676223,
+          "scopeBbox": [
+            16.598,
+            47.016,
+            16.604,
+            47.02
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/655676223"
+        },
+        {
+          "name": "Ady Endre utca",
+          "wayId": 1262976210,
+          "scopeBbox": [
+            16.598,
+            47.016,
+            16.604,
+            47.02
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/1262976210"
+        },
+        {
+          "name": "Hunyadi János utca",
+          "wayId": 559389098,
+          "scopeBbox": [
+            16.598,
+            47.0164,
+            16.6045,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/559389098"
+        },
+        {
+          "name": "Hunyadi János utca",
+          "wayId": 559389102,
+          "scopeBbox": [
+            16.598,
+            47.0164,
+            16.6045,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/559389102"
+        },
+        {
+          "name": "Hunyadi János utca",
+          "wayId": 622876525,
+          "scopeBbox": [
+            16.598,
+            47.0164,
+            16.6045,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/622876525"
+        },
+        {
+          "name": "Hunyadi János utca",
+          "wayId": 626923277,
+          "scopeBbox": [
+            16.598,
+            47.0164,
+            16.6045,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/626923277"
+        },
+        {
+          "name": "Hunyadi János utca",
+          "wayId": 1262968691,
+          "scopeBbox": [
+            16.598,
+            47.0164,
+            16.6045,
+            47.0202
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/1262968691"
+        },
+        {
+          "name": "Vasútmellék utca",
+          "wayId": 627276608,
+          "scopeBbox": [
+            16.598,
+            47.0158,
+            16.604,
+            47.017
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/627276608"
+        },
+        {
+          "name": "Vasútmellék utca",
+          "wayId": 627540484,
+          "scopeBbox": [
+            16.598,
+            47.0158,
+            16.604,
+            47.017
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/627540484"
+        },
+        {
+          "name": "Vasútmellék utca",
+          "wayId": 1024387401,
+          "scopeBbox": [
+            16.598,
+            47.0158,
+            16.604,
+            47.017
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/1024387401"
+        },
+        {
+          "name": "Vasútmellék utca",
+          "wayId": 1024387402,
+          "scopeBbox": [
+            16.598,
+            47.0158,
+            16.604,
+            47.017
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/1024387402"
+        },
+        {
+          "name": "Vasútmellék utca",
+          "wayId": 1024387403,
+          "scopeBbox": [
+            16.598,
+            47.0158,
+            16.604,
+            47.017
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/1024387403"
+        },
+        {
+          "name": "Thököly Imre utca",
+          "wayId": 294866931,
+          "scopeBbox": [
+            16.6007,
+            47.0157,
+            16.602,
+            47.017
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/294866931"
+        },
+        {
+          "name": "Thököly Imre utca",
+          "wayId": 627276611,
+          "scopeBbox": [
+            16.6007,
+            47.0157,
+            16.602,
+            47.017
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/627276611"
+        },
+        {
+          "name": "Erkel Ferenc utca",
+          "wayId": 312831673,
+          "scopeBbox": [
+            16.6005,
+            47.018,
+            16.6044,
+            47.0193
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/312831673"
+        },
+        {
+          "name": "Erkel Ferenc utca",
+          "wayId": 646100332,
+          "scopeBbox": [
+            16.6005,
+            47.018,
+            16.6044,
+            47.0193
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/646100332"
+        }
+      ],
+      "sourceObjectCount": 16,
+      "areaM2": 172042,
+      "inferredEnvelopeEdges": true,
+      "pointBuffersCreated": 0
+    },
+    {
+      "name": "Tisztviselő telep",
+      "recipe": {
+        "name": "Tisztviselő telep",
+        "id": "estimated:kormend:tisztviselo-telep:source-street-envelope",
+        "roads": [
+          {
+            "name": "Árpád utca"
+          },
+          {
+            "name": "Bacsó Béla utca"
+          },
+          {
+            "name": "Keleti utca"
+          },
+          {
+            "name": "Rózsa utca"
+          },
+          {
+            "name": "Vörösmarty Mihály utca"
+          },
+          {
+            "name": "Móricz Zsigmond utca",
+            "scopeBbox": [
+              16.602,
+              47.0132,
+              16.609,
+              47.0189
+            ]
+          },
+          {
+            "name": "Hunyadi János utca",
+            "scopeBbox": [
+              16.601,
+              47.0157,
+              16.607,
+              47.0189
+            ]
+          },
+          {
+            "name": "Vasútmellék utca",
+            "scopeBbox": [
+              16.601,
+              47.0162,
+              16.604,
+              47.0171
+            ]
+          },
+          {
+            "name": "Táncsics Mihály utca"
+          },
+          {
+            "name": "Mártírok útja"
+          }
+        ],
+        "areas": [],
+        "frontageAllowanceM": 35,
+        "sourceUrl": "https://www.kormend.hu/editor_up/Hirek/2025/hulladek/Kormend-naptar-2025.V2mod.pdf",
+        "supportingUrls": [
+          "https://www.kormend.hu/Hirek/2021_evi_hulladekszallitassal_kapcsolatos_tajekoztato.html",
+          "https://helyimenetrend.mavcsoport.hu/files/public/helyi_menetrendek/kormend/Kormend_tkp_A3_251119.pdf",
+          "https://utcak-magyarorszag.openalfa.com/kepvisel%C5%91-telep"
+        ],
+        "approximationNote": "The municipal notice identifies the Hunyadi/east-side quarter; the official transit map text labels Tisztviselő telep. The archived street guide lists Árpád, Bacsó, Keleti, Rózsa, Vörösmarty, Móricz, Hunyadi and Vasútmellék; adjoining Táncsics and Mártírok extend the estimate over the connected residential grid. Scope windows select the local parts of longer streets. The whole-quarter convex joins and 35 m frontage allowance are inferred. The historic/modern limits and transition to Bartók and Vasúton túl remain uncertain; overlaps are intentional and do not imply alias identity."
+      },
+      "usedSourceObjects": [
+        {
+          "name": "Árpád utca",
+          "wayId": 312831664,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312831664"
+        },
+        {
+          "name": "Bacsó Béla utca",
+          "wayId": 294870942,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/294870942"
+        },
+        {
+          "name": "Keleti utca",
+          "wayId": 312831658,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312831658"
+        },
+        {
+          "name": "Rózsa utca",
+          "wayId": 312831672,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312831672"
+        },
+        {
+          "name": "Vörösmarty Mihály utca",
+          "wayId": 312831661,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312831661"
+        },
+        {
+          "name": "Móricz Zsigmond utca",
+          "wayId": 312831670,
+          "scopeBbox": [
+            16.602,
+            47.0132,
+            16.609,
+            47.0189
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/312831670"
+        },
+        {
+          "name": "Móricz Zsigmond utca",
+          "wayId": 312831671,
+          "scopeBbox": [
+            16.602,
+            47.0132,
+            16.609,
+            47.0189
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/312831671"
+        },
+        {
+          "name": "Móricz Zsigmond utca",
+          "wayId": 626923278,
+          "scopeBbox": [
+            16.602,
+            47.0132,
+            16.609,
+            47.0189
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/626923278"
+        },
+        {
+          "name": "Móricz Zsigmond utca",
+          "wayId": 644541758,
+          "scopeBbox": [
+            16.602,
+            47.0132,
+            16.609,
+            47.0189
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/644541758"
+        },
+        {
+          "name": "Móricz Zsigmond utca",
+          "wayId": 1262968692,
+          "scopeBbox": [
+            16.602,
+            47.0132,
+            16.609,
+            47.0189
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/1262968692"
+        },
+        {
+          "name": "Hunyadi János utca",
+          "wayId": 559389098,
+          "scopeBbox": [
+            16.601,
+            47.0157,
+            16.607,
+            47.0189
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/559389098"
+        },
+        {
+          "name": "Hunyadi János utca",
+          "wayId": 559389102,
+          "scopeBbox": [
+            16.601,
+            47.0157,
+            16.607,
+            47.0189
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/559389102"
+        },
+        {
+          "name": "Hunyadi János utca",
+          "wayId": 622876525,
+          "scopeBbox": [
+            16.601,
+            47.0157,
+            16.607,
+            47.0189
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/622876525"
+        },
+        {
+          "name": "Hunyadi János utca",
+          "wayId": 626923277,
+          "scopeBbox": [
+            16.601,
+            47.0157,
+            16.607,
+            47.0189
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/626923277"
+        },
+        {
+          "name": "Hunyadi János utca",
+          "wayId": 1262968691,
+          "scopeBbox": [
+            16.601,
+            47.0157,
+            16.607,
+            47.0189
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/1262968691"
+        },
+        {
+          "name": "Vasútmellék utca",
+          "wayId": 627276608,
+          "scopeBbox": [
+            16.601,
+            47.0162,
+            16.604,
+            47.0171
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/627276608"
+        },
+        {
+          "name": "Vasútmellék utca",
+          "wayId": 1024387402,
+          "scopeBbox": [
+            16.601,
+            47.0162,
+            16.604,
+            47.0171
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/1024387402"
+        },
+        {
+          "name": "Táncsics Mihály utca",
+          "wayId": 312831663,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312831663"
+        },
+        {
+          "name": "Mártírok útja",
+          "wayId": 312831665,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312831665"
+        }
+      ],
+      "sourceObjectCount": 19,
+      "areaM2": 344270,
+      "inferredEnvelopeEdges": true,
+      "pointBuffersCreated": 0
+    },
+    {
+      "name": "Vasúton túl",
+      "recipe": {
+        "name": "Vasúton túl",
+        "id": "estimated:kormend:vasuton-tul:source-street-envelope",
+        "roads": [
+          {
+            "name": "Batsányi János utca"
+          },
+          {
+            "name": "Gárdonyi Géza utca"
+          },
+          {
+            "name": "Mező utca"
+          },
+          {
+            "name": "Jókai Mór utca"
+          },
+          {
+            "name": "Petőfi Sándor utca"
+          },
+          {
+            "name": "Diófa utca"
+          },
+          {
+            "name": "Nyírfa utca"
+          },
+          {
+            "name": "Platán utca"
+          },
+          {
+            "name": "Avar utca"
+          },
+          {
+            "name": "Arasz utca"
+          },
+          {
+            "name": "Ifjúság utca"
+          },
+          {
+            "name": "Pacsirta utca"
+          },
+          {
+            "name": "Szinetár Miklós utca"
+          },
+          {
+            "name": "Tavasz utca"
+          },
+          {
+            "name": "Őrség utca"
+          },
+          {
+            "name": "Dobó tér"
+          },
+          {
+            "name": "Móricz Zsigmond utca",
+            "scopeBbox": [
+              16.6,
+              47.018,
+              16.61,
+              47.023
+            ]
+          },
+          {
+            "name": "Somogyi Béla utca",
+            "scopeBbox": [
+              16.6,
+              47.0184,
+              16.61,
+              47.025
+            ]
+          },
+          {
+            "name": "Erkel Ferenc utca"
+          }
+        ],
+        "areas": [],
+        "frontageAllowanceM": 35,
+        "sourceUrl": "https://www.kormend.hu/editor_up/Hirek/2025/hulladek/Kormend-naptar-2025.V2mod.pdf",
+        "supportingUrls": [
+          "https://www.kormend.hu/Hirek/2021_evi_hulladekszallitassal_kapcsolatos_tajekoztato.html",
+          "https://helyimenetrend.mavcsoport.hu/files/public/helyi_menetrendek/kormend/Kormend_tkp_A3_251119.pdf",
+          "https://utcak-magyarorszag.openalfa.com/vasuton-tul"
+        ],
+        "approximationNote": "The official transit map text labels Vasúton túl and the municipal notices recognize the beyond-railway quarters. This estimate uses the northern/eastern residential grid actually associated with the singular Vasúton túl name in the archived OSM-derived street list, spanning Erkel/Petőfi through Gárdonyi/Diófa and Avar/Arasz. It does not copy the entire plural municipal collection area or alias its distinct child quarters. The street envelope, outer joins and 35 m frontage depth are inferred; historical broad usage can overlap Tisztviselő/Rokkant and exact southern/eastern margins remain uncertain."
+      },
+      "usedSourceObjects": [
+        {
+          "name": "Batsányi János utca",
+          "wayId": 312920279,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920279"
+        },
+        {
+          "name": "Batsányi János utca",
+          "wayId": 646100335,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/646100335"
+        },
+        {
+          "name": "Gárdonyi Géza utca",
+          "wayId": 312920290,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920290"
+        },
+        {
+          "name": "Mező utca",
+          "wayId": 312920287,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920287"
+        },
+        {
+          "name": "Jókai Mór utca",
+          "wayId": 312920278,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920278"
+        },
+        {
+          "name": "Jókai Mór utca",
+          "wayId": 646100334,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/646100334"
+        },
+        {
+          "name": "Petőfi Sándor utca",
+          "wayId": 312831700,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312831700"
+        },
+        {
+          "name": "Petőfi Sándor utca",
+          "wayId": 646100333,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/646100333"
+        },
+        {
+          "name": "Diófa utca",
+          "wayId": 312920291,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920291"
+        },
+        {
+          "name": "Nyírfa utca",
+          "wayId": 312920281,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920281"
+        },
+        {
+          "name": "Nyírfa utca",
+          "wayId": 627386534,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/627386534"
+        },
+        {
+          "name": "Nyírfa utca",
+          "wayId": 627386536,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/627386536"
+        },
+        {
+          "name": "Nyírfa utca",
+          "wayId": 875712687,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712687"
+        },
+        {
+          "name": "Nyírfa utca",
+          "wayId": 875712688,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712688"
+        },
+        {
+          "name": "Nyírfa utca",
+          "wayId": 875712696,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712696"
+        },
+        {
+          "name": "Nyírfa utca",
+          "wayId": 875712697,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712697"
+        },
+        {
+          "name": "Nyírfa utca",
+          "wayId": 875712703,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712703"
+        },
+        {
+          "name": "Nyírfa utca",
+          "wayId": 875712704,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712704"
+        },
+        {
+          "name": "Platán utca",
+          "wayId": 312920294,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920294"
+        },
+        {
+          "name": "Platán utca",
+          "wayId": 312920297,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920297"
+        },
+        {
+          "name": "Avar utca",
+          "wayId": 312920296,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920296"
+        },
+        {
+          "name": "Avar utca",
+          "wayId": 875712663,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712663"
+        },
+        {
+          "name": "Avar utca",
+          "wayId": 875712664,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712664"
+        },
+        {
+          "name": "Avar utca",
+          "wayId": 875712669,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712669"
+        },
+        {
+          "name": "Avar utca",
+          "wayId": 875712670,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712670"
+        },
+        {
+          "name": "Avar utca",
+          "wayId": 875712674,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712674"
+        },
+        {
+          "name": "Avar utca",
+          "wayId": 875712675,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712675"
+        },
+        {
+          "name": "Arasz utca",
+          "wayId": 312920293,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920293"
+        },
+        {
+          "name": "Arasz utca",
+          "wayId": 312920299,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920299"
+        },
+        {
+          "name": "Arasz utca",
+          "wayId": 875712667,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712667"
+        },
+        {
+          "name": "Arasz utca",
+          "wayId": 875712668,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712668"
+        },
+        {
+          "name": "Arasz utca",
+          "wayId": 875712671,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712671"
+        },
+        {
+          "name": "Arasz utca",
+          "wayId": 875712672,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712672"
+        },
+        {
+          "name": "Arasz utca",
+          "wayId": 875712694,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712694"
+        },
+        {
+          "name": "Arasz utca",
+          "wayId": 875712695,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712695"
+        },
+        {
+          "name": "Ifjúság utca",
+          "wayId": 312920280,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920280"
+        },
+        {
+          "name": "Ifjúság utca",
+          "wayId": 950348049,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/950348049"
+        },
+        {
+          "name": "Pacsirta utca",
+          "wayId": 312831674,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312831674"
+        },
+        {
+          "name": "Pacsirta utca",
+          "wayId": 875712681,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712681"
+        },
+        {
+          "name": "Pacsirta utca",
+          "wayId": 875712682,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712682"
+        },
+        {
+          "name": "Szinetár Miklós utca",
+          "wayId": 312831701,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312831701"
+        },
+        {
+          "name": "Szinetár Miklós utca",
+          "wayId": 875712683,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712683"
+        },
+        {
+          "name": "Szinetár Miklós utca",
+          "wayId": 875712684,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712684"
+        },
+        {
+          "name": "Tavasz utca",
+          "wayId": 312920283,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920283"
+        },
+        {
+          "name": "Őrség utca",
+          "wayId": 312831675,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312831675"
+        },
+        {
+          "name": "Őrség utca",
+          "wayId": 312831676,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312831676"
+        },
+        {
+          "name": "Őrség utca",
+          "wayId": 875712677,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712677"
+        },
+        {
+          "name": "Őrség utca",
+          "wayId": 875712678,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712678"
+        },
+        {
+          "name": "Őrség utca",
+          "wayId": 875712679,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712679"
+        },
+        {
+          "name": "Őrség utca",
+          "wayId": 875712680,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/875712680"
+        },
+        {
+          "name": "Dobó tér",
+          "wayId": 312920284,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312920284"
+        },
+        {
+          "name": "Móricz Zsigmond utca",
+          "wayId": 312831671,
+          "scopeBbox": [
+            16.6,
+            47.018,
+            16.61,
+            47.023
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/312831671"
+        },
+        {
+          "name": "Somogyi Béla utca",
+          "wayId": 219092811,
+          "scopeBbox": [
+            16.6,
+            47.0184,
+            16.61,
+            47.025
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/219092811"
+        },
+        {
+          "name": "Somogyi Béla utca",
+          "wayId": 627386533,
+          "scopeBbox": [
+            16.6,
+            47.0184,
+            16.61,
+            47.025
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/627386533"
+        },
+        {
+          "name": "Somogyi Béla utca",
+          "wayId": 655676221,
+          "scopeBbox": [
+            16.6,
+            47.0184,
+            16.61,
+            47.025
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/655676221"
+        },
+        {
+          "name": "Somogyi Béla utca",
+          "wayId": 1262968694,
+          "scopeBbox": [
+            16.6,
+            47.0184,
+            16.61,
+            47.025
+          ],
+          "sourceUrl": "https://www.openstreetmap.org/way/1262968694"
+        },
+        {
+          "name": "Erkel Ferenc utca",
+          "wayId": 312831673,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/312831673"
+        },
+        {
+          "name": "Erkel Ferenc utca",
+          "wayId": 646100332,
+          "scopeBbox": null,
+          "sourceUrl": "https://www.openstreetmap.org/way/646100332"
+        }
+      ],
+      "sourceObjectCount": 58,
+      "areaM2": 507047,
+      "inferredEnvelopeEdges": true,
+      "pointBuffersCreated": 0
+    }
+  ],
+  "inputSha256": {
+    "quarter-recipes.json": "8d47d11f4bf7c05274bd264af4a168b590f3cf0673d8c627548a5360090e7e09",
+    "source-ways.geojson": "18ccd1e91cbd1b7c6e8ae01bc33c649c57f5197359057dc6633bddb8c6d167d1",
+    "source-areas.geojson": "0535c003d92dc707b8dacb3fb1aa030880b4c0cc82d9133b840488b923d9b8fa",
+    "municipality.geojson": "50ad09157feb07a053899770faa687b35a686fd0d8f68df0df42f9604d273d67"
+  }
+}

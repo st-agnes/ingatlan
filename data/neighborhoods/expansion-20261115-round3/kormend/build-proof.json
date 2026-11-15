@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "municipalSource": "https://www.kormend.hu/Hirek/2021_evi_hulladekszallitassal_kapcsolatos_tajekoztato.html",
+  "sourceRiverWayIds": [
+    "osm:way:38415576"
+  ],
+  "northBoundary": {
+    "road": "Rákóczi utca",
+    "nodeIds": [
+      292894696,
+      6006707634,
+      5111058835,
+      5111058834,
+      6143302507,
+      6006707647,
+      2072373491,
+      6006707645,
+      5661787338,
+      292894697,
+      5884501194,
+      5884501189,
+      11506266629,
+      5860240618,
+      292894698,
+      6060294820,
+      292894699,
+      3198481338,
+      8561089275,
+      3198481348,
+      292894700,
+      2282962402,
+      6060918473,
+      8561089276,
+      413970313,
+      3198481482,
+      3198481485,
+      292894701,
+      3198481502,
+      3198481507,
+      292894702,
+      292894703,
+      3239938048,
+      3089744306,
+      13827525178,
+      3089744307,
+      3159402386,
+      13827525177,
+      292894704,
+      13827525176,
+      3437354174,
+      2984925225,
+      6076162373
+    ],
+    "sourceWayIds": [
+      627276612,
+      627386532,
+      655715909,
+      660441997,
+      685196559,
+      922161103,
+      922161105,
+      1238646522,
+      1262968693,
+      1262978060
+    ],
+    "sourceLengthM": 1584.72,
+    "startSnapM": 0.0,
+    "endSnapM": 0.0
+  },
+  "sportSide": {
+    "road": "Sport utca",
+    "nodeIds": [
+      6076162373,
+      5878533437,
+      3356234148,
+      3198481556,
+      3198481555,
+      3187333659,
+      3198481557,
+      6019350881,
+      3187333663,
+      6019350878,
+      6018465705,
+      3187333658,
+      3187333657,
+      2984925227
+    ],
+    "sourceWayIds": [
+      304441359
+    ],
+    "sourceLengthM": 406.16,
+    "startSnapM": 0.0,
+    "endSnapM": 0.0
+  },
+  "inferredSideClosures": [
+    {
+      "fromCoordinate": [
+        16.6157873,
+        47.0159611
+      ],
+      "toCoordinate": [
+        16.6146448,
+        47.0085264
+      ],
+      "lengthM": 831.08,
+      "reason": "Estimate of eastern Sport/Kauz quarter extremity to river"
+    },
+    {
+      "fromCoordinate": [
+        16.5944412,
+        47.0005561
+      ],
+      "toCoordinate": [
+        16.593189,
+        47.0095483
+      ],
+      "lengthM": 1004.2,
+      "reason": "Estimate of western centre extremity toward Munkácsy junction"
+    }
+  ],
+  "pointBuffersCreated": 0,
+  "allValid": true,
+  "belvarosNativeRoadRiverVerticesPreserved": true,
+  "quarterEnvelopeProof": "quarter-build-proof.json",
+  "inputsSha256": {
+    "source-ways.geojson": "18ccd1e91cbd1b7c6e8ae01bc33c649c57f5197359057dc6633bddb8c6d167d1",
+    "source-areas.geojson": "0535c003d92dc707b8dacb3fb1aa030880b4c0cc82d9133b840488b923d9b8fa",
+    "source-named-points.geojson": "92f04e4d9ed40500cd0d42b907f2d217c682a06f0f64b8a66513e5b80302a188",
+    "municipality.geojson": "50ad09157feb07a053899770faa687b35a686fd0d8f68df0df42f9604d273d67",
+    "municipal-quarter-facts.json": "04a805e6b5be106595f76f7ae85dd6037e58f309faf555e63307e34ae0403d2d",
+    "quarter-recipes.json": "8d47d11f4bf7c05274bd264af4a168b590f3cf0673d8c627548a5360090e7e09"
+  }
+}

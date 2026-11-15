@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-15",
+  "baselineCommit": "9bfa534",
+  "sourceBaselineCommit": "3f6e793",
+  "sources": {
+    "source-roads.geojson.gz": {
+      "path": "data/neighborhoods/expansion-20261115-round2/pest-northwest/source-roads.geojson.gz",
+      "sha256": "0c09a64f3c6ec6b271441bbdd1bac196ca582b39364c583e445be8a28e318a26",
+      "retainedFeatureCount": 2964
+    },
+    "source-surfaces.geojson.gz": {
+      "path": "data/neighborhoods/expansion-20261115-round2/pest-northwest/source-surfaces.geojson.gz",
+      "sha256": "d5afa389a2c5d2d35e15b624bd44b37d723e1a6ddef43151842f1b98975b7b4c",
+      "retainedFeatureCount": 1953
+    }
+  },
+  "filter": "Dabas membership only; complete original way coordinates and properties unchanged, no clipping or generated geometry",
+  "countryPbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "osmSnapshotDate": "2026-11-12T21:23:05Z",
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "attributionUrl": "https://www.openstreetmap.org/copyright",
+  "note": "The completed polygon build requires only local packet inputs. This helper is optional local source reacquisition; it does not rescan the country PBF."
+}
