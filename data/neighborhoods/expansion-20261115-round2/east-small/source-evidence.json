@@ -1,0 +1,98 @@
+{
+  "snapshotDate": "2026-11-12T21:23:05Z",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "sourceLicense": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "reviewDate": "2026-11-15",
+  "evidence": [
+    {
+      "municipality": "Orosháza",
+      "url": "https://oroshaza.hu/palyazat-top-5-3-1-16-bs1-2017-00004-az-oroshazi-kozossegert-helyi-identitast-es-koheziot-erosito-programok/",
+      "supports": "Official project page defines Belváros using nine named boundary streets. Geometry is a rough street-junction trace with documented connector/name gaps, not an exact published polygon.",
+      "sourceBoundaryStreetNames": [
+        "Móricz Zsigmond utca",
+        "Huba utca",
+        "Október6.utca",
+        "Arany János utca",
+        "Székács József utca",
+        "Kelet utca",
+        "Árpád utca",
+        "Bajcsy-Zsilinszky utca",
+        "Sámsoni utca"
+      ]
+    },
+    {
+      "municipality": "Orosháza",
+      "url": "https://oroshaza.hu/wp-content/uploads/dokumentumtar/egyeb_informaciok_dokumentumok/2017es_ev/Orosh%C3%A1za%20TAK.pdf",
+      "sourcePage": 47,
+      "supports": "The municipal handbook text independently lists the glassworks, Dr.László Elek, Tass street and Hajnal street estates. It supports identity; physical map outlines remain inferred."
+    },
+    {
+      "municipality": "Orosháza",
+      "url": "https://oroshaza.hu/tisztelt-lakosok-velemenyezo-partnerek/",
+      "supports": "Municipal planning notice distinguishes the former factory service housing from economic/factory areas. This reinforces preserving separate factory and housing names."
+    },
+    {
+      "municipality": "Hosszúpályi",
+      "url": "https://osm-gimmisn.vmiklos.hu/osm/streets/hosszupalyi/view-result",
+      "supports": "Independent index of OSM street records includes Hosszúgaz tanya, Szalmás tanya and Molnárkút street. The saved source ways preserve their actual name tags and shapes."
+    },
+    {
+      "municipality": "Hosszúpályi",
+      "url": "https://hosszupalyi.hu/telepulesrendezesi-terv/",
+      "supports": "Official municipal planning/handbook index; useful contextual source, not asserted to publish the selected eight named boundaries."
+    },
+    {
+      "municipality": "Monostorpályi",
+      "url": "https://epa.oszk.hu/05100/05178/00006/pdf/EPA05178_bihari_2001_007-020.pdf",
+      "supports": "Bodnár László study of Monostorpályi viticulture describes vineyard cultivation around Tejfeles after WWII. This supports a historical garden/field locality interpretation; it does not delimit the selected cell."
+    },
+    {
+      "municipality": "Monostorpályi",
+      "url": "https://utcak-magyarorszag.openalfa.com/monostorpalyi",
+      "supports": "OSM-derived street guide corroborates the five short locality labels. Named farmyard sources independently preserve Csonkás tanya and Liliom tanya."
+    },
+    {
+      "municipality": "Monostorpályi",
+      "url": "https://njt.jog.gov.hu/document/45/4552LL_EJR_125150820-T_02_KULTERULETI_SZABALYOZASI_TERV.pdf",
+      "supports": "Official rural planning-map lead found through the municipal regulation; kept as a future refinement source. Not used to invent map boundaries in this batch."
+    },
+    {
+      "municipality": "Mátészalka",
+      "url": "https://www.mateszalka.hu/modul/file_browser/upload/hirek/telepulesrend/112-mateszalka-szerkezeti-terv-leiras.pdf",
+      "supports": "Official structural-plan description names Cinevég and Keleti lakótelep. Physical estimates in this batch derive from saved OSM roads/landuse, rather than claiming these are extracted native planning polygons."
+    },
+    {
+      "municipality": "Mátészalka",
+      "url": "https://helyiingatlanos.hu/mateszalka",
+      "supports": "Local locality list corroborates Ráckert, Északi, Keleti, Cinevég and Fogarassy-tanya identity; exact extents are not stated."
+    }
+  ],
+  "geometryPolicy": "No point buffers, circles, point-generated rectangles, Voronoi or convex hulls. Original map parcels/components are preserved when chosen; road cells and manual physical-map traces are explicitly estimated/lowConfidence.",
+  "files": [
+    {
+      "path": "source-areas.geojson",
+      "sha256": "5fadb72d25c971d20d5e3bb55efa2bc6c4f97f88c0ff0dc21085575512f8a2d6"
+    },
+    {
+      "path": "source-lines.geojson",
+      "sha256": "4ce38ac4e3b2baf98b8470285efdb4eee77380f6f27a65a53c8a98a93ce4a644"
+    },
+    {
+      "path": "source-labels.geojson",
+      "sha256": "a37b3264910fc4e1a0bcbdb81ac83cedb2b3bb5804d6a4f8bbf84080df18524b"
+    },
+    {
+      "path": "source-municipalities.geojson",
+      "sha256": "a4153164e501d3858d1e0445b8203446b47f4e25f9796d29f7e0c2072affe663"
+    },
+    {
+      "path": "targets.json",
+      "sha256": "eeb0fd41c7dc7aa4485de557e7f76ed946ae2b7a8e91017fe78e5e92dacfa866"
+    },
+    {
+      "path": "selection.json",
+      "sha256": "165e6808691c3a05ecd65a977f7570ae388aa0ae0b60d3a2a81c04c058b6eb75"
+    }
+  ]
+}

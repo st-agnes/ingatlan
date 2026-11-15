@@ -1,20 +1,24 @@
 #!/usr/bin/env python3
 """Package the current selected polygons, import and explicitly separate fallbacks."""
 from pathlib import Path
-import argparse,hashlib,json,zipfile
+import argparse,gzip,hashlib,json,zipfile
 
 ROOT=Path(__file__).resolve().parents[2]
 DATA=ROOT/'data/neighborhoods'
 OUTPUT=ROOT/'downloads/neighborhoods/otthonra-keresheto-varosreszek.zip'
 FILES=['search-areas.geojson','search-area-names.json','search-areas-report.csv','search-areas-report.json',
-       'search-areas-deduplication.json','search-areas.mysql.sql.gz','search-area-identities.json','search-area-identities.README.md',
+       'search-areas-deduplication.json','search-area-identities.json','search-area-identities.README.md',
        'expansion-20261114/STRATEGY.md','expansion-20261114/WORK-STATE.json','expansion-20261114/technical-validation.json',
        'expansion-20261114/inventory/priority-cities.csv','expansion-20261114/inventory/reference-benchmarks.json',
        'expansion-20261114/inventory/provisional-fallback-features.geojson',
        'expansion-20261114/inventory/provisional-fallback-summary.json']
 
 def contents():
-    files={'data/neighborhoods/'+name:(DATA/name).read_bytes() for name in FILES}
+    files={}
+    for name in FILES:
+        path=DATA/name
+        raw=gzip.decompress((DATA/'search-areas.geojson.gz').read_bytes()) if name=='search-areas.geojson' and not path.exists() else path.read_bytes()
+        files['data/neighborhoods/'+name]=raw
     for state in sorted(DATA.glob('expansion-*/WORK-STATE.json')):
         files['data/neighborhoods/'+str(state.relative_to(DATA))]=state.read_bytes()
         note=state.parent/'README.md'
@@ -26,7 +30,8 @@ def contents():
 Kiválasztott poligonok: {report['featureCount']}; települések: {report['municipalityCount']}.
 Fő adat: data/neighborhoods/search-areas.geojson (WGS84, hosszúság/szélesség).
 Név szerinti lista: data/neighborhoods/search-area-names.json.
-MySQL 8 import: data/neighborhoods/search-areas.mysql.sql.gz.
+MySQL8 import külön letölthető (a ZIP nem tartalmazza):
+https://github.com/st-agnes/ingatlan/raw/refs/heads/codex/neighborhood-research-506-191/data/neighborhoods/search-areas.mysql.sql.gz
 
 A pontokból képzett tartalékkörök külön fájlban maradnak az inventory könyvtárban.
 Nem részei a fő katalógusnak és nem igazolnak térképi lefedettséget.
@@ -40,7 +45,9 @@ A nyers források és a teljes, folytatható munkafolyamat GitHubon:
 https://github.com/st-agnes/ingatlan/tree/codex/neighborhood-research-506-191
 '''
     files['OLVASS-EL.txt']=note.encode()
+    sql=(DATA/'search-areas.mysql.sql.gz').read_bytes()
     manifest={'schemaVersion':1,'featureCount':report['featureCount'],'municipalityCount':report['municipalityCount'],
+              'externalFiles':{'data/neighborhoods/search-areas.mysql.sql.gz':{'bytes':len(sql),'sha256':hashlib.sha256(sql).hexdigest()}},
               'files':{name:{'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()} for name,raw in sorted(files.items())}}
     files['MANIFEST.json']=(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n').encode()
     return files,manifest

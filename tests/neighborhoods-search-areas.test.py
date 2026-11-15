@@ -44,6 +44,20 @@ class SearchAreaReleaseTests(unittest.TestCase):
         self.assertEqual(report['duplicateVariantsPreserved'], 1)
         self.assertIn('József Attila-telep', features[0]['properties']['aliases'])
 
+    def test_compressed_checkout_validates_without_plain_local_artifact(self):
+        self.write('neighborhoods.geojson', [self.feature('Vénkert')])
+        files, _ = MODULE.build()
+        for name, content in files.items():
+            if name != 'search-areas.geojson':
+                (MODULE.DATA/name).write_bytes(content)
+        MODULE.check_outputs(files)
+        (MODULE.DATA/'search-areas.geojson.gz').write_bytes(gzip.compress(b'{}',mtime=0))
+        with self.assertRaisesRegex(SystemExit, 'Stale search area export: search-areas.geojson.gz'):
+            MODULE.check_outputs(files)
+        (MODULE.DATA/'search-areas.geojson.gz').unlink()
+        with self.assertRaises(FileNotFoundError):
+            MODULE.check_outputs(files)
+
     def test_overlapping_parent_names_and_same_name_other_town_survive(self):
         self.write('neighborhoods.geojson', [self.feature('Belváros'), self.feature('Vénkert'), self.feature('Belváros', 'Győr')])
         files, report = MODULE.build(); features = json.loads(files['search-areas.geojson'])['features']

@@ -4,16 +4,26 @@ A 2026. november 14-én megadott gyűjtési stratégia alapján a korábbi kutat
 
 ## Aktuális fájlok
 
-- `data/neighborhoods/search-areas.geojson`: minden kiválasztott terület WGS84-poligonnal, stabil azonosítóval és forráshivatkozásokkal.
-- `data/neighborhoods/search-areas.geojson.gz`: ugyanaz tömörítve.
+- `data/neighborhoods/search-areas.geojson.gz`: minden kiválasztott terület WGS84-poligonnal, stabil azonosítóval és forráshivatkozásokkal, tömörítve tárolva a repóban.
+- `data/neighborhoods/search-areas.geojson`: a tömörített állomány teljes, bájtra azonos helyi nézete. Az építőprogram előállítja, és a ZIP is tartalmazza; mérete miatt külön tömörítetlen Git-példányt nem tárolunk.
 - `data/neighborhoods/search-area-names.json`: kisebb névjegyzék a későbbi helyszínválasztóhoz, névváltozatokkal és `Vénkert (Debrecen)` jellegű címkével.
 - `data/neighborhoods/search-areas.mysql.sql.gz`: MySQL 8.0/8.4 táblaséma és idempotens adatfeltöltés. A tömörítés a GitHub-mentések méretét csökkenti.
 - `data/neighborhoods/search-areas-report.csv` és `.json`: kiválasztott területek településenként és módszerenként.
 - `data/neighborhoods/search-areas-deduplication.json`: melyik változatot választottuk és mely forrásváltozatok maradtak meg alternatívaként.
 - `data/neighborhoods/search-area-identities.json`: tartós azonosítók és korábban összevont nevek; új névváltozat vagy jobb geometria nem hoz létre új azonosítót.
-- `downloads/neighborhoods/otthonra-keresheto-varosreszek.zip`: az aktuális poligonok, névjegyzék, import és külön tartalékkörök letölthető csomagja, belső SHA-256-jegyzékkel.
+- `downloads/neighborhoods/otthonra-keresheto-varosreszek.zip`: az aktuális poligonok, névjegyzék és külön tartalékkörök letölthető csomagja, belső SHA-256-jegyzékkel. A MySQL-import külön letölthető fájl marad; annak ellenőrző összege a ZIP jegyzékében is szerepel.
 
 A korábbi `neighborhoods.geojson`, `estimated-candidates.geojson` és a hozzájuk tartozó jelentések megmaradnak történeti kutatási állapotként. Az új, bővebb keresési állomány számait a `search-areas-report` mutatja.
+
+A fő GeoJSON önmagában is kibontva használható, teljes újraépítés nélkül:
+
+```sh
+gzip -dc data/neighborhoods/search-areas.geojson.gz > data/neighborhoods/search-areas.geojson
+```
+
+Az ellenőrzések friss klónozás után a kötelező tömörített exportból is működnek.
+A ZIP-ben a teljes tömörítetlen GeoJSON megmarad; geometriát vagy metaadatot nem
+hagytunk el az átcsomagolás során.
 
 ## Névazonosság és kiválasztás
 

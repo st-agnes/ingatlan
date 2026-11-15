@@ -3,12 +3,12 @@
   "date": "2026-11-14",
   "scope": "Worklist of currently known names from OSM suburb/neighbourhood/quarter points, municipal reference lists and collected polygons. Name coverage measures this finite worklist only. It is not a count of every Hungarian neighbourhood, and neither point-only names nor urban planning groups establish official neighbourhood boundaries. Names, aliases, historical schemes and overlapping areas are retained under the user-authorized broad search-area policy. No point was converted into a circle by this script.",
   "summary": {
-    "knownNameCount": 4312,
+    "knownNameCount": 4311,
     "municipalitiesWithKnownNames": 618,
-    "namesWithCollectedPolygon": 3771,
+    "namesWithCollectedPolygon": 3899,
     "namesWithKnownPoint": 3487,
-    "pointOnlyNames": 510,
-    "unlocatedUncollectedNames": 31,
+    "pointOnlyNames": 391,
+    "unlocatedUncollectedNames": 21,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
       80,
@@ -449,22 +449,14 @@
       "municipality": "Gödöllő",
       "county": "Pest",
       "knownNameCount": 18,
-      "namesWithCollectedPolygon": 11,
-      "namesWithPointOnly": 7,
+      "namesWithCollectedPolygon": 18,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 61.1,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Antalhegy",
-        "Csanak",
-        "Incső",
-        "Királytelep",
-        "Nagyfenyves",
-        "Palota-kert",
-        "Újfenyves"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Szekszárd",
@@ -586,21 +578,14 @@
       "municipality": "Orosháza",
       "county": "Békés",
       "knownNameCount": 14,
-      "namesWithCollectedPolygon": 8,
-      "namesWithPointOnly": 6,
+      "namesWithCollectedPolygon": 14,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 57.1,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Belváros",
-        "Dr. László Elek-lakótelep",
-        "Hajnal utcai lakótelep",
-        "Tass utcai lakótelep",
-        "Üveggyár",
-        "Üveggyári lakótelep"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Szentes",

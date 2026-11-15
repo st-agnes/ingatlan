@@ -1,0 +1,25 @@
+{
+  "featureCount": 26,
+  "municipalityCount": 4,
+  "municipalities": {
+    "Hosszúpályi": 8,
+    "Monostorpályi": 5,
+    "Mátészalka": 7,
+    "Orosháza": 6
+  },
+  "methods": {
+    "physical_barrier_cell_estimate": 14,
+    "source_footprint_locality_association_estimate": 6,
+    "manual_physical_map_trace_estimate": 6
+  },
+  "estimatedCount": 26,
+  "lowConfidenceCount": 26,
+  "sourceAreaCount": 1528,
+  "sourceLineCount": 8442,
+  "baselineTargetCount": 26,
+  "unresolvedTargetCount": 0,
+  "circleRectangleVoronoiHullGenerated": 0,
+  "completeCityCoverageEstablished": false,
+  "featuresSha256": "e14829617a728f5633a5ca2ac7bf05cdff0b8883d1fbfdf156de248f13d33351",
+  "limitation": "Real mapped parcels, road/track cells and rough traced locality areas; name association and local extent remain estimated. Garden cells and estate cores can cover part of a wider historical name."
+}

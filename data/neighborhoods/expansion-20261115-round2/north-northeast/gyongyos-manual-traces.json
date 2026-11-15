@@ -1,0 +1,585 @@
+{
+  "coordinateSpace": "EPSG:4326; manually inferred broad street-fabric outlines, not exact OSM way concatenations",
+  "areas": [
+    {
+      "name": "Bethlen Gábor-lakótelep",
+      "ring": [
+        [
+          19.9238,
+          47.7788
+        ],
+        [
+          19.9251,
+          47.7792
+        ],
+        [
+          19.9285,
+          47.7792
+        ],
+        [
+          19.9302,
+          47.7787
+        ],
+        [
+          19.9301,
+          47.7772
+        ],
+        [
+          19.9267,
+          47.7773
+        ],
+        [
+          19.9249,
+          47.7776
+        ],
+        [
+          19.9238,
+          47.7778
+        ]
+      ],
+      "sourceRoadNames": [
+        "Országút utca",
+        "Bethlen Gábor utca",
+        "Jeruzsálem utca"
+      ],
+      "note": "Broad estate/block group beside Országút and Bethlen Gábor streets. Internal west/east separators are inferred from the actual dense street-block fabric; the established inventory also records Dominó házak as a source name."
+    },
+    {
+      "name": "Duránda",
+      "ring": [
+        [
+          19.9232,
+          47.7904
+        ],
+        [
+          19.924,
+          47.7917
+        ],
+        [
+          19.9255,
+          47.793
+        ],
+        [
+          19.927,
+          47.7932
+        ],
+        [
+          19.9285,
+          47.7926
+        ],
+        [
+          19.929,
+          47.791
+        ],
+        [
+          19.9282,
+          47.7899
+        ],
+        [
+          19.926,
+          47.7896
+        ],
+        [
+          19.9242,
+          47.7898
+        ]
+      ],
+      "sourceRoadNames": [
+        "Csárda utca",
+        "Szép utca",
+        "Ménház utca",
+        "Petőfi Sándor utca",
+        "Bocskai István utca"
+      ],
+      "note": "The municipal2016ITS p89 places Duranda mainly north of Csárda utca; pp151–152 identify the two northern segregation areas as Duranda. The outline is a broad inhabited street-fabric estimate with inferred garden-edge joins; statistical cell fills are not relabelled as a whole quarter."
+    },
+    {
+      "name": "Kakastánc",
+      "ring": [
+        [
+          19.9319,
+          47.7952
+        ],
+        [
+          19.9331,
+          47.7971
+        ],
+        [
+          19.9338,
+          47.7997
+        ],
+        [
+          19.934,
+          47.801
+        ],
+        [
+          19.9372,
+          47.8015
+        ],
+        [
+          19.9415,
+          47.8019
+        ],
+        [
+          19.941,
+          47.7984
+        ],
+        [
+          19.9407,
+          47.7951
+        ],
+        [
+          19.9377,
+          47.7943
+        ],
+        [
+          19.935,
+          47.7944
+        ]
+      ],
+      "sourceRoadNames": [
+        "Kakastánc utca",
+        "Északi külhatár utca",
+        "Sárhegy utca",
+        "Bene út",
+        "Diófa utca"
+      ],
+      "note": "Northern residential grid around the named Kakastánc street, retaining the long blocks up to the Sárhegy/Diósmalom-side outer street edge. Inferred join towards neighbouring Diósmalom/Felsőváros; intentional overlap with larger northern units."
+    },
+    {
+      "name": "Mátrai úti lakótelep",
+      "ring": [
+        [
+          19.9311,
+          47.788
+        ],
+        [
+          19.9335,
+          47.7882
+        ],
+        [
+          19.9358,
+          47.7878
+        ],
+        [
+          19.9377,
+          47.787
+        ],
+        [
+          19.9379,
+          47.7856
+        ],
+        [
+          19.9355,
+          47.7854
+        ],
+        [
+          19.9337,
+          47.7858
+        ],
+        [
+          19.9317,
+          47.7859
+        ]
+      ],
+      "sourceRoadNames": [
+        "Mátrai út",
+        "Erzsébet királyné út",
+        "Kovács utca",
+        "Orczy utca",
+        "Európa utca"
+      ],
+      "note": "Municipal2016ITS p84 describes the Mátrai úti estate as four-storey blocks and three ten-storey buildings in the northern part of the eastern quarter. Broad actual street-block footprint between Mátrai út and the railway-side edge; small internal separators inferred."
+    },
+    {
+      "name": "Nyolcvanas lakótelep",
+      "ring": [
+        [
+          19.9201,
+          47.7726
+        ],
+        [
+          19.923,
+          47.7741
+        ],
+        [
+          19.928,
+          47.7738
+        ],
+        [
+          19.9323,
+          47.7733
+        ],
+        [
+          19.9322,
+          47.7701
+        ],
+        [
+          19.9285,
+          47.7698
+        ],
+        [
+          19.9252,
+          47.77
+        ],
+        [
+          19.9227,
+          47.7703
+        ],
+        [
+          19.9208,
+          47.771
+        ]
+      ],
+      "sourceRoadNames": [
+        "Pesti út",
+        "Bajcsy-Zsilinszky Endre körút",
+        "Hertelendy Gábor utca",
+        "Verseny utca",
+        "Esze Tamás utca",
+        "Jászsági utca"
+      ],
+      "note": "Municipal2016ITS pp83–84 and96–99 describe the broad Nyolcvanas estate and its internal Hertelendy/Verseny/Esze Tamás street context. This estimate follows that multi-block fabric rather than one small point-selected block; joins at the garden-city fringe are inferred."
+    },
+    {
+      "name": "Pesti úti lakótelep",
+      "ring": [
+        [
+          19.9196,
+          47.7775
+        ],
+        [
+          19.9227,
+          47.778
+        ],
+        [
+          19.9241,
+          47.7773
+        ],
+        [
+          19.924,
+          47.776
+        ],
+        [
+          19.9229,
+          47.7748
+        ],
+        [
+          19.9207,
+          47.7749
+        ],
+        [
+          19.9197,
+          47.7761
+        ]
+      ],
+      "sourceRoadNames": [
+        "Pesti út",
+        "Báthory István utca",
+        "Bányász utca",
+        "Ringsted utca"
+      ],
+      "note": "The municipal2016ITS p83 explicitly describes four Pesti úti estate blocks. This broad street/building-zone estimate covers their locality and surrounding immediate land; approximate separators towards Ringsted and adjacent blocks do not assert cadastral or exact estate membership."
+    },
+    {
+      "name": "Vásár tér",
+      "ring": [
+        [
+          19.9072,
+          47.7703
+        ],
+        [
+          19.9093,
+          47.7706
+        ],
+        [
+          19.9115,
+          47.77
+        ],
+        [
+          19.913,
+          47.769
+        ],
+        [
+          19.9135,
+          47.7676
+        ],
+        [
+          19.9112,
+          47.7665
+        ],
+        [
+          19.9085,
+          47.7668
+        ],
+        [
+          19.907,
+          47.7682
+        ]
+      ],
+      "sourceRoadNames": [
+        "Tó utca",
+        "Vásár utca",
+        "Püspöki utca"
+      ],
+      "note": "Southwestern market-square/fringe land beside the actual Tó/Vásár/Püspöki approach pattern. The irregular outer land edge and separation from nearby open plots are manually inferred; broader usable neighbourhood envelope instead of water/building-only geometry."
+    },
+    {
+      "name": "Észak-Kálváriapart",
+      "ring": [
+        [
+          19.9166,
+          47.7909
+        ],
+        [
+          19.9185,
+          47.7914
+        ],
+        [
+          19.9207,
+          47.7909
+        ],
+        [
+          19.9219,
+          47.7897
+        ],
+        [
+          19.9215,
+          47.7871
+        ],
+        [
+          19.9201,
+          47.7866
+        ],
+        [
+          19.9178,
+          47.787
+        ],
+        [
+          19.9169,
+          47.7885
+        ]
+      ],
+      "sourceRoadNames": [
+        "Kálvária utca",
+        "Esthajnal utca",
+        "Alkony utca",
+        "Csillag utca",
+        "Bocskai István utca",
+        "Damjanich János utca"
+      ],
+      "note": "Actual hillside road group around the northern Kálvária/Esthajnal/Alkony streets. The garden-edge and north/south hill separators are rough hand estimates; intentionally overlaps larger western/northern quarters."
+    },
+    {
+      "name": "Északi városrész",
+      "ring": [
+        [
+          19.9272,
+          47.7894
+        ],
+        [
+          19.9288,
+          47.79
+        ],
+        [
+          19.9334,
+          47.7901
+        ],
+        [
+          19.9387,
+          47.7904
+        ],
+        [
+          19.9427,
+          47.791
+        ],
+        [
+          19.9432,
+          47.796
+        ],
+        [
+          19.9435,
+          47.8028
+        ],
+        [
+          19.9417,
+          47.8054
+        ],
+        [
+          19.9383,
+          47.8048
+        ],
+        [
+          19.934,
+          47.8031
+        ],
+        [
+          19.9309,
+          47.801
+        ],
+        [
+          19.9291,
+          47.7975
+        ],
+        [
+          19.9282,
+          47.7941
+        ]
+      ],
+      "sourceRoadNames": [
+        "Petőfi Sándor utca",
+        "Dózsa György utca",
+        "Mátrai út",
+        "Bene út",
+        "Sárhegy utca"
+      ],
+      "note": "Municipal2016ITS pp17–20 identify the Northern quarter, and p28 shows the full northern setting beyond the clipped p19 overview. This is an explicitly estimated populated northern-city envelope using the stated southern roads and the actual northern road/grid and vineyard fringe. It excludes the long mountain corridor and separately named Mátrafüred; northern/eastern field-edge joins are inferred, not image-frame closure."
+    },
+    {
+      "name": "Mátrafüred",
+      "ring": [
+        [
+          19.9621,
+          47.835
+        ],
+        [
+          19.965,
+          47.8358
+        ],
+        [
+          19.9688,
+          47.8359
+        ],
+        [
+          19.972,
+          47.8352
+        ],
+        [
+          19.9735,
+          47.8325
+        ],
+        [
+          19.9745,
+          47.8294
+        ],
+        [
+          19.9761,
+          47.8267
+        ],
+        [
+          19.9774,
+          47.824
+        ],
+        [
+          19.981,
+          47.8217
+        ],
+        [
+          19.979,
+          47.8205
+        ],
+        [
+          19.9748,
+          47.8215
+        ],
+        [
+          19.972,
+          47.8227
+        ],
+        [
+          19.9688,
+          47.8241
+        ],
+        [
+          19.9652,
+          47.8252
+        ],
+        [
+          19.9642,
+          47.8282
+        ],
+        [
+          19.9629,
+          47.8311
+        ]
+      ],
+      "sourceRoadNames": [
+        "Muzsla utca",
+        "Hegyalja utca",
+        "Árnyas utca",
+        "Kékesi utca",
+        "Akadémia utca",
+        "Parádi út",
+        "Pálosvörösmarti út",
+        "Bene-patak"
+      ],
+      "note": "Broad populated Mátrafüred footprint follows the actual villa/street grid, school/tourism compounds, Parádi út corridor and stream/woodland transition. Municipal2016ITS pp22–23 and28 identify the settlement and its tourism setting. Irregular outer garden/forest joins are hand-inferred; the long southeastern rural ribbon and full mountain forest are not copied into the town estimate."
+    },
+    {
+      "name": "Ipari park",
+      "ring": [
+        [
+          19.947,
+          47.7603
+        ],
+        [
+          19.9497,
+          47.7606
+        ],
+        [
+          19.9523,
+          47.7591
+        ],
+        [
+          19.9546,
+          47.756
+        ],
+        [
+          19.9547,
+          47.7533
+        ],
+        [
+          19.956,
+          47.7515
+        ],
+        [
+          19.9555,
+          47.7475
+        ],
+        [
+          19.951,
+          47.7466
+        ],
+        [
+          19.948,
+          47.748
+        ],
+        [
+          19.9484,
+          47.7515
+        ],
+        [
+          19.9467,
+          47.7533
+        ],
+        [
+          19.9475,
+          47.7562
+        ],
+        [
+          19.9459,
+          47.758
+        ]
+      ],
+      "sourceRoadNames": [
+        "Karácsondi út",
+        "Gábor Dénes utca",
+        "Csonka János utca",
+        "Kandó Kálmán utca",
+        "Jedlik Ányos utca",
+        "Külső-Mérges-patak"
+      ],
+      "note": "Broad actual industrial-compound and access-road corridor around Gábor Dénes/Kandó/Jedlik streets, constrained by Karácsondi út and the eastern canal/field transition. Source buildings and plots are retained as evidence, but adjoining industrial land is included so the estimate is usable for address matching. Fine property/company park membership and outer field joins remain uncertain."
+    }
+  ]
+}

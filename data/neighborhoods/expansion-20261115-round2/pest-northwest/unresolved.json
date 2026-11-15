@@ -1,0 +1,80 @@
+{
+  "remainingNames": [
+    {
+      "municipality": "Dabas",
+      "name": "Alsódabas"
+    },
+    {
+      "municipality": "Dabas",
+      "name": "Felsődabas"
+    },
+    {
+      "municipality": "Dabas",
+      "name": "Gyón"
+    },
+    {
+      "municipality": "Dabas",
+      "name": "Mántelek"
+    },
+    {
+      "municipality": "Dabas",
+      "name": "Páskom"
+    },
+    {
+      "municipality": "Dabas",
+      "name": "Sári"
+    },
+    {
+      "municipality": "Dabas",
+      "name": "Városközpont"
+    },
+    {
+      "municipality": "Dabas",
+      "name": "Öregországút"
+    },
+    {
+      "municipality": "Pomáz",
+      "name": "Csikóváralja"
+    },
+    {
+      "municipality": "Pomáz",
+      "name": "Dolinapuszta"
+    },
+    {
+      "municipality": "Pomáz",
+      "name": "Kiskovácsi"
+    },
+    {
+      "municipality": "Pomáz",
+      "name": "Orlovác"
+    },
+    {
+      "municipality": "Pomáz",
+      "name": "Szelistye"
+    },
+    {
+      "municipality": "Pomáz",
+      "name": "Vörösmarty-lakótelep"
+    }
+  ],
+  "remainingReason": "Optional towns were not completed in this frozen priority batch. Their actual road/surface context and name points are retained for a later evidence-based pass. No point-only geometry was substituted.",
+  "proposedAliases": [],
+  "issues": [
+    {
+      "scope": "all completed polygons",
+      "note": "Rough actual-street/map/text estimates with explicitly inferred outer transitions; not official, surveyed or address-classification boundaries."
+    },
+    {
+      "scope": "Piliscsaba municipal subdivision map",
+      "sourceUrl": "https://piliscsaba.hu/site/download?id=928",
+      "note": "Connector text evidence acquired. The downloadable PDF was requested centrally but is not part of this packet; its drawn boundary lines were not digitized."
+    },
+    {
+      "scope": "Szentendre municipal boundary annex",
+      "sourceUrl": "https://szentendre.hu/wp-content/uploads/2023/06/SZESZ-egyseges-2023.junius-13-tol-formazottfuggelekek.pdf",
+      "note": "Connector source acquired; estimates use preserved roads and cited public text rather than a claim to exact annex boundaries."
+    }
+  ],
+  "completeCityCoverageEstablished": false,
+  "nationalCoverageEstablished": false
+}

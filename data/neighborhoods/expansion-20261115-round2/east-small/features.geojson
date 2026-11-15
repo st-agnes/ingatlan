@@ -1,0 +1,6360 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Hosszúpályi:Dezső rész",
+      "properties": {
+        "name": "Dezső rész",
+        "municipality": "Hosszúpályi",
+        "municipalityId": "city:Hosszúpályi",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/9369892077",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/9369892077",
+          "https://hosszupalyi.hu/telepulesrendezesi-terv/",
+          "https://osm-gimmisn.vmiklos.hu/osm/streets/hosszupalyi/view-result",
+          "https://www.openstreetmap.org/way/198234151",
+          "https://www.openstreetmap.org/way/198234183",
+          "https://www.openstreetmap.org/way/474206878",
+          "https://www.openstreetmap.org/way/632863190"
+        ],
+        "approximationNote": "Actual forest tracks and watercourses close a broad rural map cell of about 0.706km² at this historical forest locality. The cell is a rough locality search area; the name association is inferred and not an official district border.",
+        "sourceBoundaryIds": [
+          "osm:way:198234151",
+          "osm:way:198234183",
+          "osm:way:474206878",
+          "osm:way:632863190"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Dezső rész",
+            "coordinates": [
+              21.7668542,
+              47.4288785
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9369892077"
+          }
+        ],
+        "approximateAreaSquareMetres": 706009.3,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.758658304705136,
+              47.42542340100325
+            ],
+            [
+              21.759014004705076,
+              47.42602390100323
+            ],
+            [
+              21.760545004704845,
+              47.428655201003046
+            ],
+            [
+              21.76104760470478,
+              47.429460701003016
+            ],
+            [
+              21.7621611047046,
+              47.43083640100289
+            ],
+            [
+              21.763104404704453,
+              47.43195580100279
+            ],
+            [
+              21.763607004704372,
+              47.43239000100277
+            ],
+            [
+              21.763823504704348,
+              47.43258350100274
+            ],
+            [
+              21.76399360470431,
+              47.43275610100271
+            ],
+            [
+              21.76404000470431,
+              47.4330020010027
+            ],
+            [
+              21.76453490470424,
+              47.43392250100267
+            ],
+            [
+              21.7654460047041,
+              47.43576800100259
+            ],
+            [
+              21.765689104704062,
+              47.43658110100252
+            ],
+            [
+              21.76578730470404,
+              47.43700380100252
+            ],
+            [
+              21.765890204704032,
+              47.43744660100249
+            ],
+            [
+              21.766150304703995,
+              47.43815200100248
+            ],
+            [
+              21.766937004703866,
+              47.437925001002405
+            ],
+            [
+              21.76813900470367,
+              47.43736500100233
+            ],
+            [
+              21.76972600470341,
+              47.43678500100221
+            ],
+            [
+              21.769787004703403,
+              47.43588300100222
+            ],
+            [
+              21.769787004703396,
+              47.4354160010022
+            ],
+            [
+              21.769429004703447,
+              47.43464500100223
+            ],
+            [
+              21.76935100470346,
+              47.43372900100227
+            ],
+            [
+              21.76847300470359,
+              47.43266700100236
+            ],
+            [
+              21.767389004703762,
+              47.430712001002455
+            ],
+            [
+              21.7670540047038,
+              47.42731300100254
+            ],
+            [
+              21.766009004703953,
+              47.42559200100266
+            ],
+            [
+              21.76499600470411,
+              47.42415700100276
+            ],
+            [
+              21.763728004704305,
+              47.42310100100291
+            ],
+            [
+              21.762325004704522,
+              47.421738001003014
+            ],
+            [
+              21.761379804704678,
+              47.42109160100311
+            ],
+            [
+              21.761335304704687,
+              47.42137380100311
+            ],
+            [
+              21.7612673047047,
+              47.42158270100313
+            ],
+            [
+              21.76111030470472,
+              47.4217862010031
+            ],
+            [
+              21.76040910470484,
+              47.42238810100318
+            ],
+            [
+              21.760270504704863,
+              47.42253140100318
+            ],
+            [
+              21.759982704704903,
+              47.423025301003186
+            ],
+            [
+              21.759778604704945,
+              47.423297901003245
+            ],
+            [
+              21.75944640470501,
+              47.42368730100322
+            ],
+            [
+              21.75874750470512,
+              47.42473350100328
+            ],
+            [
+              21.75855390470515,
+              47.42505920100328
+            ],
+            [
+              21.758508304705153,
+              47.4251364010033
+            ],
+            [
+              21.75855780470515,
+              47.42528210100327
+            ],
+            [
+              21.758658304705136,
+              47.42542340100325
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Hosszúpályi:Farkasgaz",
+      "properties": {
+        "name": "Farkasgaz",
+        "municipality": "Hosszúpályi",
+        "municipalityId": "city:Hosszúpályi",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/9350711184",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/9350711184",
+          "https://hosszupalyi.hu/telepulesrendezesi-terv/",
+          "https://osm-gimmisn.vmiklos.hu/osm/streets/hosszupalyi/view-result",
+          "https://www.openstreetmap.org/way/632863190",
+          "https://www.openstreetmap.org/way/1025831639",
+          "https://www.openstreetmap.org/way/1026072189"
+        ],
+        "approximationNote": "Actual rural track/watercourse cell around the Farkasgaz label and the independently named Farkasgaz tanya source farm. Includes the farm surroundings rather than only buildings; association with the whole cell is estimated. Source municipality boundary clips the outer estimate; this does not establish a surveyed quarter border.",
+        "sourceBoundaryIds": [
+          "osm:way:632863190",
+          "osm:way:1025831639",
+          "osm:way:1026072189"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Farkasgaz",
+            "coordinates": [
+              21.7467172,
+              47.4382995
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9350711184"
+          }
+        ],
+        "approximateAreaSquareMetres": 150433.8,
+        "pointRadiusFallback": false,
+        "municipalityClipped": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.745476004707314,
+              47.439206501004065
+            ],
+            [
+              21.746618002765626,
+              47.439558000406386
+            ],
+            [
+              21.748874,
+              47.4398895
+            ],
+            [
+              21.7499967,
+              47.4398632
+            ],
+            [
+              21.750509991501236,
+              47.43993688026627
+            ],
+            [
+              21.750331004706535,
+              47.438761301003716
+            ],
+            [
+              21.75004220470657,
+              47.437121401003765
+            ],
+            [
+              21.74918040470671,
+              47.43702530100385
+            ],
+            [
+              21.748233304706865,
+              47.436932401003915
+            ],
+            [
+              21.74735730470701,
+              47.43688120100401
+            ],
+            [
+              21.746737004707107,
+              47.43690680100403
+            ],
+            [
+              21.746003104707224,
+              47.43696770100407
+            ],
+            [
+              21.745193304707346,
+              47.43703170100418
+            ],
+            [
+              21.744696104707437,
+              47.43708940100417
+            ],
+            [
+              21.74460140470745,
+              47.43707340100419
+            ],
+            [
+              21.744568304707457,
+              47.43700610100418
+            ],
+            [
+              21.744530404707454,
+              47.436781901004196
+            ],
+            [
+              21.74442150470748,
+              47.436375101004245
+            ],
+            [
+              21.74438550470748,
+              47.436328401004246
+            ],
+            [
+              21.74369420470759,
+              47.43658800100429
+            ],
+            [
+              21.74321198352723,
+              47.43675198030232
+            ],
+            [
+              21.74325000470766,
+              47.43678920100432
+            ],
+            [
+              21.743330404707653,
+              47.436867801004304
+            ],
+            [
+              21.74338470470764,
+              47.43694410100426
+            ],
+            [
+              21.74342650470764,
+              47.4371505010043
+            ],
+            [
+              21.7436313148218,
+              47.439249711703745
+            ],
+            [
+              21.745476,
+              47.4392065
+            ],
+            [
+              21.745476003364384,
+              47.439206501035535
+            ],
+            [
+              21.745476004707314,
+              47.439206501004065
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Hosszúpályi:Homoktelep",
+      "properties": {
+        "name": "Homoktelep",
+        "municipality": "Hosszúpályi",
+        "municipalityId": "city:Hosszúpályi",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/9466733307",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/9466733307",
+          "https://hosszupalyi.hu/telepulesrendezesi-terv/",
+          "https://osm-gimmisn.vmiklos.hu/osm/streets/hosszupalyi/view-result",
+          "https://www.openstreetmap.org/way/169355526",
+          "https://www.openstreetmap.org/way/169355528",
+          "https://www.openstreetmap.org/way/169355535",
+          "https://www.openstreetmap.org/way/273631091",
+          "https://www.openstreetmap.org/way/999824178",
+          "https://www.openstreetmap.org/way/999824179",
+          "https://www.openstreetmap.org/way/999824182",
+          "https://www.openstreetmap.org/way/1013279083",
+          "https://www.openstreetmap.org/way/1013279123",
+          "https://www.openstreetmap.org/way/1014015446",
+          "https://www.openstreetmap.org/way/1014015447",
+          "https://www.openstreetmap.org/way/1016207099",
+          "https://www.openstreetmap.org/way/1016207100",
+          "https://www.openstreetmap.org/way/1016207102",
+          "https://www.openstreetmap.org/way/1016207106",
+          "https://www.openstreetmap.org/way/1026451795",
+          "https://www.openstreetmap.org/way/1026733623",
+          "https://www.openstreetmap.org/way/1175052150",
+          "https://www.openstreetmap.org/way/1175052153",
+          "https://www.openstreetmap.org/way/1186181547",
+          "https://www.openstreetmap.org/way/1349220397"
+        ],
+        "approximationNote": "Actual local roads, tracks and drainage lines delimit the eastern settlement-edge cell at Homoktelep. A rough whole-locality search area including residential and adjoining garden land; not an official quarter boundary. Source municipality boundary clips the outer estimate; this does not establish a surveyed quarter border.",
+        "sourceBoundaryIds": [
+          "osm:way:169355526",
+          "osm:way:169355528",
+          "osm:way:169355535",
+          "osm:way:273631091",
+          "osm:way:999824178",
+          "osm:way:999824179",
+          "osm:way:999824182",
+          "osm:way:1013279083",
+          "osm:way:1013279123",
+          "osm:way:1014015446",
+          "osm:way:1014015447",
+          "osm:way:1016207099",
+          "osm:way:1016207100",
+          "osm:way:1016207102",
+          "osm:way:1016207106",
+          "osm:way:1026451795",
+          "osm:way:1026733623",
+          "osm:way:1175052150",
+          "osm:way:1175052153",
+          "osm:way:1186181547",
+          "osm:way:1349220397"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Homoktelep",
+            "coordinates": [
+              21.7495553,
+              47.3979002
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9466733307"
+          }
+        ],
+        "approximateAreaSquareMetres": 254537.0,
+        "pointRadiusFallback": false,
+        "municipalityClipped": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.75491100470559,
+              47.395152201004024
+            ],
+            [
+              21.754823304705607,
+              47.39507700100402
+            ],
+            [
+              21.75474550470561,
+              47.39501020100407
+            ],
+            [
+              21.75437800470567,
+              47.39474470100408
+            ],
+            [
+              21.753252204705852,
+              47.39385540100421
+            ],
+            [
+              21.752691604705937,
+              47.39339610100424
+            ],
+            [
+              21.752616004705953,
+              47.39317100100428
+            ],
+            [
+              21.752602007459924,
+              47.39313130655092
+            ],
+            [
+              21.752500604705965,
+              47.39315550100427
+            ],
+            [
+              21.752427204705977,
+              47.39320680100426
+            ],
+            [
+              21.752282804705995,
+              47.39323720100431
+            ],
+            [
+              21.752138304706026,
+              47.39324530100429
+            ],
+            [
+              21.752031804706043,
+              47.39323400100432
+            ],
+            [
+              21.751922904706056,
+              47.393198801004274
+            ],
+            [
+              21.751809204706078,
+              47.3931892010043
+            ],
+            [
+              21.751681404706098,
+              47.393197201004334
+            ],
+            [
+              21.751604704706118,
+              47.393187301004346
+            ],
+            [
+              21.7516604047061,
+              47.39329040100433
+            ],
+            [
+              21.751693604706094,
+              47.39335290100433
+            ],
+            [
+              21.751750404706083,
+              47.39341060100433
+            ],
+            [
+              21.75188300470607,
+              47.39350190100429
+            ],
+            [
+              21.751965904706054,
+              47.39363500100431
+            ],
+            [
+              21.75198720470605,
+              47.3938658010043
+            ],
+            [
+              21.751984804706055,
+              47.39402280100428
+            ],
+            [
+              21.751909004706064,
+              47.39412700100427
+            ],
+            [
+              21.75179070470608,
+              47.39418150100431
+            ],
+            [
+              21.7516635047061,
+              47.394232101004334
+            ],
+            [
+              21.7516550047061,
+              47.394268701004314
+            ],
+            [
+              21.75154070470613,
+              47.39435480100432
+            ],
+            [
+              21.751410404706146,
+              47.39441420100434
+            ],
+            [
+              21.751231404706175,
+              47.39444110100435
+            ],
+            [
+              21.751042404706208,
+              47.394445501004384
+            ],
+            [
+              21.750617404706272,
+              47.394409901004416
+            ],
+            [
+              21.750186104706348,
+              47.39431440100446
+            ],
+            [
+              21.749970804706383,
+              47.39425750100444
+            ],
+            [
+              21.749741604706408,
+              47.39421020100447
+            ],
+            [
+              21.74954950470645,
+              47.394177001004486
+            ],
+            [
+              21.749241604706494,
+              47.39417210100453
+            ],
+            [
+              21.749104604706517,
+              47.394211601004535
+            ],
+            [
+              21.74881440470656,
+              47.394320801004525
+            ],
+            [
+              21.748740804706575,
+              47.394406801004585
+            ],
+            [
+              21.748573604706607,
+              47.39444300100459
+            ],
+            [
+              21.74817910470667,
+              47.3944114010046
+            ],
+            [
+              21.747530404706765,
+              47.39435700100464
+            ],
+            [
+              21.747430104706787,
+              47.39429820100463
+            ],
+            [
+              21.747390004706787,
+              47.39423480100464
+            ],
+            [
+              21.74730260470681,
+              47.39424260100469
+            ],
+            [
+              21.74710120470684,
+              47.39426860100466
+            ],
+            [
+              21.746965904706858,
+              47.3942683010047
+            ],
+            [
+              21.74685120470687,
+              47.3942428010047
+            ],
+            [
+              21.7467314047069,
+              47.394168801004724
+            ],
+            [
+              21.74661150470692,
+              47.39410560100471
+            ],
+            [
+              21.746534004706927,
+              47.39404010100472
+            ],
+            [
+              21.746288404706966,
+              47.39358070100474
+            ],
+            [
+              21.746191804706978,
+              47.393334401004765
+            ],
+            [
+              21.74616710470698,
+              47.39324920100474
+            ],
+            [
+              21.74618060470698,
+              47.39317170100478
+            ],
+            [
+              21.746310004706956,
+              47.39309240100474
+            ],
+            [
+              21.74809770470667,
+              47.392908501004634
+            ],
+            [
+              21.748214404706648,
+              47.39289580100466
+            ],
+            [
+              21.74822650470666,
+              47.39282380100462
+            ],
+            [
+              21.748190904706654,
+              47.39279520100462
+            ],
+            [
+              21.748171804706658,
+              47.392761801004596
+            ],
+            [
+              21.74816930470666,
+              47.39272610100461
+            ],
+            [
+              21.748065404706676,
+              47.39269560100458
+            ],
+            [
+              21.747610904706743,
+              47.39173990100469
+            ],
+            [
+              21.747314104706795,
+              47.39167870100471
+            ],
+            [
+              21.747075604706826,
+              47.39166350100473
+            ],
+            [
+              21.74674800470689,
+              47.39167710100473
+            ],
+            [
+              21.746271004706955,
+              47.39171480100478
+            ],
+            [
+              21.746043704706995,
+              47.391729301004816
+            ],
+            [
+              21.745987604707004,
+              47.391736401004806
+            ],
+            [
+              21.745858504707023,
+              47.391752601004846
+            ],
+            [
+              21.74557200470707,
+              47.39175930100483
+            ],
+            [
+              21.74528480470712,
+              47.391757901004844
+            ],
+            [
+              21.74509040470715,
+              47.39174880100488
+            ],
+            [
+              21.744871504707184,
+              47.391741401004914
+            ],
+            [
+              21.744913204707174,
+              47.391767101004916
+            ],
+            [
+              21.744989004707165,
+              47.39183000100486
+            ],
+            [
+              21.74546810470709,
+              47.393415801004814
+            ],
+            [
+              21.74557420470708,
+              47.393778501004796
+            ],
+            [
+              21.745661404707064,
+              47.39409220100481
+            ],
+            [
+              21.745698704707063,
+              47.39422710100479
+            ],
+            [
+              21.745757004707055,
+              47.39434290100478
+            ],
+            [
+              21.745854904707038,
+              47.394466101004774
+            ],
+            [
+              21.746037804707008,
+              47.39461530100479
+            ],
+            [
+              21.746413304706948,
+              47.394971701004735
+            ],
+            [
+              21.746770004706896,
+              47.395284901004665
+            ],
+            [
+              21.74702350470686,
+              47.395510001004666
+            ],
+            [
+              21.747069104706853,
+              47.39555310100465
+            ],
+            [
+              21.74712150470684,
+              47.395603501004665
+            ],
+            [
+              21.747129904706842,
+              47.395602601004654
+            ],
+            [
+              21.74826580470666,
+              47.39548270100459
+            ],
+            [
+              21.75076540470625,
+              47.395263601004366
+            ],
+            [
+              21.75089780470623,
+              47.39525380100437
+            ],
+            [
+              21.75114280470619,
+              47.39523580100433
+            ],
+            [
+              21.751273504706177,
+              47.395223501004324
+            ],
+            [
+              21.75148530470614,
+              47.395205901004346
+            ],
+            [
+              21.751662904706116,
+              47.395188801004316
+            ],
+            [
+              21.751530904706133,
+              47.39524450100433
+            ],
+            [
+              21.750979704706214,
+              47.395292601004364
+            ],
+            [
+              21.75090720470623,
+              47.39529950100435
+            ],
+            [
+              21.75101820470622,
+              47.39586630100435
+            ],
+            [
+              21.747691804706754,
+              47.396527901004596
+            ],
+            [
+              21.74762980470676,
+              47.396540201004605
+            ],
+            [
+              21.747919904706713,
+              47.39706900100456
+            ],
+            [
+              21.748186004706678,
+              47.39741920100453
+            ],
+            [
+              21.748961704706563,
+              47.39859540100446
+            ],
+            [
+              21.74952060470647,
+              47.39841460100442
+            ],
+            [
+              21.750273804706346,
+              47.39816550100435
+            ],
+            [
+              21.75038530470633,
+              47.39811490100435
+            ],
+            [
+              21.750502304706323,
+              47.3980383010044
+            ],
+            [
+              21.750740204706275,
+              47.39794860100436
+            ],
+            [
+              21.750939104706237,
+              47.39790110100429
+            ],
+            [
+              21.751141904706206,
+              47.39788260100433
+            ],
+            [
+              21.751200704706196,
+              47.3978978010043
+            ],
+            [
+              21.75127450470618,
+              47.39791690100431
+            ],
+            [
+              21.751368104706174,
+              47.397869401004286
+            ],
+            [
+              21.751617704706128,
+              47.39781130100424
+            ],
+            [
+              21.75202320470606,
+              47.39778490100425
+            ],
+            [
+              21.752327604706018,
+              47.397745401004215
+            ],
+            [
+              21.75259490470597,
+              47.39770120100419
+            ],
+            [
+              21.752864304705934,
+              47.39766270100413
+            ],
+            [
+              21.75316860470588,
+              47.39763970100415
+            ],
+            [
+              21.75344260470583,
+              47.39761090100411
+            ],
+            [
+              21.753748104705785,
+              47.39757840100408
+            ],
+            [
+              21.754099204705728,
+              47.397551001004075
+            ],
+            [
+              21.754410804705678,
+              47.39754340100406
+            ],
+            [
+              21.754843404705614,
+              47.39752310100403
+            ],
+            [
+              21.755041904705575,
+              47.397518601003945
+            ],
+            [
+              21.755139113703525,
+              47.397587372837386
+            ],
+            [
+              21.755019565249505,
+              47.39524535192227
+            ],
+            [
+              21.75491100470559,
+              47.395152201004024
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Hosszúpályi:Hosszúgaz",
+      "properties": {
+        "name": "Hosszúgaz",
+        "municipality": "Hosszúpályi",
+        "municipalityId": "city:Hosszúpályi",
+        "method": "source_footprint_locality_association_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 20,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": true,
+        "sourceUrl": "https://www.openstreetmap.org/way/1026072197",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/9350711183",
+          "https://hosszupalyi.hu/telepulesrendezesi-terv/",
+          "https://osm-gimmisn.vmiklos.hu/osm/streets/hosszupalyi/view-result",
+          "https://www.openstreetmap.org/way/1026072197"
+        ],
+        "approximationNote": "Unchanged whole source polygon explicitly named Hosszúgaz tanya. Associated with the nearby Hosszúgaz locality label; this is the farmstead parcel itself and is not a claim to all surrounding historical fields. It is a source map polygon, not a building union or radius.",
+        "sourceBoundaryIds": [
+          "osm:way:1026072197"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Hosszúgaz",
+            "coordinates": [
+              21.7590052,
+              47.4370492
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9350711183"
+          }
+        ],
+        "approximateAreaSquareMetres": 9088.6,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false,
+        "sourceAreaTags": {
+          "landuse": "farmyard",
+          "name": "Hosszúgaz tanya"
+        }
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                21.7562237,
+                47.4365981
+              ],
+              [
+                21.7563411,
+                47.4361972
+              ],
+              [
+                21.7567529,
+                47.436039
+              ],
+              [
+                21.7573329,
+                47.4360087
+              ],
+              [
+                21.7575351,
+                47.4362845
+              ],
+              [
+                21.7573515,
+                47.4363292
+              ],
+              [
+                21.7575437,
+                47.4368736
+              ],
+              [
+                21.7564859,
+                47.4371233
+              ],
+              [
+                21.7562237,
+                47.4365981
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Hosszúpályi:Molnárkút",
+      "properties": {
+        "name": "Molnárkút",
+        "municipality": "Hosszúpályi",
+        "municipalityId": "city:Hosszúpályi",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/9350559293",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/9350559293",
+          "https://hosszupalyi.hu/telepulesrendezesi-terv/",
+          "https://osm-gimmisn.vmiklos.hu/osm/streets/hosszupalyi/view-result",
+          "https://www.openstreetmap.org/way/100779319",
+          "https://www.openstreetmap.org/way/169351769",
+          "https://www.openstreetmap.org/way/169353045",
+          "https://www.openstreetmap.org/way/169354117",
+          "https://www.openstreetmap.org/way/169354121",
+          "https://www.openstreetmap.org/way/273626009",
+          "https://www.openstreetmap.org/way/273631576",
+          "https://www.openstreetmap.org/way/273631577",
+          "https://www.openstreetmap.org/way/999858576",
+          "https://www.openstreetmap.org/way/1027397045",
+          "https://www.openstreetmap.org/way/1027426305",
+          "https://www.openstreetmap.org/way/1119573490"
+        ],
+        "approximationNote": "Actual street/watercourse cell around Molnárkút utca on the western settlement edge. Estimated local area; the point labels the map cell rather than creating its outline.",
+        "sourceBoundaryIds": [
+          "osm:way:100779319",
+          "osm:way:169351769",
+          "osm:way:169353045",
+          "osm:way:169354117",
+          "osm:way:169354121",
+          "osm:way:273626009",
+          "osm:way:273631576",
+          "osm:way:273631577",
+          "osm:way:999858576",
+          "osm:way:1027397045",
+          "osm:way:1027426305",
+          "osm:way:1119573490"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Molnárkút",
+            "coordinates": [
+              21.7096447,
+              47.3988954
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9350559293"
+          }
+        ],
+        "approximateAreaSquareMetres": 408283.2,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.725220204710375,
+              47.39973900100632
+            ],
+            [
+              21.725322104710354,
+              47.39969110100633
+            ],
+            [
+              21.725421804710333,
+              47.39964050100633
+            ],
+            [
+              21.7256482047103,
+              47.39950420100632
+            ],
+            [
+              21.7256855047103,
+              47.399481701006316
+            ],
+            [
+              21.725801404710275,
+              47.39940320100631
+            ],
+            [
+              21.725906604710257,
+              47.39932290100628
+            ],
+            [
+              21.725965504710246,
+              47.3992768010063
+            ],
+            [
+              21.72605900471024,
+              47.39920350100627
+            ],
+            [
+              21.726262404710205,
+              47.39901600100627
+            ],
+            [
+              21.726273404042,
+              47.39900585978683
+            ],
+            [
+              21.726202304710213,
+              47.39897250100633
+            ],
+            [
+              21.72617350471022,
+              47.39895970100626
+            ],
+            [
+              21.7261638204693,
+              47.39895546415186
+            ],
+            [
+              21.72615110471022,
+              47.398949901006304
+            ],
+            [
+              21.725734404710284,
+              47.398763101006324
+            ],
+            [
+              21.7256339047103,
+              47.39867570100632
+            ],
+            [
+              21.72559310471031,
+              47.39862210100632
+            ],
+            [
+              21.725557404710315,
+              47.398557601006345
+            ],
+            [
+              21.72553200471032,
+              47.39850000100632
+            ],
+            [
+              21.725528604710316,
+              47.398422501006344
+            ],
+            [
+              21.725555004710316,
+              47.39824360100637
+            ],
+            [
+              21.725690604710294,
+              47.39782060100633
+            ],
+            [
+              21.725692004710293,
+              47.397815801006345
+            ],
+            [
+              21.72569624749898,
+              47.39780129115114
+            ],
+            [
+              21.724015304710555,
+              47.397232101006466
+            ],
+            [
+              21.72403530471055,
+              47.397305301006455
+            ],
+            [
+              21.724317804710513,
+              47.398395901006396
+            ],
+            [
+              21.724252604710518,
+              47.398408001006466
+            ],
+            [
+              21.722963204710727,
+              47.39845140100653
+            ],
+            [
+              21.72162390471095,
+              47.39847940100663
+            ],
+            [
+              21.72139540471098,
+              47.39847590100665
+            ],
+            [
+              21.72119000471102,
+              47.39844740100671
+            ],
+            [
+              21.719675004711252,
+              47.39828650100679
+            ],
+            [
+              21.718268104711488,
+              47.398153501006895
+            ],
+            [
+              21.718056004711514,
+              47.398118501006934
+            ],
+            [
+              21.716630704711744,
+              47.39772620100709
+            ],
+            [
+              21.71634740471179,
+              47.3976412010071
+            ],
+            [
+              21.716239604711802,
+              47.39761020100711
+            ],
+            [
+              21.71486040471202,
+              47.39719100100723
+            ],
+            [
+              21.71174630471252,
+              47.39634770100748
+            ],
+            [
+              21.711679404712537,
+              47.39631750100749
+            ],
+            [
+              21.71166260471253,
+              47.39625940100746
+            ],
+            [
+              21.71139260471257,
+              47.39507000100752
+            ],
+            [
+              21.71138370471257,
+              47.39503070100752
+            ],
+            [
+              21.711375704712566,
+              47.39499550100751
+            ],
+            [
+              21.70957320471286,
+              47.39521110100768
+            ],
+            [
+              21.709599804712855,
+              47.39529540100768
+            ],
+            [
+              21.709757704712835,
+              47.39585020100761
+            ],
+            [
+              21.709876404712816,
+              47.396267201007625
+            ],
+            [
+              21.70993900471281,
+              47.39651620100764
+            ],
+            [
+              21.70994200471281,
+              47.39667920100764
+            ],
+            [
+              21.709920604712813,
+              47.39678790100762
+            ],
+            [
+              21.709840304712834,
+              47.39695210100765
+            ],
+            [
+              21.7094492047129,
+              47.397791701007655
+            ],
+            [
+              21.70923650471293,
+              47.398196301007644
+            ],
+            [
+              21.709007804712964,
+              47.39866460100765
+            ],
+            [
+              21.708655704713028,
+              47.39934220100767
+            ],
+            [
+              21.70827580471309,
+              47.40008340100764
+            ],
+            [
+              21.7082438100307,
+              47.400158339158814
+            ],
+            [
+              21.708344604713087,
+              47.400202901007674
+            ],
+            [
+              21.710135504712802,
+              47.40112970100752
+            ],
+            [
+              21.710209995691024,
+              47.40116825849029
+            ],
+            [
+              21.710288704712777,
+              47.40116640100751
+            ],
+            [
+              21.7101343047128,
+              47.4010414010075
+            ],
+            [
+              21.710129804712796,
+              47.40017930100757
+            ],
+            [
+              21.710598804712713,
+              47.4001778010075
+            ],
+            [
+              21.710609604712722,
+              47.40103640100747
+            ],
+            [
+              21.710610704712725,
+              47.401167201007524
+            ],
+            [
+              21.71070610471271,
+              47.401169301007464
+            ],
+            [
+              21.710848404712685,
+              47.40117430100746
+            ],
+            [
+              21.710982704712663,
+              47.40119030100743
+            ],
+            [
+              21.71114980471264,
+              47.401230901007466
+            ],
+            [
+              21.71152820471258,
+              47.4013171010074
+            ],
+            [
+              21.711893704712526,
+              47.40140990100732
+            ],
+            [
+              21.71190810471252,
+              47.40110670100739
+            ],
+            [
+              21.711905304712513,
+              47.40076470100738
+            ],
+            [
+              21.711874604712524,
+              47.400436301007396
+            ],
+            [
+              21.71188020471252,
+              47.400373901007406
+            ],
+            [
+              21.71189420471251,
+              47.400315401007354
+            ],
+            [
+              21.7119389047125,
+              47.40027770100742
+            ],
+            [
+              21.711991704712503,
+              47.40025140100739
+            ],
+            [
+              21.712033704712496,
+              47.40023890100738
+            ],
+            [
+              21.712136804712475,
+              47.40022620100737
+            ],
+            [
+              21.71295640471234,
+              47.40017900100732
+            ],
+            [
+              21.71392240471219,
+              47.40013670100724
+            ],
+            [
+              21.714788304712048,
+              47.40009430100719
+            ],
+            [
+              21.715534004711927,
+              47.40004920100712
+            ],
+            [
+              21.716416904711785,
+              47.40000300100705
+            ],
+            [
+              21.716744804711738,
+              47.39998910100703
+            ],
+            [
+              21.716998804711693,
+              47.399974801007005
+            ],
+            [
+              21.717057904711684,
+              47.399979401006966
+            ],
+            [
+              21.71712940471167,
+              47.39999570100699
+            ],
+            [
+              21.717186204711663,
+              47.400028501006986
+            ],
+            [
+              21.717219704711663,
+              47.400092701006976
+            ],
+            [
+              21.717312804711636,
+              47.40057270100694
+            ],
+            [
+              21.71742390471163,
+              47.40056430100694
+            ],
+            [
+              21.718928004711383,
+              47.40046110100679
+            ],
+            [
+              21.719432304711304,
+              47.400436601006795
+            ],
+            [
+              21.72140180471099,
+              47.40030800100665
+            ],
+            [
+              21.722520704710806,
+              47.40023480100653
+            ],
+            [
+              21.72289270471075,
+              47.400205101006534
+            ],
+            [
+              21.72300890471073,
+              47.400207501006506
+            ],
+            [
+              21.723081104710715,
+              47.400215101006495
+            ],
+            [
+              21.72313670471071,
+              47.400228001006504
+            ],
+            [
+              21.723165404710702,
+              47.4002353010065
+            ],
+            [
+              21.723237804710696,
+              47.400257801006504
+            ],
+            [
+              21.72331490471068,
+              47.400285401006506
+            ],
+            [
+              21.72337580471067,
+              47.400315101006456
+            ],
+            [
+              21.723429904710663,
+              47.400348001006456
+            ],
+            [
+              21.723463204710665,
+              47.40037170100649
+            ],
+            [
+              21.723518604710645,
+              47.400434201006476
+            ],
+            [
+              21.724197004710536,
+              47.40015880100641
+            ],
+            [
+              21.72516510471038,
+              47.399759801006375
+            ],
+            [
+              21.725220204710375,
+              47.39973900100632
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Hosszúpályi:Szalmás",
+      "properties": {
+        "name": "Szalmás",
+        "municipality": "Hosszúpályi",
+        "municipalityId": "city:Hosszúpályi",
+        "method": "source_footprint_locality_association_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 20,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": true,
+        "sourceUrl": "https://www.openstreetmap.org/way/521950385",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/9352904151",
+          "https://hosszupalyi.hu/telepulesrendezesi-terv/",
+          "https://osm-gimmisn.vmiklos.hu/osm/streets/hosszupalyi/view-result",
+          "https://www.openstreetmap.org/way/521950385"
+        ],
+        "approximationNote": "Unchanged whole source polygon explicitly named Szalmás tanya, at the end of its named access road. Associated with the nearby Szalmás locality label. The mapped farmstead area is retained; wider agricultural extent is not established.",
+        "sourceBoundaryIds": [
+          "osm:way:521950385"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Szalmás",
+            "coordinates": [
+              21.7381617,
+              47.3528676
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9352904151"
+          }
+        ],
+        "approximateAreaSquareMetres": 87859.1,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false,
+        "sourceAreaTags": {
+          "landuse": "farmyard",
+          "name": "Szalmás tanya"
+        }
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                21.7282685,
+                47.3534176
+              ],
+              [
+                21.7283224,
+                47.3527349
+              ],
+              [
+                21.7291224,
+                47.3527766
+              ],
+              [
+                21.7293762,
+                47.3525889
+              ],
+              [
+                21.7298454,
+                47.3524899
+              ],
+              [
+                21.7299685,
+                47.3518072
+              ],
+              [
+                21.7301762,
+                47.3515466
+              ],
+              [
+                21.7303224,
+                47.3511297
+              ],
+              [
+                21.7324301,
+                47.3511766
+              ],
+              [
+                21.7338147,
+                47.3509994
+              ],
+              [
+                21.7339762,
+                47.3520313
+              ],
+              [
+                21.7331685,
+                47.3521095
+              ],
+              [
+                21.7329762,
+                47.353798
+              ],
+              [
+                21.7303839,
+                47.3535166
+              ],
+              [
+                21.7301531,
+                47.35397
+              ],
+              [
+                21.7297224,
+                47.353897
+              ],
+              [
+                21.7286762,
+                47.3538084
+              ],
+              [
+                21.7287531,
+                47.3534436
+              ],
+              [
+                21.7282685,
+                47.3534176
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Hosszúpályi:Szőlőskertek",
+      "properties": {
+        "name": "Szőlőskertek",
+        "municipality": "Hosszúpályi",
+        "municipalityId": "city:Hosszúpályi",
+        "method": "manual_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/9369866320",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/9369866320",
+          "https://hosszupalyi.hu/telepulesrendezesi-terv/",
+          "https://osm-gimmisn.vmiklos.hu/osm/streets/hosszupalyi/view-result",
+          "https://www.openstreetmap.org/way/474207084",
+          "https://www.openstreetmap.org/way/607381431",
+          "https://www.openstreetmap.org/way/1013077061",
+          "https://www.openstreetmap.org/way/1013077103",
+          "https://www.openstreetmap.org/way/1013077105",
+          "https://www.openstreetmap.org/way/1013077106",
+          "https://www.openstreetmap.org/way/1015241625",
+          "https://www.openstreetmap.org/way/1015241631",
+          "https://www.openstreetmap.org/way/1015241635",
+          "https://www.openstreetmap.org/way/1015241639",
+          "https://www.openstreetmap.org/way/1015241640",
+          "https://www.openstreetmap.org/way/1015241641",
+          "https://www.openstreetmap.org/way/1015241642",
+          "https://www.openstreetmap.org/way/1025836682",
+          "https://www.openstreetmap.org/way/1026087148",
+          "https://www.openstreetmap.org/way/1026087149",
+          "https://www.openstreetmap.org/way/1026087954",
+          "https://www.openstreetmap.org/way/1026087955",
+          "https://www.openstreetmap.org/way/1186182271"
+        ],
+        "approximationNote": "Rough manual outline of the contiguous garden/access-road fabric north of Hosszúpályi, guided by actual garden tracks, field/forest transitions and the Tence channel. Includes the wider Szőlőskertek area and can overlap the smaller Vénkert locality. Outer northern/eastern garden transitions are estimated, not a printed named-quarter border.",
+        "sourceBoundaryIds": [
+          "osm:way:474207084",
+          "osm:way:607381431",
+          "osm:way:1013077061",
+          "osm:way:1013077103",
+          "osm:way:1013077105",
+          "osm:way:1013077106",
+          "osm:way:1015241625",
+          "osm:way:1015241631",
+          "osm:way:1015241635",
+          "osm:way:1015241639",
+          "osm:way:1015241640",
+          "osm:way:1015241641",
+          "osm:way:1015241642",
+          "osm:way:1025836682",
+          "osm:way:1026087148",
+          "osm:way:1026087149",
+          "osm:way:1026087954",
+          "osm:way:1026087955",
+          "osm:way:1186182271"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Szőlőskertek",
+            "coordinates": [
+              21.7467991,
+              47.4070939
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9369866320"
+          }
+        ],
+        "approximateAreaSquareMetres": 1684652.4,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.735,
+              47.4032
+            ],
+            [
+              21.7391,
+              47.4129
+            ],
+            [
+              21.7418,
+              47.4157
+            ],
+            [
+              21.7519,
+              47.4166
+            ],
+            [
+              21.753,
+              47.4119
+            ],
+            [
+              21.7504,
+              47.4075
+            ],
+            [
+              21.7512,
+              47.4024
+            ],
+            [
+              21.745,
+              47.4008
+            ],
+            [
+              21.7387,
+              47.402
+            ],
+            [
+              21.735,
+              47.4032
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Hosszúpályi:Vénkert",
+      "properties": {
+        "name": "Vénkert",
+        "municipality": "Hosszúpályi",
+        "municipalityId": "city:Hosszúpályi",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/9350711177",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/9350711177",
+          "https://hosszupalyi.hu/telepulesrendezesi-terv/",
+          "https://osm-gimmisn.vmiklos.hu/osm/streets/hosszupalyi/view-result",
+          "https://www.openstreetmap.org/way/169353018",
+          "https://www.openstreetmap.org/way/607381431",
+          "https://www.openstreetmap.org/way/1013077045",
+          "https://www.openstreetmap.org/way/1013077056",
+          "https://www.openstreetmap.org/way/1025836682",
+          "https://www.openstreetmap.org/way/1029659092",
+          "https://www.openstreetmap.org/way/1320384845",
+          "https://www.openstreetmap.org/way/1320384847"
+        ],
+        "approximationNote": "Actual garden access roads and drainage lines enclose this Vénkert garden-area cell north of the village. A low-confidence local search area, potentially only part of the wider historical garden name.",
+        "sourceBoundaryIds": [
+          "osm:way:169353018",
+          "osm:way:607381431",
+          "osm:way:1013077045",
+          "osm:way:1013077056",
+          "osm:way:1025836682",
+          "osm:way:1029659092",
+          "osm:way:1320384845",
+          "osm:way:1320384847"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Vénkert",
+            "coordinates": [
+              21.7425355,
+              47.4035779
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9350711177"
+          }
+        ],
+        "approximateAreaSquareMetres": 174984.4,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.743573504707424,
+              47.40033130100492
+            ],
+            [
+              21.743537704707435,
+              47.40036750100488
+            ],
+            [
+              21.743495904707444,
+              47.40042340100489
+            ],
+            [
+              21.743403404707465,
+              47.400498501004854
+            ],
+            [
+              21.743343304707462,
+              47.400535801004864
+            ],
+            [
+              21.74328430470748,
+              47.400572501004895
+            ],
+            [
+              21.74280630470756,
+              47.40078710100491
+            ],
+            [
+              21.742496004707604,
+              47.400908001004936
+            ],
+            [
+              21.742223904707647,
+              47.40105010100496
+            ],
+            [
+              21.741972804707693,
+              47.40117850100497
+            ],
+            [
+              21.74163800470774,
+              47.40124270100502
+            ],
+            [
+              21.74139330470778,
+              47.40130920100504
+            ],
+            [
+              21.741178204707822,
+              47.40138000100506
+            ],
+            [
+              21.74107430470783,
+              47.40140380100506
+            ],
+            [
+              21.74091820470786,
+              47.40140740100504
+            ],
+            [
+              21.74018740470798,
+              47.40136360100511
+            ],
+            [
+              21.740024304708008,
+              47.401330301005096
+            ],
+            [
+              21.740144304707986,
+              47.401784901005136
+            ],
+            [
+              21.740194304707984,
+              47.401939001005104
+            ],
+            [
+              21.74024120470797,
+              47.40207780100512
+            ],
+            [
+              21.74025970470797,
+              47.402135601005114
+            ],
+            [
+              21.74042460470795,
+              47.40226310100509
+            ],
+            [
+              21.740495804707937,
+              47.40236650100509
+            ],
+            [
+              21.740513104707933,
+              47.40239820100506
+            ],
+            [
+              21.740523904707935,
+              47.40243100100511
+            ],
+            [
+              21.740574904707923,
+              47.40269600100507
+            ],
+            [
+              21.740607104707927,
+              47.402861201005074
+            ],
+            [
+              21.740649904707915,
+              47.40299470100507
+            ],
+            [
+              21.740759904707904,
+              47.40344300100502
+            ],
+            [
+              21.740858104707883,
+              47.403740301004994
+            ],
+            [
+              21.74068100470791,
+              47.40375950100507
+            ],
+            [
+              21.740729404707903,
+              47.40395190100504
+            ],
+            [
+              21.740878104707885,
+              47.40454970100506
+            ],
+            [
+              21.74102990470786,
+              47.405338501005
+            ],
+            [
+              21.741193804707844,
+              47.40601840100494
+            ],
+            [
+              21.741302104707827,
+              47.406354601004935
+            ],
+            [
+              21.74137550470781,
+              47.40642290100494
+            ],
+            [
+              21.741443004707804,
+              47.40646520100493
+            ],
+            [
+              21.74156670470778,
+              47.40648510100493
+            ],
+            [
+              21.741619904707772,
+              47.406493101004905
+            ],
+            [
+              21.74175800470775,
+              47.40633600100492
+            ],
+            [
+              21.741843104707737,
+              47.4062975010049
+            ],
+            [
+              21.742003404707713,
+              47.406164201004906
+            ],
+            [
+              21.74226790470767,
+              47.40599950100485
+            ],
+            [
+              21.74249050470763,
+              47.405767101004905
+            ],
+            [
+              21.742760304707584,
+              47.405685501004854
+            ],
+            [
+              21.742938504707556,
+              47.40568640100482
+            ],
+            [
+              21.74311490470753,
+              47.40575820100487
+            ],
+            [
+              21.7433025047075,
+              47.406292701004794
+            ],
+            [
+              21.743560504707464,
+              47.406306701004816
+            ],
+            [
+              21.74383430470742,
+              47.40632320100476
+            ],
+            [
+              21.744056804707384,
+              47.40634550100471
+            ],
+            [
+              21.744591604707296,
+              47.40641660100471
+            ],
+            [
+              21.745015604707227,
+              47.406476901004666
+            ],
+            [
+              21.745205704707203,
+              47.406493601004634
+            ],
+            [
+              21.745499404707154,
+              47.40650010100462
+            ],
+            [
+              21.74535780470717,
+              47.406106601004645
+            ],
+            [
+              21.74527870470719,
+              47.40587330100464
+            ],
+            [
+              21.74519970470719,
+              47.40562650100465
+            ],
+            [
+              21.74506440470722,
+              47.40517340100467
+            ],
+            [
+              21.74501710470722,
+              47.40482870100466
+            ],
+            [
+              21.74498570470723,
+              47.4046923010047
+            ],
+            [
+              21.744893304707244,
+              47.40442300100469
+            ],
+            [
+              21.744855404707245,
+              47.4042406010047
+            ],
+            [
+              21.744836004707242,
+              47.40415470100469
+            ],
+            [
+              21.74468510470727,
+              47.40367250100473
+            ],
+            [
+              21.744632704707286,
+              47.40354780100472
+            ],
+            [
+              21.74459440470729,
+              47.403421601004744
+            ],
+            [
+              21.744576704707285,
+              47.40324570100476
+            ],
+            [
+              21.74454780470729,
+              47.403048601004734
+            ],
+            [
+              21.744510504707296,
+              47.40286470100475
+            ],
+            [
+              21.744467704707304,
+              47.40256160100481
+            ],
+            [
+              21.7444632047073,
+              47.40241720100478
+            ],
+            [
+              21.7444215047073,
+              47.402138401004784
+            ],
+            [
+              21.74439070470731,
+              47.401893201004775
+            ],
+            [
+              21.74433610470732,
+              47.4017443010048
+            ],
+            [
+              21.744178604707347,
+              47.40143060100482
+            ],
+            [
+              21.74401720470736,
+              47.40121240100482
+            ],
+            [
+              21.74394780470738,
+              47.40110820100485
+            ],
+            [
+              21.74377220470741,
+              47.400751601004856
+            ],
+            [
+              21.743695904707405,
+              47.400621101004845
+            ],
+            [
+              21.743635804707427,
+              47.400488801004876
+            ],
+            [
+              21.743608504707428,
+              47.400403501004895
+            ],
+            [
+              21.743573504707424,
+              47.40033130100492
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Monostorpályi:Csonkás",
+      "properties": {
+        "name": "Csonkás",
+        "municipality": "Monostorpályi",
+        "municipalityId": "city:Monostorpályi",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/9331464690",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/9331464690",
+          "https://monostorpalyi.hu/szabalyzatok-koncepciok",
+          "https://utcak-magyarorszag.openalfa.com/monostorpalyi",
+          "https://www.openstreetmap.org/way/274050520",
+          "https://www.openstreetmap.org/way/1016194772",
+          "https://www.openstreetmap.org/way/1016194801",
+          "https://www.openstreetmap.org/way/1016195235",
+          "https://www.openstreetmap.org/way/1017301391",
+          "https://www.openstreetmap.org/way/1030855782"
+        ],
+        "approximationNote": "Actual rural tracks and drainage enclose this cell at Csonkás, beside the separately named Csonkás tanya source farm. It includes the farm setting and surrounding plots, not only farm buildings; name-to-cell association is approximate.",
+        "sourceBoundaryIds": [
+          "osm:way:274050520",
+          "osm:way:1016194772",
+          "osm:way:1016194801",
+          "osm:way:1016195235",
+          "osm:way:1017301391",
+          "osm:way:1030855782"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Csonkás",
+            "coordinates": [
+              21.7902946,
+              47.3954757
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9331464690"
+          }
+        ],
+        "approximateAreaSquareMetres": 95165.5,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.7884561047002,
+              47.39419860100141
+            ],
+            [
+              21.788193404700245,
+              47.394565801001384
+            ],
+            [
+              21.78630000470056,
+              47.39712910100153
+            ],
+            [
+              21.786264786046672,
+              47.39715016416524
+            ],
+            [
+              21.78633460470055,
+              47.3971794010015
+            ],
+            [
+              21.786370704700545,
+              47.397194501001486
+            ],
+            [
+              21.788567604700194,
+              47.39772420100132
+            ],
+            [
+              21.788744904700174,
+              47.3977105010013
+            ],
+            [
+              21.78877390470016,
+              47.39771510100131
+            ],
+            [
+              21.78884283311415,
+              47.39772605943259
+            ],
+            [
+              21.789076504700116,
+              47.39752690100125
+            ],
+            [
+              21.7891595047001,
+              47.397390401001275
+            ],
+            [
+              21.78929000470008,
+              47.39731280100126
+            ],
+            [
+              21.789468004700048,
+              47.39724320100124
+            ],
+            [
+              21.78975270470001,
+              47.39716560100124
+            ],
+            [
+              21.790049204699955,
+              47.397104001001225
+            ],
+            [
+              21.79056330469988,
+              47.396978201001225
+            ],
+            [
+              21.79145300469973,
+              47.39677480100116
+            ],
+            [
+              21.791740104699684,
+              47.39673550100105
+            ],
+            [
+              21.791776004699674,
+              47.396677901001034
+            ],
+            [
+              21.791856604699667,
+              47.396638501001064
+            ],
+            [
+              21.792022304699636,
+              47.396565701001066
+            ],
+            [
+              21.792129904699614,
+              47.39648990100105
+            ],
+            [
+              21.792250804699595,
+              47.396353401001065
+            ],
+            [
+              21.792488204699563,
+              47.39592280100098
+            ],
+            [
+              21.79259860469954,
+              47.395715201001046
+            ],
+            [
+              21.7922640046996,
+              47.395608801001046
+            ],
+            [
+              21.79169070469968,
+              47.3954108010011
+            ],
+            [
+              21.79138650469973,
+              47.395368601001124
+            ],
+            [
+              21.79115250469977,
+              47.395379101001126
+            ],
+            [
+              21.79085610469982,
+              47.39534480100117
+            ],
+            [
+              21.790399904699893,
+              47.39524710100121
+            ],
+            [
+              21.789990404699957,
+              47.39516000100123
+            ],
+            [
+              21.789608204700013,
+              47.3950148010013
+            ],
+            [
+              21.78926500470007,
+              47.39484060100129
+            ],
+            [
+              21.7891051047001,
+              47.39476140100135
+            ],
+            [
+              21.788793104700137,
+              47.394544901001346
+            ],
+            [
+              21.78862150470017,
+              47.39434430100137
+            ],
+            [
+              21.78853960470019,
+              47.394225501001365
+            ],
+            [
+              21.7884561047002,
+              47.39419860100141
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Monostorpályi:Gugyori",
+      "properties": {
+        "name": "Gugyori",
+        "municipality": "Monostorpályi",
+        "municipalityId": "city:Monostorpályi",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/9331464691",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/9331464691",
+          "https://monostorpalyi.hu/szabalyzatok-koncepciok",
+          "https://utcak-magyarorszag.openalfa.com/monostorpalyi",
+          "https://www.openstreetmap.org/way/993389392",
+          "https://www.openstreetmap.org/way/993389396",
+          "https://www.openstreetmap.org/way/993411762",
+          "https://www.openstreetmap.org/way/1013267551",
+          "https://www.openstreetmap.org/way/1016205573",
+          "https://www.openstreetmap.org/way/1026451797",
+          "https://www.openstreetmap.org/way/1026733627",
+          "https://www.openstreetmap.org/way/1030853947"
+        ],
+        "approximationNote": "Broad actual track/road/watercourse cell west of Monostorpályi around the Gugyori label, including the rural settlement setting and adjoining fields. It is an estimated locality area, not an official administrative quarter.",
+        "sourceBoundaryIds": [
+          "osm:way:993389392",
+          "osm:way:993389396",
+          "osm:way:993411762",
+          "osm:way:1013267551",
+          "osm:way:1016205573",
+          "osm:way:1026451797",
+          "osm:way:1026733627",
+          "osm:way:1030853947"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Gugyori",
+            "coordinates": [
+              21.761903,
+              47.3997929
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9331464691"
+          }
+        ],
+        "approximateAreaSquareMetres": 649793.0,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.755682076255948,
+              47.392951610431076
+            ],
+            [
+              21.754957404705575,
+              47.39402750100405
+            ],
+            [
+              21.755019565979804,
+              47.395245352548905
+            ],
+            [
+              21.755528104705487,
+              47.39568170100398
+            ],
+            [
+              21.756943004705274,
+              47.39723100100384
+            ],
+            [
+              21.75675460346899,
+              47.3978870816173
+            ],
+            [
+              21.756435004705367,
+              47.39900000100386
+            ],
+            [
+              21.75535700470555,
+              47.40115600100388
+            ],
+            [
+              21.755144104705582,
+              47.401588901003926
+            ],
+            [
+              21.75510620470559,
+              47.40166430100392
+            ],
+            [
+              21.75507482432973,
+              47.40172327221176
+            ],
+            [
+              21.755135804705585,
+              47.40172520100391
+            ],
+            [
+              21.755352404705548,
+              47.4017416010039
+            ],
+            [
+              21.755484304705526,
+              47.4017590010039
+            ],
+            [
+              21.755786504705483,
+              47.40181580100388
+            ],
+            [
+              21.75664720470534,
+              47.401931201003784
+            ],
+            [
+              21.757493304705203,
+              47.40204350100371
+            ],
+            [
+              21.75793340470514,
+              47.40208180100371
+            ],
+            [
+              21.75834840470507,
+              47.40212900100366
+            ],
+            [
+              21.758894104704982,
+              47.40219510100364
+            ],
+            [
+              21.759084204704955,
+              47.40222710100361
+            ],
+            [
+              21.76055950470472,
+              47.40245720100346
+            ],
+            [
+              21.761209304704614,
+              47.40253830100344
+            ],
+            [
+              21.762043204704476,
+              47.402608101003324
+            ],
+            [
+              21.762021704704484,
+              47.40257650100336
+            ],
+            [
+              21.762008804704486,
+              47.40254420100336
+            ],
+            [
+              21.76187880470451,
+              47.40244500100339
+            ],
+            [
+              21.76182890470452,
+              47.40238790100339
+            ],
+            [
+              21.76183890470451,
+              47.40234900100341
+            ],
+            [
+              21.76186290470451,
+              47.40231960100338
+            ],
+            [
+              21.7619353047045,
+              47.40231570100337
+            ],
+            [
+              21.762021604704483,
+              47.40234320100336
+            ],
+            [
+              21.76219030470445,
+              47.40187400100339
+            ],
+            [
+              21.762258104704443,
+              47.401643701003344
+            ],
+            [
+              21.762300604704432,
+              47.401418601003336
+            ],
+            [
+              21.762351004704424,
+              47.401211801003356
+            ],
+            [
+              21.76237400470442,
+              47.401095001003355
+            ],
+            [
+              21.762391304704426,
+              47.4009566010034
+            ],
+            [
+              21.762390304704407,
+              47.40071140100335
+            ],
+            [
+              21.762318204704428,
+              47.4003270010034
+            ],
+            [
+              21.762253704704438,
+              47.399928801003384
+            ],
+            [
+              21.762209804704437,
+              47.399632501003374
+            ],
+            [
+              21.762141104704448,
+              47.399114701003384
+            ],
+            [
+              21.76209160470445,
+              47.39860950100341
+            ],
+            [
+              21.762003704704465,
+              47.39846250100341
+            ],
+            [
+              21.761969904704472,
+              47.3983718010034
+            ],
+            [
+              21.761961504704477,
+              47.39828110100338
+            ],
+            [
+              21.76208140470445,
+              47.39797370100343
+            ],
+            [
+              21.762059604704458,
+              47.397821401003426
+            ],
+            [
+              21.761877904704484,
+              47.39756780100348
+            ],
+            [
+              21.761764604704496,
+              47.39726310100348
+            ],
+            [
+              21.761753404704503,
+              47.39723300100348
+            ],
+            [
+              21.76170260470451,
+              47.39707070100349
+            ],
+            [
+              21.76170510470451,
+              47.39688950100346
+            ],
+            [
+              21.76184250470449,
+              47.3965584010035
+            ],
+            [
+              21.76205150470445,
+              47.39595980100346
+            ],
+            [
+              21.76218650470442,
+              47.395551001003476
+            ],
+            [
+              21.7623088047044,
+              47.394761001003424
+            ],
+            [
+              21.762466804704378,
+              47.394621301003454
+            ],
+            [
+              21.762535604704357,
+              47.39442990100344
+            ],
+            [
+              21.762635004704347,
+              47.39405550100344
+            ],
+            [
+              21.76261710470435,
+              47.39389340100343
+            ],
+            [
+              21.762696104704332,
+              47.393576001003424
+            ],
+            [
+              21.762817404704307,
+              47.39297630100343
+            ],
+            [
+              21.762885004704298,
+              47.392772401003434
+            ],
+            [
+              21.763063204704267,
+              47.39267190100344
+            ],
+            [
+              21.763077604704264,
+              47.39263950100346
+            ],
+            [
+              21.763061804704265,
+              47.39253480100343
+            ],
+            [
+              21.763079804704265,
+              47.39247450100339
+            ],
+            [
+              21.763092604704262,
+              47.39243080100343
+            ],
+            [
+              21.763080104704258,
+              47.392320901003416
+            ],
+            [
+              21.76307580470426,
+              47.39198900100344
+            ],
+            [
+              21.763180404704237,
+              47.391865401003436
+            ],
+            [
+              21.763232304704236,
+              47.39176710100343
+            ],
+            [
+              21.76319570470425,
+              47.39168630100343
+            ],
+            [
+              21.762803304704303,
+              47.39128910100348
+            ],
+            [
+              21.762900307144328,
+              47.3912336106831
+            ],
+            [
+              21.762891904704283,
+              47.39122820100346
+            ],
+            [
+              21.762833204704297,
+              47.39119040100346
+            ],
+            [
+              21.76200010470443,
+              47.39065410100355
+            ],
+            [
+              21.75916560470488,
+              47.3888566010038
+            ],
+            [
+              21.759016204704903,
+              47.388851001003836
+            ],
+            [
+              21.758034604705063,
+              47.39009310100387
+            ],
+            [
+              21.756999204705235,
+              47.39138960100397
+            ],
+            [
+              21.75617850470537,
+              47.39249540100398
+            ],
+            [
+              21.755945104705418,
+              47.392882201004
+            ],
+            [
+              21.755864704705424,
+              47.39294940100401
+            ],
+            [
+              21.755682076255948,
+              47.392951610431076
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Monostorpályi:Liliom",
+      "properties": {
+        "name": "Liliom",
+        "municipality": "Monostorpályi",
+        "municipalityId": "city:Monostorpályi",
+        "method": "source_footprint_locality_association_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 20,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": true,
+        "sourceUrl": "https://www.openstreetmap.org/way/1030855479",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/9331464692",
+          "https://monostorpalyi.hu/szabalyzatok-koncepciok",
+          "https://utcak-magyarorszag.openalfa.com/monostorpalyi",
+          "https://www.openstreetmap.org/way/1030855479"
+        ],
+        "approximationNote": "Unchanged whole source farmstead parcel explicitly named Liliom tanya and containing the Liliom locality point. Preserves the entire mapped farm site; association of the short locality name is estimated and surrounding agricultural fields are not declared part of the source parcel.",
+        "sourceBoundaryIds": [
+          "osm:way:1030855479"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Liliom",
+            "coordinates": [
+              21.7921439,
+              47.4142304
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9331464692"
+          }
+        ],
+        "approximateAreaSquareMetres": 47543.2,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false,
+        "sourceAreaTags": {
+          "landuse": "farmyard",
+          "name": "Liliom tanya"
+        }
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                21.7899113,
+                47.4140018
+              ],
+              [
+                21.7924791,
+                47.4135178
+              ],
+              [
+                21.7938479,
+                47.4155514
+              ],
+              [
+                21.7927519,
+                47.4159518
+              ],
+              [
+                21.7899473,
+                47.4147923
+              ],
+              [
+                21.7899113,
+                47.4140018
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Monostorpályi:Magyarkert",
+      "properties": {
+        "name": "Magyarkert",
+        "municipality": "Monostorpályi",
+        "municipalityId": "city:Monostorpályi",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/9287609420",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/9287609420",
+          "https://monostorpalyi.hu/szabalyzatok-koncepciok",
+          "https://utcak-magyarorszag.openalfa.com/monostorpalyi",
+          "https://www.openstreetmap.org/way/274049269",
+          "https://www.openstreetmap.org/way/994858815",
+          "https://www.openstreetmap.org/way/994858816",
+          "https://www.openstreetmap.org/way/1014000545",
+          "https://www.openstreetmap.org/way/1014000549",
+          "https://www.openstreetmap.org/way/1014000550",
+          "https://www.openstreetmap.org/way/1017312638",
+          "https://www.openstreetmap.org/way/1021405446"
+        ],
+        "approximationNote": "Actual main/local road courses enclose the western Magyarkert village-edge area. The choice preserves a larger coherent local area rather than the small street block at the name point. Internal and village-level subdivisions may overlap.",
+        "sourceBoundaryIds": [
+          "osm:way:274049269",
+          "osm:way:994858815",
+          "osm:way:994858816",
+          "osm:way:1014000545",
+          "osm:way:1014000549",
+          "osm:way:1014000550",
+          "osm:way:1017312638",
+          "osm:way:1021405446"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Magyarkert",
+            "coordinates": [
+              21.772133,
+              47.4011594
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9287609420"
+          }
+        ],
+        "approximateAreaSquareMetres": 112131.1,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.779357778225314,
+              47.40301892616829
+            ],
+            [
+              21.77931270470171,
+              47.402974401001956
+            ],
+            [
+              21.779043104701746,
+              47.40270860100201
+            ],
+            [
+              21.77817610470189,
+              47.401880001002084
+            ],
+            [
+              21.777823304701947,
+              47.40154270100214
+            ],
+            [
+              21.77749830470199,
+              47.401204201002166
+            ],
+            [
+              21.776886204702084,
+              47.40052180100221
+            ],
+            [
+              21.77684720470209,
+              47.40048790100222
+            ],
+            [
+              21.776801404702095,
+              47.40045610100224
+            ],
+            [
+              21.776770704702102,
+              47.400440601002195
+            ],
+            [
+              21.776727404702108,
+              47.40043330100219
+            ],
+            [
+              21.77663310470213,
+              47.40043130100225
+            ],
+            [
+              21.77653210470214,
+              47.400448001002204
+            ],
+            [
+              21.77593070470224,
+              47.40060580100224
+            ],
+            [
+              21.775635804702286,
+              47.40067230100229
+            ],
+            [
+              21.775365004702337,
+              47.40073840100233
+            ],
+            [
+              21.775072204702376,
+              47.40079490100231
+            ],
+            [
+              21.77472430470244,
+              47.40084630100234
+            ],
+            [
+              21.77455080470246,
+              47.40086780100239
+            ],
+            [
+              21.774427104702482,
+              47.40085810100236
+            ],
+            [
+              21.7743101047025,
+              47.40083930100239
+            ],
+            [
+              21.77420810470252,
+              47.40080080100245
+            ],
+            [
+              21.77411470470253,
+              47.40074990100242
+            ],
+            [
+              21.774089392429033,
+              47.40072624508712
+            ],
+            [
+              21.773908604702562,
+              47.40076770100244
+            ],
+            [
+              21.773853904702573,
+              47.400810301002444
+            ],
+            [
+              21.773793004702593,
+              47.40084110100243
+            ],
+            [
+              21.773760004702584,
+              47.400852901002445
+            ],
+            [
+              21.77373310470259,
+              47.400857101002416
+            ],
+            [
+              21.772302804702825,
+              47.40102690100256
+            ],
+            [
+              21.77214500470285,
+              47.40104210100259
+            ],
+            [
+              21.77187730470289,
+              47.401081201002576
+            ],
+            [
+              21.771905404702892,
+              47.401173001002576
+            ],
+            [
+              21.772279104702836,
+              47.40182500100257
+            ],
+            [
+              21.77255560470279,
+              47.40231240100251
+            ],
+            [
+              21.772592304702783,
+              47.40240070100252
+            ],
+            [
+              21.77303320470272,
+              47.40227470100243
+            ],
+            [
+              21.77352070470264,
+              47.40319860100242
+            ],
+            [
+              21.77574360470229,
+              47.403169501002274
+            ],
+            [
+              21.776230304702207,
+              47.403103801002196
+            ],
+            [
+              21.776374804702176,
+              47.40308430100217
+            ],
+            [
+              21.77641580470217,
+              47.4030788010022
+            ],
+            [
+              21.776539404702156,
+              47.40304630100216
+            ],
+            [
+              21.777244104702042,
+              47.40276660100214
+            ],
+            [
+              21.77771640470196,
+              47.402986401002124
+            ],
+            [
+              21.777956204701923,
+              47.40307380100205
+            ],
+            [
+              21.778245804701882,
+              47.40321860100205
+            ],
+            [
+              21.778489304701846,
+              47.40338340100202
+            ],
+            [
+              21.779293604701714,
+              47.40304760100197
+            ],
+            [
+              21.77933310470171,
+              47.40302800100199
+            ],
+            [
+              21.779339604701704,
+              47.40302560100194
+            ],
+            [
+              21.779357778225314,
+              47.40301892616829
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Monostorpályi:Tejfeles",
+      "properties": {
+        "name": "Tejfeles",
+        "municipality": "Monostorpályi",
+        "municipalityId": "city:Monostorpályi",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/9396410677",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/9396410677",
+          "https://monostorpalyi.hu/szabalyzatok-koncepciok",
+          "https://utcak-magyarorszag.openalfa.com/monostorpalyi",
+          "https://www.openstreetmap.org/way/474206976",
+          "https://www.openstreetmap.org/way/995268711",
+          "https://www.openstreetmap.org/way/995268712",
+          "https://www.openstreetmap.org/way/1014337902",
+          "https://www.openstreetmap.org/way/1014337903",
+          "https://www.openstreetmap.org/way/1014337907",
+          "https://www.openstreetmap.org/way/1014342603",
+          "https://www.openstreetmap.org/way/1162972421"
+        ],
+        "approximationNote": "Actual rural track and drainage network closes this garden/field area north of the village at Tejfeles. Historical local literature describes vineyard cultivation in Tejfeles; the cell association is a rough inference, not the historical cadastral perimeter.",
+        "sourceBoundaryIds": [
+          "osm:way:474206976",
+          "osm:way:995268711",
+          "osm:way:995268712",
+          "osm:way:1014337902",
+          "osm:way:1014337903",
+          "osm:way:1014337907",
+          "osm:way:1014342603",
+          "osm:way:1162972421"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Tejfeles",
+            "coordinates": [
+              21.7789931,
+              47.4120287
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/9396410677"
+          }
+        ],
+        "approximateAreaSquareMetres": 345964.4,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.776194804702254,
+              47.41123280100207
+            ],
+            [
+              21.775741804702324,
+              47.41129870100214
+            ],
+            [
+              21.774628004702503,
+              47.411337001002174
+            ],
+            [
+              21.77433800470255,
+              47.41158100100223
+            ],
+            [
+              21.774318104702555,
+              47.41165400100221
+            ],
+            [
+              21.774471204702525,
+              47.41201620100219
+            ],
+            [
+              21.774524804702523,
+              47.41214320100223
+            ],
+            [
+              21.77458810470251,
+              47.4122929010022
+            ],
+            [
+              21.77474820470249,
+              47.41257150100216
+            ],
+            [
+              21.774885404702463,
+              47.41295650100217
+            ],
+            [
+              21.774711004702496,
+              47.412898501002196
+            ],
+            [
+              21.774365104702554,
+              47.41277470100221
+            ],
+            [
+              21.774062104702594,
+              47.4127263010022
+            ],
+            [
+              21.773856404702627,
+              47.41273710100227
+            ],
+            [
+              21.77369460470266,
+              47.41294570100226
+            ],
+            [
+              21.773555604702686,
+              47.41326060100228
+            ],
+            [
+              21.773081004702757,
+              47.414012001002305
+            ],
+            [
+              21.771912904702955,
+              47.41529440100237
+            ],
+            [
+              21.771689704702993,
+              47.41533030100237
+            ],
+            [
+              21.77118580470308,
+              47.41526370100241
+            ],
+            [
+              21.77076200470314,
+              47.41523130100248
+            ],
+            [
+              21.76793470470359,
+              47.413804801002705
+            ],
+            [
+              21.767769304703624,
+              47.41381110100273
+            ],
+            [
+              21.767621304703635,
+              47.41392980100272
+            ],
+            [
+              21.767378004703676,
+              47.41398030100275
+            ],
+            [
+              21.765911104703914,
+              47.41330760100287
+            ],
+            [
+              21.766187104703867,
+              47.41361790100283
+            ],
+            [
+              21.76627710470385,
+              47.41385650100281
+            ],
+            [
+              21.76625964341213,
+              47.41393449490643
+            ],
+            [
+              21.76631640470385,
+              47.413965301002825
+            ],
+            [
+              21.768827004703454,
+              47.41532900100258
+            ],
+            [
+              21.770541004703187,
+              47.416030001002504
+            ],
+            [
+              21.771738004702993,
+              47.417148001002346
+            ],
+            [
+              21.773907704702644,
+              47.418338201002136
+            ],
+            [
+              21.773931604702643,
+              47.41835130100215
+            ],
+            [
+              21.773979418434827,
+              47.41837757904592
+            ],
+            [
+              21.77424520470259,
+              47.418186101002135
+            ],
+            [
+              21.774749504702516,
+              47.41782500100211
+            ],
+            [
+              21.774973404702475,
+              47.41763530100211
+            ],
+            [
+              21.775487104702382,
+              47.417247801002034
+            ],
+            [
+              21.775846504702333,
+              47.416986501002
+            ],
+            [
+              21.77700650470214,
+              47.41611260100194
+            ],
+            [
+              21.777198204702113,
+              47.41594540100192
+            ],
+            [
+              21.777466904702063,
+              47.4156687010019
+            ],
+            [
+              21.777558404702056,
+              47.415593301001934
+            ],
+            [
+              21.777707104702024,
+              47.4155236010019
+            ],
+            [
+              21.777867204702,
+              47.41544820100187
+            ],
+            [
+              21.778133004701957,
+              47.415272201001876
+            ],
+            [
+              21.778344604701925,
+              47.415175401001825
+            ],
+            [
+              21.778576204701885,
+              47.41507870100185
+            ],
+            [
+              21.77873620470186,
+              47.415005201001826
+            ],
+            [
+              21.778833404701842,
+              47.41493940100182
+            ],
+            [
+              21.779005004701816,
+              47.41478850100182
+            ],
+            [
+              21.77921370470178,
+              47.414620201001796
+            ],
+            [
+              21.779405204701753,
+              47.41449060100174
+            ],
+            [
+              21.77962820470171,
+              47.414291401001734
+            ],
+            [
+              21.779914104701664,
+              47.413987601001715
+            ],
+            [
+              21.78015420470162,
+              47.41363170100174
+            ],
+            [
+              21.780277204701605,
+              47.41337440100174
+            ],
+            [
+              21.780405804701587,
+              47.41316160100173
+            ],
+            [
+              21.78051730470157,
+              47.41298550100174
+            ],
+            [
+              21.780577304701552,
+              47.4127998010017
+            ],
+            [
+              21.780574604701552,
+              47.41277260100171
+            ],
+            [
+              21.78050030470156,
+              47.41274080100176
+            ],
+            [
+              21.779841904701676,
+              47.41225310100178
+            ],
+            [
+              21.778428004701897,
+              47.41155000100188
+            ],
+            [
+              21.77826890470192,
+              47.41145950100193
+            ],
+            [
+              21.778168904701932,
+              47.411435201001936
+            ],
+            [
+              21.777674904702014,
+              47.41130060100196
+            ],
+            [
+              21.777333204702067,
+              47.41121440100199
+            ],
+            [
+              21.7770691047021,
+              47.41121440100199
+            ],
+            [
+              21.77641050470222,
+              47.411229101002064
+            ],
+            [
+              21.776194804702254,
+              47.41123280100207
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Mátészalka:Cinevég",
+      "properties": {
+        "name": "Cinevég",
+        "municipality": "Mátészalka",
+        "municipalityId": "city:Mátészalka",
+        "method": "manual_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/3097526566",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/3097526566",
+          "https://www.mateszalka.hu/modul/file_browser/upload/hirek/telepulesrend/112-mateszalka-szerkezeti-terv-leiras.pdf",
+          "https://helyiingatlanos.hu/mateszalka",
+          "https://www.openstreetmap.org/way/163379610",
+          "https://www.openstreetmap.org/way/163379621",
+          "https://www.openstreetmap.org/way/237639354",
+          "https://www.openstreetmap.org/way/237639356",
+          "https://www.openstreetmap.org/way/244637120",
+          "https://www.openstreetmap.org/way/306115749",
+          "https://www.openstreetmap.org/way/791160018",
+          "https://www.openstreetmap.org/way/791160020",
+          "https://www.openstreetmap.org/way/791167898",
+          "https://www.openstreetmap.org/way/1164811229"
+        ],
+        "approximationNote": "Rough manual outline of the Cinevég residential ribbon along Dózsa György/Vágóhíd/Artézi kút streets north of Kocsordi út, guided by the actual residential fringe and field/industrial transitions. The locality label is near the southern end of the ribbon. This estimated area preserves the broader locality rather than a field cell or point circle.",
+        "sourceBoundaryIds": [
+          "osm:way:163379610",
+          "osm:way:163379621",
+          "osm:way:237639354",
+          "osm:way:237639356",
+          "osm:way:244637120",
+          "osm:way:306115749",
+          "osm:way:791160018",
+          "osm:way:791160020",
+          "osm:way:791167898",
+          "osm:way:1164811229"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Cinevég",
+            "coordinates": [
+              22.3374782,
+              47.9417968
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/3097526566"
+          }
+        ],
+        "approximateAreaSquareMetres": 351976.2,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.3293,
+              47.9495
+            ],
+            [
+              22.332,
+              47.949
+            ],
+            [
+              22.3343,
+              47.9469
+            ],
+            [
+              22.336,
+              47.9447
+            ],
+            [
+              22.3389,
+              47.9434
+            ],
+            [
+              22.3405,
+              47.9411
+            ],
+            [
+              22.3412,
+              47.9401
+            ],
+            [
+              22.3366,
+              47.9394
+            ],
+            [
+              22.3337,
+              47.9424
+            ],
+            [
+              22.3314,
+              47.9456
+            ],
+            [
+              22.3293,
+              47.9495
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Mátészalka:Fogarassy-tanya",
+      "properties": {
+        "name": "Fogarassy-tanya",
+        "municipality": "Mátészalka",
+        "municipalityId": "city:Mátészalka",
+        "method": "manual_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/11076431719",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/11076431719",
+          "https://www.mateszalka.hu/modul/file_browser/upload/hirek/telepulesrend/112-mateszalka-szerkezeti-terv-leiras.pdf",
+          "https://helyiingatlanos.hu/mateszalka",
+          "https://www.openstreetmap.org/way/163379753",
+          "https://www.openstreetmap.org/way/237364599",
+          "https://www.openstreetmap.org/way/791166466",
+          "https://www.openstreetmap.org/way/1569089327",
+          "https://www.openstreetmap.org/way/1569089328"
+        ],
+        "approximationNote": "Rough historical locality area east of the Széchenyi road around the Fogarassy-tanya label, including the present concrete-business plots and surrounding clearing between the mapped forest/field edges and the southern Fekesszegi access area. Agricultural-to-industrial reuse is visible in the source parcels. The extent and historical name association are inferred, not a claim that the businesses are current farmsteads.",
+        "sourceBoundaryIds": [
+          "osm:way:163379753",
+          "osm:way:237364599",
+          "osm:way:791166466",
+          "osm:way:1569089327",
+          "osm:way:1569089328"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Fogarassy-tanya",
+            "coordinates": [
+              22.3210083,
+              47.970554
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/11076431719"
+          }
+        ],
+        "approximateAreaSquareMetres": 386673.6,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.3201,
+              47.9681
+            ],
+            [
+              22.324,
+              47.968
+            ],
+            [
+              22.3291,
+              47.9689
+            ],
+            [
+              22.329,
+              47.9729
+            ],
+            [
+              22.3251,
+              47.9738
+            ],
+            [
+              22.321,
+              47.9738
+            ],
+            [
+              22.3202,
+              47.972
+            ],
+            [
+              22.3201,
+              47.9681
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Mátészalka:Keleti lakótelep",
+      "properties": {
+        "name": "Keleti lakótelep",
+        "municipality": "Mátészalka",
+        "municipalityId": "city:Mátészalka",
+        "method": "manual_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/3097537667",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/3097537667",
+          "https://www.mateszalka.hu/modul/file_browser/upload/hirek/telepulesrend/112-mateszalka-szerkezeti-terv-leiras.pdf",
+          "https://helyiingatlanos.hu/mateszalka",
+          "https://www.openstreetmap.org/way/163379618",
+          "https://www.openstreetmap.org/way/163379707",
+          "https://www.openstreetmap.org/way/163379753",
+          "https://www.openstreetmap.org/way/237364597",
+          "https://www.openstreetmap.org/way/237364599",
+          "https://www.openstreetmap.org/way/306579613",
+          "https://www.openstreetmap.org/way/378460574",
+          "https://www.openstreetmap.org/way/378460575",
+          "https://www.openstreetmap.org/way/378460811",
+          "https://www.openstreetmap.org/way/380926344",
+          "https://www.openstreetmap.org/way/791166466",
+          "https://www.openstreetmap.org/way/1569089327",
+          "https://www.openstreetmap.org/way/1569089328"
+        ],
+        "approximationNote": "Rough manual trace of the eastern residential street area around the Keleti lakótelep label, bounded by the Széchenyi corridor to the west and actual residential/field transitions to the north/east, stopping north of Fellegvár. Street and garden edges are generalized; this is an estimated broader estate search area, not a printed quarter border.",
+        "sourceBoundaryIds": [
+          "osm:way:163379618",
+          "osm:way:163379707",
+          "osm:way:163379753",
+          "osm:way:237364597",
+          "osm:way:237364599",
+          "osm:way:306579613",
+          "osm:way:378460574",
+          "osm:way:378460575",
+          "osm:way:378460811",
+          "osm:way:380926344",
+          "osm:way:791166466",
+          "osm:way:1569089327",
+          "osm:way:1569089328"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Keleti lakótelep",
+            "coordinates": [
+              22.3294848,
+              47.9611607
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/3097537667"
+          }
+        ],
+        "approximateAreaSquareMetres": 770658.9,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.3193,
+              47.9598
+            ],
+            [
+              22.321,
+              47.9585
+            ],
+            [
+              22.3251,
+              47.9579
+            ],
+            [
+              22.3314,
+              47.9574
+            ],
+            [
+              22.3334,
+              47.9593
+            ],
+            [
+              22.3322,
+              47.9624
+            ],
+            [
+              22.3309,
+              47.9641
+            ],
+            [
+              22.3267,
+              47.9653
+            ],
+            [
+              22.321,
+              47.9666
+            ],
+            [
+              22.3198,
+              47.9636
+            ],
+            [
+              22.3193,
+              47.9598
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Mátészalka:Mátészalkai Ipari Park",
+      "properties": {
+        "name": "Mátészalkai Ipari Park",
+        "municipality": "Mátészalka",
+        "municipalityId": "city:Mátészalka",
+        "method": "source_footprint_locality_association_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 20,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": true,
+        "sourceUrl": "https://www.openstreetmap.org/relation/2558326",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/3202153446",
+          "https://www.mateszalka.hu/modul/file_browser/upload/hirek/telepulesrend/112-mateszalka-szerkezeti-terv-leiras.pdf",
+          "https://helyiingatlanos.hu/mateszalka",
+          "https://www.openstreetmap.org/relation/2558326"
+        ],
+        "approximationNote": "Unchanged southern component of the actual industrial landuse relation, containing the industrial-park label and MOM industrial site. This component is physically separate from the northern Nyugati Iparterület component; name association remains approximate.",
+        "sourceBoundaryIds": [
+          "osm:relation:2558326"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Mátészalkai Ipari Park",
+            "coordinates": [
+              22.3015663,
+              47.9499144
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/3202153446"
+          }
+        ],
+        "approximateAreaSquareMetres": 175248.2,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false,
+        "sourceComponent": 1,
+        "sourceAreaTags": {
+          "CLC:id": "HU-6252",
+          "CLC:year": "2006",
+          "landuse": "industrial",
+          "note": "CLC import: update the tag landuse with either industrial or retail after survey",
+          "source": "CLC_HUN"
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.2951555,
+              47.9501261
+            ],
+            [
+              22.2956455,
+              47.9482454
+            ],
+            [
+              22.3000714,
+              47.9487595
+            ],
+            [
+              22.3006604,
+              47.9489617
+            ],
+            [
+              22.3023641,
+              47.9491147
+            ],
+            [
+              22.3024011,
+              47.9521148
+            ],
+            [
+              22.3017489,
+              47.9520754
+            ],
+            [
+              22.3017149,
+              47.9524473
+            ],
+            [
+              22.2963094,
+              47.9512242
+            ],
+            [
+              22.2964686,
+              47.9506252
+            ],
+            [
+              22.2955879,
+              47.9503998
+            ],
+            [
+              22.2951555,
+              47.9501261
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Mátészalka:Nyugati Iparterület",
+      "properties": {
+        "name": "Nyugati Iparterület",
+        "municipality": "Mátészalka",
+        "municipalityId": "city:Mátészalka",
+        "method": "source_footprint_locality_association_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 20,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": true,
+        "sourceUrl": "https://www.openstreetmap.org/relation/2558326",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/11076431710",
+          "https://www.mateszalka.hu/modul/file_browser/upload/hirek/telepulesrend/112-mateszalka-szerkezeti-terv-leiras.pdf",
+          "https://helyiingatlanos.hu/mateszalka",
+          "https://www.openstreetmap.org/relation/2558326"
+        ],
+        "approximationNote": "Unchanged northern component of the industrial landuse relation, containing the Nyugati Iparterület label. The spatially separate southern component receives the industrial-park name. These are inferred local names for real mapped industrial surfaces, not aliases of the whole multi-part parent.",
+        "sourceBoundaryIds": [
+          "osm:relation:2558326"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Nyugati Iparterület",
+            "coordinates": [
+              22.2979988,
+              47.9584069
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/11076431710"
+          }
+        ],
+        "approximateAreaSquareMetres": 922553.7,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false,
+        "sourceComponent": 0,
+        "sourceAreaTags": {
+          "CLC:id": "HU-6252",
+          "CLC:year": "2006",
+          "landuse": "industrial",
+          "note": "CLC import: update the tag landuse with either industrial or retail after survey",
+          "source": "CLC_HUN"
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.2923706,
+              47.9624506
+            ],
+            [
+              22.2927022,
+              47.9605635
+            ],
+            [
+              22.2948566,
+              47.9597526
+            ],
+            [
+              22.2956726,
+              47.9554814
+            ],
+            [
+              22.2961364,
+              47.955291
+            ],
+            [
+              22.2965653,
+              47.9528301
+            ],
+            [
+              22.2947523,
+              47.9525612
+            ],
+            [
+              22.2952142,
+              47.9512867
+            ],
+            [
+              22.2978495,
+              47.9519573
+            ],
+            [
+              22.2981524,
+              47.9520489
+            ],
+            [
+              22.2982248,
+              47.9521259
+            ],
+            [
+              22.2996862,
+              47.9523599
+            ],
+            [
+              22.3004489,
+              47.9525083
+            ],
+            [
+              22.300713,
+              47.9525311
+            ],
+            [
+              22.3004233,
+              47.9525597
+            ],
+            [
+              22.3000782,
+              47.9526167
+            ],
+            [
+              22.300189,
+              47.9526709
+            ],
+            [
+              22.300483,
+              47.9526367
+            ],
+            [
+              22.300811,
+              47.9526053
+            ],
+            [
+              22.3010922,
+              47.9526224
+            ],
+            [
+              22.3014842,
+              47.9526938
+            ],
+            [
+              22.3021788,
+              47.952826
+            ],
+            [
+              22.30213,
+              47.9532773
+            ],
+            [
+              22.3023272,
+              47.9532846
+            ],
+            [
+              22.3023141,
+              47.953685
+            ],
+            [
+              22.3000983,
+              47.9534601
+            ],
+            [
+              22.2994817,
+              47.9560814
+            ],
+            [
+              22.2989335,
+              47.9582883
+            ],
+            [
+              22.299832,
+              47.9583442
+            ],
+            [
+              22.2999647,
+              47.9580631
+            ],
+            [
+              22.3004971,
+              47.9579726
+            ],
+            [
+              22.3008611,
+              47.9573824
+            ],
+            [
+              22.3012983,
+              47.9571684
+            ],
+            [
+              22.3020978,
+              47.9573478
+            ],
+            [
+              22.3024522,
+              47.9570906
+            ],
+            [
+              22.303192,
+              47.9570904
+            ],
+            [
+              22.3032621,
+              47.9578996
+            ],
+            [
+              22.3034826,
+              47.9589649
+            ],
+            [
+              22.3065368,
+              47.9589847
+            ],
+            [
+              22.3065813,
+              47.9587194
+            ],
+            [
+              22.3067604,
+              47.9587091
+            ],
+            [
+              22.3069528,
+              47.9608029
+            ],
+            [
+              22.3079472,
+              47.9607751
+            ],
+            [
+              22.3077433,
+              47.9625389
+            ],
+            [
+              22.307383,
+              47.9625842
+            ],
+            [
+              22.3073532,
+              47.9626881
+            ],
+            [
+              22.3069847,
+              47.9627484
+            ],
+            [
+              22.3061727,
+              47.9628867
+            ],
+            [
+              22.3047693,
+              47.9631276
+            ],
+            [
+              22.3025841,
+              47.9634937
+            ],
+            [
+              22.3018062,
+              47.9636192
+            ],
+            [
+              22.301121,
+              47.9637348
+            ],
+            [
+              22.3007324,
+              47.9637894
+            ],
+            [
+              22.2981917,
+              47.9642258
+            ],
+            [
+              22.2981185,
+              47.9646278
+            ],
+            [
+              22.2981126,
+              47.964792
+            ],
+            [
+              22.2958971,
+              47.9651464
+            ],
+            [
+              22.2957862,
+              47.9656584
+            ],
+            [
+              22.2941136,
+              47.966027
+            ],
+            [
+              22.2925415,
+              47.9663605
+            ],
+            [
+              22.2925633,
+              47.9650607
+            ],
+            [
+              22.2926038,
+              47.9641807
+            ],
+            [
+              22.2926176,
+              47.9635694
+            ],
+            [
+              22.2925537,
+              47.9633237
+            ],
+            [
+              22.2926922,
+              47.9624847
+            ],
+            [
+              22.2923706,
+              47.9624506
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Mátészalka:Ráckert lakótelep",
+      "properties": {
+        "name": "Ráckert lakótelep",
+        "municipality": "Mátészalka",
+        "municipalityId": "city:Mátészalka",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/3097537668",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/3097537668",
+          "https://www.mateszalka.hu/modul/file_browser/upload/hirek/telepulesrend/112-mateszalka-szerkezeti-terv-leiras.pdf",
+          "https://helyiingatlanos.hu/mateszalka",
+          "https://www.openstreetmap.org/way/35431556",
+          "https://www.openstreetmap.org/way/83091547",
+          "https://www.openstreetmap.org/way/306112368",
+          "https://www.openstreetmap.org/way/306573864",
+          "https://www.openstreetmap.org/way/306573865",
+          "https://www.openstreetmap.org/way/306573866",
+          "https://www.openstreetmap.org/way/306581791",
+          "https://www.openstreetmap.org/way/791254033",
+          "https://www.openstreetmap.org/way/1189806020",
+          "https://www.openstreetmap.org/way/1378278104",
+          "https://www.openstreetmap.org/way/1389331958"
+        ],
+        "approximationNote": "Actual major road/rail cell at Ráckert, preserving a coherent broader estate area instead of a single small street block. The locality name is separately listed in local sources. An approximate physical search area; no official quarter boundary is claimed.",
+        "sourceBoundaryIds": [
+          "osm:way:35431556",
+          "osm:way:83091547",
+          "osm:way:306112368",
+          "osm:way:306573864",
+          "osm:way:306573865",
+          "osm:way:306573866",
+          "osm:way:306581791",
+          "osm:way:791254033",
+          "osm:way:1189806020",
+          "osm:way:1378278104",
+          "osm:way:1389331958"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Ráckert lakótelep",
+            "coordinates": [
+              22.306291,
+              47.9561075
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/3097537668"
+          }
+        ],
+        "approximateAreaSquareMetres": 554184.3,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.311671404618586,
+              47.95267900095135
+            ],
+            [
+              22.311571004618607,
+              47.95278040095135
+            ],
+            [
+              22.31126950461866,
+              47.95306910095134
+            ],
+            [
+              22.311156104618682,
+              47.95316180095143
+            ],
+            [
+              22.311038304618698,
+              47.953254600951375
+            ],
+            [
+              22.31090510461872,
+              47.953349600951356
+            ],
+            [
+              22.31072290461874,
+              47.95347330095141
+            ],
+            [
+              22.31047250461878,
+              47.95360480095143
+            ],
+            [
+              22.31025600461882,
+              47.953704200951414
+            ],
+            [
+              22.310027004618863,
+              47.953793300951446
+            ],
+            [
+              22.309831404618894,
+              47.953863500951485
+            ],
+            [
+              22.30958470461894,
+              47.95393710095149
+            ],
+            [
+              22.30928220461898,
+              47.9540023009515
+            ],
+            [
+              22.308999304619036,
+              47.95405090095151
+            ],
+            [
+              22.30872580461908,
+              47.95408200095154
+            ],
+            [
+              22.30851640461912,
+              47.95409140095156
+            ],
+            [
+              22.308274504619142,
+              47.95409620095156
+            ],
+            [
+              22.307875904619216,
+              47.95407580095164
+            ],
+            [
+              22.307405804619293,
+              47.95402030095167
+            ],
+            [
+              22.306966104619363,
+              47.95393250095167
+            ],
+            [
+              22.306507204619436,
+              47.95379120095174
+            ],
+            [
+              22.305946804619527,
+              47.95359420095177
+            ],
+            [
+              22.305766704619554,
+              47.953534000951784
+            ],
+            [
+              22.305382804619615,
+              47.95341610095183
+            ],
+            [
+              22.30493130461969,
+              47.95330160095183
+            ],
+            [
+              22.30451940461976,
+              47.953209700951916
+            ],
+            [
+              22.303248004619956,
+              47.952928000952
+            ],
+            [
+              22.302686504620052,
+              47.952798800952046
+            ],
+            [
+              22.302607904620064,
+              47.95278330095206
+            ],
+            [
+              22.30271080462005,
+              47.95366530095204
+            ],
+            [
+              22.302722804620057,
+              47.95373180095201
+            ],
+            [
+              22.302942004620018,
+              47.95517980095198
+            ],
+            [
+              22.303214104619993,
+              47.95682650095192
+            ],
+            [
+              22.303377304619964,
+              47.95783320095191
+            ],
+            [
+              22.303469204619955,
+              47.95848080095192
+            ],
+            [
+              22.30353540461995,
+              47.95894690095187
+            ],
+            [
+              22.30368560461993,
+              47.96000520095183
+            ],
+            [
+              22.30388290461991,
+              47.961395100951805
+            ],
+            [
+              22.3039015046199,
+              47.96152610095179
+            ],
+            [
+              22.3039177046199,
+              47.961633900951824
+            ],
+            [
+              22.305503404619635,
+              47.96138670095169
+            ],
+            [
+              22.307518504619313,
+              47.96107250095153
+            ],
+            [
+              22.30806570461922,
+              47.96099080095145
+            ],
+            [
+              22.310178004618884,
+              47.960653200951356
+            ],
+            [
+              22.31033570461886,
+              47.960630100951334
+            ],
+            [
+              22.312304304618536,
+              47.96032520095119
+            ],
+            [
+              22.313964004618263,
+              47.96006150095105
+            ],
+            [
+              22.314017604618254,
+              47.96005300095105
+            ],
+            [
+              22.314825704618116,
+              47.95992680095095
+            ],
+            [
+              22.31272670461845,
+              47.957587500951206
+            ],
+            [
+              22.31248700461849,
+              47.95731840095121
+            ],
+            [
+              22.3111228046187,
+              47.955800400951375
+            ],
+            [
+              22.310962004618716,
+              47.95555500095137
+            ],
+            [
+              22.310829104618744,
+              47.95527610095137
+            ],
+            [
+              22.310750904618754,
+              47.95502980095138
+            ],
+            [
+              22.310707204618755,
+              47.954773000951356
+            ],
+            [
+              22.31069850461876,
+              47.95443870095138
+            ],
+            [
+              22.310727904618755,
+              47.95418740095139
+            ],
+            [
+              22.310810104618742,
+              47.9539278009514
+            ],
+            [
+              22.310854404618734,
+              47.95380990095141
+            ],
+            [
+              22.31090090461872,
+              47.9537053009514
+            ],
+            [
+              22.310951804618714,
+              47.95360510095139
+            ],
+            [
+              22.311009904618707,
+              47.95350500095141
+            ],
+            [
+              22.311058004618697,
+              47.953434000951376
+            ],
+            [
+              22.31110970461868,
+              47.95335950095137
+            ],
+            [
+              22.31123310461867,
+              47.95320510095139
+            ],
+            [
+              22.311314204618654,
+              47.953106600951344
+            ],
+            [
+              22.3116495046186,
+              47.95277470095134
+            ],
+            [
+              22.311735704618577,
+              47.95268070095133
+            ],
+            [
+              22.31177710461857,
+              47.95263310095133
+            ],
+            [
+              22.311816104618572,
+              47.952585600951345
+            ],
+            [
+              22.31185850461856,
+              47.95253100095134
+            ],
+            [
+              22.311671404618586,
+              47.95267900095135
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Mátészalka:Északi lakótelep",
+      "properties": {
+        "name": "Északi lakótelep",
+        "municipality": "Mátészalka",
+        "municipalityId": "city:Mátészalka",
+        "method": "manual_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/3097526556",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/3097526556",
+          "https://www.mateszalka.hu/modul/file_browser/upload/hirek/telepulesrend/112-mateszalka-szerkezeti-terv-leiras.pdf",
+          "https://helyiingatlanos.hu/mateszalka",
+          "https://www.openstreetmap.org/way/163379613",
+          "https://www.openstreetmap.org/way/163379637",
+          "https://www.openstreetmap.org/way/163379670",
+          "https://www.openstreetmap.org/way/163379765",
+          "https://www.openstreetmap.org/way/237766304",
+          "https://www.openstreetmap.org/way/237766305",
+          "https://www.openstreetmap.org/way/306573863",
+          "https://www.openstreetmap.org/way/306573864",
+          "https://www.openstreetmap.org/way/306573865",
+          "https://www.openstreetmap.org/way/306581791",
+          "https://www.openstreetmap.org/way/341198255",
+          "https://www.openstreetmap.org/way/341198256",
+          "https://www.openstreetmap.org/way/341198259",
+          "https://www.openstreetmap.org/way/562736649",
+          "https://www.openstreetmap.org/way/791544963",
+          "https://www.openstreetmap.org/way/804281578",
+          "https://www.openstreetmap.org/way/804281579",
+          "https://www.openstreetmap.org/way/804281583",
+          "https://www.openstreetmap.org/way/804281584"
+        ],
+        "approximationNote": "Rough manual outline of the northern residential street fabric west of the Széchenyi corridor, north of Jármi/Kalmár and around the Nyár/Északi körút estate streets. Northern/western residential transitions follow the mapped landuse edge at coarse precision. This represents the whole local street area rather than one block; name assignment is inferred.",
+        "sourceBoundaryIds": [
+          "osm:way:163379613",
+          "osm:way:163379637",
+          "osm:way:163379670",
+          "osm:way:163379765",
+          "osm:way:237766304",
+          "osm:way:237766305",
+          "osm:way:306573863",
+          "osm:way:306573864",
+          "osm:way:306573865",
+          "osm:way:306581791",
+          "osm:way:341198255",
+          "osm:way:341198256",
+          "osm:way:341198259",
+          "osm:way:562736649",
+          "osm:way:791544963",
+          "osm:way:804281578",
+          "osm:way:804281579",
+          "osm:way:804281583",
+          "osm:way:804281584"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Északi lakótelep",
+            "coordinates": [
+              22.3122292,
+              47.9651554
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/3097526556"
+          }
+        ],
+        "approximateAreaSquareMetres": 823651.4,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.3048,
+              47.9613
+            ],
+            [
+              22.3038,
+              47.9646
+            ],
+            [
+              22.304,
+              47.9673
+            ],
+            [
+              22.3047,
+              47.9709
+            ],
+            [
+              22.3129,
+              47.9715
+            ],
+            [
+              22.314,
+              47.9684
+            ],
+            [
+              22.3153,
+              47.9673
+            ],
+            [
+              22.3151,
+              47.9641
+            ],
+            [
+              22.3138,
+              47.9617
+            ],
+            [
+              22.3048,
+              47.9613
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Orosháza:Belváros",
+      "properties": {
+        "name": "Belváros",
+        "municipality": "Orosháza",
+        "municipalityId": "city:Orosháza",
+        "method": "manual_physical_map_trace_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 15,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://oroshaza.hu/palyazat-top-5-3-1-16-bs1-2017-00004-az-oroshazi-kozossegert-helyi-identitast-es-koheziot-erosito-programok/",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/12089036636",
+          "https://oroshaza.hu/wp-content/uploads/dokumentumtar/egyeb_informaciok_dokumentumok/2017es_ev/Orosh%C3%A1za%20TAK.pdf",
+          "https://oroshaza.hu/palyazat-top-5-3-1-16-bs1-2017-00004-az-oroshazi-kozossegert-helyi-identitast-es-koheziot-erosito-programok/",
+          "https://www.openstreetmap.org/way/31152464",
+          "https://www.openstreetmap.org/way/31241991",
+          "https://www.openstreetmap.org/way/31241994",
+          "https://www.openstreetmap.org/way/31242002",
+          "https://www.openstreetmap.org/way/39993115",
+          "https://www.openstreetmap.org/way/223130828",
+          "https://www.openstreetmap.org/way/230508098",
+          "https://www.openstreetmap.org/way/230508106",
+          "https://www.openstreetmap.org/way/230508111",
+          "https://www.openstreetmap.org/way/230508125",
+          "https://www.openstreetmap.org/way/230513719",
+          "https://www.openstreetmap.org/way/230513763",
+          "https://www.openstreetmap.org/way/230558679",
+          "https://www.openstreetmap.org/way/230558680",
+          "https://www.openstreetmap.org/way/230558683",
+          "https://www.openstreetmap.org/way/230558685",
+          "https://www.openstreetmap.org/way/230558690",
+          "https://www.openstreetmap.org/way/230558703",
+          "https://www.openstreetmap.org/way/230611441",
+          "https://www.openstreetmap.org/way/232066623",
+          "https://www.openstreetmap.org/way/267236797",
+          "https://www.openstreetmap.org/way/267286533",
+          "https://www.openstreetmap.org/way/297722838",
+          "https://www.openstreetmap.org/way/488654080",
+          "https://www.openstreetmap.org/way/488654081",
+          "https://www.openstreetmap.org/way/488654327",
+          "https://www.openstreetmap.org/way/488655076",
+          "https://www.openstreetmap.org/way/488658901",
+          "https://www.openstreetmap.org/way/566772049",
+          "https://www.openstreetmap.org/way/619220498",
+          "https://www.openstreetmap.org/way/619225640",
+          "https://www.openstreetmap.org/way/633969715",
+          "https://www.openstreetmap.org/way/633969718",
+          "https://www.openstreetmap.org/way/921849656",
+          "https://www.openstreetmap.org/way/921849657",
+          "https://www.openstreetmap.org/way/1291707350",
+          "https://www.openstreetmap.org/way/1291707351",
+          "https://www.openstreetmap.org/way/1291707352",
+          "https://www.openstreetmap.org/way/1291707353",
+          "https://www.openstreetmap.org/way/1291707356",
+          "https://www.openstreetmap.org/way/1309565019",
+          "https://www.openstreetmap.org/way/1447251083",
+          "https://www.openstreetmap.org/way/1447251085",
+          "https://www.openstreetmap.org/way/1447563508",
+          "https://www.openstreetmap.org/way/1447563509",
+          "https://www.openstreetmap.org/way/1447563510",
+          "https://www.openstreetmap.org/way/1448297446",
+          "https://www.openstreetmap.org/way/1448297450",
+          "https://www.openstreetmap.org/way/1448297451",
+          "https://www.openstreetmap.org/way/1448297452"
+        ],
+        "approximationNote": "Rough street-junction trace of the nine-street Belváros boundary explicitly published by the municipality for its community project. Actual OSM street courses/junctions guide the trace. Short connections where street names or OSM endpoints do not meet, especially Kígyó/Arany and Sámsoni/Móricz, are inferred; street curves are coarsened. This is not an exact authoritative digitization.",
+        "sourceBoundaryIds": [
+          "osm:way:31152464",
+          "osm:way:31241991",
+          "osm:way:31241994",
+          "osm:way:31242002",
+          "osm:way:39993115",
+          "osm:way:223130828",
+          "osm:way:230508098",
+          "osm:way:230508106",
+          "osm:way:230508111",
+          "osm:way:230508125",
+          "osm:way:230513719",
+          "osm:way:230513763",
+          "osm:way:230558679",
+          "osm:way:230558680",
+          "osm:way:230558683",
+          "osm:way:230558685",
+          "osm:way:230558690",
+          "osm:way:230558703",
+          "osm:way:230611441",
+          "osm:way:232066623",
+          "osm:way:267236797",
+          "osm:way:267286533",
+          "osm:way:297722838",
+          "osm:way:488654080",
+          "osm:way:488654081",
+          "osm:way:488654327",
+          "osm:way:488655076",
+          "osm:way:488658901",
+          "osm:way:566772049",
+          "osm:way:619220498",
+          "osm:way:619225640",
+          "osm:way:633969715",
+          "osm:way:633969718",
+          "osm:way:921849656",
+          "osm:way:921849657",
+          "osm:way:1291707350",
+          "osm:way:1291707351",
+          "osm:way:1291707352",
+          "osm:way:1291707353",
+          "osm:way:1291707356",
+          "osm:way:1309565019",
+          "osm:way:1447251083",
+          "osm:way:1447251085",
+          "osm:way:1447563508",
+          "osm:way:1447563509",
+          "osm:way:1447563510",
+          "osm:way:1448297446",
+          "osm:way:1448297450",
+          "osm:way:1448297451",
+          "osm:way:1448297452"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Belváros",
+            "coordinates": [
+              20.6718813,
+              46.5567946
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/12089036636"
+          }
+        ],
+        "approximateAreaSquareMetres": 2184522.2,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.6630349,
+              46.5570998
+            ],
+            [
+              20.6609962,
+              46.5619776
+            ],
+            [
+              20.6657523,
+              46.5651292
+            ],
+            [
+              20.6698982,
+              46.5678716
+            ],
+            [
+              20.67036,
+              46.56658
+            ],
+            [
+              20.6729696,
+              46.5670849
+            ],
+            [
+              20.6775935,
+              46.5670629
+            ],
+            [
+              20.6782624,
+              46.5594155
+            ],
+            [
+              20.6780239,
+              46.5593732
+            ],
+            [
+              20.6792174,
+              46.5526471
+            ],
+            [
+              20.6732059,
+              46.5510807
+            ],
+            [
+              20.6740504,
+              46.5493679
+            ],
+            [
+              20.6653887,
+              46.5474696
+            ],
+            [
+              20.6650367,
+              46.5490262
+            ],
+            [
+              20.6639827,
+              46.5521984
+            ],
+            [
+              20.6630349,
+              46.5570998
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Orosháza:Dr. László Elek-lakótelep",
+      "properties": {
+        "name": "Dr. László Elek-lakótelep",
+        "municipality": "Orosháza",
+        "municipalityId": "city:Orosháza",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/12089057297",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/12089057297",
+          "https://oroshaza.hu/wp-content/uploads/dokumentumtar/egyeb_informaciok_dokumentumok/2017es_ev/Orosh%C3%A1za%20TAK.pdf",
+          "https://www.openstreetmap.org/way/31152465",
+          "https://www.openstreetmap.org/way/41119985",
+          "https://www.openstreetmap.org/way/230605462",
+          "https://www.openstreetmap.org/way/230605464",
+          "https://www.openstreetmap.org/way/230605467",
+          "https://www.openstreetmap.org/way/230605468",
+          "https://www.openstreetmap.org/way/230605470",
+          "https://www.openstreetmap.org/way/230605471",
+          "https://www.openstreetmap.org/way/230605476",
+          "https://www.openstreetmap.org/way/267158906",
+          "https://www.openstreetmap.org/way/267159207",
+          "https://www.openstreetmap.org/way/267282688",
+          "https://www.openstreetmap.org/way/267282689",
+          "https://www.openstreetmap.org/way/470671933",
+          "https://www.openstreetmap.org/way/619220498",
+          "https://www.openstreetmap.org/way/1561444890"
+        ],
+        "approximationNote": "Actual local street courses enclose the coherent estate area at its name point, including the internal Dr. László Elek lakótelep service streets. The municipal TAK independently lists the estate. This is a physical street-area estimate, not an official estate border.",
+        "sourceBoundaryIds": [
+          "osm:way:31152465",
+          "osm:way:41119985",
+          "osm:way:230605462",
+          "osm:way:230605464",
+          "osm:way:230605467",
+          "osm:way:230605468",
+          "osm:way:230605470",
+          "osm:way:230605471",
+          "osm:way:230605476",
+          "osm:way:267158906",
+          "osm:way:267159207",
+          "osm:way:267282688",
+          "osm:way:267282689",
+          "osm:way:470671933",
+          "osm:way:619220498",
+          "osm:way:1561444890"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Dr. László Elek-lakótelep",
+            "coordinates": [
+              20.6583843,
+              46.5609963
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/12089057297"
+          }
+        ],
+        "approximateAreaSquareMetres": 139855.1,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.65953817906142,
+              46.563657546580174
+            ],
+            [
+              20.659835020101216,
+              46.56336280295834
+            ],
+            [
+              20.65979600487548,
+              46.56332420110684
+            ],
+            [
+              20.66087860487531,
+              46.56200360110681
+            ],
+            [
+              20.66072610487533,
+              46.56197470110679
+            ],
+            [
+              20.659151404875573,
+              46.56167230110694
+            ],
+            [
+              20.65924690487556,
+              46.56142170110693
+            ],
+            [
+              20.659262504875556,
+              46.56138070110692
+            ],
+            [
+              20.659361904875542,
+              46.56112000110689
+            ],
+            [
+              20.659619004875502,
+              46.56116760110692
+            ],
+            [
+              20.659740904875477,
+              46.560814401106924
+            ],
+            [
+              20.65953690487551,
+              46.56078230110691
+            ],
+            [
+              20.659040004875585,
+              46.560704201106994
+            ],
+            [
+              20.65813410487573,
+              46.560561701107034
+            ],
+            [
+              20.65785880487577,
+              46.560518301107095
+            ],
+            [
+              20.657598004875815,
+              46.56047730110711
+            ],
+            [
+              20.6576243048758,
+              46.56037970110708
+            ],
+            [
+              20.657560304875823,
+              46.56037180110708
+            ],
+            [
+              20.65673720487595,
+              46.56027080110717
+            ],
+            [
+              20.656687304875962,
+              46.560264701107165
+            ],
+            [
+              20.65689870487592,
+              46.56003990110715
+            ],
+            [
+              20.655888104876077,
+              46.559757501107235
+            ],
+            [
+              20.65451370487629,
+              46.559373501107366
+            ],
+            [
+              20.654342104876317,
+              46.55967300110736
+            ],
+            [
+              20.65220380487665,
+              46.55869910110759
+            ],
+            [
+              20.652078004876667,
+              46.55842630110756
+            ],
+            [
+              20.651910504876696,
+              46.55846290110761
+            ],
+            [
+              20.65191450487669,
+              46.55865200110756
+            ],
+            [
+              20.65192400487669,
+              46.55879100110762
+            ],
+            [
+              20.651943904876692,
+              46.55890560110758
+            ],
+            [
+              20.651964704876686,
+              46.55901670110758
+            ],
+            [
+              20.65197750487669,
+              46.55913300110759
+            ],
+            [
+              20.65202400487669,
+              46.559267001107585
+            ],
+            [
+              20.65207220487667,
+              46.55939010110758
+            ],
+            [
+              20.65214190487666,
+              46.55952840110756
+            ],
+            [
+              20.652208504876654,
+              46.55963660110754
+            ],
+            [
+              20.65227150487664,
+              46.55972670110755
+            ],
+            [
+              20.652352904876633,
+              46.55983570110755
+            ],
+            [
+              20.65243430487662,
+              46.559937501107505
+            ],
+            [
+              20.652537204876598,
+              46.560049201107525
+            ],
+            [
+              20.652660804876582,
+              46.56017450110751
+            ],
+            [
+              20.65277470487656,
+              46.56028190110748
+            ],
+            [
+              20.65286470487655,
+              46.560355201107505
+            ],
+            [
+              20.653004804876527,
+              46.56045930110749
+            ],
+            [
+              20.65316190487651,
+              46.56056310110746
+            ],
+            [
+              20.653302904876487,
+              46.56064050110745
+            ],
+            [
+              20.65352430487645,
+              46.56075690110744
+            ],
+            [
+              20.657657904875812,
+              46.56282650110707
+            ],
+            [
+              20.658831304875626,
+              46.563418601106946
+            ],
+            [
+              20.659102104875593,
+              46.563507401106925
+            ],
+            [
+              20.65953817906142,
+              46.563657546580174
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Orosháza:Hajnal utcai lakótelep",
+      "properties": {
+        "name": "Hajnal utcai lakótelep",
+        "municipality": "Orosháza",
+        "municipalityId": "city:Orosháza",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/12089081007",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/12089081007",
+          "https://oroshaza.hu/wp-content/uploads/dokumentumtar/egyeb_informaciok_dokumentumok/2017es_ev/Orosh%C3%A1za%20TAK.pdf",
+          "https://www.openstreetmap.org/way/230508090",
+          "https://www.openstreetmap.org/way/230508109",
+          "https://www.openstreetmap.org/way/230508116",
+          "https://www.openstreetmap.org/way/267236797"
+        ],
+        "approximationNote": "Actual local street cell around the Hajnal estate blocks. The municipal TAK explicitly identifies the Hajnal street area as an estate. A rough estate-core search area; not a claimed cadastral border.",
+        "sourceBoundaryIds": [
+          "osm:way:230508090",
+          "osm:way:230508109",
+          "osm:way:230508116",
+          "osm:way:267236797"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Hajnal utcai lakótelep",
+            "coordinates": [
+              20.6744374,
+              46.5571562
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/12089081007"
+          }
+        ],
+        "approximateAreaSquareMetres": 30727.5,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.67242770487349,
+              46.55736950110592
+            ],
+            [
+              20.673434404873326,
+              46.55746580110583
+            ],
+            [
+              20.673721404873287,
+              46.55749320110579
+            ],
+            [
+              20.6748862048731,
+              46.5576046011057
+            ],
+            [
+              20.674907204873094,
+              46.55749940110571
+            ],
+            [
+              20.67515920487306,
+              46.55624060110569
+            ],
+            [
+              20.67380610487326,
+              46.5560676011058
+            ],
+            [
+              20.67244810487348,
+              46.556050101105924
+            ],
+            [
+              20.672432204873488,
+              46.55707910110593
+            ],
+            [
+              20.67242770487349,
+              46.55736950110592
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Orosháza:Tass utcai lakótelep",
+      "properties": {
+        "name": "Tass utcai lakótelep",
+        "municipality": "Orosháza",
+        "municipalityId": "city:Orosháza",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/12089090911",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/12089090911",
+          "https://oroshaza.hu/wp-content/uploads/dokumentumtar/egyeb_informaciok_dokumentumok/2017es_ev/Orosh%C3%A1za%20TAK.pdf",
+          "https://www.openstreetmap.org/way/31241738",
+          "https://www.openstreetmap.org/way/230511414",
+          "https://www.openstreetmap.org/way/230558699",
+          "https://www.openstreetmap.org/way/230558717",
+          "https://www.openstreetmap.org/way/652202473"
+        ],
+        "approximationNote": "Actual street cell around Tass street estate blocks. The municipal TAK independently lists the Tass street estate. A rough estate-core area, not a surveyed complete estate perimeter.",
+        "sourceBoundaryIds": [
+          "osm:way:31241738",
+          "osm:way:230511414",
+          "osm:way:230558699",
+          "osm:way:230558717",
+          "osm:way:652202473"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Tass utcai lakótelep",
+            "coordinates": [
+              20.666152,
+              46.558252
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/12089090911"
+          }
+        ],
+        "approximateAreaSquareMetres": 18431.4,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.667162404874315,
+              46.55797340110632
+            ],
+            [
+              20.666917204874352,
+              46.557889301106364
+            ],
+            [
+              20.666890404874355,
+              46.5578809011063
+            ],
+            [
+              20.66664710487439,
+              46.55778690110637
+            ],
+            [
+              20.666379104874434,
+              46.5577060011064
+            ],
+            [
+              20.666179704874466,
+              46.55765650110643
+            ],
+            [
+              20.66611360487447,
+              46.55776200110644
+            ],
+            [
+              20.66609790487448,
+              46.55778700110644
+            ],
+            [
+              20.666046604874488,
+              46.55786890110644
+            ],
+            [
+              20.665975204874496,
+              46.557937201106434
+            ],
+            [
+              20.665731604874537,
+              46.55806950110644
+            ],
+            [
+              20.665858204874517,
+              46.558187901106415
+            ],
+            [
+              20.665886904874508,
+              46.55821490110643
+            ],
+            [
+              20.666259604874448,
+              46.5583723011064
+            ],
+            [
+              20.666629704874392,
+              46.55852870110635
+            ],
+            [
+              20.666939404874352,
+              46.55865950110639
+            ],
+            [
+              20.66750190487426,
+              46.55889700110628
+            ],
+            [
+              20.66759770487425,
+              46.55893750110629
+            ],
+            [
+              20.667621204874237,
+              46.5589984011063
+            ],
+            [
+              20.667582104874253,
+              46.55907370110632
+            ],
+            [
+              20.667416004874273,
+              46.559191301106296
+            ],
+            [
+              20.666784304874376,
+              46.559638401106305
+            ],
+            [
+              20.66677390487438,
+              46.559688601106394
+            ],
+            [
+              20.666802504874376,
+              46.55974770110638
+            ],
+            [
+              20.666911204874353,
+              46.55981860110631
+            ],
+            [
+              20.667018704874337,
+              46.559910301106285
+            ],
+            [
+              20.667030404874343,
+              46.559901401106316
+            ],
+            [
+              20.667690804874233,
+              46.55940290110629
+            ],
+            [
+              20.668395604874124,
+              46.558920501106215
+            ],
+            [
+              20.668414604874116,
+              46.55884900110619
+            ],
+            [
+              20.66842660487411,
+              46.55880840110623
+            ],
+            [
+              20.668382604874125,
+              46.55872660110626
+            ],
+            [
+              20.668129004874157,
+              46.55856640110627
+            ],
+            [
+              20.66820620487415,
+              46.55838490110622
+            ],
+            [
+              20.66793250487419,
+              46.558300701106255
+            ],
+            [
+              20.66739460487428,
+              46.5580721011063
+            ],
+            [
+              20.667162404874315,
+              46.55797340110632
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Orosháza:Üveggyár",
+      "properties": {
+        "name": "Üveggyár",
+        "municipality": "Orosháza",
+        "municipalityId": "city:Orosháza",
+        "method": "source_footprint_locality_association_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 20,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": true,
+        "sourceUrl": "https://www.openstreetmap.org/relation/3062948",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/12089077259",
+          "https://oroshaza.hu/wp-content/uploads/dokumentumtar/egyeb_informaciok_dokumentumok/2017es_ev/Orosh%C3%A1za%20TAK.pdf",
+          "https://www.openstreetmap.org/relation/3062948"
+        ],
+        "approximationNote": "Unchanged actual industrial source polygon explicitly named Orosházi üveggyár. Associated with the Üveggyár locality point contained within it; the factory site itself is the mapped search area, distinct from the adjacent housing estate.",
+        "sourceBoundaryIds": [
+          "osm:relation:3062948"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Üveggyár",
+            "coordinates": [
+              20.6870407,
+              46.5777065
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/12089077259"
+          }
+        ],
+        "approximateAreaSquareMetres": 562989.5,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false,
+        "sourceAreaTags": {
+          "landuse": "industrial",
+          "name": "Orosházi üveggyár"
+        }
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                20.6809684,
+                46.5748939
+              ],
+              [
+                20.6813434,
+                46.5746109
+              ],
+              [
+                20.6817334,
+                46.5747227
+              ],
+              [
+                20.6835776,
+                46.5752001
+              ],
+              [
+                20.6848581,
+                46.5755509
+              ],
+              [
+                20.686155,
+                46.5764296
+              ],
+              [
+                20.6859005,
+                46.5764956
+              ],
+              [
+                20.6859389,
+                46.576555
+              ],
+              [
+                20.6861214,
+                46.5765385
+              ],
+              [
+                20.6871641,
+                46.5770886
+              ],
+              [
+                20.6871371,
+                46.5773229
+              ],
+              [
+                20.6870411,
+                46.5773504
+              ],
+              [
+                20.687307,
+                46.5779056
+              ],
+              [
+                20.6875017,
+                46.5778582
+              ],
+              [
+                20.6876748,
+                46.5779603
+              ],
+              [
+                20.6877983,
+                46.5779576
+              ],
+              [
+                20.6878515,
+                46.57857
+              ],
+              [
+                20.6884752,
+                46.5785743
+              ],
+              [
+                20.688463,
+                46.579511
+              ],
+              [
+                20.688488,
+                46.5799433
+              ],
+              [
+                20.6894519,
+                46.581726
+              ],
+              [
+                20.6893044,
+                46.5817649
+              ],
+              [
+                20.6896096,
+                46.5822943
+              ],
+              [
+                20.6897572,
+                46.5822499
+              ],
+              [
+                20.6898307,
+                46.5823792
+              ],
+              [
+                20.6896586,
+                46.5824221
+              ],
+              [
+                20.689705,
+                46.5825528
+              ],
+              [
+                20.68989,
+                46.582503
+              ],
+              [
+                20.6902307,
+                46.5831409
+              ],
+              [
+                20.6900724,
+                46.5831796
+              ],
+              [
+                20.6902629,
+                46.5835907
+              ],
+              [
+                20.6909173,
+                46.5834579
+              ],
+              [
+                20.6909495,
+                46.5833787
+              ],
+              [
+                20.6936559,
+                46.5827316
+              ],
+              [
+                20.6938892,
+                46.5827353
+              ],
+              [
+                20.6940501,
+                46.5826855
+              ],
+              [
+                20.6941927,
+                46.5825802
+              ],
+              [
+                20.6943587,
+                46.5826731
+              ],
+              [
+                20.6945494,
+                46.5829071
+              ],
+              [
+                20.6948632,
+                46.5835029
+              ],
+              [
+                20.6952614,
+                46.5843744
+              ],
+              [
+                20.6954779,
+                46.5848812
+              ],
+              [
+                20.6941313,
+                46.5851769
+              ],
+              [
+                20.6942016,
+                46.5853106
+              ],
+              [
+                20.6939204,
+                46.5853776
+              ],
+              [
+                20.6938717,
+                46.5852811
+              ],
+              [
+                20.6917934,
+                46.5857985
+              ],
+              [
+                20.6920612,
+                46.5862848
+              ],
+              [
+                20.6879789,
+                46.5873322
+              ],
+              [
+                20.6872774,
+                46.5859325
+              ],
+              [
+                20.6868666,
+                46.5860445
+              ],
+              [
+                20.6864411,
+                46.5852666
+              ],
+              [
+                20.68203,
+                46.5768882
+              ],
+              [
+                20.6817435,
+                46.5763366
+              ],
+              [
+                20.6815383,
+                46.575929
+              ],
+              [
+                20.6814254,
+                46.5757363
+              ],
+              [
+                20.6809684,
+                46.5748939
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "east-small-round2:Orosháza:Üveggyári lakótelep",
+      "properties": {
+        "name": "Üveggyári lakótelep",
+        "municipality": "Orosháza",
+        "municipalityId": "city:Orosháza",
+        "method": "physical_barrier_cell_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "qualityScore": 10,
+        "candidateBoundaryKind": "neighbourhood",
+        "semanticFootprint": true,
+        "sourceGeometryUnmodified": false,
+        "sourceUrl": "https://www.openstreetmap.org/node/12089065996",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/12089065996",
+          "https://oroshaza.hu/wp-content/uploads/dokumentumtar/egyeb_informaciok_dokumentumok/2017es_ev/Orosh%C3%A1za%20TAK.pdf",
+          "https://www.openstreetmap.org/way/30835455",
+          "https://www.openstreetmap.org/way/30835457",
+          "https://www.openstreetmap.org/way/30835458",
+          "https://www.openstreetmap.org/way/30835459",
+          "https://www.openstreetmap.org/way/230614015",
+          "https://www.openstreetmap.org/way/309202489",
+          "https://www.openstreetmap.org/way/617396833"
+        ],
+        "approximationNote": "Actual local street courses enclose the estate strip beside the glassworks at its preserved name point. The municipal TAK lists the estate and municipal planning material distinguishes the former factory service housing. Estimated association; does not rename the factory parcel as housing.",
+        "sourceBoundaryIds": [
+          "osm:way:30835455",
+          "osm:way:30835457",
+          "osm:way:30835458",
+          "osm:way:30835459",
+          "osm:way:230614015",
+          "osm:way:309202489",
+          "osm:way:617396833"
+        ],
+        "source": {
+          "provider": "openstreetmap-physical-map-with-local-source-review",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "sourceAreaPath": "data/neighborhoods/expansion-20261115-round2/east-small/source-areas.geojson",
+          "sourceLinePath": "data/neighborhoods/expansion-20261115-round2/east-small/source-lines.geojson"
+        },
+        "nameEvidence": [
+          {
+            "name": "Üveggyári lakótelep",
+            "coordinates": [
+              20.6837043,
+              46.5814819
+            ],
+            "sourceUrl": "https://www.openstreetmap.org/node/12089065996"
+          }
+        ],
+        "approximateAreaSquareMetres": 92780.9,
+        "pointRadiusFallback": false,
+        "municipalityClipped": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.68328270487187,
+              46.57946860110464
+            ],
+            [
+              20.68315330487189,
+              46.57947100110468
+            ],
+            [
+              20.68293910487192,
+              46.579494301104646
+            ],
+            [
+              20.68258370487198,
+              46.57956880110471
+            ],
+            [
+              20.68374820487181,
+              46.58196060110457
+            ],
+            [
+              20.685105504871604,
+              46.58459160110444
+            ],
+            [
+              20.6838484048718,
+              46.584601101104504
+            ],
+            [
+              20.683771404871816,
+              46.5846132011045
+            ],
+            [
+              20.683884304871793,
+              46.58481830110449
+            ],
+            [
+              20.684017304871773,
+              46.58501800110447
+            ],
+            [
+              20.684125004871756,
+              46.58514100110448
+            ],
+            [
+              20.68424350487175,
+              46.58526670110444
+            ],
+            [
+              20.68437980487172,
+              46.58538730110447
+            ],
+            [
+              20.684906804871634,
+              46.585775501104365
+            ],
+            [
+              20.685055404871616,
+              46.58588040110437
+            ],
+            [
+              20.685279404871583,
+              46.586046001104364
+            ],
+            [
+              20.685384204871568,
+              46.586145101104336
+            ],
+            [
+              20.685462804871555,
+              46.58623960110435
+            ],
+            [
+              20.685528704871544,
+              46.58633930110437
+            ],
+            [
+              20.685590204871538,
+              46.58644230110434
+            ],
+            [
+              20.685638904871528,
+              46.586561801104324
+            ],
+            [
+              20.685673704871522,
+              46.586693601104315
+            ],
+            [
+              20.685692104871517,
+              46.58681190110432
+            ],
+            [
+              20.685689404871518,
+              46.58695390110433
+            ],
+            [
+              20.68565990487153,
+              46.58709030110432
+            ],
+            [
+              20.685613004871538,
+              46.587214701104344
+            ],
+            [
+              20.685558804871544,
+              46.587348201104355
+            ],
+            [
+              20.683623204871868,
+              46.591902201104425
+            ],
+            [
+              20.68353000487188,
+              46.59214070110442
+            ],
+            [
+              20.683460804871892,
+              46.59238330110446
+            ],
+            [
+              20.683376404871904,
+              46.59273170110443
+            ],
+            [
+              20.68334360487191,
+              46.59289730110441
+            ],
+            [
+              20.683316104871913,
+              46.59303640110441
+            ],
+            [
+              20.682928877372063,
+              46.594970640946144
+            ],
+            [
+              20.683193404871943,
+              46.595020301104384
+            ],
+            [
+              20.683253352778134,
+              46.5950307190719
+            ],
+            [
+              20.683681804871853,
+              46.59280390110439
+            ],
+            [
+              20.68378070487184,
+              46.59240910110435
+            ],
+            [
+              20.68386790487183,
+              46.59213600110443
+            ],
+            [
+              20.683948404871813,
+              46.59190600110437
+            ],
+            [
+              20.68507230487163,
+              46.58933480110433
+            ],
+            [
+              20.685728604871517,
+              46.58796800110428
+            ],
+            [
+              20.686230504871432,
+              46.58678670110427
+            ],
+            [
+              20.686393904871412,
+              46.586332401104315
+            ],
+            [
+              20.686465204871404,
+              46.585855601104285
+            ],
+            [
+              20.686435804871405,
+              46.5855534011043
+            ],
+            [
+              20.686347204871414,
+              46.58520760110429
+            ],
+            [
+              20.686029904871457,
+              46.58454850110433
+            ],
+            [
+              20.6850723048716,
+              46.58270290110445
+            ],
+            [
+              20.68328270487187,
+              46.57946860110464
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

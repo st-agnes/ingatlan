@@ -306,6 +306,18 @@ def mysql_export(features, redirects=()):
               '-- ST_Intersects includes points on an area boundary; one address may match several named areas.']
     return '\n'.join(lines) + '\n'
 
+def check_outputs(files):
+    for filename, content in files.items():
+        path = DATA / filename
+        # The large plain GeoJSON is a local/ZIP artifact; Git stores the gzip.
+        if filename == 'search-areas.geojson' and not path.exists():
+            continue
+        actual = path.read_bytes()
+        if filename.endswith('.gz'):
+            actual, content = gzip.decompress(actual), gzip.decompress(content)
+        if actual != content:
+            raise SystemExit('Stale search area export: ' + filename)
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__); parser.add_argument('--check', action='store_true')
     parser.add_argument('--update-identities', action='store_true', help='Persist new name equivalences/redirects and regenerate the exports')
@@ -314,12 +326,9 @@ if __name__ == '__main__':
     identity_path = DATA / 'search-area-identities.json'
     if not args.check and not args.update_identities and (not identity_path.exists() or identity_path.read_bytes() != files['search-area-identities.json']):
         raise SystemExit('Persistent identities changed; run with --update-identities before exporting.')
-    for filename, content in files.items():
-        path = DATA / filename
-        if args.check:
-            actual = path.read_bytes()
-            if filename.endswith('.gz'):
-                actual, content = gzip.decompress(actual), gzip.decompress(content)
-            if actual != content: raise SystemExit('Stale search area export: ' + filename)
-        else: path.write_bytes(content)
+    if args.check:
+        check_outputs(files)
+    else:
+        for filename, content in files.items():
+            (DATA / filename).write_bytes(content)
     print(packed({k: report[k] for k in ('featureCount', 'municipalityCount', 'methods', 'duplicateVariantsPreserved')}))

@@ -15,3 +15,5 @@
 gha-creds-*.json
 **/__pycache__/
 *.py[cod]
+# Large generated plain view is restored by the builder and included in the ZIP.
+/data/neighborhoods/search-areas.geojson

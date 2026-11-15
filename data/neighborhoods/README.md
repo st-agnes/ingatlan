@@ -1,11 +1,12 @@
 # Magyar városrészhatárok – kutatási adatállomány
 
-**Az új gyűjtési stratégia aktuális, összevont állománya:** [kereshető területek és poligonok](search-areas.geojson), [településenkénti darabszámok](search-areas-report.csv), [MySQL-import](search-areas.mysql.sql.gz). A név szerint egyesített állomány gépi határokat, térképi becsléseket és átfedő felosztásokat is tartalmaz. A mindenkori pontos darabszám a [gépi jelentésben](search-areas-report.json) található.
+**Az új gyűjtési stratégia aktuális, összevont állománya:** [kereshető területek és poligonok](search-areas.geojson.gz), [településenkénti darabszámok](search-areas-report.csv), [MySQL-import](search-areas.mysql.sql.gz). A név szerint egyesített állomány gépi határokat, térképi becsléseket és átfedő felosztásokat is tartalmaz. A mindenkori pontos darabszám a [gépi jelentésben](search-areas-report.json) található.
 
-**Legutóbbi mentés: 3771 kereshető terület 567 településről**, kör alapú pótlás nélkül. Külön tartalékrétegben 510 pontból becsült kör marad. [Letölthető teljes adatcsomag](../../downloads/neighborhoods/otthonra-keresheto-varosreszek.zip).
+**Legutóbbi mentés: 3899 kereshető terület 567 településről**, kör alapú pótlás nélkül. Külön tartalékrétegben 391 pontból becsült kör marad. [Letölthető poligoncsomag](../../downloads/neighborhoods/otthonra-keresheto-varosreszek.zip).
 
 - [Új adatmodell, névazonosság, forrásválasztás és importálás](../../docs/NEIGHBORHOOD-SEARCH-DATA.md)
 - [A november 15-i folytatás forrásai, becslési korlátai és állapota](expansion-20261115/README.md)
+- [A második november 15-i gyűjtési kör és a folytatható hiányok](expansion-20261115-round2/README.md)
 - [Gyűjtési stratégia és folytatható munkafolyamat](expansion-20261114/STRATEGY.md)
 - [A legutóbbi mentés és a következő munkák állapota](expansion-20261114/WORK-STATE.json)
 

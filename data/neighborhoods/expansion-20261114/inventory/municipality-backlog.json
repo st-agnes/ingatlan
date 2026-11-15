@@ -3,12 +3,12 @@
   "date": "2026-11-14",
   "scope": "Worklist of currently known names from OSM suburb/neighbourhood/quarter points, municipal reference lists and collected polygons. Name coverage measures this finite worklist only. It is not a count of every Hungarian neighbourhood, and neither point-only names nor urban planning groups establish official neighbourhood boundaries. Names, aliases, historical schemes and overlapping areas are retained under the user-authorized broad search-area policy. No point was converted into a circle by this script.",
   "summary": {
-    "knownNameCount": 4312,
+    "knownNameCount": 4311,
     "municipalitiesWithKnownNames": 618,
-    "namesWithCollectedPolygon": 3771,
+    "namesWithCollectedPolygon": 3899,
     "namesWithKnownPoint": 3487,
-    "pointOnlyNames": 510,
-    "unlocatedUncollectedNames": 31,
+    "pointOnlyNames": 391,
+    "unlocatedUncollectedNames": 21,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
       80,
@@ -982,22 +982,14 @@
       "municipality": "Budakeszi",
       "county": "Pest",
       "knownNameCount": 15,
-      "namesWithCollectedPolygon": 8,
-      "namesWithPointOnly": 7,
+      "namesWithCollectedPolygon": 15,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 53.3,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Barackos",
-        "Hidegvölgy",
-        "József Attila lakótelep",
-        "Meggyes",
-        "Pilisi Parkerdő Ipari Park",
-        "Szőlőskert Ipari Park",
-        "Tiefenweg"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Budapest",
@@ -1734,19 +1726,16 @@
     {
       "municipality": "Dombóvár",
       "county": "Tolna",
-      "knownNameCount": 17,
-      "namesWithCollectedPolygon": 12,
-      "namesWithPointOnly": 1,
-      "namesWithoutPointOrPolygon": 4,
+      "knownNameCount": 16,
+      "namesWithCollectedPolygon": 14,
+      "namesWithPointOnly": 0,
+      "namesWithoutPointOrPolygon": 2,
       "referenceNameCount": 11,
-      "referenceNamesWithCollectedPolygon": 7,
-      "knownNameCoveragePercent": 70.6,
+      "referenceNamesWithCollectedPolygon": 9,
+      "knownNameCoveragePercent": 87.5,
       "completeCityCoverageEstablished": false,
       "missingNames": [
-        "Egyéb, belvárost övező városi területek",
-        "Gunaras",
         "Külterületek",
-        "Perekac",
         "Szuhay-domb"
       ]
     },
@@ -1754,25 +1743,14 @@
       "municipality": "Dorog",
       "county": "Komárom-Esztergom",
       "knownNameCount": 19,
-      "namesWithCollectedPolygon": 9,
-      "namesWithPointOnly": 10,
+      "namesWithCollectedPolygon": 19,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 47.4,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Baross Gábor lakótelep",
-        "Borbála lakótelep",
-        "Erőmű lakótelep",
-        "Fáy András lakótelep",
-        "Hám Kálmán lakótelep",
-        "Kandó Kálmán lakótelep",
-        "Schmidt Sándor lakótelep",
-        "Széchenyi István lakótelep",
-        "Zrínyi Miklós lakótelep",
-        "Zsigmondy Vilmos Lakótelep"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Dubicsány",
@@ -1804,22 +1782,14 @@
       "municipality": "Dunaföldvár",
       "county": "Tolna",
       "knownNameCount": 14,
-      "namesWithCollectedPolygon": 7,
-      "namesWithPointOnly": 7,
+      "namesWithCollectedPolygon": 14,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 50.0,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Bölcske utca",
-        "Kecskehegy",
-        "Kálváriahegy",
-        "Tabán",
-        "Templomhegy",
-        "Váralja",
-        "Várdomb"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Dunaharaszti",
@@ -2296,21 +2266,14 @@
       "municipality": "Fonyód",
       "county": "Somogy",
       "knownNameCount": 7,
-      "namesWithCollectedPolygon": 1,
-      "namesWithPointOnly": 6,
+      "namesWithCollectedPolygon": 7,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 14.3,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Alsóbélatelep",
-        "Bélatelep",
-        "Fonyódliget",
-        "Fürdőtelep",
-        "Kertváros",
-        "Sándortelep"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Fényeslitke",
@@ -2553,26 +2516,14 @@
       "municipality": "Gyöngyös",
       "county": "Heves",
       "knownNameCount": 24,
-      "namesWithCollectedPolygon": 13,
-      "namesWithPointOnly": 10,
-      "namesWithoutPointOrPolygon": 1,
+      "namesWithCollectedPolygon": 24,
+      "namesWithPointOnly": 0,
+      "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 6,
-      "referenceNamesWithCollectedPolygon": 5,
-      "knownNameCoveragePercent": 54.2,
+      "referenceNamesWithCollectedPolygon": 6,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Bethlen Gábor-lakótelep",
-        "Duránda",
-        "Ipari park",
-        "Kakastánc",
-        "Mátrafüred",
-        "Mátrai úti lakótelep",
-        "Nyolcvanas lakótelep",
-        "Pesti úti lakótelep",
-        "Vásár tér",
-        "Északi városrész",
-        "Észak-Kálváriapart"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Gyöngyöspata",
@@ -2678,22 +2629,14 @@
       "municipality": "Gödöllő",
       "county": "Pest",
       "knownNameCount": 18,
-      "namesWithCollectedPolygon": 11,
-      "namesWithPointOnly": 7,
+      "namesWithCollectedPolygon": 18,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 61.1,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Antalhegy",
-        "Csanak",
-        "Incső",
-        "Királytelep",
-        "Nagyfenyves",
-        "Palota-kert",
-        "Újfenyves"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Görbeháza",
@@ -2982,23 +2925,14 @@
       "municipality": "Hosszúpályi",
       "county": "Hajdú-Bihar",
       "knownNameCount": 13,
-      "namesWithCollectedPolygon": 5,
-      "namesWithPointOnly": 8,
+      "namesWithCollectedPolygon": 13,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 38.5,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Dezső rész",
-        "Farkasgaz",
-        "Homoktelep",
-        "Hosszúgaz",
-        "Molnárkút",
-        "Szalmás",
-        "Szőlőskertek",
-        "Vénkert"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Hét",
@@ -3206,22 +3140,14 @@
       "municipality": "Jászberény",
       "county": "Jász-Nagykun-Szolnok",
       "knownNameCount": 16,
-      "namesWithCollectedPolygon": 9,
-      "namesWithPointOnly": 7,
+      "namesWithCollectedPolygon": 16,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 56.2,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Ebhát",
-        "Hűtőgépgyár",
-        "Hűtőgépgyári lakótelep",
-        "Kertváros",
-        "Necsőtelep",
-        "Szentkúti városrész",
-        "Újerdő"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Kaba",
@@ -3283,23 +3209,14 @@
       "municipality": "Kalocsa",
       "county": "Bács-Kiskun",
       "knownNameCount": 21,
-      "namesWithCollectedPolygon": 13,
-      "namesWithPointOnly": 8,
+      "namesWithCollectedPolygon": 21,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 61.9,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Csajdakert",
-        "Homokgyőr",
-        "Széchenyi-lakótelep",
-        "Urbántanya",
-        "Vörösszállás",
-        "Zrínyi-lakótelep",
-        "Árendás-dűlő",
-        "Érsekkert"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Kaposhomok",
@@ -3523,21 +3440,15 @@
       "municipality": "Keszthely",
       "county": "Zala",
       "knownNameCount": 11,
-      "namesWithCollectedPolygon": 4,
+      "namesWithCollectedPolygon": 10,
       "namesWithPointOnly": 1,
-      "namesWithoutPointOrPolygon": 6,
+      "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 6,
-      "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 36.4,
+      "referenceNamesWithCollectedPolygon": 6,
+      "knownNameCoveragePercent": 90.9,
       "completeCityCoverageEstablished": false,
       "missingNames": [
-        "Kertváros és Vadaskert",
-        "Szalasztó",
-        "Szendreytelep",
-        "Történelmi belváros",
-        "Északi Balaton-part",
-        "Északi városrész",
-        "Északi és keleti lakóterületek"
+        "Szendreytelep"
       ]
     },
     {
@@ -4750,20 +4661,14 @@
       "municipality": "Monostorpályi",
       "county": "Hajdú-Bihar",
       "knownNameCount": 6,
-      "namesWithCollectedPolygon": 1,
-      "namesWithPointOnly": 5,
+      "namesWithCollectedPolygon": 6,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 16.7,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Csonkás",
-        "Gugyori",
-        "Liliom",
-        "Magyarkert",
-        "Tejfeles"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Mosonmagyaróvár",
@@ -4878,22 +4783,14 @@
       "municipality": "Mátészalka",
       "county": "Szabolcs-Szatmár-Bereg",
       "knownNameCount": 11,
-      "namesWithCollectedPolygon": 4,
-      "namesWithPointOnly": 7,
+      "namesWithCollectedPolygon": 11,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 36.4,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Cinevég",
-        "Fogarassy-tanya",
-        "Keleti lakótelep",
-        "Mátészalkai Ipari Park",
-        "Nyugati Iparterület",
-        "Ráckert lakótelep",
-        "Északi lakótelep"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Mór",
@@ -5495,21 +5392,14 @@
       "municipality": "Orosháza",
       "county": "Békés",
       "knownNameCount": 14,
-      "namesWithCollectedPolygon": 8,
-      "namesWithPointOnly": 6,
+      "namesWithCollectedPolygon": 14,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 57.1,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Belváros",
-        "Dr. László Elek-lakótelep",
-        "Hajnal utcai lakótelep",
-        "Tass utcai lakótelep",
-        "Üveggyár",
-        "Üveggyári lakótelep"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Oroszlány",
@@ -5680,22 +5570,14 @@
       "municipality": "Piliscsaba",
       "county": "Pest",
       "knownNameCount": 13,
-      "namesWithCollectedPolygon": 6,
-      "namesWithPointOnly": 7,
+      "namesWithCollectedPolygon": 13,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 46.2,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Egyetem",
-        "Fényesliget",
-        "Hosszúrét",
-        "Iosephinum",
-        "Márialiget",
-        "Szállás",
-        "Ófalu"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Piliscsév",
@@ -6701,23 +6583,14 @@
       "municipality": "Szentendre",
       "county": "Pest",
       "knownNameCount": 23,
-      "namesWithCollectedPolygon": 15,
-      "namesWithPointOnly": 8,
+      "namesWithCollectedPolygon": 23,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 65.2,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Annavölgy",
-        "Füzespark lakótelep",
-        "Izbég",
-        "Kertváros",
-        "Püspökmajori lakótelep",
-        "Rózsakerti lakótelep",
-        "Skanzen",
-        "Vasvári-lakótelep"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Szentes",
@@ -7229,26 +7102,14 @@
       "municipality": "Sátoraljaújhely",
       "county": "Borsod-Abaúj-Zemplén",
       "knownNameCount": 25,
-      "namesWithCollectedPolygon": 14,
-      "namesWithPointOnly": 11,
+      "namesWithCollectedPolygon": 25,
+      "namesWithPointOnly": 0,
       "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 0,
       "referenceNamesWithCollectedPolygon": 0,
-      "knownNameCoveragePercent": 56.0,
+      "knownNameCoveragePercent": 100.0,
       "completeCityCoverageEstablished": false,
-      "missingNames": [
-        "Boda",
-        "Boglyoska",
-        "Borsiszer",
-        "Dörzsik",
-        "Felsőváros",
-        "Köveshegy",
-        "Mocsárdűlő",
-        "Májuskút",
-        "Ungvár",
-        "Várhegy",
-        "Újváros"
-      ]
+      "missingNames": []
     },
     {
       "municipality": "Sóskút",
@@ -7404,19 +7265,14 @@
       "municipality": "Tata",
       "county": "Komárom-Esztergom",
       "knownNameCount": 23,
-      "namesWithCollectedPolygon": 17,
-      "namesWithPointOnly": 5,
-      "namesWithoutPointOrPolygon": 1,
+      "namesWithCollectedPolygon": 22,
+      "namesWithPointOnly": 1,
+      "namesWithoutPointOrPolygon": 0,
       "referenceNameCount": 10,
-      "referenceNamesWithCollectedPolygon": 9,
-      "knownNameCoveragePercent": 73.9,
+      "referenceNamesWithCollectedPolygon": 10,
+      "knownNameCoveragePercent": 95.7,
       "completeCityCoverageEstablished": false,
       "missingNames": [
-        "Boglárka apartmanpark",
-        "Fácánoskert-lakópark",
-        "Külterületek",
-        "Levendulakert",
-        "Remeteség",
         "Tófarok"
       ]
     },

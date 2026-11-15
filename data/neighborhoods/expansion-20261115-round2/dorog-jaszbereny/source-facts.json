@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_geometry_completed",
+  "sources": [
+    {
+      "url": "https://e-xpertness.com/dorogweb/DOROG_MEGALAPOZO_VIZSGALAT.pdf",
+      "title": "Dorog város megalapozó vizsgálat",
+      "role": "Primary planning text confirms the residential estate morphology; archived actual streets/addresses determine the inferred estate extent.",
+      "facts": [
+        "Printed pages 100-101 identify major estate green areas and distinguish their broader green/building fabric from individual buildings.",
+        "Printed pages 116-117 describe the central belt of named residential estates between southeastern and northwestern garden-city areas, and the Kenyérmezei stream as a structural feature.",
+        "The named estates are real address localities; none of the inferred envelopes is claimed to be an official cadastral perimeter."
+      ],
+      "binaryUsedForGeometry": false
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:J%C3%A1szber%C3%A9ny_v%C3%A1rosr%C3%A9szei.png",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/33/J%C3%A1szber%C3%A9ny_v%C3%A1rosr%C3%A9szei.png",
+      "title": "Jászberény városrészei",
+      "author": "Keve.szerkeszt",
+      "license": "CC-BY-SA-4.0",
+      "role": "Supplemental published overview of two planning subdivisions; primary document takes priority if the overview caption dates disagree.",
+      "binaryUsedForGeometry": false
+    },
+    {
+      "url": "https://honlap.hu/pages/jaszbereny/contents/media/274/273102/jaszbereny_its-megalapozo_20220328_vegleges.pdf",
+      "title": "Jászberény ITS megalapozó vizsgálat 2022",
+      "role": "Primary source for the planning map and conventional city-part context; finer estate/industrial/rural names remain distinct.",
+      "binaryUsedForGeometry": false
+    },
+    {
+      "url": "https://or.njt.hu/onkormanyzati-rendelet/2017-4-SP-1675",
+      "title": "Jászberény építési szabályzata",
+      "role": "Primary planning context identifies Újerdő among the wooded southern rural areas with inhabited farm/house groups; not an exact neighborhood boundary.",
+      "binaryUsedForGeometry": false
+    }
+  ],
+  "fallbackPolicy": "No circle, point-only bounding box, Voronoi or point hull. Estimate from named road/address evidence or a published map; keep low-confidence markers.",
+  "constructionSource": "The collected geometries were constructed from archived OSM roads, full landuse compounds, buildings and address groups. Online planning text supplies context. No unavailable PDF/map binary is claimed as a traced input."
+}

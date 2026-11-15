@@ -46,31 +46,31 @@
   "resume": "Preserve completed packets; register their GeoJSON paths and SHA256 in expansion-20261114/input-registry.json, run build-search-areas.py --update-identities, refresh inventory/fallbacks and package, validate, commit and push. Continue the remaining priority-city names; national collection is not complete.",
   "completeNationalCoverage": false,
   "latestCheckpoint": {
-    "featureCount": 3771,
+    "featureCount": 3899,
     "municipalityCount": 567,
     "methods": {
-      "map_or_text_estimate": 997,
-      "named_source_footprint": 2127,
-      "source_map_polygon": 168,
+      "map_or_text_estimate": 1078,
+      "named_source_footprint": 2170,
+      "source_map_polygon": 172,
       "source_polygon": 479
     },
     "duplicateVariantsPreserved": 345
   },
   "knownNameInventory": {
-    "knownNameCount": 4312,
+    "knownNameCount": 4311,
     "municipalitiesWithKnownNames": 618,
-    "namesWithCollectedPolygon": 3771,
+    "namesWithCollectedPolygon": 3899,
     "namesWithKnownPoint": 3487,
-    "pointOnlyNames": 510,
-    "unlocatedUncollectedNames": 31,
+    "pointOnlyNames": 391,
+    "unlocatedUncollectedNames": 21,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
       80,
       90
     ]
   },
-  "newAreasNet": 1504,
-  "fallbackCircleReduction": 1359,
+  "newAreasNet": 1632,
+  "fallbackCircleReduction": 1478,
   "baselineCommit": "50988ce52abd3bbd010f1383d94c03f08b3f4c87",
   "nextPriorityCities": [
     {
@@ -78,12 +78,6 @@
       "knownNames": 110,
       "mappedNames": 101,
       "remainingNames": 9
-    },
-    {
-      "municipality": "Gödöllő",
-      "knownNames": 18,
-      "mappedNames": 11,
-      "remainingNames": 7
     },
     {
       "municipality": "Győr",
@@ -95,12 +89,6 @@
       "municipality": "Szigetszentmiklós",
       "knownNames": 22,
       "mappedNames": 16,
-      "remainingNames": 6
-    },
-    {
-      "municipality": "Orosháza",
-      "knownNames": 14,
-      "mappedNames": 8,
       "remainingNames": 6
     },
     {
@@ -144,6 +132,18 @@
       "knownNames": 49,
       "mappedNames": 47,
       "remainingNames": 2
+    },
+    {
+      "municipality": "Hódmezővásárhely",
+      "knownNames": 23,
+      "mappedNames": 22,
+      "remainingNames": 1
+    },
+    {
+      "municipality": "Cegléd",
+      "knownNames": 16,
+      "mappedNames": 15,
+      "remainingNames": 1
     }
   ],
   "additionalTasks": [

@@ -10,7 +10,7 @@ Makó és Mosonmagyaróvár önálló kiegészítő csomagot kap.
 - Az aktuális állapot, a kész csomagok és a folytatandó feladatok:
   [WORK-STATE.json](WORK-STATE.json).
 - Az összevont, név szerint egyesített eredmény:
-  [kereshető területek](../search-areas.geojson),
+  [kereshető területek](../search-areas.geojson.gz),
   [darabszámok településenként](../search-areas-report.csv).
 - A teljes aktuális, importálható adatcsomag:
   [ZIP](../../../downloads/neighborhoods/otthonra-keresheto-varosreszek.zip).

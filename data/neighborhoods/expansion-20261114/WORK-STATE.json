@@ -48,12 +48,12 @@
   "resume": "Use the real Git checkout /workspace/ingatlan-github-publish or clone branch codex/neighborhood-research-506-191. Read STRATEGY.md, this state and inventory/priority-cities.csv. Retain persistent search-area-identities.json. Register newly completed source packets with SHA256, run build-search-areas.py --update-identities, refresh inventory/fallbacks, validate and commit/push. Prefer local stored sources; root handles public downloads so approval waits remain visible.",
   "completeNationalCoverage": false,
   "latestCheckpoint": {
-    "featureCount": 3771,
+    "featureCount": 3899,
     "municipalityCount": 567,
     "methods": {
-      "map_or_text_estimate": 997,
-      "named_source_footprint": 2127,
-      "source_map_polygon": 168,
+      "map_or_text_estimate": 1078,
+      "named_source_footprint": 2170,
+      "source_map_polygon": 172,
       "source_polygon": 479
     },
     "duplicateVariantsPreserved": 345
@@ -66,12 +66,12 @@
   "collectionContinues": [],
   "networkWorkPolicy": "Root handles any new internet download; child agents work from saved files to avoid hidden approval waits.",
   "knownNameInventory": {
-    "knownNameCount": 4312,
+    "knownNameCount": 4311,
     "municipalitiesWithKnownNames": 618,
-    "namesWithCollectedPolygon": 3771,
+    "namesWithCollectedPolygon": 3899,
     "namesWithKnownPoint": 3487,
-    "pointOnlyNames": 510,
-    "unlocatedUncollectedNames": 31,
+    "pointOnlyNames": 391,
+    "unlocatedUncollectedNames": 21,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
       80,
@@ -351,6 +351,30 @@
     {
       "path": "data/neighborhoods/expansion-20261115/szekszard-csorge/features.geojson",
       "sha256": "05514ac97e5202b6d54077d9b28814a312fdec86baa836c46f3dc71bc9f2366c"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round2/pest-northwest/features.geojson",
+      "sha256": "8ba5d9d1a7a77e77d84b0d8a11011c719e4330291767ce11657f3a90827db2c2"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round2/west-planning/features.geojson",
+      "sha256": "881e7cdcfb7009842b1818bb743a95386e2ed6eac4e2471fccb4814825fe29f1"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round2/north-northeast/features.geojson",
+      "sha256": "4f0cf78b474b5375ab6fa068b8a5ace5d4c805115b0945ba7fbb0933a37fae5a"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round2/east-small/features.geojson",
+      "sha256": "e14829617a728f5633a5ca2ac7bf05cdff0b8883d1fbfdf156de248f13d33351"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round2/dorog-jaszbereny/features.geojson",
+      "sha256": "2f1b2f94c350644340866a50a02716524c0ef8d53ea0fe136616818d3b936df8"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round2/south-danube/features.geojson",
+      "sha256": "4eae7043189450aa7df789ec381c1564949bb38cb99f07153d6ff8b23c98dadb"
     }
   ],
   "nextPriorityCities": [
@@ -359,12 +383,6 @@
       "knownNames": 110,
       "mappedNames": 101,
       "remainingNames": 9
-    },
-    {
-      "municipality": "Gödöllő",
-      "knownNames": 18,
-      "mappedNames": 11,
-      "remainingNames": 7
     },
     {
       "municipality": "Győr",
@@ -376,12 +394,6 @@
       "municipality": "Szigetszentmiklós",
       "knownNames": 22,
       "mappedNames": 16,
-      "remainingNames": 6
-    },
-    {
-      "municipality": "Orosháza",
-      "knownNames": 14,
-      "mappedNames": 8,
       "remainingNames": 6
     },
     {
@@ -425,8 +437,20 @@
       "knownNames": 49,
       "mappedNames": 47,
       "remainingNames": 2
+    },
+    {
+      "municipality": "Hódmezővásárhely",
+      "knownNames": 23,
+      "mappedNames": 22,
+      "remainingNames": 1
+    },
+    {
+      "municipality": "Cegléd",
+      "knownNames": 16,
+      "mappedNames": 15,
+      "remainingNames": 1
     }
   ],
   "retiredIdentityRedirects": 11,
-  "currentCollectionState": "data/neighborhoods/expansion-20261115/WORK-STATE.json"
+  "currentCollectionState": "data/neighborhoods/expansion-20261115-round2/WORK-STATE.json"
 }
