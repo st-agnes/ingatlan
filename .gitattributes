@@ -1,2 +1,6 @@
 # Preserve exact bytes of pinned research data and source evidence.
 data/neighborhoods/** -text -filter
+data/neighborhoods/**/*.pdf binary
+data/neighborhoods/**/*.png binary
+data/neighborhoods/**/*.gz binary
+downloads/neighborhoods/*.zip binary

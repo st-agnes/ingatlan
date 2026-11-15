@@ -7,7 +7,7 @@
     "municipalities": 509,
     "fallbackCircles": 1869
   },
-  "status": "checkpoint_complete_national_collection_incomplete",
+  "status": "collecting_and_checkpointing",
   "tasks": [
     {
       "id": "budapest",
@@ -46,11 +46,11 @@
   "resume": "Preserve completed packets; register their GeoJSON paths and SHA256 in expansion-20261114/input-registry.json, run build-search-areas.py --update-identities, refresh inventory/fallbacks and package, validate, commit and push. Continue the remaining priority-city names; national collection is not complete.",
   "completeNationalCoverage": false,
   "latestCheckpoint": {
-    "featureCount": 3404,
-    "municipalityCount": 564,
+    "featureCount": 3651,
+    "municipalityCount": 567,
     "methods": {
       "map_or_text_estimate": 915,
-      "named_source_footprint": 1842,
+      "named_source_footprint": 2089,
       "source_map_polygon": 168,
       "source_polygon": 479
     },
@@ -59,9 +59,9 @@
   "knownNameInventory": {
     "knownNameCount": 4313,
     "municipalitiesWithKnownNames": 618,
-    "namesWithCollectedPolygon": 3404,
+    "namesWithCollectedPolygon": 3651,
     "namesWithKnownPoint": 3487,
-    "pointOnlyNames": 861,
+    "pointOnlyNames": 614,
     "unlocatedUncollectedNames": 48,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
@@ -69,8 +69,8 @@
       90
     ]
   },
-  "newAreasNet": 1137,
-  "fallbackCircleReduction": 1008,
+  "newAreasNet": 1384,
+  "fallbackCircleReduction": 1255,
   "baselineCommit": "50988ce52abd3bbd010f1383d94c03f08b3f4c87",
   "nextPriorityCities": [
     {
@@ -110,21 +110,9 @@
       "remainingNames": 9
     },
     {
-      "municipality": "Szigetszentmiklós",
-      "knownNames": 22,
-      "mappedNames": 15,
-      "remainingNames": 7
-    },
-    {
       "municipality": "Gödöllő",
       "knownNames": 18,
       "mappedNames": 11,
-      "remainingNames": 7
-    },
-    {
-      "municipality": "Orosháza",
-      "knownNames": 14,
-      "mappedNames": 7,
       "remainingNames": 7
     },
     {
@@ -134,15 +122,27 @@
       "remainingNames": 6
     },
     {
-      "municipality": "Hajdúböszörmény",
-      "knownNames": 12,
-      "mappedNames": 6,
+      "municipality": "Szigetszentmiklós",
+      "knownNames": 22,
+      "mappedNames": 16,
+      "remainingNames": 6
+    },
+    {
+      "municipality": "Orosháza",
+      "knownNames": 14,
+      "mappedNames": 8,
       "remainingNames": 6
     },
     {
       "municipality": "Miskolc",
       "knownNames": 108,
       "mappedNames": 105,
+      "remainingNames": 3
+    },
+    {
+      "municipality": "Székesfehérvár",
+      "knownNames": 85,
+      "mappedNames": 82,
       "remainingNames": 3
     }
   ],

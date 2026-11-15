@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "policyVersion": "20261114-throughput",
-  "featureCount": 3404,
-  "municipalityCount": 564,
+  "featureCount": 3651,
+  "municipalityCount": 567,
   "methods": {
     "map_or_text_estimate": 915,
-    "named_source_footprint": 1842,
+    "named_source_footprint": 2089,
     "source_map_polygon": 168,
     "source_polygon": 479
   },
-  "inputFeatureCount": 3747,
+  "inputFeatureCount": 3994,
   "duplicateVariantsPreserved": 343,
   "duplicateNameGroups": 322,
   "rejectedTechnicalRecords": [],
@@ -80,7 +80,8 @@
     "data/neighborhoods/expansion-20261114-next/commuter-towns/tatabanya-features.geojson": "c7c149631d492caf3551c89848b21264426b4d9162f0e7c3e2d2f883ad7257b0",
     "data/neighborhoods/expansion-20261114-next/commuter-towns/dunakeszi-features.geojson": "adf3fd00348d9a2b873d5dd2a360f678d2dfb5e75320a5050d8a55bc43e6cc61",
     "data/neighborhoods/expansion-20261114-next/small-remaining/features.geojson": "eb7776fd7134a96b447c3839dd1b34e536e1221f5f5aa9904d4ba49a801f4bc2",
-    "data/neighborhoods/search-area-identities.json": "b8f05d6f604cd909b3110ed876cb65038c0148b5e3224931cc419344a99b506b"
+    "data/neighborhoods/expansion-20261115/national-cells/features.geojson": "fea92c302ae5a269ec7943600e7c03ee10900f2d8dc1f30b9f4cdfd379159978",
+    "data/neighborhoods/search-area-identities.json": "3a26ba5181316d674931b648d32494d77eb5ab7f4456d585b02885123839ec68"
   },
   "selectionOrder": [
     "OSM administrative named boundary",
@@ -199,9 +200,9 @@
     },
     {
       "municipality": "Aszód",
-      "count": 1,
+      "count": 5,
       "methods": {
-        "named_source_footprint": 1
+        "named_source_footprint": 5
       }
     },
     {
@@ -321,16 +322,16 @@
     },
     {
       "municipality": "Balatonfüred",
-      "count": 7,
+      "count": 8,
       "methods": {
-        "named_source_footprint": 7
+        "named_source_footprint": 8
       }
     },
     {
       "municipality": "Balatonfűzfő",
-      "count": 5,
+      "count": 6,
       "methods": {
-        "named_source_footprint": 5
+        "named_source_footprint": 6
       }
     },
     {
@@ -356,9 +357,9 @@
     },
     {
       "municipality": "Balatonlelle",
-      "count": 2,
+      "count": 4,
       "methods": {
-        "named_source_footprint": 2
+        "named_source_footprint": 4
       }
     },
     {
@@ -527,16 +528,16 @@
     },
     {
       "municipality": "Budakalász",
-      "count": 3,
+      "count": 8,
       "methods": {
-        "named_source_footprint": 3
+        "named_source_footprint": 8
       }
     },
     {
       "municipality": "Budakeszi",
-      "count": 3,
+      "count": 8,
       "methods": {
-        "named_source_footprint": 2,
+        "named_source_footprint": 7,
         "source_polygon": 1
       }
     },
@@ -603,9 +604,9 @@
     },
     {
       "municipality": "Békés",
-      "count": 2,
+      "count": 9,
       "methods": {
-        "named_source_footprint": 2
+        "named_source_footprint": 9
       }
     },
     {
@@ -688,9 +689,9 @@
     },
     {
       "municipality": "Celldömölk",
-      "count": 8,
+      "count": 10,
       "methods": {
-        "named_source_footprint": 8
+        "named_source_footprint": 10
       }
     },
     {
@@ -751,9 +752,9 @@
     },
     {
       "municipality": "Csongrád",
-      "count": 9,
+      "count": 15,
       "methods": {
-        "named_source_footprint": 9
+        "named_source_footprint": 15
       }
     },
     {
@@ -793,9 +794,9 @@
     },
     {
       "municipality": "Csömör",
-      "count": 1,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 1
+        "named_source_footprint": 7
       }
     },
     {
@@ -858,9 +859,9 @@
     },
     {
       "municipality": "Diósd",
-      "count": 2,
+      "count": 6,
       "methods": {
-        "named_source_footprint": 2
+        "named_source_footprint": 6
       }
     },
     {
@@ -879,9 +880,9 @@
     },
     {
       "municipality": "Dombóvár",
-      "count": 7,
+      "count": 12,
       "methods": {
-        "named_source_footprint": 6,
+        "named_source_footprint": 11,
         "source_polygon": 1
       }
     },
@@ -909,16 +910,16 @@
     },
     {
       "municipality": "Dunaföldvár",
-      "count": 1,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 1
+        "named_source_footprint": 7
       }
     },
     {
       "municipality": "Dunaharaszti",
-      "count": 8,
+      "count": 11,
       "methods": {
-        "named_source_footprint": 8
+        "named_source_footprint": 11
       }
     },
     {
@@ -1055,9 +1056,9 @@
     },
     {
       "municipality": "Esztergom",
-      "count": 46,
+      "count": 47,
       "methods": {
-        "named_source_footprint": 13,
+        "named_source_footprint": 14,
         "source_map_polygon": 33
       }
     },
@@ -1132,6 +1133,13 @@
       }
     },
     {
+      "municipality": "Fonyód",
+      "count": 1,
+      "methods": {
+        "named_source_footprint": 1
+      }
+    },
+    {
       "municipality": "Fényeslitke",
       "count": 2,
       "methods": {
@@ -1140,9 +1148,9 @@
     },
     {
       "municipality": "Fót",
-      "count": 9,
+      "count": 12,
       "methods": {
-        "named_source_footprint": 9
+        "named_source_footprint": 12
       }
     },
     {
@@ -1239,17 +1247,17 @@
     },
     {
       "municipality": "Gyömrő",
-      "count": 8,
+      "count": 9,
       "methods": {
-        "named_source_footprint": 8
+        "named_source_footprint": 9
       }
     },
     {
       "municipality": "Gyöngyös",
-      "count": 12,
+      "count": 13,
       "methods": {
         "map_or_text_estimate": 5,
-        "named_source_footprint": 7
+        "named_source_footprint": 8
       }
     },
     {
@@ -1328,9 +1336,9 @@
     },
     {
       "municipality": "Hajdúböszörmény",
-      "count": 6,
+      "count": 11,
       "methods": {
-        "named_source_footprint": 6
+        "named_source_footprint": 11
       }
     },
     {
@@ -1483,9 +1491,9 @@
     },
     {
       "municipality": "Ibrány",
-      "count": 6,
+      "count": 11,
       "methods": {
-        "named_source_footprint": 6
+        "named_source_footprint": 11
       }
     },
     {
@@ -1567,9 +1575,9 @@
     },
     {
       "municipality": "Jászberény",
-      "count": 7,
+      "count": 9,
       "methods": {
-        "named_source_footprint": 5,
+        "named_source_footprint": 7,
         "source_polygon": 2
       }
     },
@@ -1596,9 +1604,9 @@
     },
     {
       "municipality": "Kalocsa",
-      "count": 7,
+      "count": 13,
       "methods": {
-        "named_source_footprint": 7
+        "named_source_footprint": 13
       }
     },
     {
@@ -1647,16 +1655,16 @@
     },
     {
       "municipality": "Karcag",
-      "count": 9,
+      "count": 15,
       "methods": {
-        "named_source_footprint": 9
+        "named_source_footprint": 15
       }
     },
     {
       "municipality": "Kazincbarcika",
-      "count": 3,
+      "count": 10,
       "methods": {
-        "named_source_footprint": 2,
+        "named_source_footprint": 9,
         "source_polygon": 1
       }
     },
@@ -1699,9 +1707,9 @@
     },
     {
       "municipality": "Kerepes",
-      "count": 1,
+      "count": 4,
       "methods": {
-        "named_source_footprint": 1
+        "named_source_footprint": 4
       }
     },
     {
@@ -1749,9 +1757,9 @@
     },
     {
       "municipality": "Kiskunhalas",
-      "count": 5,
+      "count": 9,
       "methods": {
-        "named_source_footprint": 5
+        "named_source_footprint": 9
       }
     },
     {
@@ -1791,9 +1799,9 @@
     },
     {
       "municipality": "Kistarcsa",
-      "count": 1,
+      "count": 9,
       "methods": {
-        "named_source_footprint": 1
+        "named_source_footprint": 9
       }
     },
     {
@@ -1925,9 +1933,9 @@
     },
     {
       "municipality": "Körmend",
-      "count": 8,
+      "count": 10,
       "methods": {
-        "named_source_footprint": 8
+        "named_source_footprint": 10
       }
     },
     {
@@ -2177,9 +2185,9 @@
     },
     {
       "municipality": "Mezőberény",
-      "count": 3,
+      "count": 6,
       "methods": {
-        "named_source_footprint": 3
+        "named_source_footprint": 6
       }
     },
     {
@@ -2205,9 +2213,9 @@
     },
     {
       "municipality": "Mezőtúr",
-      "count": 4,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 4
+        "named_source_footprint": 7
       }
     },
     {
@@ -2320,9 +2328,9 @@
     },
     {
       "municipality": "Mátészalka",
-      "count": 3,
+      "count": 4,
       "methods": {
-        "named_source_footprint": 3
+        "named_source_footprint": 4
       }
     },
     {
@@ -2362,9 +2370,9 @@
     },
     {
       "municipality": "Nagyhalász",
-      "count": 2,
+      "count": 5,
       "methods": {
-        "named_source_footprint": 2
+        "named_source_footprint": 5
       }
     },
     {
@@ -2377,9 +2385,9 @@
     },
     {
       "municipality": "Nagykovácsi",
-      "count": 2,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 2
+        "named_source_footprint": 7
       }
     },
     {
@@ -2406,9 +2414,9 @@
     },
     {
       "municipality": "Nagymaros",
-      "count": 5,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 5
+        "named_source_footprint": 7
       }
     },
     {
@@ -2462,9 +2470,9 @@
     },
     {
       "municipality": "Noszvaj",
-      "count": 1,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 1
+        "named_source_footprint": 7
       }
     },
     {
@@ -2490,9 +2498,9 @@
     },
     {
       "municipality": "Nyírbátor",
-      "count": 1,
+      "count": 4,
       "methods": {
-        "named_source_footprint": 1
+        "named_source_footprint": 4
       }
     },
     {
@@ -2589,9 +2597,9 @@
     },
     {
       "municipality": "Orosháza",
-      "count": 7,
+      "count": 8,
       "methods": {
-        "named_source_footprint": 7
+        "named_source_footprint": 8
       }
     },
     {
@@ -2610,9 +2618,9 @@
     },
     {
       "municipality": "Paks",
-      "count": 9,
+      "count": 12,
       "methods": {
-        "named_source_footprint": 9
+        "named_source_footprint": 12
       }
     },
     {
@@ -2680,9 +2688,9 @@
     },
     {
       "municipality": "Piliscsaba",
-      "count": 2,
+      "count": 6,
       "methods": {
-        "named_source_footprint": 2
+        "named_source_footprint": 6
       }
     },
     {
@@ -2715,16 +2723,16 @@
     },
     {
       "municipality": "Pilisszántó",
-      "count": 1,
+      "count": 6,
       "methods": {
-        "named_source_footprint": 1
+        "named_source_footprint": 6
       }
     },
     {
       "municipality": "Pilisvörösvár",
-      "count": 3,
+      "count": 11,
       "methods": {
-        "named_source_footprint": 3
+        "named_source_footprint": 11
       }
     },
     {
@@ -2736,9 +2744,9 @@
     },
     {
       "municipality": "Pomáz",
-      "count": 5,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 5
+        "named_source_footprint": 7
       }
     },
     {
@@ -2822,9 +2830,9 @@
     },
     {
       "municipality": "Pásztó",
-      "count": 3,
+      "count": 14,
       "methods": {
-        "named_source_footprint": 3
+        "named_source_footprint": 14
       }
     },
     {
@@ -2843,9 +2851,9 @@
     },
     {
       "municipality": "Pécel",
-      "count": 4,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 4
+        "named_source_footprint": 7
       }
     },
     {
@@ -2999,9 +3007,9 @@
     },
     {
       "municipality": "Siófok",
-      "count": 15,
+      "count": 17,
       "methods": {
-        "named_source_footprint": 15
+        "named_source_footprint": 17
       }
     },
     {
@@ -3020,9 +3028,9 @@
     },
     {
       "municipality": "Solymár",
-      "count": 4,
+      "count": 8,
       "methods": {
-        "named_source_footprint": 4
+        "named_source_footprint": 8
       }
     },
     {
@@ -3165,9 +3173,9 @@
     },
     {
       "municipality": "Szentendre",
-      "count": 9,
+      "count": 15,
       "methods": {
-        "named_source_footprint": 9
+        "named_source_footprint": 15
       }
     },
     {
@@ -3229,10 +3237,10 @@
     },
     {
       "municipality": "Szigetszentmiklós",
-      "count": 15,
+      "count": 16,
       "methods": {
         "map_or_text_estimate": 5,
-        "named_source_footprint": 10
+        "named_source_footprint": 11
       }
     },
     {
@@ -3254,6 +3262,13 @@
       "count": 1,
       "methods": {
         "named_source_footprint": 1
+      }
+    },
+    {
+      "municipality": "Szigliget",
+      "count": 4,
+      "methods": {
+        "named_source_footprint": 4
       }
     },
     {
@@ -3324,9 +3339,9 @@
     },
     {
       "municipality": "Százhalombatta",
-      "count": 5,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 5
+        "named_source_footprint": 7
       }
     },
     {
@@ -3397,9 +3412,9 @@
     },
     {
       "municipality": "Sárvár",
-      "count": 12,
+      "count": 15,
       "methods": {
-        "named_source_footprint": 6,
+        "named_source_footprint": 9,
         "source_polygon": 6
       }
     },
@@ -3419,9 +3434,9 @@
     },
     {
       "municipality": "Sátoraljaújhely",
-      "count": 4,
+      "count": 14,
       "methods": {
-        "named_source_footprint": 4
+        "named_source_footprint": 14
       }
     },
     {
@@ -3468,9 +3483,9 @@
     },
     {
       "municipality": "Tapolca",
-      "count": 8,
+      "count": 10,
       "methods": {
-        "named_source_footprint": 8
+        "named_source_footprint": 10
       }
     },
     {
@@ -3496,10 +3511,10 @@
     },
     {
       "municipality": "Tata",
-      "count": 13,
+      "count": 17,
       "methods": {
         "map_or_text_estimate": 8,
-        "named_source_footprint": 5
+        "named_source_footprint": 9
       }
     },
     {
@@ -3547,9 +3562,9 @@
     },
     {
       "municipality": "Tiszadob",
-      "count": 5,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 5
+        "named_source_footprint": 7
       }
     },
     {
@@ -3561,9 +3576,9 @@
     },
     {
       "municipality": "Tiszakécske",
-      "count": 4,
+      "count": 6,
       "methods": {
-        "named_source_footprint": 4
+        "named_source_footprint": 6
       }
     },
     {
@@ -3596,9 +3611,9 @@
     },
     {
       "municipality": "Tiszavasvári",
-      "count": 3,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 3
+        "named_source_footprint": 7
       }
     },
     {
@@ -3613,6 +3628,13 @@
       "count": 5,
       "methods": {
         "named_source_footprint": 5
+      }
+    },
+    {
+      "municipality": "Tokaj",
+      "count": 4,
+      "methods": {
+        "named_source_footprint": 4
       }
     },
     {
@@ -3715,16 +3737,16 @@
     },
     {
       "municipality": "Törökbálint",
-      "count": 7,
+      "count": 9,
       "methods": {
-        "named_source_footprint": 7
+        "named_source_footprint": 9
       }
     },
     {
       "municipality": "Törökszentmiklós",
-      "count": 5,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 5
+        "named_source_footprint": 7
       }
     },
     {
@@ -3750,9 +3772,9 @@
     },
     {
       "municipality": "Vecsés",
-      "count": 2,
+      "count": 8,
       "methods": {
-        "named_source_footprint": 2
+        "named_source_footprint": 8
       }
     },
     {
@@ -3764,9 +3786,9 @@
     },
     {
       "municipality": "Veresegyház",
-      "count": 11,
+      "count": 17,
       "methods": {
-        "named_source_footprint": 11
+        "named_source_footprint": 17
       }
     },
     {
@@ -3800,9 +3822,9 @@
     },
     {
       "municipality": "Visegrád",
-      "count": 6,
+      "count": 7,
       "methods": {
-        "named_source_footprint": 6
+        "named_source_footprint": 7
       }
     },
     {
@@ -3864,9 +3886,9 @@
     },
     {
       "municipality": "Várpalota",
-      "count": 5,
+      "count": 6,
       "methods": {
-        "named_source_footprint": 5
+        "named_source_footprint": 6
       }
     },
     {
@@ -4027,9 +4049,9 @@
     },
     {
       "municipality": "Ócsa",
-      "count": 6,
+      "count": 10,
       "methods": {
-        "named_source_footprint": 6
+        "named_source_footprint": 10
       }
     },
     {
@@ -4120,5 +4142,5 @@
     }
   ],
   "retiredIdentityCount": 11,
-  "outputGeojsonSha256": "999ce37780beeb258e570c3a58587e63dedb0be8219144812db6426d66d96844"
+  "outputGeojsonSha256": "8d264ffa72d3cdb430a5681b5d0747d310f59a8becad84932393baa3dc1cebd8"
 }

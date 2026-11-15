@@ -5,9 +5,9 @@
   "summary": {
     "knownNameCount": 4313,
     "municipalitiesWithKnownNames": 618,
-    "namesWithCollectedPolygon": 3404,
+    "namesWithCollectedPolygon": 3651,
     "namesWithKnownPoint": 3487,
-    "pointOnlyNames": 861,
+    "pointOnlyNames": 614,
     "unlocatedUncollectedNames": 48,
     "nationalCompletionPercent": null,
     "targetNationalCoveragePercent": [
@@ -1441,10 +1441,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:d484f6aea4ec34347259e5ba",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Aszód",
@@ -1491,10 +1498,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:13557539a6202695b59dea56",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Aszód",
@@ -1541,10 +1555,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7cb11ee812e6a9a2760066a2",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Aszód",
@@ -1566,10 +1587,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:4c1bd1fd048ffc26ba4cc525",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Aszód",
@@ -3488,10 +3516,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:b55307e4f269d3a7ef0aadd2",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Balatonfüred",
@@ -3862,10 +3897,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:51478d2f805c942f6ef9540d",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Balatongyörök",
@@ -4150,10 +4192,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:6506b0b6247aaf93a78811a7",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Balatonlelle",
@@ -4282,10 +4331,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:255ffde56a1add210a94c521",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Balatonlelle",
@@ -6748,10 +6804,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:70bc234a1da018409491b82e",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Budakalász",
@@ -6877,10 +6940,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:57ca5385060d41773991041d",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Budakalász",
@@ -6927,10 +6997,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:af3f901f9187cd8a0bce555f",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Budakalász",
@@ -6984,10 +7061,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9627185631cd8a73f6f55581",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Budakalász",
@@ -7009,10 +7093,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:f6a25f2d56c3c5963283b92b",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Budakeszi",
@@ -7034,10 +7125,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:697c86c1f49680f2c1f39a6f",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Budakeszi",
@@ -7116,10 +7214,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:3e88de9365808918a1ee15f4",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Budakeszi",
@@ -7213,10 +7318,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:8f0221e1d6bebcea66152d20",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Budakeszi",
@@ -7320,10 +7432,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:df730180e14037a3205090b9",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Budakeszi",
@@ -7395,10 +7514,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7d4393dcbad0daf8dcc2d8be",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Budapest",
@@ -24607,10 +24733,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:067d57cc48a63209da335ad7",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Békés",
@@ -24632,10 +24765,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:c3fcdc53c48496752062840c",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Békés",
@@ -24657,10 +24797,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:3c0cde5e7815cdcb7955ba88",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Békés",
@@ -24739,10 +24886,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:04ce123d16f2bf5e03cdb1cf",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Békés",
@@ -24764,10 +24918,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:777ce3cd6b9c91797a759f63",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Békés",
@@ -24789,10 +24950,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:09681eeffc39560177cb7b90",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Békés",
@@ -24814,10 +24982,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:bbd4e2565f66b1b6f7338e9f",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Békés",
@@ -26836,10 +27011,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:3d64c9c70a5a5e274c60b8c7",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Celldömölk",
@@ -27135,10 +27317,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:c1cd3e1b2fadd7491c585d37",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Celldömölk",
@@ -28370,10 +28559,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:498207aeafd08ccab3b8c851",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Csongrád",
@@ -28459,10 +28655,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7947357bc868f12e15886931",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Csongrád",
@@ -28517,10 +28720,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:93898a5fd4ed7441b7709803",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Csongrád",
@@ -28592,10 +28802,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7db4e019fa046573795cadfb",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Csongrád",
@@ -28617,10 +28834,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:99f55fa20d3a957e4e97cd76",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Csongrád",
@@ -28667,10 +28891,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:070a6b6223f0234506e18cf6",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Csopak",
@@ -28997,10 +29228,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:0b2d71823a4cf8507d6988ed",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Csömör",
@@ -29047,10 +29285,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9209c0d45ef086ea895a85fc",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Csömör",
@@ -29072,10 +29317,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:3eb20c0a31297174f2519993",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Csömör",
@@ -29097,10 +29349,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:8d2b09cfb44b85fd94f1a453",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Csömör",
@@ -29179,10 +29438,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:f6a14bfc3599222144e36d0a",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Csömör",
@@ -29204,10 +29470,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:b033fb3035f717239ff26af0",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Csörög",
@@ -34826,10 +35099,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:1ef088b44abc07f3b39df281",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Diósd",
@@ -34883,10 +35163,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:f28a311871cb7992ca700db2",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Diósd",
@@ -34908,10 +35195,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:34371091a00712999836458a",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Diósd",
@@ -34966,10 +35260,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:56658e929149effa020411d5",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Diósd",
@@ -35126,10 +35427,17 @@
           "currentCompletenessVerified": false
         }
       ],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:be1afa8dffcaf0fbf20fdf25",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dombóvár",
@@ -35262,10 +35570,17 @@
           "currentCompletenessVerified": false
         }
       ],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:91fa04e6cd518f1f42ab029a",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dombóvár",
@@ -35297,10 +35612,17 @@
           "currentCompletenessVerified": false
         }
       ],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:31c1e1f35b262732ff86735f",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dombóvár",
@@ -35413,10 +35735,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7b58dcb8c5dc87b78d2929dd",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dombóvár",
@@ -35535,10 +35864,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:0ae90ed6182f9204f16d24d5",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dombóvár",
@@ -36203,10 +36539,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:0578e214a27cd71d58b341b5",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dunaföldvár",
@@ -36260,10 +36603,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a060a85c19c96ced426f7902",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dunaföldvár",
@@ -36285,10 +36635,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:1e0e58154e1c7527ddda4d3d",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dunaföldvár",
@@ -36335,10 +36692,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:e9bb05e12faf259a828aae75",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dunaföldvár",
@@ -36360,10 +36724,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:fcc07189c6d42f540b76b1df",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dunaföldvár",
@@ -36435,10 +36806,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:3c89111bc2c34400d7806bee",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dunaföldvár",
@@ -36560,10 +36938,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:97ce2f4f2b973da6a2e333cb",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dunaharaszti",
@@ -36642,10 +37027,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:ebfb23aec652d3719abee38e",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dunaharaszti",
@@ -36984,10 +37376,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:2e545493b7bf99f2b5157fd3",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Dunaharaszti",
@@ -40979,10 +41378,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:d1829c3a33f5e30375e46b5c",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Esztergom",
@@ -43047,10 +43453,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:ddbafc0a22932db791bd47f6",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Fonyód",
@@ -43250,10 +43663,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:2af829d36c1da5f14acbabbc",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Fót",
@@ -43332,10 +43752,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:eee25e0e0f84469d8233b68f",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Fót",
@@ -43510,10 +43937,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:1b8609b35caccc1700db286a",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Fót",
@@ -45395,10 +45829,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:2f03e8fe811db3f502b2dc1b",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Gyömrő",
@@ -45720,10 +46161,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:8a8cbd87009f824e0ddbd8bc",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Gyöngyös",
@@ -49861,10 +50309,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:aaed03c208054371f5e2eb32",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Hajdúböszörmény",
@@ -49918,10 +50373,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:91cfbcbfab7bea1fd1d6e3e0",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Hajdúböszörmény",
@@ -49943,10 +50405,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a2137bdfad992ffa82968186",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Hajdúböszörmény",
@@ -50096,10 +50565,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:334c402311b544adcb316b98",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Hajdúböszörmény",
@@ -50121,10 +50597,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:255b4a07b8a8854e68617cff",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Hajdúdorog",
@@ -52605,10 +53088,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:d8fb5f56ac8c0969ad219338",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Ibrány",
@@ -52662,10 +53152,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:ed13f60485dd7f26a426fe86",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Ibrány",
@@ -52687,10 +53184,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:6cc237699a3c54dd076aef80",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Ibrány",
@@ -52858,10 +53362,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:8ac667ba727acaacc4f5a352",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Ibrány",
@@ -52883,10 +53394,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:38469c9b091916983451dc14",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Ibrány",
@@ -53669,10 +54187,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:cd13248d480555a1ca7fb7de",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Jászberény",
@@ -53893,10 +54418,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:1ea07b0dbe31520b587efde9",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Jászberény",
@@ -54198,10 +54730,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:596176f796d73bd2e8077c38",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kalocsa",
@@ -54280,10 +54819,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:3218f34d5134836587e2164e",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kalocsa",
@@ -54305,10 +54851,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:2de8c30e170b22acd80b536b",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kalocsa",
@@ -54483,10 +55036,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:1383935977597847780a415f",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kalocsa",
@@ -54597,10 +55157,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:26e375714d8d943bd27a7c8e",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kalocsa",
@@ -54747,10 +55314,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:5c5ed687b600c53e746e9d30",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kaposhomok",
@@ -57697,10 +58271,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:2f1bafc63518b17834307b31",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Karcag",
@@ -57768,10 +58349,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:e995da1c02f2389823f497dd",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Karcag",
@@ -57825,10 +58413,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:47f7a664a12081026e64f073",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Karcag",
@@ -57850,10 +58445,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:47f83d6c45aeb5ea6eea5a6b",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Karcag",
@@ -58067,10 +58669,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:676db7b8b4b206389f5fa8dc",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Karcag",
@@ -58113,10 +58722,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:1079ae876c19c8d27fc8c02b",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kazincbarcika",
@@ -58195,10 +58811,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a2738c519b0b0f01ee3ef9db",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kazincbarcika",
@@ -58277,10 +58900,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a6633040ecd3e02bf07ed341",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kazincbarcika",
@@ -58327,10 +58957,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:cbf2fa4cb806f0bbfade3c14",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kazincbarcika",
@@ -58352,10 +58989,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:26f12decfd25b4ceff193eae",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kazincbarcika",
@@ -58398,10 +59042,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:8bc0446abf6f249855150f71",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kazincbarcika",
@@ -58423,10 +59074,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7d1db86de5ee49ef26effb91",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kazincbarcika",
@@ -58448,10 +59106,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9b213db31d764d0dc821274e",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kazár",
@@ -61996,10 +62661,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:d223afaf7daf7258dbb44aeb",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kerepes",
@@ -62042,10 +62714,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:d64f3bca770296b0d9dd0e38",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kerepes",
@@ -62067,10 +62746,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:4f8b32f59ea78939ae8521de",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kerepes",
@@ -63662,10 +64348,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:507031c07a41b4e888af5016",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kiskunhalas",
@@ -63719,10 +64412,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:29264e4420e2897cf57f1b4b",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kiskunhalas",
@@ -63744,10 +64444,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:71ddbe8cbf0c3ed58346aed4",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kiskunhalas",
@@ -63794,10 +64501,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:72bd4ecd3e4d9a78d18b0957",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kiskunhalas",
@@ -64246,10 +64960,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:c9fff806422603751fc95ffa",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kistarcsa",
@@ -64271,10 +64992,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:80bcd75106e4aa0c7f9160e0",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kistarcsa",
@@ -64296,10 +65024,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:2f036e310fbc4832b71d5f05",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kistarcsa",
@@ -64346,10 +65081,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:dfbd7e2e896f458f68c30421",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kistarcsa",
@@ -64403,10 +65145,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:b76348621aecc10b4e20aa83",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kistarcsa",
@@ -64453,10 +65202,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:fea90b1e822a5668784355a5",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kistarcsa",
@@ -64478,10 +65234,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:8ca0a0a38786bcbfb8c5104c",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kistarcsa",
@@ -64503,10 +65266,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:08732e59af64d73239cd8151",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Kistokaj",
@@ -66438,10 +67208,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:23c50671dbde71fc974f67d1",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Körmend",
@@ -66651,10 +67428,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:e339a6bed0f9948f680ca22d",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Körmend",
@@ -70498,10 +71282,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:5d7ea90ecb0c1ee8c5a0ef41",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mezőberény",
@@ -70523,10 +71314,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:ce69169273cd9f452ba99f57",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mezőberény",
@@ -70573,10 +71371,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9bb7b97df03b53ee61108220",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mezőcsát",
@@ -70828,10 +71633,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:66804e84c028e5fda6d1e67e",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mezőtúr",
@@ -70985,10 +71797,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:909f4c62093c886dc34c7a42",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mezőtúr",
@@ -71010,10 +71829,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:480f0a40f358f4ba2dff499f",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mezőtúr",
@@ -76063,10 +76889,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:011319ae3b713acc580c7da3",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Mátészalka",
@@ -76594,10 +77427,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7002c3b0e27f50a77a786aee",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Nagyhalász",
@@ -76651,10 +77491,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a60b8a38191c1ad6d93a9051",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Nagyhalász",
@@ -76676,10 +77523,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:6305f34faa688dcead8f4286",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Nagyhalász",
@@ -77404,10 +78258,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:e2c52cbfbe5fe12f55273fd7",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Nagykovácsi",
@@ -77486,10 +78347,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9d6d46309b6105f3356bf50c",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Nagykovácsi",
@@ -77536,10 +78404,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9c2aa0eb32be00148b421fae",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Nagykovácsi",
@@ -77593,10 +78468,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:815c5ea04562b1d553c5044b",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Nagykovácsi",
@@ -77618,10 +78500,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:0c96bdca2904d57143a48080",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Nagykálló",
@@ -78319,10 +79208,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:8be1c2ac4286256b6f8ff1d6",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Nagymaros",
@@ -78344,10 +79240,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:0dd0455090b7b61c4e443024",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Nagymaros",
@@ -78870,10 +79773,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:e923a2399ca3fbad4d157424",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Noszvaj",
@@ -78895,10 +79805,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:89fa979dbdad1a621e563a61",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Noszvaj",
@@ -78920,10 +79837,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:60fbe7d47de65a51f61f1bbd",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Noszvaj",
@@ -78945,10 +79869,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:6e48144619d2fd2b203860a8",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Noszvaj",
@@ -78991,10 +79922,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:472e89bb124e7067a5740683",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Noszvaj",
@@ -79016,10 +79954,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:8a5b2f76e106dc1414fd2116",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Noszvaj",
@@ -79290,10 +80235,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9557798511d1f87eed5bc327",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Nyírbátor",
@@ -79447,10 +80399,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:f0db43386adb036f6efbbe67",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Nyírbátor",
@@ -79472,10 +80431,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7b6e4e7a3d386fc32e4f67db",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Nyíregyháza",
@@ -83207,10 +84173,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:900d3bc6e3815c45411b5bd2",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Orosháza",
@@ -83893,10 +84866,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:50d17799e8caabcc62764a53",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Paks",
@@ -83918,10 +84898,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:338c3bd1bf050e4fc7d55f7d",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Paks",
@@ -83943,10 +84930,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a833f4ff497ffeef321fb581",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pannonhalma",
@@ -84564,10 +85558,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7e355be941f10f70fe541f6d",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Piliscsaba",
@@ -84589,10 +85590,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:63e6bc395bcc87bae1df4bba",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Piliscsaba",
@@ -84664,10 +85672,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:60af84b148c5ce98c61d16d3",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Piliscsaba",
@@ -84690,10 +85705,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:4767ca643c4f42b795e363ff",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Piliscsaba",
@@ -84999,10 +86021,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a4961659252f0827652ff6de",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pilisszántó",
@@ -85024,10 +86053,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:e7a1da692fbfd47eda9105ef",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pilisszántó",
@@ -85074,10 +86110,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a3cb2952f1e3e25652f05fa5",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pilisszántó",
@@ -85131,10 +86174,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:23e7e14f83aeb8b00cc76ddd",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pilisszántó",
@@ -85231,10 +86281,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:b08bec88a325030a3cd137b7",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pilisvörösvár",
@@ -85324,10 +86381,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:fcaddf29e53efbec15d2b074",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pilisvörösvár",
@@ -85370,10 +86434,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9682795ec3ad967d96b440df",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pilisvörösvár",
@@ -85395,10 +86466,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:318c5d9d005e90b447e910b4",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pilisvörösvár",
@@ -85420,10 +86498,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7b4ce41c8f41f5f9169d52c2",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pilisvörösvár",
@@ -85477,10 +86562,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:ff317aed692c9e317d99f245",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pilisvörösvár",
@@ -85502,10 +86594,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:33b61907f3eaa02f3699dcf5",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pilisvörösvár",
@@ -85527,10 +86626,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:05586203ba613a6d4c15d7a6",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pilisvörösvár",
@@ -85552,10 +86658,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:cb12f75770c7e4cda09771c3",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Polgár",
@@ -85624,10 +86737,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a4575450c1abf783cb8a7209",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pomáz",
@@ -85788,10 +86908,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9d4bb9c1907852643a10b8ea",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pomáz",
@@ -87272,10 +88399,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:ec0cd42710193c814c15ad8f",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pásztó",
@@ -87297,10 +88431,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:4b6fc370fde3e236c0b78b84",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pásztó",
@@ -87322,10 +88463,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:723576c1e20dd9b5e11fe949",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pásztó",
@@ -87347,10 +88495,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a4880504e7a50b47af8a83a9",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pásztó",
@@ -87372,10 +88527,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a5ba91f709c1f4477b1ac295",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pásztó",
@@ -87486,10 +88648,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:234b1db53483860e3b75e21c",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pásztó",
@@ -87511,10 +88680,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:fdebbe78830580619dbc02ef",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pásztó",
@@ -87536,10 +88712,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:c7c1c1cdeaba84a4257b0200",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pásztó",
@@ -87618,10 +88801,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:c0b11eae9c50010f873d0273",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pásztó",
@@ -87668,10 +88858,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:ea05f0a4503655e0a284b68c",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pásztó",
@@ -87693,10 +88890,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:94dad611acb9b0add7f99dd5",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pátka",
@@ -87793,10 +88997,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:b94cc2886ebcb135692c3e98",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pécel",
@@ -87850,10 +89061,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:af69362398892611eac20320",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pécel",
@@ -88046,10 +89264,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:45b1fc15a87e4109d47503ed",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Pécs",
@@ -94458,10 +95683,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:235d731a1425caba7990b4e9",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Siófok",
@@ -94781,10 +96013,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7fb15cc1754c042530c5368a",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Solt",
@@ -94941,10 +96180,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:cef02db4f307990fce549b7a",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Solymár",
@@ -94977,10 +96223,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:6c1ecaec4c525c54f193c87e",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Solymár",
@@ -95002,10 +96255,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:18796a9f8cb30e960a04145e",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Solymár",
@@ -95120,10 +96380,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:8188402018d61f6c191d6438",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Solymár",
@@ -100440,10 +101707,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:0bcfb9ae1994d1ffc9e56eaa",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Szentendre",
@@ -100667,10 +101941,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:276212468b66434ddd4c72e1",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Szentendre",
@@ -100756,10 +102037,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:168ee28f0fa6ebf3f5eca4c7",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Szentendre",
@@ -100781,10 +102069,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:d022c6ca83305d1736c286b6",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Szentendre",
@@ -100914,10 +102209,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:7fc7c7ab7295b530f1a76705",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Szentendre",
@@ -100939,10 +102241,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:f0cbb0a17fd7abad8a6d1268",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Szentendre",
@@ -102633,10 +103942,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:1e43bb318942e294b4a72b57",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Szigetszentmiklós",
@@ -103318,10 +104634,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:5b05a1596f356acee334682e",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Szigliget",
@@ -103343,10 +104666,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:96bc5856d4e93f03e8ae82fc",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Szigliget",
@@ -103368,10 +104698,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:fdd719522f7343a31e204118",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Szigliget",
@@ -103393,10 +104730,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:97b80821b7c8b4a6b9bd5548",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Szilvásvárad",
@@ -107082,10 +108426,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:622e484a6ed46b2d8902b5b4",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Százhalombatta",
@@ -107107,10 +108458,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:8a7b31ac7874632954f4e19f",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Szécsény",
@@ -110305,10 +111663,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:35215f2bc5662078e6a746d5",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Sárvár",
@@ -110504,10 +111869,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:edbc885824fabc83ed7a5a1b",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Sárvár",
@@ -110529,10 +111901,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:8c27258307b529a0e87d93cb",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Sárvár",
@@ -110707,10 +112086,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:68ebc0d1f98d3a3ff566c564",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Sátoraljaújhely",
@@ -110732,10 +112118,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:e778bfab8124747244a6e362",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Sátoraljaújhely",
@@ -110883,10 +112276,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:e95b9bfc69b743ed4cffd1e3",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Sátoraljaújhely",
@@ -110908,10 +112308,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:4624957bbf278b7f65b10bf5",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Sátoraljaújhely",
@@ -110965,10 +112372,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:e029bb54ab0d3e2560d510a8",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Sátoraljaújhely",
@@ -110990,10 +112404,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:fddf79ea53ab78813d0fd8ef",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Sátoraljaújhely",
@@ -111123,10 +112544,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:5f8547531d82e894919c64e6",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Sátoraljaújhely",
@@ -111148,10 +112576,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:4402fb732ad4d8b330d68612",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Sátoraljaújhely",
@@ -111205,10 +112640,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:33de5b1a1d060ac8132a81da",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Sátoraljaújhely",
@@ -111230,10 +112672,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:4192db4d1704ddf554420e27",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Sátoraljaújhely",
@@ -111752,10 +113201,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:c695e5da84d93cf5fb6e4082",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tapolca",
@@ -112047,10 +113503,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:fd8da9781a0dea9653d0a9db",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tarcal",
@@ -112591,10 +114054,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:5c19da4e4052e318281c1834",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tata",
@@ -112799,10 +114269,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:f987486de7a28edf064fad18",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tata",
@@ -112824,10 +114301,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:cdc006ed931d005e382e08e7",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tata",
@@ -112922,10 +114406,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:df398cbf8876892163379cde",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tatabánya",
@@ -114567,10 +116058,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:6823e60ca1df357108a19f98",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tiszadob",
@@ -114592,10 +116090,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:10a40bb7ba59ec242b2b088c",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tiszadob",
@@ -114944,10 +116449,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9fc4ae4dc44b64c053a8cc51",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tiszakécske",
@@ -115133,10 +116645,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:8649ce9b307c51ee1a86358f",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tiszalök",
@@ -115468,10 +116987,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:356aee76b59eb029385f77ec",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tiszavasvári",
@@ -115493,10 +117019,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:854571ddb4240cca593352a9",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tiszavasvári",
@@ -115518,10 +117051,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9c2325e619802e72fe811ef9",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tiszavasvári",
@@ -115632,10 +117172,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:941ad1ffb879d90030ea4c4d",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tiszavasvári",
@@ -115906,10 +117453,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:053e0a19fdba56155e1124c2",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tokaj",
@@ -115956,10 +117510,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:5c87ebebec34c04b810baca2",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tokaj",
@@ -115981,10 +117542,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a7d015eb58320cda00316f7e",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tokaj",
@@ -116006,10 +117574,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:00790331c00c4b7d8289f398",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Tokaj",
@@ -116884,10 +118459,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:1f17d3aa311768ed5373e186",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Törökbálint",
@@ -116994,10 +118576,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a6949889ed83603296eab8f6",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Törökbálint",
@@ -117076,10 +118665,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a4d000ece2783e1cd42f5247",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Törökszentmiklós",
@@ -117247,10 +118843,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:679dd4a0354e8bf7fd77986c",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Törökszentmiklós",
@@ -117624,10 +119227,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:a396da51cd139bc81bc0a39e",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Vecsés",
@@ -117649,10 +119259,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:887250f242bcfa07ae21c89c",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Vecsés",
@@ -117813,10 +119430,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:272951bb0ed4ce8620a87d77",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Vecsés",
@@ -117863,10 +119487,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:3d9da9887353d2a5ee88abfa",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Vecsés",
@@ -117888,10 +119519,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:b2623e7cb76275452228a950",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Vecsés",
@@ -117938,10 +119576,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:e5fe45b013202e269350b3b1",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Velence",
@@ -118262,10 +119907,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:aeb39ee1a0bfa7b53d751d54",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Veresegyház",
@@ -118372,10 +120024,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:dd2ac8cb09a54b1a87d35be8",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Veresegyház",
@@ -118443,10 +120102,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:cad29d9030ce19eca66bd537",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Veresegyház",
@@ -118521,10 +120187,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:03ffbee33ecce07e57507f5b",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Veresegyház",
@@ -118546,10 +120219,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:f57e08bd2b7911dd58f8e0d2",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Veresegyház",
@@ -118571,10 +120251,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:877625a84efa24f2ad4397dc",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Veresegyház",
@@ -120278,10 +121965,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:f5805e9b5e069e280933d6d6",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Visegrád",
@@ -122374,10 +124068,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:e64fe55e18781794c4a8ed41",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Várpalota",
@@ -126539,10 +128240,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:8d85239a34961693b76d6936",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Ócsa",
@@ -126564,10 +128272,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:cd684a3c88ead61e48ded2bb",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Ócsa",
@@ -126653,10 +128368,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:9bc0e723d728f0974b4c56f3",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Ócsa",
@@ -126788,10 +128510,17 @@
         }
       ],
       "nameReferences": [],
-      "collectedGeometries": [],
-      "hasCollectedPolygon": false,
+      "collectedGeometries": [
+        {
+          "sourceId": "neighborhood:64b6ef087a5fc265eb9341d6",
+          "sourceFile": "data/neighborhoods/search-areas.geojson",
+          "method": "named_source_footprint",
+          "estimated": true
+        }
+      ],
+      "hasCollectedPolygon": true,
       "hasKnownPoint": true,
-      "nextAction": "find_map_or_polygon_before_radius_fallback"
+      "nextAction": "collected"
     },
     {
       "municipality": "Ófehértó",

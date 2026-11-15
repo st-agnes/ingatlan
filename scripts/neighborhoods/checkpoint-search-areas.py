@@ -41,7 +41,9 @@ def main(status):
     state['nextPriorityCities']=sorted([{'municipality':x['municipality'],'knownNames':x['knownNameCount'],
        'mappedNames':x['namesWithCollectedPolygon'],'remainingNames':len(x['missingNames'])}
        for x in inventory['cities']],key=lambda x:-x['remainingNames'])[:12]
-    state['currentCollectionState']='data/neighborhoods/expansion-20261114-next/WORK-STATE.json'
+    collection_states=sorted(DATA.glob('expansion-*/WORK-STATE.json'))
+    latest_state=collection_states[-1]
+    state['currentCollectionState']='data/neighborhoods/'+str(latest_state.relative_to(DATA))
     dump(OLD/'WORK-STATE.json',state)
     current=json.loads((NEXT/'WORK-STATE.json').read_text());current['status']=status
     current['latestCheckpoint']=state['latestCheckpoint'];current['knownNameInventory']=inventory['summary']
@@ -49,6 +51,13 @@ def main(status):
     current['fallbackCircleReduction']=current['baseline']['fallbackCircles']-len(fallback)
     current['baselineCommit']='50988ce52abd3bbd010f1383d94c03f08b3f4c87'
     current['nextPriorityCities']=state['nextPriorityCities'];dump(NEXT/'WORK-STATE.json',current)
+    if latest_state != NEXT/'WORK-STATE.json':
+        latest=json.loads(latest_state.read_text());latest['status']=status
+        latest['latestCheckpoint']=state['latestCheckpoint'];latest['knownNameInventory']=inventory['summary']
+        latest['nextPriorityCities']=state['nextPriorityCities']
+        latest['newAreasNet']=len(features)-latest['baseline']['featureCount']
+        latest['fallbackCircleReduction']=latest['baseline']['fallbackCircles']-len(fallback)
+        dump(latest_state,latest)
     readme=DATA/'README.md';text=readme.read_text()
     text=re.sub(r'\*\*Legutóbbi mentés: \d+ kereshető terület \d+ településről\*\*, kör alapú pótlás nélkül\. Külön tartalékrétegben \d+ pontból becsült kör marad\.',
        f"**Legutóbbi mentés: {len(features)} kereshető terület {report['municipalityCount']} településről**, kör alapú pótlás nélkül. Külön tartalékrétegben {len(fallback)} pontból becsült kör marad.",text)
