@@ -1,0 +1,105 @@
+{
+  "featureCount": 63,
+  "targetCount": 63,
+  "remainingCount": 0,
+  "allLowConfidence": true,
+  "radiusFallbackCount": 0,
+  "municipalities": [
+    "Borsodszentgyörgy",
+    "Bugac",
+    "Békésszentandrás",
+    "Bér",
+    "Cegléd",
+    "Csanytelek",
+    "Csongrád",
+    "Domaháza",
+    "Ecséd",
+    "Farmos",
+    "Felsőlajos",
+    "Hódmezővásárhely",
+    "Kecskemét",
+    "Lajosmizse",
+    "Mezőkövesd",
+    "Nagykáta",
+    "Nagykörű",
+    "Noszvaj",
+    "Orgovány",
+    "Pásztó",
+    "Salgótarján",
+    "Szarvaskő",
+    "Sándorfalva",
+    "Tarnalelesz",
+    "Tiszaföldvár",
+    "Tiszakécske",
+    "Törökszentmiklós",
+    "Visonta",
+    "Váraszó",
+    "Zabar",
+    "Újszentiván"
+  ],
+  "featuresSha256": "ac81dd61f69f96deb3599b0f594bf615f04f04f7fc39446c709889e2ae85ab78",
+  "status": "FROZEN",
+  "attemptedTargetCount": 63,
+  "knownPointCount": 56,
+  "validFeatureCount": 63,
+  "municipalityContainedFeatureCount": 63,
+  "knownPointContainedFeatureCount": 56,
+  "methodCounts": {
+    "native-area": 2,
+    "cells": 52,
+    "raster-map": 6,
+    "manual-eov": 1,
+    "native-and-cells": 1,
+    "rural-remainder": 1
+  },
+  "partialExtentFeatureCount": 28,
+  "sourceIdentityReview": "alias-review.json",
+  "batches": [
+    {
+      "status": "FROZEN",
+      "featureCount": 12,
+      "featuresSha256": "14b37b094626448fbe5047ec72b485fbf5ec24c52cfc7e12eeeec73837b7e2b8",
+      "filesSha256": {
+        "build.py": "efab4e730d2501c74121e8428f43929c53c836e4539b481f95f601879026bfb0",
+        "features.geojson": "14b37b094626448fbe5047ec72b485fbf5ec24c52cfc7e12eeeec73837b7e2b8",
+        "selections.json": "c737633e6da7e2643cd0ede5ae2c62028f7dd3df5078d6a126259556c80b4325",
+        "source-evidence.json": "e6b7e505c8448a731ee97a0633a7e0fd9ae77a794ce3538f60a383f18fc9a0be",
+        "summary.json": "6f9f2d4600ab6690ac5195a8045ee1a134fc9e4ccb9683b6ca3d0be31cb3cd42"
+      },
+      "rebuildInputs": "../source-inputs and copied selections/build recipe",
+      "path": "batch-01/features.geojson"
+    },
+    {
+      "status": "FROZEN",
+      "featureCount": 20,
+      "featuresSha256": "c817219450b03b46a6a2462cdb31933f00eef1e78f4e032904a5b432b2ac6fd3",
+      "offlineBuild": "../build.py using ../source-inputs and this explicit subset of selections",
+      "boundaryStatus": "low-confidence representative physical compartments; wider named extents can cross boundaries",
+      "path": "batch-02/features.geojson"
+    },
+    {
+      "status": "FROZEN",
+      "featureCount": 20,
+      "featuresSha256": "63cc7f34201afbc8c1ca3a86ef44b1a418683b51943fc692dff1ba88cc310bc0",
+      "offlineBuild": "../build.py and ../source-inputs; this selection list is a fixed subset of ../selections.json",
+      "filesSha256": {
+        "features.geojson": "63cc7f34201afbc8c1ca3a86ef44b1a418683b51943fc692dff1ba88cc310bc0",
+        "selections.json": "06ce0d2f51b1a10824cd5d9b9fec9c2c14f58b7156187e4ba63349f095c6f031",
+        "source-evidence.json": "93b3ea918a191c5cec8b70377ab41e51590e13779090eec3d7977491786c3b09"
+      },
+      "path": "batch-03/features.geojson"
+    },
+    {
+      "status": "FROZEN",
+      "featureCount": 11,
+      "featuresSha256": "ae8827c392fdb054312548489627cd065417cc1d39bbc4b1253b8fc653c01308",
+      "offlineBuild": "../build.py and ../source-inputs; this selection list is a fixed subset of ../selections.json",
+      "filesSha256": {
+        "features.geojson": "ae8827c392fdb054312548489627cd065417cc1d39bbc4b1253b8fc653c01308",
+        "selections.json": "91d93386575f044261188f2105b4e8c922676a3af89f654b9a30afa758adbb66",
+        "source-evidence.json": "1aad6934d90e2a7bef95c8d0a60a29c33c841dc4600d86765adb308836a34872"
+      },
+      "path": "batch-04/features.geojson"
+    }
+  ]
+}

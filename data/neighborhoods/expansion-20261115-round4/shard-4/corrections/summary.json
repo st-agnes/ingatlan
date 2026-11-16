@@ -1,0 +1,23 @@
+{
+  "status": "FROZEN_INDEPENDENT_QA_PASSED",
+  "featureCount": 2,
+  "featuresSha256": "938e48f26e42a9825621bbc640e7a8fbecc0147ab5a24537b3380ae2ad216bdf",
+  "qualityScore": 30,
+  "priority": 25,
+  "correctedIdentities": [
+    {
+      "municipality": "Kecskemét",
+      "name": "Budaihegy-Vacshegy",
+      "areaKm2": 2.431498
+    },
+    {
+      "municipality": "Salgótarján",
+      "name": "Külterület (Eresztvény nélkül)",
+      "areaKm2": 73.731441
+    }
+  ],
+  "offlineRebuildVerified": true,
+  "frozenOriginalFilesVerifiedUnchanged": 270,
+  "replacementImportPath": "data/neighborhoods/expansion-20261115-round4/shard-4/corrections/features.geojson",
+  "independentQaReceipt": "independent-qa.json"
+}

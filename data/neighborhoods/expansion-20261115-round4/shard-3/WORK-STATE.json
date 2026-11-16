@@ -1,0 +1,19 @@
+{
+  "status": "complete_owned_assignment",
+  "assignedTargets": 64,
+  "frozenFeatures": 64,
+  "frozenBatches": [
+    "batch-01",
+    "batch-02",
+    "batch-03",
+    "batch-04",
+    "batch-05",
+    "batch-06"
+  ],
+  "remainingTargets": 0,
+  "currentlyUnresolved": [],
+  "limitationsFile": "unresolved.json",
+  "verification": "All geometry/label checks and per-batch byte-identical offline rebuilds passed. A cross-batch check found all 64 unique assigned names exactly once.",
+  "nextAction": "Parent integrates six frozen feature collections into global registry and publishes. Do not mutate frozen batches.",
+  "preservation": "All source contexts are shared under round4/contexts; technical maps, registrations, specifications and provenance are archived in this owned folder. No application/Git/global mutation by child."
+}

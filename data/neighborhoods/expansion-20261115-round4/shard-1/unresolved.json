@@ -1,0 +1,20 @@
+{
+  "targets": [
+    {
+      "index": 17,
+      "municipality": "Dombóvár",
+      "name": "Külterületek",
+      "status": "searched-no-defensible-whole-unit-polygon",
+      "featureId": null,
+      "reason": "Primary municipal ITS/HEP confirms a statistical rural-planning group (Külterületek/puszták), including five detached puszta settlements. Its complete areal limit is not established by the available text/inset map; there is no name point. Individual named settlement footprints or all remaining municipal farmland would each silently change its meaning. No arbitrary residual municipality, circle, bounding box or small unrelated parcel is substituted."
+    }
+  ],
+  "searchedSources": [
+    "https://www.dombovar.hu/media/files/Dombovar_helyzetertekeles_0804.pdf",
+    "https://www.dombovar.hu/media/files/dombovar_koncepcio_vegso_javitott.pdf",
+    "https://www.dombovar.hu/media/files/20._Melleklet_HEP_18.06.28..pdf",
+    "https://dombovar.hu/wp-content/uploads/2022/11/11.-HEP_melleklet_22.11.30.pdf",
+    "Shared native municipality/road/area/label context and cached round-2 Dombóvár rural footprints"
+  ],
+  "nextAction": "Georeference the municipality ITS/HEP rural inset into its constituent settlements and determine whether the source unit is settlement-site aggregation or the complete outer administrative territory before drawing a whole-unit polygon. Existing named puszta data is preserved; its absence here does not mean every rural settlement has no footprint."
+}

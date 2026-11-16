@@ -17,3 +17,15 @@ gha-creds-*.json
 *.py[cod]
 # Large generated plain view is restored by the builder and included in the ZIP.
 /data/neighborhoods/search-areas.geojson
+
+# Round-four source copies are restored from the checked source archive.
+# Selected geometry, scripts and readable summaries are explicitly tracked.
+/data/neighborhoods/expansion-20261115-round4/contexts/
+/data/neighborhoods/expansion-20261115-round4/residual-buildings/
+/data/neighborhoods/expansion-20261115-round4/review/
+/data/neighborhoods/expansion-20261115-round4/shard-0/
+/data/neighborhoods/expansion-20261115-round4/shard-1/
+/data/neighborhoods/expansion-20261115-round4/shard-2/
+/data/neighborhoods/expansion-20261115-round4/shard-3/
+/data/neighborhoods/expansion-20261115-round4/shard-4/
+/data/neighborhoods/expansion-20261115-round4/shard-5/

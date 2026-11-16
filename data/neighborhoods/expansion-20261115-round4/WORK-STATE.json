@@ -1,0 +1,510 @@
+{
+  "schemaVersion": 1,
+  "status": "checkpoint_complete_national_collection_incomplete",
+  "baselineCommit": "19caaea641ae90080ab725fd03a68362530199a9",
+  "baseline": {
+    "featureCount": 3924,
+    "municipalityCount": 567,
+    "fallbackCircles": 372
+  },
+  "priority": "Attempt every currently outstanding point-only and unlocated name; replace all defensible radius fallbacks with source-informed extents.",
+  "completeNationalCoverage": false,
+  "scope": "Source collection only. All 387 outstanding names assigned across six geographical shards. Coarse source/map/text/actual-road/parcel inference and overlap are permitted, with uncertainty retained. Do not invent point-only shapes or remove records merely to reach zero.",
+  "tasks": [
+    {
+      "shard": 0,
+      "targets": 65,
+      "pointOnly": 62,
+      "towns": 38,
+      "longitudeRange": [
+        16.2894564,
+        17.85925315
+      ],
+      "largestCities": [
+        [
+          "Győr",
+          6
+        ],
+        [
+          "Balatonszárszó",
+          4
+        ],
+        [
+          "Zalaegerszeg",
+          3
+        ],
+        [
+          "Sárvár",
+          3
+        ],
+        [
+          "Celldömölk",
+          3
+        ],
+        [
+          "Ajka",
+          3
+        ],
+        [
+          "Balatonlelle",
+          3
+        ]
+      ]
+    },
+    {
+      "shard": 1,
+      "targets": 61,
+      "pointOnly": 59,
+      "towns": 33,
+      "longitudeRange": [
+        17.8737307,
+        18.8917838
+      ],
+      "largestCities": [
+        [
+          "Paks",
+          6
+        ],
+        [
+          "Kőröshegy",
+          5
+        ],
+        [
+          "Várpalota",
+          5
+        ],
+        [
+          "Balatonfüred",
+          4
+        ],
+        [
+          "Komárom",
+          3
+        ],
+        [
+          "Székesfehérvár",
+          3
+        ],
+        [
+          "Zirc",
+          2
+        ]
+      ]
+    },
+    {
+      "shard": 2,
+      "targets": 68,
+      "pointOnly": 68,
+      "towns": 23,
+      "longitudeRange": [
+        18.892179,
+        19.1530645
+      ],
+      "largestCities": [
+        [
+          "Nagymaros",
+          8
+        ],
+        [
+          "Pilisszántó",
+          6
+        ],
+        [
+          "Pomáz",
+          6
+        ],
+        [
+          "Szigetszentmiklós",
+          6
+        ],
+        [
+          "Dunaharaszti",
+          6
+        ],
+        [
+          "Üröm",
+          5
+        ],
+        [
+          "Solymár",
+          4
+        ]
+      ]
+    },
+    {
+      "shard": 3,
+      "targets": 64,
+      "pointOnly": 64,
+      "towns": 30,
+      "longitudeRange": [
+        19.1586336,
+        19.4808813
+      ],
+      "largestCities": [
+        [
+          "Ladánybene",
+          7
+        ],
+        [
+          "Vecsés",
+          5
+        ],
+        [
+          "Gyömrő",
+          5
+        ],
+        [
+          "Kiskunhalas",
+          4
+        ],
+        [
+          "Bugyi",
+          3
+        ],
+        [
+          "Szabadszállás",
+          3
+        ],
+        [
+          "Nagytarcsa",
+          3
+        ]
+      ]
+    },
+    {
+      "shard": 4,
+      "targets": 63,
+      "pointOnly": 56,
+      "towns": 31,
+      "longitudeRange": [
+        19.4940161,
+        20.5220868
+      ],
+      "largestCities": [
+        [
+          "Kecskemét",
+          9
+        ],
+        [
+          "Csanytelek",
+          5
+        ],
+        [
+          "Tiszakécske",
+          5
+        ],
+        [
+          "Orgovány",
+          4
+        ],
+        [
+          "Csongrád",
+          4
+        ],
+        [
+          "Pásztó",
+          3
+        ],
+        [
+          "Váraszó",
+          3
+        ]
+      ]
+    },
+    {
+      "shard": 5,
+      "targets": 66,
+      "pointOnly": 63,
+      "towns": 44,
+      "longitudeRange": [
+        20.5326015,
+        22.7441481
+      ],
+      "largestCities": [
+        [
+          "Mezőtúr",
+          5
+        ],
+        [
+          "Szarvas",
+          4
+        ],
+        [
+          "Nyírbátor",
+          4
+        ],
+        [
+          "Kazincbarcika",
+          3
+        ],
+        [
+          "Miskolc",
+          3
+        ],
+        [
+          "Békés",
+          2
+        ],
+        [
+          "Gyula",
+          2
+        ]
+      ]
+    }
+  ],
+  "completedPackets": [
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/shard-0/features.geojson",
+      "sha256": "6dba7c52351f2378b421d4b40ba32dea8f42f198f852b44115e59567bd0af50e",
+      "featureCount": 63
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/shard-1/features.geojson",
+      "sha256": "6cf93c3986e2df8e519982eda788cb2971825a9468cd442e15230c9903c021b7",
+      "featureCount": 60
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/shard-2/features.geojson",
+      "sha256": "015372b475a7203a1e2f7fa97670c32b622fd9407f611b35704c976711e528f9",
+      "featureCount": 68
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/shard-3/batch-01/features.geojson",
+      "sha256": "c1c0a53f1b82cb6e280a98b79f7fb565a2681418b5b63c4524a667de91a46622",
+      "featureCount": 16
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/shard-3/batch-02/features.geojson",
+      "sha256": "f5a31c6c5a6c8b755823445bfc1f6cb3505e7e6e2a5797c0c59486c6bf2b89d6",
+      "featureCount": 14
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/shard-3/batch-03/features.geojson",
+      "sha256": "b4235b9fa3f0455c1641a18c8e63c7774e7650c5a3fc836d33122802031b4a69",
+      "featureCount": 12
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/shard-3/batch-04/features.geojson",
+      "sha256": "a7737e859ac9f650ec8e4d0535e880916e2e482be3d37c6d0777fc6e4ca6d3bc",
+      "featureCount": 14
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/shard-3/batch-05/features.geojson",
+      "sha256": "69f1f81a64ddd55d9b23848ba10b8d9cae635bd2c075caafd3523f8c7d22b52f",
+      "featureCount": 7
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/shard-3/batch-06/features.geojson",
+      "sha256": "9217bea610de5da65651edade447a2cb58b8801f9a3709e787480102b7c1eab8",
+      "featureCount": 1
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/shard-4/features.geojson",
+      "sha256": "ac81dd61f69f96deb3599b0f594bf615f04f04f7fc39446c709889e2ae85ab78",
+      "featureCount": 63
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/shard-5/features.geojson",
+      "sha256": "bd36bf6990cfb2cff4c1599b89d02d351b2c8c5ba863043db19569cb7dbc5cf1",
+      "featureCount": 66
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/identity-corrections/features.geojson",
+      "sha256": "2cf4ba8ff251a302a5b6aea47a76621c393450378108b998f95ec6ada1a77061",
+      "featureCount": 2,
+      "role": "verified_identity_and_display_corrections_not_new_spatial_areas"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/shard-0/residual-followup/features.geojson",
+      "sha256": "7663baf1a55e1bfa3ac29d07078a45db625d50e19155d5df01f0839123e58c74",
+      "featureCount": 1,
+      "role": "new_sandipuszta_source_building_and_landscape_extent"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115-round4/shard-4/corrections/features.geojson",
+      "sha256": "938e48f26e42a9825621bbc640e7a8fbecc0147ab5a24537b3380ae2ad216bdf",
+      "featureCount": 2,
+      "role": "independent_QA_geometry_corrections_originals_retained_as_alternatives"
+    }
+  ],
+  "publicationBranch": "codex/neighborhood-research-506-191",
+  "resume": "This source-collection pass is checkpointed with 4308 core areas, one separate provisional circle and one unlocated whole unit. The zero-circle goal is not fully reached. Preserve every frozen packet and the separately archived Árkosháza landscape candidate/evidence. Further collection requires new supporting boundary evidence; no current national completeness claim or application/MySQL integration is made.",
+  "networkPolicy": "Use saved source geometry and web connector primary evidence. No dependency on shell network approvals or worker GitHub mutations. Root publishes periodic checkpoints.",
+  "sharedContextExtraction": {
+    "status": "complete",
+    "municipalities": 199,
+    "actualLineWays": 220035,
+    "actualAreaWays": 73378,
+    "addressNodes": 48525,
+    "elapsedSeconds": 105.8,
+    "manifest": "data/neighborhoods/expansion-20261115-round4/contexts/index.json",
+    "geometryRole": "archived native source context, not inferred district boundaries"
+  },
+  "latestCheckpoint": {
+    "featureCount": 4308,
+    "municipalityCount": 617,
+    "methods": {
+      "map_or_text_estimate": 1479,
+      "named_source_footprint": 2178,
+      "source_map_polygon": 172,
+      "source_polygon": 479
+    },
+    "duplicateVariantsPreserved": 350
+  },
+  "knownNameInventory": {
+    "knownNameCount": 4310,
+    "municipalitiesWithKnownNames": 618,
+    "namesWithCollectedPolygon": 4308,
+    "namesWithKnownPoint": 3487,
+    "pointOnlyNames": 1,
+    "unlocatedUncollectedNames": 1,
+    "nationalCompletionPercent": null,
+    "targetNationalCoveragePercent": [
+      80,
+      90
+    ]
+  },
+  "nextPriorityCities": [
+    {
+      "municipality": "Budapest",
+      "knownNames": 463,
+      "mappedNames": 463,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Debrecen",
+      "knownNames": 126,
+      "mappedNames": 126,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Szeged",
+      "knownNames": 75,
+      "mappedNames": 75,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Miskolc",
+      "knownNames": 108,
+      "mappedNames": 108,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Pécs",
+      "knownNames": 101,
+      "mappedNames": 101,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Győr",
+      "knownNames": 80,
+      "mappedNames": 80,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Nyíregyháza",
+      "knownNames": 83,
+      "mappedNames": 83,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Kecskemét",
+      "knownNames": 110,
+      "mappedNames": 110,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Székesfehérvár",
+      "knownNames": 85,
+      "mappedNames": 85,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Szombathely",
+      "knownNames": 70,
+      "mappedNames": 70,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Szolnok",
+      "knownNames": 33,
+      "mappedNames": 33,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Érd",
+      "knownNames": 26,
+      "mappedNames": 26,
+      "remainingNames": 0
+    }
+  ],
+  "newAreasNet": 384,
+  "fallbackCircleReduction": 371,
+  "zeroCircleGoalReached": false,
+  "finalDataScope": {
+    "featureCount": 4308,
+    "municipalityCount": 617,
+    "knownNameCount": 4310,
+    "remainingFallbackCircles": 1,
+    "unlocatedUncollectedNames": 1,
+    "newAreasNet": 384,
+    "fallbackCircleReduction": 371,
+    "allAssignedNamesAttempted": true,
+    "userZeroCircleGoalFullyReached": false,
+    "applicationOrDatabaseIntegrationPerformed": false
+  },
+  "remainingNames": [
+    {
+      "municipality": "Babosdöbréte",
+      "name": "Árkosháza-puszta",
+      "state": "one_separate_provisional_circle_retained",
+      "reason": "The vanished compound or historic estate perimeter was not recovered. The separately archived landscape candidate explicitly opts out of address assignment."
+    },
+    {
+      "municipality": "Dombóvár",
+      "name": "Külterületek",
+      "state": "unlocated_whole_unit_no_polygon_or_invented_center",
+      "reason": "No supported whole-rural-unit boundary or exhaustive component union was established; no source point exists for a fallback circle."
+    }
+  ],
+  "finalArkoshazaDecision": {
+    "decision": "archive_separately_outside_core_and_input_registry",
+    "candidatePath": "data/neighborhoods/expansion-20261115-round4/shard-0/residual-followup/arkoshaza-reviewed-candidate.geojson",
+    "candidateSha256": "16193c336185a9a8de2756a953f1d847509a475fbc191162383ff07409ea73b6",
+    "sourceUsableForAddressAssignment": false,
+    "historicEstateBoundaryKnown": false,
+    "reason": "A coherent representative historic rural landscape is not the recovered vanished compound or estate perimeter required for defensible address assignment. Promoting it solely to reach zero circles would overstate the result. Preserve candidate and evidence separately; do not change exporter flags to promote it."
+  },
+  "researchSourceArchive": {
+    "manifest": "data/neighborhoods/expansion-20261115-round4/source-archive/manifest.json",
+    "materializeCommand": "python3 data/neighborhoods/expansion-20261115-round4/source-archive/materialize.py",
+    "checkCommand": "python3 data/neighborhoods/expansion-20261115-round4/source-archive/materialize.py --check",
+    "storage": "content-deduplicated, SHA256-validated split ZIP with pinned baseline references",
+    "maximumPartBytes": 8388608,
+    "summary": {
+      "originalResearchFiles": 2406,
+      "directOriginalFiles": 151,
+      "packedOriginalFiles": 2255,
+      "packedOriginalBytes": 138555320,
+      "baselineReferencedFiles": 15,
+      "baselineReferencedBytes": 2518138,
+      "uniqueNewBlobCount": 1869,
+      "uniqueNewBlobBytes": 123656951,
+      "archiveBytes": 97723045,
+      "partCount": 12
+    },
+    "originalSourceBytesRetainedLocally": true,
+    "selectedRegisteredGeoJsonAndAllPythonAndMarkdownRemainDirect": true,
+    "rawResearchPathsRequireMaterializeAfterClone": true,
+    "geometriesUnchanged": true,
+    "completeNationalCoverage": false,
+    "manifestSha256": "d1fff4591b2dc9314c4c691d5375324bce619e3f637a1b5e0ec9ecbaf6dabd65",
+    "verification": {
+      "all2255PackedPathsRoundtripWithIdenticalBytesAndModes": true,
+      "deterministicBuildCheckPassed": true,
+      "all15BaselineFilesPresentWithMatchingLiveBytes": true,
+      "pathTraversalSymlinkAndOverwriteRejected": true,
+      "temporaryRoundtripTreeCleaned": true
+    }
+  }
+}

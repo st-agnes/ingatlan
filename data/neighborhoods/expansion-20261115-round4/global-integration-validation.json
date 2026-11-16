@@ -1,0 +1,82 @@
+{
+  "status": "verified_final_data_checkpoint_ready_for_root_publication",
+  "featureCount": 4308,
+  "municipalityCount": 617,
+  "knownNameInventory": {
+    "knownNameCount": 4310,
+    "municipalitiesWithKnownNames": 618,
+    "namesWithCollectedPolygon": 4308,
+    "namesWithKnownPoint": 3487,
+    "pointOnlyNames": 1,
+    "unlocatedUncollectedNames": 1,
+    "nationalCompletionPercent": null,
+    "targetNationalCoveragePercent": [
+      80,
+      90
+    ]
+  },
+  "remainingNames": [
+    {
+      "municipality": "Babosdöbréte",
+      "name": "Árkosháza-puszta",
+      "state": "one_separate_provisional_circle_retained",
+      "reason": "The vanished compound or historic estate perimeter was not recovered. The separately archived landscape candidate explicitly opts out of address assignment."
+    },
+    {
+      "municipality": "Dombóvár",
+      "name": "Külterületek",
+      "state": "unlocated_whole_unit_no_polygon_or_invented_center",
+      "reason": "No supported whole-rural-unit boundary or exhaustive component union was established; no source point exists for a fallback circle."
+    }
+  ],
+  "coreCircleCount": 0,
+  "separateFallbackCircleCount": 1,
+  "registeredRound4Packets": 14,
+  "round4NewAreasNet": 384,
+  "round4CircleReduction": 371,
+  "allRegisteredRound4HashesMatch": true,
+  "releaseRegressionTests": 14,
+  "releaseRegressionTestsPassed": true,
+  "catalogBuildCheckPassed": true,
+  "packageCheckPassed": true,
+  "gitDiffCheckPassedWithGeneratedCsvCrLfAllowed": true,
+  "estimatedAndPartialSourcePropertiesPreserved": true,
+  "frozenSourcePacketsModified": false,
+  "applicationOrDatabaseIntegrationPerformed": false,
+  "commitsStagingOrPublicationPerformed": false,
+  "arkoshazaReviewedCandidateRegistered": false,
+  "completeNationalCoverage": false,
+  "arkoshazaFinalDecision": {
+    "decision": "archive_separately_outside_core_and_input_registry",
+    "candidatePath": "data/neighborhoods/expansion-20261115-round4/shard-0/residual-followup/arkoshaza-reviewed-candidate.geojson",
+    "candidateSha256": "16193c336185a9a8de2756a953f1d847509a475fbc191162383ff07409ea73b6",
+    "sourceUsableForAddressAssignment": false,
+    "historicEstateBoundaryKnown": false,
+    "reason": "A coherent representative historic rural landscape is not the recovered vanished compound or estate perimeter required for defensible address assignment. Promoting it solely to reach zero circles would overstate the result. Preserve candidate and evidence separately; do not change exporter flags to promote it."
+  },
+  "zeroCircleGoalReached": false,
+  "nationalCollectionComplete": false,
+  "researchSourceArchiveVerification": {
+    "manifestSha256": "d1fff4591b2dc9314c4c691d5375324bce619e3f637a1b5e0ec9ecbaf6dabd65",
+    "originalResearchFiles": 2406,
+    "directOriginalFiles": 151,
+    "directPublishedFilesIncludingArchiveArtifacts": 167,
+    "packedOriginalFiles": 2255,
+    "packedOriginalBytes": 138555320,
+    "uniqueNewBlobs": 1869,
+    "baselineReferencedFiles": 15,
+    "allBaselineReferencesMatchLiveTrackedFiles": true,
+    "archiveBytes": 97723045,
+    "archivePartCount": 12,
+    "maximumPartBytes": 8388608,
+    "allPackedBytesAndModesRoundtrip": true,
+    "deterministicBuildCheckPassed": true,
+    "coreChecksPassedWithPackedPathsAndPlainGeoJsonAbsent": [
+      "python3 tests/neighborhoods-search-areas.test.py",
+      "python3 scripts/neighborhoods/build-search-areas.py --check",
+      "python3 scripts/neighborhoods/package-search-areas.py --check"
+    ],
+    "originalSourcesRestoredAndByteVerified": true,
+    "temporaryCopiesCleaned": true
+  }
+}

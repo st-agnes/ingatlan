@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "workInProgress": false,
+  "remainingNames": [
+    {
+      "municipality": "Babosdöbréte",
+      "name": "Árkosháza-puszta",
+      "status": "unresolved_no_supported_extent",
+      "sourcesChecked": [
+        {
+          "url": "https://adatbazisokonline.mnl.gov.hu/adatbazis/mikrofilm-anyakonyvek/adatlap/35646",
+          "finding": "Primary historical register confirms Árkosháza puszta as a Babosdöbréte dependent locality, 1840–1880."
+        },
+        {
+          "url": "https://www.zaol.hu/helyi-kozelet/2021/09/babosdobrete-lakott-kulteruleteivel-turazasra-csabito-tajaival-egyedi-megyeben",
+          "finding": "Interview reports Árkosháza has disappeared; 1949 census affiliation is named."
+        },
+        {
+          "url": "https://zegrally.hu/wp-content/uploads/2022/08/II-ZEG-Rally-Show-media-tajekoztato-1.pdf",
+          "finding": "Organizer map text contains the locality label; no actual historic boundary geometry was retrieved or traced."
+        },
+        {
+          "path": "review-maps/babosdobrete-a9c1c939-0.png",
+          "finding": "Actual shared native context reviewed: no farmyard/residential polygon or named place-related road; unnamed tracks around the saved position do not establish the old compound."
+        },
+        {
+          "path": "evidence/sandipuszta-building-api-attempt.json",
+          "finding": "OSM/Overpass web connector raw-data fetch capability checked, unavailable; no shell network request made."
+        }
+      ],
+      "reason": "Historical name and position are supported, but no source establishes the extent of the vanished farm settlement. A hull around unnamed tracks, nearby forest or the name point would invent its spatial identity. Existing fallback must remain.",
+      "nextUsefulEvidence": "Historic cadastral/topographic map showing the former compound, or a surviving source farm/building footprint. No alias to adjacent settlements is supported."
+    },
+    {
+      "municipality": "Gyugy",
+      "name": "Sandipuszta",
+      "status": "unresolved_no_supported_compound",
+      "sourcesChecked": [
+        {
+          "url": "https://mdh.unideb.hu/telepules.php?adatlap=13-15-37/1&c=13-15-37&t=Gyugy",
+          "finding": "Academic primary place-name register records Sandipuszta/Sandi as a flat agricultural/settlement place in 1974, also in 1862/1864/1967."
+        },
+        {
+          "url": "https://vefleveltar.hu/sites/default/files/letoltes/2016/04/vel_i.1.8_segedletek_1_canvis_013_197_tablazat_b5_k.pdf",
+          "finding": "Primary archival catalogue identifies Sándipuszta as Gyugy part."
+        },
+        {
+          "url": "https://mdh.unideb.hu/telepules.php?adatlap=13-15-38/1&c=13-15-38&t=Gyugy",
+          "finding": "The source separately names Sandi-szőlő and Sandi-tábla; they cannot be blindly treated as the same settlement."
+        },
+        {
+          "path": "review-maps/gyugy-90c0585a-0.png",
+          "finding": "Actual native context reviewed: farm access track 19 m from label, adjacent woodland about 43 m away, no retained farmyard/residential surface. Neighboring Alsómajor is separately named and not an alias."
+        },
+        {
+          "path": "evidence/sandipuszta-building-api-attempt.json",
+          "finding": "Attempted official OSM map and Overpass building-geometry fetch through allowed web connector; both unavailable."
+        }
+      ],
+      "reason": "Name/history/position are supported, but the visible current track/woodland/vineyard data do not define a trustworthy settlement compound. Substituting Alsómajor, Sandi-szőlő or an arbitrary track envelope would assert an unsupported identity. Existing fallback must remain.",
+      "nextUsefulEvidence": "Anonymous building/farmyard footprints near the saved place; shared context extraction omitted plain building=* ways without name/addr:place/suburb. A centralized residual-building extraction or historic cadastral map may recover the compound."
+    }
+  ]
+}

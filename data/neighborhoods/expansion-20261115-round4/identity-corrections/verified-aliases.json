@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "aliases": [
+    {
+      "municipality": "Dombóvár",
+      "name": "Szuhajdomb",
+      "aliases": [
+        "Szuhay-domb",
+        "Szuhaj-domb"
+      ],
+      "reason": "Municipal ITS boundary circuit, later traffic/nature-plan spellings and street-renaming records identify one historical southern-city place with j/y spelling and source-scope variants. Prefer the explicitly source-defined whole planning-unit estimate while retaining the older partial street-cell as an alternative; no geometry union.",
+      "evidence": [
+        "data/neighborhoods/expansion-20261115-round4/shard-1/identity-followup/review.json",
+        "https://www.dombovar.hu/media/files/Dombovar_helyzetertekeles_0804.pdf",
+        "https://dombovar.hu/wp-content/uploads/2025/02/01.-melleklet-Forgalmi-rend-felulvizsgalat-2024-teljes-anyag-egyben.pdf",
+        "https://www.dombovar.hu/media/files/03._Termeszetvedelmi_alapterv_15.12.17..pdf"
+      ]
+    },
+    {
+      "municipality": "Kecskemét",
+      "name": "Borbás belterület",
+      "aliases": [
+        "Bordás",
+        "Bordás belterület"
+      ],
+      "reason": "The same municipal source map prints Bordás belterület on the small satellite, while its next-page enumeration and independent companion volume name Borbás. Correct the inner-settlement child spelling only; the broader Borbás rural parent retains its separate identity and geometry.",
+      "evidence": [
+        "data/neighborhoods/expansion-20261115-round4/shard-1/identity-followup/review.json",
+        "data/neighborhoods/expansion-20261115-round4/shard-4/alias-review.json",
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_I-es_kotet.pdf"
+      ]
+    }
+  ]
+}

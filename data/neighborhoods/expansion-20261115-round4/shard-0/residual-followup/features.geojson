@@ -1,0 +1,113 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "estimated:round4:shard0:residual:sandipuszta",
+      "properties": {
+        "municipality": "Gyugy",
+        "name": "Sandipuszta",
+        "sourceUrl": "https://mdh.unideb.hu/telepules.php?adatlap=13-15-37/1&c=13-15-37&t=Gyugy",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/1132188873",
+          "https://fotoport.hu/hng/somogy/index-fonyodi-jaras.htm",
+          "https://www.openstreetmap.org/way/1392072597",
+          "https://www.openstreetmap.org/way/1392072616",
+          "https://www.openstreetmap.org/way/1392072623"
+        ],
+        "approximationNote": "Low-confidence occupied-locality estimate: the outer envelope of 30 actual mapped buildings in the distinct Sandipuszta compound around its OSM name point, with a 20 m allowance for yards and frontage. Native tracks show their shared access; the northern vineyard and southern forest help distinguish the cluster. The historical place-name register identifies Sandipuszta separately from the Sandi field and vineyard names. No point radius, Voronoi cell or track-only hull is used. This covers the currently mapped built compound rather than the full historical estate or cadastral district; gaps between buildings are generalized and the yard edges are estimated. The separate Alsómajor surface southeast of this cluster is not aliased or included. No unseen PDF map has been digitized.",
+        "partialFootprint": true,
+        "method": "source_building_cluster_occupied_locality_envelope_estimate",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "boundaryKind": "neighbourhood",
+        "usableForAddressAssignment": false,
+        "sourceObjectIds": [
+          "osm:way:1392072593",
+          "osm:way:1392072594",
+          "osm:way:1392072595",
+          "osm:way:1392072596",
+          "osm:way:1392072597",
+          "osm:way:1392072598",
+          "osm:way:1392072599",
+          "osm:way:1392072600",
+          "osm:way:1392072601",
+          "osm:way:1392072603",
+          "osm:way:1392072604",
+          "osm:way:1392072605",
+          "osm:way:1392072606",
+          "osm:way:1392072607",
+          "osm:way:1392072608",
+          "osm:way:1392072609",
+          "osm:way:1392072610",
+          "osm:way:1392072611",
+          "osm:way:1392072612",
+          "osm:way:1392072613",
+          "osm:way:1392072614",
+          "osm:way:1392072615",
+          "osm:way:1392072616",
+          "osm:way:1392072617",
+          "osm:way:1392072618",
+          "osm:way:1392072619",
+          "osm:way:1392072620",
+          "osm:way:1392072621",
+          "osm:way:1392072622",
+          "osm:way:1392072623"
+        ],
+        "sourcePeriod": "OSM snapshot 2026-11-12; historical academic name records 1862–1974",
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors; Hungarian Digital Place-name Register",
+        "areaM2": 116474,
+        "evidenceFiles": [
+          "evidence/sandipuszta-academic-place-definitions.json",
+          "evidence/current-address-location-search.json",
+          "source-inputs/selected-source-objects.geojson.gz"
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.665092085852894,
+              46.68606656846322
+            ],
+            [
+              17.66198121847082,
+              46.687121997620636
+            ],
+            [
+              17.6635597,
+              46.6882536
+            ],
+            [
+              17.662697012366905,
+              46.688681465392364
+            ],
+            [
+              17.66751857939183,
+              46.68867355510526
+            ],
+            [
+              17.667634475413628,
+              46.68851968570015
+            ],
+            [
+              17.668476942797906,
+              46.686271756561496
+            ],
+            [
+              17.66787665702011,
+              46.68552888578883
+            ],
+            [
+              17.665092085852894,
+              46.68606656846322
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

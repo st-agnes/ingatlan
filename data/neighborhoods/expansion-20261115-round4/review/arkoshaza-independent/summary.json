@@ -1,0 +1,38 @@
+{
+  "status": "independent-search-complete",
+  "name": "Árkosháza-puszta",
+  "municipality": "Babosdöbréte",
+  "sourcePositionWgs84": [
+    16.7722417,
+    46.8252895
+  ],
+  "newUsefulEvidence": [
+    "HUN-REN regesta index locates Árkosháza north of Babosdöbréte",
+    "Primary MNL/Hungaricana regesta entry records31 residents and six houses in1962, plus23 residents in1863"
+  ],
+  "historicalCompoundOrEstatePolygonRecovered": false,
+  "historicParcelNumberRecovered": false,
+  "boundaryEstablished": false,
+  "sourceFacts": "observed-source-facts.json",
+  "searchArchives": [
+    "search-1-variants.json",
+    "search-2.json",
+    "search-3.json",
+    "search-4.json",
+    "search-5.json",
+    "search-6.json",
+    "search-7.json",
+    "search-8.json"
+  ],
+  "failedAccess": [
+    "Hungaricana maps search inaccessible through connector",
+    "Hungaricana regesta page666 and subsequent pages403/unavailable",
+    "Squarecadastre displays interactive search only; no town-specific parcel record retrieved"
+  ],
+  "noPbfScan": true,
+  "noShellNetwork": true,
+  "noBinaryDownload": true,
+  "noFrozenOrGlobalMutation": true,
+  "handedToWorker": "/root/collect_szombathely_20261115",
+  "interpretationLimit": "The new primary sources support historical identity and broad direction. Any representative landscape polygon must still be explicitly partial/very coarse and grounded in actual independently preserved physical/native boundary geometry; the texts do not establish its1km2 or any other chosen extent."
+}

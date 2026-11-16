@@ -1,0 +1,1900 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "19caaea641ae90080ab725fd03a68362530199a9",
+  "shard": 0,
+  "targetCount": 65,
+  "pointOnlyCount": 62,
+  "unlocatedCount": 3,
+  "municipalities": [
+    {
+      "municipality": "Szentgotthárd",
+      "contextKey": "szentgotthard-78e3d72c",
+      "longitudeForTaskOrderOnly": 16.2894564,
+      "targets": [
+        {
+          "municipality": "Szentgotthárd",
+          "name": "Ipari park",
+          "nameKey": "iparipark",
+          "sourceNames": [
+            "Ipari park"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:11001841960",
+              "coordinates": [
+                16.2839889,
+                46.9642829
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/11001841960",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Szentgotthárd",
+          "name": "Zsidahegy",
+          "nameKey": "zsidahegy",
+          "sourceNames": [
+            "Zsidahegy"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1030603318",
+              "coordinates": [
+                16.281786,
+                46.9293511
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/1030603318",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Csörötnek",
+      "contextKey": "csorotnek-38c327b4",
+      "longitudeForTaskOrderOnly": 16.3680088,
+      "targets": [
+        {
+          "municipality": "Csörötnek",
+          "name": "Huszászi-part",
+          "nameKey": "huszászipart",
+          "sourceNames": [
+            "Huszászi-part"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:9733540840",
+              "coordinates": [
+                16.3680088,
+                46.9188415
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/9733540840",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Őriszentpéter",
+      "contextKey": "oriszentpeter-84516cfb",
+      "longitudeForTaskOrderOnly": 16.4149578,
+      "targets": [
+        {
+          "municipality": "Őriszentpéter",
+          "name": "Baksaszer",
+          "nameKey": "baksaszer",
+          "sourceNames": [
+            "Baksaszer"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1039041399",
+              "coordinates": [
+                16.4212674,
+                46.8359019
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/1039041399",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Kőszeg",
+      "contextKey": "koszeg-b12af2d2",
+      "longitudeForTaskOrderOnly": 16.541393550000002,
+      "targets": [
+        {
+          "municipality": "Kőszeg",
+          "name": "Lakótelep",
+          "nameKey": "lakótelep",
+          "sourceNames": [
+            "Lakótelep"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1299465104",
+              "coordinates": [
+                16.5426617,
+                47.3811941
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/1299465104",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Sopron",
+      "contextKey": "sopron-6665fd09",
+      "longitudeForTaskOrderOnly": 16.588855950000003,
+      "targets": [
+        {
+          "municipality": "Sopron",
+          "name": "Brandmajor",
+          "nameKey": "brandmajor",
+          "sourceNames": [
+            "Brandmajor"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:991399902",
+              "coordinates": [
+                16.592919,
+                47.6515904
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/991399902",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Sopron",
+          "name": "Óbrennberg",
+          "nameKey": "óbrennberg",
+          "sourceNames": [
+            "Óbrennberg"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:992617816",
+              "coordinates": [
+                16.5011789,
+                47.6537346
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/992617816",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Letenye",
+      "contextKey": "letenye-a9f05ae3",
+      "longitudeForTaskOrderOnly": 16.7306783,
+      "targets": [
+        {
+          "municipality": "Letenye",
+          "name": "Egyeduta",
+          "nameKey": "egyeduta",
+          "sourceNames": [
+            "Egyeduta"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1099417262",
+              "coordinates": [
+                16.7442744,
+                46.4204801
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/1099417262",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Babosdöbréte",
+      "contextKey": "babosdobrete-a9c1c939",
+      "longitudeForTaskOrderOnly": 16.7722417,
+      "targets": [
+        {
+          "municipality": "Babosdöbréte",
+          "name": "Árkosháza-puszta",
+          "nameKey": "árkosházapuszta",
+          "sourceNames": [
+            "Árkosháza-puszta"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:7917903898",
+              "coordinates": [
+                16.7722417,
+                46.8252895
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/7917903898",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Zalaegerszeg",
+      "contextKey": "zalaegerszeg-048e4ff7",
+      "longitudeForTaskOrderOnly": 16.8346157,
+      "targets": [
+        {
+          "municipality": "Zalaegerszeg",
+          "name": "ADAS platform",
+          "nameKey": "adasplatform",
+          "sourceNames": [
+            "ADAS platform"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:6504025933",
+              "coordinates": [
+                16.8461571,
+                46.8937818
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/6504025933",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Zalaegerszeg",
+          "name": "Dinamikai felület",
+          "nameKey": "dinamikaifelület",
+          "sourceNames": [
+            "Dinamikai felület"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:6504025934",
+              "coordinates": [
+                16.8434572,
+                46.8950412
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/6504025934",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Zalaegerszeg",
+          "name": "Kezelhetőségi pálya",
+          "nameKey": "kezelhetőségipálya",
+          "sourceNames": [
+            "Kezelhetőségi pálya"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:6094186938",
+              "coordinates": [
+                16.8447097,
+                46.8853397
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/6094186938",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Fertőd",
+      "contextKey": "fertod-af06cbe6",
+      "longitudeForTaskOrderOnly": 16.8778154,
+      "targets": [
+        {
+          "municipality": "Fertőd",
+          "name": "Tőzeggyármajor",
+          "nameKey": "tőzeggyármajor",
+          "sourceNames": [
+            "Tőzeggyármajor"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:992753621",
+              "coordinates": [
+                16.9531453,
+                47.6760235
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/992753621",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Sárvár",
+      "contextKey": "sarvar-a75f6509",
+      "longitudeForTaskOrderOnly": 16.9292759,
+      "targets": [
+        {
+          "municipality": "Sárvár",
+          "name": "Ipartelep",
+          "nameKey": "ipartelep",
+          "sourceNames": [
+            "Ipartelep"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:5046993023",
+              "coordinates": [
+                16.9211365,
+                47.2606554
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/5046993023",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Sárvár",
+          "name": "Lánkapuszta",
+          "nameKey": "lánkapuszta",
+          "sourceNames": [
+            "Lánkapuszta"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1027867190",
+              "coordinates": [
+                17.0127912,
+                47.2840509
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/1027867190",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Sárvár",
+          "name": "Vadkert",
+          "nameKey": "vadkert",
+          "sourceNames": [
+            "Vadkert"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:5046993022",
+              "coordinates": [
+                16.9451154,
+                47.2446596
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/5046993022",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Vitnyéd",
+      "contextKey": "vitnyed-2da63cd1",
+      "longitudeForTaskOrderOnly": 16.9816801,
+      "targets": [
+        {
+          "municipality": "Vitnyéd",
+          "name": "Csermajor",
+          "nameKey": "csermajor",
+          "sourceNames": [
+            "Csermajor"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:994601223",
+              "coordinates": [
+                16.9816801,
+                47.5578515
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/994601223",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Celldömölk",
+      "contextKey": "celldomolk-bcddc842",
+      "longitudeForTaskOrderOnly": 17.1494306,
+      "targets": [
+        {
+          "municipality": "Celldömölk",
+          "name": "Kodály Zoltán lakótelep",
+          "nameKey": "kodályzoltánlakótelep",
+          "sourceNames": [
+            "Kodály Zoltán lakótelep"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:3346970998",
+              "coordinates": [
+                17.1554063,
+                47.2518243
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/3346970998",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Celldömölk",
+          "name": "Mikes-lakótelep",
+          "nameKey": "mikeslakótelep",
+          "sourceNames": [
+            "Mikes-lakótelep"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:3346977183",
+              "coordinates": [
+                17.1494306,
+                47.2513973
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/3346977183",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Celldömölk",
+          "name": "Sághegy",
+          "nameKey": "sághegy",
+          "sourceNames": [
+            "Sághegy"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1027984893",
+              "coordinates": [
+                17.1156069,
+                47.231964
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/1027984893",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Újrónafő",
+      "contextKey": "ujronafo-26f4138a",
+      "longitudeForTaskOrderOnly": 17.1868782,
+      "targets": [
+        {
+          "municipality": "Újrónafő",
+          "name": "Császárrét",
+          "nameKey": "császárrét",
+          "sourceNames": [
+            "Császárrét"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:993488153",
+              "coordinates": [
+                17.1868782,
+                47.8062377
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/993488153",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Keszthely",
+      "contextKey": "keszthely-6a25206f",
+      "longitudeForTaskOrderOnly": 17.2281738,
+      "targets": [
+        {
+          "municipality": "Keszthely",
+          "name": "Szendreytelep",
+          "nameKey": "szendreytelep",
+          "sourceNames": [
+            "Szendreytelep"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1081840051",
+              "coordinates": [
+                17.2281738,
+                46.7488148
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/1081840051",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Cserszegtomaj",
+      "contextKey": "cserszegtomaj-cd22ac18",
+      "longitudeForTaskOrderOnly": 17.2396601,
+      "targets": [
+        {
+          "municipality": "Cserszegtomaj",
+          "name": "II. körzet",
+          "nameKey": "iikörzet",
+          "sourceNames": [
+            "II. körzet"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1081816958",
+              "coordinates": [
+                17.2191103,
+                46.8035457
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/1081816958",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Cserszegtomaj",
+          "name": "I. körzet",
+          "nameKey": "ikörzet",
+          "sourceNames": [
+            "I. körzet"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1081817027",
+              "coordinates": [
+                17.2086947,
+                46.8100907
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/1081817027",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Csorna",
+      "contextKey": "csorna-77fc88ac",
+      "longitudeForTaskOrderOnly": 17.2442436,
+      "targets": [
+        {
+          "municipality": "Csorna",
+          "name": "Felsőszeri lakótelep",
+          "nameKey": "felsőszerilakótelep",
+          "sourceNames": [
+            "Felsőszeri lakótelep"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:5030326071",
+              "coordinates": [
+                17.2469634,
+                47.6149259
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/5030326071",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Csorna",
+          "name": "Petőfi lakótelep",
+          "nameKey": "petőfilakótelep",
+          "sourceNames": [
+            "Petőfi lakótelep"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:5030326070",
+              "coordinates": [
+                17.2554445,
+                47.6168243
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/5030326070",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Balatonkeresztúr",
+      "contextKey": "balatonkeresztur-1069fa0c",
+      "longitudeForTaskOrderOnly": 17.35149955,
+      "targets": [
+        {
+          "municipality": "Balatonkeresztúr",
+          "name": "Alsó-hegy",
+          "nameKey": "alsóhegy",
+          "sourceNames": [
+            "Alsó-hegy"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:3608505105",
+              "coordinates": [
+                17.3505983,
+                46.6928368
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/3608505105",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Balatonkeresztúr",
+          "name": "Felső-hegy",
+          "nameKey": "felsőhegy",
+          "sourceNames": [
+            "Felső-hegy"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:3608505106",
+              "coordinates": [
+                17.3524008,
+                46.6972521
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/3608505106",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Nemesvita",
+      "contextKey": "nemesvita-5f71d72c",
+      "longitudeForTaskOrderOnly": 17.3658195,
+      "targets": [
+        {
+          "municipality": "Nemesvita",
+          "name": "Cseresnyés",
+          "nameKey": "cseresnyés",
+          "sourceNames": [
+            "Cseresnyés"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:6907130779",
+              "coordinates": [
+                17.3649047,
+                46.8223168
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/6907130779",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Marcali",
+      "contextKey": "marcali-07036196",
+      "longitudeForTaskOrderOnly": 17.4064842,
+      "targets": [
+        {
+          "municipality": "Marcali",
+          "name": "Papagáj Lakótelep",
+          "nameKey": "papagájlakótelep",
+          "sourceNames": [
+            "Papagáj Lakótelep"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:14279275140",
+              "coordinates": [
+                17.4110621,
+                46.5783659
+              ],
+              "placeKind": "quarter",
+              "sourceUrl": "https://www.openstreetmap.org/node/14279275140",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Marcali",
+          "name": "Tiszti Lakótelep",
+          "nameKey": "tisztilakótelep",
+          "sourceNames": [
+            "Tiszti Lakótelep"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:14279275141",
+              "coordinates": [
+                17.4051646,
+                46.5808442
+              ],
+              "placeKind": "quarter",
+              "sourceUrl": "https://www.openstreetmap.org/node/14279275141",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Kutas",
+      "contextKey": "kutas-c77d72c6",
+      "longitudeForTaskOrderOnly": 17.4262699,
+      "targets": [
+        {
+          "municipality": "Kutas",
+          "name": "Kozmapuszta",
+          "nameKey": "kozmapuszta",
+          "sourceNames": [
+            "Kozmapuszta"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:3074961760",
+              "coordinates": [
+                17.4262699,
+                46.3699931
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/3074961760",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Szigliget",
+      "contextKey": "szigliget-b7eeed19",
+      "longitudeForTaskOrderOnly": 17.438843499999997,
+      "targets": [
+        {
+          "municipality": "Szigliget",
+          "name": "Belsőhegy",
+          "nameKey": "belsőhegy",
+          "sourceNames": [
+            "Belsőhegy"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:14076372855",
+              "coordinates": [
+                17.442652,
+                46.7913777
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/14076372855",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Szigliget",
+          "name": "Külsőhegy",
+          "nameKey": "külsőhegy",
+          "sourceNames": [
+            "Külsőhegy"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:14076372856",
+              "coordinates": [
+                17.4465787,
+                46.7938384
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/14076372856",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Tapolca",
+      "contextKey": "tapolca-89fd6f38",
+      "longitudeForTaskOrderOnly": 17.4412903,
+      "targets": [
+        {
+          "municipality": "Tapolca",
+          "name": "Keleti városrész",
+          "nameKey": "keletivárosrész",
+          "sourceNames": [
+            "Keleti városrész"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:4085361689",
+              "coordinates": [
+                17.4493601,
+                46.8852082
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/4085361689",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Barcs",
+      "contextKey": "barcs-1d2e568c",
+      "longitudeForTaskOrderOnly": 17.469553349999998,
+      "targets": [
+        {
+          "municipality": "Barcs",
+          "name": "Drávaszentes",
+          "nameKey": "drávaszentes",
+          "sourceNames": [
+            "Drávaszentes"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:255165286",
+              "coordinates": [
+                17.4199466,
+                45.9981767
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/255165286",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Abda",
+      "contextKey": "abda-02230f81",
+      "longitudeForTaskOrderOnly": 17.5423045,
+      "targets": [
+        {
+          "municipality": "Abda",
+          "name": "Radnóti Miklós lakótelep",
+          "nameKey": "radnótimiklóslakótelep",
+          "sourceNames": [
+            "Radnóti Miklós lakótelep"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1248458191",
+              "coordinates": [
+                17.5523268,
+                47.6954686
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/1248458191",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Ajka",
+      "contextKey": "ajka-5c6391b5",
+      "longitudeForTaskOrderOnly": 17.5661882,
+      "targets": [
+        {
+          "municipality": "Ajka",
+          "name": "Bakonygyepes (Ajkarendekkel)",
+          "nameKey": "bakonygyepesajkarendekkel",
+          "sourceNames": [
+            "Bakonygyepes (Ajkarendekkel)"
+          ],
+          "pointCandidates": [],
+          "nameReferences": [
+            {
+              "sourceId": "municipal-reference-01",
+              "sourceUrl": "https://www.ajka.hu/upload/ajka_ivs.pdf",
+              "title": "Integrált Városfejlesztési Stratégia v5.0",
+              "category": "planning_area",
+              "referencePeriod": "2008-05",
+              "completeForReferencePeriod": false,
+              "currentCompletenessVerified": false
+            }
+          ],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": false,
+          "nextAction": "find_boundary_or_location"
+        },
+        {
+          "municipality": "Ajka",
+          "name": "Belváros (Lakóteleppel és Szőlőheggyel)",
+          "nameKey": "belvároslakóteleppelésszőlőheggyel",
+          "sourceNames": [
+            "Belváros (Lakóteleppel és Szőlőheggyel)"
+          ],
+          "pointCandidates": [],
+          "nameReferences": [
+            {
+              "sourceId": "municipal-reference-01",
+              "sourceUrl": "https://www.ajka.hu/upload/ajka_ivs.pdf",
+              "title": "Integrált Városfejlesztési Stratégia v5.0",
+              "category": "planning_area",
+              "referencePeriod": "2008-05",
+              "completeForReferencePeriod": false,
+              "currentCompletenessVerified": false
+            }
+          ],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": false,
+          "nextAction": "find_boundary_or_location"
+        },
+        {
+          "municipality": "Ajka",
+          "name": "Bódé (Csingerrel, Csikólegelővel és Iparteleppel)",
+          "nameKey": "bódécsingerrelcsikólegelővelésiparteleppel",
+          "sourceNames": [
+            "Bódé (Csingerrel, Csikólegelővel és Iparteleppel)"
+          ],
+          "pointCandidates": [],
+          "nameReferences": [
+            {
+              "sourceId": "municipal-reference-01",
+              "sourceUrl": "https://www.ajka.hu/upload/ajka_ivs.pdf",
+              "title": "Integrált Városfejlesztési Stratégia v5.0",
+              "category": "planning_area",
+              "referencePeriod": "2008-05",
+              "completeForReferencePeriod": false,
+              "currentCompletenessVerified": false
+            }
+          ],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": false,
+          "nextAction": "find_boundary_or_location"
+        }
+      ]
+    },
+    {
+      "municipality": "Buzsák",
+      "contextKey": "buzsak-645d7851",
+      "longitudeForTaskOrderOnly": 17.5843888,
+      "targets": [
+        {
+          "municipality": "Buzsák",
+          "name": "Szent István-telep",
+          "nameKey": "szentistvántelep",
+          "sourceNames": [
+            "Szent István-telep"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1132230540",
+              "coordinates": [
+                17.5898245,
+                46.6368852
+              ],
+              "placeKind": "quarter",
+              "sourceUrl": "https://www.openstreetmap.org/node/1132230540",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Győr",
+      "contextKey": "gyor-fa6ee8f4",
+      "longitudeForTaskOrderOnly": 17.6452114,
+      "targets": [
+        {
+          "municipality": "Győr",
+          "name": "Csikórét",
+          "nameKey": "csikórét",
+          "sourceNames": [
+            "Csikórét"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:2206994156",
+              "coordinates": [
+                17.5861763,
+                47.6437895
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/2206994156",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Győr",
+          "name": "Göcsei-földek",
+          "nameKey": "göcseiföldek",
+          "sourceNames": [
+            "Göcsei-földek"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:2206994158",
+              "coordinates": [
+                17.6065807,
+                47.6445556
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/2206994158",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Győr",
+          "name": "Katona-rét",
+          "nameKey": "katonarét",
+          "sourceNames": [
+            "Katona-rét"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:2206994163",
+              "coordinates": [
+                17.5713774,
+                47.6517169
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/2206994163",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Győr",
+          "name": "Koldustelek",
+          "nameKey": "koldustelek",
+          "sourceNames": [
+            "Koldustelek"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:2207336385",
+              "coordinates": [
+                17.6467315,
+                47.7222143
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/2207336385",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Győr",
+          "name": "Malomsziget",
+          "nameKey": "malomsziget",
+          "sourceNames": [
+            "Malomsziget"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:2206994166",
+              "coordinates": [
+                17.5838255,
+                47.6402104
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/2206994166",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Győr",
+          "name": "Sörfőző-rét",
+          "nameKey": "sörfőzőrét",
+          "sourceNames": [
+            "Sörfőző-rét"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:2206994172",
+              "coordinates": [
+                17.5725889,
+                47.6358794
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/2206994172",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Ordacsehi",
+      "contextKey": "ordacsehi-29354903",
+      "longitudeForTaskOrderOnly": 17.6494603,
+      "targets": [
+        {
+          "municipality": "Ordacsehi",
+          "name": "Bugaszeg",
+          "nameKey": "bugaszeg",
+          "sourceNames": [
+            "Bugaszeg"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:6717367330",
+              "coordinates": [
+                17.6494603,
+                46.7569278
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/6717367330",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Gyugy",
+      "contextKey": "gyugy-90c0585a",
+      "longitudeForTaskOrderOnly": 17.66873965,
+      "targets": [
+        {
+          "municipality": "Gyugy",
+          "name": "Sandipuszta",
+          "nameKey": "sandipuszta",
+          "sourceNames": [
+            "Sandipuszta"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1132188873",
+              "coordinates": [
+                17.6649526,
+                46.6866203
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/1132188873",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Balatonboglár",
+      "contextKey": "balatonboglar-f55e4493",
+      "longitudeForTaskOrderOnly": 17.6688257,
+      "targets": [
+        {
+          "municipality": "Balatonboglár",
+          "name": "Botné",
+          "nameKey": "botné",
+          "sourceNames": [
+            "Botné"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:5417047697",
+              "coordinates": [
+                17.6972973,
+                46.7409506
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/5417047697",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Bárdudvarnok",
+      "contextKey": "bardudvarnok-dbe57725",
+      "longitudeForTaskOrderOnly": 17.675693799999998,
+      "targets": [
+        {
+          "municipality": "Bárdudvarnok",
+          "name": "Olajhegy",
+          "nameKey": "olajhegy",
+          "sourceNames": [
+            "Olajhegy"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:4066070752",
+              "coordinates": [
+                17.6754282,
+                46.3143206
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/4066070752",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Szőlősgyörök",
+      "contextKey": "szolosgyorok-29cc94f5",
+      "longitudeForTaskOrderOnly": 17.684853,
+      "targets": [
+        {
+          "municipality": "Szőlősgyörök",
+          "name": "Páskom",
+          "nameKey": "páskom",
+          "sourceNames": [
+            "Páskom"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:5417166160",
+              "coordinates": [
+                17.684853,
+                46.6976714
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/5417166160",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Somogyvámos",
+      "contextKey": "somogyvamos-2f174546",
+      "longitudeForTaskOrderOnly": 17.6997469,
+      "targets": [
+        {
+          "municipality": "Somogyvámos",
+          "name": "Krisna-völgy",
+          "nameKey": "krisnavölgy",
+          "sourceNames": [
+            "Krisna-völgy"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:10068184204",
+              "coordinates": [
+                17.6997469,
+                46.5672283
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/10068184204",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Balatonlelle",
+      "contextKey": "balatonlelle-0c48d6e1",
+      "longitudeForTaskOrderOnly": 17.6998517,
+      "targets": [
+        {
+          "municipality": "Balatonlelle",
+          "name": "Felsőlelle",
+          "nameKey": "felsőlelle",
+          "sourceNames": [
+            "Felsőlelle"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1123213897",
+              "coordinates": [
+                17.698053,
+                46.7850939
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/1123213897",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Balatonlelle",
+          "name": "Kertalja",
+          "nameKey": "kertalja",
+          "sourceNames": [
+            "Kertalja"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1310142054",
+              "coordinates": [
+                17.6998517,
+                46.7827975
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/1310142054",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Balatonlelle",
+          "name": "Tabán",
+          "nameKey": "tabán",
+          "sourceNames": [
+            "Tabán"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1123213962",
+              "coordinates": [
+                17.7019587,
+                46.7811515
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/1123213962",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Mencshely",
+      "contextKey": "mencshely-cb71972d",
+      "longitudeForTaskOrderOnly": 17.7095413,
+      "targets": [
+        {
+          "municipality": "Mencshely",
+          "name": "Halomhegy",
+          "nameKey": "halomhegy",
+          "sourceNames": [
+            "Halomhegy"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:5440287459",
+              "coordinates": [
+                17.7095413,
+                46.930824
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/5440287459",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Magyaregres",
+      "contextKey": "magyaregres-7d35dc33",
+      "longitudeForTaskOrderOnly": 17.7812384,
+      "targets": [
+        {
+          "municipality": "Magyaregres",
+          "name": "Jegyző-föld",
+          "nameKey": "jegyzőföld",
+          "sourceNames": [
+            "Jegyző-föld"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:8398362323",
+              "coordinates": [
+                17.785226,
+                46.4531264
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/8398362323",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Magyaregres",
+          "name": "Macska-liki-dűlő",
+          "nameKey": "macskalikidűlő",
+          "sourceNames": [
+            "Macska-liki-dűlő"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:7672018703",
+              "coordinates": [
+                17.7812128,
+                46.4585749
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/7672018703",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Szigetvár",
+      "contextKey": "szigetvar-6c1c0873",
+      "longitudeForTaskOrderOnly": 17.83949625,
+      "targets": [
+        {
+          "municipality": "Szigetvár",
+          "name": "Móra Ferenc-lakótelep",
+          "nameKey": "móraferenclakótelep",
+          "sourceNames": [
+            "Móra Ferenc-lakótelep"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1376668588",
+              "coordinates": [
+                17.8057017,
+                46.0445036
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/1376668588",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Szigetvár",
+          "name": "Turbék",
+          "nameKey": "turbék",
+          "sourceNames": [
+            "Turbék"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:4679165939",
+              "coordinates": [
+                17.8336037,
+                46.0726616
+              ],
+              "placeKind": "suburb",
+              "sourceUrl": "https://www.openstreetmap.org/node/4679165939",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    },
+    {
+      "municipality": "Balatonszárszó",
+      "contextKey": "balatonszarszo-9f8e581e",
+      "longitudeForTaskOrderOnly": 17.85925315,
+      "targets": [
+        {
+          "municipality": "Balatonszárszó",
+          "name": "Diós",
+          "nameKey": "diós",
+          "sourceNames": [
+            "Diós"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1280175946",
+              "coordinates": [
+                17.8415008,
+                46.8127215
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/1280175946",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Balatonszárszó",
+          "name": "Gönnye",
+          "nameKey": "gönnye",
+          "sourceNames": [
+            "Gönnye"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1280175920",
+              "coordinates": [
+                17.8638125,
+                46.8411388
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/1280175920",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Balatonszárszó",
+          "name": "Nagyasszonyi-erdő",
+          "nameKey": "nagyasszonyierdő",
+          "sourceNames": [
+            "Nagyasszonyi-erdő"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:1264773899",
+              "coordinates": [
+                17.8705989,
+                46.821354
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/1264773899",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        },
+        {
+          "municipality": "Balatonszárszó",
+          "name": "Völgy-föld",
+          "nameKey": "völgyföld",
+          "sourceNames": [
+            "Völgy-föld"
+          ],
+          "pointCandidates": [
+            {
+              "sourceId": "osm:node:8904511469",
+              "coordinates": [
+                17.8546938,
+                46.8362949
+              ],
+              "placeKind": "neighbourhood",
+              "sourceUrl": "https://www.openstreetmap.org/node/8904511469",
+              "snapshotDate": "2026-11-12T21:23:05Z"
+            }
+          ],
+          "nameReferences": [],
+          "collectedGeometries": [],
+          "hasCollectedPolygon": false,
+          "hasKnownPoint": true,
+          "nextAction": "find_map_or_polygon_before_radius_fallback"
+        }
+      ]
+    }
+  ],
+  "contextRoot": "data/neighborhoods/expansion-20261115-round4/contexts",
+  "note": "All points are original source-label candidates. Longitude is task ordering only, not an invented location for an unlocated place. Do not generate unsupported polygons merely to reach zero."
+}
