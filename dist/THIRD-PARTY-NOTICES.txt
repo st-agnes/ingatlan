@@ -49,3 +49,39 @@ KSH terms: https://www.ksh.hu/copyright
 Changes: matched all 3155 application municipality names to their NUTS 2016
 county/Budapest identifiers; generated 20 region choices and displayed county
 names with the current vármegye suffix. No coordinates are included.
+
+
+Hungarian neighborhood search catalogue
+
+The compiled search catalogue contains 4,308 named areas with stable application
+IDs across 617 municipalities. Names, documented aliases and selected geometries
+are compiled from OpenStreetMap, municipal maps/documents and derived research
+records. It is not an exclusively OpenStreetMap or exclusively official dataset.
+
+OpenStreetMap-derived data: © OpenStreetMap contributors.
+OpenStreetMap data is made available under the Open Data Commons Open Database
+License (ODbL) 1.0:
+https://www.openstreetmap.org/copyright
+https://opendatacommons.org/licenses/odbl/1-0/
+
+Other source maps and documents retain their own source-specific terms and
+attribution. The source archive preserves per-feature source references,
+licence/attribution metadata where recorded, original source properties, selected
+source and alternative variants, method, uncertainty and geometry fingerprints.
+The application metadata and boundary package are generated from that archive;
+source polygons and stable IDs are preserved, while aliases and display labels
+are adapted for the application.
+
+Some boundaries are map/text estimates or named land-use footprints, and some
+records describe historical areas or broader area groups. These are approximate
+search boundaries, not a guarantee of current official boundaries, exact address
+classification or complete national coverage. Differently named areas may overlap.
+
+Source archive: data/neighborhoods/search-areas.geojson.gz
+SHA-256 (compressed source archive):
+367af069d58c60e171d189e23673fe20fd5cef51792769c161c3eccb87321e4d
+
+Public source data, per-feature provenance and supporting source records:
+https://github.com/st-agnes/ingatlan/tree/main/data/neighborhoods
+Catalogue methods and limitations:
+https://github.com/st-agnes/ingatlan/blob/main/docs/NEIGHBORHOOD-SEARCH-DATA.md

@@ -245,7 +245,7 @@ A CI a generált fájl és a katalógus egyezését is ellenőrzi. A verzió és
 
 ### Külön API-s feltöltő fejlesztői használatra
 
-A `seed-dev.mjs` megmarad opcionális, külön eszközként az azonosított működő tesztoldalhoz. Ez nem része a normál telepítésnek. Például egy futó revízión belül új, elnevezett adatcsomag adható hozzá:
+A `seed-dev.mjs` megmarad opcionális fejlesztői eszközként olyan backendhez, ahol kifejezetten be van kapcsolva a fenntartott tesztcímekhez tartozó `Geocoding__EnableTestGeocoder=true` szolgáltató. Ez nem része a normál felhős telepítésnek: a kitalált tesztcímeket nem szabad a Google-lel geokódoltatni. A szokásos Google Cloud-tesztoldalon a telepítéskori automatikus feltöltést használd. Fejlesztői tesztcímkeresővel futtatott backendnél egy revízión belül új, elnevezett adatcsomag adható hozzá:
 
 ```sh
 node scripts/gcp/seed-dev.mjs --batch proba-2 --config /abszolut/utvonal/dev-config.json
