@@ -8,8 +8,8 @@ const expected = {
   mysqlSecret: 'otthonra-mysql-dev', jwtSecret: 'otthonra-jwt-dev'
 };
 const assetExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg', '.ico', '.woff', '.woff2']);
-const codeFiles = new Set(['index.html', 'app.js', 'style.css', 'api.js', 'model.js', 'matching.js', 'public-profile.js', 'feedback.js', 'locations.js', 'locations-data.js', 'agglomerations-data.js', 'regions-data.js', 'attributes.js', 'accounts.js', 'runtime-config.js', 'data/settlements.json', 'data/agglomerations.json', 'THIRD-PARTY-NOTICES.txt']);
-const configFields = new Set(['projectId', 'projectNumber', 'region', 'serviceName', 'registry', 'sqlInstance', 'connectionName', 'databaseName', 'databaseUser', 'mysqlSecret', 'jwtSecret', 'siteId', 'runtimeServiceAccount', 'deployServiceAccount', 'workloadIdentityProvider']);
+const codeFiles = new Set(['index.html', 'app.js', 'style.css', 'api.js', 'model.js', 'matching.js', 'public-profile.js', 'feedback.js', 'locations.js', 'locations-data.js', 'agglomerations-data.js', 'neighborhoods-data.js', 'neighborhood-demo-points.js', 'regions-data.js', 'attributes.js', 'accounts.js', 'runtime-config.js', 'data/settlements.json', 'data/agglomerations.json', 'THIRD-PARTY-NOTICES.txt']);
+const configFields = new Set(['projectId', 'projectNumber', 'region', 'serviceName', 'registry', 'sqlInstance', 'connectionName', 'databaseName', 'databaseUser', 'mysqlSecret', 'jwtSecret', 'googleGeocodingSecret', 'siteId', 'runtimeServiceAccount', 'deployServiceAccount', 'workloadIdentityProvider']);
 
 /** Validate every resource selector before any cloud or filesystem mutation. */
 export function validateDevConfig(input) {
@@ -22,6 +22,9 @@ export function validateDevConfig(input) {
   if (config.region !== 'europe-west1') throw new Error('This test deployment is configured for europe-west1.');
   for (const [field, value] of Object.entries(expected)) {
     if (config[field] !== value) throw new Error(`Only the test ${field} (${value}) may be deployed.`);
+  }
+  if (Object.hasOwn(config, 'googleGeocodingSecret') && config.googleGeocodingSecret !== 'otthonra-geocoding-dev') {
+    throw new Error('The optional googleGeocodingSecret must name otthonra-geocoding-dev; API keys must stay in Secret Manager.');
   }
   if (config.databaseName !== 'otthonra_dev' || config.databaseUser !== 'otthonra_dev') throw new Error('Only the test database and user may be deployed.');
   if (config.connectionName !== `${config.projectId}:${config.region}:${config.sqlInstance}`) throw new Error('Cloud SQL connectionName does not match the test instance.');
@@ -66,6 +69,9 @@ async function collectFiles(directory, relative = '') {
     if (name.startsWith('.')) throw new Error(`A hidden file cannot be published: ${key}`);
     if (details.isDirectory()) result.push(...await collectFiles(path, key));
     else if (details.isFile()) {
+      // The backend embeds exact boundaries. The browser needs only the compact
+      // picker catalogue and never downloads the server's geometry archive.
+      if (key === 'data/neighborhoods.json.gz') continue;
       if (!codeFiles.has(key) && !(key.startsWith('assets/') && assetExtensions.has(extname(name).toLowerCase()))) throw new Error(`Unexpected frontend file; refusing to publish: ${key}`);
       result.push({path, key});
     } else throw new Error(`Not a regular frontend file: ${key}`);

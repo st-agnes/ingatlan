@@ -40,7 +40,7 @@ test('ordinary city queries visibly offer the counted area next to the exact cit
   for(const query of ['debrecen es kornyeke','DEBRECEN KÖRNYÉKE','Debrecen agglomeráció'])assert.equal(searchLocations(query)[0].id,'area:Debrecen');
   assert.equal(searchLocations('DEBRECN')[0].id,'city:Debrecen');
   assert.equal(searchLocations('DEBRECN')[1].id,'area:Debrecen');
-  assert.deepEqual(searchLocations('81'),[],'A settlement count is display metadata, not a location name');
+  assert.ok(searchLocations('81').every(location=>location.kind!=='area'),'A settlement count is display metadata; a real neighborhood name may contain the number');
   assert.equal(searchLocations(getLocation('area:Debrecen').label)[0].id,'area:Debrecen');
   assert.equal(getLocation('area:budapest'),null);
   assert.throws(()=>searchLocations('Debrecen',8,{kind:'invalid'}),/helyszínválasztó/);

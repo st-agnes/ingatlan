@@ -26,16 +26,17 @@ export function prepareSearch(input={}) {
   // Save-time validation still rejects empty choices; explicit unknown IDs never fall back.
   let chosen=input.locationIds==null||Array.isArray(input.locationIds)&&input.locationIds.length===0
     ?resolveLegacyLocations(input):Array.isArray(input.locationIds)?input.locationIds.map(getLocation):[];
-  if(chosen.some(location=>!location))chosen=[];
-  const cities=new Set(),districtIds=new Set();
+  if(chosen.length>50||chosen.some(location=>!location))chosen=[];
+  const cities=new Set(),districtIds=new Set(),neighborhoodIds=new Set();
   for(const location of chosen){
-    if(location.kind==='area')for(const city of members.get(location.id)||[])cities.add(city);
+    if(location.kind==='neighborhood')neighborhoodIds.add(location.id);
+    else if(location.kind==='area')for(const city of members.get(location.id)||[])cities.add(city);
     else if(location.district)districtIds.add(location.id);
     else cities.add(location.city);
   }
   for(const id of districtIds)if(cities.has(getLocation(id).city))districtIds.delete(id);
   const type=norm(search.type);
-  const prepared={[compiledMarker]:true,search,cities,districtIds,locationLabels:chosen.map(location=>location.label),type,house:type==='HAZ',
+  const prepared={[compiledMarker]:true,search,cities,districtIds,neighborhoodIds,locationLabels:chosen.map(location=>location.label),type,house:type==='HAZ',
     conditions:new Set(search.conditions.map(normalizeCondition)),buildings:new Set(search.buildings.map(normalizeBuilding)),
     heating:new Set(search.heatingTypes),ages:new Set(search.constructionAges),views:new Set(search.views),floors:search.floors};
   prepared.conditionMinimum=prepared.conditions.size?Math.min(...[...prepared.conditions].map(conditionIndex)):null;
@@ -59,7 +60,8 @@ function roomTotal(property){
 
 export function evaluateMatch(property,input,{includeReasons=true}={}){
   const p=property,q=input?.[compiledMarker]?input:prepareSearch(input),s=q.search,place=p&&propertyPlace(p);
-  if(!p||p.archived||s.archived||p.ownerId===s.ownerId||!place||(!q.cities.has(place.city)&&!q.districtIds.has(place.id))
+  const neighborhoodMatches=place&&Array.isArray(p?.neighborhoodIds)&&p.neighborhoodIds.some(id=>q.neighborhoodIds.has(id));
+  if(!p||p.archived||s.archived||p.ownerId===s.ownerId||!place||(!q.cities.has(place.city)&&!q.districtIds.has(place.id)&&!neighborhoodMatches)
       ||q.type&&norm(p.type)!==q.type||!Number.isFinite(Number(p.price))||!Number.isFinite(Number(p.area))||!Number.isFinite(roomTotal(p)))
     return {eligible:false,isExact:false,score:0,reasons:[],matchDetails:[]};
   let weight=0,loss=0;const differences=[];
@@ -162,7 +164,7 @@ export function valueForMoney(p={}){
 
 function specificityOf(q){
   const s=q.search;let selected=0,total=8;
-  const coverage=q.cities.size+q.districtIds.size/23;
+  const coverage=q.cities.size+q.districtIds.size/23+q.neighborhoodIds.size/100;
   selected+=coverage>0?8/(1+Math.log2(1+coverage)):0;
   function add(weight,strength){total+=weight;selected+=weight*clamp(strength);}
   for(const [minimum,maximum] of [['minPrice','maxPrice'],['minArea','maxArea'],['minRooms','maxRooms']]){

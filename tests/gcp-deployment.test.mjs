@@ -19,7 +19,7 @@ const config = Object.freeze({
   deployServiceAccount: 'otthonra-deploy-dev@ingatlan-513620.iam.gserviceaccount.com',
   workloadIdentityProvider: 'projects/123456789012/locations/global/workloadIdentityPools/otthonra-dev/providers/github'
 });
-const required = ['index.html','app.js','style.css','api.js','model.js','matching.js','public-profile.js','feedback.js','locations.js','locations-data.js','agglomerations-data.js', 'regions-data.js','attributes.js','accounts.js','runtime-config.js','data/settlements.json','data/agglomerations.json','THIRD-PARTY-NOTICES.txt'];
+const required = ['index.html','app.js','style.css','api.js','model.js','matching.js','public-profile.js','feedback.js','locations.js','locations-data.js','agglomerations-data.js','neighborhoods-data.js','neighborhood-demo-points.js','regions-data.js','attributes.js','accounts.js','runtime-config.js','data/settlements.json','data/agglomerations.json','THIRD-PARTY-NOTICES.txt'];
 
 async function fixture(run) {
   const source = await mkdtemp(join(tmpdir(), 'otthonra-hosting-source-'));
@@ -79,6 +79,7 @@ test('one pinned rewrite covers exactly the API namespace without concurrent upd
 
 test('frontend packaging enables the real hosted test API while preserving the source demo and excluding deployment metadata', async () => {
   await fixture(async ({source, output}) => {
+    await writeFile(join(source, 'data/neighborhoods.json.gz'), 'server-only-boundaries');
     const result = await prepareSite({config, source, output});
     assert.equal(result.url, `https://${config.siteId}.web.app`);
     const runtime = await readFile(join(output, 'public/runtime-config.js'), 'utf8');
@@ -87,6 +88,7 @@ test('frontend packaging enables the real hosted test API while preserving the s
     assert.equal(await readFile(join(output, 'public/assets/living.jpg'), 'utf8'), 'image-fixture');
     assert.equal(await readFile(join(output, 'public/THIRD-PARTY-NOTICES.txt'), 'utf8'), 'fixture: THIRD-PARTY-NOTICES.txt');
     assert.deepEqual((await readdir(output)).sort(), ['firebase.json','public']);
+    assert.ok(!(await readdir(join(output, 'public/data'))).includes('neighborhoods.json.gz'));
     assert.deepEqual(JSON.parse(await readFile(join(output, 'firebase.json'), 'utf8')), hostingConfig(config));
   });
 });

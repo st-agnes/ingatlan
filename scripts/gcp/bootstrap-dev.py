@@ -260,6 +260,18 @@ def main():
             "workloadIdentityProvider": f"projects/{number}/locations/global/workloadIdentityPools/otthonra-dev/providers/github",
         }
         target = pathlib.Path(path)
+        # Keep an explicit server-only geocoding opt-in across infrastructure
+        # reruns. This manifest stores a resource name, never an API key.
+        if target.exists():
+            previous = read(target)
+            if not isinstance(previous, dict):
+                raise ValueError("The existing development manifest is invalid.")
+            if "googleGeocodingSecret" in previous:
+                if previous["googleGeocodingSecret"] != "otthonra-geocoding-dev":
+                    raise ValueError("The optional geocoding secret must name otthonra-geocoding-dev.")
+                if previous.get("projectId") != project or str(previous.get("projectNumber")) != number:
+                    raise ValueError("The optional geocoding secret belongs to another development project.")
+                value["googleGeocodingSecret"] = previous["googleGeocodingSecret"]
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(json.dumps(value, indent=2) + "\n")
         target.chmod(0o600)

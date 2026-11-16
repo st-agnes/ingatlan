@@ -76,7 +76,8 @@ export function buildCloudRunService({config, existingService, imageDigest, revi
                 literal('Scheduler__Audience', `https://${config.serviceName}-${config.projectNumber}.${config.region}.run.app`),
                 literal('Scheduler__ServiceAccountEmail', `otthonra-refunds-dev@${config.projectId}.iam.gserviceaccount.com`),
                 literal('Credits__EnableDemoTopup', 'true'), literal('Cors__Origins__0', `https://${config.siteId}.web.app`),
-                secret('ConnectionStrings__MySql', config.mysqlSecret), secret('Jwt__Key', config.jwtSecret)
+                secret('ConnectionStrings__MySql', config.mysqlSecret), secret('Jwt__Key', config.jwtSecret),
+                ...(config.googleGeocodingSecret ? [secret('Geocoding__Google__ApiKey', config.googleGeocodingSecret)] : [])
               ],
               startupProbe: probe('/api/health', 8080)
             },

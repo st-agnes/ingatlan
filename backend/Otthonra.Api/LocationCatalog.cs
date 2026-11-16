@@ -47,7 +47,7 @@ public static class LocationCatalog
             areas.Add(new Location(id!, $"{city} és környéke ({memberSet.Count} település)", city, null, "area", memberSet.Count));
         }
         if (areas.Count == 0) throw new InvalidOperationException("The city-area catalogue is empty.");
-        return new CatalogueData(cities.Concat(districts).Concat(areas).ToArray(), membersById);
+        return new CatalogueData(cities.Concat(districts).Concat(areas).Concat(NeighborhoodCatalog.All.Select(area => new Location(area.Id, area.Label, area.City, null, "neighborhood"))).ToArray(), membersById);
     }
 
     public static Location? Get(string? id) => id is not null && ById.Value.TryGetValue(id, out var result) ? result : null;
@@ -63,7 +63,7 @@ public static class LocationCatalog
     public static Location[] ResolveLegacy(string? city, IEnumerable<string?>? districts = null)
     {
         var normalized = Normalize(city);
-        var direct = All.FirstOrDefault(x => x.Kind != "area" && Normalize(x.Label) == normalized);
+        var direct = All.FirstOrDefault(x => (x.Kind is "city" or "district") && Normalize(x.Label) == normalized);
         if (direct?.District is not null) return [direct];
         if (normalized.StartsWith("BUDAPEST ", StringComparison.Ordinal))
         {
@@ -83,7 +83,7 @@ public static class LocationCatalog
     public static Location ResolvePropertyInput(string? id, string? city, string? district)
     {
         var result = id is not null ? Get(id) : ResolveLegacy(city, string.IsNullOrWhiteSpace(district) ? [] : [district]).SingleOrDefault();
-        if (result is null || result.Kind == "area") throw new ApiException(400, "Az ingatlanhoz egy konkrét települést vagy budapesti kerületet válassz.");
+        if (result is null || result.Kind is not ("city" or "district")) throw new ApiException(400, "Az ingatlanhoz egy konkrét települést vagy budapesti kerületet válassz.");
         return result;
     }
 
@@ -105,7 +105,7 @@ public static class LocationCatalog
     {
         // Even malformed persisted area IDs must never become a precise home
         // location through the old center-city fallback.
-        if (property.LocationId?.StartsWith("area:", StringComparison.Ordinal) == true) return null;
+        if (property.LocationId?.StartsWith("area:", StringComparison.Ordinal) == true || property.LocationId?.StartsWith("neighborhood:", StringComparison.Ordinal) == true) return null;
         return Get(property.LocationId)
             ?? ResolveLegacy(property.City, string.IsNullOrWhiteSpace(property.District) ? [] : [property.District]).FirstOrDefault();
     }
@@ -113,6 +113,7 @@ public static class LocationCatalog
     public static Location[] ForSearch(SearchRequest search)
     {
         var ids = Dto.Strings(search.LocationIdsJson);
+        if (ids.Length > 50) return [];
         if (ids.Length > 0)
         {
             var result = ids.Select(Get).ToArray();
@@ -124,31 +125,41 @@ public static class LocationCatalog
     public static bool Matches(Property property, SearchRequest search)
     {
         var place = ForProperty(property);
-        if (place is null || place.Kind == "area") return false;
-        return ForSearch(search).Any(wanted => wanted.Kind == "area"
-            ? Catalogue.Value.AreaMembers.TryGetValue(wanted.Id, out var members) && members.Contains(place.City)
+        if (place is null || place.Kind is not ("city" or "district")) return false;
+        var membership = Dto.Strings(property.NeighborhoodIdsJson).ToHashSet(StringComparer.Ordinal);
+        return ForSearch(search).Any(wanted => wanted.Kind == "neighborhood" ? membership.Contains(wanted.Id)
+            : wanted.Kind == "area" ? Catalogue.Value.AreaMembers.TryGetValue(wanted.Id, out var members) && members.Contains(place.City)
             : wanted.City == place.City && (wanted.District is null || wanted.District == place.District));
     }
+
+    private sealed record PickerRow(Location Location, string DisplayLabel, string Primary, string City, string Text, string[] Words);
+    private static readonly Lazy<PickerRow[]> PickerRows = new(() => All.Select(location => {
+        var area = location.Kind == "neighborhood" ? NeighborhoodCatalog.Get(location.Id) : null;
+        var primary = location.Kind == "area" ? $"{location.City} és környéke" : area?.Name ?? location.Label;
+        var text = location.Kind == "area" ? $"{primary} {location.City} agglomeráció {location.City} térsége"
+            : $"{location.Label} {string.Join(" ", area?.Aliases ?? [])}";
+        var normalized = Normalize(text);
+        var words = new string(normalized.Select(c => char.IsLetterOrDigit(c) ? c : ' ').ToArray()).Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        return new PickerRow(location, Normalize(location.Label), Normalize(primary), Normalize(location.City), normalized, words);
+    }).ToArray());
 
     public static Location[] Search(string? query, int limit = 8, string? kind = null)
     {
         kind = kind?.Trim().ToLowerInvariant() ?? "search";
         if (kind is not ("property" or "search")) throw new ApiException(400, "Érvénytelen helyszínválasztási típus.");
-        var candidates = All.Where(x => kind == "search" || x.Kind != "area");
+        if ((query?.Length ?? 0) > 200) throw new ApiException(400, "A helyszín keresőszövege legfeljebb 200 karakter lehet.");
+        var candidates = PickerRows.Value.Where(x => kind == "search" || (x.Location.Kind is "city" or "district"));
         var value = Normalize(query);
         limit = Math.Clamp(limit, 1, 25);
-        if (value.Length == 0) return candidates.Where(x => x.Kind == "city").OrderBy(x => x.City == "Budapest" ? 0 : 1).ThenBy(x => x.Label, StringComparer.Create(CultureInfo.GetCultureInfo("hu-HU"), false)).Take(limit).ToArray();
+        if (value.Length == 0) return candidates.Where(x => x.Location.Kind == "city").OrderBy(x => x.City == "BUDAPEST" ? 0 : 1)
+            .ThenBy(x => x.Location.Label, StringComparer.Create(CultureInfo.GetCultureInfo("hu-HU"), false)).Take(limit).Select(x => x.Location).ToArray();
         var directDistrict = value.StartsWith("BUDAPEST", StringComparison.Ordinal) ? DistrictNumber(query) : null;
-        var words = value.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        return candidates.Select(x => new {
-                Location = x, DisplayLabel = Normalize(x.Label), Label = Normalize(x.Kind == "area" ? $"{x.City} és környéke" : x.Label), City = Normalize(x.City),
-                Words = Normalize(x.Kind == "area" ? $"{x.City} és környéke {x.City} agglomeráció {x.City} térsége" : x.Label).Split(' ', StringSplitOptions.RemoveEmptyEntries)
-            })
-            .Where(x => x.DisplayLabel == value || x.Label.Contains(value, StringComparison.Ordinal)
-                || words.All(word => x.Words.Any(part => part.StartsWith(word, StringComparison.Ordinal)))
+        var words = new string(value.Select(c => char.IsLetterOrDigit(c) ? c : ' ').ToArray()).Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        return candidates.Where(x => x.DisplayLabel == value || x.Text.Contains(value, StringComparison.Ordinal)
+                || words.Length > 0 && words.All(word => x.Words.Any(part => part.StartsWith(word, StringComparison.Ordinal)))
                 || directDistrict.HasValue && x.Location.Id == $"district:Budapest:{directDistrict}")
             .OrderBy(x => directDistrict.HasValue && x.Location.Id == $"district:Budapest:{directDistrict}" ? -1
-                : x.DisplayLabel == value || x.Label == value ? 0 : x.Location.Kind == "area" && x.City == value ? 1 : x.Label.StartsWith(value, StringComparison.Ordinal) ? 2 : 3)
+                : x.DisplayLabel == value || x.Primary == value ? 0 : x.Location.Kind == "area" && x.City == value ? 1 : x.Primary.StartsWith(value, StringComparison.Ordinal) ? 2 : 3)
             .ThenBy(x => x.Location.Label, StringComparer.Create(CultureInfo.GetCultureInfo("hu-HU"), false)).Take(limit).Select(x => x.Location).ToArray();
     }
 }

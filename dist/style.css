@@ -153,6 +153,7 @@ body:has(.modal) .discovery-decision-dock{visibility:hidden;pointer-events:none}
 .entity-wizard .form-row{align-items:end}
 .entity-wizard .form-row .field input,.entity-wizard .form-row .field select{min-height:44px}
 .entity-wizard .form-row>#property-floor-field{display:flex;flex-direction:column;justify-content:flex-end}
+.location-option-label,.location-chip-label{min-width:0;overflow-wrap:anywhere}.location-kind-badge{display:inline-block;vertical-align:middle;margin-left:7px;padding:1px 5px;border-radius:4px;background:#f0f2ec;color:#7d8775;font-size:9px;font-weight:500;line-height:1.5;white-space:nowrap}.location-chip .location-kind-badge{background:#e3ebdf;color:#6f8065}.summary-location{overflow-wrap:anywhere}.property-address-row{align-items:end}.address-update-note{margin:0 0 16px;color:#926447;font-size:12px;line-height:1.65}.derived-neighborhood{margin:0 0 18px;font-size:12px;line-height:1.7;color:#7c8873}.derived-neighborhood strong{font-weight:500;color:#53664a}.editor-save-status{margin:18px 0 0;color:#637557;font-size:12px;line-height:1.65}.editor-save-status.is-error{color:#a54332}.editor-save-status[hidden],.address-update-note[hidden]{display:none}
 
 /* Read the saved criteria by topic before opening the editable wizard. */
 .criteria-summary{min-width:0}

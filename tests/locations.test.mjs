@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { settlements } from '../dist/locations-data.js';
 import { agglomerations } from '../dist/agglomerations-data.js';
-import { locations, getLocation, searchLocations, resolveLegacyLocations, matchesLocations } from '../dist/locations.js';
+import { neighborhoods } from '../dist/neighborhoods-data.js';
+import { locations, getLocation, searchLocations, resolveLegacyLocations, matchesLocations, isPropertyLocation } from '../dist/locations.js';
 
 test('complete municipality catalogue and generated browser data agree', async () => {
   const master = JSON.parse(await fs.readFile(new URL('../dist/data/settlements.json', import.meta.url), 'utf8'));
@@ -11,7 +12,7 @@ test('complete municipality catalogue and generated browser data agree', async (
   assert.deepEqual(settlements, master.settlements);
   assert.equal(settlements.length, 3155);
   assert.equal(new Set(settlements).size, settlements.length);
-  assert.equal(locations.length, 3155 + 23 + agglomerations.length);
+  assert.equal(locations.length, 3155 + 23 + agglomerations.length + neighborhoods.length);
   assert.equal(new Set(locations.map(location => location.id)).size, locations.length);
   assert.ok(settlements.every(name => name.trim() === name && !/\d|[()]/.test(name)));
   for (const city of ['Budapest', 'Debrecen', 'Hajdúszoboszló', 'Hajdúsámson', 'Solymár', 'Pilisvörösvár', 'Őr', 'Zsámbék']) {
@@ -23,6 +24,40 @@ test('complete municipality catalogue and generated browser data agree', async (
     assert.match(district.label, /^Budapest [IVX]+\. kerület$/);
     assert.ok(district.district.endsWith('.'));
   }
+});
+
+test('the complete neighborhood catalog is searchable by name, city and aliases, and only selectable for searches', () => {
+  assert.equal(neighborhoods.length, 4308);
+  for (const value of neighborhoods) {
+    const location=getLocation(value.id);
+    assert.equal(location.kind,'neighborhood');
+    assert.equal(location.label,`${value.name} (${value.city})`);
+    assert.equal(isPropertyLocation(location),false);
+    assert.deepEqual(resolveLegacyLocations({city:location.label}),[]);
+  }
+  const unique=neighborhoods.find(value=>neighborhoods.filter(other=>other.name===value.name).length===1);
+  assert.ok(searchLocations(`${unique.city} ${unique.name}`,50).some(value=>value.id===unique.id));
+  assert.ok(searchLocations(unique.label,50).some(value=>value.id===unique.id));
+  assert.ok(searchLocations(unique.name,50).some(value=>value.id===unique.id));
+  assert.ok(searchLocations(unique.name,50,{kind:'property'}).every(isPropertyLocation));
+  const aliased=neighborhoods.find(value=>value.aliases?.some(alias=>alias!==value.name));
+  if(aliased)assert.ok(searchLocations(`${aliased.aliases.find(alias=>alias!==aliased.name)} ${aliased.city}`,50).some(value=>value.id===aliased.id));
+});
+
+test('neighborhood matching requires explicit membership and combines with town and area alternatives', () => {
+  const quarter=neighborhoods.find(value=>value.city==='Debrecen');
+  const other=neighborhoods.find(value=>value.city===quarter.city&&value.id!==quarter.id);
+  const property={locationId:'city:'+quarter.city,neighborhoodIds:[quarter.id]};
+  assert.equal(matchesLocations(property,{locationIds:[quarter.id]}),true);
+  assert.equal(matchesLocations({...property,neighborhoodIds:[]},{locationIds:[quarter.id]}),false);
+  assert.equal(matchesLocations(property,{locationIds:[other.id]}),false);
+  assert.equal(matchesLocations(property,{locationIds:[other.id,'city:'+quarter.city]}),true);
+  assert.equal(matchesLocations({locationId:'city:Solymár'},{locationIds:[quarter.id,'area:Budapest']}),true);
+  // Polygon membership may cross its source municipality boundary.
+  assert.equal(matchesLocations({...property,locationId:'city:Szeged'},{locationIds:[quarter.id]}),true);
+  assert.equal(matchesLocations({locationId:'city:Szeged'},{locationIds:[quarter.id]}),false);
+  assert.equal(matchesLocations({locationId:quarter.id,neighborhoodIds:[quarter.id]},{locationIds:['city:'+quarter.city]}),false);
+  assert.equal(matchesLocations(property,{locationIds:[quarter.id,'neighborhood:missing']}),false);
 });
 
 test('autocomplete handles accents, case, prefixes and Budapest district notation', () => {

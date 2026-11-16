@@ -1,3 +1,4 @@
+import {withTestAddress} from './smoke-address.mjs';
 /** Seller insights and paid feedback: real API proof against disposable loopback CI only. */
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
@@ -10,6 +11,7 @@ const fixturePath=resolve('.local/seller-feedback-fixture.json');
 const reasons=['insufficient_information','layout','lighting','location','view','incorrect_parameters','other','decline'];
 const labels=['Túl kevés információ van megosztva az ingatlanról','Nem tetszik az ingatlan elrendezése','Nem jók a fényviszonyok az ingatlanban','Az ingatlan elhelyezkedése nem szimpatikus','Nem tetszik, vagy nem látszik a képeken a kilátás az ablakokból','Az ingatlan nem felel meg a róla feltüntetett paramétereknek','Egyéb','Nem szeretnék válaszolni'];
 async function api(path,{token,method='GET',body,status=200}={}){
+ body=withTestAddress(path,method,body);
  const response=await fetch(new URL('/api'+path,origin),{method,redirect:'error',signal:AbortSignal.timeout(20000),headers:{...(token?{Authorization:`Bearer ${token}`} : {}),...(body===undefined?{}:{'Content-Type':'application/json'})},...(body===undefined?{}:{body:JSON.stringify(body)})});
  assert.ok((Array.isArray(status)?status:[status]).includes(response.status),`${method} ${path}: HTTP ${response.status}`);
  const text=await response.text();return response.status>=400||!text?null:JSON.parse(text);

@@ -1,7 +1,8 @@
 /** Assertions shared by the real API smoke and its deterministic privacy regressions. */
 import assert from 'node:assert/strict';
 
-const privateKeys = new Set(['email','phone','contact','password','passwordhash','accesstoken','refreshtoken']);
+const privateKeys = new Set(['email','phone','contact','password','passwordhash','accesstoken','refreshtoken',
+  'latitude','longitude','street','housenumber','postalcode','geocodedat','geocodingplaceid','geocodingaddresskey']);
 
 export function assertNoContactData(value, privateValues) {
   const secrets = privateValues.filter(item => typeof item === 'string' && item.length > 0);

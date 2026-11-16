@@ -1,3 +1,4 @@
+import {withTestAddress} from './smoke-address.mjs';
 /** Diverse, changing public samples through the real API; disposable CI only. */
 import assert from 'node:assert/strict';
 import {readFile,writeFile,chmod} from 'node:fs/promises';
@@ -7,6 +8,7 @@ const origin=new URL(process.argv[2]||'http://127.0.0.1:3000'),mode=process.argv
 if(process.env.CI!=='true'||origin.protocol!=='http:'||!['localhost','127.0.0.1','[::1]'].includes(origin.hostname)||origin.username||origin.password||origin.pathname!=='/'||origin.search||origin.hash)throw new Error('Use only a disposable loopback CI API.');
 const path=resolve('.local/landing-selection-fixture.json');
 async function api(route,{token,body,status=200}={}){
+ body=withTestAddress(route,body?'POST':'GET',body);
  const response=await fetch(new URL('/api'+route,origin),{method:body?'POST':'GET',redirect:'error',signal:AbortSignal.timeout(20000),headers:{Accept:'application/json',...(token?{Authorization:`Bearer ${token}`} : {}),...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})});
  assert.equal(response.status,status,`Unexpected status for ${route}`);return response.json();
 }

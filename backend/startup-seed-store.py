@@ -55,10 +55,24 @@ expected = {
 for name, value in expected.items():
     assert actual[name] == value, f'Incorrect startup fixture {name}: expected {value}, received {actual[name]}.'
 
+# Coordinates are synthetic fixture points in their own municipality, never
+# Google-validated addresses. Zero quarter memberships are valid where the
+# source has no neighborhood coverage (for example Abádszalók).
+assert query("SELECT COUNT(*) FROM Properties WHERE Street='OTTHONRA TEST' AND HouseNumber<>'' AND Latitude IS NOT NULL AND Longitude IS NOT NULL AND GeocodedAt IS NOT NULL AND GeocodingProvider='synthetic-test-fixture' AND GeocodingQuality='SYNTHETIC' AND GeocodingPlaceId LIKE 'synthetic:%' AND GeocodingAddressKey<>''") == '355', 'Every startup property must carry explicitly synthetic owner-scoped point metadata.'
+assert query('SELECT COUNT(*) FROM NeighborhoodSearchAreas') == '4308', 'A fixture reset must preserve the imported search boundaries.'
+assert query('SELECT COUNT(*) FROM __OtthonraNeighborhoodDataset WHERE Id=1 AND FeatureCount=4308') == '1', 'A fixture reset must preserve the single dataset marker.'
+assert query('SELECT COUNT(*) FROM Properties p WHERE JSON_LENGTH(p.NeighborhoodIdsJson)<>(SELECT COUNT(*) FROM PropertyNeighborhoods pn WHERE pn.PropertyId=p.Id)') == '0', 'Fixture membership JSON and indexed links must remain synchronized.'
+for title, included, excluded in [
+    ('Teszt · Vénkerti lakás · szintetikus címpont', 'neighborhood:e8c749e1fc0a306c717ad312', 'neighborhood:f22df415c7b5ea79925e8886'),
+    ('Teszt · Sestakerti lakás · szintetikus címpont', 'neighborhood:f22df415c7b5ea79925e8886', 'neighborhood:e8c749e1fc0a306c717ad312'),
+]:
+    assert query(f"SELECT COUNT(*) FROM Properties p JOIN PropertyNeighborhoods pn ON pn.PropertyId=p.Id WHERE p.Title='{title}' AND pn.NeighborhoodId='{included}'") == '1', 'Seeded positive polygon membership is missing.'
+    assert query(f"SELECT COUNT(*) FROM Properties p JOIN PropertyNeighborhoods pn ON pn.PropertyId=p.Id WHERE p.Title='{title}' AND pn.NeighborhoodId='{excluded}'") == '0', 'Seeded negative polygon membership was incorrectly assigned.'
+
 history = query('SELECT RevisionId,Version,(AppliedAt IS NOT NULL) FROM __OtthonraTestSeeds ORDER BY RevisionId')
 rows = [row.split('\t') for row in history.splitlines()]
 expected_revisions = ['ci-fixtures-a'] if phase == 'changed' else ['ci-fixtures-a', 'ci-fixtures-b']
 assert [row[0] for row in rows] == expected_revisions, 'Seed history changed or ordinary Production created a marker.'
-assert all(len(row) == 3 and row[1] == '20261110-test-fixtures-v4' and row[2] == '1' for row in rows), 'Invalid seed version or timestamp in history.'
+assert all(len(row) == 3 and row[1] == '20261116-test-fixtures-v5' and row[2] == '1' for row in rows), 'Invalid seed version or timestamp in history.'
 print('Embedded fixture database check passed: 14 users, 3 agents, 355 properties, 353 searches; '
       + ('test changes and first revision recorded.' if phase == 'changed' else 'reset results and two-revision history preserved.'))

@@ -1,3 +1,4 @@
+import {withTestAddress} from './smoke-address.mjs';
 /** Real API/MySQL attribute regression. Only disposable loopback environments. */
 import assert from 'node:assert/strict';
 import {mkdir, readFile, writeFile, chmod} from 'node:fs/promises';
@@ -7,6 +8,7 @@ if (origin.protocol !== 'http:' || !['localhost','127.0.0.1','[::1]'].includes(o
     || origin.username || origin.password || origin.pathname !== '/' || origin.search || origin.hash) throw new Error('Use only a disposable loopback API.');
 const fixturePath = resolve('.local/attributes-upgrade-fixture.json');
 async function call(path, {token, method='GET', body, status=200}={}) {
+ body=withTestAddress(path,method,body);
   const response = await fetch(new URL('/api'+path, origin), {method, redirect:'error', signal:AbortSignal.timeout(20000),
     headers:{...(token?{Authorization:`Bearer ${token}`} : {}), ...(body === undefined ? {} : {'Content-Type':'application/json'})},
     ...(body === undefined ? {} : {body:JSON.stringify(body)})});

@@ -26,6 +26,11 @@ builder.Services.AddAuthorization();
 builder.Services.AddLikeRefunds(builder.Configuration);
 builder.Services.AddSellerFeedback();
 builder.Services.AddPublicLanding(builder.Configuration);
+builder.Services.AddPropertyGeocoding(builder.Configuration, builder.Environment);
+// Bulk integration flows use an explicitly enabled, reserved-address synthetic
+// provider. Real Google writes retain their independent, lower request budget.
+var propertyWriteLimit = builder.Configuration.GetValue<bool>("Geocoding:EnableTestGeocoder")
+    && (development || deployment.IsTest) ? 120 : 30;
 builder.Services.AddHttpClient("stripe", c => c.Timeout = TimeSpan.FromSeconds(20));
 var origins = builder.Configuration.GetSection("Cors:Origins").Get<string[]>() ?? [];
 builder.Services.AddCors(o => o.AddDefaultPolicy(p => { if (origins.Length > 0) p.WithOrigins(origins).AllowAnyHeader().AllowAnyMethod(); else if (development) p.WithOrigins("http://localhost:8080", "http://localhost:5173").AllowAnyHeader().AllowAnyMethod(); }));
@@ -33,6 +38,9 @@ builder.Services.AddRateLimiter(o =>
 {
     o.RejectionStatusCode = 429;
     o.AddPolicy("auth", context => RateLimitPartition.GetFixedWindowLimiter(context.Connection.RemoteIpAddress?.ToString() ?? "unknown", _ => new FixedWindowRateLimiterOptions { PermitLimit = 10, Window = TimeSpan.FromMinutes(1), QueueLimit = 0 }));
+    o.AddPolicy("property-write", context => RateLimitPartition.GetFixedWindowLimiter(
+        context.User.FindFirstValue(ClaimTypes.NameIdentifier) ?? context.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+        _ => new FixedWindowRateLimiterOptions { PermitLimit = propertyWriteLimit, Window = TimeSpan.FromMinutes(1), QueueLimit = 0 }));
 });
 var app = builder.Build();
 app.Use(async (context, next) =>
@@ -44,8 +52,8 @@ app.Use(async (context, next) =>
     catch (DbUpdateException e) { app.Logger.LogWarning(e, "Database write rejected"); context.Response.StatusCode = 409; await context.Response.WriteAsJsonAsync(new { message = "Az adat közben megváltozott, vagy már létezik. Frissítsd az oldalt, és próbáld újra." }); }
 });
 app.UseCors();
-app.UseRateLimiter();
 app.UseAuthentication();
+app.UseRateLimiter();
 app.UseAuthorization();
 
 // Initialize schemas explicitly. Disposable fixtures require both a test deployment and its separate opt-in flag.
@@ -56,6 +64,7 @@ if (builder.Configuration.GetValue<bool>("Database:Initialize"))
     var db = scope.ServiceProvider.GetRequiredService<AppDb>();
     await db.Database.EnsureCreatedAsync();
     await SchemaUpgrade.ApplyAsync(db);
+    await NeighborhoodData.InitializeAsync(db);
     if (deployment.IsTest && builder.Configuration.GetValue<bool>("Database:SeedTestFixtures"))
     {
         await TestDataSeed.RunAsync(db, deployment, builder.Configuration["K_REVISION"]);
@@ -67,7 +76,8 @@ app.MapLikeRefunds();
 app.MapPublicLanding();
 app.MapGet("/api/locations", (string? q, int? limit, string? kind) => Results.Ok(new { items = LocationCatalog.Search(q, limit ?? 8, kind) }));
 app.MapGet("/api/health", async Task<IResult> (AppDb db) => await db.Database.CanConnectAsync()
-    ? Results.Ok(new { status = "ready", deployment = deployment.Name, testCreditsEnabled = deployment.AllowDemoTopup, testDataVersion })
+    ? Results.Ok(new { status = "ready", deployment = deployment.Name, testCreditsEnabled = deployment.AllowDemoTopup, testDataVersion,
+        neighborhoodCount = NeighborhoodCatalog.ExpectedCount, neighborhoodDatasetVersion = NeighborhoodCatalog.DatasetVersion })
     : Results.Json(new { status = "database-unavailable", deployment = deployment.Name, testCreditsEnabled = deployment.AllowDemoTopup, testDataVersion }, statusCode: 503));
 
 object Session(User user)
@@ -144,15 +154,31 @@ api.MapPut("/me/active", async (ActiveInput input, AppDb db, ClaimsPrincipal pri
     user.ActiveKind = kind; user.ActiveEntityId = input.Id; await db.SaveChangesAsync(); return Results.Ok(new { kind, id = input.Id });
 });
 api.MapGet("/properties", async (AppDb db, ClaimsPrincipal principal) => { var user = await CurrentUser(db, principal); var items = await db.Properties.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).ToListAsync(); return Results.Ok(items.Select(p => Dto.Property(p, true, user.AccountType, user.Name))); });
-api.MapPost("/properties", async (PropertyInput input, AppDb db, ClaimsPrincipal principal) =>
+api.MapPost("/properties", async (PropertyInput input, AppDb db, ClaimsPrincipal principal, PropertyGeocodingService geocoding, CancellationToken cancellationToken) =>
 {
-    var p = new Property { OwnerId = principal.UserId() }; Rules.Apply(p, input); db.Properties.Add(p); await db.SaveChangesAsync(); var owner = await CurrentUser(db, principal); return Results.Created($"/api/properties/{p.Id}", Dto.Property(p, true, owner.AccountType, owner.Name));
-});
-api.MapPut("/properties/{id:guid}", async (Guid id, PropertyInput input, AppDb db, ClaimsPrincipal principal) =>
+    var owner = await CurrentUser(db, principal);
+    var p = new Property { OwnerId = owner.Id }; Rules.Apply(p, input);
+    await geocoding.UpdateAsync(p, cancellationToken);
+    await AssignNeighborhoods(db, p, cancellationToken);
+    db.Properties.Add(p); await db.SaveChangesAsync(cancellationToken);
+    return Results.Created($"/api/properties/{p.Id}", Dto.Property(p, true, owner.AccountType, owner.Name));
+}).RequireRateLimiting("property-write");
+api.MapPut("/properties/{id:guid}", async (Guid id, PropertyInput input, AppDb db, ClaimsPrincipal principal, PropertyGeocodingService geocoding, CancellationToken cancellationToken) =>
 {
     var uid = principal.UserId(); var p = await db.Properties.SingleOrDefaultAsync(x => x.Id == id && x.OwnerId == uid && !x.Archived) ?? throw new ApiException(404, "Az ingatlan nem található.");
-    Rules.Apply(p, input); await ClearArchivedActive(db, uid, p.Id, p.Archived); await db.SaveChangesAsync(); var owner = await CurrentUser(db, principal); return Results.Ok(Dto.Property(p, true, owner.AccountType, owner.Name));
-});
+    Rules.Apply(p, input);
+    await geocoding.UpdateAsync(p, cancellationToken);
+    await AssignNeighborhoods(db, p, cancellationToken);
+    // Address, coordinates and memberships are one value, even when a concurrent
+    // editor changed the row while this request was waiting on the provider.
+    foreach (var field in new[] { nameof(Property.Street), nameof(Property.HouseNumber), nameof(Property.PostalCode),
+        nameof(Property.City), nameof(Property.District), nameof(Property.LocationId), nameof(Property.Address),
+        nameof(Property.Latitude), nameof(Property.Longitude), nameof(Property.GeocodedAt), nameof(Property.GeocodingProvider),
+        nameof(Property.GeocodingPlaceId), nameof(Property.GeocodingQuality), nameof(Property.GeocodingAddressKey),
+        nameof(Property.NeighborhoodIdsJson), nameof(Property.Neighborhood) }) db.Entry(p).Property(field).IsModified = true;
+    await ClearArchivedActive(db, uid, p.Id, p.Archived); await db.SaveChangesAsync(cancellationToken);
+    var owner = await CurrentUser(db, principal); return Results.Ok(Dto.Property(p, true, owner.AccountType, owner.Name));
+}).RequireRateLimiting("property-write");
 api.MapDelete("/properties/{id:guid}", async (Guid id, AppDb db, ClaimsPrincipal principal) =>
 {
     var uid = principal.UserId(); var p = await db.Properties.SingleOrDefaultAsync(x => x.Id == id && x.OwnerId == uid) ?? throw new ApiException(404, "Az ingatlan nem található.");
@@ -287,7 +313,7 @@ api.MapGet("/matches", async (AppDb db, ClaimsPrincipal principal) =>
         var partnerId = row.Property.OwnerId == uid ? row.Search.OwnerId : row.Property.OwnerId;
         var contact = await db.Users.AsNoTracking().SingleAsync(x => x.Id == partnerId);
         var messages = await db.Messages.AsNoTracking().Where(x => x.MatchId == row.Match.Id).OrderBy(x => x.CreatedAt).ToListAsync();
-        results.Add(new { row.Match.Id, row.Match.CreatedAt, property = Dto.Property(row.Property, true, ownerProfiles[row.Property.OwnerId].AccountType, ownerProfiles[row.Property.OwnerId].Name), searchRequest = Dto.Search(row.Search, ownerProfiles[row.Search.OwnerId].AccountType, ownerProfiles[row.Search.OwnerId].Name), contact = new { contact.Id, contact.Name, contact.Email, contact.Phone, contact.AccountType }, messages = messages.Select(Dto.Message), unread = 0 });
+        results.Add(new { row.Match.Id, row.Match.CreatedAt, property = Dto.Property(row.Property, true, ownerProfiles[row.Property.OwnerId].AccountType, ownerProfiles[row.Property.OwnerId].Name, includeOwnedLocationDetails: row.Property.OwnerId == uid), searchRequest = Dto.Search(row.Search, ownerProfiles[row.Search.OwnerId].AccountType, ownerProfiles[row.Search.OwnerId].Name), contact = new { contact.Id, contact.Name, contact.Email, contact.Phone, contact.AccountType }, messages = messages.Select(Dto.Message), unread = 0 });
     }
     return Results.Ok(results);
 });
@@ -328,6 +354,12 @@ if (deployment.AllowDemoTopup)
 app.MapPayments();
 app.Run();
 
+static async Task AssignNeighborhoods(AppDb db, Property property, CancellationToken cancellationToken)
+{
+    var ids = await NeighborhoodData.ComputeMembershipAsync(db, property.Latitude!.Value, property.Longitude!.Value, cancellationToken);
+    property.NeighborhoodIdsJson = System.Text.Json.JsonSerializer.Serialize(ids);
+    property.Neighborhood = ids.Select(NeighborhoodCatalog.Get).FirstOrDefault(x => x is not null)?.Name ?? "";
+}
 static async Task<User> CurrentUser(AppDb db, ClaimsPrincipal principal) => await db.Users.SingleOrDefaultAsync(x => x.Id == principal.UserId()) ?? throw new ApiException(401, "A fiók nem található.");
 static async Task ClearArchivedActive(AppDb db, Guid uid, Guid entityId, bool archived)
 {

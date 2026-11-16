@@ -80,7 +80,22 @@ test('only secret references enter the API environment and runtime permissions r
   assert.deepEqual(env.Jwt__Key.valueFrom, {secretKeyRef: {name: config.jwtSecret, key: 'latest'}});
   assert.equal(env.ConnectionStrings__MySql.value, undefined);
   assert.equal(env.Jwt__Key.value, undefined);
+  assert.equal(env.Geocoding__Google__ApiKey, undefined);
+  assert.equal(env.Geocoding__EnableTestGeocoder, undefined);
   assert.equal(value.status, undefined);
+});
+
+test('Google geocoding is opt-in and binds only a server-side Secret Manager reference', () => {
+  const value = service({config: {...config, googleGeocodingSecret: 'otthonra-geocoding-dev'}});
+  const [api, proxy] = value.spec.template.spec.containers;
+  const google = api.env.filter(item => item.name === 'Geocoding__Google__ApiKey');
+  assert.deepEqual(google, [{name: 'Geocoding__Google__ApiKey', valueFrom: {secretKeyRef: {name: 'otthonra-geocoding-dev', key: 'latest'}}}]);
+  assert.equal(google[0].value, undefined);
+  assert.equal(proxy.env, undefined);
+  assert.equal(JSON.stringify(value).includes('googleGeocodingSecret'), false);
+  for (const secret of ['', null, 1, true, {}, 'AIza-private-google-key', 'otthonra-geocoding-prod', 'projects/another/secrets/otthonra-geocoding-dev', 'otthonra-geocoding-dev:latest']) {
+    assert.throws(() => service({config: {...config, googleGeocodingSecret: secret}}), /googleGeocodingSecret/);
+  }
 });
 
 test('replacing the service keeps Firebase revision tags while routing normal traffic to the new revision', () => {

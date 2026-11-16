@@ -16,6 +16,25 @@ async function temporary(action){const dir=await mkdtemp(join(tmpdir(),'otthonra
 async function json(path,value){await writeFile(path,JSON.stringify(value));return path;}
 async function executable(path,text){await writeFile(path,text,{mode:0o700});return path;}
 
+test('manifest reruns preserve only the explicit same-project test geocoding secret selector', async () => temporary(async dir => {
+ const path = join(dir, 'dev-config.json');
+ const generate = () => invoke('manifest', path, 'ingatlan-513620', '123456789012', 'europe-west1');
+ let result = generate(); assert.equal(result.status, 0, result.stderr);
+ const original = JSON.parse(await readFile(path, 'utf8'));
+ assert.equal(original.googleGeocodingSecret, undefined);
+ await json(path, {...original, googleGeocodingSecret: 'otthonra-geocoding-dev'});
+ result = generate(); assert.equal(result.status, 0, result.stderr); assert.equal(result.stdout, '');
+ assert.equal(JSON.parse(await readFile(path, 'utf8')).googleGeocodingSecret, 'otthonra-geocoding-dev');
+ assert.equal((await stat(path)).mode & 0o777, 0o600);
+ for (const change of [{googleGeocodingSecret: 'private-api-key'}, {googleGeocodingSecret: 'otthonra-geocoding-prod'},
+   {googleGeocodingSecret: 'otthonra-geocoding-dev', projectId: 'another-project'},
+   {googleGeocodingSecret: 'otthonra-geocoding-dev', projectNumber: '999999999999'}]) {
+  await json(path, {...original, ...change}); const before = await readFile(path, 'utf8');
+  result = generate(); assert.notEqual(result.status, 0); assert.equal(await readFile(path, 'utf8'), before);
+  assert.equal(result.stdout, ''); assert.ok(!result.stderr.includes('private-api-key'));
+ }
+}));
+
 test('plan is read-only, verifies billing, and rejects another region before cloud access',async()=>temporary(async dir=>{
  const bin=join(dir,'bin');await mkdir(bin);const calls=join(dir,'calls');
  await executable(join(bin,'gcloud'),'#!/usr/bin/env node\nconst fs=require("node:fs");fs.appendFileSync(process.env.CALLS,JSON.stringify(process.argv.slice(2))+"\\n");const a=process.argv.slice(2).join(" ");if(a.includes("billing projects describe"))console.log(JSON.stringify({billingEnabled:process.env.BILLING!=="false"}));else if(a.includes("projects describe"))console.log(JSON.stringify({lifecycleState:"ACTIVE",projectNumber:"123456789012"}));else process.exit(91);\n');

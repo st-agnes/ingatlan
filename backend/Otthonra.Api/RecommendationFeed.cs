@@ -33,7 +33,7 @@ public static class RecommendationFeed
     // selecting free text, exact address or image JSON merely for ranking.
     private static readonly Expression<Func<Property, Property>> PropertyColumns = property => new Property {
         Id = property.Id, OwnerId = property.OwnerId, LocationId = property.LocationId,
-        City = property.City, District = property.District, Type = property.Type,
+        City = property.City, District = property.District, Type = property.Type, NeighborhoodIdsJson = property.NeighborhoodIdsJson,
         Price = property.Price, Area = property.Area, LotArea = property.LotArea, Rooms = property.Rooms,
         WholeRooms = property.WholeRooms, HalfRooms = property.HalfRooms, Floor = property.Floor,
         Condition = property.Condition, Building = property.Building, ConstructionAge = property.ConstructionAge,
@@ -179,12 +179,14 @@ public static class RecommendationFeed
     private static IQueryable<CandidateRow> BuyerCandidates(AppDb db, User user, SearchRequest search, CompiledSearch prepared)
     {
         var cities = prepared.Cities.Concat(prepared.DistrictIds.Select(id => LocationCatalog.Get(id)!.City)).Distinct().ToArray();
-        var ids = LocationCatalog.All.Where(location => location.Kind != "area"
+        var ids = LocationCatalog.All.Where(location => (location.Kind is "city" or "district")
             && (prepared.Cities.Contains(location.City) || prepared.DistrictIds.Contains(location.Id))).Select(location => location.Id).ToArray();
         var budapest = cities.Contains("Budapest");
+        var neighborhoodIds = prepared.NeighborhoodIds.ToArray();
         var anyType = prepared.NormalizedType.Length == 0;
         var properties = db.Properties.AsNoTracking().Where(property => !property.Archived && property.OwnerId != user.Id
-            && (anyType || property.Type == search.Type) && (ids.Contains(property.LocationId)
+            && (anyType || property.Type == search.Type) && (db.PropertyNeighborhoods.Any(membership => membership.PropertyId == property.Id && neighborhoodIds.Contains(membership.NeighborhoodId))
+                || ids.Contains(property.LocationId)
                 || (property.LocationId == null || property.LocationId.Trim() == "")
                     && (cities.Contains(property.City) || budapest && property.City.StartsWith("Budapest ")))
             && !db.Decisions.Any(decision => decision.SearchRequestId == search.Id && decision.PropertyId == property.Id && decision.ActorKind == "search"));
@@ -213,6 +215,7 @@ public static class RecommendationFeed
         if (place is null) return db.SearchRequests.Where(search => false).Select(search => new CandidateRow { Search = search });
         var accepted = new List<string> { "city:" + place.City };
         if (place.Kind == "district") accepted.Add(place.Id);
+        accepted.AddRange(Dto.Strings(property.NeighborhoodIdsJson).Where(id => NeighborhoodCatalog.Get(id) is not null));
         if (AreasByCity.Value.TryGetValue(place.City, out var areas)) accepted.AddRange(areas);
         var acceptedIds = accepted.Distinct(StringComparer.Ordinal).ToArray();
         // The location-first covering index selects local search IDs before

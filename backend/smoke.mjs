@@ -1,3 +1,4 @@
+import {withTestAddress} from './smoke-address.mjs';
 import assert from 'node:assert/strict';
 import {chmod, mkdir, writeFile} from 'node:fs/promises';
 import {dirname, resolve} from 'node:path';
@@ -5,6 +6,7 @@ import {assertNoContactData} from './smoke-privacy.mjs';
 const base = (process.argv[2] || 'http://localhost:5080').replace(/\/$/, '') + '/api';
 const run = Date.now() + '-' + Math.random().toString(16).slice(2);
 async function call(path, {token,method='GET',body,status=200}={}) {
+ body=withTestAddress(path,method,body);
   const response=await fetch(base+path,{signal:AbortSignal.timeout(10000),method,headers:{...(token?{Authorization:`Bearer ${token}`} : {}),...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})});
   const raw=await response.text();let value;try{value=JSON.parse(raw)}catch{value=raw}
   assert.equal(response.status,status,`${method} ${path}: ${JSON.stringify(value)}`);return value;
@@ -14,7 +16,7 @@ const buyer=await account('Buyer'),seller=await account('Seller'),outsider=await
 const b=buyer.accessToken,s=seller.accessToken,o=outsider.accessToken;
 const suggestions=await call('/locations?q=Debr');
 assert.ok((Array.isArray(suggestions)?suggestions:suggestions.items).some(item=>item.id==='city:Debrecen'));
-const propertyBody={title:'Smoke lakás',locationId:'district:Budapest:13',city:'Budapest',district:'XIII.',type:'Lakás',price:80000000,area:60,rooms:3,floor:2,address:'Private street 12',description:'Világos és csendes.',condition:'Felújított',building:'Tégla',balcony:true,elevator:true,images:[]};
+const propertyBody={title:'Smoke lakás',locationId:'district:Budapest:13',city:'Budapest',district:'XIII.',type:'Lakás',price:80000000,area:60,rooms:3,floor:2,address:'OTTHONRA TEST 1',description:'Világos és csendes.',condition:'Felújított',building:'Tégla',balcony:true,elevator:true,images:[]};
 const searchBody={title:'Smoke keresés',city:'Budapest',districts:['XIII.'],locationIds:['district:Budapest:13'],type:'Lakás',minPrice:null,maxPrice:90000000,minArea:50,maxArea:null,minRooms:2,maxRooms:null,balcony:true,elevator:true};
 const property=await call('/properties',{method:'POST',token:s,status:201,body:propertyBody});
 const search=await call('/searches',{method:'POST',token:b,status:201,body:searchBody});
@@ -39,7 +41,10 @@ await call('/credits/demo-topup',{method:'POST',token:s,body:{amount:20}});
 const results=await Promise.all([call('/decisions',{method:'POST',token:s,body:pair}),call('/decisions',{method:'POST',token:s,body:pair})]);
 assert.equal(results.reduce((sum,v)=>sum+v.charged,0),2);assert.equal((await call('/me',{token:s})).credits,18);assert.deepEqual(await call('/matches',{token:b}),[]);
 assert.equal((await call('/feed',{token:s})).items.some(item=>item.searchRequestId===search.id),false);const matchDecision=await call('/decisions',{method:'POST',token:b,body:pair});assert.ok(matchDecision.matchId);assert.equal(matchDecision.charged,0);
-const matches=await call('/matches',{token:b});assert.equal(matches.length,1);assert.equal(matches[0].contact.email,seller.user.email);assert.equal(matches[0].contact.phone,seller.user.phone);assert.equal(matches[0].property.address,'Private street 12');
+const matches=await call('/matches',{token:b});assert.equal(matches.length,1);assert.equal(matches[0].contact.email,seller.user.email);assert.equal(matches[0].contact.phone,seller.user.phone);assert.equal(matches[0].property.address,'OTTHONRA TEST 1');
+assert.equal(matches[0].property.addressDetails,null,'A mutual match shares the contact address while coordinates remain owner-only');
+for(const key of ['latitude','longitude','street','houseNumber','postalCode','geocodingAddressKey','geocodingPlaceId'])assert.equal(Object.hasOwn(matches[0].property,key),false,`A buyer match exposed owner-only ${key}`);
+const ownedMatch=(await call('/matches',{token:s}))[0];assert.ok(Number.isFinite(ownedMatch.property.addressDetails.latitude));assert.ok(Number.isFinite(ownedMatch.property.addressDetails.longitude));
 const matchId=matches[0].id;await call(`/matches/${matchId}/messages`,{method:'POST',token:o,body:{text:'Should fail'},status:404});
 const message=await call(`/matches/${matchId}/messages`,{method:'POST',token:b,body:{text:'Szia! Mikor nézhetem meg?'},status:201});assert.equal(message.senderId,buyer.user.id);
 assert.equal((await call('/matches',{token:s}))[0].messages.length,1);
