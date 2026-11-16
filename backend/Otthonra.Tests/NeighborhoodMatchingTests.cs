@@ -56,10 +56,11 @@ public sealed class NeighborhoodMatchingTests
     }
 
     [Theory]
+    [InlineData(null)]
     [InlineData("[]")]
     [InlineData("[\"neighborhood:f22df415c7b5ea79925e8886\"]")]
     [InlineData("[\"neighborhood:unknown\"]")]
-    public void SameCityAndDisplayNameCannotReplaceMissingOrWrongMembership(string memberships)
+    public void SameCityAndDisplayNameCannotReplaceMissingOrWrongMembership(string? memberships)
     {
         var property = Home();
         property.Neighborhood = "Vénkert";
@@ -74,6 +75,27 @@ public sealed class NeighborhoodMatchingTests
         Assert.Equal(0, result.Score);
         Assert.Empty(result.Reasons);
         Assert.Empty(result.MatchDetails);
+    }
+
+    [Fact]
+    public void LegacyNullMembershipRemainsReadableWithoutInventingCoordinatesOrNeighborhoods()
+    {
+        using var db = Context();
+        var membership = db.Model.FindEntityType(typeof(Property))!.FindProperty(nameof(Property.NeighborhoodIdsJson))!;
+        Assert.True(membership.IsNullable);
+        Assert.Equal("longtext", membership.GetColumnType());
+
+        var property = Home();
+        property.NeighborhoodIdsJson = null;
+        var dto = JsonSerializer.SerializeToElement(Dto.Property(property, own: true));
+        Assert.Equal(0, dto.GetProperty("neighborhoodIds").GetArrayLength());
+        Assert.Equal(0, dto.GetProperty("neighborhoods").GetArrayLength());
+        Assert.Equal(JsonValueKind.Null, dto.GetProperty("addressDetails").GetProperty("latitude").ValueKind);
+        Assert.Equal(JsonValueKind.Null, dto.GetProperty("addressDetails").GetProperty("longitude").ValueKind);
+        Assert.Equal("missing", dto.GetProperty("addressDetails").GetProperty("geocodingStatus").GetString());
+        Assert.Empty(PropertyNeighborhoodIndex.SelectedIds(property));
+        Assert.True(Rules.Compatible(property, Wanted("city:Debrecen")));
+        Assert.False(Rules.Compatible(property, Wanted(Venkert)));
     }
 
     [Fact]

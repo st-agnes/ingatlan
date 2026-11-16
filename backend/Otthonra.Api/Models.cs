@@ -40,7 +40,7 @@ public sealed class Property
     public string GeocodingPlaceId { get; set; } = "";
     public string GeocodingQuality { get; set; } = "";
     public string GeocodingAddressKey { get; set; } = "";
-    public string NeighborhoodIdsJson { get; set; } = "[]";
+    public string? NeighborhoodIdsJson { get; set; } = "[]";
     public string Description { get; set; } = "";
     public string Type { get; set; } = "Lakás";
     public decimal Price { get; set; }
