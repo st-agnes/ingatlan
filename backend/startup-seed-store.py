@@ -13,7 +13,7 @@ if not re.fullmatch(r'[a-f0-9]{12,64}', container_id):
 def query(sql):
     result = subprocess.run([
         'docker', 'exec', '--env', 'MYSQL_PWD=ci-only-password', container_id,
-        'mysql', '--user=otthonra', '--batch', '--skip-column-names',
+        'mysql', '--user=otthonra', '--default-character-set=utf8mb4', '--batch', '--skip-column-names',
         'otthonra_ci', '--execute', sql
     ], capture_output=True, text=True)
     if result.returncode:
@@ -66,8 +66,10 @@ for title, included, excluded in [
     ('Teszt · Vénkerti lakás · szintetikus címpont', 'neighborhood:e8c749e1fc0a306c717ad312', 'neighborhood:f22df415c7b5ea79925e8886'),
     ('Teszt · Sestakerti lakás · szintetikus címpont', 'neighborhood:f22df415c7b5ea79925e8886', 'neighborhood:e8c749e1fc0a306c717ad312'),
 ]:
-    assert query(f"SELECT COUNT(*) FROM Properties p JOIN PropertyNeighborhoods pn ON pn.PropertyId=p.Id WHERE p.Title='{title}' AND pn.NeighborhoodId='{included}'") == '1', 'Seeded positive polygon membership is missing.'
-    assert query(f"SELECT COUNT(*) FROM Properties p JOIN PropertyNeighborhoods pn ON pn.PropertyId=p.Id WHERE p.Title='{title}' AND pn.NeighborhoodId='{excluded}'") == '0', 'Seeded negative polygon membership was incorrectly assigned.'
+    positive = query(f"SELECT COUNT(*) FROM Properties p JOIN PropertyNeighborhoods pn ON pn.PropertyId=p.Id WHERE p.Title='{title}' AND pn.NeighborhoodId='{included}'")
+    negative = query(f"SELECT COUNT(*) FROM Properties p JOIN PropertyNeighborhoods pn ON pn.PropertyId=p.Id WHERE p.Title='{title}' AND pn.NeighborhoodId='{excluded}'")
+    assert positive == '1', f'Seeded positive polygon membership for {title}: expected 1, received {positive}.'
+    assert negative == '0', f'Seeded negative polygon membership for {title}: expected 0, received {negative}.'
 
 history = query('SELECT RevisionId,Version,(AppliedAt IS NOT NULL) FROM __OtthonraTestSeeds ORDER BY RevisionId')
 rows = [row.split('\t') for row in history.splitlines()]
