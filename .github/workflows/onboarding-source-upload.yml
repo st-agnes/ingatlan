@@ -1,0 +1,67 @@
+name: Upload prepared onboarding source objects
+on:
+  push:
+    branches: ['codex/onboarding-source-upload-20261118-v2']
+permissions:
+  contents: write
+jobs:
+  upload:
+    if: github.repository == 'st-agnes/ingatlan' && github.ref == 'refs/heads/codex/onboarding-source-upload-20261118-v2'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify prepared source and upload immutable Git objects
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import base64, gzip, hashlib, json, os, re, time, urllib.request
+          from pathlib import Path, PurePosixPath
+          root=Path('.codex/onboarding-upload-20261118-v2')
+          manifest=json.loads((root/'manifest.json').read_text())
+          assert manifest['version']==1 and manifest['bundleBytes']<1024*1024 and manifest['rawBytes']<8*1024*1024
+          chunks=[]
+          for i,part in enumerate(manifest['parts']):
+              assert part['path']==f'part-{i:03}.bin'
+              raw=(root/part['path']).read_bytes()
+              assert len(raw)==part['size'] and hashlib.sha256(raw).hexdigest()==part['sha256']
+              chunks.append(raw)
+          packed=b''.join(chunks)
+          assert len(packed)==manifest['bundleBytes'] and hashlib.sha256(packed).hexdigest()==manifest['bundleSha256']
+          raw=gzip.decompress(packed)
+          assert len(raw)==manifest['rawBytes']
+          bundle=json.loads(raw)
+          assert bundle['base']==manifest['base'] and bundle['headTree']==manifest['headTree']
+          assert bundle['base']=='8619700142661e12191ca6421914f86f6b3f6c10'
+          assert bundle['headTree']=='15c627345cb4264e3c220d4f5b2ebdc7375f8b92'
+          assert len(bundle['files'])==3 and not bundle['deleted']
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,*args,**kwargs):
+                  raise RuntimeError('GitHub unexpectedly redirected the object upload')
+          opener=urllib.request.build_opener(NoRedirect())
+          seen=set()
+          for item in bundle['files']:
+              path=PurePosixPath(item['path'])
+              assert not path.is_absolute() and '..' not in path.parts and '.git' not in path.parts
+              assert item['path'] not in seen and item['mode'] in ('100644','100755') and item['type']=='blob'
+              seen.add(item['path'])
+              data=base64.b64decode(item['content'],validate=True)
+              expected=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+              assert expected==item['sha']
+              body=json.dumps({'content':item['content'],'encoding':'base64'}).encode()
+              request=urllib.request.Request('https://api.github.com/repos/st-agnes/ingatlan/git/blobs',data=body,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'})
+              try:
+                  with opener.open(request,timeout=30) as response:
+                      result=json.load(response)
+              except Exception as error:
+                  code=getattr(error,'code',None)
+                  raise SystemExit('Immutable source upload failed'+(' (HTTP '+str(code)+')' if code else '')) from None
+              assert result['sha']==expected
+              print('Uploaded '+item['path']+' '+expected)
+              time.sleep(.25)
+          print('Prepared onboarding sources verified and uploaded; no branch or deployment was changed.')
+          print('Expected final tree: '+bundle['headTree'])
+          PY
