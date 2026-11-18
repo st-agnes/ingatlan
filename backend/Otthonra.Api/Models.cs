@@ -281,7 +281,15 @@ public static class Dto
             neighborhoods = Strings(p.NeighborhoodIdsJson).Select(NeighborhoodCatalog.Get).Where(x => x is not null).ToArray(),
             p.Description, locationId = LocationCatalog.ForProperty(p)?.Id ?? p.LocationId, location = LocationCatalog.ForProperty(p), p.Type, p.Price, p.Area, p.LotArea, p.Rooms, wholeRooms = rooms.WholeRooms, halfRooms = rooms.HalfRooms, p.Floor, condition = PropertyAttributes.NormalizeCondition(p.Condition), building = PropertyAttributes.NormalizeBuilding(p.Building), p.ConstructionAge, p.View, p.CeilingHeight, heatingType = PropertyAttributes.NormalizeHeating(p.HeatingType), p.SecondaryHeatingType, p.Insulated, p.EnergyRating, p.AirConditioning, p.SolarPanels, p.ParkingType, parkingTypes = PropertyAttributes.Parking(p), p.Balcony, p.Elevator, Images = Strings(p.ImagesJson), p.Archived, p.CreatedAt };
     }
-    public static object Search(SearchRequest s, string ownerAccountType = AccountTypes.Private, string? ownerName = null) => new { s.Id, s.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), searchSpecificity = MatchingRanking.Specificity(s), ownerAccountType = AccountTypes.PublicType(ownerAccountType), s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds = LocationCatalog.ForSearch(s).Select(x => x.Id), locations = LocationCatalog.ForSearch(s), s.Description, s.Type, s.MinPrice, s.MaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, conditions = Strings(s.ConditionsJson), buildings = Strings(s.BuildingsJson), constructionAges = Strings(s.ConstructionAgesJson), views = Strings(s.ViewsJson), s.CeilingHeight, floors = PropertyAttributes.Floors(s.FloorsJson), heatingTypes = Strings(s.HeatingTypesJson), s.Balcony, s.Elevator, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
+    public static object Search(SearchRequest s, string ownerAccountType = AccountTypes.Private, string? ownerName = null)
+    {
+        var locations = LocationCatalog.ForSearch(s);
+        var declaredIds = Strings(s.LocationIdsJson);
+        // Keep invalid explicit choices visible to clients. Replacing them with []
+        // would make an old client's legitimate empty-selection city fallback broaden this search.
+        var locationIds = declaredIds.Length > 0 && locations.Length == 0 ? declaredIds : locations.Select(x => x.Id).ToArray();
+        return new { s.Id, s.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), searchSpecificity = MatchingRanking.Specificity(s), ownerAccountType = AccountTypes.PublicType(ownerAccountType), s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds, locations, s.Description, s.Type, s.MinPrice, s.MaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, conditions = Strings(s.ConditionsJson), buildings = Strings(s.BuildingsJson), constructionAges = Strings(s.ConstructionAgesJson), views = Strings(s.ViewsJson), s.CeilingHeight, floors = PropertyAttributes.Floors(s.FloorsJson), heatingTypes = Strings(s.HeatingTypesJson), s.Balcony, s.Elevator, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
+    }
     public static object Message(Message m) => new { m.Id, m.MatchId, m.SenderId, m.Text, m.CreatedAt };
 }
 

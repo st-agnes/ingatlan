@@ -33,10 +33,11 @@ function withLocations(entity, kind, strict = false) {
     }
   } else if (kind === 'search' && Object.hasOwn(entity, 'locationIds') && (strict || entity.locationIds != null)) {
     const ids = Array.isArray(entity.locationIds) ? [...new Set(entity.locationIds)] : [];
+    const tooMany = Array.isArray(entity.locationIds) && entity.locationIds.length > 50;
     locations=ids.map(getLocation).filter(Boolean);
-    if(strict&&(!ids.length||ids.length>50||locations.length!==ids.length))throw locationError();
+    if(strict&&(!ids.length||tooMany||locations.length!==ids.length))throw locationError();
     if(!strict){
-      if(!Array.isArray(entity.locationIds)||ids.length>50||locations.length!==ids.length){invalidSearchIds=entity.locationIds;locations=[];}
+      if(!Array.isArray(entity.locationIds)||tooMany||locations.length!==ids.length){invalidSearchIds=entity.locationIds;locations=[];}
       else if(!ids.length)locations=resolveLegacyLocations(entity);
     }
   } else {

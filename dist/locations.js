@@ -84,6 +84,7 @@ export function streetBelongsToLocation(street, location) {
 export function resolveStreetLocation(streetName, location, postalCode = '', values = [...streetLocations.values()]) {
   const name = normalize(streetName), code = String(postalCode || '').trim();
   const matches = values.filter(street => streetBelongsToLocation(street, location)
+    && (!location.district || street.district === location.district)
     && normalize(street.streetName) === name && (!code || street.postalCodes.includes(code)));
   return matches.length === 1 ? matches[0] : null;
 }
@@ -94,7 +95,7 @@ export function searchStreets(query, locationId, limit = 8, values = [...streetL
   const count = Number.isFinite(Number(limit)) ? Math.max(0, Math.min(50, Math.trunc(Number(limit)))) : 8;
   if (!isPropertyLocation(location) || !text || !count) return [];
   const words = text.split(' ');
-  return values.filter(street => streetBelongsToLocation(street, location))
+  return values.filter(street => streetBelongsToLocation(street, location) && (!location.district || street.district === location.district))
     .map(street => ({street, name:normalize(street.streetName)}))
     .filter(item => words.every(word => item.name.split(' ').some(part => part.startsWith(word))))
     .sort((left,right) => Number(right.name === text) - Number(left.name === text)

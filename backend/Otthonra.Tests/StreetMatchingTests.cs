@@ -179,6 +179,30 @@ public sealed class StreetMatchingTests
     }
 
     [Fact]
+    public void SearchDtosPreserveInvalidExplicitIdsSoAClientRoundTripCannotReviveTheLegacyCity()
+    {
+        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+        var street = Street;
+        foreach (var ids in new[] { new[] { UnknownStreet }, new[] { street.Id, UnknownStreet }, Streets.Take(51).Select(value => value.Id).ToArray(), Enumerable.Repeat(street.Id, 51).ToArray() })
+        {
+            var search = Wanted(ids);
+            var dto = JsonSerializer.SerializeToElement(Dto.Search(search), options);
+            Assert.Equal(ids, dto.GetProperty("locationIds").EnumerateArray().Select(value => value.GetString()!).ToArray());
+            Assert.Empty(dto.GetProperty("locations").EnumerateArray());
+            var roundTrip = Wanted();
+            roundTrip.City = dto.GetProperty("city").GetString()!;
+            roundTrip.LocationIdsJson = dto.GetProperty("locationIds").GetRawText();
+            Assert.False(Evaluate(Home(street), roundTrip).Eligible);
+        }
+
+        var valid = JsonSerializer.SerializeToElement(Dto.Search(Wanted(street.Id, street.Id)), options);
+        Assert.Equal(street.Id, Assert.Single(valid.GetProperty("locationIds").EnumerateArray()).GetString());
+        Assert.Equal(street.Id, Assert.Single(valid.GetProperty("locations").EnumerateArray()).GetProperty("id").GetString());
+        var legacy = JsonSerializer.SerializeToElement(Dto.Search(Wanted()), options);
+        Assert.Equal("city:" + street.City, Assert.Single(legacy.GetProperty("locationIds").EnumerateArray()).GetString());
+    }
+
+    [Fact]
     public void BuyerSqlFiltersTheStreetIndexColumnBeforeRankingWithoutSelectingPrivateAddressText()
     {
         using var db = Context();

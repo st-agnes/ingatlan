@@ -97,7 +97,7 @@ public class TestDataSeedTests
     [Fact]
     public void RealStreetNamesOnlyReceiveSyntheticPointsInTheTwoExplicitFictionalFixtures()
     {
-        var property = new Property { City = "Debrecen", LocationId = "city:Debrecen", Street = "Böszörményi út",
+        var property = new Property { OwnerId = Guid.NewGuid(), City = "Debrecen", LocationId = "city:Debrecen", Street = "Böszörményi út",
             StreetId = "street:aae22ff8e2d0fa698c0291dc", HouseNumber = "99999", PostalCode = "4027" };
         Assert.Throws<InvalidOperationException>(() => TestDataSeed.AssignSyntheticCoordinates(property));
         Assert.Throws<InvalidOperationException>(() => TestDataSeed.AssignSyntheticCoordinates(property, "unrelated"));

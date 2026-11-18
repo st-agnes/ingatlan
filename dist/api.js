@@ -75,7 +75,7 @@ function entityLocations(value, kind, strict = false) {
   const uniqueIds = ids == null ? null : [...new Set(ids)];
   const legacyEmpty = !strict && uniqueIds != null && (uniqueIds.length === 0 || kind === 'property' && uniqueIds.length === 1 && (uniqueIds[0] == null || typeof uniqueIds[0] === 'string' && !uniqueIds[0].trim()));
   const malformedSearchIds = kind === 'search' && value.locationIds != null
-    && (!Array.isArray(value.locationIds) || uniqueIds.length > 50);
+    && (!Array.isArray(value.locationIds) || value.locationIds.length > 50);
   let selected = malformedSearchIds ? [] : uniqueIds == null || legacyEmpty
     ? resolveLegacyLocations(kind === 'search' ? {...value, districts:inputStrings(value.districts)} : value)
     : uniqueIds.map(getLocation).filter(Boolean);

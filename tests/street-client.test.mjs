@@ -2,7 +2,7 @@ import test, {afterEach} from 'node:test';
 import assert from 'node:assert/strict';
 import {ApiModel} from '../dist/api.js';
 import {createModel,STORAGE_KEY} from '../dist/model.js';
-import {locations,getLocation,registerLocations,searchLocations,searchStreets,matchesLocations,isPropertyLocation} from '../dist/locations.js';
+import {locations,getLocation,registerLocations,searchLocations,searchStreets,resolveStreetLocation,matchesLocations,isPropertyLocation} from '../dist/locations.js';
 import {evaluateMatch,prepareSearch,searchSpecificity} from '../dist/matching.js';
 import {streetDemoData} from '../dist/street-demo-data.js';
 
@@ -36,6 +36,16 @@ test('street metadata is registered explicitly, validates its shape and never be
   assert.deepEqual(searchStreets('tesztel','district:Budapest:13'),[]);
   assert.deepEqual(registerLocations([{...selected,streetName:'Changed identity'}]),[]);
   assert.equal(getLocation(selected.id).streetName,selected.streetName);
+});
+
+test('unknown source wards remain available city-wide and cannot be assigned to a specific property ward',()=>{
+  const unknownWard=registerLocations([street('0',{district:null,streetName:'Ismeretlen kerület fixture utca',label:'Budapest, Ismeretlen kerület fixture utca',postalCodes:['1007']})])[0];
+  const city=getLocation('city:Budapest'),district=getLocation('district:Budapest:11');
+  assert.equal(searchStreets('Ismeretlen kerület',city.id,8,[unknownWard])[0].id,unknownWard.id);
+  assert.deepEqual(searchStreets('Ismeretlen kerület',district.id,8,[unknownWard]),[]);
+  assert.equal(resolveStreetLocation(unknownWard.streetName,city,'1007',[unknownWard]).id,unknownWard.id);
+  assert.equal(resolveStreetLocation(unknownWard.streetName,district,'1007',[unknownWard]),null);
+  assert.equal(matchesLocations({locationId:district.id,streetId:unknownWard.id},{locationIds:[unknownWard.id]}),true,'matching still honors trusted legacy associations');
 });
 
 test('street selections are exact hard gates with town, district, neighborhood and area OR semantics',()=>{
@@ -90,6 +100,24 @@ test('API search DTO metadata hydrates street IDs before reading and malformed u
   const broken=(await api().getState()).searches[0];
   assert.deepEqual(broken.locationIds,[invalid]);assert.deepEqual(broken.locations,[]);
   assert.equal(evaluateMatch({...property,price:60},broken).eligible,false);
+});
+
+test('over fifty raw location IDs stay invalid before duplicate removal in API and demo reads and saves',async()=>{
+  const chosen=streetDemoData.find(street=>street.streetName==='Pozsonyi út'),invalid=Array(51).fill(chosen.id);
+  const query={id:'search',ownerId:'viewer',title:'Érvénytelen ismételt helyszínek',city:'Budapest',locationIds:invalid,locations:[chosen]};
+  accountRoutes({properties:[],searchRequests:[query]});
+  const remoteModel=api(),remote=(await remoteModel.getState()).searches[0];
+  assert.deepEqual(remote.locationIds,invalid);assert.deepEqual(remote.locations,[]);
+  assert.equal(evaluateMatch({...property,price:60,streetId:chosen.id},remote).eligible,false);
+  await assert.rejects(remoteModel.saveEntity('search',remote),/találati listából/);
+
+  const values=storage();createModel(values).buyDemoCredits(1);
+  const raw=JSON.parse(values.getItem(STORAGE_KEY));
+  Object.assign(raw.searches.find(search=>search.id==='own-s1'),query,{id:'own-s1',ownerId:'me'});
+  values.setItem(STORAGE_KEY,JSON.stringify(raw));
+  const localModel=createModel(values),local=localModel.getState().searches.find(search=>search.id==='own-s1');
+  assert.deepEqual(local.locationIds,invalid);assert.deepEqual(local.locations,[]);assert.deepEqual(localModel.feed(),[]);
+  assert.throws(()=>localModel.saveEntity('search',local,local.id),/találati listából/);
 });
 
 test('API property inputs carry selected street IDs but never authoritative coordinates or memberships',async()=>{
