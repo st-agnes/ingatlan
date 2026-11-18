@@ -42,20 +42,25 @@ def source_catalog():
     return header, expected
 
 
-def query(container, statement):
+def query(container, statement, stage='postal query'):
     result = subprocess.run([
         'docker', 'exec', '--env', 'MYSQL_PWD=ci-only-password', container,
         'mysql', '--user=otthonra', '--default-character-set=utf8mb4', '--raw', '--batch',
         '--skip-column-names', 'otthonra_ci', '--execute', statement
     ], capture_output=True, text=True, encoding='utf-8', timeout=45)
     if result.returncode:
-        raise SystemExit('The disposable MySQL postal street check could not query the test database.')
+        # A bounded code and stage identify SQL failures without printing the
+        # command, connection details, or any returned fixture address values.
+        error = re.search(r'ERROR ([0-9]{4,5})(?: \(([A-Z0-9]{5})\))?', result.stderr)
+        code = ('MySQL ' + error.group(1) + (('/' + error.group(2)) if error.group(2) else '')) if error else 'command failure'
+        statement_id = hashlib.sha256(statement.encode('utf-8')).hexdigest()[:12]
+        raise SystemExit(f'The disposable MySQL {stage} failed ({code}; statement {statement_id}).')
     return result.stdout.strip()
 
 
 def markers(container, header):
-    dataset = query(container, 'SELECT DatasetVersion,StreetCount,ImportedAt FROM __OtthonraStreetDataset WHERE Id=1').split('\t')
-    association = query(container, 'SELECT DatasetVersion,ReclassifiedAt FROM __OtthonraStreetAssociation WHERE Id=1').split('\t')
+    dataset = query(container, 'SELECT DatasetVersion,StreetCount,ImportedAt FROM __OtthonraStreetDataset WHERE Id=1', 'dataset marker').split('\t')
+    association = query(container, 'SELECT DatasetVersion,ReclassifiedAt FROM __OtthonraStreetAssociation WHERE Id=1', 'association marker').split('\t')
     assert len(dataset) == 3 and dataset[0] == header['datasetVersion'] and int(dataset[1]) == header['count'] and dataset[2]
     assert len(association) == 2 and association[0] == header['datasetVersion'] and association[1]
     assert query(container, 'SELECT (SELECT COUNT(*) FROM __OtthonraStreetDataset),(SELECT COUNT(*) FROM __OtthonraStreetAssociation)') == '1\t1'
@@ -66,7 +71,7 @@ def catalog(container, expected):
     # Stream the source file, retaining only one digest per identity. Read native
     # JSON values back so every imported field, including aliases/postcodes, is
     # checked against the reviewed source rather than only checking a row count.
-    native = query(container, 'SELECT JSON_ARRAY(Id,City,District,Name,Type,StreetName,Label,PostalCodes,Aliases) FROM StreetCatalog ORDER BY Id')
+    native = query(container, 'SELECT JSON_ARRAY(Id,City,District,Name,Type,StreetName,Label,PostalCodes,Aliases) FROM StreetCatalog ORDER BY Id', 'catalog metadata')
     seen = set()
     for line in native.splitlines():
         row = json.loads(line)
@@ -80,7 +85,7 @@ def catalog(container, expected):
 def definitions(container, table):
     assert table in ('Properties', 'SearchLocations', 'StreetCatalog')
     rows = query(container, "SELECT INDEX_NAME,COLUMN_NAME,SEQ_IN_INDEX FROM information_schema.STATISTICS "
-                 f"WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='{table}' ORDER BY INDEX_NAME,SEQ_IN_INDEX")
+                 f"WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='{table}' ORDER BY INDEX_NAME,SEQ_IN_INDEX", 'index definition')
     indexes = {}
     for row in rows.splitlines():
         name, column, position = row.split('\t')
@@ -112,15 +117,15 @@ def indexed_associations(container, expected):
     assert unknown == '0', 'An associated property refers to an unknown postal identity.'
     mismatch = query(container, """
         SELECT COUNT(*) FROM Properties p JOIN StreetCatalog s ON s.Id=p.StreetId
-        WHERE p.City<>s.City
-          OR (p.District<>'' AND (s.District IS NULL OR p.District<>s.District))
+        WHERE CAST(p.City AS BINARY)<>CAST(s.City AS BINARY)
+          OR (p.District<>'' AND (s.District IS NULL OR CAST(p.District AS BINARY)<>CAST(s.District AS BINARY)))
           OR (p.PostalCode<>'' AND NOT JSON_CONTAINS(s.PostalCodes,JSON_QUOTE(p.PostalCode)))
-          OR (p.LocationId LIKE 'city:%' AND p.LocationId<>CONCAT('city:',s.City))
+          OR (p.LocationId LIKE 'city:%' AND CAST(p.LocationId AS BINARY)<>CAST(CONCAT('city:',s.City) AS BINARY))
           OR (p.LocationId LIKE 'district:Budapest:%' AND
-             (s.City<>'Budapest' OR s.District IS NULL OR p.LocationId<>CONCAT('district:Budapest:',
+             (s.City<>'Budapest' OR s.District IS NULL OR CAST(p.LocationId AS BINARY)<>CAST(CONCAT('district:Budapest:',
               FIELD(s.District,'I.','II.','III.','IV.','V.','VI.','VII.','VIII.','IX.','X.','XI.','XII.',
-                    'XIII.','XIV.','XV.','XVI.','XVII.','XVIII.','XIX.','XX.','XXI.','XXII.','XXIII.'))))
-        """)
+                    'XIII.','XIV.','XV.','XVI.','XVII.','XVIII.','XIX.','XX.','XXI.','XXII.','XXIII.')) AS BINARY)))
+        """, 'association scope')
     assert mismatch == '0', 'An association escaped its canonical city, district or postal scope.'
     sample = next(iter(expected))
     assert re.fullmatch(r'street:[a-f0-9]{24}', sample)
@@ -131,7 +136,7 @@ def indexed_associations(container, expected):
         (f"SELECT SearchRequestId FROM SearchLocations FORCE INDEX ({reverse}) WHERE LocationId='{sample}'",
          reverse, ['LocationId'])
     ]:
-        plan = json.loads(query(container, 'EXPLAIN FORMAT=JSON ' + statement))
+        plan = json.loads(query(container, 'EXPLAIN FORMAT=JSON ' + statement, 'covering index explain'))
         tables = list(tables_in_plan(plan))
         assert len(tables) == 1 and tables[0].get('key') == name, 'The exact street predicate cannot use its covering index.'
         assert tables[0].get('used_key_parts') == parts, 'The exact street predicate did not bind the expected index prefix.'
