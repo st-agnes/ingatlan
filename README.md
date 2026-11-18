@@ -31,6 +31,8 @@ A próba tetszőlegesen újraindítható a két kijelölt tesztfiókból. Az ela
 
 A feltöltés a backend indulásának része. Merge után a szokásos **Actions → Deploy Google Cloud test → Run workflow → main** telepítést indítsd: a backendbe beágyazott tesztadatcsomag automatikusan létrejön, külön adatfeltöltő parancs vagy workflow nélkül.
 
+A workflow alapból beköti a már létrehozott `otthonra-geocoding-dev` Secret Manager-kulcsot a szerveroldali Google-címkereséshez; a meglévő `GCP_DEV_CONFIG` változót nem kell módosítani. Cloud Shellben ehhez `bash scripts/gcp/run-dev.sh --deploy-only --google-geocoding` használható. Kulcs nélküli teszttelepítésnél vedd ki a workflow `use_google_geocoding` jelölését. A kulcs és a futtatási jogosultság egyszeri beállítása a telepítési útmutatóban szerepel.
+
 **Minden új teszt Cloud Run-revízió friss tesztállapotot kap:** az alkalmazásadatok törlődnek, majd visszaállnak a fenti példafiókok, ingatlanok, keresések és kezdő kreditek. Ez a tesztelés közben létrehozott saját fiókokat, döntéseket, párosításokat és üzeneteket is törli. Azonos revízió új példányának indulásakor vagy újraindításakor az adatok megmaradnak; egy korábban már feltöltött régi revízió újraindítása sem törli az újabb tesztállapotot.
 
 Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261116-test-fixtures-v5`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.

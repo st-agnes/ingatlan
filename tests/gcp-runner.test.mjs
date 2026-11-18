@@ -128,3 +128,56 @@ test('an explicit existing image requires deploy-only before any setup or deploy
     await assert.rejects(stat(join(root, 'DEPLOY_RAN')), {code: 'ENOENT'});
   });
 });
+
+test('Google geocoding opt-in reaches application deployment in full and deploy-only runs', async () => {
+  for (const deployOnly of [false, true]) {
+    await fixture('printf "%s\\n" "$@" > BOOTSTRAP_ARGS', 'for arg in "$@"; do printf "%s\\n" "$arg"; done > DEPLOY_ARGS\necho "Test application ready: https://otthonra-dev-123456789012.web.app/"', async ({root, run}) => {
+      const result = run(...(deployOnly ? ['--deploy-only'] : []), '--google-geocoding');
+      assert.equal(result.status, 0, result.stderr);
+      assert.equal(await readFile(join(root, 'DEPLOY_ARGS'), 'utf8'), '--google-geocoding\n');
+      assert.match(result.stdout, /KÉSZ:/);
+      if (deployOnly) await assert.rejects(stat(join(root, 'BOOTSTRAP_ARGS')), {code: 'ENOENT'});
+      else assert.equal(await readFile(join(root, 'BOOTSTRAP_ARGS'), 'utf8'), '--project\ningatlan-513620\n');
+    });
+  }
+});
+
+test('Google geocoding opt-in preserves the exact explicit image in either option order', async () => {
+  const image = 'europe-west1-docker.pkg.dev/ingatlan-513620/otthonra-dev/otthonra-api@sha256:' + 'b'.repeat(64);
+  for (const args of [['--google-geocoding', '--deploy-only', '--image', image], ['--deploy-only', '--image', image, '--google-geocoding']]) {
+    await fixture('touch BOOTSTRAP_RAN; exit 92', 'for arg in "$@"; do printf "%s\\n" "$arg"; done > DEPLOY_ARGS\necho "Test application ready: https://otthonra-dev-123456789012.web.app/"', async ({root, run}) => {
+      const result = run(...args);
+      assert.equal(result.status, 0, result.stderr);
+      const forwarded = (await readFile(join(root, 'DEPLOY_ARGS'), 'utf8')).trim().split('\n');
+      assert.equal(forwarded.length, 3);
+      assert.ok(forwarded.includes('--image'));
+      assert.equal(forwarded[forwarded.indexOf('--image') + 1], image);
+      assert.equal(forwarded.filter(arg => arg === '--google-geocoding').length, 1);
+      assert.match(result.stdout, /KÉSZ:/);
+      await assert.rejects(stat(join(root, 'BOOTSTRAP_RAN')), {code: 'ENOENT'});
+    });
+  }
+});
+
+test('ordinary full and deploy-only runs do not opt into Google geocoding', async () => {
+  for (const args of [[], ['--deploy-only']]) {
+    await fixture('echo bootstrap-done', 'for arg in "$@"; do printf "%s\\n" "$arg"; done > DEPLOY_ARGS\necho "Test application ready: https://otthonra-dev-123456789012.web.app/"', async ({root, run}) => {
+      const result = run(...args);
+      assert.equal(result.status, 0, result.stderr);
+      assert.equal(await readFile(join(root, 'DEPLOY_ARGS'), 'utf8'), '');
+    });
+  }
+});
+
+test('unknown options stop before setup, deployment or log creation even beside Google geocoding opt-in', async () => {
+  for (const args of [['--unknown-option'], ['--google-geocoding', '--unknown-option'], ['--deploy-only', '--unknown-option', '--google-geocoding']]) {
+    await fixture('touch BOOTSTRAP_RAN', 'touch DEPLOY_RAN', async ({root, run}) => {
+      const result = run(...args);
+      assert.equal(result.status, 2);
+      assert.match(result.stderr, /Usage:/);
+      await assert.rejects(stat(join(root, 'BOOTSTRAP_RAN')), {code: 'ENOENT'});
+      await assert.rejects(stat(join(root, 'DEPLOY_RAN')), {code: 'ENOENT'});
+      await assert.rejects(stat(join(root, '.local/gcp/deployment.log')), {code: 'ENOENT'});
+    });
+  }
+});

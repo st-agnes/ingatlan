@@ -7,14 +7,16 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$repo_root" || exit 1
 project_id='ingatlan-513620'
 deploy_only=false
+google_geocoding=false
 project_supplied=false
 image_digest=''
 while (($#)); do
   case "$1" in
     --project) project_id="${2:?Missing project ID}"; project_supplied=true; shift 2 ;;
     --deploy-only) deploy_only=true; shift ;;
+    --google-geocoding) google_geocoding=true; shift ;;
     --image) image_digest="${2:?Missing image digest}"; shift 2 ;;
-    *) printf '%s\n' 'Usage: bash scripts/gcp/run-dev.sh [--project PROJECT_ID] [--deploy-only [--image REGISTRY_IMAGE@sha256:DIGEST]]' >&2; exit 2 ;;
+    *) printf '%s\n' 'Usage: bash scripts/gcp/run-dev.sh [--project PROJECT_ID] [--deploy-only [--image REGISTRY_IMAGE@sha256:DIGEST]] [--google-geocoding]' >&2; exit 2 ;;
   esac
 done
 if "$deploy_only" && "$project_supplied"; then
@@ -27,6 +29,7 @@ if [[ -n "$image_digest" ]] && ! "$deploy_only"; then
 fi
 deploy_args=()
 if [[ -n "$image_digest" ]]; then deploy_args+=(--image "$image_digest"); fi
+if "$google_geocoding"; then deploy_args+=(--google-geocoding); fi
 mkdir -p .local/gcp || exit 1
 log_path="$repo_root/.local/gcp/deployment.log"
 if [[ -f "$log_path" ]]; then mv "$log_path" "$log_path.previous" || exit 1; fi

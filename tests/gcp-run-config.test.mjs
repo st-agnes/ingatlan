@@ -1,5 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import {copyFile, mkdtemp, mkdir, readFile, readdir, rm, writeFile} from 'node:fs/promises';
+import {spawnSync} from 'node:child_process';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
 import {buildCloudRunService, SQL_PROXY_IMAGE} from '../scripts/gcp/prepare-run.mjs';
 
 const config = {
@@ -21,6 +25,90 @@ const imageDigest = 'europe-west1-docker.pkg.dev/ingatlan-513620/otthonra-dev/ot
 const input = {config, existingService, imageDigest, revisionSuffix: 'dev-20261104-123'};
 
 function service(change = {}) { return buildCloudRunService({...input, ...change}); }
+
+async function deploymentProbe(manifest, args, action) {
+  const root = await mkdtemp(join(tmpdir(), 'otthonra-geocoding-config-'));
+  try {
+    const bin = join(root, 'bin'), script = join(root, 'scripts/gcp'), local = join(root, '.local/gcp');
+    await Promise.all([mkdir(bin), mkdir(script, {recursive: true}), mkdir(local, {recursive: true})]);
+    for (const name of ['deploy-dev.sh', 'prepare-site.mjs'])
+      await copyFile(new URL('../scripts/gcp/' + name, import.meta.url), join(script, name));
+    const original = JSON.stringify(manifest, null, 2) + '\n';
+    const configPath = join(local, 'config with spaces.json'), observed = join(root, 'observed.json');
+    await writeFile(configPath, original, {mode: 0o600});
+    // Stop at the very first gcloud call, before credentials, Docker or cloud
+    // mutations. Observe the real script's private effective manifest.
+    await writeFile(join(bin, 'gcloud'), `#!/usr/bin/env node
+const fs=require('node:fs'),path=require('node:path');
+fs.appendFileSync('calls.jsonl',JSON.stringify(process.argv.slice(2))+'\\n');
+if(process.argv.slice(2,5).join(' ')==='run services describe') {
+ const dir=fs.readdirSync('.local/gcp').find(name=>name.startsWith('deployment.'));
+ const file=path.join('.local/gcp',dir,'config.json');
+ fs.writeFileSync(process.env.OBSERVED,JSON.stringify({config:JSON.parse(fs.readFileSync(file,'utf8')),mode:fs.statSync(file).mode&0o777}));
+ process.exit(42);
+}
+process.exit(91);
+`, {mode: 0o700});
+    const result = spawnSync('bash', ['scripts/gcp/deploy-dev.sh', '--config', configPath, ...args], {
+      cwd: root, encoding: 'utf8', timeout: 10000, env: {...process.env, PATH: bin + ':' + process.env.PATH, OBSERVED: observed}
+    });
+    await action({root, result, observed});
+    assert.equal(await readFile(configPath, 'utf8'), original, 'Stored config must remain byte-identical.');
+    assert.deepEqual((await readdir(local)).sort(), ['config with spaces.json'], 'Private deployment staging must be removed.');
+  } finally { await rm(root, {recursive: true, force: true}); }
+}
+
+test('Cloud Shell enables the existing Google secret without editing a legacy config or reading its payload', async () => {
+  for (const enabled of [false, true]) await deploymentProbe(config, enabled ? ['--google-geocoding'] : [], async ({root, result, observed}) => {
+    assert.equal(result.status, 42, result.stderr);
+    const effective = JSON.parse(await readFile(observed, 'utf8'));
+    assert.equal(effective.mode, 0o600);
+    assert.deepEqual(effective.config, enabled ? {...config, googleGeocodingSecret: 'otthonra-geocoding-dev'} : config);
+    const calls = (await readFile(join(root, 'calls.jsonl'), 'utf8')).trim().split('\n').map(JSON.parse);
+    assert.equal(calls.length, 1);
+    assert.deepEqual(calls[0].slice(0, 4), ['run', 'services', 'describe', config.serviceName]);
+    const built = service({config: effective.config});
+    const google = built.spec.template.spec.containers[0].env.filter(item => item.name === 'Geocoding__Google__ApiKey');
+    assert.deepEqual(google, enabled ? [{name: 'Geocoding__Google__ApiKey', valueFrom: {secretKeyRef: {name: 'otthonra-geocoding-dev', key: 'latest'}}}] : []);
+  });
+});
+
+test('a previously explicit Google binding is retained without the new flag', async () => {
+  const explicit = {...config, googleGeocodingSecret: 'otthonra-geocoding-dev'};
+  await deploymentProbe(explicit, [], async ({result, observed}) => {
+    assert.equal(result.status, 42, result.stderr);
+    assert.deepEqual(JSON.parse(await readFile(observed, 'utf8')).config, explicit);
+  });
+});
+
+test('the Google opt-in cannot repair an untrusted config by hiding an invalid secret or credential field', async () => {
+  for (const invalid of [{...config, googleGeocodingSecret: 'otthonra-geocoding-prod'}, {...config, apiKey: 'private-test-marker-never-log'}])
+    await deploymentProbe(invalid, ['--google-geocoding'], async ({root, result}) => {
+      assert.notEqual(result.status, 0);
+      assert.doesNotMatch(result.stdout + result.stderr, /private-test-marker-never-log/);
+      await assert.rejects(readFile(join(root, 'calls.jsonl')), {code: 'ENOENT'});
+    });
+});
+
+test('the Actions deploy command uses the checked default without changing GCP_DEV_CONFIG', async () => {
+  const workflow = await readFile(new URL('../.github/workflows/deploy-dev.yml', import.meta.url), 'utf8');
+  assert.match(workflow, /use_google_geocoding:\s+description:[^\n]+\s+type: boolean\s+default: true/);
+  const step = workflow.split('- name: Build and deploy the test API and frontend')[1];
+  assert.match(step, /USE_GOOGLE_GEOCODING: \$\{\{ inputs\.use_google_geocoding \}\}/);
+  const command = step.split('run: |\n')[1].split('\n').map(line => line.startsWith('          ') ? line.slice(10) : line).join('\n');
+  const root = await mkdtemp(join(tmpdir(), 'otthonra-actions-geocoding-'));
+  try {
+    await mkdir(join(root, 'scripts/gcp'), {recursive: true});
+    await writeFile(join(root, 'scripts/gcp/deploy-dev.sh'), 'printf "%s\\n" "$@" > observed-args\n');
+    for (const enabled of ['true', 'false']) {
+      const result = spawnSync('bash', ['-e', '-c', command], {cwd: root, encoding: 'utf8', timeout: 5000,
+        env: {...process.env, USE_GOOGLE_GEOCODING: enabled, GCP_DEV_CONFIG: JSON.stringify(config)}});
+      assert.equal(result.status, 0, result.stderr);
+      assert.deepEqual((await readFile(join(root, 'observed-args'), 'utf8')).trim().split('\n'),
+        ['--config', '.local/gcp/dev-config.json', ...(enabled === 'true' ? ['--google-geocoding'] : [])]);
+    }
+  } finally { await rm(root, {recursive: true, force: true}); }
+});
 
 test('the API waits for the pinned proxy and uses its private loopback TCP endpoint with no integrated Unix mount', () => {
   const value = service();

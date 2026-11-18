@@ -185,13 +185,19 @@ gcloud secrets add-iam-policy-binding otthonra-geocoding-dev \
 
 Meglévő titoknál a létrehozó parancsot hagyd ki; kulcscserénél az új titokverzió hozzáadása és egy új alkalmazásrevízió telepítése szükséges. A kulcsot ne írd parancssori argumentumba, a manifestbe, GitHub-változóba vagy a frontend konfigurációjába.
 
-Ezután a nem titkos `.local/gcp/dev-config.json` objektumához add hozzá ezt az egy erőforrásnevet:
+Ha a titok és a fenti futtatási jogosultság már megvan, elég a szokásos **Actions → Deploy Google Cloud test → Run workflow → main** telepítést elindítani. A `use_google_geocoding` jelölő alapból be van kapcsolva: a telepítő az `otthonra-geocoding-dev` titkot beköti az új API-revízióba. Ehhez sem a `.local/gcp/dev-config.json` fájlt, sem a már beállított `GCP_DEV_CONFIG` repository variable értékét nem kell szerkeszteni.
 
-```json
-"googleGeocodingSecret": "otthonra-geocoding-dev"
+Cloud Shellből az alkalmazás telepítése ugyanezzel a titokkal:
+
+```sh
+bash scripts/gcp/run-dev.sh --deploy-only --google-geocoding
 ```
 
-A mező opcionális; kizárólag ezt a teszt-erőforrásnevet fogadja el. A bootstrap ismétlése megőrzi az azonos projekthez már beállított mezőt. GitHub Actions használatakor a frissített manifest tartalmával frissítsd a `GCP_DEV_CONFIG` repository variable értékét is, majd telepítsd az aktuális backendképet. Az új Cloud Run-revízió a titok `latest` verzióját közvetlenül a `Geocoding__Google__ApiKey` szerveroldali környezeti változóba köti; a webes fájlokba és a telepítési naplóba nem másolja a kulcsot. Hiányzó titok vagy olvasási jogosultság esetén a Cloud Run indulása meghiúsul.
+A közvetlen `bash scripts/gcp/deploy-dev.sh --google-geocoding` parancs is használható. A `--google-geocoding` kapcsolót minden olyan Cloud Shell-telepítéshez add meg, amelynél ezt a kötést kéred. A teljes `run-dev.sh --google-geocoding` futás az infrastruktúra előkészítését is elvégzi. A kapcsoló kizárólag az adott telepítés privát, ideiglenes konfigurációját egészíti ki a rögzített titoknévvel; a helyi manifestet és a GitHub-változót nem írja át.
+
+Az alap bootstrap továbbra sem igényel Google-kulcsot. Kulcs nélküli GitHub-telepítésnél vedd ki a `use_google_geocoding` jelölést; Cloud Shellben hagyd el a kapcsolót. A korábban kézzel beállított opcionális `googleGeocodingSecret` manifestmező továbbra is támogatott, kizárólag `otthonra-geocoding-dev` értékkel; ezt a meglévő beállítást a jelölő kikapcsolása vagy a kapcsoló elhagyása sem törli. A bootstrap ismétlése megőrzi az azonos projekthez már beállított mezőt.
+
+Az új Cloud Run-revízió a titok `latest` verzióját közvetlenül a `Geocoding__Google__ApiKey` szerveroldali környezeti változóba köti. A telepítő nem olvassa ki és nem másolja a kulcsot a webes fájlokba vagy a telepítési naplóba. A bekötéshez a GitHub telepítési szolgáltatásfiókjának nem szükséges új Secret Manager-jogosultság; a kulcsot a Cloud Run a fent megadott futtatási identitással éri el. Hiányzó titok, elérhetetlen titokverzió vagy hiányzó futtatási olvasási jogosultság esetén a telepítés hibával megáll.
 
 A helyi, szerveroldali megfelelő a `Geocoding__Google__ApiKey` környezeti változó. A városrészek generált adatainak offline ellenőrzése: `python3 scripts/import-neighborhoods.py --check`. A címkeresési szolgáltató elérhetőségét az adatbázis-health sikeres válasza önmagában nem bizonyítja.
 
@@ -296,6 +302,8 @@ gh variable set GCP_DEV_CONFIG --repo st-agnes/ingatlan < .local/gcp/dev-config.
 
 A workflow neve **Deploy Google Cloud test**, fájlja `.github/workflows/deploy-dev.yml`. Csak kézzel indítható, és csak a `main` vagy `codex/google-cloud-test` ág kijelölt commitját telepíti. Előfeltétele, hogy ugyanarra a commitra sikeres push-alapú `ci.yml` futás tartozzon. A workflow a GitHub Actions felületén a default ágba kerülés után jelenik meg.
 
+A `use_google_geocoding` jelölő alapból bekapcsolja a már létrehozott `otthonra-geocoding-dev` titok használatát. A meglévő `GCP_DEV_CONFIG` értékét ehhez nem kell frissíteni. Ha még nincs Google-kulcs és futtatási hozzáférés, a jelölést a kulcs nélküli teszttelepítéshez vedd ki; a részletes beállítás a fenti Google-címkeresési szakaszban szerepel.
+
 A GitHub rövid életű OIDC-hitelesítéssel, Workload Identity Federationön keresztül kap telepítési hozzáférést; nem készül letölthető szolgáltatásfiók-JSON-kulcs. Az identitás feltételei a tároló és tulajdonos állandó GitHub-azonosítójára, a workflow fájljára és az engedélyezett ágakra korlátoznak. A backend képe digest alapján rögzített, a Hosting API-átirányítása a hozzá tartozó Cloud Run-revízióhoz kötött.
 
 A Firebase Hosting telepítőjének jogosultsága jelenleg projektszintű. Új éles Hosting-site bevezetése előtt ezt a hozzáférést újra kell tervezni. Ugyanebben a projektben később létrehozható éles környezet, de az a jelen telepítésnek nem része.
@@ -309,6 +317,8 @@ cd ingatlan-cloud-test
 git pull --ff-only
 bash scripts/gcp/deploy-dev.sh
 ```
+
+Ha a Google-címkeresést használod, a fenti parancshoz is add hozzá a `--google-geocoding` kapcsolót, vagy használd a `bash scripts/gcp/run-dev.sh --deploy-only --google-geocoding` parancsot a privát naplózással együtt.
 
 Az infrastruktúra bootstrapjét akkor kell ismét futtatni, ha az előkészítés korábban félbeszakadt vagy a konfigurációját tudatosan frissítjük. A telepítők minden Google-parancsban a megadott projektet és a teszt-erőforrásokat választják ki.
 
