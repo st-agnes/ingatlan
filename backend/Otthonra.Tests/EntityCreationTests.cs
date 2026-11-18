@@ -99,9 +99,9 @@ public class EntityCreationTests
                 .Select(property => property.Name).SequenceEqual(new[] { "OwnerId", "CreationRequestId" }));
         }
         var sql = db.Database.GenerateCreateScript();
-        Assert.Contains("UNIQUE INDEX `IX_Properties_OwnerId_CreationRequestId` (`OwnerId`, `CreationRequestId`)", sql);
-        Assert.Contains("UNIQUE INDEX `IX_SearchRequests_OwnerId_CreationRequestId` (`OwnerId`, `CreationRequestId`)", sql);
-        Assert.Contains("`CreationRequestId` char(36) COLLATE ascii_general_ci NULL", sql);
+        Assert.Contains("CREATE UNIQUE INDEX `IX_Properties_OwnerId_CreationRequestId` ON `Properties` (`OwnerId`, `CreationRequestId`)", sql);
+        Assert.Contains("CREATE UNIQUE INDEX `IX_SearchRequests_OwnerId_CreationRequestId` ON `SearchRequests` (`OwnerId`, `CreationRequestId`)", sql);
+        Assert.Matches(@"`CreationRequestId` char\(36\)(?: CHARACTER SET ascii)? COLLATE ascii_general_ci NULL", sql);
     }
 
     [Fact]

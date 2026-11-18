@@ -95,7 +95,7 @@ async function setup(options={}){
  let currentHash=options.hash??(options.hosted&&!options.authenticated?'#login':'');
  const ctx=vm.createContext({
   document,console,Intl,Date,Promise,URL,URLSearchParams,IntersectionObserver:options.IntersectionObserver,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
-  location:{get hash(){return currentHash;},set hash(value){currentHash=value?(value.startsWith('#')?value:'#'+value):'';},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},addEventListener:(type,handler)=>{windowEvents[type]=handler;}},
+  location:{get hash(){return currentHash;},set hash(value){const next=value?(value.startsWith('#')?value:'#'+value):'';if(next===currentHash)return;currentHash=next;if(options.dispatchHashChanges)Promise.resolve().then(()=>windowEvents.hashchange?.());},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},addEventListener:(type,handler)=>{windowEvents[type]=handler;}},
   OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:options.environment||'test'}:{mode:'demo',environment:'local'},
   searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...accountHelpers,...feedbackHelpers,...Object.fromEntries(Object.entries(onboardingHelpers).filter(([name])=>!['loadDraft','saveDraft','clearDraft'].includes(name))),
   loadDraft:()=>onboardingHelpers.loadDraft(ctx.localStorage),saveDraft:draft=>onboardingHelpers.saveDraft(draft,ctx.localStorage),clearDraft:id=>onboardingHelpers.clearDraft(id,ctx.localStorage),
@@ -1340,4 +1340,17 @@ test('an expired session during draft saving requests login and preserves the co
  const form=t.document.getElementById('hosted-auth-form');form.values={name:'Nagy Anna',email:'anna@example.hu',password:'secret-password-123',accountType:'private'};await form.handlers.submit({preventDefault(){},currentTarget:form});
  assert.equal(t.ctx.location.hash,'#login');assert.equal(t.disconnected.length,1);assert.ok(t.document.getElementById('hosted-auth-form'));assert.match(t.document.getElementById('app').innerHTML,/munkameneted lejárt/);
  const saved=JSON.parse(t.regionStorage.get(onboardingHelpers.DRAFT_STORAGE_KEY));assert.equal(saved.phase,'saving');assert.equal(saved.creationRequestId,draft.creationRequestId);assert.deepEqual(saved.completedData,data);
+});
+
+test('reload completion waits for the committed workspace render before presenting discovery when hash navigation overlaps',async()=>{
+ const data={title:'Újratöltés után is visszaigazolt keresés',type:'Lakás',locationIds:['city:Debrecen'],maxPrice:90,minArea:40,minRooms:null};
+ const initial=onboardingHelpers.prepareDraftForAuth(onboardingHelpers.createDraft('search',data),'anna@example.hu');
+ const baseline=await createModel({getItem:()=>null,setItem:()=>{}}).getState();const draft=onboardingHelpers.prepareDraftSave(initial,baseline.user);
+ let reads=0,resolveStale,resolveCommitted,writes=0;
+ const pending=setup({hosted:true,authenticated:true,hash:'#register',dispatchHashChanges:true,regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(draft)},apiOverrides:{getState:async()=>{reads++;if(reads===2)return await new Promise(resolve=>{resolveStale=resolve;});if(reads===3)return await new Promise(resolve=>{resolveCommitted=resolve;});return baseline;},saveEntity:async()=>{writes++;return{id:'reload-confirmed',...data};}}});
+ await settle();assert.equal(reads,3,'Changing to the saved collection overlaps the awaited render with a native hash render');
+ resolveStale(baseline);const t=await pending;assert.doesNotMatch(t.document.getElementById('modal-root').innerHTML,/reload-confirmed/);
+ resolveCommitted(baseline);await settle();
+ assert.equal(writes,1);assert.equal(t.ctx.location.hash,'#searches');assert.equal(t.regionStorage.has(onboardingHelpers.DRAFT_STORAGE_KEY),false);
+ assert.match(t.document.getElementById('modal-root').innerHTML,/data-action="discover-search" data-id="reload-confirmed"/);assert.match(t.document.getElementById('app').innerHTML,/Keresési igényeim/);
 });
