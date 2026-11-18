@@ -161,11 +161,27 @@ api.MapPut("/me/active", async (ActiveInput input, AppDb db, ClaimsPrincipal pri
 api.MapGet("/properties", async (AppDb db, ClaimsPrincipal principal) => { var user = await CurrentUser(db, principal); var items = await db.Properties.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).ToListAsync(); return Results.Ok(items.Select(p => Dto.Property(p, true, user.AccountType, user.Name))); });
 api.MapPost("/properties", async (PropertyInput input, AppDb db, ClaimsPrincipal principal, PropertyGeocodingService geocoding, CancellationToken cancellationToken) =>
 {
-    var owner = await CurrentUser(db, principal);
-    var p = new Property { OwnerId = owner.Id }; Rules.Apply(p, input);
+    await using var creation = await EntityCreation.BeginAsync(db, principal.UserId(), input, cancellationToken);
+    var owner = creation.Owner;
+    if (creation.RequestId.HasValue)
+    {
+        // Archived rows retain the receipt: replaying an old browser draft must
+        // never recreate a profile its owner already archived.
+        var previous = await db.Properties.SingleOrDefaultAsync(record => record.OwnerId == owner.Id
+            && record.CreationRequestId == creation.RequestId, cancellationToken);
+        if (previous is not null)
+        {
+            EntityCreation.VerifyReplay(previous.CreationRequestHash, creation.RequestHash);
+            await creation.CommitAsync(cancellationToken);
+            return Results.Ok(Dto.Property(previous, true, owner.AccountType, owner.Name));
+        }
+    }
+    var p = new Property { OwnerId = owner.Id, CreationRequestId = creation.RequestId, CreationRequestHash = creation.RequestHash };
+    Rules.Apply(p, input);
     await geocoding.UpdateAsync(p, cancellationToken);
     await AssignNeighborhoods(db, p, cancellationToken);
     db.Properties.Add(p); await db.SaveChangesAsync(cancellationToken);
+    await creation.CommitAsync(cancellationToken);
     return Results.Created($"/api/properties/{p.Id}", Dto.Property(p, true, owner.AccountType, owner.Name));
 }).RequireRateLimiting("property-write");
 api.MapPut("/properties/{id:guid}", async (Guid id, PropertyInput input, AppDb db, ClaimsPrincipal principal, PropertyGeocodingService geocoding, CancellationToken cancellationToken) =>
@@ -190,9 +206,26 @@ api.MapDelete("/properties/{id:guid}", async (Guid id, AppDb db, ClaimsPrincipal
     p.Archived = true; await ClearArchivedActive(db, uid, id, true); await db.SaveChangesAsync(); return Results.NoContent();
 });
 api.MapGet("/searches", async (AppDb db, ClaimsPrincipal principal) => { var user = await CurrentUser(db, principal); var items = await db.SearchRequests.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).ToListAsync(); return Results.Ok(items.Select(s => Dto.Search(s, user.AccountType, user.Name))); });
-api.MapPost("/searches", async (SearchInput input, AppDb db, ClaimsPrincipal principal) =>
+api.MapPost("/searches", async (SearchInput input, AppDb db, ClaimsPrincipal principal, CancellationToken cancellationToken) =>
 {
-    var s = new SearchRequest { OwnerId = principal.UserId() }; Rules.Apply(s, input); db.SearchRequests.Add(s); await db.SaveChangesAsync(); var owner = await CurrentUser(db, principal); return Results.Created($"/api/searches/{s.Id}", Dto.Search(s, owner.AccountType, owner.Name));
+    await using var creation = await EntityCreation.BeginAsync(db, principal.UserId(), input, cancellationToken);
+    var owner = creation.Owner;
+    if (creation.RequestId.HasValue)
+    {
+        var previous = await db.SearchRequests.SingleOrDefaultAsync(record => record.OwnerId == owner.Id
+            && record.CreationRequestId == creation.RequestId, cancellationToken);
+        if (previous is not null)
+        {
+            EntityCreation.VerifyReplay(previous.CreationRequestHash, creation.RequestHash);
+            await creation.CommitAsync(cancellationToken);
+            return Results.Ok(Dto.Search(previous, owner.AccountType, owner.Name));
+        }
+    }
+    var s = new SearchRequest { OwnerId = owner.Id, CreationRequestId = creation.RequestId, CreationRequestHash = creation.RequestHash };
+    Rules.Apply(s, input);
+    db.SearchRequests.Add(s); await db.SaveChangesAsync(cancellationToken);
+    await creation.CommitAsync(cancellationToken);
+    return Results.Created($"/api/searches/{s.Id}", Dto.Search(s, owner.AccountType, owner.Name));
 });
 api.MapPut("/searches/{id:guid}", async (Guid id, SearchInput input, AppDb db, ClaimsPrincipal principal) =>
 {

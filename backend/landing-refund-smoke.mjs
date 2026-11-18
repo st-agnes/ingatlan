@@ -26,7 +26,7 @@ function noPrivateFields(value){
  if(Array.isArray(value)){value.forEach(noPrivateFields);return;}
  if(!value||typeof value!=='object')return;
  for(const [key,item] of Object.entries(value)){
-  assert.ok(!['ownerId','userId','name','email','phone','contact','address','description','passwordHash','images','image','imageUrl','propertyId','searchRequestId','searchId'].includes(key),`Public teaser leaked ${key}`);
+  assert.ok(!['ownerId','userId','name','email','phone','contact','address','description','passwordHash','images','image','imageUrl','propertyId','searchRequestId','searchId','creationRequestId','creationRequestHash'].includes(key),`Public teaser leaked ${key}`);
   noPrivateFields(item);
  }
 }

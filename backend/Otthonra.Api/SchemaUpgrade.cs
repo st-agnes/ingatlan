@@ -23,6 +23,7 @@ public static class SchemaUpgrade
     public const string ContinuousFeedbackVersion = "20261111-continuous-seller-feedback";
     public const string NeighborhoodsVersion = "20261116-neighborhood-address-search";
     public const string StreetsVersion = "20261118-postal-street-search";
+    public const string EntityCreationVersion = "20261118-idempotent-entity-creation";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
@@ -65,7 +66,11 @@ public static class SchemaUpgrade
         ("Properties", "GeocodingQuality", "varchar(40) NOT NULL DEFAULT ''"),
         ("Properties", "GeocodingAddressKey", "varchar(64) NOT NULL DEFAULT ''"),
         ("Properties", "NeighborhoodIdsJson", "longtext NULL"),
-        ("Properties", "StreetId", "varchar(64) CHARACTER SET ascii COLLATE ascii_bin NULL")
+        ("Properties", "StreetId", "varchar(64) CHARACTER SET ascii COLLATE ascii_bin NULL"),
+        ("Properties", "CreationRequestId", "char(36) COLLATE ascii_general_ci NULL"),
+        ("Properties", "CreationRequestHash", "varchar(64) CHARACTER SET ascii COLLATE ascii_bin NULL"),
+        ("SearchRequests", "CreationRequestId", "char(36) COLLATE ascii_general_ci NULL"),
+        ("SearchRequests", "CreationRequestHash", "varchar(64) CHARACTER SET ascii COLLATE ascii_bin NULL")
     ];
 
     public static async Task ApplyAsync(AppDb db, CancellationToken cancellationToken = default)
@@ -200,6 +205,12 @@ public static class SchemaUpgrade
                 "CREATE INDEX `IX_Properties_Archived_Type_StreetId` ON `Properties` (`Archived`, `Type`, `StreetId`)", cancellationToken);
             await EnsureIndex(connection, "SearchRequests", "IX_SearchRequests_Archived_Type_City",
                 "CREATE INDEX `IX_SearchRequests_Archived_Type_City` ON `SearchRequests` (`Archived`, `Type`, `City`)", cancellationToken);
+            // Existing rows keep NULL keys, so multiple legacy profiles per
+            // owner remain valid under MySQL's nullable unique-key semantics.
+            await EnsureIndex(connection, "Properties", "IX_Properties_OwnerId_CreationRequestId",
+                "CREATE UNIQUE INDEX `IX_Properties_OwnerId_CreationRequestId` ON `Properties` (`OwnerId`, `CreationRequestId`)", cancellationToken);
+            await EnsureIndex(connection, "SearchRequests", "IX_SearchRequests_OwnerId_CreationRequestId",
+                "CREATE UNIQUE INDEX `IX_SearchRequests_OwnerId_CreationRequestId` ON `SearchRequests` (`OwnerId`, `CreationRequestId`)", cancellationToken);
             await EnsureIndex(connection, "Decisions", "IX_Decisions_SearchRequestId_ActorKind_PropertyId",
                 "CREATE INDEX `IX_Decisions_SearchRequestId_ActorKind_PropertyId` ON `Decisions` (`SearchRequestId`, `ActorKind`, `PropertyId`)", cancellationToken);
             const string refundForeignKey = "FK_CreditEntries_Decisions_RefundedDecisionId";
@@ -218,6 +229,7 @@ public static class SchemaUpgrade
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", SellerFeedbackVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", NeighborhoodsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", StreetsVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", EntityCreationVersion));
             if (Convert.ToInt32(await Scalar(connection,
                     "SELECT COUNT(*) FROM `__OtthonraSchemaVersions` WHERE `Version` = @version",
                     cancellationToken, ("version", ContinuousFeedbackVersion))) == 0)

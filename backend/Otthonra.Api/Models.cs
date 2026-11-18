@@ -23,6 +23,8 @@ public sealed class Property
 {
     public Guid Id { get; set; } = Guid.NewGuid();
     public Guid OwnerId { get; set; }
+    public Guid? CreationRequestId { get; set; }
+    public string? CreationRequestHash { get; set; }
     public string Title { get; set; } = "";
     public string City { get; set; } = "";
     public string District { get; set; } = "";
@@ -73,6 +75,8 @@ public sealed class SearchRequest
 {
     public Guid Id { get; set; } = Guid.NewGuid();
     public Guid OwnerId { get; set; }
+    public Guid? CreationRequestId { get; set; }
+    public string? CreationRequestHash { get; set; }
     public string Title { get; set; } = "";
     public string City { get; set; } = "";
     public string DistrictsJson { get; set; } = "[]";
@@ -215,11 +219,13 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<UserNotification>().HasIndex(x => new { x.UserId, x.CreatedAt });
         b.Entity<Decision>().HasIndex(x => new { x.Liked, x.RefundedAt, x.CreatedAt });
         b.Entity<Property>().HasIndex(x => new { x.OwnerId, x.Archived });
+        b.Entity<Property>().HasIndex(x => new { x.OwnerId, x.CreationRequestId }).IsUnique();
         b.Entity<Property>().HasIndex(x => new { x.Archived, x.Type, x.LocationId });
         b.Entity<Property>().HasIndex(x => new { x.Archived, x.Type, x.City });
         b.Entity<Property>().HasIndex(x => new { x.Archived, x.Type, x.StreetId });
         b.Entity<Decision>().HasIndex(x => new { x.SearchRequestId, x.ActorKind, x.PropertyId });
         b.Entity<SearchRequest>().HasIndex(x => new { x.OwnerId, x.Archived });
+        b.Entity<SearchRequest>().HasIndex(x => new { x.OwnerId, x.CreationRequestId }).IsUnique();
         b.Entity<SearchRequest>().HasIndex(x => new { x.Archived, x.Type, x.City });
         b.Entity<Message>().HasIndex(x => new { x.MatchId, x.CreatedAt });
         b.Entity<CreditEntry>().HasIndex(x => new { x.UserId, x.CreatedAt });
@@ -245,6 +251,8 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<PropertyNeighborhood>().HasOne<Property>().WithMany().HasForeignKey(x => x.PropertyId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<PropertyNeighborhood>().Property(x => x.NeighborhoodId).HasMaxLength(64).UseCollation("ascii_bin").HasCharSet("ascii");
         b.Entity<Property>().Property(x => x.StreetId).HasMaxLength(64).UseCollation("ascii_bin").HasCharSet("ascii");
+        b.Entity<Property>().Property(x => x.CreationRequestHash).HasMaxLength(64).UseCollation("ascii_bin").HasCharSet("ascii");
+        b.Entity<SearchRequest>().Property(x => x.CreationRequestHash).HasMaxLength(64).UseCollation("ascii_bin").HasCharSet("ascii");
         b.Entity<Decision>().HasOne<Property>().WithMany().HasForeignKey(x => x.PropertyId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<Decision>().HasOne<SearchRequest>().WithMany().HasForeignKey(x => x.SearchRequestId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<Decision>().HasOne<User>().WithMany().HasForeignKey(x => x.ActorUserId).OnDelete(DeleteBehavior.Restrict);
@@ -301,5 +309,5 @@ public record DecisionInput(Guid PropertyId, Guid SearchRequestId, bool Liked, b
 public record ReportInput(string EntityKind, Guid EntityId, string? Reason = null);
 public record MessageInput(string Text);
 public record TopupInput(int Amount);
-public record PropertyInput(string Title, string City, string? District, string? Neighborhood, string? Address, string? Description, string Type, decimal Price, decimal Area, decimal Rooms, int? Floor, string? Condition, string? Building, bool Balcony, bool Elevator, string[]? Images, bool Archived = false, string? LocationId = null, decimal? LotArea = null, string? ConstructionAge = null, string? View = null, string? CeilingHeight = null, string? HeatingType = null, bool? Insulated = null, string? EnergyRating = null, bool? AirConditioning = null, bool? SolarPanels = null, string? ParkingType = null, int? WholeRooms = null, int? HalfRooms = null, string? SecondaryHeatingType = null, string[]? ParkingTypes = null, string? Street = null, string? HouseNumber = null, string? PostalCode = null, string? StreetId = null);
-public record SearchInput(string Title, string City, string[]? Districts, string? Description, string Type, decimal? MinPrice, decimal? MaxPrice, decimal? MinArea, decimal? MaxArea, decimal? MinRooms, decimal? MaxRooms, bool Balcony, bool Elevator, string? MoveIn, string? Financing, bool Archived = false, string[]? LocationIds = null, string[]? Conditions = null, string[]? Buildings = null, string[]? ConstructionAges = null, string[]? Views = null, string? CeilingHeight = null, int[]? Floors = null, string[]? HeatingTypes = null);
+public record PropertyInput(string Title, string City, string? District, string? Neighborhood, string? Address, string? Description, string Type, decimal Price, decimal Area, decimal Rooms, int? Floor, string? Condition, string? Building, bool Balcony, bool Elevator, string[]? Images, bool Archived = false, string? LocationId = null, decimal? LotArea = null, string? ConstructionAge = null, string? View = null, string? CeilingHeight = null, string? HeatingType = null, bool? Insulated = null, string? EnergyRating = null, bool? AirConditioning = null, bool? SolarPanels = null, string? ParkingType = null, int? WholeRooms = null, int? HalfRooms = null, string? SecondaryHeatingType = null, string[]? ParkingTypes = null, string? Street = null, string? HouseNumber = null, string? PostalCode = null, string? StreetId = null, Guid? CreationRequestId = null);
+public record SearchInput(string Title, string City, string[]? Districts, string? Description, string Type, decimal? MinPrice, decimal? MaxPrice, decimal? MinArea, decimal? MaxArea, decimal? MinRooms, decimal? MaxRooms, bool Balcony, bool Elevator, string? MoveIn, string? Financing, bool Archived = false, string[]? LocationIds = null, string[]? Conditions = null, string[]? Buildings = null, string[]? ConstructionAges = null, string[]? Views = null, string? CeilingHeight = null, int[]? Floors = null, string[]? HeatingTypes = null, Guid? CreationRequestId = null);

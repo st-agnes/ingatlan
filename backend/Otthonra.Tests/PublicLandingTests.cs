@@ -110,6 +110,14 @@ public class PublicLandingTests
         var property = PropertyAt("district:Budapest:5");
         property.Title = secret; property.Description = secret; property.Neighborhood = secret; property.Address = secret;
         property.City = secret; property.District = secret; property.ImagesJson = JsonSerializer.Serialize(new[] { "https://tracker.example.test/" + secret });
+        property.Street = secret; property.StreetId = secret; property.HouseNumber = secret; property.PostalCode = secret;
+        property.Latitude = 47.5123456789; property.Longitude = 19.123456789;
+        property.GeocodingProvider = secret; property.GeocodingPlaceId = secret; property.GeocodingQuality = secret;
+        property.Condition = secret; property.Building = secret; property.ConstructionAge = secret; property.View = secret;
+        property.CeilingHeight = secret; property.HeatingType = secret; property.SecondaryHeatingType = secret;
+        property.ParkingType = secret; property.EnergyRating = secret; property.NeighborhoodIdsJson = JsonSerializer.Serialize(new[] { secret });
+        search.ConditionsJson = JsonSerializer.Serialize(new[] { secret }); search.CeilingHeight = secret;
+        search.BuildingsJson = search.ConstructionAgesJson = search.ViewsJson = search.HeatingTypesJson = search.ConditionsJson;
         property.WholeRooms = 2; property.HalfRooms = 1; property.Type = secret;
         var snapshot = new PublicLandingSnapshot(); snapshot.Add(search, secret, secret); snapshot.Add(property, AccountTypes.Agent, secret);
         var response = snapshot.Response(null);
@@ -120,10 +128,15 @@ public class PublicLandingTests
         using var document = JsonDocument.Parse(json);
         var s = document.RootElement.GetProperty("searches")[0];
         var p = document.RootElement.GetProperty("properties")[0];
-        Assert.Equal(new[] { "key", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "ownerAccountType", "ownerFirstName", "title", "type" },
+        Assert.Equal(new[] { "key", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "ownerAccountType", "ownerFirstName", "prefill", "title", "type" },
             s.EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
-        Assert.Equal(new[] { "area", "halfRooms", "key", "location", "lotArea", "ownerAccountType", "ownerFirstName", "price", "rooms", "title", "type", "wholeRooms" },
+        Assert.Equal(new[] { "area", "halfRooms", "key", "location", "lotArea", "ownerAccountType", "ownerFirstName", "prefill", "price", "rooms", "title", "type", "wholeRooms" },
             p.EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
+        Assert.Equal(new[] { "balcony", "buildings", "ceilingHeight", "conditions", "constructionAges", "elevator", "floors", "heatingTypes", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "type", "views" },
+            s.GetProperty("prefill").EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
+        Assert.Equal(new[] { "area", "balcony", "building", "ceilingHeight", "condition", "constructionAge", "elevator", "floor", "halfRooms", "heatingType", "locations", "lotArea", "price", "rooms", "type", "view", "wholeRooms" },
+            p.GetProperty("prefill").EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
+        Assert.DoesNotContain("47.5123456789", json); Assert.DoesNotContain("19.123456789", json);
         Assert.Equal("Ingatlant keres", response.Searches[0].Title);
         Assert.Equal("Ingatlan", response.Properties[0].Type);
         Assert.Null(response.Searches[0].MinPrice);
@@ -131,6 +144,138 @@ public class PublicLandingTests
         Assert.Equal("Budapest V. kerület", response.Properties[0].Location);
         Assert.Equal("private", response.Searches[0].OwnerAccountType);
         Assert.Equal("agent", response.Properties[0].OwnerAccountType);
+    }
+
+    [Fact]
+    public void PropertyPrefillChoosesTheFinestContainedQuarterWithoutPublishingTheAddress()
+    {
+        const string lipotvaros = "neighborhood:283b08a5b681d499c78f7c1c";
+        const string fifthWard = "neighborhood:9e4274e641b49a6b7af84729";
+        const string pest = "neighborhood:3c4a84155a32b95a18f2e0da";
+        var property = PropertyAt("district:Budapest:5");
+        property.NeighborhoodIdsJson = JsonSerializer.Serialize(new[] { pest, fifthWard, lipotvaros });
+        property.Neighborhood = "Untrusted source text";
+        property.StreetId = "street:aae22ff8e2d0fa698c0291dc";
+        var teaser = PublicLanding.PropertyTeaser(property, AccountTypes.Private)!.Value.Teaser;
+        var seed = Assert.IsType<LandingPropertyPrefill>(teaser.Prefill);
+        Assert.Equal("Budapest V. kerület", teaser.Location);
+        Assert.Equal(lipotvaros, Assert.Single(seed.Locations).Id);
+        Assert.Equal("Lipótváros (Budapest)", seed.Locations[0].Label);
+        Assert.Equal("neighborhood", seed.Locations[0].Kind);
+        var json = JsonSerializer.Serialize(seed);
+        Assert.DoesNotContain(property.Neighborhood, json); Assert.DoesNotContain(property.StreetId, json);
+
+        // A broad ward/city-side polygon alone is not a fine quarter.
+        property.NeighborhoodIdsJson = JsonSerializer.Serialize(new[] { pest, fifthWard });
+        Assert.Equal(property.LocationId, Assert.Single(PublicLanding.PropertyTeaser(property, AccountTypes.Private)!.Value.Teaser.Prefill!.Locations).Id);
+    }
+
+    [Fact]
+    public void PropertyPrefillFallsBackToItsTownAndIgnoresUnknownOrForeignNeighborhoods()
+    {
+        var property = PropertyAt("city:Csopak");
+        property.Neighborhood = "Lipótváros";
+        property.NeighborhoodIdsJson = "[\"neighborhood:283b08a5b681d499c78f7c1c\",\"neighborhood:unknown\"]";
+        Assert.Equal("city:Csopak", Assert.Single(PublicLanding.PropertyTeaser(property, AccountTypes.Private)!.Value.Teaser.Prefill!.Locations).Id);
+        property.NeighborhoodIdsJson = "{broken";
+        Assert.Equal("city:Csopak", Assert.Single(PublicLanding.PropertyTeaser(property, AccountTypes.Private)!.Value.Teaser.Prefill!.Locations).Id);
+        property.NeighborhoodIdsJson = "[]";
+        Assert.Equal("city:Csopak", Assert.Single(PublicLanding.PropertyTeaser(property, AccountTypes.Private)!.Value.Teaser.Prefill!.Locations).Id);
+    }
+
+    [Fact]
+    public void SearchPrefillKeepsEveryCanonicalChoiceAndOnlyWhitelistedOptionalAttributes()
+    {
+        string[] ids = ["area:Budapest", "district:Budapest:5", "city:Debrecen",
+            "neighborhood:e8c749e1fc0a306c717ad312", "street:aae22ff8e2d0fa698c0291dc"];
+        var search = SearchAt(ids);
+        search.MinPrice = null; search.MaxArea = null; search.MaxRooms = null;
+        search.ConditionsJson = "[\"Jó állapotú\",\"private@example.test\",\"Jó\"]";
+        search.BuildingsJson = "[\"Panel\",\"private@example.test\"]";
+        search.ConstructionAgesJson = "[\"10–30 év közötti\"]";
+        search.ViewsJson = "[\"Udvari\"]"; search.CeilingHeight = "3 m feletti";
+        search.FloorsJson = "[-1,0,11,200,0,\"private@example.test\"]";
+        search.HeatingTypesJson = "[\"Gázcirkó\",\"private@example.test\"]";
+        search.Balcony = true; search.Elevator = false;
+        var seed = PublicLanding.SearchTeaser(search, AccountTypes.Private)!.Value.Teaser.Prefill!;
+        Assert.Equal(ids, seed.Locations.Select(location => location.Id));
+        Assert.Equal(new[] { "area", "district", "city", "neighborhood", "street" }, seed.Locations.Select(location => location.Kind));
+        Assert.Null(seed.MinPrice); Assert.Null(seed.MaxArea); Assert.Null(seed.MaxRooms);
+        Assert.Equal(search.MaxPrice, seed.MaxPrice); Assert.Equal(search.MinArea, seed.MinArea);
+        Assert.Equal(new[] { "Jó" }, seed.Conditions); Assert.Equal(new[] { "Panel" }, seed.Buildings);
+        Assert.Equal(new[] { "10–30 év közötti" }, seed.ConstructionAges); Assert.Equal(new[] { "Udvari" }, seed.Views);
+        Assert.Equal(new[] { -1, 0, 11 }, seed.Floors); Assert.Equal(new[] { "Gázcirkó" }, seed.HeatingTypes);
+        Assert.True(seed.Balcony); Assert.False(seed.Elevator);
+        Assert.DoesNotContain("private@example.test", JsonSerializer.Serialize(seed));
+    }
+
+    [Fact]
+    public void PropertyPrefillUsesCanonicalAttributesAndHousesClearIrrelevantAmenities()
+    {
+        var property = PropertyAt("city:Debrecen");
+        property.Condition = "Felújított"; property.Building = "panel"; property.ConstructionAge = "10–30 év közötti";
+        property.View = "Udvari"; property.CeilingHeight = "3 m alatti"; property.HeatingType = "gázcirkó";
+        property.Floor = 0; property.Balcony = false; property.Elevator = true;
+        property.WholeRooms = 2; property.HalfRooms = 1;
+        var seed = PublicLanding.PropertyTeaser(property, AccountTypes.Private)!.Value.Teaser.Prefill!;
+        Assert.Equal("Új/felújított", seed.Condition); Assert.Equal("Panel", seed.Building); Assert.Equal("Gázcirkó", seed.HeatingType);
+        Assert.Equal(property.Price, seed.Price); Assert.Equal(property.Area, seed.Area); Assert.Equal(property.Rooms, seed.Rooms);
+        Assert.Equal(2, seed.WholeRooms); Assert.Equal(1, seed.HalfRooms); Assert.Equal(0, seed.Floor);
+        Assert.False(seed.Balcony); Assert.True(seed.Elevator);
+        property.Type = "Ház"; property.LotArea = 700m; property.Balcony = true;
+        seed = PublicLanding.PropertyTeaser(property, AccountTypes.Private)!.Value.Teaser.Prefill!;
+        Assert.Equal(700m, seed.LotArea); Assert.Null(seed.Floor); Assert.False(seed.Balcony); Assert.False(seed.Elevator);
+        var search = SearchAt("city:Debrecen"); search.Type = "Ház"; search.FloorsJson = "[0,1]"; search.Balcony = search.Elevator = true;
+        var searchSeed = PublicLanding.SearchTeaser(search, AccountTypes.Private)!.Value.Teaser.Prefill!;
+        Assert.Empty(searchSeed.Floors); Assert.False(searchSeed.Balcony); Assert.False(searchSeed.Elevator);
+    }
+
+    [Fact]
+    public void PrefillNestedListsStayBoundedAndMalformedOptionalDataDoesNotBreakTheLanding()
+    {
+        var ids = LocationCatalog.All.Where(location => location.Kind == "city").Take(50).Select(location => location.Id).ToArray();
+        var search = SearchAt(ids);
+        search.ConditionsJson = JsonSerializer.Serialize(Enumerable.Repeat("Jó", 200));
+        search.BuildingsJson = "{broken"; search.ConstructionAgesJson = "null"; search.ViewsJson = "42";
+        search.HeatingTypesJson = JsonSerializer.Serialize(new[] { new string('x', 9000) });
+        search.FloorsJson = JsonSerializer.Serialize(Enumerable.Range(-100, 300));
+        var seed = PublicLanding.SearchTeaser(search, AccountTypes.Private)!.Value.Teaser.Prefill!;
+        Assert.Equal(50, seed.Locations.Length); Assert.Single(seed.Conditions);
+        Assert.Empty(seed.Buildings); Assert.Empty(seed.ConstructionAges); Assert.Empty(seed.Views); Assert.Empty(seed.HeatingTypes);
+        Assert.InRange(seed.Floors.Length, 0, 13);
+        search.LocationIdsJson = JsonSerializer.Serialize(ids.Append("district:Budapest:5"));
+        Assert.Null(PublicLanding.SearchTeaser(search, AccountTypes.Private));
+    }
+
+    [Fact]
+    public void CachedPrefillsCloneEveryMutableNestedArrayIncludingStreetPostcodes()
+    {
+        const string streetId = "street:aae22ff8e2d0fa698c0291dc";
+        var snapshot = new PublicLandingSnapshot(new Random(12));
+        var search = SearchAt("city:Debrecen", streetId);
+        search.ConditionsJson = "[\"Jó\"]"; search.BuildingsJson = "[\"Tégla\"]";
+        search.ConstructionAgesJson = "[\"10–30 év közötti\"]"; search.ViewsJson = "[\"Udvari\"]";
+        search.HeatingTypesJson = "[\"Gázcirkó\"]"; search.FloorsJson = "[0]";
+        snapshot.Add(search, AccountTypes.Private); snapshot.Add(PropertyAt("city:Debrecen"), AccountTypes.Private);
+        var original = snapshot.Response(null);
+        var seed = Assert.Single(original.Searches).Prefill!;
+        var postcodes = seed.Locations[1].PostalCodes!.ToArray();
+        seed.Locations[1].PostalCodes![0] = "corrupted";
+        seed.Locations[0] = LocationCatalog.Get("city:Budapest")!;
+        seed.Conditions[0] = seed.Buildings[0] = seed.ConstructionAges[0] = seed.Views[0] = seed.HeatingTypes[0] = "corrupted";
+        seed.Floors[0] = 200;
+        Assert.Single(original.Properties).Prefill!.Locations[0] = LocationCatalog.Get("city:Budapest")!;
+        Parallel.For(0, 24, _ => {
+            var response = snapshot.Response(null);
+            var fresh = Assert.Single(response.Searches).Prefill!;
+            Assert.Equal("city:Debrecen", fresh.Locations[0].Id); Assert.Equal(streetId, fresh.Locations[1].Id);
+            Assert.Equal(postcodes, fresh.Locations[1].PostalCodes);
+            Assert.Equal(new[] { "Jó" }, fresh.Conditions); Assert.Equal(new[] { "Tégla" }, fresh.Buildings);
+            Assert.Equal(new[] { "10–30 év közötti" }, fresh.ConstructionAges); Assert.Equal(new[] { "Udvari" }, fresh.Views);
+            Assert.Equal(new[] { "Gázcirkó" }, fresh.HeatingTypes); Assert.Equal(new[] { 0 }, fresh.Floors);
+            Assert.Equal("city:Debrecen", Assert.Single(Assert.Single(response.Properties).Prefill!.Locations).Id);
+        });
+        Assert.Equal(postcodes, LocationCatalog.Get(streetId)!.PostalCodes);
     }
 
     [Fact]
