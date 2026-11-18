@@ -2,6 +2,11 @@ name: Deploy Google Cloud test
 
 on:
   workflow_dispatch:
+    inputs:
+      use_google_geocoding:
+        description: 'A meglévő otthonra-geocoding-dev Google-titok hozzáadása ehhez a deployhoz'
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -97,4 +102,9 @@ jobs:
         with:
           project_id: ${{ needs.validate.outputs.project_id }}
       - name: Build and deploy the test API and frontend
-        run: bash scripts/gcp/deploy-dev.sh --config .local/gcp/dev-config.json
+        env:
+          USE_GOOGLE_GEOCODING: ${{ inputs.use_google_geocoding }}
+        run: |
+          deploy_args=(--config .local/gcp/dev-config.json)
+          if [[ "$USE_GOOGLE_GEOCODING" == 'true' ]]; then deploy_args+=(--google-geocoding); fi
+          bash scripts/gcp/deploy-dev.sh "${deploy_args[@]}"

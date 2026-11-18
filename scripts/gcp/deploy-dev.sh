@@ -8,11 +8,13 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$repo_root"
 config_path='.local/gcp/dev-config.json'
 image_digest=''
+google_geocoding=false
 while (($#)); do
   case "$1" in
     --config) config_path="${2:?Missing config path}"; shift 2 ;;
     --image) image_digest="${2:?Missing image digest}"; shift 2 ;;
-    *) echo 'Usage: bash scripts/gcp/deploy-dev.sh [--config FILE] [--image REGISTRY_IMAGE@sha256:DIGEST]' >&2; exit 2 ;;
+    --google-geocoding) google_geocoding=true; shift ;;
+    *) echo 'Usage: bash scripts/gcp/deploy-dev.sh [--config FILE] [--image REGISTRY_IMAGE@sha256:DIGEST] [--google-geocoding]' >&2; exit 2 ;;
   esac
 done
 for tool in node gcloud; do command -v "$tool" >/dev/null || { echo "$tool is required." >&2; exit 1; }; done
@@ -21,11 +23,16 @@ node -e 'if (Number(process.versions.node.split(".")[0]) < 22) { console.error("
 mkdir -p .local/gcp
 deployment_tmp="$(mktemp -d "$repo_root/.local/gcp/deployment.XXXXXX")"
 trap 'rm -rf "$deployment_tmp"' EXIT
-node --input-type=module - "$config_path" "$deployment_tmp/config.json" <<'NODE'
+node --input-type=module - "$config_path" "$deployment_tmp/config.json" "$google_geocoding" <<'NODE'
 import {writeFile} from 'node:fs/promises';
-import {readDevConfig} from './scripts/gcp/prepare-site.mjs';
-const config = await readDevConfig(process.argv[2]);
+import {readDevConfig, validateDevConfig} from './scripts/gcp/prepare-site.mjs';
+const original = await readDevConfig(process.argv[2]);
+// Only the resource name is added. The key is resolved by Cloud Run using the
+// runtime identity, without reading it here or rewriting the stored manifest.
+const config = validateDevConfig(process.argv[4] === 'true'
+  ? {...original, googleGeocodingSecret: 'otthonra-geocoding-dev'} : original);
 await writeFile(process.argv[3], JSON.stringify(config), {mode: 0o600});
+if (config.googleGeocodingSecret) console.log('Google Geocoding: a szerver az otthonra-geocoding-dev titkot fogja használni.');
 NODE
 mapfile -t config_values < <(node --input-type=module - "$deployment_tmp/config.json" <<'NODE'
 import {readDevConfig} from './scripts/gcp/prepare-site.mjs';
