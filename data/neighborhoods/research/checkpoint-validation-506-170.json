@@ -1,0 +1,898 @@
+{
+  "schemaVersion": 7,
+  "checkedAt": "2026-11-14",
+  "status": "partial_nationwide_checkpoint",
+  "completeNationalCoverage": false,
+  "primaryFeatures": 506,
+  "primaryMunicipalities": 48,
+  "planningFeatures": 31,
+  "inferredFeatures": 170,
+  "inferredMunicipalities": 14,
+  "previousCheckpointPath": "data/neighborhoods/research/checkpoint-validation-506-147.json",
+  "fullSuiteReferencePath": "data/neighborhoods/research/checkpoint-validation-506-137.json",
+  "referenceChecksums": {
+    "checkpoint-validation-506-147.json": "fd98976c6633911fc176467a5c36a09a8edd4a43fbde425123baeed99c6baaea",
+    "checkpoint-validation-506-137.json": "c3304f85bfec8d984ee0bbe2b0026c9a409f98fa558f335ffe06a75aea107dc9"
+  },
+  "primaryValidation": {
+    "previousFullNodeTestsPassed": 67,
+    "previousFullPythonTestsPassed": 10,
+    "freshFullSuiteRunAtThisExactInferredCount": false,
+    "unchangedPrimaryCatalogExportPlanningAndNationwideFingerprints": true,
+    "meaning": "Fresh secondary regressions, secondary export --check, primary build --check and actual generated-preview VM checks passed at 170. The full 67 Node / 10 Python suite is a referenced prior result at 506/137, not a fresh full-suite run at 170. All four primary/catalog/planning/nationwide fingerprints exactly match the immutable 506/147 checkpoint."
+  },
+  "updatedChecks": [
+    {
+      "label": "secondary-regression",
+      "cmd": "node tests/neighborhoods-secondary.test.mjs",
+      "exit_code": 0,
+      "output": "✔ an inferred source remains a separate, explicitly unverified geometry without coordinate changes (7.899226ms)\n✔ unknown towns and open source rings stay quarantined even in the inferred layer (0.331411ms)\n✔ estimated city statistics count features rather than components and retain source-level distinctions (59.334784ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 94.167044\n"
+    },
+    {
+      "label": "secondary-170-check",
+      "cmd": "node scripts/neighborhoods/export-secondary.mjs --check",
+      "exit_code": 0,
+      "output": "31 planning units and 170 inferred candidates in separate layers; primary neighbourhood export unchanged.\n"
+    },
+    {
+      "label": "primary-170-check",
+      "cmd": "node scripts/neighborhoods/build.mjs --check",
+      "exit_code": 0,
+      "output": "Verified 572 unreviewed polygons; 5331 excluded records. No boundary is enabled for address assignment.\n"
+    },
+    {
+      "label": "preview-170-vm",
+      "cmd": "node .local/neighborhoods/check-preview.mjs",
+      "exit_code": 0,
+      "output": "{\"status\":\"passed_generated_behavior_checks\",\"inferredFeatures\":170,\"inferredMunicipalities\":14,\"sourceCoverageUnchanged\":true,\"realBrowserLayoutVerified\":false}\n"
+    }
+  ],
+  "freshSecondaryRegressionTestCount": 3,
+  "freshChecksPassed": true,
+  "generatedPreviewBehavior": {
+    "status": "passed_actual_generated_script_behavior",
+    "inferredFeatures": 170,
+    "inferredMunicipalities": 14,
+    "sourceCoverageUnchangedByLayerToggle": true,
+    "realBrowserLayoutVerified": false,
+    "embeddedEstimatedFeaturesExactlyEqualCurrentExport": true,
+    "embeddedPrimaryFeaturesEqualAfterRemovingIntentionalPreviewNameEvidence": true
+  },
+  "layerCounts": {
+    "catalog": {
+      "features": 572,
+      "municipalities": 50,
+      "boundaryKinds": {
+        "district": 23,
+        "local_area": 3,
+        "neighbourhood": 515,
+        "planning_unit": 31
+      },
+      "addressAssignmentEnabled": 0
+    },
+    "neighborhoods": {
+      "features": 506,
+      "municipalities": 48,
+      "boundaryKinds": {
+        "neighbourhood": 506
+      },
+      "addressAssignmentEnabled": 0
+    },
+    "planning-units": {
+      "features": 31,
+      "municipalities": 6,
+      "boundaryKinds": {
+        "planning_unit": 31
+      },
+      "addressAssignmentEnabled": 0
+    },
+    "estimated-candidates": {
+      "features": 170,
+      "municipalities": 14,
+      "boundaryKinds": {
+        "inferred_area": 170
+      },
+      "addressAssignmentEnabled": 0
+    }
+  },
+  "layerSeparation": {
+    "primarySourceBasedExport": "506 accepted city/name source boundaries across 48 municipalities; source-based does not mean official or address-approved",
+    "planning": "31 broader planning units remain separate from fine-quarter coverage",
+    "estimated": "170 estimated geometry features across 14 municipalities; not 170 verified quarters and no primary coverage credit",
+    "estimatedCandidateKinds": {
+      "local_area": 9,
+      "neighbourhood": 145,
+      "planning_unit": 16
+    },
+    "allAddressAssignmentSuitabilityFalse": true
+  },
+  "primaryFingerprintComparison": {
+    "catalog.geojson": {
+      "prior": "9c34e39523391ba52ab49877f9a055289a82fa88b5f75c1187c09716e3cc6406",
+      "current": "9c34e39523391ba52ab49877f9a055289a82fa88b5f75c1187c09716e3cc6406",
+      "unchanged": true
+    },
+    "neighborhoods.geojson": {
+      "prior": "8eca9d097fb6714c31ca942f57ff0d8f683f8f4fe13af0161b12da19b20e8f74",
+      "current": "8eca9d097fb6714c31ca942f57ff0d8f683f8f4fe13af0161b12da19b20e8f74",
+      "unchanged": true
+    },
+    "planning-units.geojson": {
+      "prior": "210d68a378ab01d26383825c2beb8896655e43b0e40d39f2add541ac7f090ce5",
+      "current": "210d68a378ab01d26383825c2beb8896655e43b0e40d39f2add541ac7f090ce5",
+      "unchanged": true
+    },
+    "nationwide-report.csv": {
+      "prior": "b3eb4cf9f35d40c70944bc394d9a03b148a45f9d01e46e37c686e0e1a197c4a7",
+      "current": "b3eb4cf9f35d40c70944bc394d9a03b148a45f9d01e46e37c686e0e1a197c4a7",
+      "unchanged": true
+    }
+  },
+  "registeredSourcePinAudit": {
+    "count": 50,
+    "registryDatasetCounts": {
+      "manual-source-registry.json": 20,
+      "inferred-candidate-registry.json": 30
+    },
+    "registryFingerprints": {
+      "manual-source-registry.json": "38ad4d5883c6887a4a157c0867f7937ab3ad9d69ff08931277e71749f962fdd2",
+      "inferred-candidate-registry.json": "1bc26dae3cbe7e6316b75f56e704921bd5f3e57dcfb5a90814eb05471cb14fae"
+    },
+    "allMatch": true,
+    "records": [
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "budapest-molnar",
+        "path": "data/neighborhoods/manual/budapest-molnar.geojson",
+        "expectedSha256": "4199cc1ed7941cc3b5d4adffced5b679f85fd9ac7fcab95885167ff3b09f2526",
+        "actualSha256": "4199cc1ed7941cc3b5d4adffced5b679f85fd9ac7fcab95885167ff3b09f2526",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "szombathely-belvaros",
+        "path": "data/neighborhoods/sources/municipal-west/szombathely-manual.geojson",
+        "expectedSha256": "5f41bd11a9fbffc8e8114041066ccd24bcf818fe5f0100a0781588e2a37ae9ed",
+        "actualSha256": "5f41bd11a9fbffc8e8114041066ccd24bcf818fe5f0100a0781588e2a37ae9ed",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "tata-statutory-planning-units",
+        "path": "data/neighborhoods/sources/municipal-west/tata-manual.geojson",
+        "expectedSha256": "418ff0d46494f318bef71c095c565d74da6713dfc2b369e2ec8c482f10b21c1b",
+        "actualSha256": "418ff0d46494f318bef71c095c565d74da6713dfc2b369e2ec8c482f10b21c1b",
+        "matches": true,
+        "features": 9
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "tatabanya-statutory-planning-units",
+        "path": "data/neighborhoods/sources/municipal-west/tatabanya-manual.geojson",
+        "expectedSha256": "fd527b72165d5a50178f3eedfc0cb0498ee9c087bd7aa1727e1a4794a8c9100e",
+        "actualSha256": "fd527b72165d5a50178f3eedfc0cb0498ee9c087bd7aa1727e1a4794a8c9100e",
+        "matches": true,
+        "features": 4
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "eger-historical-planning-units",
+        "path": "data/neighborhoods/sources/municipal-eger-semantic-next/proposed-semantic-revision.geojson",
+        "expectedSha256": "3f0f6f7e2e0efb6e3328e6d715c8d2f083553131483be80ec395e075b97b4b7e",
+        "actualSha256": "3f0f6f7e2e0efb6e3328e6d715c8d2f083553131483be80ec395e075b97b4b7e",
+        "matches": true,
+        "features": 32
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "szombathely-ehen-gyula",
+        "path": "data/neighborhoods/sources/municipal-szombathely-next/szombathely-ehen-gyula.geojson",
+        "expectedSha256": "60a0a7a20b48a421dd695b7a798a0ca474f325cea7d9430bd57210e208768ea8",
+        "actualSha256": "60a0a7a20b48a421dd695b7a798a0ca474f325cea7d9430bd57210e208768ea8",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "country-parent-review",
+        "path": "data/neighborhoods/sources/country-parent-review/named-crossing-quarters.geojson",
+        "expectedSha256": "4f6404e725f62e36d96bc71fa9428e74947a16ea033f4de65acf6102c3ed89c1",
+        "actualSha256": "4f6404e725f62e36d96bc71fa9428e74947a16ea033f4de65acf6102c3ed89c1",
+        "matches": true,
+        "features": 3
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "kecskemet-erzsebetvaros",
+        "path": "data/neighborhoods/sources/municipal-maps-next/kecskemet-manual.geojson",
+        "expectedSha256": "160a740fb414cb3605ed93adceabfb857bdcadf95661c8ac762284f463d54889",
+        "actualSha256": "160a740fb414cb3605ed93adceabfb857bdcadf95661c8ac762284f463d54889",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "gyor-2006-source-outlines",
+        "path": "data/neighborhoods/sources/municipal-gyor-next/gyor-source-candidates.geojson",
+        "expectedSha256": "4ce29697da5be99269079cd42221242ddc10ed3a96eb697ddf527ebfb10c5f5a",
+        "actualSha256": "4ce29697da5be99269079cd42221242ddc10ed3a96eb697ddf527ebfb10c5f5a",
+        "matches": true,
+        "features": 17
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "kecskemet-offline-next",
+        "path": "data/neighborhoods/sources/municipal-offline-next/kecskemet-next.geojson",
+        "expectedSha256": "da90ced61c34c7a1b2b142daf46f8937cce7f00cb0932e9685fc32ce2b3ef05b",
+        "actualSha256": "da90ced61c34c7a1b2b142daf46f8937cce7f00cb0932e9685fc32ce2b3ef05b",
+        "matches": true,
+        "features": 3
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "kecskemet-varoskozpont",
+        "path": "data/neighborhoods/sources/municipal-offline-more/kecskemet-varoskozpont.geojson",
+        "expectedSha256": "a88369fcb74adec953e308822d873c0f429be73b2299d708e697b43e9fc6eba4",
+        "actualSha256": "a88369fcb74adec953e308822d873c0f429be73b2299d708e697b43e9fc6eba4",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "public-vector-esztergom-2013",
+        "path": "data/neighborhoods/sources/public-vector-next/esztergom-candidates.geojson",
+        "expectedSha256": "169bb059c571c1f85e8809b6dd23249d36fe4d41ecc4a5023578207f20d90592",
+        "actualSha256": "169bb059c571c1f85e8809b6dd23249d36fe4d41ecc4a5023578207f20d90592",
+        "matches": true,
+        "features": 33
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "kecskemet-petofi-source-raster",
+        "path": "data/neighborhoods/sources/municipal-kecskemet-outer-next/petofi-source-raster.geojson",
+        "expectedSha256": "46c456e00e409d722289fe3d25d9cf3c756ff40a782db1dd08d82328769ff417",
+        "actualSha256": "46c456e00e409d722289fe3d25d9cf3c756ff40a782db1dd08d82328769ff417",
+        "matches": true,
+        "features": 2
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "kecskemet-figure81-source-raster",
+        "path": "data/neighborhoods/sources/municipal-kecskemet-fig81/szechenyi-source-raster.geojson",
+        "expectedSha256": "06ccbe775220cf9260abcc184c87a7620cfffa5d931d156eda3fa1d3f3a2c000",
+        "actualSha256": "06ccbe775220cf9260abcc184c87a7620cfffa5d931d156eda3fa1d3f3a2c000",
+        "matches": true,
+        "features": 2
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "zalaegerszeg-source-raster",
+        "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+        "expectedSha256": "70b502949fcc8333ead5ffc0d404cbdd6198ec0a1f09241f88bd3509fc056b6a",
+        "actualSha256": "70b502949fcc8333ead5ffc0d404cbdd6198ec0a1f09241f88bd3509fc056b6a",
+        "matches": true,
+        "features": 5
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "szeged-source-street-circuits-next",
+        "path": "data/neighborhoods/sources/municipal-szeged-next/szeged-street-candidates.geojson",
+        "expectedSha256": "b013b77347086689ec7d68c9fe897b7725e7acc401739e94dd51875dc2ceafc4",
+        "actualSha256": "b013b77347086689ec7d68c9fe897b7725e7acc401739e94dd51875dc2ceafc4",
+        "matches": true,
+        "features": 2
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "miskolc-source-raster",
+        "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-source-raster.geojson",
+        "expectedSha256": "0c8d6fdc7f1f075355b704cf2e376ce3815031b3beb616763c3529bb0a2cf22d",
+        "actualSha256": "0c8d6fdc7f1f075355b704cf2e376ce3815031b3beb616763c3529bb0a2cf22d",
+        "matches": true,
+        "features": 17
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "tatabanya-more-source-vectors",
+        "path": "data/neighborhoods/sources/municipal-tatabanya-more/additional-quarter-vectors.geojson",
+        "expectedSha256": "cbe63fc319cfd2e2a9a60223c742329a5985ba257b4d99bb5d197b39f527a25f",
+        "actualSha256": "cbe63fc319cfd2e2a9a60223c742329a5985ba257b4d99bb5d197b39f527a25f",
+        "matches": true,
+        "features": 3
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "tatabanya-compound-source-vectors",
+        "path": "data/neighborhoods/sources/municipal-tatabanya-more/compound-source-groups.geojson",
+        "expectedSha256": "72b2ccb919db563ede30c7109bdf69cfdbca8f6deeb532d15be64a78a3ad69f3",
+        "actualSha256": "72b2ccb919db563ede30c7109bdf69cfdbca8f6deeb532d15be64a78a3ad69f3",
+        "matches": true,
+        "features": 4
+      },
+      {
+        "registry": "manual-source-registry.json",
+        "datasetId": "sopron-native-planning-units-next",
+        "path": "data/neighborhoods/sources/municipal-sopron-next/source-vector.geojson",
+        "expectedSha256": "5f87062ca249f91d1179c574a6157c380d8ebc9b2dbd484c9df5293bee80436a",
+        "actualSha256": "5f87062ca249f91d1179c574a6157c380d8ebc9b2dbd484c9df5293bee80436a",
+        "matches": true,
+        "features": 4
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "budapest-orban",
+        "path": "data/neighborhoods/manual/budapest-orban.geojson",
+        "expectedSha256": "3b3f9064b252a08f4a56b0402bb9300f6ba69dbf7be530b093769d0872e98eab",
+        "actualSha256": "3b3f9064b252a08f4a56b0402bb9300f6ba69dbf7be530b093769d0872e98eab",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "budapest-apostolhegy",
+        "path": "data/neighborhoods/manual/budapest-apostolhegy.geojson",
+        "expectedSha256": "dea0f19586a288cd820851d3bd114fb66e785cb320cd72bc81a4ebc2483ba9b8",
+        "actualSha256": "dea0f19586a288cd820851d3bd114fb66e785cb320cd72bc81a4ebc2483ba9b8",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "budapest-peterimajor",
+        "path": "data/neighborhoods/manual/budapest-peterimajor.geojson",
+        "expectedSha256": "d037ebb80d06d13df1eb9ff9bf7aee8960c5dd1df87683274eeebe2c7dfaa989",
+        "actualSha256": "d037ebb80d06d13df1eb9ff9bf7aee8960c5dd1df87683274eeebe2c7dfaa989",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "nyiregyhaza-raster-planning-units",
+        "path": "data/neighborhoods/sources/municipal-east/nyiregyhaza-planning-units.geojson",
+        "expectedSha256": "3aaa7f60e30c2ba1c0ae1de85eb58bb1e50fbf3c6ce7ca645adc07d260e67126",
+        "actualSha256": "3aaa7f60e30c2ba1c0ae1de85eb58bb1e50fbf3c6ce7ca645adc07d260e67126",
+        "matches": true,
+        "features": 10
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "bekescsaba-raster-regions",
+        "path": "data/neighborhoods/sources/municipal-east/bekescsaba-map-derived.geojson",
+        "expectedSha256": "ecc52cb671d33673d3c421ba0156a740ff399e79224e9b0643c0902cbd22540b",
+        "actualSha256": "ecc52cb671d33673d3c421ba0156a740ff399e79224e9b0643c0902cbd22540b",
+        "matches": true,
+        "features": 6
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "kecskemet-figure81-label-inference",
+        "path": "data/neighborhoods/sources/municipal-kecskemet-fig81/szechenyi-label-inferred.geojson",
+        "expectedSha256": "a141e2a7f899672f9c833c21994d65b1fd512e4484ddacc183b082581e529b85",
+        "actualSha256": "a141e2a7f899672f9c833c21994d65b1fd512e4484ddacc183b082581e529b85",
+        "matches": true,
+        "features": 2
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "dunaujvaros-dozsa-road-completion-inference",
+        "path": "data/neighborhoods/sources/municipal-dunaujvaros-next/dozsa-inferred.geojson",
+        "expectedSha256": "1380c43dee4b916e29e881fcd816852654a8c88e06260076fded364eb57d8d82",
+        "actualSha256": "1380c43dee4b916e29e881fcd816852654a8c88e06260076fded364eb57d8d82",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "gyongyos-2016-source-contours-unverified-registration",
+        "path": "data/neighborhoods/sources/municipal-gyongyos-more/gyongyos-inferred.geojson",
+        "expectedSha256": "4072e2c4ff5d1ee7da1747d195487392fc15b6be5ebd66fe1bf441dff0502104",
+        "actualSha256": "4072e2c4ff5d1ee7da1747d195487392fc15b6be5ebd66fe1bf441dff0502104",
+        "matches": true,
+        "features": 5
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "pecs-first-source-contours-estimated-placement",
+        "path": "data/neighborhoods/sources/municipal-pecs-semantic-revision/source-inferred-reclassified.geojson",
+        "expectedSha256": "10ed5b4c853084185dc593d57bf541837a399645e02eb3584269a2fbd51286ad",
+        "actualSha256": "10ed5b4c853084185dc593d57bf541837a399645e02eb3584269a2fbd51286ad",
+        "matches": true,
+        "features": 33
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "kaposvar-raster-inferred-georeference",
+        "path": "data/neighborhoods/sources/municipal-kaposvar-raster-next/inferred-georeference.geojson",
+        "expectedSha256": "d81c2f8afbf754406af1c3ffc6f1b2e2a6bdd9daf1a196ecd6bbff958c81c862",
+        "actualSha256": "d81c2f8afbf754406af1c3ffc6f1b2e2a6bdd9daf1a196ecd6bbff958c81c862",
+        "matches": true,
+        "features": 10
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "szombathely-joskar-ola-2013-road-completion-inference",
+        "path": "data/neighborhoods/sources/municipal-szombathely-more/joskar-ola-inferred.geojson",
+        "expectedSha256": "2f5286b40b1249281184ed9715c04b583c1de3cc2dbde3bd18a7ccc349501154",
+        "actualSha256": "2f5286b40b1249281184ed9715c04b583c1de3cc2dbde3bd18a7ccc349501154",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "salgotarjan-2022-source-contours-inferred-registration",
+        "path": "data/neighborhoods/sources/municipal-salgotarjan-next/salgotarjan-inferred.geojson",
+        "expectedSha256": "ed18ef0051189ffdb47361cc5c3ee5cb8dff53363182c7b953f585fa3d8403ef",
+        "actualSha256": "ed18ef0051189ffdb47361cc5c3ee5cb8dff53363182c7b953f585fa3d8403ef",
+        "matches": true,
+        "features": 8
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "kecskemet-native77-fine-inferred",
+        "path": "data/neighborhoods/sources/municipal-kecskemet-native77-first/fine-inferred.geojson",
+        "expectedSha256": "08e0b715176fa8b3bd1b804508d46ae6fd0efad72b9ec27eedde4846a33dd1a8",
+        "actualSha256": "08e0b715176fa8b3bd1b804508d46ae6fd0efad72b9ec27eedde4846a33dd1a8",
+        "matches": true,
+        "features": 3
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "kecskemet-native77-local-inferred",
+        "path": "data/neighborhoods/sources/municipal-kecskemet-native77-first/local-units-inferred.geojson",
+        "expectedSha256": "0f03d75e0482f23769d379fc06fb1d946644490e285505edf8528065aa35f046",
+        "actualSha256": "0f03d75e0482f23769d379fc06fb1d946644490e285505edf8528065aa35f046",
+        "matches": true,
+        "features": 4
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "pecs-remaining-source-contours-estimated-placement",
+        "path": "data/neighborhoods/sources/municipal-pecs-remaining-next/source-inferred.geojson",
+        "expectedSha256": "cfdd86a7dc73d6f6a76ebf9a2377a0e7e077992761f3b23fd675abf102c8826a",
+        "actualSha256": "cfdd86a7dc73d6f6a76ebf9a2377a0e7e077992761f3b23fd675abf102c8826a",
+        "matches": true,
+        "features": 27
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "kecskemet-figure73-source-pixel-inferred",
+        "path": "data/neighborhoods/sources/municipal-kecskemet-figure73-first/source-inferred.geojson",
+        "expectedSha256": "36cc4e59c1516338ba34928dcffdf871e9f01f2432701506a91b5fceb4a2cb5a",
+        "actualSha256": "36cc4e59c1516338ba34928dcffdf871e9f01f2432701506a91b5fceb4a2cb5a",
+        "matches": true,
+        "features": 2
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "kecskemet-figure76-source-pixel-inferred",
+        "path": "data/neighborhoods/sources/municipal-kecskemet-figure76-first/source-inferred.geojson",
+        "expectedSha256": "25fc43ab9733cc89f73b4a4184939a05643f0ba853ed089110a5085a829d63d0",
+        "actualSha256": "25fc43ab9733cc89f73b4a4184939a05643f0ba853ed089110a5085a829d63d0",
+        "matches": true,
+        "features": 3
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "pecs-final-five-source-contours-estimated-placement",
+        "path": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/source-inferred.geojson",
+        "expectedSha256": "a27535ffae4e4549f76200e207fa80fc6796dfbe394740eacce57b7df7693acc",
+        "actualSha256": "a27535ffae4e4549f76200e207fa80fc6796dfbe394740eacce57b7df7693acc",
+        "matches": true,
+        "features": 5
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "pecs-two-explicit-low-confidence-cap-reconstructions",
+        "path": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/reconstructed-cap-inferred.geojson",
+        "expectedSha256": "2ebf355e13e20b2e57cbe88b18bf12c29fb449bdb62b51cc23f35aad5a49d5df",
+        "actualSha256": "2ebf355e13e20b2e57cbe88b18bf12c29fb449bdb62b51cc23f35aad5a49d5df",
+        "matches": true,
+        "features": 2
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "kecskemet-figure78-source-pixel-inferred",
+        "path": "data/neighborhoods/sources/municipal-kecskemet-figure78-first/source-inferred.geojson",
+        "expectedSha256": "1ef7475d6573753e7b273c5e4cee7ed42b2608a655ef8b72450c2b8d32d1a6be",
+        "actualSha256": "1ef7475d6573753e7b273c5e4cee7ed42b2608a655ef8b72450c2b8d32d1a6be",
+        "matches": true,
+        "features": 4
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "zalaegerszeg-six-explicit-source-inferences",
+        "path": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+        "expectedSha256": "ad3c6702f5c9d72edd2073c8bd4f8cf40d988489a602c513b944874ddbe1409b",
+        "actualSha256": "ad3c6702f5c9d72edd2073c8bd4f8cf40d988489a602c513b944874ddbe1409b",
+        "matches": true,
+        "features": 6
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "kecskemet-figure74-source-overprint-inferred",
+        "path": "data/neighborhoods/sources/municipal-kecskemet-figure74-first/source-inferred.geojson",
+        "expectedSha256": "9d689aa4fef30c95e28f50e1984de8b931a0837d41f3b823209dc63bd916717c",
+        "actualSha256": "9d689aa4fef30c95e28f50e1984de8b931a0837d41f3b823209dc63bd916717c",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "hodmezovasarhely-hodto-2014-circuit-inferred",
+        "path": "data/neighborhoods/sources/municipal-hodmezovasarhely-hodto-first/hod-hodto-first-candidate.geojson",
+        "expectedSha256": "5b201c8a8c632f6096934b57d618beaf66db24b3492b0f2eece5d2d4b937d6ff",
+        "actualSha256": "5b201c8a8c632f6096934b57d618beaf66db24b3492b0f2eece5d2d4b937d6ff",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "szentes-belvaros-explicit-circuit-inferred",
+        "path": "data/neighborhoods/sources/municipal-szentes-belvaros-first/inferred-candidate.geojson",
+        "expectedSha256": "2a2aab8baf53aae2f55b8dfbdec0b6cda8cd13863ae18f1c00bbfc16ec909c69",
+        "actualSha256": "2a2aab8baf53aae2f55b8dfbdec0b6cda8cd13863ae18f1c00bbfc16ec909c69",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "kecskemet-figure75-source-overprint-inferred",
+        "path": "data/neighborhoods/sources/municipal-kecskemet-figure75-first/source-inferred.geojson",
+        "expectedSha256": "90e2e9b5fda92a4f1b177d78bcb7bf48b725e3071e55a78c9d3af8c602078f22",
+        "actualSha256": "90e2e9b5fda92a4f1b177d78bcb7bf48b725e3071e55a78c9d3af8c602078f22",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "kaposvar-donner-interpreted-2023",
+        "path": "data/neighborhoods/sources/municipal-kaposvar-donner-next/donner-candidate.geojson",
+        "expectedSha256": "aef93bcb4722d7d72892dd179e21d5bd4901533cbec4317138602b204b5252bc",
+        "actualSha256": "aef93bcb4722d7d72892dd179e21d5bd4901533cbec4317138602b204b5252bc",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "zalaegerszeg-ziffa2025-hathaz",
+        "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/hathaz-inferred-import.geojson",
+        "expectedSha256": "a941d069ca1e8219eddbac61ad6f2b49cc47425dd06750853b99bd2d4965578e",
+        "actualSha256": "a941d069ca1e8219eddbac61ad6f2b49cc47425dd06750853b99bd2d4965578e",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "zalaegerszeg-ziffa2025-neszele",
+        "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/neszele-inferred-import.geojson",
+        "expectedSha256": "7575f4cd8c6f3ea8172069b2ef24c1cc3fc0319d523098102234e97807adea2b",
+        "actualSha256": "7575f4cd8c6f3ea8172069b2ef24c1cc3fc0319d523098102234e97807adea2b",
+        "matches": true,
+        "features": 1
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "debrecen-arcgis-six-estimated-placement",
+        "path": "data/neighborhoods/sources/public-arcgis-quarter-next/debrecen-first-six-estimated.geojson",
+        "expectedSha256": "0d2238b780220e2e1b091f6134afe55e26018edf0a4dd9260baf6e67e09f1c6a",
+        "actualSha256": "0d2238b780220e2e1b091f6134afe55e26018edf0a4dd9260baf6e67e09f1c6a",
+        "matches": true,
+        "features": 6
+      },
+      {
+        "registry": "inferred-candidate-registry.json",
+        "datasetId": "debrecen-arcgis-remaining-23-estimated",
+        "path": "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-remaining-estimated.geojson",
+        "expectedSha256": "e3b1c7aae15c4fbfe37acdcb0a604425f28bd9f5d5155979d481da95180d23bc",
+        "actualSha256": "e3b1c7aae15c4fbfe37acdcb0a604425f28bd9f5d5155979d481da95180d23bc",
+        "matches": true,
+        "features": 23
+      }
+    ]
+  },
+  "estimatedGeometryPreservation": {
+    "all170EstimatedFeaturesPreservePinnedSourceCoordinates": true,
+    "comparisonMethod": "Parsed exported geometry arrays exactly equal a same-name feature in the SHA256-pinned registered source document. Every source collection/path/SHA pin is checked; no exporter coordinate changes.",
+    "all170NegativeApprovalGuards": true,
+    "all170GeometriesValidAndNonempty": true,
+    "registryDatasets": 30,
+    "featureCount": 170,
+    "sourceDatasetFeatureCounts": {
+      "bekescsaba-raster-regions": 6,
+      "budapest-apostolhegy": 1,
+      "budapest-orban": 1,
+      "budapest-peterimajor": 1,
+      "debrecen-arcgis-remaining-23-estimated": 23,
+      "debrecen-arcgis-six-estimated-placement": 6,
+      "dunaujvaros-dozsa-road-completion-inference": 1,
+      "gyongyos-2016-source-contours-unverified-registration": 5,
+      "hodmezovasarhely-hodto-2014-circuit-inferred": 1,
+      "kaposvar-donner-interpreted-2023": 1,
+      "kaposvar-raster-inferred-georeference": 10,
+      "kecskemet-figure73-source-pixel-inferred": 2,
+      "kecskemet-figure74-source-overprint-inferred": 1,
+      "kecskemet-figure75-source-overprint-inferred": 1,
+      "kecskemet-figure76-source-pixel-inferred": 3,
+      "kecskemet-figure78-source-pixel-inferred": 4,
+      "kecskemet-figure81-label-inference": 2,
+      "kecskemet-native77-fine-inferred": 3,
+      "kecskemet-native77-local-inferred": 3,
+      "nyiregyhaza-raster-planning-units": 10,
+      "pecs-final-five-source-contours-estimated-placement": 5,
+      "pecs-first-source-contours-estimated-placement": 33,
+      "pecs-remaining-source-contours-estimated-placement": 27,
+      "pecs-two-explicit-low-confidence-cap-reconstructions": 2,
+      "salgotarjan-2022-source-contours-inferred-registration": 8,
+      "szentes-belvaros-explicit-circuit-inferred": 1,
+      "szombathely-joskar-ola-2013-road-completion-inference": 1,
+      "zalaegerszeg-six-explicit-source-inferences": 6,
+      "zalaegerszeg-ziffa2025-hathaz": 1,
+      "zalaegerszeg-ziffa2025-neszele": 1
+    }
+  },
+  "immutable147CheckpointComparison": {
+    "archivePath": "/workspace/artifacts/otthonra-varosreszhatarok-adatok-506-147-allapot.zip",
+    "archiveSha256": "8d174f583078df504bb5a0f57f19e66cd856dd2b78e81d8e4a6774e03aaee344",
+    "archiveBytes": 4793283,
+    "priorEstimatedExportSha256": "4c3d4e31a89fcdaa2c14dcc5de2a043fbc7a73d624514a1a9b0e31d15a974a43",
+    "priorValidationBytesEqualArchive": true,
+    "priorFeatures": 147,
+    "priorFeatureIdsRetained": 147,
+    "all147FullFeatureRecordsExactlyUnchanged": true,
+    "comparisonMethod": "Canonical UTF8JSON SHA256 of each complete parsed feature, preserving every coordinate, property and ID; current full feature hash equals immutable ZIP feature hash.",
+    "newFeatures": 23,
+    "addedDatasetIds": [
+      "debrecen-arcgis-remaining-23-estimated"
+    ]
+  },
+  "independentNewSourceAudit": {
+    "status": "PASS",
+    "mode": "Read-only checkpoint integration audit. The root-authored independent source review is separately retained and referenced; frozen source scripts were not regenerated.",
+    "newRegistryFiles": 1,
+    "newEstimatedFeatures": 23,
+    "datasets": [
+      {
+        "id": "debrecen-arcgis-remaining-23-estimated",
+        "path": "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-remaining-estimated.geojson",
+        "sha256": "e3b1c7aae15c4fbfe37acdcb0a604425f28bd9f5d5155979d481da95180d23bc",
+        "count": 23
+      }
+    ],
+    "sourceIndependentReviewPath": "data/neighborhoods/sources/municipal-debrecen-remaining-next/independent-review.json",
+    "sourceIndependentReviewSha256": "4707501fd28ad792e72f37a71cf7e9afc55dd92a31f261733ae7ffe70ed78c2b",
+    "sourceIndependentReviewAccepted": true,
+    "frozenArtifactManifestSha256": "30acd40ed2334676229fe02b1105cef8f224c6b8f98240b8f93ba889755c68f9",
+    "frozenArtifactEntriesMatched": 30,
+    "integrationChecks": {
+      "twentyThreeExportGeometriesExactlyPreserved": true,
+      "twentyThreeGeometriesEqualRawPublishedServiceCoordinates": true,
+      "all170EstimatedGuardsPass": true,
+      "all147PriorFullFeatureRecordsUnchanged": true,
+      "Debrecen26PrimaryGeometryHashesUnchanged": true,
+      "previousSixDebrecenFullFeaturesUnchanged": true,
+      "newDatasetsInPrimary": 0,
+      "newDatasetsInPlanning": 0,
+      "FID11Admitted": 0
+    },
+    "newGeometryComparisons": [
+      {
+        "FID": 2,
+        "name": "Pallag",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-2",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-2",
+        "geometryCanonicalSha256": "f490b59e0dcd7c4a4026064b603def1fb4cbf4c4008c99e90b15ba7e77c46fbd",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 10,
+        "name": "Epreskert",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-10",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-10",
+        "geometryCanonicalSha256": "60c0abdcaee631f53102b980bc2353a5c49f66afa9f61774cb879630f6572c37",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 29,
+        "name": "Nyulas",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-29",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-29",
+        "geometryCanonicalSha256": "7660bb69572d43033000f1c9728727e73f6115f22a00e4791593e34128586431",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 30,
+        "name": "Úrrétje",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-30",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-30",
+        "geometryCanonicalSha256": "41d12e750c6a2ff8c198f90ccfa4937fe9ad0d651aca192a68d4945e40a0e40e",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 31,
+        "name": "Tócóliget",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-31",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-31",
+        "geometryCanonicalSha256": "fb2134c58ffef2e485252a9daabd2c42d83047390051c9e191133780301082ed",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 32,
+        "name": "Akadémiakert",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-32",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-32",
+        "geometryCanonicalSha256": "c248c0d0a22c6268f3a25a05fc580ec7979fae0a212d79f5e952814dddd7d45a",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 33,
+        "name": "Kertváros",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-33",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-33",
+        "geometryCanonicalSha256": "8b7765602a64390c730bf25234bb7732525ebcc399f0ff5726f4741e6815fbcb",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 34,
+        "name": "Köntöskert",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-34",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-34",
+        "geometryCanonicalSha256": "b8ddf3bc111a9a963d6c97a19f1116fe462e4b7373e7462c5420a7ff2e38d372",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 36,
+        "name": "Nagysándortelep",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-36",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-36",
+        "geometryCanonicalSha256": "f13dcfb2e340755e3ee5b55d476eb4083ccd11cac5585ec16da81998be3a73ff",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 37,
+        "name": "Hatvan utcai kert",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-37",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-37",
+        "geometryCanonicalSha256": "c80e9c751c524a71598c5201dd6f0abb0820dd80b6477846cf10c275e5ea7223",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 38,
+        "name": "Kismacs",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-38",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-38",
+        "geometryCanonicalSha256": "ed3f2208a9bd22c18ea513b085987d25e36feca3bc0bb7f21156a43a245301f0",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 41,
+        "name": "Tócóvölgy",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-41",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-41",
+        "geometryCanonicalSha256": "4bd7b92a00cc17d0cb17a4c79327c93382855748ae38c7a0210de6050b4fe816",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 43,
+        "name": "Sóház",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-43",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-43",
+        "geometryCanonicalSha256": "c60ba7ac0aaf8b0435446fb6ef56e0d02110ec3844e5cf10a037cbeb112bcf92",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 50,
+        "name": "Kondoros",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-50",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-50",
+        "geometryCanonicalSha256": "6c9ffe2b37b152e348429cc990ddfe4ca7883b811a161bae6c57b6d4dc8d8a5f",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 58,
+        "name": "Júliatelep",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-58",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-58",
+        "geometryCanonicalSha256": "e58d365374c52ef274729e05ec4a1f7d99f1e4576283983083cc2d5bf84278b2",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 62,
+        "name": "Boldogfalvikert",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-62",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-62",
+        "geometryCanonicalSha256": "8b4220f1616eb11130449272a7fb3cb69d95ce0cb91876a808b6a04a780b592d",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 63,
+        "name": "Tégláskert",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-63",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-63",
+        "geometryCanonicalSha256": "5b6991ce66a0da583991dfccaeec683d819ab2462be0edcf2a266865b52157f7",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 64,
+        "name": "Majorság",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-64",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-64",
+        "geometryCanonicalSha256": "687232223361ba78e8d7a5039abcba8e7e27144d2c73d1d959b55241d8f0c817",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 72,
+        "name": "Nagymacs",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-72",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-72",
+        "geometryCanonicalSha256": "1b8ee9536a7936223450dceeee6a2f25a40c3b4769a9d47ee95fdee20f4acc0f",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 73,
+        "name": "Nagycsere",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-73",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-73",
+        "geometryCanonicalSha256": "8f1d3c4fa8453331fbb5c21dc9d66a7420cc89d5bdd9ded5df2401ee51540186",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 75,
+        "name": "Haláp",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-75",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-75",
+        "geometryCanonicalSha256": "192a32b08155259fd79fd5d949184cca08c4d80129508144286c667bfde9554b",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 76,
+        "name": "Bánk",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-76",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-76",
+        "geometryCanonicalSha256": "53f53a2728278fce37bbd78f71dfe80c0ef491084ff42e6bdf63366c72f17619",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      },
+      {
+        "FID": 77,
+        "name": "Ondód",
+        "exportId": "inferred:debrecen-arcgis-remaining-23-estimated:manual:debrecen-arcgis-remaining-23-estimated:FID-77",
+        "sourceId": "manual:debrecen-arcgis-remaining-23-estimated:FID-77",
+        "geometryCanonicalSha256": "fd364b33ab9238b8ff2bbe5007ac88e1654ecbbc53fca361067b46bba30b23fa",
+        "exportSourceAndRawCoordinatesExactlyEqual": true
+      }
+    ],
+    "methodDistinctions": [
+      {
+        "dataset": "debrecen-arcgis-remaining-23-estimated",
+        "meaning": "Literal published service coordinates, not newly estimated coordinates. Municipal historical quarter labels and exact current PBF nodes corroborate names only. Coarse source placement, current whole-quarter extents, absolute accuracy, original period/lineage and rights remain unresolved. Existing source overlaps and the Tócóvölgy/Lóskúti schema caveat are retained; no shifts, repair, snapping, renaming or hierarchy cloning."
+      }
+    ],
+    "failures": []
+  },
+  "sourceBasedPrimaryAdmissionsSince147": 0,
+  "estimatedFeaturesAddedSince147": 23,
+  "estimatedMunicipalitiesAddedSince147": [],
+  "existing26DebrecenPrimaryGeometriesUnchanged": true,
+  "previousSixDebrecenEstimatedFeaturesUnchanged": true,
+  "realBrowserLayout": "Not run for this checkpoint; actual generated-script behavior was exercised in Node VM only.",
+  "remoteCiRun": false,
+  "applicationDeploymentPerformed": false,
+  "packagingPerformed": false,
+  "networkCalls": 0,
+  "frozenSourceFilesChangedByValidation": false,
+  "validationWrites": [
+    "data/neighborhoods/research/checkpoint-validation-506-170.json",
+    "data/neighborhoods/research/checkpoint-validation-next.json"
+  ],
+  "outputFingerprints": {
+    "catalog.geojson": "9c34e39523391ba52ab49877f9a055289a82fa88b5f75c1187c09716e3cc6406",
+    "neighborhoods.geojson": "8eca9d097fb6714c31ca942f57ff0d8f683f8f4fe13af0161b12da19b20e8f74",
+    "planning-units.geojson": "210d68a378ab01d26383825c2beb8896655e43b0e40d39f2add541ac7f090ce5",
+    "nationwide-report.csv": "b3eb4cf9f35d40c70944bc394d9a03b148a45f9d01e46e37c686e0e1a197c4a7",
+    "estimated-candidates.geojson": "da0c90796d1cb426846a4fba43847f367a1609f8c1979453e09df3120b83352e",
+    "estimated-report.csv": "44474d410fd58e5a852569f5e5e2f7b53e11ba69fe1d571c04c481cb0bcf0ffe",
+    "estimated-report.json": "891c399548c9fd3ad2f0beb89e2f3b865ba748e96e86c9c5ab508dfe421c6f46",
+    "review.html": "e5a24dc46f089fd095c5b8db3e3754170c28c188db78c81a8cbb5fa634fe89a1"
+  }
+}

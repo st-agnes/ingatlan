@@ -1,0 +1,778 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent fig81_visual agent; offline native-raster and literal-road control review",
+  "verdict": "NO_ADDITIONAL_INDEPENDENT_PIXEL_CONTROLS_ACCEPTED; INITIAL_SIMILARITY_USABLE_ONLY_AS_EXPLICIT_INFERRED_GEOREFERENCE",
+  "sourceHashesSha256": {
+    "kaposvar-p18-source.jpeg": "54dc5dc7a697bafdc3cb662a41ed6f6cfcc21ac98ec38cffa45ac14148477676",
+    "all-city-roads-rails.geojson": "b0556317cdf5e911c95206f73a37a2f954583cb519410aec8c5f5b682290b793",
+    "local-place-controls.geojson": "b3e5890dd2d3429629029e200d7073782d347e52ca91a2858bfa438a8cfa4afb",
+    "initial-similarity.json": "78f6a308cd2c145d0f6a85a7ea9287dae7ae9a44a3965811dc0096cb4d73755a",
+    "provisional-control-candidates.json": "6be50b4c9cd01aa5f6f93b312d4322802eef2e2f54d8bed743a2ffb63067e363",
+    "visual-review.json": "930237c14721264126d41fbf4b2150747b6f7b34314c76ba080494ac535bc5dd"
+  },
+  "literalDataReview": {
+    "roadWayCount": 7147,
+    "placeFeatureCount": 214,
+    "candidateNodesMatchLiteralArchivedCoordinatesAndIncidentWayIds": true,
+    "geographicNodeCoordinatesAreNotImageObservations": true
+  },
+  "registrationAssessment": {
+    "coreReferenceCount": 2,
+    "independentlyConfirmedPhysicalPixelControls": 0,
+    "additionalCandidatesAccepted": 0,
+    "existingCoreReferenceInterpretation": "The Virág/Árpád and Hársfa/Baross source associations are manually approximate core references supplied by the parent. Literal geographic nodes are verified, but their exact physical-image correspondence was not independently established here. The second geographic point is a Baross road-end proxy for a road crossing with a known roughly9m centerline gap.",
+    "sourceCorePixelReferences": [
+      [
+        [
+          252,
+          478
+        ],
+        [
+          17.8024628,
+          46.3652624
+        ]
+      ],
+      [
+        [
+          259,
+          550
+        ],
+        [
+          17.804413,
+          46.3527953
+        ]
+      ]
+    ],
+    "secondaryLiteralNodeMatches": [
+      {
+        "node": 5907787634,
+        "coordinates": [
+          17.804413,
+          46.3527953
+        ],
+        "wayIds": [
+          "osm:way:871039425",
+          "osm:way:871039435",
+          "osm:way:871039437"
+        ]
+      }
+    ],
+    "fitMatchesBothReferencesExactlyByConstruction": true,
+    "matchingTwoReferencesDoesNotValidateRegistration": true,
+    "sourceReferenceBaselinePixels": 72.3394774656273,
+    "sourceReferenceBaselineMetresApproximate": 1393.963251402642,
+    "similarityMetresPerPixel": 19.26974454667571,
+    "noIndependentHeldOutPhysicalJunctionResidualAvailable": true,
+    "claimedAbsoluteAccuracyMetres": null,
+    "recommendedGeometryVerificationStatus": "inferred_georeference",
+    "sourceMapCrsKnown": false,
+    "usableForAddressAssignment": false,
+    "georeferencing_status": "inferred_georeference",
+    "georeferenceValidationStatus": "unresolved",
+    "separateInferredBatchOnly": true,
+    "primaryExportRecommended": false
+  },
+  "candidateReviews": [
+    {
+      "candidate": 2,
+      "junction": "Kaposfüredi út / Orgona utca",
+      "osmNodeId": 249295076,
+      "literalCoordinates": [
+        17.7795622,
+        46.40847
+      ],
+      "literalSourceWayMembershipVerified": true,
+      "initialPredictedPixel": [
+        163.36094539879196,
+        227.7473855552853
+      ],
+      "initialPixelIsFitPredictionNotObservation": true,
+      "sourceInspectionSearchWindowXYXY": [
+        148,
+        212,
+        179,
+        243
+      ],
+      "inspectionWindowIsNotAcceptedControlWindow": true,
+      "acceptedIndependentControl": false,
+      "manualSourcePixelWindow": null,
+      "reason": "Faint dense road/parcel grid and the nearby black8 label overprint do not uniquely identify the expected east-only Orgona T junction. Predicted circle is not independent evidence.",
+      "literalIncidentWaysAndDirections": [
+        {
+          "sourceWayId": "osm:way:30835499",
+          "name": "Orgona utca",
+          "highway": "residential",
+          "incidentDirections": [
+            {
+              "dxEastM": 11.112173185800202,
+              "dyNorthM": -1.4367172836064128,
+              "angleDegreesEastCounterclockwise": -7.367028370733119
+            }
+          ]
+        },
+        {
+          "sourceWayId": "osm:way:696045158",
+          "name": "Kaposfüredi út",
+          "highway": "tertiary",
+          "incidentDirections": [
+            {
+              "dxEastM": -1.41910224664025,
+              "dyNorthM": -32.929424113666755,
+              "angleDegreesEastCounterclockwise": -92.46764989543529
+            },
+            {
+              "dxEastM": -0.8992493378464133,
+              "dyNorthM": 24.184192311571678,
+              "angleDegreesEastCounterclockwise": 92.12946810269482
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": 3,
+      "junction": "Kaposfüredi út / Állomás utca / Szőlőhegyi utca",
+      "osmNodeId": 277577292,
+      "literalCoordinates": [
+        17.7783876,
+        46.4135608
+      ],
+      "literalSourceWayMembershipVerified": true,
+      "initialPredictedPixel": [
+        159.00562198399348,
+        198.32919861016944
+      ],
+      "initialPixelIsFitPredictionNotObservation": true,
+      "sourceInspectionSearchWindowXYXY": [
+        144,
+        183,
+        175,
+        214
+      ],
+      "inspectionWindowIsNotAcceptedControlWindow": true,
+      "acceptedIndependentControl": false,
+      "manualSourcePixelWindow": null,
+      "reason": "A faint regular cadastral/road grid is visible, but the four actual named road arms cannot be uniquely distinguished at native625-pixel map width.",
+      "literalIncidentWaysAndDirections": [
+        {
+          "sourceWayId": "osm:way:30835508",
+          "name": "Szőlőhegyi utca",
+          "highway": "residential",
+          "incidentDirections": [
+            {
+              "dxEastM": 10.820495979627594,
+              "dyNorthM": 3.3928799085406354,
+              "angleDegreesEastCounterclockwise": 17.40936313177775
+            }
+          ]
+        },
+        {
+          "sourceWayId": "osm:way:117278947",
+          "name": "Állomás utca",
+          "highway": "secondary",
+          "incidentDirections": [
+            {
+              "dxEastM": -13.249401567154564,
+              "dyNorthM": -3.331142937662662,
+              "angleDegreesEastCounterclockwise": -165.88729590116034
+            }
+          ]
+        },
+        {
+          "sourceWayId": "osm:way:518942273",
+          "name": "Kaposfüredi út",
+          "highway": "tertiary",
+          "incidentDirections": [
+            {
+              "dxEastM": -2.9055267449002713,
+              "dyNorthM": 13.788537786589586,
+              "angleDegreesEastCounterclockwise": 101.8993080606483
+            }
+          ]
+        },
+        {
+          "sourceWayId": "osm:way:696045158",
+          "name": "Kaposfüredi út",
+          "highway": "tertiary",
+          "incidentDirections": [
+            {
+              "dxEastM": 11.637308033532463,
+              "dyNorthM": -57.06660413922509,
+              "angleDegreesEastCounterclockwise": -78.47399441243275
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": 4,
+      "junction": "Toponári út / Orci út",
+      "osmNodeId": 5061157796,
+      "literalCoordinates": [
+        17.8338155,
+        46.3947033
+      ],
+      "literalSourceWayMembershipVerified": true,
+      "initialPredictedPixel": [
+        378.99629297944557,
+        309.52338741670155
+      ],
+      "initialPixelIsFitPredictionNotObservation": true,
+      "sourceInspectionSearchWindowXYXY": [
+        363,
+        294,
+        394,
+        325
+      ],
+      "inspectionWindowIsNotAcceptedControlWindow": true,
+      "acceptedIndependentControl": false,
+      "manualSourcePixelWindow": null,
+      "reason": "Expected Toponári NNE/SSW axis and Orci southeast branch cannot be uniquely matched to a native gray junction. The exploratory northwest guessed pattern is not proved to be this node.",
+      "literalIncidentWaysAndDirections": [
+        {
+          "sourceWayId": "osm:way:30835727",
+          "name": "Toponári út",
+          "highway": "secondary",
+          "incidentDirections": [
+            {
+              "dxEastM": 5.525873573846184,
+              "dyNorthM": 13.054937191584031,
+              "angleDegreesEastCounterclockwise": 67.05810665224182
+            }
+          ]
+        },
+        {
+          "sourceWayId": "osm:way:518942318",
+          "name": "Toponári út",
+          "highway": "secondary",
+          "incidentDirections": [
+            {
+              "dxEastM": -3.4666508896043524,
+              "dyNorthM": -6.27194399421569,
+              "angleDegreesEastCounterclockwise": -118.93046058608851
+            }
+          ]
+        },
+        {
+          "sourceWayId": "osm:way:518942319",
+          "name": "Orci út",
+          "highway": "tertiary",
+          "incidentDirections": [
+            {
+              "dxEastM": 2.692307294346392,
+              "dyNorthM": -3.9551920510130003,
+              "angleDegreesEastCounterclockwise": -55.75680145705575
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": 5,
+      "junction": "Toponári út / Guba Sándor utca / unnamed minor road",
+      "osmNodeId": 27420794,
+      "literalCoordinates": [
+        17.8262365,
+        46.3877456
+      ],
+      "literalSourceWayMembershipVerified": true,
+      "initialPredictedPixel": [
+        348.3192633629151,
+        349.33649700152273
+      ],
+      "initialPixelIsFitPredictionNotObservation": true,
+      "sourceInspectionSearchWindowXYXY": [
+        333,
+        334,
+        364,
+        365
+      ],
+      "inspectionWindowIsNotAcceptedControlWindow": true,
+      "acceptedIndependentControl": false,
+      "manualSourcePixelWindow": null,
+      "reason": "Literal incident geometry is Toponári NNE, Guba SSW, minor unnamed road southeast. A previously noticed west-approach source junction around(333,318) does not match and is explicitly rejected.",
+      "literalIncidentWaysAndDirections": [
+        {
+          "sourceWayId": "osm:way:160670863",
+          "name": "",
+          "highway": "residential",
+          "incidentDirections": [
+            {
+              "dxEastM": 167.50891859841067,
+              "dyNorthM": -170.58040054500452,
+              "angleDegreesEastCounterclockwise": -45.52050775087732
+            }
+          ]
+        },
+        {
+          "sourceWayId": "osm:way:370104543",
+          "name": "Guba Sándor utca",
+          "highway": "secondary",
+          "incidentDirections": [
+            {
+              "dxEastM": -48.72135191014968,
+              "dyNorthM": -252.73842299400712,
+              "angleDegreesEastCounterclockwise": -100.91127965200188
+            }
+          ]
+        },
+        {
+          "sourceWayId": "osm:way:370104551",
+          "name": "Toponári út",
+          "highway": "secondary",
+          "incidentDirections": [
+            {
+              "dxEastM": 8.578609533375129,
+              "dyNorthM": 47.27073261265468,
+              "angleDegreesEastCounterclockwise": 79.71400841297789
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": 6,
+      "junction": "Fenyves utca / Gyöngyvirág utca",
+      "osmNodeId": 289639542,
+      "literalCoordinates": [
+        17.7829397,
+        46.3078495
+      ],
+      "literalSourceWayMembershipVerified": true,
+      "initialPredictedPixel": [
+        170.32068720006282,
+        808.3116194249033
+      ],
+      "initialPixelIsFitPredictionNotObservation": true,
+      "sourceInspectionSearchWindowXYXY": [
+        155,
+        793,
+        186,
+        824
+      ],
+      "inspectionWindowIsNotAcceptedControlWindow": true,
+      "acceptedIndependentControl": false,
+      "manualSourcePixelWindow": null,
+      "reason": "Predicted point lies in green interior where no reliably distinguishable Fenyves/Gyöngyvirág branch junction can be extracted. Gray linework and color/noise do not establish topology.",
+      "literalIncidentWaysAndDirections": [
+        {
+          "sourceWayId": "osm:way:26432839",
+          "name": "Fenyves utca",
+          "highway": "residential",
+          "incidentDirections": [
+            {
+              "dxEastM": -5.39054580416996,
+              "dyNorthM": 11.104873210511869,
+              "angleDegreesEastCounterclockwise": 115.89293987457943
+            }
+          ]
+        },
+        {
+          "sourceWayId": "osm:way:229917073",
+          "name": "Fenyves utca",
+          "highway": "residential",
+          "incidentDirections": [
+            {
+              "dxEastM": 0.9615920959040523,
+              "dyNorthM": -11.03314185923955,
+              "angleDegreesEastCounterclockwise": -85.01897996880793
+            }
+          ]
+        },
+        {
+          "sourceWayId": "osm:way:1270426133",
+          "name": "Gyöngyvirág utca",
+          "highway": "tertiary",
+          "incidentDirections": [
+            {
+              "dxEastM": 17.160820130608045,
+              "dyNorthM": 7.782377141047618,
+              "angleDegreesEastCounterclockwise": 24.394140251621685
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": 7,
+      "junction": "Fenyves utca / Harang utca",
+      "osmNodeId": 289639926,
+      "literalCoordinates": [
+        17.7832175,
+        46.3051522
+      ],
+      "literalSourceWayMembershipVerified": true,
+      "initialPredictedPixel": [
+        171.25655205725707,
+        823.8830668130831
+      ],
+      "initialPixelIsFitPredictionNotObservation": true,
+      "sourceInspectionSearchWindowXYXY": [
+        156,
+        808,
+        187,
+        839
+      ],
+      "inspectionWindowIsNotAcceptedControlWindow": true,
+      "acceptedIndependentControl": false,
+      "manualSourcePixelWindow": null,
+      "reason": "Predicted point lies near a white external notch/southern quarter boundary; no unique Fenyves/Harang physical T junction is discernible there.",
+      "literalIncidentWaysAndDirections": [
+        {
+          "sourceWayId": "osm:way:26432842",
+          "name": "Harang utca",
+          "highway": "residential",
+          "incidentDirections": [
+            {
+              "dxEastM": 10.531965229776688,
+              "dyNorthM": -1.4712855623365613,
+              "angleDegreesEastCounterclockwise": -7.952591413415549
+            }
+          ]
+        },
+        {
+          "sourceWayId": "osm:way:229917073",
+          "name": "Fenyves utca",
+          "highway": "residential",
+          "incidentDirections": [
+            {
+              "dxEastM": 5.313560057431459,
+              "dyNorthM": 16.479232522804523,
+              "angleDegreesEastCounterclockwise": 72.12861415183997
+            },
+            {
+              "dxEastM": -6.682263456634246,
+              "dyNorthM": -10.120016691973433,
+              "angleDegreesEastCounterclockwise": -123.43684753391595
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "discardedExploratorySourceGuesses": [
+    {
+      "sourcePixel": [
+        333,
+        318
+      ],
+      "suggestedCandidate": 5,
+      "reason": "Observed west-approach branch does not match literal node5 NNE/SSW/SE topology. Not a control."
+    },
+    {
+      "sourcePixel": [
+        355,
+        287
+      ],
+      "suggestedCandidate": 4,
+      "reason": "Possible gray-road curve/T pattern, but exact Orci-node association remains unidentified. Not a control."
+    }
+  ],
+  "coarseHeldOutPlaceDiagnostics": {
+    "meaning": "Independent literal current OSM area-name label points transformed by the initial fit, compared only with the broad colored source region. They are not physical point-to-point controls and provide no geodetic accuracy residual.",
+    "broadRegionalPlausibilityObserved": [
+      "Belváros projects into source1 blue.",
+      "Kecelhegy/Cser project into source5 orange.",
+      "Donner/Rómahegy project into source6 purple.",
+      "Ivánfahegy/Kaposszentjakab project into source7 blue-green.",
+      "Main Kaposfüred label point projects into source8 cyan.",
+      "Toponár projects into source9 orange/brown."
+    ],
+    "limitationsObserved": [
+      "Töröcske point projects near the southern green region boundary/white notch.",
+      "Répáspuszta point projects into white northern countryside, roughly40 source pixels from the tiny northern9 footprint. This may reflect source extent, historical/current name-point placement, registration error or several factors. It is not a calibrated positional error.",
+      "A second same-name Kaposfüred point lies outside the main colored component, so same-name OSM labels cannot be treated as exact source controls."
+    ],
+    "records": [
+      {
+        "sourceFeatureId": "osm:node:27420788",
+        "name": "Toponár",
+        "literalCoordinates": [
+          17.8347968,
+          46.3935614
+        ],
+        "actualOsmPlaceTag": "suburb",
+        "predictedSourcePixel": [
+          382.84319067947945,
+          316.15168080430703
+        ],
+        "sampleRgb": [
+          212,
+          140,
+          56
+        ],
+        "isGeographicPointControl": false,
+        "labelPointDoesNotDefineExactSourcePixel": true
+      },
+      {
+        "sourceFeatureId": "osm:node:184058048",
+        "name": "Töröcske",
+        "literalCoordinates": [
+          17.7837073,
+          46.3069395
+        ],
+        "actualOsmPlaceTag": "suburb",
+        "predictedSourcePixel": [
+          173.33027982128988,
+          813.5952589648869
+        ],
+        "sampleRgb": [
+          253,
+          232,
+          231
+        ],
+        "isGeographicPointControl": false,
+        "labelPointDoesNotDefineExactSourcePixel": true
+      },
+      {
+        "sourceFeatureId": "osm:node:249294110",
+        "name": "Kaposfüred",
+        "literalCoordinates": [
+          17.7801081,
+          46.4117687
+        ],
+        "actualOsmPlaceTag": "suburb",
+        "predictedSourcePixel": [
+          165.75345072680284,
+          208.74398755679522
+        ],
+        "sampleRgb": [
+          134,
+          198,
+          198
+        ],
+        "isGeographicPointControl": false,
+        "labelPointDoesNotDefineExactSourcePixel": true
+      },
+      {
+        "sourceFeatureId": "osm:node:986476913",
+        "name": "Ivánfahegy",
+        "literalCoordinates": [
+          17.8227995,
+          46.3461791
+        ],
+        "actualOsmPlaceTag": "suburb",
+        "predictedSourcePixel": [
+          332.03026971197687,
+          588.9604239760702
+        ],
+        "sampleRgb": [
+          123,
+          194,
+          176
+        ],
+        "isGeographicPointControl": false,
+        "labelPointDoesNotDefineExactSourcePixel": true
+      },
+      {
+        "sourceFeatureId": "osm:node:986476917",
+        "name": "Kaposszentjakab",
+        "literalCoordinates": [
+          17.8350687,
+          46.352907
+        ],
+        "actualOsmPlaceTag": "suburb",
+        "predictedSourcePixel": [
+          381.45182331794786,
+          550.6727952584315
+        ],
+        "sampleRgb": [
+          114,
+          151,
+          143
+        ],
+        "isGeographicPointControl": false,
+        "labelPointDoesNotDefineExactSourcePixel": true
+      },
+      {
+        "sourceFeatureId": "osm:node:986476952",
+        "name": "Kecelhegy",
+        "literalCoordinates": [
+          17.7630104,
+          46.3545788
+        ],
+        "actualOsmPlaceTag": "suburb",
+        "predictedSourcePixel": [
+          93.74869108337953,
+          537.8571118556983
+        ],
+        "sampleRgb": [
+          216,
+          92,
+          56
+        ],
+        "isGeographicPointControl": false,
+        "labelPointDoesNotDefineExactSourcePixel": true
+      },
+      {
+        "sourceFeatureId": "osm:node:986476961",
+        "name": "Donner",
+        "literalCoordinates": [
+          17.7877018,
+          46.3470168
+        ],
+        "actualOsmPlaceTag": "suburb",
+        "predictedSourcePixel": [
+          191.88012062828784,
+          582.594130515713
+        ],
+        "sampleRgb": [
+          163,
+          49,
+          207
+        ],
+        "isGeographicPointControl": false,
+        "labelPointDoesNotDefineExactSourcePixel": true
+      },
+      {
+        "sourceFeatureId": "osm:node:986476968",
+        "name": "Cser",
+        "literalCoordinates": [
+          17.7668789,
+          46.3442023
+        ],
+        "actualOsmPlaceTag": "suburb",
+        "predictedSourcePixel": [
+          108.51528629210952,
+          597.8891480956127
+        ],
+        "sampleRgb": [
+          227,
+          96,
+          52
+        ],
+        "isGeographicPointControl": false,
+        "labelPointDoesNotDefineExactSourcePixel": true
+      },
+      {
+        "sourceFeatureId": "osm:node:986476969",
+        "name": "Rómahegy",
+        "literalCoordinates": [
+          17.8106386,
+          46.3424776
+        ],
+        "actualOsmPlaceTag": "suburb",
+        "predictedSourcePixel": [
+          283.21911321683,
+          609.7875760517909
+        ],
+        "sampleRgb": [
+          167,
+          70,
+          199
+        ],
+        "isGeographicPointControl": false,
+        "labelPointDoesNotDefineExactSourcePixel": true
+      },
+      {
+        "sourceFeatureId": "osm:node:1297208778",
+        "name": "Belváros",
+        "literalCoordinates": [
+          17.7919208,
+          46.3590483
+        ],
+        "actualOsmPlaceTag": "suburb",
+        "predictedSourcePixel": [
+          209.5046315061336,
+          513.3800608527872
+        ],
+        "sampleRgb": [
+          48,
+          125,
+          203
+        ],
+        "isGeographicPointControl": false,
+        "labelPointDoesNotDefineExactSourcePixel": true
+      },
+      {
+        "sourceFeatureId": "osm:node:1297228323",
+        "name": "Kisgát",
+        "literalCoordinates": [
+          17.8079867,
+          46.3643476
+        ],
+        "actualOsmPlaceTag": "suburb",
+        "predictedSourcePixel": [
+          274.0008815733745,
+          483.518263695164
+        ],
+        "sampleRgb": [
+          180,
+          212,
+          87
+        ],
+        "isGeographicPointControl": false,
+        "labelPointDoesNotDefineExactSourcePixel": true
+      },
+      {
+        "sourceFeatureId": "osm:node:3187658589",
+        "name": "Répáspuszta",
+        "literalCoordinates": [
+          17.8430226,
+          46.43086
+        ],
+        "actualOsmPlaceTag": "hamlet",
+        "predictedSourcePixel": [
+          417.9242464365889,
+          101.34481717788367
+        ],
+        "sampleRgb": [
+          254,
+          254,
+          254
+        ],
+        "isGeographicPointControl": false,
+        "labelPointDoesNotDefineExactSourcePixel": true
+      },
+      {
+        "sourceFeatureId": "osm:node:7271755132",
+        "name": "Kaposfüred",
+        "literalCoordinates": [
+          17.7616941,
+          46.4140767
+        ],
+        "actualOsmPlaceTag": "quarter",
+        "predictedSourcePixel": [
+          92.43799250790471,
+          194.59456599962232
+        ],
+        "sampleRgb": [
+          255,
+          255,
+          255
+        ],
+        "isGeographicPointControl": false,
+        "labelPointDoesNotDefineExactSourcePixel": true
+      }
+    ]
+  },
+  "preservation": {
+    "visualReviewUnchanged": true,
+    "oldFrozenRoadSourcesUnchanged": true,
+    "polygonsOrControlPositionsEdited": false,
+    "noPredictedCirclesPromotedToObservedControls": true,
+    "noLabelPositionsUsedAsPointControls": true
+  },
+  "limitations": [
+    "Native625×883 image has JPEG/antialiasing and dense gray CAD overlays; apparent line intersections often have several plausible road/parcel explanations.",
+    "Historical2014 quarter source and current OSM road/place data are different epochs.",
+    "No source projection, geodetic grid or independent scale/control survey is available in this image.",
+    "This review authorizes no accuracy claim, address assignment, current legal-boundary assertion or unsupported fine-name split."
+  ],
+  "uncertaintyAssessment": {
+    "claimedAbsoluteAccuracyMetres": null,
+    "absoluteGeoreferenceAccuracyEstablished": false,
+    "noReviewRadiusOrAccuracyBoundAssigned": true,
+    "actualSourcePixelPlacementErrorKnown": false,
+    "plannedFinalSensitivity": "Compute source-mask threshold sensitivity and exact provisional-similarity changes under assumed ±3px perturbations of the two image reference anchors; scenario results describe parameter sensitivity only, never true boundary error bounds.",
+    "diagnosticFirstOrderRadialScenario": {
+      "assumedUnmeasuredRadialErrorPerAnchorPixels": 3,
+      "assumedErrorMeaning": "Euclidean radial displacement per anchor, not independently ±3px in each coordinate; scenario-only.",
+      "possibleRelativeBaselinePerturbation": 0.08294226348055873,
+      "possibleRotationSensitivityDegreesApproximate": 4.741388848221208,
+      "exampleRadialExtrapolationMetres": 8000,
+      "resultingScaleOrAngularDisplacementOrderMetres": 663.5381078444698,
+      "notObservedErrorAndNotAccuracyBound": true
+    }
+  }
+}

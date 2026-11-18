@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-13",
+  "verificationMode": "offline; existing local source bytes and artifacts only",
+  "scope": "Independent review of the KSH nationwide name inventory, raw/corrected country OSM extraction, existing manual review, and the completed three-city physical-cell prototype.",
+  "conclusion": {
+    "kshMunicipalityAndSettlementPartImportComplete": true,
+    "countryOsmSourceSnapshotProcessedWithoutCityWhitelist": true,
+    "nationwideUrbanNeighborhoodNamesComplete": false,
+    "nationwideUrbanNeighborhoodGeometriesComplete": false,
+    "physicalCellMethodQaPassed": false,
+    "physicalCellQuarterPublicationSupported": false,
+    "usableForAddressAssignment": false,
+    "status": "Complete import of the pinned national KSH name source and country OSM snapshot; urban-quarter coverage remains incomplete and partly unknown. Existing manual candidates require review. Physical-cell results remain quarantined research."
+  },
+  "kshInventory": {
+    "path": "data/neighborhoods/nationwide-inventory.json",
+    "workbookPath": "data/neighborhoods/sources/nationwide-inventory/hnt_letoltes_2026.xlsx",
+    "sourceSha256": "bd21f7e80f721093d2d471e4037ffc846c29fbb1d393e4edbd7058259417702d",
+    "independentReader": "openpyxl 3.1.5",
+    "independentComparison": {
+      "sourceMunicipalityRows": 3178,
+      "budapestDistrictRowsCollapsedUnderCapital": 23,
+      "canonicalMunicipalities": 3155,
+      "uniqueMunicipalityNames": 3155,
+      "uniqueMunicipalityKshCodes": 3155,
+      "citiesIncludingCapital": 348,
+      "settlementPartRows": 13721,
+      "uniquePartSourceRows": 13721,
+      "allPartSourceRowsPresentExactlyOnce": true,
+      "normalizedFieldMismatches": 0,
+      "normalization": "Source strings have outer whitespace stripped; KSH codes and category codes are zero-padded. Twelve source rows contain outer whitespace. Municipality identity, source row and legal status, and every part source row, code, municipality name, part name, category, postal code and outlying-character code match the independent reader.",
+      "rebuildCheck": "python scripts/neighborhoods/inventory.py --check passed"
+    },
+    "settlementPartCategories": {
+      "central_built_up_area": 3178,
+      "other_built_up_area": 1054,
+      "outlying_area": 9489
+    },
+    "partsWithNoGeometryInNameSource": 13721,
+    "namedSettlementPartRowsExcludingGenericLabels": 10307,
+    "municipalitiesWithLocalNameReferences": 22,
+    "cityReferenceStatus": {
+      "not_reviewed": 326,
+      "partial_or_historical_references": 21,
+      "complete_current_official_name_reference": 1
+    },
+    "completeCurrentUrbanNameReferences": [
+      "Budapest"
+    ],
+    "limits": [
+      "The KSH settlement-part categories do not establish a complete inventory of urban quarters.",
+      "Not-reviewed city references mean unknown coverage, not zero quarters.",
+      "The current complete Budapest name reference does not itself supply complete source-supported quarter geometries.",
+      "The name inventory contains no geometry and cannot assign an address to a quarter."
+    ]
+  },
+  "countryOsm": {
+    "manifestPath": "data/neighborhoods/sources/country-osm/manifest.json",
+    "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "osmTimestamp": "2026-11-12T21:23:05Z",
+    "scope": "Entire Hungary extract; named place=suburb|quarter|neighbourhood polygons/nodes and named admin_level=9|10|11 polygons. Completeness applies to processing this selection, not to real-world neighborhood coverage.",
+    "allFiveOutputByteCountsAndSha256Match": true,
+    "sourcePolygonCandidates": 1226,
+    "sourcePolygonFeatures": 440,
+    "sourceNamedPointFeatures": 3516,
+    "sourceMunicipalityFeatures": 3158,
+    "municipalityFeaturesUsedForAssociation": 3155,
+    "uniqueSelectedMunicipalityNames": 3155,
+    "missingCanonicalMunicipalities": [],
+    "rejectedPolygonCandidates": 786,
+    "rejectionMeaning": "No valid assembled source polygon; rejection alone does not distinguish all source-data and extract-edge causes.",
+    "rawToCorrectedAssociationComparison": {
+      "polygonGeometriesUnchanged": 440,
+      "pointGeometriesUnchanged": 3516,
+      "municipalityGeometriesUnchanged": 3158,
+      "polygonMunicipalityAssociationsChanged": 242,
+      "rawUnresolvedPolygonMunicipalities": 263,
+      "correctedUnresolvedPolygonMunicipalities": 21,
+      "rawMunicipalitiesWithPolygons": 40,
+      "correctedMunicipalitiesWithPolygons": 41,
+      "constructionOutputSha256Unchanged": true
+    },
+    "correctedGeometryChecks": {
+      "invalidSourcePolygonFeatures": 0,
+      "assignedPolygonFeatures": 419,
+      "assignedDistrictFeatures": 23,
+      "assignedNonDistrictSourceAreaFeatures": 396,
+      "assignedPolygonsFailingFullParentContainment": 0,
+      "namedPointMunicipalities": 485,
+      "unresolvedNamedPoints": 2
+    },
+    "limits": [
+      "The 440 raw source polygons include 23 Budapest district polygons and 21 unresolved features. They are not 440 verified Hungarian quarters.",
+      "Non-district administrative subdivisions and named place polygons require semantic review and may overlap or represent different area categories.",
+      "Named points establish names and locations, not extents.",
+      "All country source polygons remain unreviewed; valid rings and municipality containment do not verify the quarter boundary."
+    ]
+  },
+  "manualCandidates": {
+    "reviewPath": "data/neighborhoods/manual-review.json",
+    "sourceRegistryPath": "data/neighborhoods/manual-source-registry.json",
+    "inferredRegistryPath": "data/neighborhoods/inferred-candidate-registry.json",
+    "reviewedDatasets": 10,
+    "reviewedFeatures": 66,
+    "geometricallyValidFeatures": 66,
+    "sourceDerivedFineNeighborhoodCandidates": 2,
+    "sourceDerivedPlanningUnitCandidates": 45,
+    "separateInferredResearchCandidates": 19,
+    "independentInteriorBoundarySurveyPerformed": false,
+    "limits": [
+      "The 45 planning units are not 45 fine urban-neighborhood polygons.",
+      "Calibration residuals measure registration fit, not independent interior boundary accuracy.",
+      "Orbánhegy contains five inferred connectors totaling 304.85 m; Apostolhegy has an unresolved legal-junction interpretation; Péterimajor uses a land-use proxy.",
+      "Nyíregyháza raster registration residuals reach about 187 m at the 95th percentile and 586 m maximum.",
+      "Békéscsaba uses an extruded/shadowed source map with morphological closing; recorded spatial uncertainty is at least 80 m.",
+      "Map-derived source reuse rights remain unresolved. The manual review does not establish surveyed/legal boundaries, address assignment, or complete city coverage."
+    ],
+    "reviewedSourceDerivedCandidates": 47,
+    "pipelineAdmittedCandidates": 46,
+    "uniqueManualCatalogContributions": {
+      "neighborhoods": 1,
+      "planningUnits": 44,
+      "total": 45
+    },
+    "integrationLimits": [
+      "Tata Tóváros remains quarantined by the conservative loader (manual_hole_outside_shell); all nine raw Tata source features are preserved.",
+      "Szombathely Belváros is a duplicate; the primary catalog prefers the existing machine-source polygon."
+    ]
+  },
+  "physicalCellPrototype": {
+    "manifestPath": ".local/neighborhoods/physical-cell-prototype-v1/manifest.json",
+    "benchmarkPath": ".local/neighborhoods/physical-cell-prototype-v1/benchmark.json",
+    "completed": true,
+    "cities": [
+      "Budapest",
+      "Debrecen",
+      "Szeged"
+    ],
+    "exportedPhysicalCells": 4593,
+    "labeledResearchCandidateCells": 98,
+    "candidateCellsByCity": {
+      "Budapest": 68,
+      "Debrecen": 13,
+      "Szeged": 17
+    },
+    "allFourOutputFingerprintsMatch": true,
+    "invalidExportedCells": 0,
+    "allCandidatesQuarantined": true,
+    "allCandidatesUsableForAddressAssignment": false,
+    "methodQaPassed": false,
+    "benchmark": {
+      "reference": "Actual same-PBF OSM quarter polygons matched by point name and containment; geometric-fit reference, not independent official legal ground truth.",
+      "overall": {
+        "pairs": 233,
+        "medianIoU": 0.25344557024887676
+      },
+      "Budapest": {
+        "pairs": 207,
+        "medianIoU": 0.2319237525090016
+      },
+      "Debrecen": {
+        "pairs": 26,
+        "medianIoU": 0.7440500704508274
+      },
+      "Szeged": {
+        "pairs": 0,
+        "medianIoU": null
+      },
+      "pairsAtOrAboveIoUHalf": 47,
+      "singleNameBudapestCellMedianIoU": 0.3084,
+      "singleNameBudapestCellPairs": 84,
+      "outsideBudapestStratumContainsDebrecenOnly": true
+    },
+    "exportedGeometryObservations": {
+      "cellsBelow100SquareMetres": 418,
+      "cellsBelow1SquareMetre": 17,
+      "maximumOutsideParentArea": "No substantive outside-parent area detected.",
+      "overlap": "No substantive cell overlaps detected.",
+      "uncoveredParentFraction": {
+        "Budapest": 1.49e-06,
+        "Debrecen": 9.1e-09,
+        "Szeged": 6.29e-08
+      },
+      "partitionMetricLimit": "Near-zero pre-export metric partition differences are not proof that the final WGS84-exported cells cover the municipality exactly."
+    },
+    "estimatorTestsPassed": 7,
+    "limits": [
+      "One map label in one physical barrier cell does not establish the quarter extent.",
+      "The estimator flattens line intersections and discards bridge/tunnel/layer distinctions when constructing cells; grade-separated crossings and dual carriageways can produce irrelevant or sliver cells.",
+      "Overall and Budapest median IoU fail the prototype's 0.5 QA threshold. A favorable result from only 26 Debrecen pairs does not validate another city or the country.",
+      "No Szeged quarter-reference benchmark exists in this run.",
+      "Physical cells must remain a separate research artifact and must not be counted as source-supported quarters."
+    ]
+  }
+}

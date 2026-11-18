@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "status": "independent_review_passed_for_low_confidence_inferred_only",
+  "sourceContourIsObserved": false,
+  "sameAuthorChecks": "raw/szentes-final-checks.json",
+  "projectChecks": "raw/szentes-project-validation.json",
+  "results": {
+    "exportedCandidateCount": 1,
+    "vertices": 99,
+    "areaM2": 1156813.0309333175,
+    "outsideSzentesParentAreaM2": 0,
+    "unsupportedNativeBoundarySegments": 0,
+    "literalSourceVerticesExcludingClosure": 96,
+    "exactNativeBridgeRiverIntersections": 2,
+    "minimumNamedRoadRoleCoverage": 15,
+    "riverRoleCoverage": true
+  },
+  "materialUncertainties": [
+    "Historical municipal street facts combined with presentOSM linework; exact source edition/alignment date unknown.",
+    "Apponyi square side and two parcel-to-current-road identities remain inferred.",
+    "Two source river junctions use chosen nearby physical bridge detours, not observed source contours.",
+    "Six current street/path/junction choices require review; alternatives differ by41611.4187m² (3.6% of preferred area), not an absolute positional accuracy bound.",
+    "Original municipalPDF bytes/map pixels not acquired; source text/indexed map descriptions read via web connector.",
+    "Only the Apponyi square interpretation has two reconstructed footprints and the41611.4187m² comparison. The other five assumptions each retain one chosen physical path and an unresolved source choice; the two footprints are not a full uncertainty envelope."
+  ],
+  "independentReview": {
+    "path": "independent-review.json",
+    "sha256": "7561d6cba28d88b8e39bd44511d3883e75bf1c5f6e373c2070142caac5bdf163",
+    "reproducer": "independent-review.py",
+    "reproducerSha256": "3f4f50d13bcab3eb7dbc9320175eaebf9d87ba915a2c9914e64474e7256f8ffd",
+    "freshPbfWayCount": 1762,
+    "preferredBoundarySegments": 98,
+    "preferredLiteralSourceVertices": 96,
+    "exactBridgeRiverIntersections": 2,
+    "alternativeBoundarySegments": 128,
+    "technicalChecksPassed": true,
+    "sourceScope": "Historical/current mismatch and all six source-unspecified choices remain low confidence; no source contour observed or address assignment approved."
+  },
+  "primaryEligible": false,
+  "usableForAddressAssignment": false,
+  "accuracyMeters": null
+}

@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "city": "Szombathely",
+  "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+  "sourceTitle": "Integrált Városfejlesztési Stratégia 2008–13, 2013-06-06, annex1",
+  "sourcePageNumbersPrinted": [
+    150,
+    151
+  ],
+  "extractedAt": "2026-11-13",
+  "geometryStatus": "Boundary facts only: no coordinates or polygons invented.",
+  "normalization": "Expanded road-name abbreviations and normalized Hungarian diacritics. Source map must resolve street-side/built-up-limit/cadastral-road ambiguities.",
+  "licenseStatus": "Municipal factual boundary inventory; no explicit open geodata licence verified.",
+  "neighborhoods": [
+    {
+      "sourceId": 1,
+      "name": "Belváros (városmag)",
+      "pdfPageZeroBased": 149,
+      "boundaryFeatures": [
+        "Zrínyi Ilona utca",
+        "Hunyadi János utca",
+        "Szent Márton utca",
+        "Vörösmarty utca",
+        "Szelestey utca",
+        "Petőfi Sándor utca",
+        "Sörház utca",
+        "Hollán Ernő utca",
+        "Kiskar utca",
+        "Mátyás király út",
+        "Zrínyi Ilona utca"
+      ],
+      "geometryStatus": "not-yet-derived"
+    },
+    {
+      "sourceId": 2,
+      "name": "Hagyományos beépítésű belső lakóterület",
+      "pdfPageZeroBased": 149,
+      "boundaryFeatures": [
+        "Lipp Vilmos utca",
+        "Alsóőr utca",
+        "Pinkafői utca",
+        "Söptei út",
+        "Semmelweis Ignác utca",
+        "Vasút utca",
+        "Szent Márton utca",
+        "Vörösmarty utca",
+        "Szelestey utca",
+        "Petőfi Sándor utca",
+        "Sörház utca",
+        "Hollán Ernő utca",
+        "Kiskar utca",
+        "Mátyás király út",
+        "Zrínyi Ilona utca",
+        "Hunyadi János utca",
+        "Szent Gellért utca",
+        "Szőlősi sétány",
+        "Négyesi utca",
+        "Rumi út",
+        "Szent Flórián körút",
+        "Brenner Tóbiás körút",
+        "Jókai Mór utca",
+        "Bartók Béla körút",
+        "Bolyai János utca",
+        "Szűrcsapó utca",
+        "Paragvári utca",
+        "2606 hrsz. utca",
+        "Dr. Szabolcs Zoltán utca",
+        "Lipp Vilmos utca"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "notes": [
+        "Belváros is excluded; this area surrounds it.",
+        "Vasút utca both sides included.",
+        "Cadastral street 2606 needs source map verification."
+      ]
+    },
+    {
+      "sourceId": 3,
+      "name": "Oladi lakótelep",
+      "pdfPageZeroBased": 149,
+      "boundaryFeatures": [
+        "Dolgozók útja",
+        "Faludi Ferenc utca",
+        "Bakó József utca",
+        "Kodály Zoltán utca",
+        "Simon István utca",
+        "Perint-patak",
+        "Dolgozók útja"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "notes": [
+        "PDF lacks punctuation between Kodály Z. and Simon István; verify circuit on its map."
+      ]
+    },
+    {
+      "sourceId": 4,
+      "name": "Derkovits lakótelep",
+      "pdfPageZeroBased": 149,
+      "boundaryFeatures": [
+        "Paragvári utca",
+        "Szűrcsapó utca",
+        "Bolyai János utca",
+        "Bartók Béla körút",
+        "Perint parti sétány",
+        "Váci Mihály utca",
+        "Paragvári utca"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "notes": [
+        "Both sides of Váci Mihály utca included."
+      ]
+    },
+    {
+      "sourceId": 5,
+      "name": "Joskar-Ola-lakótelep",
+      "pdfPageZeroBased": 149,
+      "boundaryFeatures": [
+        "Szent Márton utca",
+        "Barátság utca",
+        "Mikes Kelemen utca",
+        "Károlyi Antal utca",
+        "Hunyadi János út",
+        "Szent Márton utca"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "notes": [
+        "Mikes Kelemen utca edge follows railway tracks along its full length."
+      ]
+    },
+    {
+      "sourceId": 6,
+      "name": "Ifjúsági (KISZ) lakótelep",
+      "pdfPageZeroBased": 149,
+      "boundaryFeatures": [
+        "Szent Flórián körút",
+        "Rumi út",
+        "Krúdy Gyula utca",
+        "Jászai Mari utca",
+        "Budai Nagy Antal utca",
+        "Kőrösi Csoma Sándor utca",
+        "Gábor Áron utca",
+        "Kismarton utca",
+        "Fogaras utca",
+        "Móra Ferenc utca",
+        "Diófa utca",
+        "Újvilág utca",
+        "Perint-patak"
+      ],
+      "geometryStatus": "not-yet-derived"
+    },
+    {
+      "sourceId": 7,
+      "name": "Herényi kertváros",
+      "pdfPageZeroBased": 149,
+      "boundaryFeatures": [
+        "Perint-patak",
+        "Vízöntő utca",
+        "Bertalanffy Miklós utca",
+        "Hóvirág utca",
+        "Tulipán utca",
+        "Görgey Artúr utca",
+        "Vajdahunyad tér",
+        "Szent Imre herceg utca",
+        "belterületi határ",
+        "Perint-patak"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "notes": [
+        "Vízöntő through Tulipán appears parenthetically in source; verify included side from map.",
+        "Built-up boundary is source-period boundary, not municipality boundary."
+      ]
+    },
+    {
+      "sourceId": 8,
+      "name": "Kámoni kertváros",
+      "pdfPageZeroBased": 149,
+      "boundaryFeatures": [
+        "Perint-patak",
+        "Görgey Artúr utca",
+        "Vajdahunyad tér",
+        "Szent Imre herceg utca",
+        "belterületi határ",
+        "Söptei út",
+        "Pinkafői utca",
+        "Alsóőr utca",
+        "Lipp Vilmos utca",
+        "768 hrsz. út",
+        "1636/5 hrsz. út"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "notes": [
+        "Cadastral road IDs need source-period base map."
+      ]
+    },
+    {
+      "sourceId": 9,
+      "name": "Oladi kertváros",
+      "pdfPageZeroBased": 150,
+      "boundaryFeatures": [
+        "Dolgozók útja",
+        "Perint-patak",
+        "Bartók Béla körút",
+        "Jégpince utca",
+        "Kétrózsa köz",
+        "Homok utca",
+        "belterületi határ"
+      ],
+      "geometryStatus": "not-yet-derived"
+    },
+    {
+      "sourceId": 10,
+      "name": "Alsóhegy-Középhegy kertváros",
+      "pdfPageZeroBased": 150,
+      "boundaryFeatures": [
+        "Homok utca",
+        "Kétrózsa köz",
+        "Jégpince utca",
+        "Jókai Mór utca",
+        "Brenner Tóbiás körút",
+        "Körmendi út",
+        "Külső Pozsonyi út",
+        "Pap-árok"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "notes": [
+        "Külső Pozsonyi út and Pap-árok streets belong wholly to Újperint per source."
+      ]
+    },
+    {
+      "sourceId": 11,
+      "name": "Újperint kertváros",
+      "pdfPageZeroBased": 150,
+      "boundaryFeatures": [
+        "Pap-árok",
+        "Külső Pozsonyi út",
+        "Körmendi út",
+        "belterületi határ"
+      ],
+      "geometryStatus": "not-yet-derived"
+    },
+    {
+      "sourceId": 12,
+      "name": "Gyöngyösszőlős kertváros",
+      "pdfPageZeroBased": 150,
+      "boundaryFeatures": [
+        "belterületi határ",
+        "Szombathely–Szentgotthárd railway",
+        "86 road",
+        "Gyöngyös-patak",
+        "Szent Gellért utca",
+        "Szőlősi sétány",
+        "Négyesi utca",
+        "Rumi út",
+        "Krúdy Gyula utca",
+        "Jászai Mari utca",
+        "Budai Nagy Antal utca",
+        "Kőrösi Csoma Sándor utca",
+        "Gábor Áron utca",
+        "Kismarton utca",
+        "Fogaras utca",
+        "Móra Ferenc utca",
+        "Diófa utca",
+        "Újvilág utca",
+        "Perint-patak"
+      ],
+      "geometryStatus": "not-yet-derived"
+    },
+    {
+      "sourceId": 13,
+      "name": "Gyöngyöshermán kertváros",
+      "pdfPageZeroBased": 150,
+      "boundaryFeatures": [
+        "Szombathely–Szentgotthárd railway",
+        "86 road",
+        "Szombathely–Zalaegerszeg/Nagykanizsa railway",
+        "belterületi határ"
+      ],
+      "geometryStatus": "not-yet-derived"
+    },
+    {
+      "sourceId": 14,
+      "name": "Szentkirály kertváros",
+      "pdfPageZeroBased": 150,
+      "boundaryFeatures": [
+        "Szombathely–Zalaegerszeg/Nagykanizsa railway"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "notes": [
+        "Only relative position east of railway is supplied. Must inspect neighborhood map for complete polygon; do not close arbitrary geometry."
+      ],
+      "completeCircuit": false
+    },
+    {
+      "sourceId": 15,
+      "name": "Éhen Gyula kertváros",
+      "pdfPageZeroBased": 150,
+      "boundaryFeatures": [
+        "Alkotás utca",
+        "Sas utca",
+        "Zanati út",
+        "Vépi út",
+        "Ikervár utca",
+        "Zanati út",
+        "Bártfa utca",
+        "Hámor utca",
+        "Vas utca",
+        "Alkotás utca"
+      ],
+      "geometryStatus": "not-yet-derived"
+    },
+    {
+      "sourceId": 16,
+      "name": "Ipartelep",
+      "pdfPageZeroBased": 150,
+      "boundaryFeatures": [
+        "Söptei út",
+        "Semmelweis Ignác utca",
+        "Vasút utca",
+        "railway",
+        "Károlyi Antal utca",
+        "Körmendi út",
+        "Szent Gellért utca",
+        "Gyöngyös-patak",
+        "86 road",
+        "belterületi határ",
+        "unreadable road number in original PDF text",
+        "Söptei út"
+      ],
+      "geometryStatus": "not-yet-derived",
+      "notes": [
+        "Exclude source area15 Éhen Gyula kertváros.",
+        "PDF extraction has unreadable road number; inspect original map/page before polygon creation."
+      ],
+      "completeCircuit": false
+    },
+    {
+      "sourceId": 17,
+      "name": "Zanat",
+      "pdfPageZeroBased": 150,
+      "boundaryFeatures": [],
+      "geometryStatus": "not-yet-derived",
+      "includedStreets": [
+        "Külsőzanati út",
+        "Fenyő utca",
+        "Áfonyás utca",
+        "Eper utca",
+        "Korpás utca",
+        "Vénusz utca",
+        "Üstökös utca",
+        "Csillag utca",
+        "Napsugár utca",
+        "Kikelet utca",
+        "Holdvilág utca"
+      ],
+      "completeCircuit": false,
+      "notes": [
+        "Source lists contained streets instead of perimeter. Requires neighborhood map."
+      ]
+    },
+    {
+      "sourceId": 18,
+      "name": "Petőfi telep",
+      "pdfPageZeroBased": 150,
+      "boundaryFeatures": [],
+      "geometryStatus": "not-yet-derived",
+      "includedStreets": [
+        "Vidos József utca",
+        "Sárosi Gyula utca",
+        "Halastó utca",
+        "Kulcsár István utca",
+        "Péterfy Sándor utca"
+      ],
+      "completeCircuit": false,
+      "notes": [
+        "Source lists contained streets instead of perimeter. Requires neighborhood map."
+      ]
+    }
+  ]
+}

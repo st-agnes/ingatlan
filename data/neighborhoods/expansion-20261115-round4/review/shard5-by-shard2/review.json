@@ -1,0 +1,133 @@
+{
+  "reviewStatus": "defensible-with-explicit-limitations",
+  "materialBlockerCount": 0,
+  "frozenFilesModified": false,
+  "reviewScope": "Independent identity/source-association QA of five named risk cases; all66 geometry validity/flags checked. No positional-accuracy audit.",
+  "frozenFeaturesSha256": "bd36bf6990cfb2cff4c1599b89d02d351b2c8c5ba863043db19569cb7dbc5cf1",
+  "featureCount": 66,
+  "all66ValidPolygonOrMultiPolygon": true,
+  "all66EstimatedAndLowConfidence": true,
+  "checks": [
+    {
+      "municipality": "Szarvas",
+      "name": "Pepi-kert",
+      "areaSquareMetres": 806508,
+      "frozenMethod": "mapped_landuse_locality_association_estimate",
+      "sourceObjectIds": [
+        "osm:way:24775905"
+      ],
+      "pointInside": true,
+      "pointDistanceMetres": 0.0,
+      "sourceBoundaryHausdorffMetres": 0.000393,
+      "matchesLiteralSourceBoundaryWithin1cm": true,
+      "percentOutsideCachedMunicipality": 47.13
+    },
+    {
+      "municipality": "Felsőzsolca",
+      "name": "Felsőzsolcai Ipari Zóna",
+      "areaSquareMetres": 710300,
+      "frozenMethod": "manual_named_street_network_envelope_estimate",
+      "sourceObjectIds": [
+        "osm:way:94349483",
+        "osm:way:94349489",
+        "osm:way:94349498",
+        "osm:way:227741801",
+        "osm:way:227742094"
+      ],
+      "pointInside": false,
+      "pointDistanceMetres": 236.65
+    },
+    {
+      "municipality": "Miskolc",
+      "name": "Martin kertvárosi felüljáró",
+      "areaSquareMetres": 202272,
+      "frozenMethod": "mapped_landuse_locality_association_estimate",
+      "sourceObjectIds": [
+        "osm:way:154537333"
+      ],
+      "sourceBoundaryHausdorffMetres": 0.000381,
+      "matchesLiteralSourceBoundaryWithin1cm": true
+    },
+    {
+      "municipality": "Miskolc",
+      "name": "Szondi telep – Csorbatelep",
+      "areaSquareMetres": 11270533,
+      "frozenMethod": "primary_constituent_table_parent_remainder_estimate",
+      "sourceObjectIds": [
+        "manual:miskolc-source-raster:2",
+        "expansion:miskolc:coarse:selyemret",
+        "osm:way:154537333"
+      ],
+      "operationBoundaryHausdorffMetres": 0.000381,
+      "matchesDeclaredConstituentBoundaryWithin1cm": true
+    },
+    {
+      "municipality": "Miskolc",
+      "name": "Vologda–Jókai lakótelep",
+      "areaSquareMetres": 217349,
+      "frozenMethod": "source_verified_constituent_union_estimate",
+      "sourceObjectIds": [
+        "expansion:miskolc:coarse:vologda",
+        "expansion:miskolc:coarse:jokai"
+      ],
+      "operationBoundaryHausdorffMetres": 0.000382,
+      "matchesDeclaredConstituentBoundaryWithin1cm": true
+    }
+  ],
+  "findings": [
+    {
+      "name": "Martin kertvárosi felüljáró",
+      "decision": "defensible only as an inferred partial physical-site search proxy",
+      "severity": "limitation",
+      "evidence": "Municipal table lists KSH unit8 distinctly from Martin kertváros and in group2. Literal OSM railway way154537333 covers20.23ha and intersects the actual Kisfaludy overpass bridge approaches; it is not a bridge/building-sized unrelated substitution. No reviewed source establishes that this railway parcel equals the complete KSH unit. The feature note explicitly discloses the inferred association.",
+      "sourceScope": "whole railway source site; uncertain and probably partial statistical-locality coverage",
+      "publicationCaveat": "Do not describe it as a verified whole KSH-unit boundary; retain physical-site/inferred/partial extent language."
+    },
+    {
+      "name": "Szondi telep – Csorbatelep",
+      "decision": "defensible coarse combined-area inference",
+      "severity": "limitation",
+      "evidence": "Exact source pages228–230 list only Szondi–Csorba, Martin overpass and Selyemrét in group2; primary text identifies Csorba commercial land, former meatworks industrial land and mixed Szondi sites. The large11.27km2 remainder occupies that parent context and is not confined to a small housing footprint. Its subtraction uses coarse constituent proxies, so internal partition accuracy and complete coverage cannot be asserted.",
+      "publicationCaveat": "Keep parent-remainder/inferred partition qualification; it is not a published KSH polygon."
+    },
+    {
+      "name": "Vologda–Jókai lakótelep",
+      "decision": "defensible constituent union",
+      "severity": "none",
+      "evidence": "Exact municipal table identifies combined KSH unit14. Output exactly unions the archived Vologda and Jókai estimates (21.73ha total), preserving both distinct constituents instead of treating one as an alias. Existing coarse-boundary uncertainty remains."
+    },
+    {
+      "name": "Pepi-kert",
+      "decision": "defensible full modern arboretum footprint",
+      "severity": "none",
+      "evidence": "Output matches literal native Szarvasi Arborétum way24775905 (80.65ha). Operator/tourism usage associates the modern Pepi-kert name with the82ha arboretum, while historical Pepi garden is explicitly distinguished as a roughly40ha subset. Independent public material confirms the arboretum lies partly in Szarvas and partly in Békésszentandrás. Cached municipal-border crossing is intentional and is not an identity defect.",
+      "publicationCaveat": "Retain modern/full-arboretum interpretation and historical-subset uncertainty."
+    },
+    {
+      "name": "Felsőzsolcai Ipari Zóna",
+      "decision": "defensible industrial-core/reserve-land envelope with uncertain completeness",
+      "severity": "limitation",
+      "evidence": "The71.03ha envelope follows actual Ipari, Szeles, Szállítók, Turul and Molnár Ferenc streets northwest of the Szikszai road. Independent municipal operator text describes original62ha park and expanded industrial infrastructure; regional investment source describes103.7ha. Property evidence locates industrial campuses on Ipari/Szeles streets. Thus the237m offset label across the main road does not establish a wrong-place substitution, but the feature cannot be claimed to cover the full expanded103.7ha zone.",
+      "publicationCaveat": "Retain label offset and uncertain development/reserve phase membership; do not market as exact/full park extent."
+    }
+  ],
+  "webEvidenceFiles": [
+    "web-evidence-1.json",
+    "web-evidence-2.json"
+  ],
+  "reviewImage": "felsozsolca-source-review.png",
+  "sourceInputsReviewed": [
+    "shard-5/README.md",
+    "shard-5/selection.json",
+    "shard-5/features.geojson",
+    "shard-5/evidence.json",
+    "shard-5/source-inputs/miskolc-exact-source-pages228-231.txt",
+    "shard-5/source-inputs/existing-miskolc-components.geojson",
+    "shard-5/source-inputs/miskolc-33d4e745/roads.geojson.gz",
+    "shard-5/source-inputs/miskolc-33d4e745/areas.geojson.gz",
+    "shard-5/source-inputs/felsozsolca-ab255f20/roads.geojson.gz",
+    "shard-5/source-inputs/felsozsolca-ab255f20/areas.geojson.gz",
+    "shard-5/source-inputs/szarvas-d7c5ef33/areas.geojson.gz",
+    "shard-5/source-inputs/szarvas-d7c5ef33/municipality.geojson"
+  ]
+}

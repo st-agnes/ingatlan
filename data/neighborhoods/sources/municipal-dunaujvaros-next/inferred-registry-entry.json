@@ -1,0 +1,22 @@
+{
+  "id": "dunaujvaros-dozsa-road-completion-inference",
+  "path": "data/neighborhoods/sources/municipal-dunaujvaros-next/dozsa-inferred.geojson",
+  "sha256": "1380c43dee4b916e29e881fcd816852654a8c88e06260076fded364eb57d8d82",
+  "municipality": "Dunaújváros",
+  "method": "Explicit manual estimated completion of the municipal three-road Dózsa description using actual modern Vasmű út and unnamed roundabout arc. Every boundary edge is an unchanged original PBF node pair; unproven boundary roles and alternative roundabout arc remain documented.",
+  "evidenceUrls": [
+    "https://dunaujvaros.hu/sites/all/files/dokumentumok/8060/35496.pdf",
+    "https://njt.jog.gov.hu/jogszabaly/2003-19-SP-5Y3929",
+    "https://dunaujvaros.com/hirek/201407/korforgo_atadas_utan_vegre"
+  ],
+  "license": "ODbL-1.0 for actual OSM coordinates; manually transcribed municipal street facts.",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-dunaujvaros-next/independent-review.json",
+  "rightsStatus": "OSM coordinates ODbL-1.0; municipal source PDF/news article not reproduced; no municipal-map open-reuse license asserted."
+}

@@ -1,0 +1,18 @@
+{
+  "id": "tatabanya-more-source-vectors",
+  "path": "data/neighborhoods/sources/municipal-tatabanya-more/additional-quarter-vectors.geojson",
+  "sha256": "cbe63fc319cfd2e2a9a60223c742329a5985ba257b4d99bb5d197b39f527a25f",
+  "municipality": "Tatabánya",
+  "method": "Literal source-vector circuit extraction from the single-page Tatabánya Városrészek településrendezési szempontú lehatárolása map, annex 3 of municipal regulation 8/2018 (IV.19.). Original decimal PDF path operands and graphics matrices are evaluated exactly, rather than snapping MuPDF float32 endpoint approximations. Every exported edge is an actual selected source line item, possibly reversed. Explicit source subcircuits omit documented out-and-back nonboundary strokes; no buffer, make_valid, invented closing edge, smoothing, clipping or geographical snapping is used. The frozen earlier municipal-outline affine georegistration into EOV/EPSG:23700 is preserved and inverse-projected into WGS84. Historical source overlaps and small differences from the current OSM city boundary remain unmodified and recorded.",
+  "evidenceUrls": [
+    "https://njt.jog.gov.hu/document/c5/c56aLL_EJR_13372578-H_SZ_3.mell_klet.pdf"
+  ],
+  "license": "Municipal source-map open-reuse rights unverified; ODbL-1.0 for OSM geographic reference.",
+  "propertyOverrides": {
+    "boundaryKind": "neighbourhood",
+    "canonicalNameIsNeighborhood": true,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-tatabanya-more/independent-review.json",
+  "rightsStatus": "Public legal-annex source; open-reuse licence not independently established."
+}

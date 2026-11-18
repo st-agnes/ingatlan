@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "featureCount": 29,
+  "towns": [
+    {
+      "municipality": "Budaörs",
+      "file": "budaors-features.geojson",
+      "featureCount": 12,
+      "sha256": "724db6a6a6bada341bc9992dc288eaba0d17e6940e5de8020954ebe19dbb89ef",
+      "names": [
+        "Csikidűlő",
+        "Felsőszállás",
+        "Ganztelep",
+        "Kertváros",
+        "Kőhegy",
+        "Lakótelep",
+        "Naphegy",
+        "Odvashegy",
+        "Törökugrató",
+        "Ófalu",
+        "Öröm-völgy",
+        "Úthegy"
+      ],
+      "validGeometryCount": 12,
+      "sourcePointsInside": 12,
+      "methods": {
+        "map_or_text_estimate": 6,
+        "physical_barrier_cell_estimate": 6
+      }
+    },
+    {
+      "municipality": "Tatabánya",
+      "file": "tatabanya-features.geojson",
+      "featureCount": 9,
+      "sha256": "c7c149631d492caf3551c89848b21264426b4d9162f0e7c3e2d2f883ad7257b0",
+      "names": [
+        "Bánhidai lakótelep",
+        "Gál István-lakótelep",
+        "Kertvárosi lakótelep",
+        "Kossuthkert",
+        "Millennium lakópark",
+        "Paletta lakópark",
+        "Panoráma lakópark",
+        "Ságvári-lakótelep",
+        "Sárberki lakótelep"
+      ],
+      "validGeometryCount": 9,
+      "sourcePointsInside": 9,
+      "methods": {
+        "map_or_text_estimate": 4,
+        "physical_barrier_cell_estimate": 5
+      }
+    },
+    {
+      "municipality": "Dunakeszi",
+      "file": "dunakeszi-features.geojson",
+      "featureCount": 8,
+      "sha256": "adf3fd00348d9a2b873d5dd2a360f678d2dfb5e75320a5050d8a55bc43e6cc61",
+      "names": [
+        "Dombliget-lakópark",
+        "Felsőtabán",
+        "Malomárok",
+        "Malomárok lakópark",
+        "Révdűlő",
+        "Tiszti lakótelep",
+        "Toldi-lakópark",
+        "Tóváros"
+      ],
+      "validGeometryCount": 8,
+      "sourcePointsInside": 8,
+      "methods": {
+        "physical_barrier_cell_estimate": 3,
+        "map_or_text_estimate": 5
+      }
+    }
+  ],
+  "circleCount": 0,
+  "voronoiCount": 0,
+  "allOutputGeometriesEstimated": true,
+  "nationalCompletionPercentage": null
+}

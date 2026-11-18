@@ -1,0 +1,938 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "originalPdfPageOneBased": 169,
+    "printedPage": 167,
+    "figure": 79,
+    "sourceImage": "source-page-169.png"
+  },
+  "status": "raw_source_raster_trace_qa_pass_final_compressed_output_pending",
+  "comparisonMethod": {
+    "purpose": "Final source raster georeferencing with five exact original OSM node controls on source-identifiable junctions; fit diagnostics are not absolute boundary accuracy.",
+    "controls": [
+      {
+        "osmNodeId": 4459257122,
+        "coordinates": [
+          19.639965,
+          46.8889091
+        ],
+        "feature": "Csalánosi/Izsáki junction",
+        "renderedPage2xPixels": [
+          596,
+          983
+        ],
+        "originalJpegPixels": [
+          848.3445202694755,
+          1091.4541867963997
+        ]
+      },
+      {
+        "osmNodeId": 411750381,
+        "coordinates": [
+          19.6625059,
+          46.8943325
+        ],
+        "feature": "Vízmű/Izsáki junction",
+        "renderedPage2xPixels": [
+          1033,
+          818
+        ],
+        "originalJpegPixels": [
+          1664.3835976795726,
+          783.3448249214587
+        ]
+      },
+      {
+        "osmNodeId": 1803696400,
+        "coordinates": [
+          19.6440856,
+          46.9002983
+        ],
+        "feature": "Csalánosi/Szüret junction",
+        "renderedPage2xPixels": [
+          679,
+          659
+        ],
+        "originalJpegPixels": [
+          1003.335923988098,
+          486.4394398419704
+        ]
+      },
+      {
+        "osmNodeId": 765800655,
+        "coordinates": [
+          19.6510893,
+          46.8966027
+        ],
+        "feature": "Szüret/Tópart junction",
+        "renderedPage2xPixels": [
+          813,
+          760
+        ],
+        "originalJpegPixels": [
+          1253.56300950973,
+          675.0397158987523
+        ]
+      },
+      {
+        "osmNodeId": 801515835,
+        "coordinates": [
+          19.6355324,
+          46.9093647
+        ],
+        "feature": "Széles/Sutus junction",
+        "renderedPage2xPixels": [
+          519,
+          405
+        ],
+        "originalJpegPixels": [
+          704.5573144100305,
+          12.13775550115247
+        ]
+      }
+    ],
+    "matrixLonLatRowToRenderedPage2xPixels": [
+      [
+        19283.314486333005,
+        -491.64905188799787
+      ],
+      [
+        404.7189338630685,
+        -28354.323218982554
+      ],
+      [
+        -397104.722323828,
+        1340142.5060740267
+      ]
+    ],
+    "matrixOriginalJpegColumnToWgs84": [
+      [
+        2.7780936038575028e-05,
+        3.9654244509343817e-07,
+        19.61597828159317
+      ],
+      [
+        -4.817068197481257e-07,
+        -1.889373596369315e-05,
+        46.909948043499426
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "matrixOriginalJpegColumnToRenderedPage2x": [
+      [
+        0.5355135704860214,
+        0.0,
+        141.6999969482422
+      ],
+      [
+        0.0,
+        0.5355241366115069,
+        398.49993896484375
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "residualRenderedPixels": [
+      0.3703029284714672,
+      0.5701511120778605,
+      1.065292853499344,
+      0.5090606728601502,
+      0.6330876638696357
+    ],
+    "absoluteBoundaryAccuracyMetres": null,
+    "sourcePageRenderScale": 2,
+    "calibrationFrozen": true,
+    "preliminaryControlCorrections": "Discarded approximate roundabout-center control and initially misidentified Vízöntő crossing; all five final geographical controls are literal original OSM nodes.",
+    "extrapolationLimit": "Western compound footprint extends west of the controls; no independently surveyed/geodetic accuracy claim."
+  },
+  "rejectedSplitInterpretation": {
+    "name": "Szüret plusVízöntő",
+    "reason": "Current Vízöntő route lies southeast of the drawn internal black boundary. Outer-only registration reveals ~50px displacement, whereas Tópart matches the actual bent border.",
+    "diagnosticOnly": true
+  },
+  "actualRoadInput": {
+    "path": "data/neighborhoods/sources/municipal-kecskemet-outer-next/all-local-roads.geojson",
+    "sha256": "ee16b15f2dcc1379f5638abd8990151c8865065307331f0ee54b8c53bf2bd7f9"
+  },
+  "roadCorridorInterpretation": {
+    "internalSplit": "Actual Szüret utca to Tópart utca, not Vízöntő.",
+    "easternBoundary": "Continuous secondary Vízmű corridor118349039/436987544; exact road-side choice is not established by the coarse source illustration.",
+    "parallelOldBranchLimit": "Residential61816311 and169206285/177508628 do not form a continuous outer road to Izsáki/Sutus; their ends switch to Széktó or dead-end. Tópart meets the residential branch about50mSW of the secondaryroad. No gap was bridged to force this branch.",
+    "northernRoundabout": "Current surface roundabout geometry used; no current/legal boundary survey implied."
+  },
+  "sourceSemanticLimit": "Petőfiváros I./II. are explicitly labeled separate subquarters in figure79. The western Felsőszéktó–Felsőcsalános is a compound mapped unit and gives no separate boundaries for its two component names.",
+  "usableForAddressAssignment": false,
+  "sourceRaster": {
+    "xref": 208,
+    "originalPdfPageOneBased": 169,
+    "printedPage": 167,
+    "figure": 79,
+    "publisherPdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+    "imageWidth": 1694,
+    "imageHeight": 1202,
+    "exactExtractedJpegSha256": "8d6217e4ae20dadfd07141aaed4dff0c057166fd60f30d8a7c0eec9b9fd5079d",
+    "pdfImageRect": [
+      70.8499984741211,
+      199.24996948242188,
+      524.4299926757812,
+      521.0999755859375
+    ],
+    "renderedPageImageRect": [
+      141.6999969482422,
+      398.49993896484375,
+      1048.8599853515625,
+      1042.199951171875
+    ]
+  },
+  "roadDiagnosticsOnly": [
+    {
+      "name": "Petőfiváros II.",
+      "independentGeometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.6549389,
+              46.8999716
+            ],
+            [
+              19.6548434,
+              46.8999312
+            ],
+            [
+              19.6544815,
+              46.8997631
+            ],
+            [
+              19.6540752,
+              46.8995681
+            ],
+            [
+              19.6537598,
+              46.8993008
+            ],
+            [
+              19.6536533,
+              46.8991967
+            ],
+            [
+              19.6527191,
+              46.8982014
+            ],
+            [
+              19.652024,
+              46.8974626
+            ],
+            [
+              19.6517447,
+              46.8971897
+            ],
+            [
+              19.6516763,
+              46.8971173
+            ],
+            [
+              19.6510893,
+              46.8966027
+            ],
+            [
+              19.6504714,
+              46.8969142
+            ],
+            [
+              19.6500589,
+              46.8971338
+            ],
+            [
+              19.6490047,
+              46.8977252
+            ],
+            [
+              19.6481022,
+              46.8982026
+            ],
+            [
+              19.64723,
+              46.898688
+            ],
+            [
+              19.6462335,
+              46.8992332
+            ],
+            [
+              19.6451479,
+              46.8998502
+            ],
+            [
+              19.6446552,
+              46.9001046
+            ],
+            [
+              19.6444801,
+              46.9001739
+            ],
+            [
+              19.6441865,
+              46.9002555
+            ],
+            [
+              19.6440856,
+              46.9002983
+            ],
+            [
+              19.6451344,
+              46.9013293
+            ],
+            [
+              19.6457841,
+              46.9019528
+            ],
+            [
+              19.6459695,
+              46.9021378
+            ],
+            [
+              19.6460706,
+              46.9022408
+            ],
+            [
+              19.6475108,
+              46.9034668
+            ],
+            [
+              19.648233,
+              46.904087
+            ],
+            [
+              19.648655,
+              46.9044526
+            ],
+            [
+              19.6488317,
+              46.9045476
+            ],
+            [
+              19.6489794,
+              46.9046454
+            ],
+            [
+              19.6490477,
+              46.904673
+            ],
+            [
+              19.6491353,
+              46.9046948
+            ],
+            [
+              19.64921,
+              46.9047096
+            ],
+            [
+              19.6492664,
+              46.9047034
+            ],
+            [
+              19.6493232,
+              46.9047074
+            ],
+            [
+              19.6494577,
+              46.9046529
+            ],
+            [
+              19.6497972,
+              46.904458
+            ],
+            [
+              19.6502692,
+              46.9040781
+            ],
+            [
+              19.6522875,
+              46.9023141
+            ],
+            [
+              19.6532933,
+              46.9014253
+            ],
+            [
+              19.6549389,
+              46.8999716
+            ]
+          ]
+        ]
+      },
+      "valid": true,
+      "literalClosed": true,
+      "holes": 0,
+      "coordinates": 42,
+      "areaM2": 376454.9053645879,
+      "sourceWayIds": [
+        "osm:way:57771718",
+        "osm:way:61299776",
+        "osm:way:87125030",
+        "osm:way:118349039",
+        "osm:way:118349041",
+        "osm:way:407204003",
+        "osm:way:436987544",
+        "osm:way:87125026",
+        "osm:way:599070144"
+      ],
+      "missingConsecutiveOriginalEdges": [],
+      "visual": "fineII-strict-independent.png",
+      "absoluteBoundaryAccuracyMetres": null,
+      "currentFineNameIndependentlyConfirmed": false,
+      "usableForAddressAssignment": false,
+      "intendedUse": "diagnostic_only_not_historical_source_outline",
+      "sourceRoadCorridorShapeMatchesAtCoarseScale": true,
+      "exactHistoricalSourceOutlineMatch": false
+    },
+    {
+      "name": "Petőfiváros I.",
+      "independentGeometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.6510893,
+              46.8966027
+            ],
+            [
+              19.6516763,
+              46.8971173
+            ],
+            [
+              19.6517447,
+              46.8971897
+            ],
+            [
+              19.652024,
+              46.8974626
+            ],
+            [
+              19.6527191,
+              46.8982014
+            ],
+            [
+              19.6536533,
+              46.8991967
+            ],
+            [
+              19.6537598,
+              46.8993008
+            ],
+            [
+              19.6540752,
+              46.8995681
+            ],
+            [
+              19.6544815,
+              46.8997631
+            ],
+            [
+              19.6548434,
+              46.8999312
+            ],
+            [
+              19.6549389,
+              46.8999716
+            ],
+            [
+              19.6573155,
+              46.8979017
+            ],
+            [
+              19.6576509,
+              46.8976078
+            ],
+            [
+              19.6583929,
+              46.8969447
+            ],
+            [
+              19.6587322,
+              46.896677
+            ],
+            [
+              19.6589712,
+              46.8965031
+            ],
+            [
+              19.6595513,
+              46.8961485
+            ],
+            [
+              19.6596115,
+              46.8961135
+            ],
+            [
+              19.6600841,
+              46.8958161
+            ],
+            [
+              19.6607744,
+              46.8954022
+            ],
+            [
+              19.6612693,
+              46.8950982
+            ],
+            [
+              19.6613965,
+              46.8950203
+            ],
+            [
+              19.6618065,
+              46.8947612
+            ],
+            [
+              19.6618555,
+              46.8947308
+            ],
+            [
+              19.6622833,
+              46.8944658
+            ],
+            [
+              19.6623425,
+              46.8944291
+            ],
+            [
+              19.6625059,
+              46.8943325
+            ],
+            [
+              19.6623062,
+              46.8942463
+            ],
+            [
+              19.6622701,
+              46.8942334
+            ],
+            [
+              19.66168,
+              46.8939567
+            ],
+            [
+              19.660958,
+              46.8935755
+            ],
+            [
+              19.659954,
+              46.8930086
+            ],
+            [
+              19.659932,
+              46.8929967
+            ],
+            [
+              19.6590583,
+              46.8925259
+            ],
+            [
+              19.6590116,
+              46.8924949
+            ],
+            [
+              19.6583356,
+              46.8921588
+            ],
+            [
+              19.6577613,
+              46.8919174
+            ],
+            [
+              19.6573958,
+              46.8917748
+            ],
+            [
+              19.6570389,
+              46.891645
+            ],
+            [
+              19.6568464,
+              46.891575
+            ],
+            [
+              19.6554932,
+              46.8912508
+            ],
+            [
+              19.6549239,
+              46.8911519
+            ],
+            [
+              19.6542257,
+              46.8910617
+            ],
+            [
+              19.6524557,
+              46.8908737
+            ],
+            [
+              19.6511146,
+              46.8907313
+            ],
+            [
+              19.6501038,
+              46.8906017
+            ],
+            [
+              19.6493965,
+              46.8905275
+            ],
+            [
+              19.6489177,
+              46.8904685
+            ],
+            [
+              19.6488203,
+              46.8904596
+            ],
+            [
+              19.6484623,
+              46.8904276
+            ],
+            [
+              19.6480099,
+              46.8903549
+            ],
+            [
+              19.6464967,
+              46.8900067
+            ],
+            [
+              19.6439799,
+              46.8892016
+            ],
+            [
+              19.643242,
+              46.8890367
+            ],
+            [
+              19.6429299,
+              46.8889864
+            ],
+            [
+              19.6427725,
+              46.8889651
+            ],
+            [
+              19.6425753,
+              46.8889699
+            ],
+            [
+              19.642142,
+              46.8889281
+            ],
+            [
+              19.6414748,
+              46.8888817
+            ],
+            [
+              19.6409639,
+              46.8888548
+            ],
+            [
+              19.640242,
+              46.8888307
+            ],
+            [
+              19.6401829,
+              46.8888323
+            ],
+            [
+              19.6400822,
+              46.8888442
+            ],
+            [
+              19.6400464,
+              46.8888526
+            ],
+            [
+              19.640027,
+              46.8888608
+            ],
+            [
+              19.6400007,
+              46.8888857
+            ],
+            [
+              19.6399866,
+              46.888896
+            ],
+            [
+              19.639965,
+              46.8889091
+            ],
+            [
+              19.6399189,
+              46.8889477
+            ],
+            [
+              19.6398827,
+              46.8889851
+            ],
+            [
+              19.6398608,
+              46.8890314
+            ],
+            [
+              19.6398511,
+              46.8890837
+            ],
+            [
+              19.6398321,
+              46.8893911
+            ],
+            [
+              19.6398225,
+              46.8895243
+            ],
+            [
+              19.6398126,
+              46.8897085
+            ],
+            [
+              19.6397612,
+              46.8902005
+            ],
+            [
+              19.6397545,
+              46.8906166
+            ],
+            [
+              19.6397629,
+              46.8910371
+            ],
+            [
+              19.6398472,
+              46.8917566
+            ],
+            [
+              19.6399193,
+              46.8923067
+            ],
+            [
+              19.6400657,
+              46.8931575
+            ],
+            [
+              19.6401233,
+              46.8934227
+            ],
+            [
+              19.6403371,
+              46.8942336
+            ],
+            [
+              19.6404988,
+              46.8946623
+            ],
+            [
+              19.6406766,
+              46.8951252
+            ],
+            [
+              19.6407596,
+              46.8953513
+            ],
+            [
+              19.640929,
+              46.8957753
+            ],
+            [
+              19.6410857,
+              46.8961449
+            ],
+            [
+              19.6411363,
+              46.8962453
+            ],
+            [
+              19.6413999,
+              46.8967551
+            ],
+            [
+              19.6415928,
+              46.8970808
+            ],
+            [
+              19.6417765,
+              46.8973829
+            ],
+            [
+              19.642254,
+              46.8980575
+            ],
+            [
+              19.6425744,
+              46.8985169
+            ],
+            [
+              19.6430886,
+              46.8992294
+            ],
+            [
+              19.6433557,
+              46.8995504
+            ],
+            [
+              19.6434879,
+              46.8997137
+            ],
+            [
+              19.6438306,
+              46.9000473
+            ],
+            [
+              19.6439701,
+              46.9001854
+            ],
+            [
+              19.6440856,
+              46.9002983
+            ],
+            [
+              19.6441865,
+              46.9002555
+            ],
+            [
+              19.6444801,
+              46.9001739
+            ],
+            [
+              19.6446552,
+              46.9001046
+            ],
+            [
+              19.6451479,
+              46.8998502
+            ],
+            [
+              19.6462335,
+              46.8992332
+            ],
+            [
+              19.64723,
+              46.898688
+            ],
+            [
+              19.6481022,
+              46.8982026
+            ],
+            [
+              19.6490047,
+              46.8977252
+            ],
+            [
+              19.6500589,
+              46.8971338
+            ],
+            [
+              19.6504714,
+              46.8969142
+            ],
+            [
+              19.6510893,
+              46.8966027
+            ]
+          ]
+        ]
+      },
+      "valid": true,
+      "literalClosed": true,
+      "holes": 0,
+      "coordinates": 111,
+      "areaM2": 1322385.1927987216,
+      "sourceWayIds": [
+        "osm:way:57771718",
+        "osm:way:61299776",
+        "osm:way:118349039",
+        "osm:way:118349041",
+        "osm:way:247458985",
+        "osm:way:262453954",
+        "osm:way:407204003",
+        "osm:way:419057566",
+        "osm:way:436987545",
+        "osm:way:448957353",
+        "osm:way:624121926",
+        "osm:way:624121927",
+        "osm:way:624121931",
+        "osm:way:1112248597",
+        "osm:way:599070285"
+      ],
+      "missingConsecutiveOriginalEdges": [],
+      "visual": "fineI-strict-independent.png",
+      "absoluteBoundaryAccuracyMetres": null,
+      "currentFineNameIndependentlyConfirmed": false,
+      "usableForAddressAssignment": false,
+      "intendedUse": "diagnostic_only_not_historical_source_outline",
+      "sourceRoadCorridorShapeMatchesAtCoarseScale": true,
+      "exactHistoricalSourceOutlineMatch": false
+    }
+  ],
+  "sourceTracePolicy": "The actual complete black source-image outlines are preferred over substituting current shifted street centerlines. Any traced image coordinates must remain explicit and transform via the frozen matrix; no coordinate should be described as an original OSM vertex unless it actually is.",
+  "sourceRasterTraceReview": {
+    "rawPixelTracePath": "raw-pixel-trace.json",
+    "rawPixelTraceSha256": "a28fd5b45d90a05c4119b36793fae587bca245c6f78c4efb69fddf7da6843eb5",
+    "exactSourceJpegSha256": "8d6217e4ae20dadfd07141aaed4dff0c057166fd60f30d8a7c0eec9b9fd5079d",
+    "diagnosticGeojsonSha256": "f806c1666294fb7e47f06926f399d866db1ec014cf734552692fbefd40ff05b6",
+    "visualPreview": "raster-trace-preview.png",
+    "features": [
+      {
+        "name": "Petőfiváros I.",
+        "sourcePixelCoordinates": 2190,
+        "sourcePixelsClosed": true,
+        "sourcePixelRingValid": true,
+        "allSuccessivePixelsAreEightNeighbors": true,
+        "sourcePixelMaxRgbObserved": 45,
+        "sourceThresholdMaxRgb": 45,
+        "pixelArea": 295712.5,
+        "exactGeographicReconstructionEqual": true,
+        "geographicSymmetricDifferenceSquareDegrees": 0.0,
+        "geographicHausdorffDifferenceDegrees": 0.0,
+        "validGeographicGeometry": true,
+        "canonicalMunicipalityFullyContains": true,
+        "areaM2": 1314459.6356298975,
+        "visualSourceContourPass": true,
+        "noCurrentRoadSubstitution": true,
+        "currentFineNameEvidence": "2021municipal source label only; exact current OSMfine label notestablished",
+        "absoluteAccuracyMetres": null,
+        "usableForAddressAssignment": false
+      },
+      {
+        "name": "Petőfiváros II.",
+        "sourcePixelCoordinates": 956,
+        "sourcePixelsClosed": true,
+        "sourcePixelRingValid": true,
+        "allSuccessivePixelsAreEightNeighbors": true,
+        "sourcePixelMaxRgbObserved": 45,
+        "sourceThresholdMaxRgb": 45,
+        "pixelArea": 83826.5,
+        "exactGeographicReconstructionEqual": true,
+        "geographicSymmetricDifferenceSquareDegrees": 0.0,
+        "geographicHausdorffDifferenceDegrees": 0.0,
+        "validGeographicGeometry": true,
+        "canonicalMunicipalityFullyContains": true,
+        "areaM2": 372571.0924298869,
+        "visualSourceContourPass": true,
+        "noCurrentRoadSubstitution": true,
+        "currentFineNameEvidence": "2021municipal source label only; exact current OSMfine label notestablished",
+        "absoluteAccuracyMetres": null,
+        "usableForAddressAssignment": false
+      }
+    ],
+    "pairwiseInteriorOverlapSquareDegrees": 0.0,
+    "noArtificialClosingChord": true,
+    "noSyntheticSourcePixelGapBridge": true,
+    "boundaryInterpretation": "Continuous actual black raster outline selected with manually guided corridor paths. Every point is a real darksourcepixel; this verifies sourceillustration tracing, not geographic/legal accuracy."
+  }
+}

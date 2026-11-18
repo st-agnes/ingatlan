@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "root independent of packet producer",
+  "accepted": true,
+  "featureCount": 23,
+  "checkedAt": "2026-11-14",
+  "decision": "Accepted as separately estimated source-placement/current-extent candidates only; zero primary admissions.",
+  "checks": {
+    "all77RawResponsesByteIdenticalToPriorFrozenPacket": true,
+    "all23PublishedGeometriesCopiedExactly": true,
+    "allValidClosedInsideMunicipality": true,
+    "all23NamesReadInActualFvsTable79": true,
+    "all23CurrentNodesRereadDirectlyFromPinnedPbf": true,
+    "nodeCoordinatesTagsAndVersionsExact": true,
+    "prior32IdentitiesNotDuplicated": true,
+    "minorInternalOverlapIndependentlyRecomputedM2": 978.5985268211516,
+    "suspectedFid11Excluded": true,
+    "estimatedNoHardBoundaryNoAddressGuards": true,
+    "visualPreviewReviewed": true
+  },
+  "limits": [
+    "Current name points corroborate identity only; they do not certify whole-quarter extents.",
+    "Published source is coarse and displaced relative to previous OSM polygons; cause/accuracy/lineage/reference period/rights unresolved. No fitted correction.",
+    "Historical75-name table is based on a repealed ordinance. Tócóvölgy/Lóskúti schema uncertainty remains explicit.",
+    "Retained intersource overlaps are not approved shared borders."
+  ],
+  "pinnedReviewInputs": {
+    "debrecen-remaining-estimated.geojson": "e3b1c7aae15c4fbfe37acdcb0a604425f28bd9f5d5155979d481da95180d23bc",
+    "selection-review.json": "281a24fe761c5d77586114c659acad3387f49a4142d49211aa00995be564cd51",
+    "municipal-name-evidence.json": "8d0277dc08402d6603052873003a5fe220cc6b5203d7e7dba0f177166b93f3f1",
+    "selected-osm-name-points.geojson": "36645695ea9bf2b50d8406d7a9c3e46175930ee2c75de9fdca032d4a510fe178",
+    "debrecen-source-service.geojson": "fb7d0f0bae18b05263d5658221f0a612a2839193ce47413e05dc71401b18cf3e",
+    "debrecen-source-native.json": "d97a7d3ca556f3ed554a5e6c70381d196b41199ba1c5b1ee4f692a55e3e00792"
+  }
+}

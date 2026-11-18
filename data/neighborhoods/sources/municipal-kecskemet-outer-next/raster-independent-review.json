@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent final source-raster interpretation and geometry review, not a current/legal/geodetic boundary certification.",
+  "reviewedOutput": {
+    "path": "data/neighborhoods/sources/municipal-kecskemet-outer-next/petofi-source-raster.geojson",
+    "sha256": "46c456e00e409d722289fe3d25d9cf3c756ff40a782db1dd08d82328769ff417"
+  },
+  "source": {
+    "originalPublisherPdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+    "originalPdfPageOneBased": 169,
+    "printedPage": 167,
+    "figure": 79,
+    "embeddedJpegXref": 208,
+    "jpegSha256": "8d6217e4ae20dadfd07141aaed4dff0c057166fd60f30d8a7c0eec9b9fd5079d",
+    "jpegMatchesUnmodifiedPublisherPdfExtraction": true,
+    "sizePixels": [
+      1694,
+      1202
+    ],
+    "sourceProjectionKnown": false
+  },
+  "inputs": {
+    "pixelTraceSha256": "aaa677111e007945cf778217323b48d664c3617e29a410eea92d68c6deb51925",
+    "roadCalibrationArchiveSha256": "ee16b15f2dcc1379f5638abd8990151c8865065307331f0ee54b8c53bf2bd7f9",
+    "frozenGeoreferenceMatrixSha256": "62e594572f7726e3ea4660f847029944af7d9fd47fea19e0fe61d7a8bbe27c4e"
+  },
+  "controls": {
+    "count": 5,
+    "allCoordinatesMatchLiteralArchivedOsmNodes": true,
+    "sourceImageLocations": "Manually selected approximate image-junction locations, not surveyed boundary locations.",
+    "frozenControlMatrixUnchanged": true,
+    "fitResidualRenderedPixels": [
+      0.3703029284714672,
+      0.5701511120778605,
+      1.065292853499344,
+      0.5090606728601502,
+      0.6330876638696357
+    ],
+    "fitResidualNotAbsoluteAccuracy": true
+  },
+  "records": [
+    {
+      "name": "Petőfiváros I.",
+      "denseActualSourcePixelCount": 2190,
+      "compressedPixelVertexCount": 881,
+      "actualSourceMaximumRgb": 45,
+      "allDenseStepsAreEightNeighbors": true,
+      "literalClosedDenseAndCompressed": true,
+      "denseAndCompressedValid": true,
+      "collinearCompressionExactSymmetricDifferencePixelArea": 0.0,
+      "newBoundaryLengthOutsideDenseSourcePixels": 0.0,
+      "allCompressedVerticesAreLiteralSourcePixelVertices": true,
+      "geographicVertexCount": 881,
+      "exactIndependentAffineReconstruction": true,
+      "geographicSymmetricDifferenceSquareDegrees": 0.0,
+      "geographicHausdorffDifferenceDegrees": 0.0,
+      "canonicalMunicipalityContained": true,
+      "areaM2": 1314459.6387859806,
+      "visualSourceOutlineTracePass": true,
+      "geographicCoordinatesAreOsmVertices": false,
+      "claimedAbsoluteAccuracyMetres": null,
+      "exactCurrentFineNamePointEstablished": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "name": "Petőfiváros II.",
+      "denseActualSourcePixelCount": 956,
+      "compressedPixelVertexCount": 407,
+      "actualSourceMaximumRgb": 45,
+      "allDenseStepsAreEightNeighbors": true,
+      "literalClosedDenseAndCompressed": true,
+      "denseAndCompressedValid": true,
+      "collinearCompressionExactSymmetricDifferencePixelArea": 0.0,
+      "newBoundaryLengthOutsideDenseSourcePixels": 0.0,
+      "allCompressedVerticesAreLiteralSourcePixelVertices": true,
+      "geographicVertexCount": 407,
+      "exactIndependentAffineReconstruction": true,
+      "geographicSymmetricDifferenceSquareDegrees": 0.0,
+      "geographicHausdorffDifferenceDegrees": 0.0,
+      "canonicalMunicipalityContained": true,
+      "areaM2": 372571.093166839,
+      "visualSourceOutlineTracePass": true,
+      "geographicCoordinatesAreOsmVertices": false,
+      "claimedAbsoluteAccuracyMetres": null,
+      "exactCurrentFineNamePointEstablished": false,
+      "usableForAddressAssignment": false
+    }
+  ],
+  "pairwiseInteriorOverlapPixelArea": 0,
+  "pairwiseInteriorOverlapGeographicSquareDegrees": 0,
+  "sourceVisual": "raster-trace-preview.png",
+  "semanticChecks": [
+    "Figure79 explicitly and separately labels Petőfiváros I. andII.; the broader Petőfiváros–Felsőszéktó parent is not substituted.",
+    "The western Felsőszéktó–Felsőcsalános compound footprint does not establish individual component boundaries and is not in this two-feature import.",
+    "Current street centerline alternatives, including shifted Vízmű and rejected Vízöntő split, remain diagnostic-only.",
+    "Final geographical boundary vertices are affine-transformed JPEG pixels, not originalOSMnodes.",
+    "The current exact fine labelsI./II. have not been independentlyconfirmed; source2021name evidence is preserved."
+  ],
+  "limits": [
+    "Rawblackpixel tests verify the traced historical source illustration, not its legal/geographic correctness.",
+    "Manual registration points, source map line width and underlying orthophoto date create unknown positional uncertainty.",
+    "Municipal source-map reuse rights are not independently established; ODbL applies to the OSMcalibration data."
+  ],
+  "verdict": "PASS as two explicitly review-required historicalsource-raster quarter candidates, with source/date/provenance and all accuracy/name/licence limitations preserved.",
+  "frozen": true
+}

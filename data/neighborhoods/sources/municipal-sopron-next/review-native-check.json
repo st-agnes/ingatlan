@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent sopron_independent_review/native_faces_check agent",
+  "reviewDate": "2026-11-13",
+  "scope": "Native source geometry and literal source semantics only; geographic registration is audited separately.",
+  "verdict": "pass_exact_native_source_faces_and_conservative_planning_semantics",
+  "networkUsed": false,
+  "producerFilesModified": false,
+  "inputFingerprints": [
+    {
+      "path": ".local/neighborhoods/nationwide-docs/originals/sopron-map.pdf",
+      "sha256": "62589313512700af95c98e41af9a7556ebaf97fc0e1eac3240cd0aeaf791ec41"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/source-pages1-2.pdf",
+      "sha256": "6213be7ec2318f03856a102d7791c2e98b3704a26cbc0c0f011df8c6e1bd063b"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/native-source-segments.json",
+      "sha256": "318d3c29c994cfec178c80eba8f5bbfd9ba9d973ee1f153472a2d5adf2b4d5cb"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/native-source-polygons.json",
+      "sha256": "9669fbed83781c14294e73ae38e1e5b2a0cf699686347a94de735dfd58b4cc30"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/source-vector.geojson",
+      "sha256": "5f87062ca249f91d1179c574a6157c380d8ebc9b2dbd484c9df5293bee80436a"
+    }
+  ],
+  "allPureBlueSourceDrawingIndices": [
+    38799,
+    38800,
+    38801,
+    38802,
+    38815
+  ],
+  "originalMapDrawingRecords": [
+    {
+      "drawingIndex": 38799,
+      "originalSegmentCount": 436,
+      "bboxPdfPoints": [
+        404.7200012207031,
+        404.03997802734375,
+        514.760009765625,
+        481.55999755859375
+      ],
+      "declaredClosePath": false,
+      "firstEndpointEqualsFinalEndpoint": true
+    },
+    {
+      "drawingIndex": 38800,
+      "originalSegmentCount": 199,
+      "bboxPdfPoints": [
+        446.8999938964844,
+        317.27996826171875,
+        616.1600341796875,
+        446.3999938964844
+      ],
+      "declaredClosePath": false,
+      "firstEndpointEqualsFinalEndpoint": false
+    },
+    {
+      "drawingIndex": 38801,
+      "originalSegmentCount": 328,
+      "bboxPdfPoints": [
+        500.3000183105469,
+        434.1000061035156,
+        664.52001953125,
+        644.9400024414062
+      ],
+      "declaredClosePath": false,
+      "firstEndpointEqualsFinalEndpoint": false
+    },
+    {
+      "drawingIndex": 38802,
+      "originalSegmentCount": 275,
+      "bboxPdfPoints": [
+        580.760009765625,
+        446.3999938964844,
+        734.0,
+        593.4600219726562
+      ],
+      "declaredClosePath": false,
+      "firstEndpointEqualsFinalEndpoint": false
+    }
+  ],
+  "legendBlueDrawingExcluded": 38815,
+  "sourceMapSegments": 1238,
+  "sourceSegmentCoordinatesExactlyMatchArchivedOriginal": true,
+  "originalAndArchivedVisiblePageRenders": [
+    {
+      "pdfPageOneBased": 1,
+      "renderScale": 0.6,
+      "archivedAndOriginalRenderedSamplesIdentical": true
+    },
+    {
+      "pdfPageOneBased": 2,
+      "renderScale": 0.6,
+      "archivedAndOriginalRenderedSamplesIdentical": true
+    }
+  ],
+  "savedNativeSegmentsExactlyMatchOriginalPdf": true,
+  "polygonizedFaceCount": 4,
+  "polygonizationCuts": 0,
+  "polygonizationDangles": 0,
+  "polygonizationInvalidRings": 0,
+  "sourceLengthMissingFromAllFaceBoundariesPdfPoints": 0.0,
+  "outputBoundaryLengthNotCoveredByOriginalSourcePdfPoints": 0.0,
+  "inventedClosingEdgesObserved": false,
+  "sourceNameAndNumberPointsAssignOneToOne": true,
+  "fineConstituentFootprintsInferredOrDuplicated": false,
+  "sourceDatingAndLegalStatus": {
+    "page1LiteralDate": "2024. 11.",
+    "page1DateVisuallyConfirmedAsArabicEleven": true,
+    "dateDirectOriginalPdfRender": "review-native-date-block.png",
+    "page2WorkNumber": "TT08518-M1/24",
+    "page2LiteralAnnexReference": "1/B melléklet a 39/2021. (XII.28.) önkormányzati rendelethez",
+    "page1ExtractedTextContainsPlaceholderReference": true,
+    "page1PlaceholderLiteralExtractedText": "2. melléklet a .../2024. (... ...) önkormányzati rendelethez",
+    "page1PlaceholderNativeTextColorRgbInteger": 16777215,
+    "page1PlaceholderNativeTextColor": "white (#FFFFFF)",
+    "page1PlaceholderReferenceVisiblyRendered": false,
+    "placeholderOriginalPdfRender": "review-native-draft-block.png",
+    "placeholderInterpretation": "White CAD text in the extraction layer, not visibly printed on the default white-background rendering. Its current legal significance is unresolved; no draft or approval status is inferred from this text artifact.",
+    "readmeDateCorrectionStillNeeded": false,
+    "sourceDateRecommendation": "Keep the directly printed page1 literal date 2024. 11.; page2 does not independently print a month.",
+    "currentLegalValidityEstablishedByThisReview": false
+  },
+  "records": [
+    {
+      "sourceUnitNumber": 1,
+      "name": "Észak-nyugati városrész",
+      "literalNumberText": "1.",
+      "numberCenterInsideExactlyOneOriginalFace": true,
+      "literalNameChecks": [
+        {
+          "literalText": "Észak-nyugat",
+          "bboxPdfPoints": [
+            507.32000732421875,
+            383.1316223144531,
+            558.4686279296875,
+            394.3953552246094
+          ],
+          "textCenterInsideSameSourceFace": true
+        }
+      ],
+      "nativeFootprintSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeFootprintHausdorffDistancePdfPoints": 0.0,
+      "nativeCoordinateSequenceExactlyReproduced": true,
+      "nativeAreaPdfPointsSquared": 9679.508535169996,
+      "nativeGeometryValid": true,
+      "nativeGeometryInteriorRingCount": 0,
+      "conservativeWholePlanningUnitPreserved": true
+    },
+    {
+      "sourceUnitNumber": 4,
+      "name": "Bánfalva, Kutyahegy városrész",
+      "literalNumberText": "4.",
+      "numberCenterInsideExactlyOneOriginalFace": true,
+      "literalNameChecks": [
+        {
+          "literalText": "Bánfalva, Kutyahegy",
+          "bboxPdfPoints": [
+            410.60009765625,
+            436.23162841796875,
+            489.84881591796875,
+            447.495361328125
+          ],
+          "textCenterInsideSameSourceFace": true
+        }
+      ],
+      "nativeFootprintSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeFootprintHausdorffDistancePdfPoints": 0.0,
+      "nativeCoordinateSequenceExactlyReproduced": true,
+      "nativeAreaPdfPointsSquared": 4530.486005898099,
+      "nativeGeometryValid": true,
+      "nativeGeometryInteriorRingCount": 0,
+      "conservativeWholePlanningUnitPreserved": true
+    },
+    {
+      "sourceUnitNumber": 5,
+      "name": "Lővereki városrész",
+      "literalNumberText": "5.",
+      "numberCenterInsideExactlyOneOriginalFace": true,
+      "literalNameChecks": [
+        {
+          "literalText": "Lőverek",
+          "bboxPdfPoints": [
+            574.6400756835938,
+            497.3714294433594,
+            604.7924194335938,
+            508.6351623535156
+          ],
+          "textCenterInsideSameSourceFace": true
+        }
+      ],
+      "nativeFootprintSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeFootprintHausdorffDistancePdfPoints": 0.0,
+      "nativeCoordinateSequenceExactlyReproduced": true,
+      "nativeAreaPdfPointsSquared": 13929.584982945584,
+      "nativeGeometryValid": true,
+      "nativeGeometryInteriorRingCount": 0,
+      "conservativeWholePlanningUnitPreserved": true
+    },
+    {
+      "sourceUnitNumber": 13,
+      "name": "Dél-keleti gazdasági terület városrész",
+      "literalNumberText": "13.",
+      "numberCenterInsideExactlyOneOriginalFace": true,
+      "literalNameChecks": [
+        {
+          "literalText": "Dél-keleti",
+          "bboxPdfPoints": [
+            670.4603881835938,
+            518.4913330078125,
+            707.0853271484375,
+            529.7550659179688
+          ],
+          "textCenterInsideSameSourceFace": true
+        },
+        {
+          "literalText": "gazdasági terület",
+          "bboxPdfPoints": [
+            655.5200805664062,
+            525.5712890625,
+            721.9817504882812,
+            536.8350219726562
+          ],
+          "textCenterInsideSameSourceFace": true
+        }
+      ],
+      "nativeFootprintSymmetricDifferencePdfPointsSquared": 0.0,
+      "nativeFootprintHausdorffDistancePdfPoints": 0.0,
+      "nativeCoordinateSequenceExactlyReproduced": true,
+      "nativeAreaPdfPointsSquared": 6604.691395636648,
+      "nativeGeometryValid": true,
+      "nativeGeometryInteriorRingCount": 0,
+      "conservativeWholePlanningUnitPreserved": true
+    }
+  ],
+  "restrictions": {
+    "geographicCalibrationOrAbsoluteAccuracyAuditedHere": false,
+    "usableForAddressAssignment": false,
+    "sourceReuseRightsEstablished": false,
+    "wholeSopronNeighbourhoodCoverageClaimed": false
+  }
+}

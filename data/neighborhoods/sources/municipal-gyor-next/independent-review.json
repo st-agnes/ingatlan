@@ -1,0 +1,937 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "Independent offline source/path/georeference review",
+  "recommendation": "Accept11only as historical source-derived neighborhood candidates in a clearly unreviewed research layer; Kisbácsa must remain a separately named historical planning extent. No current/survey/legal/address accuracy established.",
+  "sourceFacts": {
+    "pdfPath": ".local/neighborhoods/nationwide-docs/originals/gyor-its.pdf",
+    "pdfSha256": "40f318435f5719cb5a06b253d6e15fbd5acc7d5a6bec53fc38ae1e199b6ca21d",
+    "mapPdfPageZeroBased": 268,
+    "mapPagePrinted": 269,
+    "mapSourcePeriod": 2006,
+    "mapFigureNumber": 97,
+    "sourceExplicitStatement": "21 városrész és46városrendezési körzet; source page269.",
+    "crosswalkPagesPrinted": [
+      271,
+      272
+    ],
+    "documentPublicationPeriod": 2014,
+    "explicitReuseLicenseVerified": false,
+    "independentCurrentNeighborhoodNameVerificationPerformed": false
+  },
+  "georeferencing": {
+    "registrationPath": ".local/neighborhoods/gyor-next/registration.json",
+    "registrationSha256": "3b97c005ade157c0c86e9f44c237a106915f954491806ffab5bd8a94abd9e2c3",
+    "fitMethod": "robust iterative closest municipal perimeter alignment; not independently validated",
+    "matrix": [
+      [
+        82.64329015982716,
+        0.03729352004897961
+      ],
+      [
+        0.0015939355453115575,
+        -82.07626080837866
+      ],
+      [
+        521180.10150577466,
+        290109.34972507943
+      ]
+    ],
+    "targetCrs": "EPSG:23700",
+    "sourcePdfCoordinatesYAxisDown": true,
+    "eastAndNorthOrientationPlausible": true,
+    "linearSingularValuesMetresPerPdfUnit": [
+      82.64385380154796,
+      82.07570175698783
+    ],
+    "relativeAxisScaleRatio": 1.0069222928637558,
+    "municipalStrokeFitPercentilesM": {
+      "min": 0.0038511457386873602,
+      "median": 10.437183905165783,
+      "p80": 22.87737890405755,
+      "p90": 34.877702858892484,
+      "p95": 41.698479839760466,
+      "p99": 82.08735767441875,
+      "max": 155.98482354766938
+    },
+    "fitResidualIsIndependentAccuracyEstimate": false,
+    "independentlyMatchedInteriorBoundaryControlPoints": 0,
+    "separateInteriorNamePlacementChecks": 12,
+    "all12NameLabelsInsideDerivedPolygon": true,
+    "claimedAbsoluteAccuracyMetres": null,
+    "limits": [
+      "Closest-point iterative fit to a perimeter may overfit, depends on vertex density, trims20%largest residuals during fitting, and does not measure interior boundary accuracy.",
+      "Current OSM labels test approximate name placement only, not exact historical/current limits.",
+      "The42m boundary-fit p95 is NOT a demonstrated42m positional accuracy or confidence radius.",
+      "Map depicts2006planning boundaries, not2026legal/current neighborhood limits."
+    ]
+  },
+  "municipalCalibrationStroke": {
+    "drawingIndex": 217,
+    "lineSegments": 1600,
+    "sourceExplicitlyClosed": false,
+    "sourceClosePathFlag": false,
+    "consecutiveSourceEndpointDiscontinuities": 0,
+    "openEndpointGapM": 69.15570288220958,
+    "fitUsesActualStrokeEndpointsOnly": true,
+    "diagnosticContainmentUsesImplicitPolygonClosure": true,
+    "diagnosticClosingSegmentIsSourceGeometry": false,
+    "diagnosticClosureUsedInQuarterExportsOrFit": false,
+    "correctionToEarlierReviewerMessage": "Earlier statement that black sourcepath217was literally closed was wrong: Polygon(cs) silently closed its~69m gap. Source stroke itself remains open. Quantitative diagnostic comparisons explicitly retain this assumption."
+  },
+  "sourceBluePathChecks": {
+    "paths": 46,
+    "literallyClosed": 46,
+    "valid": 43,
+    "invalidDrawingIndices": [
+      76,
+      79,
+      94
+    ],
+    "allAffineSourceVerticesExactlyPreserved": true,
+    "details": [
+      {
+        "drawingIndex": 23,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 615
+      },
+      {
+        "drawingIndex": 24,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 558
+      },
+      {
+        "drawingIndex": 25,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 258
+      },
+      {
+        "drawingIndex": 26,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 285
+      },
+      {
+        "drawingIndex": 27,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 91
+      },
+      {
+        "drawingIndex": 28,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 213
+      },
+      {
+        "drawingIndex": 29,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 93
+      },
+      {
+        "drawingIndex": 30,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 150
+      },
+      {
+        "drawingIndex": 31,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 68
+      },
+      {
+        "drawingIndex": 32,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 389
+      },
+      {
+        "drawingIndex": 33,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 112
+      },
+      {
+        "drawingIndex": 34,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 116
+      },
+      {
+        "drawingIndex": 35,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 115
+      },
+      {
+        "drawingIndex": 36,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 96
+      },
+      {
+        "drawingIndex": 38,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 425
+      },
+      {
+        "drawingIndex": 39,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 152
+      },
+      {
+        "drawingIndex": 40,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 270
+      },
+      {
+        "drawingIndex": 41,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 233
+      },
+      {
+        "drawingIndex": 42,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 89
+      },
+      {
+        "drawingIndex": 43,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 187
+      },
+      {
+        "drawingIndex": 44,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 199
+      },
+      {
+        "drawingIndex": 45,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 165
+      },
+      {
+        "drawingIndex": 72,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 208
+      },
+      {
+        "drawingIndex": 73,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 235
+      },
+      {
+        "drawingIndex": 75,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 528
+      },
+      {
+        "drawingIndex": 76,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": false,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 100
+      },
+      {
+        "drawingIndex": 77,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 80
+      },
+      {
+        "drawingIndex": 78,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 142
+      },
+      {
+        "drawingIndex": 79,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": false,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 177
+      },
+      {
+        "drawingIndex": 81,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 210
+      },
+      {
+        "drawingIndex": 82,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 183
+      },
+      {
+        "drawingIndex": 83,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 114
+      },
+      {
+        "drawingIndex": 84,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 201
+      },
+      {
+        "drawingIndex": 85,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 204
+      },
+      {
+        "drawingIndex": 86,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 143
+      },
+      {
+        "drawingIndex": 87,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 61
+      },
+      {
+        "drawingIndex": 88,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 111
+      },
+      {
+        "drawingIndex": 89,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 217
+      },
+      {
+        "drawingIndex": 90,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 253
+      },
+      {
+        "drawingIndex": 91,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 139
+      },
+      {
+        "drawingIndex": 92,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 258
+      },
+      {
+        "drawingIndex": 93,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 218
+      },
+      {
+        "drawingIndex": 94,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": false,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 184
+      },
+      {
+        "drawingIndex": 95,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 55
+      },
+      {
+        "drawingIndex": 96,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 140
+      },
+      {
+        "drawingIndex": 97,
+        "sourceExplicitlyClosed": true,
+        "sourceLineDiscontinuities": 0,
+        "sourceHasOnlyLineSegments": true,
+        "validSourceCircuit": true,
+        "affineOutputExactlyMatchesEverySourceVertex": true,
+        "vertexCount": 227
+      }
+    ]
+  },
+  "quarterReviews": [
+    {
+      "sourceMapCircuitNumber": 1,
+      "tableQuarterName": "Belváros",
+      "drawingIndex": 92,
+      "classificationRecommendation": "historical_neighborhood_candidate",
+      "sourceMappingPagesPrinted": [
+        269,
+        271,
+        272
+      ],
+      "labelNode": {
+        "id": "osm:node:1297130149",
+        "name": "Belváros",
+        "coordinates": [
+          17.6338706,
+          47.6889375
+        ],
+        "canonicalMunicipality": "Győr",
+        "pointInsideDerivedSourcePolygon": true,
+        "pointInsideCurrentCanonicalMunicipality": true,
+        "sourceProvider": "OpenStreetMap",
+        "independentOfPerimeterFitObjects": true,
+        "independentOfCalibrationProvider": false
+      },
+      "areaM2": 1370608.3727130452,
+      "currentMunicipalityContainmentFraction": 1.0,
+      "outsideCurrentMunicipalityM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeFraction": 0.0,
+      "diagnosticClosingSegmentDistanceToQuarterM": 4551.658127289319,
+      "sourceGeometryRepairOrClippingPerformed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceMapCircuitNumber": 12,
+      "tableQuarterName": "Sziget",
+      "drawingIndex": 93,
+      "classificationRecommendation": "historical_neighborhood_candidate",
+      "sourceMappingPagesPrinted": [
+        269,
+        271,
+        272
+      ],
+      "labelNode": {
+        "id": "osm:node:982122869",
+        "name": "Sziget",
+        "coordinates": [
+          17.6199999,
+          47.6901469
+        ],
+        "canonicalMunicipality": "Győr",
+        "pointInsideDerivedSourcePolygon": true,
+        "pointInsideCurrentCanonicalMunicipality": true,
+        "sourceProvider": "OpenStreetMap",
+        "independentOfPerimeterFitObjects": true,
+        "independentOfCalibrationProvider": false
+      },
+      "areaM2": 732929.5159195061,
+      "currentMunicipalityContainmentFraction": 1.0,
+      "outsideCurrentMunicipalityM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeFraction": 0.0,
+      "diagnosticClosingSegmentDistanceToQuarterM": 5250.777149522619,
+      "sourceGeometryRepairOrClippingPerformed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceMapCircuitNumber": 18,
+      "tableQuarterName": "Pinnyéd",
+      "drawingIndex": 97,
+      "classificationRecommendation": "historical_neighborhood_candidate",
+      "sourceMappingPagesPrinted": [
+        269,
+        271,
+        272
+      ],
+      "labelNode": {
+        "id": "osm:node:282455293",
+        "name": "Pinnyéd",
+        "coordinates": [
+          17.5968604,
+          47.698992
+        ],
+        "canonicalMunicipality": "Győr",
+        "pointInsideDerivedSourcePolygon": true,
+        "pointInsideCurrentCanonicalMunicipality": true,
+        "sourceProvider": "OpenStreetMap",
+        "independentOfPerimeterFitObjects": true,
+        "independentOfCalibrationProvider": false
+      },
+      "areaM2": 1229530.5399285618,
+      "currentMunicipalityContainmentFraction": 1.0,
+      "outsideCurrentMunicipalityM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeFraction": 0.0,
+      "diagnosticClosingSegmentDistanceToQuarterM": 6483.861585264088,
+      "sourceGeometryRepairOrClippingPerformed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceMapCircuitNumber": 19,
+      "tableQuarterName": "Kisbácsa",
+      "drawingIndex": 44,
+      "classificationRecommendation": "planning_unit_historical_extension",
+      "sourceMappingPagesPrinted": [
+        269,
+        271,
+        272
+      ],
+      "labelNode": {
+        "id": "osm:node:982122848",
+        "name": "Kisbácsa",
+        "coordinates": [
+          17.6511073,
+          47.7137228
+        ],
+        "canonicalMunicipality": "Győr",
+        "pointInsideDerivedSourcePolygon": true,
+        "pointInsideCurrentCanonicalMunicipality": true,
+        "sourceProvider": "OpenStreetMap",
+        "independentOfPerimeterFitObjects": true,
+        "independentOfCalibrationProvider": false
+      },
+      "areaM2": 1575773.2981696276,
+      "currentMunicipalityContainmentFraction": 0.9429886345662287,
+      "outsideCurrentMunicipalityM2": 89836.98734272763,
+      "outsideDiagnosticClosedSourceStrokeM2": 92078.41735350767,
+      "outsideDiagnosticClosedSourceStrokeFraction": 0.05843379720957531,
+      "diagnosticClosingSegmentDistanceToQuarterM": 7177.232968653806,
+      "sourceGeometryRepairOrClippingPerformed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceMapCircuitNumber": 20,
+      "tableQuarterName": "Bácsa",
+      "drawingIndex": 43,
+      "classificationRecommendation": "historical_neighborhood_candidate",
+      "sourceMappingPagesPrinted": [
+        269,
+        271,
+        272
+      ],
+      "labelNode": {
+        "id": "osm:node:1297221629",
+        "name": "Bácsa",
+        "coordinates": [
+          17.6630863,
+          47.7283945
+        ],
+        "canonicalMunicipality": "Győr",
+        "pointInsideDerivedSourcePolygon": true,
+        "pointInsideCurrentCanonicalMunicipality": true,
+        "sourceProvider": "OpenStreetMap",
+        "independentOfPerimeterFitObjects": true,
+        "independentOfCalibrationProvider": false
+      },
+      "areaM2": 961191.4697159072,
+      "currentMunicipalityContainmentFraction": 1.0,
+      "outsideCurrentMunicipalityM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeFraction": 0.0,
+      "diagnosticClosingSegmentDistanceToQuarterM": 8951.836151014884,
+      "sourceGeometryRepairOrClippingPerformed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceMapCircuitNumber": 26,
+      "tableQuarterName": "Sárás",
+      "drawingIndex": 31,
+      "classificationRecommendation": "historical_neighborhood_candidate",
+      "sourceMappingPagesPrinted": [
+        269,
+        271,
+        272
+      ],
+      "labelNode": {
+        "id": "osm:node:982122872",
+        "name": "Sárás",
+        "coordinates": [
+          17.6404243,
+          47.715863
+        ],
+        "canonicalMunicipality": "Győr",
+        "pointInsideDerivedSourcePolygon": true,
+        "pointInsideCurrentCanonicalMunicipality": true,
+        "sourceProvider": "OpenStreetMap",
+        "independentOfPerimeterFitObjects": true,
+        "independentOfCalibrationProvider": false
+      },
+      "areaM2": 346940.4454651866,
+      "currentMunicipalityContainmentFraction": 0.9902697076894391,
+      "outsideCurrentMunicipalityM2": 3375.8319487324716,
+      "outsideDiagnosticClosedSourceStrokeM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeFraction": 0.0,
+      "diagnosticClosingSegmentDistanceToQuarterM": 7723.89723891462,
+      "sourceGeometryRepairOrClippingPerformed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceMapCircuitNumber": 21,
+      "tableQuarterName": "Likócs",
+      "drawingIndex": 86,
+      "classificationRecommendation": "historical_neighborhood_candidate",
+      "sourceMappingPagesPrinted": [
+        269,
+        271,
+        272
+      ],
+      "labelNode": {
+        "id": "osm:node:282457511",
+        "name": "Likócs",
+        "coordinates": [
+          17.6747949,
+          47.7114996
+        ],
+        "canonicalMunicipality": "Győr",
+        "pointInsideDerivedSourcePolygon": true,
+        "pointInsideCurrentCanonicalMunicipality": true,
+        "sourceProvider": "OpenStreetMap",
+        "independentOfPerimeterFitObjects": true,
+        "independentOfCalibrationProvider": false
+      },
+      "areaM2": 756926.5079720238,
+      "currentMunicipalityContainmentFraction": 1.0,
+      "outsideCurrentMunicipalityM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeFraction": 0.0,
+      "diagnosticClosingSegmentDistanceToQuarterM": 6457.040369596746,
+      "sourceGeometryRepairOrClippingPerformed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceMapCircuitNumber": 37,
+      "tableQuarterName": "Rabkert",
+      "drawingIndex": 27,
+      "classificationRecommendation": "historical_neighborhood_candidate",
+      "sourceMappingPagesPrinted": [
+        269,
+        271,
+        272
+      ],
+      "labelNode": {
+        "id": "osm:node:982141212",
+        "name": "Rabkert",
+        "coordinates": [
+          17.6189361,
+          47.6642819
+        ],
+        "canonicalMunicipality": "Győr",
+        "pointInsideDerivedSourcePolygon": true,
+        "pointInsideCurrentCanonicalMunicipality": true,
+        "sourceProvider": "OpenStreetMap",
+        "independentOfPerimeterFitObjects": true,
+        "independentOfCalibrationProvider": false
+      },
+      "areaM2": 270776.8198652264,
+      "currentMunicipalityContainmentFraction": 1.0,
+      "outsideCurrentMunicipalityM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeFraction": 0.0,
+      "diagnosticClosingSegmentDistanceToQuarterM": 3395.8600020845597,
+      "sourceGeometryRepairOrClippingPerformed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceMapCircuitNumber": 27,
+      "tableQuarterName": "Góré-dűlő",
+      "drawingIndex": 30,
+      "classificationRecommendation": "historical_neighborhood_candidate",
+      "sourceMappingPagesPrinted": [
+        269,
+        271,
+        272
+      ],
+      "labelNode": {
+        "id": "osm:node:982141205",
+        "name": "Górédűlő",
+        "coordinates": [
+          17.6183357,
+          47.6568139
+        ],
+        "canonicalMunicipality": "Győr",
+        "pointInsideDerivedSourcePolygon": true,
+        "pointInsideCurrentCanonicalMunicipality": true,
+        "sourceProvider": "OpenStreetMap",
+        "independentOfPerimeterFitObjects": true,
+        "independentOfCalibrationProvider": false
+      },
+      "areaM2": 932968.9494041853,
+      "currentMunicipalityContainmentFraction": 1.0,
+      "outsideCurrentMunicipalityM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeFraction": 0.0,
+      "diagnosticClosingSegmentDistanceToQuarterM": 2261.8030692760603,
+      "sourceGeometryRepairOrClippingPerformed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceMapCircuitNumber": 7,
+      "tableQuarterName": "Adyváros",
+      "drawingIndex": 83,
+      "classificationRecommendation": "historical_neighborhood_candidate",
+      "sourceMappingPagesPrinted": [
+        269,
+        271,
+        272
+      ],
+      "labelNode": {
+        "id": "osm:node:865266939",
+        "name": "Adyváros",
+        "coordinates": [
+          17.6578178,
+          47.674386
+        ],
+        "canonicalMunicipality": "Győr",
+        "pointInsideDerivedSourcePolygon": true,
+        "pointInsideCurrentCanonicalMunicipality": true,
+        "sourceProvider": "OpenStreetMap",
+        "independentOfPerimeterFitObjects": true,
+        "independentOfCalibrationProvider": false
+      },
+      "areaM2": 831339.948156121,
+      "currentMunicipalityContainmentFraction": 1.0,
+      "outsideCurrentMunicipalityM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeFraction": 0.0,
+      "diagnosticClosingSegmentDistanceToQuarterM": 2712.8357175373376,
+      "sourceGeometryRepairOrClippingPerformed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceMapCircuitNumber": 22,
+      "tableQuarterName": "Kismegyer",
+      "drawingIndex": 73,
+      "classificationRecommendation": "historical_neighborhood_candidate",
+      "sourceMappingPagesPrinted": [
+        269,
+        271,
+        272
+      ],
+      "labelNode": {
+        "id": "osm:node:982117707",
+        "name": "Kismegyer",
+        "coordinates": [
+          17.6657912,
+          47.649406
+        ],
+        "canonicalMunicipality": "Győr",
+        "pointInsideDerivedSourcePolygon": true,
+        "pointInsideCurrentCanonicalMunicipality": true,
+        "sourceProvider": "OpenStreetMap",
+        "independentOfPerimeterFitObjects": true,
+        "independentOfCalibrationProvider": false
+      },
+      "areaM2": 1496591.9751814331,
+      "currentMunicipalityContainmentFraction": 1.0,
+      "outsideCurrentMunicipalityM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeM2": 30.26030637377164,
+      "outsideDiagnosticClosedSourceStrokeFraction": 2.021947656782214e-05,
+      "diagnosticClosingSegmentDistanceToQuarterM": 270.2594980204769,
+      "sourceGeometryRepairOrClippingPerformed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceMapCircuitNumber": 24,
+      "tableQuarterName": "Gyirmót",
+      "drawingIndex": 28,
+      "classificationRecommendation": "historical_neighborhood_candidate",
+      "sourceMappingPagesPrinted": [
+        269,
+        271,
+        272
+      ],
+      "labelNode": {
+        "id": "osm:node:277526312",
+        "name": "Gyirmót",
+        "coordinates": [
+          17.5955047,
+          47.6357657
+        ],
+        "canonicalMunicipality": "Győr",
+        "pointInsideDerivedSourcePolygon": true,
+        "pointInsideCurrentCanonicalMunicipality": true,
+        "sourceProvider": "OpenStreetMap",
+        "independentOfPerimeterFitObjects": true,
+        "independentOfCalibrationProvider": false
+      },
+      "areaM2": 2042897.434798308,
+      "currentMunicipalityContainmentFraction": 1.0,
+      "outsideCurrentMunicipalityM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeM2": 0.0,
+      "outsideDiagnosticClosedSourceStrokeFraction": 0.0,
+      "diagnosticClosingSegmentDistanceToQuarterM": 4150.201376562905,
+      "sourceGeometryRepairOrClippingPerformed": false,
+      "usableForAddressAssignment": false
+    }
+  ],
+  "kisbacsaDecision": {
+    "sourcePagePrinted": 285,
+    "sourcePassage": "Vámosszabadi Kisbácsához tapadó szegletében tervezett lakóterület feltárása megkezdődött; mivel ez a terület a közigazgatási határ véletlen kanyargásain kívül semmilyen módon sem kapcsolódik Vámosszabadihoz, előbb-utóbb bizonyára Győrhöz fog kapcsolódni",
+    "interpretation": "Blue circuit19includes planned development beyond the municipality; it must not be presented as a verified current Győr quarter footprint. The source-map crossing is visibly far from the69m open-stroke diagnostic closing segment.",
+    "recommendedName": "Kisbácsa –2006-os tervezési kiterjedés"
+  },
+  "auxiliaryInteriorSmokeCheck": {
+    "candidateFeature": "Rába–Mosoni-Duna confluence",
+    "osmRiverEndpoint": [
+      17.630874,
+      47.6905038
+    ],
+    "distanceToNearestDerivedBoundaryM": 45.1,
+    "nearestDrawingIndex": 92,
+    "matchedSourceControlPointIndependentlyIdentified": false,
+    "interpretation": "Contextual plausibility check only; source map draws bank-separated area edges rather than a surveyed confluence point, so this is not an accuracy residual."
+  },
+  "inputFiles": [
+    {
+      "path": ".local/neighborhoods/gyor-next/regions-eov.geojson",
+      "sha256": "c77cac55c006dd192848e33dcdf46c1525b5567298a17a766efcde6fa053d255"
+    },
+    {
+      "path": ".local/neighborhoods/gyor-next/municipality-eov.geojson",
+      "sha256": "b3489764933453fb698b97967d037ff386ba481a6ae0ca032adda2450b250312"
+    },
+    {
+      "path": ".local/neighborhoods/country-associated/named-nodes.geojson",
+      "sha256": "05c02b8ac8f32df2d917e01f6de81c6133c5e7dd527114f67000b43467a3a048"
+    }
+  ]
+}

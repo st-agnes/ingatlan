@@ -1,0 +1,88 @@
+{
+  "mutationsPerformed": false,
+  "frozenFilesChanged": false,
+  "reviews": [
+    {
+      "municipality": "Dombóvár",
+      "names": ["Szuhay-domb", "Szuhajdomb", "Szuhaj-domb", "Szuhaj Domb"],
+      "decision": "one place identity with spelling and source-scope variation; do not expose two canonical whole-quarter search results solely because of j/y spelling",
+      "confidence": "high geographic/name inference; no explicit municipal A-is-an-alias-of-B sentence found",
+      "proposedCanonicalName": "Szuhajdomb",
+      "proposedAliases": ["Szuhay-domb", "Szuhaj-domb"],
+      "primaryEvidence": [
+        {
+          "url": "https://www.dombovar.hu/media/files/Dombovar_helyzetertekeles_0804.pdf",
+          "location": "section 3.3.1.8",
+          "fact": "The municipal ITS names Szuhay-domb and explicitly gives Ivanich Antal utca – Dózsa György utca – Berzsenyi utca – Szigeterdő – Gyenis Antal utca as its boundary circuit.",
+          "savedEvidence": "../evidence/dombovar-final-location.json"
+        },
+        {
+          "url": "https://dombovar.hu/wp-content/uploads/2025/02/01.-melleklet-Forgalmi-rend-felulvizsgalat-2024-teljes-anyag-egyben.pdf",
+          "location": "section 4.3, printed page 32",
+          "fact": "The municipal 2024 traffic review uses the spelling Szuhajdomb and starts its street-level review with Arany János utca east of road 611 and Baross Gábor tér; it discusses the adjoining Dózsa approach. This locates the spelling at the same southern-city road network, not a separate distant place.",
+          "accessLimit": "Direct PDF opening returned HTTP 403 in the web connector. Its indexed primary-document passage was available and saved; no full-PDF review is claimed.",
+          "savedEvidence": "traffic-primary-streets-targeted.json"
+        },
+        {
+          "url": "https://www.dombovar.hu/media/files/03._Termeszetvedelmi_alapterv_15.12.17..pdf",
+          "location": "printed page 79",
+          "fact": "The municipal 2015 nature plan uses Szuhaj-domb for the area's planted woods in the same city-green-space discussion as Szigeterdő, corroborating the j spelling in contemporary primary municipal material.",
+          "savedEvidence": "final-primary-crosschecks.json"
+        },
+        {
+          "url": "https://dombovar.hu/lakohelyunk/kozteruletnev-es-cimvaltozasok/tajekoztato-a-dombovari-kozteruletek-elnevezeseben-2010-ota-bekovetkezett-valtozasokrol/",
+          "location": "2013 street changes",
+          "fact": "The municipality states that Gyenis Antal utca was split into Vasút sor and Földvár utca effective 2013-09-01. The historic ITS southern boundary therefore links to the modern southern roads; a missing modern Gyenis road does not establish a different locality.",
+          "savedEvidence": "../evidence/dombovar-final-location.json"
+        }
+      ],
+      "corroborationNotPrimary": [
+        {
+          "url": "https://www.infokapospula.hu/hirek/olvas/rtesites-dombovaron-az-ebek-2012-evi-veszettseg-elleni-kotelezo-vedooltasarol-2012-03-28-105819",
+          "fact": "The local news reproduction attributes the notice to the Dombóvári Polgármesteri Hivatal and identifies Szuhajdomb at Ivanich Antal street beside the swimming pool. This is attributed primary content on a secondary host, so it is corroboration rather than a municipal-origin file.",
+          "savedEvidence": "szuhajdomb-ivanich-search.json"
+        }
+      ],
+      "geometryEvidence": {
+        "existingCanonical": "Szuhajdomb",
+        "existingGeometryRole": "low-confidence partial residential street cell",
+        "existingAreaM2": 62741,
+        "existingSourceNamePoint": [18.1377146, 46.3703749],
+        "existingExtentIssue": "The existing point/cell is north of Dózsa. That is not proof that a separate whole quarter called Szuhajdomb exists there: the cell was generated as a partial source footprint around a label, not supplied as a mapped whole-quarter polygon.",
+        "newCandidate": "../features-batch-05.geojson",
+        "newAreaM2": 367437,
+        "newGeometryRole": "rough reconstruction of an explicitly named municipal planning circuit south of Dózsa",
+        "recommendation": "Keep one canonical identity and preserve both geometry alternatives/provenance. Prefer the explicit ITS whole-planning-unit circuit over the label's small physical street cell for the planning-source interpretation, while retaining low-confidence and historical-scope caveats. Do not union the two merely to force name-point inclusion, and do not claim identical surveyed extents."
+      }
+    },
+    {
+      "municipality": "Kecskemét",
+      "names": ["Bordás", "Bordás belterület", "Borbás", "Borbás belterület"],
+      "decision": "Bordás in figure 71 is a high-confidence map spelling error for Borbás's inner settlement; not evidence of an additional place named Bordás",
+      "confidence": "high from same-document enumeration, map placement and independent municipal volume",
+      "primaryEvidence": [
+        {
+          "url": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+          "location": "figure 71, printed page 136 / original PDF page 138; following printed page 137 / original PDF page 139",
+          "fact": "The map prints Bordás belterület on the small orange northeastern settlement inside the surrounding Borbás rural district. The following page lists the ten detached satellite settlements and explicitly names Borbás in the smallest group; it does not enumerate a separate Bordás. The local cached source-page text and image were inspected independently.",
+          "sourceLocalPath": "../../shard-4/kecskemet/municipal-source-pages.pdf",
+          "savedEvidence": "kecskemet-full-page-1.png and final-primary-crosschecks.json"
+        },
+        {
+          "url": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_I-es_kotet.pdf",
+          "location": "figure 43, population distribution of detached inner settlements",
+          "fact": "The municipal companion volume calls the detached inner settlement Borbás and records its population, corroborating the correct b spelling for the inner settlement, not only the surrounding rural district.",
+          "savedEvidence": "final-primary-crosschecks.json"
+        }
+      ],
+      "geometryNuance": "The existing Borbás core geometry is a broad rural tract (bbox 19.78198,46.88686–19.85135,46.95743); shard-4's Bordás geometry is the much smaller orange inner-settlement site (bbox 19.78970,46.92847–19.79712,46.93254). Spelling identity does not make those extents equivalent.",
+      "recommendedHandling": "Remove Bordás as an independent literal place identity. If preserving different geographic granularity, name the small child Borbás belterület and retain broad parent Borbás; this is a source-supported parent/child distinction. Alternatively keep one Borbás canonical identity with both source geometries as alternatives, selecting the desired scope explicitly. Do not silently replace the broad tract with the tiny site or claim the two geometries are identical."
+    },
+    {
+      "municipality": "Dombóvár",
+      "name": "Külterületek",
+      "decision": "remain unresolved as a whole statistical planning unit; no new geometry added in identity follow-up",
+      "reason": "The HEP text groups five detached puszta settlements under a rural/puszták heading, but does not explicitly state that this is an exhaustive geometry union rather than the broader rural statistical territory. A partial named-site group could be represented later with a clear site-group label and component provenance, but should not be presented as all Külterületek. This unit has no source point and is not a fallback circle, so circle-zero does not justify inventing its full extent."
+    }
+  ]
+}

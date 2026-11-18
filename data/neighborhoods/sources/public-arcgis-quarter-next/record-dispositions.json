@@ -1,0 +1,2218 @@
+{
+  "schemaVersion": 1,
+  "sourceRecords": 77,
+  "sourceUniqueExactNames": 76,
+  "frozenEstimatedCandidates": 6,
+  "newPrimarySourceAdmissions": 0,
+  "existing26OsmPolygonsChanged": false,
+  "estimatedCandidatesDoNotResolveAbsoluteAccuracy": true,
+  "sourceNameCollision": {
+    "Széchenyikert": [
+      11,
+      67
+    ]
+  },
+  "dispositionCounts": {
+    "unfrozen_named_area_pending_extent_and_semantic_review": 35,
+    "unfrozen_facility_or_named_area_identity_unresolved": 3,
+    "excluded_generic_label": 1,
+    "frozen_estimated_placement_and_extent_candidate": 6,
+    "existing_identity_alternate_source_only": 25,
+    "quarantine_suspected_source_mislabel": 1,
+    "unfrozen_broad_named_parent": 1,
+    "unfrozen_name_point_outside_source_extent": 3,
+    "unfrozen_literal_name_spelling_unresolved": 2
+  },
+  "records": [
+    {
+      "FID": 1,
+      "name": "Nagyerdőtölgyes",
+      "sourceCategory": "egyeb_ovezet",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Nagyerdőtölgyes",
+          "id": "osm:node:11861568148",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2024-04-28 05:59:23+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 2,
+      "name": "Pallag",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Pallag",
+          "id": "osm:node:968749147",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 3,
+      "name": "Gyógyszergyár",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "unfrozen_facility_or_named_area_identity_unresolved",
+      "reason": "Facility/site-like name needs positive independent quarter-role evidence; subtype alone neither proves nor rejects quarter identity.",
+      "namePointMatches": [
+        {
+          "name": "Gyógyszergyár",
+          "id": "osm:node:8717038895",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2021-05-10 06:13:18+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 4,
+      "name": "Közterület",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "excluded_generic_label",
+      "reason": "Közterület is a generic public-area label, not a distinct quarter identity.",
+      "namePointMatches": [],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 5,
+      "name": "Debreceni Egyetem tud-tech park",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "unfrozen_facility_or_named_area_identity_unresolved",
+      "reason": "Facility/site-like name needs positive independent quarter-role evidence; subtype alone neither proves nor rejects quarter identity.",
+      "namePointMatches": [],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 6,
+      "name": "Ispotály",
+      "sourceCategory": "lakotelep",
+      "disposition": "frozen_estimated_placement_and_extent_candidate",
+      "reason": "Known quarter name independently corroborated by exact current OSM suburb point inside; literal published geometry retained with unresolved source placement/extent.",
+      "namePointMatches": [
+        {
+          "name": "Ispotály",
+          "id": "osm:node:3290546146",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2015-01-15 17:42:54+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 7,
+      "name": "Belváros",
+      "sourceCategory": "belvaros",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Belváros",
+          "id": "osm:node:968697762",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 8,
+      "name": "Repülőtér",
+      "sourceCategory": "egyeb_ovezet",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Repülőtér",
+          "id": "osm:node:1306547604",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 9,
+      "name": "Déli ipari terület",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Déli ipari terület",
+          "id": "osm:node:11861573479",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2024-04-28 06:04:06+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 10,
+      "name": "Epreskert",
+      "sourceCategory": "lakotelep",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Epreskert",
+          "id": "osm:node:968697801",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 13:08:23+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 11,
+      "name": "Széchenyikert",
+      "sourceCategory": "lakotelep",
+      "disposition": "quarantine_suspected_source_mislabel",
+      "reason": "Zero overlap with exact-name baseline Széchenyikert; IoU0.720195649 with baseline Újkert; source names retained without alias or relabelling.",
+      "namePointMatches": [
+        {
+          "name": "Széchenyikert",
+          "id": "osm:node:968697782",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": false,
+          "distanceOutsidePolygonM": 1707.2311903459345,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 12,
+      "name": "Sestakert",
+      "sourceCategory": "lakotelep",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Sestakert",
+          "id": "osm:node:968712519",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-25 08:57:43+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 13,
+      "name": "Libakert",
+      "sourceCategory": "lakotelep",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Libakert",
+          "id": "osm:node:968719503",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 14,
+      "name": "Vénkert",
+      "sourceCategory": "lakotelep",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Vénkert",
+          "id": "osm:node:968697787",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 15,
+      "name": "József Attila telep",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "József Attila-telep",
+          "id": "osm:node:968679365",
+          "place": "suburb",
+          "matchRule": "explicit_spacing_or_hyphen_variant_diagnostic_only",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 5,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 16,
+      "name": "Zsibogó",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "unfrozen_facility_or_named_area_identity_unresolved",
+      "reason": "Facility/site-like name needs positive independent quarter-role evidence; subtype alone neither proves nor rejects quarter identity.",
+      "namePointMatches": [
+        {
+          "name": "Zsibogó",
+          "id": "osm:node:968719480",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 17,
+      "name": "Auguszta",
+      "sourceCategory": "erdo",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Auguszta",
+          "id": "osm:node:968712524",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 18,
+      "name": "Egyetemváros",
+      "sourceCategory": "erdo",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Egyetemváros",
+          "id": "osm:node:968712523",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 19,
+      "name": "Nagyerdőpark",
+      "sourceCategory": "erdo",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Nagyerdőpark",
+          "id": "osm:node:7934713831",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2020-09-23 14:21:04+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 20,
+      "name": "Nagyerdő",
+      "sourceCategory": "villanegyed",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Nagyerdő",
+          "id": "osm:node:968712520",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 5,
+          "sourceObjectTimestamp": "2025-10-21 15:02:03+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 21,
+      "name": "Nagyerdőalja",
+      "sourceCategory": "villanegyed",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Nagyerdőalja",
+          "id": "osm:node:968712521",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 22,
+      "name": "Péterfia",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Péterfia",
+          "id": "osm:node:968719512",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 23,
+      "name": "Szentlászlófalva",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Szentlászlófalva",
+          "id": "osm:node:1297103100",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2024-01-25 05:18:17+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 24,
+      "name": "Burgundia",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Burgundia",
+          "id": "osm:node:3195354827",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:11+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 25,
+      "name": "Kandia",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Kandia",
+          "id": "osm:node:968719467",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 26,
+      "name": "Miklóskapu",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Miklóskapu",
+          "id": "osm:node:3204260694",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 14:19:30+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 27,
+      "name": "Tizenháromváros",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Tizenháromváros",
+          "id": "osm:node:5499197958",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2024-03-31 05:05:32+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 28,
+      "name": "Mesterfalva",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Mesterfalva",
+          "id": "osm:node:5499189180",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2019-11-05 12:25:13+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 29,
+      "name": "Nyulas",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Nyulas",
+          "id": "osm:node:968712525",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 30,
+      "name": "Úrrétje",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Úrrétje",
+          "id": "osm:node:968712526",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 31,
+      "name": "Tócóliget",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Tócóliget",
+          "id": "osm:node:7934653257",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2020-09-23 13:57:24+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 32,
+      "name": "Akadémiakert",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Akadémiakert",
+          "id": "osm:node:968712518",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 33,
+      "name": "Kertváros",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Kertváros",
+          "id": "osm:node:968697765",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2021-05-10 06:13:18+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 34,
+      "name": "Köntöskert",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Köntöskert",
+          "id": "osm:node:968719497",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 35,
+      "name": "Csigekert",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Csigekert",
+          "id": "osm:node:968697767",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 36,
+      "name": "Nagysándortelep",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Nagysándortelep",
+          "id": "osm:node:968697776",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 6,
+          "sourceObjectTimestamp": "2024-04-28 05:47:07+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 37,
+      "name": "Hatvan utcai kert",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Hatvan utcai kert",
+          "id": "osm:node:968697785",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 13:13:56+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 38,
+      "name": "Kismacs",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Kismacs",
+          "id": "osm:node:1290057778",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 39,
+      "name": "Józsa",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "unfrozen_broad_named_parent",
+      "reason": "Józsa is a broad named source parent; do not clone onto Felsőjózsa or Alsójózsa or claim fine-child coverage.",
+      "namePointMatches": [
+        {
+          "name": "Józsa",
+          "id": "osm:node:968749154",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 13,
+          "sourceObjectTimestamp": "2024-05-17 12:38:19+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 40,
+      "name": "Sámsonikert",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Sámsonikert",
+          "id": "osm:node:968712522",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 41,
+      "name": "Tócóvölgy",
+      "sourceCategory": "lakotelep",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Tócóvölgy",
+          "id": "osm:node:7936513509",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2020-09-24 06:07:27+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 42,
+      "name": "Tócóskert",
+      "sourceCategory": "lakotelep",
+      "disposition": "frozen_estimated_placement_and_extent_candidate",
+      "reason": "Known quarter name independently corroborated by exact current OSM suburb point inside; literal published geometry retained with unresolved source placement/extent.",
+      "namePointMatches": [
+        {
+          "name": "Tócóskert",
+          "id": "osm:node:968697784",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 43,
+      "name": "Sóház",
+      "sourceCategory": "lakotelep",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Sóház",
+          "id": "osm:node:968719477",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2025-03-29 08:21:34+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 44,
+      "name": "Dobozikert",
+      "sourceCategory": "lakotelep",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Dobozikert",
+          "id": "osm:node:968719517",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2025-03-10 13:06:17+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 45,
+      "name": "Téglagyár",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "unfrozen_name_point_outside_source_extent",
+      "reason": "Exact-name point falls outside source polygon; identity/extent disagreement needs review, with no snapping or source shift.",
+      "namePointMatches": [
+        {
+          "name": "Téglagyár",
+          "id": "osm:node:968727478",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": false,
+          "distanceOutsidePolygonM": 245.18846230963982,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 46,
+      "name": "Tócórét",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Tócórét",
+          "id": "osm:node:7934617897",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2021-10-22 14:53:20+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 47,
+      "name": "Köntösgát",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Köntösgát",
+          "id": "osm:node:3228064697",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 13:29:46+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 48,
+      "name": "Basahalom",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Basahalom",
+          "id": "osm:node:968719552",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 5,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 49,
+      "name": "Kétútköz",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Kétútköz",
+          "id": "osm:node:11861568146",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2024-04-28 05:59:23+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": [
+        "Morphology/use category is not an automatic identity exclusion; positive quarter role must be assessed separately."
+      ]
+    },
+    {
+      "FID": 50,
+      "name": "Kondoros",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Kondoros",
+          "id": "osm:node:968719532",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2020-09-23 14:16:17+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 51,
+      "name": "Biharikert",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Biharikert",
+          "id": "osm:node:968719564",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 12:57:21+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 52,
+      "name": "Percsikert",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_literal_name_spelling_unresolved",
+      "reason": "Preserve literal Percsikert/Hőforras; no semantic/current-name alias invented.",
+      "namePointMatches": [],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 53,
+      "name": "Műhelytelep",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_name_point_outside_source_extent",
+      "reason": "Exact-name point falls outside source polygon; identity/extent disagreement needs review, with no snapping or source shift.",
+      "namePointMatches": [
+        {
+          "name": "Műhelytelep",
+          "id": "osm:node:7934691563",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": false,
+          "distanceOutsidePolygonM": 49.10562111393359,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2020-09-23 14:03:52+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 54,
+      "name": "Kincseshegy",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Kincseshegy",
+          "id": "osm:node:968712513",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 14:11:45+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 55,
+      "name": "Csapókert",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Csapókert",
+          "id": "osm:node:5331910720",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:13+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 56,
+      "name": "Veres Péter kert",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Veres Péter-kert",
+          "id": "osm:node:968712515",
+          "place": "suburb",
+          "matchRule": "explicit_spacing_or_hyphen_variant_diagnostic_only",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 57,
+      "name": "Hőforras",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_literal_name_spelling_unresolved",
+      "reason": "Preserve literal Percsikert/Hőforras; no semantic/current-name alias invented.",
+      "namePointMatches": [],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 58,
+      "name": "Júliatelep",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Júliatelep",
+          "id": "osm:node:1297068296",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 6,
+          "sourceObjectTimestamp": "2020-09-23 13:21:36+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 59,
+      "name": "Kerekestelep",
+      "sourceCategory": "kertvaros",
+      "disposition": "frozen_estimated_placement_and_extent_candidate",
+      "reason": "Known quarter name independently corroborated by exact current OSM suburb point inside; literal published geometry retained with unresolved source placement/extent.",
+      "namePointMatches": [
+        {
+          "name": "Kerekestelep",
+          "id": "osm:node:968679368",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 60,
+      "name": "Homokkert",
+      "sourceCategory": "kertvaros",
+      "disposition": "frozen_estimated_placement_and_extent_candidate",
+      "reason": "Known quarter name independently corroborated by exact current OSM suburb point inside; literal published geometry retained with unresolved source placement/extent.",
+      "namePointMatches": [
+        {
+          "name": "Homokkert",
+          "id": "osm:node:968679370",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 13:16:41+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 61,
+      "name": "Lencztelep",
+      "sourceCategory": "kertvaros",
+      "disposition": "frozen_estimated_placement_and_extent_candidate",
+      "reason": "Known quarter name independently corroborated by exact current OSM suburb point inside; literal published geometry retained with unresolved source placement/extent.",
+      "namePointMatches": [
+        {
+          "name": "Lencztelep",
+          "id": "osm:node:968679371",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 62,
+      "name": "Boldogfalvikert",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Boldogfalvikert",
+          "id": "osm:node:968697796",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2020-09-23 12:59:18+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 63,
+      "name": "Tégláskert",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Tégláskert",
+          "id": "osm:node:968719539",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2024-09-27 15:18:39+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 64,
+      "name": "Majorság",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Majorság",
+          "id": "osm:node:968719545",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 14:11:05+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 65,
+      "name": "Vargakert",
+      "sourceCategory": "kertvaros",
+      "disposition": "frozen_estimated_placement_and_extent_candidate",
+      "reason": "Known quarter name independently corroborated by exact current OSM suburb point inside; literal published geometry retained with unresolved source placement/extent.",
+      "namePointMatches": [
+        {
+          "name": "Vargakert",
+          "id": "osm:node:968697803",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 66,
+      "name": "Postakert",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Postakert",
+          "id": "osm:node:968697780",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-25 08:59:48+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 67,
+      "name": "Széchenyikert",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Széchenyikert",
+          "id": "osm:node:968697782",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 68,
+      "name": "Lóskúti",
+      "sourceCategory": "kertvaros",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Lóskúti",
+          "id": "osm:node:11861568145",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2024-04-28 05:59:23+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 69,
+      "name": "Falóger",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Falóger",
+          "id": "osm:node:968719484",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 70,
+      "name": "Wesselényi lakótelep",
+      "sourceCategory": "lakotelep",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Wesselényi-lakótelep",
+          "id": "osm:node:968719471",
+          "place": "neighbourhood",
+          "matchRule": "explicit_spacing_or_hyphen_variant_diagnostic_only",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2024-04-28 06:01:06+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 71,
+      "name": "Gerébytelep",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_identity_alternate_source_only",
+      "reason": "Exact source name already represented by frozen Debrecen OSM baseline; no duplicate quarter or coverage increment.",
+      "namePointMatches": [
+        {
+          "name": "Gerébytelep",
+          "id": "osm:node:968712514",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 13:12:12+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [
+        null
+      ],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 72,
+      "name": "Nagymacs",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Nagymacs",
+          "id": "osm:node:968749137",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 6,
+          "sourceObjectTimestamp": "2022-10-29 10:26:05+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 73,
+      "name": "Nagycsere",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Nagycsere",
+          "id": "osm:node:968749162",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 7,
+          "sourceObjectTimestamp": "2022-10-17 15:37:43+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 74,
+      "name": "Dombos",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "unfrozen_name_point_outside_source_extent",
+      "reason": "Exact-name point falls outside source polygon; identity/extent disagreement needs review, with no snapping or source shift.",
+      "namePointMatches": [
+        {
+          "name": "Dombos",
+          "id": "osm:node:968749145",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": false,
+          "distanceOutsidePolygonM": 139.69716593818615,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 75,
+      "name": "Haláp",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Haláp",
+          "id": "osm:node:968749159",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 7,
+          "sourceObjectTimestamp": "2024-04-28 05:34:34+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 76,
+      "name": "Bánk",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Bánk",
+          "id": "osm:node:968749165",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    },
+    {
+      "FID": 77,
+      "name": "Ondód",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "unfrozen_named_area_pending_extent_and_semantic_review",
+      "reason": "Keep literal named source area; full identity/extent/lineage/placement review not frozen in this six-feature batch.",
+      "namePointMatches": [
+        {
+          "name": "Ondód",
+          "id": "osm:node:925163275",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 9,
+          "sourceObjectTimestamp": "2020-09-25 09:05:47+00:00",
+          "usedForFit": false
+        }
+      ],
+      "baselineExactNameIds": [],
+      "baselineReviewPerRecordPath": "baseline-overlap-review.json",
+      "sourceGeometryRetained": true,
+      "sourceNameUnchanged": true,
+      "automaticAliasApplied": false,
+      "canonicalPromotionPerformed": false,
+      "usableForAddressAssignment": false,
+      "flags": []
+    }
+  ]
+}

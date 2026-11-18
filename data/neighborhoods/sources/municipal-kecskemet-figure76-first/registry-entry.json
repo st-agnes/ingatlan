@@ -1,0 +1,21 @@
+{
+  "id": "kecskemet-figure76-source-pixel-inferred",
+  "path": "data/neighborhoods/sources/municipal-kecskemet-figure76-first/source-inferred.geojson",
+  "sha256": "25fc43ab9733cc89f73b4a4184939a05643f0ba853ed089110a5085a829d63d0",
+  "municipality": "Kecskemét",
+  "featureCount": 3,
+  "method": "Literal original Figure76 maxRGB<=45 black-source-pixel circuits, every dense edge an 8-neighbor source step. Shared dividers are reused exactly; no source-frame closure, label crossing, invented connector, simplification, buffer, snap or repair. Actual photographic texture establishes a Figure73-to-Figure76 image affine relation: ten fitted and ten separately held-out NCC patches, with no world coordinates, names or boundary rings used by image matching. The inverse image relation is composed with the archived Figure73 EOV affine calibration, independently recomputed from its six approximate real-road-node correspondences. The Figure73 geographic placement remains unvalidated, and Figure76 contours partly extend beyond the observed common-image overlap. All output is therefore an explicit inferred geographic candidate; exact source contours are proved separately from placement.",
+  "evidenceUrls": [
+    "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+  ],
+  "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name points.",
+  "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-figure76-first/independent-review.json",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false
+  },
+  "rightsStatus": "Public municipal consultation draft; open reuse rights not independently established."
+}

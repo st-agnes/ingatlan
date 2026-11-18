@@ -1,0 +1,428 @@
+{
+  "sourceImage": "pecs-p48-names.jpeg",
+  "sourceImageSizePixels": [
+    585,
+    514
+  ],
+  "purpose": "Literal source-name association only. Never geographic controls or invented polygon vertices. Newly read 28 labels complement previous 39; M utca deliberately has no reliable interior seed.",
+  "networkUsed": false,
+  "records": [
+    {
+      "sourceName": "Szentkút",
+      "labelAnchorPixel": [
+        150,
+        185
+      ],
+      "interiorPixel": [
+        151,
+        180
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-west-north.png",
+      "note": "Distinct upper mushroom and narrow northern finger of the purple III area.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Szentmiklós",
+      "labelAnchorPixel": [
+        66,
+        322
+      ],
+      "interiorPixel": [
+        62,
+        326
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-west-far.png",
+      "note": "Westernmost broad purple III body; distinct from Zsebedomb above and Patacs east.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Zsebedomb",
+      "labelAnchorPixel": [
+        110,
+        295
+      ],
+      "interiorPixel": [
+        112,
+        300
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-west-far.png",
+      "note": "Thin upper western purple III corridor, north of Patacs.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Gyükés",
+      "labelAnchorPixel": [
+        286,
+        201
+      ],
+      "interiorPixel": [
+        286,
+        208
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-east-v-vi.png",
+      "note": "Western tall green V body, left of Pécsbánya and Rigóder.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Pécsbánya",
+      "labelAnchorPixel": [
+        318,
+        173
+      ],
+      "interiorPixel": [
+        316,
+        180
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-east-v-vi.png",
+      "note": "Large upper green V body; literal long label Pécsbánya.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Rigóder",
+      "labelAnchorPixel": [
+        320,
+        215
+      ],
+      "interiorPixel": [
+        319,
+        221
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-east-v-vi.png",
+      "note": "Southern oval green V body.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Szabolcs",
+      "labelAnchorPixel": [
+        365,
+        174
+      ],
+      "interiorPixel": [
+        365,
+        181
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-east-v-vi.png",
+      "note": "Upper tall orange VI body.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Szabolcsi zártkert",
+      "labelAnchorPixel": [
+        402,
+        186
+      ],
+      "interiorPixel": [
+        400,
+        192
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-east-v-vi.png",
+      "note": "Eastern protruding orange VI body.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Meszes",
+      "labelAnchorPixel": [
+        370,
+        234
+      ],
+      "interiorPixel": [
+        372,
+        240
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-east-v-vi.png",
+      "note": "Large southern orange VI body.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Diós",
+      "labelAnchorPixel": [
+        334,
+        248
+      ],
+      "interiorPixel": [
+        338,
+        250
+      ],
+      "confidence": "medium",
+      "inspectionCrop": "pecs-review-name-east-v-vi.png",
+      "note": "Very small lower western orange VI cell; white label close to blue I boundary. Validate a transformed interior carefully.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Budai külváros",
+      "labelAnchorPixel": [
+        325,
+        257
+      ],
+      "interiorPixel": [
+        325,
+        264
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-inner-full.png",
+      "note": "Upper eastern blue I taper, above Budaiváros.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Budaiváros",
+      "labelAnchorPixel": [
+        300,
+        276
+      ],
+      "interiorPixel": [
+        303,
+        281
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-inner-full.png",
+      "note": "Middle eastern blue I cell, north of Kisbalokány.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Kisbalokány",
+      "labelAnchorPixel": [
+        288,
+        291
+      ],
+      "interiorPixel": [
+        287,
+        296
+      ],
+      "confidence": "medium",
+      "inspectionCrop": "pecs-review-name-inner-full.png",
+      "note": "Small blue I cell directly above red Balokány; label near fine borders.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Siklósi külváros",
+      "labelAnchorPixel": [
+        266,
+        306
+      ],
+      "interiorPixel": [
+        261,
+        309
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-inner-full.png",
+      "note": "Lower right blue I wedge, east of Ispitaalja and above IX.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Észak-Megyer",
+      "labelAnchorPixel": [
+        235,
+        342
+      ],
+      "interiorPixel": [
+        235,
+        348
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-ix-strip.png",
+      "note": "Long red IX middle strip above green Kertváros.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Szigeti tanya",
+      "labelAnchorPixel": [
+        194,
+        348
+      ],
+      "interiorPixel": [
+        196,
+        351
+      ],
+      "confidence": "medium",
+      "inspectionCrop": "pecs-review-name-ix-strip.png",
+      "note": "Small red IX strip west of Észak-Megyer and above Füzes; label overlaps a nearby fine border.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Fogadó",
+      "labelAnchorPixel": [
+        101,
+        333
+      ],
+      "interiorPixel": [
+        101,
+        336
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-economic-west.png",
+      "note": "Western blue X horizontal strip.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Bolgárkert",
+      "labelAnchorPixel": [
+        145,
+        333
+      ],
+      "interiorPixel": [
+        147,
+        337
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-economic-west.png",
+      "note": "Blue X cell south of Rácváros and west of Kovácstelep.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Nyugati ipari út",
+      "labelAnchorPixel": [
+        159,
+        357
+      ],
+      "interiorPixel": [
+        161,
+        351
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-x-ix-lower.png",
+      "note": "Long bottom blue X industrial strip below the II orange cells; the red label to its right is Szigeti tanya, not this industrial unit.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Üszögi tározó-major",
+      "labelAnchorPixel": [
+        418,
+        325
+      ],
+      "interiorPixel": [
+        404,
+        333
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-east-viii.png",
+      "note": "Eastern green VIII cell, east of Üszög; reservoir/major functional source label, not automatically residential.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Péterpuszta",
+      "labelAnchorPixel": [
+        202,
+        455
+      ],
+      "interiorPixel": [
+        205,
+        459
+      ],
+      "confidence": "medium",
+      "inspectionCrop": "pecs-review-name-southwest-tiny.png",
+      "note": "Small green XI southwestern finger; label is outside the tiny original shape.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Árpádtető",
+      "labelAnchorPixel": [
+        343,
+        80
+      ],
+      "interiorPixel": [
+        325,
+        83
+      ],
+      "confidence": "medium",
+      "inspectionCrop": "pecs-review-name-islands.png",
+      "note": "Western small detached purple XII island on the north-south road; label outside to right.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Józsefháza",
+      "labelAnchorPixel": [
+        389,
+        72
+      ],
+      "interiorPixel": [
+        377,
+        75
+      ],
+      "confidence": "medium",
+      "inspectionCrop": "pecs-review-name-islands.png",
+      "note": "Small detached purple XII L-shaped island northeast of Árpádtető.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Rücker-akna",
+      "labelAnchorPixel": [
+        444,
+        87
+      ],
+      "interiorPixel": [
+        428,
+        88
+      ],
+      "confidence": "medium",
+      "inspectionCrop": "pecs-review-name-islands.png",
+      "note": "Tiny purple XII hooked/slender island southwest of Vasas; outside label.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "István-akna",
+      "labelAnchorPixel": [
+        413,
+        115
+      ],
+      "interiorPixel": [
+        398,
+        115
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-islands.png",
+      "note": "Detached north-south hooked purple XII island west of Somogy.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Petőfi-akna",
+      "labelAnchorPixel": [
+        515,
+        23
+      ],
+      "interiorPixel": [
+        498,
+        24
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-xii-top.png",
+      "note": "Northernmost purple XII island; original outside label.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "Flóriántelep",
+      "labelAnchorPixel": [
+        470,
+        38
+      ],
+      "interiorPixel": [
+        485,
+        37
+      ],
+      "confidence": "high",
+      "inspectionCrop": "pecs-review-name-xii-top.png",
+      "note": "Tiny purple XII island south-west of Petőfi-akna; outside label left.",
+      "requiresSourceCellReview": true
+    },
+    {
+      "sourceName": "M utca",
+      "labelAnchorPixel": [
+        514,
+        43
+      ],
+      "interiorPixel": null,
+      "confidence": "uncertain",
+      "inspectionCrop": "pecs-review-name-xii-top.png",
+      "note": "Literal M utca label readable, but the adjacent extremely small dark shape cannot reliably supply an interior seed at this source resolution.",
+      "requiresSourceCellReview": true
+    }
+  ]
+}

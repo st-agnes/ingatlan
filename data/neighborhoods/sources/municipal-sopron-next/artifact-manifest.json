@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "sopron-native-planning-units-next",
+  "status": "source_verified_review_required_candidates",
+  "sourcePath": "data/neighborhoods/sources/municipal-sopron-next/source-vector.geojson",
+  "sourceSha256": "5f87062ca249f91d1179c574a6157c380d8ebc9b2dbd484c9df5293bee80436a",
+  "nativeSourceFaces": 4,
+  "planningUnits": 4,
+  "fineNeighbourhoodCount": 0,
+  "wholeCityQuarterInventoryComplete": false,
+  "ids": [
+    "manual:sopron-source-vector:1",
+    "manual:sopron-source-vector:4",
+    "manual:sopron-source-vector:5",
+    "manual:sopron-source-vector:13"
+  ],
+  "names": [
+    "Észak-nyugati városrész",
+    "Bánfalva, Kutyahegy városrész",
+    "Lővereki városrész",
+    "Dél-keleti gazdasági terület városrész"
+  ],
+  "strictJsValidatorAccepted": 4,
+  "pairwiseAreaOverlap": false,
+  "absoluteBoundaryAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "sourceMapReuseRightsIndependentlyEstablished": false,
+  "sourceGeometryRepairOrClipping": false,
+  "materialPreservedDisagreements": [
+    {
+      "name": "Lővereki városrész",
+      "outsideCurrentMunicipalityAreaM2": 9515.522929316527,
+      "municipalityOverlapFraction": 0.9984786972173099
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/README.txt",
+      "bytes": 5557,
+      "sha256": "ea1b03f0060a039cfa1295547407d1adb5c7911d2d503458bf64ca52a922e652"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/calibration-municipality.geojson",
+      "bytes": 90906,
+      "sha256": "206df1f052921e1aba6ded97769905e4fbcc7df96a2212d277e0ec883763f4bd"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/calibration-native-perimeter.json",
+      "bytes": 982940,
+      "sha256": "e800a97e6c5831f5b08b23f71ba5986b86934cb69947ef913cec37598108caaa"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/calibration-reference-origin.json",
+      "bytes": 5711,
+      "sha256": "4c38fe810b37d6dbbd7230029f83e095cc8e8c529ae9866d5f0bf6b897166399"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/conversion-proof.json",
+      "bytes": 4520,
+      "sha256": "c61fe2581ea1522f31447a46d2c54b694404a10d803e9a2077b18271459524a5"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/cross-page-cad-controls-overlay.png",
+      "bytes": 766237,
+      "sha256": "d7949724541a5557dd164f6d6e900f6c2cdc6aa6981c55128581ea3536176fc3"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/cross-page-cad-controls.json",
+      "bytes": 20571,
+      "sha256": "92b0f21a6cde976f2717c89c2e93b1b91a9961e4a337364308dd6536e1610841"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/cross-page-cad-controls.json.gz",
+      "bytes": 309666,
+      "sha256": "a87a51326b79cb6f063af70438a180f30ca78f4185d33b2e017b375b7640d025"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/cross-page-native-fill-scope.json",
+      "bytes": 876007,
+      "sha256": "61bbc9e721013fc87da417d04995aeaeffd052a4dc9a6563ecc2cc65730cb091"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/derive.py",
+      "bytes": 7097,
+      "sha256": "195c76fa739bedc88addc2a8ed72cb6ff3d6abb9633abbc28422652c9741b6f3"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/extract.py",
+      "bytes": 8561,
+      "sha256": "f29956630b34b646b1634bd976a728259019404171f8683044c22113582283b8"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/fit.py",
+      "bytes": 6194,
+      "sha256": "00597c1810d4f71ef869c39e21af321819516cd8135dd2466fe14ac3f9fef46e"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/independent-review.json",
+      "bytes": 18171,
+      "sha256": "65624e76168364ca559cda85a055520fdd366803f63878fd6f58bc3db5ec1e27"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/independent_audit.py",
+      "bytes": 15989,
+      "sha256": "b8b7ea556e00e4ea1595074cf7384c0dcfc1c56266c67e35730b448cd221ffb1"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/match-cad.py",
+      "bytes": 4651,
+      "sha256": "088780da59c13af22ebb1361ded5c8e66e12ea1ea39967bfd1d1c653a7f9bdb4"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/metadata-correction-proof.json",
+      "bytes": 2444,
+      "sha256": "186a7c3bb56cec747d983b97006584a0e7e0f60ece4c6d14bbd4e5e8a6052db1"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/municipal-registration-overlay.png",
+      "bytes": 548784,
+      "sha256": "73d7739b262c35c93aa5a153f49bdee5c7238a16597b6eb0d5eb30205d59603b"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/native-four-source-faces.png",
+      "bytes": 768810,
+      "sha256": "1f41165333ce02ed3247dd29f4e4c6fbd1175a7a3c23c304a2a6294dc33e87fc"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/native-source-polygons.json",
+      "bytes": 135552,
+      "sha256": "9669fbed83781c14294e73ae38e1e5b2a0cf699686347a94de735dfd58b4cc30"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/native-source-segments.json",
+      "bytes": 312459,
+      "sha256": "318d3c29c994cfec178c80eba8f5bbfd9ba9d973ee1f153472a2d5adf2b4d5cb"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/registration.json",
+      "bytes": 469629,
+      "sha256": "cc110659529e9e25bd5aad77f69f9a7aee6e974dba13caaa6b7497459fb0af03"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/registry-entry.json",
+      "bytes": 2130,
+      "sha256": "9d49f819860cab854e5bd3db7ef351cdd1bdebd8d3eb36a5b30c91fe16390754"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/render-proofs.py",
+      "bytes": 2218,
+      "sha256": "23fec8a4eb9cab595d45ae2fe9c605c2ac535d16b6112e0f69a41a282c717780"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/review-native-block-evidence.json",
+      "bytes": 1260,
+      "sha256": "39fd03b3ec9f071d7d0583ce0bf8524bd65b3196c33ca98762d545856beae869"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/review-native-check.json",
+      "bytes": 8748,
+      "sha256": "a657f6963f2adc175f0329ef1b5e08355dd574014993ed509c59e56938a032a1"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/review-native-check.py",
+      "bytes": 12199,
+      "sha256": "bcec27668c308947c304f6a3ee70a571b69728d81a0616566818b5fef7318c2d"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/review-native-date-block.png",
+      "bytes": 27100,
+      "sha256": "902f25d01f6579aeb9ed07519f7bd755eeae31d2b1eee7a18e97faad4045d4ab"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/review-native-draft-block.png",
+      "bytes": 7568,
+      "sha256": "2fe8832450d85cf668a2007e9fc7c1ae16739d9701e60f64a174ca5a1323d25c"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/source-extraction-proof.json",
+      "bytes": 1373,
+      "sha256": "cc4c81188bea3ca75f3217f7f8b282a4bb46e9c6f1f4f18dd1bc90ede11a7a72"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/source-pages1-2.pdf",
+      "bytes": 6104036,
+      "sha256": "6213be7ec2318f03856a102d7791c2e98b3704a26cbc0c0f011df8c6e1bd063b"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/source-vector.geojson",
+      "bytes": 149292,
+      "sha256": "5f87062ca249f91d1179c574a6157c380d8ebc9b2dbd484c9df5293bee80436a"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-sopron-next/strict-validator-review.json",
+      "bytes": 1340,
+      "sha256": "c44d81788de66bac5d62c1c378f5bde5d24d65e034e7a551e59ce90224c6e960"
+    }
+  ],
+  "metadataCorrectionProof": "data/neighborhoods/sources/municipal-sopron-next/metadata-correction-proof.json",
+  "sourceIssueDateLiteral": "2024. 11.",
+  "sourceIssueYearMonth": "2024-11",
+  "independentReviewPath": "data/neighborhoods/sources/municipal-sopron-next/independent-review.json",
+  "independentReviewSha256": "65624e76168364ca559cda85a055520fdd366803f63878fd6f58bc3db5ec1e27",
+  "independentAuditResult": "Source-defined planning geometry and calculation pass; absolute accuracy unknown, not legal/address approval."
+}

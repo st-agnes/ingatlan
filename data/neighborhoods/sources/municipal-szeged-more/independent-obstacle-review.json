@@ -1,0 +1,157 @@
+{
+  "reviewedAt": "2026-11-13",
+  "reviewer": "independent child agent /root/szeged_text_boundaries/review_szeged_circuits",
+  "name": "Klebelsberg-telep (Hattyas)",
+  "result": "positive_boundary_source_but_literal_embankment_to_bank_geometry_unresolved",
+  "newQuarterPolygonCreated": false,
+  "sourceChecks": [
+    {
+      "url": "https://www.klebelsberg-egyesulet.hu/wp-content/uploads/2016/04/helytortenet.pdf",
+      "title": "Szeged-Klebelsberg-telep története, edited Újvári Edit,2007, ISBN978-963-06-2610-1",
+      "printedPage": 9,
+      "pdfPageOneBased": 9,
+      "retrieval": "Independent full PDF text via public web READ connector; no original PDF byte hash claimed",
+      "factualPerimeter": {
+        "west": "unnamed drainage channel",
+        "south": "a section of Holt-Tisza",
+        "north": "Körtöltés toward Kecskés-telep",
+        "east": "railway embankment toward Alsóváros"
+      },
+      "interpretationLimit": "The source says railway embankment. A current/live rail centerline is not automatically identical to the full embankment. A missing rail-to-water intersection therefore does not refute the source or prove that the physical boundary is absent."
+    },
+    {
+      "url": "https://szeged.hu/cikk/hattyason-talaltak-uj-otthonra-a-vasutasok-a-vagonlakasok-utan-emoke-nagyapja-almodta-meg-a-telepet",
+      "publishedAt": "2018-08-12",
+      "retrieval": "Independent full public webpage read",
+      "factualSupport": "Municipal city-history article describes Klebelsbergtelep and the Hattyas/Vasutastelep/Klebelsberg historical names, with the1992 restoration of Klebelsberg name. This confirms name identity, not a polygon."
+    },
+    {
+      "url": "https://megujul.szeged.hu/data/portal/cikk/miert-pont-igy/szeged_kerekparhalozati_terv_2015.pdf",
+      "retrieval": "Independent public indexed text",
+      "factualSupport": "Municipal cycle-network plan mentions a former narrow-gauge railway embankment between Klebelsberg and the Tisza right-bank flood levee. This is a useful historic alignment lead, not explicit authority for the eastern quarter-to-Holtbank closing boundary."
+    },
+    {
+      "url": "https://klebelsberg-egyesulet.hu/frissult-kozteri-takaritas-2022-tavaszan/",
+      "retrieval": "Independent public indexed text",
+      "factualSupport": "Local association describes cleanup along the former narrow-gauge route, neighboring woods and paths. It supplies place/alignment context but not an exact closed quarter perimeter."
+    }
+  ],
+  "inputSha256": {
+    "localExplorationLines": "43d927d8c0057fa7d97fe7521a80a3d38f9b4b4ac4ac14216d57e98634bea945",
+    "gyalaiWaterSourceMembers": "c109b6ec14fa3b90d5cd96b88e48742a0d3ef8c953d10aee86fc3d0146b2221f",
+    "gyalaiWaterRelation": "5a7ea45a96a536d7226d3922fd5e5430d9b04f67c1891d625fa9f063dc6e9b5e",
+    "sourcePbf": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a"
+  },
+  "independentGeometryChecks": {
+    "localWholeWays": 1243,
+    "railwayWaysExamined": 183,
+    "gyalaiOuterBankMemberWays": 54,
+    "all54MembersOuterRole": true,
+    "directOriginalPbfVerification": {
+      "expected": 241,
+      "found": 241,
+      "missing": [],
+      "mismatches": []
+    },
+    "comparedFields": [
+      "coordinate sequence",
+      "nodeRef sequence",
+      "complete tags",
+      "object version"
+    ],
+    "metricCrs": "EPSG:23700, transformed from original WGS84 source coordinates",
+    "nearestRailwayToAnyOuterWaterBank": [
+      {
+        "wayId": "osm:way:779607225",
+        "railwayTag": "abandoned",
+        "ref": "414;414a",
+        "computedMinimumDistanceM": 586.03,
+        "nearestOnRail": [
+          20.0974232,
+          46.2331962
+        ],
+        "nearestOnOuterWaterBank": [
+          20.0992505,
+          46.2280792
+        ]
+      },
+      {
+        "wayId": "osm:way:803098896",
+        "railwayTag": "rail",
+        "ref": "136",
+        "computedMinimumDistanceM": 618.027,
+        "nearestOnRail": [
+          20.0869731,
+          46.2290608
+        ],
+        "nearestOnOuterWaterBank": [
+          20.093515,
+          46.2258521
+        ]
+      },
+      {
+        "wayId": "osm:way:430272966",
+        "railwayTag": "rail",
+        "ref": null,
+        "computedMinimumDistanceM": 625.628,
+        "nearestOnRail": [
+          20.1220084,
+          46.2256254
+        ],
+        "nearestOnOuterWaterBank": [
+          20.1145944,
+          46.223346
+        ]
+      },
+      {
+        "wayId": "osm:way:80373558",
+        "railwayTag": "rail",
+        "ref": null,
+        "computedMinimumDistanceM": 802.078,
+        "nearestOnRail": [
+          20.1258529,
+          46.2229739
+        ],
+        "nearestOnOuterWaterBank": [
+          20.1157302,
+          46.2213324
+        ]
+      }
+    ],
+    "literalBoundaryCategoryPolygonize": {
+      "categories": [
+        "railway=rail/disused/abandoned/razed/narrow_gauge",
+        "waterway=drain/ditch/stream/canal",
+        "man_made=dyke/embankment",
+        "name=Körtöltés",
+        "all54 actual outer water-bank members"
+      ],
+      "cells": 50,
+      "cellsCoveringQuarterNamedPoint": 0,
+      "quarterNamedPoint": {
+        "sourceId": "osm:node:982345167",
+        "coordinates": [
+          20.1163732,
+          46.2295209
+        ]
+      },
+      "geometryRepairs": 0,
+      "snapping": false,
+      "arbitraryConnectors": false
+    }
+  },
+  "specificObstacle": "Western drain398438047 continues via culvert398438143 to the actual outer waterbank; dyke39429434 supplies a plausible northern corridor. No examined actual current or former rail track intersects the Holtbank: even the closest historic rail is586.030m away, and the eastern industrial spur430272966 is625.628m away. Current mapped rail/embankment evidence therefore does not supply a complete unambiguous east/southeast quarter closure. No line has been invented to bridge it.",
+  "possibleRemainingEvidence": [
+    "Source-era cadastral/rail/quarter plan identifying the complete eastern embankment footprint, including any portion surviving beyond tracks.",
+    "An explicit local source that names any connecting eastern/southeastern corridor and its Holtbank endpoint.",
+    "A source map with a visible whole-quarter outline that can be manually digitized and independently georegistered."
+  ],
+  "notClaimed": [
+    "That no more public source exists.",
+    "That the quarter lacks real boundaries.",
+    "That a railway track endpoint is necessarily the end of the physical embankment.",
+    "That the present water surface necessarily equals the entire historical backwater basin edge."
+  ],
+  "usableForAddressAssignment": false,
+  "claimedAbsoluteAccuracyMetres": null
+}

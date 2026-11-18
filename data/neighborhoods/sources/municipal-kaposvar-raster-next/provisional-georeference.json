@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "status": "inferred_georeference",
+  "provisionalAnchorSpecification": {
+    "schemaVersion": 1,
+    "status": "provisional_two_assumed_correspondences_not_validated_georeference",
+    "acceptedIndependentSourceRoadControlCount": 0,
+    "anchors": [
+      {
+        "osmNodeId": 325221618,
+        "coordinates": [
+          17.8024628,
+          46.3652624
+        ],
+        "sourceWayIds": [
+          "osm:way:369118668",
+          "osm:way:369118672",
+          "osm:way:395998347",
+          "osm:way:399810748"
+        ],
+        "assumedSourcePixel": [
+          252,
+          478
+        ],
+        "literalNodeRole": "Virág utca / Árpád utca junction",
+        "sourcePixelAssociation": "Assumed northeastern Belváros road-side corner; physical junction correspondence not independently established.",
+        "imageCorrespondenceIndependentlyConfirmed": false
+      },
+      {
+        "osmNodeId": 5907787634,
+        "coordinates": [
+          17.804413,
+          46.3527953
+        ],
+        "sourceWayIds": [
+          "osm:way:871039425",
+          "osm:way:871039435",
+          "osm:way:871039437"
+        ],
+        "assumedSourcePixel": [
+          259,
+          550
+        ],
+        "literalNodeRole": "Baross Gábor utca endpoint near Hársfa utca; connecting OSM road centreline gap exists.",
+        "sourcePixelAssociation": "Assumed southeastern Belváros road-side corner; historical road geometry and exact correspondence not independently established.",
+        "imageCorrespondenceIndependentlyConfirmed": false
+      }
+    ],
+    "model": "Planar similarity with reflected image y axis in EOV/EPSG:23700, determined by two manually assumed image/geographic pairs.",
+    "sourceProjectionKnown": false,
+    "independentPhysicalHoldoutCount": 0,
+    "claimedAbsoluteAccuracyMetres": null,
+    "notForAddressAssignment": true,
+    "noReviewRadiusOrAccuracyBoundAssigned": true
+  },
+  "literalWorldCoordinatesVerified": true,
+  "sourceImageCorrespondencesIndependentlyVerified": false,
+  "independentlyAcceptedPhysicalControlCount": 0,
+  "independentPhysicalHoldoutCount": 0,
+  "matrixPixelColumnToEov": [
+    [
+      19.26950688715765,
+      -0.09570381351973653,
+      549385.7124124797
+    ],
+    [
+      -0.09570381351973653,
+      -19.26950688715765,
+      123419.33417522695
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "internalTwoAnchorFitResidualM": [
+    0.0,
+    1.4551915228366852e-11
+  ],
+  "fitResidualMeaning": "Two pairs exactly determine the similarity; tiny residuals are algebraic closure, not evidence that assumed source correspondences are correct.",
+  "provisionalModelMetresPerPixel": 19.26974454667571,
+  "sourceProjectionKnown": false,
+  "metricCrs": "EPSG:23700",
+  "outputCrs": "EPSG:4326",
+  "inverseProjectionPipeline": null,
+  "pyprojVersion": "3.7.2",
+  "projVersion": "9.5.1",
+  "projNetworkDisabled": true,
+  "claimedAbsoluteAccuracyMetres": null,
+  "noReviewRadiusOrAccuracyBoundAssigned": true,
+  "unresolvedReason": "Two source-image/road pairs remain manual assumptions; faint CAD topology did not permit independent validation of six further candidate junctions. See control-review.json.",
+  "usableForAddressAssignment": false
+}

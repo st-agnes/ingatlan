@@ -1,0 +1,402 @@
+{
+  "schemaVersion": 1,
+  "independentAuditorPath": "data/neighborhoods/sources/municipal-tatabanya-more/independent_audit.py",
+  "independentAuditorSha256": "80f701a13404091d54dfb9002a08af5c83a2e42c3d64602a3e7d90770e44e4e0",
+  "reviewer": "independent fig81_visual agent, offline final numeric/visual audit",
+  "verdict": "PASS_WITH_RECORDED_SOURCE_OVERLAPS_AND_HISTORICAL_REFERENCE_DIFFERENCES",
+  "scope": "3 distinct named source-quarter polygons and4 separate compound source groups; source fidelity verified, current/legal/geodetic/address accuracy not certified.",
+  "independentMethod": "Independent pypdf ContentStream tokenization of original publisher PDF; Fraction 3x3 graphics-matrix composition and exact rational source-point reconstruction; separately compared original source paint order/colors/all-path bboxes and selected complete item sequences with MuPDF, then independently verified edge provenance, georeference, labels, source overlap and reference differences. Converter/helper output booleans were not used as sole proof.",
+  "source": {
+    "pdfSha256": "7a7ca9a8f70f0dcaad90deb3ce27a459a8b70610914c72cc7d9ec98eb2fb76d7",
+    "decodedStreamsSha256": "eb9a2ad12838448c6edc409f2e486a66d08e7962a627b61e625bc9c182d2cdfd",
+    "sourcePageSizePdfPoints": [
+      842,
+      1191
+    ],
+    "contentOperatorCount": 290883,
+    "allPaintPathCount": 12864,
+    "selectedDrawingCount": 17,
+    "selectedDrawingIndices": [
+      1286,
+      1815,
+      3267,
+      3277,
+      3696,
+      4284,
+      4557,
+      4558,
+      4836,
+      4851,
+      5527,
+      5528,
+      5529,
+      5530,
+      5531,
+      6325,
+      6326
+    ],
+    "sourceLabelCount": 16,
+    "originalContentAndArchiveOperandsAndCtmsExactlyMatch": true,
+    "maximumAllMuPdfBoundingDifferencePoints": 0.00017404713625523982,
+    "maximumSelectedMuPdfItemCoordinateDifferencePoints": 6.103515625e-05,
+    "allPathMaximumStatisticDifferenceFromDecimalHelperPoints": 3.599998876779864e-08,
+    "allPathPypdfNormalizationNote": "pypdf normalizes long nonselected numeric operands; all selected source-line operands and CTMs reconstruct exactly by Fraction.",
+    "floatAliasResolution": "Actual original decimal CTMs/operands agree exactly by Fraction, despite MuPDF float32 aliases; no coordinate snapping."
+  },
+  "visualReview": {
+    "frozenSemanticReviewSha256": "71de89adeb5ce93d3bd839011e91d84a9c83754be13e409f6eb5eaeaf759ef2e",
+    "originalSourceAndFinalCycleOverlayInspected": true,
+    "observations": [
+      "Three red named source extents follow the published map: Galla industrial outline, Nyugat-Gerecse and Észak-Vértes. Industrial/forest function is not a reason to misclassify a distinct named source quarter.",
+      "Észak-Vértes explicitly excludes the orange Síkvölgy island using the identical green inner source ring; correct opposite winding was checked.",
+      "Four blue areas are visibly multi-label source compounds, retained as planning_unit and never copied under individual fine names.",
+      "Turquoise6326 is Erőmű-tó lake, outside the Erőmű LTP. label centre; it is not substituted as a residential quarter.",
+      "No separate Szőlőhegy/Újváros/Sárberek or VI-os/Felsőgalla divider is invented from road ink strips."
+    ]
+  },
+  "literalCircuitChecks": [
+    {
+      "name": "Galla ipari övezet",
+      "kind": "neighbourhood",
+      "sourceRings": 1,
+      "sourceVertexCounts": [
+        516
+      ],
+      "sourceAreaPdfSquared": 17758.504800000006,
+      "allEdgesReconstructedFromLiteralOriginalItems": true,
+      "exactClosedFractionEndpoints": true,
+      "worldCoordinatesReconstructedExactly": true,
+      "sourceLabelsCovered": [
+        "GALLA IPARI ÖVEZET"
+      ],
+      "areaM2": 4558186.740853912,
+      "currentMunicipalityOutsideAreaM2": 0.0,
+      "currentMunicipalityOutsidePercent": 0.0,
+      "maximumOutsideDistanceAmongExteriorVerticesM": 0.0,
+      "sourceClipped": false
+    },
+    {
+      "name": "Észak-Vértes",
+      "kind": "neighbourhood",
+      "sourceRings": 2,
+      "sourceVertexCounts": [
+        746,
+        471
+      ],
+      "sourceAreaPdfSquared": 131142.00959999993,
+      "allEdgesReconstructedFromLiteralOriginalItems": true,
+      "exactClosedFractionEndpoints": true,
+      "worldCoordinatesReconstructedExactly": true,
+      "sourceLabelsCovered": [
+        "ÉSZAK-VÉRTES"
+      ],
+      "areaM2": 33661247.43001064,
+      "currentMunicipalityOutsideAreaM2": 103222.03156871034,
+      "currentMunicipalityOutsidePercent": 0.3066754801879959,
+      "maximumOutsideDistanceAmongExteriorVerticesM": 30.05809233120123,
+      "sourceClipped": false
+    },
+    {
+      "name": "Nyugat-Gerecse",
+      "kind": "neighbourhood",
+      "sourceRings": 1,
+      "sourceVertexCounts": [
+        1036
+      ],
+      "sourceAreaPdfSquared": 101700.10079999999,
+      "allEdgesReconstructedFromLiteralOriginalItems": true,
+      "exactClosedFractionEndpoints": true,
+      "worldCoordinatesReconstructedExactly": true,
+      "sourceLabelsCovered": [
+        "NYUGAT-GERECSE"
+      ],
+      "areaM2": 26103953.785697065,
+      "currentMunicipalityOutsideAreaM2": 38068.878817360586,
+      "currentMunicipalityOutsidePercent": 0.145846895460611,
+      "maximumOutsideDistanceAmongExteriorVerticesM": 28.548861467029013,
+      "sourceClipped": false
+    },
+    {
+      "name": "Bánhida – Dózsakert",
+      "kind": "planning_unit",
+      "sourceRings": 1,
+      "sourceVertexCounts": [
+        367
+      ],
+      "sourceAreaPdfSquared": 17667.496799999997,
+      "allEdgesReconstructedFromLiteralOriginalItems": true,
+      "exactClosedFractionEndpoints": true,
+      "worldCoordinatesReconstructedExactly": true,
+      "sourceLabelsCovered": [
+        "BÁNHIDA",
+        "DÓZSAKERT"
+      ],
+      "areaM2": 4534807.841928758,
+      "currentMunicipalityOutsideAreaM2": 0.0,
+      "currentMunicipalityOutsidePercent": 0.0,
+      "maximumOutsideDistanceAmongExteriorVerticesM": 0.0,
+      "sourceClipped": false
+    },
+    {
+      "name": "Szőlőhegy – Újváros – Sárberek",
+      "kind": "planning_unit",
+      "sourceRings": 1,
+      "sourceVertexCounts": [
+        557
+      ],
+      "sourceAreaPdfSquared": 18582.458400000003,
+      "allEdgesReconstructedFromLiteralOriginalItems": true,
+      "exactClosedFractionEndpoints": true,
+      "worldCoordinatesReconstructedExactly": true,
+      "sourceLabelsCovered": [
+        "SZŐLŐHEGY",
+        "ÚJVÁROS",
+        "SÁRBEREK"
+      ],
+      "areaM2": 4769638.947788044,
+      "currentMunicipalityOutsideAreaM2": 5643.301096887836,
+      "currentMunicipalityOutsidePercent": 0.11832555204206983,
+      "maximumOutsideDistanceAmongExteriorVerticesM": 18.55694025379779,
+      "sourceClipped": false
+    },
+    {
+      "name": "VI-os telep – Felsőgalla",
+      "kind": "planning_unit",
+      "sourceRings": 1,
+      "sourceVertexCounts": [
+        447
+      ],
+      "sourceAreaPdfSquared": 11392.660800000003,
+      "allEdgesReconstructedFromLiteralOriginalItems": true,
+      "exactClosedFractionEndpoints": true,
+      "worldCoordinatesReconstructedExactly": true,
+      "sourceLabelsCovered": [
+        "VI-OS TELEP",
+        "FELSŐGALLA"
+      ],
+      "areaM2": 2924234.336528291,
+      "currentMunicipalityOutsideAreaM2": 0.0,
+      "currentMunicipalityOutsidePercent": 0.0,
+      "maximumOutsideDistanceAmongExteriorVerticesM": 0.0,
+      "sourceClipped": false
+    },
+    {
+      "name": "Nyugati ipari park – Erőmű ltp.",
+      "kind": "planning_unit",
+      "sourceRings": 1,
+      "sourceVertexCounts": [
+        337
+      ],
+      "sourceAreaPdfSquared": 18043.71840000001,
+      "allEdgesReconstructedFromLiteralOriginalItems": true,
+      "exactClosedFractionEndpoints": true,
+      "worldCoordinatesReconstructedExactly": true,
+      "sourceLabelsCovered": [
+        "ERŐMŰ LTP.",
+        "NYUGATI IPARI PARK"
+      ],
+      "areaM2": 4631369.325618538,
+      "currentMunicipalityOutsideAreaM2": 5418.044246833464,
+      "currentMunicipalityOutsidePercent": 0.11699437797945673,
+      "maximumOutsideDistanceAmongExteriorVerticesM": 15.773399694846262,
+      "sourceClipped": false
+    }
+  ],
+  "literalExportedSourceEdgeCount": 4469,
+  "sourceIdentities": {
+    "forestInner6325ExactlyEqualsExistingSikvolgy5531": true,
+    "forestOuterInnerOppositeWinding": true,
+    "forestSignedSourceAreas": {
+      "outer1286": "85611177/625",
+      "inner6325": "-3647421/625"
+    },
+    "gallaOnlyOmittedRetracedSpurVertices": [
+      366,
+      367,
+      368
+    ],
+    "gallaSpurEndpointsExactlyEqual": true,
+    "nyugatClosureActualSourceDrawingItem": [
+      4851,
+      95
+    ],
+    "northSharedInternalChainReversedExactly": true,
+    "westernInteriorLoopAreaPdfSquared": 0.021599999999986297,
+    "southernInteriorLoopAreaPdfSquared": 0.5400000000000205,
+    "omittedSmallLoopsWhollyInsideChosenActualSourceCycles": true,
+    "newClosingEdgesGenerated": false,
+    "sourceGeometryRepairedSmoothedOrClipped": false
+  },
+  "frozenGeoreference": {
+    "frozenEarlierProofSha256": "e0debc1af65c71699403deaa786efbdfd63337d84d980c37c7128e2705c6aeb8",
+    "affinePdfToEov": [
+      15.99935653800788,
+      -0.014094552993115652,
+      -0.021910550196665587,
+      -16.04162925244336,
+      595977.8961704229,
+      253628.8904821181
+    ],
+    "originalCalibrationVertexCount": 779,
+    "originalCalibrationRmsM": 11.211275086902505,
+    "calibrationInterpretation": "Frozen earlier779-vertex affine fit reused; all17 archived sample controls independently re-evaluated against actual current canonical municipality. This audit did not refit the779 calibration vertices.",
+    "independentlyRecheckedArchivedSampleControls": 17,
+    "recomputedSampleResidualsM": [
+      1.7740861424822398,
+      5.184097418462909,
+      0.12433648188434672,
+      5.097032337061291,
+      7.73074997461794,
+      13.823282911603577,
+      2.965238875982988,
+      1.503128061409795,
+      12.564995024500643,
+      17.56578514001514,
+      18.940340839274203,
+      14.840437479693046,
+      4.042151422446159,
+      8.026264922285012,
+      6.5570147802562655,
+      1.9528358988432786,
+      1.6544797472681276
+    ],
+    "currentCanonicalMunicipalitySha256": "fb5f1293628b9eeaabce243ae6ebc884f6bdc93443a2488e5fb213029bf766b7",
+    "reoptimisedForNewPolygons": false,
+    "pyprojVersion": "3.7.2",
+    "projVersion": "9.5.1",
+    "projNetworkDisabled": true,
+    "claimedAbsoluteAccuracyMetres": null
+  },
+  "nonzeroOriginalSourceOverlapChecks": [
+    {
+      "names": [
+        "Galla ipari övezet",
+        "Észak-Vértes"
+      ],
+      "sourcePdfSquaredPoints": 1.269011605686848,
+      "approximateMetricOverlapM2": 325.6995120693938
+    },
+    {
+      "names": [
+        "Galla ipari övezet",
+        "Nyugat-Gerecse"
+      ],
+      "sourcePdfSquaredPoints": 0.04604651162793029,
+      "approximateMetricOverlapM2": 11.818116006934304
+    },
+    {
+      "names": [
+        "Galla ipari övezet",
+        "VI-os telep – Felsőgalla"
+      ],
+      "sourcePdfSquaredPoints": 0.11382857142856892,
+      "approximateMetricOverlapM2": 29.214792052428706
+    },
+    {
+      "names": [
+        "Galla ipari övezet",
+        "Alsógalla"
+      ],
+      "sourcePdfSquaredPoints": 0.018753488372101904,
+      "approximateMetricOverlapM2": 4.813196337354627
+    },
+    {
+      "names": [
+        "Galla ipari övezet",
+        "Óváros"
+      ],
+      "sourcePdfSquaredPoints": 0.2159999999999584,
+      "approximateMetricOverlapM2": 55.4377078110659
+    },
+    {
+      "names": [
+        "Észak-Vértes",
+        "Nyugat-Gerecse"
+      ],
+      "sourcePdfSquaredPoints": 0.007200000000000543,
+      "approximateMetricOverlapM2": 1.8479235935676535
+    },
+    {
+      "names": [
+        "Észak-Vértes",
+        "Bánhida – Dózsakert"
+      ],
+      "sourcePdfSquaredPoints": 0.007199999999997135,
+      "approximateMetricOverlapM2": 1.8479235937357332
+    },
+    {
+      "names": [
+        "Észak-Vértes",
+        "VI-os telep – Felsőgalla"
+      ],
+      "sourcePdfSquaredPoints": 1.089002706766926,
+      "approximateMetricOverlapM2": 279.49913825277156
+    },
+    {
+      "names": [
+        "Észak-Vértes",
+        "Nyugati ipari park – Erőmű ltp."
+      ],
+      "sourcePdfSquaredPoints": 0.4003200000000167,
+      "approximateMetricOverlapM2": 102.74455180955677
+    },
+    {
+      "names": [
+        "Nyugat-Gerecse",
+        "Szőlőhegy – Újváros – Sárberek"
+      ],
+      "sourcePdfSquaredPoints": 0.31787428571431164,
+      "approximateMetricOverlapM2": 81.58436005335409
+    },
+    {
+      "names": [
+        "Nyugat-Gerecse",
+        "VI-os telep – Felsőgalla"
+      ],
+      "sourcePdfSquaredPoints": 0.748285714285744,
+      "approximateMetricOverlapM2": 192.05205920066356
+    },
+    {
+      "names": [
+        "Szőlőhegy – Újváros – Sárberek",
+        "Alsógalla"
+      ],
+      "sourcePdfSquaredPoints": 0.04320000000000328,
+      "approximateMetricOverlapM2": 11.087541561658373
+    }
+  ],
+  "overlapCount": 12,
+  "overlapsAlreadyPresentInSourceAndPreserved": true,
+  "outputs": {
+    "primaryCount": 3,
+    "compoundCount": 4,
+    "oldFourReexported": false,
+    "unresolvedIndividualFineNames": 9,
+    "inventedFineSplitsProduced": false,
+    "fullyContainedInCurrentCanonicalMunicipalityClaimed": false,
+    "sourceClippedToCurrentReference": false,
+    "usableForAddressAssignment": false,
+    "currentNamesIndependentlyConfirmed": false,
+    "currentLegalForceIndependentlyChecked": false,
+    "sourceOpenReuseRightsIndependentlyEstablished": false
+  },
+  "artifactHashesSha256": {
+    "additional-quarter-vectors.geojson": "cbe63fc319cfd2e2a9a60223c742329a5985ba257b4d99bb5d197b39f527a25f",
+    "compound-source-groups.geojson": "72b2ccb919db563ede30c7109bdf69cfdbca8f6deeb532d15be64a78a3ad69f3",
+    "source-vector-trace.json": "97b7418dce03f015ff312145bc71a769749be90c657c393f53212438b01d68e8",
+    "georeference-proof.json": "2a94b95adcf55213158cfa46be1d7075d523c03690b2b6488d07c1e1fb108f2e",
+    "unresolved-fine-areas.json": "1d2b4fa376195119106b217fee4e884beab678b82425dbb8dedab9e4cccaaa06",
+    "conversion-proof.json": "7e7c18ab142238799e550bf80722aec0d75285812e6d9a92dc667082211d3c51",
+    "generated-manifest.json": "73791d101d2dc63e9b11869fc35a9da635fabf18833b3c6c0a76a7a65fabbdb9",
+    "registry-entry.json": "c00341d6a800ff97eacd3f508e496a455ef8c8f5e317957c11bca57ce60b6fe9",
+    "planning-registry-entry.json": "840ae2b8262f6df2b2b0f1033004259cc08ad3b523b00192a4f3b894db5f94d0"
+  },
+  "limitations": [
+    "2018 statutory-map source; present-day fine names, current legal force and underlying-data date unverified.",
+    "The original source contains twelve measured pairwise overlaps; none has been trimmed or hidden.",
+    "Historical source plus frozen approximate registration differs slightly from contemporary OSM municipality; measured outside fractions/distances remain present.",
+    "Control residuals and library datum-operation accuracy do not establish absolute source-boundary accuracy.",
+    "No automatic address assignment or cadastral/current-legal boundary certification.",
+    "Municipal map open-reuse license remains unverified; ODbL attribution applies to OSM geographic reference."
+  ]
+}

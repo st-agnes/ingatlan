@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-14",
+  "status": "partial_nationwide_checkpoint",
+  "primaryFeatures": 483,
+  "primaryMunicipalities": 47,
+  "inferredFeatures": 60,
+  "planningFeatures": 54,
+  "completeNationalCoverage": false,
+  "checks": [
+    {
+      "label": "geometry",
+      "exit_code": 0,
+      "output": "✔ checked-in draft is reproducible from pinned original records and canonical municipality names (13304.034911ms)\nℹ tests 7\nℹ suites 0\nℹ pass 7\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 13504.026717\n"
+    },
+    {
+      "label": "semantic",
+      "exit_code": 0,
+      "output": "✔ changed source bytes, name, geometry, or missing objects require a new review (1.295381ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 192.76939\n"
+    },
+    {
+      "label": "report",
+      "exit_code": 0,
+      "output": "✔ standalone export rejects changed coverage and references before accepting or replacing an old release (22.101153ms)\nℹ tests 15\nℹ suites 0\nℹ pass 15\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 10260.038256\n"
+    },
+    {
+      "label": "country",
+      "exit_code": 0,
+      "output": "✔ the preserved country snapshot supplies actual nationwide geometry with complete candidate accounting (6493.222807ms)\nℹ tests 11\nℹ suites 0\nℹ pass 11\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 7214.297716\n"
+    },
+    {
+      "label": "manual",
+      "exit_code": 0,
+      "output": "✔ manual registry binds exact GeoJSON bytes and rejects changed sources and path traversal (216.978485ms)\nℹ tests 4\nℹ suites 0\nℹ pass 4\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 297.786239\n"
+    },
+    {
+      "label": "secondary",
+      "exit_code": 0,
+      "output": "✔ unknown towns and open source rings stay quarantined even in the inferred layer (0.336964ms)\nℹ tests 2\nℹ suites 0\nℹ pass 2\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 158.301444\n"
+    },
+    {
+      "label": "nationwide",
+      "exit_code": 0,
+      "output": "✔ custom-file CLI writer rejects stale city catalog references and detects stale generated outputs (105.291468ms)\nℹ tests 6\nℹ suites 0\nℹ pass 6\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 3933.013768\n"
+    },
+    {
+      "label": "association",
+      "exit_code": 0,
+      "output": "✔ actual boundary-crossing source records become one audited Dorog neighborhood and one documented exclusion (1394.646667ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1485.905147\n"
+    },
+    {
+      "label": "osm",
+      "exit_code": 0,
+      "output": "✔ local Overpass snapshots require matching fingerprints and a complete response (502.391872ms)\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 679.675118\n"
+    },
+    {
+      "label": "national",
+      "exit_code": 0,
+      "output": "✔ name evidence deduplicates historical aliases but never silently moves wrong-city or ambiguous geometry (2.951956ms)\nℹ tests 6\nℹ suites 0\nℹ pass 6\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 6243.111893\n"
+    },
+    {
+      "label": "fetch",
+      "exit_code": 0,
+      "output": "Neighborhood acquisition safeguards passed.\n"
+    },
+    {
+      "label": "supplement",
+      "exit_code": 0,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 1.173s\n\nOK\n"
+    },
+    {
+      "label": "build-check",
+      "exit_code": 0,
+      "output": "Verified 572 unreviewed polygons; 5331 excluded records. No boundary is enabled for address assignment.\n"
+    },
+    {
+      "label": "report-check",
+      "exit_code": 0,
+      "output": "Verified city statistics: 483 accepted neighborhood names across 47 settlements (549 geometries); unknown full coverage remains explicit.\n"
+    },
+    {
+      "label": "export-check",
+      "exit_code": 0,
+      "output": "Verified unified neighborhood export: 483 accepted city/name boundaries.\n"
+    },
+    {
+      "label": "secondary-check",
+      "exit_code": 0,
+      "output": "54 planning units and 60 inferred candidates in separate layers; primary neighbourhood export unchanged.\n"
+    },
+    {
+      "label": "nationwide-check",
+      "exit_code": 0,
+      "output": "Verified 3155 municipality rows; 483 accepted quarter names, 3081 point-only name gaps; national quarter totals remain unknown.\n"
+    }
+  ],
+  "nodeTestCount": 66,
+  "pythonTestCount": 10,
+  "generatedPreviewBehavior": "passed actual generated-script checks for separated layers, inferred-only city, source coverage unchanged, empty search, selection reset, source link and historical-name uncertainty",
+  "realBrowserLayout": "not verified: bundled Chromium absent; available system Chromium launch denied setsockopt by runtime",
+  "remoteCiRun": false,
+  "applicationDeploymentPerformed": false,
+  "outputFingerprints": {
+    "catalog.geojson": "7257c46808e37d08b5ce8ea32daddbde357d097e977a8aa580714147705cecc4",
+    "neighborhoods.geojson": "8a242edafec268aa55095b5713774d7c28dddf8f41617bcb9eabb375d2253ddf",
+    "estimated-candidates.geojson": "55cf8a9269e02cc0d263007a80db9e6c399da1a6e43ccb169d2827476f415e40",
+    "planning-units.geojson": "c004c4d622e83fbf570b466bdd83cb48c7a3c8c7bae5d20a7620fb9dd0d44b1b",
+    "nationwide-report.csv": "55b8cbf5835975c510c53ca04b41cd6aa43e0f1bbe6d5b58e2364ee8c0c35bae",
+    "review.html": "8b02c7869001635c50d10d3f41e3f14cc8660d0a2d760dc81cbd0a377e31af91"
+  }
+}

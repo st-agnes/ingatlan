@@ -1,0 +1,83 @@
+{
+  "areas": [
+    {
+      "city": "Gyula",
+      "name": "Mályvádi Őstölgyes",
+      "ids": [
+        "osm:way:1026826129"
+      ],
+      "literalNamed": true,
+      "note": "Literal named nature-reserve footprint. The geographical name is already present as a point-only neighbourhood reference; no artificial urban subdivision is implied."
+    },
+    {
+      "city": "Gyula",
+      "name": "Dénesmajor",
+      "ids": [
+        "osm:way:1417496682",
+        "osm:way:1417665403",
+        "osm:way:1417496680",
+        "osm:way:1417665404",
+        "osm:way:1417496679",
+        "osm:way:1417665406",
+        "osm:way:1417665405",
+        "osm:way:1417496681",
+        "osm:way:492530852",
+        "osm:way:492530848"
+      ],
+      "note": "Union of actual detached residential parcels along the same village street fabric (Árvíz/Keszi/Solymos/Mályvádi/Gelvács streets). Public road gaps remain gaps. Adjacent farmyards and surrounding agricultural fields are excluded."
+    },
+    {
+      "city": "Gyula",
+      "name": "Városerdő",
+      "ids": [
+        "osm:way:348012114",
+        "osm:way:441461663"
+      ],
+      "note": "The two adjacent mapped residential surfaces of the detached Városerdő estate. The namepoint is8m outside the source residential boundary on its access street; no buffer is added merely to contain it."
+    },
+    {
+      "city": "Gyula",
+      "name": "Mályvádi erdészkolónia",
+      "ids": [
+        "osm:way:1466325910",
+        "osm:way:438364775"
+      ],
+      "note": "The mapped small park/clearing at the namepoint and its nearby mapped forest-colony building. This is a coarse clearing-and-house search footprint, not the surrounding23.7km² forest and not an official whole-colony border."
+    },
+    {
+      "city": "Salgótarján",
+      "name": "Csókáspuszta",
+      "ids": [
+        "osm:relation:7575544"
+      ],
+      "note": "Actual farmyard footprint containing the same-name placepoint; this represents the built-up farmstead, not an invented broad hill/forest district."
+    },
+    {
+      "city": "Salgótarján",
+      "name": "Ponyipuszta",
+      "ids": [
+        "osm:relation:18731460",
+        "osm:relation:18731461",
+        "osm:relation:18731458"
+      ],
+      "note": "The immediately adjacent residential, industrial and farmyard source surfaces around the Ponyipuszta placepoint and Építők utca. Broader surrounding forest and separate Művésztelep/Felsőponyi areas are excluded."
+    },
+    {
+      "city": "Hódmezővásárhely",
+      "name": "Batida",
+      "ids": [
+        "osm:relation:2540316"
+      ],
+      "note": "Literal detached village residential footprint matched to the actual hamlet namepoint, rather than placing the schematic distant-village inset from the older KSH map."
+    },
+    {
+      "city": "Hódmezővásárhely",
+      "name": "Szikáncs",
+      "ids": [
+        "osm:relation:14007220"
+      ],
+      "note": "Literal detached village residential footprint matched to its actual hamlet namepoint. The same-name railway halt is excluded as a name control."
+    }
+  ],
+  "noCircleOrBuffer": true
+}

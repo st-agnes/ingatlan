@@ -1,0 +1,1495 @@
+{
+  "source": "OpenStreetMap Hungarian administrative boundary export",
+  "originalDownloadUrl": "http://data2.openstreetmap.hu/hatarok/kozighatarok.zip",
+  "mirrorRepository": "ferenci-tamas/BudapestiElerhetoseg",
+  "sourceCommit": "2f7a91ee1f320e6a08488ef8413715be13abf226",
+  "sourceCommitDate": "2025-08-28T17:51:58Z",
+  "retrievedAt": "2026-11-13",
+  "upstreamDirectoryUrl": "https://github.com/ferenci-tamas/BudapestiElerhetoseg/tree/2f7a91ee1f320e6a08488ef8413715be13abf226",
+  "upstreamArchiveUrl": "https://github.com/ferenci-tamas/BudapestiElerhetoseg/blob/2f7a91ee1f320e6a08488ef8413715be13abf226/kozighatarok.zip",
+  "archive": {
+    "name": "kozighatarok.zip",
+    "memberDirectory": "kozighatarok",
+    "bytes": 6285474,
+    "gitBlobSha1": "e7f24b8ef283cffee740cd3cd3a3c3ec16b71d0d",
+    "sha256": "2c38117de636dc03d7452db14ecb6c8e66a426e05e2a6d7c8932717bf609db7a"
+  },
+  "upstreamProvenanceUrl": "https://github.com/ferenci-tamas/BudapestiElerhetoseg/blob/2f7a91ee1f320e6a08488ef8413715be13abf226/README.Rmd",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "copyrightUrl": "https://www.openstreetmap.org/copyright",
+  "attribution": "© OpenStreetMap contributors",
+  "inputCrs": "EPSG:3857",
+  "outputCrs": "EPSG:4326",
+  "sourceFiles": [
+    {
+      "path": "admin10.cpg",
+      "bytes": 5,
+      "gitBlobSha1": "3ad133c048f2189041151425a73485649e6c32c0",
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+    },
+    {
+      "path": "admin10.dbf",
+      "bytes": 6965,
+      "gitBlobSha1": "42d3d2c7ab1c2f2ce069a3ae0323ee7d3ff5e786",
+      "sha256": "a845763d30aff042decc59f1fa37e1ddf985cd51d05589888ee68f320ad6a884"
+    },
+    {
+      "path": "admin10.prj",
+      "bytes": 677,
+      "gitBlobSha1": "49dc10298e72da81ed6794dfdc272e5deff7812e",
+      "sha256": "4a9baea5d29f6374b8dd5a589d10bd3cddfa19e9f5d2c49646620d774295e3a0"
+    },
+    {
+      "path": "admin10.shp",
+      "bytes": 517312,
+      "gitBlobSha1": "20ac849eda8eacf04712cc748ce941967b7bce81",
+      "sha256": "be8a769f6f786e78e6445a342adb589fe07809a75a94aa5883c9779acabee7d6"
+    },
+    {
+      "path": "admin10.shx",
+      "bytes": 1716,
+      "gitBlobSha1": "c03598f6f988fdde7f94e83207947c5af8168796",
+      "sha256": "199d69c500f39746416e6765ab1dcb86d3088354b9b241f95864f09029fb3948"
+    }
+  ],
+  "featureCount": 202,
+  "geojson": {
+    "path": "admin10.geojson",
+    "bytes": 905745,
+    "sha256": "312723c10cb792b8e2dbca31726dcb75fb1d56fe0f42574d64a6d2c2c6a25230"
+  },
+  "cities": [
+    {
+      "city": "Budapest",
+      "neighborhoodCount": 202
+    }
+  ],
+  "geometryStatus": "historical-not-rechecked",
+  "nameStatus": "not-individually-rechecked",
+  "limitations": [
+    "The date is the mirror commit date; exact OSM extraction time is not supplied.",
+    "All 202 admin10 records are in Budapest; this is not countrywide city coverage.",
+    "The mirror contains no admin11 layer.",
+    "Source components were extracted from the verified pinned archive; component Git SHA1 hashes are local content fingerprints.",
+    "Compared to the 2022 export: Magdolna negyed is spelled Magdolnanegyed, and Millenniumtelep has no polygon.",
+    "The shapefile has no OSM relation IDs; stable IDs identify original record numbers.",
+    "No Google tracing, point buffers, bounding-box polygons or manually changed island boundaries."
+  ],
+  "records": [
+    {
+      "record": 1,
+      "name": "Spanyolrét",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:1",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 2,
+      "name": "Pösingermajor",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:2",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 3,
+      "name": "Csillebérc",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:3",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 4,
+      "name": "Széchenyihegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:4",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 5,
+      "name": "Svábhegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:5",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 6,
+      "name": "Adyliget",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:6",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 7,
+      "name": "Budakeszierdő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:7",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 8,
+      "name": "Jánoshegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:8",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 9,
+      "name": "Zugliget",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:9",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 10,
+      "name": "Kurucles",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:10",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 11,
+      "name": "Petneházyrét",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:11",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 12,
+      "name": "Hárshegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:12",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 13,
+      "name": "Hűvösvölgy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:13",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 14,
+      "name": "Erzsébettelek",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:14",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 15,
+      "name": "Lipótmező",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:15",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 16,
+      "name": "Nyék",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:16",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 17,
+      "name": "Máriaremete",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:17",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 18,
+      "name": "Remetekertváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:18",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 19,
+      "name": "Széphalom",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:19",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 20,
+      "name": "Budaliget",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:20",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 21,
+      "name": "Hársakalja",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:21",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 22,
+      "name": "Kővár",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:22",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 23,
+      "name": "Erzsébetliget",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:23",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 24,
+      "name": "Gercse",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:24",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 25,
+      "name": "Pesthidegkút-Ófalu",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:25",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 26,
+      "name": "Nagytétény",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:26",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 27,
+      "name": "Baross Gábor-telep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:27",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 28,
+      "name": "Budatétény",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:28",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 29,
+      "name": "Csepel-Háros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:29",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 30,
+      "name": "Csepel-Rózsadomb",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:30",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 31,
+      "name": "Csepel-Csillagtelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:31",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 32,
+      "name": "Kamaraerdő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:32",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 33,
+      "name": "Budafok",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:33",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 34,
+      "name": "Kőérberek",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:34",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 35,
+      "name": "Örsöd",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:35",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 36,
+      "name": "Dobogó",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:36",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 37,
+      "name": "Kelenvölgy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:37",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 38,
+      "name": "Péterhegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:38",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 39,
+      "name": "Csepel-Gyártelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:39",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 40,
+      "name": "Csepel-Erdőalja",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:40",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 41,
+      "name": "Csepel-Belváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:41",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 42,
+      "name": "Csepel-Ófalu",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:42",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 43,
+      "name": "Albertfalva",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:43",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 44,
+      "name": "Csepel-Szigetcsúcs",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:44",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 45,
+      "name": "Csepel-Királyerdő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:45",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 46,
+      "name": "Csepel-Erdősor",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:46",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 47,
+      "name": "Soroksár",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:47",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 48,
+      "name": "Soroksár-Újtelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:48",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 49,
+      "name": "Csepel-Kertváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:49",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 50,
+      "name": "Csepel-Királymajor",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:50",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 51,
+      "name": "Csepel-Szabótelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:51",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 52,
+      "name": "Gubacs",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:52",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 53,
+      "name": "Külső-Ferencváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:53",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 54,
+      "name": "Erzsébetfalva",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:54",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 55,
+      "name": "Pacsirtatelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:55",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 56,
+      "name": "Kossuthfalva",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:56",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 57,
+      "name": "Gubacsipuszta",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:57",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 58,
+      "name": "Szabótelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:58",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 59,
+      "name": "Wekerletelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:59",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 60,
+      "name": "Kispest",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:60",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 61,
+      "name": "Belsőmajor",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:61",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 62,
+      "name": "Kossuth Ferenc-telep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:62",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 63,
+      "name": "Újpéteritelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:63",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 64,
+      "name": "Erdőskert",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:64",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 65,
+      "name": "Krepuska Géza-telep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:65",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 66,
+      "name": "Almáskert",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:66",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 67,
+      "name": "Gloriett telep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:67",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 68,
+      "name": "Szent Lőrinc-lakótelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:68",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 69,
+      "name": "Halmierdő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:69",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 70,
+      "name": "Liptáktelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:70",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 71,
+      "name": "Havanna-lakótelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:71",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 72,
+      "name": "Lónyaytelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:72",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 73,
+      "name": "Rendessytelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:73",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 74,
+      "name": "Lakatos-lakótelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:74",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 75,
+      "name": "Erzsébettelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:75",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 76,
+      "name": "Bókaytelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:76",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 77,
+      "name": "Miklóstelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:77",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 78,
+      "name": "Bélatelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:78",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 79,
+      "name": "Szent Imre kertváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:79",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 80,
+      "name": "Ganzkertváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:80",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 81,
+      "name": "Szemeretelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:81",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 82,
+      "name": "Ganztelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:82",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 83,
+      "name": "Ferihegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:83",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 84,
+      "name": "Rákoshegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:84",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 85,
+      "name": "Madárhegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:85",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 86,
+      "name": "Hosszúrét",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:86",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 87,
+      "name": "Gazdagrét",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:87",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 88,
+      "name": "Magasút",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:88",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 89,
+      "name": "Sasad",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:89",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 90,
+      "name": "Őrmező",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:90",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 91,
+      "name": "Sashegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:91",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 92,
+      "name": "Farkasvölgy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:92",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 93,
+      "name": "Farkasrét",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:93",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 94,
+      "name": "Mártonhegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:94",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 95,
+      "name": "Istenhegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:95",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 96,
+      "name": "Németvölgy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:96",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 97,
+      "name": "Orbánhegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:97",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 98,
+      "name": "Kissvábhegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:98",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 99,
+      "name": "Krisztinaváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:99",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 100,
+      "name": "Kelenföld",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:100",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 101,
+      "name": "Szentimreváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:101",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 102,
+      "name": "Nádorkert",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:102",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 103,
+      "name": "Infopark",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:103",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 104,
+      "name": "Lágymányos",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:104",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 105,
+      "name": "Gellérthegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:105",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 106,
+      "name": "Tabán",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:106",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 107,
+      "name": "Vár",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:107",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 108,
+      "name": "Víziváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:108",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 109,
+      "name": "Lipótváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:109",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 110,
+      "name": "Belváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:110",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 111,
+      "name": "Belső-Ferencváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:111",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 112,
+      "name": "Palotanegyed",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:112",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 113,
+      "name": "Kútvölgy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:113",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 114,
+      "name": "Virányos",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:114",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 115,
+      "name": "Szépilona",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:115",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 116,
+      "name": "Pasarét",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:116",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 117,
+      "name": "Törökvész",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:117",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 118,
+      "name": "Országút",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:118",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 119,
+      "name": "Vérhalom",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:119",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 120,
+      "name": "Rézmál",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:120",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 121,
+      "name": "Csatárka",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:121",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 122,
+      "name": "Szépvölgy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:122",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 123,
+      "name": "Pálvölgy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:123",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 124,
+      "name": "Zöldmál",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:124",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 125,
+      "name": "Rózsadomb",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:125",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 126,
+      "name": "Felhévíz",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:126",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 127,
+      "name": "Szemlőhegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:127",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 128,
+      "name": "Terézváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:128",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 129,
+      "name": "Újlipótváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:129",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 130,
+      "name": "Újlak",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:130",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 131,
+      "name": "Margitsziget",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:131",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 132,
+      "name": "Óbuda",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:132",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 133,
+      "name": "Göncz Árpád városközpont",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:133",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 134,
+      "name": "Óbudai-sziget",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:134",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 135,
+      "name": "Vizafogó",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:135",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 136,
+      "name": "Középső-Ferencváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:136",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 137,
+      "name": "Tisztviselőtelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:137",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 138,
+      "name": "Népliget",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:138",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 139,
+      "name": "Corvin negyed",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:139",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 140,
+      "name": "Losonci negyed",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:140",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 141,
+      "name": "Csarnok negyed",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:141",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 142,
+      "name": "Orczy negyed",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:142",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 143,
+      "name": "Magdolnanegyed",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:143",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 144,
+      "name": "Népszínház negyed",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:144",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 145,
+      "name": "Erzsébetváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:145",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 146,
+      "name": "Kerepesdűlő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:146",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 147,
+      "name": "Ganz negyed",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:147",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 148,
+      "name": "Százados negyed",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:148",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 149,
+      "name": "József Attila-lakótelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:149",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 150,
+      "name": "Kúttó",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:150",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 151,
+      "name": "Gyárdűlő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:151",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 152,
+      "name": "Óhegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:152",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 153,
+      "name": "Laposdűlő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:153",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 154,
+      "name": "Ligettelek",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:154",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 155,
+      "name": "Városliget",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:155",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 156,
+      "name": "Istvánmező",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:156",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 157,
+      "name": "Törökőr",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:157",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 158,
+      "name": "Kiszugló",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:158",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 159,
+      "name": "Herminamező",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:159",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 160,
+      "name": "Angyalföld",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:160",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 161,
+      "name": "Nagyzugló",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:161",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 162,
+      "name": "Alsórákos",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:162",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 163,
+      "name": "Rákosfalva",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:163",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 164,
+      "name": "Pestújhely",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:164",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 165,
+      "name": "Újpalota",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:165",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 166,
+      "name": "Hármashatárhegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:166",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 167,
+      "name": "Harsánylejtő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:167",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 168,
+      "name": "Óbuda hegyvidéke",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:168",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 169,
+      "name": "Csúcshegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:169",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 170,
+      "name": "Solymárvölgy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:170",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 171,
+      "name": "Aranyhegy-Ürömhegy-Péterhegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:171",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 172,
+      "name": "Kaszásdűlő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:172",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 173,
+      "name": "Aquincum",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:173",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 174,
+      "name": "Népsziget",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:174",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 175,
+      "name": "Mocsárosdűlő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:175",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 176,
+      "name": "Csillaghegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:176",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 177,
+      "name": "Rómaifürdő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:177",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 178,
+      "name": "Békásmegyer",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:178",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 179,
+      "name": "Újpest",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:179",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 180,
+      "name": "Istvántelek",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:180",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 181,
+      "name": "Megyer",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:181",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 182,
+      "name": "Rákospalota",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:182",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 183,
+      "name": "Káposztásmegyer",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:183",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 184,
+      "name": "Székesdűlő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:184",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 185,
+      "name": "Újhegy",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:185",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 186,
+      "name": "Téglagyárdűlő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:186",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 187,
+      "name": "Keresztúridűlő",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:187",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 188,
+      "name": "Kőbánya-Kertváros",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:188",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 189,
+      "name": "Felsőrákos",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:189",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 190,
+      "name": "Akadémiaújtelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:190",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 191,
+      "name": "Madárdomb",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:191",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 192,
+      "name": "Rákosliget",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:192",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 193,
+      "name": "Sashalom",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:193",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 194,
+      "name": "Rákosszentmihály",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:194",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 195,
+      "name": "Árpádföld",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:195",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 196,
+      "name": "Mátyásföld",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:196",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 197,
+      "name": "Cinkota",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:197",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 198,
+      "name": "Rákoskeresztúr",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:198",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 199,
+      "name": "Régiakadémiatelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:199",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 200,
+      "name": "Rákoscsaba-Újtelep",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:200",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 201,
+      "name": "Rákoskert",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:201",
+      "geometryType": "Polygon"
+    },
+    {
+      "record": 202,
+      "name": "Rákoscsaba",
+      "city": "Budapest",
+      "id": "osm-hu-20250828:admin10:202",
+      "geometryType": "Polygon"
+    }
+  ]
+}

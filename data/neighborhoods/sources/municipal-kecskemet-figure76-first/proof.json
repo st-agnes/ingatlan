@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "sourceFigure": 76,
+  "sourcePdfPageOneBased": 161,
+  "printedPage": 159,
+  "sourceImageSha256": "9afccf14486eb5ed86581d07f9a588da4b53df6fa0c47cdbcaf6f667659055cd",
+  "method": "Manual source-stroke seeds guide bounded Dijkstra traversal on literal maxRGB<=45 JPEG pixels. Every dense edge is an 8-neighbor source-pixel step; shared dividers are reused exactly in reverse.",
+  "records": [
+    {
+      "name": "Külső Árpádváros",
+      "denseSourceVertexCountIncludingClosure": 1617,
+      "closed": true,
+      "valid": true,
+      "interiorRingCount": 0,
+      "sourcePixelArea": 174539.0,
+      "sourcePixelBounds": [
+        41.0,
+        502.0,
+        691.0,
+        1026.0
+      ],
+      "allVerticesActualSourceBlackPixels": true,
+      "maximumMaxRgbOnTrace": 45,
+      "everyStep8Neighbor": true,
+      "minimumDistanceToImageFramePixels": 41,
+      "addedClosureOrBridgeEdgeCount": 0,
+      "georeferencingPerformed": false
+    },
+    {
+      "name": "Mezeiváros",
+      "denseSourceVertexCountIncludingClosure": 1996,
+      "closed": true,
+      "valid": true,
+      "interiorRingCount": 0,
+      "sourcePixelArea": 193111.5,
+      "sourcePixelBounds": [
+        595.0,
+        410.0,
+        1364.0,
+        928.0
+      ],
+      "allVerticesActualSourceBlackPixels": true,
+      "maximumMaxRgbOnTrace": 44,
+      "everyStep8Neighbor": true,
+      "minimumDistanceToImageFramePixels": 275,
+      "addedClosureOrBridgeEdgeCount": 0,
+      "georeferencingPerformed": false
+    },
+    {
+      "name": "Ürgés",
+      "denseSourceVertexCountIncludingClosure": 1022,
+      "closed": true,
+      "valid": true,
+      "interiorRingCount": 0,
+      "sourcePixelArea": 74214.5,
+      "sourcePixelBounds": [
+        1321.0,
+        404.0,
+        1683.0,
+        720.0
+      ],
+      "allVerticesActualSourceBlackPixels": true,
+      "maximumMaxRgbOnTrace": 39,
+      "everyStep8Neighbor": true,
+      "minimumDistanceToImageFramePixels": 18,
+      "addedClosureOrBridgeEdgeCount": 0,
+      "georeferencingPerformed": false
+    }
+  ],
+  "pairwisePixelInteriorOverlaps": [
+    {
+      "a": "Külső Árpádváros",
+      "b": "Mezeiváros",
+      "intersectionAreaPixelsSquared": 0.0
+    },
+    {
+      "a": "Külső Árpádváros",
+      "b": "Ürgés",
+      "intersectionAreaPixelsSquared": 0.0
+    },
+    {
+      "a": "Mezeiváros",
+      "b": "Ürgés",
+      "intersectionAreaPixelsSquared": 0.0
+    }
+  ],
+  "blueOrOtherLabelPixelWindowsAllowed": [],
+  "allSourcePathsLiteralBlack": true,
+  "sourceImageFrameUsedToClose": false,
+  "geometryRepairBufferSnapOrArbitraryChordUsed": false,
+  "noteOnSeedSelection": "Snapping selects an actual nearby source pixel for a manual seed; no geographic geometry is snapped.",
+  "georeferencingPerformed": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "independentReviewStillRequired": true
+}

@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "inspectedAt": "2026-11-13",
+  "method": "Offline PyMuPDF extraction and visual inspection of original source images, not OCR-only interpretation. No generated or assumed boundaries.",
+  "records": [
+    {
+      "sourceId": "pecs-its",
+      "sourceUrl": "https://logoweb.pecs.hu/download/koncepcio/ITS.pdf",
+      "sourceSha256": "995d0db03e454a34046b248526e0882aee26ffbf40ba916e996afa4c8b49f6b1",
+      "sourceBytes": 8923295,
+      "pdfPageZeroBased": 47,
+      "printedPage": "41",
+      "figure": "9. ábra",
+      "images": [
+        {
+          "path": "pecs-its-47-original-0.jpeg",
+          "sha256": "ae11e335d9a0d045da41c4eaffcab3dd26af55b98a4830587931195ead8981e3",
+          "width": 1223,
+          "height": 96,
+          "pdfImageXref": 42
+        },
+        {
+          "path": "pecs-its-47-original-1.jpeg",
+          "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8",
+          "width": 585,
+          "height": 514,
+          "pdfImageXref": 616
+        }
+      ],
+      "pageVectorDrawingCount": 136,
+      "observedBoundaryMeaning": "Fine named quarters are visibly drawn within the thirteen planning colors; image is not merely a map of thirteen broad planning units.",
+      "remainingLimits": "No geographic polygons admitted: original raster is only 585×514 px; independent well-distributed control identification and boundary accuracy remain unresolved.",
+      "sourceReuseRights": "not_established",
+      "geometryDerived": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceId": "miskolc-its",
+      "sourceUrl": "https://miskolc.hu/sites/default/files/aktualitas/csatolmanyok/2024-09/megalapozo_vizsgalat_miskolc_mjv_its.pdf",
+      "sourceSha256": "91ff0fc330d4e375f2b300ab410ab0eed3fc089b61afbedcdc3744003463bd01",
+      "sourceBytes": 8758138,
+      "pdfPageZeroBased": 253,
+      "printedPage": "253",
+      "figure": "74. ábra",
+      "images": [
+        {
+          "path": "miskolc-its-253-original-0.jpeg",
+          "sha256": "ae66dab154832f52a833d7c696a4b10882e8fadbc47a22d9128932ab7d684384",
+          "width": 884,
+          "height": 557,
+          "pdfImageXref": 1160
+        }
+      ],
+      "pageVectorDrawingCount": 65,
+      "observedBoundaryMeaning": "Seventeen numbered ITS clusters, not the thirty-two underlying KSH quarter units. The linked table explicitly merges units.",
+      "remainingLimits": "Raster map884×557px; no vector quarter boundaries present on this page. Requires georeferencing; clusters must not be relabeled as individual fine quarters.",
+      "sourceReuseRights": "not_established",
+      "geometryDerived": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceId": "salgotarjan-its",
+      "sourceUrl": "https://www.salgotarjan.hu/wp-content/uploads/fejlesztesidokumentumok_20220629_its.pdf",
+      "sourceSha256": "d0c46f2a4797517874b770da6d64dba88cf81de5170cf09e2857284644a31a25",
+      "sourceBytes": 5107757,
+      "pdfPageZeroBased": 124,
+      "printedPage": "125",
+      "figure": "III.3-1. ábra",
+      "images": [
+        {
+          "path": "salgotarjan-its-124-original-0.jpeg",
+          "sha256": "1a98f2f09095fdb4ffa91f9ea35ee34881ab00a48f18405f044e3f57c1824fa6",
+          "width": 761,
+          "height": 885,
+          "pdfImageXref": 924
+        }
+      ],
+      "pageVectorDrawingCount": 0,
+      "observedBoundaryMeaning": "Ten ITS units, several explicitly merging multiple local quarters; colored footprints include disconnected components.",
+      "remainingLimits": "Raster761×885px; no vector boundaries on map page. A cluster footprint cannot establish separate boundaries of its named constituents.",
+      "sourceReuseRights": "not_established",
+      "geometryDerived": false,
+      "usableForAddressAssignment": false
+    }
+  ],
+  "pecsCorrection": "The prior broad-planning-only characterization of figure9 is incomplete: the raster also visibly includes named fine-quarter edges. This observation establishes source availability, not georeferenced extents.",
+  "pecsControlAttempt": {
+    "status": "rejected_not_independently_validated",
+    "knownClearControlCandidates": [
+      "M60/58 bridge",
+      "M60/578 bridge"
+    ],
+    "remaining": "Northern/eastern junction matches are not independently resolved; a three-point affine fit has zero training residual by construction and cannot verify accuracy. No geographic polygons exported."
+  }
+}

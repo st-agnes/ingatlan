@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "url": "https://zalaegerszeg.hu/wp-content/uploads/2025/09/ZEG_ZIFFA_egyeztetesi-valt.pdf",
+    "localOriginal": ".local/neighborhoods/supplement-originals/zalaegerszeg-ziffa2025.pdf",
+    "sha256": "b132fd75d6c95538023ced5eda3ad8ac7f7131c6e27f889ed7206c23e4a44745",
+    "title": "Zalaegerszeg Zöldinfrastruktúra-fejlesztési és -fenntartási akcióterv",
+    "documentDate": "2025-08-30",
+    "status": "consultation_draft; adoption_not_independently_established",
+    "pageCount": 229,
+    "fullRawPdfStaysLocal": true
+  },
+  "selectedMapPdf": {
+    "path": "source-map-only-p138.pdf",
+    "sha256": "2ea419d5c91fbfd8e608a6b9b4ddffc7ddb80d3be6e84ea0ce862386476f16c6",
+    "mapOnlyPages": 4,
+    "sourceNarrativeTextObjects": 0
+  },
+  "selectedPanels": [
+    {
+      "path": "p138-xref758.jpeg",
+      "sourcePdfPageOneBased": 138,
+      "imageXref": 758,
+      "sha256": "2f75ee7dcadf2696b4635eca37b02985868a6756d313bbbf7304b93c0f94a0f8",
+      "dimensionsPixels": [
+        234,
+        199
+      ],
+      "neighborhood": "Neszele",
+      "role": "satellite companion"
+    },
+    {
+      "path": "p138-xref759.jpeg",
+      "sourcePdfPageOneBased": 138,
+      "imageXref": 759,
+      "sha256": "08f9b86af6add2f278d11e5e84af63ad28f51530b7311c1c0bd079a05e42c9b6",
+      "dimensionsPixels": [
+        234,
+        360
+      ],
+      "neighborhood": "Ságod",
+      "role": "satellite companion"
+    },
+    {
+      "path": "p138-xref768.jpeg",
+      "sourcePdfPageOneBased": 138,
+      "imageXref": 768,
+      "sha256": "d33dc07a77423c6b72d2a889dad7181db24c366258bb29851b4fe30d3b745019",
+      "dimensionsPixels": [
+        387,
+        329
+      ],
+      "neighborhood": "Neszele",
+      "role": "native thematic map with quarter contour"
+    },
+    {
+      "path": "p138-xref769.jpeg",
+      "sourcePdfPageOneBased": 138,
+      "imageXref": 769,
+      "sha256": "9bc20ed9959fc3b688629475d504e6ce7c9c4bd55415923d9ce4b6af44ac835e",
+      "dimensionsPixels": [
+        387,
+        598
+      ],
+      "neighborhood": "Ságod",
+      "role": "native thematic map with quarter contour"
+    }
+  ],
+  "pageFacts": [
+    {
+      "pdfPageOneBased": 63,
+      "fact": "Study methodology defines neighborhood analysis boundaries using settlement structure and administrative data. Paraphrase only."
+    },
+    {
+      "pdfPageOneBased": 138,
+      "fact": "Figure53 has distinct individually labeled Neszele and Ságod map contours within shared chapter section3.4.16."
+    },
+    {
+      "pdfPageOneBased": 139,
+      "fact": "Separate neighborhood descriptions appear for Neszele and Ságod; green-space provision is evaluated jointly. This page has no retained narrative or rendered page. Paraphrase only."
+    }
+  ],
+  "identity": "Shared section/unit16 does not make the two individual maps aliases of one grouped parent polygon. This batch admits only Neszele; Ságod literal raster extraction remains quarantined.",
+  "contentMinimization": {
+    "verbatimNarrativeQuotationWords": 0,
+    "fullNarrativeTextOrRenderedPagesRetained": false,
+    "geographicLabelsAndBibliographicFactsRetained": true
+  }
+}

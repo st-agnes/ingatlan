@@ -18,6 +18,12 @@ test('the packaged backend catalog contains every canonical fictional account an
   assert.equal(packaged.users.filter(user=>user.accountType==='agent').length,3);
   assert.equal(packaged.fixtures.filter(item=>item.kind==='property').length,355);
   assert.equal(packaged.fixtures.filter(item=>item.kind==='search').length,353);
+  for(const fixture of packaged.fixtures.filter(item=>item.kind==='property')){
+    assert.equal(fixture.input.street,'OTTHONRA TEST');assert.match(fixture.input.houseNumber,/^[1-9][0-9]*$/);
+    for(const privateField of ['latitude','longitude','neighborhoodIds','geocodingProvider']){
+      assert.equal(Object.hasOwn(fixture.input,privateField),false,'Point coordinates and membership must be assigned by the backend startup path');
+    }
+  }
 });
 
 test('check mode rejects missing or drifted packaged data without replacing it', async()=>{

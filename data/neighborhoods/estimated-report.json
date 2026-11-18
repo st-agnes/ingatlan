@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 1,
+  "status": "estimated_candidates_only",
+  "primaryCoverageCredit": false,
+  "inputInferredSha256": "a9e6d9bd870d997571c5638d5dbdcb8a44c92bb72926f0c85ee2dbccbf38dfe3",
+  "geometryCount": 191,
+  "municipalityCount": 17,
+  "rejectedSourceRecordCount": 1,
+  "rejectedSourceRecords": [
+    {
+      "dataset": "kecskemet-native77-local-inferred",
+      "id": "manual:kecskemet-figure77:szent-laszlo-belso-forrascella",
+      "name": "Szent László város — belső forráscella",
+      "municipality": "Kecskemét",
+      "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-native77-admission-review/admission-review.json",
+      "reason": "hole_outside_shell"
+    }
+  ],
+  "caveat": "Counts are estimated geometry features, not polygon components or additional verified quarters. Historical alternatives and broader groups remain separate from primary coverage and never close known source gaps.",
+  "cities": [
+    {
+      "municipality": "Békéscsaba",
+      "geometryCount": 6,
+      "neighbourhoodCandidateCount": 0,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 6,
+      "names": [
+        "Erzsébethely (Jamina)",
+        "Fényes",
+        "Gerla",
+        "József Attila lakótelep (Lencsési)",
+        "Központ",
+        "Mezőmegyer"
+      ],
+      "distinctSourceNameCount": 6
+    },
+    {
+      "municipality": "Budapest",
+      "geometryCount": 3,
+      "neighbourhoodCandidateCount": 3,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Apostolhegy",
+        "Orbánhegy (XXIII. kerület)",
+        "Péterimajor"
+      ],
+      "distinctSourceNameCount": 3
+    },
+    {
+      "municipality": "Debrecen",
+      "geometryCount": 29,
+      "neighbourhoodCandidateCount": 29,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Akadémiakert",
+        "Bánk",
+        "Boldogfalvikert",
+        "Epreskert",
+        "Haláp",
+        "Hatvan utcai kert",
+        "Homokkert",
+        "Ispotály",
+        "Júliatelep",
+        "Kerekestelep",
+        "Kertváros",
+        "Kismacs",
+        "Kondoros",
+        "Köntöskert",
+        "Lencztelep",
+        "Majorság",
+        "Nagycsere",
+        "Nagymacs",
+        "Nagysándortelep",
+        "Nyulas",
+        "Ondód",
+        "Pallag",
+        "Sóház",
+        "Tégláskert",
+        "Tócóliget",
+        "Tócóskert",
+        "Tócóvölgy",
+        "Úrrétje",
+        "Vargakert"
+      ],
+      "distinctSourceNameCount": 29
+    },
+    {
+      "municipality": "Dunaújváros",
+      "geometryCount": 1,
+      "neighbourhoodCandidateCount": 1,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Dózsa városrész"
+      ],
+      "distinctSourceNameCount": 1
+    },
+    {
+      "municipality": "Gyöngyös",
+      "geometryCount": 5,
+      "neighbourhoodCandidateCount": 5,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Déli városrész",
+        "Észak-nyugati városrész",
+        "Keleti városrész",
+        "Nyugati városrész",
+        "Városközpont"
+      ],
+      "distinctSourceNameCount": 5
+    },
+    {
+      "municipality": "Hódmezővásárhely",
+      "geometryCount": 10,
+      "neighbourhoodCandidateCount": 10,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Béketelep",
+        "Belváros",
+        "Csúcs",
+        "Hódtó",
+        "Kertváros",
+        "Kishomok",
+        "Susán",
+        "Tabán",
+        "Tarján",
+        "Újváros"
+      ],
+      "distinctSourceNameCount": 10
+    },
+    {
+      "municipality": "Kaposvár",
+      "geometryCount": 11,
+      "neighbourhoodCandidateCount": 5,
+      "planningCandidateCount": 6,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Belváros",
+        "Donner",
+        "Donner – Rómahegy",
+        "Északi városrész",
+        "Északnyugati városrész",
+        "Ivánfahegy – Kaposszentjakab",
+        "Kaposfüred",
+        "Kecelhegy – Cser",
+        "Kisgát és környéke, Cukorgyár, Pécsi utca és környéke",
+        "Toponár – Répáspuszta – Fészerlak – Deseda",
+        "Töröcske – Zselic kertváros"
+      ],
+      "distinctSourceNameCount": 11
+    },
+    {
+      "municipality": "Kecskemét",
+      "geometryCount": 19,
+      "neighbourhoodCandidateCount": 16,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 3,
+      "names": [
+        "Alsócsalános",
+        "Alsószéktó",
+        "Árpádváros",
+        "Déli iparterület I.",
+        "Déli iparterület II.",
+        "Homokbánya",
+        "Hunyadiváros",
+        "Kósafalu",
+        "Kossuthváros",
+        "Külső Árpádváros",
+        "Mezeiváros",
+        "Muszáj",
+        "Nyugati iparterület",
+        "Rendőrfalu",
+        "Reptéri lakótelep",
+        "Széchenyiváros I.",
+        "Széchenyiváros II.",
+        "Szeleifalu",
+        "Ürgés"
+      ],
+      "distinctSourceNameCount": 19
+    },
+    {
+      "municipality": "Kiskunfélegyháza",
+      "geometryCount": 5,
+      "neighbourhoodCandidateCount": 5,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Arany-hegyi lakótelep",
+        "Bankfalu",
+        "Kossuthváros",
+        "Petőfi lakótelep",
+        "Zöldmező lakótelep"
+      ],
+      "distinctSourceNameCount": 5
+    },
+    {
+      "municipality": "Nyíregyháza",
+      "geometryCount": 12,
+      "neighbourhoodCandidateCount": 1,
+      "planningCandidateCount": 10,
+      "localAreaCandidateCount": 1,
+      "names": [
+        "Belső lakóterület (Belváros)",
+        "Bokortanyák, Császárszállás",
+        "Borbánya, Nyírjes, Kistelekiszőlő, Butyka",
+        "Érkert",
+        "Jósaváros, Stadion környéke, Hímes",
+        "Kertváros, Salamonbokor, Szabadságbokor",
+        "Kőlapos, Oros, Nagyszállás",
+        "Malomkert, Déli ipartelep, Huszártelep",
+        "Nyírszőlős, Felsőpázsit",
+        "Örökösföld",
+        "Örökösföld lakótelep",
+        "Sóstóhegy, Sóstógyógyfürdő, Korányi kertváros"
+      ],
+      "distinctSourceNameCount": 12
+    },
+    {
+      "municipality": "Pécs",
+      "geometryCount": 67,
+      "neighbourhoodCandidateCount": 67,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Árpádtető",
+        "Árpádváros",
+        "Bálics",
+        "Balokány",
+        "Basamalom",
+        "Belváros",
+        "Bolgárkert",
+        "Budai külváros",
+        "Budaiváros",
+        "Csoronika",
+        "Deindol",
+        "Déli gazdasági terület",
+        "Diós",
+        "Donátus",
+        "Észak-Megyer",
+        "Flóriántelep",
+        "Fogadó",
+        "Füzes",
+        "Gyárváros",
+        "Gyükés",
+        "Havihegy",
+        "Hird",
+        "Ispitaalja",
+        "István-akna",
+        "Józsefháza",
+        "Kertváros",
+        "Kisbalokány",
+        "Kismélyvölgy",
+        "Kovácstelep",
+        "Köztemető",
+        "M utca",
+        "Makár",
+        "Málom",
+        "Mecsekoldal",
+        "Megyer",
+        "Meszes",
+        "Murom",
+        "Nagyárpád",
+        "Nyugati ipari út",
+        "Patacs",
+        "Pécsbánya",
+        "Péterpuszta",
+        "Petőfi-akna",
+        "Piricsizma",
+        "Postavölgy",
+        "Rácváros",
+        "Rigóder",
+        "Rókusdomb",
+        "Rücker-akna",
+        "Siklósi külváros",
+        "Somogy",
+        "Szabolcs",
+        "Szabolcsi zártkert",
+        "Szentkút",
+        "Szentmiklós",
+        "Szigeti külváros",
+        "Szigeti tanya",
+        "Szkókó",
+        "Tüskésrét",
+        "Újhegy",
+        "Újmecsekalja",
+        "Uránváros",
+        "Ürög",
+        "Üszög",
+        "Üszögi tározó-major",
+        "Vasas",
+        "Zsebedomb"
+      ],
+      "distinctSourceNameCount": 67
+    },
+    {
+      "municipality": "Salgótarján",
+      "geometryCount": 8,
+      "neighbourhoodCandidateCount": 8,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Baglyasalja",
+        "Beszterce lakótelep",
+        "Forgáchtelep",
+        "Rónabánya",
+        "Rónafalu",
+        "Somlyóbánya",
+        "Somoskő",
+        "Zagyvaróna"
+      ],
+      "distinctSourceNameCount": 8
+    },
+    {
+      "municipality": "Szeged",
+      "geometryCount": 4,
+      "neighbourhoodCandidateCount": 4,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Kecskés-telep",
+        "Klebelsberg-telep",
+        "Marostő",
+        "Odessza"
+      ],
+      "distinctSourceNameCount": 4
+    },
+    {
+      "municipality": "Szentes",
+      "geometryCount": 1,
+      "neighbourhoodCandidateCount": 1,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Belváros"
+      ],
+      "distinctSourceNameCount": 1
+    },
+    {
+      "municipality": "Szombathely",
+      "geometryCount": 1,
+      "neighbourhoodCandidateCount": 1,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Joskar-Ola-lakótelep"
+      ],
+      "distinctSourceNameCount": 1
+    },
+    {
+      "municipality": "Vác",
+      "geometryCount": 1,
+      "neighbourhoodCandidateCount": 1,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Mária-liget"
+      ],
+      "distinctSourceNameCount": 1
+    },
+    {
+      "municipality": "Zalaegerszeg",
+      "geometryCount": 8,
+      "neighbourhoodCandidateCount": 8,
+      "planningCandidateCount": 0,
+      "localAreaCandidateCount": 0,
+      "names": [
+        "Bazita",
+        "Botfa",
+        "Ebergény",
+        "Hatház",
+        "Iparterület",
+        "Neszele",
+        "Szenterzsébethegy",
+        "Zalabesenyő"
+      ],
+      "distinctSourceNameCount": 8
+    }
+  ]
+}

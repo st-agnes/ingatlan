@@ -1,0 +1,1335 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "scope": "Independent bounded manual source-graphic stroke QA for two explicitly supplied original Figure9 integer-pixel paths.",
+  "authorHelperImportedOrInvoked": false,
+  "sourceImage": {
+    "path": "../municipal-pecs-remaining-next/pecs-p48-names.jpeg",
+    "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+  },
+  "sourceFigure12": {
+    "path": "../municipal-pecs-remaining-next/pecs-p63-density.jpeg",
+    "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+  },
+  "authorPathInput": {
+    "path": "manual-islands-author-paths.json",
+    "sha256": "7f8bcb9a7972a86ccd74b51215a358373a6f693f73292ba18d0c9c5a80fb09c5"
+  },
+  "independentMethod": "Compare every literal RGB against the original image, inspect each outer-stroke vertex in native pixel context and the complete outline in both source figures; verify8-neighbour steps, closure, uniqueness and all nonadjacent segment intersections with independent integer determinant arithmetic. No author verification script invoked.",
+  "records": [
+    {
+      "sourceName": "Árpádtető",
+      "sourceLabelAnchorPixel": [
+        343,
+        80
+      ],
+      "sourceQuarterMapWholeFineUnitIdentitySupported": true,
+      "sourceWholeUnitIdentityEvidence": "The literal Figure9 label is adjacent to this isolated complete fine-unit island. Figure12 depicts the same distinctive isolated shape within the quarter-boundary figure. The shape is separate from text glyphs, geographic name points and generic land-use surfaces.",
+      "path": [
+        [
+          324,
+          75
+        ],
+        [
+          325,
+          76
+        ],
+        [
+          326,
+          77
+        ],
+        [
+          326,
+          78
+        ],
+        [
+          327,
+          79
+        ],
+        [
+          327,
+          80
+        ],
+        [
+          328,
+          81
+        ],
+        [
+          329,
+          82
+        ],
+        [
+          329,
+          83
+        ],
+        [
+          330,
+          84
+        ],
+        [
+          330,
+          85
+        ],
+        [
+          330,
+          86
+        ],
+        [
+          329,
+          87
+        ],
+        [
+          328,
+          87
+        ],
+        [
+          327,
+          88
+        ],
+        [
+          326,
+          88
+        ],
+        [
+          325,
+          89
+        ],
+        [
+          324,
+          89
+        ],
+        [
+          323,
+          90
+        ],
+        [
+          322,
+          90
+        ],
+        [
+          321,
+          90
+        ],
+        [
+          320,
+          89
+        ],
+        [
+          320,
+          88
+        ],
+        [
+          319,
+          87
+        ],
+        [
+          319,
+          86
+        ],
+        [
+          319,
+          85
+        ],
+        [
+          319,
+          84
+        ],
+        [
+          319,
+          83
+        ],
+        [
+          319,
+          82
+        ],
+        [
+          319,
+          81
+        ],
+        [
+          319,
+          80
+        ],
+        [
+          319,
+          79
+        ],
+        [
+          320,
+          78
+        ],
+        [
+          321,
+          77
+        ],
+        [
+          322,
+          77
+        ],
+        [
+          323,
+          76
+        ],
+        [
+          324,
+          75
+        ]
+      ],
+      "sourcePixelPathSha256": "ea0655f832db9cfc8adad974253e3e6ce9e72ed537c02e56434445d1674c00f3",
+      "vertexReviews": [
+        {
+          "sequenceIndex": 0,
+          "sourcePixel": [
+            324,
+            75
+          ],
+          "originalRgb": [
+            151,
+            138,
+            166
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 1,
+          "sourcePixel": [
+            325,
+            76
+          ],
+          "originalRgb": [
+            88,
+            70,
+            112
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 2,
+          "sourcePixel": [
+            326,
+            77
+          ],
+          "originalRgb": [
+            140,
+            118,
+            165
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 3,
+          "sourcePixel": [
+            326,
+            78
+          ],
+          "originalRgb": [
+            61,
+            36,
+            93
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 4,
+          "sourcePixel": [
+            327,
+            79
+          ],
+          "originalRgb": [
+            111,
+            81,
+            133
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 5,
+          "sourcePixel": [
+            327,
+            80
+          ],
+          "originalRgb": [
+            136,
+            91,
+            158
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 6,
+          "sourcePixel": [
+            328,
+            81
+          ],
+          "originalRgb": [
+            99,
+            64,
+            118
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 7,
+          "sourcePixel": [
+            329,
+            82
+          ],
+          "originalRgb": [
+            206,
+            181,
+            220
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "unresolved_pale_mixed_edge_identity",
+          "reason": "At[329,82]the pale mixed pixel between darker neighbouring stroke pixels does not independently establish a complete literal outer-stroke segment with sufficient confidence in this bounded pass."
+        },
+        {
+          "sequenceIndex": 8,
+          "sourcePixel": [
+            329,
+            83
+          ],
+          "originalRgb": [
+            68,
+            39,
+            85
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 9,
+          "sourcePixel": [
+            330,
+            84
+          ],
+          "originalRgb": [
+            128,
+            108,
+            136
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 10,
+          "sourcePixel": [
+            330,
+            85
+          ],
+          "originalRgb": [
+            59,
+            34,
+            64
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 11,
+          "sourcePixel": [
+            330,
+            86
+          ],
+          "originalRgb": [
+            73,
+            49,
+            75
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 12,
+          "sourcePixel": [
+            329,
+            87
+          ],
+          "originalRgb": [
+            79,
+            49,
+            87
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 13,
+          "sourcePixel": [
+            328,
+            87
+          ],
+          "originalRgb": [
+            61,
+            20,
+            80
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 14,
+          "sourcePixel": [
+            327,
+            88
+          ],
+          "originalRgb": [
+            75,
+            37,
+            96
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 15,
+          "sourcePixel": [
+            326,
+            88
+          ],
+          "originalRgb": [
+            72,
+            29,
+            101
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 16,
+          "sourcePixel": [
+            325,
+            89
+          ],
+          "originalRgb": [
+            112,
+            79,
+            132
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 17,
+          "sourcePixel": [
+            324,
+            89
+          ],
+          "originalRgb": [
+            84,
+            45,
+            100
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 18,
+          "sourcePixel": [
+            323,
+            90
+          ],
+          "originalRgb": [
+            118,
+            94,
+            110
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 19,
+          "sourcePixel": [
+            322,
+            90
+          ],
+          "originalRgb": [
+            66,
+            35,
+            43
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 20,
+          "sourcePixel": [
+            321,
+            90
+          ],
+          "originalRgb": [
+            119,
+            83,
+            83
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 21,
+          "sourcePixel": [
+            320,
+            89
+          ],
+          "originalRgb": [
+            172,
+            129,
+            148
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 22,
+          "sourcePixel": [
+            320,
+            88
+          ],
+          "originalRgb": [
+            148,
+            95,
+            139
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 23,
+          "sourcePixel": [
+            319,
+            87
+          ],
+          "originalRgb": [
+            158,
+            124,
+            138
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 24,
+          "sourcePixel": [
+            319,
+            86
+          ],
+          "originalRgb": [
+            156,
+            117,
+            138
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 25,
+          "sourcePixel": [
+            319,
+            85
+          ],
+          "originalRgb": [
+            155,
+            112,
+            140
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 26,
+          "sourcePixel": [
+            319,
+            84
+          ],
+          "originalRgb": [
+            144,
+            99,
+            132
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 27,
+          "sourcePixel": [
+            319,
+            83
+          ],
+          "originalRgb": [
+            148,
+            103,
+            136
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 28,
+          "sourcePixel": [
+            319,
+            82
+          ],
+          "originalRgb": [
+            146,
+            103,
+            133
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 29,
+          "sourcePixel": [
+            319,
+            81
+          ],
+          "originalRgb": [
+            133,
+            90,
+            118
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 30,
+          "sourcePixel": [
+            319,
+            80
+          ],
+          "originalRgb": [
+            145,
+            108,
+            125
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 31,
+          "sourcePixel": [
+            319,
+            79
+          ],
+          "originalRgb": [
+            137,
+            109,
+            105
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 32,
+          "sourcePixel": [
+            320,
+            78
+          ],
+          "originalRgb": [
+            150,
+            122,
+            144
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 33,
+          "sourcePixel": [
+            321,
+            77
+          ],
+          "originalRgb": [
+            152,
+            126,
+            161
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 34,
+          "sourcePixel": [
+            322,
+            77
+          ],
+          "originalRgb": [
+            127,
+            100,
+            145
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 35,
+          "sourcePixel": [
+            323,
+            76
+          ],
+          "originalRgb": [
+            139,
+            118,
+            157
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        },
+        {
+          "sequenceIndex": 36,
+          "sourcePixel": [
+            324,
+            75
+          ],
+          "originalRgb": [
+            151,
+            138,
+            166
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Source pixel lies on the individually inspected dark island outline, with non-island background immediately outside the local path."
+        }
+      ],
+      "allOriginalRgbValuesIndependentlyChecked": true,
+      "allStepsAreObserved8NeighbourSteps": true,
+      "maximumChebyshevStepPixels": 1,
+      "closed": true,
+      "simpleRingIndependentlyVerified": true,
+      "sourcePixelCenterRingArea": 112.0,
+      "externalImageOrCropClosureInvented": false,
+      "allOuterGraphicStrokeVerticesIndependentlyApproved": false,
+      "completeLiteralSourceContourCertified": false,
+      "sourceContourApprovedForInferredDerivation": false,
+      "semanticKind": "neighbourhood_source_candidate",
+      "approvedPixelGeometry": null,
+      "sourcePixelGeometryMeaning": "Manual original graphic-stroke pixel-center ring, retaining every consecutive point. It differs from the threshold-selected unit-pixel footprint; no threshold growth or hole filling defines this ring.",
+      "pendingStrokeVertexIndices": [
+        7
+      ],
+      "nativePixelGridEvidence": {
+        "path": "manual-islands-arpadteto-native-pixel-grid.png",
+        "sha256": "60a73b58ebc4f4e8f11024fb3012ce3400fb89e1f44999f84f4e92be5c076b5e"
+      },
+      "pathOverlayEvidence": {
+        "path": "manual-islands-arpadteto-path-preview.png",
+        "sha256": "269c16f863d763f1ee250e897e6298bb4b4697a57064d29abc574251bf02c8e9"
+      },
+      "geographicRegistrationEvaluated": false,
+      "geographicApproval": false,
+      "automaticPrimaryApproval": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "M utca",
+      "sourceLabelAnchorPixel": [
+        514,
+        43
+      ],
+      "sourceQuarterMapWholeFineUnitIdentitySupported": true,
+      "sourceWholeUnitIdentityEvidence": "The literal Figure9 label is adjacent to this isolated complete fine-unit island. Figure12 depicts the same distinctive isolated shape within the quarter-boundary figure. The shape is separate from text glyphs, geographic name points and generic land-use surfaces.",
+      "path": [
+        [
+          498,
+          38
+        ],
+        [
+          499,
+          38
+        ],
+        [
+          500,
+          38
+        ],
+        [
+          501,
+          38
+        ],
+        [
+          502,
+          39
+        ],
+        [
+          502,
+          40
+        ],
+        [
+          502,
+          41
+        ],
+        [
+          502,
+          42
+        ],
+        [
+          502,
+          43
+        ],
+        [
+          502,
+          44
+        ],
+        [
+          503,
+          45
+        ],
+        [
+          503,
+          46
+        ],
+        [
+          502,
+          46
+        ],
+        [
+          501,
+          46
+        ],
+        [
+          501,
+          45
+        ],
+        [
+          501,
+          44
+        ],
+        [
+          501,
+          43
+        ],
+        [
+          500,
+          42
+        ],
+        [
+          499,
+          41
+        ],
+        [
+          499,
+          40
+        ],
+        [
+          498,
+          39
+        ],
+        [
+          498,
+          38
+        ]
+      ],
+      "sourcePixelPathSha256": "7ead50fe28eb6fda93d5c02f12771a2aff60937bb5ae53f5b21af94969e0b783",
+      "vertexReviews": [
+        {
+          "sequenceIndex": 0,
+          "sourcePixel": [
+            498,
+            38
+          ],
+          "originalRgb": [
+            113,
+            107,
+            121
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Upper dark curved cap; separate from the external label."
+        },
+        {
+          "sequenceIndex": 1,
+          "sourcePixel": [
+            499,
+            38
+          ],
+          "originalRgb": [
+            59,
+            52,
+            68
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Upper dark curved cap; separate from the external label."
+        },
+        {
+          "sequenceIndex": 2,
+          "sourcePixel": [
+            500,
+            38
+          ],
+          "originalRgb": [
+            63,
+            56,
+            74
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Upper dark curved cap; separate from the external label."
+        },
+        {
+          "sequenceIndex": 3,
+          "sourcePixel": [
+            501,
+            38
+          ],
+          "originalRgb": [
+            61,
+            54,
+            72
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Upper dark curved cap; separate from the external label."
+        },
+        {
+          "sequenceIndex": 4,
+          "sourcePixel": [
+            502,
+            39
+          ],
+          "originalRgb": [
+            103,
+            99,
+            114
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Upper dark curved cap; separate from the external label."
+        },
+        {
+          "sequenceIndex": 5,
+          "sourcePixel": [
+            502,
+            40
+          ],
+          "originalRgb": [
+            59,
+            55,
+            70
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Eastern dark upright and small southeast foot, against light non-island background."
+        },
+        {
+          "sequenceIndex": 6,
+          "sourcePixel": [
+            502,
+            41
+          ],
+          "originalRgb": [
+            33,
+            29,
+            44
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Eastern dark upright and small southeast foot, against light non-island background."
+        },
+        {
+          "sequenceIndex": 7,
+          "sourcePixel": [
+            502,
+            42
+          ],
+          "originalRgb": [
+            44,
+            40,
+            54
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Eastern dark upright and small southeast foot, against light non-island background."
+        },
+        {
+          "sequenceIndex": 8,
+          "sourcePixel": [
+            502,
+            43
+          ],
+          "originalRgb": [
+            37,
+            34,
+            45
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Eastern dark upright and small southeast foot, against light non-island background."
+        },
+        {
+          "sequenceIndex": 9,
+          "sourcePixel": [
+            502,
+            44
+          ],
+          "originalRgb": [
+            56,
+            53,
+            62
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Eastern dark upright and small southeast foot, against light non-island background."
+        },
+        {
+          "sequenceIndex": 10,
+          "sourcePixel": [
+            503,
+            45
+          ],
+          "originalRgb": [
+            24,
+            22,
+            25
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Eastern dark upright and small southeast foot, against light non-island background."
+        },
+        {
+          "sequenceIndex": 11,
+          "sourcePixel": [
+            503,
+            46
+          ],
+          "originalRgb": [
+            119,
+            117,
+            120
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Eastern dark upright and small southeast foot, against light non-island background."
+        },
+        {
+          "sequenceIndex": 12,
+          "sourcePixel": [
+            502,
+            46
+          ],
+          "originalRgb": [
+            38,
+            35,
+            42
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Eastern dark upright and small southeast foot, against light non-island background."
+        },
+        {
+          "sequenceIndex": 13,
+          "sourcePixel": [
+            501,
+            46
+          ],
+          "originalRgb": [
+            58,
+            52,
+            62
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Eastern dark upright and small southeast foot, against light non-island background."
+        },
+        {
+          "sequenceIndex": 14,
+          "sourcePixel": [
+            501,
+            45
+          ],
+          "originalRgb": [
+            50,
+            44,
+            56
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Western returning concave outline; the adjacent lighter region lies outside the island."
+        },
+        {
+          "sequenceIndex": 15,
+          "sourcePixel": [
+            501,
+            44
+          ],
+          "originalRgb": [
+            33,
+            27,
+            41
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Western returning concave outline; the adjacent lighter region lies outside the island."
+        },
+        {
+          "sequenceIndex": 16,
+          "sourcePixel": [
+            501,
+            43
+          ],
+          "originalRgb": [
+            67,
+            60,
+            76
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Western returning concave outline; the adjacent lighter region lies outside the island."
+        },
+        {
+          "sequenceIndex": 17,
+          "sourcePixel": [
+            500,
+            42
+          ],
+          "originalRgb": [
+            78,
+            71,
+            89
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Western returning concave outline; the adjacent lighter region lies outside the island."
+        },
+        {
+          "sequenceIndex": 18,
+          "sourcePixel": [
+            499,
+            41
+          ],
+          "originalRgb": [
+            69,
+            62,
+            78
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Western returning concave outline; the adjacent lighter region lies outside the island."
+        },
+        {
+          "sequenceIndex": 19,
+          "sourcePixel": [
+            499,
+            40
+          ],
+          "originalRgb": [
+            93,
+            86,
+            102
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Upper dark curved cap; separate from the external label."
+        },
+        {
+          "sequenceIndex": 20,
+          "sourcePixel": [
+            498,
+            39
+          ],
+          "originalRgb": [
+            44,
+            38,
+            52
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Upper dark curved cap; separate from the external label."
+        },
+        {
+          "sequenceIndex": 21,
+          "sourcePixel": [
+            498,
+            38
+          ],
+          "originalRgb": [
+            113,
+            107,
+            121
+          ],
+          "literalOriginalRgbMatches": true,
+          "independentOuterStrokeAssessment": "supported_original_outer_graphic_stroke",
+          "reason": "Upper dark curved cap; separate from the external label."
+        }
+      ],
+      "allOriginalRgbValuesIndependentlyChecked": true,
+      "allStepsAreObserved8NeighbourSteps": true,
+      "maximumChebyshevStepPixels": 1,
+      "closed": true,
+      "simpleRingIndependentlyVerified": true,
+      "sourcePixelCenterRingArea": 18.5,
+      "externalImageOrCropClosureInvented": false,
+      "allOuterGraphicStrokeVerticesIndependentlyApproved": true,
+      "completeLiteralSourceContourCertified": true,
+      "sourceContourApprovedForInferredDerivation": true,
+      "semanticKind": "neighbourhood_source_candidate",
+      "approvedPixelGeometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              498,
+              38
+            ],
+            [
+              499,
+              38
+            ],
+            [
+              500,
+              38
+            ],
+            [
+              501,
+              38
+            ],
+            [
+              502,
+              39
+            ],
+            [
+              502,
+              40
+            ],
+            [
+              502,
+              41
+            ],
+            [
+              502,
+              42
+            ],
+            [
+              502,
+              43
+            ],
+            [
+              502,
+              44
+            ],
+            [
+              503,
+              45
+            ],
+            [
+              503,
+              46
+            ],
+            [
+              502,
+              46
+            ],
+            [
+              501,
+              46
+            ],
+            [
+              501,
+              45
+            ],
+            [
+              501,
+              44
+            ],
+            [
+              501,
+              43
+            ],
+            [
+              500,
+              42
+            ],
+            [
+              499,
+              41
+            ],
+            [
+              499,
+              40
+            ],
+            [
+              498,
+              39
+            ],
+            [
+              498,
+              38
+            ]
+          ]
+        ]
+      },
+      "sourcePixelGeometryMeaning": "Manual original graphic-stroke pixel-center ring, retaining every consecutive point. It differs from the threshold-selected unit-pixel footprint; no threshold growth or hole filling defines this ring.",
+      "pendingStrokeVertexIndices": [],
+      "nativePixelGridEvidence": {
+        "path": "manual-islands-m-utca-native-pixel-grid.png",
+        "sha256": "3594943910246d9ade02b8199092c7a0a8bad607de5b78b1372548e114f83d10"
+      },
+      "pathOverlayEvidence": {
+        "path": "manual-islands-m-utca-path-preview.png",
+        "sha256": "0b543c2edcd4639cf0d3f9fa66ca707824d22fa2ee484b4c6ecf8dfce08cb8a9"
+      },
+      "geographicRegistrationEvaluated": false,
+      "geographicApproval": false,
+      "automaticPrimaryApproval": false,
+      "claimedAbsoluteAccuracy": null,
+      "usableForAddressAssignment": false
+    }
+  ],
+  "certifiedManualSourceContours": 1,
+  "certifiedSourceNames": [
+    "M utca"
+  ],
+  "pendingSourceNames": [
+    "Árpádtető"
+  ],
+  "boundedDecision": "M utca has a complete independently reviewed closed original outer-graphic-stroke path and may support later explicitly inferred derivation in the frozen frame. Arpadteto retains an unresolved pale outer-stroke vertex; no invented bridge or automatic replacement is made.",
+  "newGeographicPolygonsCreatedByThisReview": 0,
+  "georeferenceModelApproved": false,
+  "automaticPrimaryApproval": false,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false,
+  "completedPriorSourcesChanged": false,
+  "networkUsed": false
+}

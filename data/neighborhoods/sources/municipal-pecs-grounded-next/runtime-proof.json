@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "python": "3.12.14",
+  "libraries": {
+    "numpy": "2.5.4",
+    "shapely": "2.1.2",
+    "pyproj": "3.7.2",
+    "PROJ": "9.5.1",
+    "Pillow": "12.3.0"
+  },
+  "projNetworkEnabled": false,
+  "projectionOperations": [
+    {
+      "sourceCrs": "EPSG:4326",
+      "targetCrs": "EPSG:23700",
+      "alwaysXy": true,
+      "operationDescription": "axis order change (2D) + Inverse of HD72 to WGS 84 (4) + Egyseges Orszagos Vetuleti",
+      "operationDefinition": "proj=pipeline step proj=unitconvert xy_in=deg xy_out=rad step proj=push v_3 step proj=cart ellps=WGS84 step proj=helmert x=-52.17 y=71.82 z=14.9 step inv proj=cart ellps=GRS67 step proj=pop v_3 step proj=somerc lat_0=47.1443937222222 lon_0=19.0485717777778 k_0=0.99993 x_0=650000 y_0=200000 ellps=GRS67",
+      "operationAccuracyMetadataMetres": 1.0,
+      "controlExperimentOrMapAccuracyApproved": false,
+      "testInput": [
+        18.2,
+        46.1
+      ],
+      "testOutput": [
+        584465.0044443661,
+        84288.91522163263
+      ]
+    },
+    {
+      "sourceCrs": "EPSG:23700",
+      "targetCrs": "EPSG:4326",
+      "alwaysXy": true,
+      "operationDescription": "Inverse of Egyseges Orszagos Vetuleti + HD72 to WGS 84 (4) + axis order change (2D)",
+      "operationDefinition": "proj=pipeline step inv proj=somerc lat_0=47.1443937222222 lon_0=19.0485717777778 k_0=0.99993 x_0=650000 y_0=200000 ellps=GRS67 step proj=push v_3 step proj=cart ellps=GRS67 step proj=helmert x=52.17 y=-71.82 z=-14.9 step inv proj=cart ellps=WGS84 step proj=pop v_3 step proj=unitconvert xy_in=rad xy_out=deg",
+      "operationAccuracyMetadataMetres": 1.0,
+      "controlExperimentOrMapAccuracyApproved": false,
+      "testInput": [
+        584000,
+        84000
+      ],
+      "testOutput": [
+        18.194028071357476,
+        46.09735558348713
+      ]
+    }
+  ],
+  "accuracyMetadataMeaning": "PROJ operation metadata alone. It does not validate image/source-world correspondence, map geometry, model accuracy or quarter boundaries."
+}

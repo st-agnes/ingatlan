@@ -1,4 +1,5 @@
 import { getLocation, resolveLegacyLocations, isPropertyLocation } from './locations.js';
+import {neighborhoodDemoPoints} from './neighborhood-demo-points.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
 import {normalizeAccountType,likeCost,canInteract,normalizeReportReason,normalizeIncomingPagination} from './accounts.js';
 import {prepareSearch,evaluateMatch,valueForMoney,searchSpecificity} from './matching.js';
@@ -32,7 +33,7 @@ function withLocations(entity, kind, strict = false) {
     locations=ids.map(getLocation).filter(Boolean);
     if(strict&&(!ids.length||ids.length>50||locations.length!==ids.length))throw locationError();
     if(!strict){
-      if(!Array.isArray(entity.locationIds)||locations.length!==ids.length){invalidSearchIds=entity.locationIds;locations=[];}
+      if(!Array.isArray(entity.locationIds)||ids.length>50||locations.length!==ids.length){invalidSearchIds=entity.locationIds;locations=[];}
       else if(!ids.length)locations=resolveLegacyLocations(entity);
     }
   } else {
@@ -54,9 +55,16 @@ function migrateLocations(state) {
   state.searches = state.searches.map(entity=>normalizeSearchAttributes(withLocations(entity, 'search')));
   return state;
 }
-const visibleEntity = (entity,users,specificity) => {
+const privatePropertyFields = ['street','houseNumber','postalCode','latitude','longitude','coordinates','geocodingStatus','geocodingProvider','geocodedAt','formattedAddress','provider','quality','addressDetails'];
+const visibleEntity = (entity,users,specificity,viewerId) => {
+  if(!entity)return null;
   const result = clone(entity);
   delete result.email; delete result.phone;
+  for(const field of privatePropertyFields)if(field!=='addressDetails')delete result[field];
+  if(entity.ownerId!==viewerId){
+    for(const field of privatePropertyFields)delete result[field];
+    if(Object.hasOwn(entity,'locationId'))result.address='';
+  }
   const owner=users?.find(user=>user.id===entity.ownerId);
   result.ownerAccountType=normalizeAccountType(owner?.accountType);
   result.ownerFirstName=publicFirstName(owner?.name);
@@ -75,7 +83,17 @@ function seed(now) {
     {id:'u5',name:'Farkas Bence',email:'bence@example.hu',phone:'+36 20 555 0145',avatar:'FB'},
     {id:'u6',name:'Molnár Júlia',email:'julia@example.hu',phone:'+36 70 555 0146',avatar:'MJ'}
   ];
-  const property = (id,ownerId,title,district,neighborhood,price,area,rooms,image,extras={}) => ({id,ownerId,title,city:'Budapest',district,neighborhood,type:'Lakás',price,area,rooms,floor:3,condition:'Felújított',building:'Tégla',balcony:true,balconyArea:6,elevator:true,description:'Világos, átgondolt elrendezésű otthon, kellemes környezetben. A nappalit nagy ablakok teszik igazán napfényessé. Kiváló közlekedés, kedvenc kávézók és zöldterületek néhány perc sétára.',images:[photos[image],photos[(image+1)%photos.length],photos[(image+2)%photos.length]],archived:false,createdAt:time,...extras});
+  const pointName=value=>String(value).normalize('NFD').replace(/\p{M}/gu,'').toLocaleLowerCase('hu').replace(/[\s-]/g,'');
+  let demoAddressNumber=0;
+  const property = (id,ownerId,title,district,neighborhood,price,area,rooms,image,extras={}) => {
+    // These fictional seed identities explicitly use verified synthetic points; this is never an address lookup.
+    const point=neighborhoodDemoPoints.find(value=>value.synthetic&&value.city==='Budapest'&&pointName(value.name)===pointName(neighborhood));
+    if(!point)throw new Error('A fiktív demóingatlan városrészi tesztpontja hiányzik.');
+    const districtNumber=Number(resolveLegacyLocations({city:'Budapest',district})[0].id.split(':').at(-1));
+    const addressDetails={street:'Fiktív demó utca',houseNumber:String(++demoAddressNumber),postalCode:String(1001+districtNumber*10),
+      latitude:point.latitude,longitude:point.longitude,geocodedAt:null,provider:'synthetic-demo',quality:'synthetic',geocodingStatus:'demo-synthetic'};
+    return {id,ownerId,title,city:'Budapest',district,neighborhood,type:'Lakás',price,area,rooms,floor:3,condition:'Felújított',building:'Tégla',balcony:true,balconyArea:6,elevator:true,description:'Világos, átgondolt elrendezésű otthon, kellemes környezetben. A nappalit nagy ablakok teszik igazán napfényessé. Kiváló közlekedés, kedvenc kávézók és zöldterületek néhány perc sétára.',images:[photos[image],photos[(image+1)%photos.length],photos[(image+2)%photos.length]],archived:false,createdAt:time,...extras,addressDetails,neighborhoodIds:[...point.membershipIds]};
+  };
   const properties = [
     property('own-p1','me','Napfényes lakás a Bartók-negyedben','XI.','Szentimreváros',67.9,58,2,3),
     property('p1','u1','A következő fejezeted itt kezdődik','XIII.','Újlipótváros',72.9,64,3,0,{address:'Pozsonyi út környéke',description:'Reggeli fények, tágas terek és egy igazán szerethető környék. Ez a felújított, erkélyes újlipótvárosi lakás készen áll a következő történetére. Amerikai konyhás nappali, két külön nyíló hálószoba és rengeteg természetes fény vár. A Duna-part és a Szent István park csak egy rövid séta.'}),
@@ -276,7 +294,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     const reciprocal=s.decisions.some(d=>d.propertyId===property.id&&d.searchId===search.id&&d.actorKind==='property'&&d.liked)&&s.decisions.some(d=>d.propertyId===property.id&&d.searchId===search.id&&d.actorKind==='search'&&d.liked);
     if(!reciprocal)return null;
     const partner=s.users.find(u=>u.id===(property.ownerId===s.userId?search.ownerId:property.ownerId));
-    return {...clone(match),property:visibleEntity(property,s.users),search:visibleEntity(search,s.users),partner:clone(partner)};
+    return {...clone(match),property:visibleEntity(property,s.users,undefined,s.userId),search:visibleEntity(search,s.users),partner:clone(partner)};
   };
   const recommendationSnapshot = (s, options={}) => {
     const includeApproximate=options?.includeApproximate===true;
@@ -331,7 +349,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
   return {
     getState() {
       processRefunds();
-      return clone({unreadNotificationCount:state.notifications.filter(item=>item.userId===state.userId&&!item.readAt).length,user:state.users.find(u=>u.id===state.userId),credits:state.credits,active:state.active,properties:state.properties.filter(p=>p.ownerId===state.userId).map(p=>visibleEntity(p,state.users)),searches:state.searches.filter(q=>q.ownerId===state.userId).map(q=>visibleEntity(q,state.users)),decisions:state.decisions.filter(d=>own(state,d.actorKind,d.actorId)).map(d=>({...d,property:visibleEntity(state.properties.find(p=>p.id===d.propertyId),state.users),search:visibleEntity(state.searches.find(q=>q.id===d.searchId),state.users)})),ledger:state.ledger,createdAt:state.createdAt,likeCost:state.active?.id?likeCost(state.users.find(user=>user.id===state.userId)?.accountType,state.active.kind):0,reportedOwnerIds:[...new Set(state.reports.filter(report=>report.reporterId===state.userId).map(report=>report.reportedUserId))],reportedEntities:state.reports.filter(report=>report.reporterId===state.userId&&['property','search'].includes(report.entityKind)&&typeof report.entityId==='string').map(({entityKind,entityId,reason})=>({entityKind,entityId,reason}))});
+      return clone({unreadNotificationCount:state.notifications.filter(item=>item.userId===state.userId&&!item.readAt).length,user:state.users.find(u=>u.id===state.userId),credits:state.credits,active:state.active,properties:state.properties.filter(p=>p.ownerId===state.userId).map(p=>visibleEntity(p,state.users,undefined,state.userId)),searches:state.searches.filter(q=>q.ownerId===state.userId).map(q=>visibleEntity(q,state.users)),decisions:state.decisions.filter(d=>own(state,d.actorKind,d.actorId)).map(d=>({...d,property:visibleEntity(state.properties.find(p=>p.id===d.propertyId),state.users,undefined,state.userId),search:visibleEntity(state.searches.find(q=>q.id===d.searchId),state.users)})),ledger:state.ledger,createdAt:state.createdAt,likeCost:state.active?.id?likeCost(state.users.find(user=>user.id===state.userId)?.accountType,state.active.kind):0,reportedOwnerIds:[...new Set(state.reports.filter(report=>report.reporterId===state.userId).map(report=>report.reportedUserId))],reportedEntities:state.reports.filter(report=>report.reporterId===state.userId&&['property','search'].includes(report.entityKind)&&typeof report.entityId==='string').map(({entityKind,entityId,reason})=>({entityKind,entityId,reason}))});
     },
     recommendations(options={}) {
       processRefunds();
@@ -496,6 +514,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         const incoming=clone(data);delete incoming.ownerAccountType;delete incoming.ownerFirstName;
         for(const field of ['searchSpecificity','valueForMoney','isExact','score'])delete incoming[field];
         if(kind==='property'){
+          for(const field of [...privatePropertyFields,'neighborhoodIds','neighborhood'])delete incoming[field];
           const countsSupplied=[incoming.wholeRooms,incoming.halfRooms].some(count=>count!=null&&String(count).trim()!=='');
           if(countsSupplied){
             if(!Object.hasOwn(incoming,'wholeRooms'))incoming.wholeRooms=0;
@@ -513,13 +532,24 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
           entity.images=Array.isArray(entity.images)?entity.images.filter(u=>typeof u==='string'&&/^(https?:\/\/|\/assets\/|data:image\/(png|jpe?g|webp|gif);base64,)/i.test(u)):[];
           if(entity.type==='Ház'){entity.floor=null;entity.balcony=false;entity.elevator=false;}
           else{entity.balcony=!!entity.balcony;entity.elevator=!!entity.elevator;}
+          const street=String(data.street??data.addressDetails?.street??existing?.addressDetails?.street??'').trim();
+          const houseNumber=String(data.houseNumber??data.addressDetails?.houseNumber??existing?.addressDetails?.houseNumber??'').trim();
+          const postalCode=String(data.postalCode??data.addressDetails?.postalCode??existing?.addressDetails?.postalCode??'').trim();
+          if(!street||!houseNumber)throw new Error('Add meg az ingatlan utcáját és házszámát.');
+          if(street.length>180||/\p{Cc}/u.test(street)||!/^\d[\p{L}\d./ -]{0,31}$/u.test(houseNumber)||postalCode&&!/^\d{4}$/.test(postalCode))throw new Error('Adj meg érvényes utcát, házszámot és négyjegyű irányítószámot.');
+          const unchanged=existing?.locationId===entity.locationId&&existing?.addressDetails?.street===street&&existing?.addressDetails?.houseNumber===houseNumber&&String(existing?.addressDetails?.postalCode||'')===postalCode;
+          // Demo edits never pretend to perform Google geocoding. New addresses have no verified membership.
+          entity.addressDetails=unchanged?clone(existing.addressDetails):{street,houseNumber,postalCode,latitude:null,longitude:null,geocodedAt:null,provider:'',quality:'',geocodingStatus:'demo-unverified'};
+          entity.neighborhoodIds=unchanged?clone(existing.neighborhoodIds||[]):[];
+          entity.neighborhood=unchanged?String(existing.neighborhood||''):'';
+          for(const field of privatePropertyFields)if(field!=='addressDetails')delete entity[field];
         }else{
           for(const [min,max] of [['minPrice','maxPrice'],['minArea','maxArea'],['minRooms','maxRooms']]){entity[min]=numeric(entity[min],null);entity[max]=numeric(entity[max],null);if((entity[min]!=null&&(!Number.isFinite(entity[min])||entity[min]<0))||(entity[max]!=null&&(!Number.isFinite(entity[max])||entity[max]<=0))||(entity[min]!=null&&entity[max]!=null&&entity[max]<entity[min]))throw new Error('A minimum érték nem lehet nagyobb a maximumnál; a korlátok érvényes számok legyenek.');}
           entity.balcony=!!entity.balcony;entity.elevator=!!entity.elevator;entity.moveIn ||= 'Rugalmas';
         }
         const list=kind==='property'?s.properties:s.searches;
         if(existing)list[list.findIndex(e=>e.id===id)]=entity;else list.push(entity);
-        return visibleEntity(entity,s.users);
+        return visibleEntity(entity,s.users,undefined,s.userId);
       });
     },
     reportAccount(entityKind,entityId,reason) {

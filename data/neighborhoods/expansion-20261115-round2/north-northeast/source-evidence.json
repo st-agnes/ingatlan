@@ -1,0 +1,79 @@
+{
+  "collectionDate": "2026-11-15",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "sourceSnapshot": "2026-11-12T21:23:05Z",
+  "sources": [
+    {
+      "url": "https://gyongyos.hu/wp-content/uploads/2021/01/integralt-telepulesfejlesztesi-strategia-2016-its-gyongyos.pdf",
+      "fullPdfSha256": "1e215b16a31dd6b97aca1eca765151f27acf691d23ccc5e8adf216bcb19ceef0",
+      "sourceYear": 2016,
+      "retainedProofPages": [
+        17,
+        18,
+        19,
+        21,
+        23,
+        28,
+        83,
+        84,
+        89,
+        151,
+        152
+      ],
+      "proofFile": "gyongyos-source-proof-pages.pdf",
+      "role": "Named quarters, northern full-map setting, actual estate/quarter context and Duranda identity; statistical source cell outlines not claimed as whole quarter bounds."
+    },
+    {
+      "url": "https://www.satoraljaujhely.hu/files/letoltesek/telepulesiarculat/tortenelmi%20varosreszek/Tortenelmi%20varosreszek%20terkepi%20lehatarolasa.pdf",
+      "title": "Történelmi városrészek térképi lehatárolása",
+      "pdfPageCount": 1,
+      "localPdfAcquisitionStatus": "pending central download; not claimed as native geometry input",
+      "role": "Public municipal named-quarter map context found through connector. Current11 Sátoralja geometries independently use stored actual OSM road/building/landscape fabric."
+    }
+  ],
+  "geometrySources": {
+    "gyongyos": "Actual complete OSM ways in19.88–20.01E/47.73–47.845N; roads, buildings, closed land-use surfaces. Earlier archived municipal-gyongyos-more/osm-calibration-lines.geojson also retained for immediate street context.",
+    "satoralja": "Actual complete OSM ways in21.60–21.68E/48.35–48.43N."
+  },
+  "noRadiusOrPointOnlyRectangleConstruction": true,
+  "modernIndependentAccuracyEstablished": false,
+  "contextPlots": [
+    "gyongyos-core-context.png",
+    "gyongyos-estates-context.png",
+    "gyongyos-matrafured-context.png",
+    "gyongyos-iparipark-context.png",
+    "satoralja-road-land-context.png"
+  ],
+  "sourceArchives": [
+    {
+      "path": "gyongyos-source-areas.geojson.gz",
+      "sha256": "d3d76028523b9ae53580a539acefd0fbcd452ce593694866fd6e0330ed4373d4",
+      "bytes": 731014
+    },
+    {
+      "path": "gyongyos-source-roads.geojson.gz",
+      "sha256": "1cebe9619f3e5523c1877c4b0d174ea1638de0b7fb8ca9e904cc9537d4365d9f",
+      "bytes": 415223
+    },
+    {
+      "path": "kalocsa-source-areas.geojson.gz",
+      "sha256": "7e523faf29ce944f43cc3ea4423380459dd39a1a3a512c403ffbffc211c2ee1e",
+      "bytes": 96682
+    },
+    {
+      "path": "kalocsa-source-roads.geojson.gz",
+      "sha256": "ab4ec5784cd1ff885d97fd269c0da3c8838ea05721bfa96118fe447d81f78def",
+      "bytes": 160526
+    },
+    {
+      "path": "satoraljaujhely-source-areas.geojson.gz",
+      "sha256": "6e7ac0213f275088e73ca1d3b782e0d1864a956a654bb53167453a96c8841c92",
+      "bytes": 575309
+    },
+    {
+      "path": "satoraljaujhely-source-roads.geojson.gz",
+      "sha256": "ce9374dcd39b12bfac52934a0f7e2d05ff4e2709bd6d6bce2ba256e70d926072",
+      "bytes": 302237
+    }
+  ]
+}

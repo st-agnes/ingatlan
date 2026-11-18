@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "status": "additional_packet_ready",
+  "featureCount": 26,
+  "municipalities": {
+    "Békéscsaba": 26
+  },
+  "distinctCityNames": 26,
+  "method": "rough map subdivision inference; unprinted internal boundary segments explicitly marked estimated",
+  "pointRadiusFallbacks": 0,
+  "geometryAllValid": true,
+  "old48PacketModified": false,
+  "reproduce": "python3 reproduce-additional.py (numpy,shapely,pyproj)"
+}

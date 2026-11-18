@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent visual image-to-image landmark observations only. No geographic coordinates, OSM nodes, neighborhood name points or parent NCC transform were used to select these final feature measurements.",
+  "images": {
+    "73": {
+      "path": "figure73-p143-xref172.jpeg",
+      "sha256": "59cbd060c8010a396511cdec69848410b4fee8d6bd8e628500894b5e27565e9c",
+      "size": [
+        1014,
+        1434
+      ]
+    },
+    "76": {
+      "path": "figure76-p161-xref184.jpeg",
+      "sha256": "9afccf14486eb5ed86581d07f9a588da4b53df6fa0c47cdbcaf6f667659055cd",
+      "size": [
+        1702,
+        1204
+      ]
+    }
+  },
+  "coordinateConvention": "Original embedded JPEG integer pixel indices; x right/y down, no page or geography conversion.",
+  "measurementMethod": "Identify the same distinctive physical roof details by eye in original JPEGs; enlarge raw crops with nearest-neighbor sampling and label original-image pixel axes. Listed uncertainty is a manual interpretation half-width, not a statistical confidence interval.",
+  "landmarks": [
+    {
+      "id": "gym-northern-roof-tip",
+      "physicalDetail": "Northern tip/corner of the conspicuous bright rectangular gym-like roof, beside the dark-green rectangular courtyard. This is below the blue Erzsébetváros label in Figure73.",
+      "figure73Pixel": [
+        704,
+        1004
+      ],
+      "figure76Pixel": [
+        1103,
+        382
+      ],
+      "manualInterpretationHalfWidthPixels73": 2.0,
+      "manualInterpretationHalfWidthPixels76": 2.5,
+      "changedTopologySeen": false,
+      "detailCrop73": "independent-image-alignment/73-gym-detail.png",
+      "detailCrop76": "independent-image-alignment/76-gym-detail.png"
+    },
+    {
+      "id": "T-building-second-roof-box",
+      "physicalDetail": "Center of the second dark rooftop box, counting from north, on the broad pale T/L-shaped building. The same sequence of four dark rooftop boxes is visible in both images.",
+      "figure73Pixel": [
+        826,
+        1196
+      ],
+      "figure76Pixel": [
+        1234,
+        587
+      ],
+      "manualInterpretationHalfWidthPixels73": 1.25,
+      "manualInterpretationHalfWidthPixels76": 1.25,
+      "changedTopologySeen": false,
+      "detailCrop73": "independent-image-alignment/73-roof-specks-detail.png",
+      "detailCrop76": "independent-image-alignment/76-roof-specks-detail.png"
+    },
+    {
+      "id": "small-red-roof-north-ridge",
+      "physicalDetail": "Northern end of the reddish roof ridge of the small building immediately south of the large T/L-shaped building, with attached pale roofs to the east.",
+      "figure73Pixel": [
+        837,
+        1286
+      ],
+      "figure76Pixel": [
+        1245,
+        684
+      ],
+      "manualInterpretationHalfWidthPixels73": 2.0,
+      "manualInterpretationHalfWidthPixels76": 2.5,
+      "changedTopologySeen": false,
+      "detailCrop73": "independent-image-alignment/73-redroof-detail.png",
+      "detailCrop76": "independent-image-alignment/76-redroof-detail.png"
+    },
+    {
+      "id": "rail-side-long-shed-ne-corner",
+      "physicalDetail": "Northeast roof corner of the long pale rectangular shed immediately north of the wide railway corridor. The same neighboring smaller pale-blue roof and service-drive arrangement are visible.",
+      "figure73Pixel": [
+        789,
+        1337
+      ],
+      "figure76Pixel": [
+        1191,
+        739
+      ],
+      "manualInterpretationHalfWidthPixels73": 2.0,
+      "manualInterpretationHalfWidthPixels76": 2.5,
+      "changedTopologySeen": false,
+      "detailCrop73": "independent-image-alignment/73-shed-detail.png",
+      "detailCrop76": "independent-image-alignment/76-shed-detail.png"
+    }
+  ],
+  "visualFindings": {
+    "samePhysicalDetailsClearlyIdentified": true,
+    "sameUnderlyingOrthophotoCropResamplingPlausible": true,
+    "strongCommonSceneEvidence": "The gym/courtyard, T/L building shape and its four dark roof boxes, the small southern red-roof building, and rail-side shed/service layout correspond. The northern T/L parking outline and visible shadow directions also appear consistent at this inspection scale.",
+    "tonalDifference": "Figure73 darkens locations outside its highlighted Belváros cells; Figure76 highlights the southern cells. Large brightness/contrast differences occur at the same physical roofs. This is a graphic overlay/tone difference and is not evidence of topographical change.",
+    "topographicChangeWithinTheseFourPatchesObserved": false,
+    "noGlobalTopographicOrImageDateIdentityClaim": "Four local correspondences do not prove unchanged geometry everywhere, a common acquisition day, or a complete image-to-image transform.",
+    "parentNccFitConsultedForFinalPixelMeasurements": false,
+    "geographicControlOrNamePointConsulted": false,
+    "sourceBlackQuarterBoundaryUsedAsPhysicalLandmark": false
+  },
+  "registrationDecision": {
+    "exactGlobalImageToImageTransformIndependentlyVerifiedByThisVisualScout": false,
+    "geographicTransformationApprovedByThisVisualScout": false,
+    "manualObservationsMayIndependentlyCheckParentNccModel": true,
+    "ifCommonImageTransformRemainsUnproved": "Use direct physically reviewed Figure76 road controls rather than silently inheriting a Figure73 geographic fit."
+  },
+  "preview": "independent-physical-landmarks-preview.png",
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "frozenBatchesOrGlobalRegistriesModified": false
+}

@@ -1,0 +1,2448 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-11-14",
+  "scope": "Current names only for the23 newly qualified historical Eger source-quarter names; separate from the frozen previous89-name audit and all boundary approvals.",
+  "sourceCohort": {
+    "path": "data/neighborhoods/sources/municipal-eger-semantic-next/proposed-semantic-revision.geojson",
+    "sha256": "3f0f6f7e2e0efb6e3328e6d715c8d2f083553131483be80ec395e075b97b4b7e",
+    "selection": "boundaryKind == neighbourhood",
+    "selectedSourceNames": 23
+  },
+  "currentCatalogue": {
+    "path": "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz",
+    "storedGzipSha256": "5c9193a72d4327e133f86d9c2625a4caeae3d21ec71d2575a3128b1d97931ecc",
+    "uncompressedSha256": "05c02b8ac8f32df2d917e01f6de81c6133c5e7dd527114f67000b43467a3a048",
+    "nationalPointCount": 3516,
+    "sameCityEgerPointCount": 25,
+    "selection": "Archived current place=suburb|quarter|neighbourhood nodes associated to Eger; not every possible named object or a statutory quarter inventory.",
+    "completeCurrentObjects": "eger-current-name-evidence.geojson"
+  },
+  "municipalityEvidence": {
+    "path": "data/neighborhoods/sources/country-osm/municipalities.geojson.gz",
+    "storedGzipSha256": "fb5f1293628b9eeaabce243ae6ebc884f6bdc93443a2488e5fb213029bf766b7",
+    "uncompressedSha256": "b9cf74fc6a3a4769f7f4e4d01497fa217c7ee79dfc1c55f1fa6c66eabe281d56",
+    "osmRelationId": 1418156,
+    "sameCityRule": "Complete current object geometry is covered by same-snapshot Eger relation1418156, and original catalogue municipalityId/containment evidence agrees. Historical source polygons are never used for name selection.",
+    "all25CompleteCurrentObjectsRechecked": true,
+    "records": [
+      {
+        "osmNodeId": 635915687,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766233,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766250,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766256,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766263,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766266,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766271,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766281,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766286,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766289,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766290,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766291,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766306,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766309,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766310,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288766311,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288798917,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288802696,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288802697,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 1288802698,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 6902239141,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 8387397269,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 8387397270,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 8387411890,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      },
+      {
+        "osmNodeId": 8387414576,
+        "geometryType": "Point",
+        "municipality": "Eger",
+        "municipalityId": "city:Eger",
+        "municipalityOsmId": "osm:relation:1418156",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1418156"
+        ],
+        "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+        "originalPbfSha256Matches": true
+      }
+    ]
+  },
+  "freshOriginalPbfVerification": {
+    "path": ".local/neighborhoods/hungary-latest.osm.pbf",
+    "bytes": 329791850,
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "header": {
+      "generator": "osmium/1.16.0",
+      "osmosis_replication_timestamp": "2026-11-12T21:23:05Z",
+      "osmosis_replication_sequence_number": "4968",
+      "osmosis_replication_base_url": "https://download.geofabrik.de/europe/hungary-updates"
+    },
+    "requestedSameCityNodeCount": 25,
+    "freshlyVerifiedNodeCount": 25,
+    "allOriginalFieldsMatch": true,
+    "mismatches": [],
+    "errors": [],
+    "counts": {
+      "nativeSelectedNodeCallbacks": 25
+    },
+    "records": [
+      {
+        "osmNodeId": 635915687,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766233,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766250,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766256,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766263,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766266,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766271,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766281,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766286,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766289,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766290,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766291,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766306,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766309,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766310,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288766311,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288798917,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288802696,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288802697,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 1288802698,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 6902239141,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 8387397269,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 8387397270,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 8387411890,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      },
+      {
+        "osmNodeId": 8387414576,
+        "allOriginalFieldsMatch": true,
+        "comparedFields": [
+          "complete coordinates",
+          "complete tags",
+          "objectVersion",
+          "objectTimestamp"
+        ]
+      }
+    ]
+  },
+  "matchingPolicy": {
+    "priorDocumentedOrthographicRule": "data/neighborhoods/research/manual-current-name-review-next.json",
+    "normalization": "NFKC, casefold, keep every alphanumeric codepoint and Hungarian accent; discard only punctuation/separators. Compare the complete resulting label, retaining every word/direction/digit. Actual admitted orthographic differences in this cohort are three whitespace joins.",
+    "currentTagsChecked": [
+      "name",
+      "alt_name",
+      "alt_name:hu"
+    ],
+    "altNameSemicolonListsSplit": true,
+    "primaryNameParenthesesOrQualifiersDropped": false,
+    "historicalOldNameTagsUsed": false,
+    "semanticAliasesInvented": false,
+    "substringFuzzyOrNearestPointMatching": false,
+    "broaderLabelsSubstitutedForDirectionalSourceNames": false,
+    "qualifiedAndBroaderLabelsShownAsWeakerEvidenceOnly": true
+  },
+  "summary": {
+    "sourceNamesReviewed": 23,
+    "strictCurrentNameMatches": 14,
+    "exactPrimaryNameMatches": 11,
+    "orthographicWholeLabelMatches": 3,
+    "explicitCurrentAltNameMatches": 0,
+    "sourceNamesWithoutStrictWholeLabelMatch": 9,
+    "noStrictWholeLabelMatchNames": [
+      "Szent Miklós",
+      "Lajosváros – nyugat",
+      "Galagonyás-dűlő",
+      "Hajdúhegy észak",
+      "Felsőváros",
+      "K2 jelű út és környéke",
+      "Lajosváros kelet",
+      "Délkeleti külterület",
+      "Belváros kelet"
+    ],
+    "sourceNamesWithQualifiedLabelButNoEquality": [
+      "Felsőváros"
+    ],
+    "sourceNamesWithBroaderLabelButNoDirectionalEquality": [
+      "Lajosváros – nyugat",
+      "Hajdúhegy észak",
+      "Lajosváros kelet",
+      "Belváros kelet"
+    ],
+    "uniqueStrictMatchedOriginalNodeIds": [
+      635915687,
+      1288766250,
+      1288766263,
+      1288766266,
+      1288766271,
+      1288766286,
+      1288766290,
+      1288766291,
+      1288766306,
+      1288766311,
+      1288802696,
+      8387397270,
+      8387411890,
+      8387414576
+    ],
+    "uniqueStrictMatchedOriginalNodeCount": 14,
+    "all25EgerCatalogueObjectsFreshlyVerifiedInOriginalPbf": true,
+    "boundaryOrGeometryApprovals": 0,
+    "frozenSourcePropertyChanges": 0,
+    "globalRegistryOrExportChanges": 0
+  },
+  "records": [
+    {
+      "sourceFeatureId": "municipal:eger:plan:164818",
+      "sourceName": "Hajdúhegy",
+      "municipality": "Eger",
+      "sourcePlanId": "2.24.",
+      "sourcePdfDrawingIndex": 164818,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2001,
+      "normalizedWholeSourceNameKey": "hajdúhegy",
+      "nameEvidenceStatus": "current_osm_exact_primary_name_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "exact_primary_name",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Hajdúhegy",
+          "fullLiteralTagValue": "Hajdúhegy",
+          "normalizedWholeLabelKey": "hajdúhegy",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288766250",
+            "properties": {
+              "name": "Hajdúhegy",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288766250,
+                "tags": {
+                  "name": "Hajdúhegy",
+                  "place": "suburb"
+                },
+                "objectVersion": 2,
+                "objectTimestamp": "2019-07-15 07:38:30+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288766250",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3580923,
+                47.9037446
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288766250,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164819",
+      "sourceName": "Szent Miklós",
+      "municipality": "Eger",
+      "sourcePlanId": "2.26.",
+      "sourcePdfDrawingIndex": 164819,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2000,
+      "normalizedWholeSourceNameKey": "szentmiklós",
+      "nameEvidenceStatus": "unknown_current_exact_source_name_in_checked_place_node_cohort",
+      "strictCurrentSameCityNameMatch": false,
+      "strictMatches": [],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": "No admissible whole-label equality or explicit current alt_name in the checked snapshot cohort. This is not absence, discontinuation or a rejection of the displayed qualified/broader current labels."
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164820",
+      "sourceName": "Belváros",
+      "municipality": "Eger",
+      "sourcePlanId": "2.25.",
+      "sourcePdfDrawingIndex": 164820,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2001,
+      "normalizedWholeSourceNameKey": "belváros",
+      "nameEvidenceStatus": "current_osm_exact_primary_name_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "exact_primary_name",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Belváros",
+          "fullLiteralTagValue": "Belváros",
+          "normalizedWholeLabelKey": "belváros",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:8387411890",
+            "properties": {
+              "name": "Belváros",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 8387411890,
+                "tags": {
+                  "name": "Belváros",
+                  "place": "suburb"
+                },
+                "objectVersion": 1,
+                "objectTimestamp": "2021-02-02 13:06:27+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/8387411890",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3750717,
+                47.9026492
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 8387411890,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164828",
+      "sourceName": "Lajosváros – nyugat",
+      "municipality": "Eger",
+      "sourcePlanId": "2.23.",
+      "sourcePdfDrawingIndex": 164828,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2003,
+      "normalizedWholeSourceNameKey": "lajosvárosnyugat",
+      "nameEvidenceStatus": "unknown_current_exact_source_name_in_checked_place_node_cohort",
+      "strictCurrentSameCityNameMatch": false,
+      "strictMatches": [],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [
+        {
+          "evidenceClass": "broader_label_not_directional_source_name",
+          "fullCurrentLiteralLabel": "Lajosváros",
+          "strictWholeLabelEquality": false,
+          "countsAsStrictCurrentSourceNameMatch": false,
+          "aliasApplied": false,
+          "reason": "The current broader label does not independently corroborate the historical west qualifier.",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288766233",
+            "properties": {
+              "name": "Lajosváros",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288766233,
+                "tags": {
+                  "name": "Lajosváros",
+                  "place": "suburb"
+                },
+                "objectVersion": 5,
+                "objectTimestamp": "2019-07-15 07:38:30+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288766233",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3801688,
+                47.8830563
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288766233,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "sourceExtentApproved": false
+        }
+      ],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": "No admissible whole-label equality or explicit current alt_name in the checked snapshot cohort. This is not absence, discontinuation or a rejection of the displayed qualified/broader current labels."
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164829",
+      "sourceName": "Galagonyás-dűlő",
+      "municipality": "Eger",
+      "sourcePlanId": "3.27.",
+      "sourcePdfDrawingIndex": 164829,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2004,
+      "normalizedWholeSourceNameKey": "galagonyásdűlő",
+      "nameEvidenceStatus": "unknown_current_exact_source_name_in_checked_place_node_cohort",
+      "strictCurrentSameCityNameMatch": false,
+      "strictMatches": [],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": "No admissible whole-label equality or explicit current alt_name in the checked snapshot cohort. This is not absence, discontinuation or a rejection of the displayed qualified/broader current labels."
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164830",
+      "sourceName": "Felnémet",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.8.",
+      "sourcePdfDrawingIndex": 164830,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "felnémet",
+      "nameEvidenceStatus": "current_osm_exact_primary_name_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "exact_primary_name",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Felnémet",
+          "fullLiteralTagValue": "Felnémet",
+          "normalizedWholeLabelKey": "felnémet",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288766263",
+            "properties": {
+              "name": "Felnémet",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288766263,
+                "tags": {
+                  "name": "Felnémet",
+                  "place": "suburb",
+                  "website": "http://felnemet.hu/"
+                },
+                "objectVersion": 5,
+                "objectTimestamp": "2020-02-20 08:48:04+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288766263",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3642777,
+                47.9389888
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288766263,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164831",
+      "sourceName": "Nagylapos",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.16.",
+      "sourcePdfDrawingIndex": 164831,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "nagylapos",
+      "nameEvidenceStatus": "current_osm_exact_primary_name_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "exact_primary_name",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Nagylapos",
+          "fullLiteralTagValue": "Nagylapos",
+          "normalizedWholeLabelKey": "nagylapos",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:8387397270",
+            "properties": {
+              "name": "Nagylapos",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 8387397270,
+                "tags": {
+                  "name": "Nagylapos",
+                  "place": "suburb"
+                },
+                "objectVersion": 1,
+                "objectTimestamp": "2021-02-02 13:11:23+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/8387397270",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3681489,
+                47.9238089
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 8387397270,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164833",
+      "sourceName": "Rác hóstya",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.17.",
+      "sourcePdfDrawingIndex": 164833,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "ráchóstya",
+      "nameEvidenceStatus": "current_osm_whole_label_orthographic_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "whole_label_orthographic_normalization",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Ráchóstya",
+          "fullLiteralTagValue": "Ráchóstya",
+          "normalizedWholeLabelKey": "ráchóstya",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288766266",
+            "properties": {
+              "name": "Ráchóstya",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288766266,
+                "tags": {
+                  "name": "Ráchóstya",
+                  "place": "suburb"
+                },
+                "objectVersion": 3,
+                "objectTimestamp": "2019-07-15 07:38:30+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288766266",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3665712,
+                47.912771
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288766266,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164834",
+      "sourceName": "Hajdúhegy észak",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.10.",
+      "sourcePdfDrawingIndex": 164834,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "hajdúhegyészak",
+      "nameEvidenceStatus": "unknown_current_exact_source_name_in_checked_place_node_cohort",
+      "strictCurrentSameCityNameMatch": false,
+      "strictMatches": [],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [
+        {
+          "evidenceClass": "broader_label_not_directional_source_name",
+          "fullCurrentLiteralLabel": "Hajdúhegy",
+          "strictWholeLabelEquality": false,
+          "countsAsStrictCurrentSourceNameMatch": false,
+          "aliasApplied": false,
+          "reason": "The current broader label does not independently corroborate the historical north qualifier.",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288766250",
+            "properties": {
+              "name": "Hajdúhegy",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288766250,
+                "tags": {
+                  "name": "Hajdúhegy",
+                  "place": "suburb"
+                },
+                "objectVersion": 2,
+                "objectTimestamp": "2019-07-15 07:38:30+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288766250",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3580923,
+                47.9037446
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288766250,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "sourceExtentApproved": false
+        }
+      ],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": "No admissible whole-label equality or explicit current alt_name in the checked snapshot cohort. This is not absence, discontinuation or a rejection of the displayed qualified/broader current labels."
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164835",
+      "sourceName": "Felsőváros",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.9.",
+      "sourcePdfDrawingIndex": 164835,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "felsőváros",
+      "nameEvidenceStatus": "unknown_current_exact_source_name_in_checked_place_node_cohort",
+      "strictCurrentSameCityNameMatch": false,
+      "strictMatches": [],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [
+        {
+          "evidenceClass": "qualified_label_not_full_equality",
+          "fullCurrentLiteralLabel": "Felsőváros (Északi városrész)",
+          "strictWholeLabelEquality": false,
+          "countsAsStrictCurrentSourceNameMatch": false,
+          "aliasApplied": false,
+          "reason": "The complete current primary label includes an additional parenthetical qualifier. No explicit alt_name supplies the shorter source label; no words are dropped.",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288766289",
+            "properties": {
+              "name": "Felsőváros (Északi városrész)",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288766289,
+                "tags": {
+                  "name": "Felsőváros (Északi városrész)",
+                  "place": "suburb"
+                },
+                "objectVersion": 6,
+                "objectTimestamp": "2021-02-02 13:06:27+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288766289",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3748039,
+                47.9170799
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288766289,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "sourceExtentApproved": false
+        }
+      ],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": "No admissible whole-label equality or explicit current alt_name in the checked snapshot cohort. This is not absence, discontinuation or a rejection of the displayed qualified/broader current labels."
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164836",
+      "sourceName": "Károlyváros",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.12.",
+      "sourcePdfDrawingIndex": 164836,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "károlyváros",
+      "nameEvidenceStatus": "current_osm_exact_primary_name_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "exact_primary_name",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Károlyváros",
+          "fullLiteralTagValue": "Károlyváros",
+          "normalizedWholeLabelKey": "károlyváros",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288766311",
+            "properties": {
+              "name": "Károlyváros",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288766311,
+                "tags": {
+                  "name": "Károlyváros",
+                  "place": "suburb"
+                },
+                "objectVersion": 3,
+                "objectTimestamp": "2021-02-02 13:09:08+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288766311",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3675164,
+                47.90279
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288766311,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164837",
+      "sourceName": "Szépasszonyvölgy",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.19.",
+      "sourcePdfDrawingIndex": 164837,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "szépasszonyvölgy",
+      "nameEvidenceStatus": "current_osm_exact_primary_name_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "exact_primary_name",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Szépasszonyvölgy",
+          "fullLiteralTagValue": "Szépasszonyvölgy",
+          "normalizedWholeLabelKey": "szépasszonyvölgy",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:635915687",
+            "properties": {
+              "name": "Szépasszonyvölgy",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 635915687,
+                "tags": {
+                  "name": "Szépasszonyvölgy",
+                  "place": "suburb"
+                },
+                "objectVersion": 5,
+                "objectTimestamp": "2019-07-15 07:38:30+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/635915687",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3591199,
+                47.8902951
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 635915687,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164838",
+      "sourceName": "Hatvani hóstya",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.11.",
+      "sourcePdfDrawingIndex": 164838,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "hatvanihóstya",
+      "nameEvidenceStatus": "current_osm_whole_label_orthographic_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "whole_label_orthographic_normalization",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Hatvanihóstya",
+          "fullLiteralTagValue": "Hatvanihóstya",
+          "normalizedWholeLabelKey": "hatvanihóstya",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288766306",
+            "properties": {
+              "name": "Hatvanihóstya",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288766306,
+                "tags": {
+                  "name": "Hatvanihóstya",
+                  "place": "suburb"
+                },
+                "objectVersion": 3,
+                "objectTimestamp": "2019-07-15 07:38:30+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288766306",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3747042,
+                47.8914464
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288766306,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164839",
+      "sourceName": "K2 jelű út és környéke",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.13.",
+      "sourcePdfDrawingIndex": 164839,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "k2jelűútéskörnyéke",
+      "nameEvidenceStatus": "unknown_current_exact_source_name_in_checked_place_node_cohort",
+      "strictCurrentSameCityNameMatch": false,
+      "strictMatches": [],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": "No admissible whole-label equality or explicit current alt_name in the checked snapshot cohort. This is not absence, discontinuation or a rejection of the displayed qualified/broader current labels."
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164842",
+      "sourceName": "Déli iparterület",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.6.",
+      "sourcePdfDrawingIndex": 164842,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "déliiparterület",
+      "nameEvidenceStatus": "current_osm_exact_primary_name_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "exact_primary_name",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Déli iparterület",
+          "fullLiteralTagValue": "Déli iparterület",
+          "normalizedWholeLabelKey": "déliiparterület",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288802696",
+            "properties": {
+              "name": "Déli iparterület",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288802696,
+                "tags": {
+                  "name": "Déli iparterület",
+                  "place": "suburb"
+                },
+                "objectVersion": 3,
+                "objectTimestamp": "2021-02-02 13:06:27+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288802696",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3958325,
+                47.8759645
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288802696,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164843",
+      "sourceName": "Lajosváros kelet",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.14.",
+      "sourcePdfDrawingIndex": 164843,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "lajosvároskelet",
+      "nameEvidenceStatus": "unknown_current_exact_source_name_in_checked_place_node_cohort",
+      "strictCurrentSameCityNameMatch": false,
+      "strictMatches": [],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [
+        {
+          "evidenceClass": "broader_label_not_directional_source_name",
+          "fullCurrentLiteralLabel": "Lajosváros",
+          "strictWholeLabelEquality": false,
+          "countsAsStrictCurrentSourceNameMatch": false,
+          "aliasApplied": false,
+          "reason": "The current broader label does not independently corroborate the historical east qualifier.",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288766233",
+            "properties": {
+              "name": "Lajosváros",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288766233,
+                "tags": {
+                  "name": "Lajosváros",
+                  "place": "suburb"
+                },
+                "objectVersion": 5,
+                "objectTimestamp": "2019-07-15 07:38:30+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288766233",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3801688,
+                47.8830563
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288766233,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "sourceExtentApproved": false
+        }
+      ],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": "No admissible whole-label equality or explicit current alt_name in the checked snapshot cohort. This is not absence, discontinuation or a rejection of the displayed qualified/broader current labels."
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164844",
+      "sourceName": "Délkeleti külterület",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.7.",
+      "sourcePdfDrawingIndex": 164844,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "délkeletikülterület",
+      "nameEvidenceStatus": "unknown_current_exact_source_name_in_checked_place_node_cohort",
+      "strictCurrentSameCityNameMatch": false,
+      "strictMatches": [],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": "No admissible whole-label equality or explicit current alt_name in the checked snapshot cohort. This is not absence, discontinuation or a rejection of the displayed qualified/broader current labels."
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164845",
+      "sourceName": "Csákó",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.5.",
+      "sourcePdfDrawingIndex": 164845,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "csákó",
+      "nameEvidenceStatus": "current_osm_exact_primary_name_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "exact_primary_name",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Csákó",
+          "fullLiteralTagValue": "Csákó",
+          "normalizedWholeLabelKey": "csákó",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288766291",
+            "properties": {
+              "name": "Csákó",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288766291,
+                "tags": {
+                  "name": "Csákó",
+                  "place": "suburb"
+                },
+                "objectVersion": 3,
+                "objectTimestamp": "2019-07-15 07:38:30+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288766291",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3850625,
+                47.8916068
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288766291,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164846",
+      "sourceName": "Tihamér",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.20.",
+      "sourcePdfDrawingIndex": 164846,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "tihamér",
+      "nameEvidenceStatus": "current_osm_exact_primary_name_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "exact_primary_name",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Tihamér",
+          "fullLiteralTagValue": "Tihamér",
+          "normalizedWholeLabelKey": "tihamér",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288766271",
+            "properties": {
+              "name": "Tihamér",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288766271,
+                "tags": {
+                  "name": "Tihamér",
+                  "place": "suburb"
+                },
+                "objectVersion": 4,
+                "objectTimestamp": "2021-02-02 13:14:48+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288766271",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3938386,
+                47.8913766
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288766271,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164847",
+      "sourceName": "Maklári hóstya",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.15.",
+      "sourcePdfDrawingIndex": 164847,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "maklárihóstya",
+      "nameEvidenceStatus": "current_osm_whole_label_orthographic_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "whole_label_orthographic_normalization",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Maklárihóstya",
+          "fullLiteralTagValue": "Maklárihóstya",
+          "normalizedWholeLabelKey": "maklárihóstya",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288766286",
+            "properties": {
+              "name": "Maklárihóstya",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288766286,
+                "tags": {
+                  "name": "Maklárihóstya",
+                  "place": "suburb"
+                },
+                "objectVersion": 5,
+                "objectTimestamp": "2021-02-02 13:09:08+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288766286",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3858827,
+                47.8984303
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288766286,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164849",
+      "sourceName": "Sánc",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.18.",
+      "sourcePdfDrawingIndex": 164849,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "sánc",
+      "nameEvidenceStatus": "current_osm_exact_primary_name_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "exact_primary_name",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Sánc",
+          "fullLiteralTagValue": "Sánc",
+          "normalizedWholeLabelKey": "sánc",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:8387414576",
+            "properties": {
+              "name": "Sánc",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 8387414576,
+                "tags": {
+                  "name": "Sánc",
+                  "place": "suburb"
+                },
+                "objectVersion": 2,
+                "objectTimestamp": "2024-12-08 11:54:15+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/8387414576",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3822352,
+                47.9051143
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 8387414576,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164850",
+      "sourceName": "Belváros kelet",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.3.",
+      "sourcePdfDrawingIndex": 164850,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "belvároskelet",
+      "nameEvidenceStatus": "unknown_current_exact_source_name_in_checked_place_node_cohort",
+      "strictCurrentSameCityNameMatch": false,
+      "strictMatches": [],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [
+        {
+          "evidenceClass": "broader_label_not_directional_source_name",
+          "fullCurrentLiteralLabel": "Belváros",
+          "strictWholeLabelEquality": false,
+          "countsAsStrictCurrentSourceNameMatch": false,
+          "aliasApplied": false,
+          "reason": "The current broader label does not independently corroborate the historical east qualifier.",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:8387411890",
+            "properties": {
+              "name": "Belváros",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 8387411890,
+                "tags": {
+                  "name": "Belváros",
+                  "place": "suburb"
+                },
+                "objectVersion": 1,
+                "objectTimestamp": "2021-02-02 13:06:27+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/8387411890",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3750717,
+                47.9026492
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 8387411890,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "sourceExtentApproved": false
+        }
+      ],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": "No admissible whole-label equality or explicit current alt_name in the checked snapshot cohort. This is not absence, discontinuation or a rejection of the displayed qualified/broader current labels."
+    },
+    {
+      "sourceFeatureId": "municipal:eger:plan:164853",
+      "sourceName": "Vécseyvölgy",
+      "municipality": "Eger",
+      "sourcePlanId": "M1.21.",
+      "sourcePdfDrawingIndex": 164853,
+      "sourceSchemaDate": "2016-08",
+      "sourceBasePlanReferenceYear": 2016,
+      "normalizedWholeSourceNameKey": "vécseyvölgy",
+      "nameEvidenceStatus": "current_osm_exact_primary_name_match",
+      "strictCurrentSameCityNameMatch": true,
+      "strictMatches": [
+        {
+          "method": "exact_primary_name",
+          "matchingTag": "name",
+          "matchedCurrentLabel": "Vécseyvölgy",
+          "fullLiteralTagValue": "Vécseyvölgy",
+          "normalizedWholeLabelKey": "vécseyvölgy",
+          "currentObject": {
+            "type": "Feature",
+            "id": "osm:node:1288766290",
+            "properties": {
+              "name": "Vécseyvölgy",
+              "place": "suburb",
+              "reviewStatus": "unreviewed",
+              "hasSourcePolygon": false,
+              "source": {
+                "osmType": "node",
+                "osmId": 1288766290,
+                "tags": {
+                  "name": "Vécseyvölgy",
+                  "place": "suburb"
+                },
+                "objectVersion": 4,
+                "objectTimestamp": "2021-02-02 13:14:48+00:00",
+                "changeset": 0,
+                "url": "https://www.openstreetmap.org/node/1288766290",
+                "provider": "openstreetmap",
+                "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+                "osmTimestamp": "2026-11-12T21:23:05Z",
+                "license": "ODbL-1.0",
+                "attribution": "© OpenStreetMap contributors",
+                "attributionUrl": "https://www.openstreetmap.org/copyright",
+                "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+              },
+              "municipality": "Eger",
+              "municipalityId": "city:Eger",
+              "municipalityOsmId": "osm:relation:1418156",
+              "municipalityEvidence": "source_full_containment",
+              "coveringMunicipalityOsmIds": [
+                "osm:relation:1418156"
+              ],
+              "hierarchyMunicipalityOsmIds": []
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                20.3837635,
+                47.910424
+              ]
+            }
+          },
+          "municipalityEvidence": {
+            "osmNodeId": 1288766290,
+            "geometryType": "Point",
+            "municipality": "Eger",
+            "municipalityId": "city:Eger",
+            "municipalityOsmId": "osm:relation:1418156",
+            "municipalityEvidence": "source_full_containment",
+            "coveringMunicipalityOsmIds": [
+              "osm:relation:1418156"
+            ],
+            "completeObjectGeometryCoveredBySameSnapshotEgerMunicipality": true,
+            "originalPbfSha256Matches": true
+          },
+          "freshOriginalPbfReadbackVerified": true,
+          "evidenceRole": "Current same-city name only; neither source-quarter identity equivalence nor historical/current extent, accuracy or address assignment is approved."
+        }
+      ],
+      "qualifiedOrBroaderCurrentLabelsWithoutEquality": [],
+      "currentNameEvidenceIsBoundaryEvidence": false,
+      "historicalSourceOrCurrentQuarterExtentApproved": false,
+      "currentLegalQuarterStatusApproved": false,
+      "usableForAddressAssignment": false,
+      "unknownMeaning": null
+    }
+  ],
+  "inputFingerprints": [
+    {
+      "path": "data/neighborhoods/sources/municipal-eger-semantic-next/proposed-semantic-revision.geojson",
+      "bytes": 741209,
+      "sha256": "3f0f6f7e2e0efb6e3328e6d715c8d2f083553131483be80ec395e075b97b4b7e"
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz",
+      "bytes": 233653,
+      "sha256": "5c9193a72d4327e133f86d9c2625a4caeae3d21ec71d2575a3128b1d97931ecc"
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/municipalities.geojson.gz",
+      "bytes": 3795040,
+      "sha256": "fb5f1293628b9eeaabce243ae6ebc884f6bdc93443a2488e5fb213029bf766b7"
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/manifest.json",
+      "bytes": 5828,
+      "sha256": "2388ec47bb9c528127113c0185dd26d25402596ac3826cb9330f3fd9736511ed"
+    },
+    {
+      "path": "data/neighborhoods/research/manual-current-name-review-next.json",
+      "bytes": 330576,
+      "sha256": "98635fc4b453b29aa2847bae4739766d370d7eb60fb66ece4d0f01fd7f824ce4"
+    }
+  ],
+  "limitations": [
+    "Present means a community-mapped label in the pinned2026-11-12 snapshot, not a municipal or legal designation. Object timestamps are edit times, not dated municipal name declarations.",
+    "The14 strict name matches provide no evidence that the historical statutory source footprints equal current ordinary, ITS, legal or cadastral extents, or that georeferencing is accurate.",
+    "Nine labels lack strict whole-label equality in this bounded catalogue. Qualified/broader current labels are preserved separately; unknown never means absent or discontinued.",
+    "No new web search was used; no unsupported semantic alias, directional qualifier removal or cross-quarter merger was applied."
+  ],
+  "networkUsed": false,
+  "frozenSourceFilesModified": false,
+  "globalRegistryOrExportsModified": false,
+  "sourceBoundaryExtentApproved": false,
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false
+}

@@ -1,0 +1,955 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "codeforgermany/click_that_hood",
+  "sourceCommit": "48ba05ad4c6969e3b3c25735492169227ae411f1",
+  "sourceUrl": "https://github.com/codeforgermany/click_that_hood/blob/48ba05ad4c6969e3b3c25735492169227ae411f1/public/data/esztergom.geojson",
+  "sourceGitBlobSha1": "f24bdf1489d74c081b8f78086cf09bfb43016c81",
+  "sourceBytes": 41761,
+  "sourceSha256": "2268e0debd0e8e79afcc32c76b6c90d095d24bd93a162fb9c2695d68acb4caf6",
+  "sourceFeatureCount": 33,
+  "quarterCandidates": 32,
+  "otherLocalAreas": 1,
+  "allSourceCoordinatesPreserved": true,
+  "allGeometriesValid": true,
+  "originalGovernmentCitationVerified": false,
+  "absoluteBoundaryAccuracyMetres": null,
+  "individualDatasetRightsEstablished": false,
+  "softwareLicenseDoesNotEstablishDatasetLicense": true,
+  "inputs": [
+    {
+      "path": "data/neighborhoods/sources/public-vector-next/esztergom.source.geojson",
+      "sha256": "2268e0debd0e8e79afcc32c76b6c90d095d24bd93a162fb9c2695d68acb4caf6"
+    },
+    {
+      "path": "data/neighborhoods/sources/public-vector-next/esztergom.metadata.source.json",
+      "sha256": "e0dd10bdb7c1b0114cd94d37e7e9a131021d4d436f67c2e6e66582ce255132dc"
+    },
+    {
+      "path": "data/neighborhoods/sources/public-vector-next/official-name-evidence.json",
+      "sha256": "21585634ac3b07b99e0b80f3ef74f59cd55a2c47b7165530a3a99395c4c270a8"
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/municipalities.geojson.gz",
+      "sha256": "fb5f1293628b9eeaabce243ae6ebc884f6bdc93443a2488e5fb213029bf766b7"
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz",
+      "sha256": "5c9193a72d4327e133f86d9c2625a4caeae3d21ec71d2575a3128b1d97931ecc"
+    }
+  ],
+  "records": [
+    {
+      "sourceFeatureIndex": 0,
+      "sourceCartodbId": 11,
+      "name": "Csutimonostor",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 120139.1596288744,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:8196618389",
+          "name": "Csutimonostor",
+          "aliases": [
+            "Csutimonostor",
+            ""
+          ],
+          "coordinates": [
+            18.7460884,
+            47.7864761
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/8196618389"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 1,
+      "sourceCartodbId": 2,
+      "name": "Petény",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 44145.651032602465,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:12084683751",
+          "name": "Petény",
+          "aliases": [
+            "Petény",
+            ""
+          ],
+          "coordinates": [
+            18.7351493,
+            47.8016479
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/12084683751"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 2,
+      "sourceCartodbId": 5,
+      "name": "Libád",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 8425.819607853891,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": false,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:12084738316",
+          "name": "Libád",
+          "aliases": [
+            "Libád",
+            ""
+          ],
+          "coordinates": [
+            18.7400899,
+            47.7974607
+          ],
+          "pointInsideHistoricalPolygon": false,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/12084738316"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 3,
+      "sourceCartodbId": 1,
+      "name": "Szentgyörgymező",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 979383.2855573416,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:8222823889",
+          "name": "Szentgyörgymező",
+          "aliases": [
+            "Szentgyörgymező",
+            ""
+          ],
+          "coordinates": [
+            18.7418704,
+            47.8060187
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/8222823889"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 4,
+      "sourceCartodbId": 3,
+      "name": "Hévíz",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 64629.99002070891,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:8196669386",
+          "name": "Hévíz",
+          "aliases": [
+            "Hévíz",
+            ""
+          ],
+          "coordinates": [
+            18.7403442,
+            47.7954886
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/8196669386"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 5,
+      "sourceCartodbId": 4,
+      "name": "Bánom",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 241581.07437221007,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:12084781715",
+          "name": "Bánom",
+          "aliases": [
+            "Bánom",
+            ""
+          ],
+          "coordinates": [
+            18.74885,
+            47.7998426
+          ],
+          "pointInsideHistoricalPolygon": false,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/12084781715"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 6,
+      "sourceCartodbId": 6,
+      "name": "Víziváros",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 129347.46645424205,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:4070801484",
+          "name": "Víziváros",
+          "aliases": [
+            "Víziváros",
+            ""
+          ],
+          "coordinates": [
+            18.7354581,
+            47.797021
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/4070801484"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 7,
+      "sourceCartodbId": 7,
+      "name": "Prímás-sziget",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 888469.1066395598,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "municipal_name_used_2023",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": []
+    },
+    {
+      "sourceFeatureIndex": 8,
+      "sourceCartodbId": 8,
+      "name": "Szentpál",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 476183.5869900303,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "municipal_name_used_2023",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": []
+    },
+    {
+      "sourceFeatureIndex": 9,
+      "sourceCartodbId": 9,
+      "name": "Királyi város",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 385943.5127034492,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "municipal_name_used_2023",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": []
+    },
+    {
+      "sourceFeatureIndex": 10,
+      "sourceCartodbId": 10,
+      "name": "Szentlázár",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 353105.3877370581,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:12084957151",
+          "name": "Szentlázár",
+          "aliases": [
+            "Szentlázár",
+            ""
+          ],
+          "coordinates": [
+            18.7372787,
+            47.7809936
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/12084957151"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 11,
+      "sourceCartodbId": 12,
+      "name": "Ripária",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 53956.1083898801,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:8196658173",
+          "name": "Ripária",
+          "aliases": [
+            "Ripária",
+            ""
+          ],
+          "coordinates": [
+            18.7459596,
+            47.7840614
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/8196658173"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 12,
+      "sourceCartodbId": 13,
+      "name": "Csalamádé",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 116638.03865181288,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:8222813255",
+          "name": "Csalamádé",
+          "aliases": [
+            "Csalamádé",
+            ""
+          ],
+          "coordinates": [
+            18.7481104,
+            47.7822506
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/8222813255"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 13,
+      "sourceCartodbId": 14,
+      "name": "Szentanna",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 78132.125236675,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:12084807694",
+          "name": "Szentanna",
+          "aliases": [
+            "Szentanna",
+            ""
+          ],
+          "coordinates": [
+            18.7422411,
+            47.7925234
+          ],
+          "pointInsideHistoricalPolygon": false,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/12084807694"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 14,
+      "sourceCartodbId": 15,
+      "name": "Örmény",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 32743.742588401154,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:12084802677",
+          "name": "Örmény",
+          "aliases": [
+            "Örmény",
+            ""
+          ],
+          "coordinates": [
+            18.7429921,
+            47.7945021
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/12084802677"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 15,
+      "sourceCartodbId": 16,
+      "name": "Szenttamás",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 111861.46287534798,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:4070801485",
+          "name": "Szenttamás",
+          "aliases": [
+            "Szenttamás",
+            ""
+          ],
+          "coordinates": [
+            18.7425239,
+            47.7967955
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/4070801485"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 16,
+      "sourceCartodbId": 17,
+      "name": "Várhegy",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 197196.79051384988,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:12084767303",
+          "name": "Várhegy",
+          "aliases": [
+            "Várhegy",
+            ""
+          ],
+          "coordinates": [
+            18.7372951,
+            47.7986535
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/12084767303"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 17,
+      "sourceCartodbId": 18,
+      "name": "Kovácsi",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 381940.36999300413,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:8185087893",
+          "name": "Kovácsi",
+          "aliases": [
+            "Kovácsi",
+            ""
+          ],
+          "coordinates": [
+            18.7397731,
+            47.7786187
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/8185087893"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 18,
+      "sourceCartodbId": 19,
+      "name": "Szentjánoskút",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 788947.6252536853,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:8222823884",
+          "name": "Szentjánoskút",
+          "aliases": [
+            "Szentjánoskút",
+            ""
+          ],
+          "coordinates": [
+            18.7529044,
+            47.7984439
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/8222823884"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 19,
+      "sourceCartodbId": 20,
+      "name": "Aranyhegy",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 784603.058971555,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:3180684626",
+          "name": "Aranyhegy",
+          "aliases": [
+            "Aranyhegy",
+            ""
+          ],
+          "coordinates": [
+            18.7493674,
+            47.7935833
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/3180684626"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 20,
+      "sourceCartodbId": 21,
+      "name": "Döbönkút",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 4245281.395266178,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "municipal_name_used_2023",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": []
+    },
+    {
+      "sourceFeatureIndex": 21,
+      "sourceCartodbId": 22,
+      "name": "Szamárhegy",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 2309475.6085586245,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "municipal_name_used_2023",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": []
+    },
+    {
+      "sourceFeatureIndex": 22,
+      "sourceCartodbId": 23,
+      "name": "Búbánatvölgy",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 476821.9442244286,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:419882524",
+          "name": "Búbánatvölgy",
+          "aliases": [
+            "Búbánatvölgy",
+            ""
+          ],
+          "coordinates": [
+            18.8105355,
+            47.8105335
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/419882524"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 23,
+      "sourceCartodbId": 24,
+      "name": "Kerektó",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 1491757.8564208949,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "not_separately_verified",
+      "municipalNameUse2023": false,
+      "matchingCurrentOsmNamePoints": []
+    },
+    {
+      "sourceFeatureIndex": 24,
+      "sourceCartodbId": 25,
+      "name": "Pilisszentlélek",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 541521.6453591879,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:354538416",
+          "name": "Pilisszentlélek",
+          "aliases": [
+            "Pilisszentlélek",
+            "Huta"
+          ],
+          "coordinates": [
+            18.8422617,
+            47.7297374
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/354538416"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 25,
+      "sourceCartodbId": 26,
+      "name": "Kenyérmező",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 1501875.852007784,
+      "outsideParentAreaM2": 516.7927093332291,
+      "insideParentAreaFraction": 0.9996559018452541,
+      "parentFullyContains": false,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": false,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:4073099498",
+          "name": "Kenyérmező",
+          "aliases": [
+            "Kenyérmező",
+            ""
+          ],
+          "coordinates": [
+            18.7250985,
+            47.7439142
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/4073099498"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 26,
+      "sourceCartodbId": 27,
+      "name": "Tábor",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 2316988.6765808514,
+      "outsideParentAreaM2": 3132.7630073556884,
+      "insideParentAreaFraction": 0.9986479161339802,
+      "parentFullyContains": false,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": false,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:4073099499",
+          "name": "Tábor",
+          "aliases": [
+            "Tábor",
+            ""
+          ],
+          "coordinates": [
+            18.7346932,
+            47.7380973
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/4073099499"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 27,
+      "sourceCartodbId": 28,
+      "name": "Szalézi lakótelep",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 271715.0269296043,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": false,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:4073099497",
+          "name": "Szalézi lakótelep",
+          "aliases": [
+            "Szalézi lakótelep",
+            ""
+          ],
+          "coordinates": [
+            18.7361833,
+            47.7519404
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/4073099497"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 28,
+      "sourceCartodbId": 29,
+      "name": "Újfalu",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 1159669.914930834,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": false,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:12084946925",
+          "name": "Újfalu",
+          "aliases": [
+            "Újfalu",
+            ""
+          ],
+          "coordinates": [
+            18.7480668,
+            47.7866883
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/12084946925"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 29,
+      "sourceCartodbId": 30,
+      "name": "Kovácsi lakótelep",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 267247.92269105074,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": false,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:12084947164",
+          "name": "Kovácsi lakótelep",
+          "aliases": [
+            "Kovácsi lakótelep",
+            ""
+          ],
+          "coordinates": [
+            18.7459586,
+            47.7791548
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/12084947164"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 30,
+      "sourceCartodbId": 31,
+      "name": "Ipari park",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 1805830.306154569,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "local_area",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": false,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:12084973064",
+          "name": "Ipari park",
+          "aliases": [
+            "Ipari park",
+            ""
+          ],
+          "coordinates": [
+            18.7501635,
+            47.7702724
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/12084973064"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 31,
+      "sourceCartodbId": 32,
+      "name": "Kenderes",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 879795.0448271803,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": [
+        {
+          "id": "osm:node:8222813256",
+          "name": "Kenderes",
+          "aliases": [
+            "Kenderes",
+            ""
+          ],
+          "coordinates": [
+            18.7529707,
+            47.7821689
+          ],
+          "pointInsideHistoricalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "sourceUrl": "https://www.openstreetmap.org/node/8222813256"
+        }
+      ]
+    },
+    {
+      "sourceFeatureIndex": 32,
+      "sourceCartodbId": 33,
+      "name": "Diósvölgy",
+      "validGeometry": true,
+      "geometryChanged": false,
+      "areaM2": 1569749.9291646965,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "municipal_name_used_2023",
+      "municipalNameUse2023": true,
+      "matchingCurrentOsmNamePoints": []
+    }
+  ],
+  "convertedSha256": "169bb059c571c1f85e8809b6dd23249d36fe4d41ecc4a5023578207f20d90592",
+  "reproduce": "PYTHONPATH=.local/geodata python3 data/neighborhoods/sources/public-vector-next/convert-esztergom.py --check"
+}

@@ -1,0 +1,398 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "reviewer": "Independent remaining_pixel_audit agent",
+  "verdict": "pass_separate_low_confidence_inferred_cap_candidates_not_observed_or_verified_boundaries",
+  "scope": "Separate honest-flag, literal-source reading, topology, arithmetic and65-observed-contour nonoverlap audit for two explicitly inferred cap reconstructions. No producer code imported/invoked.",
+  "reconstructedCandidateCount": 2,
+  "observedFullSourceContoursInThisFile": 0,
+  "observedContourReferencesChecked": 65,
+  "coverageInterpretation": "65 observed source contours plus2 partially reconstructed low-confidence candidates. This is not67 verified/current boundaries. All inherited geographic placement remains unverified.",
+  "strictReconstructionValidCount": 2,
+  "strictAlternativeScenarioValidCount": 2,
+  "exactOriginalNativeSupportCropsChecked": 10,
+  "allInferredEdgesRetainUnverifiedQuarterInkIdentity": true,
+  "allFullRingsMarkedSourceContourIsObservedFalse": true,
+  "allCandidatesLowConfidence": true,
+  "frozenNamesPixelToEovMatrix": [
+    [
+      32.40279765170495,
+      -0.05162721238783206,
+      0.0
+    ],
+    [
+      -0.09935096386699437,
+      -32.79278942494659,
+      0.0
+    ],
+    [
+      578132.6033487103,
+      90974.06269655228,
+      1.0
+    ]
+  ],
+  "newGeoreferenceModelFitted": false,
+  "newCapsMaximumOverlapWithAll65ObservedDegreesSquared": 0.0,
+  "newCapPairOverlapDegreesSquared": 0.0,
+  "alternativeChordMaximumOverlapWithAll65ObservedDegreesSquared": 0.0,
+  "alternativeChordPairOverlapDegreesSquared": 0.0,
+  "adoptedVsOtherAlternativeMaximumOverlapDegreesSquared": 0.0,
+  "observedFiveGeometrySha256Unchanged": "a27535ffae4e4549f76200e207fa80fc6796dfbe394740eacce57b7df7693acc",
+  "observedContourPackagesOrAuditModified": false,
+  "sourcePixelAndInheritedGridMetricsAreNotAccuracyClaims": true,
+  "uncertainContinuationApprovedAsObservedInk": false,
+  "primaryApprovedCount": 0,
+  "claimedAbsoluteAccuracy": null,
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "networkUsed": false,
+  "producerFilesModified": false,
+  "inputFingerprints": [
+    {
+      "path": "cap-arpadteto-bracket-source-preview.png",
+      "sha256": "637d8c93f9b1275b5d2abcfe1f6bbf302a6a3802271a31dde223e2209a048613"
+    },
+    {
+      "path": "cap-arpadteto-figure12-native.png",
+      "sha256": "156fdef031ac42a1c975051df890f789fd6fdb7556068d6c59d85649338e6148"
+    },
+    {
+      "path": "cap-arpadteto-figure13-native.png",
+      "sha256": "842405d0828b7b6019d935fbb4cff9d65075a142371581e19e354d7ed443dc4a"
+    },
+    {
+      "path": "cap-arpadteto-figure14-native.png",
+      "sha256": "38b97717ea2d3ee471abd4c261e26253093d6f64981e2e601dc9c36e07a7b038"
+    },
+    {
+      "path": "cap-arpadteto-figure15-native.png",
+      "sha256": "194da2ca677370eb39742a6ec91694af440ffcd4d6fd63b5b698a23e3ba61da4"
+    },
+    {
+      "path": "cap-arpadteto-figure9-native.png",
+      "sha256": "14a6fdba67e47dd5bf5550b49b3a5d4a3a13e1205ad4d993d3ab3c6567d0f25d"
+    },
+    {
+      "path": "cap-conversion-proof.json",
+      "sha256": "277774a022b37cc4d339083336b32b7343191d2ca78e7d0f4aa0691d263ac5bc"
+    },
+    {
+      "path": "cap-petofi-akna-bracket-source-preview.png",
+      "sha256": "4ffdd6e0d4395575ef20523b18c2a8172c939729629885fd625d1177795221a5"
+    },
+    {
+      "path": "cap-petofi-akna-figure12-native.png",
+      "sha256": "ad5ec43e3c1f4c106aa7eba35a54600fc4eea269445119034c4ee4f532181a25"
+    },
+    {
+      "path": "cap-petofi-akna-figure13-native.png",
+      "sha256": "32e7437478849601d55d04f1f2509ef906858b9e9c795620c58c52b479cf74ee"
+    },
+    {
+      "path": "cap-petofi-akna-figure14-native.png",
+      "sha256": "eac9b4bad091b6e2958f2d8e592c76f302ef46d51f32c7c5c2072e1b7a239d76"
+    },
+    {
+      "path": "cap-petofi-akna-figure15-native.png",
+      "sha256": "01b82be3b6c379c3f97e4101f7f3fa1c3c11d94feb2c999e024043d1174bdedb"
+    },
+    {
+      "path": "cap-petofi-akna-figure9-native.png",
+      "sha256": "125c4dab3e10d28c1da659f901f714e8de7f53a237d6f7bdd5890a4c67a0d6fc"
+    },
+    {
+      "path": "conversion-proof.json",
+      "sha256": "2bf4659b1bb0f7f2488856196bd24168d98c55f7b294a99a89758280d71f071e"
+    },
+    {
+      "path": "first-conversion-proof.json",
+      "sha256": "129a4ec7ac6373422edf18389d95c799f2c35f30155d81cc846ac6eced091f0b"
+    },
+    {
+      "path": "first-source-inferred.geojson",
+      "sha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95"
+    },
+    {
+      "path": "independent-cap-audit.py",
+      "sha256": "020d393597c5f25b007bf3a118166a00729cda21f7bd3c7bd7d4f122b44b1073"
+    },
+    {
+      "path": "independent-final-gap-review.json",
+      "sha256": "f43eadb757de17ef3bccd6397ad6ebacf2381d4571cbdaafc4a10e98e35a97fc"
+    },
+    {
+      "path": "independent-manual-islands-review.json",
+      "sha256": "01fb1b4cfeb1064e0b24f2e273eaea36c2f77c916d168b2097a524f7ed9d7f41"
+    },
+    {
+      "path": "islands-review.json",
+      "sha256": "349ee245c1406862e5de4489a5674ff1f30c65d8d47c32a6fd6f79d32b88d364"
+    },
+    {
+      "path": "pdf63-figure12-xref642.jpeg",
+      "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+    },
+    {
+      "path": "pdf65-figure13-xref647.jpeg",
+      "sha256": "f46d9d8c8e40ef73ed185784150343934757c9eea9f64578c5cee9a28c5a9b0b"
+    },
+    {
+      "path": "pdf67-figure14-xref650.jpeg",
+      "sha256": "afa974367aba5aeef70d110af05c6f8abfebfd3663e751a3832e16704a30d686"
+    },
+    {
+      "path": "pdf70-figure15-xref654.jpeg",
+      "sha256": "4d70f3e99955472cb7bd598e2c887fd71f31599c34e5721c21b52e27bb5d1150"
+    },
+    {
+      "path": "pecs-image-alignment.json",
+      "sha256": "bbfeea6e96ef9233058c991533c0572ec0df4c1baeac88db5593c91f336e67b6"
+    },
+    {
+      "path": "pecs-p48-names.jpeg",
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "path": "pecs-registration-northwest-only-diagnostic.json",
+      "sha256": "8ba7ab1515b94f37253b64bdbe2144e73e540081ede3ae2cf9838f65b7b87f13"
+    },
+    {
+      "path": "reconstructed-cap-inferred.geojson",
+      "sha256": "2ebf355e13e20b2e57cbe88b18bf12c29fb449bdb62b51cc23f35aad5a49d5df"
+    },
+    {
+      "path": "remaining-cap-source-quantification.json",
+      "sha256": "46e210f5e6c5c3db32f40577fb56c1bf6e55f2394fdd3d62d94943d6dfdac3b3"
+    },
+    {
+      "path": "remaining-conversion-proof.json",
+      "sha256": "97455899533fb25c917c3fb60c8f0ac80134491bd11a523e5fbb418db06ffd4b"
+    },
+    {
+      "path": "remaining-source-inferred.geojson",
+      "sha256": "cfdd86a7dc73d6f6a76ebf9a2377a0e7e077992761f3b23fd675abf102c8826a"
+    },
+    {
+      "path": "source-inferred.geojson",
+      "sha256": "a27535ffae4e4549f76200e207fa80fc6796dfbe394740eacce57b7df7693acc"
+    },
+    {
+      "path": "strict-validator-snapshot.mjs",
+      "sha256": "abf1b564180d9b33593f9ce0d711eb996bf8f3a1d9cbb03b7527167ac515f3d7"
+    }
+  ],
+  "records": [
+    {
+      "name": "Árpádtető",
+      "reconstructionConfidence": "low",
+      "fullRingSourceContourIsObserved": false,
+      "literalObservedOpenChainRgbExact": true,
+      "sourceFineUnitIdentityEvidence": "Previous literal Figure9/full-island review supports the fine-unit identity and observed surrounding chain, while explicitly withholding the pale[329,82] interval. It remains an inferred cap here.",
+      "observedChainStepCount": 34,
+      "observedChainLengthPixels": 40.21320343559643,
+      "observedChainLengthMetresInUnverifiedInheritedGrid": 1312.276217053554,
+      "candidatePerimeterLengthMetresInUnverifiedInheritedGrid": 1391.1372410726915,
+      "inferredPerimeterFractionInUnverifiedInheritedGrid": 0.05668816971525279,
+      "uncertainInternalPixelCount": 1,
+      "inferredSegmentCount": 2,
+      "inferredSegments": [
+        {
+          "sourceStartPixel": [
+            328,
+            81
+          ],
+          "sourceEndPixel": [
+            329,
+            82
+          ],
+          "sourceLengthPixels": 1.4142135623730951,
+          "lengthMetresInUnverifiedInheritedGrid": 46.068084094775955,
+          "quarterBoundaryInkIdentityVerified": false
+        },
+        {
+          "sourceStartPixel": [
+            329,
+            82
+          ],
+          "sourceEndPixel": [
+            329,
+            83
+          ],
+          "sourceLengthPixels": 1.0,
+          "lengthMetresInUnverifiedInheritedGrid": 32.79293992436132,
+          "quarterBoundaryInkIdentityVerified": false
+        }
+      ],
+      "inferredCapLengthPixels": 2.414213562373095,
+      "inferredCapLengthMetresInUnverifiedInheritedGrid": 78.86102401913728,
+      "inferredPerimeterFractionPixels": 0.0566352299152466,
+      "candidateNativeSourceAreaPixelsSquared": 112.0,
+      "alternativeChordSourceLengthPixels": 2.23606797749979,
+      "alternativeChordLengthMetresInUnverifiedInheritedGrid": 73.11187729129908,
+      "alternativeNativeSourceAreaPixelsSquared": 111.5,
+      "alternativeAreaDifferencePixelsSquared": 0.5,
+      "adoptedAndAlternativeSimpleRingsIndependentlyCheckedByIntegerDeterminants": true,
+      "unverifiedCapInkIdentityPreserved": true,
+      "gridLengthsAreNotAbsoluteAccuracyOrErrorBounds": true,
+      "otherThematicFigureCoordinatesTransferred": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "name": "Petőfi-akna",
+      "reconstructionConfidence": "low",
+      "fullRingSourceContourIsObserved": false,
+      "literalObservedOpenChainRgbExact": true,
+      "sourceFineUnitIdentityEvidence": "Original Figure9 literal Petofi-akna label identifies the isolated northern island above M utca/Floriantelep. The repeated complete island form in four original demographic figures supports identity and cap form; the pale cap/gray-line mixture remains unverified quarter-boundary ink.",
+      "observedChainStepCount": 33,
+      "observedChainLengthPixels": 38.384776310850235,
+      "observedChainLengthMetresInUnverifiedInheritedGrid": 1252.410461661021,
+      "candidatePerimeterLengthMetresInUnverifiedInheritedGrid": 1475.718389547939,
+      "inferredPerimeterFractionInUnverifiedInheritedGrid": 0.15132150515202625,
+      "uncertainInternalPixelCount": 5,
+      "inferredSegmentCount": 6,
+      "inferredSegments": [
+        {
+          "sourceStartPixel": [
+            501,
+            18
+          ],
+          "sourceEndPixel": [
+            502,
+            19
+          ],
+          "sourceLengthPixels": 1.4142135623730951,
+          "lengthMetresInUnverifiedInheritedGrid": 46.06808409476558,
+          "quarterBoundaryInkIdentityVerified": false
+        },
+        {
+          "sourceStartPixel": [
+            502,
+            19
+          ],
+          "sourceEndPixel": [
+            502,
+            20
+          ],
+          "sourceLengthPixels": 1.0,
+          "lengthMetresInUnverifiedInheritedGrid": 32.79293992437552,
+          "quarterBoundaryInkIdentityVerified": false
+        },
+        {
+          "sourceStartPixel": [
+            502,
+            20
+          ],
+          "sourceEndPixel": [
+            502,
+            21
+          ],
+          "sourceLengthPixels": 1.0,
+          "lengthMetresInUnverifiedInheritedGrid": 32.792939924360965,
+          "quarterBoundaryInkIdentityVerified": false
+        },
+        {
+          "sourceStartPixel": [
+            502,
+            21
+          ],
+          "sourceEndPixel": [
+            503,
+            22
+          ],
+          "sourceLengthPixels": 1.4142135623730951,
+          "lengthMetresInUnverifiedInheritedGrid": 46.06808409469433,
+          "quarterBoundaryInkIdentityVerified": false
+        },
+        {
+          "sourceStartPixel": [
+            503,
+            22
+          ],
+          "sourceEndPixel": [
+            503,
+            23
+          ],
+          "sourceLengthPixels": 1.0,
+          "lengthMetresInUnverifiedInheritedGrid": 32.792939924360965,
+          "quarterBoundaryInkIdentityVerified": false
+        },
+        {
+          "sourceStartPixel": [
+            503,
+            23
+          ],
+          "sourceEndPixel": [
+            503,
+            24
+          ],
+          "sourceLengthPixels": 1.0,
+          "lengthMetresInUnverifiedInheritedGrid": 32.792939924360965,
+          "quarterBoundaryInkIdentityVerified": false
+        }
+      ],
+      "inferredCapLengthPixels": 6.82842712474619,
+      "inferredCapLengthMetresInUnverifiedInheritedGrid": 223.30792788691832,
+      "inferredPerimeterFractionPixels": 0.15102727977399094,
+      "candidateNativeSourceAreaPixelsSquared": 102.5,
+      "alternativeChordSourceLengthPixels": 6.324555320336759,
+      "alternativeChordLengthMetresInUnverifiedInheritedGrid": 207.0669326351202,
+      "alternativeNativeSourceAreaPixelsSquared": 100.5,
+      "alternativeAreaDifferencePixelsSquared": 2.0,
+      "adoptedAndAlternativeSimpleRingsIndependentlyCheckedByIntegerDeterminants": true,
+      "unverifiedCapInkIdentityPreserved": true,
+      "gridLengthsAreNotAbsoluteAccuracyOrErrorBounds": true,
+      "otherThematicFigureCoordinatesTransferred": false,
+      "claimedAbsoluteAccuracy": null
+    }
+  ],
+  "strictValidationRecords": [
+    {
+      "id": "pecs-final-cap:arpadteto",
+      "name": "Árpádtető",
+      "valid": true,
+      "bbox": [
+        18.251136121900284,
+        46.13382164342797,
+        18.25576937654488,
+        46.138253992441264
+      ],
+      "vertices": 37
+    },
+    {
+      "id": "pecs-final-cap:petofiakna",
+      "name": "Petőfi-akna",
+      "valid": true,
+      "bbox": [
+        18.323941003558122,
+        46.15076255232729,
+        18.328570369194367,
+        46.15548687154873
+      ],
+      "vertices": 40
+    },
+    {
+      "id": "alternative:pecs-final-cap:arpadteto",
+      "name": "Unadopted endpoint chord Árpádtető",
+      "valid": true,
+      "bbox": [
+        18.251136121900284,
+        46.13382164342797,
+        18.25576937654488,
+        46.138253992441264
+      ],
+      "vertices": 36
+    },
+    {
+      "id": "alternative:pecs-final-cap:petofiakna",
+      "name": "Unadopted endpoint chord Petőfi-akna",
+      "valid": true,
+      "bbox": [
+        18.323941003558122,
+        46.15076255232729,
+        18.328570369194367,
+        46.15548687154873
+      ],
+      "vertices": 35
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-15",
+  "municipality": "Körmend",
+  "status": "frozen",
+  "assignedNameCount": 6,
+  "collectedPolygonCount": 6,
+  "estimatedPolygonCount": 6,
+  "lowConfidencePolygonCount": 6,
+  "pointCirclesCreated": 0,
+  "verifiedAliasCount": 0,
+  "unresolvedNameCount": 0,
+  "features": [
+    {
+      "name": "Belváros",
+      "id": "estimated:kormend:belvaros:municipal-rakoczi-raba",
+      "areaM2": 1402334,
+      "estimated": true,
+      "lowConfidence": true
+    },
+    {
+      "name": "Bartók Béla lakótelep",
+      "id": "estimated:kormend:bartok-bela-lakotelep:source-street-envelope",
+      "areaM2": 45384,
+      "estimated": true,
+      "lowConfidence": true
+    },
+    {
+      "name": "Kis Amerika",
+      "id": "estimated:kormend:kis-amerika:source-street-envelope",
+      "areaM2": 288255,
+      "estimated": true,
+      "lowConfidence": true
+    },
+    {
+      "name": "Rokkant telep",
+      "id": "estimated:kormend:rokkant-telep:source-street-envelope",
+      "areaM2": 172042,
+      "estimated": true,
+      "lowConfidence": true
+    },
+    {
+      "name": "Tisztviselő telep",
+      "id": "estimated:kormend:tisztviselo-telep:source-street-envelope",
+      "areaM2": 344270,
+      "estimated": true,
+      "lowConfidence": true
+    },
+    {
+      "name": "Vasúton túl",
+      "id": "estimated:kormend:vasuton-tul:source-street-envelope",
+      "areaM2": 507047,
+      "estimated": true,
+      "lowConfidence": true
+    }
+  ],
+  "limitations": [
+    "All exact quarter extremities remain uncertain.",
+    "Rokkant west/north transitions and Hunyadi division are particularly uncertain.",
+    "Street-list sources are OSM-derived associations, not official published polygons.",
+    "Overlap between historical/local quarter usages is retained.",
+    "No unseen PDF map tracing or point-buffer geometry construction."
+  ],
+  "featuresSha256": "ac141c932051810de0c4285d1299919a3f680dc059d8a3017b2e19fd8bf65b46",
+  "validation": "validation.json"
+}

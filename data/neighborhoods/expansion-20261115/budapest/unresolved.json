@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-15",
+  "unresolvedStartingNames": [],
+  "note": "All26 starting names now have explicit rough estimated polygons. Label discrepancies remain below; no complete-city boundary coverage is asserted.",
+  "knownIssues": [
+    {
+      "name": "Nagyiccetelep",
+      "reason": "Resolved by a 2013 municipal historical five-road loop west of Hősök fasora. The archived label east of that road is outside the source-led polygon, retained without enlargement. Historical source variants exist; current official cadastral accuracy is not asserted.",
+      "sourceUrl": "https://www.bp16.hu/sites/default/files/hir/2013/dokumentum/2013_09_25_18_pdf_21376.pdf"
+    },
+    {
+      "name": "Európa lakókert",
+      "reason": "Historical developer/press four-street block and archived OSM label point disagree; source-led block is published with pointInside=false. No enlargement solely to contain the point."
+    }
+  ],
+  "proposedAliases": []
+}

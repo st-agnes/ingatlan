@@ -1,0 +1,29 @@
+{
+  "id": "szombathely-ehen-gyula",
+  "path": "data/neighborhoods/sources/municipal-szombathely-next/szombathely-ehen-gyula.geojson",
+  "sha256": "60a0a7a20b48a421dd695b7a798a0ca474f325cea7d9430bd57210e208768ea8",
+  "municipality": "Szombathely",
+  "method": "Official 2013 perimeter text interpreted as an ordered road-centreline circuit on actual 2026 OSM node geometry. Every junction is the unique shared OSM node of successive named roads; every edge is consecutive in an original OSM way. No inferred connectors or geometry repair.",
+  "evidenceUrls": [
+    "https://kbr.szombathely.hu/kbrfile/46469.pdf"
+  ],
+  "sourceDocuments": [
+    {
+      "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+      "path": "data/neighborhoods/sources/municipal-szombathely-next/szombathely-ivs.source.pdf",
+      "sha256": "aade0d35a60e4ecd230a26c2c7dabcfc26ec76466ab86310e6828f34db714500",
+      "page": 151,
+      "pdfPageZeroBased": 150,
+      "section": "15. Éhen Gyula kertváros"
+    }
+  ],
+  "license": "ODbL-1.0",
+  "propertyOverrides": {
+    "boundaryKind": "neighbourhood",
+    "canonicalNameIsNeighborhood": true,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-szombathely-next/manifest.json",
+  "reviewDatasetId": "szombathely-ehen-gyula",
+  "rightsStatus": "ODbL-1.0 source-derived road geometry; municipal PDF redistribution licence not independently established"
+}

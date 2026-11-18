@@ -154,11 +154,52 @@ bash scripts/gcp/run-dev.sh --deploy-only
 
 Ha a helyi Docker-feltöltés korábban hálózati hibát adott, a fenti parancsnak add át a már ellenőrzött, feltöltött backendkép `--image` paraméterét is az előző szakasz szerint. A módosítás frontend-telepítési beállítás: azonos backendhez nem szükséges új képet feltölteni. Az npm `warn` üzenetei nem bizonyítják a Cloud Run-módosítás elutasításának okát. Más jogosultsági vagy API-hiba ugyanezt az általános Firebase-üzenetet is okozhatja; ismétlődés esetén a Firebase részletes naplójában szereplő Google HTTP-státusz és hibaüzenet alapján kell folytatni.
 
+## Városrészek és Google-címkeresés
+
+Az új backendkép a `data/neighborhoods/search-areas.geojson.gz` rögzített forrásának mind a **4308** városrészhatárát betölti a MySQL `NeighborhoodSearchAreas` táblájába, natív, térben indexelt `SRID 4326` geometriaként. A több részből álló határok és a lyukak megmaradnak. Az import adatbáziszár és verziójelölő mellett, tranzakcióban fut; azonos verzió hidegindítása nem importálja újra a geometriákat. A TEST alkalmazásadatok visszaállítása ezt a katalógust megőrzi. Az indulás sikertelen importnál hibával megáll. A böngésző csak a neveket és azonosítókat kapja meg, a határgeometriákat nem.
+
+A keresésben egyszerre több városrész választható, VAGY kapcsolatban a többi kiválasztott helyszínnel. Az ingatlan tagságát a teljes cím Google által visszaadott koordinátája és a tárolt sokszögek metszése határozza meg; határpont és átfedés esetén több tagság is lehet. A városrészhatárok egy része becslés, nem hivatalos közigazgatási határ. A pontos cím és a koordináta a tulajdonos saját adatlapján marad; a címkeresési eredmény az adott ingatlanhoz tartozik, felhasználók között nincs közös címeredmény-gyorsítótár.
+
+A beágyazott, egyértelműen kitalált TEST ingatlanok Google-kérés nélkül, a forrássokszögek belsejéből generált tesztkoordinátával indulnak. Így a telepítés és a példafiókok Google-kulcs nélkül is működnek. Egy valódi új vagy módosított cím ellenőrzése kulcs nélkül HTTP **503** választ ad; a rendszer nem helyettesíti a címet településközépponttal vagy tesztkoordinátával. A normál felhős telepítés nem kapcsolja be a külön fejlesztői tesztcímkeresőt.
+
+### A szerveroldali Google-kulcs beállítása
+
+Az `ingatlan-513620` projektben engedélyezd a Google Maps Platform **Geocoding API** szolgáltatását, és hozz létre hozzá szerveroldali API-kulcsot, a kulcs API-hozzáférését erre a szolgáltatásra korlátozva. A Geocoding API külön forgalmi díjazást használ; a Google Cloud konzolban állíts be megfelelő kvótát. A kulcs értéke kizárólag a Secret Managerbe kerülhet.
+
+Az első beállítás Cloud Shellben, az alkalmazás bootstrapje után:
+
+```sh
+set +x
+gcloud secrets create otthonra-geocoding-dev \
+  --project=ingatlan-513620 --replication-policy=automatic
+read -rsp 'Google Geocoding API-kulcs: ' otthonra_geocoding_key
+printf '\n'
+printf '%s' "$otthonra_geocoding_key" | gcloud secrets versions add otthonra-geocoding-dev \
+  --project=ingatlan-513620 --data-file=-
+unset otthonra_geocoding_key
+gcloud secrets add-iam-policy-binding otthonra-geocoding-dev \
+  --project=ingatlan-513620 \
+  --member=serviceAccount:otthonra-runtime-dev@ingatlan-513620.iam.gserviceaccount.com \
+  --role=roles/secretmanager.secretAccessor
+```
+
+Meglévő titoknál a létrehozó parancsot hagyd ki; kulcscserénél az új titokverzió hozzáadása és egy új alkalmazásrevízió telepítése szükséges. A kulcsot ne írd parancssori argumentumba, a manifestbe, GitHub-változóba vagy a frontend konfigurációjába.
+
+Ezután a nem titkos `.local/gcp/dev-config.json` objektumához add hozzá ezt az egy erőforrásnevet:
+
+```json
+"googleGeocodingSecret": "otthonra-geocoding-dev"
+```
+
+A mező opcionális; kizárólag ezt a teszt-erőforrásnevet fogadja el. A bootstrap ismétlése megőrzi az azonos projekthez már beállított mezőt. GitHub Actions használatakor a frissített manifest tartalmával frissítsd a `GCP_DEV_CONFIG` repository variable értékét is, majd telepítsd az aktuális backendképet. Az új Cloud Run-revízió a titok `latest` verzióját közvetlenül a `Geocoding__Google__ApiKey` szerveroldali környezeti változóba köti; a webes fájlokba és a telepítési naplóba nem másolja a kulcsot. Hiányzó titok vagy olvasási jogosultság esetén a Cloud Run indulása meghiúsul.
+
+A helyi, szerveroldali megfelelő a `Geocoding__Google__ApiKey` környezeti változó. A városrészek generált adatainak offline ellenőrzése: `python3 scripts/import-neighborhoods.py --check`. A címkeresési szolgáltató elérhetőségét az adatbázis-health sikeres válasza önmagában nem bizonyítja.
+
 ## Használat és ellenőrzés
 
 A telepítés az új Cloud Run API-t a Hosting módosítása előtt ellenőrzi. A Firebase közzétételének befejezése után a webes ellenőrzés legfeljebb 12 alkalommal, 5 másodperces várakozással kérdezi le újra az oldalt, a runtime-konfigurációt és az API állapotát. Minden kérés külön URL-paramétert kap, és tiltja a gyorsítótárazást. Átmenetileg még korábbi Hosting-útvonal válaszolhat; siker csak az aktuális beágyazott tesztadat-verzióval lehetséges. Tartós eltérésnél a napló kiírja a hibás útvonalat és feltételt, verzióeltérésnél a kapott és az elvárt verziót is. A 401/403 válasz azonnal megállítja az ellenőrzést. A „release complete” után kapott ellenőrzési hiba nem vonja vissza automatikusan a már közzétett kiadást.
 
-A backendbe beágyazott `20261110-test-fixtures-v4` tesztadatcsomag **14 felhasználót, 355 ingatlant és 353 keresést** hoz létre. Ebből 3 fiók ingatlanközvetítő, 11 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
+A backendbe beágyazott `20261116-test-fixtures-v5` tesztadatcsomag **14 felhasználót, 355 ingatlant és 353 keresést** hoz létre. Ebből 3 fiók ingatlanközvetítő, 11 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
 
 | Fiók | Fióktípus | E-mail-cím |
 |---|---|---|
@@ -204,7 +245,7 @@ A CI a generált fájl és a katalógus egyezését is ellenőrzi. A verzió és
 
 ### Külön API-s feltöltő fejlesztői használatra
 
-A `seed-dev.mjs` megmarad opcionális, külön eszközként az azonosított működő tesztoldalhoz. Ez nem része a normál telepítésnek. Például egy futó revízión belül új, elnevezett adatcsomag adható hozzá:
+A `seed-dev.mjs` megmarad opcionális fejlesztői eszközként olyan backendhez, ahol kifejezetten be van kapcsolva a fenntartott tesztcímekhez tartozó `Geocoding__EnableTestGeocoder=true` szolgáltató. Ez nem része a normál felhős telepítésnek: a kitalált tesztcímeket nem szabad a Google-lel geokódoltatni. A szokásos Google Cloud-tesztoldalon a telepítéskori automatikus feltöltést használd. Fejlesztői tesztcímkeresővel futtatott backendnél egy revízión belül új, elnevezett adatcsomag adható hozzá:
 
 ```sh
 node scripts/gcp/seed-dev.mjs --batch proba-2 --config /abszolut/utvonal/dev-config.json
@@ -232,7 +273,7 @@ Az alaptelepítés külön tesztadatbázist használ, amelyben a backend indulá
 | Adatbázis | `otthonra_dev`, standard automatikus mentésekkel |
 | Hosting | `otthonra-dev-PROJECTNUMBER`, Google által kezelt HTTPS |
 | Artifact Registry | `otthonra-dev`, a backend konténerképei |
-| Titkok | `otthonra-mysql-dev` és `otthonra-jwt-dev` a Secret Managerben |
+| Titkok | `otthonra-mysql-dev`, `otthonra-jwt-dev`, opcionálisan `otthonra-geocoding-dev` a Secret Managerben |
 | Futtatási identitás | `otthonra-runtime-dev` szolgáltatásfiók |
 | Visszatérítések időzítése | `otthonra-refunds-dev` Cloud Scheduler-feladat, óránként, külön OIDC-kérési identitással |
 | GitHub-telepítési identitás | `otthonra-deploy-dev` és az `otthonra-dev` Workload Identity pool |

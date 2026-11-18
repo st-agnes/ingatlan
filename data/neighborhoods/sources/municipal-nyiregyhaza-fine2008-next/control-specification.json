@@ -1,0 +1,455 @@
+{
+  "schemaVersion": 1,
+  "coordinateSpace": "upper KSH27 native image pixels",
+  "sourceImage": "ksh27-native.jpeg",
+  "fitModel": "Unweighted affine image pixels to EPSG:23700 from 11 manually identified municipal outline corners. Ten additional municipal outline corners withheld from fit.",
+  "controls": [
+    {
+      "id": "outline-0",
+      "role": "fit",
+      "sourcePixel": [
+        10,
+        538
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 0,
+      "targetWgs84": [
+        21.5575186,
+        47.916191
+      ],
+      "targetEov": [
+        837591.8585066649,
+        288846.03720823606
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-9",
+      "role": "fit",
+      "sourcePixel": [
+        378,
+        817
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 29,
+      "targetWgs84": [
+        21.6803213,
+        47.8456593
+      ],
+      "targetEov": [
+        847030.2107617104,
+        281309.819048389
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-16",
+      "role": "fit",
+      "sourcePixel": [
+        625,
+        788
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 52,
+      "targetWgs84": [
+        21.7671208,
+        47.8501365
+      ],
+      "targetEov": [
+        853505.9368976192,
+        282029.6386671785
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-32",
+      "role": "fit",
+      "sourcePixel": [
+        827,
+        487
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 97,
+      "targetWgs84": [
+        21.8437943,
+        47.9191697
+      ],
+      "targetEov": [
+        858966.374146081,
+        289902.94233752065
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-40",
+      "role": "fit",
+      "sourcePixel": [
+        777,
+        196
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 140,
+      "targetWgs84": [
+        21.8253275,
+        47.9877993
+      ],
+      "targetEov": [
+        857315.9254657705,
+        297480.1468539707
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-49",
+      "role": "fit",
+      "sourcePixel": [
+        632,
+        205
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 177,
+      "targetWgs84": [
+        21.7803768,
+        47.987956
+      ],
+      "targetEov": [
+        853961.9768345691,
+        297379.3493211377
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-73",
+      "role": "fit",
+      "sourcePixel": [
+        429,
+        102
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 230,
+      "targetWgs84": [
+        21.7092393,
+        48.0145109
+      ],
+      "targetEov": [
+        848554.4776279738,
+        300147.30888588866
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-74",
+      "role": "fit",
+      "sourcePixel": [
+        424,
+        45
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 235,
+      "targetWgs84": [
+        21.709382,
+        48.0285989
+      ],
+      "targetEov": [
+        848511.7998845794,
+        301713.3116080682
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-79",
+      "role": "fit",
+      "sourcePixel": [
+        254,
+        7
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 252,
+      "targetWgs84": [
+        21.6497234,
+        48.0390849
+      ],
+      "targetEov": [
+        844025.6692518082,
+        302728.9306779102
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-83",
+      "role": "fit",
+      "sourcePixel": [
+        364,
+        149
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 278,
+      "targetWgs84": [
+        21.6878032,
+        48.0058549
+      ],
+      "targetEov": [
+        846988.5714814997,
+        299131.1269899428
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-97",
+      "role": "fit",
+      "sourcePixel": [
+        119,
+        221
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 333,
+      "targetWgs84": [
+        21.5999704,
+        47.9898808
+      ],
+      "targetEov": [
+        840495.9860385067,
+        297138.2296507347
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-1",
+      "role": "held_out",
+      "sourcePixel": [
+        254,
+        679
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 6,
+      "targetWgs84": [
+        21.6401448,
+        47.8800854
+      ],
+      "targetEov": [
+        843897.8367343523,
+        285035.0887151845
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-5",
+      "role": "held_out",
+      "sourcePixel": [
+        275,
+        741
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 12,
+      "targetWgs84": [
+        21.645615,
+        47.8647306
+      ],
+      "targetEov": [
+        844363.4966664248,
+        283342.3057293201
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-17",
+      "role": "held_out",
+      "sourcePixel": [
+        628,
+        738
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 60,
+      "targetWgs84": [
+        21.7711655,
+        47.8626091
+      ],
+      "targetEov": [
+        853760.1744799777,
+        283426.15417551604
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-25",
+      "role": "held_out",
+      "sourcePixel": [
+        768,
+        548
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 86,
+      "targetWgs84": [
+        21.8215145,
+        47.9050716
+      ],
+      "targetEov": [
+        857357.7406243806,
+        288277.029718493
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-33",
+      "role": "held_out",
+      "sourcePixel": [
+        814,
+        423
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 103,
+      "targetWgs84": [
+        21.8412254,
+        47.9348494
+      ],
+      "targetEov": [
+        858712.2095909988,
+        291638.4381870051
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-42",
+      "role": "held_out",
+      "sourcePixel": [
+        734,
+        239
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 150,
+      "targetWgs84": [
+        21.8140933,
+        47.9793067
+      ],
+      "targetEov": [
+        856511.2606790833,
+        296506.6744058236
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-50",
+      "role": "held_out",
+      "sourcePixel": [
+        563,
+        205
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 178,
+      "targetWgs84": [
+        21.7561695,
+        47.9890454
+      ],
+      "targetEov": [
+        852151.8852231062,
+        297437.55180533684
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-72",
+      "role": "held_out",
+      "sourcePixel": [
+        464,
+        95
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 226,
+      "targetWgs84": [
+        21.7229191,
+        48.0157162
+      ],
+      "targetEov": [
+        849569.9306266517,
+        300316.081234712
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-76",
+      "role": "held_out",
+      "sourcePixel": [
+        385,
+        8
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 241,
+      "targetWgs84": [
+        21.6968847,
+        48.0373559
+      ],
+      "targetEov": [
+        847547.1936115563,
+        302654.8606638817
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    },
+    {
+      "id": "outline-81",
+      "role": "held_out",
+      "sourcePixel": [
+        309,
+        98
+      ],
+      "sourceIdentification": "Manually identified visible corner of the source municipality silhouette; current municipality boundary corner correspondence is inferred and requires visual review.",
+      "targetOriginalExteriorVertexIndex": 263,
+      "targetWgs84": [
+        21.6657127,
+        48.0181636
+      ],
+      "targetEov": [
+        845295.2683234143,
+        300443.6311987967
+      ],
+      "targetOsmRelationId": 1447608,
+      "manualSourcePixelPerturbationScenario": 2,
+      "perturbationIsMeasuredError": false
+    }
+  ],
+  "pointNamesUsedAsControls": false,
+  "currentMunicipalBoundaryIsContemporaneousWith2003Map": false,
+  "sourceBoundaryAgeAndGeneralizationRemainUncertain": true,
+  "independentInteriorPhysicalHoldoutCount": 0,
+  "claimedAbsoluteAccuracyMetres": null,
+  "initialBboxOverlayUsedAsBoundary": false
+}

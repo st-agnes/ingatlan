@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_inputs_for_six_explicit_estimated_candidates",
+  "originalPdfPath": ".local/neighborhoods/nationwide-docs/originals/zalaegerszeg-its.pdf",
+  "originalPdfSha256": "4534775c49466eba0460e583aa45a12127f0a46cd8c0e768ed689b830e4eb035",
+  "sourceImagePdfPageOneBased": 12,
+  "sourceImageXref": 105,
+  "inputs": [
+    {
+      "path": "zalaegerszeg-p12-image0.jpeg",
+      "sha256": "cf259e0c7c54c3b58a0cf1e624ef178432ae734336cd3b676a9c7f2675aa8e37"
+    },
+    {
+      "path": "zalaegerszeg-source-pages12-13.pdf",
+      "sha256": "ae2229f28a3e41985f29044a66bf52a2a8feaa2f4052fb2890ef25c6dce44b80"
+    },
+    {
+      "path": "zalaegerszeg-source-pages12-13.txt",
+      "sha256": "a94ff5751f1e66ae405e8b4ad629d37da19ec2fe551f634af40a2cd5e3f4fbc3"
+    },
+    {
+      "path": "zalaegerszeg-registration.json",
+      "sha256": "565a5bc9cd6887aedaddd2d6cacbdaff48c8ad8a9e541b11f6b4c555e45aa2a5"
+    },
+    {
+      "path": "zalaegerszeg-source-raster.geojson",
+      "sha256": "07a1475da509dcbc8216eb1ca23c91933e8cca376e736911d4494e424ccc0915"
+    },
+    {
+      "path": "zalaegerszeg-import.geojson",
+      "sha256": "70b502949fcc8333ead5ffc0d404cbdd6198ec0a1f09241f88bd3509fc056b6a"
+    },
+    {
+      "path": "zalaegerszeg-quarantine.geojson",
+      "sha256": "0e5f6d1f016ad295205f27c6fb102b2ef77a4a54d71573ce079b340bd8908a80"
+    }
+  ],
+  "georeferenceMeaning": "Frozen existing approximate municipal-perimeter fit, copied unchanged; no independent interior ground control. All new world placement remains inferred.",
+  "globalRegistriesModified": false,
+  "finalExport": "remaining-inferred-import.geojson",
+  "candidateFeatureCount": 6,
+  "copiedHistoricalSevenFeatureOutputsAreReferenceOnly": true
+}

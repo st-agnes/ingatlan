@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "originalPdf": {
+    "path": ".local/neighborhoods/next-towns/kiskunfelegyhaza-its2016.pdf",
+    "sha256": "5a32552dc02e2bca986d27d97e41633549b5d1f23147f8e00b6abbe7c421b48b",
+    "bytes": 4879268,
+    "sourceUrl": "https://kiskunfelegyhaza.hu/wp-content/uploads/2017/03/its_kiskunfelegyhaza_2016_felulvizsgalt.pdf",
+    "fullOriginalIncluded": false
+  },
+  "pinnedOsmPbf": {
+    "path": ".local/neighborhoods/hungary-latest.osm.pbf",
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "bytes": 329791850,
+    "timestamp": "2026-11-12T21:23:05Z",
+    "fullPbfIncluded": false
+  },
+  "inputs": [
+    {
+      "path": "source-map-p25-xref365.jpeg",
+      "sha256": "a7b734e8904b9215a4aba01dc3763ef72b6c21bc4dd813f6e06c8365dbd03e1a"
+    },
+    {
+      "path": "source-facts.json",
+      "sha256": "375c7dd14089ec53e5df84b9fd10972cd27b71cf61d8b28a5bd189e869da3955"
+    },
+    {
+      "path": "source-pixel-contours.geojson",
+      "sha256": "91224cc95c87ebcce913943cca90f01a8d0ea90c03b58d5f8e90aec2d96cf0f0"
+    },
+    {
+      "path": "source-segmentation.npz",
+      "sha256": "a145f802ccabeb6ee813c4d9e93c6d4628b39657ed7e86d515e661aece8fc819"
+    },
+    {
+      "path": "petofi-cap-evidence.json",
+      "sha256": "29d0e0fb1f787ea13b057853af15ca367e3fbb18a53a4a0c2231d1475246e7cf"
+    },
+    {
+      "path": "source-road-rail-reference.geojson",
+      "sha256": "3cefafe60bf7b3eeeca3b557f9a5b8d2758836333b66d51c085437f87905101b"
+    },
+    {
+      "path": "source-name-points.geojson",
+      "sha256": "37e83a4a088b6cb8a6144bfa528a40be2b04cdef3ff402536f24179fabdb1a46"
+    },
+    {
+      "path": "reference-extraction-proof.json",
+      "sha256": "588051e1c2a49417129f3bd63f3db57e8f7e0506d9fd91a5efdf17f0be4e9fc9"
+    }
+  ],
+  "sourcePixelGeometrySeparateFromWorldPlacement": true,
+  "sourceNamePointsUsedForFit": false,
+  "globalRegistryApplied": false
+}

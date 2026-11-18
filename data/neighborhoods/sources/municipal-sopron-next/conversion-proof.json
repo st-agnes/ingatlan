@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "inputs": [
+    {
+      "path": "source-pages1-2.pdf",
+      "sha256": "6213be7ec2318f03856a102d7791c2e98b3704a26cbc0c0f011df8c6e1bd063b"
+    },
+    {
+      "path": "native-source-segments.json",
+      "sha256": "318d3c29c994cfec178c80eba8f5bbfd9ba9d973ee1f153472a2d5adf2b4d5cb"
+    },
+    {
+      "path": "native-source-polygons.json",
+      "sha256": "9669fbed83781c14294e73ae38e1e5b2a0cf699686347a94de735dfd58b4cc30"
+    },
+    {
+      "path": "source-extraction-proof.json",
+      "sha256": "cc4c81188bea3ca75f3217f7f8b282a4bb46e9c6f1f4f18dd1bc90ede11a7a72"
+    },
+    {
+      "path": "registration.json",
+      "sha256": "cc110659529e9e25bd5aad77f69f9a7aee6e974dba13caaa6b7497459fb0af03"
+    },
+    {
+      "path": "calibration-municipality.geojson",
+      "sha256": "206df1f052921e1aba6ded97769905e4fbcc7df96a2212d277e0ec883763f4bd"
+    },
+    {
+      "path": "cross-page-cad-controls.json",
+      "sha256": "92b0f21a6cde976f2717c89c2e93b1b91a9961e4a337364308dd6536e1610841"
+    },
+    {
+      "path": "cross-page-cad-controls.json.gz",
+      "sha256": "a87a51326b79cb6f063af70438a180f30ca78f4185d33b2e017b375b7640d025"
+    }
+  ],
+  "sourceUnits": 4,
+  "fineNeighbourhoodCount": 0,
+  "wholePlanningUnitCount": 4,
+  "geographicCoordinatesAreNativePdfCoordinates": false,
+  "nativeSourceCoordinateSystem": "Page2 PDF points, origin top-left, y down",
+  "geographicOutputCrs": "EPSG4326",
+  "intermediateCrs": "EPSG23700",
+  "nativeBoundaryInterpretation": "Exact original vector-stroke centreline, not a raster inside-stroke contour.",
+  "sourceEdgesInvented": 0,
+  "geometryRepair": false,
+  "clipping": false,
+  "pointDerivedFootprints": false,
+  "maximumPairwiseOverlapDegreesSquared": 0.0,
+  "regressionMatrixPage2ToEov": [
+    [
+      21.188510604901325,
+      0.00726706530198381
+    ],
+    [
+      -0.03364359204497368,
+      -21.192326173152424
+    ],
+    [
+      452567.77923667035,
+      272077.47150046035
+    ]
+  ],
+  "absoluteBoundaryAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "records": [
+    {
+      "sourceUnitNumber": 1,
+      "name": "Észak-nyugati városrész",
+      "nativeGeometrySha256": "fdd1140c40c5c40f632d5560b99314566d4df062048444417b46d3425e42d14e",
+      "sourceNativeAreaPdfPointsSquared": 9679.508535169996,
+      "nativeSourceLabelInside": true,
+      "geographicGeometryValid": true,
+      "geographicVertexCount": 237,
+      "sourcePolygonRingsUnchangedBeforeAffineAndProjection": true,
+      "sourceGeographicLabelInside": true,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "municipalityOverlapFraction": 1.0,
+      "clippedToCurrentMunicipality": false
+    },
+    {
+      "sourceUnitNumber": 4,
+      "name": "Bánfalva, Kutyahegy városrész",
+      "nativeGeometrySha256": "55113744b16b0282272ec42e021fce63fb9e976be6bdfffacb8cd8229ea1fc8c",
+      "sourceNativeAreaPdfPointsSquared": 4530.486005898099,
+      "nativeSourceLabelInside": true,
+      "geographicGeometryValid": true,
+      "geographicVertexCount": 437,
+      "sourcePolygonRingsUnchangedBeforeAffineAndProjection": true,
+      "sourceGeographicLabelInside": true,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "municipalityOverlapFraction": 1.0,
+      "clippedToCurrentMunicipality": false
+    },
+    {
+      "sourceUnitNumber": 5,
+      "name": "Lővereki városrész",
+      "nativeGeometrySha256": "b1bf7507ad9eae171f4fd4b8762d53d91951605487fd2603be3c36ba5f88a389",
+      "sourceNativeAreaPdfPointsSquared": 13929.584982945584,
+      "nativeSourceLabelInside": true,
+      "geographicGeometryValid": true,
+      "geographicVertexCount": 487,
+      "sourcePolygonRingsUnchangedBeforeAffineAndProjection": true,
+      "sourceGeographicLabelInside": true,
+      "outsideCurrentMunicipalityAreaM2": 9515.522929316527,
+      "municipalityOverlapFraction": 0.9984786972173099,
+      "clippedToCurrentMunicipality": false
+    },
+    {
+      "sourceUnitNumber": 13,
+      "name": "Dél-keleti gazdasági terület városrész",
+      "nativeGeometrySha256": "775124d42deb2aa6eff776c77399e96a10db5b07fb6446022f3bac1c4c65a705",
+      "sourceNativeAreaPdfPointsSquared": 6604.691395636648,
+      "nativeSourceLabelInside": true,
+      "geographicGeometryValid": true,
+      "geographicVertexCount": 238,
+      "sourcePolygonRingsUnchangedBeforeAffineAndProjection": true,
+      "sourceGeographicLabelInside": true,
+      "outsideCurrentMunicipalityAreaM2": 0.0,
+      "municipalityOverlapFraction": 1.0,
+      "clippedToCurrentMunicipality": false
+    }
+  ]
+}

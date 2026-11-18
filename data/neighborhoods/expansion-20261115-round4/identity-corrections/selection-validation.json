@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "scope": "technical_identity_selection_not_geographic_precision",
+  "separateBorbasParentAndChild": true,
+  "dombovarPriorAndNewSourceAlternativesRetained": true,
+  "rows": [
+    {
+      "municipality": "Dombóvár",
+      "name": "Szuhajdomb",
+      "id": "neighborhood:7b58dcb8c5dc87b78d2929dd",
+      "aliases": [
+        "Szuhaj-domb",
+        "Szuhay-domb"
+      ],
+      "selected": "data/neighborhoods/expansion-20261115-round4/identity-corrections/features.geojson",
+      "alternativeCount": 3,
+      "partialProperties": {
+        "lowConfidence": true,
+        "qualityScore": 21
+      }
+    },
+    {
+      "municipality": "Kecskemét",
+      "name": "Borbás",
+      "id": "neighborhood:b19d0fe4d17e9c16228b1f8f",
+      "aliases": [],
+      "selected": "data/neighborhoods/expansion-20261114/debrecen/rural-features.geojson",
+      "alternativeCount": 1,
+      "partialProperties": {}
+    },
+    {
+      "municipality": "Kecskemét",
+      "name": "Borbás belterület",
+      "id": "neighborhood:798003ceca25f519ac797a2d",
+      "aliases": [
+        "Bordás",
+        "Bordás belterület"
+      ],
+      "selected": "data/neighborhoods/expansion-20261115-round4/identity-corrections/features.geojson",
+      "alternativeCount": 2,
+      "partialProperties": {
+        "lowConfidence": true,
+        "partialExtent": true,
+        "qualityScore": 21
+      }
+    }
+  ]
+}

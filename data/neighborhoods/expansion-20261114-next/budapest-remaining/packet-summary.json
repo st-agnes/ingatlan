@@ -1,0 +1,88 @@
+{
+  "featureCount": 37,
+  "cities": {
+    "Budapest": 37
+  },
+  "methods": {
+    "manual_street_map_text_estimate": 37
+  },
+  "allValidPolygonal": true,
+  "allSavedNamePointsInside": true,
+  "noNormalizedCityNameDuplicates": true,
+  "circleCount": 0,
+  "voronoiCount": 0,
+  "reproducesByteIdenticallyOffline": true,
+  "requiresCountryPbfToRebuildFinalFeatures": false,
+  "finalInput": {
+    "path": "data/neighborhoods/expansion-20261114-next/budapest-remaining/features.geojson",
+    "sha256": "195715610f94ad63aa8978264740022a8a4ce30996b211d1ad815f834d471578"
+  },
+  "savedContextSourceWays": 184736,
+  "sourceFiles": [
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/budapest-remaining/northeast-source-roads.geojson.gz",
+      "sha256": "f2ebfee2d139080976e3f1630efe3bdc54ac10f936be866f1d7cf11a6292b43f",
+      "compressedBytes": 3091371,
+      "uncompressedBytes": 26471510,
+      "featureCount": 41395
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/budapest-remaining/northwest-source-roads.geojson.gz",
+      "sha256": "568b7f55d2bf2feae10f927fec2ab172ee0861e852a0e7443f5e008b133737da",
+      "compressedBytes": 3435505,
+      "uncompressedBytes": 28057468,
+      "featureCount": 42198
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/budapest-remaining/southeast-source-roads.geojson.gz",
+      "sha256": "387984919b308cae3df88a9bc96934c481c840072b060d0c4146394ef92c8b36",
+      "compressedBytes": 3086570,
+      "uncompressedBytes": 27699876,
+      "featureCount": 43398
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/budapest-remaining/southwest-source-roads.geojson.gz",
+      "sha256": "55bcc1394c0963c643cce933c9c73f937b358a69324063925dd04cb8c311d7d0",
+      "compressedBytes": 4362994,
+      "uncompressedBytes": 37615909,
+      "featureCount": 57745
+    }
+  ],
+  "initialKnownNameCount": 463,
+  "initialNamesWithCollectedPolygon": 397,
+  "newKnownNameCoveragePercent": 93.7,
+  "remainingInitialBacklogNames": [
+    "Budagyöngye",
+    "Csabaliget",
+    "Csillebérci Üdülőtelep",
+    "EcoLiget lakópark",
+    "Európa lakókert",
+    "Farkashegy",
+    "Felsőváros",
+    "Honfoglalás lakópark",
+    "Ilonatelep",
+    "Kakukkhegy",
+    "Királyhágó lakópark",
+    "Kisszentmihály",
+    "Középső-Ferencváros rehabilitációs terület",
+    "Kőbánya Városközpont",
+    "Malomdomb",
+    "Margit-negyed",
+    "Megyeri Hídfő",
+    "Nagyiccetelep",
+    "Nagyvásártelep",
+    "Orczy Fórum Városközpont",
+    "Palotai-sziget",
+    "Szabadságtelep",
+    "Szent György-telep",
+    "Szent László-telep",
+    "Szilasmenti TSz",
+    "Szárazhegy",
+    "Virágtelep",
+    "Óhegyi lakótelep",
+    "Újtelep"
+  ],
+  "completeCityCoverageEstablished": false,
+  "absoluteAccuracyEstablished": false,
+  "limits": "Manual rings and corridor splits are low-confidence inferences from saved mapped street context. Spatial validity, point inclusion, size safeguards and successful reproduction do not validate exact neighborhood borders."
+}

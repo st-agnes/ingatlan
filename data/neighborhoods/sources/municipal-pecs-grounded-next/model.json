@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "status": "rejected_pending_ground_control_reidentification",
+  "decisionEvidence": "decision.json; independent-review.json",
+  "rejectionReason": "The source/world identities of at least two inherited gray intermediate-vertex controls are not uniquely established; fit residuals cannot validate these correspondences.",
+  "fitMethod": "Standard unweighted affine least squares on exactly five observed image/world pairs. No gray-line or road-line observations enter the fit.",
+  "equation": "[source_x,source_y,1] @ matrixPixelToEov = [EOV_east,EOV_north]",
+  "sourcePixelOrigin": "Original Figure9 JPEG upper-left, x rightwards/y downwards, zero-based",
+  "worldCrs": "EPSG:23700",
+  "matrixPixelToEov": [
+    [
+      32.58228086016677,
+      0.09795614948799006
+    ],
+    [
+      0.1660591094016251,
+      -32.4459171532822
+    ],
+    [
+      578051.7315443227,
+      90906.33696591553
+    ]
+  ],
+  "inverseLinearEovToPixel": [
+    [
+      0.030691056208333574,
+      9.265812014759788e-05
+    ],
+    [
+      0.00015707768211556104,
+      -0.030820044585299446
+    ]
+  ],
+  "sourcePixelScalesMetres": [
+    32.58242810869093,
+    32.446342098077366
+  ],
+  "absoluteJacobianAreaMetresSquaredPerPixel": 1057.178251964887,
+  "leastSquaresRank": 3,
+  "fitDesignSingularValues": [
+    922.7641448494306,
+    203.48083037618954,
+    0.9405581935189552
+  ],
+  "fitDesignConditionNumber": 981.0813952904383,
+  "fitControlCount": 5,
+  "fitResidualSummaryMetres": {
+    "count": 5,
+    "minimum": 17.386031386474297,
+    "median": 33.13996406355003,
+    "rms": 33.809202227582816,
+    "percentile95": 41.3498114011514,
+    "maximum": 42.21170055741277
+  },
+  "fitInverseImageResidualSummaryPixels": {
+    "count": 5,
+    "minimum": 0.5342912602030113,
+    "median": 1.0169721358267843,
+    "rms": 1.039524330242531,
+    "percentile95": 1.2737993606563027,
+    "maximum": 1.3008081343803624
+  },
+  "allFiveFitResidualsInsideDeclaredPixelRanges": true,
+  "sourceImageReadingUncertaintyAcknowledged": true,
+  "fitResidualIsAbsoluteAccuracy": false,
+  "absoluteBoundaryAccuracyMetres": null,
+  "surveyOrCadastralAccuracyApproved": false,
+  "automaticPrimaryApproval": false,
+  "usableForAddressAssignment": false,
+  "quarterGeometriesGeneratedOrChanged": false
+}

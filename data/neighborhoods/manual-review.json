@@ -1,0 +1,2238 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-13",
+  "scope": "Offline review of the66 existing manually constructed features only. Original geometry files are unchanged.",
+  "admissionMeaning": "Admitted features are auditable source-based candidates for a review-required polygon layer. They are not surveyed/legal/address-assignment boundaries. Excluded features remain research artifacts.",
+  "policy": {
+    "noAutomaticAddressAssignment": true,
+    "noClaimOfCountrywideNeighborhoodCompleteness": true,
+    "preserveOriginalGeometry": true,
+    "planningPartitionsAreNotFineNeighborhoods": true,
+    "sourceMapRightsAreNotImpliedByOfficialPublication": true
+  },
+  "datasets": [
+    {
+      "id": "budapest-orban",
+      "path": "data/neighborhoods/manual/budapest-orban.geojson",
+      "sha256": "3b3f9064b252a08f4a56b0402bb9300f6ba69dbf7be530b093769d0872e98eab",
+      "municipality": "Budapest",
+      "featureCount": 1,
+      "decision": "exclude_main_geometry",
+      "effectiveBoundaryKind": "neighbourhood",
+      "canonicalNameIsNeighborhood": true,
+      "reviewStatus": "source_audited_geometry_review_required",
+      "usableForAddressAssignment": false,
+      "observations": [
+        "Five inferred closing/junction connections total 304.85 m; the 176.58 m Millennium continuation has no mapped boundary segment."
+      ],
+      "requirements": [
+        "Replace every inferred connection with an independently supported boundary edge and document the source."
+      ],
+      "proofPath": null,
+      "features": [
+        {
+          "featureIndex": 0,
+          "sourceFeatureId": "manual:Budapest:23:Orbanhegy",
+          "name": "Orbánhegy (XXIII. kerület)",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "neighbourhood",
+          "canonicalNameIsNeighborhood": true,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            19.105863295864484,
+            47.37640209864265,
+            19.122897338687142,
+            47.3938491
+          ],
+          "geometrySha256": "0b45a978ef48b013adc611e323786ddc50b0951fd94610902420300d625510bf",
+          "requirements": [
+            "Replace every inferred connection with an independently supported boundary edge and document the source."
+          ]
+        }
+      ],
+      "inferredCandidateRegistry": "data/neighborhoods/inferred-candidate-registry.json",
+      "inferredCandidateStatus": "eligible_for_separate_estimated_research_layer_only"
+    },
+    {
+      "id": "budapest-apostolhegy",
+      "path": "data/neighborhoods/manual/budapest-apostolhegy.geojson",
+      "sha256": "dea0f19586a288cd820851d3bd114fb66e785cb320cd72bc81a4ebc2483ba9b8",
+      "municipality": "Budapest",
+      "featureCount": 1,
+      "decision": "exclude_main_geometry",
+      "effectiveBoundaryKind": "neighbourhood",
+      "canonicalNameIsNeighborhood": true,
+      "reviewStatus": "source_audited_geometry_review_required",
+      "usableForAddressAssignment": false,
+      "observations": [
+        "The source explicitly labels this an inferred candidate. The chosen unnamed ref 510 approach substitutes a legal street corridor; recorded Grassalkovich boundary length is zero. Source-topological closure does not resolve this semantic choice."
+      ],
+      "requirements": [
+        "Resolve the legal Grassalkovich–Haraszti junction interpretation against an independent municipal boundary map."
+      ],
+      "proofPath": null,
+      "features": [
+        {
+          "featureIndex": 0,
+          "sourceFeatureId": "manual:Budapest:Apostolhegy",
+          "name": "Apostolhegy",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "neighbourhood",
+          "canonicalNameIsNeighborhood": true,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            19.098495296284053,
+            47.3767082,
+            19.1160687,
+            47.39497985235139
+          ],
+          "geometrySha256": "9176785a9567706cea7a1d31180aae6e9632be4ec519bdd64e214bd70cf21519",
+          "requirements": [
+            "Resolve the legal Grassalkovich–Haraszti junction interpretation against an independent municipal boundary map."
+          ]
+        }
+      ],
+      "inferredCandidateRegistry": "data/neighborhoods/inferred-candidate-registry.json",
+      "inferredCandidateStatus": "eligible_for_separate_estimated_research_layer_only"
+    },
+    {
+      "id": "budapest-peterimajor",
+      "path": "data/neighborhoods/manual/budapest-peterimajor.geojson",
+      "sha256": "d037ebb80d06d13df1eb9ff9bf7aee8960c5dd1df87683274eeebe2c7dfaa989",
+      "municipality": "Budapest",
+      "featureCount": 1,
+      "decision": "exclude_main_geometry",
+      "effectiveBoundaryKind": "neighbourhood",
+      "canonicalNameIsNeighborhood": true,
+      "reviewStatus": "source_audited_geometry_review_required",
+      "usableForAddressAssignment": false,
+      "observations": [
+        "The unmodified source polygon is landuse=residential. A contained named neighborhood point and legal prose do not establish that land-use outline as a neighborhood boundary."
+      ],
+      "requirements": [
+        "Obtain an explicit municipal neighborhood or belterület boundary and establish the relationship to the legal description."
+      ],
+      "proofPath": null,
+      "features": [
+        {
+          "featureIndex": 0,
+          "sourceFeatureId": "manual:Budapest:Peterimajor",
+          "name": "Péterimajor",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "neighbourhood",
+          "canonicalNameIsNeighborhood": true,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            19.15684,
+            47.3886354,
+            19.1632466,
+            47.3937559
+          ],
+          "geometrySha256": "087962c9b0ab3af7814a746ea0f0b32e34d4d828254e0f5eac608e5bff1f2206",
+          "requirements": [
+            "Obtain an explicit municipal neighborhood or belterület boundary and establish the relationship to the legal description."
+          ]
+        }
+      ],
+      "inferredCandidateRegistry": "data/neighborhoods/inferred-candidate-registry.json",
+      "inferredCandidateStatus": "eligible_for_separate_estimated_research_layer_only"
+    },
+    {
+      "id": "budapest-molnar",
+      "path": "data/neighborhoods/manual/budapest-molnar.geojson",
+      "sha256": "4199cc1ed7941cc3b5d4adffced5b679f85fd9ac7fcab95885167ff3b09f2526",
+      "municipality": "Budapest",
+      "featureCount": 1,
+      "decision": "admit_candidate",
+      "effectiveBoundaryKind": "neighbourhood",
+      "canonicalNameIsNeighborhood": true,
+      "reviewStatus": "source_audited_geometry_review_required",
+      "usableForAddressAssignment": false,
+      "observations": [
+        "The legal definition names the island between the Danube and side branch. The output equals the complete archived OSM waterbody inner ring; no vertices or connecting edges were added. Shoreline conventions remain unverified."
+      ],
+      "requirements": [
+        "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+        "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage."
+      ],
+      "proofPath": null,
+      "features": [
+        {
+          "featureIndex": 0,
+          "sourceFeatureId": "manual:Budapest:Molnar-sziget",
+          "name": "Molnár-sziget",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "neighbourhood",
+          "canonicalNameIsNeighborhood": true,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            19.1008818,
+            47.3947551,
+            19.110758,
+            47.4128506
+          ],
+          "geometrySha256": "14206dc856adf1d0ae8e0fe84ac01fa88f41abf22c48d78b432af98a7227183c",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "szombathely-belvaros",
+      "path": "data/neighborhoods/sources/municipal-west/szombathely-manual.geojson",
+      "sha256": "5f41bd11a9fbffc8e8114041066ccd24bcf818fe5f0100a0781588e2a37ae9ed",
+      "municipality": "Szombathely",
+      "featureCount": 1,
+      "decision": "admit_candidate",
+      "effectiveBoundaryKind": "neighbourhood",
+      "canonicalNameIsNeighborhood": true,
+      "reviewStatus": "source_audited_geometry_review_required",
+      "usableForAddressAssignment": false,
+      "observations": [
+        "Archived official IVS page 150 names the complete ordered ten-road circuit. The proof follows actual road segments and roundabout connectors; no synthetic closing chord. Source facts 2013; source road geometry 2026."
+      ],
+      "requirements": [
+        "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+        "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage."
+      ],
+      "proofPath": "data/neighborhoods/sources/municipal-west/szombathely-trace-proof.json",
+      "features": [
+        {
+          "featureIndex": 0,
+          "sourceFeatureId": null,
+          "name": "Belváros",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "neighbourhood",
+          "canonicalNameIsNeighborhood": true,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            16.6146991,
+            47.2271643,
+            16.628859,
+            47.2361011
+          ],
+          "geometrySha256": "5d327760334370d68d625c3e5b435dcfc260453e71a82542e4c8f0fa528cfdf8",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage."
+          ]
+        }
+      ],
+      "proofSha256": "0f1e803afc44aee9248cbeb3190ad278ce6288ec5ea28bdee078ca6e3b1038d6"
+    },
+    {
+      "id": "tata-statutory-planning-units",
+      "path": "data/neighborhoods/sources/municipal-west/tata-manual.geojson",
+      "sha256": "418ff0d46494f318bef71c095c565d74da6713dfc2b369e2ec8c482f10b21c1b",
+      "municipality": "Tata",
+      "featureCount": 9,
+      "decision": "admit_candidate",
+      "effectiveBoundaryKind": "planning_unit",
+      "canonicalNameIsNeighborhood": false,
+      "reviewStatus": "source_audited_geometry_review_required",
+      "usableForAddressAssignment": false,
+      "observations": [
+        "Actual 2022 statutory PDF states szabályozási terv/városrészek lehatárolása at 1:50000. Includes industrial, lake and outer-land-use groupings. Treat this as a planning partition rather than equating each name with a fine neighborhood.",
+        "All nine transformed source path boundaries exactly match output boundaries in the recorded CRS transformation; source crossings were interpreted with the PDF fill rule, not repaired at catalogue import.",
+        "Municipal-outline fit RMS 13.320160 m, max 86.974804 m, IoU 0.992891. These are fitting observations, not independent surveyed accuracy. Original minor slivers and overhangs are retained."
+      ],
+      "requirements": [
+        "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+        "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+        "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+      ],
+      "proofPath": "data/neighborhoods/sources/municipal-west/tata-georeference-proof.json",
+      "features": [
+        {
+          "featureIndex": 0,
+          "sourceFeatureId": null,
+          "name": "Újhegy",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": true,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            18.323387103155763,
+            47.650527325270055,
+            18.358288769927277,
+            47.67483620845295
+          ],
+          "geometrySha256": "e9d75e6b328a82007f8872323f436b6caf84dfa96aeb4278485f635526ab60c4",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+          ],
+          "observedMunicipalContainmentRatio": 0.9887319443985016
+        },
+        {
+          "featureIndex": 1,
+          "sourceFeatureId": null,
+          "name": "Ipari park",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": false,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            18.27868463192103,
+            47.62526819629393,
+            18.316364183444055,
+            47.637605321931396
+          ],
+          "geometrySha256": "6ab85a263327c0e0412e993061ee6ecd427c9bcab39953476003e4d45b3b267e",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+          ],
+          "observedMunicipalContainmentRatio": 1.0000000000000007
+        },
+        {
+          "featureIndex": 2,
+          "sourceFeatureId": null,
+          "name": "Nagykert",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": true,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            18.291325938157506,
+            47.63065391741343,
+            18.31340720818964,
+            47.651226738065795
+          ],
+          "geometrySha256": "fb8150402debec206c88de3dcade2da1e885f92f4437dff006e0768e84c296ea",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+          ],
+          "observedMunicipalContainmentRatio": 0.9999999999999992
+        },
+        {
+          "featureIndex": 3,
+          "sourceFeatureId": null,
+          "name": "Öreg-tó",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": false,
+          "geometryType": "MultiPolygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            18.3163846040749,
+            47.619722068709,
+            18.35321797445949,
+            47.65008468831814
+          ],
+          "geometrySha256": "8effcfdf6e4a6c243eb7e89de07b5ba96c830af4ab076c6ffb0030c19ec6465c",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+          ],
+          "observedMunicipalContainmentRatio": 1.0000000000000009
+        },
+        {
+          "featureIndex": 4,
+          "sourceFeatureId": null,
+          "name": "Halastó-Fényes",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": true,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            18.293078759994675,
+            47.64400103777766,
+            18.318735879247917,
+            47.67336902919525
+          ],
+          "geometrySha256": "a5667bd8586f77708ae8b324ec732aee01cf089884c0a4543cc5735efc6cbcd8",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+          ],
+          "observedMunicipalContainmentRatio": 0.999999999999999
+        },
+        {
+          "featureIndex": 5,
+          "sourceFeatureId": null,
+          "name": "Felső-Tata",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": true,
+          "geometryType": "MultiPolygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            18.308493645762496,
+            47.627304620357336,
+            18.322981975720644,
+            47.65161047095577
+          ],
+          "geometrySha256": "9523fefaa798d7fde9efa14ead6044902c89fa138727b6ab736bcab19d8731a4",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+          ],
+          "observedMunicipalContainmentRatio": 1.0000000000000018
+        },
+        {
+          "featureIndex": 6,
+          "sourceFeatureId": null,
+          "name": "Agostyán",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": true,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            18.378577117718788,
+            47.66240530154381,
+            18.391729693381176,
+            47.67099157633217
+          ],
+          "geometrySha256": "7ebe6ef3df5400072b7837e632f2fe91a62d66c7ace3ba800bb495ac5ea24dbf",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+          ],
+          "observedMunicipalContainmentRatio": 0.9999999999999998
+        },
+        {
+          "featureIndex": 7,
+          "sourceFeatureId": null,
+          "name": "Tóváros",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": true,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            18.31151616913279,
+            47.64521233085183,
+            18.35088719574218,
+            47.675572797190355
+          ],
+          "geometrySha256": "1c15e2b32d6d4818aa8a388a87853e4397ae7b5d9f2772bd85c626ad42d5c32f",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+          ],
+          "observedMunicipalContainmentRatio": 0.9998216837949089
+        },
+        {
+          "featureIndex": 8,
+          "sourceFeatureId": null,
+          "name": "Kertváros",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": true,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            18.33096000620742,
+            47.6356423350019,
+            18.356504503068674,
+            47.6474723566545
+          ],
+          "geometrySha256": "b633fdd1dacc57f13e6892556e2b0a690c3f33fa74ab7db55948a645cf5986d5",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+          ],
+          "observedMunicipalContainmentRatio": 0.9934501228410344
+        }
+      ],
+      "proofSha256": "35bab3d3b58cbbeb52e62e5bda52a422d5882e01fc8fafc581367704adae941b",
+      "calibrationObservations": {
+        "rmsM": 13.320160284736112,
+        "maxM": 86.97480449071978,
+        "intersectionOverUnion": 0.9928910340007483
+      }
+    },
+    {
+      "id": "tatabanya-statutory-planning-units",
+      "path": "data/neighborhoods/sources/municipal-west/tatabanya-manual.geojson",
+      "sha256": "fd527b72165d5a50178f3eedfc0cb0498ee9c087bd7aa1727e1a4794a8c9100e",
+      "municipality": "Tatabánya",
+      "featureCount": 4,
+      "decision": "admit_candidate",
+      "effectiveBoundaryKind": "planning_unit",
+      "canonicalNameIsNeighborhood": false,
+      "reviewStatus": "source_audited_geometry_review_required",
+      "usableForAddressAssignment": false,
+      "observations": [
+        "The 2018 statutory PDF explicitly states településrendezési szempontú lehatárolása. Four closed unambiguous residential paths are selected; this is a partial planning-purpose dataset.",
+        "Each of the four transformed source path boundaries exactly matches the exported boundary. Source labels KERTVÁROS, ALSÓGALLA, ÓVÁROS and SÍKVÖLGY are present.",
+        "Robust municipal-outline calibration retains 779 vertices within 30 m, fitted RMS 11.211275 m. Trimming/calibration residuals do not measure independent interior accuracy; Kertváros has a small municipal overhang, retained without clipping."
+      ],
+      "requirements": [
+        "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+        "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+        "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+      ],
+      "proofPath": "data/neighborhoods/sources/municipal-west/tatabanya-georeference-proof.json",
+      "features": [
+        {
+          "featureIndex": 0,
+          "sourceFeatureId": null,
+          "name": "Kertváros",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": true,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            18.357480456360566,
+            47.5775280718576,
+            18.38781515394228,
+            47.609834129552674
+          ],
+          "geometrySha256": "dfc10733434647a9687ca4785b470cd34f840bf33d018c71c7c4f30bc67045f8",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+          ],
+          "observedMunicipalContainmentRatio": 0.9947645445858043
+        },
+        {
+          "featureIndex": 1,
+          "sourceFeatureId": null,
+          "name": "Alsógalla",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": true,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            18.40728042728688,
+            47.563031922028856,
+            18.43431711221765,
+            47.57808093747577
+          ],
+          "geometrySha256": "dd7ce227c1036bdf8a8fad021c0b98effd36b9c6ea2482d45a1a235e2aea094d",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+          ],
+          "observedMunicipalContainmentRatio": 0.9999999999999996
+        },
+        {
+          "featureIndex": 2,
+          "sourceFeatureId": null,
+          "name": "Óváros",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": true,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            18.402618740358786,
+            47.5476174674183,
+            18.42902319902005,
+            47.56651830302496
+          ],
+          "geometrySha256": "fd8ad249da8ebb9747e40c9c1c7a8a6184e060dc1696051b57f56a246a5b2acf",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+          ],
+          "observedMunicipalContainmentRatio": 1.0000000000000007
+        },
+        {
+          "featureIndex": 3,
+          "sourceFeatureId": null,
+          "name": "Síkvölgy",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": true,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            18.3710764771597,
+            47.52924632906388,
+            18.403936329588337,
+            47.55338314825046
+          ],
+          "geometrySha256": "1ef81d8eee080186d0b8fdc6c1f32bdd15e220cc647b6d15489bfe180185f507",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Clarify statutory-source map reuse rights before asserting a general open-data license; OSM georeferencing controls are ODbL-1.0."
+          ],
+          "observedMunicipalContainmentRatio": 0.9999999999999986
+        }
+      ],
+      "proofSha256": "e0debc1af65c71699403deaa786efbdfd63337d84d980c37c7128e2705c6aeb8",
+      "calibrationObservations": {
+        "calibrationVertices": 779,
+        "rmsM": 11.211275086902505
+      }
+    },
+    {
+      "id": "eger-historical-planning-units",
+      "path": "data/neighborhoods/sources/municipal-east/eger-planning-units.geojson",
+      "sha256": "c3619e702df579b23776b977daf62c0ee1aafb9f629a8b447fb29b64f558011b",
+      "municipality": "Eger",
+      "featureCount": 32,
+      "decision": "admit_candidate",
+      "effectiveBoundaryKind": "planning_unit",
+      "canonicalNameIsNeighborhood": false,
+      "reviewStatus": "source_audited_geometry_review_required",
+      "usableForAddressAssignment": false,
+      "observations": [
+        "The 2016 annex map explicitly describes szabályozási tervek lehatárolása at 1:15000.32 named original PDF vector paths are valid planning units; one unlabeled source overlay was omitted.",
+        "Boundary-match median 7.224128 m, p 9518.447916 m, max 30.438304 m; no independent interior controls. Original nested areas are represented by holes; no catalog-stage geometry repair.",
+        "Reuse rights are explicitly unresolved in the source proof; admission means a cited research/candidate layer, not established open licensing or legal boundary verification."
+      ],
+      "requirements": [
+        "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+        "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+        "Establish source-map reuse rights before claiming an open reuse license."
+      ],
+      "proofPath": "data/neighborhoods/sources/municipal-east/eger-geometry-proof.json",
+      "features": [
+        {
+          "featureIndex": 0,
+          "sourceFeatureId": "municipal:eger:plan:164815",
+          "name": "Északkeleti külterület és Bikalegelő",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.368716968377978,
+            47.90950253228238,
+            20.44939497949496,
+            47.954300112709134
+          ],
+          "geometrySha256": "757102e2209d15f5c013d01fc92e640194014a3fc018043d426c48243aad8020",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 1,
+          "sourceFeatureId": "municipal:eger:plan:164816",
+          "name": "OMYA",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.36078784864568,
+            47.96654462435473,
+            20.368929757585665,
+            47.97291817252115
+          ],
+          "geometrySha256": "34f098a55c941db4f8f3676e9f9eb8c58e8b7f36349e5e2b0a54251a6118aecf",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 2,
+          "sourceFeatureId": "municipal:eger:plan:164817",
+          "name": "Almár",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.35686706220301,
+            47.956435156365565,
+            20.358072885369943,
+            47.95808548603377
+          ],
+          "geometrySha256": "d47df05883302a080b7f4c99946ceaf1dd4f310c7d86fb365f754b2659830ce2",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 3,
+          "sourceFeatureId": "municipal:eger:plan:164818",
+          "name": "Hajdúhegy",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.35229301083169,
+            47.893784024814146,
+            20.365750226693567,
+            47.91174117069422
+          ],
+          "geometrySha256": "8ee2c07567ebe144b92d07bf967aaf27c73042a653ac8eb8980ddf22e8a41add",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 4,
+          "sourceFeatureId": "municipal:eger:plan:164819",
+          "name": "Szent Miklós",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.3694977832825,
+            47.9031965634575,
+            20.37514177316655,
+            47.9099553257093
+          ],
+          "geometrySha256": "cf93dc9efcd90a7f2270ee265fb6023934f595dd3e444ee65ba46cf5ee1a604f",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 5,
+          "sourceFeatureId": "municipal:eger:plan:164820",
+          "name": "Belváros",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.370147552661575,
+            47.89692774357249,
+            20.38026339785082,
+            47.904834203857256
+          ],
+          "geometrySha256": "baf43a591cce001d0d9b6a39cb32af8a96ae372448922271db2fd6b9faf81723",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 6,
+          "sourceFeatureId": "municipal:eger:plan:164828",
+          "name": "Lajosváros – nyugat",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.3654485868945,
+            47.87312367444923,
+            20.3826893690622,
+            47.8892687087763
+          ],
+          "geometrySha256": "a00a312cfb223e234cb29d798ea652175c75620039c199802c8cbcdc7417fa18",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 7,
+          "sourceFeatureId": "municipal:eger:plan:164829",
+          "name": "Galagonyás-dűlő",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.35485586971183,
+            47.85922988265699,
+            20.37995745396189,
+            47.87169291045545
+          ],
+          "geometrySha256": "ba17c436cb20ef74e65b3d7a7ab79dc2bf3046447d2e61e0b90ea63a15c232cf",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 8,
+          "sourceFeatureId": "municipal:eger:plan:164830",
+          "name": "Felnémet",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.353828754772167,
+            47.927855165607816,
+            20.384009290633443,
+            47.952716865356
+          ],
+          "geometrySha256": "45f23555d660e904341aef832377543355312d967e6f19d9aea5c021f24ce95d",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 9,
+          "sourceFeatureId": "municipal:eger:plan:164831",
+          "name": "Nagylapos",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.359298846909052,
+            47.91611262619848,
+            20.37291741380737,
+            47.932966848050924
+          ],
+          "geometrySha256": "9c839b6dcc668306bfd1f33cb3024f953dc900c99826d14f6df3dff9e354a3f6",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 10,
+          "sourceFeatureId": "municipal:eger:plan:164832",
+          "name": "Volt kemping",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.363454655973037,
+            47.9152703658611,
+            20.369873238573813,
+            47.921099827402266
+          ],
+          "geometrySha256": "a1aa30323f9e23fc22c6a5fc46c46c52e139ab144f751f72b9347e4723a8bfad",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 11,
+          "sourceFeatureId": "municipal:eger:plan:164833",
+          "name": "Rác hóstya",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.34094431025083,
+            47.908275178595055,
+            20.37124313647369,
+            47.92027140180774
+          ],
+          "geometrySha256": "bc6ac091fe4af15422a97bfd6a81a4504ac00a20e0aeb466e700e6981c235f17",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 12,
+          "sourceFeatureId": "municipal:eger:plan:164834",
+          "name": "Hajdúhegy észak",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.3470971448077,
+            47.90812437547487,
+            20.356491775763917,
+            47.91326541140053
+          ],
+          "geometrySha256": "2bdc228e7632657af3e01735849ddee4919cc969d9f67cf7ea2e190cc04cdbc8",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 13,
+          "sourceFeatureId": "municipal:eger:plan:164835",
+          "name": "Felsőváros",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.369309191580278,
+            47.90919277981262,
+            20.378646406092724,
+            47.92192947553482
+          ],
+          "geometrySha256": "3461baf7ae49a77c705bf471667a27496e79c3824d4c32dff4ccc89f2369d4c5",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 14,
+          "sourceFeatureId": "municipal:eger:plan:164836",
+          "name": "Károlyváros",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.360694357214808,
+            47.896037357860116,
+            20.371882328152044,
+            47.90877726029165
+          ],
+          "geometrySha256": "a3f3554d3009d253827aba9d0378ec265b146ed4251ba8b92debb7caee0aaf3b",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 15,
+          "sourceFeatureId": "municipal:eger:plan:164837",
+          "name": "Szépasszonyvölgy",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.35656968046553,
+            47.88895500934437,
+            20.371249483182805,
+            47.89795866528664
+          ],
+          "geometrySha256": "44bc1902660d37f64fe294c224c0ed66539818841eb1c383ae21bdc2d54c0d99",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 16,
+          "sourceFeatureId": "municipal:eger:plan:164838",
+          "name": "Hatvani hóstya",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.362769252829906,
+            47.887302666339686,
+            20.385077738633697,
+            47.89890500480773
+          ],
+          "geometrySha256": "45ae6346b57d61600cd63a2be561e45a7376a0a147ee33aede32a43e4a290243",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 17,
+          "sourceFeatureId": "municipal:eger:plan:164839",
+          "name": "K2 jelű út és környéke",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.37450842027598,
+            47.86420447608337,
+            20.396432690100333,
+            47.8737271212532
+          ],
+          "geometrySha256": "32f001f846acd71604a284191e26d75ad8284b98b5a19e9c18b5bf1a1df9142d",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 18,
+          "sourceFeatureId": "municipal:eger:plan:164842",
+          "name": "Déli iparterület",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.38058591699199,
+            47.864544930742845,
+            20.405820690727392,
+            47.88928192120732
+          ],
+          "geometrySha256": "1994e7a760c0110e5b7b27c1ac327ec7d4e34590a226d708e63797e8fe11f4c0",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 19,
+          "sourceFeatureId": "municipal:eger:plan:164843",
+          "name": "Lajosváros kelet",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.380282031545736,
+            47.874481208804795,
+            20.392098637010314,
+            47.889902583611565
+          ],
+          "geometrySha256": "450026d85a060f35ba0bd429d1fd6cee5a3a8c2969eb248e92e45de87ca1cfca",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 20,
+          "sourceFeatureId": "municipal:eger:plan:164844",
+          "name": "Délkeleti külterület",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.39181053197095,
+            47.8662136619187,
+            20.471573016730293,
+            47.941653057519076
+          ],
+          "geometrySha256": "a9eea20d6ac4b2b7d160e9b9bca530b479823ed0217dcf8fe22db3e04321f3f5",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 21,
+          "sourceFeatureId": "municipal:eger:plan:164845",
+          "name": "Csákó",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.381302065349033,
+            47.88773430430506,
+            20.393450737673845,
+            47.89502725890772
+          ],
+          "geometrySha256": "e590c2082ade496296a05bd3bdbc1708542d53f1a63fe77548cbb4d9eeac31aa",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 22,
+          "sourceFeatureId": "municipal:eger:plan:164846",
+          "name": "Tihamér",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.383534870257748,
+            47.887525320986605,
+            20.39797236095788,
+            47.89741146192747
+          ],
+          "geometrySha256": "d375666d1f5f7c785b84dda435cd83cd5d8b69d7de920bf3acb2b56cce7f6f19",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 23,
+          "sourceFeatureId": "municipal:eger:plan:164847",
+          "name": "Maklári hóstya",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.378211666792087,
+            47.89502725890772,
+            20.393477014458906,
+            47.903366264535684
+          ],
+          "geometrySha256": "aba638fe1350ec6248e7b043ecb26603fa071c8dcfece2639199630f72d8b3fc",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 24,
+          "sourceFeatureId": "municipal:eger:plan:164848",
+          "name": "Almagyar – Merengő",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.380765501200084,
+            47.896917989863354,
+            20.399350450077392,
+            47.911073216954755
+          ],
+          "geometrySha256": "74bb8c432fae79d5cd3183c0c6e6d8855dd8602877ef43e938c1ef32cc612d02",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 25,
+          "sourceFeatureId": "municipal:eger:plan:164849",
+          "name": "Sánc",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.380632008010014,
+            47.90327408302317,
+            20.384894897883402,
+            47.9072402223492
+          ],
+          "geometrySha256": "0ab41fb7e9c87c9ca624ce31e7e3003db5c17899a0e109c749c5ca8e8d280cec",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 26,
+          "sourceFeatureId": "municipal:eger:plan:164850",
+          "name": "Belváros kelet",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.375533511641116,
+            47.90145277634085,
+            20.381836500537577,
+            47.90593326918182
+          ],
+          "geometrySha256": "f3cba561adb2f0a1b705de29eb52703f348d1003106a44693a99ddcb4517b760",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 27,
+          "sourceFeatureId": "municipal:eger:plan:164851",
+          "name": "Belváros Dobó tér",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.3731143954264,
+            47.900381861605894,
+            20.37952969248804,
+            47.904946910675356
+          ],
+          "geometrySha256": "bbeca98623d04ba0de89d0756c7f8c110834f1b7654b21982a141e3ff28d0460",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 28,
+          "sourceFeatureId": "municipal:eger:plan:164852",
+          "name": "Cifra hóstya – Tetemvár",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.372599643121717,
+            47.90332620947957,
+            20.3812288148869,
+            47.91667126353668
+          ],
+          "geometrySha256": "e5d8cccd7e7cc452f8e99a084400da1619ec5ea0cd17ad05ab04afeb1ed72457",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 29,
+          "sourceFeatureId": "municipal:eger:plan:164853",
+          "name": "Vécseyvölgy",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.379674409951427,
+            47.907866590816035,
+            20.390456741846915,
+            47.912849639064596
+          ],
+          "geometrySha256": "7f2ba2f735cbbec3f080f581f2bc7ddf8330a1a5b49bf6285c8a14d8dfcfe22b",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 30,
+          "sourceFeatureId": "municipal:eger:plan:165658",
+          "name": "Északnyugati külterület",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.335095224918142,
+            47.91858638447784,
+            20.34073913249914,
+            47.92027007767365
+          ],
+          "geometrySha256": "ad176b74413a73e014b72d821af45c424d0fac42139affc9666a734ea5272ca7",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        },
+        {
+          "featureIndex": 31,
+          "sourceFeatureId": "municipal:eger:plan:165659",
+          "name": "Északnyugati külterület – általános tervterület",
+          "decision": "admit_candidate",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            20.311279788457252,
+            47.86550682769853,
+            20.39111683936204,
+            48.00142539208026
+          ],
+          "geometrySha256": "dcd01b687d20b56ae204f803121a622e5ce6c93ae07aba1071e94099561d4139",
+          "requirements": [
+            "Independent interior control points or surveyed municipal boundaries are needed before address assignment.",
+            "Retain source date, scale, construction method, and source-specific uncertainty; do not claim complete municipal neighborhood coverage.",
+            "Establish source-map reuse rights before claiming an open reuse license."
+          ]
+        }
+      ],
+      "proofSha256": "f7bc999a9a6c038979d1dc1284f5f2d5e79c1dd6914b4aaa98886034a6dd3573",
+      "calibrationObservations": {
+        "median": 7.224128421579061,
+        "p95": 18.447915790396877,
+        "max": 30.438304285958054
+      },
+      "supersededClassificationReviewPath": "data/neighborhoods/sources/municipal-eger-semantic-next/semantic-audit.json",
+      "currentClassificationRevision": {
+        "qualifiedHistoricalQuarterCandidates": 23,
+        "planningUnits": 9,
+        "geometryChanged": false,
+        "currentOrdinaryQuarterExtentVerified": false
+      }
+    },
+    {
+      "id": "nyiregyhaza-raster-planning-units",
+      "path": "data/neighborhoods/sources/municipal-east/nyiregyhaza-planning-units.geojson",
+      "sha256": "3aaa7f60e30c2ba1c0ae1de85eb58bb1e50fbf3c6ce7ca645adc07d260e67126",
+      "municipality": "Nyíregyháza",
+      "featureCount": 10,
+      "decision": "exclude_main_geometry",
+      "effectiveBoundaryKind": "planning_unit",
+      "canonicalNameIsNeighborhood": false,
+      "reviewStatus": "source_audited_geometry_review_required",
+      "usableForAddressAssignment": false,
+      "observations": [
+        "The 2022 PDF map is only 598 x 583 pixels, about 39.7 m per pixel. Three-pixel mask closing modifies source outlines.",
+        "Municipal-boundary match median 32.939810 m, p 95187.207248 m, maximum 585.775766 m; no independent interior controls. Source regions group multiple commonly named neighborhoods."
+      ],
+      "requirements": [
+        "Use a higher-resolution or vector source, retain original observed edges and document every mask modification.",
+        "Verify independent interior controls and source label-to-region correspondence; retain planning_unit semantics."
+      ],
+      "proofPath": "data/neighborhoods/sources/municipal-east/nyiregyhaza-geometry-proof.json",
+      "features": [
+        {
+          "featureIndex": 0,
+          "sourceFeatureId": "municipal:nyiregyhaza:its:1",
+          "name": "Belső lakóterület (Belváros)",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.705404500493927,
+            47.942118889498694,
+            21.727980832355144,
+            47.965053768054695
+          ],
+          "geometrySha256": "71ccca3ca0bc9fd3a5249e5d33895f08baa4c951295015a5fc5aa879fc2f8a40",
+          "requirements": [
+            "Use a higher-resolution or vector source, retain original observed edges and document every mask modification.",
+            "Verify independent interior controls and source label-to-region correspondence; retain planning_unit semantics."
+          ]
+        },
+        {
+          "featureIndex": 1,
+          "sourceFeatureId": "municipal:nyiregyhaza:its:2",
+          "name": "Örökösföld",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.725512119887675,
+            47.939574644614716,
+            21.753354677906223,
+            47.970762269649946
+          ],
+          "geometrySha256": "4fd0fe19551d4f9d14b6294ac0497c4089886eb5b8e12cec8fff912dfb1d1255",
+          "requirements": [
+            "Use a higher-resolution or vector source, retain original observed edges and document every mask modification.",
+            "Verify independent interior controls and source label-to-region correspondence; retain planning_unit semantics."
+          ]
+        },
+        {
+          "featureIndex": 2,
+          "sourceFeatureId": "municipal:nyiregyhaza:its:3",
+          "name": "Malomkert, Déli ipartelep, Huszártelep",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.676545628101888,
+            47.93196711871835,
+            21.750210706868906,
+            47.951636030208284
+          ],
+          "geometrySha256": "907d57c79e6db9452a2399f8b3eb225d2adfd7fc8b7d06eeaf76935b8d1538a0",
+          "requirements": [
+            "Use a higher-resolution or vector source, retain original observed edges and document every mask modification.",
+            "Verify independent interior controls and source label-to-region correspondence; retain planning_unit semantics."
+          ]
+        },
+        {
+          "featureIndex": 3,
+          "sourceFeatureId": "municipal:nyiregyhaza:its:4",
+          "name": "Kertváros, Salamonbokor, Szabadságbokor",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.652875251607885,
+            47.941504405002696,
+            21.70427040533403,
+            47.97857463398182
+          ],
+          "geometrySha256": "ad3c0913c9d238a6c5b68cd798882aa63e98193e865071b762321b831c4a3780",
+          "requirements": [
+            "Use a higher-resolution or vector source, retain original observed edges and document every mask modification.",
+            "Verify independent interior controls and source label-to-region correspondence; retain planning_unit semantics."
+          ]
+        },
+        {
+          "featureIndex": 4,
+          "sourceFeatureId": "municipal:nyiregyhaza:its:5",
+          "name": "Jósaváros, Stadion környéke, Hímes",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.695212796972367,
+            47.95848130125051,
+            21.73819688319064,
+            47.98039694334368
+          ],
+          "geometrySha256": "82fb7756099bda8dfc439b5f43e088516217675d9aabaac233166398fa2fa992",
+          "requirements": [
+            "Use a higher-resolution or vector source, retain original observed edges and document every mask modification.",
+            "Verify independent interior controls and source label-to-region correspondence; retain planning_unit semantics."
+          ]
+        },
+        {
+          "featureIndex": 5,
+          "sourceFeatureId": "municipal:nyiregyhaza:its:6",
+          "name": "Nyírszőlős, Felsőpázsit",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.650632900045245,
+            47.962246738337846,
+            21.71327440926291,
+            48.03877772719481
+          ],
+          "geometrySha256": "9f147960515f084c567607aa3608c23b4cb4517088d6040de1a1a949a8a53e97",
+          "requirements": [
+            "Use a higher-resolution or vector source, retain original observed edges and document every mask modification.",
+            "Verify independent interior controls and source label-to-region correspondence; retain planning_unit semantics."
+          ]
+        },
+        {
+          "featureIndex": 6,
+          "sourceFeatureId": "municipal:nyiregyhaza:its:7",
+          "name": "Sóstóhegy, Sóstógyógyfürdő, Korányi kertváros",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.71199189765698,
+            47.970843039375374,
+            21.7813656149211,
+            48.03685824504031
+          ],
+          "geometrySha256": "ae55eb22600883662712037dea0a993b08e7db25b18922843eea1bf9aaee0616",
+          "requirements": [
+            "Use a higher-resolution or vector source, retain original observed edges and document every mask modification.",
+            "Verify independent interior controls and source label-to-region correspondence; retain planning_unit semantics."
+          ]
+        },
+        {
+          "featureIndex": 7,
+          "sourceFeatureId": "municipal:nyiregyhaza:its:8",
+          "name": "Kőlapos, Oros, Nagyszállás",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.751883187168442,
+            47.88898536107145,
+            21.844292209468662,
+            47.98728315673644
+          ],
+          "geometrySha256": "0936fe318bf49378096dde7127cd72b1769d390a87b61f4e31a53d77b1808c33",
+          "requirements": [
+            "Use a higher-resolution or vector source, retain original observed edges and document every mask modification.",
+            "Verify independent interior controls and source label-to-region correspondence; retain planning_unit semantics."
+          ]
+        },
+        {
+          "featureIndex": 8,
+          "sourceFeatureId": "municipal:nyiregyhaza:its:9",
+          "name": "Borbánya, Nyírjes, Kistelekiszőlő, Butyka",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.704917588268618,
+            47.84994744015554,
+            21.79299540913254,
+            47.94475675584755
+          ],
+          "geometrySha256": "13d30822e060f1983bc13fbb902191f9283e1f0edac31b300380c7c075e1ab66",
+          "requirements": [
+            "Use a higher-resolution or vector source, retain original observed edges and document every mask modification.",
+            "Verify independent interior controls and source label-to-region correspondence; retain planning_unit semantics."
+          ]
+        },
+        {
+          "featureIndex": 9,
+          "sourceFeatureId": "municipal:nyiregyhaza:its:10",
+          "name": "Bokortanyák, Császárszállás",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "planning_unit",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "planning_unit",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.56016877438069,
+            47.84715102140305,
+            21.71842276432769,
+            47.988666799245415
+          ],
+          "geometrySha256": "3edd24024c8e00f5009aa0766cf4ebdaa2745468904848cfd578c2724f748e7a",
+          "requirements": [
+            "Use a higher-resolution or vector source, retain original observed edges and document every mask modification.",
+            "Verify independent interior controls and source label-to-region correspondence; retain planning_unit semantics."
+          ]
+        }
+      ],
+      "proofSha256": "aaf4c43ccb203b6dc6eb1bfe667949d0bf3058a4d2236bbfd1a6154446f33efb",
+      "calibrationObservations": {
+        "median": 32.939810496946556,
+        "p95": 187.2072482817856,
+        "max": 585.7757655442443
+      },
+      "inferredCandidateRegistry": "data/neighborhoods/inferred-candidate-registry.json",
+      "inferredCandidateStatus": "eligible_for_separate_estimated_research_layer_only"
+    },
+    {
+      "id": "bekescsaba-raster-regions",
+      "path": "data/neighborhoods/sources/municipal-east/bekescsaba-map-derived.geojson",
+      "sha256": "ecc52cb671d33673d3c421ba0156a740ff399e79224e9b0643c0902cbd22540b",
+      "municipality": "Békéscsaba",
+      "featureCount": 6,
+      "decision": "exclude_main_geometry",
+      "effectiveBoundaryKind": "local_area",
+      "canonicalNameIsNeighborhood": false,
+      "reviewStatus": "source_audited_geometry_review_required",
+      "usableForAddressAssignment": false,
+      "observations": [
+        "The source illustration has extruded/shadowed colored footprints, so threshold edges may include illustrative rendering rather than a flat map boundary.",
+        "Approximately 26.7 m/pixel;5 pixel mask closing represents about 134 m, with stated uncertainty at least 3 pixels/about 80 m. Output also subtracts overlapping masks.",
+        "Municipal-outline match median 11.477118 m, p 9532.525038 m, maximum 69.979345 m is not independent interior accuracy. Publication date and reuse rights are unestablished."
+      ],
+      "requirements": [
+        "Obtain a flat, dated authoritative map or vector boundary and verify which stroke is the intended area boundary.",
+        "Remove undocumented morphological boundary assumptions and establish independent controls and reuse rights."
+      ],
+      "proofPath": "data/neighborhoods/sources/municipal-east/bekescsaba-geometry-proof.json",
+      "features": [
+        {
+          "featureIndex": 0,
+          "sourceFeatureId": "municipal:bekescsaba:raster:1",
+          "name": "Erzsébethely (Jamina)",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "local_area",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "MultiPolygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.03554683714088,
+            46.63517469363343,
+            21.103768095318312,
+            46.68851470883246
+          ],
+          "geometrySha256": "c21339f7288b9cfe05bbbd9b7946c8cc57070856f401085bf5a7affa3291a410",
+          "requirements": [
+            "Obtain a flat, dated authoritative map or vector boundary and verify which stroke is the intended area boundary.",
+            "Remove undocumented morphological boundary assumptions and establish independent controls and reuse rights."
+          ]
+        },
+        {
+          "featureIndex": 1,
+          "sourceFeatureId": "municipal:bekescsaba:raster:2",
+          "name": "Mezőmegyer",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "local_area",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.053459863044704,
+            46.7088073334071,
+            21.074788590078413,
+            46.7219277300719
+          ],
+          "geometrySha256": "7e73fce87858f8a1c72097a4e3c6d37457964fc3885dad55eac24689140055c4",
+          "requirements": [
+            "Obtain a flat, dated authoritative map or vector boundary and verify which stroke is the intended area boundary.",
+            "Remove undocumented morphological boundary assumptions and establish independent controls and reuse rights."
+          ]
+        },
+        {
+          "featureIndex": 2,
+          "sourceFeatureId": "municipal:bekescsaba:raster:3",
+          "name": "Központ",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "local_area",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.061983142628907,
+            46.64874257479628,
+            21.13725571876919,
+            46.70043818421739
+          ],
+          "geometrySha256": "79062c38aec507b96fe12665293cbf5e07c953025773747a5b32e8a1ff4c59b5",
+          "requirements": [
+            "Obtain a flat, dated authoritative map or vector boundary and verify which stroke is the intended area boundary.",
+            "Remove undocumented morphological boundary assumptions and establish independent controls and reuse rights."
+          ]
+        },
+        {
+          "featureIndex": 3,
+          "sourceFeatureId": "municipal:bekescsaba:raster:4",
+          "name": "Gerla",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "local_area",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.172911448299853,
+            46.69646409004872,
+            21.191870509661133,
+            46.7100551020097
+          ],
+          "geometrySha256": "0577d84681fbc9785502086ff3d040ba4cb0d0d8d80dbbc3fff038f6c1eda975",
+          "requirements": [
+            "Obtain a flat, dated authoritative map or vector boundary and verify which stroke is the intended area boundary.",
+            "Remove undocumented morphological boundary assumptions and establish independent controls and reuse rights."
+          ]
+        },
+        {
+          "featureIndex": 4,
+          "sourceFeatureId": "municipal:bekescsaba:raster:5",
+          "name": "József Attila lakótelep (Lencsési)",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "local_area",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.109147302807592,
+            46.658191926084484,
+            21.140954130611807,
+            46.67131079438458
+          ],
+          "geometrySha256": "9c69ccd3c273f1ebb808123250180959c3cb6176ef4adccf8938cefa0d36690a",
+          "requirements": [
+            "Obtain a flat, dated authoritative map or vector boundary and verify which stroke is the intended area boundary.",
+            "Remove undocumented morphological boundary assumptions and establish independent controls and reuse rights."
+          ]
+        },
+        {
+          "featureIndex": 5,
+          "sourceFeatureId": "municipal:bekescsaba:raster:6",
+          "name": "Fényes",
+          "decision": "exclude_main_geometry",
+          "effectiveBoundaryKind": "local_area",
+          "canonicalNameIsNeighborhood": false,
+          "originalBoundaryKind": "neighbourhood",
+          "originalCanonicalNameIsNeighborhood": null,
+          "geometryType": "Polygon",
+          "geometryValid": true,
+          "geometryValidity": "Valid Geometry",
+          "geometryNonempty": true,
+          "bbox": [
+            21.15374289568634,
+            46.646474670075186,
+            21.179885558982015,
+            46.67226600372295
+          ],
+          "geometrySha256": "60d52035b8c3be0bc81508ca817ba52a7999c7d0d3876832f39908916ae368d9",
+          "requirements": [
+            "Obtain a flat, dated authoritative map or vector boundary and verify which stroke is the intended area boundary.",
+            "Remove undocumented morphological boundary assumptions and establish independent controls and reuse rights."
+          ]
+        }
+      ],
+      "proofSha256": "1bb03dbfcecdbf7e8fdf155d99065e74b0bfe33cf2d6cbb8c8ad4c7cc99f463f",
+      "calibrationObservations": {
+        "median": 11.477118013938895,
+        "p95": 32.525038466980696,
+        "max": 69.97934500815917
+      },
+      "inferredCandidateRegistry": "data/neighborhoods/inferred-candidate-registry.json",
+      "inferredCandidateStatus": "eligible_for_separate_estimated_research_layer_only"
+    }
+  ],
+  "summary": {
+    "reviewedDatasets": 10,
+    "reviewedFeatures": 66,
+    "admittedDatasets": 5,
+    "admittedCandidateFeatures": 47,
+    "admittedNeighborhoodCandidateFeatures": 2,
+    "admittedPlanningUnitCandidateFeatures": 45,
+    "excludedMainGeometryFeatures": 19,
+    "completeMunicipalNeighborhoodCoverageAsserted": false,
+    "separateEstimatedCandidateFeatures": 19,
+    "separateEstimatedNeighborhoodCandidateFeatures": 3,
+    "separateEstimatedPlanningUnitCandidateFeatures": 10,
+    "separateEstimatedLocalAreaCandidateFeatures": 6
+  },
+  "integrationValidation": {
+    "registrySourceCandidateFeatures": 47,
+    "pipelineAdmittedFeatures": 46,
+    "pipelineAdmittedNeighborhoodFeatures": 2,
+    "pipelineAdmittedPlanningUnitFeatures": 44,
+    "uniqueManualCatalogContributions": 45,
+    "uniqueManualNeighborhoodContributions": 1,
+    "uniqueManualPlanningUnitContributions": 44,
+    "conservativeQuarantines": [
+      {
+        "datasetId": "tata-statutory-planning-units",
+        "name": "Tóváros",
+        "reason": "manual_hole_outside_shell",
+        "explanation": "The conservative catalogue validator rejects a point-tangent hole arrangement although GEOS considers the original geometry valid. The candidate remains quarantined; no source geometry was repaired or changed.",
+        "originalSourcePreserved": true,
+        "rawTataSourceFeaturesPreserved": 9
+      }
+    ],
+    "duplicatePreference": [
+      {
+        "datasetId": "szombathely-belvaros",
+        "name": "Belváros",
+        "municipality": "Szombathely",
+        "explanation": "The admitted manual candidate duplicates an existing machine-source feature; catalogue deduplication prefers the machine source, so this candidate adds no unique manual catalogue contribution."
+      }
+    ],
+    "interpretation": "Review approval, pipeline validation and unique catalogue contribution are separate counts. The registry preserves all 47 reviewed source candidates; 46 pass the conservative geometry loader and 45 contribute unique manual catalogue records."
+  },
+  "initialBatchScope": "The original per-feature decisions and integration counts below describe the initial66-feature batch. Continuation datasets have their own linked independent reviews/proofs.",
+  "continuationReviewDocuments": [
+    {
+      "datasetId": "szombathely-ehen-gyula",
+      "path": "data/neighborhoods/sources/municipal-szombathely-next/manifest.json"
+    },
+    {
+      "datasetId": "country-parent-review",
+      "path": "data/neighborhoods/sources/country-parent-review/proof.json"
+    },
+    {
+      "datasetId": "kecskemet-erzsebetvaros",
+      "path": "data/neighborhoods/sources/municipal-maps-next/scout/kecskemet-independent-review.json"
+    },
+    {
+      "datasetId": "gyor-2006-source-outlines",
+      "path": "data/neighborhoods/sources/municipal-gyor-next/independent-review.json"
+    },
+    {
+      "datasetId": "kecskemet-figure81-source-raster",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-fig81/raster-independent-review.json"
+    },
+    {
+      "datasetId": "kecskemet-figure81-label-inference",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-fig81/raster-independent-review.json"
+    },
+    {
+      "datasetId": "zalaegerszeg-source-raster",
+      "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-independent-review.json"
+    },
+    {
+      "datasetId": "szeged-source-street-circuits-next",
+      "path": "data/neighborhoods/sources/municipal-szeged-next/independent-review.json"
+    },
+    {
+      "datasetId": "kecskemet-petofi-source-raster",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-outer-next/raster-independent-review.json"
+    },
+    {
+      "datasetId": "kecskemet-petofi-source-raster",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-outer-next/final-source-review.json"
+    },
+    {
+      "datasetId": "tata-statutory-planning-units",
+      "path": "data/neighborhoods/research/planning-semantics-recheck.json"
+    },
+    {
+      "datasetId": "tatabanya-statutory-planning-units",
+      "path": "data/neighborhoods/research/planning-semantics-recheck.json"
+    },
+    {
+      "datasetId": "eger-historical-planning-units",
+      "path": "data/neighborhoods/research/planning-semantics-recheck.json"
+    },
+    {
+      "datasetId": "miskolc-source-raster",
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-independent-review.json"
+    },
+    {
+      "datasetId": "tatabanya-more-source-vectors",
+      "path": "data/neighborhoods/sources/municipal-tatabanya-more/independent-review.json"
+    },
+    {
+      "datasetId": "tatabanya-compound-source-vectors",
+      "path": "data/neighborhoods/sources/municipal-tatabanya-more/independent-review.json"
+    },
+    {
+      "datasetId": "sopron-native-planning-units-next",
+      "path": "data/neighborhoods/sources/municipal-sopron-next/independent-review.json"
+    },
+    {
+      "datasetId": "dunaujvaros-dozsa-road-completion-inference",
+      "path": "data/neighborhoods/sources/municipal-dunaujvaros-next/independent-review.json"
+    },
+    {
+      "datasetId": "gyongyos-2016-source-contours-unverified-registration",
+      "path": "data/neighborhoods/sources/municipal-gyongyos-more/independent-review.json"
+    },
+    {
+      "datasetId": "pecs-first-source-contours-estimated-placement",
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/independent-review.json"
+    },
+    {
+      "datasetId": "kaposvar-raster-inferred-georeference",
+      "path": "data/neighborhoods/sources/municipal-kaposvar-raster-next/independent-review.json"
+    },
+    {
+      "datasetId": "szombathely-joskar-ola-2013-road-completion-inference",
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/independent-review.json"
+    },
+    {
+      "datasetId": "salgotarjan-2022-source-contours-inferred-registration",
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/independent-review.json"
+    },
+    {
+      "datasetId": "kecskemet-native77-fine-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-native77-first/independent-review.json"
+    },
+    {
+      "datasetId": "kecskemet-native77-local-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-native77-first/independent-review.json"
+    },
+    {
+      "datasetId": "pecs-first-source-contours-estimated-placement",
+      "path": "data/neighborhoods/sources/municipal-pecs-semantic-revision/review.json"
+    },
+    {
+      "datasetId": "pecs-remaining-source-contours-estimated-placement",
+      "path": "data/neighborhoods/sources/municipal-pecs-remaining-next/independent-review.json"
+    },
+    {
+      "datasetId": "kecskemet-figure73-source-pixel-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure73-first/independent-review.json"
+    },
+    {
+      "datasetId": "kecskemet-figure76-source-pixel-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure76-first/independent-review.json"
+    },
+    {
+      "datasetId": "kecskemet-native77-local-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-native77-admission-review/admission-review.json"
+    },
+    {
+      "datasetId": "pecs-final-five-source-contours-estimated-placement",
+      "path": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/independent-final-gap-review.json"
+    },
+    {
+      "datasetId": "pecs-two-explicit-low-confidence-cap-reconstructions",
+      "path": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/independent-cap-review.json"
+    },
+    {
+      "datasetId": "kecskemet-figure78-source-pixel-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure78-first/independent-review.json"
+    },
+    {
+      "datasetId": "zalaegerszeg-six-explicit-source-inferences",
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/independent-source-registration-review.json"
+    },
+    {
+      "datasetId": "kecskemet-figure74-source-overprint-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure74-first/independent-review.json"
+    },
+    {
+      "datasetId": "hodmezovasarhely-hodto-2014-circuit-inferred",
+      "path": "data/neighborhoods/sources/municipal-hodmezovasarhely-hodto-first/hod-independent-review.json"
+    },
+    {
+      "datasetId": "szentes-belvaros-explicit-circuit-inferred",
+      "path": "data/neighborhoods/sources/municipal-szentes-belvaros-first/review.json"
+    },
+    {
+      "datasetId": "eger-historical-planning-units",
+      "path": "data/neighborhoods/sources/municipal-eger-semantic-next/semantic-audit.json",
+      "supersedes": "Blanket planning-only semantic classification; native geometry is unchanged."
+    },
+    {
+      "datasetId": "kecskemet-figure75-source-overprint-inferred",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-figure75-first/independent-review.json"
+    },
+    {
+      "datasetId": "kaposvar-donner-interpreted-2023",
+      "path": "data/neighborhoods/sources/municipal-kaposvar-donner-next/independent-geometry-review.json"
+    },
+    {
+      "datasetId": "zalaegerszeg-ziffa2025-hathaz",
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/independent-registration-review.json"
+    },
+    {
+      "datasetId": "zalaegerszeg-ziffa2025-neszele",
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-registration-review.json"
+    },
+    {
+      "datasetId": "debrecen-arcgis-six-estimated-placement",
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/first-six-independent-review.json"
+    },
+    {
+      "datasetId": "debrecen-arcgis-remaining-23-estimated",
+      "path": "data/neighborhoods/sources/municipal-debrecen-remaining-next/independent-review.json"
+    },
+    {
+      "datasetId": "hodmezovasarhely-ksh2005-native-estimated-placement",
+      "path": "data/neighborhoods/sources/municipal-hodmezovasarhely-ksh2005-next/independent-world-review.json"
+    },
+    {
+      "datasetId": "nyiregyhaza-fine-ksh2003-inferred",
+      "path": "data/neighborhoods/sources/municipal-nyiregyhaza-fine2008-next/independent-review.json"
+    },
+    {
+      "datasetId": "szeged-henits-ksh2003-four-first",
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/root-independent-proposal-review.json"
+    },
+    {
+      "datasetId": "vac-hep2023-marialiget-estimated",
+      "path": "data/neighborhoods/sources/municipal-vac-hep2023-next/independent-review.json"
+    },
+    {
+      "datasetId": "kiskunfelegyhaza-its2016-five",
+      "path": "data/neighborhoods/sources/municipal-kiskunfelegyhaza-its2016-next/independent-parent-review.json"
+    }
+  ]
+}

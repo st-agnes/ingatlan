@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "working_existing_Szeged_gap_and_source_identity_baseline",
+  "reviewedAt": "2026-11-14",
+  "status": "working_pre_acquisition_identity_baseline; no_new_geometry_or_public_packet",
+  "inputs": [
+    {
+      "path": "data/neighborhoods/catalog.geojson.gz",
+      "sha256": "d42694c3e4a5de20dafdab233c4f265f668f23c0a3f9e56b213f5112710f7eb7"
+    },
+    {
+      "path": "data/neighborhoods/manual-source-registry.json",
+      "sha256": "38ad4d5883c6887a4a157c0867f7937ab3ad9d69ff08931277e71749f962fdd2"
+    },
+    {
+      "path": "data/neighborhoods/inferred-candidate-registry.json",
+      "sha256": "c259b9d1c9a03434f2732ddbda639c418b7ba57aad3ef9fe260881243c595c84"
+    },
+    {
+      "path": "data/neighborhoods/report.json",
+      "sha256": "f43a9538e59d38b958c64edb48952db9807064aa87b8b3f20acbb4c15e73c846"
+    },
+    {
+      "path": "data/neighborhoods/estimated-report.json",
+      "sha256": "71b126338486f9c59ce79d7f4dba5ff2028265640a58d7b975f9b850a91fdbf6"
+    },
+    {
+      "path": "data/neighborhoods/nationwide-report.json",
+      "sha256": "48b1b884dc5b67385f0a317586b4f771bdfe25949eab72d0295395f4f114f7a2"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/szeged-street-candidates.geojson",
+      "sha256": "b013b77347086689ec7d68c9fe897b7725e7acc401739e94dd51875dc2ceafc4"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/source-facts.json",
+      "sha256": "27c323788f68cbe7eb17d96a108baa7fcd32e47ad75027c8983760b088e81469"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/boundary-obstacles.json",
+      "sha256": "4d54ffd4a0a3cfa8897c347966b719c9aa23b2f9a64d1361c356afc933d91f7f"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-more/source-facts.json",
+      "sha256": "b06447d58d364e30c76ce16e1ba6850249c2a8c4bedb44718c848c4b7c13ba56"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-more/obstacle-proof.json",
+      "sha256": "e79d9a630c6782c9f21898b14cd65b5a36bcb03e3f4c9f95c73e9363c29df15f"
+    }
+  ],
+  "snapshotCounts": {
+    "catalogGeometries": 2,
+    "acceptedSourceEraQuarterGeometries": 1,
+    "acceptedSourceEraQuarterNames": [
+      "Tarjánváros"
+    ],
+    "planningUnitGeometries": 1,
+    "planningUnitNames": [
+      "Felsővárosi lakótelep (IVS2009/2017 subdivision)"
+    ],
+    "estimatedSzegedCandidates": 0,
+    "currentOsmQuarterPolygons": 0,
+    "pointOnlyNameCount": 51,
+    "completeCoverage": false,
+    "totalCurrentQuarterCount": null,
+    "missingCurrentQuarterCount": null,
+    "allNamesAreNotQuarterGapDenominator": true
+  },
+  "existingGeometryBaseline": [
+    {
+      "id": "manual:szeged:felsovarosi-ivs-2009-2017",
+      "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+      "class": "planning_unit",
+      "sourceGeometrySha256": "93a42fbf3eb39ac64cb5871154911ff8dce0fa6b69f6914448a122a280f10911",
+      "sourceFile": "data/neighborhoods/sources/municipal-szeged-next/szeged-street-candidates.geojson",
+      "sourceFileSha256": "b013b77347086689ec7d68c9fe897b7725e7acc401739e94dd51875dc2ceafc4",
+      "catalogEqualsSourceCoordinates": true,
+      "boundsWgs84": [
+        20.1576244,
+        46.2603496,
+        20.1645415,
+        46.2643272
+      ],
+      "geometryType": "Polygon",
+      "isValid": true,
+      "holes": 0,
+      "exteriorCoordinatesIncludingClosure": 55,
+      "recordedAreaM2": 164604.83965526405,
+      "eovAreaM2DiagnosticOnly": 164621.62047253404,
+      "sourcePeriod": "IVS2009 subdivision quoted in adopted ITS2017 annex, printedp96",
+      "estimated": false,
+      "usableForAddressAssignment": false,
+      "claimedAbsoluteAccuracyMetres": null
+    },
+    {
+      "id": "manual:szeged:tarjanvaros-ivs-2009-2017",
+      "name": "Tarjánváros",
+      "class": "accepted_source_era_quarter",
+      "sourceGeometrySha256": "1703f7e4f3db8d846dc4f3b786741e8fcca45fc80886cb9c7c1ed325a8d5b813",
+      "sourceFile": "data/neighborhoods/sources/municipal-szeged-next/szeged-street-candidates.geojson",
+      "sourceFileSha256": "b013b77347086689ec7d68c9fe897b7725e7acc401739e94dd51875dc2ceafc4",
+      "catalogEqualsSourceCoordinates": true,
+      "boundsWgs84": [
+        20.1575173,
+        46.2639619,
+        20.1714924,
+        46.2759769
+      ],
+      "geometryType": "Polygon",
+      "isValid": true,
+      "holes": 0,
+      "exteriorCoordinatesIncludingClosure": 129,
+      "recordedAreaM2": 924140.6376985968,
+      "eovAreaM2DiagnosticOnly": 924231.5382925755,
+      "sourcePeriod": "IVS2009 subdivision quoted in adopted ITS2017 annex, printedp96",
+      "estimated": false,
+      "usableForAddressAssignment": false,
+      "claimedAbsoluteAccuracyMetres": null
+    }
+  ],
+  "existingInteriorOverlapAreaDegreesSquared": 0.0,
+  "identityComparisonsRequiredForIncomingMaps": [
+    {
+      "identity": "Tarján / Tarjánváros",
+      "existing": "Tarjánváros IVS2009/ITS2017 six-road source-era circuit",
+      "existingCircuit": [
+        "József Attila sugárút",
+        "Körtöltés",
+        "Lugas utca",
+        "Csillag tér",
+        "Szilléri sugárút",
+        "Debreceni utca"
+      ],
+      "otherDocumentedVersion": "2019 historian estate extent uses Retek and Murányi with road-side/house-number distinctions. It differs from the frozen circuit.",
+      "rule": "Treat a new Tarján map as a source version/possible refinement of the same quarter, not a second canonical quarter. Preserve every observed source extent independently. Belső-Tarján is a smaller action area and cannot replace the quarter."
+    },
+    {
+      "identity": "Felsőváros / Felsővárosi lakótelep",
+      "existing": "Small four-road historic planning-only circuit; name/footprint conflict remains.",
+      "existingCircuit": [
+        "Római körút",
+        "Szilléri sugárút",
+        "Debreceni utca",
+        "József Attila sugárút"
+      ],
+      "rule": "Do not promote the existing planning polygon or clone a broad Felsőváros macro unit into a fine estate. An incoming map must visibly identify actual fine contour and its source label; keep source-schema distinction."
+    },
+    {
+      "identity": "Klebelsberg-telep / Klebelsbergtelep / Hattyas",
+      "existing": "No quarter polygon. Historical names are associated by local-history sources; the OSM Hattyas point lies separately farther south.",
+      "rule": "Explicit historical name identity does not authorize merging the two present point locations or duplicating the whole quarter as two features. Kecskés is a distinct neighbor. Match source-era map corners/embankment rather than assume live rail centerlines."
+    },
+    {
+      "identity": "Odessza",
+      "existing": "No quarter polygon; whole-estate municipal articles and a distinct explicit IVS action-area circuit are retained as evidence.",
+      "rule": "Incoming whole-estate contour may be useful. The chapter5 action-area map remains corroboration only and cannot silently become a modern whole-quarter polygon."
+    },
+    {
+      "identity": "Móraváros",
+      "existing": "No fine-quarter polygon. Approximate modern four-side definition and larger ten-side historic planning unit have different scopes.",
+      "rule": "Do not substitute the larger planning parent or create a missing southern connector from short text. Require actual fine map contour or full explicit street circuit."
+    },
+    {
+      "identity": "Kálvária",
+      "existing": "No quarter polygon. Adopted2012 perimeter differs from an earlier proposal; Bakay/rail corner unresolved.",
+      "rule": "Use adopted source-era naming map/circuit only. Do not use the rejected proposal or invent a road-to-rail corner."
+    },
+    {
+      "identity": "Rókus / Újrókus and other coarse-to-fine pairs",
+      "existing": "Names only, no accepted quarter geometry.",
+      "rule": "Nesting or related names do not prove aliases. Require separately labeled source contours/circuits for every admitted child; do not copy a macro parent to children."
+    }
+  ],
+  "documentedHighPriorityRemainingGeometryTasks": [
+    {
+      "name": "Klebelsbergtelep",
+      "specificGap": "Four physical corridors described, but current eastern embankment-to-old-waterbody connection not established. Frozen proof reports a625.628m live industrial-rail-to-current-bank gap; physical embankment may extend beyond tracks."
+    },
+    {
+      "name": "Odessza",
+      "specificGap": "Whole-estate railway-embankment/corridor transition to Szőregi/Temesvári unresolved on current tracks. Source map needed."
+    },
+    {
+      "name": "Kálvária",
+      "specificGap": "Adopted Bakay Nándor/railway corner not unambiguously matched to source-era rail branch."
+    },
+    {
+      "name": "Móraváros",
+      "specificGap": "Short modern description omits over600m southern continuation; larger old planning polygon is different."
+    },
+    {
+      "name": "Tarján",
+      "specificGap": "2019 house-side/Murányi version not resolved; any newly acquired map is same quarter identity with distinct extent."
+    }
+  ],
+  "pointOnlyNamesForCandidateNameMatching": [
+    "Alsóváros",
+    "Ásványhát",
+    "Baktó",
+    "Baktói kiskertek",
+    "Ballagitó",
+    "Béketelep",
+    "Belváros",
+    "Bodom",
+    "Cserőke",
+    "Északi városrész",
+    "Felsőváros",
+    "Fodorkert",
+    "Franciahögy lakópark",
+    "Gedó",
+    "Gyálarét",
+    "Gyálaréti kiskertek",
+    "Harmónia lakópark",
+    "Hársfa lakópark",
+    "Hattyas",
+    "Iparváros",
+    "Kállayliget",
+    "Kecskés István-telep",
+    "Kiskundorozsma",
+    "Klebelsbergtelep",
+    "Liliom lakókert",
+    "Lőtér lakópark",
+    "Makkosház",
+    "Marostő",
+    "Marostői kiskertek",
+    "Móraváros",
+    "Nagyszilléri domb",
+    "Odessza",
+    "Öreghegy",
+    "Petőfitelep",
+    "Rókus",
+    "Subasa",
+    "Szentmihály",
+    "Sziksós",
+    "Szőreg",
+    "Tápairét",
+    "Tápé",
+    "Tápéi kiskertek",
+    "Tarján",
+    "Tiszavirág-üdülőtelep",
+    "Tömörkény-üdülőtelep",
+    "Tompasziget",
+    "Újpetőfitelep",
+    "Újrókus",
+    "Újszeged",
+    "Újszőreg",
+    "Vadaspark lakópark"
+  ],
+  "pointOnlyMeaning": "Names/points support identity only. They are neither boundary contours nor geographic fit controls, and not every listed place is an urban quarter.",
+  "incomingSourceRules": [
+    "Raw PDF originals remain local; selected map/native-vector panels and short factual/paraphrased semantics only in any eventual public packet.",
+    "Classify actual fine named quarter contours separately from strategic groups, action areas, urban character/landcover classes, cadastral units and statistical aggregation.",
+    "For an incoming source schema, record source-unit identity and version before any aliasing, splitting or grouping.",
+    "Observed contour and estimated world placement are separate claims; fit to actual roads/geographic features, never quarter label points.",
+    "Compare incoming candidates to both existing geometries before any count/admission; preserve alternatives and source-specific exclusions."
+  ],
+  "awaitingRootOriginalFilePaths": true,
+  "networkCallsPerformed": false,
+  "globalRegistryModified": false,
+  "frozenPacketsModified": false,
+  "directNarrativeQuotationWords": 0
+}

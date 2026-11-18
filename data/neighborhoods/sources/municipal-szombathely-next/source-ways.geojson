@@ -1,0 +1,2133 @@
+{
+  "type": "FeatureCollection",
+  "source": {
+    "path": ".local/neighborhoods/country-associated/construction-lines.geojson",
+    "sha256": "a88eae7d237681eeae44c4bd7291777e17c21cfba3babed5677b1e976efcf0b4",
+    "method": "Select only unchanged original named OSM ways in the Szombathely construction area; no clipping or coordinate changes.",
+    "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "snapshotTimestamp": "2026-11-12T21:23:05Z",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "osm:way:51231484",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 51231484,
+          "tags": {
+            "bicycle": "no",
+            "foot": "no",
+            "highway": "tertiary",
+            "lanes": "4",
+            "maxspeed": "50",
+            "name": "Zanati út",
+            "ref": "87315",
+            "sidewalk": "left",
+            "surface": "asphalt"
+          },
+          "objectVersion": 33,
+          "objectTimestamp": "2025-06-24 06:37:29+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/51231484",
+          "nodeRefs": [
+            2380642372,
+            2383614456,
+            2388834944,
+            685881180
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6350788,
+            47.23505
+          ],
+          [
+            16.635226,
+            47.2351556
+          ],
+          [
+            16.6353677,
+            47.2352359
+          ],
+          [
+            16.6355616,
+            47.2353243
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:54442504",
+      "properties": {
+        "name": "Sas utca",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 54442504,
+          "tags": {
+            "highway": "residential",
+            "lane_markings": "no",
+            "lit": "yes",
+            "name": "Sas utca",
+            "oneway": "yes",
+            "sidewalk": "right",
+            "surface": "asphalt"
+          },
+          "objectVersion": 10,
+          "objectTimestamp": "2025-01-15 16:10:31+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/54442504",
+          "nodeRefs": [
+            2973567083,
+            1278848459,
+            1278848163
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6355419,
+            47.2354021
+          ],
+          [
+            16.6344221,
+            47.2380714
+          ],
+          [
+            16.6335219,
+            47.2401467
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:112539384",
+      "properties": {
+        "name": "Ikervár utca",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 112539384,
+          "tags": {
+            "highway": "tertiary",
+            "lane_markings": "no",
+            "name": "Ikervár utca",
+            "oneway": "yes",
+            "surface": "asphalt"
+          },
+          "objectVersion": 10,
+          "objectTimestamp": "2025-06-19 12:00:45+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/112539384",
+          "nodeRefs": [
+            1278848181,
+            2386848500,
+            2399676708,
+            1278848017,
+            2386848445,
+            1278847949,
+            3123327972
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6398272,
+            47.234196
+          ],
+          [
+            16.6397032,
+            47.2343746
+          ],
+          [
+            16.6394004,
+            47.2349122
+          ],
+          [
+            16.6393496,
+            47.234991
+          ],
+          [
+            16.6392505,
+            47.2351277
+          ],
+          [
+            16.638833,
+            47.2356814
+          ],
+          [
+            16.6383262,
+            47.2363212
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:112539396",
+      "properties": {
+        "name": "Hámor utca",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 112539396,
+          "tags": {
+            "highway": "residential",
+            "name": "Hámor utca"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2013-07-13 18:30:18+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/112539396",
+          "nodeRefs": [
+            1278848094,
+            2383540486,
+            2383540484,
+            2383544332,
+            1278848252
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6387565,
+            47.242498
+          ],
+          [
+            16.6386786,
+            47.2424975
+          ],
+          [
+            16.6385972,
+            47.2424725
+          ],
+          [
+            16.6369215,
+            47.2418495
+          ],
+          [
+            16.6353508,
+            47.2412722
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:112539458",
+      "properties": {
+        "name": "Bártfa utca",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 112539458,
+          "tags": {
+            "highway": "residential",
+            "lane_markings": "no",
+            "name": "Bártfa utca",
+            "surface": "asphalt"
+          },
+          "objectVersion": 6,
+          "objectTimestamp": "2025-01-15 16:00:39+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/112539458",
+          "nodeRefs": [
+            685881085,
+            3123327979,
+            1278848116,
+            1278848403,
+            2383540483,
+            2383540487,
+            2383540488,
+            2383540485,
+            1278848094
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6418022,
+            47.2377355
+          ],
+          [
+            16.6417568,
+            47.2378135
+          ],
+          [
+            16.6413534,
+            47.2384964
+          ],
+          [
+            16.6406528,
+            47.2397434
+          ],
+          [
+            16.6391527,
+            47.2419552
+          ],
+          [
+            16.6389813,
+            47.2422445
+          ],
+          [
+            16.6388489,
+            47.2424457
+          ],
+          [
+            16.6388077,
+            47.2424795
+          ],
+          [
+            16.6387565,
+            47.242498
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:112539508",
+      "properties": {
+        "name": "Vas utca",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 112539508,
+          "tags": {
+            "highway": "residential",
+            "name": "Vas utca"
+          },
+          "objectVersion": 2,
+          "objectTimestamp": "2013-03-25 22:32:47+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/112539508",
+          "nodeRefs": [
+            1278848330,
+            1278848252,
+            1278847894,
+            1278848190
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6353187,
+            47.2414849
+          ],
+          [
+            16.6353508,
+            47.2412722
+          ],
+          [
+            16.635401,
+            47.2409394
+          ],
+          [
+            16.6354558,
+            47.2406586
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:112539542",
+      "properties": {
+        "name": "Vépi út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 112539542,
+          "tags": {
+            "cycleway:left": "no",
+            "cycleway:right": "lane",
+            "cycleway:right:lane": "exclusive",
+            "highway": "tertiary",
+            "lane_markings": "no",
+            "name": "Vépi út",
+            "oneway": "yes",
+            "surface": "asphalt"
+          },
+          "objectVersion": 13,
+          "objectTimestamp": "2025-07-09 13:36:07+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/112539542",
+          "nodeRefs": [
+            3123327968,
+            1278848460,
+            2386848492,
+            1278848047,
+            2386848332,
+            1278848347,
+            2386848415,
+            1278848263,
+            2386848521,
+            2386848515,
+            1278848442,
+            2386848214,
+            2386848491
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6367884,
+            47.235722
+          ],
+          [
+            16.6372984,
+            47.2350878
+          ],
+          [
+            16.637521,
+            47.2348277
+          ],
+          [
+            16.6376707,
+            47.2346862
+          ],
+          [
+            16.6378124,
+            47.2345874
+          ],
+          [
+            16.6380298,
+            47.234475
+          ],
+          [
+            16.6382499,
+            47.2343872
+          ],
+          [
+            16.6384055,
+            47.2343449
+          ],
+          [
+            16.6385579,
+            47.2343203
+          ],
+          [
+            16.6387324,
+            47.2343074
+          ],
+          [
+            16.6390849,
+            47.2342933
+          ],
+          [
+            16.6392719,
+            47.2342767
+          ],
+          [
+            16.6394775,
+            47.2342521
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:112539543",
+      "properties": {
+        "name": "Alkotás utca",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 112539543,
+          "tags": {
+            "highway": "residential",
+            "lane_markings": "no",
+            "name": "Alkotás utca",
+            "surface": "asphalt"
+          },
+          "objectVersion": 9,
+          "objectTimestamp": "2025-11-04 10:46:11+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/112539543",
+          "nodeRefs": [
+            1278848371,
+            6074551144,
+            2383540483,
+            1278848416,
+            3210755500,
+            1278848168,
+            1278848124,
+            2383544326,
+            2383544335,
+            2383544334,
+            1278848190,
+            2383544333,
+            2383544330,
+            1278848453
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6420352,
+            47.2430317
+          ],
+          [
+            16.6419631,
+            47.2430048
+          ],
+          [
+            16.6391527,
+            47.2419552
+          ],
+          [
+            16.6382121,
+            47.2415814
+          ],
+          [
+            16.6380065,
+            47.2415078
+          ],
+          [
+            16.6373201,
+            47.2412606
+          ],
+          [
+            16.6363803,
+            47.2409144
+          ],
+          [
+            16.6360146,
+            47.2408024
+          ],
+          [
+            16.6357165,
+            47.2407206
+          ],
+          [
+            16.6355357,
+            47.240674
+          ],
+          [
+            16.6354558,
+            47.2406586
+          ],
+          [
+            16.6353803,
+            47.2406505
+          ],
+          [
+            16.635286,
+            47.2406331
+          ],
+          [
+            16.6346462,
+            47.2404611
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:208907178",
+      "properties": {
+        "name": "Alkotás utca",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 208907178,
+          "tags": {
+            "highway": "residential",
+            "name": "Alkotás utca"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2014-11-29 14:20:41+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/208907178",
+          "nodeRefs": [
+            2383544328,
+            3210755471,
+            2383536983,
+            3210755481,
+            2191612533
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.636514,
+            47.240716
+          ],
+          [
+            16.6368026,
+            47.2408208
+          ],
+          [
+            16.6374573,
+            47.2410585
+          ],
+          [
+            16.6381662,
+            47.2412961
+          ],
+          [
+            16.6383718,
+            47.2413686
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:229472267",
+      "properties": {
+        "name": "Vépi út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 229472267,
+          "tags": {
+            "highway": "tertiary",
+            "name": "Vépi út",
+            "oneway": "yes",
+            "surface": "asphalt"
+          },
+          "objectVersion": 2,
+          "objectTimestamp": "2021-10-15 21:58:00+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/229472267",
+          "nodeRefs": [
+            447596471,
+            2380660217,
+            420533341
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6559342,
+            47.2314458
+          ],
+          [
+            16.6562967,
+            47.2313564
+          ],
+          [
+            16.6565282,
+            47.23127
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:230155585",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 230155585,
+          "tags": {
+            "cycleway:right": "no",
+            "destination:symbol": "centre",
+            "foot": "no",
+            "highway": "tertiary",
+            "lanes": "1",
+            "maxspeed": "50",
+            "name": "Zanati út",
+            "oneway": "yes",
+            "ref": "87315",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "objectVersion": 13,
+          "objectTimestamp": "2024-05-08 14:07:49+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/230155585",
+          "nodeRefs": [
+            2386848354,
+            7686032936,
+            3116739456,
+            7686032935,
+            7686032953,
+            7688112066
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6531111,
+            47.2421714
+          ],
+          [
+            16.6530584,
+            47.2420897
+          ],
+          [
+            16.6530399,
+            47.2420649
+          ],
+          [
+            16.6530062,
+            47.2420327
+          ],
+          [
+            16.6529276,
+            47.2419735
+          ],
+          [
+            16.652786,
+            47.2418902
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:230155590",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 230155590,
+          "tags": {
+            "bicycle": "no",
+            "foot": "no",
+            "highway": "tertiary",
+            "lanes": "1",
+            "maxspeed": "50",
+            "name": "Zanati út",
+            "oneway": "yes",
+            "ref": "87315",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "objectVersion": 10,
+          "objectTimestamp": "2024-05-08 14:07:49+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/230155590",
+          "nodeRefs": [
+            2380645209,
+            2386848401,
+            2386848395,
+            7686032937,
+            7686032938,
+            2386848240
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6526163,
+            47.241793
+          ],
+          [
+            16.6529409,
+            47.2419184
+          ],
+          [
+            16.6531275,
+            47.2419778
+          ],
+          [
+            16.6531808,
+            47.2419895
+          ],
+          [
+            16.65323,
+            47.2419907
+          ],
+          [
+            16.6533449,
+            47.2419742
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:230260467",
+      "properties": {
+        "name": "Sas utca",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 230260467,
+          "tags": {
+            "highway": "residential",
+            "lane_markings": "no",
+            "name": "Sas utca",
+            "oneway": "yes",
+            "surface": "asphalt"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2025-11-04 10:45:40+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/230260467",
+          "nodeRefs": [
+            1278848163,
+            2387844858,
+            685881226,
+            2387844883,
+            2387844837,
+            2387844905,
+            685881012,
+            685881025,
+            2387844861
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6335219,
+            47.2401467
+          ],
+          [
+            16.6333818,
+            47.2404852
+          ],
+          [
+            16.6333724,
+            47.2405491
+          ],
+          [
+            16.6333781,
+            47.2406266
+          ],
+          [
+            16.6334067,
+            47.240689
+          ],
+          [
+            16.6337698,
+            47.2413585
+          ],
+          [
+            16.6338078,
+            47.2413855
+          ],
+          [
+            16.6338727,
+            47.2414127
+          ],
+          [
+            16.6342085,
+            47.2415236
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:299911036",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 299911036,
+          "tags": {
+            "bicycle": "no",
+            "highway": "tertiary",
+            "lanes": "4",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Zanati út",
+            "ref": "87315",
+            "surface": "asphalt"
+          },
+          "objectVersion": 12,
+          "objectTimestamp": "2024-05-08 14:07:49+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/299911036",
+          "nodeRefs": [
+            1278848437,
+            7688112081,
+            1278848287,
+            3323241965,
+            11889159293,
+            1278848294,
+            1280828354,
+            2807293135,
+            693276520,
+            2386848322,
+            2807293138,
+            2386848238,
+            2987464907,
+            2987464908,
+            7688112068
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6450145,
+            47.2388785
+          ],
+          [
+            16.6456153,
+            47.2390859
+          ],
+          [
+            16.6462323,
+            47.2392957
+          ],
+          [
+            16.64684,
+            47.2395069
+          ],
+          [
+            16.6472992,
+            47.2396635
+          ],
+          [
+            16.6474434,
+            47.2397127
+          ],
+          [
+            16.6477557,
+            47.2398188
+          ],
+          [
+            16.6482783,
+            47.2400015
+          ],
+          [
+            16.648431,
+            47.2400538
+          ],
+          [
+            16.6491587,
+            47.2403133
+          ],
+          [
+            16.6493109,
+            47.2403729
+          ],
+          [
+            16.6495409,
+            47.2404635
+          ],
+          [
+            16.6498818,
+            47.2406156
+          ],
+          [
+            16.6499319,
+            47.2406375
+          ],
+          [
+            16.6501376,
+            47.2407287
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:323505043",
+      "properties": {
+        "name": "Vépi út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 323505043,
+          "tags": {
+            "highway": "tertiary",
+            "lanes": "2",
+            "name": "Vépi út",
+            "surface": "asphalt"
+          },
+          "objectVersion": 10,
+          "objectTimestamp": "2025-06-18 18:14:06+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/323505043",
+          "nodeRefs": [
+            1278848181,
+            7629825176,
+            2386848253,
+            4996668528,
+            2386848362,
+            2386848310,
+            2386848229,
+            1278848285,
+            2399715451,
+            1278848328,
+            2399715450,
+            1278847990,
+            1278848232,
+            1278848409,
+            1278848300,
+            12584717955,
+            9385624621,
+            1278847930,
+            1278848201,
+            5505872983,
+            5505873940,
+            3353032997,
+            1278848267
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6398272,
+            47.234196
+          ],
+          [
+            16.6399612,
+            47.2341662
+          ],
+          [
+            16.6401266,
+            47.2341293
+          ],
+          [
+            16.640347,
+            47.2340694
+          ],
+          [
+            16.6406607,
+            47.2339608
+          ],
+          [
+            16.6410068,
+            47.2338487
+          ],
+          [
+            16.6412063,
+            47.2337839
+          ],
+          [
+            16.6413337,
+            47.2337457
+          ],
+          [
+            16.6415242,
+            47.2336507
+          ],
+          [
+            16.6421879,
+            47.2332428
+          ],
+          [
+            16.6423942,
+            47.2331403
+          ],
+          [
+            16.6426021,
+            47.233069
+          ],
+          [
+            16.6448126,
+            47.2325245
+          ],
+          [
+            16.6453047,
+            47.2324575
+          ],
+          [
+            16.6458608,
+            47.2324458
+          ],
+          [
+            16.6471907,
+            47.2325286
+          ],
+          [
+            16.6473634,
+            47.2325393
+          ],
+          [
+            16.6477192,
+            47.2325433
+          ],
+          [
+            16.6491544,
+            47.2323983
+          ],
+          [
+            16.6497577,
+            47.2323557
+          ],
+          [
+            16.6504637,
+            47.2322979
+          ],
+          [
+            16.6508818,
+            47.2322529
+          ],
+          [
+            16.6511031,
+            47.2322335
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:465858411",
+      "properties": {
+        "name": "Sas utca",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 465858411,
+          "tags": {
+            "highway": "residential",
+            "lane_markings": "no",
+            "name": "Sas utca",
+            "oneway": "yes",
+            "oneway:bicycle": "no",
+            "sidewalk": "both",
+            "surface": "asphalt"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2025-06-24 06:38:24+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/465858411",
+          "nodeRefs": [
+            685881180,
+            2973567083
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6355616,
+            47.2353243
+          ],
+          [
+            16.6355419,
+            47.2354021
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:465858413",
+      "properties": {
+        "name": "Vépi út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 465858413,
+          "tags": {
+            "highway": "tertiary",
+            "lane_markings": "no",
+            "name": "Vépi út",
+            "oneway": "yes",
+            "oneway:bicycle": "no",
+            "surface": "asphalt"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2025-06-19 12:00:00+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/465858413",
+          "nodeRefs": [
+            1278848359,
+            6074551125,
+            3123327968
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6367382,
+            47.2357797
+          ],
+          [
+            16.6367773,
+            47.2357347
+          ],
+          [
+            16.6367884,
+            47.235722
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:465858418",
+      "properties": {
+        "name": "Ikervár utca",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 465858418,
+          "tags": {
+            "highway": "residential",
+            "lanes": "2",
+            "name": "Ikervár utca",
+            "oneway": "yes",
+            "oneway:bicycle": "no",
+            "surface": "asphalt"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2025-01-15 16:06:29+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/465858418",
+          "nodeRefs": [
+            3123327972,
+            6074551126,
+            1278847895
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6383262,
+            47.2363212
+          ],
+          [
+            16.6383141,
+            47.2363366
+          ],
+          [
+            16.638282,
+            47.2363775
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:499105908",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 499105908,
+          "tags": {
+            "cycleway:left": "separate",
+            "cycleway:right": "no",
+            "foot": "no",
+            "highway": "tertiary",
+            "lanes": "4",
+            "lcn": "proposed",
+            "maxspeed": "50",
+            "name": "Zanati út",
+            "ref": "87315",
+            "sidewalk": "left",
+            "surface": "asphalt"
+          },
+          "objectVersion": 9,
+          "objectTimestamp": "2025-06-24 07:00:16+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/499105908",
+          "nodeRefs": [
+            653859408,
+            5260224184,
+            5260224185,
+            5260224186,
+            2383614461,
+            685881215,
+            2380642372
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6343388,
+            47.2346098
+          ],
+          [
+            16.6344869,
+            47.2346653
+          ],
+          [
+            16.6345756,
+            47.2347053
+          ],
+          [
+            16.6346495,
+            47.2347444
+          ],
+          [
+            16.6347395,
+            47.2348018
+          ],
+          [
+            16.6349519,
+            47.2349616
+          ],
+          [
+            16.6350788,
+            47.23505
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:543992715",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 543992715,
+          "tags": {
+            "bicycle": "no",
+            "highway": "tertiary",
+            "lanes": "4",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Zanati út",
+            "ref": "87315",
+            "surface": "asphalt"
+          },
+          "objectVersion": 7,
+          "objectTimestamp": "2022-03-16 13:26:16+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/543992715",
+          "nodeRefs": [
+            685881246,
+            1278848437
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6446477,
+            47.2387532
+          ],
+          [
+            16.6450145,
+            47.2388785
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:544115924",
+      "properties": {
+        "name": "Vépi út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 544115924,
+          "tags": {
+            "bicycle": "no",
+            "foot": "no",
+            "highway": "tertiary",
+            "name": "Vépi út",
+            "surface": "asphalt"
+          },
+          "objectVersion": 5,
+          "objectTimestamp": "2022-01-02 12:40:40+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/544115924",
+          "nodeRefs": [
+            1278848421,
+            5505873978,
+            447596471
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6527943,
+            47.2320366
+          ],
+          [
+            16.6553762,
+            47.2315568
+          ],
+          [
+            16.6559342,
+            47.2314458
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:544119517",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 544119517,
+          "tags": {
+            "bicycle": "no",
+            "highway": "tertiary",
+            "lanes": "4",
+            "maxspeed": "50",
+            "name": "Zanati út",
+            "ref": "87315",
+            "surface": "asphalt"
+          },
+          "objectVersion": 9,
+          "objectTimestamp": "2022-01-16 20:43:57+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/544119517",
+          "nodeRefs": [
+            1278848243,
+            1278848359,
+            1278847977,
+            1278847895,
+            2223452895,
+            1278848055,
+            2223452897,
+            2399703166,
+            1278848072,
+            685881085,
+            5694193931,
+            6074551138,
+            685881246
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6366587,
+            47.23575
+          ],
+          [
+            16.6367382,
+            47.2357797
+          ],
+          [
+            16.6376582,
+            47.2361398
+          ],
+          [
+            16.638282,
+            47.2363775
+          ],
+          [
+            16.6384091,
+            47.2364272
+          ],
+          [
+            16.6391856,
+            47.2367448
+          ],
+          [
+            16.6401144,
+            47.2371166
+          ],
+          [
+            16.6405168,
+            47.2372648
+          ],
+          [
+            16.6410232,
+            47.2374544
+          ],
+          [
+            16.6418022,
+            47.2377355
+          ],
+          [
+            16.6431473,
+            47.2382315
+          ],
+          [
+            16.6444562,
+            47.238685
+          ],
+          [
+            16.6446477,
+            47.2387532
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:627377410",
+      "properties": {
+        "name": "Vépi út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 627377410,
+          "tags": {
+            "highway": "tertiary",
+            "name": "Vépi út",
+            "surface": "asphalt"
+          },
+          "objectVersion": 2,
+          "objectTimestamp": "2025-01-04 00:53:16+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/627377410",
+          "nodeRefs": [
+            5259744530,
+            12472767849,
+            12472767850
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6515106,
+            47.232194
+          ],
+          [
+            16.6520183,
+            47.2321374
+          ],
+          [
+            16.652264,
+            47.2321077
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:627377411",
+      "properties": {
+        "name": "Vépi út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 627377411,
+          "tags": {
+            "highway": "tertiary",
+            "name": "Vépi út",
+            "surface": "asphalt"
+          },
+          "objectVersion": 1,
+          "objectTimestamp": "2018-09-22 13:37:04+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/627377411",
+          "nodeRefs": [
+            1278848267,
+            5259744530
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6511031,
+            47.2322335
+          ],
+          [
+            16.6515106,
+            47.232194
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:627398404",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 627398404,
+          "tags": {
+            "bicycle": "no",
+            "foot": "no",
+            "highway": "tertiary",
+            "lanes": "4",
+            "maxspeed": "50",
+            "name": "Zanati út",
+            "ref": "87315",
+            "sidewalk": "both",
+            "surface": "asphalt"
+          },
+          "objectVersion": 6,
+          "objectTimestamp": "2025-06-24 06:38:35+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/627398404",
+          "nodeRefs": [
+            685881180,
+            1278848243
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6355616,
+            47.2353243
+          ],
+          [
+            16.6366587,
+            47.23575
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:627398406",
+      "properties": {
+        "name": "Alkotás utca",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 627398406,
+          "tags": {
+            "highway": "residential",
+            "lane_markings": "no",
+            "name": "Alkotás utca",
+            "surface": "asphalt"
+          },
+          "objectVersion": 3,
+          "objectTimestamp": "2025-11-04 10:45:56+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/627398406",
+          "nodeRefs": [
+            1278848453,
+            1278848163
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6346462,
+            47.2404611
+          ],
+          [
+            16.6335219,
+            47.2401467
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:627398412",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 627398412,
+          "tags": {
+            "cycleway:both": "separate",
+            "foot": "no",
+            "highway": "tertiary",
+            "lanes": "4",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Zanati út",
+            "ref": "87315",
+            "surface": "asphalt"
+          },
+          "objectVersion": 8,
+          "objectTimestamp": "2024-05-08 14:07:49+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/627398412",
+          "nodeRefs": [
+            2386848266,
+            9129925678,
+            2380645209
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6513432,
+            47.2412618
+          ],
+          [
+            16.6522065,
+            47.2416266
+          ],
+          [
+            16.6526163,
+            47.241793
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:627398413",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 627398413,
+          "tags": {
+            "bicycle": "no",
+            "foot": "no",
+            "highway": "tertiary",
+            "lanes": "4",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Zanati út",
+            "ref": "87315",
+            "surface": "asphalt"
+          },
+          "objectVersion": 6,
+          "objectTimestamp": "2022-03-16 13:24:33+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/627398413",
+          "nodeRefs": [
+            2390614588,
+            6622490031,
+            2386848266
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.651186,
+            47.2411946
+          ],
+          [
+            16.6512409,
+            47.2412181
+          ],
+          [
+            16.6513432,
+            47.2412618
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:627398414",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 627398414,
+          "tags": {
+            "bicycle": "no",
+            "foot": "no",
+            "highway": "tertiary",
+            "lanes": "4",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Zanati út",
+            "ref": "87315",
+            "surface": "asphalt"
+          },
+          "objectVersion": 6,
+          "objectTimestamp": "2022-03-16 13:23:01+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/627398414",
+          "nodeRefs": [
+            2386848357,
+            7688112067
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6507119,
+            47.2409888
+          ],
+          [
+            16.6509052,
+            47.2410719
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:823487864",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 823487864,
+          "tags": {
+            "cycleway:right": "no",
+            "foot": "no",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Zanati út",
+            "oneway": "yes",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2022-05-31 15:04:57+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/823487864",
+          "nodeRefs": [
+            7688112066,
+            7686032952,
+            2380645209
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.652786,
+            47.2418902
+          ],
+          [
+            16.6527449,
+            47.2418672
+          ],
+          [
+            16.6526163,
+            47.241793
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:823487865",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 823487865,
+          "tags": {
+            "bicycle": "no",
+            "foot": "no",
+            "highway": "tertiary",
+            "lanes": "4",
+            "lit": "yes",
+            "maxspeed": "50",
+            "name": "Zanati út",
+            "ref": "87315",
+            "surface": "asphalt"
+          },
+          "objectVersion": 3,
+          "objectTimestamp": "2022-03-16 13:23:11+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/823487865",
+          "nodeRefs": [
+            7688112067,
+            6622490033,
+            2393634864,
+            2390614588
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6509052,
+            47.2410719
+          ],
+          [
+            16.6510142,
+            47.2411191
+          ],
+          [
+            16.6510823,
+            47.2411498
+          ],
+          [
+            16.651186,
+            47.2411946
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:823487866",
+      "properties": {
+        "name": "Zanati út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 823487866,
+          "tags": {
+            "bicycle": "no",
+            "foot": "no",
+            "highway": "tertiary",
+            "lanes": "4",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Zanati út",
+            "ref": "87315",
+            "surface": "asphalt"
+          },
+          "objectVersion": 3,
+          "objectTimestamp": "2022-03-16 13:24:45+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/823487866",
+          "nodeRefs": [
+            7688112068,
+            2386848357
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6501376,
+            47.2407287
+          ],
+          [
+            16.6507119,
+            47.2409888
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1054178477",
+      "properties": {
+        "name": "Vépi út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 1054178477,
+          "tags": {
+            "highway": "tertiary",
+            "lane_markings": "no",
+            "name": "Vépi út",
+            "oneway": "yes",
+            "surface": "asphalt"
+          },
+          "objectVersion": 2,
+          "objectTimestamp": "2025-06-19 12:02:01+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/1054178477",
+          "nodeRefs": [
+            2386848491,
+            1278848181
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6394775,
+            47.2342521
+          ],
+          [
+            16.6398272,
+            47.234196
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1348397337",
+      "properties": {
+        "name": "Vépi út",
+        "constructionAreaIds": [
+          "szombathely"
+        ],
+        "source": {
+          "osmType": "way",
+          "osmId": 1348397337,
+          "tags": {
+            "highway": "tertiary",
+            "name": "Vépi út",
+            "surface": "asphalt"
+          },
+          "objectVersion": 1,
+          "objectTimestamp": "2025-01-04 00:53:16+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/1348397337",
+          "nodeRefs": [
+            12472767850,
+            12472767851,
+            1278848421
+          ]
+        },
+        "geometryProcessing": "Actual complete OSM way vertices; no clipping or interpolation."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.652264,
+            47.2321077
+          ],
+          [
+            16.6525352,
+            47.2320721
+          ],
+          [
+            16.6527943,
+            47.2320366
+          ]
+        ]
+      }
+    }
+  ]
+}

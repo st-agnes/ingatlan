@@ -1,0 +1,122 @@
+{
+  "sourceTableNamesTotal": 67,
+  "frozenFirstCohortCount": 33,
+  "remainingSupportedBeforeNewQA": 27,
+  "unresolvedCount": 7,
+  "records": [
+    {
+      "sourceName": "Murom",
+      "status": "unresolved_full_source_extent",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [
+        53,
+        54
+      ],
+      "reason": "The original density map uses no-data hatching that divides the full labelled area into more than one free-pixel cell; a single half-cell must not be exported as the whole named area.",
+      "sourceLabelAnchorPixel": [
+        454,
+        176
+      ],
+      "canUseUnchangedSourceCell": false,
+      "semanticKind": "historical_named_area",
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Köztemető",
+      "status": "unresolved_full_source_extent",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [
+        134,
+        143
+      ],
+      "reason": "The original density map uses no-data hatching that divides the full labelled area into more than one free-pixel cell; a single half-cell must not be exported as the whole named area.",
+      "sourceLabelAnchorPixel": [
+        283,
+        379
+      ],
+      "canUseUnchangedSourceCell": false,
+      "semanticKind": "functional_cemetery_area",
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Kisbalokány",
+      "status": "unresolved_missing_fine_separator_in_mask",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [
+        92
+      ],
+      "sourceLabelAnchorPixel": [
+        288,
+        291
+      ],
+      "reason": "The source name-map explicitly separates Kisbalokány and Siklósi külváros, but both independently read interior locations fall in the same current density free-cell 92. A read-only threshold-sensitivity check at local contrast deltas4,6,8,10,12,14,16,20,24,30 still merges the two. Do not clone 92 onto both names.",
+      "canUseUnchangedSourceCell": false,
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Siklósi külváros",
+      "status": "unresolved_missing_fine_separator_in_mask",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [
+        92
+      ],
+      "sourceLabelAnchorPixel": [
+        266,
+        306
+      ],
+      "reason": "Separate literal fine name from Kisbalokány, but the current Figure 12 source-mask does not separate their two interiors. Additional literal Figure 9 separator tracing may be possible; one shared 92 polygon is not two fine footprints.",
+      "canUseUnchangedSourceCell": false,
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Árpádtető",
+      "status": "unresolved_full_source_extent",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [
+        40,
+        41
+      ],
+      "sourceLabelAnchorPixel": [
+        343,
+        80
+      ],
+      "reason": "The original density island is divided by a visible no-data hatch into two substantial free-cell fragments. Figure 9 has a complete solid-purple island that may supply a separate lower-resolution contour; do not export one half as the whole quarter.",
+      "canUseUnchangedSourceCell": false,
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Petőfi-akna",
+      "status": "unresolved_full_source_extent",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [
+        12
+      ],
+      "sourceLabelAnchorPixel": [
+        515,
+        23
+      ],
+      "reason": "The tiny density island has a visible no-data hatch across its northern cap; cell 12 is only one interior fragment. Figure 9 has a complete solid-purple island, a possible separate lower-resolution source.",
+      "canUseUnchangedSourceCell": false,
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "M utca",
+      "status": "unresolved_tiny_source_extent",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [],
+      "sourceLabelAnchorPixel": [
+        514,
+        43
+      ],
+      "reason": "Literal label M utca is readable, but the extremely small dark adjacent original shape does not support a reliable whole interior seed in this review.",
+      "canUseUnchangedSourceCell": false,
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    }
+  ],
+  "scope": "These source names do not yet have a complete independently supported unchanged raster cell. No polygons or guessed closures are created here."
+}

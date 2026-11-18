@@ -1,0 +1,509 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_FOR_FOUR_EXPLICIT_INFERRED_SOURCE_CELLS",
+  "logicalCohortPath": "data/neighborhoods/sources/municipal-kecskemet-figure78-first",
+  "independentOfProducerCode": true,
+  "provenanceSha256": {
+    "input-manifest.json": "ede11265cb0a61a65a904da3502105150b797eecb4bd8aef270842d6bf0a259d",
+    "generated-manifest.json": "5d5c04e26a942076d1d24a7e6a3358b00b22a9b150ec71ff44d137b350382e3e",
+    "image-registration.json": "0b47627d71b70a76988b0b70dac111759a76d8a32fc0d94471f701fecb33e578",
+    "independent-physical-landmarks.json": "051b0bd966ed63c797e32d1dc4e62a8697c6256fd9cce063f38d64af36e18842",
+    "independent-physical-landmark-model-check.json": "8e5b8e14ccf976d3243c140c3e6e79fe89cd468e7a68b5e03ee3ce311149d349",
+    "source-pixel-rings.json": "79473a7064984d1d1b66546fea9dc3a25ac6c0f27eedd39ff1aa828c73446e46",
+    "source-inferred.geojson": "1ef7475d6573753e7b273c5e4cee7ed42b2608a655ef8b72450c2b8d32d1a6be",
+    "calibration-figure79-manifest.json": "b5c5c314e1afd96f0de5c2c00b9bb1a7bcf6472e737fcac8addcf61e09a898d8",
+    "calibration-figure79-raster-georeference.json": "8fe9f800ddeba181fc5ea1316af178a7888138c4c60a77a2ec790f734b06de9f",
+    "calibration-control-specification.json": "d19074e93d619d0ee7f6f6c713d9b03a598197dc6b302f009b156ee12f104912",
+    "calibration-control-roads.geojson": "c6a70ee10aba979b068b776e1db3276351a62548c780227cd9411682978a5d60",
+    "original-pbf-verification.json": "ca6fcbfb5872003843ba434aa88522e1826d6f1e9f672bf2016e828b9dda2153",
+    "current-name-points.geojson": "c9abfaa7c91bd20984853ff7c028d8a22b5a1cd37d6424dfef889a455553ae34",
+    "georeference.json": "9d14e447ebc089f0a07de6233250f9ccbfeaeb0a3f88c9b2d5dbc7004683f912",
+    "conversion-proof.json": "ce0f448d67de011e51911351b21ba6478bd77b1af1af70968fbb4d6c8d695535",
+    "registry-entry.json": "45d928fb6bfed8acd1f762f7a04501daaa0ca3df72f712456bdd67f31ba2aa5c",
+    "finalaudit-independent.py": "48f69a7c92be0bf449db18a67c71fd485c9245f4f74d3391adc0cfd2fb5ec2b0"
+  },
+  "portableReplay": {
+    "rootDiscoveredByProjectValidatorAncestorSearch": true,
+    "currentStagingOrFinalDirectoryPathStoredInReport": false,
+    "requiresExternalFrozenCohortDirectoryOrFullPbfForDefaultReplay": false,
+    "finalManifestNotHashedInOwnFingerprintAvoidingCycles": true
+  },
+  "sourceEvidence": {
+    "originalFigure78EmbeddedJpegPreserved": true,
+    "sourceImageSha256": "63a05d0c439ef62c8feea3ca0347f7d944b98676c030960a38ccd4a9788870fd",
+    "sourceBlackComponentIndependentlyRecomputedPixelCount": 32078,
+    "componentOnlySelectsActualOriginalBlackPixels": true,
+    "denseSourceAndWorldVertexCountChecked": 5790,
+    "allSourceVerticesMaxRgb45OrLess": true,
+    "allSourceEdges8Neighbor": true,
+    "sourceFrameClosureGapFillLabelOcclusionInferenceRepairBufferSnapOrPixelAddition": false,
+    "sourceAndWorldInteriorRingCount": 0,
+    "maximumWorldCoordinateDisagreementDegrees": 0.0,
+    "allWorldEdgesVerifiedAgainstConsecutiveOriginalSourcePixels": true,
+    "pairwiseAreaOverlapChecks": [
+      {
+        "a": "Alsócsalános",
+        "b": "Homokbánya",
+        "sourceAreaOverlap": 0.0,
+        "worldAreaOverlap": 0.0
+      },
+      {
+        "a": "Alsócsalános",
+        "b": "Alsószéktó",
+        "sourceAreaOverlap": 0.0,
+        "worldAreaOverlap": 0.0
+      },
+      {
+        "a": "Alsócsalános",
+        "b": "Szeleifalu",
+        "sourceAreaOverlap": 0.0,
+        "worldAreaOverlap": 0.0
+      },
+      {
+        "a": "Homokbánya",
+        "b": "Alsószéktó",
+        "sourceAreaOverlap": 0.0,
+        "worldAreaOverlap": 0.0
+      },
+      {
+        "a": "Homokbánya",
+        "b": "Szeleifalu",
+        "sourceAreaOverlap": 0.0,
+        "worldAreaOverlap": 0.0
+      },
+      {
+        "a": "Alsószéktó",
+        "b": "Szeleifalu",
+        "sourceAreaOverlap": 0.0,
+        "worldAreaOverlap": 0.0
+      }
+    ]
+  },
+  "independentPhotographicNcc": {
+    "numericMethod": "Direct sliding-window dot products/window sum-square normalization, instead of the producer FFT convolution. All forty searches and rejected/usable classifications are recomputed.",
+    "directSearchCount": 40,
+    "trainingCount": 14,
+    "heldOutCount": 16,
+    "maximumNccCoefficientDisagreement": 5.551115123125783e-16,
+    "maximumPeakCenterDisagreementPixels": 2.842170943040401e-14,
+    "photoAffineIndependentlyRefitted": true,
+    "heldOutResiduals": [
+      {
+        "id": "r0c1",
+        "residualTargetPixels": 0.14867915744074878,
+        "usedInFit": false
+      },
+      {
+        "id": "r0c3",
+        "residualTargetPixels": 0.0961272488221987,
+        "usedInFit": false
+      },
+      {
+        "id": "r0c5",
+        "residualTargetPixels": 0.1652370199809378,
+        "usedInFit": false
+      },
+      {
+        "id": "r0c7",
+        "residualTargetPixels": 0.20630570752632285,
+        "usedInFit": false
+      },
+      {
+        "id": "r1c0",
+        "residualTargetPixels": 0.29544144915707127,
+        "usedInFit": false
+      },
+      {
+        "id": "r1c2",
+        "residualTargetPixels": 0.27672870830457136,
+        "usedInFit": false
+      },
+      {
+        "id": "r1c4",
+        "residualTargetPixels": 0.20116327437327725,
+        "usedInFit": false
+      },
+      {
+        "id": "r1c6",
+        "residualTargetPixels": 0.22185690970774036,
+        "usedInFit": false
+      },
+      {
+        "id": "r1c8",
+        "residualTargetPixels": 0.24657206122348016,
+        "usedInFit": false
+      },
+      {
+        "id": "r2c1",
+        "residualTargetPixels": 0.10422387365167184,
+        "usedInFit": false
+      },
+      {
+        "id": "r2c7",
+        "residualTargetPixels": 0.17537285064070218,
+        "usedInFit": false
+      },
+      {
+        "id": "r2c9",
+        "residualTargetPixels": 0.3926250218902124,
+        "usedInFit": false
+      },
+      {
+        "id": "r3c2",
+        "residualTargetPixels": 0.16303291449548624,
+        "usedInFit": false
+      },
+      {
+        "id": "r3c4",
+        "residualTargetPixels": 0.05689113826918207,
+        "usedInFit": false
+      },
+      {
+        "id": "r3c6",
+        "residualTargetPixels": 0.06690430587461797,
+        "usedInFit": false
+      },
+      {
+        "id": "r3c8",
+        "residualTargetPixels": 0.22543231133724823,
+        "usedInFit": false
+      }
+    ],
+    "maximumHeldOutResidualTargetPixels": 0.3926250218902124,
+    "geographicCoordinatesNamesOrSourceQuarterRingsUsedByPhotoMatching": false,
+    "independentUntunedPhysicalFeatureChecks": [
+      {
+        "id": "retail-roof-nw-four-boxes",
+        "manualSourcePixel": [
+          684,
+          1158
+        ],
+        "manualTargetPixel": [
+          278,
+          502
+        ],
+        "predictedTargetPixel": [
+          277.50562545089076,
+          501.1159155452632
+        ],
+        "distanceTargetPixels": 1.0129222664717377,
+        "withinPreviouslyDeclaredManualInterpretation": true,
+        "manualPointOrWindowAdjustedToModel": false
+      },
+      {
+        "id": "eastern-small-pale-house-roof",
+        "manualSourcePixel": [
+          1458,
+          1127
+        ],
+        "manualTargetPixel": [
+          967,
+          474
+        ],
+        "predictedTargetPixel": [
+          965.5811489239422,
+          473.73645748740205
+        ],
+        "distanceTargetPixels": 1.4431192022756514,
+        "withinPreviouslyDeclaredManualInterpretation": true,
+        "manualPointOrWindowAdjustedToModel": false
+      },
+      {
+        "id": "western-roundabout-green-island",
+        "manualSourcePixel": [
+          407,
+          1124
+        ],
+        "manualTargetPixel": [
+          33,
+          475
+        ],
+        "predictedTargetPixel": [
+          31.263470121648368,
+          470.89047090116617
+        ],
+        "distanceTargetPixels": 4.461363629269636,
+        "withinPreviouslyDeclaredManualInterpretation": true,
+        "manualPointOrWindowAdjustedToModel": false
+      },
+      {
+        "id": "larger-blue-hall-roof",
+        "manualSourcePixel": [
+          432,
+          1075
+        ],
+        "manualTargetPixel": [
+          56,
+          426
+        ],
+        "predictedTargetPixel": [
+          53.49568404065633,
+          427.40425431401366
+        ],
+        "distanceTargetPixels": 2.871154576585764,
+        "withinPreviouslyDeclaredManualInterpretation": true,
+        "manualPointOrWindowAdjustedToModel": false
+      }
+    ]
+  },
+  "calibrationEvidence": {
+    "copiedFrozenFigure79ManifestSha256": "b5c5c314e1afd96f0de5c2c00b9bb1a7bcf6472e737fcac8addcf61e09a898d8",
+    "copiedOriginalFigure79ImageAndWgsModelHashesMatchManifest": true,
+    "originalFiveManualImageObservationsUnmodified": true,
+    "actualLiteralControlWaysVerifiedAgainstPinnedOriginalPbf": 16,
+    "actualLiteralCurrentNameNodesVerifiedAgainstPinnedOriginalPbf": 4,
+    "newMetricFitIndependentlyComputedInCrs": "EPSG:23700",
+    "newMetricRoadControlResidualMeters": [
+      1.4244930506974791,
+      2.1414893650628977,
+      4.051178889567548,
+      1.9145874683770563,
+      2.3971022443927708
+    ],
+    "oldGeographicalModelMethod": "Inverse of least-squares WORLD->PIXEL affine, reproduced explicitly; not direct PIXEL->WORLD least squares.",
+    "oldInverseGeographicalModelIndependentlyReproduced": true,
+    "originalFrozenFigure79CalibrationFileChanged": false,
+    "exactPhysicalSourceRoadJunctionCenterSurveyClaimed": false
+  },
+  "conversion": {
+    "inversePhotoAffineAndComposedEovMappingIndependentlyComputed": true,
+    "sequentialAndComposedMetricVerticesAgreeWithin1eMinus8Meters": true,
+    "all5790WorldVerticesAndEdgesChecked": true
+  },
+  "sourceCellChecks": [
+    {
+      "name": "Alsócsalános",
+      "sourceAndWorldDenseVerticesChecked": 1043,
+      "maximumSourceMaxRgb": 44,
+      "allSourceEdges8Neighbor": true,
+      "sourceAndWorldHoles": 0,
+      "minimumDistanceFromSourceFramePixels": 14,
+      "maximumWorldCoordinateDisagreementDegrees": 0.0,
+      "everyWorldEdgeCorrespondsToConsecutiveOriginalSourcePixels": true,
+      "verticesOutsideObservedTextureHull": 817,
+      "verticesOutsideOriginalCalibrationImage": 490,
+      "maximumDistanceBeyondTextureHullTargetPixels": 299.0619368497172,
+      "newMetricVsOriginalInverseGeographicAffineMaximumDifferenceMeters": 0.24423058597442932,
+      "currentExactPbfNamePointInsideSourceCandidate": true,
+      "currentNamePointId": "osm:node:1306536273",
+      "namePointUsedAsRegistrationControl": false
+    },
+    {
+      "name": "Homokbánya",
+      "sourceAndWorldDenseVerticesChecked": 1617,
+      "maximumSourceMaxRgb": 45,
+      "allSourceEdges8Neighbor": true,
+      "sourceAndWorldHoles": 0,
+      "minimumDistanceFromSourceFramePixels": 289,
+      "maximumWorldCoordinateDisagreementDegrees": 0.0,
+      "everyWorldEdgeCorrespondsToConsecutiveOriginalSourcePixels": true,
+      "verticesOutsideObservedTextureHull": 1267,
+      "verticesOutsideOriginalCalibrationImage": 1139,
+      "maximumDistanceBeyondTextureHullTargetPixels": 408.37078549622237,
+      "newMetricVsOriginalInverseGeographicAffineMaximumDifferenceMeters": 0.3040905306113906,
+      "currentExactPbfNamePointInsideSourceCandidate": true,
+      "currentNamePointId": "osm:node:984225116",
+      "namePointUsedAsRegistrationControl": false
+    },
+    {
+      "name": "Alsószéktó",
+      "sourceAndWorldDenseVerticesChecked": 1468,
+      "maximumSourceMaxRgb": 43,
+      "allSourceEdges8Neighbor": true,
+      "sourceAndWorldHoles": 0,
+      "minimumDistanceFromSourceFramePixels": 149,
+      "maximumWorldCoordinateDisagreementDegrees": 0.0,
+      "everyWorldEdgeCorrespondsToConsecutiveOriginalSourcePixels": true,
+      "verticesOutsideObservedTextureHull": 964,
+      "verticesOutsideOriginalCalibrationImage": 575,
+      "maximumDistanceBeyondTextureHullTargetPixels": 214.80029809897817,
+      "newMetricVsOriginalInverseGeographicAffineMaximumDifferenceMeters": 0.25510804946880106,
+      "currentExactPbfNamePointInsideSourceCandidate": true,
+      "currentNamePointId": "osm:node:984225115",
+      "namePointUsedAsRegistrationControl": false
+    },
+    {
+      "name": "Szeleifalu",
+      "sourceAndWorldDenseVerticesChecked": 1662,
+      "maximumSourceMaxRgb": 43,
+      "allSourceEdges8Neighbor": true,
+      "sourceAndWorldHoles": 0,
+      "minimumDistanceFromSourceFramePixels": 133,
+      "maximumWorldCoordinateDisagreementDegrees": 0.0,
+      "everyWorldEdgeCorrespondsToConsecutiveOriginalSourcePixels": true,
+      "verticesOutsideObservedTextureHull": 1662,
+      "verticesOutsideOriginalCalibrationImage": 1479,
+      "maximumDistanceBeyondTextureHullTargetPixels": 643.7843985671267,
+      "newMetricVsOriginalInverseGeographicAffineMaximumDifferenceMeters": 0.8238452976071963,
+      "currentExactPbfNamePointInsideSourceCandidate": true,
+      "currentNamePointId": "osm:node:984225114",
+      "namePointUsedAsRegistrationControl": false
+    }
+  ],
+  "actualProjectGeometryValidator": {
+    "modulePath": "scripts/neighborhoods/build.mjs",
+    "moduleSha256": "7d234a3c4750b6a735483befd02661c6ba199491fec102bd2d301dabf4cb216c",
+    "actualValidateGeometryExportCalled": true,
+    "acceptedCount": 4,
+    "rejectedCount": 0,
+    "results": [
+      {
+        "id": "manual:kecskemet-figure78:alsocsalanos",
+        "name": "Alsócsalános",
+        "valid": true,
+        "bbox": [
+          19.627206362010835,
+          46.88234132982805,
+          19.640139762395425,
+          46.88894800030728
+        ],
+        "vertices": 1043
+      },
+      {
+        "id": "manual:kecskemet-figure78:homokbanya",
+        "name": "Homokbánya",
+        "valid": true,
+        "bbox": [
+          19.635875031239827,
+          46.87928769012407,
+          19.655484643602065,
+          46.89008228450937
+        ],
+        "vertices": 1617
+      },
+      {
+        "id": "manual:kecskemet-figure78:alsoszekto",
+        "name": "Alsószéktó",
+        "valid": true,
+        "bbox": [
+          19.646650576702843,
+          46.88455770074678,
+          19.667237600288058,
+          46.89474023019985
+        ],
+        "vertices": 1468
+      },
+      {
+        "id": "manual:kecskemet-figure78:szeleifalu",
+        "name": "Szeleifalu",
+        "valid": true,
+        "bbox": [
+          19.654793725040868,
+          46.8753747618121,
+          19.675666153078488,
+          46.89147104088918
+        ],
+        "vertices": 1662
+      }
+    ]
+  },
+  "sensitivityDiagnostics": {
+    "originalRoadControlLeaveOneOut": [
+      {
+        "omittedRoadNodeId": 4459257122,
+        "maximumFigure78SourceVertexDisplacementMeters": 33.416231860959755
+      },
+      {
+        "omittedRoadNodeId": 411750381,
+        "maximumFigure78SourceVertexDisplacementMeters": 11.525313087696164
+      },
+      {
+        "omittedRoadNodeId": 1803696400,
+        "maximumFigure78SourceVertexDisplacementMeters": 0.9499700845279129
+      },
+      {
+        "omittedRoadNodeId": 765800655,
+        "maximumFigure78SourceVertexDisplacementMeters": 1.2362629694935374
+      },
+      {
+        "omittedRoadNodeId": 801515835,
+        "maximumFigure78SourceVertexDisplacementMeters": 13.137834990184777
+      }
+    ],
+    "photographicTrainingPatchLeaveOneOut": [
+      {
+        "omittedTexturePatchId": "r0c0",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.19365197552301341
+      },
+      {
+        "omittedTexturePatchId": "r0c2",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.18071452323295503
+      },
+      {
+        "omittedTexturePatchId": "r0c4",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.15337020236947776
+      },
+      {
+        "omittedTexturePatchId": "r0c6",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.13234857305095526
+      },
+      {
+        "omittedTexturePatchId": "r0c8",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.34599362483737667
+      },
+      {
+        "omittedTexturePatchId": "r1c1",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.173719218640613
+      },
+      {
+        "omittedTexturePatchId": "r1c5",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.09526871185334894
+      },
+      {
+        "omittedTexturePatchId": "r1c7",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.14435376138537725
+      },
+      {
+        "omittedTexturePatchId": "r2c0",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.3683738268577886
+      },
+      {
+        "omittedTexturePatchId": "r2c2",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.1025265098234259
+      },
+      {
+        "omittedTexturePatchId": "r2c4",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.3302387171633057
+      },
+      {
+        "omittedTexturePatchId": "r2c8",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.5409204127074282
+      },
+      {
+        "omittedTexturePatchId": "r3c5",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.5857631065179594
+      },
+      {
+        "omittedTexturePatchId": "r3c7",
+        "maximumFigure78SourceVertexDisplacementMeters": 0.32400961295230596
+      }
+    ],
+    "notCalibratedBoundaryAccuracyBounds": true
+  },
+  "sourceScopeDecision": {
+    "separatelyNamedFineSourceCells": [
+      "Alsócsalános",
+      "Homokbánya",
+      "Alsószéktó",
+      "Szeleifalu"
+    ],
+    "compoundGroupCopiedUnderFineNames": false,
+    "alsoszektoProseVariantAlsoszektoKertvarosPreserved": true,
+    "imageEdgeAlsoszektóiKiskertekExcluded": true,
+    "fourOriginalPbfNamePointsInsideButNotUsedAsCoordinatesOrControls": true,
+    "nameOccurrenceDoesNotProveCurrentExactBoundaryExtent": true
+  },
+  "limits": {
+    "onlyObservedPhotographicOverlapTested": true,
+    "largeSouthernEasternAndWesternExtrapolationExplicit": true,
+    "szeleifaluAll1662SourceVerticesOutsideObservedTextureHull": true,
+    "newFullFigure78GeographicValidationClaimed": false,
+    "photoResidualsOrSmallModelFamilyDifferenceNotAbsoluteBoundaryAccuracy": true
+  },
+  "primaryLayerApproved": false,
+  "explicitInferredLayerApproved": true,
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "approvalReason": "The exact black source contours, common photographic overlap, literal original OSM controls/names, independently refitted calibration and every transformed world vertex/edge pass audit and the real project validator. The new Figure78 extent is largely outside observed photo coverage and original Figure79 image coverage; all Szeleifalu vertices are outside the texture hull. Four current name points and small model-family differences do not validate full geographic registration. Preserve explicit inferred-only status."
+}

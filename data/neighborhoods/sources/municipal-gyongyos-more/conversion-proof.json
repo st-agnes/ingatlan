@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Gyöngyös",
+  "primaryCandidateCount": 0,
+  "estimatedCandidateCount": 5,
+  "actualClosedSourceContourCount": 5,
+  "excludedClippedNorthContourCount": 1,
+  "sourceContourSha256": "7a5a87db20d524535826b8b5adc04ff215a396f1c19ed6975b28996e7b62cac9",
+  "sourceImageSha256": "42e7d237cbd3fa6c5fc896ab6766a7d9c79d7c9e962123772784b8f360042e6a",
+  "sourceFactsSha256": "57823cfd194281ae1cdd0ed42b2655d4b4fdb0c27d3aaff07b8d453084526822",
+  "registrationControlsSha256": "920ba78b6cfe2404f2275523166e66f87dc0b84944d201584998724f7bd1b9c7",
+  "affinePixelToEovCoefficientsRowsX_Y_1": [
+    [
+      6.826417739927,
+      -0.04242292327
+    ],
+    [
+      0.846730534853,
+      -6.931437333544
+    ],
+    [
+      712906.499009616,
+      274080.70096757787
+    ]
+  ],
+  "calibrationResiduals": [
+    {
+      "controlId": "lake-north",
+      "imageIdentification": "Approximate historical lake north water edge; water level and tree cover differ. Scene inspection only.",
+      "residualMetres": 24.737767164560886
+    },
+    {
+      "controlId": "szent-bertalan",
+      "imageIdentification": "Nagytemplom pin in the labelled source-region-p31.jpeg; approximate image-to-image corner correspondence to overview.",
+      "residualMetres": 34.72592900474823
+    },
+    {
+      "controlId": "ferences",
+      "imageIdentification": "Ferences templom pin in the labelled source-region-p31.jpeg; approximate image-to-image corner correspondence to overview.",
+      "residualMetres": 97.07158210393895
+    },
+    {
+      "controlId": "jokai-puskin",
+      "imageIdentification": "Jókai-Puskin planned roundabout pin in source-region-p31.jpeg; nearby actual Puskin endpoint, pin and historical junction are not an exact node identity.",
+      "residualMetres": 48.6610634057155
+    },
+    {
+      "controlId": "egri-szurdok",
+      "imageIdentification": "Approximate aerial major-road junction; source ink is not used as an OSM vertex constraint.",
+      "residualMetres": 44.551638042981516
+    }
+  ],
+  "internalFitRmsMetres": 55.845298577016315,
+  "internalFitMaxMetres": 97.07158210393895,
+  "residualMeaning": "Internal fit to manually approximate scene identifications only. No independent ground-control accuracy; not an absolute error bound.",
+  "claimedAbsoluteAccuracyMetres": null,
+  "syntheticGeographicClosingEdges": 0,
+  "modernStreetReplacement": false,
+  "geometricRepair": false,
+  "frameClosure": false,
+  "pixelPolygonization": "Union/noding of four-neighbor traced ink line steps, select uniquely containing interior seed. Removes dangling/backtracking pixel line artifacts; inserts no new pixel edge. Original chosen ink paths are retained.",
+  "contours": [
+    {
+      "name": "Észak-nyugati városrész",
+      "sourceVerticesIncludingClosure": 849,
+      "sourcePixelArea": 8961.0,
+      "holes": 0,
+      "valid": true,
+      "allSourcePixelEdgesMatchedLiteralInkPathSteps": true,
+      "frameContact": false,
+      "maxDistanceToThresholdedCartographicInkPixels": 3.605551275463989,
+      "meanDistanceToThresholdedCartographicInkPixels": 0.1213573404643531,
+      "inkDiagnosticMeaning": "Proximity to a declared JPEG brightness/color threshold, not a statistical accuracy, confidence or absolute position bound."
+    },
+    {
+      "name": "Nyugati városrész",
+      "sourceVerticesIncludingClosure": 1241,
+      "sourcePixelArea": 22710.0,
+      "holes": 0,
+      "valid": true,
+      "allSourcePixelEdgesMatchedLiteralInkPathSteps": true,
+      "frameContact": false,
+      "maxDistanceToThresholdedCartographicInkPixels": 3.605551275463989,
+      "meanDistanceToThresholdedCartographicInkPixels": 0.03993043786431645,
+      "inkDiagnosticMeaning": "Proximity to a declared JPEG brightness/color threshold, not a statistical accuracy, confidence or absolute position bound."
+    },
+    {
+      "name": "Városközpont",
+      "sourceVerticesIncludingClosure": 805,
+      "sourcePixelArea": 21414.0,
+      "holes": 0,
+      "valid": true,
+      "allSourcePixelEdgesMatchedLiteralInkPathSteps": true,
+      "frameContact": false,
+      "maxDistanceToThresholdedCartographicInkPixels": 1.0,
+      "meanDistanceToThresholdedCartographicInkPixels": 0.012422360248447204,
+      "inkDiagnosticMeaning": "Proximity to a declared JPEG brightness/color threshold, not a statistical accuracy, confidence or absolute position bound."
+    },
+    {
+      "name": "Keleti városrész",
+      "sourceVerticesIncludingClosure": 1717,
+      "sourcePixelArea": 41885.0,
+      "holes": 0,
+      "valid": true,
+      "allSourcePixelEdgesMatchedLiteralInkPathSteps": true,
+      "frameContact": false,
+      "maxDistanceToThresholdedCartographicInkPixels": 2.0,
+      "meanDistanceToThresholdedCartographicInkPixels": 0.0203843913803145,
+      "inkDiagnosticMeaning": "Proximity to a declared JPEG brightness/color threshold, not a statistical accuracy, confidence or absolute position bound."
+    },
+    {
+      "name": "Déli városrész",
+      "sourceVerticesIncludingClosure": 2627,
+      "sourcePixelArea": 75939.0,
+      "holes": 0,
+      "valid": true,
+      "allSourcePixelEdgesMatchedLiteralInkPathSteps": true,
+      "frameContact": false,
+      "maxDistanceToThresholdedCartographicInkPixels": 4.123105625617661,
+      "meanDistanceToThresholdedCartographicInkPixels": 0.16355163135218292,
+      "inkDiagnosticMeaning": "Proximity to a declared JPEG brightness/color threshold, not a statistical accuracy, confidence or absolute position bound."
+    }
+  ],
+  "georeferenceAcceptedForPrimaryLayer": false,
+  "usableForAddressAssignment": false
+}

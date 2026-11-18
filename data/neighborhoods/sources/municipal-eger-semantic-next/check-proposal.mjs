@@ -1,0 +1,40 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {dirname,join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {validateGeometry} from '../../../../scripts/neighborhoods/build.mjs';
+const P=dirname(fileURLToPath(import.meta.url)),sha=x=>createHash('sha256').update(x).digest('hex');
+const read=async n=>JSON.parse(await readFile(join(P,n),'utf8'));
+const bytes=await readFile(join(P,'../municipal-east/eger-planning-units.geojson'));
+assert.equal(sha(bytes),'c3619e702df579b23776b977daf62c0ee1aafb9f629a8b447fb29b64f558011b');
+const source=JSON.parse(bytes),revision=await read('proposed-semantic-revision.geojson'),entry=await read('proposed-registry-entry.json'),audit=await read('semantic-audit.json'),native=await read('root-native-geometry-audit.json');
+assert.equal(source.features.length,32);assert.equal(revision.features.length,32);
+assert.equal(entry.id,'eger-historical-planning-units');assert.equal(entry.registryEntryAppliedByThisBatch,false);
+assert.equal(entry.sha256,sha(await readFile(join(P,'proposed-semantic-revision.geojson'))));
+assert.equal(entry.propertyOverrides.boundaryKind,undefined);assert.equal(entry.propertyOverrides.canonicalNameIsNeighborhood,undefined);
+const rows=[];
+for(let i=0;i<32;i++){
+ const a=source.features[i],b=revision.features[i],p=b.properties,d=audit.features[i];
+ assert.equal(a.id,b.id);assert.equal(a.properties.name,p.name);assert.equal(a.properties.sourcePlanId,p.sourcePlanId);
+ assert.equal(a.properties.sourcePdfDrawingIndex,p.sourcePdfDrawingIndex);
+ assert.equal(sha(JSON.stringify(a.geometry)),sha(JSON.stringify(b.geometry)));
+ assert.equal(d.geometrySha256Before,d.geometrySha256After);assert.equal(d.geometrySha256After,sha(JSON.stringify(b.geometry)));
+ const v=validateGeometry(b.geometry);assert.equal(v.valid,true);
+ assert.equal(p.sourceSchemaDate,'2016-08');assert.equal(p.currentOrdinaryWholeQuarterExtentAsserted,false);
+ assert.equal(p.currentItsExtentMatches,null);assert.equal(p.currentLegalExtentMatches,null);
+ assert.equal(p.currentQuarterIdentityVerified,false);assert.equal(p.currentNameStatus,'unknown_not_independently_current_name_audited');
+ assert.equal(p.priorManualNameAuditApplies,false);assert.equal(p.reviewStatus,'unreviewed');
+ assert.equal(p.usableForAddressAssignment,false);assert.equal(p.claimedAbsoluteAccuracyMetres,null);assert.equal(p.independentInteriorControlCount,0);
+ assert.equal(p.sourceGeometryUnmodified,true);assert.equal(p.sourceIsHardBoundary,false);
+ assert.equal(p.boundaryKind,d.decision==='propose_qualified_quarter'?'neighbourhood':'planning_unit');
+ assert.equal(p.canonicalNameIsNeighborhood,p.boundaryKind==='neighbourhood');
+ if(p.boundaryKind==='neighbourhood'){assert.ok(Number.isInteger(p.sourceBasePlanReferenceYear));assert.equal(p.candidateBoundarySchema,'historical_source_defined_statutory_quarter_base_plan');}
+ rows.push({name:p.name,id:b.id,geometryUnchanged:true,strictValid:true,proposedKind:p.boundaryKind,currentIdentityKnown:false});
+}
+assert.equal(rows.filter(r=>r.proposedKind==='neighbourhood').length,23);assert.equal(rows.filter(r=>r.proposedKind==='planning_unit').length,9);
+assert.equal(native.actualNativeSourcePathsChecked,33);assert.equal(native.frozenWorldFeaturesChecked,32);assert.equal(native.calibration.coefficientMaximumDifference,0);assert.equal(native.independentInteriorControlCount,0);
+const result={status:'passes_geometry_identity_and_qualified_semantic_checks',originalFileSha256:sha(bytes),proposedFileSha256:entry.sha256,unchangedGeometryCount:32,strictPassCount:32,proposedQualifiedHistoricalQuarters:23,proposedRetainedPlanning:9,currentNameIdentityVerifiedCount:0,earlier89NameAuditReused:false,originalNamesIdsAndGeometryUnchanged:true,globalChangesApplied:false,features:rows};
+const text=JSON.stringify(result,null,2)+'\n';
+if(process.argv.includes('--check'))assert.equal(await readFile(join(P,'proposal-check.json'),'utf8'),text);else await writeFile(join(P,'proposal-check.json'),text);
+console.log(JSON.stringify({status:result.status,geometryChanged:0,strictPass:32,qualifiedHistorical:23,retainedPlanning:9,currentIdentityVerified:0,check:process.argv.includes('--check')}));

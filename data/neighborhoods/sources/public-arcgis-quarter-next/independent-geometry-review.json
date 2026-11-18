@@ -1,0 +1,3265 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent_native_esri_and_service_geojson_geometry_review",
+  "reviewDate": "2026-11-14",
+  "itemId": "a04e2a4ff4d2467c8bb6eb640f515b51",
+  "layerId": 0,
+  "rawInputs": [
+    {
+      "kind": "count",
+      "path": ".local/neighborhoods/supplement-feature-services/debrecen-quarter-queries/debrecen-count.json",
+      "sha256": "9b3a218b2e4ed1da46308c6dcf68fe028fd0c8353ddcb4866757de12a62f90af",
+      "bytes": 14
+    },
+    {
+      "kind": "ids",
+      "path": ".local/neighborhoods/supplement-feature-services/debrecen-quarter-queries/debrecen-ids.json",
+      "sha256": "f763185f4511f0caaccbb42282a54d75599a3acf6986c8c7e5b142046a1a74d2",
+      "bytes": 265
+    },
+    {
+      "kind": "native",
+      "path": ".local/neighborhoods/supplement-feature-services/debrecen-quarter-queries/debrecen-native-page0.json",
+      "sha256": "d97a7d3ca556f3ed554a5e6c70381d196b41199ba1c5b1ee4f692a55e3e00792",
+      "bytes": 36839
+    },
+    {
+      "kind": "geojson",
+      "path": ".local/neighborhoods/supplement-feature-services/debrecen-quarter-queries/debrecen-geojson-page0.json",
+      "sha256": "fb7d0f0bae18b05263d5658221f0a612a2839193ce47413e05dc71401b18cf3e",
+      "bytes": 48128
+    },
+    {
+      "kind": "manifest",
+      "path": ".local/neighborhoods/supplement-feature-services/debrecen-quarter-queries/download-manifest.json",
+      "sha256": "f4bde0338fff7e07a059e5e1e104ce466670c2535930954531b1590271f251b9",
+      "bytes": 3003
+    }
+  ],
+  "geometryHashSerialization": "SHA256 of Python json.dumps(geometry, ensure_ascii=False, sort_keys=True, separators=(comma,colon), allow_nan=False).encode(UTF-8), no trailing newline; source array order retained.",
+  "completeness": {
+    "reportedCount": 77,
+    "idInventoryCount": 77,
+    "uniqueInventoryIds": 77,
+    "nativeCount": 77,
+    "geojsonCount": 77,
+    "idSetsExactlyEqual": true,
+    "nativeIdsOrdered": true,
+    "geojsonIdsOrdered": true,
+    "nativeExceededTransferLimit": false,
+    "geojsonExceededTransferLimit": false,
+    "downloadManifestHashesMatch": {
+      "count": true,
+      "ids": true,
+      "native": true,
+      "geojson": true
+    }
+  },
+  "crs": {
+    "native": {
+      "wkid": 102100,
+      "latestWkid": 3857
+    },
+    "serviceGeojson": {
+      "type": "name",
+      "properties": {
+        "name": "EPSG:4326"
+      }
+    },
+    "independentNativeToWgs84Transformer": "proj=pipeline step inv proj=webmerc lat_0=0 lon_0=0 x_0=0 y_0=0 ellps=WGS84 step proj=unitconvert xy_in=rad xy_out=deg",
+    "comparisonDistanceCrs": "EPSG:3857 to compare projected native coordinates directly; these are Web Mercator coordinate metres, not ground-distance measurements.",
+    "metricAreaCrs": "EPSG:23700",
+    "areaTransformerDescription": "unavailable until proj_trans is called"
+  },
+  "summary": {
+    "sourceFeatures": 77,
+    "uniqueExactSourceNames": 76,
+    "all77SingleRingPolygons": true,
+    "curveRingsPresent": false,
+    "allValidNativeAndGeojson": true,
+    "allAttributeMatches": true,
+    "allExplicitlyClosed": true,
+    "allFinite": true,
+    "nativeRingOrientationCounts": {
+      "clockwise": 77
+    },
+    "minVerticesIncludingClosure": 6,
+    "maxVerticesIncludingClosure": 52,
+    "maxMatchedVertex3857ErrorMetres": 1.45e-08,
+    "maxHausdorff3857ErrorMetres": 1.42e-08,
+    "maxRelativeAreaDifference": 1.5e-11,
+    "duplicateExactSourceNames": {
+      "Széchenyikert": [
+        11,
+        67
+      ]
+    },
+    "sumMetricAreaSquareMetres": 80968472.262,
+    "unionMetricAreaSquareMetres": 80942573.906,
+    "sourcePairOverlapsOver1SquareMetre": 15,
+    "totalVerticesIncludingClosures": 1034,
+    "allGeojsonRingsExplicitlyClosed": true,
+    "allGeojsonCoordinatesFinite": true,
+    "nativeGeojsonEquivalencePassedAt1eMinus6WebMercatorMetres": true
+  },
+  "sourcePairOverlapsOver1SquareMetre": [
+    {
+      "fids": [
+        50,
+        51
+      ],
+      "names": [
+        "Kondoros",
+        "Biharikert"
+      ],
+      "overlapSquareMetres": 5226.17,
+      "smallerAreaCoveredFraction": 0.004770845
+    },
+    {
+      "fids": [
+        4,
+        58
+      ],
+      "names": [
+        "Közterület",
+        "Júliatelep"
+      ],
+      "overlapSquareMetres": 4532.914,
+      "smallerAreaCoveredFraction": 0.005785226
+    },
+    {
+      "fids": [
+        51,
+        52
+      ],
+      "names": [
+        "Biharikert",
+        "Percsikert"
+      ],
+      "overlapSquareMetres": 2919.266,
+      "smallerAreaCoveredFraction": 0.003705912
+    },
+    {
+      "fids": [
+        21,
+        23
+      ],
+      "names": [
+        "Nagyerdőalja",
+        "Szentlászlófalva"
+      ],
+      "overlapSquareMetres": 1815.045,
+      "smallerAreaCoveredFraction": 0.003702802
+    },
+    {
+      "fids": [
+        19,
+        21
+      ],
+      "names": [
+        "Nagyerdőpark",
+        "Nagyerdőalja"
+      ],
+      "overlapSquareMetres": 1682.389,
+      "smallerAreaCoveredFraction": 0.001879256
+    },
+    {
+      "fids": [
+        4,
+        19
+      ],
+      "names": [
+        "Közterület",
+        "Nagyerdőpark"
+      ],
+      "overlapSquareMetres": 1658.63,
+      "smallerAreaCoveredFraction": 0.002116861
+    },
+    {
+      "fids": [
+        23,
+        24
+      ],
+      "names": [
+        "Szentlászlófalva",
+        "Burgundia"
+      ],
+      "overlapSquareMetres": 1468.503,
+      "smallerAreaCoveredFraction": 0.003905615
+    },
+    {
+      "fids": [
+        8,
+        64
+      ],
+      "names": [
+        "Repülőtér",
+        "Majorság"
+      ],
+      "overlapSquareMetres": 1372.058,
+      "smallerAreaCoveredFraction": 0.002810185
+    },
+    {
+      "fids": [
+        66,
+        67
+      ],
+      "names": [
+        "Postakert",
+        "Széchenyikert"
+      ],
+      "overlapSquareMetres": 1362.863,
+      "smallerAreaCoveredFraction": 0.003220502
+    },
+    {
+      "fids": [
+        28,
+        37
+      ],
+      "names": [
+        "Mesterfalva",
+        "Hatvan utcai kert"
+      ],
+      "overlapSquareMetres": 1314.798,
+      "smallerAreaCoveredFraction": 0.005245346
+    },
+    {
+      "fids": [
+        29,
+        30
+      ],
+      "names": [
+        "Nyulas",
+        "Úrrétje"
+      ],
+      "overlapSquareMetres": 978.599,
+      "smallerAreaCoveredFraction": 0.001828192
+    },
+    {
+      "fids": [
+        8,
+        9
+      ],
+      "names": [
+        "Repülőtér",
+        "Déli ipari terület"
+      ],
+      "overlapSquareMetres": 570.393,
+      "smallerAreaCoveredFraction": 0.000129457
+    },
+    {
+      "fids": [
+        6,
+        7
+      ],
+      "names": [
+        "Ispotály",
+        "Belváros"
+      ],
+      "overlapSquareMetres": 500.47,
+      "smallerAreaCoveredFraction": 0.00176202
+    },
+    {
+      "fids": [
+        4,
+        21
+      ],
+      "names": [
+        "Közterület",
+        "Nagyerdőalja"
+      ],
+      "overlapSquareMetres": 490.197,
+      "smallerAreaCoveredFraction": 0.000625624
+    },
+    {
+      "fids": [
+        16,
+        53
+      ],
+      "names": [
+        "Zsibogó",
+        "Műhelytelep"
+      ],
+      "overlapSquareMetres": 5.233,
+      "smallerAreaCoveredFraction": 3.1503e-05
+    }
+  ],
+  "shapeOriginAssessment": {
+    "method": "Inspect per-feature vertex counts, circularity, radial-distance variation, convexity, rotated-rectangle area fraction and edge-length distribution, plus map overview of exact service vertices.",
+    "conclusion": "These checks are fingerprints only. Irregular named polygons and thematic boundaries can share straight edges, and metadata does not establish the original boundary construction method. Do not infer official or hard-boundary status merely from valid source polygons.",
+    "boundingBoxesBuffersOrVoronoiCreated": false,
+    "sourceGeometryModified": false,
+    "repairsPerformed": false,
+    "missingEdgesGenerated": false,
+    "mapFrameClosuresIntroduced": false,
+    "visualInspection": "Reviewed exact-vertex full77feature overview and central source partition. Shapes are irregular named pieces with coarse shared edges, varied vertex counts and detached rural settlements. No regular circles or repeated square/rectangle templates are apparent. This does not independently exclude a tessellation-derived original source or establish road alignment.",
+    "fingerprintFlagFids": []
+  },
+  "identityDisposition": {
+    "duplicateSzechenyikert": {
+      "fids": [
+        11,
+        67
+      ],
+      "decision": "Distinct disjoint source records with the same name, separated by1313.697metres. FID11 spatially matches baselineÚjkert and has no same-name baseline overlap, indicating a suspected source mislabel. Preserve raw names and quarantineFID11; do not create two Széchenyikert identities or silently aliasFID11 to Újkert.",
+      "overlapSquareMetres": 0.0,
+      "nearestSeparationMetres": 1313.697
+    },
+    "broadParentJozsa": {
+      "fid": 39,
+      "decision": "Retain broad source parent only; do not assign this geometry to proposed children."
+    },
+    "genericKozterulet": {
+      "fid": 4,
+      "decision": "Exclude generic public-area label from quarter identities."
+    },
+    "pendingFacilityIdentityFids": [
+      3,
+      5,
+      16
+    ],
+    "typeFieldCaveat": "tipus describes source morphology/use, not authoritative quarter identity. In particular erdo must not automatically exclude Auguszta or Egyetemváros."
+  },
+  "features": [
+    {
+      "fid": 1,
+      "name": "Nagyerdőtölgyes",
+      "tipus": "egyeb_ovezet",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        35
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "d3257be0b662edd30df70ff9be5a6962351a54251fffff721de3f444c1d2f109",
+      "serviceGeojsonGeometrySha256": "e4c691fe19d10a8730c6f73e457a4054bdefb31ec5273198c44c582bd36dfef8",
+      "metricAreaSquareMetres": 9690047.681,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1e-08,
+        "hausdorffDistance3857Metres": 1e-08,
+        "symmetricDifference3857SquareMetres": 5.598e-05,
+        "relativeAreaDifference": 0.0
+      },
+      "shapeIndicators": {
+        "circularity": 0.60398,
+        "radialCoefficientOfVariation": 0.272943,
+        "areaToConvexHullArea": 0.917698,
+        "areaToMinimumRotatedRectangleArea": 0.785979,
+        "longestEdgeMetres": 1094.461,
+        "longestEdgeFractionOfPerimeter": 0.07708
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 2,
+      "name": "Pallag",
+      "tipus": "egyeb_belteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        9
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "b32cd4f20d60cc7d531afc29c302995e25090c5a86961d53f678c53000849dfe",
+      "serviceGeojsonGeometrySha256": "f490b59e0dcd7c4a4026064b603def1fb4cbf4c4008c99e90b15ba7e77c46fbd",
+      "metricAreaSquareMetres": 656168.805,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.06e-08,
+        "hausdorffDistance3857Metres": 7.9e-09,
+        "symmetricDifference3857SquareMetres": 1.493e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.600766,
+        "radialCoefficientOfVariation": 0.302759,
+        "areaToConvexHullArea": 0.852563,
+        "areaToMinimumRotatedRectangleArea": 0.720851,
+        "longestEdgeMetres": 827.985,
+        "longestEdgeFractionOfPerimeter": 0.223492
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 3,
+      "name": "Gyógyszergyár",
+      "tipus": "ipari_uzem_terulet",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        12
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "69f972946fbfb2deebe487b0bd30d8cb41bfd3db61bffecd5b294ecb187ccf90",
+      "serviceGeojsonGeometrySha256": "355a00689592e6992635d51aae305d065d106677c71878b8b9096a4799c33a98",
+      "metricAreaSquareMetres": 438043.285,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1e-08,
+        "hausdorffDistance3857Metres": 9.3e-09,
+        "symmetricDifference3857SquareMetres": 1.194e-05,
+        "relativeAreaDifference": 7e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.495083,
+        "radialCoefficientOfVariation": 0.312101,
+        "areaToConvexHullArea": 0.786257,
+        "areaToMinimumRotatedRectangleArea": 0.603847,
+        "longestEdgeMetres": 792.268,
+        "longestEdgeFractionOfPerimeter": 0.237601
+      },
+      "confidenceFlags": [
+        "facility_or_market_identity_unproven"
+      ]
+    },
+    {
+      "fid": 4,
+      "name": "Közterület",
+      "tipus": "egyeb_belteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        8
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "c4e22047caa7ce9d68e34bfcce01f27a524b67df54e15078d1369eb91aecaef5",
+      "serviceGeojsonGeometrySha256": "fbdcb5b1b6da8b80f3128907bb636e325be480637b06b5186dd59e1cdb263596",
+      "metricAreaSquareMetres": 783532.835,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 7.3e-09,
+        "hausdorffDistance3857Metres": 6.5e-09,
+        "symmetricDifference3857SquareMetres": 9.07e-06,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.62783,
+        "radialCoefficientOfVariation": 0.28691,
+        "areaToConvexHullArea": 0.993974,
+        "areaToMinimumRotatedRectangleArea": 0.643122,
+        "longestEdgeMetres": 850.938,
+        "longestEdgeFractionOfPerimeter": 0.214875
+      },
+      "confidenceFlags": [
+        "generic_public_area_name_exclude_from_quarter_identity"
+      ]
+    },
+    {
+      "fid": 5,
+      "name": "Debreceni Egyetem tud-tech park",
+      "tipus": "ipari_uzem_terulet",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        7
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "9293af442a2bf1b6e3cc054c64bd6f461c39337acb2554cba89c3b649e8b2127",
+      "serviceGeojsonGeometrySha256": "809519c7a4d32850244b20a63d664974915e8d09f3c0147138ab79d942ffb68d",
+      "metricAreaSquareMetres": 330364.172,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 7.3e-09,
+        "hausdorffDistance3857Metres": 5.6e-09,
+        "symmetricDifference3857SquareMetres": 1.071e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.675971,
+        "radialCoefficientOfVariation": 0.14245,
+        "areaToConvexHullArea": 0.968604,
+        "areaToMinimumRotatedRectangleArea": 0.816798,
+        "longestEdgeMetres": 790.033,
+        "longestEdgeFractionOfPerimeter": 0.318793
+      },
+      "confidenceFlags": [
+        "facility_or_market_identity_unproven"
+      ]
+    },
+    {
+      "fid": 6,
+      "name": "Ispotály",
+      "tipus": "lakotelep",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        9
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "35de943c598e8d101f66d47ac8589cb959bfb1da24a659d6623d192ef33ef5c7",
+      "serviceGeojsonGeometrySha256": "a4b0de35468004d9e4e2f9f65bbd6ecfd9648c04e32ae920e0fa547f2d65d055",
+      "metricAreaSquareMetres": 284031.954,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 9.3e-09,
+        "hausdorffDistance3857Metres": 8.4e-09,
+        "symmetricDifference3857SquareMetres": 1.512e-05,
+        "relativeAreaDifference": 1.3e-11
+      },
+      "shapeIndicators": {
+        "circularity": 0.543436,
+        "radialCoefficientOfVariation": 0.321371,
+        "areaToConvexHullArea": 0.957407,
+        "areaToMinimumRotatedRectangleArea": 0.595775,
+        "longestEdgeMetres": 866.733,
+        "longestEdgeFractionOfPerimeter": 0.338198
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 7,
+      "name": "Belváros",
+      "tipus": "belvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        15
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "89e8b86ef628602853df310f1c5d763b23eaa5b0931d85ebe654e0c13b06ebc2",
+      "serviceGeojsonGeometrySha256": "f4e791d28791ecb9e965fd8ef24ab4f60b54315eb74485a77d2b293b66579f19",
+      "metricAreaSquareMetres": 1194731.161,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.13e-08,
+        "hausdorffDistance3857Metres": 1.13e-08,
+        "symmetricDifference3857SquareMetres": 2.143e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.779256,
+        "radialCoefficientOfVariation": 0.231098,
+        "areaToConvexHullArea": 0.975977,
+        "areaToMinimumRotatedRectangleArea": 0.766194,
+        "longestEdgeMetres": 576.172,
+        "longestEdgeFractionOfPerimeter": 0.131266
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 8,
+      "name": "Repülőtér",
+      "tipus": "egyeb_ovezet",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        34
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "fc3bcc6002336fe6d710b8964c7e56de54514b704b5be2a4278217f7ca1c9ee5",
+      "serviceGeojsonGeometrySha256": "06090c36cfb92e4f3224484abc2f1f02407d8e375e764269213dd7b57617ad1a",
+      "metricAreaSquareMetres": 4406033.498,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.06e-08,
+        "hausdorffDistance3857Metres": 9.3e-09,
+        "symmetricDifference3857SquareMetres": 3.67e-05,
+        "relativeAreaDifference": 0.0
+      },
+      "shapeIndicators": {
+        "circularity": 0.532315,
+        "radialCoefficientOfVariation": 0.375983,
+        "areaToConvexHullArea": 0.830973,
+        "areaToMinimumRotatedRectangleArea": 0.574213,
+        "longestEdgeMetres": 841.024,
+        "longestEdgeFractionOfPerimeter": 0.082464
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 9,
+      "name": "Déli ipari terület",
+      "tipus": "ipari_uzem_terulet",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        39
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "e1241bf90c0154672d82ea6f8b7002260dae6b39561da85af3d809bcd60fb979",
+      "serviceGeojsonGeometrySha256": "0c7a7cf4b3e73ed5fbf8a234f6afd89580ce105a53f51435f7b430409a0a43ad",
+      "metricAreaSquareMetres": 6233048.627,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.09e-08,
+        "hausdorffDistance3857Metres": 1.12e-08,
+        "symmetricDifference3857SquareMetres": 6.479e-05,
+        "relativeAreaDifference": 0.0
+      },
+      "shapeIndicators": {
+        "circularity": 0.364022,
+        "radialCoefficientOfVariation": 0.226229,
+        "areaToConvexHullArea": 0.703461,
+        "areaToMinimumRotatedRectangleArea": 0.495934,
+        "longestEdgeMetres": 2115.072,
+        "longestEdgeFractionOfPerimeter": 0.14419
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 10,
+      "name": "Epreskert",
+      "tipus": "lakotelep",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        7
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "b46a8c64993993a6cdb59ebfc6a388ae8aa4cff0b526be58a662f2f4cfedbe62",
+      "serviceGeojsonGeometrySha256": "60c0abdcaee631f53102b980bc2353a5c49f66afa9f61774cb879630f6572c37",
+      "metricAreaSquareMetres": 221305.408,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.06e-08,
+        "hausdorffDistance3857Metres": 5.7e-09,
+        "symmetricDifference3857SquareMetres": 6.4e-06,
+        "relativeAreaDifference": 2e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.6082,
+        "radialCoefficientOfVariation": 0.336226,
+        "areaToConvexHullArea": 0.970642,
+        "areaToMinimumRotatedRectangleArea": 0.761073,
+        "longestEdgeMetres": 760.833,
+        "longestEdgeFractionOfPerimeter": 0.355805
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 11,
+      "name": "Széchenyikert",
+      "tipus": "lakotelep",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        14
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "4e5fa09e9e1d0b6e5b29b4cc6af8556d10a513ead2d4b01d868ba9e46459877a",
+      "serviceGeojsonGeometrySha256": "dee6d5cf968f71ad85b956ddb49e68c41539a0d6e9b47bd952be418de70d0f4a",
+      "metricAreaSquareMetres": 849897.265,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8.8e-09,
+        "hausdorffDistance3857Metres": 7.6e-09,
+        "symmetricDifference3857SquareMetres": 1.669e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.449199,
+        "radialCoefficientOfVariation": 0.418704,
+        "areaToConvexHullArea": 0.724101,
+        "areaToMinimumRotatedRectangleArea": 0.592559,
+        "longestEdgeMetres": 543.475,
+        "longestEdgeFractionOfPerimeter": 0.111458
+      },
+      "confidenceFlags": [
+        "duplicate_source_name_requires_one_identity_review",
+        "suspected_source_mislabel_spatially_matches_Ujkert_no_alias_applied"
+      ]
+    },
+    {
+      "fid": 12,
+      "name": "Sestakert",
+      "tipus": "lakotelep",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        12
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "bb9fe32af7a1be14e1e8a734ad542c1ae978b852ab05a9e470120e08ba79630f",
+      "serviceGeojsonGeometrySha256": "2cd02394b83071f608a04e9edb00bf955879007ed914d726db30a832653ca93d",
+      "metricAreaSquareMetres": 634193.74,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.23e-08,
+        "hausdorffDistance3857Metres": 1.15e-08,
+        "symmetricDifference3857SquareMetres": 1.629e-05,
+        "relativeAreaDifference": 3e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.457795,
+        "radialCoefficientOfVariation": 0.392318,
+        "areaToConvexHullArea": 0.811041,
+        "areaToMinimumRotatedRectangleArea": 0.587168,
+        "longestEdgeMetres": 682.324,
+        "longestEdgeFractionOfPerimeter": 0.163535
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 13,
+      "name": "Libakert",
+      "tipus": "lakotelep",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        10
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "677c64fbeb109def7d90cb62d383dc2818f9fb76d76a2d7803835d17bdc2969c",
+      "serviceGeojsonGeometrySha256": "735237873f49cbfe857dd81c60495f659c3033085f9da9f7343c15fab61eaa75",
+      "metricAreaSquareMetres": 267653.048,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.04e-08,
+        "hausdorffDistance3857Metres": 9.6e-09,
+        "symmetricDifference3857SquareMetres": 8.92e-06,
+        "relativeAreaDifference": 8e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.740816,
+        "radialCoefficientOfVariation": 0.227737,
+        "areaToConvexHullArea": 1.0,
+        "areaToMinimumRotatedRectangleArea": 0.880125,
+        "longestEdgeMetres": 487.039,
+        "longestEdgeFractionOfPerimeter": 0.228575
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 14,
+      "name": "Vénkert",
+      "tipus": "lakotelep",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "f38f170e5ba57196fcbe6d4f8f093f1bab76b23cc661d90ebf60d3fe8f60647b",
+      "serviceGeojsonGeometrySha256": "759730011a14bc17fefe2bdff063a58848e1c98f594a5c66e214efbc7b8f8aca",
+      "metricAreaSquareMetres": 390056.391,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.04e-08,
+        "hausdorffDistance3857Metres": 7.6e-09,
+        "symmetricDifference3857SquareMetres": 1.284e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.655593,
+        "radialCoefficientOfVariation": 0.236516,
+        "areaToConvexHullArea": 0.899076,
+        "areaToMinimumRotatedRectangleArea": 0.712264,
+        "longestEdgeMetres": 743.469,
+        "longestEdgeFractionOfPerimeter": 0.271901
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 15,
+      "name": "József Attila telep",
+      "tipus": "ipari_uzem_terulet",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        8
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "e565d274e783be5610f3f39b8b09f0bcabbcf09fdab85564f1974afaec2b9145",
+      "serviceGeojsonGeometrySha256": "0cfc8121eea5a0fe6ec95e30025910bc98b3109cf42f4f946d820d6290a6692c",
+      "metricAreaSquareMetres": 900166.386,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.21e-08,
+        "hausdorffDistance3857Metres": 1.03e-08,
+        "symmetricDifference3857SquareMetres": 2.215e-05,
+        "relativeAreaDifference": 5e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.600748,
+        "radialCoefficientOfVariation": 0.208737,
+        "areaToConvexHullArea": 0.841771,
+        "areaToMinimumRotatedRectangleArea": 0.634069,
+        "longestEdgeMetres": 1100.854,
+        "longestEdgeFractionOfPerimeter": 0.253694
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 16,
+      "name": "Zsibogó",
+      "tipus": "ipari_uzem_terulet",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        13
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "9e222851af626f27125bc9335b0cb0b842bc6758099a91a3de88828b2ef3d6e2",
+      "serviceGeojsonGeometrySha256": "2efce6f511fa49ee2ca75ba0faeb44e857b681ad45b450e2067773e3b17b1eec",
+      "metricAreaSquareMetres": 1158804.946,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.21e-08,
+        "hausdorffDistance3857Metres": 1.32e-08,
+        "symmetricDifference3857SquareMetres": 2.478e-05,
+        "relativeAreaDifference": 2e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.555461,
+        "radialCoefficientOfVariation": 0.275893,
+        "areaToConvexHullArea": 0.835471,
+        "areaToMinimumRotatedRectangleArea": 0.593791,
+        "longestEdgeMetres": 997.103,
+        "longestEdgeFractionOfPerimeter": 0.194741
+      },
+      "confidenceFlags": [
+        "facility_or_market_identity_unproven"
+      ]
+    },
+    {
+      "fid": 17,
+      "name": "Auguszta",
+      "tipus": "erdo",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        10
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "3dfd41c9cf21a24e1e4d76eb6ec2f9b11a32be63c204ebd66bbf054b79eb7eaf",
+      "serviceGeojsonGeometrySha256": "e4f52615d3ea111fa956ab442652b92b0c9b4ed07f50475f7b1d92c768089439",
+      "metricAreaSquareMetres": 647302.69,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 7.3e-09,
+        "hausdorffDistance3857Metres": 6.9e-09,
+        "symmetricDifference3857SquareMetres": 1.869e-05,
+        "relativeAreaDifference": 4e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.408296,
+        "radialCoefficientOfVariation": 0.468074,
+        "areaToConvexHullArea": 0.674346,
+        "areaToMinimumRotatedRectangleArea": 0.542795,
+        "longestEdgeMetres": 908.198,
+        "longestEdgeFractionOfPerimeter": 0.203474
+      },
+      "confidenceFlags": [
+        "morphology_category_erdo_does_not_determine_quarter_identity"
+      ]
+    },
+    {
+      "fid": 18,
+      "name": "Egyetemváros",
+      "tipus": "erdo",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        14
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "b2e43e31f2dce3aace1adea61e2c084aae281411af4bac980e6aacca7e02acb8",
+      "serviceGeojsonGeometrySha256": "84083fd2d4acb2ae64da1c5c586ac25ac63e85a1a88c18d5199c7006e1e3b546",
+      "metricAreaSquareMetres": 777192.952,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.23e-08,
+        "hausdorffDistance3857Metres": 1.03e-08,
+        "symmetricDifference3857SquareMetres": 1.612e-05,
+        "relativeAreaDifference": 3e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.701075,
+        "radialCoefficientOfVariation": 0.243332,
+        "areaToConvexHullArea": 0.888313,
+        "areaToMinimumRotatedRectangleArea": 0.70856,
+        "longestEdgeMetres": 637.879,
+        "longestEdgeFractionOfPerimeter": 0.170904
+      },
+      "confidenceFlags": [
+        "morphology_category_erdo_does_not_determine_quarter_identity",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 19,
+      "name": "Nagyerdőpark",
+      "tipus": "erdo",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        15
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "fb6f3461de5bae47840ce70bee9649fc77948d7e0e71b41c87b631ebef743c1a",
+      "serviceGeojsonGeometrySha256": "c2d774fe717cb8b5a723ce3f0e26c351485e0b84df18eec8d0484f88a6b7a1e7",
+      "metricAreaSquareMetres": 1897910.198,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 9.3e-09,
+        "hausdorffDistance3857Metres": 7.5e-09,
+        "symmetricDifference3857SquareMetres": 2.125e-05,
+        "relativeAreaDifference": 0.0
+      },
+      "shapeIndicators": {
+        "circularity": 0.77304,
+        "radialCoefficientOfVariation": 0.187124,
+        "areaToConvexHullArea": 0.943181,
+        "areaToMinimumRotatedRectangleArea": 0.697076,
+        "longestEdgeMetres": 1035.525,
+        "longestEdgeFractionOfPerimeter": 0.186431
+      },
+      "confidenceFlags": [
+        "morphology_category_erdo_does_not_determine_quarter_identity",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 20,
+      "name": "Nagyerdő",
+      "tipus": "villanegyed",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        13
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "19c45115b849c294a3c4ddc487954a8c08f89f18f010062e2bbf574ee09254d5",
+      "serviceGeojsonGeometrySha256": "982a6dedd2a9eeb6a8692029ad6f811ee6fc0eecc9a2244b5ef793a9630d487e",
+      "metricAreaSquareMetres": 800636.604,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.23e-08,
+        "hausdorffDistance3857Metres": 1.03e-08,
+        "symmetricDifference3857SquareMetres": 1.858e-05,
+        "relativeAreaDifference": 6e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.464755,
+        "radialCoefficientOfVariation": 0.358066,
+        "areaToConvexHullArea": 0.756155,
+        "areaToMinimumRotatedRectangleArea": 0.455535,
+        "longestEdgeMetres": 682.324,
+        "longestEdgeFractionOfPerimeter": 0.146649
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 21,
+      "name": "Nagyerdőalja",
+      "tipus": "villanegyed",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        14
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "73f2a34b225b890e44223d1caf41dca86313b444335b55e4fe5dff37ebae9048",
+      "serviceGeojsonGeometrySha256": "3cab6c1774259601f7ffb749c70439909fea7b1edec337c94412fd333c232e1f",
+      "metricAreaSquareMetres": 895242.26,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.09e-08,
+        "hausdorffDistance3857Metres": 9.7e-09,
+        "symmetricDifference3857SquareMetres": 2.068e-05,
+        "relativeAreaDifference": 4e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.426896,
+        "radialCoefficientOfVariation": 0.366845,
+        "areaToConvexHullArea": 0.854127,
+        "areaToMinimumRotatedRectangleArea": 0.468972,
+        "longestEdgeMetres": 919.353,
+        "longestEdgeFractionOfPerimeter": 0.179089
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 22,
+      "name": "Péterfia",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "22c3bbc153095534cf7d35e9dd0e07c4156905c664aa503c6a41cda70c5fafb1",
+      "serviceGeojsonGeometrySha256": "4b420c0a4bf4a2ed9267d3b3c322cd4a79020de494ce5c3dc3619906d94b1e91",
+      "metricAreaSquareMetres": 298561.13,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.13e-08,
+        "hausdorffDistance3857Metres": 1.13e-08,
+        "symmetricDifference3857SquareMetres": 1.469e-05,
+        "relativeAreaDifference": 2e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.525815,
+        "radialCoefficientOfVariation": 0.331202,
+        "areaToConvexHullArea": 0.844531,
+        "areaToMinimumRotatedRectangleArea": 0.66529,
+        "longestEdgeMetres": 487.039,
+        "longestEdgeFractionOfPerimeter": 0.18233
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 23,
+      "name": "Szentlászlófalva",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "7acd806146b46b42a4f62f46285482bfbd929cf9855cc5a7a02bbb2cb1d586e4",
+      "serviceGeojsonGeometrySha256": "4426b87aaeb4642237f9475b73488568e280174039b3d56c747f01dbc6740535",
+      "metricAreaSquareMetres": 490181.549,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.05e-08,
+        "hausdorffDistance3857Metres": 7.5e-09,
+        "symmetricDifference3857SquareMetres": 1.294e-05,
+        "relativeAreaDifference": 3e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.604024,
+        "radialCoefficientOfVariation": 0.245079,
+        "areaToConvexHullArea": 0.916662,
+        "areaToMinimumRotatedRectangleArea": 0.611836,
+        "longestEdgeMetres": 823.274,
+        "longestEdgeFractionOfPerimeter": 0.257803
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 24,
+      "name": "Burgundia",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "0fa20ae87417770beba1eb2285d52deab49e5584f2c919966ca0a90ead987b86",
+      "serviceGeojsonGeometrySha256": "fe669270f4885b641e6fc8c37f805716895a080acacd41b8aaa852a1c6bc4964",
+      "metricAreaSquareMetres": 375997.749,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.01e-08,
+        "hausdorffDistance3857Metres": 6.8e-09,
+        "symmetricDifference3857SquareMetres": 9.62e-06,
+        "relativeAreaDifference": 2e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.725259,
+        "radialCoefficientOfVariation": 0.181775,
+        "areaToConvexHullArea": 0.94491,
+        "areaToMinimumRotatedRectangleArea": 0.657632,
+        "longestEdgeMetres": 761.083,
+        "longestEdgeFractionOfPerimeter": 0.298182
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 25,
+      "name": "Kandia",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        8
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "c83df7f82b36a227e10480294fa8dad31d5eee712cf904006b4d6683a3885f79",
+      "serviceGeojsonGeometrySha256": "6b9074db613d41bff73fed63cedbb724e4679646607535aeb0398cce676ef7c7",
+      "metricAreaSquareMetres": 159992.36,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8.9e-09,
+        "hausdorffDistance3857Metres": 7.5e-09,
+        "symmetricDifference3857SquareMetres": 6.78e-06,
+        "relativeAreaDifference": 1e-11
+      },
+      "shapeIndicators": {
+        "circularity": 0.708327,
+        "radialCoefficientOfVariation": 0.282267,
+        "areaToConvexHullArea": 0.918258,
+        "areaToMinimumRotatedRectangleArea": 0.742729,
+        "longestEdgeMetres": 348.086,
+        "longestEdgeFractionOfPerimeter": 0.206609
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 26,
+      "name": "Miklóskapu",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        6
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "3f87afb21aa29f7afed75a91d24930d91d7d0702684129676df95a049d38a8d8",
+      "serviceGeojsonGeometrySha256": "0db61ee306cecb1c22174ec3dec22c545e6e83ca4e5f24bd1f67ebce769e8121",
+      "metricAreaSquareMetres": 82377.791,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 7e-09,
+        "hausdorffDistance3857Metres": 5.6e-09,
+        "symmetricDifference3857SquareMetres": 4.52e-06,
+        "relativeAreaDifference": 6e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.715992,
+        "radialCoefficientOfVariation": 0.214843,
+        "areaToConvexHullArea": 0.977631,
+        "areaToMinimumRotatedRectangleArea": 0.714846,
+        "longestEdgeMetres": 409.667,
+        "longestEdgeFractionOfPerimeter": 0.340703
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 27,
+      "name": "Tizenháromváros",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        9
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "5789e856e74d91619fe509548293e76f8b486d5e24d2ea97078393a6cf05f57d",
+      "serviceGeojsonGeometrySha256": "0511ca103a0af9175bc249a4acccfa30a2e7d441df53dc9efb0ff7e3cbc615f0",
+      "metricAreaSquareMetres": 257272.973,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.45e-08,
+        "hausdorffDistance3857Metres": 1.33e-08,
+        "symmetricDifference3857SquareMetres": 1.041e-05,
+        "relativeAreaDifference": 5e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.663886,
+        "radialCoefficientOfVariation": 0.28387,
+        "areaToConvexHullArea": 0.963305,
+        "areaToMinimumRotatedRectangleArea": 0.783317,
+        "longestEdgeMetres": 511.266,
+        "longestEdgeFractionOfPerimeter": 0.231682
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 28,
+      "name": "Mesterfalva",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        12
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "35ef2adc13b1ed780e7e9957c20b5ec5362f73a632985e0ab8b937580f2713eb",
+      "serviceGeojsonGeometrySha256": "d092ca5cb5cc684bb1a333de98c086077b010d8fa89d9364d4830e6a9ba9831d",
+      "metricAreaSquareMetres": 250660.006,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.45e-08,
+        "hausdorffDistance3857Metres": 1.42e-08,
+        "symmetricDifference3857SquareMetres": 1.402e-05,
+        "relativeAreaDifference": 7e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.762977,
+        "radialCoefficientOfVariation": 0.157589,
+        "areaToConvexHullArea": 0.906706,
+        "areaToMinimumRotatedRectangleArea": 0.749391,
+        "longestEdgeMetres": 316.435,
+        "longestEdgeFractionOfPerimeter": 0.155737
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 29,
+      "name": "Nyulas",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        10
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "face8c6430853a679daf02e8ca3813341d2f188fe2e5931fb5de2004397f468c",
+      "serviceGeojsonGeometrySha256": "7660bb69572d43033000f1c9728727e73f6115f22a00e4791593e34128586431",
+      "metricAreaSquareMetres": 535282.054,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 9.2e-09,
+        "hausdorffDistance3857Metres": 1e-08,
+        "symmetricDifference3857SquareMetres": 1.569e-05,
+        "relativeAreaDifference": 5e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.628246,
+        "radialCoefficientOfVariation": 0.309305,
+        "areaToConvexHullArea": 0.976433,
+        "areaToMinimumRotatedRectangleArea": 0.919485,
+        "longestEdgeMetres": 676.255,
+        "longestEdgeFractionOfPerimeter": 0.206671
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 30,
+      "name": "Úrrétje",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        8
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "5b0631ecac38fa90a4a472fcdbd8c26d5a8d36ae9abdd09213e9f927dbab6f88",
+      "serviceGeojsonGeometrySha256": "41d12e750c6a2ff8c198f90ccfa4937fe9ad0d651aca192a68d4945e40a0e40e",
+      "metricAreaSquareMetres": 608142.155,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 9.7e-09,
+        "hausdorffDistance3857Metres": 9.3e-09,
+        "symmetricDifference3857SquareMetres": 1.534e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.601012,
+        "radialCoefficientOfVariation": 0.340202,
+        "areaToConvexHullArea": 0.872159,
+        "areaToMinimumRotatedRectangleArea": 0.574851,
+        "longestEdgeMetres": 945.431,
+        "longestEdgeFractionOfPerimeter": 0.265133
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 31,
+      "name": "Tócóliget",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        13
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "e04768c701ddbec1c10e258e86cb49c252b160c4d8b10efeaf52d224296f5ac8",
+      "serviceGeojsonGeometrySha256": "fb2134c58ffef2e485252a9daabd2c42d83047390051c9e191133780301082ed",
+      "metricAreaSquareMetres": 563937.365,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.16e-08,
+        "hausdorffDistance3857Metres": 1.16e-08,
+        "symmetricDifference3857SquareMetres": 2.075e-05,
+        "relativeAreaDifference": 1.2e-11
+      },
+      "shapeIndicators": {
+        "circularity": 0.525029,
+        "radialCoefficientOfVariation": 0.458827,
+        "areaToConvexHullArea": 0.838758,
+        "areaToMinimumRotatedRectangleArea": 0.644701,
+        "longestEdgeMetres": 507.756,
+        "longestEdgeFractionOfPerimeter": 0.138206
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 32,
+      "name": "Akadémiakert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        7
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "3f61aaff7c9cdeaa8d59dd2cd2d24e3ea51dc74087c2b3f523a03d542cbf37b7",
+      "serviceGeojsonGeometrySha256": "c248c0d0a22c6268f3a25a05fc580ec7979fae0a212d79f5e952814dddd7d45a",
+      "metricAreaSquareMetres": 791658.714,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.12e-08,
+        "hausdorffDistance3857Metres": 6.2e-09,
+        "symmetricDifference3857SquareMetres": 1.315e-05,
+        "relativeAreaDifference": 2e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.771584,
+        "radialCoefficientOfVariation": 0.148223,
+        "areaToConvexHullArea": 0.957418,
+        "areaToMinimumRotatedRectangleArea": 0.835481,
+        "longestEdgeMetres": 1040.116,
+        "longestEdgeFractionOfPerimeter": 0.289667
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 33,
+      "name": "Kertváros",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        8
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "374e52b20a99df4ba3219fc10e34f7be6076708aff059ddf5c75d2f740b76f32",
+      "serviceGeojsonGeometrySha256": "8b7765602a64390c730bf25234bb7732525ebcc399f0ff5726f4741e6815fbcb",
+      "metricAreaSquareMetres": 803873.635,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.16e-08,
+        "hausdorffDistance3857Metres": 1.16e-08,
+        "symmetricDifference3857SquareMetres": 1.936e-05,
+        "relativeAreaDifference": 7e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.707002,
+        "radialCoefficientOfVariation": 0.227715,
+        "areaToConvexHullArea": 0.996707,
+        "areaToMinimumRotatedRectangleArea": 0.945404,
+        "longestEdgeMetres": 1040.116,
+        "longestEdgeFractionOfPerimeter": 0.275165
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 34,
+      "name": "Köntöskert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        8
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "e6342b84e737bc7998816f1560344a7790a24bdbd756875eebb521427f023144",
+      "serviceGeojsonGeometrySha256": "b8ddf3bc111a9a963d6c97a19f1116fe462e4b7373e7462c5420a7ff2e38d372",
+      "metricAreaSquareMetres": 1048648.2,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8.9e-09,
+        "hausdorffDistance3857Metres": 8.7e-09,
+        "symmetricDifference3857SquareMetres": 1.872e-05,
+        "relativeAreaDifference": 0.0
+      },
+      "shapeIndicators": {
+        "circularity": 0.653732,
+        "radialCoefficientOfVariation": 0.225117,
+        "areaToConvexHullArea": 0.956461,
+        "areaToMinimumRotatedRectangleArea": 0.700372,
+        "longestEdgeMetres": 1488.951,
+        "longestEdgeFractionOfPerimeter": 0.331635
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 35,
+      "name": "Csigekert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        7
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "5fa12f7874ac897330e276e63324929df6bdd95078e40a4601c0f07331066dbf",
+      "serviceGeojsonGeometrySha256": "56bbfdc7c12962dcce6b6424ec100204cf20386d7d2edc92a6e69a83f73d8c24",
+      "metricAreaSquareMetres": 421319.908,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8.9e-09,
+        "hausdorffDistance3857Metres": 7.5e-09,
+        "symmetricDifference3857SquareMetres": 1.391e-05,
+        "relativeAreaDifference": 2e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.686627,
+        "radialCoefficientOfVariation": 0.297696,
+        "areaToConvexHullArea": 1.0,
+        "areaToMinimumRotatedRectangleArea": 0.689008,
+        "longestEdgeMetres": 743.469,
+        "longestEdgeFractionOfPerimeter": 0.267739
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 36,
+      "name": "Nagysándortelep",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        12
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "56b1a409d4d5f7d9508ac4ec9c476ecf14604cbb755e865e01108037e6f369fe",
+      "serviceGeojsonGeometrySha256": "f13dcfb2e340755e3ee5b55d476eb4083ccd11cac5585ec16da81998be3a73ff",
+      "metricAreaSquareMetres": 849671.105,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.14e-08,
+        "hausdorffDistance3857Metres": 1.14e-08,
+        "symmetricDifference3857SquareMetres": 1.792e-05,
+        "relativeAreaDifference": 5e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.608719,
+        "radialCoefficientOfVariation": 0.30376,
+        "areaToConvexHullArea": 0.906295,
+        "areaToMinimumRotatedRectangleArea": 0.620201,
+        "longestEdgeMetres": 865.069,
+        "longestEdgeFractionOfPerimeter": 0.206552
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 37,
+      "name": "Hatvan utcai kert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        12
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "dbc2e766b245a28608677bed3faf41b43d2ce1de0841048fe7ef2f0d8280982d",
+      "serviceGeojsonGeometrySha256": "c80e9c751c524a71598c5201dd6f0abb0820dd80b6477846cf10c275e5ea7223",
+      "metricAreaSquareMetres": 1337873.176,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 9.6e-09,
+        "hausdorffDistance3857Metres": 9.3e-09,
+        "symmetricDifference3857SquareMetres": 2.224e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.62559,
+        "radialCoefficientOfVariation": 0.158572,
+        "areaToConvexHullArea": 0.952094,
+        "areaToMinimumRotatedRectangleArea": 0.745393,
+        "longestEdgeMetres": 1488.951,
+        "longestEdgeFractionOfPerimeter": 0.287219
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 38,
+      "name": "Kismacs",
+      "tipus": "egyeb_belteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        17
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "17fabb79bb8e99708d0e230b4b4bd7607febfe3c0de683116c7cdef3d4001f1e",
+      "serviceGeojsonGeometrySha256": "ed3f2208a9bd22c18ea513b085987d25e36feca3bc0bb7f21156a43a245301f0",
+      "metricAreaSquareMetres": 335431.437,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 9.4e-09,
+        "hausdorffDistance3857Metres": 9.4e-09,
+        "symmetricDifference3857SquareMetres": 1.17e-05,
+        "relativeAreaDifference": 5e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.731991,
+        "radialCoefficientOfVariation": 0.22857,
+        "areaToConvexHullArea": 0.938739,
+        "areaToMinimumRotatedRectangleArea": 0.839998,
+        "longestEdgeMetres": 285.1,
+        "longestEdgeFractionOfPerimeter": 0.118807
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 39,
+      "name": "Józsa",
+      "tipus": "egyeb_belteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        52
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "768f61fa37d476982e4a77c9824362152aed2e0a1bbf82acc6d9d0ec9a1a17e3",
+      "serviceGeojsonGeometrySha256": "5f7622dfd011d39aad59b566c5758be6c4e87011932f4ddb8002d5a4eab3b6d1",
+      "metricAreaSquareMetres": 6325381.647,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.28e-08,
+        "hausdorffDistance3857Metres": 1.16e-08,
+        "symmetricDifference3857SquareMetres": 9.107e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.21198,
+        "radialCoefficientOfVariation": 0.48872,
+        "areaToConvexHullArea": 0.664387,
+        "areaToMinimumRotatedRectangleArea": 0.450309,
+        "longestEdgeMetres": 979.435,
+        "longestEdgeFractionOfPerimeter": 0.050579
+      },
+      "confidenceFlags": [
+        "broad_parent_Jozsa_do_not_create_children"
+      ]
+    },
+    {
+      "fid": 40,
+      "name": "Sámsonikert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "49a4ebd72a37eaf0858df987b79dc13620aacf612f5aedd591b4d45652967cfe",
+      "serviceGeojsonGeometrySha256": "3e31c229536d0897c98b6633555373a8bca5d4ac7fb31c2405bbf048280daa60",
+      "metricAreaSquareMetres": 766603.136,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.09e-08,
+        "hausdorffDistance3857Metres": 9.7e-09,
+        "symmetricDifference3857SquareMetres": 2.097e-05,
+        "relativeAreaDifference": 2e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.432562,
+        "radialCoefficientOfVariation": 0.35404,
+        "areaToConvexHullArea": 0.943527,
+        "areaToMinimumRotatedRectangleArea": 0.54569,
+        "longestEdgeMetres": 919.353,
+        "longestEdgeFractionOfPerimeter": 0.194812
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 41,
+      "name": "Tócóvölgy",
+      "tipus": "lakotelep",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        16
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "cd65a60c9fa1694f4360c01758b9c4b8e1dd5f621ffccfcaaec2a1edcae527e4",
+      "serviceGeojsonGeometrySha256": "4bd7b92a00cc17d0cb17a4c79327c93382855748ae38c7a0210de6050b4fe816",
+      "metricAreaSquareMetres": 1208868.264,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.12e-08,
+        "hausdorffDistance3857Metres": 6.2e-09,
+        "symmetricDifference3857SquareMetres": 1.883e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.450671,
+        "radialCoefficientOfVariation": 0.459309,
+        "areaToConvexHullArea": 0.898904,
+        "areaToMinimumRotatedRectangleArea": 0.626836,
+        "longestEdgeMetres": 911.596,
+        "longestEdgeFractionOfPerimeter": 0.157014
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 42,
+      "name": "Tócóskert",
+      "tipus": "lakotelep",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "e41a19434e2164fa0d160e9be6a49d5e93d26f66e57d9dd9d9a880b376d1b4b4",
+      "serviceGeojsonGeometrySha256": "c26b7fb6f73ac8fc156d11b23c5d81574556fef5e36bcd9d1a3be24935733cf3",
+      "metricAreaSquareMetres": 1054715.571,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.12e-08,
+        "hausdorffDistance3857Metres": 6.6e-09,
+        "symmetricDifference3857SquareMetres": 1.629e-05,
+        "relativeAreaDifference": 0.0
+      },
+      "shapeIndicators": {
+        "circularity": 0.526713,
+        "radialCoefficientOfVariation": 0.397626,
+        "areaToConvexHullArea": 0.932299,
+        "areaToMinimumRotatedRectangleArea": 0.655206,
+        "longestEdgeMetres": 804.949,
+        "longestEdgeFractionOfPerimeter": 0.160466
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 43,
+      "name": "Sóház",
+      "tipus": "lakotelep",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        7
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "eb8871c7a50d0c3c06f790a84fe34247f41df566e51585bb11e5e2018842fbe3",
+      "serviceGeojsonGeometrySha256": "c60ba7ac0aaf8b0435446fb6ef56e0d02110ec3844e5cf10a037cbeb112bcf92",
+      "metricAreaSquareMetres": 198864.981,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 7.6e-09,
+        "hausdorffDistance3857Metres": 7.9e-09,
+        "symmetricDifference3857SquareMetres": 8.6e-06,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.784513,
+        "radialCoefficientOfVariation": 0.176867,
+        "areaToConvexHullArea": 1.0,
+        "areaToMinimumRotatedRectangleArea": 0.743651,
+        "longestEdgeMetres": 483.339,
+        "longestEdgeFractionOfPerimeter": 0.270812
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 44,
+      "name": "Dobozikert",
+      "tipus": "lakotelep",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        9
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "5856a59d100c85cbe86160612a8688ecc9c23985bad556efd91641e24a041636",
+      "serviceGeojsonGeometrySha256": "bcd51e2826a8c403f269be41fbf380cc17e03c7e6e1cbc0b2a202a5f68d1d564",
+      "metricAreaSquareMetres": 375084.363,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.01e-08,
+        "hausdorffDistance3857Metres": 8.3e-09,
+        "symmetricDifference3857SquareMetres": 1.197e-05,
+        "relativeAreaDifference": 6e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.764186,
+        "radialCoefficientOfVariation": 0.219578,
+        "areaToConvexHullArea": 0.949516,
+        "areaToMinimumRotatedRectangleArea": 0.785226,
+        "longestEdgeMetres": 483.339,
+        "longestEdgeFractionOfPerimeter": 0.194617
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 45,
+      "name": "Téglagyár",
+      "tipus": "ipari_uzem_terulet",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        18
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "bb957bad76722c649449193927d8cf1d3c84b13f028a5056bccef923c6dbae23",
+      "serviceGeojsonGeometrySha256": "de018c54c26b1f7127d8edd9011cadc67abc9269c9302c582077fd9b16dff103",
+      "metricAreaSquareMetres": 800342.598,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8.5e-09,
+        "hausdorffDistance3857Metres": 1.03e-08,
+        "symmetricDifference3857SquareMetres": 2.671e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.271503,
+        "radialCoefficientOfVariation": 0.376804,
+        "areaToConvexHullArea": 0.625027,
+        "areaToMinimumRotatedRectangleArea": 0.390133,
+        "longestEdgeMetres": 887.129,
+        "longestEdgeFractionOfPerimeter": 0.145758
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 46,
+      "name": "Tócórét",
+      "tipus": "ipari_uzem_terulet",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        9
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "913f227e3b308d7e9124777fb76af96597453962f482c2c449dea7eadb992d2e",
+      "serviceGeojsonGeometrySha256": "d94e80386c6c9feed12d8c999bd912ee8207757a81a6ff21b4d944fa1b5a6358",
+      "metricAreaSquareMetres": 622392.663,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8.5e-09,
+        "hausdorffDistance3857Metres": 6.9e-09,
+        "symmetricDifference3857SquareMetres": 1.07e-05,
+        "relativeAreaDifference": 6e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.372552,
+        "radialCoefficientOfVariation": 0.520627,
+        "areaToConvexHullArea": 0.881533,
+        "areaToMinimumRotatedRectangleArea": 0.595193,
+        "longestEdgeMetres": 937.086,
+        "longestEdgeFractionOfPerimeter": 0.20452
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 47,
+      "name": "Köntösgát",
+      "tipus": "ipari_uzem_terulet",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        34
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "6478bc200d13458d3562961e9c4af9ba490c12824f0ba9b6bf3de78225a42d4a",
+      "serviceGeojsonGeometrySha256": "a0a040676a738cd7512d30b1e98bde11de76b420907ba2aeff4c029d2299d554",
+      "metricAreaSquareMetres": 2133543.277,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.14e-08,
+        "hausdorffDistance3857Metres": 1.14e-08,
+        "symmetricDifference3857SquareMetres": 4.541e-05,
+        "relativeAreaDifference": 0.0
+      },
+      "shapeIndicators": {
+        "circularity": 0.405698,
+        "radialCoefficientOfVariation": 0.302344,
+        "areaToConvexHullArea": 0.797215,
+        "areaToMinimumRotatedRectangleArea": 0.626078,
+        "longestEdgeMetres": 1660.93,
+        "longestEdgeFractionOfPerimeter": 0.204313
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 48,
+      "name": "Basahalom",
+      "tipus": "ipari_uzem_terulet",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        16
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "0a31d24f35e80275875381221cbd4f786c0575b021d6f09dc1fe2d3b05a3ce86",
+      "serviceGeojsonGeometrySha256": "6e3bf74cae62c5fd553045cde0621e258659b3162b6204f4f6dfae24bd6bd305",
+      "metricAreaSquareMetres": 906054.372,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.15e-08,
+        "hausdorffDistance3857Metres": 9.6e-09,
+        "symmetricDifference3857SquareMetres": 2.045e-05,
+        "relativeAreaDifference": 4e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.575987,
+        "radialCoefficientOfVariation": 0.275267,
+        "areaToConvexHullArea": 0.871459,
+        "areaToMinimumRotatedRectangleArea": 0.559513,
+        "longestEdgeMetres": 538.496,
+        "longestEdgeFractionOfPerimeter": 0.121117
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 49,
+      "name": "Kétútköz",
+      "tipus": "ipari_uzem_terulet",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "111af330ee26b3e6e427b6754ddc4e452edfe0f72d4e510ab7a5090ab1efadc4",
+      "serviceGeojsonGeometrySha256": "d9e77c309686294c3132ffa97e474b28a661033f7cdc3c6a0a8da6649ffbe34f",
+      "metricAreaSquareMetres": 332894.374,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8.4e-09,
+        "hausdorffDistance3857Metres": 5e-09,
+        "symmetricDifference3857SquareMetres": 9.98e-06,
+        "relativeAreaDifference": 2e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.391278,
+        "radialCoefficientOfVariation": 0.414964,
+        "areaToConvexHullArea": 0.944006,
+        "areaToMinimumRotatedRectangleArea": 0.642956,
+        "longestEdgeMetres": 573.047,
+        "longestEdgeFractionOfPerimeter": 0.175257
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 50,
+      "name": "Kondoros",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        14
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "cc8ab9c0b0eaba2c282cf732be7a62ed68f57cf748880eb9cef6d4daad2fcd80",
+      "serviceGeojsonGeometrySha256": "6c9ffe2b37b152e348429cc990ddfe4ca7883b811a161bae6c57b6d4dc8d8a5f",
+      "metricAreaSquareMetres": 1095439.118,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.02e-08,
+        "hausdorffDistance3857Metres": 9.8e-09,
+        "symmetricDifference3857SquareMetres": 2.798e-05,
+        "relativeAreaDifference": 4e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.340031,
+        "radialCoefficientOfVariation": 0.428763,
+        "areaToConvexHullArea": 0.662487,
+        "areaToMinimumRotatedRectangleArea": 0.458553,
+        "longestEdgeMetres": 1354.657,
+        "longestEdgeFractionOfPerimeter": 0.212907
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 51,
+      "name": "Biharikert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        10
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "a1afde4bbe8eb84ff969341e463a7bee5159e60abe16267fd47f931dbd711912",
+      "serviceGeojsonGeometrySha256": "766d59ea26c526d351d17620f2efb16a54574db702df4cb2aaa3804fd66a923c",
+      "metricAreaSquareMetres": 1300376.194,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.21e-08,
+        "hausdorffDistance3857Metres": 1.05e-08,
+        "symmetricDifference3857SquareMetres": 1.68e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.66809,
+        "radialCoefficientOfVariation": 0.251189,
+        "areaToConvexHullArea": 0.958143,
+        "areaToMinimumRotatedRectangleArea": 0.727604,
+        "longestEdgeMetres": 1062.234,
+        "longestEdgeFractionOfPerimeter": 0.214782
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 52,
+      "name": "Percsikert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "8395fc0b3504fa78523a00b27145c9f575c2119db286265dfb7b19ca6e1b42a7",
+      "serviceGeojsonGeometrySha256": "598f1bdda8021509fd2b139525880829bd4832e3beda4d3562aa5e295415fb2f",
+      "metricAreaSquareMetres": 787732.215,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.04e-08,
+        "hausdorffDistance3857Metres": 1.03e-08,
+        "symmetricDifference3857SquareMetres": 2.148e-05,
+        "relativeAreaDifference": 6e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.440118,
+        "radialCoefficientOfVariation": 0.562947,
+        "areaToConvexHullArea": 0.987883,
+        "areaToMinimumRotatedRectangleArea": 0.768827,
+        "longestEdgeMetres": 982.057,
+        "longestEdgeFractionOfPerimeter": 0.207075
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 53,
+      "name": "Műhelytelep",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        9
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "40ec8691f2e3ab15a33aeac85b4e6dfd104d8765f95413ca854cad698fa7dbef",
+      "serviceGeojsonGeometrySha256": "30fa5ace73ad23ebf84c6b0102b672d8084033125dc75abbc05a442f5e68933c",
+      "metricAreaSquareMetres": 166098.395,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.18e-08,
+        "hausdorffDistance3857Metres": 9.4e-09,
+        "symmetricDifference3857SquareMetres": 1.029e-05,
+        "relativeAreaDifference": 4e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.257091,
+        "radialCoefficientOfVariation": 0.447636,
+        "areaToConvexHullArea": 0.66626,
+        "areaToMinimumRotatedRectangleArea": 0.516653,
+        "longestEdgeMetres": 973.71,
+        "longestEdgeFractionOfPerimeter": 0.341732
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 54,
+      "name": "Kincseshegy",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        8
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "4f342169c4ee50acae851a3398fb60b88a87a84d923b39017689d0adfdbf2bb9",
+      "serviceGeojsonGeometrySha256": "905dfc94c93c08ffdc7d7cdfae809989b24db33222fa75ab68ba5ffc06e52b47",
+      "metricAreaSquareMetres": 537578.978,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8e-09,
+        "hausdorffDistance3857Metres": 8.3e-09,
+        "symmetricDifference3857SquareMetres": 1.157e-05,
+        "relativeAreaDifference": 3e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.759206,
+        "radialCoefficientOfVariation": 0.254935,
+        "areaToConvexHullArea": 0.989082,
+        "areaToMinimumRotatedRectangleArea": 0.860847,
+        "longestEdgeMetres": 633.376,
+        "longestEdgeFractionOfPerimeter": 0.212332
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 55,
+      "name": "Csapókert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        9
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "8ec17f873f5e22d06ff68e4358bac9ca0d67beb23bc9aaf0b50f553622e7abe8",
+      "serviceGeojsonGeometrySha256": "35d6dc3245a668f6fbe64760852a3b2dc59905180cac89a17f32d2bd06fa9047",
+      "metricAreaSquareMetres": 673896.292,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8.2e-09,
+        "hausdorffDistance3857Metres": 6.8e-09,
+        "symmetricDifference3857SquareMetres": 1.023e-05,
+        "relativeAreaDifference": 3e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.765799,
+        "radialCoefficientOfVariation": 0.152539,
+        "areaToConvexHullArea": 0.991381,
+        "areaToMinimumRotatedRectangleArea": 0.751947,
+        "longestEdgeMetres": 788.392,
+        "longestEdgeFractionOfPerimeter": 0.237082
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 56,
+      "name": "Veres Péter kert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "06343ba2fbee86ddfc7dc818f9797a679df92b127498b8de272fb05b8f6cb468",
+      "serviceGeojsonGeometrySha256": "72fa064fd0d814376a2d1d6a8ab784bb83a02c1c3e3c2d814daecbebc5df95a1",
+      "metricAreaSquareMetres": 752140.937,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8.6e-09,
+        "hausdorffDistance3857Metres": 8.1e-09,
+        "symmetricDifference3857SquareMetres": 1.838e-05,
+        "relativeAreaDifference": 6e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.287789,
+        "radialCoefficientOfVariation": 0.250871,
+        "areaToConvexHullArea": 0.913525,
+        "areaToMinimumRotatedRectangleArea": 0.856601,
+        "longestEdgeMetres": 1605.42,
+        "longestEdgeFractionOfPerimeter": 0.280138
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 57,
+      "name": "Hőforras",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        9
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "4a7765da3d49d7834d7f2d498033841442a600932bd3a775743a33e719166913",
+      "serviceGeojsonGeometrySha256": "0f40a0a0826fc6c579abfdc6b0c0ff5b00430199adf290d8b5cf9f2cd0ddbcb0",
+      "metricAreaSquareMetres": 533124.53,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.03e-08,
+        "hausdorffDistance3857Metres": 9.5e-09,
+        "symmetricDifference3857SquareMetres": 1.687e-05,
+        "relativeAreaDifference": 1.2e-11
+      },
+      "shapeIndicators": {
+        "circularity": 0.609775,
+        "radialCoefficientOfVariation": 0.273093,
+        "areaToConvexHullArea": 0.934463,
+        "areaToMinimumRotatedRectangleArea": 0.569163,
+        "longestEdgeMetres": 1154.651,
+        "longestEdgeFractionOfPerimeter": 0.34835
+      },
+      "confidenceFlags": [
+        "source_spelling_Hoforras_preserved_identity_alias_pending"
+      ]
+    },
+    {
+      "fid": 58,
+      "name": "Júliatelep",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        15
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "cf10fd7289ca8a960d5bb0db8d1e27496214dbcbd10e4859c8477523399c76e4",
+      "serviceGeojsonGeometrySha256": "e58d365374c52ef274729e05ec4a1f7d99f1e4576283983083cc2d5bf84278b2",
+      "metricAreaSquareMetres": 1784660.359,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.03e-08,
+        "hausdorffDistance3857Metres": 9.4e-09,
+        "symmetricDifference3857SquareMetres": 2.984e-05,
+        "relativeAreaDifference": 4e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.607536,
+        "radialCoefficientOfVariation": 0.256999,
+        "areaToConvexHullArea": 0.919847,
+        "areaToMinimumRotatedRectangleArea": 0.600485,
+        "longestEdgeMetres": 1041.285,
+        "longestEdgeFractionOfPerimeter": 0.171385
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 59,
+      "name": "Kerekestelep",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        22
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "ab92dd78aad219f57a24f22fd6696cf9ec1011fde65e5983fc82c1db91e05660",
+      "serviceGeojsonGeometrySha256": "2ccd9eae0b02e24c406304e3e6b9bae77c64b08c7b1162975e9c456b6b45f127",
+      "metricAreaSquareMetres": 2365672.317,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 9.2e-09,
+        "hausdorffDistance3857Metres": 9.3e-09,
+        "symmetricDifference3857SquareMetres": 3.782e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.441567,
+        "radialCoefficientOfVariation": 0.333313,
+        "areaToConvexHullArea": 0.836375,
+        "areaToMinimumRotatedRectangleArea": 0.584219,
+        "longestEdgeMetres": 1018.213,
+        "longestEdgeFractionOfPerimeter": 0.124095
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 60,
+      "name": "Homokkert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        12
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "eafbd3a1f3c2d9fdddc1d5b60785a89ce5dc12c5ebe3fba65973c23519f06836",
+      "serviceGeojsonGeometrySha256": "5414d0821e16faaa95dee95c0e5847bf15f20ba7c8af2c294300ad117069e7b5",
+      "metricAreaSquareMetres": 1798762.192,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 9.2e-09,
+        "hausdorffDistance3857Metres": 9.9e-09,
+        "symmetricDifference3857SquareMetres": 3.092e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.734988,
+        "radialCoefficientOfVariation": 0.168722,
+        "areaToConvexHullArea": 0.95602,
+        "areaToMinimumRotatedRectangleArea": 0.737046,
+        "longestEdgeMetres": 1018.213,
+        "longestEdgeFractionOfPerimeter": 0.183606
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 61,
+      "name": "Lencztelep",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        21
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "299a7a64a53ef69b032dcf79e54cc702bda5fe7a6bfa676fd3702a354d0d8bf7",
+      "serviceGeojsonGeometrySha256": "71113e5c22e23f0f527e4038b640a7dc15dcec107d66fc85b7cac8d6a0a29001",
+      "metricAreaSquareMetres": 1440809.41,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.05e-08,
+        "hausdorffDistance3857Metres": 9.3e-09,
+        "symmetricDifference3857SquareMetres": 2.856e-05,
+        "relativeAreaDifference": 0.0
+      },
+      "shapeIndicators": {
+        "circularity": 0.413595,
+        "radialCoefficientOfVariation": 0.36104,
+        "areaToConvexHullArea": 0.7508,
+        "areaToMinimumRotatedRectangleArea": 0.528463,
+        "longestEdgeMetres": 1117.453,
+        "longestEdgeFractionOfPerimeter": 0.168892
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 62,
+      "name": "Boldogfalvikert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        13
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "693bce0f301cab4e4cd0c84361c43487247cf1d7c4c4d8d687f66b9533375a61",
+      "serviceGeojsonGeometrySha256": "8b4220f1616eb11130449272a7fb3cb69d95ce0cb91876a808b6a04a780b592d",
+      "metricAreaSquareMetres": 860708.859,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.06e-08,
+        "hausdorffDistance3857Metres": 9.7e-09,
+        "symmetricDifference3857SquareMetres": 2.277e-05,
+        "relativeAreaDifference": 4e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.479128,
+        "radialCoefficientOfVariation": 0.416226,
+        "areaToConvexHullArea": 0.851026,
+        "areaToMinimumRotatedRectangleArea": 0.638761,
+        "longestEdgeMetres": 866.733,
+        "longestEdgeFractionOfPerimeter": 0.182423
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 63,
+      "name": "Tégláskert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        21
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "8c2c413341033955f6a2741ca11c9dbabaa4cefb4285eecdbb73b3d1d35ba19c",
+      "serviceGeojsonGeometrySha256": "5b6991ce66a0da583991dfccaeec683d819ab2462be0edcf2a266865b52157f7",
+      "metricAreaSquareMetres": 1038639.928,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8.3e-09,
+        "hausdorffDistance3857Metres": 6.9e-09,
+        "symmetricDifference3857SquareMetres": 2.215e-05,
+        "relativeAreaDifference": 7e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.448089,
+        "radialCoefficientOfVariation": 0.425307,
+        "areaToConvexHullArea": 0.835077,
+        "areaToMinimumRotatedRectangleArea": 0.632311,
+        "longestEdgeMetres": 758.68,
+        "longestEdgeFractionOfPerimeter": 0.140574
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 64,
+      "name": "Majorság",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        13
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "b4566a3dfadf2c760427d27cd4ff4951ded02aaf59aabe98f744b0d6bda5e0d8",
+      "serviceGeojsonGeometrySha256": "687232223361ba78e8d7a5039abcba8e7e27144d2c73d1d959b55241d8f0c817",
+      "metricAreaSquareMetres": 488244.683,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8e-09,
+        "hausdorffDistance3857Metres": 6.7e-09,
+        "symmetricDifference3857SquareMetres": 1.603e-05,
+        "relativeAreaDifference": 6e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.528962,
+        "radialCoefficientOfVariation": 0.36399,
+        "areaToConvexHullArea": 0.848959,
+        "areaToMinimumRotatedRectangleArea": 0.626263,
+        "longestEdgeMetres": 696.064,
+        "longestEdgeFractionOfPerimeter": 0.20438
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 65,
+      "name": "Vargakert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        17
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "8b457a91b88ad55d096cb5417a1e0e83a6dc417ef464016182cd173ea279da45",
+      "serviceGeojsonGeometrySha256": "88b19357214051fb722ca37d02a39670ffd1a306902b89c46fac32343ad66042",
+      "metricAreaSquareMetres": 806596.327,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 9.3e-09,
+        "hausdorffDistance3857Metres": 8.4e-09,
+        "symmetricDifference3857SquareMetres": 1.662e-05,
+        "relativeAreaDifference": 5e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.423855,
+        "radialCoefficientOfVariation": 0.292829,
+        "areaToConvexHullArea": 0.879204,
+        "areaToMinimumRotatedRectangleArea": 0.579306,
+        "longestEdgeMetres": 1170.612,
+        "longestEdgeFractionOfPerimeter": 0.23938
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 66,
+      "name": "Postakert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "fabfec22eff9676218ac57f88b83ee3d7f907034f4d0056f7019934cb1f6e5f0",
+      "serviceGeojsonGeometrySha256": "a1995d03e8575adcf12e5131d1457839bab2798a3c61866f7797821e0796f6a6",
+      "metricAreaSquareMetres": 481837.233,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 9e-09,
+        "hausdorffDistance3857Metres": 9e-09,
+        "symmetricDifference3857SquareMetres": 1.459e-05,
+        "relativeAreaDifference": 1e-11
+      },
+      "shapeIndicators": {
+        "circularity": 0.503125,
+        "radialCoefficientOfVariation": 0.384771,
+        "areaToConvexHullArea": 0.904949,
+        "areaToMinimumRotatedRectangleArea": 0.699459,
+        "longestEdgeMetres": 758.967,
+        "longestEdgeFractionOfPerimeter": 0.218779
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 67,
+      "name": "Széchenyikert",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "fd647ac6aace330d83af72e69bea4599a0dbe50327768539122c453f99317532",
+      "serviceGeojsonGeometrySha256": "8c03654c5f3b7b303f6b9b063c0dfacc8e455bcd25a59bbfcfb86a0cf706a70c",
+      "metricAreaSquareMetres": 423183.356,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 9.4e-09,
+        "hausdorffDistance3857Metres": 9.4e-09,
+        "symmetricDifference3857SquareMetres": 1.449e-05,
+        "relativeAreaDifference": 1.2e-11
+      },
+      "shapeIndicators": {
+        "circularity": 0.621708,
+        "radialCoefficientOfVariation": 0.28378,
+        "areaToConvexHullArea": 0.941897,
+        "areaToMinimumRotatedRectangleArea": 0.579338,
+        "longestEdgeMetres": 730.65,
+        "longestEdgeFractionOfPerimeter": 0.249824
+      },
+      "confidenceFlags": [
+        "duplicate_source_name_requires_one_identity_review",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 68,
+      "name": "Lóskúti",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        10
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "d5baa4f36943f840050a877ec4cea9770959f84869d2ccd5a24df8d623bbe3ae",
+      "serviceGeojsonGeometrySha256": "f6acee1617a184e06ea69680eb489ec0606a76cd9c70947d37423fa9ba873611",
+      "metricAreaSquareMetres": 866931.058,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 9.6e-09,
+        "hausdorffDistance3857Metres": 7.5e-09,
+        "symmetricDifference3857SquareMetres": 2.3e-05,
+        "relativeAreaDifference": 5e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.651823,
+        "radialCoefficientOfVariation": 0.232536,
+        "areaToConvexHullArea": 0.891505,
+        "areaToMinimumRotatedRectangleArea": 0.776288,
+        "longestEdgeMetres": 911.596,
+        "longestEdgeFractionOfPerimeter": 0.222982
+      },
+      "confidenceFlags": [
+        "source_name_Loskuti_identity_alias_pending"
+      ]
+    },
+    {
+      "fid": 69,
+      "name": "Falóger",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "349e1498d6ea746099ca72462f359676bc9fd6c595396f9caf38a566da82fd8a",
+      "serviceGeojsonGeometrySha256": "56af9a1f119152b38f742589e65c8c04163f3aa0dbd6896e76b764b219da2577",
+      "metricAreaSquareMetres": 590766.405,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8.8e-09,
+        "hausdorffDistance3857Metres": 7.8e-09,
+        "symmetricDifference3857SquareMetres": 1.524e-05,
+        "relativeAreaDifference": 2e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.681363,
+        "radialCoefficientOfVariation": 0.259562,
+        "areaToConvexHullArea": 0.924861,
+        "areaToMinimumRotatedRectangleArea": 0.796432,
+        "longestEdgeMetres": 601.514,
+        "longestEdgeFractionOfPerimeter": 0.182231
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 70,
+      "name": "Wesselényi lakótelep",
+      "tipus": "lakotelep",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "c0dab4f430cd8c5429fe13e694f33a7f8241ddf07b9157aef66bc4a369a89602",
+      "serviceGeojsonGeometrySha256": "d73fb33a0707405f1f64c971462bc6dd3718f3d89a4fe8f7830ec9eb176514ca",
+      "metricAreaSquareMetres": 299241.261,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8.1e-09,
+        "hausdorffDistance3857Metres": 8.6e-09,
+        "symmetricDifference3857SquareMetres": 1.43e-05,
+        "relativeAreaDifference": 8e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.733545,
+        "radialCoefficientOfVariation": 0.215175,
+        "areaToConvexHullArea": 0.95102,
+        "areaToMinimumRotatedRectangleArea": 0.622929,
+        "longestEdgeMetres": 433.534,
+        "longestEdgeFractionOfPerimeter": 0.191479
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 71,
+      "name": "Gerébytelep",
+      "tipus": "kertvaros",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "69e53ece4be0845ceae9e2cd7ec58f54ee6456ac294ad1ad499f4c9835552bd9",
+      "serviceGeojsonGeometrySha256": "69bd1e2cb7d93da6c709b7f4d6c1052458741b1bacdd3b0779726202fa7dd7af",
+      "metricAreaSquareMetres": 2047785.338,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 8.6e-09,
+        "hausdorffDistance3857Metres": 8.2e-09,
+        "symmetricDifference3857SquareMetres": 2.2e-05,
+        "relativeAreaDifference": 0.0
+      },
+      "shapeIndicators": {
+        "circularity": 0.664398,
+        "radialCoefficientOfVariation": 0.250354,
+        "areaToConvexHullArea": 0.962334,
+        "areaToMinimumRotatedRectangleArea": 0.804875,
+        "longestEdgeMetres": 1578.059,
+        "longestEdgeFractionOfPerimeter": 0.253566
+      },
+      "confidenceFlags": [
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 72,
+      "name": "Nagymacs",
+      "tipus": "egyeb_belteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        16
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "a4058d72a61f2cd3dcaeff564cf39706cf1628b5214662607c656e9fd6542c29",
+      "serviceGeojsonGeometrySha256": "1b8ee9536a7936223450dceeee6a2f25a40c3b4769a9d47ee95fdee20f4acc0f",
+      "metricAreaSquareMetres": 568042.697,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.06e-08,
+        "hausdorffDistance3857Metres": 9.3e-09,
+        "symmetricDifference3857SquareMetres": 1.699e-05,
+        "relativeAreaDifference": 1e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.533484,
+        "radialCoefficientOfVariation": 0.29998,
+        "areaToConvexHullArea": 0.806163,
+        "areaToMinimumRotatedRectangleArea": 0.592208,
+        "longestEdgeMetres": 512.846,
+        "longestEdgeFractionOfPerimeter": 0.140201
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 73,
+      "name": "Nagycsere",
+      "tipus": "egyeb_belteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        12
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "8a7a3b03951bab7cd5621d67e536729ab29ce8f47ce527ef755f4f674f5ebb28",
+      "serviceGeojsonGeometrySha256": "8f1d3c4fa8453331fbb5c21dc9d66a7420cc89d5bdd9ded5df2401ee51540186",
+      "metricAreaSquareMetres": 302832.619,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.08e-08,
+        "hausdorffDistance3857Metres": 7.5e-09,
+        "symmetricDifference3857SquareMetres": 8.79e-06,
+        "relativeAreaDifference": 2e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.746246,
+        "radialCoefficientOfVariation": 0.174104,
+        "areaToConvexHullArea": 0.965269,
+        "areaToMinimumRotatedRectangleArea": 0.74733,
+        "longestEdgeMetres": 490.736,
+        "longestEdgeFractionOfPerimeter": 0.217311
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 74,
+      "name": "Dombos",
+      "tipus": "egyeb_belteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        11
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "b39f90a663561c52c6a53792be179aca59eb68d3285ae0682b7ade59443ad830",
+      "serviceGeojsonGeometrySha256": "ad7ba3daadffe2de13e065401c505febbf4b7a1f08124c86ec81dbc2cffb4538",
+      "metricAreaSquareMetres": 94887.281,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.13e-08,
+        "hausdorffDistance3857Metres": 1.21e-08,
+        "symmetricDifference3857SquareMetres": 5.37e-06,
+        "relativeAreaDifference": 1.5e-11
+      },
+      "shapeIndicators": {
+        "circularity": 0.465479,
+        "radialCoefficientOfVariation": 0.282699,
+        "areaToConvexHullArea": 0.801088,
+        "areaToMinimumRotatedRectangleArea": 0.619578,
+        "longestEdgeMetres": 303.216,
+        "longestEdgeFractionOfPerimeter": 0.189449
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 75,
+      "name": "Haláp",
+      "tipus": "egyeb_belteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        13
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "0e1c84b6d472ebb3fc36f747defd7686146e008173af70bcaab1f9211ae03ed6",
+      "serviceGeojsonGeometrySha256": "192a32b08155259fd79fd5d949184cca08c4d80129508144286c667bfde9554b",
+      "metricAreaSquareMetres": 378067.558,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.21e-08,
+        "hausdorffDistance3857Metres": 1.12e-08,
+        "symmetricDifference3857SquareMetres": 1.712e-05,
+        "relativeAreaDifference": 1.1e-11
+      },
+      "shapeIndicators": {
+        "circularity": 0.643857,
+        "radialCoefficientOfVariation": 0.230957,
+        "areaToConvexHullArea": 0.881726,
+        "areaToMinimumRotatedRectangleArea": 0.774352,
+        "longestEdgeMetres": 484.278,
+        "longestEdgeFractionOfPerimeter": 0.178279
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 76,
+      "name": "Bánk",
+      "tipus": "egyeb_belteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        17
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "e06f5200be80690e7e7f29accf1453378b5c5fb33afdd8044e6f1764748d3d4d",
+      "serviceGeojsonGeometrySha256": "53f53a2728278fce37bbd78f71dfe80c0ef491084ff42e6bdf63366c72f17619",
+      "metricAreaSquareMetres": 657831.734,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 1.06e-08,
+        "hausdorffDistance3857Metres": 1.15e-08,
+        "symmetricDifference3857SquareMetres": 1.755e-05,
+        "relativeAreaDifference": 5e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.473815,
+        "radialCoefficientOfVariation": 0.317136,
+        "areaToConvexHullArea": 0.864362,
+        "areaToMinimumRotatedRectangleArea": 0.7106,
+        "longestEdgeMetres": 764.529,
+        "longestEdgeFractionOfPerimeter": 0.183036
+      },
+      "confidenceFlags": []
+    },
+    {
+      "fid": 77,
+      "name": "Ondód",
+      "tipus": "egyeb_belteruletek",
+      "nativeRingCount": 1,
+      "geojsonType": "Polygon",
+      "ringVertexCounts": [
+        12
+      ],
+      "sourceRingsExplicitlyClosed": true,
+      "coordinatesFinite": true,
+      "consecutiveRepeatedVertices": 0,
+      "nativeRingOrientation": "clockwise",
+      "nativeValid": true,
+      "geojsonValid": true,
+      "nativeValidityReason": "Valid Geometry",
+      "attributesMatch": true,
+      "nativeGeometrySha256": "b06309e95629442fcf3c3ce5d41f2839e898047ace99cdb52dbe611e2dcc2414",
+      "serviceGeojsonGeometrySha256": "fd364b33ab9238b8ff2bbe5007ac88e1654ecbbc53fca361067b46bba30b23fa",
+      "metricAreaSquareMetres": 434594.531,
+      "nativeServiceEquivalence": {
+        "sameRingVertexCounts": true,
+        "cyclicOrReversedMatchedVertexMaxError3857Metres": 6.7e-09,
+        "hausdorffDistance3857Metres": 7.5e-09,
+        "symmetricDifference3857SquareMetres": 1.36e-05,
+        "relativeAreaDifference": 8e-12
+      },
+      "shapeIndicators": {
+        "circularity": 0.630785,
+        "radialCoefficientOfVariation": 0.266868,
+        "areaToConvexHullArea": 0.899999,
+        "areaToMinimumRotatedRectangleArea": 0.794753,
+        "longestEdgeMetres": 536.888,
+        "longestEdgeFractionOfPerimeter": 0.182464
+      },
+      "confidenceFlags": []
+    }
+  ],
+  "outcome": {
+    "geometryAuthenticityFromRetrievedService": "Native and serviceGeoJSON equivalence quantified perFID; source coordinates retained as received.",
+    "sourceIsOfficial": false,
+    "sourceIsHardBoundary": false,
+    "usableForAddressAssignment": false,
+    "canonicalPromotionPerformed": false,
+    "newQuarterCountEstablished": false,
+    "realWorldPlacementAccuracyEstablished": false
+  },
+  "systematicPlacementDiagnostic": {
+    "method": "Compare metric centroids of the25exact-name matching source pieces, excluding ambiguousFID11. Source minus OSM baseline in EPSG23700; these centroids diagnose dataset disagreement and are not georeferencing controls.",
+    "count": 25,
+    "allSourceCentroidsWestOfBaseline": true,
+    "medianEastingDifferenceMetres": -61.063,
+    "medianNorthingDifferenceMetres": -27.218,
+    "sampleStdEastingDifferenceMetres": 13.892,
+    "sampleStdNorthingDifferenceMetres": 21.471,
+    "interpretation": "A shared westward and generally southward displacement is visible relative to this unreviewedOSMbaseline. Neither cause nor which source is more accurate is established. Direct service authenticity and correct declared CRS transformation do not establish real-world placement accuracy. No translation, datum reinterpretation or correction was fitted or applied."
+  }
+}

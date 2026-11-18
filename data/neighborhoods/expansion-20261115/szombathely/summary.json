@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Szombathely",
+  "date": "2026-11-15",
+  "featureCount": 14,
+  "missingWorklistCount": 14,
+  "coveredWorklistNames": [
+    "Alsóhegy-Középhegy kertváros",
+    "Belváros (városmag)",
+    "Gyöngyöshermán kertváros",
+    "Gyöngyösszőlős kertváros",
+    "Géfin Lakópark",
+    "Hagyományos beépítésű belső lakóterület",
+    "Herényi kertváros",
+    "Ipartelep",
+    "Kámoni kertváros",
+    "Lovasiskola lakópark",
+    "Oladi kertváros",
+    "Szentkirály kertváros",
+    "Öntöde",
+    "Újperint kertváros"
+  ],
+  "unresolvedNames": [],
+  "aliasProposals": [],
+  "allEstimated": true,
+  "allLowConfidence": true,
+  "geometryCrs": "EPSG:4326",
+  "allGeometriesValid": true,
+  "allContainedByMunicipality": true,
+  "estateNamedNodesInsideEstimates": {
+    "Géfin Lakópark": true,
+    "Öntöde": true,
+    "Lovasiskola lakópark": true
+  },
+  "historicalUnitCount": 11,
+  "contemporaryStreetEnvelopeCount": 3,
+  "pointBuffersCreated": 0,
+  "remainingLimitations": [
+    "Historical low-resolution map fit and built-up boundaries are coarse estimates, not contemporary legal boundaries.",
+    "Estate road envelopes may include gardens or institutional land; their development-phase parcel extents remain unverified."
+  ],
+  "rejectedAliasCandidates": [
+    {
+      "name": "Belváros (városmag)",
+      "candidate": "Belváros",
+      "reason": "Current selected OSM footprint and historical municipal core differ materially: areas 1.222 and0.662km², IoU0.483; retain historical source unit separately."
+    }
+  ]
+}

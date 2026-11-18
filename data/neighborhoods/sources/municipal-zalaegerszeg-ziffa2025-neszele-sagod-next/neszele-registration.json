@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_estimated_registration",
+  "sourceImage": "p138-xref768.jpeg",
+  "sourcePixelSpace": "Native image pixel corners, x right/y down",
+  "worldCrs": "EPSG:23700 EOV, inverse projected to WGS84",
+  "model": "Four-parameter similarity with reflected pixel-y, least squares from four actual road junctions. No shear or name-point controls.",
+  "controls": [
+    {
+      "id": "irinyi_jedlik",
+      "pixel": [
+        216,
+        200
+      ],
+      "wgs84": [
+        16.8283727,
+        46.8564648
+      ],
+      "osmWayIds": [
+        33754364,
+        33754361
+      ],
+      "description": "Visible Irinyi János/Jedlik Ányos road-center junction.",
+      "eov": [
+        480805.5559083037,
+        170426.89116659714
+      ],
+      "sourcePixelPickingIsManual": true,
+      "approximatePixelPickingUncertainty": 3,
+      "fitResidualMetresDiagnosticOnly": 2.723131909163258
+    },
+    {
+      "id": "kiraly_jedlik",
+      "pixel": [
+        268,
+        202
+      ],
+      "wgs84": [
+        16.830206,
+        46.8564452
+      ],
+      "osmWayIds": [
+        149157493,
+        33754361
+      ],
+      "description": "Visible Király/Jedlik Ányos road-center junction.",
+      "eov": [
+        480945.23658267135,
+        170420.74469903114
+      ],
+      "sourcePixelPickingIsManual": true,
+      "approximatePixelPickingUncertainty": 3,
+      "fitResidualMetresDiagnosticOnly": 3.2781620544590226
+    },
+    {
+      "id": "ilosvai_bukkfa",
+      "pixel": [
+        169.5,
+        157.5
+      ],
+      "wgs84": [
+        16.826764,
+        46.857424
+      ],
+      "osmWayIds": [
+        209371097,
+        209329533
+      ],
+      "description": "Visible Bükkfa/Ilosvai road-center junction, north of quarter label.",
+      "eov": [
+        480685.96385183977,
+        170536.95977179913
+      ],
+      "sourcePixelPickingIsManual": true,
+      "approximatePixelPickingUncertainty": 3,
+      "fitResidualMetresDiagnosticOnly": 1.848933679500208
+    },
+    {
+      "id": "gebarti_jedlik",
+      "pixel": [
+        280,
+        165.5
+      ],
+      "wgs84": [
+        16.8306148,
+        46.8572548
+      ],
+      "osmWayIds": [
+        33754359,
+        148822704
+      ],
+      "description": "Visible Jedlik Ányos/Gébárti road-center junction at the eastern curve.",
+      "eov": [
+        480978.95048722695,
+        170509.82074772054
+      ],
+      "sourcePixelPickingIsManual": true,
+      "approximatePixelPickingUncertainty": 3,
+      "fitResidualMetresDiagnosticOnly": 3.7904073160661906
+    }
+  ],
+  "pixelToEovMatrix": [
+    [
+      2.6321405697555744,
+      -0.0394848247843618
+    ],
+    [
+      -0.0394848247843618,
+      -2.6321405697555744
+    ]
+  ],
+  "pixelToEovOffset": [
+    480246.80752658605,
+    170959.8943455668
+  ],
+  "scaleMetresPerSourcePixel": 2.6324367096554195,
+  "rmsFitResidualMetresDiagnosticOnly": 2.997813253976822,
+  "residualMeaning": "Internal manual road-correspondence consistency only, not surveyed accuracy or an absolute positional bound.",
+  "twoJunctionAlternative": {
+    "pixelToEovMatrix": [
+      [
+        2.6867385531630097,
+        -0.014865200431416998
+      ],
+      [
+        -0.014865200431416998,
+        -2.6867385531630097
+      ]
+    ],
+    "pixelToEovOffset": [
+      480228.1934211121,
+      170967.4497607469
+    ],
+    "controlIds": [
+      "irinyi_jedlik",
+      "kiraly_jedlik"
+    ],
+    "meaning": "Preliminary two-junction fit preserved as another plausible placement of the same source contour; zero residual degrees of freedom cannot measure accuracy."
+  },
+  "estimatedPlacement": true,
+  "sourceNamePointsUsedForFit": false,
+  "claimedAbsoluteAccuracyMetres": null,
+  "limitations": [
+    "Native387×329 raster; thick boundary band and manually picked road centerlines leave unknown positional uncertainty.",
+    "Source map projection/background age are unknown; isotropic EOV similarity is an explicit placement assumption.",
+    "The source label obscures part of the central Gébárti/Ilosvai junction, so that location is excluded from fitting.",
+    "Current road geometry may differ from the source backdrop. Main/alternative differences illustrate ambiguity and are not a confidence envelope."
+  ]
+}

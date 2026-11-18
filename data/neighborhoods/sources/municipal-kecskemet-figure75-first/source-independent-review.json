@@ -1,0 +1,257 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_AS_EXPLICIT_GAP_INFERRED_SOURCE_CANDIDATE_ONLY",
+  "independentOfSourceProducerCodeExecution": true,
+  "producerSourceModuleImported": false,
+  "sourceInputsSha256": {
+    "figure75-p158-xref180.jpeg": "13c9a38ba1b554b7125064ffce3384eb813d9590b9f327a152f1da4b0de4c991",
+    "source-pixel-trace.json": "2f9eabaca7e653cf510f1174a9a2b5b09729766b8c51cb2cf5f42a0529d81e00",
+    "source-pixel-preview.png": "b3099762bf53e89a08c2d1ad1ccefa69b3428e96cace126c1ab93ebec03e0be3",
+    "75-repteri-grid.png": "7e52844f10e601c276f954b5d4438ea7eada1806109354310caa8a130aed56f6",
+    "source-pages158-160.pdf": "8fad4f40e7bbd6ae267b4ba2b243dc30eb64696eb3db9ade62b75e3487c70d7f",
+    "source-semantics.json": "4a47ad307923ee83ccb00955b1fbcdde26497f9e5866bfaf89e9c7ea109cc678",
+    "exploratory-diagnostics/strict-trace-attempt.json": "964921fdf4712c7db91fcd78944be66041711b5014407cee9b96f3ac4b5694b9",
+    "exploratory-diagnostics/initial-strict-black-trace.py": "28b5ab8357dc91bb5322c8b3e174ef2fae319f445942f53ff0411b1267821682"
+  },
+  "auditScriptSha256": "5b8019acc0768692b77f0bcad11523c9e578d578e50225cd1aabc95220979156",
+  "sourceOriginalJpegPreservedInArchivedPdf": true,
+  "sourceImageSize": [
+    1700,
+    1210
+  ],
+  "sourceDenseVertexCountIncludingClosure": 366,
+  "strictBlackVertexCountIncludingClosure": 346,
+  "nonBlackInferredVertexCount": 20,
+  "all20NonBlackVerticesListedInExactlyFourDeclaredGapPaths": true,
+  "allSourceAndGapEdgesDense8Neighbor": true,
+  "closedValidSourcePolygon": true,
+  "sourceHoleCount": 0,
+  "sourceAreaSquarePixels": 7873.5,
+  "minimumDistanceFromImageFramePixels": 180,
+  "frameClosureOrUnlistedGapDetected": false,
+  "allFourArchivedSectionsRecomposeExactRing": true,
+  "sourceContourFullyObserved": false,
+  "sourceGaps": [
+    {
+      "id": "blue-overprint-1",
+      "literalBlackEndpoints": [
+        [
+          1492,
+          203
+        ],
+        [
+          1488,
+          208
+        ]
+      ],
+      "chosenPathVertexCountIncludingEndpoints": 6,
+      "chosenPathNonBlackVertexCount": 4,
+      "chosenPathEuclideanLengthPixels": 6.656854249492381,
+      "localStrictBlack8NeighborConnectionWithinEndpointBoxPlus14Pixels": false,
+      "allNonBlackPixelsBlueDominant": true,
+      "confidence": "low",
+      "inferredPathNotObservedBoundary": true,
+      "alternativeDiagnostics": [
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": 5.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -5.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ]
+    },
+    {
+      "id": "blue-overprint-2",
+      "literalBlackEndpoints": [
+        [
+          1488,
+          214
+        ],
+        [
+          1480,
+          224
+        ]
+      ],
+      "chosenPathVertexCountIncludingEndpoints": 11,
+      "chosenPathNonBlackVertexCount": 9,
+      "chosenPathEuclideanLengthPixels": 13.313708498984761,
+      "localStrictBlack8NeighborConnectionWithinEndpointBoxPlus14Pixels": false,
+      "allNonBlackPixelsBlueDominant": true,
+      "confidence": "low",
+      "inferredPathNotObservedBoundary": true,
+      "alternativeDiagnostics": [
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": 10.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -10.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ]
+    },
+    {
+      "id": "blue-overprint-3",
+      "literalBlackEndpoints": [
+        [
+          1369,
+          224
+        ],
+        [
+          1369,
+          219
+        ]
+      ],
+      "chosenPathVertexCountIncludingEndpoints": 6,
+      "chosenPathNonBlackVertexCount": 4,
+      "chosenPathEuclideanLengthPixels": 5.0,
+      "localStrictBlack8NeighborConnectionWithinEndpointBoxPlus14Pixels": false,
+      "allNonBlackPixelsBlueDominant": true,
+      "confidence": "low",
+      "inferredPathNotObservedBoundary": true,
+      "alternativeDiagnostics": [
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -5.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": 5.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ]
+    },
+    {
+      "id": "blue-overprint-4",
+      "literalBlackEndpoints": [
+        [
+          1369,
+          214
+        ],
+        [
+          1369,
+          210
+        ]
+      ],
+      "chosenPathVertexCountIncludingEndpoints": 5,
+      "chosenPathNonBlackVertexCount": 3,
+      "chosenPathEuclideanLengthPixels": 4.0,
+      "localStrictBlack8NeighborConnectionWithinEndpointBoxPlus14Pixels": false,
+      "allNonBlackPixelsBlueDominant": true,
+      "confidence": "low",
+      "inferredPathNotObservedBoundary": true,
+      "alternativeDiagnostics": [
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -4.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": 4.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ]
+    }
+  ],
+  "failedStrictTraceAttemptPreservedAndHashed": true,
+  "properSourceScopeSampleChecks": [
+    {
+      "diagnostic": "repteriResidentialSourceCellInterior",
+      "originalImagePixel": [
+        1420,
+        215
+      ],
+      "insideProperSourceCell": true,
+      "notAGeographicControl": true
+    },
+    {
+      "diagnostic": "airportAirfieldOutsideSmallCell",
+      "originalImagePixel": [
+        1400,
+        100
+      ],
+      "insideProperSourceCell": false,
+      "notAGeographicControl": true
+    },
+    {
+      "diagnostic": "broadSzolnokihegyInterior",
+      "originalImagePixel": [
+        800,
+        350
+      ],
+      "insideProperSourceCell": false,
+      "notAGeographicControl": true
+    },
+    {
+      "diagnostic": "economicSourceCellInterior",
+      "originalImagePixel": [
+        1450,
+        410
+      ],
+      "insideProperSourceCell": false,
+      "notAGeographicControl": true
+    },
+    {
+      "diagnostic": "kulsoRakoczivarosSourceCellInterior",
+      "originalImagePixel": [
+        280,
+        325
+      ],
+      "insideProperSourceCell": false,
+      "notAGeographicControl": true
+    }
+  ],
+  "semanticEvidence": {
+    "sourcePdfPagesOneBased": [
+      158,
+      159,
+      160
+    ],
+    "printedPages": [
+      156,
+      157,
+      158
+    ],
+    "repteriResidentialSourceCellDistinctFromUmbrellaAirportAndEconomicCells": true,
+    "mapLabelRepteriLakotelepAndProseRepteriLakonegyedScopeFormsPreserved": true,
+    "kulsoRakoczivarosDistinctFromCentralRakoczivaros": true,
+    "otherEconomicCellsNotRejectedForFunctionalUse": true,
+    "noWholeSzolnokihegyShapeAssignedToMukertvaros": true
+  },
+  "visualReview": "Original Figure75, the source-pixel preview and original-pixel Reptéri grid were visually inspected. The selected compact quadrilateral follows the separately labeled residential cell. The airport, broad Szolnokihegy source cell, western Külső Rákócziváros and distinct economic cells are not substituted. Four short blue-label-overprinted intervals remain explicit low-confidence continuations.",
+  "primaryLayerApproved": false,
+  "explicitInferredSourceCandidateSupported": true,
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "rightsStatus": "Municipal consultation draft source-map open reuse rights unverified.",
+  "limits": [
+    "The four missing source intervals are low-confidence manual hypotheses with alternatives, not observed black strokes.",
+    "This source review does not validate geographic conversion, current exact neighborhood scope, legal/cadastral extent or absolute accuracy.",
+    "Alternative pixel paths are diagnostic hypotheses and not accuracy bounds."
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "featureCount": 14,
+  "geometryCrs": "EPSG:4326",
+  "mapControlPoints": [
+    [
+      [
+        75,
+        151
+      ],
+      [
+        16.58803,
+        47.2437917
+      ]
+    ],
+    [
+      [
+        219,
+        272
+      ],
+      [
+        16.6218793,
+        47.2271643
+      ]
+    ],
+    [
+      [
+        296,
+        176
+      ],
+      [
+        16.6387565,
+        47.242498
+      ]
+    ]
+  ],
+  "affinePixelToWgs84": [
+    [
+      0.0002286709303833707,
+      1.119862149448209e-05
+    ],
+    [
+      7.60897541162274e-06,
+      -0.00015074381400974807
+    ],
+    [
+      16.56973072493409,
+      47.26571411930339
+    ]
+  ],
+  "mapFitExplanation": "Three visibly corresponding road junctions determine an affine transform. Zero fit residual at three controls is not an accuracy estimate; the old schematic raster and manual trace remain low-confidence.",
+  "manualRepairApplied": false,
+  "inputs": {
+    "control-points.json": "b4aa1ececb1e77ab7a59fde0232a61df22d9530b54251a44031fd83cbfd217d6",
+    "map-traces.json": "41a51660a456f3590f096a35085202dab8377e0b4a23664d006ea565297ed685",
+    "source-overview.jpeg": "8056b84dd92a0347c497bd12c63a3f4ed88d1e3c98dfe959ab2fd4906eca47f0",
+    "source-proof-pages.pdf": "a65645bea3cbcca2dd1a81105ce696b037a5fab1bd5a1a2cd94dcd2078cc8147",
+    "source-boundary-definitions.json": "be9baa7a404153ad2b92c3ddaba2132550a6d30cd2f66c3d69a9c22e4de0e1d6",
+    "source-unit15.geojson": "60a0a7a20b48a421dd695b7a798a0ca474f325cea7d9430bd57210e208768ea8",
+    "source-ways.geojson": "ce03a949aaf862ef05a26449539b3d0a51df133cbee853b3ee8883c180a94de8",
+    "estate-traces.json": "92d6990bad97c9e0c1de6f81233c6059a90b246252d43140808ee9b4f0fa82fe",
+    "source-named-points.geojson": "e778f999ce21e5fa0f93c9b3215bc66999a69795778d1436e424e1398ab531da",
+    "web-source-evidence.json": "44e08c1d35ced866f463714f359c0ac0c2760114f81ead2e62b924086705f041",
+    "web-search-evidence.json": "73e51ea59aa7cf61c2f02c1aafd8595650e83ea020b04ad01fce3d47bbc701ea",
+    "existing-belvaros-documentary-trace.geojson": "5f41bd11a9fbffc8e8114041066ccd24bcf818fe5f0100a0781588e2a37ae9ed",
+    "source-unit1-trace-proof.json": "0f1e803afc44aee9248cbeb3190ad278ce6288ec5ea28bdee078ca6e3b1038d6"
+  },
+  "features": [
+    {
+      "name": "Belváros (városmag)",
+      "valid": true,
+      "areaM2": 662056,
+      "estimated": true
+    },
+    {
+      "name": "Hagyományos beépítésű belső lakóterület",
+      "valid": true,
+      "areaM2": 3139316,
+      "estimated": true
+    },
+    {
+      "name": "Herényi kertváros",
+      "valid": true,
+      "areaM2": 867143,
+      "estimated": true
+    },
+    {
+      "name": "Kámoni kertváros",
+      "valid": true,
+      "areaM2": 2574652,
+      "estimated": true
+    },
+    {
+      "name": "Oladi kertváros",
+      "valid": true,
+      "areaM2": 2717013,
+      "estimated": true
+    },
+    {
+      "name": "Alsóhegy-Középhegy kertváros",
+      "valid": true,
+      "areaM2": 2860327,
+      "estimated": true
+    },
+    {
+      "name": "Újperint kertváros",
+      "valid": true,
+      "areaM2": 1377460,
+      "estimated": true
+    },
+    {
+      "name": "Gyöngyösszőlős kertváros",
+      "valid": true,
+      "areaM2": 1467288,
+      "estimated": true
+    },
+    {
+      "name": "Gyöngyöshermán kertváros",
+      "valid": true,
+      "areaM2": 876250,
+      "estimated": true
+    },
+    {
+      "name": "Szentkirály kertváros",
+      "valid": true,
+      "areaM2": 1859130,
+      "estimated": true
+    },
+    {
+      "name": "Ipartelep",
+      "valid": true,
+      "areaM2": 4792687,
+      "estimated": true
+    },
+    {
+      "name": "Géfin Lakópark",
+      "valid": true,
+      "areaM2": 65990,
+      "estimated": true
+    },
+    {
+      "name": "Öntöde",
+      "valid": true,
+      "areaM2": 33553,
+      "estimated": true
+    },
+    {
+      "name": "Lovasiskola lakópark",
+      "valid": true,
+      "areaM2": 170052,
+      "estimated": true
+    }
+  ]
+}

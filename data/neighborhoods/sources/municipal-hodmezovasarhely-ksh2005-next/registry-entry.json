@@ -1,0 +1,33 @@
+{
+  "id": "hodmezovasarhely-ksh2005-native-estimated-placement",
+  "path": "data/neighborhoods/sources/municipal-hodmezovasarhely-ksh2005-next/estimated-world-candidates.geojson",
+  "sha256": "0c4f5a6358aea2aee2418fdab4664e89511f81f1c132b47eaeaa619612bc8219",
+  "municipality": "Hódmezővásárhely",
+  "featureCount": 9,
+  "method": "Literal closed source fill contours from the original July2005KSH PDF page9, including all actual native subpaths and touching micro-triangles. Original decimal PDF vertices are evaluated exactly, then mapped by a three-road-junction EOV similarity and vertexwise EPSG23700→4326. No polygon repair, dropped component, smoothing, buffer, clipping, snapping, missing-edge cap, frame closure or current-name-point fit. Placement remains estimated; one two-control alternative is retained separately. Hódtó is invalid in source and already represented, so it is quarantined rather than repaired or counted again.",
+  "evidenceUrls": [
+    "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf"
+  ],
+  "license": "KSH2005 attribution required; separate data-transfer permission not established. ODbL-1.0 actual OSM controls/name evidence.",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "sourceIsOfficial": false,
+    "sourceIsHardBoundary": false,
+    "georeferencingIsApproximate": true,
+    "claimedAbsoluteAccuracyMetres": null,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-hodmezovasarhely-ksh2005-next/registration-and-uncertainty.json",
+  "independentSourceReviewPath": "data/neighborhoods/sources/municipal-hodmezovasarhely-ksh2005-next/independent-source-review.json",
+  "independentReviewPath": "data/neighborhoods/sources/municipal-hodmezovasarhely-ksh2005-next/independent-world-review.json",
+  "placementAlternativePath": "data/neighborhoods/sources/municipal-hodmezovasarhely-ksh2005-next/alternative-two-control-world.geojson",
+  "uncertainties": [
+    "Geographic placement is estimated from three interpreted source-boundary road junctions, not surveyed source controls. C2 has historical/current street-name ambiguity. Main fit RMS15.03m is not an accuracy bound; an ambiguous held-out junction differs55.76–74.73m. The control triangle covers only small portions ofBelváros/Tabán; other candidate footprints are extrapolated. Source cartographic generalization, road-centre convention,2005/current change and unknown survey/CRS remain material. Literal current-street-name line checks diverge up to1014m where simplified historical descriptions do not match the whole mapped border under current names; no aliases or source corrections are inferred. Independent source Susán/Újváros rail135 check differs by up to84.21m. These diagnostics do not establish absolute accuracy or whole current extents. Four detached village depictions are schematic/compressed and are retained only in native source coordinates.",
+    "Nine historical identities do not establish present complete extents; KSH reuse/data-transfer conditions are not treated as an open licence."
+  ],
+  "rightsStatus": "KSH2005 source-attribution and data-transfer-permission conditions; unrestricted permission unestablished.",
+  "globalRegistryAdmissionPerformed": false
+}

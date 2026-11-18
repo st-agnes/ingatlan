@@ -1,0 +1,1133 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "scope": "Independent source-road image observations and raw OSM evidence for a future georeferencing batch. No quarter polygons, parent models, first-inferred snapshot or registries changed.",
+  "networkUsed": false,
+  "sourceDocumentUrl": "https://logoweb.pecs.hu/download/koncepcio/ITS.pdf",
+  "sourcePdfSha256": "995d0db03e454a34046b248526e0882aee26ffbf40ba916e996afa4c8b49f6b1",
+  "sourcePdfPageOneBased": 48,
+  "sourceEmbeddedImageXref": 616,
+  "sourceImageSizePixels": [
+    585,
+    514
+  ],
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "inputs": [
+    {
+      "path": "pecs-p48-names.jpeg",
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "path": "pecs-review-road-control-source-ways.geojson",
+      "sha256": "eaa118a93a5768d98ccb4980936b1369829716def21ca0354f372af1f647ff78"
+    },
+    {
+      "path": "pecs-review-road-control-source-proof.json",
+      "sha256": "c7b7d2c64135bc2d52466f84b6b6e43262a6d6ecb13041288d03f72dba5c0dc0"
+    },
+    {
+      "path": "pecs-review-road-control-model-northwest.json",
+      "sha256": "8ba7ab1515b94f37253b64bdbe2144e73e540081ede3ae2cf9838f65b7b87f13"
+    },
+    {
+      "path": "pecs-review-road-control-model-all54.json",
+      "sha256": "2d5bd37a05baa504b40cf360aa35c7c3a55ccf9df67e60622f9a860b6b727e04"
+    }
+  ],
+  "geographicPointControlCount": 2,
+  "identifiedLineFeatureCount": 2,
+  "uniqueSourceLinePixelCount": 24,
+  "pointControls": [
+    {
+      "name": "M60 /58 main-road plan crossing",
+      "sourcePixel": [
+        275,
+        505
+      ],
+      "sourcePixelReadingUncertainty": [
+        3,
+        3
+      ],
+      "sourceSelection": "Manual reading on original source image before geographic overlay; crossing box in source-only proof crop. Road identity uses actual road-network topology and road symbol form, not neighbourhood-name coordinates.",
+      "imageProof": "pecs-review-road-control-M60-58-source-crossing.png",
+      "targetType": "Mean of two calculated plan-view crossings of actual original main-carriageway polyline segments. This is NOT a literal OSM-node coordinate or a surveyed point.",
+      "targetEov": [
+        587127.5472355257,
+        74538.95926790597
+      ],
+      "targetWgs84": [
+        18.23573984070238,
+        46.012552516215166
+      ],
+      "crossingSpreadMetres": 11.490048820075215,
+      "sourceSegmentProof": [
+        {
+          "motorwayWayId": 382503753,
+          "motorwaySegmentIndex": 0,
+          "motorwayOriginalNodeRefs": [
+            1791997279,
+            11620027051
+          ],
+          "motorwayOriginalCoordinates": [
+            [
+              18.2359064,
+              46.0125959
+            ],
+            [
+              18.2354285,
+              46.0126169
+            ]
+          ],
+          "crossRoadWayId": 167854141,
+          "crossRoadSegmentIndex": 0,
+          "crossRoadOriginalNodeRefs": [
+            690407440,
+            5455226733
+          ],
+          "crossRoadOriginalCoordinates": [
+            [
+              18.2356779,
+              46.012867
+            ],
+            [
+              18.2357345,
+              46.0125775
+            ]
+          ],
+          "eovPlanCrossing": [
+            587126.7967441303,
+            74544.65506180476
+          ],
+          "wgs84PlanCrossing": [
+            18.235729387057564,
+            46.01260368014302
+          ]
+        },
+        {
+          "motorwayWayId": 551824410,
+          "motorwaySegmentIndex": 1,
+          "motorwayOriginalNodeRefs": [
+            1791997290,
+            687431058
+          ],
+          "motorwayOriginalCoordinates": [
+            [
+              18.2353002,
+              46.012522
+            ],
+            [
+              18.2361241,
+              46.0124842
+            ]
+          ],
+          "crossRoadWayId": 566452542,
+          "crossRoadSegmentIndex": 0,
+          "crossRoadOriginalNodeRefs": [
+            5455226733,
+            804567552
+          ],
+          "crossRoadOriginalCoordinates": [
+            [
+              18.2357345,
+              46.0125775
+            ],
+            [
+              18.2358113,
+              46.0122071
+            ]
+          ],
+          "eovPlanCrossing": [
+            587128.297726921,
+            74533.2634740072
+          ],
+          "wgs84PlanCrossing": [
+            18.235750294327552,
+            46.01250135228672
+          ]
+        }
+      ],
+      "modelChecks": {
+        "northwest": {
+          "predictedEovFromManualPixel": [
+            586993.2004661764,
+            74399.5065535476
+          ],
+          "distanceToComputedCrossingCentreMetres": 193.6391333809129,
+          "modelProjectedCrossingPixelForDiagnosticsOnly": [
+            279.1330884503882,
+            500.74095108580883
+          ]
+        },
+        "all54": {
+          "predictedEovFromManualPixel": [
+            586938.7703971197,
+            73773.9540614703
+          ],
+          "distanceToComputedCrossingCentreMetres": 787.9528289131559,
+          "modelProjectedCrossingPixelForDiagnosticsOnly": [
+            280.7796662861213,
+            482.4588172391518
+          ]
+        }
+      }
+    },
+    {
+      "name": "M60 /578 main-road plan crossing at Kozármisleny western interchange",
+      "sourcePixel": [
+        400,
+        483
+      ],
+      "sourcePixelReadingUncertainty": [
+        3,
+        3
+      ],
+      "sourceSelection": "Manual reading on original source image before geographic overlay; crossing box in source-only proof crop. Road identity uses actual road-network topology and road symbol form, not neighbourhood-name coordinates.",
+      "imageProof": "pecs-review-road-control-M60-578-source-crossing.png",
+      "targetType": "Mean of two calculated plan-view crossings of actual original main-carriageway polyline segments. This is NOT a literal OSM-node coordinate or a surveyed point.",
+      "targetEov": [
+        591134.1379149097,
+        75286.59126514875
+      ],
+      "targetWgs84": [
+        18.287370874606783,
+        46.01964052464612
+      ],
+      "crossingSpreadMetres": 12.19270266088033,
+      "sourceSegmentProof": [
+        {
+          "motorwayWayId": 312923519,
+          "motorwaySegmentIndex": 0,
+          "motorwayOriginalNodeRefs": [
+            1261077171,
+            3139854570
+          ],
+          "motorwayOriginalCoordinates": [
+            [
+              18.2863917,
+              46.019702
+            ],
+            [
+              18.2876173,
+              46.0195621
+            ]
+          ],
+          "crossRoadWayId": 204479807,
+          "crossRoadSegmentIndex": 0,
+          "crossRoadOriginalNodeRefs": [
+            2144826781,
+            2144826780
+          ],
+          "crossRoadOriginalCoordinates": [
+            [
+              18.2872589,
+              46.0199149
+            ],
+            [
+              18.2875002,
+              46.0193236
+            ]
+          ],
+          "eovPlanCrossing": [
+            591135.7478422422,
+            75280.7113303253
+          ],
+          "wgs84PlanCrossing": [
+            18.287392400968855,
+            46.01958777478961
+          ]
+        },
+        {
+          "motorwayWayId": 549976182,
+          "motorwaySegmentIndex": 0,
+          "motorwayOriginalNodeRefs": [
+            3139854572,
+            3139854575
+          ],
+          "motorwayOriginalCoordinates": [
+            [
+              18.2875694,
+              46.0196679
+            ],
+            [
+              18.2864948,
+              46.0197918
+            ]
+          ],
+          "crossRoadWayId": 204479807,
+          "crossRoadSegmentIndex": 0,
+          "crossRoadOriginalNodeRefs": [
+            2144826781,
+            2144826780
+          ],
+          "crossRoadOriginalCoordinates": [
+            [
+              18.2872589,
+              46.0199149
+            ],
+            [
+              18.2875002,
+              46.0193236
+            ]
+          ],
+          "eovPlanCrossing": [
+            591132.5279875771,
+            75292.4711999722
+          ],
+          "wgs84PlanCrossing": [
+            18.287349348202987,
+            46.01969327449899
+          ]
+        }
+      ],
+      "modelChecks": {
+        "northwest": {
+          "predictedEovFromManualPixel": [
+            591045.7358938445,
+            75114.49451934795
+          ],
+          "distanceToComputedCrossingCentreMetres": 193.47404798484482,
+          "modelProjectedCrossingPixelForDiagnosticsOnly": [
+            402.71211774289225,
+            477.74772448761235
+          ]
+        },
+        "all54": {
+          "predictedEovFromManualPixel": [
+            590951.7972067379,
+            74410.66886367071
+          ],
+          "distanceToComputedCrossingCentreMetres": 894.7000543576888,
+          "modelProjectedCrossingPixelForDiagnosticsOnly": [
+            405.5638914409508,
+            457.2189954012864
+          ]
+        }
+      }
+    }
+  ],
+  "lineControls": [
+    {
+      "roadReference": "M60",
+      "sourceFeature": "Visible source red M60 main-line curve south of Pécs",
+      "sourceObservations": [
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            290,
+            506
+          ],
+          "sourceRgb": [
+            141,
+            97,
+            96
+          ],
+          "initialVisualWindows": [
+            [
+              290,
+              506
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            310,
+            504
+          ],
+          "sourceRgb": [
+            134,
+            83,
+            88
+          ],
+          "initialVisualWindows": [
+            [
+              310,
+              505
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            330,
+            498
+          ],
+          "sourceRgb": [
+            128,
+            86,
+            88
+          ],
+          "initialVisualWindows": [
+            [
+              330,
+              499
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            350,
+            489
+          ],
+          "sourceRgb": [
+            132,
+            83,
+            87
+          ],
+          "initialVisualWindows": [
+            [
+              350,
+              492
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            370,
+            482
+          ],
+          "sourceRgb": [
+            151,
+            132,
+            128
+          ],
+          "initialVisualWindows": [
+            [
+              370,
+              484
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            385,
+            481
+          ],
+          "sourceRgb": [
+            130,
+            92,
+            91
+          ],
+          "initialVisualWindows": [
+            [
+              385,
+              482
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            420,
+            485
+          ],
+          "sourceRgb": [
+            126,
+            99,
+            92
+          ],
+          "initialVisualWindows": [
+            [
+              420,
+              485
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            435,
+            484
+          ],
+          "sourceRgb": [
+            143,
+            100,
+            107
+          ],
+          "initialVisualWindows": [
+            [
+              435,
+              484
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            450,
+            477
+          ],
+          "sourceRgb": [
+            142,
+            108,
+            107
+          ],
+          "initialVisualWindows": [
+            [
+              450,
+              477
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            465,
+            469
+          ],
+          "sourceRgb": [
+            149,
+            106,
+            113
+          ],
+          "initialVisualWindows": [
+            [
+              465,
+              468
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            480,
+            463
+          ],
+          "sourceRgb": [
+            153,
+            96,
+            105
+          ],
+          "initialVisualWindows": [
+            [
+              480,
+              462
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            520,
+            462
+          ],
+          "sourceRgb": [
+            152,
+            128,
+            128
+          ],
+          "initialVisualWindows": [
+            [
+              520,
+              464
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            540,
+            469
+          ],
+          "sourceRgb": [
+            123,
+            93,
+            93
+          ],
+          "initialVisualWindows": [
+            [
+              540,
+              473
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            555,
+            477
+          ],
+          "sourceRgb": [
+            145,
+            124,
+            123
+          ],
+          "initialVisualWindows": [
+            [
+              555,
+              481
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            570,
+            488
+          ],
+          "sourceRgb": [
+            129,
+            80,
+            84
+          ],
+          "initialVisualWindows": [
+            [
+              570,
+              489
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "M60",
+          "sourcePixel": [
+            581,
+            495
+          ],
+          "sourceRgb": [
+            125,
+            99,
+            98
+          ],
+          "initialVisualWindows": [
+            [
+              581,
+              496
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Same visual column, y within6pixels; original red stroke R-G>18,R-B>18,R<225; minimum sumRGB then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        }
+      ],
+      "targetOriginalWayIds": [
+        149403340,
+        149403345,
+        149403350,
+        149403356,
+        149403360,
+        149403364,
+        149403367,
+        149403369,
+        167854142,
+        167854145,
+        231954241,
+        254237885,
+        254237886,
+        254237887,
+        254237888,
+        254237889,
+        254237890,
+        254237891,
+        254237892,
+        269888480,
+        269888481,
+        293029797,
+        308721686,
+        312923489,
+        312923497,
+        312923504,
+        312923509,
+        312923513,
+        312923518,
+        312923519,
+        312923521,
+        312923526,
+        312923539,
+        312923542,
+        312923545,
+        312923548,
+        312923549,
+        312923550,
+        312923555,
+        312923558,
+        331520221,
+        331520224,
+        379327135,
+        382503752,
+        382503753,
+        382503755,
+        382503758,
+        549976182,
+        551824408,
+        551824409,
+        551824410,
+        1250066799,
+        1250066800,
+        1250066801,
+        1250066802,
+        1442263044
+      ],
+      "constraintType": "Line constraint with along-track ambiguity, NOT independent geographic point pairs. Samples are not claimed to be a complete traced source polyline.",
+      "modelChecks": {
+        "northwest": {
+          "residualsMetres": [
+            156.86149313710024,
+            154.2354919878274,
+            131.36378164418036,
+            118.50559205112135,
+            126.12646994098193,
+            152.90399868665764,
+            141.7800028162141,
+            152.4300213794692,
+            120.54238702624822,
+            132.4183601729328,
+            130.90948380946793,
+            145.25432113905245,
+            145.7473528501407,
+            118.13355663994746,
+            148.65413527372408,
+            141.51912836148156
+          ],
+          "medianMetres": 141.64956558884785,
+          "maximumMetres": 156.86149313710024
+        },
+        "all54": {
+          "residualsMetres": [
+            796.4736471649796,
+            790.7187640887363,
+            741.0812312654725,
+            693.4886777302397,
+            751.4008550171939,
+            836.4257670791732,
+            870.7001907003414,
+            860.3738681438734,
+            747.7303611440163,
+            722.0010332085462,
+            788.1205521219229,
+            934.5985437117944,
+            913.882259731766,
+            888.3814978936032,
+            944.8701843825062,
+            956.0162273003365
+          ],
+          "medianMetres": 816.4497071220765,
+          "maximumMetres": 956.0162273003365
+        }
+      }
+    },
+    {
+      "roadReference": "66",
+      "sourceFeature": "Visible source yellow66 S-bend below Mánfa",
+      "sourceObservations": [
+        {
+          "sourceRoadReference": "66",
+          "sourcePixel": [
+            302,
+            39
+          ],
+          "sourceRgb": [
+            222,
+            208,
+            171
+          ],
+          "initialVisualWindows": [
+            [
+              301,
+              36
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Within3px of visual source window; original yellow stroke R-B>20,G-B>15,R>180,G>160; minimum blue channel then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "66",
+          "sourcePixel": [
+            301,
+            42
+          ],
+          "sourceRgb": [
+            201,
+            195,
+            163
+          ],
+          "initialVisualWindows": [
+            [
+              302,
+              41
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Within3px of visual source window; original yellow stroke R-B>20,G-B>15,R>180,G>160; minimum blue channel then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "66",
+          "sourcePixel": [
+            304,
+            47
+          ],
+          "sourceRgb": [
+            208,
+            203,
+            163
+          ],
+          "initialVisualWindows": [
+            [
+              304,
+              45
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Within3px of visual source window; original yellow stroke R-B>20,G-B>15,R>180,G>160; minimum blue channel then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "66",
+          "sourcePixel": [
+            305,
+            44
+          ],
+          "sourceRgb": [
+            217,
+            213,
+            166
+          ],
+          "initialVisualWindows": [
+            [
+              308,
+              44
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Within3px of visual source window; original yellow stroke R-B>20,G-B>15,R>180,G>160; minimum blue channel then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "66",
+          "sourcePixel": [
+            314,
+            44
+          ],
+          "sourceRgb": [
+            209,
+            206,
+            175
+          ],
+          "initialVisualWindows": [
+            [
+              312,
+              44
+            ],
+            [
+              315,
+              46
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Within3px of visual source window; original yellow stroke R-B>20,G-B>15,R>180,G>160; minimum blue channel then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "66",
+          "sourcePixel": [
+            317,
+            51
+          ],
+          "sourceRgb": [
+            200,
+            193,
+            165
+          ],
+          "initialVisualWindows": [
+            [
+              316,
+              51
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Within3px of visual source window; original yellow stroke R-B>20,G-B>15,R>180,G>160; minimum blue channel then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "66",
+          "sourcePixel": [
+            316,
+            55
+          ],
+          "sourceRgb": [
+            201,
+            197,
+            162
+          ],
+          "initialVisualWindows": [
+            [
+              315,
+              56
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Within3px of visual source window; original yellow stroke R-B>20,G-B>15,R>180,G>160; minimum blue channel then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        },
+        {
+          "sourceRoadReference": "66",
+          "sourcePixel": [
+            315,
+            62
+          ],
+          "sourceRgb": [
+            195,
+            191,
+            156
+          ],
+          "initialVisualWindows": [
+            [
+              313,
+              60
+            ],
+            [
+              312,
+              64
+            ]
+          ],
+          "sourceOnlyPixelRefinement": "Within3px of visual source window; original yellow stroke R-B>20,G-B>15,R>180,G>160; minimum blue channel then distance. No world-coordinate input.",
+          "imageReadingUncertaintyPixels": [
+            2,
+            2
+          ]
+        }
+      ],
+      "targetOriginalWayIds": [
+        4670076,
+        8283572,
+        41758493,
+        41763264,
+        41808635,
+        41808888,
+        42749538,
+        42860179,
+        71156570,
+        71156571,
+        71299421,
+        71299440,
+        169857989,
+        169858010,
+        169858011,
+        261070780,
+        293140533,
+        293140534,
+        312341111,
+        326759278,
+        326759279,
+        330830801,
+        333116524,
+        333116525,
+        375201332,
+        375201783,
+        375201784,
+        381205315,
+        381205316,
+        437249963,
+        450896664,
+        450896665,
+        518338399,
+        518338405,
+        518338414,
+        563660487,
+        563660488,
+        588383423,
+        588383424,
+        588383425,
+        588586846,
+        888144834,
+        888144835,
+        1056300363,
+        1056300364,
+        1110088644,
+        1217796034,
+        1289096357,
+        1329149017,
+        1422558933,
+        1422558934,
+        1422558935,
+        1422558936,
+        1422558937,
+        1422558938,
+        1422558939,
+        1422558940,
+        1422558941,
+        1427351672,
+        1427351673,
+        1427351674,
+        1546071763
+      ],
+      "constraintType": "Line constraint with along-track ambiguity, NOT independent geographic point pairs. Samples are not claimed to be a complete traced source polyline.",
+      "modelChecks": {
+        "northwest": {
+          "residualsMetres": [
+            6.739669134996745,
+            19.466156173397255,
+            4.802964508332168,
+            18.500078865697347,
+            17.4097967284051,
+            18.84578912185224,
+            22.512621560051684,
+            27.708675709920485
+          ],
+          "medianMetres": 18.67293399377479,
+          "maximumMetres": 27.708675709920485
+        },
+        "all54": {
+          "residualsMetres": [
+            25.85013861245165,
+            18.2179185061722,
+            13.644596821391962,
+            22.995165423992336,
+            29.981662091058276,
+            22.839143834570535,
+            14.877895363896048,
+            23.77260168963244
+          ],
+          "medianMetres": 22.917154629281434,
+          "maximumMetres": 29.981662091058276
+        }
+      }
+    }
+  ],
+  "preservedDiagnosticModels": {
+    "northwest": {
+      "path": "pecs-review-road-control-model-northwest.json",
+      "sha256": "8ba7ab1515b94f37253b64bdbe2144e73e540081ede3ae2cf9838f65b7b87f13",
+      "matrixPixelToEov": [
+        [
+          32.40279765170495,
+          -0.05162721238783206
+        ],
+        [
+          -0.09935096386699437,
+          -32.79278942494659
+        ],
+        [
+          578132.6033487103,
+          90974.06269655228
+        ]
+      ]
+    },
+    "all54": {
+      "path": "pecs-review-road-control-model-all54.json",
+      "sha256": "2d5bd37a05baa504b40cf360aa35c7c3a55ccf9df67e60622f9a860b6b727e04",
+      "matrixPixelToEov": [
+        [
+          32.077842293834856,
+          -0.9209493593574027
+        ],
+        [
+          -0.14984194949408014,
+          -34.17424873273081
+        ],
+        [
+          578193.0339508096,
+          91285.21074532265
+        ]
+      ]
+    }
+  },
+  "interpretation": [
+    "The two southern crossings and their M60 curve share a physical road feature; they are not wholly independent absolute validations.",
+    "The source point-reading ranges are 3pixels; observed line-pixel interpretation ranges are2pixels. Source cartography, road time differences and current OSM accuracy remain additional unquantified uncertainty.",
+    "The northwest-only model gives about140m M60 cross-track disagreement; the all54 model gives about800m and must not be approved from its perimeter fit alone. These are model diagnostics, not surveyed boundary accuracy.",
+    "The originally suspected second crossing is current578, not current5711. The separately computed5711 crossing lies farther east; its source point is not asserted.",
+    "The named western/eastern city junctions suggested by projection are partly covered by coloured source quarter graphics; no exact GCP is asserted for them.",
+    "Neighbourhood-name coordinates were not used to select or refine these source-road controls.",
+    "Municipal map reuse rights remain unverified; ODbL applies to raw OSM way/node evidence."
+  ],
+  "absoluteBoundaryAccuracyMetres": null,
+  "georeferenceModelApproved": false,
+  "automaticPrimaryApproval": false,
+  "usableForAddressAssignment": false
+}

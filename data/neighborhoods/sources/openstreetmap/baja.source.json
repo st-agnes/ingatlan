@@ -1,0 +1,29 @@
+{
+  "city": "Baja",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:30][maxsize:67108864];\nrelation(1130381)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Baja\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  way(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"](if:is_closed());\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+  "retrievedAt": "2026-11-13T09:28:59.421Z",
+  "sha256": "6f3fa4ecf2a082c052059651b9adfbea38aa7c263bedbf9cb2edfc9917c1a425",
+  "bytes": 617,
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "municipalityRelationId": 1130381,
+  "municipalityAdminLevel": "8",
+  "candidates": 0,
+  "byAdminLevel": {},
+  "relationsWithWayGeometry": 0,
+  "closedWays": 0,
+  "osmTimestamp": "2026-11-13T09:27:51Z",
+  "completeCoverage": false,
+  "reviewStatus": "unreviewed",
+  "usableForAddressAssignment": false,
+  "attempts": [
+    {
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "status": "ok"
+    }
+  ],
+  "status": "downloaded",
+  "file": "baja.json"
+}

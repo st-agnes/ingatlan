@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_current_name_only_research",
+  "source23CohortSha256": "3f0f6f7e2e0efb6e3328e6d715c8d2f083553131483be80ec395e075b97b4b7e",
+  "inputs": [
+    {
+      "path": "data/neighborhoods/sources/municipal-eger-semantic-next/proposed-semantic-revision.geojson",
+      "bytes": 741209,
+      "sha256": "3f0f6f7e2e0efb6e3328e6d715c8d2f083553131483be80ec395e075b97b4b7e"
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz",
+      "bytes": 233653,
+      "sha256": "5c9193a72d4327e133f86d9c2625a4caeae3d21ec71d2575a3128b1d97931ecc"
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/municipalities.geojson.gz",
+      "bytes": 3795040,
+      "sha256": "fb5f1293628b9eeaabce243ae6ebc884f6bdc93443a2488e5fb213029bf766b7"
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/manifest.json",
+      "bytes": 5828,
+      "sha256": "2388ec47bb9c528127113c0185dd26d25402596ac3826cb9330f3fd9736511ed"
+    },
+    {
+      "path": "data/neighborhoods/research/manual-current-name-review-next.json",
+      "bytes": 330576,
+      "sha256": "98635fc4b453b29aa2847bae4739766d370d7eb60fb66ece4d0f01fd7f824ce4"
+    }
+  ],
+  "originalPbf": {
+    "path": ".local/neighborhoods/hungary-latest.osm.pbf",
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "header": {
+      "generator": "osmium/1.16.0",
+      "osmosis_replication_timestamp": "2026-11-12T21:23:05Z",
+      "osmosis_replication_sequence_number": "4968",
+      "osmosis_replication_base_url": "https://download.geofabrik.de/europe/hungary-updates"
+    }
+  },
+  "outputs": [
+    {
+      "path": "data/neighborhoods/research/eger-current-name-review.json",
+      "sha256": "e595074de2a07fb40ecc9e46ab166249d64c006aafb068e9123eea7d8c3fb2b0"
+    },
+    {
+      "path": "data/neighborhoods/research/eger-current-name-review.csv",
+      "sha256": "137a8252d5a7e3f1333783e8338e09800ae8679920e9a9d7003fb9cc3c8abd00"
+    },
+    {
+      "path": "data/neighborhoods/research/eger-current-name-evidence.geojson",
+      "sha256": "3a2b6e6ac54fb5508166b82c7b4b6cc041d4b1f6b067438bb7dd4f41fbc40a70"
+    }
+  ],
+  "reproducer": {
+    "path": "data/neighborhoods/research/eger-current-name-review.py",
+    "sha256": "3ddb21154daeaf8283989579468de53aaa419f691f57f62aef23884a6a9c81cb"
+  },
+  "command": "PYTHONPATH=.local/geodata python data/neighborhoods/research/eger-current-name-review.py --check",
+  "boundaryApprovals": 0,
+  "frozenEgerSourceChanges": 0,
+  "globalChanges": 0
+}

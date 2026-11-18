@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "root independent final world and scope review",
+  "accepted": true,
+  "featureCount": 5,
+  "primaryAdmissions": 0,
+  "checkedAt": "2026-11-14",
+  "checks": {
+    "actualSourceContoursLabelGapAndRemoteRoadPanelsVisuallyReviewed": true,
+    "fivePhysicalJunctionAffineIndependentlyRefitted": true,
+    "allFiveNodesTopologyInLiteralRetainedWaysChecked": true,
+    "all5NativeVertexArraysIndependentlyProjected": true,
+    "all5ValidWhollyInsideSelectedSamePbfMunicipality": true,
+    "fourObservedPlusOneExplicitReconstructedContourFlagsPreserved": true,
+    "petofiRawOpenBarrierAnd2CellCapAnd418CellAlternativeExplicit": true,
+    "namePointsNotFitControls": true,
+    "negativeApprovalGuards": true
+  },
+  "limitations": [
+    "Original2014submission/2011census/2016review and unknown survey/cartographic dates differ.",
+    "Manual image picks, colored boundary bands and backdrop generalization prevent a ground accuracy claim.",
+    "Road residuals and shared-nearby-road holdouts demonstrate consistency only; alternatives are sensitivity hypotheses.",
+    "Petőfi has one explicitly reconstructed two-pixel closure, not a wholly observed closed contour."
+  ],
+  "pinnedInputs": {
+    "kiskunfelegyhaza-inferred-import.geojson": "7e4a3160b967a8331016204c50e38dbe2241456fba5876403b06174f9d276462",
+    "source-pixel-contours.geojson": "91224cc95c87ebcce913943cca90f01a8d0ea90c03b58d5f8e90aec2d96cf0f0",
+    "road-registration.json": "d076e1349ced085cb0dd72d50033f8a979062caa7da8b9d089afe3f728caae37",
+    "petofi-cap-evidence.json": "29d0e0fb1f787ea13b057853af15ca367e3fbb18a53a4a0c2231d1475246e7cf",
+    "petofi-cap-alternative-source-pixels.geojson": "d52edd0f54f7da6e6db848e17321af50820c6d903718c5ad95fcd1d2dc61262e",
+    "root-municipality-reference.geojson": "192990b5a0abeac25c61c2e19e6b404814b04ec9dc58a6480e7db9860a29a115"
+  }
+}

@@ -1,0 +1,3565 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent first-cohort Hódtó reviewer",
+  "reviewDate": "2026-11-14",
+  "networkUsed": false,
+  "frozenFirstCohortInputsUnmodified": true,
+  "inputFingerprints": [
+    {
+      "path": "hod-build-first.py",
+      "sha256": "b46e592b787313c0bb52535f796c826fa062bc254eacd8ae78a81651d6078c7d"
+    },
+    {
+      "path": "hod-extract-local.py",
+      "sha256": "bd40cb1d6033980d74e625e2763ba6f8090d4f28b48db853f225d181c89324b7"
+    },
+    {
+      "path": "hod-final-checks.json",
+      "sha256": "35da30ba0996376f870ef20a55f2dfbd62e70fd884def75ff0bbba10041d94ad"
+    },
+    {
+      "path": "hod-hodto-boundary-controls.geojson",
+      "sha256": "01895315cb593c08186d1ae86370af2db7cdd12d4cbb2f909aca82c5746aa74d"
+    },
+    {
+      "path": "hod-hodto-first-candidate-proof.json",
+      "sha256": "3354c5fb819f49409ddafe0ad56648772ce7138027d147f41ac3802197ead4a8"
+    },
+    {
+      "path": "hod-hodto-first-candidate.geojson",
+      "sha256": "5b201c8a8c632f6096934b57d618beaf66db24b3492b0f2eece5d2d4b937d6ff"
+    },
+    {
+      "path": "hod-hodto-frozen-handoff.json",
+      "sha256": "552da1d103320584d1dd953c7e2666e2a4d03f2700669046d62e2208b98bd191"
+    },
+    {
+      "path": "hod-hodto-inferred-registry-entry.json",
+      "sha256": "80e40466443bef074a9ee1a97bd092c5c81d450f326da0cc4c20acb212f9c62d"
+    },
+    {
+      "path": "hod-hodto-preview.png",
+      "sha256": "84d3c07e105b542bea38f411eaac679080c1538c856e7ec3f14e723b336e5410"
+    },
+    {
+      "path": "hod-hodto-semantic-quote-proof.json",
+      "sha256": "4d54933e55b3169aa36ed594739ae57126c8500188f9fbde70f33cccdcd12983"
+    },
+    {
+      "path": "hod-local-lines-proof.json",
+      "sha256": "21181b3a361102039f56cfb8374163019499ae194fcca694eac2c7a5d071fcaf"
+    },
+    {
+      "path": "hod-local-lines.geojson",
+      "sha256": "c485ccbf0352f2a38bc725bf8326f4192ac37d497aaa113d6bafcd477d59fa02"
+    },
+    {
+      "path": "hod-local-name-points.geojson",
+      "sha256": "1941dd17fb3271ce50a959583108b5bc7f0d357a4463e86c6d3074edb95c4913"
+    },
+    {
+      "path": "hod-project-validation.json",
+      "sha256": "ef7f634acfebe49cd0632b9af1c7dea7fac24e9229c7a6d370648755a21b0f1e"
+    },
+    {
+      "path": "hod-source-research.json",
+      "sha256": "8fee1fc26b8316dac87a804dbb74fd700ace753561233f24c361bea5e8c13f23"
+    }
+  ],
+  "frozenHandoffHashChecks": [
+    {
+      "path": "hod-source-research.json",
+      "expectedSha256": "8fee1fc26b8316dac87a804dbb74fd700ace753561233f24c361bea5e8c13f23",
+      "actualSha256": "8fee1fc26b8316dac87a804dbb74fd700ace753561233f24c361bea5e8c13f23",
+      "matches": true
+    },
+    {
+      "path": "hod-extract-local.py",
+      "expectedSha256": "bd40cb1d6033980d74e625e2763ba6f8090d4f28b48db853f225d181c89324b7",
+      "actualSha256": "bd40cb1d6033980d74e625e2763ba6f8090d4f28b48db853f225d181c89324b7",
+      "matches": true
+    },
+    {
+      "path": "hod-build-first.py",
+      "expectedSha256": "b46e592b787313c0bb52535f796c826fa062bc254eacd8ae78a81651d6078c7d",
+      "actualSha256": "b46e592b787313c0bb52535f796c826fa062bc254eacd8ae78a81651d6078c7d",
+      "matches": true
+    },
+    {
+      "path": "hod-local-lines.geojson",
+      "expectedSha256": "c485ccbf0352f2a38bc725bf8326f4192ac37d497aaa113d6bafcd477d59fa02",
+      "actualSha256": "c485ccbf0352f2a38bc725bf8326f4192ac37d497aaa113d6bafcd477d59fa02",
+      "matches": true
+    },
+    {
+      "path": "hod-local-lines-proof.json",
+      "expectedSha256": "21181b3a361102039f56cfb8374163019499ae194fcca694eac2c7a5d071fcaf",
+      "actualSha256": "21181b3a361102039f56cfb8374163019499ae194fcca694eac2c7a5d071fcaf",
+      "matches": true
+    },
+    {
+      "path": "hod-local-name-points.geojson",
+      "expectedSha256": "1941dd17fb3271ce50a959583108b5bc7f0d357a4463e86c6d3074edb95c4913",
+      "actualSha256": "1941dd17fb3271ce50a959583108b5bc7f0d357a4463e86c6d3074edb95c4913",
+      "matches": true
+    },
+    {
+      "path": "hod-hodto-first-candidate.geojson",
+      "expectedSha256": "5b201c8a8c632f6096934b57d618beaf66db24b3492b0f2eece5d2d4b937d6ff",
+      "actualSha256": "5b201c8a8c632f6096934b57d618beaf66db24b3492b0f2eece5d2d4b937d6ff",
+      "matches": true
+    },
+    {
+      "path": "hod-hodto-first-candidate-proof.json",
+      "expectedSha256": "3354c5fb819f49409ddafe0ad56648772ce7138027d147f41ac3802197ead4a8",
+      "actualSha256": "3354c5fb819f49409ddafe0ad56648772ce7138027d147f41ac3802197ead4a8",
+      "matches": true
+    },
+    {
+      "path": "hod-hodto-boundary-controls.geojson",
+      "expectedSha256": "01895315cb593c08186d1ae86370af2db7cdd12d4cbb2f909aca82c5746aa74d",
+      "actualSha256": "01895315cb593c08186d1ae86370af2db7cdd12d4cbb2f909aca82c5746aa74d",
+      "matches": true
+    },
+    {
+      "path": "hod-final-checks.json",
+      "expectedSha256": "35da30ba0996376f870ef20a55f2dfbd62e70fd884def75ff0bbba10041d94ad",
+      "actualSha256": "35da30ba0996376f870ef20a55f2dfbd62e70fd884def75ff0bbba10041d94ad",
+      "matches": true
+    },
+    {
+      "path": "hod-project-validation.json",
+      "expectedSha256": "ef7f634acfebe49cd0632b9af1c7dea7fac24e9229c7a6d370648755a21b0f1e",
+      "actualSha256": "ef7f634acfebe49cd0632b9af1c7dea7fac24e9229c7a6d370648755a21b0f1e",
+      "matches": true
+    },
+    {
+      "path": "hod-hodto-inferred-registry-entry.json",
+      "expectedSha256": "80e40466443bef074a9ee1a97bd092c5c81d450f326da0cc4c20acb212f9c62d",
+      "actualSha256": "80e40466443bef074a9ee1a97bd092c5c81d450f326da0cc4c20acb212f9c62d",
+      "matches": true
+    },
+    {
+      "path": "hod-hodto-preview.png",
+      "expectedSha256": "84d3c07e105b542bea38f411eaac679080c1538c856e7ec3f14e723b336e5410",
+      "actualSha256": "84d3c07e105b542bea38f411eaac679080c1538c856e7ec3f14e723b336e5410",
+      "matches": true
+    }
+  ],
+  "freshPbfReadback": {
+    "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "pbfHeader": {
+      "generator": "osmium/1.16.0",
+      "osmosis_replication_timestamp": "2026-11-12T21:23:05Z",
+      "osmosis_replication_sequence_number": "4968"
+    },
+    "freshOriginalWayCount": 123,
+    "requestedGraphWayCount": 123,
+    "allCompleteOriginalWayFieldsMatch": true,
+    "comparedWayFields": [
+      "complete coordinates",
+      "complete nodeRefs",
+      "complete tags",
+      "version",
+      "timestamp"
+    ],
+    "wayMismatches": [],
+    "currentNamePointMatchesAllOriginalFields": true,
+    "currentNamePointComparedFields": [
+      "coordinates",
+      "complete tags",
+      "version",
+      "timestamp"
+    ],
+    "counts": {
+      "filteredNodeCallbacks": 1,
+      "filteredWayCallbacks": 123
+    },
+    "errors": [],
+    "freshBoundaryControlWayCount": 42,
+    "all42BoundaryControlWaysVerified": true
+  },
+  "sourceFactFaceReview": {
+    "freshEligibleCitedWayCount": 52,
+    "freshRoundaboutCatalogueWayCount": 71,
+    "connectedPhysicalRoundaboutWayCount": 33,
+    "polygonizedFaceCount": 18,
+    "facesUsingAllFourSourceGroupsBeforeNamePoint": 1,
+    "namePointNeededToChooseAmongFourGroupFaces": false,
+    "selectedFaceEqualsFrozenCandidate": true,
+    "uniqueSourceFactFaceEqualsFrozenCandidate": true,
+    "currentNamePointInsideCandidate": true,
+    "namePointGeneratesPerimeterCoordinates": false,
+    "sourceGroupBorderLengthMetres": {
+      "Kaszap utca": 789.0606910967019,
+      "Andrássy út": 359.6369580520183,
+      "Bajcsy-Zsilinszky Endre utca": 798.107414467594,
+      "135 railway": 1203.6641220877955
+    }
+  },
+  "orderedSegmentReview": {
+    "orderedBoundarySegmentCount": 125,
+    "sourceRingVertexCount": 126,
+    "allEdgesExactlyMatchFrozenRing": true,
+    "sourceSupportMethod": "Whole segment endpoints must project within one consecutive original node pair at <=1e-11 degree perpendicular error; no midpoint-only support test, buffering, snapping or chord generation.",
+    "all125SegmentsSupportedByOriginalConsecutiveNodePairs": true,
+    "sourceChoiceIdsExactlyEqualFrozen42Controls": true,
+    "inferredJunctionWayCount": 12,
+    "inferredJunctionWayIds": [
+      57363387,
+      57363389,
+      175933637,
+      687941834,
+      687941838,
+      924452444,
+      924452445,
+      1020683101,
+      1025682042,
+      1259567252,
+      1259792458,
+      1371146952
+    ],
+    "inferredIdsMatchProof": true,
+    "independentPerimeterMetres": 3346.375057627645,
+    "independentInferredJunctionLengthMetres": 115.94184229377552,
+    "inferredJunctionLengthDifferenceMetres": 1.4210854715202004e-14,
+    "maximumPerEdgeLengthDifferenceMetres": 0.0,
+    "uniqueBoundaryVertexCount": 125,
+    "originalOsmNodeCoordinateVertexCount": 124,
+    "sourceLineIntersectionVertexCount": 1,
+    "sourceLineIntersectionVertices": [
+      [
+        20.32321341709599,
+        46.407190405300256
+      ]
+    ],
+    "allBoundaryCoordinatesAreOriginalOsmNodes": false,
+    "intersectionVertexMeaning": "One analytical intersection subdivides original road and railway node-pair segments. It introduces no connector or chord; both incident boundary segments remain wholly supported by the original linework.",
+    "supportFailures": [],
+    "classificationErrors": [],
+    "records": [
+      {
+        "edgeIndex": 0,
+        "lengthMetres": 8.6390385886213,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 39993111,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  7884663800,
+                  7884663801
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 1,
+        "lengthMetres": 19.887290398983712,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 39993111,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  7884663801,
+                  1881233167
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 2,
+        "lengthMetres": 5.882160264355536,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 39993111,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  1881233167,
+                  7884663803
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 3,
+        "lengthMetres": 5.816424161092325,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 39993111,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 3,
+                "originalNodeRefs": [
+                  7884663803,
+                  712932015
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 4,
+        "lengthMetres": 2.9159916219784785,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1020683101,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 5,
+                "originalNodeRefs": [
+                  712932015,
+                  2131230304
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 5,
+        "lengthMetres": 2.9615047615853385,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 57363387,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  2131230304,
+                  6314424445
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 6,
+        "lengthMetres": 2.954593098199039,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 57363387,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  6314424445,
+                  6314424446
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 7,
+        "lengthMetres": 2.950720903684125,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 57363387,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  6314424446,
+                  7884663764
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 8,
+        "lengthMetres": 2.9550947768709244,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 57363387,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 3,
+                "originalNodeRefs": [
+                  7884663764,
+                  712932001
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 9,
+        "lengthMetres": 2.9598607755257587,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 57363387,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 4,
+                "originalNodeRefs": [
+                  712932001,
+                  2131230305
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 10,
+        "lengthMetres": 1.6306046422073421,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1371146952,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  2131230305,
+                  12698661252
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 11,
+        "lengthMetres": 13.337554234283134,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133469,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  12698661252,
+                  7884663810
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 12,
+        "lengthMetres": 6.7806590576069885,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133469,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  7884663810,
+                  7884663817
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 13,
+        "lengthMetres": 11.714832893190675,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133469,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  7884663817,
+                  7884663819
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 14,
+        "lengthMetres": 5.226397305363825,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133469,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 3,
+                "originalNodeRefs": [
+                  7884663819,
+                  7884663805
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 15,
+        "lengthMetres": 138.94048788556285,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1206072889,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  920249936,
+                  7884663805
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 16,
+        "lengthMetres": 7.718605542311916,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1206073043,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  920249936,
+                  7884663790
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 17,
+        "lengthMetres": 158.42862845200003,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1206073043,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  7884663790,
+                  712916306
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 18,
+        "lengthMetres": 12.060911216032729,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 92239512,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  31094630,
+                  712916306
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 19,
+        "lengthMetres": 12.828389267354789,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 92239512,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  920249924,
+                  31094630
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 20,
+        "lengthMetres": 11.864643054753135,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 912545861,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  920249924,
+                  6449439160
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 21,
+        "lengthMetres": 128.01502034137303,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 912545861,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  6449439160,
+                  6449439159
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 22,
+        "lengthMetres": 8.575773288829204,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 912545861,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  6449439159,
+                  8741201091
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 23,
+        "lengthMetres": 10.944366886580125,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 912545861,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 3,
+                "originalNodeRefs": [
+                  8741201091,
+                  8741201090
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 24,
+        "lengthMetres": 5.5090021330154135,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 912545861,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 4,
+                "originalNodeRefs": [
+                  8741201090,
+                  8741201101
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 25,
+        "lengthMetres": 6.034932079980233,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 912545861,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 5,
+                "originalNodeRefs": [
+                  8741201101,
+                  8741201102
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 26,
+        "lengthMetres": 6.9732852441966475,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 912545861,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 6,
+                "originalNodeRefs": [
+                  8741201102,
+                  6449440498
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 27,
+        "lengthMetres": 3.8219163351160006,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1259567252,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  6449440498,
+                  6449440499
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 28,
+        "lengthMetres": 3.8198963880886585,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 687941838,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  6449440499,
+                  6449439181
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 29,
+        "lengthMetres": 3.813473149204688,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 687941838,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  6449439181,
+                  8741201098
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 30,
+        "lengthMetres": 3.813155256920689,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 687941838,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  8741201098,
+                  6449439183
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 31,
+        "lengthMetres": 3.812827590333534,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1259792458,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  6449439183,
+                  6449439184
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 32,
+        "lengthMetres": 7.6509008932116656,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 912545860,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  6449439184,
+                  8741201095
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 33,
+        "lengthMetres": 9.813110352831053,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 912545860,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  8741201095,
+                  8741201096
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 34,
+        "lengthMetres": 10.535774575351185,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 912545860,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  8741201096,
+                  8741201097
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 35,
+        "lengthMetres": 4.335289621533039,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 912545860,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 3,
+                "originalNodeRefs": [
+                  8741201097,
+                  6449439158
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 36,
+        "lengthMetres": 4.395020583376717,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1025682042,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  6449439158,
+                  6449439171
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 37,
+        "lengthMetres": 3.814131110522655,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1025682042,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  6449439171,
+                  6449439176
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 38,
+        "lengthMetres": 3.8171891106162272,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1025682042,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  6449439176,
+                  6449439177
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 39,
+        "lengthMetres": 3.8157477852657937,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1025682042,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 3,
+                "originalNodeRefs": [
+                  6449439177,
+                  6449439178
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 40,
+        "lengthMetres": 91.03647400753998,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1120676143,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  6449439178,
+                  1927494680
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 41,
+        "lengthMetres": 14.160911067507366,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1120676143,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  1927494680,
+                  6449439151
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 42,
+        "lengthMetres": 24.862982238677652,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933635,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  6449439151,
+                  447609720
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 43,
+        "lengthMetres": 12.988158519352357,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933635,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  447609720,
+                  8741213321
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 44,
+        "lengthMetres": 6.336333747286298,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933635,
+            "circuitGroup": "Andrássy út",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  8741213321,
+                  1864949285
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 45,
+        "lengthMetres": 5.7500749719351765,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933637,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  1864949285,
+                  1864949288
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 46,
+        "lengthMetres": 5.7476362004987624,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933637,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  1864949288,
+                  1865947143
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 47,
+        "lengthMetres": 5.7361373286289705,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933637,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  1865947143,
+                  1864949283
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 48,
+        "lengthMetres": 15.545650092196773,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1025852216,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  1864949283,
+                  8741213325
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 49,
+        "lengthMetres": 6.787381895707536,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1025852216,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  8741213325,
+                  6449439126
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 50,
+        "lengthMetres": 38.296875875051406,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1025852216,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  6449439126,
+                  6449439122
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 51,
+        "lengthMetres": 26.525818860603103,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1025852216,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 3,
+                "originalNodeRefs": [
+                  6449439122,
+                  6449439127
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 52,
+        "lengthMetres": 44.97840660217734,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1025852216,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 4,
+                "originalNodeRefs": [
+                  6449439127,
+                  6449439128
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 53,
+        "lengthMetres": 84.31103912693261,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1025852216,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 5,
+                "originalNodeRefs": [
+                  6449439128,
+                  6449439129
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 54,
+        "lengthMetres": 80.01896523023558,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933634,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  6449439129,
+                  6449439130
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 55,
+        "lengthMetres": 54.07829759609308,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933634,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  6449439130,
+                  6449439131
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 56,
+        "lengthMetres": 32.708034537298296,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933634,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  6449439131,
+                  6449439148
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 57,
+        "lengthMetres": 13.076299234893636,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933634,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 3,
+                "originalNodeRefs": [
+                  6449439148,
+                  6449439132
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 58,
+        "lengthMetres": 58.70534594972369,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933634,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 4,
+                "originalNodeRefs": [
+                  6449439132,
+                  6449439133
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 59,
+        "lengthMetres": 45.79645486638267,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933634,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 5,
+                "originalNodeRefs": [
+                  6449439133,
+                  6449439134
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 60,
+        "lengthMetres": 193.101270899545,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933634,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 6,
+                "originalNodeRefs": [
+                  6449439134,
+                  6449439141
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 61,
+        "lengthMetres": 39.82332138910657,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175933634,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 7,
+                "originalNodeRefs": [
+                  6449439141,
+                  6449439135
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 62,
+        "lengthMetres": 6.560983302233821,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1154672113,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  6449439135,
+                  6449439113
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 63,
+        "lengthMetres": 4.8779344093980965,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 924452444,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  6449439113,
+                  6449439112
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 64,
+        "lengthMetres": 4.874464377042156,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 924452444,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  6449439112,
+                  6449439111
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 65,
+        "lengthMetres": 4.868702887878128,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 924452445,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  6449439111,
+                  6449439110
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 66,
+        "lengthMetres": 4.885243491302201,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 924452445,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  6449439110,
+                  6449439116
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 67,
+        "lengthMetres": 4.885789948208542,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 687941834,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  6449439116,
+                  6449439115
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 68,
+        "lengthMetres": 11.847577926242579,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 924452436,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  6449439115,
+                  8579744458
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 69,
+        "lengthMetres": 1.639915983607224,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 843501281,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  1864893067,
+                  8579744458
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 70,
+        "lengthMetres": 12.236472838619894,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 181650769,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 8,
+                "originalNodeRefs": [
+                  12005158326,
+                  1864893067
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 71,
+        "lengthMetres": 12.878730810514236,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 181650769,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 7,
+                "originalNodeRefs": [
+                  371156660,
+                  12005158326
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 72,
+        "lengthMetres": 19.190571450429022,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 181650769,
+            "circuitGroup": "Bajcsy-Zsilinszky Endre utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 6,
+                "originalNodeRefs": [
+                  371323586,
+                  371156660
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 73,
+        "lengthMetres": 34.81395092893005,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1323167417,
+            "circuitGroup": "135 railway",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  4034002246,
+                  371323586
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 74,
+        "lengthMetres": 15.87074474306541,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175912274,
+            "circuitGroup": "135 railway",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  1864725068,
+                  4034002246
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 75,
+        "lengthMetres": 320.91739226648923,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175927409,
+            "circuitGroup": "135 railway",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  1864893061,
+                  1864725068
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 76,
+        "lengthMetres": 12.870678971440404,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175927410,
+            "circuitGroup": "135 railway",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  1864893056,
+                  1864893061
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 77,
+        "lengthMetres": 113.78768815776652,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1065369423,
+            "circuitGroup": "135 railway",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  9784201369,
+                  1864893056
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 78,
+        "lengthMetres": 3.4811904103868323,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 1065369423,
+            "circuitGroup": "135 railway",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  9784201370,
+                  9784201369
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 79,
+        "lengthMetres": 272.58701271808195,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 399541335,
+            "circuitGroup": "135 railway",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  4022742022,
+                  9784201370
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 80,
+        "lengthMetres": 14.559353602685183,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 399541334,
+            "circuitGroup": "135 railway",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  337745923,
+                  4022742022
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 81,
+        "lengthMetres": 414.77611028895,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175912267,
+            "circuitGroup": "135 railway",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  345108480,
+                  337745923
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 82,
+        "lengthMetres": 17.358715928635178,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 175912265,
+            "circuitGroup": "135 railway",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  1864725070,
+                  345108480
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.44237708843380324
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 83,
+        "lengthMetres": 62.60531370112653,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 183010895,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  372618747,
+                  712932065
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.7339158389286913,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 84,
+        "lengthMetres": 18.88935786574053,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 183010895,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  920250036,
+                  372618747
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 85,
+        "lengthMetres": 11.050961310096557,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 183010896,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 9,
+                "originalNodeRefs": [
+                  7882245996,
+                  920250036
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 86,
+        "lengthMetres": 4.676034992561302,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 183010896,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 8,
+                "originalNodeRefs": [
+                  9107807042,
+                  7882245996
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 87,
+        "lengthMetres": 9.591632359712195,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 183010896,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 7,
+                "originalNodeRefs": [
+                  330668258,
+                  9107807042
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 88,
+        "lengthMetres": 12.137754712641476,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 183010896,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 6,
+                "originalNodeRefs": [
+                  7882245997,
+                  330668258
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 89,
+        "lengthMetres": 9.938556131364667,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 183010896,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 5,
+                "originalNodeRefs": [
+                  712932048,
+                  7882245997
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 90,
+        "lengthMetres": 8.292611681938043,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 183010896,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 4,
+                "originalNodeRefs": [
+                  7882245998,
+                  712932048
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 91,
+        "lengthMetres": 11.663296441261478,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 183010896,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 3,
+                "originalNodeRefs": [
+                  7882245999,
+                  7882245998
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 92,
+        "lengthMetres": 12.759686345402008,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 183010896,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  372618764,
+                  7882245999
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 93,
+        "lengthMetres": 9.830677168375571,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 183010896,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  7882246002,
+                  372618764
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 94,
+        "lengthMetres": 10.004248534960729,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 183010896,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  1866026683,
+                  7882246002
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 95,
+        "lengthMetres": 24.221336844479225,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 844875090,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  712932038,
+                  1866026683
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 96,
+        "lengthMetres": 6.571171929328693,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 844875090,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  7882246003,
+                  712932038
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 97,
+        "lengthMetres": 5.651958516883139,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 844875090,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  712931968,
+                  7882246003
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 98,
+        "lengthMetres": 6.294401251363707,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 844875089,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  712931968,
+                  7882246004
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 99,
+        "lengthMetres": 13.42912444989814,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 844875089,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  7882246004,
+                  7882246005
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 100,
+        "lengthMetres": 8.358282178615951,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 844875089,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  7882246005,
+                  7882246006
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 101,
+        "lengthMetres": 8.468137634304334,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 844875089,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 3,
+                "originalNodeRefs": [
+                  7882246006,
+                  7882246007
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 102,
+        "lengthMetres": 4.013071524551588,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 844875089,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 4,
+                "originalNodeRefs": [
+                  7882246007,
+                  3011995719
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 103,
+        "lengthMetres": 2.504815466643354,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 57363389,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 30,
+                "originalNodeRefs": [
+                  3011995719,
+                  7884663718
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 104,
+        "lengthMetres": 2.5121426274227048,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 57363389,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 31,
+                "originalNodeRefs": [
+                  7884663718,
+                  712932022
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 105,
+        "lengthMetres": 2.513707825825854,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 57363389,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 32,
+                "originalNodeRefs": [
+                  712932022,
+                  7884663727
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 106,
+        "lengthMetres": 2.500411691807726,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 57363389,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 33,
+                "originalNodeRefs": [
+                  7884663727,
+                  712932059
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 107,
+        "lengthMetres": 2.509065235927746,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 57363389,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 34,
+                "originalNodeRefs": [
+                  712932059,
+                  7884663728
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 108,
+        "lengthMetres": 2.5058448219876714,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 57363389,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 35,
+                "originalNodeRefs": [
+                  7884663728,
+                  712932019
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 109,
+        "lengthMetres": 2.509882890831313,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 57363389,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  712932019,
+                  7884663729
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 110,
+        "lengthMetres": 2.5082602289411637,
+        "inferredJunctionOnly": true,
+        "verifiedChoices": [
+          {
+            "osmWayId": 57363389,
+            "circuitGroup": null,
+            "role": "inferred_physical_junction_arc",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  7884663729,
+                  3011995722
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 111,
+        "lengthMetres": 5.296290396291382,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133456,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  3011995722,
+                  7884663719
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 112,
+        "lengthMetres": 3.776631896206845,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133456,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  7884663719,
+                  7884663720
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 113,
+        "lengthMetres": 3.600668163545987,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133456,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  7884663720,
+                  7884663721
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 114,
+        "lengthMetres": 17.49242019485813,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133456,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 3,
+                "originalNodeRefs": [
+                  7884663721,
+                  7884663722
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 115,
+        "lengthMetres": 10.306259840089318,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133456,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 4,
+                "originalNodeRefs": [
+                  7884663722,
+                  7884663723
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 116,
+        "lengthMetres": 6.092573768749743,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133456,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 5,
+                "originalNodeRefs": [
+                  7884663723,
+                  7884663701
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  0.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 117,
+        "lengthMetres": 6.187567544479522,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133467,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 7,
+                "originalNodeRefs": [
+                  712931993,
+                  7884663701
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 118,
+        "lengthMetres": 5.941066969073538,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133467,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 6,
+                "originalNodeRefs": [
+                  7884663698,
+                  712931993
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 119,
+        "lengthMetres": 17.024384974652467,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133467,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 5,
+                "originalNodeRefs": [
+                  1881426165,
+                  7884663698
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 120,
+        "lengthMetres": 9.083724797623189,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133467,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 4,
+                "originalNodeRefs": [
+                  712932046,
+                  1881426165
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 121,
+        "lengthMetres": 8.680911807078799,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133467,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 3,
+                "originalNodeRefs": [
+                  7884663700,
+                  712932046
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 122,
+        "lengthMetres": 21.259511239695726,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133467,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 2,
+                "originalNodeRefs": [
+                  1881426170,
+                  7884663700
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 123,
+        "lengthMetres": 51.68794345758166,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133467,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 1,
+                "originalNodeRefs": [
+                  1881426176,
+                  1881426170
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "edgeIndex": 124,
+        "lengthMetres": 19.527054906536453,
+        "inferredJunctionOnly": false,
+        "verifiedChoices": [
+          {
+            "osmWayId": 845133467,
+            "circuitGroup": "Kaszap utca",
+            "role": "explicit_circuit_road_or_rail",
+            "consecutiveNodePairSupport": [
+              {
+                "originalNodePairIndex": 0,
+                "originalNodeRefs": [
+                  7884663800,
+                  1881426176
+                ],
+                "maximumEndpointLineDistanceDegrees": 0.0,
+                "endpointFractionsOnOriginalSegment": [
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "geometryReview": {
+    "geometryType": "Polygon",
+    "geosValid": true,
+    "holeCount": 0,
+    "ringClosed": true,
+    "areaSquareMetres": 634216.374674207,
+    "areaDifferenceFromProofSquareMetres": 0.0,
+    "perimeterMetres": 3346.375057627645,
+    "perimeterDifferenceFromSegmentSumMetres": 0.0,
+    "municipalityReferenceSha256": "850fcee11e94f67561890d86c05508246a7ac429092f6a0e14fc5f97e5e6935b",
+    "municipalityReferenceHashMatchesFrozenChecks": true,
+    "insideArchivedCurrentMunicipality": true,
+    "outsideMunicipalitySquareMetres": 0.0,
+    "strictProjectValidator": {
+      "valid": true,
+      "bbox": [
+        20.3225725,
+        46.407190405300256,
+        20.3372475,
+        46.4169945
+      ],
+      "vertices": 126
+    },
+    "estimatedTrue": true,
+    "confidenceLow": true,
+    "usableForAddressAssignmentFalse": true,
+    "absoluteAccuracyClaimNull": true
+  },
+  "sourceSemanticReview": {
+    "sourceDate": "2014-09-17",
+    "sourcePrintedPage": 61,
+    "sourceSection": "2.3.4",
+    "sourceQuarterEquivalenceQuote": "A Hódtó akcióterület magában foglalja Hódtó városrészt, azaz",
+    "quoteProofFile": "hod-hodto-semantic-quote-proof.json",
+    "sourceQuoteWasIndependentlyRefetchedByThisReviewer": false,
+    "quoteEvidenceAuthority": "Separate source-research agent reported actual original municipal PDF text seen through read-only web; local bounded quote retained.",
+    "originalPdfBytesAcquired": false,
+    "sourcePdfBinaryHashAvailable": false,
+    "originalPdfReopenBlockedHttp403": true,
+    "current2023NameConfirmationIsGeometryEvidence": false,
+    "sourceBajcsyStreetShortNameMappedToCurrentFullName": "Bajcsy-Zsilinszky utca → Bajcsy-Zsilinszky Endre utca; ordinary full-name expansion, not a route change.",
+    "railwayRoute135ExplicitlyConfirmedInFreshOriginalTags": true,
+    "verifiedRailway135ControlWayIds": [
+      175912265,
+      175912267,
+      175912274,
+      175927409,
+      175927410,
+      399541334,
+      399541335,
+      1065369423,
+      1323167417
+    ],
+    "currentCenterlineTracingConventionIsInferred": true,
+    "source2014ToOsm2026HistoricalAlignmentIndependentlyVerified": false
+  },
+  "limitations": [
+    "The original municipal PDF bytes and section screenshot remain unavailable after HTTP403; the bounded text proof is the source researcher’s observed extraction and was not independently refetched in this audit.",
+    "The2014 circuit is represented with2026 OSM road/rail centerlines; historical alignment and width ownership are not established.",
+    "Modern physical roundabout arcs total the measured inferred length; their real OSM support does not make them observed2014 quarter edges.",
+    "The2023 decree and current OSM name point confirm the name separately from perimeter geometry. No primary supported polygon is established."
+  ],
+  "recommendation": {
+    "eligibleAsLowConfidenceEstimatedHistoricalCircuitCandidate": true,
+    "newPrimarySupportedPolygonCount": 0,
+    "sourcePolygonDownloadedCount": 0,
+    "independentInferredCandidateCount": 1,
+    "usableForAddressAssignment": false
+  },
+  "sourceOrCandidateFilesEdited": false,
+  "globalRegistryOrExportsEdited": false,
+  "allRequiredTechnicalChecksPassed": true
+}

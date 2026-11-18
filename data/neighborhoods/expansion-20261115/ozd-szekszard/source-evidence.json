@@ -1,0 +1,83 @@
+{
+  "collectionDate": "2026-11-15",
+  "sourcePbf": {
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "snapshot": "2026-11-12T21:23:05Z",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "sources": [
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/miskolc-ozd/ozd-2024.pdf",
+      "sha256": "d2fc988986652433d3d0dd846de1561e9e08a773a18906866da8c49734cba395",
+      "pages": [
+        49,
+        54
+      ],
+      "role": "Street-map background and approximate inherited image registration for eight inner names"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/downloaded-sources/ozd-megalapozo.pdf",
+      "sha256": "a7e3df4bef031f4efeb59ccee26369cfbbe5abf0c7c656259a0380784da03fa4",
+      "pages": [
+        250,
+        277,
+        283
+      ],
+      "role": "Named outer localities and literal street-map topology; not statistical-cell boundaries"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261115/downloaded-sources/szekszard-sump-final.pdf",
+      "url": "https://szekszard.mcp.hu/application/files/3317/6786/2831/Szekszard_SUMP_Felulvizsgalat_Final.pdf",
+      "sha256": "b4c5c0b8829e22bb5ba740f7826225f7672984d9cfc731bf82a7d608576da4bb",
+      "printedPage": 49,
+      "zeroBasedPdfPage": 49,
+      "figure": 13,
+      "embeddedImageXref": 395,
+      "embeddedImageSize": [
+        527,
+        582
+      ],
+      "role": "Eight actual closed source-map quarter outlines, digitally extracted; coarse label-based placement only."
+    },
+    {
+      "path": "ozd-map-p54.jpeg",
+      "sha256": "0989f7ccf7c6256dad00aa0328343e3d60cd4bfee44e829288c9ba4611cd5038",
+      "bytes": 200510,
+      "role": "Eight inferred sectors follow the actual source street/block fabric"
+    },
+    {
+      "path": "ozd-source-roads.geojson.gz",
+      "sha256": "e26946b6d75bcb3049d201331c429f30584fb5495075641cfece8a0e212b5228",
+      "bytes": 472230,
+      "role": "3658 literal OSM road/rail/water ways in local Ózd extent; object references and versions retained"
+    },
+    {
+      "path": "ozd-source-areas.geojson.gz",
+      "sha256": "4d83f9f1e59b9af8eeab90b820943a91139ce6d44bdb44db9947c86580d1ee04",
+      "bytes": 1092245,
+      "role": "14850 literal closed OSM surface/building ways in local Ózd extent; object references and versions retained"
+    },
+    {
+      "path": "szekszard-source-roads.geojson.gz",
+      "sha256": "2ca0528bb3d6104293886d3c0a30f3efe6cae81b2f57b310df6615c9c00a4bbc",
+      "bytes": 308625,
+      "role": "1796 archived country-OSM construction features; actual road and closed-water geometry"
+    },
+    {
+      "path": "szekszard-sump-p49-image2.png",
+      "sha256": "bdb4a51bd7383c53f40ced32b1b9a4032e26d709fa6529148066f918fa1e0f64",
+      "bytes": 55667,
+      "role": "Original embedded source-map raster; eight closed map regions extracted from it"
+    }
+  ],
+  "rules": {
+    "pointRadiiUsed": false,
+    "sourceActionOrSegregationAreasMislabeledAsWholeQuarter": false,
+    "officialAccuracyClaimed": false
+  },
+  "sourceExtraction": {
+    "ozd": "Focused local source-way selection from pinned whole-Hungary PBF via extract-ozd-source.py. First way node inside20.20–20.39E/48.17–48.29N; complete source coordinates retained. No network call needed for rebuild.",
+    "szekszard": "Selected actual archived country-osm/construction-lines.geojson.gz features intersecting18.60–18.81E/46.28–46.42N; point and municipality context also from the same archive."
+  }
+}

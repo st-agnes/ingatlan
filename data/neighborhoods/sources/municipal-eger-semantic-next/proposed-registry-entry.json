@@ -1,0 +1,29 @@
+{
+  "id": "eger-historical-planning-units",
+  "path": "data/neighborhoods/sources/municipal-eger-semantic-next/proposed-semantic-revision.geojson",
+  "sha256": "3f0f6f7e2e0efb6e3328e6d715c8d2f083553131483be80ec395e075b97b4b7e",
+  "municipality": "Eger",
+  "method": "original_pdf_vector_path_affine_georeferencing",
+  "evidenceUrls": [
+    "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf",
+    "https://www.openstreetmap.org/relation/1418156"
+  ],
+  "sourceDocuments": [
+    {
+      "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf",
+      "sha256": "7db28b2b5922e6dea7bde9dc3263087534b26e9cd1e52b63335249265df6febe",
+      "page": 1,
+      "referenceDate": "2016-08"
+    }
+  ],
+  "license": "source_map_reuse_not_established; OSM controls ODbL-1.0",
+  "propertyOverrides": {
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-eger-semantic-next/root-native-geometry-audit.json",
+  "reviewDatasetId": "eger-historical-planning-units",
+  "rightsStatus": "Official-source boundary facts; source-map reuse rights not independently established; OSM controls ODbL-1.0",
+  "semanticReclassificationNote": "PROPOSAL ONLY: per-record historical source-quarter scope review. Replace existing dataset rather than append; preserve all32 IDs/geometry hashes. Source schema/date and unknown current/ITS/legal extent remain explicit. No blanket quarter override.",
+  "semanticReviewPath": "data/neighborhoods/sources/municipal-eger-semantic-next/semantic-audit.json",
+  "registryEntryAppliedByThisBatch": false
+}

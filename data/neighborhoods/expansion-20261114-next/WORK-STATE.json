@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Continue replacing the prior checkpoint's 1869 point-radius fallback areas with source/map/text-informed polygons.",
+  "branch": "codex/neighborhood-research-506-191",
+  "baseline": {
+    "coreAreas": 2267,
+    "municipalities": 509,
+    "fallbackCircles": 1869
+  },
+  "status": "checkpoint_complete_national_collection_incomplete",
+  "tasks": [
+    {
+      "id": "budapest",
+      "owner": "collect_budapest_missing",
+      "status": "completed_for_this_collection_checkpoint"
+    },
+    {
+      "id": "miskolc-ozd",
+      "owner": "collect_miskolc_ozd",
+      "status": "completed_for_this_collection_checkpoint"
+    },
+    {
+      "id": "kaposvar-zala",
+      "owner": "collect_kaposvar_zala",
+      "status": "completed_for_this_collection_checkpoint"
+    },
+    {
+      "id": "fehervar-nyiregyhaza",
+      "owner": "collect_fehervar_nyiregyhaza",
+      "status": "completed_for_this_collection_checkpoint"
+    },
+    {
+      "id": "gyula-salgo",
+      "owner": "collect_gyula_salgo",
+      "status": "completed_for_this_collection_checkpoint"
+    },
+    {
+      "id": "medium-cities",
+      "owner": "collect_medium_cities",
+      "status": "completed_for_this_collection_checkpoint"
+    }
+  ],
+  "networkPolicy": "Only root launches internet downloads. Workers use the web connector for search and send binary source URLs to the central queue, preventing hidden permission waits.",
+  "downloadQueue": ".local/neighborhoods-next-downloads/queue.json",
+  "downloadStatus": ".local/neighborhoods-next-downloads/status.json",
+  "resume": "Preserve completed packets; register their GeoJSON paths and SHA256 in expansion-20261114/input-registry.json, run build-search-areas.py --update-identities, refresh inventory/fallbacks and package, validate, commit and push. Continue the remaining priority-city names; national collection is not complete.",
+  "completeNationalCoverage": false,
+  "latestCheckpoint": {
+    "featureCount": 4308,
+    "municipalityCount": 617,
+    "methods": {
+      "map_or_text_estimate": 1479,
+      "named_source_footprint": 2178,
+      "source_map_polygon": 172,
+      "source_polygon": 479
+    },
+    "duplicateVariantsPreserved": 350
+  },
+  "knownNameInventory": {
+    "knownNameCount": 4310,
+    "municipalitiesWithKnownNames": 618,
+    "namesWithCollectedPolygon": 4308,
+    "namesWithKnownPoint": 3487,
+    "pointOnlyNames": 1,
+    "unlocatedUncollectedNames": 1,
+    "nationalCompletionPercent": null,
+    "targetNationalCoveragePercent": [
+      80,
+      90
+    ]
+  },
+  "newAreasNet": 2041,
+  "fallbackCircleReduction": 1868,
+  "baselineCommit": "50988ce52abd3bbd010f1383d94c03f08b3f4c87",
+  "nextPriorityCities": [
+    {
+      "municipality": "Budapest",
+      "knownNames": 463,
+      "mappedNames": 463,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Debrecen",
+      "knownNames": 126,
+      "mappedNames": 126,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Szeged",
+      "knownNames": 75,
+      "mappedNames": 75,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Miskolc",
+      "knownNames": 108,
+      "mappedNames": 108,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Pécs",
+      "knownNames": 101,
+      "mappedNames": 101,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Győr",
+      "knownNames": 80,
+      "mappedNames": 80,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Nyíregyháza",
+      "knownNames": 83,
+      "mappedNames": 83,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Kecskemét",
+      "knownNames": 110,
+      "mappedNames": 110,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Székesfehérvár",
+      "knownNames": 85,
+      "mappedNames": 85,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Szombathely",
+      "knownNames": 70,
+      "mappedNames": 70,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Szolnok",
+      "knownNames": 33,
+      "mappedNames": 33,
+      "remainingNames": 0
+    },
+    {
+      "municipality": "Érd",
+      "knownNames": 26,
+      "mappedNames": 26,
+      "remainingNames": 0
+    }
+  ],
+  "additionalTasks": [
+    {
+      "id": "pecs-szeged",
+      "owner": "collect_kaposvar_zala",
+      "status": "completed_for_this_collection_checkpoint"
+    },
+    {
+      "id": "debrecen-kecskemet",
+      "owner": "collect_gyula_salgo",
+      "status": "completed_for_this_collection_checkpoint"
+    },
+    {
+      "id": "gyor-sopron",
+      "owner": "collect_budapest_missing",
+      "status": "completed_for_this_collection_checkpoint"
+    }
+  ],
+  "completedLastFiles": [
+    "budapest-remaining/features.geojson",
+    "miskolc-dunaujvaros-remaining/features.geojson",
+    "medium-south-west/ajka-features.geojson",
+    "medium-south-west/szentes-features.geojson",
+    "medium-south-west/baja-features.geojson",
+    "commuter-towns/budaors-features.geojson",
+    "commuter-towns/tatabanya-features.geojson",
+    "commuter-towns/dunakeszi-features.geojson",
+    "small-remaining/features.geojson"
+  ],
+  "uncompletedPublicSourceLeads": [
+    {
+      "municipality": "Szentendre",
+      "url": "https://maps.szentendre.hu/gisapp/Public?public=on",
+      "status": "public-layer entry identified; direct download not completed in this session; do not treat absence from export as absence of data"
+    }
+  ]
+}

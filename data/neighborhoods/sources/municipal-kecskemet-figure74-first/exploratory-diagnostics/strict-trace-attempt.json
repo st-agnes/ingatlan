@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "initialScript": "initial-strict-black-trace.py",
+  "initialScriptSha256": "c02247ade8d3d7e2603b1cd74c75f3c7fafd1d821cb176b0c051c19264deb2e1",
+  "initialStrictTraceSucceeded": false,
+  "observedFailure": "No actual black source pixel near (761, 1110) in the selected common black component.",
+  "followupDiagnosis": "Strict maxRGB<=45 mask is split across the blue economic-area label. Separately guided boundary components meet within three short text-overprint intervals. Original pixel colors are retained; no absent boundary is claimed observed.",
+  "strictMaskComponentEndpoints": [
+    [
+      [
+        771,
+        1120
+      ],
+      [
+        763,
+        1112
+      ]
+    ],
+    [
+      [
+        762,
+        1111
+      ],
+      [
+        759,
+        1109
+      ]
+    ],
+    [
+      [
+        504,
+        1106
+      ],
+      [
+        500,
+        1111
+      ]
+    ]
+  ],
+  "endpointDistancesPixels": [
+    11.313708498984761,
+    3.605551275463989,
+    6.4031242374328485
+  ],
+  "strongerThresholdDoesNotEstablishOriginalBoundaryPath": true,
+  "approvedScope": "Explicit low-confidence manual source-overprint continuations with alternatives; never strict-source or absolute accuracy claims."
+}

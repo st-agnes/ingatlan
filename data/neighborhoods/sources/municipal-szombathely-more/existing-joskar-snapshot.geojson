@@ -1,0 +1,480 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "osm:relation:8356511",
+      "bbox": [
+        16.6299811,
+        47.2234991,
+        16.6375983,
+        47.2324733
+      ],
+      "properties": {
+        "id": "osm:relation:8356511",
+        "name": "Joskar-Ola-lakótelep",
+        "sourceName": "Joskar-Ola-lakótelep",
+        "preferredHungarianName": null,
+        "adminLevel": null,
+        "boundaryKind": "neighbourhood",
+        "classificationReason": "place_suburb",
+        "reviewStatus": "unreviewed",
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "source": {
+          "osmType": "relation",
+          "osmId": 8356511,
+          "tags": {
+            "boundary": "statistical",
+            "name": "Joskar-Ola-lakótelep",
+            "place": "suburb",
+            "type": "boundary"
+          },
+          "objectVersion": 4,
+          "objectTimestamp": "2022-08-30 18:33:39+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/relation/8356511",
+          "members": [
+            {
+              "type": "node",
+              "ref": 985430204,
+              "role": "admin_centre"
+            },
+            {
+              "type": "way",
+              "ref": 230153394,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 611110284,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 293706968,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 611110275,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 293706970,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 293706971,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 594300981,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 594300983,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 230134488,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 112539591,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 594300977,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 290056910,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 594300973,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 108958397,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 594300966,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 391650149,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 711087143,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 591040248,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 591045628,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 591040243,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 316869158,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 316869156,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 316869159,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 591040247,
+              "role": "outer"
+            },
+            {
+              "type": "way",
+              "ref": 232045412,
+              "role": "outer"
+            },
+            {
+              "type": "relation",
+              "ref": 8327917,
+              "role": "subarea"
+            }
+          ],
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges.",
+          "geometrySha256": "4d1572e5a18331040ede0096624931902439c6273ea5a66290d7e18f61fbe1a6"
+        },
+        "municipality": "Szombathely",
+        "municipalityId": "city:Szombathely",
+        "municipalityOsmId": "osm:relation:1131673",
+        "municipalityEvidence": "source_full_containment",
+        "coveringMunicipalityOsmIds": [
+          "osm:relation:1131673"
+        ],
+        "hierarchyMunicipalityOsmIds": []
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                16.6299811,
+                47.2274129
+              ],
+              [
+                16.630101,
+                47.2272249
+              ],
+              [
+                16.6305419,
+                47.2265675
+              ],
+              [
+                16.6308861,
+                47.2260378
+              ],
+              [
+                16.6310203,
+                47.2258312
+              ],
+              [
+                16.6312624,
+                47.2254446
+              ],
+              [
+                16.6318065,
+                47.2245959
+              ],
+              [
+                16.6320966,
+                47.2241414
+              ],
+              [
+                16.632219,
+                47.2239462
+              ],
+              [
+                16.6321244,
+                47.2238904
+              ],
+              [
+                16.6323375,
+                47.223834
+              ],
+              [
+                16.6324319,
+                47.2237321
+              ],
+              [
+                16.6326246,
+                47.223697
+              ],
+              [
+                16.6327645,
+                47.2236423
+              ],
+              [
+                16.6329958,
+                47.2237012
+              ],
+              [
+                16.6333429,
+                47.2236709
+              ],
+              [
+                16.6334862,
+                47.2236115
+              ],
+              [
+                16.6337478,
+                47.2234991
+              ],
+              [
+                16.6341574,
+                47.223667
+              ],
+              [
+                16.6358558,
+                47.2243632
+              ],
+              [
+                16.6353956,
+                47.2249445
+              ],
+              [
+                16.6359935,
+                47.2252492
+              ],
+              [
+                16.6360508,
+                47.2252119
+              ],
+              [
+                16.6369279,
+                47.2257565
+              ],
+              [
+                16.6370684,
+                47.2258414
+              ],
+              [
+                16.6370019,
+                47.2259991
+              ],
+              [
+                16.6375983,
+                47.2261289
+              ],
+              [
+                16.6370711,
+                47.2274221
+              ],
+              [
+                16.6360809,
+                47.2295394
+              ],
+              [
+                16.6353925,
+                47.2311502
+              ],
+              [
+                16.6351488,
+                47.2310894
+              ],
+              [
+                16.6350255,
+                47.2313007
+              ],
+              [
+                16.6333887,
+                47.2308394
+              ],
+              [
+                16.6331452,
+                47.231209
+              ],
+              [
+                16.6327198,
+                47.2318786
+              ],
+              [
+                16.6324987,
+                47.2318193
+              ],
+              [
+                16.6317284,
+                47.2316127
+              ],
+              [
+                16.6316351,
+                47.23177
+              ],
+              [
+                16.6313458,
+                47.2322576
+              ],
+              [
+                16.6312817,
+                47.2323657
+              ],
+              [
+                16.6312177,
+                47.2324733
+              ],
+              [
+                16.6301379,
+                47.2321244
+              ],
+              [
+                16.6301719,
+                47.2320527
+              ],
+              [
+                16.6301433,
+                47.2320151
+              ],
+              [
+                16.6302062,
+                47.2319938
+              ],
+              [
+                16.6302546,
+                47.2319505
+              ],
+              [
+                16.6303075,
+                47.2318643
+              ],
+              [
+                16.6306143,
+                47.2313608
+              ],
+              [
+                16.6300079,
+                47.2311438
+              ],
+              [
+                16.6302234,
+                47.2309351
+              ],
+              [
+                16.6305623,
+                47.2306116
+              ],
+              [
+                16.6307642,
+                47.2304198
+              ],
+              [
+                16.6308573,
+                47.2303911
+              ],
+              [
+                16.6314224,
+                47.2301888
+              ],
+              [
+                16.6317255,
+                47.2296656
+              ],
+              [
+                16.6316315,
+                47.2296209
+              ],
+              [
+                16.6315735,
+                47.2295919
+              ],
+              [
+                16.6317741,
+                47.2293515
+              ],
+              [
+                16.6312648,
+                47.2290665
+              ],
+              [
+                16.6308467,
+                47.2287734
+              ],
+              [
+                16.6309936,
+                47.2285754
+              ],
+              [
+                16.630988,
+                47.2285456
+              ],
+              [
+                16.6307684,
+                47.2284607
+              ],
+              [
+                16.6310082,
+                47.2281786
+              ],
+              [
+                16.6309593,
+                47.2281412
+              ],
+              [
+                16.6306553,
+                47.2279155
+              ],
+              [
+                16.6302265,
+                47.2275846
+              ],
+              [
+                16.6301952,
+                47.2275605
+              ],
+              [
+                16.6299811,
+                47.2274129
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

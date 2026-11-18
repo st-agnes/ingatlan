@@ -1,0 +1,348 @@
+{
+  "schemaVersion": 1,
+  "status": "source_pixel_extraction_experiment_only",
+  "sourceImage": "../municipal-pecs-first-inferred/pecs-p48-names.jpeg",
+  "sourceImageSha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8",
+  "densityImageSha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788",
+  "maskCriterion": "(min(R,B)-G>=25 and B-R>=-30) OR max(R,G,B)<T",
+  "thresholds": [
+    150,
+    170,
+    190
+  ],
+  "componentMethod": "scipy 4-connected components over the whole original Figure9 image; retain the component containing each manually read source seed.",
+  "geometryMethod": "Exact union of unit squares centered on all and only selected source pixels; retain every resulting interior ring. No pixel added, removed or restored.",
+  "coordinateSpace": "Original Figure9 pixel centers, zero-based x right/y down; NOT geographic coordinates.",
+  "cropBoxes": [
+    {
+      "sourceName": "Árpádtető",
+      "figure9": [
+        315,
+        66,
+        337,
+        95
+      ],
+      "figure12": [
+        550,
+        168,
+        590,
+        208
+      ]
+    },
+    {
+      "sourceName": "Petőfi-akna",
+      "figure9": [
+        489,
+        12,
+        512,
+        38
+      ],
+      "figure12": [
+        838,
+        72,
+        873,
+        110
+      ]
+    },
+    {
+      "sourceName": "M utca",
+      "figure9": [
+        492,
+        34,
+        510,
+        52
+      ],
+      "figure12": [
+        846,
+        108,
+        870,
+        132
+      ]
+    }
+  ],
+  "records": [
+    {
+      "id": "arpadteto-T150",
+      "sourceName": "Árpádtető",
+      "threshold": 150,
+      "sourceSeedPixel": [
+        325,
+        84
+      ],
+      "sourcePixelCount": 126,
+      "sourcePixelSetSha256": "8deaa1e4ed91cc9e001e66aa1321a43347903f17659c702b479d249e625e45b4",
+      "sourcePixelBoundsInclusive": [
+        319,
+        76,
+        330,
+        90
+      ],
+      "globalOriginalImageComponent": true,
+      "componentTouchesOriginalImageEdge": false,
+      "componentTouchesEvidenceCropEdge": false,
+      "pixelUnionValidSinglePolygon": true,
+      "exactUnitPixelArea": 126.0,
+      "interiorRingCount": 0,
+      "exteriorRingVertexCount": 55,
+      "closedExteriorRing": true,
+      "morphologicalClosingOrFill": false,
+      "repairBufferSnapOrGeographicFit": false,
+      "nominalExploratoryScenario": false,
+      "sourceContourSemanticsAutomaticallyApproved": false,
+      "geographicApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "id": "petofi-akna-T150",
+      "sourceName": "Petőfi-akna",
+      "threshold": 150,
+      "sourceSeedPixel": [
+        499,
+        26
+      ],
+      "sourcePixelCount": 112,
+      "sourcePixelSetSha256": "20ffa791b3b135399f4a5521251a7eb95523e3fa0b09bef01cdbd3894a91e031",
+      "sourcePixelBoundsInclusive": [
+        493,
+        18,
+        504,
+        34
+      ],
+      "globalOriginalImageComponent": true,
+      "componentTouchesOriginalImageEdge": false,
+      "componentTouchesEvidenceCropEdge": false,
+      "pixelUnionValidSinglePolygon": true,
+      "exactUnitPixelArea": 112.0,
+      "interiorRingCount": 1,
+      "exteriorRingVertexCount": 67,
+      "closedExteriorRing": true,
+      "morphologicalClosingOrFill": false,
+      "repairBufferSnapOrGeographicFit": false,
+      "nominalExploratoryScenario": false,
+      "sourceContourSemanticsAutomaticallyApproved": false,
+      "geographicApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "id": "m-utca-T150",
+      "sourceName": "M utca",
+      "threshold": 150,
+      "sourceSeedPixel": [
+        500,
+        41
+      ],
+      "sourcePixelCount": 29,
+      "sourcePixelSetSha256": "9dde4fbe5e8d08b4aed1174b63348a64b88a03381a4b04c0542c0fbe9fa03501",
+      "sourcePixelBoundsInclusive": [
+        498,
+        38,
+        503,
+        46
+      ],
+      "globalOriginalImageComponent": true,
+      "componentTouchesOriginalImageEdge": false,
+      "componentTouchesEvidenceCropEdge": false,
+      "pixelUnionValidSinglePolygon": true,
+      "exactUnitPixelArea": 29.0,
+      "interiorRingCount": 1,
+      "exteriorRingVertexCount": 31,
+      "closedExteriorRing": true,
+      "morphologicalClosingOrFill": false,
+      "repairBufferSnapOrGeographicFit": false,
+      "nominalExploratoryScenario": false,
+      "sourceContourSemanticsAutomaticallyApproved": false,
+      "geographicApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "id": "arpadteto-T170",
+      "sourceName": "Árpádtető",
+      "threshold": 170,
+      "sourceSeedPixel": [
+        325,
+        84
+      ],
+      "sourcePixelCount": 134,
+      "sourcePixelSetSha256": "9b97d372f89a1f7fe187918b8f2c056c2051e9aedfc9b7e0c472904d48e48063",
+      "sourcePixelBoundsInclusive": [
+        319,
+        75,
+        330,
+        90
+      ],
+      "globalOriginalImageComponent": true,
+      "componentTouchesOriginalImageEdge": false,
+      "componentTouchesEvidenceCropEdge": false,
+      "pixelUnionValidSinglePolygon": true,
+      "exactUnitPixelArea": 134.0,
+      "interiorRingCount": 0,
+      "exteriorRingVertexCount": 59,
+      "closedExteriorRing": true,
+      "morphologicalClosingOrFill": false,
+      "repairBufferSnapOrGeographicFit": false,
+      "nominalExploratoryScenario": true,
+      "sourceContourSemanticsAutomaticallyApproved": false,
+      "geographicApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "id": "petofi-akna-T170",
+      "sourceName": "Petőfi-akna",
+      "threshold": 170,
+      "sourceSeedPixel": [
+        499,
+        26
+      ],
+      "sourcePixelCount": 118,
+      "sourcePixelSetSha256": "d10a61662a7ea668716218c2249e50a5912c865d845920881afe7be5e23eef53",
+      "sourcePixelBoundsInclusive": [
+        493,
+        17,
+        504,
+        34
+      ],
+      "globalOriginalImageComponent": true,
+      "componentTouchesOriginalImageEdge": false,
+      "componentTouchesEvidenceCropEdge": false,
+      "pixelUnionValidSinglePolygon": true,
+      "exactUnitPixelArea": 118.0,
+      "interiorRingCount": 0,
+      "exteriorRingVertexCount": 67,
+      "closedExteriorRing": true,
+      "morphologicalClosingOrFill": false,
+      "repairBufferSnapOrGeographicFit": false,
+      "nominalExploratoryScenario": true,
+      "sourceContourSemanticsAutomaticallyApproved": false,
+      "geographicApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "id": "m-utca-T170",
+      "sourceName": "M utca",
+      "threshold": 170,
+      "sourceSeedPixel": [
+        500,
+        41
+      ],
+      "sourcePixelCount": 31,
+      "sourcePixelSetSha256": "2cb5c00fcfa76bead388341e857b02af8ffabc44bf8d21ad13a517ca25dff6d8",
+      "sourcePixelBoundsInclusive": [
+        498,
+        38,
+        503,
+        46
+      ],
+      "globalOriginalImageComponent": true,
+      "componentTouchesOriginalImageEdge": false,
+      "componentTouchesEvidenceCropEdge": false,
+      "pixelUnionValidSinglePolygon": true,
+      "exactUnitPixelArea": 31.0,
+      "interiorRingCount": 0,
+      "exteriorRingVertexCount": 31,
+      "closedExteriorRing": true,
+      "morphologicalClosingOrFill": false,
+      "repairBufferSnapOrGeographicFit": false,
+      "nominalExploratoryScenario": true,
+      "sourceContourSemanticsAutomaticallyApproved": false,
+      "geographicApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "id": "arpadteto-T190",
+      "sourceName": "Árpádtető",
+      "threshold": 190,
+      "sourceSeedPixel": [
+        325,
+        84
+      ],
+      "sourcePixelCount": 141,
+      "sourcePixelSetSha256": "907331ae203e5a497c4d85cedae6fd6990f409dd2d2620495972148b7a384547",
+      "sourcePixelBoundsInclusive": [
+        318,
+        75,
+        331,
+        91
+      ],
+      "globalOriginalImageComponent": true,
+      "componentTouchesOriginalImageEdge": false,
+      "componentTouchesEvidenceCropEdge": false,
+      "pixelUnionValidSinglePolygon": true,
+      "exactUnitPixelArea": 141.0,
+      "interiorRingCount": 0,
+      "exteriorRingVertexCount": 65,
+      "closedExteriorRing": true,
+      "morphologicalClosingOrFill": false,
+      "repairBufferSnapOrGeographicFit": false,
+      "nominalExploratoryScenario": false,
+      "sourceContourSemanticsAutomaticallyApproved": false,
+      "geographicApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "id": "petofi-akna-T190",
+      "sourceName": "Petőfi-akna",
+      "threshold": 190,
+      "sourceSeedPixel": [
+        499,
+        26
+      ],
+      "sourcePixelCount": 120,
+      "sourcePixelSetSha256": "4be2ebc6f3f6b0a0c426eefc2566360aa33ec91b98f90ba7ffa5a6821015c75d",
+      "sourcePixelBoundsInclusive": [
+        493,
+        17,
+        504,
+        34
+      ],
+      "globalOriginalImageComponent": true,
+      "componentTouchesOriginalImageEdge": false,
+      "componentTouchesEvidenceCropEdge": false,
+      "pixelUnionValidSinglePolygon": true,
+      "exactUnitPixelArea": 120.0,
+      "interiorRingCount": 0,
+      "exteriorRingVertexCount": 65,
+      "closedExteriorRing": true,
+      "morphologicalClosingOrFill": false,
+      "repairBufferSnapOrGeographicFit": false,
+      "nominalExploratoryScenario": false,
+      "sourceContourSemanticsAutomaticallyApproved": false,
+      "geographicApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "id": "m-utca-T190",
+      "sourceName": "M utca",
+      "threshold": 190,
+      "sourceSeedPixel": [
+        500,
+        41
+      ],
+      "sourcePixelCount": 34,
+      "sourcePixelSetSha256": "1ed8435549d31801f7719ac39167eaf70d40eae954674defd9af0e8a7c8e7682",
+      "sourcePixelBoundsInclusive": [
+        498,
+        38,
+        504,
+        46
+      ],
+      "globalOriginalImageComponent": true,
+      "componentTouchesOriginalImageEdge": false,
+      "componentTouchesEvidenceCropEdge": false,
+      "pixelUnionValidSinglePolygon": true,
+      "exactUnitPixelArea": 34.0,
+      "interiorRingCount": 0,
+      "exteriorRingVertexCount": 33,
+      "closedExteriorRing": true,
+      "morphologicalClosingOrFill": false,
+      "repairBufferSnapOrGeographicFit": false,
+      "nominalExploratoryScenario": false,
+      "sourceContourSemanticsAutomaticallyApproved": false,
+      "geographicApproval": false,
+      "claimedAbsoluteAccuracy": null
+    }
+  ],
+  "geographicTransformUsed": false,
+  "newGeographicPolygons": 0,
+  "absoluteAccuracyClaimed": null,
+  "automaticPrimaryApproval": false
+}

@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "retrievedAt": "2026-11-13",
+  "retrievalMethod": "Public web READ search and page reader only; no shell networking, credentials, GitHub mutation or additional permissions.",
+  "primarySource": {
+    "url": "https://dunaujvaros.hu/sites/all/files/dokumentumok/8060/35496.pdf",
+    "title": "Dunaújváros MJV Településfejlesztési Koncepciója – 2020 felülvizsgálat",
+    "publisher": "Dunaújváros MJV Önkormányzata",
+    "documentDates": "Cover states approved under 309/2020.(04.09.) and 222/2020.(VII.16.); original concept 222/2014.(VI.19.).",
+    "pdfPageOneBased": 12,
+    "printedPage": 12,
+    "heading": "1.2. Városrészi szintű helyzetelemzések / 11. Dózsa városrész",
+    "factualCorridorNames": [
+      "Aranyvölgyi út",
+      "Dózsa György út",
+      "Szórád Márton út"
+    ],
+    "scope": "Named fine quarter in a numbered list, separately from later Paneles lakóterület macro unit grouping Dózsa and Római. Number 11 is source index, not an electoral district.",
+    "additionalScopeLocation": "Printed page 69 describes the same quarter as the triangle between the same three roads.",
+    "fullSourcePdfArchivedLocally": false,
+    "sourcePdfSha256": null,
+    "retrieval": "Official-domain PDF opened in web reader; source facts manually transcribed, not original PDF bytes."
+  },
+  "corroboratingLaw": {
+    "url": "https://njt.jog.gov.hu/jogszabaly/2003-19-SP-5Y3929",
+    "title": "Dunaújváros építési szabályzatáról és szabályozási tervéről szóló 19/2003.(V.16.) önkormányzati rendelet",
+    "sourceVersionDisplayed": "2015.09.19.",
+    "location": "37.§(1), Dózsa városrész – 11. számú terület; 2.§(1)–(2) identifies quarter delimitation annex and appendix.",
+    "factualCorridorNames": [
+      "Aranyvölgy út",
+      "Dózsa György út",
+      "Szórád Márton út"
+    ],
+    "nameNormalization": "Aranyvölgy út in law is Aranyvölgyi út in 2020 concept and current OSM; this is an explicit source-pair spelling normalization, not a new street."
+  },
+  "roadConnectionCorroboration": {
+    "url": "https://dunaujvaros.com/hirek/201407/korforgo_atadas_utan_vegre",
+    "title": "Körforgó: átadás után – végre!",
+    "publishedAt": "2014-07-29",
+    "retrieval": "Full local news webpage opened via web READ connector.",
+    "factualScope": "Reports a physical road connection between Aranyvölgyi út, the new roundabout, Vasmű út and Dózsa György út.",
+    "limitation": "Transport topology corroboration only. It does not establish Vasmű út as a legal quarter boundary."
+  },
+  "inferenceDecision": {
+    "candidateName": "Dózsa városrész",
+    "boundaryKind": "inferred_area",
+    "estimated": true,
+    "primaryLayerAdmission": false,
+    "reason": "The three named modern roads do not form a complete actual-node circuit. A conservative inside-road-face estimate follows the actual Vasmű út continuation and actual roundabout arc. Those specific edges are not stated in the quarter boundary text.",
+    "unprovenCorridorNames": [
+      "Vasmű út",
+      "unnamed Aranyvölgyi/Vasmű roundabout arc"
+    ],
+    "sourceMapQuarterOutlineIndependentlyRead": false,
+    "noClaimOfStreetRenaming": "Vasmű is not silently renamed Aranyvölgyi; its separate modern name and unproven boundary role remain explicit.",
+    "alternatives": "Opposite roundabout arc, other junction carriageways and an unavailable statutory R3 quarter line may differ. These remain unverified; do not invent a straight closing chord."
+  },
+  "otherInvestigatedQuarters": [
+    {
+      "name": "Római városrész",
+      "sourceLocations": [
+        "2020 concept printed page12, item12",
+        "19/2003 law 38.§(1)"
+      ],
+      "unresolvedBoundaryFacts": [
+        "62/2 and 63/1 parcel east sides",
+        "451/76 parcel east side",
+        "448 parcel east/north/west sides",
+        "412 hrsz road identification",
+        "upper river terrace edge"
+      ],
+      "decision": "No polygon exported; real parcel/terrace geometry not established by available road lines."
+    },
+    {
+      "name": "Béke városrész",
+      "sourceLocations": [
+        "2020 concept printed page12, item8; page47 macro-quarter description",
+        "19/2003 law34.§(1)"
+      ],
+      "unresolvedBoundaryFacts": [
+        "730/345 and730/350 parcel north borders",
+        "MÁV station area eastern boundary; not identical by default to railway track"
+      ],
+      "decision": "No polygon exported; station land boundary cannot be replaced with an arbitrary rail."
+    },
+    {
+      "name": "Technikum városrész / historical Ságvári",
+      "sourceLocations": [
+        "2020 concept printed page12,item10",
+        "19/2003 law36.§(1)"
+      ],
+      "unresolvedBoundaryFacts": [
+        "Back boundaries of plots east of Baracsi and west of Bocskai",
+        "Excluded Lorántffy school parcel"
+      ],
+      "decision": "No complete fine-quarter polygon exported; courtyard/building-project descriptions do not establish whole quarter extent."
+    },
+    {
+      "name": "Kertváros",
+      "sourceLocations": [
+        "2020 concept printed page12,item9",
+        "19/2003 law35.§(1)"
+      ],
+      "unresolvedBoundaryFacts": [
+        "Back boundaries of plots west of Bocskai",
+        "490/2 parcel edge"
+      ],
+      "decision": "No polygon exported; street-centerline simplification would omit explicit parcel-side conditions."
+    },
+    {
+      "name": "Északi lakóterület",
+      "sourceLocations": [
+        "2020 concept printed page11,item3",
+        "19/2003 law29.§(1)"
+      ],
+      "factualCorridors": [
+        "6-os főút",
+        "Magyar út",
+        "kikötőhöz vezető vasútvonal"
+      ],
+      "decision": "Exploratory actual-road/rail network did not yield a complete actual-node face; grade-separated crossings and exact branch identification require further evidence."
+    },
+    {
+      "name": "Temető és Petőfi Sándor utca térsége",
+      "sourceLocations": [
+        "2020 concept printed page11,item4",
+        "19/2003 law30.§(1)"
+      ],
+      "factualCorridors": [
+        "6-os főút",
+        "Petőfi Sándor utca",
+        "Magyar út",
+        "kikötőhöz vezető vasútvonal"
+      ],
+      "decision": "No literal actual-node closed face found. A map or unambiguous projected rail/highway crossing treatment is still needed; no quarter polygon exported."
+    }
+  ],
+  "copyrightNote": "Manual source facts, street names and paraphrases only; no reproduced municipal PDF or full news article.",
+  "usableForAddressAssignment": false
+}

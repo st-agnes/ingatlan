@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "status": "FROZEN_BOUNDED_NEGATIVE_FOR_NEW_FINE_CONTOURS",
+  "municipality": "Kaposvár",
+  "freezeDate": "2026-11-14",
+  "newPrimaryFeatureCount": 0,
+  "newEstimatedFeatureCount": 0,
+  "newFineQuarterContourCount": 0,
+  "officialPlanningSchemaCorroborationDate": "2023-07",
+  "sourceMapLegendUnitCountPerMap": 10,
+  "addressAssignmentUsable": false,
+  "current2026FineNamesValidated": false,
+  "sourceOpenReuseLicenceEstablished": false,
+  "existingFrozenSourceBatchesModified": false,
+  "registriesExportsOrGlobalDocsModified": false,
+  "boundedFinding": "Both supplemental maps retain the same ten-unit functional scheme, with six compound units undivided. No new fine quarter contour is extracted; the existing four single-name units are not duplicated.",
+  "positiveEvidence": [
+    "Official July 2023 FVS retains the prior ten-quarter planning division.",
+    "2009 pages 27 and 44 explicitly distinguish whole Belváros from the smaller 13.85 ha Városközpont action area.",
+    "FVS page 186 contains separately preserved Donner/Rómahegy prose boundary leads."
+  ],
+  "rawInputs": [
+    {
+      "path": ".local/neighborhoods/supplement-originals/kaposvar-belvaros2009.pdf",
+      "sha256": "88ceb3ea0db709ee27a8003f29db3c12937f05ce447161b45e52e8b1b8e1ba3b",
+      "bytes": 14880108
+    },
+    {
+      "path": ".local/neighborhoods/supplement-originals/kaposvar-fvs.pdf",
+      "sha256": "291aba20ffcc41e604ad737bb6d132ae51b51d70303285e36702e4fc04e6901e",
+      "bytes": 6965334
+    }
+  ],
+  "nativeImageArtifactCount": 2,
+  "rawPdfsCommitted": false,
+  "georeferencePerformed": false,
+  "claimedAbsoluteAccuracyMetres": null,
+  "reproductionCommand": "python data/neighborhoods/sources/municipal-kaposvar-supplement-next/reproduce.py --check",
+  "reproductionResult": "PASS on 2026-11-14; native images and pinned inventory identical",
+  "independentReviewPath": "independent-review.json",
+  "independentReviewSha256": "1c544d9a69e27a6d169da234e6716882094507191554995a171780158d9809fb",
+  "filesSha256": {
+    "README.txt": "2fd4d817ca04abb2fb65bb31e5c12966de5816af51162862f803869ab409162f",
+    "assessment.json": "cb7b8da19e3a4ff48fe5be87a2b6fd2e7eab149068731ed0b29b18355337212b",
+    "independent-review.json": "1c544d9a69e27a6d169da234e6716882094507191554995a171780158d9809fb",
+    "kaposvar-belvaros2009-p26-source.jpeg": "d7b4f06bb3a499219d4580bea61d5b7cdcbfe5107ef6c4d56aab3f41b3566b23",
+    "kaposvar-fvs-p182-source.jpeg": "94deebd1dde58d970e541999aba1a0ad765f4dfa04bc779a06ac9ed78baddf6b",
+    "reproduce.py": "1dbd4a088e93b89cc9ba41bb53fc6d5f7c2bcd1c9a752eab7ee7bfd840cba8a5",
+    "source-inventory.json": "4ba636dbd6abeb0c4748310eb97537268342815b9124fc3cae3a3ff95ff30c10"
+  }
+}

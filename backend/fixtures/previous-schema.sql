@@ -1,6 +1,7 @@
 -- CI ONLY: simulate the initial release in the disposable otthonra_ci database.
 -- No application deployment executes this file.
 DROP TABLE IF EXISTS `SearchLocations`;
+DROP TABLE IF EXISTS `PropertyNeighborhoods`;
 ALTER TABLE `Properties` DROP INDEX `IX_Properties_Archived_Type_LocationId`, DROP INDEX `IX_Properties_Archived_Type_City`;
 ALTER TABLE `SearchRequests` DROP INDEX `IX_SearchRequests_Archived_Type_City`;
 -- The current composite index also supports the search foreign key. Restore
@@ -25,6 +26,10 @@ ALTER TABLE `CreditEntries` DROP FOREIGN KEY `FK_CreditEntries_Decisions_Refunde
 ALTER TABLE `Decisions` DROP INDEX `IX_Decisions_Liked_RefundedAt_CreatedAt`, DROP COLUMN `RefundedAt`;
 ALTER TABLE `Users` DROP COLUMN `AccountType`;
 ALTER TABLE `Properties`
+  DROP COLUMN `Street`, DROP COLUMN `HouseNumber`, DROP COLUMN `PostalCode`,
+  DROP COLUMN `Latitude`, DROP COLUMN `Longitude`, DROP COLUMN `GeocodedAt`,
+  DROP COLUMN `GeocodingProvider`, DROP COLUMN `GeocodingPlaceId`,
+  DROP COLUMN `GeocodingQuality`, DROP COLUMN `GeocodingAddressKey`, DROP COLUMN `NeighborhoodIdsJson`,
   DROP COLUMN `LocationId`, DROP COLUMN `LotArea`,
   DROP COLUMN `ConstructionAge`, DROP COLUMN `View`, DROP COLUMN `CeilingHeight`,
   DROP COLUMN `HeatingType`, DROP COLUMN `Insulated`, DROP COLUMN `EnergyRating`,
@@ -36,4 +41,4 @@ ALTER TABLE `SearchRequests`
   DROP COLUMN `ConstructionAgesJson`, DROP COLUMN `ViewsJson`, DROP COLUMN `CeilingHeight`, DROP COLUMN `FloorsJson`,
   DROP COLUMN `HeatingTypesJson`;
 DELETE FROM `__OtthonraSchemaVersions`
-  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights', '20261111-continuous-seller-feedback');
+  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights', '20261111-continuous-seller-feedback', '20261116-neighborhood-address-search');

@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "scope": "Correction of two inherited functional-name semantic exclusions in the new remaining27 batch, using the actual municipal source text. Frozen first33 untouched.",
+  "sourceTextEvidence": {
+    "path": "../municipal-pecs-first-inferred/pecs-source-selected-pages.txt",
+    "sha256": "89acf12f996ec698b7092aba418bfc556a9a6b55806d9860062e2febf151e887",
+    "selectedPdfPath": "../municipal-pecs-first-inferred/pecs-source-selected-pages.pdf",
+    "selectedPdfSha256": "09db9673a921e73cba1ab1add8ad65aeb0d727dad5bfadfd31946f91ad68d1c9",
+    "originalPdfSha256": "995d0db03e454a34046b248526e0882aee26ffbf40ba916e996afa4c8b49f6b1",
+    "sourcePdfPagesOneBased": [
+      47,
+      48
+    ],
+    "tableNumber": 8,
+    "tableTitle": "Pécs városrészei",
+    "excerpts": [
+      {
+        "textLinesOneBased": [
+          63,
+          66
+        ],
+        "quote": "A későbbiekben ez a felosztás képezte az alapját a további, „finomított” városrészi lehatárolásoknak, a fejlesztési stratégiák tervezési egységeinek. Jelen dokumentum esetében az alapegységek határait a településszerkezetben betöltött szerepkörük szerint finomítottuk, pontosítottuk."
+      },
+      {
+        "textLinesOneBased": [
+          100,
+          106
+        ],
+        "quote": "IX. Keleti gazdasági terület — Gyárváros, Basamalom, Üszögi tározó-major, Üszög. Az eddig Déli 1 városrészként szerepeltetett területi egységet jellemző területhasználata szerint tovább tagoltuk."
+      },
+      {
+        "textLinesOneBased": [
+          107,
+          110
+        ],
+        "quote": "X. Nyugati gazdasági terület — Fogadó, Nyugati ipari út, Bolgárkert"
+      },
+      {
+        "textLinesOneBased": [
+          124,
+          126
+        ],
+        "quote": "8. táblázat: Pécs városrészei. 9. ábra: Pécs város egyes városnegyedei, illetve városrészei."
+      }
+    ],
+    "excerptConvention": "Extracted PDF text reflowed across line/column breaks; em dash separates a table group heading from its constituent-name column."
+  },
+  "decisions": [
+    {
+      "sourceName": "Nyugati ipari út",
+      "sourceComponentId": 122,
+      "previousSemanticKind": "planning_unit",
+      "reviewedSemanticKind": "neighbourhood_source_candidate",
+      "nameCellAnchorOrExteriorChanged": false
+    },
+    {
+      "sourceName": "Üszögi tározó-major",
+      "sourceComponentId": 95,
+      "previousSemanticKind": "local_area",
+      "reviewedSemanticKind": "neighbourhood_source_candidate",
+      "nameCellAnchorOrExteriorChanged": false
+    }
+  ],
+  "rationale": "The source table is explicitly titled Pécs városrészei and enumerates the two individual fine names alongside accepted fine cells. The text describes further subdivision by characteristic land use, rather than treating each functional fine name solely as the whole broad economic group. No source-specific evidence supports excluding only these two fine cells as planning/local areas. Earlier reasons were name-based and are withdrawn. This decision supports historical source candidates, not current legal or survey approval.",
+  "frozenSouthernEconomicXiiiChanged": false,
+  "anyNameCellAnchorOrContourChanged": false,
+  "newGeometriesCreatedByReview": 0,
+  "automaticPrimaryApproval": false,
+  "geographicRegistrationEvaluated": false,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false,
+  "repositoryPolicyReference": {
+    "path": "../../../../docs/NEIGHBORHOOD-DATA.md",
+    "lineOneBased": 39,
+    "quote": "Ez nem szóalapú szűrő: például Budaörs önkormányzati forrásban városrészként felsorolt ipari és erdőterületei, illetve Csenger Temető városrésze megmaradnak."
+  }
+}

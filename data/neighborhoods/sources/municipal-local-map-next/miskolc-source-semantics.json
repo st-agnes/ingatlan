@@ -1,0 +1,478 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "local_pdf_expand/veszprem_map independent semantic review",
+  "reviewDate": "2026-11-13",
+  "source": {
+    "url": "https://www.miskolc.hu/sites/default/files/dokumentumtar/mellekletek/2024-11/197_melleklet.pdf",
+    "archivedPath": ".local/neighborhoods/nationwide-docs/originals/miskolc-annex.pdf",
+    "sha256": "c68fe45e74c9caa0ec9d36d5b35d686ee71d6bd75cf5603fb652e9f070e90744",
+    "title": "Miskolc Megyei Jogú Város Fenntartható Városfejlesztési Stratégia 2021-2027",
+    "coverDate": "2022. július; 197/2023. (XII.14.) határozat melléklete",
+    "printedAndPdfPagesOneBased": [
+      228,
+      229,
+      230,
+      231
+    ],
+    "section": "3.3.3 Városrészi leképeződés",
+    "figure": "23. térkép: Miskolc városrészei a KSH lehatárolások összevonásával",
+    "figureSourceCaption": "Integrált Településfejlesztési Stratégia – 2014",
+    "table": "58. táblázat: Városrészek",
+    "descriptionTable": "59. táblázat: Városrészek rövid jellemzése"
+  },
+  "method": "A 228–229. oldali 58. táblázat sorainak és a 229–231. oldali leírásoknak képi/szöveges ellenőrzése. A 6-os sor oldalváltáson át folytatódik. Nem készült új geometria; a térképi kék körvonalak rekonstruálása külön feladat.",
+  "sourceExplicitlyStates": "A KSH 32 városrészét az elemzéshez 17-re vonták össze; a lehatárolás megegyezik a 2014–2020-as ITS lehatárolásával.",
+  "summary": {
+    "sourceFvsMapUnits": 17,
+    "distinctKshConstituentUnits": 32,
+    "singleNamedStatisticalNeighbourhoodCandidates": 5,
+    "multiKshPlanningGroups": 9,
+    "singleKshButCompositeNamedPlanningGroups": 3,
+    "wholePlanningGeometriesPotentiallyUseful": 17,
+    "inventedConstituentPolygonsAllowed": 0,
+    "networkUsed": false
+  },
+  "limits": [
+    "A városrészek jelenlegi jogi, kataszteri vagy címhozzárendelési érvényessége ebből a forrásból nem következik.",
+    "A gyűjtőegységek nevében szereplő városrészek nem kaphatják meg külön-külön ugyanazt a gyűjtőpoligont.",
+    "Az egy KSH-azonosító önmagában nem bizonyít egyetlen finom, önálló nevű városrészt; az 5., 9. és 15. egység összetett.",
+    "Az 5 önállónevű jelölt csak sikeres körvonal-rekonstrukció és külön térbeli ellenőrzés után lehet geometriai importjelölt."
+  ],
+  "records": [
+    {
+      "sourceUnitNumber": 1,
+      "sourceFvsTableLabel": "Szentpéteri kapu, Észak-keleti városrész",
+      "sourceTablePagesOneBased": [
+        228
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 10,
+          "sourceKshLabel": "Szentpéteri kapu Kelet"
+        },
+        {
+          "sourceKshNumber": 11,
+          "sourceKshLabel": "Szentpéteri kapu Nyugat"
+        },
+        {
+          "sourceKshNumber": 1,
+          "sourceKshLabel": "Zsarnai telep – Repülőtér"
+        }
+      ],
+      "semanticType": "planning_group_multi_ksh",
+      "suggestedBoundaryKind": "planning_group",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": false,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "A teljes forrásfelirattal jelölt valódi gyűjtőtervezési poligonként értékes kutatási jelölt; összetevőinek külön határvonalát nem szolgáltatja.",
+      "interpretation": "Több KSH-egység összevonása; a teljes tervezési egység Szentpéteri kapu vagy Zsarnai telep részpoligonjaként nem használható."
+    },
+    {
+      "sourceUnitNumber": 2,
+      "sourceFvsTableLabel": "Selyemrét, Keleti-városrész",
+      "sourceTablePagesOneBased": [
+        228
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 2,
+          "sourceKshLabel": "Szondi telep – Csorbatelep"
+        },
+        {
+          "sourceKshNumber": 8,
+          "sourceKshLabel": "Martin kertvárosi felüljáró"
+        },
+        {
+          "sourceKshNumber": 9,
+          "sourceKshLabel": "Selyemrét"
+        }
+      ],
+      "semanticType": "planning_group_multi_ksh",
+      "suggestedBoundaryKind": "planning_group",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": false,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "A teljes forrásfelirattal jelölt valódi gyűjtőtervezési poligonként értékes kutatási jelölt; összetevőinek külön határvonalát nem szolgáltatja.",
+      "interpretation": "A Selyemrét név a teljes keleti gyűjtőterületnek csak egy összetevője."
+    },
+    {
+      "sourceUnitNumber": 3,
+      "sourceFvsTableLabel": "Martin kertváros – Szirma",
+      "sourceTablePagesOneBased": [
+        228
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 3,
+          "sourceKshLabel": "Martin kertváros"
+        },
+        {
+          "sourceKshNumber": 4,
+          "sourceKshLabel": "Szirma"
+        }
+      ],
+      "semanticType": "planning_group_multi_ksh",
+      "suggestedBoundaryKind": "planning_group",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": false,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "A teljes forrásfelirattal jelölt valódi gyűjtőtervezési poligonként értékes kutatási jelölt; összetevőinek külön határvonalát nem szolgáltatja.",
+      "interpretation": "Két külön városrész összevont területe; külön Martin kertváros és Szirma nem áll elő ebből a körvonalból."
+    },
+    {
+      "sourceUnitNumber": 4,
+      "sourceFvsTableLabel": "Hejőcsaba – Görömböly",
+      "sourceTablePagesOneBased": [
+        228
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 5,
+          "sourceKshLabel": "Görömböly"
+        },
+        {
+          "sourceKshNumber": 6,
+          "sourceKshLabel": "Hejőcsaba"
+        }
+      ],
+      "semanticType": "planning_group_multi_ksh",
+      "suggestedBoundaryKind": "planning_group",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": false,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "A teljes forrásfelirattal jelölt valódi gyűjtőtervezési poligonként értékes kutatási jelölt; összetevőinek külön határvonalát nem szolgáltatja.",
+      "interpretation": "Két külön városrész összevont területe."
+    },
+    {
+      "sourceUnitNumber": 5,
+      "sourceFvsTableLabel": "Avas Kelet – Népkert",
+      "sourceTablePagesOneBased": [
+        228
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 7,
+          "sourceKshLabel": "Avas kelet – Népkert"
+        }
+      ],
+      "semanticType": "planning_group_single_ksh_composite",
+      "suggestedBoundaryKind": "planning_group",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": false,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "A teljes forrásfelirattal jelölt valódi gyűjtőtervezési poligonként értékes kutatási jelölt; összetevőinek külön határvonalát nem szolgáltatja.",
+      "interpretation": "Egyetlen KSH-azonosító, de a forrás két névvel és a leírás külön Avas-Kelet, illetve Népkert részként jellemzi; csak a teljes összetett néven kezelhető."
+    },
+    {
+      "sourceUnitNumber": 6,
+      "sourceFvsTableLabel": "Tetemvár - Északi domboldal",
+      "sourceTablePagesOneBased": [
+        228,
+        229
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 12,
+          "sourceKshLabel": "Tetemvár"
+        },
+        {
+          "sourceKshNumber": 13,
+          "sourceKshLabel": "Bábonyibérc"
+        },
+        {
+          "sourceKshNumber": 26,
+          "sourceKshLabel": "Bedegvölgy-Bodótető"
+        }
+      ],
+      "semanticType": "planning_group_multi_ksh",
+      "suggestedBoundaryKind": "planning_group",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": false,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "A teljes forrásfelirattal jelölt valódi gyűjtőtervezési poligonként értékes kutatási jelölt; összetevőinek külön határvonalát nem szolgáltatja.",
+      "interpretation": "A 228. oldal utolsó sora a 229. oldalon üresen folytatott bal oldali cellával még két KSH-egységet tartalmaz. Nem szűkíthető Tetemvárra."
+    },
+    {
+      "sourceUnitNumber": 7,
+      "sourceFvsTableLabel": "Belváros - Avasalja",
+      "sourceTablePagesOneBased": [
+        229
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 14,
+          "sourceKshLabel": "Vologda- Jókai lakótelep"
+        },
+        {
+          "sourceKshNumber": 15,
+          "sourceKshLabel": "Belváros"
+        },
+        {
+          "sourceKshNumber": 16,
+          "sourceKshLabel": "Avasalja"
+        }
+      ],
+      "semanticType": "planning_group_multi_ksh",
+      "suggestedBoundaryKind": "planning_group",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": false,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "A teljes forrásfelirattal jelölt valódi gyűjtőtervezési poligonként értékes kutatási jelölt; összetevőinek külön határvonalát nem szolgáltatja.",
+      "interpretation": "Három KSH-egység gyűjtője, beleértve a címben külön nem említett Vologda–Jókai lakótelepet is."
+    },
+    {
+      "sourceUnitNumber": 8,
+      "sourceFvsTableLabel": "Avas Dél",
+      "sourceTablePagesOneBased": [
+        229
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 17,
+          "sourceKshLabel": "Avas Dél városrész"
+        }
+      ],
+      "semanticType": "single_named_statistical_neighbourhood",
+      "suggestedBoundaryKind": "neighbourhood",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": true,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "Önálló nevű, történeti/statisztikai városrész körvonaljelöltje lehet, ha a tényleges forráskontúr megbízhatóan rekonstruálható.",
+      "interpretation": "Egy, önálló néven szereplő KSH-városrész. Az Avas egészével nem azonos."
+    },
+    {
+      "sourceUnitNumber": 9,
+      "sourceFvsTableLabel": "Egyetemváros - Ruzsin",
+      "sourceTablePagesOneBased": [
+        229
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 18,
+          "sourceKshLabel": "Egyetemváros – Ruzsin"
+        }
+      ],
+      "semanticType": "planning_group_single_ksh_composite",
+      "suggestedBoundaryKind": "planning_group",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": false,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "A teljes forrásfelirattal jelölt valódi gyűjtőtervezési poligonként értékes kutatási jelölt; összetevőinek külön határvonalát nem szolgáltatja.",
+      "interpretation": "Egyetlen KSH-azonosító, de két névvel jelölt összetett terület; a forrás leírása külön Egyetemvárost és Ruzsint tárgyalja."
+    },
+    {
+      "sourceUnitNumber": 10,
+      "sourceFvsTableLabel": "Miskolc - Tapolca",
+      "sourceTablePagesOneBased": [
+        229
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 19,
+          "sourceKshLabel": "Miskolc-Tapolca"
+        }
+      ],
+      "semanticType": "single_named_statistical_neighbourhood",
+      "suggestedBoundaryKind": "neighbourhood",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": true,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "Önálló nevű, történeti/statisztikai városrész körvonaljelöltje lehet, ha a tényleges forráskontúr megbízhatóan rekonstruálható.",
+      "interpretation": "Egy, önálló nevű városrész. A különféle Miskolc-Tapolca/Miskolctapolca írásmódok névalakok, nem külön részterületek."
+    },
+    {
+      "sourceUnitNumber": 11,
+      "sourceFvsTableLabel": "Komlóstető - Vargahegy",
+      "sourceTablePagesOneBased": [
+        229
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 20,
+          "sourceKshLabel": "Komlóstető"
+        },
+        {
+          "sourceKshNumber": 21,
+          "sourceKshLabel": "Vargahegy"
+        }
+      ],
+      "semanticType": "planning_group_multi_ksh",
+      "suggestedBoundaryKind": "planning_group",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": false,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "A teljes forrásfelirattal jelölt valódi gyűjtőtervezési poligonként értékes kutatási jelölt; összetevőinek külön határvonalát nem szolgáltatja.",
+      "interpretation": "Két városrész összevont területe."
+    },
+    {
+      "sourceUnitNumber": 12,
+      "sourceFvsTableLabel": "Miskolc Közép városrész",
+      "sourceTablePagesOneBased": [
+        229
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 22,
+          "sourceKshLabel": "Békeszálló telep - Muszkás telep"
+        },
+        {
+          "sourceKshNumber": 23,
+          "sourceKshLabel": "Győri kapu"
+        },
+        {
+          "sourceKshNumber": 24,
+          "sourceKshLabel": "Új Diósgyőr"
+        },
+        {
+          "sourceKshNumber": 25,
+          "sourceKshLabel": "Kilián"
+        }
+      ],
+      "semanticType": "planning_group_multi_ksh",
+      "suggestedBoundaryKind": "planning_group",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": false,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "A teljes forrásfelirattal jelölt valódi gyűjtőtervezési poligonként értékes kutatási jelölt; összetevőinek külön határvonalát nem szolgáltatja.",
+      "interpretation": "Négy, részben már önmagában is összetett KSH-egység gyűjtőterülete; a közérthető gyűjtőnév nem jelenti azt, hogy egyetlen finom városrész."
+    },
+    {
+      "sourceUnitNumber": 13,
+      "sourceFvsTableLabel": "Lyukóvölgy",
+      "sourceTablePagesOneBased": [
+        229
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 27,
+          "sourceKshLabel": "Lyukóvölgy"
+        }
+      ],
+      "semanticType": "single_named_statistical_neighbourhood",
+      "suggestedBoundaryKind": "neighbourhood",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": true,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "Önálló nevű, történeti/statisztikai városrész körvonaljelöltje lehet, ha a tényleges forráskontúr megbízhatóan rekonstruálható.",
+      "interpretation": "Egy, önálló néven szereplő KSH-városrész."
+    },
+    {
+      "sourceUnitNumber": 14,
+      "sourceFvsTableLabel": "Pereces",
+      "sourceTablePagesOneBased": [
+        229
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 28,
+          "sourceKshLabel": "Pereces"
+        }
+      ],
+      "semanticType": "single_named_statistical_neighbourhood",
+      "suggestedBoundaryKind": "neighbourhood",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": true,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "Önálló nevű, történeti/statisztikai városrész körvonaljelöltje lehet, ha a tényleges forráskontúr megbízhatóan rekonstruálható.",
+      "interpretation": "Egy, önálló néven szereplő KSH-városrész."
+    },
+    {
+      "sourceUnitNumber": 15,
+      "sourceFvsTableLabel": "Diósgyőr- Nyugati városrész",
+      "sourceTablePagesOneBased": [
+        229
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 29,
+          "sourceKshLabel": "Diósgyőr - Berekalja - Majláth"
+        }
+      ],
+      "semanticType": "planning_group_single_ksh_composite",
+      "suggestedBoundaryKind": "planning_group",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": false,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "A teljes forrásfelirattal jelölt valódi gyűjtőtervezési poligonként értékes kutatási jelölt; összetevőinek külön határvonalát nem szolgáltatja.",
+      "interpretation": "Egyetlen KSH-azonosító, de három névvel jelölt gyűjtőegység. A teljes nyugati poligon nem nevezhető külön Berekaljának vagy Majláthnak, és Diósgyőr teljes területét sem bizonyítja."
+    },
+    {
+      "sourceUnitNumber": 16,
+      "sourceFvsTableLabel": "Bükkszentlászló",
+      "sourceTablePagesOneBased": [
+        229
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 30,
+          "sourceKshLabel": "Bükkszentlászló"
+        }
+      ],
+      "semanticType": "single_named_statistical_neighbourhood",
+      "suggestedBoundaryKind": "neighbourhood",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": true,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "Önálló nevű, történeti/statisztikai városrész körvonaljelöltje lehet, ha a tényleges forráskontúr megbízhatóan rekonstruálható.",
+      "interpretation": "Egy, önálló néven szereplő KSH-városrész."
+    },
+    {
+      "sourceUnitNumber": 17,
+      "sourceFvsTableLabel": "Lillafüred-Ómassa",
+      "sourceTablePagesOneBased": [
+        229
+      ],
+      "kshConstituents": [
+        {
+          "sourceKshNumber": 31,
+          "sourceKshLabel": "Lillafüred"
+        },
+        {
+          "sourceKshNumber": 32,
+          "sourceKshLabel": "Ómassa - Jávorkút"
+        }
+      ],
+      "semanticType": "planning_group_multi_ksh",
+      "suggestedBoundaryKind": "planning_group",
+      "canSupplyIndividualNamedNeighbourhoodCandidate": false,
+      "canSupplyHonestWholeSourcePlanningGeometry": true,
+      "canCopyWholePolygonToConstituentNames": false,
+      "currentNameAndGeoreferencingStillRequireReview": true,
+      "usableForAddressAssignment": false,
+      "usefulness": "A teljes forrásfelirattal jelölt valódi gyűjtőtervezési poligonként értékes kutatási jelölt; összetevőinek külön határvonalát nem szolgáltatja.",
+      "interpretation": "Két KSH-egység gyűjtője; a második maga is Ómassa–Jávorkút összetett egység. A címben elhagyott Jávorkút területe sem különíthető el a 17-es körvonalból."
+    }
+  ]
+}

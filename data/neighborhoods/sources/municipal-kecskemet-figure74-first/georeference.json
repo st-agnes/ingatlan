@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "metricCrs": "EPSG:23700",
+  "outputCrs": "EPSG:4326",
+  "figure73ToFigure74PhotoAffineRows": [
+    [
+      0.6750133936738995,
+      1.195162242492411e-05
+    ],
+    [
+      -6.71891052936051e-05,
+      0.6749548339446345
+    ],
+    [
+      -263.12044808457625,
+      864.6006026449523
+    ]
+  ],
+  "figure74ToFigure73Homogeneous": [
+    [
+      1.4814520831872022,
+      0.00014747274187662228,
+      389.6728309225454
+    ],
+    [
+      -2.6232504826127487e-05,
+      1.4815806153919475,
+      -1280.9823952433815
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "figure73PixelToEovRowsIndependentlyRefitted": [
+    [
+      1.8947350291400653,
+      0.006141250124499827
+    ],
+    [
+      0.0037289284334560925,
+      -1.872700383547181
+    ],
+    [
+      698285.4219558695,
+      175299.1565333398
+    ]
+  ],
+  "composedFigure74PixelToEovRows": [
+    [
+      2.806959058188181,
+      0.009147093412163226
+    ],
+    [
+      0.0058041298530693754,
+      -2.774555681033574
+    ],
+    [
+      699018.9720268463,
+      177700.4458345507
+    ]
+  ],
+  "originalSixControlResidualMeters": [
+    3.287598810620155,
+    4.787726003229771,
+    1.1242697205185157,
+    1.9731379398351536,
+    9.735168889125108,
+    8.494347407926316
+  ],
+  "originalMaximumControlResidualMeters": 9.735168889125108,
+  "originalFrozenFigure73CalibrationModified": false,
+  "imageTextureTrainingMatches": 13,
+  "imageTextureHeldOutMatches": 10,
+  "maximumImageTextureHeldOutResidualTargetPixels": 0.47120478654527725,
+  "observedTextureHullFigure74Pixels": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          341.3000822333282,
+          918.2621223480269
+        ],
+        [
+          211.72802025023182,
+          918.359405782636
+        ],
+        [
+          168.402977263395,
+          1188.022235528125
+        ],
+        [
+          168.42964291922294,
+          1242.0893801507082
+        ],
+        [
+          168.56287141061088,
+          1296.3843407899078
+        ],
+        [
+          255.05802085906748,
+          1296.394882201727
+        ],
+        [
+          384.5548278400194,
+          1296.3807735277326
+        ],
+        [
+          384.5876489438621,
+          1080.262002738472
+        ],
+        [
+          384.50452922936927,
+          918.2901651434772
+        ],
+        [
+          341.3000822333282,
+          918.2621223480269
+        ]
+      ]
+    ]
+  },
+  "sourceVerticesOutsideMatchedTextureHull": 2008,
+  "sourceVerticesOutsideFigure73ImageRectangle": 1914,
+  "maximumDistanceBeyondMatchedTextureHullSourcePixels": 517.4211135309429,
+  "calibrationLeaveOneControlOut": [
+    {
+      "omittedControlId": "node-4170613208",
+      "maximumFigure74VertexDisplacementMeters": 13.30411423161211
+    },
+    {
+      "omittedControlId": "node-4331477437",
+      "maximumFigure74VertexDisplacementMeters": 22.53991373052291
+    },
+    {
+      "omittedControlId": "node-494254692",
+      "maximumFigure74VertexDisplacementMeters": 0.8660045309754483
+    },
+    {
+      "omittedControlId": "node-265343223",
+      "maximumFigure74VertexDisplacementMeters": 8.058486464456012
+    },
+    {
+      "omittedControlId": "node-494064509",
+      "maximumFigure74VertexDisplacementMeters": 11.726760568485902
+    },
+    {
+      "omittedControlId": "node-494254697",
+      "maximumFigure74VertexDisplacementMeters": 6.009821490579359
+    }
+  ],
+  "diagnosticsNotCalibratedAccuracyBounds": true,
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

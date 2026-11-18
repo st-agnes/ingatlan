@@ -1,0 +1,356 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "reviewer": "Independent remaining_pixel_audit agent",
+  "verdict": "pass_five_observed_source_contours_inferred_only_zero_primary",
+  "scope": "Independent separate face audits for two original free cells and literal ordered-path/RGB/full-boundary-authority audits for three manual source contours, projection, strict geometry and all60 admitted-source overlap checks. No producer code imported or invoked.",
+  "sourceFeatureCount": 5,
+  "originalFreeCellContourCount": 2,
+  "manualWholeStrokeContourCount": 3,
+  "candidateFineNames": 5,
+  "primaryApprovedCount": 0,
+  "originalFigure12FreeCellCount": 221,
+  "approvedRestoredOriginalMaskPixels": 3,
+  "totalFreeCellRawUnitFaces": 370,
+  "totalFreeCellInterpretedUnitFaces": 358,
+  "freeCellExternalSourceFaceChanges": 0,
+  "strictJsValidCount": 5,
+  "strictJsRejectedCount": 0,
+  "independentWholeFineBoundaryReviewCheckedForEveryManualPath": true,
+  "allAuthorityAndNameReviewNativeCropHashesVerified": true,
+  "allCentralNameReviewNativeCropsOriginalPixelExact": true,
+  "newNewDensityFrameMaximumOverlapPixelsSquared": 0.0,
+  "newAdmitted60DensityFrameMaximumOverlapPixelsSquared": 0.0,
+  "newNewWorldMaximumOverlapDegreesSquared": 0.0,
+  "newAdmitted60WorldMaximumOverlapDegreesSquared": 0.0,
+  "oldAdmittedReferenceCount": 60,
+  "oldAdmittedReferenceHashesUnchanged": true,
+  "independentHomogeneousDensityToEovMatrix": [
+    [
+      19.577810420341596,
+      0.03116452750867288,
+      0.0
+    ],
+    [
+      -0.20754806394509454,
+      -19.73373394690426,
+      0.0
+    ],
+    [
+      577523.2499501936,
+      91751.551014121,
+      1.0
+    ]
+  ],
+  "frozenSourceMatricesByteIdenticalToBothAdmittedCohorts": true,
+  "anyNewGeoreferenceModelFitted": false,
+  "sourceMembershipOrInternalRmsUsedAsAbsoluteAccuracyEvidence": false,
+  "footprintCreatedByMaskIntersectionSubtractionComplementClippingOrRepair": false,
+  "sourceImageOrCropClosingEdgeInvented": false,
+  "geographicPlacementVerified": false,
+  "claimedAbsoluteAccuracy": null,
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "networkUsed": false,
+  "producerFilesModified": false,
+  "inputFingerprints": [
+    {
+      "path": "admitted-cohort-exclusions.json",
+      "sha256": "e70659e0045cd52cb04fd09c9074757ed9420e1c1a0f10860f8359048e9bb7fe"
+    },
+    {
+      "path": "cemetery-source12-native.png",
+      "sha256": "0e3e2d12c4fb136b23856975bfaf3d8ac4d6ecc02aabee46c61a5f22e0fa42db"
+    },
+    {
+      "path": "cemetery-source9-native.png",
+      "sha256": "2ec6f040e5aa07cb6c2d1e6e701ba33f406020462cff135dc0250b79bd311b45"
+    },
+    {
+      "path": "central-cell-cartographic-hole-decisions.json",
+      "sha256": "e9aed42f95dd06a7795d38c26378362bb620b569055081e4fb7011933b5fcb89"
+    },
+    {
+      "path": "central-cells-raw-pixel-evidence.json",
+      "sha256": "c7add0f925c26c039ec5292e64135a859894a8277f370686b5f0ae700fa6989a"
+    },
+    {
+      "path": "central-raw-pixel-cells.json",
+      "sha256": "5bafcca7d0fd2bf097b33dcea6359421a39d4ccd826b4998a668b807c5b2173d"
+    },
+    {
+      "path": "conversion-proof.json",
+      "sha256": "2bf4659b1bb0f7f2488856196bd24168d98c55f7b294a99a89758280d71f071e"
+    },
+    {
+      "path": "first-conversion-proof.json",
+      "sha256": "129a4ec7ac6373422edf18389d95c799f2c35f30155d81cc846ac6eced091f0b"
+    },
+    {
+      "path": "first-source-inferred.geojson",
+      "sha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95"
+    },
+    {
+      "path": "independent-final-gap-audit.py",
+      "sha256": "5ed41cb50d0d80a1da63b1d93ee894f51a0198d1dd9394887ca16f092bc5fc86"
+    },
+    {
+      "path": "independent-kisbalokany-siklosi-name-review.json",
+      "sha256": "486c49e828b6f48c8f373151ccfe40cf18b4b9b6c8210a161916a27e4ae63559"
+    },
+    {
+      "path": "independent-manual-hatched-review.json",
+      "sha256": "0b9ff33ad199d66ca582031e4f65bebd4f39e245c6c9a559cec5da01e44fb599"
+    },
+    {
+      "path": "independent-manual-islands-review.json",
+      "sha256": "01fb1b4cfeb1064e0b24f2e273eaea36c2f77c916d168b2097a524f7ed9d7f41"
+    },
+    {
+      "path": "kis-sik-density-source-native.png",
+      "sha256": "49f6120b94583147a2c9cd7605d63fa2fccc7cc252c71826c62a96f3ffee4da9"
+    },
+    {
+      "path": "kis-sik-name-source-native.png",
+      "sha256": "91c2b14b52993e5ac746d49e5bddf5b887f9afce48a95def52e19ba12175bbea"
+    },
+    {
+      "path": "manual-cemetery-stroke-candidate.png",
+      "sha256": "9691831e5873650011a77cec045385207f09ec01289e5e1c38e4ba9a6dad9e2b"
+    },
+    {
+      "path": "manual-hatched-stroke-candidates.json",
+      "sha256": "cd7250c5913aca633f5550b63cc82963cfe478668083b0543f35820d7cc99f90"
+    },
+    {
+      "path": "manual-islands-arpadteto-native-pixel-grid.png",
+      "sha256": "60a73b58ebc4f4e8f11024fb3012ce3400fb89e1f44999f84f4e92be5c076b5e"
+    },
+    {
+      "path": "manual-islands-arpadteto-path-preview.png",
+      "sha256": "269c16f863d763f1ee250e897e6298bb4b4697a57064d29abc574251bf02c8e9"
+    },
+    {
+      "path": "manual-islands-author-paths.json",
+      "sha256": "7f8bcb9a7972a86ccd74b51215a358373a6f693f73292ba18d0c9c5a80fb09c5"
+    },
+    {
+      "path": "manual-islands-m-utca-native-pixel-grid.png",
+      "sha256": "3594943910246d9ade02b8199092c7a0a8bad607de5b78b1372548e114f83d10"
+    },
+    {
+      "path": "manual-islands-m-utca-path-preview.png",
+      "sha256": "0b543c2edcd4639cf0d3f9fa66ca707824d22fa2ee484b4c6ecf8dfce08cb8a9"
+    },
+    {
+      "path": "manual-murom-stroke-candidate.png",
+      "sha256": "8fe5ba70ff5e7e46083142f3035e75f18db58c123f2d452fdb8079c0917e38f3"
+    },
+    {
+      "path": "murom-source12-native.png",
+      "sha256": "411646eccbabb5077014436e1571bdc247eb8a0a5480d368cd106ddf09897ad2"
+    },
+    {
+      "path": "murom-source9-native.png",
+      "sha256": "ea782cfb6f39bad5225f8766d1449222f1070902ac0790247a63f366fc4bd7df"
+    },
+    {
+      "path": "pecs-image-alignment.json",
+      "sha256": "bbfeea6e96ef9233058c991533c0572ec0df4c1baeac88db5593c91f336e67b6"
+    },
+    {
+      "path": "pecs-p48-names.jpeg",
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "path": "pecs-p63-density.jpeg",
+      "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+    },
+    {
+      "path": "pecs-registration-northwest-only-diagnostic.json",
+      "sha256": "8ba7ab1515b94f37253b64bdbe2144e73e540081ede3ae2cf9838f65b7b87f13"
+    },
+    {
+      "path": "remaining-conversion-proof.json",
+      "sha256": "97455899533fb25c917c3fb60c8f0ac80134491bd11a523e5fbb418db06ffd4b"
+    },
+    {
+      "path": "remaining-source-inferred.geojson",
+      "sha256": "cfdd86a7dc73d6f6a76ebf9a2377a0e7e077992761f3b23fd675abf102c8826a"
+    },
+    {
+      "path": "source-inferred.geojson",
+      "sha256": "a27535ffae4e4549f76200e207fa80fc6796dfbe394740eacce57b7df7693acc"
+    },
+    {
+      "path": "strict-validator-snapshot.mjs",
+      "sha256": "abf1b564180d9b33593f9ce0d711eb996bf8f3a1d9cbb03b7527167ac515f3d7"
+    }
+  ],
+  "records": [
+    {
+      "name": "Kisbalokány",
+      "id": "pecs-final-gap:kisbalokany",
+      "sourceMethod": "original_closed_figure12_free_cell_with_exact_approved_internal_spots",
+      "sourceCellId": 89,
+      "rawIncludedOriginalPixels": 223,
+      "restoredOriginalMaskPixels": 1,
+      "rawUnitFaceCount": 126,
+      "interpretedUnitFaceCount": 122,
+      "externalSourceFaceChanges": 0,
+      "rawAndInterpretedFaceSetsIndependentlyVerified": true,
+      "independentLiteralNameShapeReviewMatched": true,
+      "nativeSourceGeometryArea": 224.0,
+      "independentDensityFrameMaximumVertexDifferencePixels": 0.0,
+      "independentProjectionMaximumVertexDifferenceDegrees": 7.105427357601002e-15,
+      "strictJsValidation": {
+        "id": "pecs-final-gap:kisbalokany",
+        "name": "Kisbalokány",
+        "valid": true,
+        "bbox": [
+          18.239463058315913,
+          46.072692376272144,
+          18.2488263671951,
+          46.07701997802443
+        ],
+        "vertices": 91
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "name": "Siklósi külváros",
+      "id": "pecs-final-gap:siklosikulvaros",
+      "sourceMethod": "original_closed_figure12_free_cell_with_exact_approved_internal_spots",
+      "sourceCellId": 92,
+      "rawIncludedOriginalPixels": 1573,
+      "restoredOriginalMaskPixels": 2,
+      "rawUnitFaceCount": 244,
+      "interpretedUnitFaceCount": 236,
+      "externalSourceFaceChanges": 0,
+      "rawAndInterpretedFaceSetsIndependentlyVerified": true,
+      "independentLiteralNameShapeReviewMatched": true,
+      "nativeSourceGeometryArea": 1575.0,
+      "independentDensityFrameMaximumVertexDifferencePixels": 0.0,
+      "independentProjectionMaximumVertexDifferenceDegrees": 7.105427357601002e-15,
+      "strictJsValidation": {
+        "id": "pecs-final-gap:siklosikulvaros",
+        "name": "Siklósi külváros",
+        "valid": true,
+        "bbox": [
+          18.224028699747855,
+          46.06562890050297,
+          18.24022201235215,
+          46.074097878085496
+        ],
+        "vertices": 160
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "name": "M utca",
+      "id": "pecs-final-gap:mutca",
+      "sourceMethod": "manual_closed_original_graphic_stroke_pixel_centres",
+      "sourceFigure": 9,
+      "literalOrderedPathVertexCountIncludingClosure": 22,
+      "manualPixelCenterRingArea": 18.5,
+      "allPathVerticesLiteralOriginalRgbChecked": true,
+      "allConsecutiveStepsOriginal8Neighbour": true,
+      "simpleRingIndependentlyCheckedByIntegerDeterminants": true,
+      "orderedPathExactlyMatchesPeerApprovedFullContour": true,
+      "wholeFineBoundaryAuthorityEvidence": "The literal Figure9 label is adjacent to this isolated complete fine-unit island. Figure12 depicts the same distinctive isolated shape within the quarter-boundary figure. The shape is separate from text glyphs, geographic name points and generic land-use surfaces.",
+      "wholeFineBoundaryApprovedBeyondMaskMembership": true,
+      "sourceImageOrCropClosureInvented": false,
+      "pixelRestorationOrMaskModificationUsed": false,
+      "nativeSourceGeometryArea": 18.5,
+      "independentDensityFrameMaximumVertexDifferencePixels": 1.4210854715202004e-14,
+      "independentProjectionMaximumVertexDifferenceDegrees": 0.0,
+      "strictJsValidation": {
+        "id": "pecs-final-gap:mutca",
+        "name": "M utca",
+        "valid": true,
+        "bbox": [
+          18.32608031394272,
+          46.14722711011411,
+          18.32819824306074,
+          46.14958704108515
+        ],
+        "vertices": 22
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "name": "Murom",
+      "id": "pecs-final-gap:murom",
+      "sourceMethod": "manual_closed_original_graphic_stroke_pixel_centres",
+      "sourceFigure": 12,
+      "literalOrderedPathVertexCountIncludingClosure": 161,
+      "manualPixelCenterRingArea": 1056.0,
+      "allPathVerticesLiteralOriginalRgbChecked": true,
+      "allConsecutiveStepsOriginal8Neighbour": true,
+      "simpleRingIndependentlyCheckedByIntegerDeterminants": true,
+      "orderedPathExactlyMatchesPeerApprovedFullContour": true,
+      "wholeFineBoundaryAuthorityEvidence": "Murom thin northern stem and broad southwestern lower lobe are separately visible below Somogy in Figure9; its literal label identifies the lower lobe. The complete matching Figure12 shape is a white/no-data stem-and-lobe body, separate from the yellow Somogy area above. The Figure9 label/rail obscuration is a source9-only limitation; the source12 external stroke is continuously visible. The prominent diagonal from the southwestern low point toward the eastern stem/lobe junction remains internal. The route follows the western lobe and entire southern/eastern exterior rather than cutting across this diagonal. The complete thin stem is retained.",
+      "wholeFineBoundaryApprovedBeyondMaskMembership": true,
+      "sourceImageOrCropClosureInvented": false,
+      "pixelRestorationOrMaskModificationUsed": false,
+      "nativeSourceGeometryArea": 1056.0,
+      "independentDensityFrameMaximumVertexDifferencePixels": 0.0,
+      "independentProjectionMaximumVertexDifferenceDegrees": 7.105427357601002e-15,
+      "strictJsValidation": {
+        "id": "pecs-final-gap:murom",
+        "name": "Murom",
+        "valid": true,
+        "bbox": [
+          18.300616049791707,
+          46.10631560278548,
+          18.312518561216077,
+          46.11523298477264
+        ],
+        "vertices": 161
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "name": "Köztemető",
+      "id": "pecs-final-gap:koztemeto",
+      "sourceMethod": "manual_closed_original_graphic_stroke_pixel_centres",
+      "sourceFigure": 12,
+      "literalOrderedPathVertexCountIncludingClosure": 163,
+      "manualPixelCenterRingArea": 1519.0,
+      "allPathVerticesLiteralOriginalRgbChecked": true,
+      "allConsecutiveStepsOriginal8Neighbour": true,
+      "simpleRingIndependentlyCheckedByIntegerDeterminants": true,
+      "orderedPathExactlyMatchesPeerApprovedFullContour": true,
+      "wholeFineBoundaryAuthorityEvidence": "The literal Koztemeto label is in the green XI fine area below the red district in Figure9. Its narrow northern shoulder, larger lower body and shared western/southern fine separators match the complete no-data Figure12 shape. The Figure9 label band obscures a fine separator; Figure12 supplies the visible complete external stroke independently. The diagonal approximately[483,668]to[503,650]and the diagonal approximately[500,685]to[520,662]remain internal. At their junctions with the thick border, the route continues along the external shoulder/east/base/west cycle rather than crossing the interior.",
+      "wholeFineBoundaryApprovedBeyondMaskMembership": true,
+      "sourceImageOrCropClosureInvented": false,
+      "pixelRestorationOrMaskModificationUsed": false,
+      "nativeSourceGeometryArea": 1519.0,
+      "independentDensityFrameMaximumVertexDifferencePixels": 0.0,
+      "independentProjectionMaximumVertexDifferenceDegrees": 1.4210854715202004e-14,
+      "strictJsValidation": {
+        "id": "pecs-final-gap:koztemeto",
+        "name": "Köztemető",
+        "valid": true,
+        "bbox": [
+          18.23098487063883,
+          46.04554451623571,
+          18.240848500223805,
+          46.055160619723814
+        ],
+        "vertices": 163
+      },
+      "geographicPlacementVerified": false,
+      "primaryApproval": false,
+      "claimedAbsoluteAccuracy": null
+    }
+  ]
+}

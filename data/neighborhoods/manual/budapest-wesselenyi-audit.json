@@ -1,0 +1,417 @@
+{
+  "schemaVersion": 1,
+  "name": "Wesselényi-telep",
+  "municipality": "Budapest",
+  "district": 23,
+  "sourceParagraph": "3. melléklet 23.12.",
+  "boundaryText": "Budapest–Kelebia vasútvonal–Vecsés út–belterületi határ által határolt városrész",
+  "sourceDocuments": [
+    {
+      "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+      "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+      "paragraph": "3. melléklet 23.12."
+    }
+  ],
+  "status": "residential_proxy_cycle_exists_but_neighborhood_identity_unresolved",
+  "polygonCreatedForNeighborhood": false,
+  "usableForAddressAssignment": false,
+  "sourceGeometry": {
+    "path": "data/neighborhoods/manual/sources/budapest-wesselenyi-input.geojson",
+    "sha256": "bd182644d47aec75ffc49365887f5670364ead56021ad3beaf643101a9fa135d",
+    "railSourceLineIds": [
+      "osm:way:108784285",
+      "osm:way:1334612902",
+      "osm:way:1485317551",
+      "osm:way:1486494726",
+      "osm:way:348178874",
+      "osm:way:91784641"
+    ],
+    "railChoice": "One actual continuous main-track source chain of railway ref=150; the parallel track is not used to manufacture narrow faces.",
+    "osmTimestamp": "2026-11-12T21:23:05Z",
+    "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a"
+  },
+  "unidentifiedSourceFaces": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.1258855,
+              47.3987962
+            ],
+            [
+              19.1260779,
+              47.3985451
+            ],
+            [
+              19.1262154,
+              47.3983667
+            ],
+            [
+              19.1263487,
+              47.3981882
+            ],
+            [
+              19.1266785,
+              47.3977336
+            ],
+            [
+              19.1267901,
+              47.397579
+            ],
+            [
+              19.1269692,
+              47.3973306
+            ],
+            [
+              19.1271127,
+              47.3971289
+            ],
+            [
+              19.1272483,
+              47.3969233
+            ],
+            [
+              19.1273679,
+              47.3967174
+            ],
+            [
+              19.1274749,
+              47.3965049
+            ],
+            [
+              19.1275689,
+              47.3962889
+            ],
+            [
+              19.1276489,
+              47.3960742
+            ],
+            [
+              19.1277153,
+              47.3958578
+            ],
+            [
+              19.127772,
+              47.3956386
+            ],
+            [
+              19.1278176,
+              47.3954165
+            ],
+            [
+              19.1278421,
+              47.3951983
+            ],
+            [
+              19.1278591,
+              47.3949757
+            ],
+            [
+              19.1278585,
+              47.3947475
+            ],
+            [
+              19.1278421,
+              47.394527
+            ],
+            [
+              19.1278136,
+              47.3943005
+            ],
+            [
+              19.127771,
+              47.3940826
+            ],
+            [
+              19.1277093,
+              47.3938501
+            ],
+            [
+              19.1276429,
+              47.3936384
+            ],
+            [
+              19.1275616,
+              47.3934085
+            ],
+            [
+              19.1274729,
+              47.393209
+            ],
+            [
+              19.1273718,
+              47.3930102
+            ],
+            [
+              19.1272584,
+              47.3928187
+            ],
+            [
+              19.1271286,
+              47.3926206
+            ],
+            [
+              19.1270127,
+              47.3924543
+            ],
+            [
+              19.1268942,
+              47.3922925
+            ],
+            [
+              19.1267511,
+              47.3920967
+            ],
+            [
+              19.126721,
+              47.3920548
+            ],
+            [
+              19.1264952,
+              47.3917569
+            ],
+            [
+              19.1258759,
+              47.3909649
+            ],
+            [
+              19.1255693,
+              47.3905639
+            ],
+            [
+              19.125424178703575,
+              47.39036449368366
+            ],
+            [
+              19.1249773,
+              47.3905316
+            ],
+            [
+              19.1241161,
+              47.3909183
+            ],
+            [
+              19.1238219,
+              47.3905092
+            ],
+            [
+              19.1210259,
+              47.3896191
+            ],
+            [
+              19.1211919,
+              47.3893945
+            ],
+            [
+              19.1206408,
+              47.3892024
+            ],
+            [
+              19.1194212,
+              47.3905209
+            ],
+            [
+              19.120647,
+              47.3909659
+            ],
+            [
+              19.1207159,
+              47.390894
+            ],
+            [
+              19.1213072,
+              47.3913837
+            ],
+            [
+              19.1214518,
+              47.3914551
+            ],
+            [
+              19.1220808,
+              47.3917656
+            ],
+            [
+              19.1224712,
+              47.3919735
+            ],
+            [
+              19.1229305,
+              47.3920649
+            ],
+            [
+              19.1230712,
+              47.3920377
+            ],
+            [
+              19.1232951,
+              47.3919386
+            ],
+            [
+              19.1233913,
+              47.391889
+            ],
+            [
+              19.1235118,
+              47.3918676
+            ],
+            [
+              19.123598,
+              47.3918715
+            ],
+            [
+              19.1237874,
+              47.3919298
+            ],
+            [
+              19.125817,
+              47.3921825
+            ],
+            [
+              19.1259777,
+              47.392165
+            ],
+            [
+              19.1261528,
+              47.3921358
+            ],
+            [
+              19.1263538,
+              47.3921455
+            ],
+            [
+              19.1264858,
+              47.3922135
+            ],
+            [
+              19.1265461,
+              47.3923068
+            ],
+            [
+              19.1265863,
+              47.3924254
+            ],
+            [
+              19.126662,
+              47.3926894
+            ],
+            [
+              19.126119,
+              47.3932053
+            ],
+            [
+              19.1263496,
+              47.3935811
+            ],
+            [
+              19.1264667,
+              47.3939136
+            ],
+            [
+              19.1264342,
+              47.3943121
+            ],
+            [
+              19.1269383,
+              47.3943033
+            ],
+            [
+              19.1269155,
+              47.3950628
+            ],
+            [
+              19.1268147,
+              47.395349
+            ],
+            [
+              19.1262423,
+              47.395272
+            ],
+            [
+              19.1259691,
+              47.3957806
+            ],
+            [
+              19.1266423,
+              47.3958885
+            ],
+            [
+              19.1264374,
+              47.3962671
+            ],
+            [
+              19.1257544,
+              47.3961262
+            ],
+            [
+              19.1255094,
+              47.3964847
+            ],
+            [
+              19.126394,
+              47.3967595
+            ],
+            [
+              19.1265645,
+              47.3966551
+            ],
+            [
+              19.1268465,
+              47.3967401
+            ],
+            [
+              19.1257648,
+              47.3983808
+            ],
+            [
+              19.12544,
+              47.3985897
+            ],
+            [
+              19.125373,
+              47.3987023
+            ],
+            [
+              19.1258567,
+              47.3987408
+            ],
+            [
+              19.12582077277897,
+              47.398792706241316
+            ],
+            [
+              19.1258549,
+              47.3987944
+            ],
+            [
+              19.1258855,
+              47.3987962
+            ]
+          ]
+        ]
+      },
+      "validGeometry": true,
+      "areaSquareMetres": 136746.845,
+      "boundaryClassLengthMetres": {
+        "rail": 981.897,
+        "vecses": 2.318,
+        "residential": 2333.069,
+        "district": 0.0
+      },
+      "unsupportedBoundaryLength": 0.0,
+      "nameAssigned": false,
+      "acceptedForExport": false
+    }
+  ],
+  "northernResidentialToVecsesDistanceMetres": 798.758,
+  "reasonsForExclusion": [
+    "No retained source supplies the legal belterület boundary or an independent locality observation placing Wesselényi-telep in the computed face.",
+    "The sole contained cycle lies west of the railway and touches Vecsés út only for a few metres at its railway crossing; its remaining residential edge winds south toward current Csendes utca.",
+    "The northern residential multipolygon 4638166 does not meet Vecsés út, so it cannot close the legal three-class cycle without inventing a connector.",
+    "A mathematically closed source face alone does not prove the named neighborhood identity."
+  ],
+  "requiredEvidence": "Municipal map identifying Wesselényi-telep and the cited belterület edge, or another independently reusable boundary description.",
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors"
+}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "status": "SOURCE_PIXEL_AND_SOURCE_NAME_SCOPE_PASS_GEOGRAPHIC_REVIEW_PENDING",
+  "independentCodeDoesNotImportProducer": true,
+  "sourcePdfPath": "data/neighborhoods/sources/municipal-kecskemet-figure73-first/source-pages143-144-147-153.pdf",
+  "originalPublisherPdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+  "archivedPdfExcerptSha256": "0429326bfe7fa4d04e70e6a45c39d142d06c5cdb80665ca958f2bb22da768b41",
+  "sourceFigure": 73,
+  "sourcePdfPageOneBased": 143,
+  "printedPage": 141,
+  "publisherEmbeddedImageXref": 172,
+  "sourceImageSha256": "59cbd060c8010a396511cdec69848410b4fee8d6bd8e628500894b5e27565e9c",
+  "originalEmbeddedJpegBytesExactlyPreserved": true,
+  "sourceImageSize": [
+    1014,
+    1434
+  ],
+  "inputsSha256": {
+    "data/neighborhoods/sources/municipal-kecskemet-figure73-first/figure73-p143-xref172.jpeg": "59cbd060c8010a396511cdec69848410b4fee8d6bd8e628500894b5e27565e9c",
+    "data/neighborhoods/sources/municipal-kecskemet-figure73-first/trace-source-pixels.py": "df230799cc40b1d859fa4e15e75e08833520f1015ee25634ce68496d407c8958",
+    "data/neighborhoods/sources/municipal-kecskemet-figure73-first/source-pixel-trace.json": "28797b17fb63f94906ca11bc3daccdb579ad73a76191399865f21001ae6d498a",
+    "data/neighborhoods/sources/municipal-kecskemet-figure73-first/source-pixel-preview.png": "f228f901d07731a1876d208cff462bc2ba41dd85f979aeab7a945313208aaa2f",
+    "data/neighborhoods/sources/municipal-kecskemet-figure73-first/review-source-pixels-independent.py": "f307a4bfebd2a087c49c2e4a2dad3cbd9cbb1f1915ec8bf098c20940f337ee33"
+  },
+  "componentSelection": {
+    "originalImageBlackThresholdMaxRgb": 45,
+    "allOriginalImageBlackPixelCount": 124762,
+    "independentlyRecomputedBoundaryBlackComponentPixelCount": 19210,
+    "selectionAddsPixelsOrFillsGaps": false,
+    "anchorLookupUsesOnlySubsetOfOriginalBlackPixels": true,
+    "detachedPhotographicSpecksAreExcludedFromAnchorLookup": true
+  },
+  "sourceRingChecks": [
+    {
+      "name": "Árpádváros",
+      "denseSourceVertexCountIncludingClosure": 991,
+      "maxRgbOnEveryDenseSourceVertex": 43,
+      "everyPointOriginalIntegerSourcePixel": true,
+      "everyEdge8Neighbor": true,
+      "closed": true,
+      "shapelyValid": true,
+      "holes": 0,
+      "sourcePixelArea": 65698.0,
+      "minimumDistanceFromSourceFramePixels": 112,
+      "sourceLabelCenterInsideOwnCell": true,
+      "blueLabelOverprintInterpreted": false,
+      "introducedClosingOrBridgeEdgeCount": 0
+    },
+    {
+      "name": "Kossuthváros",
+      "denseSourceVertexCountIncludingClosure": 791,
+      "maxRgbOnEveryDenseSourceVertex": 38,
+      "everyPointOriginalIntegerSourcePixel": true,
+      "everyEdge8Neighbor": true,
+      "closed": true,
+      "shapelyValid": true,
+      "holes": 0,
+      "sourcePixelArea": 37827.0,
+      "minimumDistanceFromSourceFramePixels": 201,
+      "sourceLabelCenterInsideOwnCell": true,
+      "blueLabelOverprintInterpreted": false,
+      "introducedClosingOrBridgeEdgeCount": 0
+    }
+  ],
+  "pairwiseAreaOverlapPixelsSquared": 0.0,
+  "sharedBoundaryExactlyEqualsOriginalDaSection": true,
+  "sharedBoundaryPixelLength": 340.13708498984823,
+  "sourceCurveRoleVisualReview": "The independently inspected original JPEG and colored preview show both traces following the printed black municipal cell outlines. Their labels lie inside the correct separately drawn cells; no source label obscures a traced boundary. This is a source-contour interpretation, not a road-center replacement.",
+  "sourceSemantics": {
+    "fineSourceNames": [
+      "Árpádváros",
+      "Kossuthváros"
+    ],
+    "arpadDefinitionPdfPageOneBased": 147,
+    "kossuthDefinitionPdfPageOneBased": 153,
+    "arpadSourceBoundaryQuote": "Dobó István krt., Batthyány utcai társasházak mögötti parkoló utca, Magyar utca, Tizedes utca, Árpád krt., Petőfi Sándor utca.",
+    "kossuthSourceBoundaryQuote": "Kossuth körút - Tizedes utca - Magyar utca - Batthyány utca – Horváth Döme körút - Mezei utca",
+    "summaryScopeCautionPdf144Quote": "A Belvárosi terület több városrész (Városközpont, Árpádváros, Homoki-domb, Bethlenváros, Rákócziváros, Erzsébet- és Kossuthváros északi része) egységéből épül fel.",
+    "decision": "These are separately named and explicitly bounded 2021 source cells. Preserve that exact source-era scope. The summary refers to a northern-part relationship for Erzsébet-/Kossuthváros, while the later dedicated KOSSUTHVÁROS section gives a concrete boundary; do not claim an independently verified complete broader historical Kossuthváros extent.",
+    "arpadNotKülsoArpadvaros": true,
+    "compoundGroupCopiedUnderFineNames": false,
+    "currentExactNameUseOrCurrentBoundaryExtentVerifiedHere": false
+  },
+  "georeferencingReviewed": false,
+  "projectValidateGeometryAdmissionReviewed": false,
+  "laterGeographicAuditMustCallActualProjectValidator": true,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "existingFrozenBatchesOrGlobalRegistriesModified": false
+}

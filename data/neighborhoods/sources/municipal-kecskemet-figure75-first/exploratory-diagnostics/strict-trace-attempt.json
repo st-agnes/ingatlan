@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "initialScript": "initial-strict-black-trace.py",
+  "initialScriptSha256": "28b5ab8357dc91bb5322c8b3e174ef2fae319f445942f53ff0411b1267821682",
+  "initialStrictTraceSucceeded": false,
+  "observedFailure": "Disconnected actual source stroke ((1496, 197), (1487, 211))",
+  "followupDiagnosis": "The blue Reptéri source label interrupts the right diagonal and left vertical source-cell strokes. Four short bounded annotation intervals are explicitly inferred; no strict fully-observed contour claim is made.",
+  "sourceBlackEndpointPairs": [
+    [
+      [
+        1492,
+        203
+      ],
+      [
+        1488,
+        208
+      ]
+    ],
+    [
+      [
+        1488,
+        214
+      ],
+      [
+        1480,
+        224
+      ]
+    ],
+    [
+      [
+        1369,
+        224
+      ],
+      [
+        1369,
+        219
+      ]
+    ],
+    [
+      [
+        1369,
+        214
+      ],
+      [
+        1369,
+        210
+      ]
+    ]
+  ],
+  "endpointDistancesSourcePixels": [
+    6.4031242374328485,
+    12.806248474865697,
+    5.0,
+    4.0
+  ],
+  "sourceGapInferenceConfidence": "low",
+  "alternativesRequired": true,
+  "notAnAbsoluteAccuracyBound": true
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "verdict": "pass_inferred_only_27_additional_source_quarters_zero_primary",
+  "scope": "Combined index of independent literal-name/semantics and pixel/transform/topology reviews; does not assert new geographic control or supersede the frozen first cohort.",
+  "sourceRecordCount": 27,
+  "candidateFineNames": 27,
+  "candidatePlanningUnits": 0,
+  "candidateLocalAreas": 0,
+  "primaryApprovedCount": 0,
+  "geographicPlacementVerified": false,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false,
+  "firstCohortSourceCellIdsAndPublishedNamesExcluded": true,
+  "sourceNameAndCellMappingIndependentReview": "independent-name-review.json",
+  "functionalNameSemanticsReviewedAgainstSourceHierarchy": "semantic-source-review.json",
+  "sourcePixelAndProjectionIndependentReview": "independent-pixel-review.json",
+  "sourceRawCellsAndGeometriesRetained": "raw-pixel-cells.json",
+  "exactCartographicRestoration": {
+    "holeCount": 37,
+    "originalPixelCount": 422,
+    "allExplicitlyReviewed": true,
+    "externalSourceFacesChanged": 0
+  },
+  "strictJsValidCount": 27,
+  "strictJsRejectedCount": 0,
+  "maximumNewNewWorldOverlapDegreesSquared": 0.0,
+  "maximumNewFrozenWorldOverlapDegreesSquared": 0.0,
+  "unresolvedExactNames": [
+    "Murom",
+    "Köztemető",
+    "Kisbalokány",
+    "Siklósi külváros",
+    "Árpádtető",
+    "Petőfi-akna",
+    "M utca"
+  ],
+  "unresolvedEvidence": "unresolved-name-review.json",
+  "all67NameAccounting": "source-table-name-inventory.json",
+  "frozenFirstGeometrySha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95",
+  "separateUnappliedFirstCohortSemanticRecommendation": "first-cohort-semantic-recommendation.json",
+  "frozenFirstCohortChanged": false,
+  "rootRegistriesOrExportsChanged": false,
+  "registryEntryApplied": false,
+  "networkUsed": false,
+  "independentReviewHashes": [
+    {
+      "path": "independent-name-review.json",
+      "sha256": "d9bfb6f2da6c92312c27ad87bd1ad85600762d29d8c271acb51a965e0f41122b"
+    },
+    {
+      "path": "semantic-source-review.json",
+      "sha256": "a093df02a3f4a4a77e05ec6bb45b6994a108cb289586da25e07254785460ac41"
+    },
+    {
+      "path": "independent-pixel-review.json",
+      "sha256": "e1c19f35dc015a73a4303ae71c338d427f3815b63f052fa0ac552f88cccbfc67"
+    },
+    {
+      "path": "unresolved-name-review.json",
+      "sha256": "eb2470344f75653189b1957881c291f74a5b4240eb2e8544e071146ea31ab92b"
+    },
+    {
+      "path": "first-cohort-semantic-recommendation.json",
+      "sha256": "0e54f646a59226af019152d89b418f479866b3332cafffbf862e53ddfbd25403"
+    }
+  ]
+}

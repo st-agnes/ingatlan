@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
-import {DEFAULT_BATCH, createDemoCatalog, DEMO_USERS, DEMO_FIXTURES, DEMO_PASSWORD, FEEDBACK_TEST_SCENARIO} from '../scripts/gcp/demo-data.mjs';
+import {DEFAULT_BATCH, createDemoCatalog, DEMO_USERS, DEMO_FIXTURES, DEMO_PASSWORD, FEEDBACK_TEST_SCENARIO, DEMO_NEIGHBORHOOD_SCENARIO} from '../scripts/gcp/demo-data.mjs';
 import {getLocation, isPropertyLocation} from '../dist/locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from '../dist/attributes.js';
 import {isCompatible} from '../dist/model.js';
@@ -42,12 +42,15 @@ test('default catalog includes fourteen accounts, three agents, a feedback trial
  }
 });
 
-test('original accounts, active selections and every original entity body remain unchanged',()=>{
+test('original accounts, active selections and original criteria survive the required fictional address fields',()=>{
  const catalog=createDemoCatalog();
  assert.equal(DEMO_PASSWORD,'OtthonraDemo2026!');
  const legacyUsers=catalog.users.filter(user=>oldUsers.includes(user.key)).map(({accountType,...user})=>{assert.equal(accountType,'private');return user;});
  assert.equal(hash(legacyUsers),'6e6e71428372a5f3fca6303b5ad32e6b1308e79b4e439b73c917e12190cf52a8');
- const legacyFixtures=catalog.fixtures.filter(fixture=>oldFixtures.includes(fixture.key));
+ const legacyFixtures=catalog.fixtures.filter(fixture=>oldFixtures.includes(fixture.key)).map(fixture=>{
+  const {street,houseNumber,postalCode,...input}=fixture.input;
+  return {...fixture,input};
+ });
  assert.equal(hash(legacyFixtures),'ab21f1aabe76a260775dca9ee14cf587b318df357751dce8e44ebc0fb346dcca');
 });
 
@@ -93,6 +96,9 @@ test('all fixture locations, categories, room compositions and house requirement
   assert.match(input.description,/Kitalált tesztadat/);
   assert.equal(Object.hasOwn(input,'ownerAccountType'),false,'The server must derive owner roles');
   if(fixture.kind==='property'){
+   assert.equal(input.street,'OTTHONRA TEST');assert.match(input.houseNumber,/^[1-9][0-9]*$/);assert.equal(input.postalCode,null);
+   assert.equal(Object.hasOwn(input,'latitude'),false);assert.equal(Object.hasOwn(input,'longitude'),false);
+   assert.equal(Object.hasOwn(input,'neighborhoodIds'),false,'Fixture membership must come from MySQL polygon checks');
    assert.ok(isPropertyLocation(getLocation(input.locationId)),fixture.key);
    const normalized=normalizePropertyAttributes(input,{strict:true});
    assert.equal(normalized.rooms,input.rooms);assert.ok(input.price>0);assert.ok(input.area>0);assert.ok(input.rooms>0);
@@ -108,6 +114,20 @@ test('all fixture locations, categories, room compositions and house requirement
    }
   }
  }
+});
+
+test('the same deployed catalog exposes two quarters and a mixed town search without changing inventory counts',()=>{
+ const catalog=createDemoCatalog(),scenario=DEMO_NEIGHBORHOOD_SCENARIO;
+ const find=key=>catalog.fixtures.find(item=>item.key===key);
+ const venkert=find(scenario.venkertProperty),sestakert=find(scenario.sestakertProperty);
+ assert.equal(venkert.input.city,'Debrecen');assert.equal(sestakert.input.city,'Debrecen');
+ assert.equal(venkert.input.neighborhood,'Vénkert');assert.equal(sestakert.input.neighborhood,'Sestakert');
+ assert.equal(venkert.input.houseNumber,'1');assert.equal(sestakert.input.houseNumber,'2');
+ assert.match(venkert.input.description,/Szintetikus.*nem Google/);assert.match(sestakert.input.description,/Szintetikus.*nem Google/);
+ assert.deepEqual(find(scenario.quarterSearch).input.locationIds,[scenario.venkertId,scenario.sestakertId]);
+ assert.deepEqual(find(scenario.mixedSearch).input.locationIds,[scenario.venkertId,'city:Hajdúsámson']);
+ assert.notEqual(venkert.owner,find(scenario.quarterSearch).owner);assert.notEqual(sestakert.owner,find(scenario.quarterSearch).owner);
+ assert.ok(find(scenario.quarterSearch).input.locationIds.every(id=>getLocation(id)), 'Both quarter IDs must resolve from the shipped metadata');
 });
 
 test('named batches have new account and fixture identities while keeping the original three accounts untouched',()=>{

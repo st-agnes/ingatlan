@@ -98,6 +98,7 @@ public static class TestDataSeed
                     ?? throw new InvalidOperationException("A property fixture is empty.");
                 var property = new Property { Id = id, OwnerId = owner.Id, CreatedAt = now };
                 Rules.Apply(property, input);
+                AssignSyntheticCoordinates(property);
                 if (property.Archived) throw new InvalidOperationException("Initial test properties must be active.");
                 properties.Add(property);
             }
@@ -163,6 +164,52 @@ public static class TestDataSeed
             throw new InvalidOperationException("Invalid stable fixture key.");
     }
 
+    /// <summary>
+    /// Fixture-only coordinates. These deliberately fictional addresses have
+    /// never been sent to Google and must never be described as validated homes.
+    /// </summary>
+    public static void AssignSyntheticCoordinates(Property property)
+    {
+        if (property.Street != "OTTHONRA TEST")
+            throw new InvalidOperationException("Synthetic fixture coordinates require the reserved fictional test street.");
+        var areas = NeighborhoodCatalog.All.Where(area => area.City == property.City).ToArray();
+        var districtFixtureName = property.LocationId switch {
+            "district:Budapest:2" => "Rózsadomb", "district:Budapest:9" => "Belső-Ferencváros",
+            "district:Budapest:11" => "Lágymányos", "district:Budapest:13" => "Újlipótváros", _ => null
+        };
+        var area = areas.FirstOrDefault(candidate => candidate.Name == property.Neighborhood)
+            ?? areas.FirstOrDefault(candidate => candidate.Name == districtFixtureName) ?? areas.FirstOrDefault();
+        var point = area is null ? NeighborhoodCatalog.TestPointForCity(property.City) : NeighborhoodCatalog.RepresentativePoint(area.Id);
+        if (point is null)
+            throw new InvalidOperationException("A fictional fixture requires a synthetic point in its own municipality.");
+        property.Latitude = point.Latitude;
+        property.Longitude = point.Longitude;
+        property.GeocodedAt = DateTime.UtcNow;
+        property.GeocodingProvider = "synthetic-test-fixture";
+        property.GeocodingQuality = "SYNTHETIC";
+        property.GeocodingPlaceId = "synthetic:" + (area?.Id ?? "city:" + property.City);
+        property.GeocodingAddressKey = PropertyGeocodingService.AddressKey(property);
+        property.NeighborhoodIdsJson = "[]";
+    }
+
+    /// <summary>Classify fixture points with the same native polygon query as real saved properties.</summary>
+    public static async Task AssignSyntheticMembershipAsync(AppDb db, IEnumerable<Property> properties, CancellationToken cancellationToken = default)
+    {
+        var classified = new Dictionary<(double Latitude, double Longitude), string>();
+        foreach (var property in properties)
+        {
+            if (property.GeocodingProvider != "synthetic-test-fixture" || property.Latitude is not double latitude || property.Longitude is not double longitude)
+                throw new InvalidOperationException("Only explicitly synthetic fixture points can use fixture membership assignment.");
+            var coordinate = (latitude, longitude);
+            if (!classified.TryGetValue(coordinate, out var membership))
+            {
+                membership = JsonSerializer.Serialize(await NeighborhoodData.ComputeMembershipAsync(db, latitude, longitude, cancellationToken));
+                classified.Add(coordinate, membership);
+            }
+            property.NeighborhoodIdsJson = membership;
+        }
+    }
+
     /// <summary>Delete dependent rows first, keeping real MySQL foreign keys enabled.</summary>
     public static IReadOnlyList<string> DeletionOrder(IModel model)
     {
@@ -218,6 +265,7 @@ public static class TestDataSeed
                     "SELECT COUNT(*) FROM `__OtthonraTestSeeds` WHERE `RevisionId` = @revision", cancellationToken, ("revision", revisionKey))) > 0)
                 return false;
             var plan = BuildPlan(catalog); // Validation precedes DELETE.
+            await AssignSyntheticMembershipAsync(db, plan.Properties, cancellationToken);
             var tables = DeletionOrder(db.Model);
             db.ChangeTracker.Clear();
             await using var transaction = await db.Database.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken);

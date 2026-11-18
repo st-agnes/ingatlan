@@ -1,0 +1,29 @@
+{
+  "scope": "municipality",
+  "aliases": [
+    {
+      "municipality": "Eger",
+      "canonicalName": "Felsőváros",
+      "aliases": [
+        "Felsőváros (Északi városrész)",
+        "Északi városrész"
+      ],
+      "evidence": {
+        "literalSavedName": "Felsőváros (Északi városrész)",
+        "sourceUrl": "https://www.openstreetmap.org/node/1288766289",
+        "sourcePoint": {
+          "sourceId": "osm:node:1288766289",
+          "coordinates": [
+            20.3748039,
+            47.9170799
+          ],
+          "placeKind": "suburb",
+          "sourceUrl": "https://www.openstreetmap.org/node/1288766289",
+          "snapshotDate": "2026-11-12T21:23:05Z"
+        },
+        "existingPolygonSourceUrl": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf",
+        "reason": "The retained named-place source explicitly writes Északi városrész as the parenthetical alternative of Felsőváros. The existing municipal polygon already uses Felsőváros. This declares a scoped name equivalence, not an assertion of independently surveyed boundaries."
+      }
+    }
+  ]
+}

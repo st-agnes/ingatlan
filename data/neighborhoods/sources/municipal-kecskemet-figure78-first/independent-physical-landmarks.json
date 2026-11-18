@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent visual physical-feature observations for the Figure79/Figure78 photographic overlap. Source JPEGs and raw pixel-axis crops only; no geographical coordinate, quarter name point, geographic transform or NCC model file is read.",
+  "images": {
+    "79": {
+      "path": "calibration-figure79.jpeg",
+      "sha256": "8d6217e4ae20dadfd07141aaed4dff0c057166fd60f30d8a7c0eec9b9fd5079d",
+      "size": [
+        1694,
+        1202
+      ]
+    },
+    "78": {
+      "path": "figure78-p166-xref204.jpeg",
+      "sha256": "63a05d0c439ef62c8feea3ca0347f7d944b98676c030960a38ccd4a9788870fd",
+      "size": [
+        1698,
+        1202
+      ]
+    }
+  },
+  "coordinateConvention": "Original JPEG integer pixel indices, x right/y down; manual uncertainty half-widths are interpretation ranges, not calibrated statistical error.",
+  "landmarks": [
+    {
+      "id": "retail-roof-nw-four-boxes",
+      "physicalDetail": "Northwest box in the conspicuous two-by-two dark rooftop-box group on the large retail building south of its main parking lot.",
+      "figure79Pixel": [
+        684,
+        1158
+      ],
+      "figure78Pixel": [
+        278,
+        502
+      ],
+      "manualInterpretationHalfWidthFigure79Pixels": 1.5,
+      "manualInterpretationHalfWidthFigure78Pixels": 1.5,
+      "rawGrid79": "independent-image-alignment/79-retail-nw-detail.png",
+      "rawGrid78": "independent-image-alignment/78-retail-nw-detail.png"
+    },
+    {
+      "id": "eastern-small-pale-house-roof",
+      "physicalDetail": "Small pale/blue-gray residential roof in the eastern block, at the same corner where the adjacent red-roof rows and angular street branches meet.",
+      "figure79Pixel": [
+        1458,
+        1127
+      ],
+      "figure78Pixel": [
+        967,
+        474
+      ],
+      "manualInterpretationHalfWidthFigure79Pixels": 2.5,
+      "manualInterpretationHalfWidthFigure78Pixels": 2.5,
+      "rawGrid79": "independent-image-alignment/79-east-white-roof-detail.png",
+      "rawGrid78": "independent-image-alignment/78-east-white-roof-detail.png"
+    },
+    {
+      "id": "western-roundabout-green-island",
+      "physicalDetail": "Visual center of the circular green roundabout island northwest of the retail roof. The southwest perimeter is partly overprinted by a source district line, but the island and most of the carriageway are visible.",
+      "figure79Pixel": [
+        407,
+        1124
+      ],
+      "figure78Pixel": [
+        33,
+        475
+      ],
+      "manualInterpretationHalfWidthFigure79Pixels": 3,
+      "manualInterpretationHalfWidthFigure78Pixels": 3,
+      "rawGrid79": "independent-image-alignment/79-roundabout-grid.png",
+      "rawGrid78": "independent-image-alignment/78-roundabout-grid.png"
+    },
+    {
+      "id": "larger-blue-hall-roof",
+      "physicalDetail": "Center of the larger saturated blue hall roof northeast of the roundabout, beside a smaller blue roof across the dark service lane.",
+      "figure79Pixel": [
+        432,
+        1075
+      ],
+      "figure78Pixel": [
+        56,
+        426
+      ],
+      "manualInterpretationHalfWidthFigure79Pixels": 2,
+      "manualInterpretationHalfWidthFigure78Pixels": 2,
+      "rawGrid79": "independent-image-alignment/79-blue-hall-detail.png",
+      "rawGrid78": "independent-image-alignment/78-blue-hall-detail.png"
+    }
+  ],
+  "preview": "independent-physical-landmarks-preview.png",
+  "observations": {
+    "samePhysicalFeaturesVisible": true,
+    "sameUnderlyingPhotoCropResamplingSupported": true,
+    "matchingDetails": "The retail footprint, parking rows and two-by-two rooftop boxes, eastern house/roof constellation, roundabout island and paired blue-roof halls have matching shapes and arrangement.",
+    "topographicChangeObservedWithinTheseFourPatches": false,
+    "tonalDifference": "The original maps highlight different source quarters; identical buildings are bright in one image and darkened in the other. This is retained as a map-graphic difference.",
+    "nccModelFileConsultedForFinalManualMeasurements": false,
+    "geographicDataConsultedForPairSearch": false,
+    "measurementsAdjustedToNccOrGeographicModel": false,
+    "fullPhotoDateOrGlobalFrameIdentityProved": false
+  },
+  "approvalScope": "These local physical observations may independently test an image-to-image model. They do not validate a geographic calibration, southern/eastern extrapolation, a current neighborhood extent or address assignment.",
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "frozenDirectoriesModified": false
+}

@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Hódmezővásárhely",
+  "scoutedAt": "2026-11-14",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "sourceUrl": "https://hodmezovasarhely.hu/wp-content/uploads/strategiak_koncepciok/Integr%C3%A1lt-Telfejli-Stra%C3%A9gia_2014.pdf",
+  "sourceAdoptedAt": "2014-09-17",
+  "candidatesAcquired": 0,
+  "results": [
+    {
+      "name": "Belváros",
+      "section": "2.3.1",
+      "printedPage": 53,
+      "names": [
+        "Kaszap utca",
+        "Andrássy út",
+        "Bethlen István utca",
+        "Teleki utca",
+        "Holló utca",
+        "Damjanich utca",
+        "Vajda utca",
+        "Árvíz utca",
+        "Kodály Zoltán utca",
+        "Hősök tere",
+        "Tóalj utca"
+      ],
+      "extensionsExamined": [
+        "Pálffy utca",
+        "Lázár utca",
+        "Dr. Imre József utca",
+        "Szőnyi utca"
+      ],
+      "literalGroupWayCounts": {
+        "Kaszap utca": 15,
+        "Andrássy út": 9,
+        "Bethlen István utca": 5,
+        "Teleki utca": 7,
+        "Holló utca": 3,
+        "Damjanich utca": 6,
+        "Vajda utca": 2,
+        "Árvíz utca": 1,
+        "Kodály Zoltán utca": 5,
+        "Hősök tere": 1,
+        "Tóalj utca": 12
+      },
+      "consecutiveLiteralGroupGaps": [
+        {
+          "from": "Kaszap utca",
+          "to": "Andrássy út",
+          "separationMeters": 0.0,
+          "nearestEovCoordinates": [
+            [
+              748234.6247007785,
+              119723.46183062234
+            ],
+            [
+              748234.6247007785,
+              119723.46183062234
+            ]
+          ]
+        },
+        {
+          "from": "Andrássy út",
+          "to": "Bethlen István utca",
+          "separationMeters": 66.09040735008996,
+          "nearestEovCoordinates": [
+            [
+              748512.9148423756,
+              119985.59786997909
+            ],
+            [
+              748531.621614105,
+              120048.98555518028
+            ]
+          ]
+        },
+        {
+          "from": "Bethlen István utca",
+          "to": "Teleki utca",
+          "separationMeters": 35.81470941765189,
+          "nearestEovCoordinates": [
+            [
+              748200.412111144,
+              120232.56598816164
+            ],
+            [
+              748189.6360281475,
+              120266.72106751923
+            ]
+          ]
+        },
+        {
+          "from": "Teleki utca",
+          "to": "Holló utca",
+          "separationMeters": 317.1862805205819,
+          "nearestEovCoordinates": [
+            [
+              747664.5002749112,
+              120492.94889574735
+            ],
+            [
+              747381.7096759375,
+              120636.60338987342
+            ]
+          ]
+        },
+        {
+          "from": "Holló utca",
+          "to": "Damjanich utca",
+          "separationMeters": 0.0,
+          "nearestEovCoordinates": [
+            [
+              746897.2776630642,
+              120403.36860468875
+            ],
+            [
+              746897.2776630642,
+              120403.36860468875
+            ]
+          ]
+        },
+        {
+          "from": "Damjanich utca",
+          "to": "Vajda utca",
+          "separationMeters": 19.80783979554556,
+          "nearestEovCoordinates": [
+            [
+              747206.2426571846,
+              119914.24293792229
+            ],
+            [
+              747187.9811645943,
+              119906.57036301287
+            ]
+          ]
+        },
+        {
+          "from": "Vajda utca",
+          "to": "Árvíz utca",
+          "separationMeters": 16.439940385319275,
+          "nearestEovCoordinates": [
+            [
+              747157.6888673676,
+              119650.26828060763
+            ],
+            [
+              747141.2829122212,
+              119649.21174115913
+            ]
+          ]
+        },
+        {
+          "from": "Árvíz utca",
+          "to": "Kodály Zoltán utca",
+          "separationMeters": 69.50604875890212,
+          "nearestEovCoordinates": [
+            [
+              747136.8571939457,
+              119548.55982368725
+            ],
+            [
+              747121.9130943075,
+              119480.67930586306
+            ]
+          ]
+        },
+        {
+          "from": "Kodály Zoltán utca",
+          "to": "Hősök tere",
+          "separationMeters": 60.15277368590191,
+          "nearestEovCoordinates": [
+            [
+              747386.3502309407,
+              119444.85332827657
+            ],
+            [
+              747391.0596360096,
+              119504.82146720054
+            ]
+          ]
+        },
+        {
+          "from": "Hősök tere",
+          "to": "Tóalj utca",
+          "separationMeters": 62.04781439026648,
+          "nearestEovCoordinates": [
+            [
+              747431.3796685296,
+              119502.22519212175
+            ],
+            [
+              747427.3925621316,
+              119440.30561320539
+            ]
+          ]
+        },
+        {
+          "from": "Tóalj utca",
+          "to": "Kaszap utca",
+          "separationMeters": 2.3311461848195894,
+          "nearestEovCoordinates": [
+            [
+              748128.4984192632,
+              119355.2826768602
+            ],
+            [
+              748130.0721414584,
+              119353.5628975176
+            ]
+          ]
+        }
+      ],
+      "extendedPhysicalGraphFaceAreasSquareMeters": [
+        1480.9441533488948,
+        1406.588812205474,
+        1011.3707000258465,
+        577.8854354498242,
+        389.8402339974087,
+        388.46635048299123,
+        344.9099666220577,
+        314.1012169976911,
+        294.96800091346574,
+        282.5336360580996,
+        276.17851928702095,
+        262.01425014224577,
+        259.32180480825645,
+        254.85259770610284,
+        226.48630527329053,
+        222.78943317413265,
+        221.9568049922126,
+        194.23643163496774,
+        159.57887807106854,
+        151.27458754325,
+        150.40799234205588
+      ],
+      "noQuarterCandidateConstructed": true,
+      "reasons": [
+        "Literal named road/rail graph is incomplete or semantically ambiguous.",
+        "Even the recorded bounded physical extensions do not close a plausible quarter face.",
+        "No synthetic link, road-name correction, square-side choice or rail-number substitution is silently accepted."
+      ]
+    },
+    {
+      "name": "Kertváros",
+      "section": "2.3.3",
+      "printedPage": 59,
+      "names": [
+        "Kodály Zoltán utca",
+        "Hősök tere",
+        "Tóalj utca",
+        "Kaszap utca",
+        "rail-135",
+        "rail-140"
+      ],
+      "extensionsExamined": [
+        "rail-130",
+        "Dr. Imre József utca",
+        "Szőnyi utca"
+      ],
+      "literalGroupWayCounts": {
+        "Kodály Zoltán utca": 5,
+        "Hősök tere": 1,
+        "Tóalj utca": 12,
+        "Kaszap utca": 15,
+        "rail-135": 15,
+        "rail-140": 0
+      },
+      "consecutiveLiteralGroupGaps": [
+        {
+          "from": "Kodály Zoltán utca",
+          "to": "Hősök tere",
+          "separationMeters": 60.15277368590191,
+          "nearestEovCoordinates": [
+            [
+              747386.3502309407,
+              119444.85332827657
+            ],
+            [
+              747391.0596360096,
+              119504.82146720054
+            ]
+          ]
+        },
+        {
+          "from": "Hősök tere",
+          "to": "Tóalj utca",
+          "separationMeters": 62.04781439026648,
+          "nearestEovCoordinates": [
+            [
+              747431.3796685296,
+              119502.22519212175
+            ],
+            [
+              747427.3925621316,
+              119440.30561320539
+            ]
+          ]
+        },
+        {
+          "from": "Tóalj utca",
+          "to": "Kaszap utca",
+          "separationMeters": 2.3311461848195894,
+          "nearestEovCoordinates": [
+            [
+              748128.4984192632,
+              119355.2826768602
+            ],
+            [
+              748130.0721414584,
+              119353.5628975176
+            ]
+          ]
+        },
+        {
+          "from": "Kaszap utca",
+          "to": "rail-135",
+          "separationMeters": 0.0,
+          "nearestEovCoordinates": [
+            [
+              748093.3353462896,
+              118879.9780911255
+            ],
+            [
+              748093.3353462896,
+              118879.9780911255
+            ]
+          ]
+        },
+        {
+          "from": "rail-135",
+          "to": "rail-140",
+          "missingLiteralSourceGroup": true
+        },
+        {
+          "from": "rail-140",
+          "to": "Kodály Zoltán utca",
+          "missingLiteralSourceGroup": true
+        }
+      ],
+      "extendedPhysicalGraphFaceAreasSquareMeters": [
+        577.8854354498242,
+        314.1012169976911,
+        294.96800091346574,
+        276.17851928702095,
+        262.01425014224577,
+        226.48630527329053,
+        222.78943317413265,
+        221.9568049922126,
+        194.23643163496774
+      ],
+      "noQuarterCandidateConstructed": true,
+      "reasons": [
+        "Literal named road/rail graph is incomplete or semantically ambiguous.",
+        "Even the recorded bounded physical extensions do not close a plausible quarter face.",
+        "No synthetic link, road-name correction, square-side choice or rail-number substitution is silently accepted."
+      ]
+    }
+  ]
+}

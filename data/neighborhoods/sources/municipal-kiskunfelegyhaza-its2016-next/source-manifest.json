@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "status": "source-local reviewed packet pending final independent freeze; no global writes",
+  "municipality": "Kiskunfélegyháza",
+  "sourcePdfSha256": "5a32552dc02e2bca986d27d97e41633549b5d1f23147f8e00b6abbe7c421b48b",
+  "sourceMapNativeJpegSha256": "a7b734e8904b9215a4aba01dc3763ef72b6c21bc4dd813f6e06c8365dbd03e1a",
+  "sourceSchema": "2016 ITS Table 4 and Map 2, following KSH units from municipal 2014 submission; census 2011 statistics distinct",
+  "literalFineCandidateNames": [
+    "Kossuthváros",
+    "Petőfi lakótelep",
+    "Bankfalu",
+    "Arany-hegyi lakótelep",
+    "Zöldmező lakótelep"
+  ],
+  "counts": {
+    "mainEstimatedFineCandidates": 5,
+    "sourceObservedClosedContours": 4,
+    "sourceContoursWithExplicitCap": 1,
+    "newPrimaryFeatures": 0,
+    "placementAlternativesAdditionalQuarterCount": 0,
+    "capAlternativesAdditionalQuarterCount": 0
+  },
+  "withheldSourceUnits": [
+    {
+      "unit": 1,
+      "reason": "Central residual/built-up source unit, not one of this fine-quarter cohort."
+    },
+    {
+      "unit": 6,
+      "reason": "Combined parent; no subdivision into named children."
+    },
+    {
+      "unit": 12,
+      "reason": "Not mapped; no extent inferred."
+    },
+    {
+      "unit": 15,
+      "reason": "Label without geographic extent; no area inferred."
+    }
+  ],
+  "mixedContourFlags": {
+    "observedClosedContourUnits": [
+      2,
+      4,
+      13,
+      14
+    ],
+    "estimatedContourUnits": [
+      3
+    ],
+    "registryHasNoBlanketContourOverride": true
+  },
+  "petofiCap": {
+    "mainBarrierCells": [
+      [
+        401,
+        618
+      ],
+      [
+        402,
+        618
+      ]
+    ],
+    "rawOpenColorMaskRetained": true,
+    "alternativeBarrierCells": [
+      [
+        398,
+        617
+      ],
+      [
+        399,
+        617
+      ],
+      [
+        400,
+        617
+      ],
+      [
+        401,
+        617
+      ],
+      [
+        402,
+        617
+      ]
+    ],
+    "mainPixelArea": 416,
+    "alternativePixelArea": 418,
+    "estimatedContour": true,
+    "completeSourceContourObserved": false
+  },
+  "geographicPlacement": {
+    "mainModel": "Full-map affine; five actual road/rail junctions; no per-feature model",
+    "fitCrs": "EPSG:23700",
+    "outputCrs": "EPSG:4326",
+    "actualRoadRailFitControls": 5,
+    "sourceNamePointFitControls": 0,
+    "affineFitRmsMetresDiagnosticOnly": 18.679917532306828,
+    "similarityFitRmsMetresDiagnosticOnly": 38.12898848061724,
+    "heldOutManualChecks": [
+      {
+        "id": "H1",
+        "sourcePixel": [
+          360,
+          681
+        ],
+        "targetOsmNodeId": 1843236018,
+        "targetWgs84": [
+          19.8380807,
+          46.7139254
+        ],
+        "actualIncidentWayIds": [
+          173528095,
+          204027317,
+          1274915181
+        ],
+        "physicalCorrespondence": [
+          "Bercsényi utca",
+          "Mikszáth Kálmán utca"
+        ],
+        "role": "not_used_for_fit",
+        "sourcePickingIsManual": true,
+        "affineResidualMetresDiagnosticOnly": 12.726523132362933,
+        "similarityResidualMetresDiagnosticOnly": 42.59401557729534
+      },
+      {
+        "id": "H2",
+        "sourcePixel": [
+          435,
+          633
+        ],
+        "targetOsmNodeId": 5914756408,
+        "targetWgs84": [
+          19.856167,
+          46.7226822
+        ],
+        "actualIncidentWayIds": [
+          204307746,
+          219429889,
+          626515368,
+          1313756944
+        ],
+        "physicalCorrespondence": [
+          "Kőrösi utca",
+          "Tanyasori út"
+        ],
+        "role": "not_used_for_fit",
+        "sourcePickingIsManual": true,
+        "affineResidualMetresDiagnosticOnly": 48.551137961352524,
+        "similarityResidualMetresDiagnosticOnly": 76.84227325797531
+      },
+      {
+        "id": "H3a",
+        "sourcePixel": [
+          449,
+          648
+        ],
+        "targetOsmNodeId": 2139468150,
+        "targetWgs84": [
+          19.8601414,
+          46.7201591
+        ],
+        "actualIncidentWayIds": [
+          203943116,
+          1381993101,
+          1443879596
+        ],
+        "physicalCorrespondence": [
+          "Alpári út",
+          "Tanyasori út"
+        ],
+        "role": "not_used_for_fit",
+        "sourcePickingIsManual": true,
+        "affineResidualMetresDiagnosticOnly": 45.14875875295187,
+        "similarityResidualMetresDiagnosticOnly": 66.06893702875719
+      },
+      {
+        "id": "H3b-current-junction-alternative",
+        "sourcePixel": [
+          449,
+          648
+        ],
+        "targetOsmNodeId": 5914074516,
+        "targetWgs84": [
+          19.8603835,
+          46.7204088
+        ],
+        "actualIncidentWayIds": [
+          203943116,
+          219429889
+        ],
+        "physicalCorrespondence": [
+          "Alpári út",
+          "Tanyasori út"
+        ],
+        "role": "not_used_for_fit",
+        "sourcePickingIsManual": true,
+        "affineResidualMetresDiagnosticOnly": 72.47411633357893,
+        "similarityResidualMetresDiagnosticOnly": 82.68673591498809
+      }
+    ],
+    "absoluteAccuracyEstablished": false,
+    "uncertaintyMeaning": "Residuals and model variation are correspondence diagnostics only, not accuracy or confidence bounds."
+  },
+  "currentNameEvidence": {
+    "actualPbfPoints": 5,
+    "allInsideMainCandidates": true,
+    "explicitSpellingVariants": [
+      {
+        "sourceUnitNumber": 3,
+        "literalSourceName": "Petőfi lakótelep",
+        "actualOsmName": "Petőfi-lakótelep",
+        "actualOsmNodeId": 1300486634,
+        "matchRule": "explicit_space_hyphen_spelling_variant_only",
+        "pointInside": true,
+        "pointOutsideDistanceMetresDiagnosticOnly": 0.0,
+        "usedForFitOrCorrection": false,
+        "affineSimilarityHausdorffMetresDiagnosticOnly": 23.26397752790354,
+        "affineSimilaritySymmetricDifferenceSquareMetres": 13078.326256108747,
+        "wholeCurrentQuarterExtentProven": false
+      },
+      {
+        "sourceUnitNumber": 13,
+        "literalSourceName": "Arany-hegyi lakótelep",
+        "actualOsmName": "Aranyhegyi lakótelep",
+        "actualOsmNodeId": 10707051448,
+        "matchRule": "explicit_space_hyphen_spelling_variant_only",
+        "pointInside": true,
+        "pointOutsideDistanceMetresDiagnosticOnly": 0.0,
+        "usedForFitOrCorrection": false,
+        "affineSimilarityHausdorffMetresDiagnosticOnly": 19.321217702707756,
+        "affineSimilaritySymmetricDifferenceSquareMetres": 17843.668737528413,
+        "wholeCurrentQuarterExtentProven": false
+      }
+    ],
+    "pointsUsedForFitOrCorrection": false,
+    "currentWholeExtentEstablished": false
+  },
+  "osmAttribution": "© OpenStreetMap contributors",
+  "osmLicense": "ODbL-1.0",
+  "sourceRights": "Unrestricted municipal map reuse rights unestablished",
+  "originalBoundarySurveyDateEstablished": false,
+  "officialBoundaryAuthorityEstablished": false,
+  "usableForAddressAssignment": false,
+  "candidateFile": {
+    "path": "kiskunfelegyhaza-inferred-import.geojson",
+    "sha256": "7e4a3160b967a8331016204c50e38dbe2241456fba5876403b06174f9d276462"
+  },
+  "independentReviewPath": "independent-parent-review.json",
+  "validationPath": "validation-report.json",
+  "reproductionPath": "reproduction-check.json",
+  "fullOriginalPdfIncluded": false,
+  "fullPbfIncluded": false,
+  "globalWritesPerformed": false
+}

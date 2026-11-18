@@ -1,0 +1,702 @@
+{
+  "sourceRecordCount": 77,
+  "selectedAdditionalCandidates": 23,
+  "existingPrimaryCount": 26,
+  "previousSixCandidateCount": 6,
+  "newPrimaryAdmissions": 0,
+  "records": [
+    {
+      "FID": 1,
+      "literalName": "Nagyerdőtölgyes",
+      "sourceCategory": "egyeb_ovezet",
+      "disposition": "deferred_facility_use_or_forest_role",
+      "reason": "Identity and whole-quarter extent beyond exact shared labels need separate semantic review; not a claim that all industrial/forest quarters are invalid.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 2,
+      "literalName": "Pallag",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 3,
+      "literalName": "Gyógyszergyár",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "deferred_facility_use_or_forest_role",
+      "reason": "Identity and whole-quarter extent beyond exact shared labels need separate semantic review; not a claim that all industrial/forest quarters are invalid.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 4,
+      "literalName": "Közterület",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "excluded_generic_label",
+      "reason": "Generic Közterület, no distinct named quarter identity.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 5,
+      "literalName": "Debreceni Egyetem tud-tech park",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "deferred_facility_use_or_forest_role",
+      "reason": "Identity and whole-quarter extent beyond exact shared labels need separate semantic review; not a claim that all industrial/forest quarters are invalid.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 6,
+      "literalName": "Ispotály",
+      "sourceCategory": "lakotelep",
+      "disposition": "previous_six_estimated_identity",
+      "reason": "Already represented in earlier six-candidate packet; unchanged.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 7,
+      "literalName": "Belváros",
+      "sourceCategory": "belvaros",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 8,
+      "literalName": "Repülőtér",
+      "sourceCategory": "egyeb_ovezet",
+      "disposition": "deferred_facility_use_or_forest_role",
+      "reason": "Identity and whole-quarter extent beyond exact shared labels need separate semantic review; not a claim that all industrial/forest quarters are invalid.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 9,
+      "literalName": "Déli ipari terület",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "deferred_facility_use_or_forest_role",
+      "reason": "Identity and whole-quarter extent beyond exact shared labels need separate semantic review; not a claim that all industrial/forest quarters are invalid.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 10,
+      "literalName": "Epreskert",
+      "sourceCategory": "lakotelep",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 11,
+      "literalName": "Széchenyikert",
+      "sourceCategory": "lakotelep",
+      "disposition": "quarantine_suspected_source_mislabel",
+      "reason": "Duplicate literal Széchenyikert FID11 overlaps Újkert and is not corrected, aliased, merged or admitted.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 12,
+      "literalName": "Sestakert",
+      "sourceCategory": "lakotelep",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 13,
+      "literalName": "Libakert",
+      "sourceCategory": "lakotelep",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 14,
+      "literalName": "Vénkert",
+      "sourceCategory": "lakotelep",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 15,
+      "literalName": "József Attila telep",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "deferred_name_variant",
+      "reason": "Literal source spelling/wording differs from FVS75or current exact-name point; no alias invented in this cohort.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 16,
+      "literalName": "Zsibogó",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "deferred_facility_use_or_forest_role",
+      "reason": "Identity and whole-quarter extent beyond exact shared labels need separate semantic review; not a claim that all industrial/forest quarters are invalid.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 17,
+      "literalName": "Auguszta",
+      "sourceCategory": "erdo",
+      "disposition": "deferred_facility_use_or_forest_role",
+      "reason": "Identity and whole-quarter extent beyond exact shared labels need separate semantic review; not a claim that all industrial/forest quarters are invalid.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 18,
+      "literalName": "Egyetemváros",
+      "sourceCategory": "erdo",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 19,
+      "literalName": "Nagyerdőpark",
+      "sourceCategory": "erdo",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 20,
+      "literalName": "Nagyerdő",
+      "sourceCategory": "villanegyed",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 21,
+      "literalName": "Nagyerdőalja",
+      "sourceCategory": "villanegyed",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 22,
+      "literalName": "Péterfia",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 23,
+      "literalName": "Szentlászlófalva",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 24,
+      "literalName": "Burgundia",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 25,
+      "literalName": "Kandia",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 26,
+      "literalName": "Miklóskapu",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 27,
+      "literalName": "Tizenháromváros",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 28,
+      "literalName": "Mesterfalva",
+      "sourceCategory": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 29,
+      "literalName": "Nyulas",
+      "sourceCategory": "kertvaros",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 30,
+      "literalName": "Úrrétje",
+      "sourceCategory": "kertvaros",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 31,
+      "literalName": "Tócóliget",
+      "sourceCategory": "kertvaros",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 32,
+      "literalName": "Akadémiakert",
+      "sourceCategory": "kertvaros",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 33,
+      "literalName": "Kertváros",
+      "sourceCategory": "kertvaros",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 34,
+      "literalName": "Köntöskert",
+      "sourceCategory": "kertvaros",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 35,
+      "literalName": "Csigekert",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 36,
+      "literalName": "Nagysándortelep",
+      "sourceCategory": "kertvaros",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 37,
+      "literalName": "Hatvan utcai kert",
+      "sourceCategory": "kertvaros",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 38,
+      "literalName": "Kismacs",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 39,
+      "literalName": "Józsa",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "deferred_broad_parent",
+      "reason": "Józsa is a broader parent; no invented split into Felsőjózsa/Alsójózsa.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 40,
+      "literalName": "Sámsonikert",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 41,
+      "literalName": "Tócóvölgy",
+      "sourceCategory": "lakotelep",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 42,
+      "literalName": "Tócóskert",
+      "sourceCategory": "lakotelep",
+      "disposition": "previous_six_estimated_identity",
+      "reason": "Already represented in earlier six-candidate packet; unchanged.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 43,
+      "literalName": "Sóház",
+      "sourceCategory": "lakotelep",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 44,
+      "literalName": "Dobozikert",
+      "sourceCategory": "lakotelep",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 45,
+      "literalName": "Téglagyár",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "deferred_name_point_outside_extent",
+      "reason": "Current exact-name point lies outside source footprint; no fitting or repair.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 46,
+      "literalName": "Tócórét",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "deferred_facility_use_or_forest_role",
+      "reason": "Identity and whole-quarter extent beyond exact shared labels need separate semantic review; not a claim that all industrial/forest quarters are invalid.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 47,
+      "literalName": "Köntösgát",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "deferred_facility_use_or_forest_role",
+      "reason": "Identity and whole-quarter extent beyond exact shared labels need separate semantic review; not a claim that all industrial/forest quarters are invalid.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 48,
+      "literalName": "Basahalom",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "deferred_facility_use_or_forest_role",
+      "reason": "Identity and whole-quarter extent beyond exact shared labels need separate semantic review; not a claim that all industrial/forest quarters are invalid.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 49,
+      "literalName": "Kétútköz",
+      "sourceCategory": "ipari_uzem_terulet",
+      "disposition": "deferred_facility_use_or_forest_role",
+      "reason": "Identity and whole-quarter extent beyond exact shared labels need separate semantic review; not a claim that all industrial/forest quarters are invalid.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 50,
+      "literalName": "Kondoros",
+      "sourceCategory": "kertvaros",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 51,
+      "literalName": "Biharikert",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 52,
+      "literalName": "Percsikert",
+      "sourceCategory": "kertvaros",
+      "disposition": "deferred_name_variant",
+      "reason": "Literal source spelling/wording differs from FVS75or current exact-name point; no alias invented in this cohort.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 53,
+      "literalName": "Műhelytelep",
+      "sourceCategory": "kertvaros",
+      "disposition": "deferred_name_point_outside_extent",
+      "reason": "Current exact-name point lies outside source footprint; no fitting or repair.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 54,
+      "literalName": "Kincseshegy",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 55,
+      "literalName": "Csapókert",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 56,
+      "literalName": "Veres Péter kert",
+      "sourceCategory": "kertvaros",
+      "disposition": "deferred_name_variant",
+      "reason": "Literal source spelling/wording differs from FVS75or current exact-name point; no alias invented in this cohort.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 57,
+      "literalName": "Hőforras",
+      "sourceCategory": "kertvaros",
+      "disposition": "deferred_name_variant",
+      "reason": "Literal source spelling/wording differs from FVS75or current exact-name point; no alias invented in this cohort.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 58,
+      "literalName": "Júliatelep",
+      "sourceCategory": "kertvaros",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 59,
+      "literalName": "Kerekestelep",
+      "sourceCategory": "kertvaros",
+      "disposition": "previous_six_estimated_identity",
+      "reason": "Already represented in earlier six-candidate packet; unchanged.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 60,
+      "literalName": "Homokkert",
+      "sourceCategory": "kertvaros",
+      "disposition": "previous_six_estimated_identity",
+      "reason": "Already represented in earlier six-candidate packet; unchanged.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 61,
+      "literalName": "Lencztelep",
+      "sourceCategory": "kertvaros",
+      "disposition": "previous_six_estimated_identity",
+      "reason": "Already represented in earlier six-candidate packet; unchanged.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 62,
+      "literalName": "Boldogfalvikert",
+      "sourceCategory": "kertvaros",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 63,
+      "literalName": "Tégláskert",
+      "sourceCategory": "kertvaros",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 64,
+      "literalName": "Majorság",
+      "sourceCategory": "kertvaros",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 65,
+      "literalName": "Vargakert",
+      "sourceCategory": "kertvaros",
+      "disposition": "previous_six_estimated_identity",
+      "reason": "Already represented in earlier six-candidate packet; unchanged.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 66,
+      "literalName": "Postakert",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 67,
+      "literalName": "Széchenyikert",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 68,
+      "literalName": "Lóskúti",
+      "sourceCategory": "kertvaros",
+      "disposition": "deferred_later_schema_area",
+      "reason": "Lóskúti is starred outside the historical75schema; source reference period and separation need separate review.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 69,
+      "literalName": "Falóger",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 70,
+      "literalName": "Wesselényi lakótelep",
+      "sourceCategory": "lakotelep",
+      "disposition": "deferred_name_variant",
+      "reason": "Literal source spelling/wording differs from FVS75or current exact-name point; no alias invented in this cohort.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 71,
+      "literalName": "Gerébytelep",
+      "sourceCategory": "kertvaros",
+      "disposition": "existing_primary_identity",
+      "reason": "Already represented by26baseline; no duplicate coverage increment.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 72,
+      "literalName": "Nagymacs",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 73,
+      "literalName": "Nagycsere",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 74,
+      "literalName": "Dombos",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "deferred_name_point_outside_extent",
+      "reason": "Current exact-name point lies outside source footprint; no fitting or repair.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 75,
+      "literalName": "Haláp",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 76,
+      "literalName": "Bánk",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    },
+    {
+      "FID": 77,
+      "literalName": "Ondód",
+      "sourceCategory": "egyeb_belteruletek",
+      "disposition": "selected_estimated",
+      "reason": "Exact historical fine-quarter and current same-city point identity, valid published outline retained with estimate caveats.",
+      "sourceNamePreserved": true,
+      "sourceGeometryRetainedInRawResponse": true
+    }
+  ]
+}

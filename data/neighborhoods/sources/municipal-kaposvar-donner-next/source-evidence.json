@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "sourceUrl": "https://kph.kaposvar.hu/data/adattar/fvs21-27/fvs21-27.pdf",
+  "localRawPath": ".local/neighborhoods/supplement-originals/kaposvar-fvs.pdf",
+  "pdfSha256": "291aba20ffcc41e604ad737bb6d132ae51b51d70303285e36702e4fc04e6901e",
+  "pdfBytes": 6965334,
+  "pdfPageCount": 388,
+  "coverDate": "2023-07",
+  "coverVersion": "2.0",
+  "planningPeriod": "2021–2027",
+  "pdfCreationMetadata": "D:20240202084234+01'00'",
+  "p185ShortRouteQuote": "67-es úttól (Zselici út)",
+  "p186PrintedMalformedPhrase": "a 67-es út és Kapos a Zselic-csatorna között",
+  "sourceInterpretation": "Donner lies south of the Kapos between road 67 and Zselic-csatorna, toward Szigetvári út. The sentence visibly contains an extraneous or misplaced Kapos token; this packet discloses the four-edge reading as an inference rather than silently correcting the source.",
+  "distinctQuarterIdentityEvidence": "The next sentence describes Rómahegy as adjoining Donner to the east, with its own named-edge sequence. This supports Donner as a distinct named place; the combined map-unit geometry is not used to create a child.",
+  "modernRouteChoice": "Same-document p185 identifies road 67 as Zselici út. The November2026 OSM road67/Zselici route and Szigetvári utca are used. No independent historical route-change survey has been performed.",
+  "sourceAgeUncertaintyMetres": null,
+  "currentFineNameIndependentlyConfirmedFor2026": false,
+  "crops": [
+    {
+      "pdfPageOneBased": 185,
+      "rectanglePdfPoints": [
+        80,
+        547.71875,
+        535,
+        585.37841796875
+      ],
+      "renderScale": 2.5,
+      "output": "source-p185-route-name.png",
+      "sha256": "5646c7ad9f704855c83f11fa0f642ad5a4a51b9e62b04ee051e7605684f49cfe"
+    },
+    {
+      "pdfPageOneBased": 186,
+      "rectanglePdfPoints": [
+        80,
+        174,
+        535,
+        261.0883483886719
+      ],
+      "renderScale": 2.5,
+      "output": "source-p186-donner-description.png",
+      "sha256": "cbdd25a24058e063a21ea785846b1bfd06e8353cb7694e111997a26a350bee70"
+    }
+  ],
+  "rawPdfCommitted": false,
+  "municipalSourceOpenReuseLicenceEstablished": false,
+  "usableForAddressAssignment": false
+}

@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_FOR_TWO_EXPLICIT_INFERRED_SOURCE_CELLS",
+  "independentOfProducerCode": true,
+  "provenanceSha256": {
+    "input-manifest.json": "ef69a2403a01f20467086b897b680f3db07002da31045f4d11598fbdc40979ee",
+    "generated-manifest.json": "cf32a237d1324b756b4c6b21732935be08b3005c936d8f877719feece330f486",
+    "source-pixel-trace.json": "28797b17fb63f94906ca11bc3daccdb579ad73a76191399865f21001ae6d498a",
+    "source-inferred.geojson": "36cc4e59c1516338ba34928dcffdf871e9f01f2432701506a91b5fceb4a2cb5a",
+    "control-specification.json": "ebf0b071b4d3ab3824e50ecced9ede8482188a288fa18762f47501467cec1a6b",
+    "control-roads.geojson": "626c532130175afb62c52f968bfd1bda7e477a7ccf8f1c0a76df8e3419cd1f09",
+    "current-name-points.geojson": "115606912a113bff2de31ff2be8d36bdfa4fa021a4d8a899d1d3c768596cea56",
+    "original-pbf-verification.json": "51ca65408c34688d6c576140aa8958d79bd6c788687c2cc45d8cd76f091243f9",
+    "independent-source-pixel-review.json": "2d6c88557c7f2b2a3bd442ecf7b4677532e9c4faaae7fe73959af921639d9661",
+    "georeference.json": "ca53ee79f25c5e44157a7d1271c76d58208672810d5976a424891a71a949711e",
+    "conversion-proof.json": "5695868ab5b4106c4fb6d2675ee4634505c79e6d049085885f1e799722a981b3",
+    "registry-entry.json": "c7c7ec23aa0a70575b19e1fa8f2e3c3b421e8f47b281042980dcd33bdbfebe20",
+    "audit-independent.py": "5cba618b9fd06455bbfa4bb825df8a45854f91b0faacfd2435e27545341aa78a"
+  },
+  "portableReplay": {
+    "requiresOriginalFullPdfOrPbfForDefaultReplay": false,
+    "usesOnlyFrozenBatchAndProjectValidator": true,
+    "finalManifestExcludedFromOwnReportFingerprint": true,
+    "directPbfRevalidationCommand": "PYTHONPATH=.local/geodata python3 verify-original-pbf.py --check",
+    "originalPbfWasDirectlyReadWhenProofWasCreated": true
+  },
+  "sourceEvidence": {
+    "originalEmbeddedJpegBytesPreserved": true,
+    "sourceImageSha256": "59cbd060c8010a396511cdec69848410b4fee8d6bd8e628500894b5e27565e9c",
+    "sourcePixelIndependentReview": "independent-source-pixel-review.json",
+    "actualBlackConnectedComponentIsSourcePixelSubsetOnly": true,
+    "noGapFillingPixelAdditionFrameClosureOrRepair": true,
+    "denseSourceAndOutputVerticesChecked": 1782,
+    "maximumVertexDisagreementDegrees": 0.0,
+    "allOutputEdgesVerified": true,
+    "sourceHoleCount": 0,
+    "worldHoleCount": 0,
+    "pairwiseSourceAndWorldAreaOverlap": 0
+  },
+  "originalOsmIdentity": {
+    "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "completeControlWayCount": 23,
+    "currentFineNameNodeCount": 2,
+    "everyOriginalNodeCoordinateNodeSequenceTagVersionTimestampMatched": true,
+    "directPbfObjectProof": "original-pbf-verification.json"
+  },
+  "sameSourceManualObservationTransfer": {
+    "archivedPdfImageRectangleMatchesPriorPageRenderPixelForPixel": true,
+    "checkedRenderRectangle": [
+      190,
+      396,
+      1000,
+      1543
+    ],
+    "pixelMismatchCount": 0,
+    "oldManualObservationsTransferred": [
+      {
+        "osmNodeId": 4170613208,
+        "oldPageRenderPixel": [
+          383,
+          622
+        ],
+        "sourceImagePixel": [
+          242.23042290943977,
+          283.1878154350309
+        ],
+        "maximumCoordinateTransferDisagreementPixels": 0.0,
+        "usedInFit": true
+      },
+      {
+        "osmNodeId": 4331477437,
+        "oldPageRenderPixel": [
+          790,
+          820
+        ],
+        "sourceImagePixel": [
+          749.8915049081113,
+          530.1496420495242
+        ],
+        "maximumCoordinateTransferDisagreementPixels": 0.0,
+        "usedInFit": true
+      },
+      {
+        "osmNodeId": 494254692,
+        "oldPageRenderPixel": [
+          625,
+          1040
+        ],
+        "sourceImagePixel": [
+          544.0829581518931,
+          804.5516716211835
+        ],
+        "maximumCoordinateTransferDisagreementPixels": 0.0,
+        "usedInFit": true
+      },
+      {
+        "osmNodeId": 265343223,
+        "oldPageRenderPixel": [
+          277,
+          1228
+        ],
+        "sourceImagePixel": [
+          110.01402317514206,
+          1039.0406787096922
+        ],
+        "maximumCoordinateTransferDisagreementPixels": 0.0,
+        "usedInFit": true
+      },
+      {
+        "osmNodeId": 495545211,
+        "oldPageRenderPixel": [
+          537,
+          868
+        ],
+        "sourceImagePixel": [
+          434.31839988191007,
+          590.0191757742499
+        ],
+        "maximumCoordinateTransferDisagreementPixels": 0.0,
+        "usedInFit": false
+      }
+    ],
+    "fittedOldObservationCount": 4,
+    "fittedNewObservationCount": 2,
+    "otherFigureOrOtherBasemapTransformReused": false,
+    "noOldGeographicTransformUsedToProduceOutput": true
+  },
+  "geographicFit": {
+    "independentlyRefittedInCrs": "EPSG:23700",
+    "controlResidualMeters": [
+      3.287598810620155,
+      4.787726003229771,
+      1.1242697205185157,
+      1.9731379398351536,
+      9.735168889125108,
+      8.494347407926316
+    ],
+    "rmsControlResidualMeters": 5.8568383556036325,
+    "exactHistoricalToCurrentPhysicalJunctionIdentitiesIndependentlyVerified": false,
+    "residualsDoNotVerifyIdentityOrBoundaryAccuracy": true
+  },
+  "excludedFailedPriorSameImageCandidate": {
+    "osmNodeId": 495545211,
+    "originalSourceImagePixel": [
+      434.31839988191007,
+      590.0191757742499
+    ],
+    "independentlyPredictedSourceImagePixel": [
+      423.5567545903614,
+      569.3776212119701
+    ],
+    "insideOriginalInterpretationWindow": false,
+    "sourceFeatureIdentityUnconfirmed": true,
+    "usedInFit": false,
+    "acceptedAsIndependentValidationControl": false
+  },
+  "modelSensitivity": {
+    "leaveOneControlOut": [
+      {
+        "omittedControlId": "node-4170613208",
+        "omittedControlPredictionErrorMeters": 15.093033111085605,
+        "maximumSourceVertexDisplacementMeters": 4.047437942658035,
+        "meanSourceVertexDisplacementMeters": 1.7840144203179624
+      },
+      {
+        "omittedControlId": "node-4331477437",
+        "omittedControlPredictionErrorMeters": 12.663773359699935,
+        "maximumSourceVertexDisplacementMeters": 3.614846118693894,
+        "meanSourceVertexDisplacementMeters": 1.2205279036306174
+      },
+      {
+        "omittedControlId": "node-494254692",
+        "omittedControlPredictionErrorMeters": 1.4058635972798694,
+        "maximumSourceVertexDisplacementMeters": 0.29644390281095734,
+        "meanSourceVertexDisplacementMeters": 0.18884853787052336
+      },
+      {
+        "omittedControlId": "node-265343223",
+        "omittedControlPredictionErrorMeters": 5.393990019052212,
+        "maximumSourceVertexDisplacementMeters": 3.411509740398772,
+        "meanSourceVertexDisplacementMeters": 1.7873677613552619
+      },
+      {
+        "omittedControlId": "node-494064509",
+        "omittedControlPredictionErrorMeters": 16.924543892969325,
+        "maximumSourceVertexDisplacementMeters": 7.215149820425513,
+        "meanSourceVertexDisplacementMeters": 4.349277534837254
+      },
+      {
+        "omittedControlId": "node-494254697",
+        "omittedControlPredictionErrorMeters": 12.80427331490296,
+        "maximumSourceVertexDisplacementMeters": 4.890817346518833,
+        "meanSourceVertexDisplacementMeters": 3.8689913777313247
+      }
+    ],
+    "similarityVsAffineMaximumSourceVertexDisplacementMeters": 5.328324500294829,
+    "similarityVsAffineMeanSourceVertexDisplacementMeters": 2.6573401487273864,
+    "diagnosticNotCalibratedErrorBound": true
+  },
+  "featureChecks": [
+    {
+      "name": "Árpádváros",
+      "allDenseSourceAndOutputVerticesChecked": 991,
+      "maxVertexCoordinateDisagreementDegrees": 0.0,
+      "everyOutputEdgeJoinsExactlyTheCorrespondingConsecutiveSourcePixels": true,
+      "sourceAndWorldHoleCount": 0,
+      "noSourceFrameClosingEdgeOrGeometryRepair": true,
+      "modernNamePoint": {
+        "osmPointId": "osm:node:984225158",
+        "coordinates": [
+          19.6861763,
+          46.9007008
+        ],
+        "currentNameExistsInOriginalPbf": true,
+        "coveredByHistoricalInferredSourceCell": false,
+        "predictedSourceImagePixel": [
+          198.08449759386713,
+          1154.6335007935268
+        ],
+        "distanceOutsideSourcePolygonPixels": 15.23744629028994,
+        "distanceOutsideSourcePolygonInEovMeters": 28.7196096949988,
+        "usedAsRegistrationControl": false,
+        "nameOccurrenceDoesNotProveExtentCorrespondence": true
+      }
+    },
+    {
+      "name": "Kossuthváros",
+      "allDenseSourceAndOutputVerticesChecked": 791,
+      "maxVertexCoordinateDisagreementDegrees": 0.0,
+      "everyOutputEdgeJoinsExactlyTheCorrespondingConsecutiveSourcePixels": true,
+      "sourceAndWorldHoleCount": 0,
+      "noSourceFrameClosingEdgeOrGeometryRepair": true,
+      "modernNamePoint": {
+        "osmPointId": "osm:node:984225141",
+        "coordinates": [
+          19.6943946,
+          46.8996012
+        ],
+        "currentNameExistsInOriginalPbf": true,
+        "coveredByHistoricalInferredSourceCell": false,
+        "predictedSourceImagePixel": [
+          528.961553517438,
+          1218.2427815517003
+        ],
+        "distanceOutsideSourcePolygonPixels": 24.036889868185284,
+        "distanceOutsideSourcePolygonInEovMeters": 45.14290214226476,
+        "usedAsRegistrationControl": false,
+        "nameOccurrenceDoesNotProveExtentCorrespondence": true
+      }
+    }
+  ],
+  "actualProjectGeometryValidator": {
+    "modulePath": "scripts/neighborhoods/build.mjs",
+    "moduleSha256": "7d234a3c4750b6a735483befd02661c6ba199491fec102bd2d301dabf4cb216c",
+    "actualValidateGeometryExportCalled": true,
+    "results": [
+      {
+        "id": "manual:kecskemet-figure73:arpadvaros",
+        "name": "Árpádváros",
+        "valid": true,
+        "bbox": [
+          19.684052739339258,
+          46.89922984022681,
+          19.692081888302837,
+          46.90564094852812
+        ],
+        "vertices": 991
+      },
+      {
+        "id": "manual:kecskemet-figure73:kossuthvaros",
+        "name": "Kossuthváros",
+        "valid": true,
+        "bbox": [
+          19.69057738959373,
+          46.89937737795098,
+          19.696395487339927,
+          46.903785795504014
+        ],
+        "vertices": 791
+      }
+    ],
+    "acceptedCount": 2,
+    "rejectedCount": 0
+  },
+  "sourceScopeDecision": {
+    "fineSourceNames": [
+      "Árpádváros",
+      "Kossuthváros"
+    ],
+    "arpadNotKülsoArpadvaros": true,
+    "kossuthSourceCellDefinitionPdf153Preserved": true,
+    "pdf144NorthernPartCautionPreserved": true,
+    "broaderHistoricalOrCurrentKossuthExtentEquivalenceAsserted": false,
+    "bothModernNamePointsOutsideTheHistoricalSourceCells": true,
+    "neitherFitNorContourShiftedToModernNamePoints": true
+  },
+  "parkingRoadGraph": {
+    "usedToGenerateBoundaryCoordinates": false,
+    "historicalParkingZigzagTakenFromActualClosedSourceContour": true,
+    "unresolvedModernGraphChainNotReplacedWithShortestPathOrInventedConnector": true
+  },
+  "primaryLayerApproved": false,
+  "explicitInferredLayerApproved": true,
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "approvalReason": "The exact source-image contours, same-image observation transfer, complete OSM inputs, all transformed output vertices/edges and actual project admission are verified. Six historical-to-modern road-center identities remain manually interpreted, and the excluded older candidate fails its original interpretation window. Both current name nodes lie outside their respective historical source cells. Preserve these concrete scope/registration uncertainties in the inferred layer; no current/full historical extent or address assignment is approved."
+}

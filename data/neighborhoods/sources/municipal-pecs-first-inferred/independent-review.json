@@ -1,0 +1,1986 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "reviewer": "independent local_pdf_expand/pecs_pixel_review agent",
+  "verdict": "pass_inferred_only_33_records_zero_primary",
+  "scope": "Frozen first snapshot only: original raw source cells, explicit cartographic pixel restoration, unchanged exterior edges, projection arithmetic, strict topology and retained inferred-only status. Geographic placement is unverified.",
+  "sourceRecordCount": 33,
+  "inferredCandidateCount": 33,
+  "candidateFineNames": 32,
+  "candidatePlanningUnits": 1,
+  "primaryApprovedCount": 0,
+  "geographicPlacementVerified": false,
+  "usableForAddressAssignment": false,
+  "sourceImages": [
+    {
+      "originalPdfPageOneBased": 48,
+      "image": "pecs-p48-names.jpeg",
+      "matchesPreviouslyIndependentlyVerifiedOriginalImageSha256": true,
+      "excerptEmbeddedImageByteIdentical": true,
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "originalPdfPageOneBased": 63,
+      "image": "pecs-p63-density.jpeg",
+      "matchesPreviouslyIndependentlyVerifiedOriginalImageSha256": true,
+      "excerptEmbeddedImageByteIdentical": true,
+      "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+    }
+  ],
+  "originalPdfSha256Provenance": "995d0db03e454a34046b248526e0882aee26ffbf40ba916e996afa4c8b49f6b1",
+  "allRawSourceCellExposedFaceSetsIndependentlyVerified": true,
+  "totalRawExposedFaces": 12394,
+  "allInterpretedExposedFaceSetsIndependentlyVerified": true,
+  "totalInterpretedExposedFaces": 11308,
+  "explicitlyReviewedRestoredHoleCount": 86,
+  "restoredOriginalSourcePixelCount": 1076,
+  "externalSourcePixelFacesChanged": 0,
+  "originalFreeSourceCellCount": 221,
+  "freeSourceCellCountAfterRestoration": 221,
+  "freeSourceCellMappingRemainsOneToOne": true,
+  "sourceImageEdgeClosureInvented": false,
+  "holesInExportedGeometries": 0,
+  "strictJsValidCount": 33,
+  "strictJsRejectedCount": 0,
+  "maximumPairwiseOverlapDegreesSquared": 0.0,
+  "strictValidatorSnapshotLiteralOriginIndependentlyComparedAtFreeze": true,
+  "strictValidatorSnapshotSha256": "abf1b564180d9b33593f9ce0d711eb996bf8f3a1d9cbb03b7527167ac515f3d7",
+  "allAuditDataAndValidatorInputsAreLocalSnapshotFiles": true,
+  "independentHomogeneousDensityToEovMatrix": [
+    [
+      19.577810420341596,
+      0.03116452750867288,
+      0.0
+    ],
+    [
+      -0.20754806394509454,
+      -19.73373394690426,
+      0.0
+    ],
+    [
+      577523.2499501936,
+      91751.551014121,
+      1.0
+    ]
+  ],
+  "producerReadOnlyReproductionCheckPassed": true,
+  "producerUnionOrTransformCodeImportedForIndependentCalculations": false,
+  "placementLimits": "Northwestern-only calibration is retained as estimated. Later perimeter controls disagree by up to approximately 350 m. This audit does not certify location, source age/current validity, legal boundary, licence or address assignment.",
+  "networkUsed": false,
+  "producerFilesModified": false,
+  "inputFingerprints": [
+    {
+      "path": "source-inferred.geojson",
+      "sha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95"
+    },
+    {
+      "path": "conversion-proof.json",
+      "sha256": "129a4ec7ac6373422edf18389d95c799f2c35f30155d81cc846ac6eced091f0b"
+    },
+    {
+      "path": "raw-pixel-cells.json",
+      "sha256": "a43471de5978eed0ce9796c763ab5cfeaf71ca498630faa0f9dde83cc6fd33e3"
+    },
+    {
+      "path": "assignments.json",
+      "sha256": "c810f2a53c8367474735fa864b279d5abbc22cc24d2497328bc5d65ea6f4d3f9"
+    },
+    {
+      "path": "derive.py",
+      "sha256": "bd4d350aaa21468403a59e28af2f0ca68bdb73530295045d4e3637671364ee0c"
+    },
+    {
+      "path": "pecs-p63-density.jpeg",
+      "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+    },
+    {
+      "path": "pecs-p48-names.jpeg",
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "path": "pecs-cartographic-hole-decisions.json",
+      "sha256": "e6a5dc985de35b4ab2b0249e80af68ece59485504541f75cccf912d3bbf9f4b0"
+    },
+    {
+      "path": "pecs-cartographic-hole-review.json",
+      "sha256": "9ab48e4ad029e3f1aa0fe0bdf1e8437c6b70625816efa0a5360d2a5105c95c2f"
+    },
+    {
+      "path": "pecs-image-alignment.json",
+      "sha256": "bbfeea6e96ef9233058c991533c0572ec0df4c1baeac88db5593c91f336e67b6"
+    },
+    {
+      "path": "pecs-registration-northwest-only-diagnostic.json",
+      "sha256": "8ba7ab1515b94f37253b64bdbe2144e73e540081ede3ae2cf9838f65b7b87f13"
+    },
+    {
+      "path": "pecs-independent-name-cell-review.json",
+      "sha256": "b3e626b5f0a4496e9a89b69090b0b52edb5e0a0df2027cfe39dcced918d8629e"
+    },
+    {
+      "path": "pecs-review-gray-heldout-diagnostic.json",
+      "sha256": "122b334d1086fe4e56f88aeb94607269ec44d4977dda473d40b153a302f85f62"
+    },
+    {
+      "path": "pecs-source-extraction-proof.json",
+      "sha256": "28e5eafffaf661ccd8a6f07678d7e1b081e83a81b14c45d317d478685b972a93"
+    },
+    {
+      "path": "pecs-source-selected-pages.pdf",
+      "sha256": "09db9673a921e73cba1ab1add8ad65aeb0d727dad5bfadfd31946f91ad68d1c9"
+    },
+    {
+      "path": "independent_audit.py",
+      "sha256": "5798031363abf0c1717cf606f53c02bc3547533a7304b0d959d9cd1f65d6d47d"
+    },
+    {
+      "path": "strict-validator-snapshot.mjs",
+      "sha256": "abf1b564180d9b33593f9ce0d711eb996bf8f3a1d9cbb03b7527167ac515f3d7"
+    },
+    {
+      "path": "strict-validator-source-proof.json",
+      "sha256": "d5a6db73d89a4ecb9d5ae7377c1ddabf29bedd8e8ccd1c99c37225415849d6ab"
+    }
+  ],
+  "records": [
+    {
+      "id": "pecs-first:kismelyvolgy",
+      "name": "Kismélyvölgy",
+      "sourceCellId": 59,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 311,
+      "independentRawExposedFaceCount": 120,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "488452cfbd089262fb750af94747cb03fca9128cecf910fc74af9b33edc25c79",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 312,
+      "independentInterpretedFaceCount": 116,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:kismelyvolgy",
+        "name": "Kismélyvölgy",
+        "valid": true,
+        "bbox": [
+          18.184283038735067,
+          46.09567009859241,
+          18.189598364020135,
+          46.10118679497915
+        ],
+        "vertices": 105
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:deindol",
+      "name": "Deindol",
+      "sourceCellId": 57,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 3474,
+      "independentRawExposedFaceCount": 408,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 4,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "e551ae2f0ed5c9b0f28144b0f8df42f3ac1e350ebae2163a5cf558fd742d5173",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "aa2cd3b817370b465a2356f6b392585b1df4d68fb8632c19f532e67602e42bf5",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "98c44f8a7d272e8ceb99e82a0df96614742d7dd244632d3f1b759e0f50fb150e",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "33a3df7f217c32b7017e9beb812f1f1aafa50c524346acec70e1fd73284d7d00",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 3478,
+      "independentInterpretedFaceCount": 392,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:deindol",
+        "name": "Deindol",
+        "valid": true,
+        "bbox": [
+          18.188081730066123,
+          46.08497312507904,
+          18.20352817395721,
+          46.10321248432373
+        ],
+        "vertices": 344
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:donatus",
+      "name": "Donátus",
+      "sourceCellId": 71,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 2143,
+      "independentRawExposedFaceCount": 338,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 7,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "353030d32d8b20c5cfbad66ba1caec0f5c1cc4c71053c7274604c7f29007f9fd",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "6a224129496090ae8320c6de14cdc5f2d5c1f6d555e835ca794945347867f409",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "59a8f5fd2c9f4904e2c7df6e0b036b80e9946dc94ec1aa69f5be2fa87a81c1de",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "db0621b082139f5de643cbd396e6face8c75827bf30714fdc3c2fdea7205af87",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "f3593c6d17f0b8841e42d604e8ddef9959ecd49730cb6779451b51e554c98bb5",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "2c0e52636653d962b334c2f88eb9432a0519969a1ca1cc8ed78767b7f1b572c6",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "c160349dda2d3ae0e23722f5cbb15badf747f2fd51606982e052b76adf17ce6e",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 2150,
+      "independentInterpretedFaceCount": 310,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:donatus",
+        "name": "Donátus",
+        "valid": true,
+        "bbox": [
+          18.188340123560458,
+          46.07889112262742,
+          18.204794434362782,
+          46.0918308561626
+        ],
+        "vertices": 250
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 4.973799150320701e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:urog",
+      "name": "Ürög",
+      "sourceCellId": 65,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 4136,
+      "independentRawExposedFaceCount": 538,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 6,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "d254cdc6ca928e77a2f3e97be84f2a1fe0c1a42f64644c90a96ea5ff1f47e83f",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "31c84d09bee989d94a8fc0a1e4a6f20b357840c384e7c606b008be7d2c6f0569",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "a3d1f2ea6365cd5ad115dd753c3bc485650ce592355914a2e748f54aba723eb9",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "c60114abb81ec2825600e20f3a2c045f206d77c3c77bb05872ccd0ecf0ebd288",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "2eeec61bd38cc22e7a3d94c6e7251381a5fcd22e5dc2eef3ab1486ba9469d9ab",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "2d08e0e1d20b5f610cfdfad00d17d62962f5313be123c853fe259d03dc3320da",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 4142,
+      "independentInterpretedFaceCount": 514,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:urog",
+        "name": "Ürög",
+        "valid": true,
+        "bbox": [
+          18.180501396324598,
+          46.068474940483206,
+          18.192649729051492,
+          46.09617598807307
+        ],
+        "vertices": 461
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:patacs",
+      "name": "Patacs",
+      "sourceCellId": 87,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 2511,
+      "independentRawExposedFaceCount": 358,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 3,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "8083b3503428c8e5e0489dac571e3d9f9cb2c7a7486f94a8694911ec1abaf027",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "7f057e291c8038f7af7ffdb1bcdb7c150b738146977130df86e73145cb71eca3",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "23af741d79026eba1354e4e19cecbb2e7fe037aa45a1c8b249bd26eafc003ced",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 2514,
+      "independentInterpretedFaceCount": 346,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:patacs",
+        "name": "Patacs",
+        "valid": true,
+        "bbox": [
+          18.16128365135623,
+          46.06517627494515,
+          18.182282670685986,
+          46.07656282514736
+        ],
+        "vertices": 244
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:makar",
+      "name": "Makár",
+      "sourceCellId": 82,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 2322,
+      "independentRawExposedFaceCount": 292,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "c55986642fa517e4b6ff32a88784ef9c4cad40fe2c63c817440a5726afff1754",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 2323,
+      "independentInterpretedFaceCount": 288,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:makar",
+        "name": "Makár",
+        "valid": true,
+        "bbox": [
+          18.188857563126,
+          46.067640651424796,
+          18.204292970898567,
+          46.07940609654536
+        ],
+        "vertices": 226
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:somogy",
+      "name": "Somogy",
+      "sourceCellId": 45,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 2565,
+      "independentRawExposedFaceCount": 406,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "0778cc31c71266f02c946897e8acfb31ecd23f6ae58bf025b0985469293cf5d4",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 2566,
+      "independentInterpretedFaceCount": 402,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:somogy",
+        "name": "Somogy",
+        "valid": true,
+        "bbox": [
+          18.297980719738554,
+          46.11657319288473,
+          18.316472332172673,
+          46.129326081535325
+        ],
+        "vertices": 323
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 1.0658141036401503e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:vasas",
+      "name": "Vasas",
+      "sourceCellId": 38,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 2691,
+      "independentRawExposedFaceCount": 416,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 13,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "894b92bbfeb7bda9526638596922f8141d8b679a2ccdbae119c9dfa8343323a4",
+          "originalSourcePixels": 12,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "original_roman_macro_label_printing_graphic"
+        },
+        {
+          "sourcePixelSetSha256": "5f1232a3adcb2002f7b72990c11ecaed5372254d16943e5f745514e3dce0f549",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 2704,
+      "independentInterpretedFaceCount": 398,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:vasas",
+        "name": "Vasas",
+        "valid": true,
+        "bbox": [
+          18.315975689147066,
+          46.12744502725311,
+          18.332188242094503,
+          46.14188440762397
+        ],
+        "vertices": 311
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 1.4210854715202004e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:ujhegy",
+      "name": "Újhegy",
+      "sourceCellId": 69,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 5873,
+      "independentRawExposedFaceCount": 662,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 218,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "18ecc316bbc24c36b29287779f39185730635b49f74c58c91c5d7996f976e975",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "6c18a0c8543eb2207f1d1167d8f48b3aefad5a7f1e5c9b1ce932111dbede759c",
+          "originalSourcePixels": 147,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "original_roman_macro_label_printing_graphic"
+        },
+        {
+          "sourcePixelSetSha256": "9d1f693232a0954d96a766d5e23c4b1c88d8188561442301de0f2ac436787e48",
+          "originalSourcePixels": 68,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "original_roman_macro_label_printing_graphic"
+        },
+        {
+          "sourcePixelSetSha256": "800c1ff1369cca8aed363330d3e5297a320d3d9c3dcaa77a0284970dc821a735",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "9598b9b9bf5a25f7b1a70664f8ced4e53b6aa59cfb5a4d20869794ac3c6c28c3",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 6091,
+      "independentInterpretedFaceCount": 482,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:ujhegy",
+        "name": "Újhegy",
+        "valid": true,
+        "bbox": [
+          18.27616342369628,
+          46.068674866018526,
+          18.296646691543586,
+          46.09382806343838
+        ],
+        "vertices": 425
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 1.4210854715202004e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:gyarvaros",
+      "name": "Gyárváros",
+      "sourceCellId": 77,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 4493,
+      "independentRawExposedFaceCount": 606,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 215,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "69ca4ef9953303dfd46e9df43c842c21008eab3be9203e2d7375d1c385211ae0",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "ae8bf8bf0aebbb6af6b34e7f03d97ed9233fdbad14091d9b200229873502d6aa",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "9a9bdb152d8feacde033290567dfb2902857d3b99b7e2b7d74578ccf2d73d637",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "aeb3c7f2aac179267e1264c1d4bc9edc08d4370a54687d91ad7d90251ea75adc",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "0f725a8947c8bbc5b7d07d1a0b94e96e51cc8bf8f7a8d31504598e07f8b390e4",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "f857134bd58af69f4786bdbe4df37ee88a69c6084c212a9f33e2a588c06c7bda",
+          "originalSourcePixels": 210,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "original_roman_macro_label_printing_graphic"
+        }
+      ],
+      "interpretedPixelCount": 4708,
+      "independentInterpretedFaceCount": 428,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:gyarvaros",
+        "name": "Gyárváros",
+        "valid": true,
+        "bbox": [
+          18.254141093539456,
+          46.06570025724974,
+          18.276667967356946,
+          46.086109880516396
+        ],
+        "vertices": 362
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 1.0658141036401503e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:basamalom",
+      "name": "Basamalom",
+      "sourceCellId": 86,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 6589,
+      "independentRawExposedFaceCount": 554,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 5,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "dc4a45cb8628ac3422d049047c45b35df1d4162b2f7cdbb08a93c5608518de12",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "d357692e3271aa136025ba2a2be18e087f141e8d5d9f0ce392ed8aef78c43722",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "dd64d0409b06b4b6f9272579531949da3b1804f867190d67457a38836098afdf",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "d715340ad667b0d713a8fcaa9604cf203b081226640e8259f501364ae290b32a",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "fdce4551477c93565a585d4e4e4a14ee28ae0be68ba59a5a76a97e613d6a7903",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 6594,
+      "independentInterpretedFaceCount": 534,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:basamalom",
+        "name": "Basamalom",
+        "valid": true,
+        "bbox": [
+          18.24958504953376,
+          46.051722575775564,
+          18.27183396025221,
+          46.07832695968774
+        ],
+        "vertices": 447
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:uszog",
+      "name": "Üszög",
+      "sourceCellId": 101,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 2135,
+      "independentRawExposedFaceCount": 290,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 2,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "78cdaf4d9e2b4fbf20b9bf8719eb3b8fb74a1494f7e0b7176eb926fda91cab16",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "4a2822310d033d20ce98fd422cbd199faaa6ac003d9b3ad946d2f219898a357a",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 2137,
+      "independentInterpretedFaceCount": 282,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:uszog",
+        "name": "Üszög",
+        "valid": true,
+        "bbox": [
+          18.27032217966996,
+          46.05377553838835,
+          18.28095030338807,
+          46.068342925228876
+        ],
+        "vertices": 253
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 1.4210854715202004e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:balokany",
+      "name": "Balokány",
+      "sourceCellId": 90,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 2699,
+      "independentRawExposedFaceCount": 362,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "41d74a91d574727e283f2b16ccdd57f476e3ace6ef96fb0bfe2ff7106b84d22f",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 2700,
+      "independentInterpretedFaceCount": 358,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:balokany",
+        "name": "Balokány",
+        "valid": true,
+        "bbox": [
+          18.231871406352028,
+          46.06339130290464,
+          18.253378976552703,
+          46.075244700134306
+        ],
+        "vertices": 276
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 1.4210854715202004e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:tuskesret",
+      "name": "Tüskésrét",
+      "sourceCellId": 103,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 7513,
+      "independentRawExposedFaceCount": 492,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "799a39bb18e3536ba02f2f661314682a2975ae873a13ae5981b43d931650e21c",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 7514,
+      "independentInterpretedFaceCount": 488,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:tuskesret",
+        "name": "Tüskésrét",
+        "valid": true,
+        "bbox": [
+          18.230606114035968,
+          46.04773627955848,
+          18.25868234000731,
+          46.06727259815121
+        ],
+        "vertices": 391
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 2.842170943040401e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:fuzes",
+      "name": "Füzes",
+      "sourceCellId": 120,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 2564,
+      "independentRawExposedFaceCount": 284,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 3,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "2247cf2cdb775ebd6f0dcabd772390930355cf4a36249b758404c783e34a6d72",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "3086695d67ce238b24ec34eaedb36801f54d96102f31feb926f82a960660629e",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "743d54340367d926242201f8589fb1ad4e505aa128a560efac873a6b383fca46",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 2567,
+      "independentInterpretedFaceCount": 272,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:fuzes",
+        "name": "Füzes",
+        "valid": true,
+        "bbox": [
+          18.19772547930076,
+          46.04736348913807,
+          18.21315457004321,
+          46.059621581718886
+        ],
+        "vertices": 228
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 1.4210854715202004e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:kertvaros",
+      "name": "Kertváros",
+      "sourceCellId": 121,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 2972,
+      "independentRawExposedFaceCount": 388,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "a404c4a11a99d7c3dc996b1e5fe994f4c3b935264385f99ff08fba8386155ea6",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 2973,
+      "independentInterpretedFaceCount": 384,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:kertvaros",
+        "name": "Kertváros",
+        "valid": true,
+        "bbox": [
+          18.213912666123658,
+          46.04628911400177,
+          18.234652835656345,
+          46.05981527736654
+        ],
+        "vertices": 298
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 3.552713678800501e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:nagyarpad",
+      "name": "Nagyárpád",
+      "sourceCellId": 135,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 2395,
+      "independentRawExposedFaceCount": 352,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 2,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "82c5816a2d4298ee8201712afa058ef84e809e8618e39810bfd91e64d380ffdb",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "86e141fce4626d3070c603026a095a3c05811c9308d9d1a0aa0a23d81cf17e50",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 2397,
+      "independentInterpretedFaceCount": 344,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:nagyarpad",
+        "name": "Nagyárpád",
+        "valid": true,
+        "bbox": [
+          18.239962356696665,
+          46.037635947704416,
+          18.259685286593008,
+          46.0515875932344
+        ],
+        "vertices": 276
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 2.1316282072803006e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:megyer",
+      "name": "Megyer",
+      "sourceCellId": 144,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 4687,
+      "independentRawExposedFaceCount": 466,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 2,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "56edfd319fe8c58377237453c84ccd63c0da7583d40f80555dd527e4f1aa834e",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "817632ef96c6ca7d8eca3511d50d51e04df503e2e271720803fd54d8e53deca5",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 4689,
+      "independentInterpretedFaceCount": 458,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:megyer",
+        "name": "Megyer",
+        "valid": true,
+        "bbox": [
+          18.209110640165726,
+          46.03491457213955,
+          18.231615973145868,
+          46.04895201953649
+        ],
+        "vertices": 352
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 1.4210854715202004e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:arpadvaros",
+      "name": "Árpádváros",
+      "sourceCellId": 148,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 3099,
+      "independentRawExposedFaceCount": 370,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 13,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "d79878224068a98e2d9493df411b9be60504baae39cbe2465a9411dd520308e7",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "c729af6601bb68d3b04a6c284ce195e373171ecedb452c0ee473c686801919a5",
+          "originalSourcePixels": 10,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "original_roman_macro_label_printing_graphic"
+        },
+        {
+          "sourcePixelSetSha256": "0fb1a3569967298f67c5e8c68004de579c08d784028b79cb08d3a577293c4495",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "e6a821b2a83be7bce7ef116c99249172259cb0065f274bebd3bdffdf6b4929dd",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 3112,
+      "independentInterpretedFaceCount": 344,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:arpadvaros",
+        "name": "Árpádváros",
+        "valid": true,
+        "bbox": [
+          18.231869174858577,
+          46.03563527245431,
+          18.25159196395737,
+          46.04588154422041
+        ],
+        "vertices": 255
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:malom",
+      "name": "Málom",
+      "sourceCellId": 158,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 5175,
+      "independentRawExposedFaceCount": 448,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 5,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "834205cde844991a41eb2a2cdf9d9380cde63b31b6818d48280abfbb0a6aa589",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "80123b7d3fbcdf86b9f2810b634cf20e67d2167d95ded0720d12e6cbdaecd67f",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "d857aede720c8f8ef308f1eeadda1d7fc1992d7c8b21c825fdf37662e9d18c42",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "cf9c58e58b9899c20f219ea50001595264f66204c267c622a3b20ef4b0906f16",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "7d85dcf7bfe098ecfd57ffa3168f1641d7da61949379ac516b1b4cfd29f9a409",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 5180,
+      "independentInterpretedFaceCount": 428,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:malom",
+        "name": "Málom",
+        "valid": true,
+        "bbox": [
+          18.20759516695345,
+          46.02523563231378,
+          18.23237352778325,
+          46.03925590579532
+        ],
+        "vertices": 325
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:postavolgy",
+      "name": "Postavölgy",
+      "sourceCellId": 159,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 4415,
+      "independentRawExposedFaceCount": 528,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 2,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "690aa4567660277878a3d02a58f517c57f0ad69edf0e160d63402691d5fdc402",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "f76ec76587aa00a2ed892ec2cf7bb85cbf2451e3c6b6f4196da391b62da95880",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 4417,
+      "independentInterpretedFaceCount": 520,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:postavolgy",
+        "name": "Postavölgy",
+        "valid": true,
+        "bbox": [
+          18.23186735242676,
+          46.017285037659235,
+          18.248045766204715,
+          46.037905437125396
+        ],
+        "vertices": 434
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 3.552713678800501e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:deligazdasagiterulet",
+      "name": "Déli gazdasági terület",
+      "sourceCellId": 184,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 4355,
+      "independentRawExposedFaceCount": 642,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 299,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "be3334ef8199cdda1a89b86259b374ded6b7cf7164ffce078d5bfafb2f456a31",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "facebb98eb571b55d1504475b2537a02c2a90227c0ef266fb8eae8437217c36a",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "20dd115da07fd9c027d29f49638490df4721c9ab84067b26c3900bd2cfa95f88",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "d521b46974c61bc0cf555eec32d2a396a3b8851b87e8543799b5ec5e3d289fed",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "d2e4c0658fa7f7e108f8dab9bbc35e89ce26748a8cdfab454faafb331cbc5336",
+          "originalSourcePixels": 59,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "original_roman_macro_label_printing_graphic"
+        },
+        {
+          "sourcePixelSetSha256": "bb5af42dca34f0c93ee4047981d1bcddf125cb296aafcab2b0be2cc2da28c504",
+          "originalSourcePixels": 61,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "original_roman_macro_label_printing_graphic"
+        },
+        {
+          "sourcePixelSetSha256": "ea9745a0a2cd8fe18b5b866628aed2f0eaec6f6533abaa0935413ff6d169dba8",
+          "originalSourcePixels": 160,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "original_roman_macro_label_printing_graphic"
+        },
+        {
+          "sourcePixelSetSha256": "99a9e23fdce83ddeacb179a1ec80c9bdd6331a7f14c87a21bd241b60406eb740",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "b1dd5a47d0b1d364847bf4025cadf342632b1a686a412d818c9f25b6ebba0f60",
+          "originalSourcePixels": 14,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "original_roman_macro_label_printing_graphic"
+        }
+      ],
+      "interpretedPixelCount": 4654,
+      "independentInterpretedFaceCount": 380,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:deligazdasagiterulet",
+        "name": "Déli gazdasági terület",
+        "valid": true,
+        "bbox": [
+          18.209116603544686,
+          46.013681686630434,
+          18.233888605990597,
+          46.02610640300219
+        ],
+        "vertices": 250
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 1.0658141036401503e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:belvaros",
+      "name": "Belváros",
+      "sourceCellId": 83,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 1984,
+      "independentRawExposedFaceCount": 300,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 101,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "24544febb018baf3eb4933b93b9da9e21aafc60385b4aa5b88b6f5dcff5fb59b",
+          "originalSourcePixels": 101,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "original_roman_macro_label_printing_graphic"
+        }
+      ],
+      "interpretedPixelCount": 2085,
+      "independentInterpretedFaceCount": 240,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:belvaros",
+        "name": "Belváros",
+        "valid": true,
+        "bbox": [
+          18.221244677697584,
+          46.072195283475146,
+          18.23946343372697,
+          46.079725968931434
+        ],
+        "vertices": 150
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:szigetikulvaros",
+      "name": "Szigeti külváros",
+      "sourceCellId": 85,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 1964,
+      "independentRawExposedFaceCount": 250,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedPixelCount": 1964,
+      "independentInterpretedFaceCount": 250,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:szigetikulvaros",
+        "name": "Szigeti külváros",
+        "valid": true,
+        "bbox": [
+          18.20429209388485,
+          46.07046381669751,
+          18.22428148874904,
+          46.07819693008371
+        ],
+        "vertices": 144
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:ispitaalja",
+      "name": "Ispitaalja",
+      "sourceCellId": 96,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 2460,
+      "independentRawExposedFaceCount": 266,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "1d276eb9e40d41c63300f6a84133c6e8a211e18cde26888a92b5a86904c61f0a",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 2461,
+      "independentInterpretedFaceCount": 262,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:ispitaalja",
+        "name": "Ispitaalja",
+        "valid": true,
+        "bbox": [
+          18.207835960680555,
+          46.06195118765402,
+          18.224787660132087,
+          46.07068471854454
+        ],
+        "vertices": 173
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:racvaros",
+      "name": "Rácváros",
+      "sourceCellId": 100,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 750,
+      "independentRawExposedFaceCount": 146,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedPixelCount": 750,
+      "independentInterpretedFaceCount": 146,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:racvaros",
+        "name": "Rácváros",
+        "valid": true,
+        "bbox": [
+          18.176467033665713,
+          46.06461159609029,
+          18.18962268874023,
+          46.0679334343237
+        ],
+        "vertices": 63
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 1.0658141036401503e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:uranvaros",
+      "name": "Uránváros",
+      "sourceCellId": 99,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 1933,
+      "independentRawExposedFaceCount": 248,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 2,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "13c40238659505da036bab70b889bb96da0faa3641879b725cbacb70c3b7d920",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "a6fa6cc7943def3b93a7815c45e9d2817094ded887647a9f7e73925c70925338",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 1935,
+      "independentInterpretedFaceCount": 240,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:uranvaros",
+        "name": "Uránváros",
+        "valid": true,
+        "bbox": [
+          18.190635097291292,
+          46.059867032652875,
+          18.20758457334482,
+          46.06903053886579
+        ],
+        "vertices": 170
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 1.4210854715202004e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:balics",
+      "name": "Bálics",
+      "sourceCellId": 64,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 1398,
+      "independentRawExposedFaceCount": 376,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 2,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "1195927c0264470174e63d5818f23da4bc64f5558063a974622f51d4266421f3",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "375ad0079735a3aa44929309c988fbe331b89ccce0a3e597ba55812314095b9b",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 1400,
+      "independentInterpretedFaceCount": 368,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:balics",
+        "name": "Bálics",
+        "valid": true,
+        "bbox": [
+          18.202511591291444,
+          46.077047550164615,
+          18.211628973090093,
+          46.09670309686273
+        ],
+        "vertices": 334
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 1.4210854715202004e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:szkoko",
+      "name": "Szkókó",
+      "sourceCellId": 66,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 1824,
+      "independentRawExposedFaceCount": 260,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "84a8caf22044c135e3319685679d99c2db3c67003ac54def2b2a0b21bbe291e2",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 1825,
+      "independentInterpretedFaceCount": 256,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:szkoko",
+        "name": "Szkókó",
+        "valid": true,
+        "bbox": [
+          18.20656231778243,
+          46.08261146351402,
+          18.218713406867888,
+          46.09478297453283
+        ],
+        "vertices": 212
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:mecsekoldal",
+      "name": "Mecsekoldal",
+      "sourceCellId": 63,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 5483,
+      "independentRawExposedFaceCount": 634,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 163,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "d0076eba2c11d4cc3f3e23823fe9d434fedca77d8ad31afaa367a54cd2e2ba02",
+          "originalSourcePixels": 11,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "original_roman_macro_label_printing_graphic"
+        },
+        {
+          "sourcePixelSetSha256": "6020f105a29cced6d00a2dcd7638833e4d8bb235dab3998620a933f4f1956533",
+          "originalSourcePixels": 149,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "original_roman_macro_label_printing_graphic"
+        },
+        {
+          "sourcePixelSetSha256": "f092ebceb2be5e264cf5f8d94ec7c39377826f5406d10cbd96d39e66910cdda9",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "c0893fd97ae06218af8e49352f2a549cb29b124f04d51e778e16fd296d01c04a",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        },
+        {
+          "sourcePixelSetSha256": "c666b6351e69471a1c6441ab3c9716f5e1343a1ab56e901a6eb5c94931a319ce",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 5646,
+      "independentInterpretedFaceCount": 488,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:mecsekoldal",
+        "name": "Mecsekoldal",
+        "valid": true,
+        "bbox": [
+          18.21466224639476,
+          46.078917775358335,
+          18.24250426024916,
+          46.097647828745444
+        ],
+        "vertices": 378
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 1.0658141036401503e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:havihegy",
+      "name": "Havihegy",
+      "sourceCellId": 75,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 1652,
+      "independentRawExposedFaceCount": 230,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedPixelCount": 1652,
+      "independentInterpretedFaceCount": 230,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:havihegy",
+        "name": "Havihegy",
+        "valid": true,
+        "bbox": [
+          18.23389729983522,
+          46.07923354528474,
+          18.24478210336822,
+          46.09030118238265
+        ],
+        "vertices": 195
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 2.1316282072803006e-14,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:rokusdomb",
+      "name": "Rókusdomb",
+      "sourceCellId": 79,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 981,
+      "independentRawExposedFaceCount": 184,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 0,
+      "restorations": [],
+      "interpretedPixelCount": 981,
+      "independentInterpretedFaceCount": 184,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:rokusdomb",
+        "name": "Rókusdomb",
+        "valid": true,
+        "bbox": [
+          18.208843510381023,
+          46.07653014567877,
+          18.22023231258116,
+          46.08361174109323
+        ],
+        "vertices": 137
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "id": "pecs-first:csoronika",
+      "name": "Csoronika",
+      "sourceCellId": 81,
+      "independentFrozenNameReviewAssignmentMatched": true,
+      "rawOriginalPixelCount": 867,
+      "independentRawExposedFaceCount": 180,
+      "rawFaceMismatchCount": 0,
+      "restoredOriginalPixelCount": 1,
+      "restorations": [
+        {
+          "sourcePixelSetSha256": "0c5915713e41c824ed4b07f7870c3f0ba014ceecff77771e286a4a56e5ca7b55",
+          "originalSourcePixels": 1,
+          "allOriginalMask": true,
+          "otherFreeSourceCellContainedOrTouched": false,
+          "explicitIndependentDecisionMatched": true,
+          "classification": "single_pixel_local_contrast_or_jpeg_classification_artifact"
+        }
+      ],
+      "interpretedPixelCount": 868,
+      "independentInterpretedFaceCount": 176,
+      "interpretedFaceMismatchCount": 0,
+      "externalSourceFacesChanged": 0,
+      "holesAfterInterpretation": 0,
+      "geosValid": true,
+      "existingStrictJsValidation": {
+        "id": "pecs-first:csoronika",
+        "name": "Csoronika",
+        "valid": true,
+        "bbox": [
+          18.198975893220652,
+          46.07449022660864,
+          18.20985804994097,
+          46.0819595219221
+        ],
+        "vertices": 134
+      },
+      "worldProjectionMaximumVertexErrorDegrees": 7.105427357601002e-15,
+      "geographicPlacementVerified": false,
+      "estimatedOnly": true,
+      "primaryApproval": false,
+      "usableForAddressAssignment": false
+    }
+  ]
+}

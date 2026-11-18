@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createModel,isCompatible,STORAGE_KEY,demoLanding} from '../dist/model.js';
 import {locations, getLocation} from '../dist/locations.js';
+const exactAddress={street:'Fiktív teszt utca',houseNumber:'12',postalCode:'1234'};
 const store=()=>{const values=new Map();return{getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v)}};
 const setup=()=>createModel(store(),()=>new Date('2026-10-31T12:00:00Z').toISOString());
 
@@ -71,10 +72,10 @@ test('unselected or unknown locations are rejected and canonical selections over
  const m=setup();const data={title:'Új keresés',maxPrice:80};
  for(const locationIds of [[],['city:Nemlétező'],['city:Debrecen','city:Nemlétező']])assert.throws(()=>m.saveEntity('search',{...data,locationIds}),/találati listából/);
  assert.throws(()=>m.saveEntity('search',data),/találati listából/);
- assert.throws(()=>m.saveEntity('property',{title:'Ismeretlen ház',locationId:'city:Nemlétező',price:50,area:70,rooms:3}),/találati listából/);
+ assert.throws(()=>m.saveEntity('property',{...exactAddress,title:'Ismeretlen ház',locationId:'city:Nemlétező',price:50,area:70,rooms:3}),/találati listából/);
  const q=m.saveEntity('search',{...data,locationIds:['city:Debrecen','city:Solymár'],city:'Szeged'});
  assert.deepEqual(q.locations.map(location=>location.city),['Debrecen','Solymár']);assert.equal(q.city,'Debrecen');
- const p=m.saveEntity('property',{title:'Debreceni lakás',locationId:'city:Debrecen',city:'Budapest',district:'XI.',price:60,area:60,rooms:2});
+ const p=m.saveEntity('property',{...exactAddress,title:'Debreceni lakás',locationId:'city:Debrecen',city:'Budapest',district:'XI.',price:60,area:60,rooms:2});
  assert.equal(p.city,'Debrecen');assert.equal(p.district,'');
 });
 
@@ -103,24 +104,24 @@ test('legacy v3 records migrate in memory without losing decisions, matches, cre
 
 test('house plot area survives save and reload and is cleared when changing to an apartment',()=>{
  const storage=store();const m=createModel(storage);
- const p=m.saveEntity('property',{title:'Családi ház Solymáron',locationId:'city:Solymár',type:'Ház',price:95,area:110,rooms:4,lotArea:'750.5'});
+ const p=m.saveEntity('property',{...exactAddress,title:'Családi ház Solymáron',locationId:'city:Solymár',type:'Ház',price:95,area:110,rooms:4,lotArea:'750.5'});
  assert.equal(p.location.city,'Solymár');assert.equal(p.lotArea,750.5);
  const again=createModel(storage);assert.equal(again.getState().properties.find(property=>property.id===p.id).lotArea,750.5);
- assert.throws(()=>again.saveEntity('property',{...p,lotArea:0},p.id),/telekméret/);
- assert.throws(()=>again.saveEntity('property',{...p,lotArea:'hibás'},p.id),/telekméret/);
- const changed=again.saveEntity('property',{...p,type:'Lakás'},p.id);assert.equal(changed.lotArea,null);
+ assert.throws(()=>again.saveEntity('property',{...exactAddress,...p,lotArea:0},p.id),/telekméret/);
+ assert.throws(()=>again.saveEntity('property',{...exactAddress,...p,lotArea:'hibás'},p.id),/telekméret/);
+ const changed=again.saveEntity('property',{...exactAddress,...p,type:'Lakás'},p.id);assert.equal(changed.lotArea,null);
 });
 
 test('new optional property data and multiselect filters persist without turning unknown details into defaults',()=>{
  const storage=store(),m=createModel(storage);
- const p=m.saveEntity('property',{title:'Részletes tesztlakás',locationId:'district:Budapest:13',type:'Lakás',price:78,area:68,rooms:3,condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m feletti',floor:0,heatingType:'Hőszivattyú',insulated:false,energyRating:'A+',airConditioning:true,solarPanels:null,parkingType:'Garázs'});
+ const p=m.saveEntity('property',{...exactAddress,title:'Részletes tesztlakás',locationId:'district:Budapest:13',type:'Lakás',price:78,area:68,rooms:3,condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m feletti',floor:0,heatingType:'Hőszivattyú',insulated:false,energyRating:'A+',airConditioning:true,solarPanels:null,parkingType:'Garázs'});
  const q=m.saveEntity('search',{title:'Részletes keresési igény',locationIds:['district:Budapest:13'],conditions:['Jó','Átlagos'],buildings:['Panel','Tégla'],constructionAges:['10–30 év közötti'],views:['Kertre néző','Panorámás'],ceilingHeight:'3 m feletti',floors:[0,11]});
  const again=createModel(storage),saved=again.getState().properties.find(item=>item.id===p.id),savedSearch=again.getState().searches.find(item=>item.id===q.id);
  for(const field of ['condition','building','constructionAge','view','ceilingHeight','floor','heatingType','insulated','energyRating','airConditioning','solarPanels','parkingType'])assert.deepEqual(saved[field],p[field],field);
  assert.deepEqual(savedSearch.conditions,['Jó','Átlagos']);assert.deepEqual(savedSearch.floors,[0,11]);
- const blank=again.saveEntity('property',{title:'Opcionális mezők nélkül',locationId:'city:Debrecen',type:'Lakás',price:40,area:50,rooms:2});
+ const blank=again.saveEntity('property',{...exactAddress,title:'Opcionális mezők nélkül',locationId:'city:Debrecen',type:'Lakás',price:40,area:50,rooms:2});
  assert.deepEqual([blank.condition,blank.building,blank.floor,blank.insulated,blank.airConditioning,blank.solarPanels],['','',null,null,null,null]);
- const cleared=again.saveEntity('property',{...p,condition:'',building:'',constructionAge:'',view:'',ceilingHeight:'',floor:'',insulated:'',airConditioning:'',solarPanels:''},p.id);
+ const cleared=again.saveEntity('property',{...exactAddress,...p,condition:'',building:'',constructionAge:'',view:'',ceilingHeight:'',floor:'',insulated:'',airConditioning:'',solarPanels:''},p.id);
  assert.deepEqual([cleared.floor,cleared.insulated,cleared.airConditioning,cleared.solarPanels],[null,null,null,null]);
 });
 
@@ -141,10 +142,10 @@ test('legacy custom condition and wall text survive reads and unrelated edits wh
  storage.setItem(STORAGE_KEY,JSON.stringify(raw));
  const again=createModel(storage),before=again.getState(),existing=before.properties.find(item=>item.id===own.id);
  assert.equal(existing.condition,own.condition);assert.equal(existing.building,own.building);
- again.saveEntity('property',{...existing,title:'Csak a név változott'},existing.id);
+ again.saveEntity('property',{...exactAddress,...existing,title:'Csak a név változott'},existing.id);
  assert.equal(again.getState().properties.find(item=>item.id===own.id).condition,own.condition);
  assert.equal(again.getState().credits,before.credits);assert.deepEqual(again.matches(),m.matches());
- assert.throws(()=>again.saveEntity('property',{...existing,condition:'Más ismeretlen'},existing.id),/Érvénytelen/);
+ assert.throws(()=>again.saveEntity('property',{...exactAddress,...existing,condition:'Más ismeretlen'},existing.id),/Érvénytelen/);
  assert.throws(()=>again.saveEntity('search',{title:'Hibás új szűrő',locationIds:['city:Budapest'],floors:[12]}),/Érvénytelen/);
 });
 
@@ -170,7 +171,7 @@ test('a region is one of at most fifty search selections and cannot be saved as 
  const fifty=['area:Budapest',...towns.slice(0,49)];
  const q=m.saveEntity('search',{title:'Ötven kiválasztott hely',locationIds:fifty});assert.deepEqual(q.locationIds,fifty);
  assert.throws(()=>m.saveEntity('search',{title:'Túl sok hely',locationIds:[...fifty,towns[49]]}),/találati listából/);
- assert.throws(()=>m.saveEntity('property',{title:'Nem pontos hirdetési hely',locationId:'area:Budapest',city:'Budapest',district:'XIII.',price:80,area:60,rooms:3}),/találati listából/);
+ assert.throws(()=>m.saveEntity('property',{...exactAddress,title:'Nem pontos hirdetési hely',locationId:'area:Budapest',city:'Budapest',district:'XIII.',price:80,area:60,rooms:3}),/találati listából/);
  assert.equal(getLocation('area:Budapest').settlementCount,81);
 });
 
@@ -208,15 +209,15 @@ test('read migration preserves invalid explicit location IDs instead of reviving
 
 test('explicit room composition survives save, reload and old-client total-only edits without changing weighted search matching',()=>{
  const storage=store(),m=createModel(storage);
- const p=m.saveEntity('property',{title:'Fél szobás otthon',locationId:'city:Debrecen',type:'Lakás',price:60,area:70,wholeRooms:2,halfRooms:3});
+ const p=m.saveEntity('property',{...exactAddress,title:'Fél szobás otthon',locationId:'city:Debrecen',type:'Lakás',price:60,area:70,wholeRooms:2,halfRooms:3});
  assert.deepEqual([p.wholeRooms,p.halfRooms,p.rooms],[2,3,3.5]);
  const again=createModel(storage),loaded=again.getState().properties.find(item=>item.id===p.id);
  assert.deepEqual([loaded.wholeRooms,loaded.halfRooms,loaded.rooms],[2,3,3.5]);
- const unchanged=again.saveEntity('property',{rooms:3.5,title:'Csak a név módosul'},p.id);
+ const unchanged=again.saveEntity('property',{...exactAddress,rooms:3.5,title:'Csak a név módosul'},p.id);
  assert.deepEqual([unchanged.wholeRooms,unchanged.halfRooms],[2,3]);
- const changed=again.saveEntity('property',{rooms:4},p.id);assert.deepEqual([changed.wholeRooms,changed.halfRooms,changed.rooms],[4,0,4]);
- const countEdit=again.saveEntity('property',{wholeRooms:1,halfRooms:3},p.id);assert.deepEqual([countEdit.wholeRooms,countEdit.halfRooms,countEdit.rooms],[1,3,2.5]);
- const halfOnly=again.saveEntity('property',{halfRooms:1},p.id);assert.deepEqual([halfOnly.wholeRooms,halfOnly.halfRooms,halfOnly.rooms],[0,1,0.5],'a missing count counterpart means zero rather than the old stored count');
+ const changed=again.saveEntity('property',{...exactAddress,rooms:4},p.id);assert.deepEqual([changed.wholeRooms,changed.halfRooms,changed.rooms],[4,0,4]);
+ const countEdit=again.saveEntity('property',{...exactAddress,wholeRooms:1,halfRooms:3},p.id);assert.deepEqual([countEdit.wholeRooms,countEdit.halfRooms,countEdit.rooms],[1,3,2.5]);
+ const halfOnly=again.saveEntity('property',{...exactAddress,halfRooms:1},p.id);assert.deepEqual([halfOnly.wholeRooms,halfOnly.halfRooms,halfOnly.rooms],[0,1,0.5],'a missing count counterpart means zero rather than the old stored count');
  const search={ownerId:'other',locationIds:['city:Debrecen'],minRooms:3.5,maxRooms:3.5};
  assert.equal(isCompatible(p,search),true);assert.equal(isCompatible({...p,rooms:100},search),true,'explicit composition is authoritative for compatibility');
  assert.equal(isCompatible(p,{...search,minRooms:4,maxRooms:null}),false);
@@ -230,16 +231,16 @@ test('old room and house data load unchanged without rewriting storage or unrela
  const again=createModel(storage),before=again.getState(),loaded=before.properties.find(item=>item.id===old.id);
  assert.deepEqual([loaded.rooms,loaded.wholeRooms,loaded.halfRooms,loaded.floor,loaded.balcony,loaded.elevator],[3.2,null,null,3,true,true]);
  assert.equal(storage.getItem(STORAGE_KEY),JSON.stringify(raw));
- assert.throws(()=>again.saveEntity('property',{title:'Új név változatlan telekkel'},old.id),/telekméret/);
- const updated=again.saveEntity('property',{lotArea:750},old.id);
+ assert.throws(()=>again.saveEntity('property',{...exactAddress,title:'Új név változatlan telekkel'},old.id),/telekméret/);
+ const updated=again.saveEntity('property',{...exactAddress,lotArea:750},old.id);
  assert.deepEqual([updated.rooms,updated.wholeRooms,updated.halfRooms,updated.floor,updated.balcony,updated.elevator],[3.2,null,null,null,false,false]);
  const after=again.getState();assert.equal(after.credits,before.credits);assert.deepEqual(after.ledger,before.ledger);assert.deepEqual(after.decisions,before.decisions);assert.equal(again.matches().length,m.matches().length);
 });
 
 test('house saves require positive plot area and clear hidden property and search controls',()=>{
  const m=setup(),base={title:'Ház a város szélén',locationId:'city:Solymár',type:'Ház',price:90,area:120,wholeRooms:4,halfRooms:1};
- for(const lotArea of [undefined,null,'',0,-1,'hibás',true,10000001])assert.throws(()=>m.saveEntity('property',{...base,lotArea}),/telekméret/);
- const house=m.saveEntity('property',{...base,lotArea:500,floor:'invalid',balcony:true,elevator:true});
+ for(const lotArea of [undefined,null,'',0,-1,'hibás',true,10000001])assert.throws(()=>m.saveEntity('property',{...exactAddress,...base,lotArea}),/telekméret/);
+ const house=m.saveEntity('property',{...exactAddress,...base,lotArea:500,floor:'invalid',balcony:true,elevator:true});
  assert.deepEqual([house.floor,house.balcony,house.elevator],[null,false,false]);
  const q=m.saveEntity('search',{title:'Családi házat keresünk',locationIds:['city:Solymár'],type:'Ház',floors:[3],balcony:true,elevator:true});
  assert.deepEqual([q.floors,q.balcony,q.elevator],[[],false,false]);
@@ -248,12 +249,12 @@ test('house saves require positive plot area and clear hidden property and searc
 
 test('heating and parking data persist while new invalid options or negative measurements leave state untouched',()=>{
  const storage=store(),m=createModel(storage),base={title:'Kényelmes lakás',locationId:'city:Debrecen',type:'Lakás',price:60,area:70,wholeRooms:2,halfRooms:1,heatingType:'Hőszivattyú',secondaryHeatingType:'Klíma',parkingTypes:['Garázs','Udvari beálló','Garázs']};
- const p=m.saveEntity('property',base),again=createModel(storage),loaded=again.getState().properties.find(item=>item.id===p.id);
+ const p=m.saveEntity('property',{...exactAddress,...base}),again=createModel(storage),loaded=again.getState().properties.find(item=>item.id===p.id);
  assert.deepEqual([loaded.heatingType,loaded.secondaryHeatingType,loaded.parkingTypes],['Hőszivattyú','Klíma',['Garázs','Udvari beálló']]);
- const oldClient=again.saveEntity('property',{parkingType:loaded.parkingType},p.id);assert.deepEqual(oldClient.parkingTypes,loaded.parkingTypes);
- const changed=again.saveEntity('property',{parkingType:'Utcai parkolás'},p.id);assert.deepEqual(changed.parkingTypes,['Utcai parkolás']);
+ const oldClient=again.saveEntity('property',{...exactAddress,parkingType:loaded.parkingType},p.id);assert.deepEqual(oldClient.parkingTypes,loaded.parkingTypes);
+ const changed=again.saveEntity('property',{...exactAddress,parkingType:'Utcai parkolás'},p.id);assert.deepEqual(changed.parkingTypes,['Utcai parkolás']);
  const before=again.getState();
- for(const changes of [{price:-1},{area:-1},{wholeRooms:-1},{halfRooms:-1},{rooms:-1,wholeRooms:null,halfRooms:null},{heatingType:'Új kitalált fűtés'},{secondaryHeatingType:'Más'},{parkingTypes:['Más']}])assert.throws(()=>again.saveEntity('property',{...base,...changes}));
+ for(const changes of [{price:-1},{area:-1},{wholeRooms:-1},{halfRooms:-1},{rooms:-1,wholeRooms:null,halfRooms:null},{heatingType:'Új kitalált fűtés'},{secondaryHeatingType:'Más'},{parkingTypes:['Más']}])assert.throws(()=>again.saveEntity('property',{...exactAddress,...base,...changes}));
  for(const key of ['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'])assert.throws(()=>again.saveEntity('search',{title:'Hibás keresés',locationIds:['city:Debrecen'],[key]:-1}));
  assert.deepEqual(again.getState(),before);
  const q=again.saveEntity('search',{title:'Fűtésre szűrt keresés',locationIds:['city:Debrecen'],heatingTypes:['Hőszivattyú','Klíma','Hőszivattyú']});
@@ -272,7 +273,7 @@ test('legacy account declarations migrate in memory without resetting business d
  assert.equal(storage.getItem(STORAGE_KEY),oldSaved,'reading must not rewrite old saved records');
  assert.equal(state.credits,raw.credits);assert.deepEqual(state.ledger,raw.ledger);assert.equal(state.decisions.length,raw.decisions.filter(d=>d.actorKind==='search'&&d.actorId==='own-s1').length);
  assert.equal(again.matches().length,m.matches().length);
- const saved=again.saveEntity('property',{title:'Magánszemély hirdetése',locationId:'city:Debrecen',price:60,area:60,rooms:2,ownerAccountType:'agent'});
+ const saved=again.saveEntity('property',{...exactAddress,title:'Magánszemély hirdetése',locationId:'city:Debrecen',price:60,area:60,rooms:2,ownerAccountType:'agent'});
  assert.equal(saved.ownerAccountType,'private');assert.equal(again.getState().properties.find(p=>p.id===saved.id).ownerAccountType,'private');
 });
 

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "method": "Manual source-black-outline interpretation on the exact original embedded2021 municipal figure79 JPEG. Manually selected source-stroke seeds guide connected dark source-pixel paths; every dense vertex is an actual source pixel(maxRGB45) and every step is an8-neighbor source-pixel step. Only strictly collinear vertices are compressed. A frozen affine transform fitted to five exact contemporary OSM-node coordinates and manually located image junctions georeferences the historical illustration. No current-road substitution, generated closing chord, gap bridge, snapping of geographic geometry, buffer, repair or inferred extent.",
+  "sourceImageSha256": "8d6217e4ae20dadfd07141aaed4dff0c057166fd60f30d8a7c0eec9b9fd5079d",
+  "sourcePublisherPdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+  "pixelTraceHelperSha256": "75692296a3e35400716f691eaa591aa566c72d73d51b28de279cf4aad77d85ec",
+  "georeferenceControlSubsetSha256": "7434d270f525608c116fd9c27205139f243e32095d7c816b09950a09f964ff07",
+  "records": [
+    {
+      "name": "Petőfiváros I.",
+      "valid": true,
+      "literalSourcePixelClosure": true,
+      "allDensePixelsMaxRgbAtMost45": true,
+      "allDenseSteps8Neighbor": true,
+      "densePixelCount": 2190,
+      "compressedPixelCount": 881,
+      "sourcePixelArea": 295712.5,
+      "simplificationSymmetricDifferencePixelArea": 0,
+      "absoluteBoundaryAccuracyMetres": null,
+      "canonicalParentContained": true,
+      "areaM2": 1314459.6387859806,
+      "geographicCoordinatesAreOsmVertices": false
+    },
+    {
+      "name": "Petőfiváros II.",
+      "valid": true,
+      "literalSourcePixelClosure": true,
+      "allDensePixelsMaxRgbAtMost45": true,
+      "allDenseSteps8Neighbor": true,
+      "densePixelCount": 956,
+      "compressedPixelCount": 407,
+      "sourcePixelArea": 83826.5,
+      "simplificationSymmetricDifferencePixelArea": 0,
+      "absoluteBoundaryAccuracyMetres": null,
+      "canonicalParentContained": true,
+      "areaM2": 372571.093166839,
+      "geographicCoordinatesAreOsmVertices": false
+    }
+  ],
+  "sharedSourceSplitUsedIdentically": true,
+  "interiorOverlapPixelArea": 0,
+  "outputSha256": "46c456e00e409d722289fe3d25d9cf3c756ff40a782db1dd08d82328769ff417",
+  "reproduce": "PYTHONPATH=.local/geodata python3 scripts/neighborhoods/derive-kecskemet-outer-next.py --check",
+  "usableForAddressAssignment": false
+}

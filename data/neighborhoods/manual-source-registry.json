@@ -1,0 +1,502 @@
+{
+  "schemaVersion": 1,
+  "reviewPath": "data/neighborhoods/manual-review.json",
+  "admissionMeaning": "Admitted features are auditable source-based candidates for a review-required polygon layer. They are not surveyed/legal/address-assignment boundaries. Excluded features remain research artifacts.",
+  "datasets": [
+    {
+      "id": "budapest-molnar",
+      "path": "data/neighborhoods/manual/budapest-molnar.geojson",
+      "sha256": "4199cc1ed7941cc3b5d4adffced5b679f85fd9ac7fcab95885167ff3b09f2526",
+      "municipality": "Budapest",
+      "method": "legal_island_definition_with_existing_osm_waterbody_inner_ring",
+      "evidenceUrls": [
+        "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+        "https://www.openstreetmap.org/relation/417508",
+        "https://www.openstreetmap.org/way/1084440121"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+          "paragraph": "3. melléklet 23.4."
+        }
+      ],
+      "license": "ODbL-1.0",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/manual-review.json",
+      "reviewDatasetId": "budapest-molnar",
+      "rightsStatus": "ODbL-1.0 derived source geometry"
+    },
+    {
+      "id": "szombathely-belvaros",
+      "path": "data/neighborhoods/sources/municipal-west/szombathely-manual.geojson",
+      "sha256": "5f41bd11a9fbffc8e8114041066ccd24bcf818fe5f0100a0781588e2a37ae9ed",
+      "municipality": "Szombathely",
+      "method": "Manual official street-circuit interpretation; sourceOSMroads noded at2Dsegmentintersections and traced sequentially, preserving complete source vertices; junction connectors follow real source roads.",
+      "evidenceUrls": [
+        "https://kbr.szombathely.hu/kbrfile/46469.pdf"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+          "sha256": "aade0d35a60e4ecd230a26c2c7dabcfc26ec76466ab86310e6828f34db714500",
+          "page": 150,
+          "pdfPageZeroBased": 149
+        }
+      ],
+      "license": "ODbL-1.0",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/manual-review.json",
+      "reviewDatasetId": "szombathely-belvaros",
+      "rightsStatus": "ODbL-1.0 derived source geometry"
+    },
+    {
+      "id": "tata-statutory-planning-units",
+      "path": "data/neighborhoods/sources/municipal-west/tata-manual.geojson",
+      "sha256": "418ff0d46494f318bef71c095c565d74da6713dfc2b369e2ec8c482f10b21c1b",
+      "municipality": "Tata",
+      "method": "Official statutory PDF filled-vector path extraction; affine georeferencing in EOV(EPSG:23700) against the current Tata municipal boundary; transformed to WGS84. No buffer, residential-extent inference, artificial closing chord, clipping, or arbitrary polygon generation.",
+      "evidenceUrls": [
+        "https://magyaryterv.etata.hu/telepulesrendezes/tesz/7_melleklet_a_19_2022_XI_30_rendelethez_varosreszek_000.pdf",
+        "https://magyaryterv.etata.hu/telepulesrendezes/tesz/"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://magyaryterv.etata.hu/telepulesrendezes/tesz/7_melleklet_a_19_2022_XI_30_rendelethez_varosreszek_000.pdf",
+          "sha256": "88cf8d1af8bbaeb41c78a9ea098fef6f42fce9b93b82a7b15b34abe1064ae979",
+          "page": 1,
+          "pdfPageZeroBased": 0,
+          "localSourceFile": "tata-map.source.pdf"
+        }
+      ],
+      "license": "ODbL-1.0 (OSM-derived georeferencing); official statutory boundary facts",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false,
+        "semanticReviewPath": "data/neighborhoods/research/planning-semantics-recheck.json",
+        "boundaryScopeNote": "The original statutory map explicitly delineates named city quarters. Source-era footprint and unknown absolute georeferencing accuracy retained; not a statement of current legal/address accuracy."
+      },
+      "reviewPath": "data/neighborhoods/manual-review.json",
+      "reviewDatasetId": "tata-statutory-planning-units",
+      "rightsStatus": "Official-source boundary facts; source-map reuse rights not independently established; OSM controls ODbL-1.0",
+      "semanticReclassificationNote": "2026-11-13 review: planning purpose alone does not make these expressly named quarter boundaries generic planning units; coordinates and geometric exclusions unchanged."
+    },
+    {
+      "id": "tatabanya-statutory-planning-units",
+      "path": "data/neighborhoods/sources/municipal-west/tatabanya-manual.geojson",
+      "sha256": "fd527b72165d5a50178f3eedfc0cb0498ee9c087bd7aa1727e1a4794a8c9100e",
+      "municipality": "Tatabánya",
+      "method": "Exact closed colored boundary vector path from statutory HÉSZ annex3; affine EOV georegistration using municipal-outline control geometry, converted to WGS84. No artificial closure, buffers, coordinate extents, or residential-area inference.",
+      "evidenceUrls": [
+        "https://njt.jog.gov.hu/document/c5/c56aLL_EJR_13372578-H_SZ_3.mell_klet.pdf",
+        "https://njt.jog.gov.hu/jogszabaly/2018-8-SP-5Y3620.3"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://njt.jog.gov.hu/document/c5/c56aLL_EJR_13372578-H_SZ_3.mell_klet.pdf",
+          "sha256": "7a7ca9a8f70f0dcaad90deb3ce27a459a8b70610914c72cc7d9ec98eb2fb76d7",
+          "page": 1,
+          "pdfPageZeroBased": 0,
+          "localSourceFile": "tatabanya-map.source.pdf"
+        }
+      ],
+      "license": "ODbL-1.0 (OSM-derived georeferencing); official statutory boundary facts",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false,
+        "semanticReviewPath": "data/neighborhoods/research/planning-semantics-recheck.json",
+        "boundaryScopeNote": "The original statutory map explicitly delineates named city quarters. Source-era footprint and unknown absolute georeferencing accuracy retained; not a statement of current legal/address accuracy."
+      },
+      "reviewPath": "data/neighborhoods/manual-review.json",
+      "reviewDatasetId": "tatabanya-statutory-planning-units",
+      "rightsStatus": "Official-source boundary facts; source-map reuse rights not independently established; OSM controls ODbL-1.0",
+      "semanticReclassificationNote": "2026-11-13 review: planning purpose alone does not make these expressly named quarter boundaries generic planning units; coordinates and geometric exclusions unchanged."
+    },
+    {
+      "id": "eger-historical-planning-units",
+      "path": "data/neighborhoods/sources/municipal-eger-semantic-next/proposed-semantic-revision.geojson",
+      "sha256": "3f0f6f7e2e0efb6e3328e6d715c8d2f083553131483be80ec395e075b97b4b7e",
+      "municipality": "Eger",
+      "method": "original_pdf_vector_path_affine_georeferencing",
+      "evidenceUrls": [
+        "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf",
+        "https://www.openstreetmap.org/relation/1418156"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf",
+          "sha256": "7db28b2b5922e6dea7bde9dc3263087534b26e9cd1e52b63335249265df6febe",
+          "page": 1,
+          "referenceDate": "2016-08"
+        }
+      ],
+      "license": "source_map_reuse_not_established; OSM controls ODbL-1.0",
+      "propertyOverrides": {
+        "usableForAddressAssignment": false,
+        "semanticRevisionStatus": "root_reviewed_historical_source_schema_only"
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-eger-semantic-next/root-native-geometry-audit.json",
+      "reviewDatasetId": "eger-historical-planning-units",
+      "rightsStatus": "Official-source boundary facts; source-map reuse rights not independently established; OSM controls ODbL-1.0",
+      "semanticReclassificationNote": "Per-record root-reviewed historical source-quarter scope revision; replaces the existing dataset with all 32 IDs, names and geometry values unchanged. 23 qualified historical base-plan footprints and 9 retained planning units. Current ordinary/ITS/legal extents remain unknown; no new geometry acquisition or address approval.",
+      "semanticReviewPath": "data/neighborhoods/sources/municipal-eger-semantic-next/semantic-audit.json",
+      "registryEntryAppliedByThisBatch": false
+    },
+    {
+      "id": "szombathely-ehen-gyula",
+      "path": "data/neighborhoods/sources/municipal-szombathely-next/szombathely-ehen-gyula.geojson",
+      "sha256": "60a0a7a20b48a421dd695b7a798a0ca474f325cea7d9430bd57210e208768ea8",
+      "municipality": "Szombathely",
+      "method": "Official 2013 perimeter text interpreted as an ordered road-centreline circuit on actual 2026 OSM node geometry. Every junction is the unique shared OSM node of successive named roads; every edge is consecutive in an original OSM way. No inferred connectors or geometry repair.",
+      "evidenceUrls": [
+        "https://kbr.szombathely.hu/kbrfile/46469.pdf"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+          "path": "data/neighborhoods/sources/municipal-szombathely-next/szombathely-ivs.source.pdf",
+          "sha256": "aade0d35a60e4ecd230a26c2c7dabcfc26ec76466ab86310e6828f34db714500",
+          "page": 151,
+          "pdfPageZeroBased": 150,
+          "section": "15. Éhen Gyula kertváros"
+        }
+      ],
+      "license": "ODbL-1.0",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-szombathely-next/manifest.json",
+      "reviewDatasetId": "szombathely-ehen-gyula",
+      "rightsStatus": "ODbL-1.0 source-derived road geometry; municipal PDF redistribution licence not independently established"
+    },
+    {
+      "id": "country-parent-review",
+      "path": "data/neighborhoods/sources/country-parent-review/named-crossing-quarters.geojson",
+      "sha256": "4f6404e725f62e36d96bc71fa9428e74947a16ea033f4de65acf6102c3ed89c1",
+      "method": "Per-object source parent association with separate exact label nodes; original source geometry retained.",
+      "evidenceUrls": [
+        "https://www.openstreetmap.org/copyright"
+      ],
+      "license": "ODbL-1.0",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/country-parent-review/proof.json"
+    },
+    {
+      "id": "kecskemet-erzsebetvaros",
+      "path": "data/neighborhoods/sources/municipal-maps-next/kecskemet-manual.geojson",
+      "sha256": "160a740fb414cb3605ed93adceabfb857bdcadf95661c8ac762284f463d54889",
+      "municipality": "Kecskemét",
+      "method": "Manual municipal street-circuit interpretation; polygonized actual OSM street centerlines with exact source vertices and no inferred connector.",
+      "evidenceUrls": [
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+          "sha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+          "pdfPageOneBased": 152,
+          "printedPage": 150,
+          "corroboratingMapPdfPageOneBased": 143,
+          "mapFigure": 73
+        }
+      ],
+      "license": "ODbL-1.0",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-maps-next/scout/kecskemet-independent-review.json",
+      "rightsStatus": "ODbL-1.0 road geometry; municipal document redistribution rights not independently established"
+    },
+    {
+      "id": "gyor-2006-source-outlines",
+      "path": "data/neighborhoods/sources/municipal-gyor-next/gyor-source-candidates.geojson",
+      "sha256": "4ce29697da5be99269079cd42221242ddc10ed3a96eb697ddf527ebfb10c5f5a",
+      "municipality": "Győr",
+      "method": "Actual closed blue PDF vector path from figure97 of the January2014 Győr ITS, showing the2006 division; affine registration to EPSG:23700 by robust closest-point alignment of actual OPEN black source-stroke endpoints to the current OSM municipal exterior; vertexwise inverse projection to WGS84. No outline repair, clipping, snapping, synthetic closing edge or physical-boundary inference. Explicit source-defined circuit aggregation, where used, is recorded per feature.",
+      "evidenceUrls": [
+        "https://gyor.hu/easy-docs/5dc9829cb6d4c"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://gyor.hu/easy-docs/5dc9829cb6d4c",
+          "path": "data/neighborhoods/sources/municipal-gyor-next/gyor-its.source.pdf",
+          "sha256": "40f318435f5719cb5a06b253d6e15fbd5acc7d5a6bec53fc38ae1e199b6ca21d",
+          "documentDate": "2014-01",
+          "depictedDivisionYear": 2006,
+          "printedMapPage": 269,
+          "pdfPageZeroBased": 268,
+          "figure": 97,
+          "printedQuarterCircuitTablePages": [
+            271,
+            272
+          ]
+        }
+      ],
+      "license": "source_map_reuse_not_established; OSM controls ODbL-1.0",
+      "reviewPath": "data/neighborhoods/sources/municipal-gyor-next/independent-review.json",
+      "reviewDatasetId": "gyor-2006-source-outlines",
+      "rightsStatus": "Official-source historical boundaries; municipal map reuse rights unverified; OSM calibration/namepoints ODbL-1.0",
+      "propertyOverrides": {
+        "usableForAddressAssignment": false
+      },
+      "featureClassificationNote": "Preserve per-feature classification:16historical neighbourhood candidates (11single-circuit +5source-defined groups),1Kisbácsa planning_unit falsecanonical. Grouping operations are recorded per feature. No global fine-quarter override."
+    },
+    {
+      "id": "kecskemet-offline-next",
+      "path": "data/neighborhoods/sources/municipal-offline-next/kecskemet-next.geojson",
+      "sha256": "da90ced61c34c7a1b2b142daf46f8937cce7f00cb0932e9685fc32ce2b3ef05b",
+      "municipality": "Kecskemét",
+      "method": "Municipal source-map-corroborated actual OSM street circuits with exact consecutive-node edges.",
+      "evidenceUrls": [
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ],
+      "license": "ODbL-1.0",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-offline-next/trace-proof.json",
+      "rightsStatus": "OSM road geometry ODbL-1.0; municipal illustration/document reuse rights not independently established.",
+      "independentReviewPath": "data/neighborhoods/sources/municipal-offline-next/final-independent-review.json"
+    },
+    {
+      "id": "kecskemet-varoskozpont",
+      "path": "data/neighborhoods/sources/municipal-offline-more/kecskemet-varoskozpont.geojson",
+      "sha256": "a88369fcb74adec953e308822d873c0f429be73b2299d708e697b43e9fc6eba4",
+      "municipality": "Kecskemét",
+      "method": "Municipal2021 source-map-confirmed surface street circuit using literal2026 OSM vertices and consecutive-node edges. Named square transitions and the source-map eastern Bajcsy corridor resolve omissions in the short text. Grade-separated ways are excluded before polygonization; no clipping, repair, hole removal, snap, buffer or invented closure.",
+      "evidenceUrls": [
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+          "sha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+          "printedPage": 143,
+          "pdfPageOneBased": 145,
+          "corroboratingMapPrintedPage": 141,
+          "corroboratingMapPdfPageOneBased": 143,
+          "figure": 73,
+          "adjacentErzsebetvarosPrintedPage": 150
+        }
+      ],
+      "license": "ODbL-1.0",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-offline-more/south-source-review.json",
+      "rightsStatus": "OSM road geometry ODbL-1.0; municipal illustration reuse rights not independently established."
+    },
+    {
+      "id": "public-vector-esztergom-2013",
+      "path": "data/neighborhoods/sources/public-vector-next/esztergom-candidates.geojson",
+      "sha256": "169bb059c571c1f85e8809b6dd23249d36fe4d41ecc4a5023578207f20d90592",
+      "municipality": "Esztergom",
+      "method": "Unmodified historical Esztergom quarter GeoJSON from a pinned public repository. Metadata cites a2008municipal proposal/decree location; feature timestamps are2013-11-28, not a verified survey date. No coordinate transformation, clipping, snapping, repair, buffer, or generated closing edges.",
+      "evidenceUrls": [
+        "https://github.com/codeforgermany/click_that_hood/blob/48ba05ad4c6969e3b3c25735492169227ae411f1/public/data/esztergom.geojson",
+        "https://github.com/codeforgermany/click_that_hood/blob/48ba05ad4c6969e3b3c25735492169227ae411f1/public/data/esztergom.metadata.json"
+      ],
+      "license": "Individual dataset licence not specified; upstream software MIT; cited municipal source not retrieved",
+      "propertyOverrides": {
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/public-vector-next/esztergom-proof.json",
+      "rightsStatus": "Individual dataset licence not explicit; MIT is preserved as software licence only."
+    },
+    {
+      "id": "kecskemet-petofi-source-raster",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-outer-next/petofi-source-raster.geojson",
+      "sha256": "46c456e00e409d722289fe3d25d9cf3c756ff40a782db1dd08d82328769ff417",
+      "municipality": "Kecskemét",
+      "method": "Manual source-black-outline interpretation on the exact original embedded2021 municipal figure79 JPEG. Manually selected source-stroke seeds guide connected dark source-pixel paths; every dense vertex is an actual source pixel(maxRGB45) and every step is an8-neighbor source-pixel step. Only strictly collinear vertices are compressed. A frozen affine transform fitted to five exact contemporary OSM-node coordinates and manually located image junctions georeferences the historical illustration. No current-road substitution, generated closing chord, gap bridge, snapping of geographic geometry, buffer, repair or inferred extent.",
+      "evidenceUrls": [
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ],
+      "license": "Source municipal map reuse rights unverified; ODbL for OSM georeferencing controls.",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-outer-next/raster-independent-review.json",
+      "rightsStatus": "Municipal map public publication, open-reuse licence not independently established."
+    },
+    {
+      "id": "kecskemet-figure81-source-raster",
+      "path": "data/neighborhoods/sources/municipal-kecskemet-fig81/szechenyi-source-raster.geojson",
+      "sha256": "06ccbe775220cf9260abcc184c87a7620cfffa5d931d156eda3fa1d3f3a2c000",
+      "municipality": "Kecskemét",
+      "method": "Manual interpretation of separately labelled fine-quarter outlines on the exact original embedded JPEG of the 2021 consultation-draft municipal figure 81. Manually identified source-stroke seeds guide continuous 8-neighbor source-pixel paths. For the literal-source layer every dense vertex has maxRGB <= 45. Only exactly collinear vertices are removed. A metric affine fit in EOV/EPSG:23700 using five literal contemporary OSM-node coordinates and manually placed approximate old-image road junctions georeferences the source pixels; the result is converted to WGS84. No current-road replacement, source-frame closure, arbitrary chord, buffer, geometric snapping or geometry repair is used.",
+      "evidenceUrls": [
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ],
+      "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM georeferencing controls.",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-fig81/raster-independent-review.json",
+      "rightsStatus": "Publicly published municipal consultation draft; open-reuse license not independently established."
+    },
+    {
+      "id": "zalaegerszeg-source-raster",
+      "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+      "sha256": "70b502949fcc8333ead5ffc0d404cbdd6198ec0a1f09241f88bd3509fc056b6a",
+      "municipality": "Zalaegerszeg",
+      "method": "Historical municipal map, figure 1, PDF page 12 of the 2014-08-28 ITS draft: exact non-stroke source raster cell regions inside the actual teal cartographic boundary band. Four-neighbor cells; only enclosed numeric label disks restored. Pixel-cell union, no gap bridging or geographic repair. Frozen affine registration from actual municipal-dash source pixels to the contemporary municipal perimeter in EOV, then EPSG:4326. Unknown absolute accuracy, historical status, not address assignment. The original seven-feature extraction is retained; two conservative-validator failures are quarantined without geometry changes.",
+      "evidenceUrls": [
+        "https://zalaegerszeg.hu/wp-content/uploads/2023/05/Zalaegerszeg_ITS.pdf"
+      ],
+      "license": "Municipal map reuse rights not independently established; ODbL for OSM calibration and name evidence.",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-independent-review.json",
+      "rightsStatus": "Municipal public publication, title page says approval draft; open-reuse licence not independently established."
+    },
+    {
+      "id": "szeged-source-street-circuits-next",
+      "path": "data/neighborhoods/sources/municipal-szeged-next/szeged-street-candidates.geojson",
+      "sha256": "b013b77347086689ec7d68c9fe897b7725e7acc401739e94dd51875dc2ceafc4",
+      "municipality": "Szeged",
+      "method": "Explicit municipal IVS2009/ITS2017 named subdivision circuits on actual complete OSM street ways; all182 boundary edges are consecutive original nodes, no synthetic closure/repair. Source-era scope retained.",
+      "evidenceUrls": [
+        "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101",
+          "documentTitle": "200/2017.(IV.28.)Kgy.sz.határozat1.sz.melléklete",
+          "printedPage": 96,
+          "sourceEra": "IVS2009 quoted in2017 adopted ITS",
+          "retrieval": "public_web_search_indexed_factual_text",
+          "fullPdfDownloaded": false,
+          "sourcePdfSha256": null,
+          "factsPath": "data/neighborhoods/sources/municipal-szeged-next/source-facts.json",
+          "factsSha256": "27c323788f68cbe7eb17d96a108baa7fcd32e47ad75027c8983760b088e81469"
+        }
+      ],
+      "license": "ODbL-1.0",
+      "reviewPath": "data/neighborhoods/sources/municipal-szeged-next/independent-review.json",
+      "rightsStatus": "OSM actual street geometry ODbL-1.0; only factual municipal street descriptions paraphrased/transcribed, no full municipal PDF or article copied.",
+      "propertyOverrides": {
+        "usableForAddressAssignment": false
+      },
+      "featureClassificationNote": "Preserve per-feature classification:1 source-era named neighborhood Tarjánváros with unconfirmed current exact footprint;1 name-conflicted historical planning_unit Felsővárosi lakótelep falsecanonical. Do not label2 current verified quarters or promote small planning unit."
+    },
+    {
+      "id": "miskolc-source-raster",
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-source-raster.geojson",
+      "sha256": "0c8d6fdc7f1f075355b704cf2e376ce3815031b3beb616763c3529bb0a2cf22d",
+      "municipality": "Miskolc",
+      "method": "Original exact 884×557 municipal source raster, byte-identical between the 2014 ITS and later FVS annex. Four-neighbor non-cyan source-cell regions inside actual cyan boundary band; all residual holes retained. Manually identified numbered seeds; exact raster-cell run union. No edge closure, repair, hole filling, clipping or geometry copying to constituents. Frozen approximate affine EOV registration from actual original outer-stroke pixels to current archived municipal boundary. Five individually named statistical units plus twelve whole planning units; unknown absolute accuracy and no address assignment.",
+      "evidenceUrls": [
+        "https://www.miskolc.hu/sites/default/files/dokumentumtar/mellekletek/2024-11/197_melleklet.pdf"
+      ],
+      "license": "Municipal map reuse rights unverified; ODbL for OSM municipality and name evidence.",
+      "propertyOverrides": {
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-local-map-next/miskolc-independent-review.json",
+      "rightsStatus": "Municipal public publication; unrestricted reuse licence and present legal boundary validity unverified."
+    },
+    {
+      "id": "tatabanya-more-source-vectors",
+      "path": "data/neighborhoods/sources/municipal-tatabanya-more/additional-quarter-vectors.geojson",
+      "sha256": "cbe63fc319cfd2e2a9a60223c742329a5985ba257b4d99bb5d197b39f527a25f",
+      "municipality": "Tatabánya",
+      "method": "Literal source-vector circuit extraction from the single-page Tatabánya Városrészek településrendezési szempontú lehatárolása map, annex 3 of municipal regulation 8/2018 (IV.19.). Original decimal PDF path operands and graphics matrices are evaluated exactly, rather than snapping MuPDF float32 endpoint approximations. Every exported edge is an actual selected source line item, possibly reversed. Explicit source subcircuits omit documented out-and-back nonboundary strokes; no buffer, make_valid, invented closing edge, smoothing, clipping or geographical snapping is used. The frozen earlier municipal-outline affine georegistration into EOV/EPSG:23700 is preserved and inverse-projected into WGS84. Historical source overlaps and small differences from the current OSM city boundary remain unmodified and recorded.",
+      "evidenceUrls": [
+        "https://njt.jog.gov.hu/document/c5/c56aLL_EJR_13372578-H_SZ_3.mell_klet.pdf"
+      ],
+      "license": "Municipal source-map open-reuse rights unverified; ODbL-1.0 for OSM geographic reference.",
+      "propertyOverrides": {
+        "boundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": true,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-tatabanya-more/independent-review.json",
+      "rightsStatus": "Public legal-annex source; open-reuse licence not independently established."
+    },
+    {
+      "id": "tatabanya-compound-source-vectors",
+      "path": "data/neighborhoods/sources/municipal-tatabanya-more/compound-source-groups.geojson",
+      "sha256": "72b2ccb919db563ede30c7109bdf69cfdbca8f6deeb532d15be64a78a3ad69f3",
+      "municipality": "Tatabánya",
+      "method": "Literal source-vector circuit extraction from the single-page Tatabánya Városrészek településrendezési szempontú lehatárolása map, annex 3 of municipal regulation 8/2018 (IV.19.). Original decimal PDF path operands and graphics matrices are evaluated exactly, rather than snapping MuPDF float32 endpoint approximations. Every exported edge is an actual selected source line item, possibly reversed. Explicit source subcircuits omit documented out-and-back nonboundary strokes; no buffer, make_valid, invented closing edge, smoothing, clipping or geographical snapping is used. The frozen earlier municipal-outline affine georegistration into EOV/EPSG:23700 is preserved and inverse-projected into WGS84. Historical source overlaps and small differences from the current OSM city boundary remain unmodified and recorded.",
+      "evidenceUrls": [
+        "https://njt.jog.gov.hu/document/c5/c56aLL_EJR_13372578-H_SZ_3.mell_klet.pdf"
+      ],
+      "license": "Municipal source-map open-reuse rights unverified; ODbL-1.0 for OSM geographic reference.",
+      "propertyOverrides": {
+        "boundaryKind": "planning_unit",
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false
+      },
+      "reviewPath": "data/neighborhoods/sources/municipal-tatabanya-more/independent-review.json",
+      "rightsStatus": "Public legal-annex source; open-reuse licence not independently established."
+    },
+    {
+      "id": "sopron-native-planning-units-next",
+      "path": "data/neighborhoods/sources/municipal-sopron-next/source-vector.geojson",
+      "sha256": "5f87062ca249f91d1179c574a6157c380d8ebc9b2dbd484c9df5293bee80436a",
+      "municipality": "Sopron",
+      "method": "Exact native blue source-segment network and four real source faces; approximate actual municipal-perimeter registration in EOV, cross-page link verified by 4888 original CAD segment pairs; inverse projection to WGS84.",
+      "evidenceUrls": [
+        "https://njt.jog.gov.hu/document/4f/4fb0LL_EJR_84883813-Sopron_-_HESZmod_1_melleklet__SZT-Atnezeti_tervlapok.pdf"
+      ],
+      "sourceDocuments": [
+        {
+          "url": "https://njt.jog.gov.hu/document/4f/4fb0LL_EJR_84883813-Sopron_-_HESZmod_1_melleklet__SZT-Atnezeti_tervlapok.pdf",
+          "sha256": "62589313512700af95c98e41af9a7556ebaf97fc0e1eac3240cd0aeaf791ec41",
+          "pdfPageOneBased": 2,
+          "pdfPageZeroBased": 1,
+          "localSourceFile": "data/neighborhoods/sources/municipal-sopron-next/source-pages1-2.pdf",
+          "archivedSourceSha256": "6213be7ec2318f03856a102d7791c2e98b3704a26cbc0c0f011df8c6e1bd063b",
+          "annex": "1/B to 39/2021.(XII.28.)",
+          "workNumber": "TT08518-M1/24"
+        }
+      ],
+      "license": "Municipal map reuse rights unverified; OSM calibration ODbL-1.0",
+      "propertyOverrides": {
+        "boundaryKind": "planning_unit",
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "georeferencingIsApproximate": true,
+        "claimedAbsoluteAccuracyMetres": null,
+        "sourceIsHardBoundary": false,
+        "sourceIsOfficial": false
+      },
+      "reviewPath": "data/neighborhoods/manual-review.json",
+      "reviewDatasetId": "sopron-native-planning-units-next",
+      "rightsStatus": "Municipal-source factual contours; map reuse rights not independently established; OSM control geometry ODbL-1.0",
+      "independentReviewPath": "data/neighborhoods/sources/municipal-sopron-next/independent-review.json",
+      "independentReviewMeaning": "Native source geometry and transformation arithmetic independently verified; current legal validity, reuse rights and absolute positional accuracy remain unverified."
+    }
+  ]
+}

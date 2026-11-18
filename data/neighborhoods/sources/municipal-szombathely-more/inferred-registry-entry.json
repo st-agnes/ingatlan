@@ -1,0 +1,36 @@
+{
+  "id": "szombathely-joskar-ola-2013-road-completion-inference",
+  "path": "data/neighborhoods/sources/municipal-szombathely-more/joskar-ola-inferred.geojson",
+  "sha256": "2f5286b40b1249281184ed9715c04b583c1de3cc2dbde3bd18a7ccc349501154",
+  "municipality": "Szombathely",
+  "method": "Estimated historical Joskar-Ola perimeter from IVS2013 annex 1, using named-road centreline paths plus a documented 42.567 m unnamed residential-road completion. Every edge is an original consecutive OSM node pair; divided-road junction choice remains unverified.",
+  "evidenceUrls": [
+    "https://kbr.szombathely.hu/kbrfile/46469.pdf"
+  ],
+  "sourceDocuments": [
+    {
+      "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+      "title": "Szombathely MJV – Integrált Városfejlesztési Stratégia 2008–13",
+      "sourceDate": "2013-06-06",
+      "originalPdfPageOneBased": 150,
+      "printedPage": 150,
+      "section": "IX. Mellékletek, 1. sz melléklet, 5. Joskar-Ola-lakótelep",
+      "archivedExcerptPath": "data/neighborhoods/sources/municipal-szombathely-more/source-proof-pages.pdf",
+      "excerptPdfPageOneBased": 3,
+      "originalPdfSha256": "aade0d35a60e4ecd230a26c2c7dabcfc26ec76466ab86310e6828f34db714500"
+    }
+  ],
+  "license": "ODbL-1.0 for actual OSM coordinates; municipal perimeter facts transcribed.",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-szombathely-more/independent-review.json",
+  "rightsStatus": "Original OSM ways ODbL-1.0; no open municipal-map reuse licence asserted.",
+  "existingNamedQuarterId": "osm:relation:8356511",
+  "newDistinctQuarterCoverage": false,
+  "historicalAlternativeNotNewFineQuarter": true
+}

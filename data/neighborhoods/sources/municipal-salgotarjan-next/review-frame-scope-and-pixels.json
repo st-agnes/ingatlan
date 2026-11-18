@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "reviewer": "Independent pecs_cell_names_review agent; Salgótarján source-frame scope task",
+  "scope": "Semantic intent and source-pixel/arithmetic verification of the producer exploratory whole-city frame only. This report does not approve any geographic quarter geometry or absolute accuracy.",
+  "verdict": "source_context_and_global_outline_support_historical_municipal_scope_for_approximate_registration_only",
+  "sourceContext": {
+    "pdfPageOneBased": 125,
+    "printedPage": 125,
+    "figure": "III.3-1. ábra: Salgótarján városrészei",
+    "literalScopeQuote": "Salgótarján Megyei Jogú Város közigazgatási területe az alábbi 10 városrészre osztható fel",
+    "figureSourceCaption": "Forrás: ITS",
+    "meaning": "The figure is expressly introduced as the ten-unit division of the whole city administrative area, rather than an arbitrary local street-map excerpt.",
+    "grayOuterEdgeLegendExplicitlyDefinesAdministrativeBoundary": false,
+    "importantDistinction": "The irregular extent of the cadastral foreground is strongly consistent with this intended city scope, but no separate gray-stroke legend, survey metadata or native georeference proves that each raster edge pixel is an authoritative legal boundary."
+  },
+  "visualInspection": {
+    "wholeOutlineCorrespondence": "Strong global shape agreement: northern Somoskő nose; northeastern broad lobe; northwestern shoulder near Beszterce; western lower notch; and the southern elongated city body all correspond to the archived current municipality shape. This is qualitative corroboration, not a survey control.",
+    "sourceIsAnIrregularCadastralDataExtentRatherThanMapRectangle": true,
+    "sourceForegroundContainsQuarterColorsAsWellAsGrayCadastralInk": true,
+    "sourceCroppedAtLeftRasterEdge": true,
+    "sourceRasterEdgesMustNeverBecomeNewClosingSegments": true,
+    "mostObviousScopeMismatch": "At the southern purple ninth-unit tip, the current municipality overlay cuts through/before the full colored source extension; the worst stored fit residuals cluster near source pixels x299–303,y810–815.",
+    "mismatchCauseEstablished": false,
+    "possibleUnresolvedFactors": [
+      "Historical versus current administrative boundary difference",
+      "Industrial-area extension explicitly added to unit9 in the overview legend",
+      "Original map generalisation/geographic correspondence or registration uncertainty",
+      "Very pale JPEG fringe pixels selected by the non-white classifier"
+    ],
+    "noClippingOrAdjustmentToCurrentBoundaryPerformedByReviewer": true
+  },
+  "sourcePixelVerification": {
+    "originalPdfImageByteIdentity": true,
+    "rasterSizePixels": [
+      761,
+      885
+    ],
+    "controlCount": 4716,
+    "allCoordinatesIntegerActualRasterPixels": true,
+    "allControlsPassOriginalNonWhitePredicate": true,
+    "foregroundRule": "minRGB<248; legend-related foreground removed where y>495 and x>470",
+    "controlSelectionRule": "Actual largest8-connected foreground pixels adjacent to its exterior background, x>5,x<755,y>5,y<850, excluding y>485 and x>460. Fill-holes is a calibration-selection intermediate, not exported municipal/quarter geometry.",
+    "entireControlArrayIndependentlyReconstructedExactly": true,
+    "legendControlCount": 0,
+    "withinFivePixelsOfAnyRasterEdgeControlCount": 0,
+    "nearGrayControlCountChromaAtMost15": 4641,
+    "strongColorControlCountChromaOver30": 8,
+    "controlsAreNotAllIndependentlyIdentifiedBoundarySurveyPoints": true
+  },
+  "fitArithmeticVerification": {
+    "targetMetricCrs": "EPSG:23700; used for fitting, not proof of original raster projection",
+    "originalRasterCrsKnown": false,
+    "matrixSource": "exploratory-frame-registration.json",
+    "maxDifferenceFromStoredResidualsMetres": 0.0,
+    "distancePercentilesMetres": {
+      "p0": 0.00678428676706809,
+      "p50": 13.086442496083418,
+      "p90": 57.17014212721436,
+      "p95": 132.90229778444308,
+      "p99": 356.6107243338851,
+      "p100": 514.8747848062436
+    },
+    "fittedMetresPerPixelSingularValues": [
+      19.083441380445276,
+      19.037885544375637
+    ],
+    "theseResidualsAreNotIndependentAbsoluteAccuracy": true,
+    "worstDiagnosticControls": [
+      {
+        "sourcePixel": [
+          302.0,
+          810.0
+        ],
+        "originalRgb": [
+          250,
+          255,
+          242
+        ],
+        "fitDistanceToCurrentPerimeterMetres": 441.6114084064821
+      },
+      {
+        "sourcePixel": [
+          300.0,
+          813.0
+        ],
+        "originalRgb": [
+          247,
+          255,
+          251
+        ],
+        "fitDistanceToCurrentPerimeterMetres": 446.75299049900417
+      },
+      {
+        "sourcePixel": [
+          299.0,
+          815.0
+        ],
+        "originalRgb": [
+          241,
+          255,
+          240
+        ],
+        "fitDistanceToCurrentPerimeterMetres": 448.246313994864
+      },
+      {
+        "sourcePixel": [
+          303.0,
+          810.0
+        ],
+        "originalRgb": [
+          250,
+          255,
+          241
+        ],
+        "fitDistanceToCurrentPerimeterMetres": 453.53238024105104
+      },
+      {
+        "sourcePixel": [
+          301.0,
+          813.0
+        ],
+        "originalRgb": [
+          237,
+          241,
+          242
+        ],
+        "fitDistanceToCurrentPerimeterMetres": 463.786431722937
+      },
+      {
+        "sourcePixel": [
+          303.0,
+          811.0
+        ],
+        "originalRgb": [
+          249,
+          252,
+          245
+        ],
+        "fitDistanceToCurrentPerimeterMetres": 468.33851248743275
+      },
+      {
+        "sourcePixel": [
+          301.0,
+          814.0
+        ],
+        "originalRgb": [
+          243,
+          247,
+          248
+        ],
+        "fitDistanceToCurrentPerimeterMetres": 472.3012115435286
+      },
+      {
+        "sourcePixel": [
+          302.0,
+          813.0
+        ],
+        "originalRgb": [
+          247,
+          244,
+          253
+        ],
+        "fitDistanceToCurrentPerimeterMetres": 480.8198729467395
+      },
+      {
+        "sourcePixel": [
+          302.0,
+          814.0
+        ],
+        "originalRgb": [
+          252,
+          246,
+          255
+        ],
+        "fitDistanceToCurrentPerimeterMetres": 489.3272866477476
+      },
+      {
+        "sourcePixel": [
+          303.0,
+          815.0
+        ],
+        "originalRgb": [
+          251,
+          245,
+          255
+        ],
+        "fitDistanceToCurrentPerimeterMetres": 514.8747848062436
+      }
+    ]
+  },
+  "restrictions": {
+    "geographicImportApproved": false,
+    "primaryApproved": false,
+    "absoluteBoundaryAccuracyMetres": null,
+    "sourceIsCurrentLegalBoundaryClaimed": false,
+    "usableForAddressAssignment": false,
+    "networkUsed": false,
+    "producerFilesModified": false,
+    "geographicCoordinatesInventedByReviewer": false
+  },
+  "inputFingerprints": [
+    {
+      "path": ".local/neighborhoods/nationwide-docs/originals/salgotarjan-its.pdf",
+      "sha256": "d0c46f2a4797517874b770da6d64dba88cf81de5170cf09e2857284644a31a25"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/source-p125-xref924.jpeg",
+      "sha256": "1a98f2f09095fdb4ffa91f9ea35ee34881ab00a48f18405f044e3f57c1824fa6"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/exploratory-frame-registration.json",
+      "sha256": "8b058eb33012df398f76d32d7b7f8f290e5244fb68f1eacea30e7f95108c7015"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/explore-source-frame.py",
+      "sha256": "229e276058006c898ede517f61117180c0d164040438b3d24d55f6a97832d6e0"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/calibration-municipality.geojson",
+      "sha256": "449af490d117d243950acbdabdca21657371e8c1e7168046a31645a9b3915cd8"
+    }
+  ],
+  "inspectionPngs": [
+    "review-frame-source-controls-and-exclusions.png",
+    "review-frame-source-control-samples.png"
+  ]
+}

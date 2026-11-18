@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-14",
+  "scope": "Bounded source-access evidence for Hódmezővásárhely, Szentes and Baja only. Failures do not establish source or online polygon absence.",
+  "originalMunicipalPdfBytesArchived": 0,
+  "officialQuarterPolygonFeaturesAcquired": 0,
+  "observedSourceContourImagesAcquired": 0,
+  "records": [
+    {
+      "municipality": "Hódmezővásárhely",
+      "url": "https://hodmezovasarhely.hu/wp-content/uploads/strategiak_koncepciok/Integr%C3%A1lt-Telfejli-Stra%C3%A9gia_2014.pdf",
+      "sourceEra": "Adopted2014-09-17,217/2014.(09.17)Kgy.",
+      "readableEvidence": "Initial web connector municipal PDF text and adoption/circuit facts.",
+      "laterAccessBlock": "Original PDF screenshot and direct re-open HTTP403.",
+      "geometricLimit": "No original PDF map paths/pixels copied. Current OSM reconstruction is separately low-confidence inferred.",
+      "detailFile": "hod-source-research.json"
+    },
+    {
+      "municipality": "Szentes",
+      "url": "https://szentes.hu/wp-content/uploads/2015/01/szentes_ivs.pdf",
+      "sourceEra": "January2015 municipal upload of an older IVS containing2009/2010 material; exact edition/adoption unverified.",
+      "readableEvidence": "First web connector indexed PDF text, sectionIV.1, whole-quarter boundary facts;20items/19unique.",
+      "laterAccessBlock": "Direct PDF open and selected-page screenshots timed out.",
+      "geometricLimit": "No source contour observed. The independent inferred candidate uses six explicitly chosen current physical paths; only Apponyi has two footprint variants.",
+      "detailFile": "source-scout-research.json"
+    },
+    {
+      "municipality": "Szentes",
+      "url": "https://www.szentes.hu/wp-content/uploads/2025/03/Szentes_FVS_mod_20240627_elfogadott.pdf",
+      "sourceEra": "2024-06-27 modification, uploaded2025-03.",
+      "readableEvidence": "Indexed Figure62 printed164 and Figure81 printed285 identify current named quarters.",
+      "laterAccessBlock": "Selected-page screenshot requests timed out.",
+      "geometricLimit": "Current names and apparent partition do not establish exact historical or current boundary equivalence."
+    },
+    {
+      "municipality": "Baja",
+      "url": "https://paktum.bajaionkormanyzat.hu/pdf/ITS_DA_Baja_Strategia_vegleges_nokorr0930.pdf",
+      "sourceEra": "2015-era strategy; inspected boundary table expressly citesIVS2008; exact cover/adoption not archived.",
+      "readableEvidence": "Initial indexed PDF text on printed29-30 supplies four coarse macro-quarter groups and directional peripheral street inventories.",
+      "laterAccessBlock": "Selected-page screenshots/direct PDF fetch HTTP403.",
+      "geometricLimit": "Historical neighborhood labels grouped inside macro-quarters do not provide individual closed circuits."
+    },
+    {
+      "municipality": "Baja",
+      "url": "https://pubhtml5.com/lqzn/ufna/basic/",
+      "sourceEra": "TAK2017, mayor foreword2017-10-25; mirror published2018-01-07.",
+      "readableEvidence": "Mirror text, printed22-23, historical city-quarter names and partial boundaries.",
+      "laterAccessBlock": "Direct page/online-book/page-image URLs were not accessible via the web tool; original official TAK landing page returnedHTTP403.",
+      "officialLandingPage": "https://www.bajaionkormanyzat.hu/index.php/9-explore/1710-a-telepulesi-arculati-kezikonyv-ertekelo-felulete",
+      "geometricLimit": "No usable map pixels/closed fine-quarter circuit acquired. No Baja polygon constructed."
+    }
+  ],
+  "researchOnly": true,
+  "noNewPolygonGeometry": true,
+  "usableForAddressAssignment": false
+}

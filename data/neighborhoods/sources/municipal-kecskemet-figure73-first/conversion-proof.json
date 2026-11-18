@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "sourceImageSha256": "59cbd060c8010a396511cdec69848410b4fee8d6bd8e628500894b5e27565e9c",
+  "records": [
+    {
+      "name": "Árpádváros",
+      "denseVertexCountIncludingClosure": 991,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "sourceAreaPixelSquared": 65698.0,
+      "everyDenseVertexIsActualOriginalBlackPixel": true,
+      "sourceFrameTouched": false
+    },
+    {
+      "name": "Kossuthváros",
+      "denseVertexCountIncludingClosure": 791,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "sourceAreaPixelSquared": 37827.0,
+      "everyDenseVertexIsActualOriginalBlackPixel": true,
+      "sourceFrameTouched": false
+    }
+  ],
+  "outputVertexCountIncludingClosures": 1782,
+  "sourcePixelCellIntersectionArea": 0.0,
+  "projectValidatorResults": [
+    {
+      "id": "manual:kecskemet-figure73:arpadvaros",
+      "valid": true,
+      "bbox": [
+        19.684052739339258,
+        46.89922984022681,
+        19.692081888302837,
+        46.90564094852812
+      ],
+      "vertices": 991
+    },
+    {
+      "id": "manual:kecskemet-figure73:kossuthvaros",
+      "valid": true,
+      "bbox": [
+        19.69057738959373,
+        46.89937737795098,
+        19.696395487339927,
+        46.903785795504014
+      ],
+      "vertices": 791
+    }
+  ],
+  "allSourceVertices8NeighborBlackPixels": true,
+  "noFrameClosureInventedEdgeRepairBufferSnapOrPixelAddition": true,
+  "geographicPlacementInferredOnly": true,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

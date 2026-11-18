@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Gyöngyös",
+  "primaryCandidateCount": 0,
+  "estimatedCandidateCount": 5,
+  "actualSourceContourCount": 5,
+  "integrationTarget": "inferred-candidate-registry.json only; central registry not modified by converter",
+  "sourcePdf": {
+    "url": "https://gyongyos.hu/wp-content/uploads/2021/01/integralt-telepulesfejlesztesi-strategia-2016-its-gyongyos.pdf",
+    "title": "Gyöngyös Város Integrált Településfejlesztési Stratégia",
+    "sourceYear": 2016,
+    "retrievedAt": "2026-11-13T12:20:06.811667+00:00",
+    "originalPdfBytes": 5934654,
+    "originalPdfSha256": "1e215b16a31dd6b97aca1eca765151f27acf691d23ccc5e8adf216bcb19ceef0",
+    "mapPdfPageOneBased": 19,
+    "mapPrintedPage": 18,
+    "mapFigure": 1,
+    "mapCaption": "Gyöngyös városrészeinek lehatárolása",
+    "imageXref": 44,
+    "imageSize": [
+      809,
+      933
+    ]
+  },
+  "sourceSemantics": "The document expressly identifies these as individually named city quarters, not mere electoral districts or an unspecified planning aggregation. The individual maps and their same-page or immediately preceding section headings independently associate the overview colors with their names. No polygon is copied to contained smaller names.",
+  "claimedAbsoluteAccuracyMetres": null,
+  "artifacts": [
+    {
+      "path": "source-map.jpeg",
+      "bytes": 107360,
+      "sha256": "42e7d237cbd3fa6c5fc896ab6766a7d9c79d7c9e962123772784b8f360042e6a"
+    },
+    {
+      "path": "source-proof-pages.pdf",
+      "bytes": 3271839,
+      "sha256": "de9e48bf2cb8c1e1b26f829b7f423bf35f202f5f0831c9e951396b1535cb31b5"
+    },
+    {
+      "path": "source-region-p29.jpeg",
+      "bytes": 422008,
+      "sha256": "c9c1192786121e27532f1f56100acb9f77e5d8aa8f3fa387e68430362b5b3625"
+    },
+    {
+      "path": "source-region-p31.jpeg",
+      "bytes": 506036,
+      "sha256": "2bcabef0d4105b735449b8465e6ae940a14b9f9eb5d92f770c090ba5fc05a494"
+    },
+    {
+      "path": "source-region-p33.jpeg",
+      "bytes": 432667,
+      "sha256": "f35ab4788e391e7da641d7794bd84e0a06e668c2956624d5b800b7fb89d62cc4"
+    },
+    {
+      "path": "source-region-p35.jpeg",
+      "bytes": 280476,
+      "sha256": "5c8845e861362564faeab5e4904f240c61699daf8c160a8c0c9e1402d9679dd9"
+    },
+    {
+      "path": "source-region-p37.jpeg",
+      "bytes": 422531,
+      "sha256": "84e60c023ec727267552705d3244bb9e6a38cb56e35f7d7d3ed4594cf3d0ce1b"
+    },
+    {
+      "path": "source-facts.json",
+      "bytes": 4435,
+      "sha256": "57823cfd194281ae1cdd0ed42b2655d4b4fdb0c27d3aaff07b8d453084526822"
+    },
+    {
+      "path": "source-contours.json",
+      "bytes": 649619,
+      "sha256": "7a5a87db20d524535826b8b5adc04ff215a396f1c19ed6975b28996e7b62cac9"
+    },
+    {
+      "path": "registration-controls.json",
+      "bytes": 2152,
+      "sha256": "920ba78b6cfe2404f2275523166e66f87dc0b84944d201584998724f7bd1b9c7"
+    },
+    {
+      "path": "image-correspondence-experiment.json",
+      "bytes": 568,
+      "sha256": "e7f7478bfc6f2fbf7b7c717f3d8a852ef5a9371116c0dcaff6ab62b9b07296d9"
+    },
+    {
+      "path": "osm-water-control.json",
+      "bytes": 4829,
+      "sha256": "78fe3f5da43f84b8161e7123f0629bdd12e8409319de007d674d79714c2a223b"
+    },
+    {
+      "path": "osm-calibration-lines.geojson",
+      "bytes": 1254389,
+      "sha256": "4a2d380b9aeb462ebf28351428e2d4650cbaf2d247b5c915a78a49db66d75a66"
+    },
+    {
+      "path": "osm-calibration-landmarks.json",
+      "bytes": 15349,
+      "sha256": "499bc66fd6c2f8e1eb15560cd55b3993af78cc1ac66f04d0c54e1fb33af75d9a"
+    },
+    {
+      "path": "trace-source.py",
+      "bytes": 7365,
+      "sha256": "23e25098a3f295e0ef4ba9b09cb6a766838a91cc4c05f30c0ea584e7f91886d1"
+    },
+    {
+      "path": "gyongyos-inferred.geojson",
+      "bytes": 605784,
+      "sha256": "4072e2c4ff5d1ee7da1747d195487392fc15b6be5ebd66fe1bf441dff0502104"
+    },
+    {
+      "path": "conversion-proof.json",
+      "bytes": 5594,
+      "sha256": "210aad99a67fa3af9d42af456dfecf8ad9056d82c5765c55bfb87074da6184ed"
+    },
+    {
+      "path": "registry-entry.json",
+      "bytes": 1407,
+      "sha256": "37324f6c34654c6c29360fed74ea932bb1ff1aa6c911428df719131868528632"
+    }
+  ],
+  "converter": {
+    "path": "scripts/neighborhoods/derive-gyongyos-more.py",
+    "sha256": "0a601025931f31e8c5ab3af0e8ce324da0d6647541fe2c0454cda4a92a69d714"
+  },
+  "independentReview": "independent-review.json is a subsequent separately authored QA artifact.",
+  "rightsStatus": "Municipal publication contains Google Earth / 2015 DigitalGlobe imagery. No open-reuse or redistribution licence for imagery/map has been independently established. OSM calibration ODbL-1.0."
+}

@@ -1,0 +1,858 @@
+{
+  "type": "FeatureCollection",
+  "registeredAsSeparateDataset": false,
+  "sameGeometryIncludedInMainFive": true,
+  "countsAsAdditionalQuarters": false,
+  "features": [
+    {
+      "type": "Feature",
+      "id": "manual:kiskunfelegyhaza-its2016:unit13",
+      "properties": {
+        "name": "Arany-hegyi lakótelep",
+        "municipality": "Kiskunfélegyháza",
+        "municipalityId": "city:Kiskunfélegyháza",
+        "sourceUnitNumber": 13,
+        "sourceSchemaId": "kiskunfelegyhaza-its2016-table4-unit13",
+        "sourcePeriod": "ITS 2016 review, municipal 2014 boundary submission; census 2011 statistics. Original survey/backdrop date unknown.",
+        "sourceContourIsObserved": true,
+        "observedSourceContour": true,
+        "sourceContourObserved": true,
+        "completeSourceContourObserved": true,
+        "sourceContourHasObservedSections": true,
+        "estimatedContour": false,
+        "sourceContourMethod": "Observed RGB outline component and exact free pixel interior; no inferred source edges.",
+        "inferredSourceGapCapCount": 0,
+        "inferredSourceGapBarrierCells": 0,
+        "estimatedPlacement": true,
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": false,
+        "sourceIsOfficial": false,
+        "sourceDocumentIsOfficialMunicipalPublication": true,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "georeferencingIsApproximate": true,
+        "claimedAbsoluteAccuracyMetres": null,
+        "confidence": "low",
+        "reviewStatus": "estimated_source_candidate_pending_independent_review",
+        "method": "Literal source pixel-cell contour placed with one full-map six-parameter EOV affine model from five actual road/rail junction correspondences, then inverse projected to EPSG:4326. Source color barriers and actual pixel cells are retained; Petőfi alone has the separately recorded two-pixel cap under its numeric label. No name-point fitting, per-feature shift, clipping, snapping, repair, smoothing, buffers or frame closures.",
+        "placementUncertainty": "Native 945×1364 JPEG; colored boundary bands and manual road picks are several pixels wide. Original map projection, cartographic generalization, boundary survey date and current whole-quarter extent are unestablished. Five-control fit residuals and manually picked road holdouts measure correspondence consistency only, not absolute ground accuracy. A separate full-map similarity model illustrates placement variation without defining a confidence envelope. Municipal 2014 submission, census 2011 statistics and ITS 2016 review periods are distinct. No current-name point is used to fit or correct any coordinate.",
+        "sourcePixelGeometrySha256": "7a0b8c7b899769cb551417f037b96fad5b4ecf3474e46cad86862094c51b9599",
+        "sourcePixelArea": 284,
+        "sourceNameEvidence": {
+          "sourceUnitNumber": 13,
+          "literalSourceName": "Arany-hegyi lakótelep",
+          "actualOsmName": "Aranyhegyi lakótelep",
+          "actualOsmNodeId": 10707051448,
+          "matchRule": "explicit_space_hyphen_spelling_variant_only",
+          "pointInside": true,
+          "pointOutsideDistanceMetresDiagnosticOnly": 0.0,
+          "usedForFitOrCorrection": false,
+          "affineSimilarityHausdorffMetresDiagnosticOnly": 19.321217702707756,
+          "affineSimilaritySymmetricDifferenceSquareMetres": 17843.668737528413,
+          "wholeCurrentQuarterExtentProven": false,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2023-03-03 15:48:38+00:00",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a"
+        },
+        "evidenceUrls": [
+          "https://kiskunfelegyhaza.hu/wp-content/uploads/2017/03/its_kiskunfelegyhaza_2016_felulvizsgalt.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://kiskunfelegyhaza.hu/wp-content/uploads/2017/03/its_kiskunfelegyhaza_2016_felulvizsgalt.pdf",
+            "sha256": "5a32552dc02e2bca986d27d97e41633549b5d1f23147f8e00b6abbe7c421b48b",
+            "pdfPagesOneBased": [
+              24,
+              25
+            ],
+            "mapNumber": 2,
+            "imageXref": 365
+          }
+        ],
+        "license": "Municipal map reuse rights unestablished; ODbL-1.0 for OSM controls and identity evidence.",
+        "rightsStatus": "Public official publication is not an independently established unrestricted redistribution licence."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.797175828053557,
+              46.78545618604055
+            ],
+            [
+              19.796673083439043,
+              46.78545565410161
+            ],
+            [
+              19.796676028866216,
+              46.78527603073461
+            ],
+            [
+              19.7961732859439,
+              46.7852754965875
+            ],
+            [
+              19.796176233033282,
+              46.785095873231334
+            ],
+            [
+              19.795924862416953,
+              46.78509560533135
+            ],
+            [
+              19.795927810327544,
+              46.78491598197952
+            ],
+            [
+              19.795676440554757,
+              46.784915713530765
+            ],
+            [
+              19.795679389286544,
+              46.78473609018315
+            ],
+            [
+              19.795930758218343,
+              46.78473635862539
+            ],
+            [
+              19.795933706089365,
+              46.78455673526904
+            ],
+            [
+              19.796185074182755,
+              46.784557003149374
+            ],
+            [
+              19.796188021193025,
+              46.784377379784225
+            ],
+            [
+              19.795685286690734,
+              46.78437684348135
+            ],
+            [
+              19.795688235363144,
+              46.784197220127055
+            ],
+            [
+              19.79593960177204,
+              46.784197488549644
+            ],
+            [
+              19.795942549583707,
+              46.78401786518655
+            ],
+            [
+              19.796193915154213,
+              46.784018133047226
+            ],
+            [
+              19.796196862105145,
+              46.78383850967539
+            ],
+            [
+              19.796199809036295,
+              46.78365888630129
+            ],
+            [
+              19.796451172927473,
+              46.78365915359358
+            ],
+            [
+              19.7964541189979,
+              46.78347953021076
+            ],
+            [
+              19.79670548205069,
+              46.78347979694125
+            ],
+            [
+              19.79670842726042,
+              46.78330017354958
+            ],
+            [
+              19.796711372450375,
+              46.783120550155736
+            ],
+            [
+              19.796714317620573,
+              46.78294092675966
+            ],
+            [
+              19.79696567815312,
+              46.78294119291519
+            ],
+            [
+              19.796968622462636,
+              46.78276156951035
+            ],
+            [
+              19.79721998215682,
+              46.78276183510404
+            ],
+            [
+              19.797222925605656,
+              46.78258221169047
+            ],
+            [
+              19.79722586903474,
+              46.782402588274635
+            ],
+            [
+              19.797477227049644,
+              46.7824028533
+            ],
+            [
+              19.797480169618073,
+              46.782223229875385
+            ],
+            [
+              19.797731526794607,
+              46.782223494338915
+            ],
+            [
+              19.797734468502394,
+              46.782043870905575
+            ],
+            [
+              19.797985824840563,
+              46.7820441348073
+            ],
+            [
+              19.797988765687716,
+              46.781864511365214
+            ],
+            [
+              19.79799170651513,
+              46.78168488792088
+            ],
+            [
+              19.79824306117405,
+              46.78168515125423
+            ],
+            [
+              19.798246001140853,
+              46.78150552780122
+            ],
+            [
+              19.799000062610066,
+              46.78150631445006
+            ],
+            [
+              19.799003000034517,
+              46.78132669097525
+            ],
+            [
+              19.799005937439254,
+              46.78114706749822
+            ],
+            [
+              19.798754585295413,
+              46.78114680585022
+            ],
+            [
+              19.7987575235213,
+              46.78096718237751
+            ],
+            [
+              19.798760461727465,
+              46.780787558902574
+            ],
+            [
+              19.798763399913916,
+              46.780607935425444
+            ],
+            [
+              19.799014749535186,
+              46.780608197053795
+            ],
+            [
+              19.79901768686107,
+              46.780428573567946
+            ],
+            [
+              19.799269035644,
+              46.780428834634534
+            ],
+            [
+              19.799271972109327,
+              46.780249211139974
+            ],
+            [
+              19.79952332005392,
+              46.78024947164477
+            ],
+            [
+              19.799526255658705,
+              46.780069848141444
+            ],
+            [
+              19.80002894987369,
+              46.780070367472206
+            ],
+            [
+              19.800031883777116,
+              46.779890743953665
+            ],
+            [
+              19.800785922595708,
+              46.77989151876586
+            ],
+            [
+              19.800782991214763,
+              46.780071142303974
+            ],
+            [
+              19.80078005981414,
+              46.780250765839845
+            ],
+            [
+              19.800528711857144,
+              46.780250508111344
+            ],
+            [
+              19.800525779596008,
+              46.78043013163853
+            ],
+            [
+              19.800522847315197,
+              46.780609755163546
+            ],
+            [
+              19.80027149767899,
+              46.78060949686673
+            ],
+            [
+              19.800268564537642,
+              46.780789120382984
+            ],
+            [
+              19.800265631376618,
+              46.78096874389708
+            ],
+            [
+              19.80001428006117,
+              46.78096848503198
+            ],
+            [
+              19.800011346039597,
+              46.78114810853732
+            ],
+            [
+              19.79975999388578,
+              46.78114784911044
+            ],
+            [
+              19.79975705900364,
+              46.78132747260707
+            ],
+            [
+              19.799754124101806,
+              46.78150709610147
+            ],
+            [
+              19.79950277026873,
+              46.781506836106296
+            ],
+            [
+              19.799499834506324,
+              46.78168645959196
+            ],
+            [
+              19.799248479834866,
+              46.78168619903498
+            ],
+            [
+              19.799245543211867,
+              46.78186582251191
+            ],
+            [
+              19.79924260656916,
+              46.78204544598664
+            ],
+            [
+              19.79923966990675,
+              46.78222506945918
+            ],
+            [
+              19.799236733224618,
+              46.78240469292948
+            ],
+            [
+              19.799233796522792,
+              46.78258431639754
+            ],
+            [
+              19.79923085980125,
+              46.782763939863464
+            ],
+            [
+              19.79948221951809,
+              46.782764200459546
+            ],
+            [
+              19.79947928361776,
+              46.78294382392973
+            ],
+            [
+              19.79998200474077,
+              46.78294434346913
+            ],
+            [
+              19.799979070502577,
+              46.783123966950136
+            ],
+            [
+              19.80023043190873,
+              46.78312422589343
+            ],
+            [
+              19.800227498491772,
+              46.783303849378704
+            ],
+            [
+              19.80022456505513,
+              46.78348347286172
+            ],
+            [
+              19.800221631598795,
+              46.78366309634256
+            ],
+            [
+              19.79997026766984,
+              46.78366283737971
+            ],
+            [
+              19.799967333352875,
+              46.78384246085175
+            ],
+            [
+              19.79971596858545,
+              46.7838422013271
+            ],
+            [
+              19.799713033407834,
+              46.784021824790415
+            ],
+            [
+              19.79946166780195,
+              46.784021564703906
+            ],
+            [
+              19.79945873176368,
+              46.7842011881585
+            ],
+            [
+              19.79920736531933,
+              46.78420092751018
+            ],
+            [
+              19.79920442842039,
+              46.78438055095598
+            ],
+            [
+              19.799201491501737,
+              46.78456017439954
+            ],
+            [
+              19.79919855456338,
+              46.78473979784087
+            ],
+            [
+              19.798947185598625,
+              46.784739536617685
+            ],
+            [
+              19.798944247799565,
+              46.7849191600502
+            ],
+            [
+              19.798941309980805,
+              46.78509878348053
+            ],
+            [
+              19.798689939336583,
+              46.78509852168898
+            ],
+            [
+              19.798687000657107,
+              46.78527814511052
+            ],
+            [
+              19.7986840619579,
+              46.78545776852983
+            ],
+            [
+              19.798432689634204,
+              46.78545750616991
+            ],
+            [
+              19.798429750074277,
+              46.78563712958039
+            ],
+            [
+              19.79842681049462,
+              46.785816752988694
+            ],
+            [
+              19.797924062490768,
+              46.785816226576756
+            ],
+            [
+              19.797927003752438,
+              46.78563660318157
+            ],
+            [
+              19.797172884288624,
+              46.78563580941838
+            ],
+            [
+              19.797175828053557,
+              46.78545618604055
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:kiskunfelegyhaza-its2016:unit14",
+      "properties": {
+        "name": "Zöldmező lakótelep",
+        "municipality": "Kiskunfélegyháza",
+        "municipalityId": "city:Kiskunfélegyháza",
+        "sourceUnitNumber": 14,
+        "sourceSchemaId": "kiskunfelegyhaza-its2016-table4-unit14",
+        "sourcePeriod": "ITS 2016 review, municipal 2014 boundary submission; census 2011 statistics. Original survey/backdrop date unknown.",
+        "sourceContourIsObserved": true,
+        "observedSourceContour": true,
+        "sourceContourObserved": true,
+        "completeSourceContourObserved": true,
+        "sourceContourHasObservedSections": true,
+        "estimatedContour": false,
+        "sourceContourMethod": "Observed RGB outline component and exact free pixel interior; no inferred source edges.",
+        "inferredSourceGapCapCount": 0,
+        "inferredSourceGapBarrierCells": 0,
+        "estimatedPlacement": true,
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": false,
+        "sourceIsOfficial": false,
+        "sourceDocumentIsOfficialMunicipalPublication": true,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "georeferencingIsApproximate": true,
+        "claimedAbsoluteAccuracyMetres": null,
+        "confidence": "low",
+        "reviewStatus": "estimated_source_candidate_pending_independent_review",
+        "method": "Literal source pixel-cell contour placed with one full-map six-parameter EOV affine model from five actual road/rail junction correspondences, then inverse projected to EPSG:4326. Source color barriers and actual pixel cells are retained; Petőfi alone has the separately recorded two-pixel cap under its numeric label. No name-point fitting, per-feature shift, clipping, snapping, repair, smoothing, buffers or frame closures.",
+        "placementUncertainty": "Native 945×1364 JPEG; colored boundary bands and manual road picks are several pixels wide. Original map projection, cartographic generalization, boundary survey date and current whole-quarter extent are unestablished. Five-control fit residuals and manually picked road holdouts measure correspondence consistency only, not absolute ground accuracy. A separate full-map similarity model illustrates placement variation without defining a confidence envelope. Municipal 2014 submission, census 2011 statistics and ITS 2016 review periods are distinct. No current-name point is used to fit or correct any coordinate.",
+        "sourcePixelGeometrySha256": "092d3d700b7d45a45d2792aa7fa1fbd2aa4dfa6a297c2afcfa7cf5d902bf3016",
+        "sourcePixelArea": 145,
+        "sourceNameEvidence": {
+          "sourceUnitNumber": 14,
+          "literalSourceName": "Zöldmező lakótelep",
+          "actualOsmName": "Zöldmező lakótelep",
+          "actualOsmNodeId": 1300505896,
+          "matchRule": "literal_exact",
+          "pointInside": true,
+          "pointOutsideDistanceMetresDiagnosticOnly": 0.0,
+          "usedForFitOrCorrection": false,
+          "affineSimilarityHausdorffMetresDiagnosticOnly": 15.148763547382751,
+          "affineSimilaritySymmetricDifferenceSquareMetres": 10867.053708117332,
+          "wholeCurrentQuarterExtentProven": false,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2023-03-03 15:48:38+00:00",
+          "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a"
+        },
+        "evidenceUrls": [
+          "https://kiskunfelegyhaza.hu/wp-content/uploads/2017/03/its_kiskunfelegyhaza_2016_felulvizsgalt.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://kiskunfelegyhaza.hu/wp-content/uploads/2017/03/its_kiskunfelegyhaza_2016_felulvizsgalt.pdf",
+            "sha256": "5a32552dc02e2bca986d27d97e41633549b5d1f23147f8e00b6abbe7c421b48b",
+            "pdfPagesOneBased": [
+              24,
+              25
+            ],
+            "mapNumber": 2,
+            "imageXref": 365
+          }
+        ],
+        "license": "Municipal map reuse rights unestablished; ODbL-1.0 for OSM controls and identity evidence.",
+        "rightsStatus": "Public official publication is not an independently established unrestricted redistribution licence."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.885715442384488,
+              46.67935575943628
+            ],
+            [
+              19.885718084639326,
+              46.67917613288694
+            ],
+            [
+              19.885720726876443,
+              46.67899650633637
+            ],
+            [
+              19.885723369095825,
+              46.6788168797846
+            ],
+            [
+              19.885726011297475,
+              46.67863725323169
+            ],
+            [
+              19.88572865348141,
+              46.678457626677556
+            ],
+            [
+              19.88547778085348,
+              46.67845755663898
+            ],
+            [
+              19.885480423857366,
+              46.67827793008953
+            ],
+            [
+              19.885483066843516,
+              46.67809830353887
+            ],
+            [
+              19.885733937796093,
+              46.678098373565675
+            ],
+            [
+              19.885736579926842,
+              46.67791874700794
+            ],
+            [
+              19.885739222039867,
+              46.67773912044903
+            ],
+            [
+              19.885741864135174,
+              46.67755949388898
+            ],
+            [
+              19.885744506212742,
+              46.677379867327694
+            ],
+            [
+              19.885747148272593,
+              46.67720024076526
+            ],
+            [
+              19.88574979031472,
+              46.67702061420158
+            ],
+            [
+              19.88575243233912,
+              46.67684098763675
+            ],
+            [
+              19.885755074345788,
+              46.67666136107076
+            ],
+            [
+              19.88575771633474,
+              46.676481734503604
+            ],
+            [
+              19.88600857974923,
+              46.67648180392316
+            ],
+            [
+              19.88601122088284,
+              46.676302177348944
+            ],
+            [
+              19.88626208346044,
+              46.67630224620841
+            ],
+            [
+              19.886264723738716,
+              46.67612261962707
+            ],
+            [
+              19.886267363999277,
+              46.67594299304464
+            ],
+            [
+              19.886518224902375,
+              46.675943061338124
+            ],
+            [
+              19.88652086430762,
+              46.67576343474862
+            ],
+            [
+              19.886771724373826,
+              46.67576350248207
+            ],
+            [
+              19.886769085806183,
+              46.675943129077446
+            ],
+            [
+              19.88701994671069,
+              46.675943196262594
+            ],
+            [
+              19.887017308962946,
+              46.67612282286267
+            ],
+            [
+              19.887268170705763,
+              46.676122889499496
+            ],
+            [
+              19.887265533777935,
+              46.67630251610434
+            ],
+            [
+              19.88776725894087,
+              46.67630264772716
+            ],
+            [
+              19.887764623670584,
+              46.67648227434253
+            ],
+            [
+              19.888015487090694,
+              46.67648233932853
+            ],
+            [
+              19.888012852640355,
+              46.676661965948654
+            ],
+            [
+              19.88826371689877,
+              46.67666203038631
+            ],
+            [
+              19.88826108326838,
+              46.67684165701112
+            ],
+            [
+              19.88825844962032,
+              46.67702128363474
+            ],
+            [
+              19.88825581595459,
+              46.6772009102572
+            ],
+            [
+              19.8882531822712,
+              46.67738053687848
+            ],
+            [
+              19.888250548570127,
+              46.677560163498555
+            ],
+            [
+              19.88799968012351,
+              46.67756009903153
+            ],
+            [
+              19.88799704556712,
+              46.677739725644564
+            ],
+            [
+              19.887746176283528,
+              46.67773966061743
+            ],
+            [
+              19.8877435408718,
+              46.67791928722344
+            ],
+            [
+              19.887740905442385,
+              46.678098913828194
+            ],
+            [
+              19.88773826999529,
+              46.67827854043178
+            ],
+            [
+              19.887487398199376,
+              46.67827847483284
+            ],
+            [
+              19.88748476189693,
+              46.678458101429385
+            ],
+            [
+              19.887233889264024,
+              46.67845803527034
+            ],
+            [
+              19.8872312521062,
+              46.67863766185979
+            ],
+            [
+              19.887228614930685,
+              46.67881728844804
+            ],
+            [
+              19.886726866316227,
+              46.67881715444377
+            ],
+            [
+              19.886724227447623,
+              46.67899678101907
+            ],
+            [
+              19.886721588561315,
+              46.67917640759315
+            ],
+            [
+              19.886718949657308,
+              46.67935603416605
+            ],
+            [
+              19.886468072838028,
+              46.67935596631496
+            ],
+            [
+              19.886465433078605,
+              46.679535592880775
+            ],
+            [
+              19.886214555422328,
+              46.67953552446955
+            ],
+            [
+              19.886211914807472,
+              46.679715151028276
+            ],
+            [
+              19.88571015782163,
+              46.679715012531354
+            ],
+            [
+              19.88571280011193,
+              46.67953538598445
+            ],
+            [
+              19.885715442384488,
+              46.67935575943628
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "sourcePixelReference": "Native431×523map, pixel centers/x right/y down; decimal manual readings are approximate, not subpixel-accuracy claims",
+  "controls": [
+    {
+      "id": "C1",
+      "label": "Gödöllői út / Szent László út",
+      "sourcePixel": [
+        250.5,
+        350.7
+      ],
+      "sourcePixelInterpretation": "Approximate manual center reading of the corresponding visible major road/rail crossing in the native raster; no subpixel accuracy is implied.",
+      "actualWayIds": [
+        "osm:way:38834348",
+        "osm:way:636162955"
+      ],
+      "expectedIntersectionEov": [
+        656962.3811877787,
+        268972.4147935001
+      ],
+      "fitRole": "calibration",
+      "usedPlacePoint": false,
+      "sourceYearMismatchUnresolved": true
+    },
+    {
+      "id": "C2",
+      "label": "Gödöllői út / railway70",
+      "sourcePixel": [
+        326.6,
+        395.5
+      ],
+      "sourcePixelInterpretation": "Approximate manual center reading of the corresponding visible major road/rail crossing in the native raster; no subpixel accuracy is implied.",
+      "actualWayIds": [
+        "osm:way:78176191",
+        "osm:way:39256016"
+      ],
+      "expectedIntersectionEov": [
+        658286.1871772984,
+        268016.6272141197
+      ],
+      "fitRole": "calibration",
+      "usedPlacePoint": false,
+      "sourceYearMismatchUnresolved": true
+    },
+    {
+      "id": "C3",
+      "label": "Rádi út / railway70",
+      "sourcePixel": [
+        285.5,
+        282.0
+      ],
+      "sourcePixelInterpretation": "Approximate manual center reading of the corresponding visible major road/rail crossing in the native raster; no subpixel accuracy is implied.",
+      "actualWayIds": [
+        "osm:way:503376947",
+        "osm:way:39256016"
+      ],
+      "expectedIntersectionEov": [
+        657591.1329187966,
+        270037.62956475053
+      ],
+      "fitRole": "calibration",
+      "usedPlacePoint": false,
+      "sourceYearMismatchUnresolved": true
+    }
+  ],
+  "geographicFitControls": 3,
+  "placePointFitControls": 0,
+  "independentHoldouts": 0,
+  "registrationClass": "Low-confidence, three-physical-crossing affine, southern extrapolation",
+  "sensitivityPolicy": "Independently perturb each of six manual source-pixel coordinates by±1and±2pixels. Preserve24alternative placements as unadmitted diagnostic scenarios, not statistical limits.",
+  "noFittingToMunicipalityContainment": true,
+  "noFittingToNamePointContainment": true
+}

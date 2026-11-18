@@ -1,0 +1,2966 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent_all_service_features_vs_frozen_Debrecen_OSM_baseline",
+  "reviewDate": "2026-11-14",
+  "itemId": "a04e2a4ff4d2467c8bb6eb640f515b51",
+  "layerId": 0,
+  "inputs": {
+    "serviceGeojson": {
+      "path": ".local/neighborhoods/supplement-feature-services/debrecen-quarter-queries/debrecen-geojson-page0.json",
+      "sha256": "fb7d0f0bae18b05263d5658221f0a612a2839193ce47413e05dc71401b18cf3e"
+    },
+    "baselineExport": {
+      "path": "data/neighborhoods/neighborhoods.geojson",
+      "sha256": "8eca9d097fb6714c31ca942f57ff0d8f683f8f4fe13af0161b12da19b20e8f74"
+    },
+    "frozenBaselineReference": {
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/baseline-reference.json",
+      "sha256": "def4fd3a04b4bd7edbc9cabf0a8214accb16a2c5c4c1aaa21b8067ac6496758b"
+    },
+    "frozen26GeometryHashesAllVerified": true,
+    "fullExportHashMatchesFrozenReference": true
+  },
+  "method": {
+    "baselineFeatures": 26,
+    "serviceFeatures": 77,
+    "allPairsComputed": 2002,
+    "metricCrs": "EPSG:23700",
+    "transformerDescription": "unavailable until proj_trans is called",
+    "nameComparison": "Exact Unicode name first; separate NFC+casefold+collapsed-whitespace display normalization only; accents not stripped. No identity is assigned from overlap alone.",
+    "iou": "intersection area / union area",
+    "serviceAreaCoveredFraction": "intersection area / service feature area",
+    "baselineAreaCoveredFraction": "intersection area / baseline feature area",
+    "serviceToBaselineAreaRatio": "service feature area / baseline feature area",
+    "substantialOverlapsSelection": "All baseline matches with >=0.01 of either feature covered. Best overall and best different-name match retained even if no overlap.",
+    "sourceModification": "No buffering, repair, clipping, snapping, dissolve or source-coordinate edits. Metric transformed geometries used only for measurement.",
+    "bestMatchZeroOverlapRule": "bestOverallMatch or bestDifferentNameMatch is null when every eligible baseline has zero overlap; no arbitrary zero-overlap tie is presented as a match."
+  },
+  "summary": {
+    "service77featuresExactNameMatches": 26,
+    "serviceUniqueNamesMatchingBaseline": 25,
+    "baselineNamesRepresentedByExactMatch": 25,
+    "service77featuresWithoutExactNameMatch": 51,
+    "baselineNamesNotExactlyRepresented": [
+      "Újkert"
+    ],
+    "serviceFidsWithBestIoUAbove09": [],
+    "sourceDuplicateNames": {
+      "Széchenyikert": [
+        11,
+        67
+      ]
+    },
+    "suspectedMislabelFid11": {
+      "sourceName": "Széchenyikert",
+      "sameNameBaselineIoU": 0,
+      "crossNameBaselineName": "Újkert",
+      "crossNameBaselineIoU": 0.720195649,
+      "identityAliasApplied": false
+    }
+  },
+  "interpretation": "The baseline is an unreviewed OSM-derived source, not ground truth. Strong overlap supports duplicate or alternate-source identity review. Weak same-name overlap indicates a boundary disagreement, source granularity difference or identity ambiguity; it must not silently create a new quarter. New exact names are candidates pending independent quarter identity evidence and source semantics/rights review.",
+  "features": [
+    {
+      "fid": 1,
+      "name": "Nagyerdőtölgyes",
+      "tipus": "egyeb_ovezet",
+      "serviceAreaSquareMetres": 9690047.681,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 2,
+      "name": "Pallag",
+      "tipus": "egyeb_belteruletek",
+      "serviceAreaSquareMetres": 656168.805,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 3,
+      "name": "Gyógyszergyár",
+      "tipus": "ipari_uzem_terulet",
+      "serviceAreaSquareMetres": 438043.285,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Nagyerdőpark",
+        "baselineFeatureId": "osm:relation:17519447",
+        "intersectionOverUnion": 0.009339532,
+        "serviceAreaCoveredFraction": 0.048695659,
+        "baselineAreaCoveredFraction": 0.011423866,
+        "serviceToBaselineAreaRatio": 0.234597215,
+        "intersectionSquareMetres": 21330.807,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Nagyerdőpark",
+        "baselineFeatureId": "osm:relation:17519447",
+        "intersectionOverUnion": 0.009339532,
+        "serviceAreaCoveredFraction": 0.048695659,
+        "baselineAreaCoveredFraction": 0.011423866,
+        "serviceToBaselineAreaRatio": 0.234597215,
+        "intersectionSquareMetres": 21330.807,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Nagyerdőpark",
+          "baselineFeatureId": "osm:relation:17519447",
+          "intersectionOverUnion": 0.009339532,
+          "serviceAreaCoveredFraction": 0.048695659,
+          "baselineAreaCoveredFraction": 0.011423866,
+          "serviceToBaselineAreaRatio": 0.234597215,
+          "intersectionSquareMetres": 21330.807,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "facility_or_market_identity_unproven"
+      ]
+    },
+    {
+      "fid": 4,
+      "name": "Közterület",
+      "tipus": "egyeb_belteruletek",
+      "serviceAreaSquareMetres": 783532.835,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Nagyerdőpark",
+        "baselineFeatureId": "osm:relation:17519447",
+        "intersectionOverUnion": 0.028024317,
+        "serviceAreaCoveredFraction": 0.092223747,
+        "baselineAreaCoveredFraction": 0.038699539,
+        "serviceToBaselineAreaRatio": 0.419626615,
+        "intersectionSquareMetres": 72260.334,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Nagyerdőpark",
+        "baselineFeatureId": "osm:relation:17519447",
+        "intersectionOverUnion": 0.028024317,
+        "serviceAreaCoveredFraction": 0.092223747,
+        "baselineAreaCoveredFraction": 0.038699539,
+        "serviceToBaselineAreaRatio": 0.419626615,
+        "intersectionSquareMetres": 72260.334,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Nagyerdőpark",
+          "baselineFeatureId": "osm:relation:17519447",
+          "intersectionOverUnion": 0.028024317,
+          "serviceAreaCoveredFraction": 0.092223747,
+          "baselineAreaCoveredFraction": 0.038699539,
+          "serviceToBaselineAreaRatio": 0.419626615,
+          "intersectionSquareMetres": 72260.334,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "generic_public_area_name_exclude_from_quarter_identity"
+      ]
+    },
+    {
+      "fid": 5,
+      "name": "Debreceni Egyetem tud-tech park",
+      "tipus": "ipari_uzem_terulet",
+      "serviceAreaSquareMetres": 330364.172,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": [
+        "facility_or_market_identity_unproven"
+      ]
+    },
+    {
+      "fid": 6,
+      "name": "Ispotály",
+      "tipus": "lakotelep",
+      "serviceAreaSquareMetres": 284031.954,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 7,
+      "name": "Belváros",
+      "tipus": "belvaros",
+      "serviceAreaSquareMetres": 1194731.161,
+      "exactNameMatches": [
+        {
+          "baselineName": "Belváros",
+          "baselineFeatureId": "osm:relation:17408420",
+          "intersectionOverUnion": 0.803866477,
+          "serviceAreaCoveredFraction": 0.877694512,
+          "baselineAreaCoveredFraction": 0.905273041,
+          "serviceToBaselineAreaRatio": 1.031421558,
+          "intersectionSquareMetres": 1048608.983,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -75.287,
+          "sourceMinusBaselineCentroidNorthingMetres": -19.678
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Belváros",
+        "baselineFeatureId": "osm:relation:17408420",
+        "intersectionOverUnion": 0.803866477,
+        "serviceAreaCoveredFraction": 0.877694512,
+        "baselineAreaCoveredFraction": 0.905273041,
+        "serviceToBaselineAreaRatio": 1.031421558,
+        "intersectionSquareMetres": 1048608.983,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Tizenháromváros",
+        "baselineFeatureId": "osm:relation:17408367",
+        "intersectionOverUnion": 0.039498342,
+        "serviceAreaCoveredFraction": 0.045964248,
+        "baselineAreaCoveredFraction": 0.219227146,
+        "serviceToBaselineAreaRatio": 4.769514483,
+        "intersectionSquareMetres": 54914.919,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Belváros",
+          "baselineFeatureId": "osm:relation:17408420",
+          "intersectionOverUnion": 0.803866477,
+          "serviceAreaCoveredFraction": 0.877694512,
+          "baselineAreaCoveredFraction": 0.905273041,
+          "serviceToBaselineAreaRatio": 1.031421558,
+          "intersectionSquareMetres": 1048608.983,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Tizenháromváros",
+          "baselineFeatureId": "osm:relation:17408367",
+          "intersectionOverUnion": 0.039498342,
+          "serviceAreaCoveredFraction": 0.045964248,
+          "baselineAreaCoveredFraction": 0.219227146,
+          "serviceToBaselineAreaRatio": 4.769514483,
+          "intersectionSquareMetres": 54914.919,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Mesterfalva",
+          "baselineFeatureId": "osm:relation:17408364",
+          "intersectionOverUnion": 0.027152432,
+          "serviceAreaCoveredFraction": 0.03207651,
+          "baselineAreaCoveredFraction": 0.150293391,
+          "serviceToBaselineAreaRatio": 4.685465774,
+          "intersectionSquareMetres": 38322.806,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Miklóskapu",
+          "baselineFeatureId": "osm:relation:17408407",
+          "intersectionOverUnion": 0.024208233,
+          "serviceAreaCoveredFraction": 0.025216142,
+          "baselineAreaCoveredFraction": 0.377198744,
+          "serviceToBaselineAreaRatio": 14.958622541,
+          "intersectionSquareMetres": 30126.51,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 8,
+      "name": "Repülőtér",
+      "tipus": "egyeb_ovezet",
+      "serviceAreaSquareMetres": 4406033.498,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 9,
+      "name": "Déli ipari terület",
+      "tipus": "ipari_uzem_terulet",
+      "serviceAreaSquareMetres": 6233048.627,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 10,
+      "name": "Epreskert",
+      "tipus": "lakotelep",
+      "serviceAreaSquareMetres": 221305.408,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 11,
+      "name": "Széchenyikert",
+      "tipus": "lakotelep",
+      "serviceAreaSquareMetres": 849897.265,
+      "exactNameMatches": [
+        {
+          "baselineName": "Széchenyikert",
+          "baselineFeatureId": "osm:relation:17435693",
+          "intersectionOverUnion": 0.0,
+          "serviceAreaCoveredFraction": 0.0,
+          "baselineAreaCoveredFraction": 0.0,
+          "serviceToBaselineAreaRatio": 2.04909397,
+          "intersectionSquareMetres": 0.0,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -26.697,
+          "sourceMinusBaselineCentroidNorthingMetres": 2522.119
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Újkert",
+        "baselineFeatureId": "osm:relation:17519240",
+        "intersectionOverUnion": 0.720195649,
+        "serviceAreaCoveredFraction": 0.825560894,
+        "baselineAreaCoveredFraction": 0.849463298,
+        "serviceToBaselineAreaRatio": 1.028952926,
+        "intersectionSquareMetres": 701641.946,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Újkert",
+        "baselineFeatureId": "osm:relation:17519240",
+        "intersectionOverUnion": 0.720195649,
+        "serviceAreaCoveredFraction": 0.825560894,
+        "baselineAreaCoveredFraction": 0.849463298,
+        "serviceToBaselineAreaRatio": 1.028952926,
+        "intersectionSquareMetres": 701641.946,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Újkert",
+          "baselineFeatureId": "osm:relation:17519240",
+          "intersectionOverUnion": 0.720195649,
+          "serviceAreaCoveredFraction": 0.825560894,
+          "baselineAreaCoveredFraction": 0.849463298,
+          "serviceToBaselineAreaRatio": 1.028952926,
+          "intersectionSquareMetres": 701641.946,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Vénkert",
+          "baselineFeatureId": "osm:relation:16782115",
+          "intersectionOverUnion": 0.005682001,
+          "serviceAreaCoveredFraction": 0.008213743,
+          "baselineAreaCoveredFraction": 0.018100471,
+          "serviceToBaselineAreaRatio": 2.203681174,
+          "intersectionSquareMetres": 6980.838,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "duplicate_source_name_requires_one_identity_review",
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review",
+        "suspected_source_mislabel_spatially_matches_Ujkert_no_alias_applied"
+      ],
+      "identityWarning": "Source name Széchenyikert is preserved. This piece has zero overlap with its same-name baseline and IoU0.720195649 with baselineÚjkert. Quarantine this source identity until independent source correction or other identity evidence is available; do not silently alias to Újkert."
+    },
+    {
+      "fid": 12,
+      "name": "Sestakert",
+      "tipus": "lakotelep",
+      "serviceAreaSquareMetres": 634193.74,
+      "exactNameMatches": [
+        {
+          "baselineName": "Sestakert",
+          "baselineFeatureId": "osm:relation:17519326",
+          "intersectionOverUnion": 0.704587847,
+          "serviceAreaCoveredFraction": 0.822398206,
+          "baselineAreaCoveredFraction": 0.83103864,
+          "serviceToBaselineAreaRatio": 1.010506387,
+          "intersectionSquareMetres": 521559.795,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -61.567,
+          "sourceMinusBaselineCentroidNorthingMetres": -17.514
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Sestakert",
+        "baselineFeatureId": "osm:relation:17519326",
+        "intersectionOverUnion": 0.704587847,
+        "serviceAreaCoveredFraction": 0.822398206,
+        "baselineAreaCoveredFraction": 0.83103864,
+        "serviceToBaselineAreaRatio": 1.010506387,
+        "intersectionSquareMetres": 521559.795,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Újkert",
+        "baselineFeatureId": "osm:relation:17519240",
+        "intersectionOverUnion": 0.08221616,
+        "serviceAreaCoveredFraction": 0.174914795,
+        "baselineAreaCoveredFraction": 0.134300482,
+        "serviceToBaselineAreaRatio": 0.767805159,
+        "intersectionSquareMetres": 110929.868,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Sestakert",
+          "baselineFeatureId": "osm:relation:17519326",
+          "intersectionOverUnion": 0.704587847,
+          "serviceAreaCoveredFraction": 0.822398206,
+          "baselineAreaCoveredFraction": 0.83103864,
+          "serviceToBaselineAreaRatio": 1.010506387,
+          "intersectionSquareMetres": 521559.795,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Újkert",
+          "baselineFeatureId": "osm:relation:17519240",
+          "intersectionOverUnion": 0.08221616,
+          "serviceAreaCoveredFraction": 0.174914795,
+          "baselineAreaCoveredFraction": 0.134300482,
+          "serviceToBaselineAreaRatio": 0.767805159,
+          "intersectionSquareMetres": 110929.868,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 13,
+      "name": "Libakert",
+      "tipus": "lakotelep",
+      "serviceAreaSquareMetres": 267653.048,
+      "exactNameMatches": [
+        {
+          "baselineName": "Libakert",
+          "baselineFeatureId": "osm:relation:16718847",
+          "intersectionOverUnion": 0.669821547,
+          "serviceAreaCoveredFraction": 0.792295113,
+          "baselineAreaCoveredFraction": 0.812493556,
+          "serviceToBaselineAreaRatio": 1.025493586,
+          "intersectionSquareMetres": 212060.202,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -66.246,
+          "sourceMinusBaselineCentroidNorthingMetres": -7.603
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Libakert",
+        "baselineFeatureId": "osm:relation:16718847",
+        "intersectionOverUnion": 0.669821547,
+        "serviceAreaCoveredFraction": 0.792295113,
+        "baselineAreaCoveredFraction": 0.812493556,
+        "serviceToBaselineAreaRatio": 1.025493586,
+        "intersectionSquareMetres": 212060.202,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Vénkert",
+        "baselineFeatureId": "osm:relation:16782115",
+        "intersectionOverUnion": 0.092387861,
+        "serviceAreaCoveredFraction": 0.2064405,
+        "baselineAreaCoveredFraction": 0.143268075,
+        "serviceToBaselineAreaRatio": 0.693992094,
+        "intersectionSquareMetres": 55254.429,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Libakert",
+          "baselineFeatureId": "osm:relation:16718847",
+          "intersectionOverUnion": 0.669821547,
+          "serviceAreaCoveredFraction": 0.792295113,
+          "baselineAreaCoveredFraction": 0.812493556,
+          "serviceToBaselineAreaRatio": 1.025493586,
+          "intersectionSquareMetres": 212060.202,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Vénkert",
+          "baselineFeatureId": "osm:relation:16782115",
+          "intersectionOverUnion": 0.092387861,
+          "serviceAreaCoveredFraction": 0.2064405,
+          "baselineAreaCoveredFraction": 0.143268075,
+          "serviceToBaselineAreaRatio": 0.693992094,
+          "intersectionSquareMetres": 55254.429,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 14,
+      "name": "Vénkert",
+      "tipus": "lakotelep",
+      "serviceAreaSquareMetres": 390056.391,
+      "exactNameMatches": [
+        {
+          "baselineName": "Vénkert",
+          "baselineFeatureId": "osm:relation:16782115",
+          "intersectionOverUnion": 0.703518517,
+          "serviceAreaCoveredFraction": 0.821316871,
+          "baselineAreaCoveredFraction": 0.830654595,
+          "serviceToBaselineAreaRatio": 1.011369209,
+          "intersectionSquareMetres": 320359.895,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -77.142,
+          "sourceMinusBaselineCentroidNorthingMetres": -7.059
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Vénkert",
+        "baselineFeatureId": "osm:relation:16782115",
+        "intersectionOverUnion": 0.703518517,
+        "serviceAreaCoveredFraction": 0.821316871,
+        "baselineAreaCoveredFraction": 0.830654595,
+        "serviceToBaselineAreaRatio": 1.011369209,
+        "intersectionSquareMetres": 320359.895,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Csigekert",
+        "baselineFeatureId": "osm:relation:17435708",
+        "intersectionOverUnion": 0.088167065,
+        "serviceAreaCoveredFraction": 0.172767343,
+        "baselineAreaCoveredFraction": 0.152579209,
+        "serviceToBaselineAreaRatio": 0.883148436,
+        "intersectionSquareMetres": 67389.006,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Vénkert",
+          "baselineFeatureId": "osm:relation:16782115",
+          "intersectionOverUnion": 0.703518517,
+          "serviceAreaCoveredFraction": 0.821316871,
+          "baselineAreaCoveredFraction": 0.830654595,
+          "serviceToBaselineAreaRatio": 1.011369209,
+          "intersectionSquareMetres": 320359.895,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Csigekert",
+          "baselineFeatureId": "osm:relation:17435708",
+          "intersectionOverUnion": 0.088167065,
+          "serviceAreaCoveredFraction": 0.172767343,
+          "baselineAreaCoveredFraction": 0.152579209,
+          "serviceToBaselineAreaRatio": 0.883148436,
+          "intersectionSquareMetres": 67389.006,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 15,
+      "name": "József Attila telep",
+      "tipus": "ipari_uzem_terulet",
+      "serviceAreaSquareMetres": 900166.386,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 16,
+      "name": "Zsibogó",
+      "tipus": "ipari_uzem_terulet",
+      "serviceAreaSquareMetres": 1158804.946,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": [
+        "facility_or_market_identity_unproven"
+      ]
+    },
+    {
+      "fid": 17,
+      "name": "Auguszta",
+      "tipus": "erdo",
+      "serviceAreaSquareMetres": 647302.69,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Újkert",
+        "baselineFeatureId": "osm:relation:17519240",
+        "intersectionOverUnion": 0.008142176,
+        "serviceAreaCoveredFraction": 0.018382229,
+        "baselineAreaCoveredFraction": 0.01440571,
+        "serviceToBaselineAreaRatio": 0.783675892,
+        "intersectionSquareMetres": 11898.867,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Újkert",
+        "baselineFeatureId": "osm:relation:17519240",
+        "intersectionOverUnion": 0.008142176,
+        "serviceAreaCoveredFraction": 0.018382229,
+        "baselineAreaCoveredFraction": 0.01440571,
+        "serviceToBaselineAreaRatio": 0.783675892,
+        "intersectionSquareMetres": 11898.867,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Újkert",
+          "baselineFeatureId": "osm:relation:17519240",
+          "intersectionOverUnion": 0.008142176,
+          "serviceAreaCoveredFraction": 0.018382229,
+          "baselineAreaCoveredFraction": 0.01440571,
+          "serviceToBaselineAreaRatio": 0.783675892,
+          "intersectionSquareMetres": 11898.867,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Egyetemváros",
+          "baselineFeatureId": "osm:relation:17519424",
+          "intersectionOverUnion": 0.005645281,
+          "serviceAreaCoveredFraction": 0.012269059,
+          "baselineAreaCoveredFraction": 0.010348405,
+          "serviceToBaselineAreaRatio": 0.843455497,
+          "intersectionSquareMetres": 7941.795,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "morphology_category_erdo_does_not_determine_quarter_identity"
+      ]
+    },
+    {
+      "fid": 18,
+      "name": "Egyetemváros",
+      "tipus": "erdo",
+      "serviceAreaSquareMetres": 777192.952,
+      "exactNameMatches": [
+        {
+          "baselineName": "Egyetemváros",
+          "baselineFeatureId": "osm:relation:17519424",
+          "intersectionOverUnion": 0.820620452,
+          "serviceAreaCoveredFraction": 0.895817954,
+          "baselineAreaCoveredFraction": 0.907200701,
+          "serviceToBaselineAreaRatio": 1.01270654,
+          "intersectionSquareMetres": 696223.401,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -69.543,
+          "sourceMinusBaselineCentroidNorthingMetres": -19.673
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Egyetemváros",
+        "baselineFeatureId": "osm:relation:17519424",
+        "intersectionOverUnion": 0.820620452,
+        "serviceAreaCoveredFraction": 0.895817954,
+        "baselineAreaCoveredFraction": 0.907200701,
+        "serviceToBaselineAreaRatio": 1.01270654,
+        "intersectionSquareMetres": 696223.401,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Sestakert",
+        "baselineFeatureId": "osm:relation:17519326",
+        "intersectionOverUnion": 0.032247476,
+        "serviceAreaCoveredFraction": 0.056467082,
+        "baselineAreaCoveredFraction": 0.069926423,
+        "serviceToBaselineAreaRatio": 1.238357291,
+        "intersectionSquareMetres": 43885.818,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Egyetemváros",
+          "baselineFeatureId": "osm:relation:17519424",
+          "intersectionOverUnion": 0.820620452,
+          "serviceAreaCoveredFraction": 0.895817954,
+          "baselineAreaCoveredFraction": 0.907200701,
+          "serviceToBaselineAreaRatio": 1.01270654,
+          "intersectionSquareMetres": 696223.401,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Sestakert",
+          "baselineFeatureId": "osm:relation:17519326",
+          "intersectionOverUnion": 0.032247476,
+          "serviceAreaCoveredFraction": 0.056467082,
+          "baselineAreaCoveredFraction": 0.069926423,
+          "serviceToBaselineAreaRatio": 1.238357291,
+          "intersectionSquareMetres": 43885.818,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "morphology_category_erdo_does_not_determine_quarter_identity",
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 19,
+      "name": "Nagyerdőpark",
+      "tipus": "erdo",
+      "serviceAreaSquareMetres": 1897910.198,
+      "exactNameMatches": [
+        {
+          "baselineName": "Nagyerdőpark",
+          "baselineFeatureId": "osm:relation:17519447",
+          "intersectionOverUnion": 0.883675803,
+          "serviceAreaCoveredFraction": 0.930658806,
+          "baselineAreaCoveredFraction": 0.945958263,
+          "serviceToBaselineAreaRatio": 1.016439384,
+          "intersectionSquareMetres": 1766306.839,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -58.293,
+          "sourceMinusBaselineCentroidNorthingMetres": -34.58
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Nagyerdőpark",
+        "baselineFeatureId": "osm:relation:17519447",
+        "intersectionOverUnion": 0.883675803,
+        "serviceAreaCoveredFraction": 0.930658806,
+        "baselineAreaCoveredFraction": 0.945958263,
+        "serviceToBaselineAreaRatio": 1.016439384,
+        "intersectionSquareMetres": 1766306.839,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Nagyerdő",
+        "baselineFeatureId": "osm:relation:17519349",
+        "intersectionOverUnion": 0.026216051,
+        "serviceAreaCoveredFraction": 0.036485084,
+        "baselineAreaCoveredFraction": 0.08520711,
+        "serviceToBaselineAreaRatio": 2.335395746,
+        "intersectionSquareMetres": 69245.413,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Nagyerdőpark",
+          "baselineFeatureId": "osm:relation:17519447",
+          "intersectionOverUnion": 0.883675803,
+          "serviceAreaCoveredFraction": 0.930658806,
+          "baselineAreaCoveredFraction": 0.945958263,
+          "serviceToBaselineAreaRatio": 1.016439384,
+          "intersectionSquareMetres": 1766306.839,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Nagyerdő",
+          "baselineFeatureId": "osm:relation:17519349",
+          "intersectionOverUnion": 0.026216051,
+          "serviceAreaCoveredFraction": 0.036485084,
+          "baselineAreaCoveredFraction": 0.08520711,
+          "serviceToBaselineAreaRatio": 2.335395746,
+          "intersectionSquareMetres": 69245.413,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Egyetemváros",
+          "baselineFeatureId": "osm:relation:17519424",
+          "intersectionOverUnion": 0.023776064,
+          "serviceAreaCoveredFraction": 0.032614734,
+          "baselineAreaCoveredFraction": 0.080657407,
+          "serviceToBaselineAreaRatio": 2.473035896,
+          "intersectionSquareMetres": 61899.836,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "morphology_category_erdo_does_not_determine_quarter_identity",
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 20,
+      "name": "Nagyerdő",
+      "tipus": "villanegyed",
+      "serviceAreaSquareMetres": 800636.604,
+      "exactNameMatches": [
+        {
+          "baselineName": "Nagyerdő",
+          "baselineFeatureId": "osm:relation:17519349",
+          "intersectionOverUnion": 0.834184406,
+          "serviceAreaCoveredFraction": 0.916433628,
+          "baselineAreaCoveredFraction": 0.902861811,
+          "serviceToBaselineAreaRatio": 0.985190617,
+          "intersectionSquareMetres": 733730.307,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -53.865,
+          "sourceMinusBaselineCentroidNorthingMetres": -27.218
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Nagyerdő",
+        "baselineFeatureId": "osm:relation:17519349",
+        "intersectionOverUnion": 0.834184406,
+        "serviceAreaCoveredFraction": 0.916433628,
+        "baselineAreaCoveredFraction": 0.902861811,
+        "serviceToBaselineAreaRatio": 0.985190617,
+        "intersectionSquareMetres": 733730.307,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Sestakert",
+        "baselineFeatureId": "osm:relation:17519326",
+        "intersectionOverUnion": 0.045055312,
+        "serviceAreaCoveredFraction": 0.076907984,
+        "baselineAreaCoveredFraction": 0.098112418,
+        "serviceToBaselineAreaRatio": 1.275711742,
+        "intersectionSquareMetres": 61575.347,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Nagyerdő",
+          "baselineFeatureId": "osm:relation:17519349",
+          "intersectionOverUnion": 0.834184406,
+          "serviceAreaCoveredFraction": 0.916433628,
+          "baselineAreaCoveredFraction": 0.902861811,
+          "serviceToBaselineAreaRatio": 0.985190617,
+          "intersectionSquareMetres": 733730.307,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Sestakert",
+          "baselineFeatureId": "osm:relation:17519326",
+          "intersectionOverUnion": 0.045055312,
+          "serviceAreaCoveredFraction": 0.076907984,
+          "baselineAreaCoveredFraction": 0.098112418,
+          "serviceToBaselineAreaRatio": 1.275711742,
+          "intersectionSquareMetres": 61575.347,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 21,
+      "name": "Nagyerdőalja",
+      "tipus": "villanegyed",
+      "serviceAreaSquareMetres": 895242.26,
+      "exactNameMatches": [
+        {
+          "baselineName": "Nagyerdőalja",
+          "baselineFeatureId": "osm:relation:17519389",
+          "intersectionOverUnion": 0.857444583,
+          "serviceAreaCoveredFraction": 0.924000094,
+          "baselineAreaCoveredFraction": 0.922504837,
+          "serviceToBaselineAreaRatio": 0.998381757,
+          "intersectionSquareMetres": 827203.932,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -55.524,
+          "sourceMinusBaselineCentroidNorthingMetres": -34.314
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Nagyerdőalja",
+        "baselineFeatureId": "osm:relation:17519389",
+        "intersectionOverUnion": 0.857444583,
+        "serviceAreaCoveredFraction": 0.924000094,
+        "baselineAreaCoveredFraction": 0.922504837,
+        "serviceToBaselineAreaRatio": 0.998381757,
+        "intersectionSquareMetres": 827203.932,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Szentlászlófalva",
+        "baselineFeatureId": "osm:relation:17083447",
+        "intersectionOverUnion": 0.039928406,
+        "serviceAreaCoveredFraction": 0.059822127,
+        "baselineAreaCoveredFraction": 0.107197182,
+        "serviceToBaselineAreaRatio": 1.791931962,
+        "intersectionSquareMetres": 53555.296,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Nagyerdőalja",
+          "baselineFeatureId": "osm:relation:17519389",
+          "intersectionOverUnion": 0.857444583,
+          "serviceAreaCoveredFraction": 0.924000094,
+          "baselineAreaCoveredFraction": 0.922504837,
+          "serviceToBaselineAreaRatio": 0.998381757,
+          "intersectionSquareMetres": 827203.932,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Szentlászlófalva",
+          "baselineFeatureId": "osm:relation:17083447",
+          "intersectionOverUnion": 0.039928406,
+          "serviceAreaCoveredFraction": 0.059822127,
+          "baselineAreaCoveredFraction": 0.107197182,
+          "serviceToBaselineAreaRatio": 1.791931962,
+          "intersectionSquareMetres": 53555.296,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Nagyerdő",
+          "baselineFeatureId": "osm:relation:17519349",
+          "intersectionOverUnion": 0.005694892,
+          "serviceAreaCoveredFraction": 0.010803008,
+          "baselineAreaCoveredFraction": 0.011900634,
+          "serviceToBaselineAreaRatio": 1.101603736,
+          "intersectionSquareMetres": 9671.309,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 22,
+      "name": "Péterfia",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "serviceAreaSquareMetres": 298561.13,
+      "exactNameMatches": [
+        {
+          "baselineName": "Péterfia",
+          "baselineFeatureId": "osm:relation:16782101",
+          "intersectionOverUnion": 0.693352253,
+          "serviceAreaCoveredFraction": 0.80430776,
+          "baselineAreaCoveredFraction": 0.834053982,
+          "serviceToBaselineAreaRatio": 1.036983632,
+          "intersectionSquareMetres": 240135.034,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -56.181,
+          "sourceMinusBaselineCentroidNorthingMetres": -9.602
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Péterfia",
+        "baselineFeatureId": "osm:relation:16782101",
+        "intersectionOverUnion": 0.693352253,
+        "serviceAreaCoveredFraction": 0.80430776,
+        "baselineAreaCoveredFraction": 0.834053982,
+        "serviceToBaselineAreaRatio": 1.036983632,
+        "intersectionSquareMetres": 240135.034,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Libakert",
+        "baselineFeatureId": "osm:relation:16718847",
+        "intersectionOverUnion": 0.092054426,
+        "serviceAreaCoveredFraction": 0.157984352,
+        "baselineAreaCoveredFraction": 0.180720781,
+        "serviceToBaselineAreaRatio": 1.143915701,
+        "intersectionSquareMetres": 47167.987,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Péterfia",
+          "baselineFeatureId": "osm:relation:16782101",
+          "intersectionOverUnion": 0.693352253,
+          "serviceAreaCoveredFraction": 0.80430776,
+          "baselineAreaCoveredFraction": 0.834053982,
+          "serviceToBaselineAreaRatio": 1.036983632,
+          "intersectionSquareMetres": 240135.034,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Libakert",
+          "baselineFeatureId": "osm:relation:16718847",
+          "intersectionOverUnion": 0.092054426,
+          "serviceAreaCoveredFraction": 0.157984352,
+          "baselineAreaCoveredFraction": 0.180720781,
+          "serviceToBaselineAreaRatio": 1.143915701,
+          "intersectionSquareMetres": 47167.987,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Belváros",
+          "baselineFeatureId": "osm:relation:17408420",
+          "intersectionOverUnion": 0.006410875,
+          "serviceAreaCoveredFraction": 0.031084021,
+          "baselineAreaCoveredFraction": 0.008011918,
+          "serviceToBaselineAreaRatio": 0.257750359,
+          "intersectionSquareMetres": 9280.48,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 23,
+      "name": "Szentlászlófalva",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "serviceAreaSquareMetres": 490181.549,
+      "exactNameMatches": [
+        {
+          "baselineName": "Szentlászlófalva",
+          "baselineFeatureId": "osm:relation:17083447",
+          "intersectionOverUnion": 0.769588015,
+          "serviceAreaCoveredFraction": 0.878146187,
+          "baselineAreaCoveredFraction": 0.861598076,
+          "serviceToBaselineAreaRatio": 0.981155632,
+          "intersectionSquareMetres": 430451.058,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -53.025,
+          "sourceMinusBaselineCentroidNorthingMetres": -29.865
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Szentlászlófalva",
+        "baselineFeatureId": "osm:relation:17083447",
+        "intersectionOverUnion": 0.769588015,
+        "serviceAreaCoveredFraction": 0.878146187,
+        "baselineAreaCoveredFraction": 0.861598076,
+        "serviceToBaselineAreaRatio": 0.981155632,
+        "intersectionSquareMetres": 430451.058,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Péterfia",
+        "baselineFeatureId": "osm:relation:16782101",
+        "intersectionOverUnion": 0.063874601,
+        "serviceAreaCoveredFraction": 0.095304456,
+        "baselineAreaCoveredFraction": 0.162259003,
+        "serviceToBaselineAreaRatio": 1.702533224,
+        "intersectionSquareMetres": 46716.486,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Szentlászlófalva",
+          "baselineFeatureId": "osm:relation:17083447",
+          "intersectionOverUnion": 0.769588015,
+          "serviceAreaCoveredFraction": 0.878146187,
+          "baselineAreaCoveredFraction": 0.861598076,
+          "serviceToBaselineAreaRatio": 0.981155632,
+          "intersectionSquareMetres": 430451.058,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Péterfia",
+          "baselineFeatureId": "osm:relation:16782101",
+          "intersectionOverUnion": 0.063874601,
+          "serviceAreaCoveredFraction": 0.095304456,
+          "baselineAreaCoveredFraction": 0.162259003,
+          "serviceToBaselineAreaRatio": 1.702533224,
+          "intersectionSquareMetres": 46716.486,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Belváros",
+          "baselineFeatureId": "osm:relation:17408420",
+          "intersectionOverUnion": 0.007945023,
+          "serviceAreaCoveredFraction": 0.026509072,
+          "baselineAreaCoveredFraction": 0.011218053,
+          "serviceToBaselineAreaRatio": 0.423177894,
+          "intersectionSquareMetres": 12994.258,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 24,
+      "name": "Burgundia",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "serviceAreaSquareMetres": 375997.749,
+      "exactNameMatches": [
+        {
+          "baselineName": "Burgundia",
+          "baselineFeatureId": "osm:relation:17406703",
+          "intersectionOverUnion": 0.74799908,
+          "serviceAreaCoveredFraction": 0.850209259,
+          "baselineAreaCoveredFraction": 0.861534952,
+          "serviceToBaselineAreaRatio": 1.013321065,
+          "intersectionSquareMetres": 319676.768,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -61.063,
+          "sourceMinusBaselineCentroidNorthingMetres": -44.481
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Burgundia",
+        "baselineFeatureId": "osm:relation:17406703",
+        "intersectionOverUnion": 0.74799908,
+        "serviceAreaCoveredFraction": 0.850209259,
+        "baselineAreaCoveredFraction": 0.861534952,
+        "serviceToBaselineAreaRatio": 1.013321065,
+        "intersectionSquareMetres": 319676.768,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Kandia",
+        "baselineFeatureId": "osm:relation:17406712",
+        "intersectionOverUnion": 0.047948175,
+        "serviceAreaCoveredFraction": 0.066165194,
+        "baselineAreaCoveredFraction": 0.148320315,
+        "serviceToBaselineAreaRatio": 2.241666755,
+        "intersectionSquareMetres": 24877.964,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Burgundia",
+          "baselineFeatureId": "osm:relation:17406703",
+          "intersectionOverUnion": 0.74799908,
+          "serviceAreaCoveredFraction": 0.850209259,
+          "baselineAreaCoveredFraction": 0.861534952,
+          "serviceToBaselineAreaRatio": 1.013321065,
+          "intersectionSquareMetres": 319676.768,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Kandia",
+          "baselineFeatureId": "osm:relation:17406712",
+          "intersectionOverUnion": 0.047948175,
+          "serviceAreaCoveredFraction": 0.066165194,
+          "baselineAreaCoveredFraction": 0.148320315,
+          "serviceToBaselineAreaRatio": 2.241666755,
+          "intersectionSquareMetres": 24877.964,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Belváros",
+          "baselineFeatureId": "osm:relation:17408420",
+          "intersectionOverUnion": 0.014996402,
+          "serviceAreaCoveredFraction": 0.06029159,
+          "baselineAreaCoveredFraction": 0.019570774,
+          "serviceToBaselineAreaRatio": 0.32460205,
+          "intersectionSquareMetres": 22669.502,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Szentlászlófalva",
+          "baselineFeatureId": "osm:relation:17083447",
+          "intersectionOverUnion": 0.010121492,
+          "serviceAreaCoveredFraction": 0.023333957,
+          "baselineAreaCoveredFraction": 0.017561216,
+          "serviceToBaselineAreaRatio": 0.752603418,
+          "intersectionSquareMetres": 8773.515,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 25,
+      "name": "Kandia",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "serviceAreaSquareMetres": 159992.36,
+      "exactNameMatches": [
+        {
+          "baselineName": "Kandia",
+          "baselineFeatureId": "osm:relation:17406712",
+          "intersectionOverUnion": 0.639277511,
+          "serviceAreaCoveredFraction": 0.798813765,
+          "baselineAreaCoveredFraction": 0.761957221,
+          "serviceToBaselineAreaRatio": 0.953860905,
+          "intersectionSquareMetres": 127804.099,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -57.454,
+          "sourceMinusBaselineCentroidNorthingMetres": -36.631
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Kandia",
+        "baselineFeatureId": "osm:relation:17406712",
+        "intersectionOverUnion": 0.639277511,
+        "serviceAreaCoveredFraction": 0.798813765,
+        "baselineAreaCoveredFraction": 0.761957221,
+        "serviceToBaselineAreaRatio": 0.953860905,
+        "intersectionSquareMetres": 127804.099,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Belváros",
+        "baselineFeatureId": "osm:relation:17408420",
+        "intersectionOverUnion": 0.014279723,
+        "serviceAreaCoveredFraction": 0.11600745,
+        "baselineAreaCoveredFraction": 0.01602327,
+        "serviceToBaselineAreaRatio": 0.138122763,
+        "intersectionSquareMetres": 18560.306,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Kandia",
+          "baselineFeatureId": "osm:relation:17406712",
+          "intersectionOverUnion": 0.639277511,
+          "serviceAreaCoveredFraction": 0.798813765,
+          "baselineAreaCoveredFraction": 0.761957221,
+          "serviceToBaselineAreaRatio": 0.953860905,
+          "intersectionSquareMetres": 127804.099,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Belváros",
+          "baselineFeatureId": "osm:relation:17408420",
+          "intersectionOverUnion": 0.014279723,
+          "serviceAreaCoveredFraction": 0.11600745,
+          "baselineAreaCoveredFraction": 0.01602327,
+          "serviceToBaselineAreaRatio": 0.138122763,
+          "intersectionSquareMetres": 18560.306,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 26,
+      "name": "Miklóskapu",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "serviceAreaSquareMetres": 82377.791,
+      "exactNameMatches": [
+        {
+          "baselineName": "Miklóskapu",
+          "baselineFeatureId": "osm:relation:17408407",
+          "intersectionOverUnion": 0.424966923,
+          "serviceAreaCoveredFraction": 0.58737639,
+          "baselineAreaCoveredFraction": 0.605826187,
+          "serviceToBaselineAreaRatio": 1.031410519,
+          "intersectionSquareMetres": 48386.77,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -82.201,
+          "sourceMinusBaselineCentroidNorthingMetres": -22.665
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Miklóskapu",
+        "baselineFeatureId": "osm:relation:17408407",
+        "intersectionOverUnion": 0.424966923,
+        "serviceAreaCoveredFraction": 0.58737639,
+        "baselineAreaCoveredFraction": 0.605826187,
+        "serviceToBaselineAreaRatio": 1.031410519,
+        "intersectionSquareMetres": 48386.77,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Tizenháromváros",
+        "baselineFeatureId": "osm:relation:17408367",
+        "intersectionOverUnion": 0.021385685,
+        "serviceAreaCoveredFraction": 0.084605631,
+        "baselineAreaCoveredFraction": 0.027823605,
+        "serviceToBaselineAreaRatio": 0.328862327,
+        "intersectionSquareMetres": 6969.625,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Miklóskapu",
+          "baselineFeatureId": "osm:relation:17408407",
+          "intersectionOverUnion": 0.424966923,
+          "serviceAreaCoveredFraction": 0.58737639,
+          "baselineAreaCoveredFraction": 0.605826187,
+          "serviceToBaselineAreaRatio": 1.031410519,
+          "intersectionSquareMetres": 48386.77,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Tizenháromváros",
+          "baselineFeatureId": "osm:relation:17408367",
+          "intersectionOverUnion": 0.021385685,
+          "serviceAreaCoveredFraction": 0.084605631,
+          "baselineAreaCoveredFraction": 0.027823605,
+          "serviceToBaselineAreaRatio": 0.328862327,
+          "intersectionSquareMetres": 6969.625,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Postakert",
+          "baselineFeatureId": "osm:relation:17435688",
+          "intersectionOverUnion": 0.007309299,
+          "serviceAreaCoveredFraction": 0.050564685,
+          "baselineAreaCoveredFraction": 0.008472037,
+          "serviceToBaselineAreaRatio": 0.167548495,
+          "intersectionSquareMetres": 4165.407,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 27,
+      "name": "Tizenháromváros",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "serviceAreaSquareMetres": 257272.973,
+      "exactNameMatches": [
+        {
+          "baselineName": "Tizenháromváros",
+          "baselineFeatureId": "osm:relation:17408367",
+          "intersectionOverUnion": 0.590687456,
+          "serviceAreaCoveredFraction": 0.732896302,
+          "baselineAreaCoveredFraction": 0.752732515,
+          "serviceToBaselineAreaRatio": 1.027065511,
+          "intersectionSquareMetres": 188554.411,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -79.703,
+          "sourceMinusBaselineCentroidNorthingMetres": -22.455
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Tizenháromváros",
+        "baselineFeatureId": "osm:relation:17408367",
+        "intersectionOverUnion": 0.590687456,
+        "serviceAreaCoveredFraction": 0.732896302,
+        "baselineAreaCoveredFraction": 0.752732515,
+        "serviceToBaselineAreaRatio": 1.027065511,
+        "intersectionSquareMetres": 188554.411,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Széchenyikert",
+        "baselineFeatureId": "osm:relation:17435693",
+        "intersectionOverUnion": 0.058667453,
+        "serviceAreaCoveredFraction": 0.144756753,
+        "baselineAreaCoveredFraction": 0.089790097,
+        "serviceToBaselineAreaRatio": 0.620282614,
+        "intersectionSquareMetres": 37242.0,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Tizenháromváros",
+          "baselineFeatureId": "osm:relation:17408367",
+          "intersectionOverUnion": 0.590687456,
+          "serviceAreaCoveredFraction": 0.732896302,
+          "baselineAreaCoveredFraction": 0.752732515,
+          "serviceToBaselineAreaRatio": 1.027065511,
+          "intersectionSquareMetres": 188554.411,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Széchenyikert",
+          "baselineFeatureId": "osm:relation:17435693",
+          "intersectionOverUnion": 0.058667453,
+          "serviceAreaCoveredFraction": 0.144756753,
+          "baselineAreaCoveredFraction": 0.089790097,
+          "serviceToBaselineAreaRatio": 0.620282614,
+          "intersectionSquareMetres": 37242.0,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Postakert",
+          "baselineFeatureId": "osm:relation:17435688",
+          "intersectionOverUnion": 0.035094371,
+          "serviceAreaCoveredFraction": 0.09869824,
+          "baselineAreaCoveredFraction": 0.051645675,
+          "serviceToBaselineAreaRatio": 0.523268452,
+          "intersectionSquareMetres": 25392.39,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Mesterfalva",
+          "baselineFeatureId": "osm:relation:17408364",
+          "intersectionOverUnion": 0.012019889,
+          "serviceAreaCoveredFraction": 0.023648704,
+          "baselineAreaCoveredFraction": 0.02386075,
+          "serviceToBaselineAreaRatio": 1.008966492,
+          "intersectionSquareMetres": 6084.172,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 28,
+      "name": "Mesterfalva",
+      "tipus": "hagyomanyos_beepitesu_belso_lakoteruletek",
+      "serviceAreaSquareMetres": 250660.006,
+      "exactNameMatches": [
+        {
+          "baselineName": "Mesterfalva",
+          "baselineFeatureId": "osm:relation:17408364",
+          "intersectionOverUnion": 0.703828178,
+          "serviceAreaCoveredFraction": 0.833302984,
+          "baselineAreaCoveredFraction": 0.819163439,
+          "serviceToBaselineAreaRatio": 0.983031928,
+          "intersectionSquareMetres": 208875.731,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -80.857,
+          "sourceMinusBaselineCentroidNorthingMetres": -4.198
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Mesterfalva",
+        "baselineFeatureId": "osm:relation:17408364",
+        "intersectionOverUnion": 0.703828178,
+        "serviceAreaCoveredFraction": 0.833302984,
+        "baselineAreaCoveredFraction": 0.819163439,
+        "serviceToBaselineAreaRatio": 0.983031928,
+        "intersectionSquareMetres": 208875.731,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Széchenyikert",
+        "baselineFeatureId": "osm:relation:17435693",
+        "intersectionOverUnion": 0.007513204,
+        "serviceAreaCoveredFraction": 0.019796573,
+        "baselineAreaCoveredFraction": 0.011963837,
+        "serviceToBaselineAreaRatio": 0.604338815,
+        "intersectionSquareMetres": 4962.209,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Mesterfalva",
+          "baselineFeatureId": "osm:relation:17408364",
+          "intersectionOverUnion": 0.703828178,
+          "serviceAreaCoveredFraction": 0.833302984,
+          "baselineAreaCoveredFraction": 0.819163439,
+          "serviceToBaselineAreaRatio": 0.983031928,
+          "intersectionSquareMetres": 208875.731,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Széchenyikert",
+          "baselineFeatureId": "osm:relation:17435693",
+          "intersectionOverUnion": 0.007513204,
+          "serviceAreaCoveredFraction": 0.019796573,
+          "baselineAreaCoveredFraction": 0.011963837,
+          "serviceToBaselineAreaRatio": 0.604338815,
+          "intersectionSquareMetres": 4962.209,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 29,
+      "name": "Nyulas",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 535282.054,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 30,
+      "name": "Úrrétje",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 608142.155,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 31,
+      "name": "Tócóliget",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 563937.365,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 32,
+      "name": "Akadémiakert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 791658.714,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 33,
+      "name": "Kertváros",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 803873.635,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Csigekert",
+        "baselineFeatureId": "osm:relation:17435708",
+        "intersectionOverUnion": 0.002174483,
+        "serviceAreaCoveredFraction": 0.00336188,
+        "baselineAreaCoveredFraction": 0.006118942,
+        "serviceToBaselineAreaRatio": 1.820095146,
+        "intersectionSquareMetres": 2702.527,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Csigekert",
+        "baselineFeatureId": "osm:relation:17435708",
+        "intersectionOverUnion": 0.002174483,
+        "serviceAreaCoveredFraction": 0.00336188,
+        "baselineAreaCoveredFraction": 0.006118942,
+        "serviceToBaselineAreaRatio": 1.820095146,
+        "intersectionSquareMetres": 2702.527,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 34,
+      "name": "Köntöskert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 1048648.2,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 35,
+      "name": "Csigekert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 421319.908,
+      "exactNameMatches": [
+        {
+          "baselineName": "Csigekert",
+          "baselineFeatureId": "osm:relation:17435708",
+          "intersectionOverUnion": 0.750852526,
+          "serviceAreaCoveredFraction": 0.878408767,
+          "baselineAreaCoveredFraction": 0.83794391,
+          "serviceToBaselineAreaRatio": 0.95393391,
+          "intersectionSquareMetres": 370091.101,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -73.334,
+          "sourceMinusBaselineCentroidNorthingMetres": 6.05
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Csigekert",
+        "baselineFeatureId": "osm:relation:17435708",
+        "intersectionOverUnion": 0.750852526,
+        "serviceAreaCoveredFraction": 0.878408767,
+        "baselineAreaCoveredFraction": 0.83794391,
+        "serviceToBaselineAreaRatio": 0.95393391,
+        "intersectionSquareMetres": 370091.101,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [
+        {
+          "baselineName": "Csigekert",
+          "baselineFeatureId": "osm:relation:17435708",
+          "intersectionOverUnion": 0.750852526,
+          "serviceAreaCoveredFraction": 0.878408767,
+          "baselineAreaCoveredFraction": 0.83794391,
+          "serviceToBaselineAreaRatio": 0.95393391,
+          "intersectionSquareMetres": 370091.101,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 36,
+      "name": "Nagysándortelep",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 849671.105,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 37,
+      "name": "Hatvan utcai kert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 1337873.176,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Széchenyikert",
+        "baselineFeatureId": "osm:relation:17435693",
+        "intersectionOverUnion": 0.001554783,
+        "serviceAreaCoveredFraction": 0.002033635,
+        "baselineAreaCoveredFraction": 0.006559693,
+        "serviceToBaselineAreaRatio": 3.225599105,
+        "intersectionSquareMetres": 2720.746,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Széchenyikert",
+        "baselineFeatureId": "osm:relation:17435693",
+        "intersectionOverUnion": 0.001554783,
+        "serviceAreaCoveredFraction": 0.002033635,
+        "baselineAreaCoveredFraction": 0.006559693,
+        "serviceToBaselineAreaRatio": 3.225599105,
+        "intersectionSquareMetres": 2720.746,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 38,
+      "name": "Kismacs",
+      "tipus": "egyeb_belteruletek",
+      "serviceAreaSquareMetres": 335431.437,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 39,
+      "name": "Józsa",
+      "tipus": "egyeb_belteruletek",
+      "serviceAreaSquareMetres": 6325381.647,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": [
+        "broad_parent_Jozsa_do_not_create_children"
+      ]
+    },
+    {
+      "fid": 40,
+      "name": "Sámsonikert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 766603.136,
+      "exactNameMatches": [
+        {
+          "baselineName": "Sámsonikert",
+          "baselineFeatureId": "osm:relation:17529545",
+          "intersectionOverUnion": 0.761194169,
+          "serviceAreaCoveredFraction": 0.862060279,
+          "baselineAreaCoveredFraction": 0.866766269,
+          "serviceToBaselineAreaRatio": 1.005459003,
+          "intersectionSquareMetres": 660858.113,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -62.563,
+          "sourceMinusBaselineCentroidNorthingMetres": -69.356
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Sámsonikert",
+        "baselineFeatureId": "osm:relation:17529545",
+        "intersectionOverUnion": 0.761194169,
+        "serviceAreaCoveredFraction": 0.862060279,
+        "baselineAreaCoveredFraction": 0.866766269,
+        "serviceToBaselineAreaRatio": 1.005459003,
+        "intersectionSquareMetres": 660858.113,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Nagyerdőalja",
+        "baselineFeatureId": "osm:relation:17519389",
+        "intersectionOverUnion": 0.038263612,
+        "serviceAreaCoveredFraction": 0.07996085,
+        "baselineAreaCoveredFraction": 0.068360315,
+        "serviceToBaselineAreaRatio": 0.854922315,
+        "intersectionSquareMetres": 61298.239,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Sámsonikert",
+          "baselineFeatureId": "osm:relation:17529545",
+          "intersectionOverUnion": 0.761194169,
+          "serviceAreaCoveredFraction": 0.862060279,
+          "baselineAreaCoveredFraction": 0.866766269,
+          "serviceToBaselineAreaRatio": 1.005459003,
+          "intersectionSquareMetres": 660858.113,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Nagyerdőalja",
+          "baselineFeatureId": "osm:relation:17519389",
+          "intersectionOverUnion": 0.038263612,
+          "serviceAreaCoveredFraction": 0.07996085,
+          "baselineAreaCoveredFraction": 0.068360315,
+          "serviceToBaselineAreaRatio": 0.854922315,
+          "intersectionSquareMetres": 61298.239,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Dobozikert",
+          "baselineFeatureId": "osm:relation:17529645",
+          "intersectionOverUnion": 0.025204242,
+          "serviceAreaCoveredFraction": 0.036608395,
+          "baselineAreaCoveredFraction": 0.07485186,
+          "serviceToBaselineAreaRatio": 2.044663816,
+          "intersectionSquareMetres": 28064.11,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Burgundia",
+          "baselineFeatureId": "osm:relation:17406703",
+          "intersectionOverUnion": 0.010064144,
+          "serviceAreaCoveredFraction": 0.014786624,
+          "baselineAreaCoveredFraction": 0.030549312,
+          "serviceToBaselineAreaRatio": 2.06600999,
+          "intersectionSquareMetres": 11335.472,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Szentlászlófalva",
+          "baselineFeatureId": "osm:relation:17083447",
+          "intersectionOverUnion": 0.004002056,
+          "serviceAreaCoveredFraction": 0.006583852,
+          "baselineAreaCoveredFraction": 0.010102563,
+          "serviceToBaselineAreaRatio": 1.534445728,
+          "intersectionSquareMetres": 5047.201,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 41,
+      "name": "Tócóvölgy",
+      "tipus": "lakotelep",
+      "serviceAreaSquareMetres": 1208868.264,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 42,
+      "name": "Tócóskert",
+      "tipus": "lakotelep",
+      "serviceAreaSquareMetres": 1054715.571,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 43,
+      "name": "Sóház",
+      "tipus": "lakotelep",
+      "serviceAreaSquareMetres": 198864.981,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Kandia",
+        "baselineFeatureId": "osm:relation:17406712",
+        "intersectionOverUnion": 0.038605555,
+        "serviceAreaCoveredFraction": 0.068521827,
+        "baselineAreaCoveredFraction": 0.081240587,
+        "serviceToBaselineAreaRatio": 1.185616186,
+        "intersectionSquareMetres": 13626.592,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Kandia",
+        "baselineFeatureId": "osm:relation:17406712",
+        "intersectionOverUnion": 0.038605555,
+        "serviceAreaCoveredFraction": 0.068521827,
+        "baselineAreaCoveredFraction": 0.081240587,
+        "serviceToBaselineAreaRatio": 1.185616186,
+        "intersectionSquareMetres": 13626.592,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Kandia",
+          "baselineFeatureId": "osm:relation:17406712",
+          "intersectionOverUnion": 0.038605555,
+          "serviceAreaCoveredFraction": 0.068521827,
+          "baselineAreaCoveredFraction": 0.081240587,
+          "serviceToBaselineAreaRatio": 1.185616186,
+          "intersectionSquareMetres": 13626.592,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 44,
+      "name": "Dobozikert",
+      "tipus": "lakotelep",
+      "serviceAreaSquareMetres": 375084.363,
+      "exactNameMatches": [
+        {
+          "baselineName": "Dobozikert",
+          "baselineFeatureId": "osm:relation:17529645",
+          "intersectionOverUnion": 0.716661349,
+          "serviceAreaCoveredFraction": 0.834774587,
+          "baselineAreaCoveredFraction": 0.83512118,
+          "serviceToBaselineAreaRatio": 1.000415193,
+          "intersectionSquareMetres": 313110.894,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -58.537,
+          "sourceMinusBaselineCentroidNorthingMetres": -38.24
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Dobozikert",
+        "baselineFeatureId": "osm:relation:17529645",
+        "intersectionOverUnion": 0.716661349,
+        "serviceAreaCoveredFraction": 0.834774587,
+        "baselineAreaCoveredFraction": 0.83512118,
+        "serviceToBaselineAreaRatio": 1.000415193,
+        "intersectionSquareMetres": 313110.894,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Burgundia",
+        "baselineFeatureId": "osm:relation:17406703",
+        "intersectionOverUnion": 0.056681821,
+        "serviceAreaCoveredFraction": 0.106706406,
+        "baselineAreaCoveredFraction": 0.107865182,
+        "serviceToBaselineAreaRatio": 1.010859471,
+        "intersectionSquareMetres": 40023.904,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Dobozikert",
+          "baselineFeatureId": "osm:relation:17529645",
+          "intersectionOverUnion": 0.716661349,
+          "serviceAreaCoveredFraction": 0.834774587,
+          "baselineAreaCoveredFraction": 0.83512118,
+          "serviceToBaselineAreaRatio": 1.000415193,
+          "intersectionSquareMetres": 313110.894,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Burgundia",
+          "baselineFeatureId": "osm:relation:17406703",
+          "intersectionOverUnion": 0.056681821,
+          "serviceAreaCoveredFraction": 0.106706406,
+          "baselineAreaCoveredFraction": 0.107865182,
+          "serviceToBaselineAreaRatio": 1.010859471,
+          "intersectionSquareMetres": 40023.904,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 45,
+      "name": "Téglagyár",
+      "tipus": "ipari_uzem_terulet",
+      "serviceAreaSquareMetres": 800342.598,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 46,
+      "name": "Tócórét",
+      "tipus": "ipari_uzem_terulet",
+      "serviceAreaSquareMetres": 622392.663,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 47,
+      "name": "Köntösgát",
+      "tipus": "ipari_uzem_terulet",
+      "serviceAreaSquareMetres": 2133543.277,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 48,
+      "name": "Basahalom",
+      "tipus": "ipari_uzem_terulet",
+      "serviceAreaSquareMetres": 906054.372,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 49,
+      "name": "Kétútköz",
+      "tipus": "ipari_uzem_terulet",
+      "serviceAreaSquareMetres": 332894.374,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 50,
+      "name": "Kondoros",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 1095439.118,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Biharikert",
+        "baselineFeatureId": "osm:relation:17529650",
+        "intersectionOverUnion": 0.015234347,
+        "serviceAreaCoveredFraction": 0.032888019,
+        "baselineAreaCoveredFraction": 0.027597673,
+        "serviceToBaselineAreaRatio": 0.839140638,
+        "intersectionSquareMetres": 36026.823,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Biharikert",
+        "baselineFeatureId": "osm:relation:17529650",
+        "intersectionOverUnion": 0.015234347,
+        "serviceAreaCoveredFraction": 0.032888019,
+        "baselineAreaCoveredFraction": 0.027597673,
+        "serviceToBaselineAreaRatio": 0.839140638,
+        "intersectionSquareMetres": 36026.823,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Biharikert",
+          "baselineFeatureId": "osm:relation:17529650",
+          "intersectionOverUnion": 0.015234347,
+          "serviceAreaCoveredFraction": 0.032888019,
+          "baselineAreaCoveredFraction": 0.027597673,
+          "serviceToBaselineAreaRatio": 0.839140638,
+          "intersectionSquareMetres": 36026.823,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 51,
+      "name": "Biharikert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 1300376.194,
+      "exactNameMatches": [
+        {
+          "baselineName": "Biharikert",
+          "baselineFeatureId": "osm:relation:17529650",
+          "intersectionOverUnion": 0.842576207,
+          "serviceAreaCoveredFraction": 0.916340297,
+          "baselineAreaCoveredFraction": 0.912793006,
+          "serviceToBaselineAreaRatio": 0.99612885,
+          "intersectionSquareMetres": 1191587.108,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -47.618,
+          "sourceMinusBaselineCentroidNorthingMetres": -76.808
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Biharikert",
+        "baselineFeatureId": "osm:relation:17529650",
+        "intersectionOverUnion": 0.842576207,
+        "serviceAreaCoveredFraction": 0.916340297,
+        "baselineAreaCoveredFraction": 0.912793006,
+        "serviceToBaselineAreaRatio": 0.99612885,
+        "intersectionSquareMetres": 1191587.108,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [
+        {
+          "baselineName": "Biharikert",
+          "baselineFeatureId": "osm:relation:17529650",
+          "intersectionOverUnion": 0.842576207,
+          "serviceAreaCoveredFraction": 0.916340297,
+          "baselineAreaCoveredFraction": 0.912793006,
+          "serviceToBaselineAreaRatio": 0.99612885,
+          "intersectionSquareMetres": 1191587.108,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 52,
+      "name": "Percsikert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 787732.215,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Biharikert",
+        "baselineFeatureId": "osm:relation:17529650",
+        "intersectionOverUnion": 0.042693035,
+        "serviceAreaCoveredFraction": 0.108798968,
+        "baselineAreaCoveredFraction": 0.065652291,
+        "serviceToBaselineAreaRatio": 0.603427523,
+        "intersectionSquareMetres": 85704.452,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Biharikert",
+        "baselineFeatureId": "osm:relation:17529650",
+        "intersectionOverUnion": 0.042693035,
+        "serviceAreaCoveredFraction": 0.108798968,
+        "baselineAreaCoveredFraction": 0.065652291,
+        "serviceToBaselineAreaRatio": 0.603427523,
+        "intersectionSquareMetres": 85704.452,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Biharikert",
+          "baselineFeatureId": "osm:relation:17529650",
+          "intersectionOverUnion": 0.042693035,
+          "serviceAreaCoveredFraction": 0.108798968,
+          "baselineAreaCoveredFraction": 0.065652291,
+          "serviceToBaselineAreaRatio": 0.603427523,
+          "intersectionSquareMetres": 85704.452,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 53,
+      "name": "Műhelytelep",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 166098.395,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 54,
+      "name": "Kincseshegy",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 537578.978,
+      "exactNameMatches": [
+        {
+          "baselineName": "Kincseshegy",
+          "baselineFeatureId": "osm:relation:17529549",
+          "intersectionOverUnion": 0.745362715,
+          "serviceAreaCoveredFraction": 0.846998587,
+          "baselineAreaCoveredFraction": 0.861334475,
+          "serviceToBaselineAreaRatio": 1.016925516,
+          "intersectionSquareMetres": 455328.635,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -49.674,
+          "sourceMinusBaselineCentroidNorthingMetres": -54.219
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Kincseshegy",
+        "baselineFeatureId": "osm:relation:17529549",
+        "intersectionOverUnion": 0.745362715,
+        "serviceAreaCoveredFraction": 0.846998587,
+        "baselineAreaCoveredFraction": 0.861334475,
+        "serviceToBaselineAreaRatio": 1.016925516,
+        "intersectionSquareMetres": 455328.635,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Falóger",
+        "baselineFeatureId": "osm:relation:17529639",
+        "intersectionOverUnion": 0.06073478,
+        "serviceAreaCoveredFraction": 0.119314555,
+        "baselineAreaCoveredFraction": 0.110085805,
+        "serviceToBaselineAreaRatio": 0.922651939,
+        "intersectionSquareMetres": 64140.996,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Kincseshegy",
+          "baselineFeatureId": "osm:relation:17529549",
+          "intersectionOverUnion": 0.745362715,
+          "serviceAreaCoveredFraction": 0.846998587,
+          "baselineAreaCoveredFraction": 0.861334475,
+          "serviceToBaselineAreaRatio": 1.016925516,
+          "intersectionSquareMetres": 455328.635,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Falóger",
+          "baselineFeatureId": "osm:relation:17529639",
+          "intersectionOverUnion": 0.06073478,
+          "serviceAreaCoveredFraction": 0.119314555,
+          "baselineAreaCoveredFraction": 0.110085805,
+          "serviceToBaselineAreaRatio": 0.922651939,
+          "intersectionSquareMetres": 64140.996,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Sámsonikert",
+          "baselineFeatureId": "osm:relation:17529545",
+          "intersectionOverUnion": 0.011921538,
+          "serviceAreaCoveredFraction": 0.028490048,
+          "baselineAreaCoveredFraction": 0.020087655,
+          "serviceToBaselineAreaRatio": 0.705076197,
+          "intersectionSquareMetres": 15315.651,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 55,
+      "name": "Csapókert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 673896.292,
+      "exactNameMatches": [
+        {
+          "baselineName": "Csapókert",
+          "baselineFeatureId": "osm:relation:17529546",
+          "intersectionOverUnion": 0.799580091,
+          "serviceAreaCoveredFraction": 0.894150264,
+          "baselineAreaCoveredFraction": 0.883176739,
+          "serviceToBaselineAreaRatio": 0.987727427,
+          "intersectionSquareMetres": 602564.547,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -50.762,
+          "sourceMinusBaselineCentroidNorthingMetres": -52.675
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Csapókert",
+        "baselineFeatureId": "osm:relation:17529546",
+        "intersectionOverUnion": 0.799580091,
+        "serviceAreaCoveredFraction": 0.894150264,
+        "baselineAreaCoveredFraction": 0.883176739,
+        "serviceToBaselineAreaRatio": 0.987727427,
+        "intersectionSquareMetres": 602564.547,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Kincseshegy",
+        "baselineFeatureId": "osm:relation:17529549",
+        "intersectionOverUnion": 0.032611101,
+        "serviceAreaCoveredFraction": 0.056354781,
+        "baselineAreaCoveredFraction": 0.071840723,
+        "serviceToBaselineAreaRatio": 1.274793774,
+        "intersectionSquareMetres": 37977.278,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Csapókert",
+          "baselineFeatureId": "osm:relation:17529546",
+          "intersectionOverUnion": 0.799580091,
+          "serviceAreaCoveredFraction": 0.894150264,
+          "baselineAreaCoveredFraction": 0.883176739,
+          "serviceToBaselineAreaRatio": 0.987727427,
+          "intersectionSquareMetres": 602564.547,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Kincseshegy",
+          "baselineFeatureId": "osm:relation:17529549",
+          "intersectionOverUnion": 0.032611101,
+          "serviceAreaCoveredFraction": 0.056354781,
+          "baselineAreaCoveredFraction": 0.071840723,
+          "serviceToBaselineAreaRatio": 1.274793774,
+          "intersectionSquareMetres": 37977.278,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Sámsonikert",
+          "baselineFeatureId": "osm:relation:17529545",
+          "intersectionOverUnion": 0.023773967,
+          "serviceAreaCoveredFraction": 0.049494956,
+          "baselineAreaCoveredFraction": 0.04374695,
+          "serviceToBaselineAreaRatio": 0.883866844,
+          "intersectionSquareMetres": 33354.467,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 56,
+      "name": "Veres Péter kert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 752140.937,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Gerébytelep",
+        "baselineFeatureId": "osm:relation:17526479",
+        "intersectionOverUnion": 0.030987849,
+        "serviceAreaCoveredFraction": 0.110716189,
+        "baselineAreaCoveredFraction": 0.041256491,
+        "serviceToBaselineAreaRatio": 0.372632862,
+        "intersectionSquareMetres": 83274.178,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Gerébytelep",
+        "baselineFeatureId": "osm:relation:17526479",
+        "intersectionOverUnion": 0.030987849,
+        "serviceAreaCoveredFraction": 0.110716189,
+        "baselineAreaCoveredFraction": 0.041256491,
+        "serviceToBaselineAreaRatio": 0.372632862,
+        "intersectionSquareMetres": 83274.178,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Gerébytelep",
+          "baselineFeatureId": "osm:relation:17526479",
+          "intersectionOverUnion": 0.030987849,
+          "serviceAreaCoveredFraction": 0.110716189,
+          "baselineAreaCoveredFraction": 0.041256491,
+          "serviceToBaselineAreaRatio": 0.372632862,
+          "intersectionSquareMetres": 83274.178,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 57,
+      "name": "Hőforras",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 533124.53,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Gerébytelep",
+        "baselineFeatureId": "osm:relation:17526479",
+        "intersectionOverUnion": 0.01478966,
+        "serviceAreaCoveredFraction": 0.069752826,
+        "baselineAreaCoveredFraction": 0.018423511,
+        "serviceToBaselineAreaRatio": 0.264125658,
+        "intersectionSquareMetres": 37186.943,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Gerébytelep",
+        "baselineFeatureId": "osm:relation:17526479",
+        "intersectionOverUnion": 0.01478966,
+        "serviceAreaCoveredFraction": 0.069752826,
+        "baselineAreaCoveredFraction": 0.018423511,
+        "serviceToBaselineAreaRatio": 0.264125658,
+        "intersectionSquareMetres": 37186.943,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Gerébytelep",
+          "baselineFeatureId": "osm:relation:17526479",
+          "intersectionOverUnion": 0.01478966,
+          "serviceAreaCoveredFraction": 0.069752826,
+          "baselineAreaCoveredFraction": 0.018423511,
+          "serviceToBaselineAreaRatio": 0.264125658,
+          "intersectionSquareMetres": 37186.943,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "source_spelling_Hoforras_preserved_identity_alias_pending"
+      ]
+    },
+    {
+      "fid": 58,
+      "name": "Júliatelep",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 1784660.359,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Sámsonikert",
+        "baselineFeatureId": "osm:relation:17529545",
+        "intersectionOverUnion": 0.021214409,
+        "serviceAreaCoveredFraction": 0.029648631,
+        "baselineAreaCoveredFraction": 0.069399126,
+        "serviceToBaselineAreaRatio": 2.340719392,
+        "intersectionSquareMetres": 52912.736,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Sámsonikert",
+        "baselineFeatureId": "osm:relation:17529545",
+        "intersectionOverUnion": 0.021214409,
+        "serviceAreaCoveredFraction": 0.029648631,
+        "baselineAreaCoveredFraction": 0.069399126,
+        "serviceToBaselineAreaRatio": 2.340719392,
+        "intersectionSquareMetres": 52912.736,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Sámsonikert",
+          "baselineFeatureId": "osm:relation:17529545",
+          "intersectionOverUnion": 0.021214409,
+          "serviceAreaCoveredFraction": 0.029648631,
+          "baselineAreaCoveredFraction": 0.069399126,
+          "serviceToBaselineAreaRatio": 2.340719392,
+          "intersectionSquareMetres": 52912.736,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Csapókert",
+          "baselineFeatureId": "osm:relation:17529546",
+          "intersectionOverUnion": 0.008850076,
+          "serviceAreaCoveredFraction": 0.012126112,
+          "baselineAreaCoveredFraction": 0.031719125,
+          "serviceToBaselineAreaRatio": 2.615770416,
+          "intersectionSquareMetres": 21640.991,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 59,
+      "name": "Kerekestelep",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 2365672.317,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 60,
+      "name": "Homokkert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 1798762.192,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 61,
+      "name": "Lencztelep",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 1440809.41,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 62,
+      "name": "Boldogfalvikert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 860708.859,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 63,
+      "name": "Tégláskert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 1038639.928,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 64,
+      "name": "Majorság",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 488244.683,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 65,
+      "name": "Vargakert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 806596.327,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Postakert",
+        "baselineFeatureId": "osm:relation:17435688",
+        "intersectionOverUnion": 0.063242347,
+        "serviceAreaCoveredFraction": 0.09573742,
+        "baselineAreaCoveredFraction": 0.157060995,
+        "serviceToBaselineAreaRatio": 1.640539256,
+        "intersectionSquareMetres": 77221.451,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Postakert",
+        "baselineFeatureId": "osm:relation:17435688",
+        "intersectionOverUnion": 0.063242347,
+        "serviceAreaCoveredFraction": 0.09573742,
+        "baselineAreaCoveredFraction": 0.157060995,
+        "serviceToBaselineAreaRatio": 1.640539256,
+        "intersectionSquareMetres": 77221.451,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Postakert",
+          "baselineFeatureId": "osm:relation:17435688",
+          "intersectionOverUnion": 0.063242347,
+          "serviceAreaCoveredFraction": 0.09573742,
+          "baselineAreaCoveredFraction": 0.157060995,
+          "serviceToBaselineAreaRatio": 1.640539256,
+          "intersectionSquareMetres": 77221.451,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 66,
+      "name": "Postakert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 481837.233,
+      "exactNameMatches": [
+        {
+          "baselineName": "Postakert",
+          "baselineFeatureId": "osm:relation:17435688",
+          "intersectionOverUnion": 0.651273176,
+          "serviceAreaCoveredFraction": 0.796858157,
+          "baselineAreaCoveredFraction": 0.780929386,
+          "serviceToBaselineAreaRatio": 0.980010532,
+          "intersectionSquareMetres": 383955.929,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -92.627,
+          "sourceMinusBaselineCentroidNorthingMetres": -15.511
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Postakert",
+        "baselineFeatureId": "osm:relation:17435688",
+        "intersectionOverUnion": 0.651273176,
+        "serviceAreaCoveredFraction": 0.796858157,
+        "baselineAreaCoveredFraction": 0.780929386,
+        "serviceToBaselineAreaRatio": 0.980010532,
+        "intersectionSquareMetres": 383955.929,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Széchenyikert",
+        "baselineFeatureId": "osm:relation:17435693",
+        "intersectionOverUnion": 0.04937592,
+        "serviceAreaCoveredFraction": 0.087555757,
+        "baselineAreaCoveredFraction": 0.101713946,
+        "serviceToBaselineAreaRatio": 1.161704842,
+        "intersectionSquareMetres": 42187.623,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Postakert",
+          "baselineFeatureId": "osm:relation:17435688",
+          "intersectionOverUnion": 0.651273176,
+          "serviceAreaCoveredFraction": 0.796858157,
+          "baselineAreaCoveredFraction": 0.780929386,
+          "serviceToBaselineAreaRatio": 0.980010532,
+          "intersectionSquareMetres": 383955.929,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Széchenyikert",
+          "baselineFeatureId": "osm:relation:17435693",
+          "intersectionOverUnion": 0.04937592,
+          "serviceAreaCoveredFraction": 0.087555757,
+          "baselineAreaCoveredFraction": 0.101713946,
+          "serviceToBaselineAreaRatio": 1.161704842,
+          "intersectionSquareMetres": 42187.623,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 67,
+      "name": "Széchenyikert",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 423183.356,
+      "exactNameMatches": [
+        {
+          "baselineName": "Széchenyikert",
+          "baselineFeatureId": "osm:relation:17435693",
+          "intersectionOverUnion": 0.646103454,
+          "serviceAreaCoveredFraction": 0.777203641,
+          "baselineAreaCoveredFraction": 0.792973819,
+          "serviceToBaselineAreaRatio": 1.020290922,
+          "intersectionSquareMetres": 328899.645,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -86.46,
+          "sourceMinusBaselineCentroidNorthingMetres": -13.786
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Széchenyikert",
+        "baselineFeatureId": "osm:relation:17435693",
+        "intersectionOverUnion": 0.646103454,
+        "serviceAreaCoveredFraction": 0.777203641,
+        "baselineAreaCoveredFraction": 0.792973819,
+        "serviceToBaselineAreaRatio": 1.020290922,
+        "intersectionSquareMetres": 328899.645,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [
+        {
+          "baselineName": "Széchenyikert",
+          "baselineFeatureId": "osm:relation:17435693",
+          "intersectionOverUnion": 0.646103454,
+          "serviceAreaCoveredFraction": 0.777203641,
+          "baselineAreaCoveredFraction": 0.792973819,
+          "serviceToBaselineAreaRatio": 1.020290922,
+          "intersectionSquareMetres": 328899.645,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "duplicate_source_name_requires_one_identity_review",
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 68,
+      "name": "Lóskúti",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 866931.058,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": [
+        "source_name_Loskuti_identity_alias_pending"
+      ]
+    },
+    {
+      "fid": 69,
+      "name": "Falóger",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 590766.405,
+      "exactNameMatches": [
+        {
+          "baselineName": "Falóger",
+          "baselineFeatureId": "osm:relation:17529639",
+          "intersectionOverUnion": 0.729242434,
+          "serviceAreaCoveredFraction": 0.837627136,
+          "baselineAreaCoveredFraction": 0.849302007,
+          "serviceToBaselineAreaRatio": 1.013938028,
+          "intersectionSquareMetres": 494841.972,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -41.81,
+          "sourceMinusBaselineCentroidNorthingMetres": -60.981
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Falóger",
+        "baselineFeatureId": "osm:relation:17529639",
+        "intersectionOverUnion": 0.729242434,
+        "serviceAreaCoveredFraction": 0.837627136,
+        "baselineAreaCoveredFraction": 0.849302007,
+        "serviceToBaselineAreaRatio": 1.013938028,
+        "intersectionSquareMetres": 494841.972,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Dobozikert",
+        "baselineFeatureId": "osm:relation:17529645",
+        "intersectionOverUnion": 0.031701016,
+        "serviceAreaCoveredFraction": 0.050227731,
+        "baselineAreaCoveredFraction": 0.079142666,
+        "serviceToBaselineAreaRatio": 1.575676692,
+        "intersectionSquareMetres": 29672.856,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Falóger",
+          "baselineFeatureId": "osm:relation:17529639",
+          "intersectionOverUnion": 0.729242434,
+          "serviceAreaCoveredFraction": 0.837627136,
+          "baselineAreaCoveredFraction": 0.849302007,
+          "serviceToBaselineAreaRatio": 1.013938028,
+          "intersectionSquareMetres": 494841.972,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Dobozikert",
+          "baselineFeatureId": "osm:relation:17529645",
+          "intersectionOverUnion": 0.031701016,
+          "serviceAreaCoveredFraction": 0.050227731,
+          "baselineAreaCoveredFraction": 0.079142666,
+          "serviceToBaselineAreaRatio": 1.575676692,
+          "intersectionSquareMetres": 29672.856,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 70,
+      "name": "Wesselényi lakótelep",
+      "tipus": "lakotelep",
+      "serviceAreaSquareMetres": 299241.261,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Belváros",
+        "baselineFeatureId": "osm:relation:17408420",
+        "intersectionOverUnion": 0.032758832,
+        "serviceAreaCoveredFraction": 0.154503792,
+        "baselineAreaCoveredFraction": 0.039914127,
+        "serviceToBaselineAreaRatio": 0.258337522,
+        "intersectionSquareMetres": 46233.91,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Belváros",
+        "baselineFeatureId": "osm:relation:17408420",
+        "intersectionOverUnion": 0.032758832,
+        "serviceAreaCoveredFraction": 0.154503792,
+        "baselineAreaCoveredFraction": 0.039914127,
+        "serviceToBaselineAreaRatio": 0.258337522,
+        "intersectionSquareMetres": 46233.91,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Belváros",
+          "baselineFeatureId": "osm:relation:17408420",
+          "intersectionOverUnion": 0.032758832,
+          "serviceAreaCoveredFraction": 0.154503792,
+          "baselineAreaCoveredFraction": 0.039914127,
+          "serviceToBaselineAreaRatio": 0.258337522,
+          "intersectionSquareMetres": 46233.91,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 71,
+      "name": "Gerébytelep",
+      "tipus": "kertvaros",
+      "serviceAreaSquareMetres": 2047785.338,
+      "exactNameMatches": [
+        {
+          "baselineName": "Gerébytelep",
+          "baselineFeatureId": "osm:relation:17526479",
+          "intersectionOverUnion": 0.866396181,
+          "serviceAreaCoveredFraction": 0.92176627,
+          "baselineAreaCoveredFraction": 0.935162681,
+          "serviceToBaselineAreaRatio": 1.014533414,
+          "intersectionSquareMetres": 1887579.453,
+          "topologicallyEqual": false,
+          "sourceMinusBaselineCentroidEastingMetres": -43.89,
+          "sourceMinusBaselineCentroidNorthingMetres": -53.316
+        }
+      ],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": {
+        "baselineName": "Gerébytelep",
+        "baselineFeatureId": "osm:relation:17526479",
+        "intersectionOverUnion": 0.866396181,
+        "serviceAreaCoveredFraction": 0.92176627,
+        "baselineAreaCoveredFraction": 0.935162681,
+        "serviceToBaselineAreaRatio": 1.014533414,
+        "intersectionSquareMetres": 1887579.453,
+        "topologicallyEqual": false
+      },
+      "bestDifferentNameMatch": {
+        "baselineName": "Csapókert",
+        "baselineFeatureId": "osm:relation:17529546",
+        "intersectionOverUnion": 0.021730597,
+        "serviceAreaCoveredFraction": 0.028354513,
+        "baselineAreaCoveredFraction": 0.085104136,
+        "serviceToBaselineAreaRatio": 3.001431773,
+        "intersectionSquareMetres": 58063.956,
+        "topologicallyEqual": false
+      },
+      "substantialOverlaps": [
+        {
+          "baselineName": "Gerébytelep",
+          "baselineFeatureId": "osm:relation:17526479",
+          "intersectionOverUnion": 0.866396181,
+          "serviceAreaCoveredFraction": 0.92176627,
+          "baselineAreaCoveredFraction": 0.935162681,
+          "serviceToBaselineAreaRatio": 1.014533414,
+          "intersectionSquareMetres": 1887579.453,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Csapókert",
+          "baselineFeatureId": "osm:relation:17529546",
+          "intersectionOverUnion": 0.021730597,
+          "serviceAreaCoveredFraction": 0.028354513,
+          "baselineAreaCoveredFraction": 0.085104136,
+          "serviceToBaselineAreaRatio": 3.001431773,
+          "intersectionSquareMetres": 58063.956,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Kincseshegy",
+          "baselineFeatureId": "osm:relation:17529549",
+          "intersectionOverUnion": 0.013901784,
+          "serviceAreaCoveredFraction": 0.017250686,
+          "baselineAreaCoveredFraction": 0.066824801,
+          "serviceToBaselineAreaRatio": 3.873747385,
+          "intersectionSquareMetres": 35325.703,
+          "topologicallyEqual": false
+        },
+        {
+          "baselineName": "Falóger",
+          "baselineFeatureId": "osm:relation:17529639",
+          "intersectionOverUnion": 0.009077334,
+          "serviceAreaCoveredFraction": 0.01155517,
+          "baselineAreaCoveredFraction": 0.040612188,
+          "serviceToBaselineAreaRatio": 3.514633549,
+          "intersectionSquareMetres": 23662.508,
+          "topologicallyEqual": false
+        }
+      ],
+      "confidenceFlags": [
+        "same_name_existing_baseline_identity_no_new_name",
+        "same_name_boundary_disagreement_requires_source_accuracy_review"
+      ]
+    },
+    {
+      "fid": 72,
+      "name": "Nagymacs",
+      "tipus": "egyeb_belteruletek",
+      "serviceAreaSquareMetres": 568042.697,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 73,
+      "name": "Nagycsere",
+      "tipus": "egyeb_belteruletek",
+      "serviceAreaSquareMetres": 302832.619,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 74,
+      "name": "Dombos",
+      "tipus": "egyeb_belteruletek",
+      "serviceAreaSquareMetres": 94887.281,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 75,
+      "name": "Haláp",
+      "tipus": "egyeb_belteruletek",
+      "serviceAreaSquareMetres": 378067.558,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 76,
+      "name": "Bánk",
+      "tipus": "egyeb_belteruletek",
+      "serviceAreaSquareMetres": 657831.734,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    },
+    {
+      "fid": 77,
+      "name": "Ondód",
+      "tipus": "egyeb_belteruletek",
+      "serviceAreaSquareMetres": 434594.531,
+      "exactNameMatches": [],
+      "normalizedOnlyNameMatches": [],
+      "bestOverallMatch": null,
+      "bestDifferentNameMatch": null,
+      "substantialOverlaps": [],
+      "confidenceFlags": []
+    }
+  ],
+  "outcome": {
+    "existingBaselinePreserved": true,
+    "canonicalPromotionPerformed": false,
+    "newQuarterIdentitiesApproved": 0,
+    "usableForAddressAssignment": false
+  },
+  "systematicPlacementDiagnostic": {
+    "method": "Compare metric centroids of the25exact-name matching source pieces, excluding ambiguousFID11. Source minus OSM baseline in EPSG23700; these centroids diagnose dataset disagreement and are not georeferencing controls.",
+    "count": 25,
+    "allSourceCentroidsWestOfBaseline": true,
+    "medianEastingDifferenceMetres": -61.063,
+    "medianNorthingDifferenceMetres": -27.218,
+    "sampleStdEastingDifferenceMetres": 13.892,
+    "sampleStdNorthingDifferenceMetres": 21.471,
+    "interpretation": "A shared westward and generally southward displacement is visible relative to this unreviewedOSMbaseline. Neither cause nor which source is more accurate is established. Direct service authenticity and correct declared CRS transformation do not establish real-world placement accuracy. No translation, datum reinterpretation or correction was fitted or applied."
+  },
+  "allPairMetricsArchive": {
+    "path": "data/neighborhoods/sources/public-arcgis-quarter-next/baseline-all-pair-metrics.csv",
+    "sha256": "31704cc6df91a2ed926cbd4eebe60db669cd9df1eeedd5066aa7b5b46e961292",
+    "rows": 2002,
+    "sourceFeatureCount": 77,
+    "baselineFeatureCount": 26,
+    "includesZeroOverlaps": true,
+    "zeroIntersectionRows": 1889,
+    "semantics": "Exhaustive measurements, not2002identitymatches. Zero-area rows are retained as zero overlaps.",
+    "metricCrs": "EPSG:23700",
+    "numericalSerialization": "CSV UTF-8 without BOM; LF row terminators; areas6decimalplaces, ratios12decimalplaces, true/false lower-case."
+  }
+}

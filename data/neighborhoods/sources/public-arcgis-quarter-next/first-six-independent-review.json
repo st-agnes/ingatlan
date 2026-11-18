@@ -1,0 +1,456 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent_final_first_six_estimated_geometry_identity_and_provenance_review",
+  "reviewDate": "2026-11-14",
+  "datasetId": "debrecen-arcgis-six-estimated-placement",
+  "inputs": [
+    {
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/debrecen-first-six-estimated.geojson",
+      "sha256": "0d2238b780220e2e1b091f6134afe55e26018edf0a4dd9260baf6e67e09f1c6a",
+      "bytes": 45332
+    },
+    {
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/first-six-review.json",
+      "sha256": "75ec27ae68850f1d3144627178aa18b4444cd8dac639935e98cffae390712a2a",
+      "bytes": 8634
+    },
+    {
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/registry-entry.json",
+      "sha256": "3a87a52a77a33916b8624ed6636f267d10b049c99697e282e93457d05f0e7d84",
+      "bytes": 3220
+    },
+    {
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/debrecen-source-name-points.geojson",
+      "sha256": "a9e16ebcde49bd27b6a8947cbf353fcc2d1b4083c2f3a31764896ca4c5d40cd9",
+      "bytes": 111336
+    },
+    {
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/debrecen-fvs-name-evidence.json",
+      "sha256": "27e5b9c2aaf123aeb49b5b874b77ee52de8ee5295c0225cb8d88f5d10180f001",
+      "bytes": 6665
+    },
+    {
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/debrecen-fvs-quarter-name-inventory.json",
+      "sha256": "e5f691ec9c8e7cd94bd625d74dcc3efe453c7c3c97cbc685707b26ef5561dbb6",
+      "bytes": 10260
+    },
+    {
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/debrecen-fvs-six-table-label-crops.png",
+      "sha256": "581996e61291c08403efdc23e2a7185099bf6f0c31c036d04fd1e02b3b2bc99e",
+      "bytes": 19258
+    },
+    {
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/debrecen-fvs-p208-original.png",
+      "sha256": "c68ad1e06e2254aee46d80bc54fd25bdd91e45d5381e02af2a66e9afef5a3aff",
+      "bytes": 350859
+    },
+    {
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/debrecen-fvs-short-name-evidence.txt",
+      "sha256": "2cf69ab7293b383485344604c766d41f509a8e3b721b345b24403d3e154ada7a",
+      "bytes": 996
+    },
+    {
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/baseline-reference.json",
+      "sha256": "def4fd3a04b4bd7edbc9cabf0a8214accb16a2c5c4c1aaa21b8067ac6496758b",
+      "bytes": 7314
+    },
+    {
+      "path": ".local/neighborhoods/supplement-feature-services/debrecen-quarter-queries/debrecen-geojson-page0.json",
+      "sha256": "fb7d0f0bae18b05263d5658221f0a612a2839193ce47413e05dc71401b18cf3e",
+      "bytes": 48128
+    },
+    {
+      "path": ".local/neighborhoods/supplement-official-next/debrecen-fvs2023.pdf",
+      "sha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+      "bytes": 14439107
+    },
+    {
+      "path": "data/neighborhoods/sources/public-arcgis-quarter-next/baseline-all-pair-metrics.csv",
+      "sha256": "31704cc6df91a2ed926cbd4eebe60db669cd9df1eeedd5066aa7b5b46e961292",
+      "bytes": 359159
+    }
+  ],
+  "sourcePbf": {
+    "path": ".local/neighborhoods/hungary-latest.osm.pbf",
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "bytes": 329791850,
+    "timestampFromPinnedCountrySnapshot": "2026-11-12T21:23:05Z",
+    "independentReadMethod": "osmium.FileProcessor with NODE entity filter and C++IdFilter of the six source nodeIDs; tag, coordinate, objectVersion and timestamp values copied directly from the actual PBF during this review.",
+    "rescanNodes": 6,
+    "allPointEvidenceFromExactPbfSnapshot": true
+  },
+  "geometryChecks": {
+    "featureCount": 6,
+    "expectedFids": [
+      6,
+      42,
+      59,
+      60,
+      61,
+      65
+    ],
+    "allSixExactlyEqualPublishedServiceGeojson": true,
+    "totalVerticesIncludingClosures": 92,
+    "allSixValid": true,
+    "noCoordinatesShiftedEstimatedSnappedOrReprojectedForOutput": true,
+    "canonicalGeometryHashSerialization": "SHA256 of Python json.dumps(geometry, ensure_ascii=False, sort_keys=True, separators=(comma,colon), allow_nan=False).encode(UTF-8), no trailing newline.",
+    "nativeToServiceEquivalenceReference": "independent-geometry-review.json; original native3857 coordinates and service4326 coordinates already independently checked vertexwise.",
+    "registryDescriptorSha256MatchesActualSixFile": true,
+    "registryIndependentReviewPathTargetsThisArtifact": true
+  },
+  "officialIdentityEvidence": {
+    "sourcePdfSha256": "97c9375414895a34c82a7968625e8196e2fd4882af1019ce74ee07e89236bd01",
+    "independentlyReadPagesOneBased": [
+      205,
+      206,
+      208
+    ],
+    "sourcePublicationPeriod": "November2023; strategy2021–2027; PDFmetadata creation2023-11-21",
+    "sixExactNamesAndHistoricalIdsConfirmed": true,
+    "retainedSixLabelCropPixelsMatchNativePdfRendering": true,
+    "retainedOriginalMapPixelsMatchEmbeddedImage": true,
+    "mapEmbeddedImageXref": 1179,
+    "mapDimensionsPixels": [
+      2714,
+      1228
+    ],
+    "mapNativeDrawingCount": 0,
+    "retainedFullNarrativePageArchives": false,
+    "schemaFinding": "The municipal FVS aggregates historical small quarters into functional groups. The75historical-quarter ordinance32/2007is explicitly described as already repealed. Table79also lists4starred additions; the79nameinventory is not a statement of79current legal quarters.",
+    "identityVsGeometry": "Municipal names support historical quarter identity. This is a distinct schema and period from the hosted thematic layer; neither complete current extent, official current legality, boundary lineage nor ArcGIS placement accuracy follows.",
+    "homokkertFinding": "Page205explicitly describes FVS-specific Homokkert/JózsefAttila/Zsibogó modifications for the eastern industrial aggregate. The unknown ArcGIS source lineage does not establish whether these changes apply to its polygons.",
+    "accuracyTransferredToArcgis": false,
+    "coordinatesUsedAsFitControls": false,
+    "rightsEstablished": false
+  },
+  "baselineChecks": {
+    "frozenBaselineFeatureCount": 26,
+    "baselineExportPath": "data/neighborhoods/neighborhoods.geojson",
+    "baselineExportSha256": "8eca9d097fb6714c31ca942f57ff0d8f683f8f4fe13af0161b12da19b20e8f74",
+    "sixExactNamesAbsentFromFrozen26": true,
+    "all77By26PairMetricsPath": "data/neighborhoods/sources/public-arcgis-quarter-next/baseline-all-pair-metrics.csv",
+    "allPairMetricsSha256": "31704cc6df91a2ed926cbd4eebe60db669cd9df1eeedd5066aa7b5b46e961292",
+    "allPairRows": 2002,
+    "allPairsDistinct": true,
+    "zeroAreaRowsIncludedAsNonmatches": true,
+    "baselineSourceIsGroundTruth": false,
+    "relativeDisplacementCaveatRetained": true
+  },
+  "features": [
+    {
+      "fid": 6,
+      "name": "Ispotály",
+      "sourceCategory": "lakotelep",
+      "literalServiceGeometryExactlyPreserved": true,
+      "geometryCanonicalSha256": "a4b0de35468004d9e4e2f9f65bbd6ecfd9648c04e32ae920e0fa547f2d65d055",
+      "verticesIncludingClosure": 9,
+      "geometryValid": true,
+      "nativeSourcePoint": {
+        "osmNodeId": 3290546146,
+        "name": "Ispotály",
+        "place": "suburb",
+        "coordinates": [
+          21.6221741,
+          47.5211274
+        ],
+        "objectVersion": 1,
+        "objectTimestamp": "2015-01-15 17:42:54+00:00",
+        "actualPbfRescanMatchesArchivedPoint": true,
+        "strictlyInsideSourcePolygon": true,
+        "distanceToSourceBoundaryMetres": 31.051,
+        "role": "Name identity corroboration only; never a fit control or complete-extent proof."
+      },
+      "historicalMunicipalName": {
+        "quarterId": 19,
+        "exactName": "Ispotály",
+        "tableNumber": 79,
+        "pdfPageOneBased": 206,
+        "role": "Historical small-quarter name corroboration only; ID is not ArcGISFID and no polygon accuracy is transferred."
+      },
+      "exactNameAlreadyInFrozen26": false,
+      "estimatedGuards": {
+        "estimated": true,
+        "boundaryKindInferredArea": true,
+        "candidateNeighborhood": true,
+        "canonicalNameNotPromoted": true,
+        "sourceNotOfficial": true,
+        "sourceNotHardBoundary": true,
+        "addressAssignmentFalse": true,
+        "absoluteAccuracyUnclaimed": true,
+        "sourceWholeExtentUnconfirmed": true,
+        "currentLegalIdentityUnconfirmed": true,
+        "pointNotFitControl": true,
+        "fitNotPerformed": true,
+        "wholeOrdinaryQuarterExtentVerifiedFalse": true,
+        "twoEvidenceUrlsRetained": true,
+        "fvsIdentitySourceSeparatelyReferenced": true
+      },
+      "specialCaveat": null
+    },
+    {
+      "fid": 42,
+      "name": "Tócóskert",
+      "sourceCategory": "lakotelep",
+      "literalServiceGeometryExactlyPreserved": true,
+      "geometryCanonicalSha256": "c26b7fb6f73ac8fc156d11b23c5d81574556fef5e36bcd9d1a3be24935733cf3",
+      "verticesIncludingClosure": 11,
+      "geometryValid": true,
+      "nativeSourcePoint": {
+        "osmNodeId": 968697784,
+        "name": "Tócóskert",
+        "place": "suburb",
+        "coordinates": [
+          21.6028961,
+          47.522071
+        ],
+        "objectVersion": 4,
+        "objectTimestamp": "2019-11-05 12:25:10+00:00",
+        "actualPbfRescanMatchesArchivedPoint": true,
+        "strictlyInsideSourcePolygon": true,
+        "distanceToSourceBoundaryMetres": 212.767,
+        "role": "Name identity corroboration only; never a fit control or complete-extent proof."
+      },
+      "historicalMunicipalName": {
+        "quarterId": 57,
+        "exactName": "Tócóskert",
+        "tableNumber": 79,
+        "pdfPageOneBased": 206,
+        "role": "Historical small-quarter name corroboration only; ID is not ArcGISFID and no polygon accuracy is transferred."
+      },
+      "exactNameAlreadyInFrozen26": false,
+      "estimatedGuards": {
+        "estimated": true,
+        "boundaryKindInferredArea": true,
+        "candidateNeighborhood": true,
+        "canonicalNameNotPromoted": true,
+        "sourceNotOfficial": true,
+        "sourceNotHardBoundary": true,
+        "addressAssignmentFalse": true,
+        "absoluteAccuracyUnclaimed": true,
+        "sourceWholeExtentUnconfirmed": true,
+        "currentLegalIdentityUnconfirmed": true,
+        "pointNotFitControl": true,
+        "fitNotPerformed": true,
+        "wholeOrdinaryQuarterExtentVerifiedFalse": true,
+        "twoEvidenceUrlsRetained": true,
+        "fvsIdentitySourceSeparatelyReferenced": true
+      },
+      "specialCaveat": null
+    },
+    {
+      "fid": 59,
+      "name": "Kerekestelep",
+      "sourceCategory": "kertvaros",
+      "literalServiceGeometryExactlyPreserved": true,
+      "geometryCanonicalSha256": "2ccd9eae0b02e24c406304e3e6b9bae77c64b08c7b1162975e9c456b6b45f127",
+      "verticesIncludingClosure": 22,
+      "geometryValid": true,
+      "nativeSourcePoint": {
+        "osmNodeId": 968679368,
+        "name": "Kerekestelep",
+        "place": "suburb",
+        "coordinates": [
+          21.6370633,
+          47.5042084
+        ],
+        "objectVersion": 2,
+        "objectTimestamp": "2019-11-05 12:25:10+00:00",
+        "actualPbfRescanMatchesArchivedPoint": true,
+        "strictlyInsideSourcePolygon": true,
+        "distanceToSourceBoundaryMetres": 422.221,
+        "role": "Name identity corroboration only; never a fit control or complete-extent proof."
+      },
+      "historicalMunicipalName": {
+        "quarterId": 23,
+        "exactName": "Kerekestelep",
+        "tableNumber": 79,
+        "pdfPageOneBased": 206,
+        "role": "Historical small-quarter name corroboration only; ID is not ArcGISFID and no polygon accuracy is transferred."
+      },
+      "exactNameAlreadyInFrozen26": false,
+      "estimatedGuards": {
+        "estimated": true,
+        "boundaryKindInferredArea": true,
+        "candidateNeighborhood": true,
+        "canonicalNameNotPromoted": true,
+        "sourceNotOfficial": true,
+        "sourceNotHardBoundary": true,
+        "addressAssignmentFalse": true,
+        "absoluteAccuracyUnclaimed": true,
+        "sourceWholeExtentUnconfirmed": true,
+        "currentLegalIdentityUnconfirmed": true,
+        "pointNotFitControl": true,
+        "fitNotPerformed": true,
+        "wholeOrdinaryQuarterExtentVerifiedFalse": true,
+        "twoEvidenceUrlsRetained": true,
+        "fvsIdentitySourceSeparatelyReferenced": true
+      },
+      "specialCaveat": null
+    },
+    {
+      "fid": 60,
+      "name": "Homokkert",
+      "sourceCategory": "kertvaros",
+      "literalServiceGeometryExactlyPreserved": true,
+      "geometryCanonicalSha256": "5414d0821e16faaa95dee95c0e5847bf15f20ba7c8af2c294300ad117069e7b5",
+      "verticesIncludingClosure": 12,
+      "geometryValid": true,
+      "nativeSourcePoint": {
+        "osmNodeId": 968679370,
+        "name": "Homokkert",
+        "place": "suburb",
+        "coordinates": [
+          21.645405,
+          47.5177512
+        ],
+        "objectVersion": 3,
+        "objectTimestamp": "2020-09-23 13:16:41+00:00",
+        "actualPbfRescanMatchesArchivedPoint": true,
+        "strictlyInsideSourcePolygon": true,
+        "distanceToSourceBoundaryMetres": 212.768,
+        "role": "Name identity corroboration only; never a fit control or complete-extent proof."
+      },
+      "historicalMunicipalName": {
+        "quarterId": 17,
+        "exactName": "Homokkert",
+        "tableNumber": 79,
+        "pdfPageOneBased": 206,
+        "role": "Historical small-quarter name corroboration only; ID is not ArcGISFID and no polygon accuracy is transferred."
+      },
+      "exactNameAlreadyInFrozen26": false,
+      "estimatedGuards": {
+        "estimated": true,
+        "boundaryKindInferredArea": true,
+        "candidateNeighborhood": true,
+        "canonicalNameNotPromoted": true,
+        "sourceNotOfficial": true,
+        "sourceNotHardBoundary": true,
+        "addressAssignmentFalse": true,
+        "absoluteAccuracyUnclaimed": true,
+        "sourceWholeExtentUnconfirmed": true,
+        "currentLegalIdentityUnconfirmed": true,
+        "pointNotFitControl": true,
+        "fitNotPerformed": true,
+        "wholeOrdinaryQuarterExtentVerifiedFalse": true,
+        "twoEvidenceUrlsRetained": true,
+        "fvsIdentitySourceSeparatelyReferenced": true
+      },
+      "specialCaveat": "FVS explicitly modifies Homokkert boundaries for eastern industrial aggregation; unknown ArcGIS lineage prevents transfer of that modification to this footprint."
+    },
+    {
+      "fid": 61,
+      "name": "Lencztelep",
+      "sourceCategory": "kertvaros",
+      "literalServiceGeometryExactlyPreserved": true,
+      "geometryCanonicalSha256": "71113e5c22e23f0f527e4038b640a7dc15dcec107d66fc85b7cac8d6a0a29001",
+      "verticesIncludingClosure": 21,
+      "geometryValid": true,
+      "nativeSourcePoint": {
+        "osmNodeId": 968679371,
+        "name": "Lencztelep",
+        "place": "suburb",
+        "coordinates": [
+          21.6608404,
+          47.4961716
+        ],
+        "objectVersion": 4,
+        "objectTimestamp": "2019-11-05 12:25:10+00:00",
+        "actualPbfRescanMatchesArchivedPoint": true,
+        "strictlyInsideSourcePolygon": true,
+        "distanceToSourceBoundaryMetres": 246.438,
+        "role": "Name identity corroboration only; never a fit control or complete-extent proof."
+      },
+      "historicalMunicipalName": {
+        "quarterId": 31,
+        "exactName": "Lencztelep",
+        "tableNumber": 79,
+        "pdfPageOneBased": 206,
+        "role": "Historical small-quarter name corroboration only; ID is not ArcGISFID and no polygon accuracy is transferred."
+      },
+      "exactNameAlreadyInFrozen26": false,
+      "estimatedGuards": {
+        "estimated": true,
+        "boundaryKindInferredArea": true,
+        "candidateNeighborhood": true,
+        "canonicalNameNotPromoted": true,
+        "sourceNotOfficial": true,
+        "sourceNotHardBoundary": true,
+        "addressAssignmentFalse": true,
+        "absoluteAccuracyUnclaimed": true,
+        "sourceWholeExtentUnconfirmed": true,
+        "currentLegalIdentityUnconfirmed": true,
+        "pointNotFitControl": true,
+        "fitNotPerformed": true,
+        "wholeOrdinaryQuarterExtentVerifiedFalse": true,
+        "twoEvidenceUrlsRetained": true,
+        "fvsIdentitySourceSeparatelyReferenced": true
+      },
+      "specialCaveat": null
+    },
+    {
+      "fid": 65,
+      "name": "Vargakert",
+      "sourceCategory": "kertvaros",
+      "literalServiceGeometryExactlyPreserved": true,
+      "geometryCanonicalSha256": "88b19357214051fb722ca37d02a39670ffd1a306902b89c46fac32343ad66042",
+      "verticesIncludingClosure": 17,
+      "geometryValid": true,
+      "nativeSourcePoint": {
+        "osmNodeId": 968697803,
+        "name": "Vargakert",
+        "place": "suburb",
+        "coordinates": [
+          21.6108869,
+          47.5151311
+        ],
+        "objectVersion": 2,
+        "objectTimestamp": "2019-11-05 12:25:10+00:00",
+        "actualPbfRescanMatchesArchivedPoint": true,
+        "strictlyInsideSourcePolygon": true,
+        "distanceToSourceBoundaryMetres": 237.034,
+        "role": "Name identity corroboration only; never a fit control or complete-extent proof."
+      },
+      "historicalMunicipalName": {
+        "quarterId": 61,
+        "exactName": "Vargakert",
+        "tableNumber": 79,
+        "pdfPageOneBased": 206,
+        "role": "Historical small-quarter name corroboration only; ID is not ArcGISFID and no polygon accuracy is transferred."
+      },
+      "exactNameAlreadyInFrozen26": false,
+      "estimatedGuards": {
+        "estimated": true,
+        "boundaryKindInferredArea": true,
+        "candidateNeighborhood": true,
+        "canonicalNameNotPromoted": true,
+        "sourceNotOfficial": true,
+        "sourceNotHardBoundary": true,
+        "addressAssignmentFalse": true,
+        "absoluteAccuracyUnclaimed": true,
+        "sourceWholeExtentUnconfirmed": true,
+        "currentLegalIdentityUnconfirmed": true,
+        "pointNotFitControl": true,
+        "fitNotPerformed": true,
+        "wholeOrdinaryQuarterExtentVerifiedFalse": true,
+        "twoEvidenceUrlsRetained": true,
+        "fvsIdentitySourceSeparatelyReferenced": true
+      },
+      "specialCaveat": null
+    }
+  ],
+  "outcome": {
+    "independentReviewPassedForEstimatedCandidateArchive": true,
+    "newEstimatedCandidateFeatures": 6,
+    "newPrimaryAdmissions": 0,
+    "canonicalNeighborhoodPromotion": false,
+    "officialOrHardBoundaryClaim": false,
+    "usableForAddressAssignment": false,
+    "absoluteGroundAccuracyEstablished": false,
+    "currentWholeQuarterExtentsEstablished": false,
+    "originalBoundaryLineageEstablished": false,
+    "unrestrictedReuseRightsEstablished": false,
+    "globalRegistryAdmissionPerformedByThisReview": false,
+    "limitations": "This pass verifies literal source preservation, six actual PBF name points and historical municipal names. It does not validate complete current quarter footprints or source placement accuracy.",
+    "finalStableArtifactHashRecheckedAfterFreezeNotification": true
+  }
+}

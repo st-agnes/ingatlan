@@ -1,0 +1,316 @@
+{
+  "outerRoads": [
+    "Erzsébet utca",
+    "Rákóczi utca",
+    "Teleki utca",
+    "Kesztyű utca",
+    "Köztársaság utca",
+    "Vörösmarty utca",
+    "Tóth Ede utca",
+    "Kölcsey utca",
+    "Kazinczy sor",
+    "Mikszáth Kálmán utca",
+    "Népköztársaság útja",
+    "Kórház utca",
+    "Kandó Kálmán utca",
+    "Berzsenyi utca",
+    "Dózsa György utca",
+    "Kossuth Lajos utca",
+    "Szabadság utca"
+  ],
+  "innerRoads": [
+    "Szepessi utca",
+    "Széchenyi István utca",
+    "Ady Endre utca",
+    "Népköztársaság útja",
+    "Vörösmarty utca",
+    "Bajcsy-Zsilinszky utca",
+    "Jókai utca"
+  ],
+  "outerProof": [
+    {
+      "road": "Erzsébet utca",
+      "sourceWayIds": [
+        329138179
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Rákóczi utca",
+      "sourceWayIds": [
+        302670840,
+        328984344,
+        328984345,
+        328984346,
+        375202890,
+        375215121,
+        377347617,
+        388635678,
+        388635685,
+        388635689
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Teleki utca",
+      "sourceWayIds": [
+        30471167,
+        375221478
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "junctionConnector": true,
+      "sourceWayIds": [
+        30471167,
+        302670007,
+        305866900,
+        375202891,
+        375215859,
+        375221478,
+        381263133
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Kesztyű utca",
+      "sourceWayIds": [],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Köztársaság utca",
+      "sourceWayIds": [
+        328983423
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Vörösmarty utca",
+      "sourceWayIds": [
+        30444737
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Tóth Ede utca",
+      "sourceWayIds": [
+        30449190
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Kölcsey utca",
+      "sourceWayIds": [
+        30445422
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Kazinczy sor",
+      "sourceWayIds": [
+        30449239
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Mikszáth Kálmán utca",
+      "sourceWayIds": [
+        302702795,
+        302702796,
+        302702797
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Népköztársaság útja",
+      "sourceWayIds": [
+        328915287
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "junctionConnector": true,
+      "sourceWayIds": [
+        329138180,
+        332171874,
+        332171876,
+        332171877,
+        332171878,
+        333395678,
+        333395681
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Kórház utca",
+      "sourceWayIds": [
+        302653410,
+        324554260,
+        324554261,
+        327489336,
+        327489337,
+        328983420,
+        329138180,
+        335864901
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "junctionConnector": true,
+      "sourceWayIds": [
+        30445625,
+        327482753
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Kandó Kálmán utca",
+      "sourceWayIds": [
+        30448000
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Berzsenyi utca",
+      "sourceWayIds": [
+        302711082,
+        302964870,
+        327482752,
+        331705150,
+        331705151
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Dózsa György utca",
+      "sourceWayIds": [
+        277715662,
+        283805053,
+        328991578
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Kossuth Lajos utca",
+      "sourceWayIds": [
+        30446933,
+        30446940,
+        302961145,
+        540408378,
+        1463725799,
+        1463725800,
+        1463725804,
+        1463725808
+      ],
+      "offNamedRoadLengthM": 193.2
+    },
+    {
+      "junctionConnector": true,
+      "sourceWayIds": [
+        30446940,
+        1463725799,
+        1463725800
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Szabadság utca",
+      "sourceWayIds": [
+        4064108,
+        302663925,
+        329138182,
+        375205724,
+        375247177
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "junctionConnector": true,
+      "sourceWayIds": [
+        302960231,
+        329138182,
+        331732666,
+        332044401
+      ],
+      "offNamedRoadLengthM": 0
+    }
+  ],
+  "innerProof": [
+    {
+      "road": "Szepessi utca",
+      "sourceWayIds": [
+        30447159
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "junctionConnector": true,
+      "sourceWayIds": [
+        30447195
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Széchenyi István utca",
+      "sourceWayIds": [
+        30447311,
+        280268933
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Ady Endre utca",
+      "sourceWayIds": [
+        30447082,
+        328984343,
+        375047538,
+        378364128
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Népköztársaság útja",
+      "sourceWayIds": [
+        30445676,
+        375205296,
+        1083789757
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Vörösmarty utca",
+      "sourceWayIds": [
+        328915288
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Bajcsy-Zsilinszky utca",
+      "sourceWayIds": [
+        30445201,
+        1108960184
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "road": "Jókai utca",
+      "sourceWayIds": [
+        30444987,
+        1463725799,
+        1463725800
+      ],
+      "offNamedRoadLengthM": 0
+    },
+    {
+      "junctionConnector": true,
+      "sourceWayIds": [
+        4064108,
+        302663925,
+        375205724
+      ],
+      "offNamedRoadLengthM": 0
+    }
+  ],
+  "outerAreaM2": 2729339,
+  "innerAreaM2": 388277
+}

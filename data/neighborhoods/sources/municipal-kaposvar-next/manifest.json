@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "status": "source_corridors_unresolved_no_quarter_export",
+  "municipality": "Kaposvár",
+  "quarter": "Belváros",
+  "admittedQuarterPolygons": 0,
+  "literalCircuitsClosed": 0,
+  "noSourcePdfAcquired": true,
+  "files": [
+    {
+      "path": "README.txt",
+      "bytes": 2080,
+      "sha256": "3934d1b110daf3398e1efa136102f336d5077ff3a3499d34dab7bfcbb53e8504"
+    },
+    {
+      "path": "all-local-roads-rails.geojson",
+      "bytes": 5106426,
+      "sha256": "00437527eb3d265d25f377e5aee9471f186e064d7bbd56399513776b1c377d50"
+    },
+    {
+      "path": "boundary-obstacles.json",
+      "bytes": 9681,
+      "sha256": "304c04e4be4409be356a1262aed35cd4a703580a8b50568385756454f339aa16"
+    },
+    {
+      "path": "extraction-proof.json",
+      "bytes": 493,
+      "sha256": "64d8fbaee3320033f18b28fb379eee319a24e61fba6b7f3ece5b79fbaec5af2f"
+    }
+  ],
+  "script": {
+    "path": "scripts/neighborhoods/derive-kaposvar-next.py",
+    "sha256": "33071275ee3e715313ec8fdcbcda5053e07f851ac69c2a403177b28dce4ab726"
+  },
+  "networkUsed": "Public web search/open only for official source facts; no shell network, permissions or escalation.",
+  "usableForAddressAssignment": false
+}

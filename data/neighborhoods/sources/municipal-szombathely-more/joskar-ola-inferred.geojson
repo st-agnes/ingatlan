@@ -1,0 +1,422 @@
+{
+  "type": "FeatureCollection",
+  "status": "estimated_candidates_only",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "manual:szombathely:joskar-ola-2013-inference",
+      "properties": {
+        "name": "Joskar-Ola-lakótelep",
+        "municipality": "Szombathely",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "method": "Estimated historical Joskar-Ola perimeter from IVS2013 annex 1, using named-road centreline paths plus a documented 42.567 m unnamed residential-road completion. Every edge is an original consecutive OSM node pair; divided-road junction choice remains unverified.",
+        "sourcePeriod": "2013 IVS perimeter / original OSM ways 2026-11-12",
+        "sourceDocuments": [
+          {
+            "url": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+            "title": "Szombathely MJV – Integrált Városfejlesztési Stratégia 2008–13",
+            "sourceDate": "2013-06-06",
+            "originalPdfPageOneBased": 150,
+            "printedPage": 150,
+            "section": "IX. Mellékletek, 1. sz melléklet, 5. Joskar-Ola-lakótelep",
+            "archivedExcerptPath": "data/neighborhoods/sources/municipal-szombathely-more/source-proof-pages.pdf",
+            "excerptPdfPageOneBased": 3,
+            "originalPdfSha256": "aade0d35a60e4ecd230a26c2c7dabcfc26ec76466ab86310e6828f34db714500"
+          }
+        ],
+        "evidenceUrls": [
+          "https://kbr.szombathely.hu/kbrfile/46469.pdf"
+        ],
+        "sourceLineIds": [
+          "osm:way:107683789",
+          "osm:way:107683791",
+          "osm:way:112539408",
+          "osm:way:112539580",
+          "osm:way:196312638",
+          "osm:way:290056904",
+          "osm:way:293706970",
+          "osm:way:307240373",
+          "osm:way:503231530",
+          "osm:way:506998480",
+          "osm:way:544133364",
+          "osm:way:551326636",
+          "osm:way:551326652",
+          "osm:way:551326656",
+          "osm:way:552106667",
+          "osm:way:552831498",
+          "osm:way:594300913",
+          "osm:way:594300966",
+          "osm:way:594300969",
+          "osm:way:597467810",
+          "osm:way:611110275",
+          "osm:way:643906728",
+          "osm:way:730129378",
+          "osm:way:784606885",
+          "osm:way:784606886",
+          "osm:way:784606887",
+          "osm:way:784606888",
+          "osm:way:785556324",
+          "osm:way:785556327",
+          "osm:way:785556328",
+          "osm:way:785556329",
+          "osm:way:958596933",
+          "osm:way:958596934",
+          "osm:way:1308786808",
+          "osm:way:1524854353"
+        ],
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "geometryVerificationStatus": "inferred_not_verified",
+        "reviewStatus": "estimated_candidate_not_verified",
+        "usableForAddressAssignment": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "areaM2": 296658.87809125055,
+        "perimeterM": 2526.2804259590694,
+        "inferredRoadCompletionMetres": 42.5669013906784,
+        "existingNamedQuarterId": "osm:relation:8356511",
+        "newDistinctQuarterCoverage": false,
+        "reviewNotes": [
+          "The historical named quarter is explicitly defined by the municipal source; the modern whole-quarter footprint is not verified.",
+          "Unnamed residential way 112539408 closes the 42.567 m Barátság/Mikes gap. Its boundary role is not explicitly named in the PDF.",
+          "The eastern Hunyadi/Szent Márton carriageway junction is an explicit manual choice; the alternative actual-node junction changes the polygon by about 300 m².",
+          "The source Mikes Kelemen railway-side clause is interpreted along the named Mikes road, not as an independently reconstructed railway ownership boundary.",
+          "Current OSM Joskar-Ola already exists and has a substantially different footprint. This alternate historical interpretation adds no new distinct-quarter coverage.",
+          "Source overview map is only a coarse topology check; no map pixel contributes coordinates. No chord, snapping, buffer, hull, clipping, geometry repair or planar-intersection vertex.",
+          "Road centreline and street-side inclusion remain interpretations. No legal boundary, current address assignment or absolute positional accuracy is asserted."
+        ],
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors; factual perimeter: Szombathely MJV IVS2013 annex 1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.6277434,
+              47.231709
+            ],
+            [
+              16.6280224,
+              47.2318685
+            ],
+            [
+              16.6283664,
+              47.2320794
+            ],
+            [
+              16.6286461,
+              47.2322509
+            ],
+            [
+              16.6287599,
+              47.2323207
+            ],
+            [
+              16.6289047,
+              47.2324107
+            ],
+            [
+              16.6290586,
+              47.2325065
+            ],
+            [
+              16.629162,
+              47.2325748
+            ],
+            [
+              16.6292658,
+              47.232642
+            ],
+            [
+              16.6293164,
+              47.2326662
+            ],
+            [
+              16.6295837,
+              47.232766
+            ],
+            [
+              16.6297718,
+              47.2328402
+            ],
+            [
+              16.6298581,
+              47.2328682
+            ],
+            [
+              16.629996,
+              47.2329095
+            ],
+            [
+              16.6303043,
+              47.2330515
+            ],
+            [
+              16.6308839,
+              47.2333322
+            ],
+            [
+              16.6310019,
+              47.233122
+            ],
+            [
+              16.6310054,
+              47.2331157
+            ],
+            [
+              16.6312033,
+              47.2325198
+            ],
+            [
+              16.6312177,
+              47.2324733
+            ],
+            [
+              16.6312817,
+              47.2323657
+            ],
+            [
+              16.6313458,
+              47.2322576
+            ],
+            [
+              16.6316351,
+              47.23177
+            ],
+            [
+              16.6317284,
+              47.2316127
+            ],
+            [
+              16.6322261,
+              47.2308144
+            ],
+            [
+              16.6323338,
+              47.2306488
+            ],
+            [
+              16.6330422,
+              47.2308539
+            ],
+            [
+              16.6334013,
+              47.2302892
+            ],
+            [
+              16.6334804,
+              47.2301694
+            ],
+            [
+              16.633532,
+              47.2301384
+            ],
+            [
+              16.6335343,
+              47.2300638
+            ],
+            [
+              16.6337194,
+              47.2297825
+            ],
+            [
+              16.6339608,
+              47.2292423
+            ],
+            [
+              16.6341451,
+              47.2288298
+            ],
+            [
+              16.6341823,
+              47.228743
+            ],
+            [
+              16.6344397,
+              47.2288077
+            ],
+            [
+              16.6350933,
+              47.2289737
+            ],
+            [
+              16.6351609,
+              47.2289725
+            ],
+            [
+              16.635208,
+              47.2289514
+            ],
+            [
+              16.6352293,
+              47.2289158
+            ],
+            [
+              16.6352839,
+              47.2287917
+            ],
+            [
+              16.6357225,
+              47.2277938
+            ],
+            [
+              16.6359527,
+              47.2272702
+            ],
+            [
+              16.6359546,
+              47.2272134
+            ],
+            [
+              16.635933,
+              47.2271688
+            ],
+            [
+              16.6358833,
+              47.227139
+            ],
+            [
+              16.635417,
+              47.2269996
+            ],
+            [
+              16.6355002,
+              47.2268811
+            ],
+            [
+              16.6355554,
+              47.2268271
+            ],
+            [
+              16.6356016,
+              47.2267819
+            ],
+            [
+              16.634823,
+              47.2263271
+            ],
+            [
+              16.63328,
+              47.2254257
+            ],
+            [
+              16.6329352,
+              47.2252229
+            ],
+            [
+              16.632799,
+              47.2251428
+            ],
+            [
+              16.6325456,
+              47.2249939
+            ],
+            [
+              16.6319699,
+              47.2246553
+            ],
+            [
+              16.6318065,
+              47.2245959
+            ],
+            [
+              16.6312624,
+              47.2254446
+            ],
+            [
+              16.6310203,
+              47.2258312
+            ],
+            [
+              16.6308861,
+              47.2260378
+            ],
+            [
+              16.6305419,
+              47.2265675
+            ],
+            [
+              16.630101,
+              47.2272249
+            ],
+            [
+              16.6299811,
+              47.2274129
+            ],
+            [
+              16.6298674,
+              47.2275912
+            ],
+            [
+              16.629293,
+              47.2284918
+            ],
+            [
+              16.6284737,
+              47.2298081
+            ],
+            [
+              16.6283193,
+              47.2300645
+            ],
+            [
+              16.6281003,
+              47.2303947
+            ],
+            [
+              16.6280715,
+              47.2304382
+            ],
+            [
+              16.628006,
+              47.230537
+            ],
+            [
+              16.6279291,
+              47.2306718
+            ],
+            [
+              16.6278442,
+              47.2308206
+            ],
+            [
+              16.6277522,
+              47.2309819
+            ],
+            [
+              16.6276812,
+              47.2311064
+            ],
+            [
+              16.6276161,
+              47.2312204
+            ],
+            [
+              16.6275861,
+              47.2312731
+            ],
+            [
+              16.6275717,
+              47.231405
+            ],
+            [
+              16.6275838,
+              47.2314673
+            ],
+            [
+              16.6275988,
+              47.2315062
+            ],
+            [
+              16.6277434,
+              47.231709
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

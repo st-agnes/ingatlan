@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "sourcePbfPath": ".local/neighborhoods/hungary-latest.osm.pbf",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "sourcePbfHashProvenance": "Previously independently hashed whole-country PBF; extraction does not rehash it.",
+  "sourcePbfReplicationTimestamp": "2026-11-12T21:23:05Z",
+  "acquisitionWindowOnly": [
+    17.77,
+    46.325,
+    17.82,
+    46.365
+  ],
+  "windowUsedAsBoundary": false,
+  "selection": "Route 67; Szigetv\u00e1ri/Zselici/P\u00e9csi/Bart\u00f3k/Zr\u00ednyi roads; named Kapos and Zselic waterways. Other nearby roads are not retained.",
+  "fullWaysPreservedWithoutClipping": true,
+  "wayCount": 120,
+  "outputSha256": "b0ad88c5a517f9ddd58ec890a27992544af7853bb6ae235e89d38489e25049a6",
+  "usableForAddressAssignment": false
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "status": "incomplete_nationwide_research_checkpoint",
+  "primaryFeatures": 506,
+  "inferredFeatures": 191,
+  "excludedUnregisteredWorkingPaths": [
+    "data/neighborhoods/sources/municipal-kecskemet-raster-more/",
+    "data/neighborhoods/sources/municipal-new-city-scout-next/",
+    "scripts/neighborhoods/derive-kecskemet-raster-more.py",
+    "scripts/neighborhoods/derive-pecs-grounded-next.py",
+    "scripts/neighborhoods/derive-salgotarjan-next.py",
+    "data/neighborhoods/sources/municipal-pecs-next/",
+    "data/neighborhoods/sources/grounded-next/",
+    "scripts/neighborhoods/derive-pecs-next.py"
+  ],
+  "meaning": "Only the listed unfinished work directories are omitted from this consistent checkpoint. Every registered source is included with its exact pinned bytes. National completeness remains false."
+}

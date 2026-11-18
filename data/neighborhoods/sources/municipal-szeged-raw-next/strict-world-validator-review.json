@@ -1,0 +1,117 @@
+{
+  "validator": "scripts/neighborhoods/build.mjs validateGeometry, no repair",
+  "results": [
+    {
+      "file": "szeged-four-inferred-import.geojson",
+      "id": "manual:szeged-henits-ksh2003:unit-19",
+      "name": "Klebelsberg-telep",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        20.107226756708375,
+        46.22567954642458,
+        20.12120761187634,
+        46.23397918624962
+      ],
+      "vertices": 236
+    },
+    {
+      "file": "szeged-four-inferred-import.geojson",
+      "id": "manual:szeged-henits-ksh2003:unit-20",
+      "name": "Kecskés-telep",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        20.097664086974465,
+        46.231948192644154,
+        20.119250396789297,
+        46.24566039279079
+      ],
+      "vertices": 411
+    },
+    {
+      "file": "szeged-four-inferred-import.geojson",
+      "id": "manual:szeged-henits-ksh2003:unit-28",
+      "name": "Odessza",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        20.154477437013345,
+        46.24204098169388,
+        20.163274267673906,
+        46.249384988600454
+      ],
+      "vertices": 204
+    },
+    {
+      "file": "szeged-four-inferred-import.geojson",
+      "id": "manual:szeged-henits-ksh2003:unit-11",
+      "name": "Marostő",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        20.178898190710616,
+        46.23245805084625,
+        20.194069859385973,
+        46.24289428077679
+      ],
+      "vertices": 354
+    },
+    {
+      "file": "szeged-four-placement-alternative.geojson",
+      "id": "alternative:szeged-henits-ksh2003:unit-19:three-junction",
+      "name": "Klebelsberg-telep",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        20.106730982884365,
+        46.225750052214615,
+        20.120784877555618,
+        46.23410472881013
+      ],
+      "vertices": 236
+    },
+    {
+      "file": "szeged-four-placement-alternative.geojson",
+      "id": "alternative:szeged-henits-ksh2003:unit-20:three-junction",
+      "name": "Kecskés-telep",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        20.097210599974236,
+        46.23203356205364,
+        20.11884355489142,
+        46.245852446435144
+      ],
+      "vertices": 411
+    },
+    {
+      "file": "szeged-four-placement-alternative.geojson",
+      "id": "alternative:szeged-henits-ksh2003:unit-28:three-junction",
+      "name": "Odessza",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        20.15430478854533,
+        46.24202226434195,
+        20.16315841457455,
+        46.24940999928592
+      ],
+      "vertices": 204
+    },
+    {
+      "file": "szeged-four-placement-alternative.geojson",
+      "id": "alternative:szeged-henits-ksh2003:unit-11:three-junction",
+      "name": "Marostő",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        20.178793021453036,
+        46.232293297090905,
+        20.194048825267814,
+        46.24277457895373
+      ],
+      "vertices": 354
+    }
+  ]
+}

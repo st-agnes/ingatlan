@@ -1,0 +1,548 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "Independent parent reviewer; source producer is a separate child agent",
+  "checkedAt": "2026-11-14",
+  "status": "PASS_ESTIMATED_RESEARCH_ONLY",
+  "acceptedEstimatedFeatures": 5,
+  "primaryBoundaryApprovals": 0,
+  "sourceAndProducerFilesModified": false,
+  "reportOnlyFileCreated": "independent-parent-review.json",
+  "sourceUrl": "https://kiskunfelegyhaza.hu/wp-content/uploads/2017/03/its_kiskunfelegyhaza_2016_felulvizsgalt.pdf",
+  "originalPdfSha256": "5a32552dc02e2bca986d27d97e41633549b5d1f23147f8e00b6abbe7c421b48b",
+  "sourceSemantics": {
+    "sourcePhysicalPages": [
+      23,
+      24,
+      25,
+      26
+    ],
+    "mapNumber": 2,
+    "mapPhysicalAndPrintedPage": 25,
+    "tableNumber": 4,
+    "tablePhysicalPage": 24,
+    "sourceNamedUnits": [
+      {
+        "unit": 2,
+        "name": "Kossuthváros"
+      },
+      {
+        "unit": 3,
+        "name": "Petőfi lakótelep"
+      },
+      {
+        "unit": 4,
+        "name": "Bankfalu"
+      },
+      {
+        "unit": 13,
+        "name": "Arany-hegyi lakótelep"
+      },
+      {
+        "unit": 14,
+        "name": "Zöldmező lakótelep"
+      }
+    ],
+    "municipalBoundarySubmissionPeriod": "2014 submission used for KSH statistical units, distinguished from earlier 2008 IVS divisions",
+    "documentReviewPeriod": "2016",
+    "statisticalPeriod": "2011 census",
+    "originalSurveyAndBackdropDate": null,
+    "wholeCurrentExtentVerified": false,
+    "unit13And14Identity": "The source explicitly lists these as detached residential city parts and supplies their closed colored contours on a geographic street/parcel base.",
+    "unit6": "Combined source unit; no constituent child geometry created",
+    "unit12": "Dispersed farm territory intentionally omitted from source map; no geometry generated",
+    "unit15": "Source marker has no territorial extent; no geometry generated",
+    "quotedNarrativeArchivedByReviewer": false,
+    "rightsStatus": "Public municipal publication and municipal-data map; unrestricted reuse/redistribution rights not independently established."
+  },
+  "traceReview": {
+    "originalPdfSha256": "5a32552dc02e2bca986d27d97e41633549b5d1f23147f8e00b6abbe7c421b48b",
+    "embeddedJpegMatchesOriginalPdfExactly": true,
+    "sourceRows": [
+      {
+        "unit": 2,
+        "interiorPixels": 2963,
+        "selectedBarrierPixels": 909,
+        "selectedBarrierBoundingBox": [
+          314,
+          619,
+          397,
+          703
+        ],
+        "sourceMaskAndCellUnionVerified": true,
+        "valid": true,
+        "sourcePolygonHasHoles": false
+      },
+      {
+        "unit": 3,
+        "interiorPixels": 416,
+        "selectedBarrierPixels": 384,
+        "selectedBarrierBoundingBox": [
+          393,
+          613,
+          431,
+          652
+        ],
+        "sourceMaskAndCellUnionVerified": true,
+        "valid": true,
+        "sourcePolygonHasHoles": false
+      },
+      {
+        "unit": 4,
+        "interiorPixels": 2544,
+        "selectedBarrierPixels": 881,
+        "selectedBarrierBoundingBox": [
+          413,
+          571,
+          490,
+          658
+        ],
+        "sourceMaskAndCellUnionVerified": true,
+        "valid": true,
+        "sourcePolygonHasHoles": false
+      },
+      {
+        "unit": 13,
+        "interiorPixels": 284,
+        "selectedBarrierPixels": 469,
+        "selectedBarrierBoundingBox": [
+          190,
+          274,
+          221,
+          320
+        ],
+        "sourceMaskAndCellUnionVerified": true,
+        "valid": true,
+        "sourcePolygonHasHoles": false
+      },
+      {
+        "unit": 14,
+        "interiorPixels": 145,
+        "selectedBarrierPixels": 217,
+        "selectedBarrierBoundingBox": [
+          544,
+          868,
+          562,
+          897
+        ],
+        "sourceMaskAndCellUnionVerified": true,
+        "valid": true,
+        "sourcePolygonHasHoles": false
+      }
+    ],
+    "petofi": {
+      "rawColorMaskOpenToOuterFrame": true,
+      "mainCapCells": [
+        [
+          401,
+          618
+        ],
+        [
+          402,
+          618
+        ]
+      ],
+      "mainCapNewCells": 2,
+      "mainInteriorPixels": 416,
+      "alternativeCapNewCells": 5,
+      "alternativeInteriorPixels": 418,
+      "mainAlternativeSymmetricDifferencePixels": 2,
+      "differenceBoundingBox": [
+        401,
+        618,
+        403,
+        619
+      ],
+      "changesBoundedToNumericLabelGap": true,
+      "alternativeIsAdditionalQuarter": false
+    },
+    "source13": {
+      "rawAllColorInteriorPixels": 275,
+      "selectedEnclosingComponentInteriorPixels": 284,
+      "isolatedInternalColorPixelsExcluded": 9,
+      "rawMaskRetained": true,
+      "noGeometryHoleFillPerformed": true
+    },
+    "mapFramesUsedToClosePolygons": false,
+    "sourceUnit12Or15GeometrySupported": false,
+    "sourceOnlyTraceReviewPassed": true
+  },
+  "petofiCapSemanticReview": {
+    "conclusion": "The numeric black label interrupts the green boundary. The two-cell main cap is a bounded inferred source-contour hypothesis; the five-cell alternate is retained. This inference is acceptable only with estimated-contour status and does not turn the cap into an observed source edge.",
+    "mainSourceInteriorAreaPixels": 416,
+    "alternateSourceInteriorAreaPixels": 418,
+    "mainVsAlternativeDifferencePixels": 2,
+    "differenceIsLocalToNumericLabelGap": true,
+    "allOtherSourceCellGeometryUnchanged": true,
+    "mainCapNewBarrierCells": 2,
+    "alternateCapNewBarrierCells": 5,
+    "capAlternativesAreNotAdditionalQuarters": true,
+    "sourceContourIsObservedForPetofi": false,
+    "completeSourceContourObservedForPetofi": false,
+    "estimatedContourForPetofi": true
+  },
+  "source13ComponentReview": {
+    "conclusion": "The selected eight-connected pink enclosing component defines the observed outer contour. Nine disconnected interior color marks remain in the retained raw mask and are excluded from boundary classification. No geometric hole-fill or external outline repair is applied.",
+    "rawAllColorInteriorPixels": 275,
+    "selectedOutlineInteriorPixels": 284,
+    "selectedBarrierPixels": 469,
+    "rawMaskPreserved": true,
+    "sourceRasterBandAndClassificationRemainUncertain": true
+  },
+  "geographicRegistration": {
+    "mainModel": "One full-map six-parameter affine from five manually picked physical road/rail junctions; same model for all five source contours",
+    "independentlyRefittedMatrix": [
+      [
+        19.192715533729896,
+        0.41601005506711386
+      ],
+      [
+        0.21334144543053613,
+        -19.964138308024573
+      ]
+    ],
+    "independentlyRefittedOffset": [
+      703250.4980859613,
+      165989.6438327215
+    ],
+    "fitCrs": "EPSG:23700",
+    "outputCrs": "EPSG:4326",
+    "fitRmsMetresDiagnosticOnly": 18.679917532306828,
+    "fitResidualIsAccuracyBound": false,
+    "sourceNamePointFitControls": 0,
+    "currentPlacePointFitControls": 0,
+    "perFeatureShiftsOrCorrections": 0,
+    "controlPicking": "C4 and C5 were refined from magnified original road-centre pixel grids before the final fit. Picks are manual, not surveyed source controls.",
+    "reviewerApproximatePixelPickRange": [
+      1,
+      2
+    ],
+    "pixelPickRangeIsStatisticalBound": false,
+    "fitControls": 5,
+    "heldOutSourceLocations": 3,
+    "heldOutTargetRecords": 4,
+    "H3TwoCurrentJunctionTargetsAreAlternatives": true,
+    "heldOut": [
+      {
+        "id": "H1",
+        "distanceM": 12.726523132362933
+      },
+      {
+        "id": "H2",
+        "distanceM": 48.551137961352524
+      },
+      {
+        "id": "H3a",
+        "distanceM": 45.14875875295187
+      },
+      {
+        "id": "H3b-current-junction-alternative",
+        "distanceM": 72.47411633357893
+      }
+    ],
+    "groundAccuracyMetres": null,
+    "wholeCurrentQuarterExtentVerified": false
+  },
+  "remoteUnits13And14": {
+    "recommendation": "Retain both unchanged geometries in the same five-feature estimated import.",
+    "basis": "Actual geographic street/parcel background, independently matched remote junction topology, and unused native road-centre samples beside both footprints. These are not schematic detached inset positions.",
+    "hullAloneIsNotAnExclusionRule": true,
+    "remoteRoadChecks": {
+      "remoteUnusedPhysicalLineSamples": [
+        {
+          "group": "unit13_route5",
+          "sourcePixel": [
+            197.5,
+            300
+          ],
+          "darkRoadRunColumns": [
+            197,
+            198
+          ],
+          "roadDistanceM": 13.49256649863779,
+          "sampleUsedForFit": false
+        },
+        {
+          "group": "unit13_route5",
+          "sourcePixel": [
+            204,
+            310
+          ],
+          "darkRoadRunColumns": [
+            203,
+            204,
+            205
+          ],
+          "roadDistanceM": 12.853666902771637,
+          "sampleUsedForFit": false
+        },
+        {
+          "group": "unit13_route5",
+          "sourcePixel": [
+            211,
+            320
+          ],
+          "darkRoadRunColumns": [
+            210,
+            211,
+            212
+          ],
+          "roadDistanceM": 2.890270946480841,
+          "sampleUsedForFit": false
+        },
+        {
+          "group": "unit13_route5",
+          "sourcePixel": [
+            217,
+            330
+          ],
+          "darkRoadRunColumns": [
+            216,
+            217,
+            218
+          ],
+          "roadDistanceM": 10.169901880968451,
+          "sampleUsedForFit": false
+        },
+        {
+          "group": "unit14_northwest_road",
+          "sourcePixel": [
+            528.5,
+            840
+          ],
+          "darkRoadRunColumns": [
+            528,
+            529
+          ],
+          "roadDistanceM": 2.2481373888455805,
+          "sampleUsedForFit": false
+        },
+        {
+          "group": "unit14_northwest_road",
+          "sourcePixel": [
+            532.5,
+            845
+          ],
+          "darkRoadRunColumns": [
+            532,
+            533
+          ],
+          "roadDistanceM": 0.9476875449742858,
+          "sampleUsedForFit": false
+        },
+        {
+          "group": "unit14_northwest_road",
+          "sourcePixel": [
+            536.5,
+            850
+          ],
+          "darkRoadRunColumns": [
+            536,
+            537
+          ],
+          "roadDistanceM": 3.352583781015805,
+          "sampleUsedForFit": false
+        },
+        {
+          "group": "unit14_northwest_road",
+          "sourcePixel": [
+            540.5,
+            855
+          ],
+          "darkRoadRunColumns": [
+            540,
+            541
+          ],
+          "roadDistanceM": 6.809976542258971,
+          "sampleUsedForFit": false
+        }
+      ],
+      "summary": {
+        "unit13_route5": {
+          "samples": 4,
+          "maxM": 13.49256649863779,
+          "medianM": 11.511784391870044
+        },
+        "unit14_northwest_road": {
+          "samples": 4,
+          "maxM": 6.809976542258971,
+          "medianM": 2.8003605849306927
+        }
+      },
+      "selectionMethod": "Native black road-centre row samples near mapped remote quarters; longest dark pixel run in a predeclared local corridor, manually corresponding to actual route5 or northwest road538786403. Not optimization controls or current-place-point fits.",
+      "notAnAccuracyBound": true
+    },
+    "physicalRoadChecksShareFitAnchorRoads": true,
+    "physicalRoadChecksMeaning": "Unused source positions test local road direction away from fitted junctions. They corroborate placement plausibility without supplying independent surveyed ground accuracy.",
+    "currentPlacePointContainmentIsNotBoundaryVerification": true
+  },
+  "directPbfValidation": {
+    "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "freshDirectPbfCompleteWaysVerified": 80,
+    "allReferencedAndIdentityNodeCoordinatesVerified": 540,
+    "identityNodesVerified": 5,
+    "wayNodeReferencesTagsVersionsTimestampsVerified": true,
+    "nodeCoordinatesAndIdentityTagsVersionsTimestampsVerified": true,
+    "sourceObjectsModified": false,
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "worldGeometryReview": {
+    "allFiveNativeToWorldGeometriesIndependentlyRecomputedExactly": true,
+    "allFiveShapelyValid": true,
+    "strictProjectValidatorResults": [
+      {
+        "unit": 2,
+        "name": "Kossuthváros",
+        "valid": true,
+        "bbox": [
+          19.827406692385047,
+          46.71076384442117,
+          19.846219233722916,
+          46.72406406673519
+        ],
+        "vertices": 262
+      },
+      {
+        "unit": 3,
+        "name": "Petőfi lakótelep",
+        "valid": true,
+        "bbox": [
+          19.847419095234518,
+          46.72029412841138,
+          19.854192698483388,
+          46.725145365108446
+        ],
+        "vertices": 90
+      },
+      {
+        "unit": 4,
+        "name": "Bankfalu",
+        "valid": true,
+        "bbox": [
+          19.852382781070798,
+          46.71904442826073,
+          19.86947347192623,
+          46.73269485574189
+        ],
+        "vertices": 267
+      },
+      {
+        "unit": 13,
+        "name": "Arany-hegyi lakótelep",
+        "valid": true,
+        "bbox": [
+          19.795676440554757,
+          46.779890743953665,
+          19.800785922595708,
+          46.785816752988694
+        ],
+        "vertices": 109
+      },
+      {
+        "unit": 14,
+        "name": "Zöldmező lakótelep",
+        "valid": true,
+        "bbox": [
+          19.88547778085348,
+          46.67576343474862,
+          19.88826371689877,
+          46.679715151028276
+        ],
+        "vertices": 64
+      }
+    ],
+    "sourcePerFeatureResults": [
+      {
+        "unit": 2,
+        "name": "Kossuthváros",
+        "sourcePixelArea": 2963,
+        "sourceToWorldGeometryExactlyRecomputed": true,
+        "valid": true,
+        "sourceContourObserved": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true
+      },
+      {
+        "unit": 3,
+        "name": "Petőfi lakótelep",
+        "sourcePixelArea": 416,
+        "sourceToWorldGeometryExactlyRecomputed": true,
+        "valid": true,
+        "sourceContourObserved": false,
+        "estimatedContour": true,
+        "estimatedPlacement": true
+      },
+      {
+        "unit": 4,
+        "name": "Bankfalu",
+        "sourcePixelArea": 2544,
+        "sourceToWorldGeometryExactlyRecomputed": true,
+        "valid": true,
+        "sourceContourObserved": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true
+      },
+      {
+        "unit": 13,
+        "name": "Arany-hegyi lakótelep",
+        "sourcePixelArea": 284,
+        "sourceToWorldGeometryExactlyRecomputed": true,
+        "valid": true,
+        "sourceContourObserved": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true
+      },
+      {
+        "unit": 14,
+        "name": "Zöldmező lakótelep",
+        "sourcePixelArea": 145,
+        "sourceToWorldGeometryExactlyRecomputed": true,
+        "valid": true,
+        "sourceContourObserved": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true
+      }
+    ],
+    "registryHasNoBlanketContourObservationOrEstimatedContourOverride": true,
+    "allFiveEstimatedPlacement": true,
+    "onlyPetofiEstimatedContour": true,
+    "otherFourObservedClosedSourceContours": true,
+    "sourceContourConvention": "Exact pixel-cell non-stroke interior within the selected colored boundary component; source band width and raster classification do not establish surveyed ownership lines.",
+    "allFiveNoncanonicalNonofficialNonhardAndAddressDisabled": true,
+    "mainVsSourceCapAlternativesCountAsAdditionalQuarters": false
+  },
+  "existingCoverageAtReview": {
+    "neighborhoods.geojson": [],
+    "estimated-candidates.geojson": []
+  },
+  "automaticSemanticAliasesAdopted": false,
+  "orthographicNameComparisonsOnly": "Literal source names remain unchanged. Petőfi lakótelep/Petőfi-lakótelep and Arany-hegyi/Aranyhegyi are explicitly recorded spacing/hyphen diagnostics; no source geometry is renamed or corrected from a place point.",
+  "limitations": [
+    "Source colored boundary bands and manual road picks are several pixels wide; absolute ground accuracy remains unquantified.",
+    "2014 source submission, 2011 statistics and the 2016 review do not establish a common boundary-survey date or present complete extent.",
+    "Affine/similarity model variation and road holdouts are correspondence diagnostics, not confidence bounds.",
+    "Petőfi includes one explicit inferred cap; its raw open color mask and separate cap variant remain available.",
+    "Original source map reuse rights are unresolved; no legal/cadastral or address-assignment approval is given."
+  ],
+  "pinnedInputs": {
+    "kiskunfelegyhaza-inferred-import.geojson": "7e4a3160b967a8331016204c50e38dbe2241456fba5876403b06174f9d276462",
+    "inferred-registry-entry.json": "8e7f1462494056e19ca32b68f4358d63b1dca7a8770be8e14080ac8187322b86",
+    "source-map-p25-xref365.jpeg": "a7b734e8904b9215a4aba01dc3763ef72b6c21bc4dd813f6e06c8365dbd03e1a",
+    "source-pixel-contours.geojson": "91224cc95c87ebcce913943cca90f01a8d0ea90c03b58d5f8e90aec2d96cf0f0",
+    "source-segmentation.npz": "a145f802ccabeb6ee813c4d9e93c6d4628b39657ed7e86d515e661aece8fc819",
+    "petofi-cap-evidence.json": "29d0e0fb1f787ea13b057853af15ca367e3fbb18a53a4a0c2231d1475246e7cf",
+    "petofi-cap-alternative-source-pixels.geojson": "d52edd0f54f7da6e6db848e17321af50820c6d903718c5ad95fcd1d2dc61262e",
+    "road-registration.json": "d076e1349ced085cb0dd72d50033f8a979062caa7da8b9d089afe3f728caae37",
+    "source-road-rail-reference.geojson": "3cefafe60bf7b3eeeca3b557f9a5b8d2758836333b66d51c085437f87905101b",
+    "source-name-points.geojson": "37e83a4a088b6cb8a6144bfa528a40be2b04cdef3ff402536f24179fabdb1a46",
+    "source-facts.json": "375c7dd14089ec53e5df84b9fd10972cd27b71cf61d8b28a5bd189e869da3955",
+    "source-extraction-proof.json": "32a1ca08f4f33f7c61147b3121495caeb283f559fbaf7922cbb6469abaeb9365",
+    "placement-similarity-alternative.geojson": "91585ab0ac9208a89521d1947e05c24c803e31ea09d8a6a9766a16a38d037d4e",
+    "petofi-contour-alternative-world.geojson": "211f76f9b5b431c996b21a9136e70bbe7a3bcfdf5c829f7269c20a4893c31f0b",
+    "name-and-model-diagnostics.json": "cc222f077824a708231c10dc1c8e07ca4211b23a521619293b17f82f2fa7b679"
+  },
+  "applicationDeploymentPerformed": false,
+  "realBrowserOrRemoteCiPerformed": false,
+  "networkCalls": 0,
+  "globalRegistryChangesPerformed": false
+}

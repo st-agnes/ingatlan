@@ -1,0 +1,56 @@
+{
+  "id": "hodmezovasarhely-hodto-2014-circuit-inferred",
+  "path": "data/neighborhoods/sources/municipal-new-city-scout-next/hod-hodto-first-candidate.geojson",
+  "sha256": "5b201c8a8c632f6096934b57d618beaf66db24b3492b0f2eece5d2d4b937d6ff",
+  "municipality": "Hódmezővásárhely",
+  "featureCount": 1,
+  "method": "Historical2014 explicit full-quarter street/rail circuit polygonized from literal2026 OSM centerlines, with115.941842m of connected physical roundabout arcs retained as explicit low-confidence junction inference. Every boundary segment is supported by archived original OSM ways. No synthetic connector, snapping, buffer or rectangle closure.",
+  "evidenceUrls": [
+    "https://hodmezovasarhely.hu/wp-content/uploads/strategiak_koncepciok/Integr%C3%A1lt-Telfejli-Stra%C3%A9gia_2014.pdf",
+    "https://hodmezovasarhely.hu/wp-content/uploads/strategiak_koncepciok/gazdasag_fejlesztesi_strategia/hmvhely_gazdasagi_program_2014-2019.pdf",
+    "https://njt.jog.gov.hu/jogszabaly/2023-1-SP-5Y1882.0"
+  ],
+  "sourceDocuments": [
+    {
+      "url": "https://hodmezovasarhely.hu/wp-content/uploads/strategiak_koncepciok/Integr%C3%A1lt-Telfejli-Stra%C3%A9gia_2014.pdf",
+      "adoptedAt": "2014-09-17",
+      "adoptionResolution": "217/2014. (09.17) Kgy.",
+      "printedPage": 61,
+      "section": "2.3.4",
+      "bytesAcquired": false,
+      "accessEvidence": "Web tool readable originalPDF text; later section screenshot/original PDF download returnedHTTP403."
+    },
+    {
+      "url": "https://hodmezovasarhely.hu/wp-content/uploads/strategiak_koncepciok/gazdasag_fejlesztesi_strategia/hmvhely_gazdasagi_program_2014-2019.pdf",
+      "printedPage": 154,
+      "section": "4.3.4",
+      "bytesAcquired": false
+    }
+  ],
+  "license": "ODbL-1.0",
+  "rightsStatus": "Geometry is independently reconstructed from OpenStreetMap contributors road/rail ways underODbL1.0. Municipal named-boundary facts provide the circuit; no sourcePDF map paths copied or sourcePDF map reuse license assumed.",
+  "reviewPath": "data/neighborhoods/sources/municipal-new-city-scout-next/hod-final-checks.json",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false,
+    "sourceIsOfficial": false,
+    "sourceIsHardBoundary": false,
+    "reviewStatus": "estimated_candidate_requires_independent_boundary_review"
+  },
+  "uncertainties": [
+    "Explicit quarter circuit is from2014, while open linework is a2026 snapshot. Historical alignment was not independently georeferenced.",
+    "Road and rail centerlines implement a stated tracing convention; source text does not specify road/rail width ownership.",
+    "Modern roundabout arcs close physical junctions missing from the street-name chain; these arcs are inferred and fully identified.",
+    "Subsequent FVS action-area definitions differ and are not treated as full-quarter definitions.",
+    "Municipal PDF text was verified through the web tool; original PDF bytes/screenshot of the selected section were blocked byHTTP403 on subsequent fetch.",
+    "No independent geometry/source review has yet approved this candidate; it is not in any global registry/export."
+  ],
+  "requirements": [
+    "Independently confirm the explicit full-quarter source statement, sourceage and urban name identity.",
+    "Review current roundabout-arc convention and2014/current linework differences before treating as a reliable neighborhood boundary."
+  ],
+  "calibrationObservations": null
+}

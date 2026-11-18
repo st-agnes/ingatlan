@@ -1,0 +1,867 @@
+{
+  "schemaVersion": 1,
+  "selectedSourceCell": "Hunyadiváros",
+  "confidence": "low",
+  "gaps": [
+    {
+      "id": "blue-overprint-1",
+      "sourceBlackEndpoints": [
+        [
+          771,
+          1120
+        ],
+        [
+          763,
+          1112
+        ]
+      ],
+      "inferredPixelPath": [
+        [
+          771,
+          1120
+        ],
+        [
+          770,
+          1119
+        ],
+        [
+          769,
+          1118
+        ],
+        [
+          768,
+          1117
+        ],
+        [
+          767,
+          1116
+        ],
+        [
+          766,
+          1115
+        ],
+        [
+          765,
+          1114
+        ],
+        [
+          764,
+          1113
+        ],
+        [
+          763,
+          1112
+        ]
+      ],
+      "endpointDistancePixels": 11.313708498984761,
+      "confidence": "low",
+      "sourcePixelWindow": [
+        762,
+        1111,
+        772,
+        1121
+      ],
+      "alternativePixelPaths": [
+        [
+          [
+            771,
+            1120
+          ],
+          [
+            772,
+            1120
+          ],
+          [
+            771,
+            1119
+          ],
+          [
+            770,
+            1118
+          ],
+          [
+            769,
+            1117
+          ],
+          [
+            768,
+            1116
+          ],
+          [
+            767,
+            1115
+          ],
+          [
+            766,
+            1114
+          ],
+          [
+            765,
+            1113
+          ],
+          [
+            764,
+            1112
+          ],
+          [
+            763,
+            1112
+          ]
+        ],
+        [
+          [
+            771,
+            1120
+          ],
+          [
+            770,
+            1120
+          ],
+          [
+            769,
+            1119
+          ],
+          [
+            768,
+            1118
+          ],
+          [
+            767,
+            1117
+          ],
+          [
+            766,
+            1116
+          ],
+          [
+            765,
+            1115
+          ],
+          [
+            764,
+            1114
+          ],
+          [
+            763,
+            1113
+          ],
+          [
+            762,
+            1112
+          ],
+          [
+            763,
+            1112
+          ]
+        ]
+      ],
+      "inferenceReason": "A short visible dark boundary approaches and leaves the blue source label; the strict black mask is interrupted by the annotation. The chosen continuation is a manual bounded hypothesis, not an observed black stroke or surveyed accuracy bound.",
+      "alternativeDiagnostics": [
+        {
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -8.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": 8.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ],
+      "sourceRgbOnChosenInferredInteriorPixels": [
+        {
+          "pixel": [
+            770,
+            1119
+          ],
+          "rgb": [
+            12,
+            15,
+            84
+          ]
+        },
+        {
+          "pixel": [
+            769,
+            1118
+          ],
+          "rgb": [
+            0,
+            0,
+            66
+          ]
+        },
+        {
+          "pixel": [
+            768,
+            1117
+          ],
+          "rgb": [
+            0,
+            0,
+            85
+          ]
+        },
+        {
+          "pixel": [
+            767,
+            1116
+          ],
+          "rgb": [
+            0,
+            9,
+            94
+          ]
+        },
+        {
+          "pixel": [
+            766,
+            1115
+          ],
+          "rgb": [
+            16,
+            16,
+            148
+          ]
+        },
+        {
+          "pixel": [
+            765,
+            1114
+          ],
+          "rgb": [
+            6,
+            0,
+            184
+          ]
+        },
+        {
+          "pixel": [
+            764,
+            1113
+          ],
+          "rgb": [
+            22,
+            14,
+            187
+          ]
+        }
+      ],
+      "chosenWorldCoordinates": [
+        [
+          19.719474194906468,
+          46.9136612787936
+        ],
+        [
+          19.719437582392423,
+          46.913686372181466
+        ],
+        [
+          19.719400969844074,
+          46.913711465557455
+        ],
+        [
+          19.71936435726142,
+          46.913736558921734
+        ],
+        [
+          19.719327744644456,
+          46.91376165227411
+        ],
+        [
+          19.71929113199318,
+          46.91378674561469
+        ],
+        [
+          19.7192545193076,
+          46.913811838943445
+        ],
+        [
+          19.71921790658772,
+          46.9138369322604
+        ],
+        [
+          19.719181293833525,
+          46.9138620255655
+        ]
+      ],
+      "alternativeWorldPaths": [
+        [
+          [
+            19.719474194906468,
+            46.9136612787936
+          ],
+          [
+            19.719511043865072,
+            46.91366114432215
+          ],
+          [
+            19.719474431368386,
+            46.913686237721826
+          ],
+          [
+            19.71943781883739,
+            46.913711331109695
+          ],
+          [
+            19.719401206272085,
+            46.91373642448578
+          ],
+          [
+            19.71936459367248,
+            46.91376151784998
+          ],
+          [
+            19.719327981038568,
+            46.91378661120239
+          ],
+          [
+            19.719291368370335,
+            46.91381170454298
+          ],
+          [
+            19.71925475566781,
+            46.91383679787177
+          ],
+          [
+            19.71921814293097,
+            46.913861891188695
+          ],
+          [
+            19.719181293833525,
+            46.9138620255655
+          ]
+        ],
+        [
+          [
+            19.719474194906468,
+            46.9136612787936
+          ],
+          [
+            19.719437345947686,
+            46.91366141325313
+          ],
+          [
+            19.719400733416283,
+            46.913686506629126
+          ],
+          [
+            19.71936412085058,
+            46.913711599993334
+          ],
+          [
+            19.71932750825057,
+            46.91373669334577
+          ],
+          [
+            19.71929089561625,
+            46.91376178668633
+          ],
+          [
+            19.71925428294762,
+            46.91378688001506
+          ],
+          [
+            19.71921767024469,
+            46.913811973332024
+          ],
+          [
+            19.71918105750745,
+            46.91383706663713
+          ],
+          [
+            19.719144444735896,
+            46.913862159930424
+          ],
+          [
+            19.719181293833525,
+            46.9138620255655
+          ]
+        ]
+      ],
+      "alternativesSelectedForRegistry": false,
+      "notAnAbsoluteAccuracyBound": true
+    },
+    {
+      "id": "blue-overprint-2",
+      "sourceBlackEndpoints": [
+        [
+          762,
+          1111
+        ],
+        [
+          759,
+          1109
+        ]
+      ],
+      "inferredPixelPath": [
+        [
+          762,
+          1111
+        ],
+        [
+          761,
+          1110
+        ],
+        [
+          760,
+          1110
+        ],
+        [
+          759,
+          1109
+        ]
+      ],
+      "endpointDistancePixels": 3.605551275463989,
+      "confidence": "low",
+      "sourcePixelWindow": [
+        758,
+        1108,
+        763,
+        1112
+      ],
+      "alternativePixelPaths": [
+        [
+          [
+            762,
+            1111
+          ],
+          [
+            763,
+            1111
+          ],
+          [
+            762,
+            1110
+          ],
+          [
+            761,
+            1110
+          ],
+          [
+            760,
+            1109
+          ],
+          [
+            759,
+            1109
+          ]
+        ],
+        [
+          [
+            762,
+            1111
+          ],
+          [
+            761,
+            1111
+          ],
+          [
+            760,
+            1110
+          ],
+          [
+            759,
+            1110
+          ],
+          [
+            758,
+            1109
+          ],
+          [
+            759,
+            1109
+          ]
+        ]
+      ],
+      "inferenceReason": "A short visible dark boundary approaches and leaves the blue source label; the strict black mask is interrupted by the annotation. The chosen continuation is a manual bounded hypothesis, not an observed black stroke or surveyed accuracy bound.",
+      "alternativeDiagnostics": [
+        {
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -2.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": 2.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ],
+      "sourceRgbOnChosenInferredInteriorPixels": [
+        {
+          "pixel": [
+            761,
+            1110
+          ],
+          "rgb": [
+            39,
+            51,
+            103
+          ]
+        },
+        {
+          "pixel": [
+            760,
+            1110
+          ],
+          "rgb": [
+            0,
+            0,
+            64
+          ]
+        }
+      ],
+      "chosenWorldCoordinates": [
+        [
+          19.719144681045023,
+          46.91388711885883
+        ],
+        [
+          19.719108068222216,
+          46.913912212140296
+        ],
+        [
+          19.719071219089876,
+          46.913912346481546
+        ],
+        [
+          19.719034606215406,
+          46.91393743973935
+        ]
+      ],
+      "alternativeWorldPaths": [
+        [
+          [
+            19.719144681045023,
+            46.91388711885883
+          ],
+          [
+            19.719181530159826,
+            46.91388698449384
+          ],
+          [
+            19.719144917354374,
+            46.913912077787145
+          ],
+          [
+            19.719108068222216,
+            46.913912212140296
+          ],
+          [
+            19.7190714553651,
+            46.913937305409966
+          ],
+          [
+            19.719034606215406,
+            46.91393743973935
+          ]
+        ],
+        [
+          [
+            19.719144681045023,
+            46.91388711885883
+          ],
+          [
+            19.71910783193004,
+            46.913887253211904
+          ],
+          [
+            19.719071219089876,
+            46.913912346481546
+          ],
+          [
+            19.719034369957352,
+            46.913912480810886
+          ],
+          [
+            19.718997757065527,
+            46.91393757405691
+          ],
+          [
+            19.719034606215406,
+            46.91393743973935
+          ]
+        ]
+      ],
+      "alternativesSelectedForRegistry": false,
+      "notAnAbsoluteAccuracyBound": true
+    },
+    {
+      "id": "blue-overprint-3",
+      "sourceBlackEndpoints": [
+        [
+          504,
+          1106
+        ],
+        [
+          500,
+          1111
+        ]
+      ],
+      "inferredPixelPath": [
+        [
+          504,
+          1106
+        ],
+        [
+          503,
+          1107
+        ],
+        [
+          502,
+          1108
+        ],
+        [
+          502,
+          1109
+        ],
+        [
+          501,
+          1110
+        ],
+        [
+          500,
+          1111
+        ]
+      ],
+      "endpointDistancePixels": 6.4031242374328485,
+      "confidence": "low",
+      "sourcePixelWindow": [
+        499,
+        1105,
+        505,
+        1112
+      ],
+      "alternativePixelPaths": [
+        [
+          [
+            504,
+            1106
+          ],
+          [
+            505,
+            1106
+          ],
+          [
+            504,
+            1107
+          ],
+          [
+            503,
+            1108
+          ],
+          [
+            503,
+            1109
+          ],
+          [
+            502,
+            1110
+          ],
+          [
+            501,
+            1111
+          ],
+          [
+            500,
+            1111
+          ]
+        ],
+        [
+          [
+            504,
+            1106
+          ],
+          [
+            503,
+            1106
+          ],
+          [
+            502,
+            1107
+          ],
+          [
+            501,
+            1108
+          ],
+          [
+            501,
+            1109
+          ],
+          [
+            500,
+            1110
+          ],
+          [
+            499,
+            1111
+          ],
+          [
+            500,
+            1111
+          ]
+        ]
+      ],
+      "inferenceReason": "A short visible dark boundary approaches and leaves the blue source label; the strict black mask is interrupted by the annotation. The chosen continuation is a manual bounded hypothesis, not an observed black stroke or surveyed accuracy bound.",
+      "alternativeDiagnostics": [
+        {
+          "replacementSourcePolygonValid": false,
+          "replacementSourceAreaDifferenceSquarePixels": 5.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -5.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ],
+      "sourceRgbOnChosenInferredInteriorPixels": [
+        {
+          "pixel": [
+            503,
+            1107
+          ],
+          "rgb": [
+            4,
+            9,
+            90
+          ]
+        },
+        {
+          "pixel": [
+            502,
+            1108
+          ],
+          "rgb": [
+            11,
+            6,
+            171
+          ]
+        },
+        {
+          "pixel": [
+            502,
+            1109
+          ],
+          "rgb": [
+            6,
+            1,
+            209
+          ]
+        },
+        {
+          "pixel": [
+            501,
+            1110
+          ],
+          "rgb": [
+            0,
+            3,
+            103
+          ]
+        }
+      ],
+      "chosenWorldCoordinates": [
+        [
+          19.709638762719894,
+          46.91404618201853
+        ],
+        [
+          19.709601681609282,
+          46.914021354353196
+        ],
+        [
+          19.709564600533056,
+          46.913996526675724
+        ],
+        [
+          19.709564368687843,
+          46.91397156772806
+        ],
+        [
+          19.70952728766338,
+          46.91394674003836
+        ],
+        [
+          19.709490206673294,
+          46.91392191233652
+        ]
+      ],
+      "alternativeWorldPaths": [
+        [
+          [
+            19.709638762719894,
+            46.91404618201853
+          ],
+          [
+            19.709675611967512,
+            46.91404605072457
+          ],
+          [
+            19.709638530839907,
+            46.91402122307117
+          ],
+          [
+            19.709601449746685,
+            46.91399639540568
+          ],
+          [
+            19.70960121788431,
+            46.91397143645816
+          ],
+          [
+            19.709564136842847,
+            46.913946608780385
+          ],
+          [
+            19.70952705583577,
+            46.91392178109052
+          ],
+          [
+            19.709490206673294,
+            46.91392191233652
+          ]
+        ],
+        [
+          [
+            19.709638762719894,
+            46.91404618201853
+          ],
+          [
+            19.709601913472095,
+            46.914046313300624
+          ],
+          [
+            19.709564832378486,
+            46.914021485623294
+          ],
+          [
+            19.709527751319243,
+            46.91399665793381
+          ],
+          [
+            19.709527519491203,
+            46.91397169898613
+          ],
+          [
+            19.709490438483733,
+            46.91394687128443
+          ],
+          [
+            19.70945335751064,
+            46.91392204357059
+          ],
+          [
+            19.709490206673294,
+            46.91392191233652
+          ]
+        ]
+      ],
+      "alternativesSelectedForRegistry": false,
+      "notAnAbsoluteAccuracyBound": true
+    }
+  ],
+  "sourceAlternativesAreUnselectedHypotheses": true,
+  "geographicCalibrationOfAlternativesIsAlsoInferred": true,
+  "absoluteAccuracyMeters": null
+}

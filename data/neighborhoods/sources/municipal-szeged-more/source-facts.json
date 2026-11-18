@@ -1,0 +1,148 @@
+{
+  "retrievedAt": "2026-11-13",
+  "scope": "Continuation after the frozen municipal-szeged-next batch; no frozen files changed.",
+  "klebelPrimary": {
+    "name": "Klebelsberg-telep",
+    "url": "https://www.klebelsberg-egyesulet.hu/wp-content/uploads/2016/04/helytortenet.pdf",
+    "title": "Szeged-Klebelsberg-telep története",
+    "editor": "Újvári Edit",
+    "publisher": "Klebelsberg-telepi Polgári Kör Közhasznú Egyesület",
+    "documentYear": 2007,
+    "isbn": "978-963-06-2610-1",
+    "printedPage": 9,
+    "pdfPageZeroBased": 8,
+    "retrieval": "Public web connector read PDF text; no local original PDF bytes or original-PDF hash claimed.",
+    "fullPdfDownloaded": false,
+    "sourcePdfSha256": null,
+    "boundaryFactsParaphrased": {
+      "west": "Stormwater/inland-water drainage channel",
+      "south": "A section of Holt-Tisza",
+      "north": "Körtöltés, separating the quarter from Kecskés-telep",
+      "east": "Railway embankment, separating it from Alsóváros"
+    },
+    "inferenceLimit": "The source identifies physical corridors but supplies no georeferenced coordinates or explicit four corner points. Present mapped centerlines/banks must not be arbitrarily connected to make this description close."
+  },
+  "nameEvidence": [
+    {
+      "url": "https://szeged.hu/cikk/hattyason-talaltak-uj-otthonra-a-vasutasok-a-vagonlakasok-utan-emoke-nagyapja-almodta-meg-a-telepet",
+      "publishedAt": "2018-08-12",
+      "publisher": "Szegedi Tükör / Szeged.hu",
+      "author": "Dombai Tünde",
+      "retrieval": "Full public webpage read",
+      "factualAliasHistory": [
+        {
+          "period": "1834–1922",
+          "name": "Hattyas"
+        },
+        {
+          "period": "1922–1928",
+          "name": "Vasutastelep"
+        },
+        {
+          "period": "1928–1958",
+          "name": "Klebelsberg-telep"
+        },
+        {
+          "period": "1958–1992",
+          "name": "Hattyastelep"
+        },
+        {
+          "period": "1992 onward",
+          "name": "Klebelsbergtelep"
+        }
+      ],
+      "aliasIsNameEvidenceOnly": true
+    },
+    {
+      "url": "https://szeged.hu/uploads/attachments/szegedi-tukor/SZT_20260504_01.pdf",
+      "publishedAt": "2026-05-04",
+      "publisher": "Szegedi Tükör",
+      "retrieval": "Public indexed text of PDF",
+      "shortExcerpt": "Klebelsberg-telep (Hattyas)",
+      "supports": "Contemporary co-use of Klebelsberg-telep and Hattyas; no precise boundary evidence."
+    },
+    {
+      "url": "https://www.kulturalisszemle.hu/6-szam/nemzetkozi-kitekintes/ujvari-edit-kulturalis-es-kozossegi-elet-egyesuleti-szervezesben-a-szeged-klebelsberg-telepi-polgari-kor-egyesulet-kozossegszervezo-munkaja",
+      "publishedAt": "2016-12-22",
+      "author": "Újvári Edit",
+      "retrieval": "Full public webpage read",
+      "supports": "The1992 municipal name restoration and the broad natural-corridor description, with Kecskés a distinct neighboring colony rather than an alias."
+    }
+  ],
+  "odesszaPositiveBoundaryEvidence": [
+    {
+      "url": "https://szeged.hu/cikk/cserepkalyhaval-futottek-az-elso-lakasokat-odesszaban",
+      "publishedAt": "2018-04-16",
+      "publisher": "Szeged.hu / Szegedi Tükör",
+      "retrieval": "Full public webpage read; date and whole-estate boundary paragraph verified",
+      "wholeEstateBoundaryRoadFacts": [
+        "Torontál tér",
+        "Alsó kikötő sor",
+        "vasúti töltés",
+        "Temesvári körút",
+        "Székely sor"
+      ],
+      "scope": "Whole residential estate described by a municipal local-history article, not merely a development action area."
+    },
+    {
+      "url": "https://szeged.hu/cikk/odessza-az-egyik-legelhetobb-varosresze-lett-szegednek",
+      "publishedAt": "2019-06-15",
+      "retrieval": "Full public webpage read; date verified",
+      "supports": "Same five-corridor whole-estate history description."
+    },
+    {
+      "url": "https://regi.szegedvaros.hu/zold-varos-odessza/",
+      "retrieval": "Public indexed factual text",
+      "supports": "Official project uses the same named circuit, but calls it an action area; this alone is not sufficient to promote an action area to a quarter."
+    },
+    {
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18321&as_attachment=1",
+      "title": "IVS_5_fejezet_felulvizsgalt",
+      "sourcePeriod": "2008 IVS updated2009",
+      "printedPage": 48,
+      "section": "5.3.2.2.Odessza lakótelep",
+      "retrieval": "Public indexed factual text, including surrounding scope paragraph",
+      "boundaryRoadFacts": [
+        "Torontál tér",
+        "Alsókikötő sor",
+        "Újszegedi vasútvonal",
+        "Szőregi út",
+        "Temesvári körút",
+        "Székely sor",
+        "Torontál tér"
+      ],
+      "scope": "Explicit action area, within larger IVS Belváros macro unit; do not silently claim this paragraph is a present whole-quarter survey. The added Szőregi corridor is an evidenced source interpretation lead."
+    }
+  ],
+  "tarjanCurrentSourceVersion": {
+    "url": "https://szegedfolyoirat.sk-szeged.hu/2019/02/23/toth-marcell-a-tarjan-lakotelep-tortenete/",
+    "publishedAt": "2019-02-23",
+    "author": "Tóth Marcell",
+    "retrieval": "Full public webpage read",
+    "boundaryRoadFacts": [
+      "Lugas utca",
+      "Csillag tér",
+      "Retek utca",
+      "József Attila sugárút",
+      "Murányi utca",
+      "Körtöltés"
+    ],
+    "roadSideDetailParaphrased": "Along József Attila only the odd-number side is included between Retek and Budapesti; north of Budapesti both sides are included, with Murányi noted as outer boundary.",
+    "versionRule": "This is a distinct source version of Tarján already represented by the2009/2017 IVS circuit. Do not count both source versions as two canonical neighborhoods, and do not silently combine their boundaries."
+  },
+  "otherUsableSourceMap": {
+    "url": "https://geography.hu/mfk2001/cikkek/TothKKeseru.pdf",
+    "title": "A lakótelepi panellakások árainak területi különbségei Szegeden",
+    "authors": [
+      "Tóth Krisztina",
+      "Keserű Imre"
+    ],
+    "year": 2001,
+    "printedMapPage": 4,
+    "mapFigure": 1,
+    "mapTitle": "A szegedi lakótelepek áttekintő térképe",
+    "observedAs": "Public extracted PDF text names several estate areas and road controls; screenshot request returned only an image placeholder without accessible image bytes in this connector session.",
+    "notVisuallyInspected": true,
+    "notUsedToInventCoordinates": true
+  }
+}

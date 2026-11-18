@@ -1,0 +1,44 @@
+{
+  "featureCount": 28,
+  "byMunicipality": {
+    "Eger": 8,
+    "Veszprém": 13,
+    "Szolnok": 7
+  },
+  "radiusFallbackCount": 0,
+  "unchangedSourcePolygonCount": 1,
+  "sourcePartUnionCount": 1,
+  "sourceRemainderEstimateCount": 1,
+  "manualStreetValleyFabricEstimateCount": 25,
+  "oneExistingCanonicalNameHasTwoAdditionalAliasStrings": true,
+  "outputFiles": [
+    {
+      "path": "eger-source-features.geojson",
+      "count": 3,
+      "sha256": "1a39af33de685436aac3e1a2c68e36c74fcd5f20bfe01c76dee0d8a56f279b40"
+    },
+    {
+      "path": "eger-features.geojson",
+      "count": 5,
+      "sha256": "6598e7ea17105da460a94f47a6b74e0b51ee1d057976c799b5c5edf7d22e79b8"
+    },
+    {
+      "path": "veszprem-features.geojson",
+      "count": 13,
+      "sha256": "92ed815938904966b652c3f17a679a49ca34e8eb9e701f899f7e968c02ef9801"
+    },
+    {
+      "path": "szolnok-features.geojson",
+      "count": 7,
+      "sha256": "9d388ba975725011e0816b6884a00651e1de63a9545c1c9c60337f99c6d63d51"
+    }
+  ],
+  "validation": {
+    "allStructurallyValid": true,
+    "scopedNamesUnique": true,
+    "savedPointContainedCount": 28,
+    "pointContainmentIsNotIndependentAccuracyValidation": true,
+    "allOutputBytesReproduced": true
+  },
+  "integration": "Research dataset only. Parent handles intake, scoped deduplication and GitHub checkpoint; application/database untouched."
+}

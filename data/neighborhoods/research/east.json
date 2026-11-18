@@ -1,0 +1,830 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-13",
+  "scope": "Eastern and northern Hungarian municipal neighborhood source research; not nationwide completeness.",
+  "policy": {
+    "geometryEligibleForProduction": false,
+    "pointBufferOrVoronoiAccepted": false,
+    "proprietaryBasemapTracingAccepted": false,
+    "freeAccessDoesNotEstablishReuseLicense": true
+  },
+  "sources": [
+    {
+      "id": "nyiregyhaza-its-2022",
+      "municipality": "Nyíregyháza",
+      "title": "Integrált Településfejlesztési Stratégia felülvizsgálat, jóváhagyott, 2022. július",
+      "sourceUrl": "https://uj.nyiregyhaza.hu/lib/rend_terv/its/felulvizsg/220804_its_jovahagyott_its.pdf",
+      "format": "PDF",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "original_pdf_archived_ten_map_regions_digitized",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "printedPages": [
+        15,
+        16
+      ],
+      "pdfPages": [
+        15,
+        16
+      ],
+      "mapFigure": "4. ábra",
+      "boundaryTable": "1. táblázat",
+      "spatialUnit": "10 ITS planning clusters, containing named quarters; 10 clusters are not 10 individual local neighborhoods",
+      "nameCount": 25,
+      "aliasCount": 1,
+      "names": [
+        "Belső lakóterület",
+        "Örökösföld",
+        "Malomkert",
+        "Déli ipartelep",
+        "Huszártelep",
+        "Kertváros",
+        "Salamonbokor",
+        "Szabadságbokor",
+        "Jósaváros",
+        "Stadion környéke",
+        "Hímes",
+        "Nyírszőlős",
+        "Felsőpázsit",
+        "Sóstóhegy",
+        "Sóstógyógyfürdő",
+        "Korányi kertváros",
+        "Kőlapos",
+        "Oros",
+        "Nagyszállás",
+        "Borbánya",
+        "Nyírjes",
+        "Kistelekiszőlő",
+        "Butyka",
+        "Bokortanyák",
+        "Császárszállás"
+      ],
+      "aliases": {
+        "Belső lakóterület": [
+          "Belváros"
+        ]
+      },
+      "manualMethod": "Reconstruct the 10 planning-cluster boundaries using the ordered street/railway/watercourse facts in nyiregyhaza-boundary-definitions.json and the official figure. Preserve planning-group classification; separate common-name quarter boundaries need additional sources.",
+      "limits": [
+        "Some boundary elements are proposed roads or dated built-up/forest/parcel boundaries.",
+        "No independently named Malomkert/Huszártelep/etc. polygon is defined by their shared cluster ring.",
+        "Embedded map resolution598×583pixels; affine city-outline fit p95 residual187m, max586m. Coarse planning visualization only; no address-level claim."
+      ],
+      "sourceSha256": "159c8b3112c842f25f6799cf0a34645c90143dd9b5d071000b3160ec499c3a90",
+      "geometryArtifact": "../sources/municipal-east/nyiregyhaza-planning-units.geojson",
+      "geometryProof": "../sources/municipal-east/nyiregyhaza-geometry-proof.json",
+      "derivedFeatureCount": 10,
+      "derivedBoundaryKind": "planning_unit",
+      "sourceFile": "../sources/municipal-east/nyiregyhaza-its-2022.pdf"
+    },
+    {
+      "id": "miskolc-its-base-2022",
+      "municipality": "Miskolc",
+      "title": "ITS Megalapozó Vizsgálat, 2022. augusztus",
+      "sourceUrl": "https://miskolc.hu/sites/default/files/aktualitas/csatolmanyok/2024-09/megalapozo_vizsgalat_miskolc_mjv_its.pdf",
+      "format": "PDF",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "document_text_verified",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "printedPages": [
+        253,
+        254
+      ],
+      "pdfPages": [
+        254,
+        255
+      ],
+      "mapFigure": "74. ábra",
+      "boundaryTable": "55. táblázat",
+      "spatialUnit": "32 KSH statistical city-quarter units mapped to 17 ITS planning clusters",
+      "nameCount": 32,
+      "names": [
+        "Zsarnai telep – Repülőtér",
+        "Szondi telep – Csorbatelep",
+        "Martin kertváros",
+        "Szirma",
+        "Görömböly",
+        "Hejőcsaba",
+        "Avas kelet – Népkert",
+        "Martin kertvárosi felüljáró",
+        "Selyemrét",
+        "Szentpéteri kapu Kelet",
+        "Szentpéteri kapu Nyugat",
+        "Tetemvár",
+        "Bábonyibérc",
+        "Vologda–Jókai lakótelep",
+        "Belváros",
+        "Avasalja",
+        "Avas Dél városrész",
+        "Egyetemváros – Ruzsin",
+        "Miskolc-Tapolca",
+        "Komlóstető",
+        "Vargahegy",
+        "Békeszálló telep – Muszkás telep",
+        "Győri kapu",
+        "Új Diósgyőr",
+        "Kilián",
+        "Bedegvölgy-Bodótető",
+        "Lyukóvölgy",
+        "Pereces",
+        "Diósgyőr – Berekalja – Majláth",
+        "Bükkszentlászló",
+        "Lillafüred",
+        "Ómassa – Jávorkút"
+      ],
+      "groups": [
+        {
+          "name": "Szentpéteri kapu, Észak-keleti városrész",
+          "kshNumbers": [
+            10,
+            11,
+            1
+          ]
+        },
+        {
+          "name": "Selyemrét, Keleti-városrész",
+          "kshNumbers": [
+            2,
+            8,
+            9
+          ]
+        },
+        {
+          "name": "Martin kertváros – Szirma",
+          "kshNumbers": [
+            3,
+            4
+          ]
+        },
+        {
+          "name": "Hejőcsaba – Görömböly",
+          "kshNumbers": [
+            5,
+            6
+          ]
+        },
+        {
+          "name": "Avas Kelet – Népkert",
+          "kshNumbers": [
+            7
+          ]
+        },
+        {
+          "name": "Tetemvár – Északi domboldal",
+          "kshNumbers": [
+            12,
+            13,
+            26
+          ]
+        },
+        {
+          "name": "Belváros – Avasalja",
+          "kshNumbers": [
+            14,
+            15,
+            16
+          ]
+        },
+        {
+          "name": "Avas Dél",
+          "kshNumbers": [
+            17
+          ]
+        },
+        {
+          "name": "Egyetemváros – Ruzsin",
+          "kshNumbers": [
+            18
+          ]
+        },
+        {
+          "name": "Miskolc-Tapolca",
+          "kshNumbers": [
+            19
+          ]
+        },
+        {
+          "name": "Komlóstető – Vargahegy",
+          "kshNumbers": [
+            20,
+            21
+          ]
+        },
+        {
+          "name": "Miskolc Közép városrész",
+          "kshNumbers": [
+            22,
+            23,
+            24,
+            25
+          ]
+        },
+        {
+          "name": "Lyukóvölgy",
+          "kshNumbers": [
+            27
+          ]
+        },
+        {
+          "name": "Pereces",
+          "kshNumbers": [
+            28
+          ]
+        },
+        {
+          "name": "Diósgyőr – Nyugati városrész",
+          "kshNumbers": [
+            29
+          ]
+        },
+        {
+          "name": "Bükkszentlászló",
+          "kshNumbers": [
+            30
+          ]
+        },
+        {
+          "name": "Lillafüred–Ómassa",
+          "kshNumbers": [
+            31,
+            32
+          ]
+        }
+      ],
+      "manualMethod": "Use map 74 for the 17 planning boundaries and table55 for the 32-to17 mapping. Obtain the original KSH map or finer municipal delineation before deriving individual32 units.",
+      "limits": [
+        "The published main map delineates 17 merged units, not all32 KSH units.",
+        "Current2026 boundary/version status not established."
+      ]
+    },
+    {
+      "id": "miskolc-its-actions-2024",
+      "municipality": "Miskolc",
+      "title": "ITS annex: action-area boundary descriptions",
+      "sourceUrl": "https://www.miskolc.hu/sites/default/files/dokumentumtar/mellekletek/2024-11/197_melleklet.pdf",
+      "format": "PDF",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "indexed_text_verified",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "names": [
+        "Lillafüred",
+        "Miskolctapolca",
+        "Történelmi Avas"
+      ],
+      "manualMethod": "Only use an action-area ring if the text explicitly equates it to a whole named quarter (indexed Lillafüred description does). Other action areas must remain action areas.",
+      "limits": [
+        "Not a general neighborhood inventory."
+      ]
+    },
+    {
+      "id": "debrecen-fvs-2021-2027",
+      "municipality": "Debrecen",
+      "title": "Fenntartható Városfejlesztési Stratégia megalapozó vizsgálat",
+      "sourceUrl": "https://hbmo.hu/portal/wp-content/uploads/2023/12/01A_eloterj.mell_DMJV-FVS-2021-27-megalapozo-vizsgalat.pdf",
+      "format": "PDF",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "existing_reference_inventory_verified",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "printedPages": [
+        208
+      ],
+      "spatialUnit": "Historical local quarters, 75+4 in pinned reference inventory",
+      "nameCount": 79,
+      "namesReference": "../reference-inventories.json#Debrecen",
+      "manualMethod": "Extract real vector paths if present, otherwise georeference the specific quarter map with independent open geographic controls. Associate each numbered polygon to the numbered legend, preserve source precision and boundary uncertainty.",
+      "limits": [
+        "The 10 functional classes elsewhere in strategy are not neighborhoods.",
+        "Do not treat a nearest-center partition as the map boundaries."
+      ]
+    },
+    {
+      "id": "debrecen-environment-2023-2026",
+      "municipality": "Debrecen",
+      "title": "Települési Környezetvédelmi Program 2023–2026",
+      "sourceUrl": "https://futureofdebrecen.hu/wp-content/uploads/2025/04/dmjv-kvp.pdf",
+      "format": "PDF",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "indexed_map_verified",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "spatialUnit": "Historical city-quarter map, indexed legend75+3 plus IVS boundary overlay",
+      "manualMethod": "Compare the earlier75+3 historical-quarter map with the79-name FVS reference. Extract only the quarter-boundary layer, not IVS cluster outline.",
+      "limits": [
+        "Map legend count differs from79-name FVS source; reconcile added quarter before claiming completeness."
+      ]
+    },
+    {
+      "id": "eger-hesz-map-2016",
+      "municipality": "Eger",
+      "title": "4/2016 (II.26.) rendelet 2.sz. melléklet: Szabályozási tervek lehatárolása, 2016. augusztus",
+      "sourceUrl": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf",
+      "format": "vector-capable PDF",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "original_pdf_archived_vector_polygons_extracted",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "pdfPages": [
+        1
+      ],
+      "scale": "1:15000",
+      "spatialUnit": "Named regulatory planning districts; partial correspondence to common neighborhoods",
+      "names": [
+        "Felnémet",
+        "Nagylapos",
+        "Hajdúhegy",
+        "Károlyváros",
+        "Belváros",
+        "Szent Miklós",
+        "Tihamér",
+        "Csákó",
+        "Vécseyvölgy",
+        "Maklári hóstya",
+        "Merengő",
+        "Almagyar",
+        "Hatvani hóstya",
+        "Szépasszonyvölgy",
+        "Rác hóstya",
+        "Felsőváros",
+        "Sánc",
+        "Tetemvár",
+        "Cifra hóstya",
+        "Lajosváros",
+        "Almár",
+        "Déli iparterület"
+      ],
+      "manualMethod": "Extract closed PDF vector paths where available, georeference against legal EPSG23700 map grid or independently identified open controls, map labels/planIDs; keep regulatory-planning classification.",
+      "limits": [
+        "Not a current official register of all locally used quarter names.",
+        "Source states cadastral/state base data used; sourcePDF access does not license all underlying map geometry."
+      ],
+      "geometryArtifact": "../sources/municipal-east/eger-planning-units.geojson",
+      "geometryProof": "../sources/municipal-east/eger-geometry-proof.json",
+      "sourceSha256": "7db28b2b5922e6dea7bde9dc3263087534b26e9cd1e52b63335249265df6febe",
+      "derivedFeatureCount": 32,
+      "derivedBoundaryKind": "planning_unit",
+      "sourceFile": "../sources/municipal-east/eger-map-2016.pdf"
+    },
+    {
+      "id": "eger-its-2016",
+      "municipality": "Eger",
+      "title": "ITS 2014–2020 felülvizsgálat",
+      "sourceUrl": "https://eger.hu/public/uploads/1-melleklet-eger-its-2014-2020-felulvizsg-0622_577cc9356f8b6.pdf",
+      "format": "PDF",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "indexed_map_verified",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "names": [
+        "Felnémet"
+      ],
+      "manualMethod": "Use the specific city-quarter map and compare with the HÉSZ overview. Resolve historical names versus merged planning districts.",
+      "limits": [
+        "Earlier2013 municipal planning analysis states local quarter boundaries had not been formally approved; do not assert legal precision from its historic map."
+      ]
+    },
+    {
+      "id": "salgotarjan-its-2022",
+      "municipality": "Salgótarján",
+      "title": "Integrált Településfejlesztési Stratégia 2021–2027, 2022.június",
+      "sourceUrl": "https://www.salgotarjan.hu/wp-content/uploads/fejlesztesidokumentumok_20220629_its.pdf",
+      "format": "PDF",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "document_text_verified",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "printedPages": [
+        125,
+        126,
+        128,
+        129,
+        130,
+        132,
+        133,
+        135,
+        136,
+        137,
+        139
+      ],
+      "pdfPages": [
+        125,
+        126,
+        128,
+        129,
+        130,
+        132,
+        133,
+        135,
+        136,
+        137,
+        139
+      ],
+      "mapFigure": "III.3-1. ábra and III.3-2 through III.3-10",
+      "spatialUnit": "10 ITS planning clusters inherited from2008IVS/2014ITS; several clusters contain multiple local quarters",
+      "nameCount": 10,
+      "names": [
+        "Somoskő, Eresztvény, Salgóbánya, Rónafalu és Rónabánya",
+        "Acélgyár, Zagyvaróna, Ferenctelep, Művésztelep és Pintértelep",
+        "Beszterce lakótelep",
+        "Városközpont",
+        "Kőváralja és Idegértelep",
+        "Forgách-telep és Somlyóbányatelep",
+        "Rákóczi út környéke",
+        "Baglyasalja",
+        "Zagyvapálfalva",
+        "Külterület (Eresztvény nélkül)"
+      ],
+      "manualMethod": "Use whole-city figureIII.3-1 and individual maps to derive10 planning polygons only; individual nested neighborhoods require finer map.",
+      "limits": [
+        "Clusters1,2,4,5,6 explicitly merge multiple local quarters."
+      ]
+    },
+    {
+      "id": "bekescsaba-cityquarters-map",
+      "municipality": "Békéscsaba",
+      "title": "Official Térképek page → Városrészek map",
+      "sourceUrl": "https://bekescsaba.hu/uploads/files/images/Teljes-varos-kitoeltoett.webp",
+      "format": "WebP raster",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "original_raster_archived_six_footprints_digitized",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "landingPage": "https://bekescsaba.hu/terkepek",
+      "manualMethod": "Georeference the actual colored quarter map after visual legend inspection; digitize its drawn outlines with open control points, retaining raster precision.",
+      "limits": [
+        "Six actual colored urban footprints; rural cyan map regions are not assigned to nearest neighborhoods.",
+        "Source map has no visible publication date or established reuse license; coarse footprints require review."
+      ],
+      "sourceSha256": "7ccbddf49e33959b17895bb2b85c1ea733f2b19af9e1de53b71a96a0d58cc2b0",
+      "names": [
+        "Központ",
+        "Erzsébethely (Jamina)",
+        "József Attila lakótelep (Lencsési)",
+        "Mezőmegyer",
+        "Gerla",
+        "Fényes"
+      ],
+      "nameCount": 6,
+      "geometryArtifact": "../sources/municipal-east/bekescsaba-map-derived.geojson",
+      "geometryProof": "../sources/municipal-east/bekescsaba-geometry-proof.json",
+      "derivedFeatureCount": 6,
+      "sourceFile": "../sources/municipal-east/bekescsaba-quarters-map.webp"
+    },
+    {
+      "id": "szeged-public-lizmap",
+      "municipality": "Szeged",
+      "title": "Public municipal map viewer",
+      "sourceUrl": "https://terkep.szeged.eu/index.php/view/map/",
+      "format": "Lizmap/QGIS web-viewer candidate",
+      "access": "unverified_timeout",
+      "verificationStatus": "public_url_identified_fetch_timeout",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "spatialUnit": "Reported cadastral districts; neighborhood layer not yet established",
+      "manualMethod": "Fetch public viewer HTML, identify exact project/repository and publicWFS layers, inspect capabilities and schema before requesting features.",
+      "limits": [
+        "No project identifier, WFS layerID or neighborhood polygon was verified.",
+        "Cadastral numbered districts must not be substituted for local neighborhoods."
+      ]
+    },
+    {
+      "id": "szeged-old-gis",
+      "municipality": "Szeged",
+      "title": "Szeged Megyei Jogú Város Térinformatikai Rendszere",
+      "sourceUrl": "https://www.szegedvaros.hu/terkep/szegedgis.html",
+      "format": "Web GIS",
+      "access": "indexed_public_page_current_fetch_failed",
+      "verificationStatus": "indexed_landing_page_fetch502",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "manualMethod": "Inspect public page scripts/config and service capabilities if available.",
+      "limits": [
+        "Page credits raster/database structure to Interspect and Ökomozaik; no open geometry license observed."
+      ]
+    },
+    {
+      "id": "szeged-ivs-2009",
+      "municipality": "Szeged",
+      "title": "Integrált Városfejlesztési Stratégia old municipal attachment",
+      "sourceUrl": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18327&as_attachment=1",
+      "format": "PDF",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "indexed_document_verified",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "manualMethod": "Locate the actual quarter delineation chapter and distinguish historicquarters from10 later ITS strategicgroups.",
+      "limits": [
+        "Current attachment access and map license not yet verified."
+      ]
+    },
+    {
+      "id": "kecskemet-base-2021",
+      "municipality": "Kecskemét",
+      "title": "126/2021 (XII.16) határozat 1.melléklete II.kötet",
+      "sourceUrl": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+      "format": "PDF",
+      "access": "public_document_web_reader_size_limit_17511939_bytes",
+      "verificationStatus": "indexed_chapter_verified_pdf_too_large_for_web_reader",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "spatialUnit": "Central quarters and finer subdistricts, together with rural areas",
+      "mapFigure": "71. ábra",
+      "manualMethod": "Inspect section3.3.1 and figure71; extract quarter/subdistrict paths separately and georeference map. Keep rural namedareas distinct from urbanquarters.",
+      "names": [
+        "Méntelek",
+        "Talfája",
+        "Katonatelep",
+        "Külsőnyír",
+        "Belsőnyír",
+        "Hetény",
+        "Űrhegy",
+        "Szarkás",
+        "Bödögsor",
+        "Csalanosi erdő",
+        "Kadafalva",
+        "Beretvásköz",
+        "Törökfái",
+        "Matkó",
+        "Kisfái",
+        "Bordás",
+        "Repülőtér",
+        "Budaihegy-Vacshegy",
+        "Északi ipari övezet"
+      ],
+      "limits": [
+        "Names transcribed from indexed map of alternate same-year normative attachment; not asserted complete."
+      ]
+    },
+    {
+      "id": "szolnok-fvs-2022",
+      "municipality": "Szolnok",
+      "title": "Fenntartható Városfejlesztési Stratégia2021–2027 candidate PDF",
+      "sourceUrl": "https://info.szolnok.hu/files/1772083386_FVS_Szolnok_20220421.pdf",
+      "format": "PDF candidate, HTML received",
+      "access": "not_currently_verified_as_pdf",
+      "verificationStatus": "indexed_document_url_currently_returns_html",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "manualMethod": "Find original FVS document or current municipal attachment; confirm PDF signature before treating as source.",
+      "limits": [
+        "No neighborhood geometry or nameinventory verified from this URL."
+      ]
+    },
+    {
+      "id": "hodmezovasarhely-ksh-2005",
+      "municipality": "Hódmezővásárhely",
+      "title": "A nagyvárosok belső tagozódása – Hódmezővásárhely, KSH8/2005",
+      "sourceUrl": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+      "format": "PDF",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "document_text_verified",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "explicit_attribution_plus_data_transfer_permission_wording",
+        "redistributionApproved": false,
+        "sourceStatementPage": 2,
+        "note": "2005imprint permits secondary publication with attribution; data transfer is stated to require KSH Szegedi Igazgatóság permission. Do not assume laterCCBY covers geometry in this oldPDF."
+      },
+      "usableForAddressAssignment": false,
+      "pdfPages": [
+        2,
+        8,
+        9,
+        10
+      ],
+      "nameCount": 14,
+      "names": [
+        "Belváros",
+        "Tarján",
+        "Tabán",
+        "Csúcs",
+        "Susán",
+        "Hódtó",
+        "Béketelep",
+        "Újváros",
+        "Kertváros",
+        "Szikáncs",
+        "Erzsébet",
+        "Kútvölgy",
+        "Batida",
+        "Kishomok"
+      ],
+      "otherUnits": [
+        "Egyéb terület"
+      ],
+      "manualMethod": "Use the KSH innerstructure city-quarter map for factual boundary review; obtain applicable reusable geometry rights before redistributing derived coordinates.",
+      "limits": [
+        "Historical2001 statistical partition, publication2005, currentboundary match unverified."
+      ]
+    },
+    {
+      "id": "hodmezovasarhely-legal-belvaros",
+      "municipality": "Hódmezővásárhely",
+      "title": "33/2021(X.25) településképi önkormányzati rendelet",
+      "sourceUrl": "https://njt.jog.gov.hu/jogszabaly/2021-33-SP-5Y1882",
+      "format": "HTML legal text and annexes",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "indexed_legal_boundary_verified",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "legal_text_factual_boundary_definition",
+        "redistributionApproved": false,
+        "note": "Legal facts and streetnames can support an independently created boundary; confirm which territorialcategory a boundary defines. No underlyingmap geometry license inferred."
+      },
+      "usableForAddressAssignment": false,
+      "names": [
+        "Belváros",
+        "Susán",
+        "Tarján",
+        "Tabán"
+      ],
+      "manualMethod": "Read the annex streetchain for Belváros and verify whether the legal ring is full neighborhood or heritage/character-area only. Build from openstreet/river geometry only if semantic extent agrees.",
+      "limits": [
+        "Településképi protectionarea is not automatically the full common-name neighborhood."
+      ]
+    },
+    {
+      "id": "gyongyos-its-2016",
+      "municipality": "Gyöngyös",
+      "title": "Integrált Településfejlesztési Stratégia,2016.február2",
+      "sourceUrl": "https://gyongyos.hu/wp-content/uploads/2021/01/integralt-telepulesfejlesztesi-strategia-2016-its-gyongyos.pdf",
+      "format": "PDF",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "original_pdf_inspected_boundary_chains_inconsistent",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "printedPages": [
+        16,
+        17,
+        18,
+        19
+      ],
+      "pdfPages": [
+        17,
+        18,
+        19,
+        20
+      ],
+      "mapFigure": "1. ábra",
+      "spatialUnit": "Six central urban planningquarters plus named detachedresort areas",
+      "nameCount": 6,
+      "names": [
+        "Városközpont",
+        "Északi városrész",
+        "Észak-nyugati városrész",
+        "Keleti városrész",
+        "Déli városrész",
+        "Nyugati városrész"
+      ],
+      "additionalNames": [
+        "Mátrafüred",
+        "Benehát",
+        "Kékestető",
+        "Sástó",
+        "Mátraháza"
+      ],
+      "manualMethod": "Do not directly turn the short street chains into rings. Reconcile apparent copied-text defects and unstated built-up boundary against the actual mapped planning-unit polygons; preserve documentary inconsistency.",
+      "limits": [
+        "Déli városrész additionally includes Harmadosztály.",
+        "Northwest street list repeatsPetőfi; preserve sourceorder and inspect map instead of silentlyclosing.",
+        "Detachedresort areas have separate maps and should notbe inferred frompoints.",
+        "Four-road north list does not form a closed ring in current open street geometry; map includes an unstated northern built-up boundary.",
+        "Kertész and Deák Ferenc street references in the central chain are absent from the current Gyöngyös street extraction; text also includes apparently copied Harrer/Puskin intersections. These chains must be corroborated before geometry construction."
+      ]
+    },
+    {
+      "id": "kisvarda-its-2015",
+      "municipality": "Kisvárda",
+      "title": "Integrált Településfejlesztési Stratégia, 2015; uploaded2025",
+      "sourceUrl": "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf",
+      "format": "PDF",
+      "access": "public_no_registration_observed",
+      "verificationStatus": "document_text_verified",
+      "machinePolygonAvailable": false,
+      "layerIds": [],
+      "license": {
+        "status": "not_established",
+        "redistributionApproved": false
+      },
+      "usableForAddressAssignment": false,
+      "printedPages": [
+        20,
+        21,
+        22
+      ],
+      "pdfPages": [
+        20,
+        21,
+        22
+      ],
+      "mapFigure": "3. térkép",
+      "boundaryTable": "2. táblázat",
+      "spatialUnit": "Six functional/geographic urban planning quarters; source explicitly excludes administrative status",
+      "nameCount": 6,
+      "names": [
+        "Városközpont",
+        "Nyugati Kertvárosi rész",
+        "Északi Kertvárosi rész",
+        "Kiemelt Szolgáltatói városrész",
+        "Keleti városrész",
+        "Déli Ipari Szolgáltatói Városrész"
+      ],
+      "manualMethod": "Reconstruct the six official planning-quarter rings from factual street-boundary elements in kisvarda-boundary-definitions.json and open street/railway line geometry; verify source map before accepting closure.",
+      "limits": [
+        "The text states that functional and geographic parameters define this partition.",
+        "Street chain spelling variants and explicit street-side clauses must be preserved."
+      ]
+    }
+  ],
+  "rejectedSources": [
+    {
+      "url": "https://nyeh.hu/varosreszek",
+      "municipality": "Nyíregyháza",
+      "reason": "The site explicitly describes assigning eachmunicipal point to the nearestquarter center; Voronoi proximity is not a sourcedneighborhood boundary."
+    },
+    {
+      "url": "https://services5.arcgis.com/WB7BaTnYFoeERRZC/ArcGIS/rest/services/Szeged/FeatureServer",
+      "municipality": "Szeged",
+      "reason": "Indexedservice title alone; municipalownership, theme, geometrytype, layerIDs andlicense notverified. Notimported."
+    }
+  ]
+}

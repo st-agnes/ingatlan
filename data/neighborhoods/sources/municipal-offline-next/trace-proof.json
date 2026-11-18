@@ -1,0 +1,422 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Three further fine Kecskemét quarter source circuits, not complete city coverage.",
+  "inputs": [
+    {
+      "path": "kecskemet-all-local-roads.geojson",
+      "sha256": "c8a1efef355fa22f676098d5dbf557bf2f308920c4af6da42ad58fce80c77a86"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-maps-next/kecskemet-source-pages.pdf",
+      "sha256": "9b8663136f085c0c7ec307c3e92cbad02937336b5c5265f67128d623b45df2ee"
+    },
+    {
+      "path": "north-review.json",
+      "sha256": "fb935841f7c9e9055d3e39327226ec51e6ebaa0f42c9df737e6e2abc668bba7d"
+    }
+  ],
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "sourcePdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+  "namePointSnapshotDecompressedSha256": "05c02b8ac8f32df2d917e01f6de81c6133c5e7dd527114f67000b43467a3a048",
+  "municipalitySnapshotDecompressedSha256": "b9cf74fc6a3a4769f7f4e4d01497fa217c7ee79dfc1c55f1fa6c66eabe281d56",
+  "municipalitySourceId": "osm:relation:1130433",
+  "featureCount": 3,
+  "features": [
+    {
+      "name": "Bethlenváros",
+      "literalSourceBoundaryText": "Bethlen körút - Rákóczi út - Koháry István körút - Jókai utca",
+      "currentCoreStreetNames": [
+        "Bethlen körút",
+        "Rákóczi út",
+        "Koháry István körút",
+        "Jókai utca"
+      ],
+      "mapConfirmedTransitionNames": [
+        "Piaristák tere"
+      ],
+      "actualBoundaryNamesUsed": [
+        "",
+        "Bethlen körút",
+        "Jókai utca",
+        "Koháry István körút",
+        "Piaristák tere",
+        "Rákóczi út"
+      ],
+      "sourceWayIdsUsed": [
+        "osm:way:1484251196",
+        "osm:way:1516152859",
+        "osm:way:1516152861",
+        "osm:way:1537752338",
+        "osm:way:237950829",
+        "osm:way:237950831",
+        "osm:way:248976499",
+        "osm:way:248976508",
+        "osm:way:265204534",
+        "osm:way:30007279",
+        "osm:way:308226351",
+        "osm:way:308482959",
+        "osm:way:40694716",
+        "osm:way:40695395",
+        "osm:way:416268352",
+        "osm:way:416268353",
+        "osm:way:416268354",
+        "osm:way:416268370",
+        "osm:way:416268372",
+        "osm:way:419057565",
+        "osm:way:421560887",
+        "osm:way:435407313",
+        "osm:way:495082721",
+        "osm:way:599070160",
+        "osm:way:599070188",
+        "osm:way:599070189"
+      ],
+      "unnamedSourceWaysUsed": [
+        {
+          "sourceId": "osm:way:30007279",
+          "lengthUsedM": 53.43458927457709,
+          "tags": {
+            "highway": "primary",
+            "lane_markings": "yes",
+            "lanes": "4",
+            "maxspeed": "50",
+            "priority_road": "yes",
+            "ref": "441",
+            "surface": "asphalt"
+          }
+        },
+        {
+          "sourceId": "osm:way:308226351",
+          "lengthUsedM": 98.08002842925005,
+          "tags": {
+            "highway": "service",
+            "oneway": "yes",
+            "surface": "asphalt"
+          }
+        },
+        {
+          "sourceId": "osm:way:416268352",
+          "lengthUsedM": 73.56662804076552,
+          "tags": {
+            "cycleway:right": "no",
+            "foot": "no",
+            "highway": "tertiary_link",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "oneway": "yes",
+            "sidewalk": "no",
+            "surface": "asphalt",
+            "turn:lanes": "right"
+          }
+        }
+      ],
+      "valid": true,
+      "closed": true,
+      "holes": 0,
+      "vertices": 107,
+      "allEdgesAreOriginalConsecutiveNodeEdges": true,
+      "inferredConnectors": 0,
+      "gradeSeparatedSourceWaysUsed": 0,
+      "fullyInsideCanonicalMunicipality": true,
+      "areaM2": 509589.1281028155,
+      "sourceNameEvidence": {
+        "status": "same_snapshot_label_inside",
+        "sourceId": "osm:node:984225151",
+        "name": "Bethlenváros",
+        "independentOfOsmProvider": false
+      }
+    },
+    {
+      "name": "Homoki-domb",
+      "literalSourceBoundaryText": "Széchenyi körút - Jókai utca - Hornyik János körút – Petőfi Sándor utca.",
+      "currentCoreStreetNames": [
+        "Széchenyi körút",
+        "Jókai utca",
+        "Hornyik János körút",
+        "Petőfi Sándor utca"
+      ],
+      "mapConfirmedTransitionNames": [
+        "Piaristák tere",
+        "Széchenyi tér",
+        "Szilády Károly utca",
+        "Kölcsey utca",
+        "Gáspár András körút",
+        "Mária körút"
+      ],
+      "actualBoundaryNamesUsed": [
+        "",
+        "Hornyik János körút",
+        "Jókai utca",
+        "Kölcsey utca",
+        "Mária körút",
+        "Petőfi Sándor utca",
+        "Piaristák tere",
+        "Szilády Károly utca",
+        "Széchenyi körút",
+        "Széchenyi tér"
+      ],
+      "sourceWayIdsUsed": [
+        "osm:way:1503947678",
+        "osm:way:1516152859",
+        "osm:way:1516152861",
+        "osm:way:1550573064",
+        "osm:way:180171789",
+        "osm:way:237950833",
+        "osm:way:248405154",
+        "osm:way:308482960",
+        "osm:way:308483085",
+        "osm:way:40712294",
+        "osm:way:40771062",
+        "osm:way:40771095",
+        "osm:way:40771101",
+        "osm:way:412223431",
+        "osm:way:416268353",
+        "osm:way:416268355",
+        "osm:way:416268363",
+        "osm:way:416268364",
+        "osm:way:427779015",
+        "osm:way:427779017",
+        "osm:way:428796225",
+        "osm:way:436543252",
+        "osm:way:436543253",
+        "osm:way:599070188",
+        "osm:way:599070189",
+        "osm:way:599070272",
+        "osm:way:768453204",
+        "osm:way:768453206"
+      ],
+      "unnamedSourceWaysUsed": [
+        {
+          "sourceId": "osm:way:180171789",
+          "lengthUsedM": 78.82700629134126,
+          "tags": {
+            "highway": "tertiary_link",
+            "lane_markings": "yes",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "oneway": "yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "surface": "asphalt"
+          }
+        },
+        {
+          "sourceId": "osm:way:416268363",
+          "lengthUsedM": 67.1257825415459,
+          "tags": {
+            "cycleway:right": "no",
+            "highway": "tertiary_link",
+            "lanes": "1",
+            "lit": "yes",
+            "maxspeed": "50",
+            "maxweightrating:hgv": "5",
+            "maxweightrating:hgv:conditional": "none @ delivery",
+            "oneway": "yes",
+            "sidewalk": "right",
+            "surface": "asphalt",
+            "turn:lanes": "right"
+          }
+        },
+        {
+          "sourceId": "osm:way:1550573064",
+          "lengthUsedM": 76.98862905674096,
+          "tags": {
+            "highway": "tertiary_link",
+            "lanes": "1",
+            "maxspeed": "50",
+            "oneway": "yes",
+            "surface": "asphalt"
+          }
+        }
+      ],
+      "valid": true,
+      "closed": true,
+      "holes": 0,
+      "vertices": 136,
+      "allEdgesAreOriginalConsecutiveNodeEdges": true,
+      "inferredConnectors": 0,
+      "gradeSeparatedSourceWaysUsed": 0,
+      "fullyInsideCanonicalMunicipality": true,
+      "areaM2": 440867.8169153655,
+      "sourceNameEvidence": {
+        "status": "municipal_document_name_only",
+        "matchingCurrentOsmLabelFound": false,
+        "currentNameIndependentlyConfirmed": false
+      }
+    },
+    {
+      "name": "Rákócziváros",
+      "literalSourceBoundaryText": "Rákóczi út - Kuruc körút - Csongrádi utca - Csányi János körút",
+      "currentCoreStreetNames": [
+        "Rákóczi út",
+        "Kuruc körút",
+        "Csongrádi út",
+        "Csányi János körút"
+      ],
+      "mapConfirmedTransitionNames": [
+        "Nap utca",
+        "Kurucz tér"
+      ],
+      "actualBoundaryNamesUsed": [
+        "",
+        "Csongrádi út",
+        "Csányi János körút",
+        "Kuruc körút",
+        "Kurucz tér",
+        "Nap utca",
+        "Rákóczi út"
+      ],
+      "sourceWayIdsUsed": [
+        "osm:way:1159135130",
+        "osm:way:1159135131",
+        "osm:way:1442900445",
+        "osm:way:1442900446",
+        "osm:way:1488786703",
+        "osm:way:1497328421",
+        "osm:way:1497328424",
+        "osm:way:1541089581",
+        "osm:way:1541089583",
+        "osm:way:1541089587",
+        "osm:way:1546761077",
+        "osm:way:248405159",
+        "osm:way:248973372",
+        "osm:way:248976500",
+        "osm:way:261970423",
+        "osm:way:261970466",
+        "osm:way:261970476",
+        "osm:way:261971006",
+        "osm:way:400881772",
+        "osm:way:405332307",
+        "osm:way:40694701",
+        "osm:way:40694896",
+        "osm:way:40695396",
+        "osm:way:407203981",
+        "osm:way:407203982",
+        "osm:way:40813324",
+        "osm:way:615838306",
+        "osm:way:731569268",
+        "osm:way:731569271",
+        "osm:way:731569272",
+        "osm:way:789874843",
+        "osm:way:789874844",
+        "osm:way:789874849"
+      ],
+      "unnamedSourceWaysUsed": [
+        {
+          "sourceId": "osm:way:261970466",
+          "lengthUsedM": 39.742787476192795,
+          "tags": {
+            "highway": "service",
+            "maxspeed": "50",
+            "oneway": "yes",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          }
+        },
+        {
+          "sourceId": "osm:way:261970476",
+          "lengthUsedM": 94.11785234348723,
+          "tags": {
+            "highway": "service",
+            "oneway": "yes",
+            "surface": "asphalt"
+          }
+        },
+        {
+          "sourceId": "osm:way:405332307",
+          "lengthUsedM": 36.27368422503711,
+          "tags": {
+            "highway": "service",
+            "maxspeed": "50",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          }
+        },
+        {
+          "sourceId": "osm:way:789874843",
+          "lengthUsedM": 13.461884775427404,
+          "tags": {
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lane_markings": "yes",
+            "lanes": "2",
+            "maxspeed": "50",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          }
+        },
+        {
+          "sourceId": "osm:way:789874844",
+          "lengthUsedM": 10.275176716673522,
+          "tags": {
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lane_markings": "yes",
+            "lanes": "2",
+            "maxspeed": "50",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          }
+        },
+        {
+          "sourceId": "osm:way:789874849",
+          "lengthUsedM": 10.154196968050812,
+          "tags": {
+            "highway": "tertiary",
+            "junction": "roundabout",
+            "lane_markings": "yes",
+            "lanes": "2",
+            "maxspeed": "50",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          }
+        },
+        {
+          "sourceId": "osm:way:1159135130",
+          "lengthUsedM": 16.714616308112117,
+          "tags": {
+            "highway": "service",
+            "maxspeed": "50",
+            "oneway": "yes",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          }
+        },
+        {
+          "sourceId": "osm:way:1159135131",
+          "lengthUsedM": 15.007346038591182,
+          "tags": {
+            "highway": "service",
+            "maxspeed": "50",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          }
+        }
+      ],
+      "valid": true,
+      "closed": true,
+      "holes": 0,
+      "vertices": 138,
+      "allEdgesAreOriginalConsecutiveNodeEdges": true,
+      "inferredConnectors": 0,
+      "gradeSeparatedSourceWaysUsed": 0,
+      "fullyInsideCanonicalMunicipality": true,
+      "areaM2": 358086.98919335473,
+      "sourceNameEvidence": {
+        "status": "same_snapshot_label_inside",
+        "sourceId": "osm:node:984225154",
+        "name": "Rákócziváros",
+        "independentOfOsmProvider": false
+      }
+    }
+  ],
+  "outputSha256": "da90ced61c34c7a1b2b142daf46f8937cce7f00cb0932e9685fc32ce2b3ef05b",
+  "usableForAddressAssignment": false,
+  "reproduce": "PYTHONPATH=.local/geodata python3 scripts/neighborhoods/derive-offline-next.py --check",
+  "limits": [
+    "Source geometry, municipal facts and visual corridor matching do not establish present official/legal boundaries.",
+    "Homoki-domb current-name status remains explicitly unverified.",
+    "The raw road acquisition rectangle and junction-neighborhood selection distance never define quarter extents."
+  ]
+}

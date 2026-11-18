@@ -1,0 +1,5454 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "osm:way:4432187",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 4432187,
+          "url": "https://www.openstreetmap.org/way/4432187",
+          "nodeRefs": [
+            2195024081,
+            5833429474,
+            643438167,
+            2195024074
+          ],
+          "objectVersion": 31,
+          "objectTimestamp": "2024-04-03 18:46:28+00:00",
+          "tags": {
+            "bicycle": "designated",
+            "cycleway:both": "no",
+            "highway": "tertiary",
+            "incline": "down",
+            "lanes": "1",
+            "maxspeed": "30",
+            "name": "Torontál tér",
+            "oneway": "yes",
+            "sidewalk": "separate",
+            "smoothness": "good",
+            "source:maxspeed": "sign",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes": "slight_right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1582165,
+            46.24922
+          ],
+          [
+            20.1582825,
+            46.2491517
+          ],
+          [
+            20.1583428,
+            46.2490876
+          ],
+          [
+            20.1583946,
+            46.2489997
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:4825440",
+      "properties": {
+        "name": "Szőregi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 4825440,
+          "url": "https://www.openstreetmap.org/way/4825440",
+          "nodeRefs": [
+            30437026,
+            2148354169
+          ],
+          "objectVersion": 26,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "highway": "primary",
+            "lanes": "1",
+            "maxspeed": "40",
+            "name": "Szőregi út",
+            "oneway": "yes",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "1910",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1622912,
+            46.2433437
+          ],
+          [
+            20.1622978,
+            46.2432202
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:8152561",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 8152561,
+          "url": "https://www.openstreetmap.org/way/8152561",
+          "nodeRefs": [
+            27186044,
+            4131408410,
+            8675838442
+          ],
+          "objectVersion": 25,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "3",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|through|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1669579,
+            46.249969
+          ],
+          [
+            20.1669227,
+            46.2498945
+          ],
+          [
+            20.1668603,
+            46.2497705
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:208988763",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 208988763,
+          "url": "https://www.openstreetmap.org/way/208988763",
+          "nodeRefs": [
+            347635118,
+            5837072210,
+            7828889436,
+            10992709077,
+            10992709078,
+            5837072209
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2023-09-30 21:26:41+00:00",
+          "tags": {
+            "electrified": "no",
+            "gauge": "1435",
+            "maxspeed": "30",
+            "operator": "MÁV",
+            "railway": "rail",
+            "railway:etcs": "no",
+            "railway:evm": "no",
+            "railway:lzb": "no",
+            "railway:pzb": "no",
+            "railway:track_ref": "04",
+            "railway:track_type": "minor",
+            "service": "yard",
+            "source:maxspeed": "MERÁFI"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1633483,
+            46.2408765
+          ],
+          [
+            20.1638616,
+            46.2406357
+          ],
+          [
+            20.1640346,
+            46.2405468
+          ],
+          [
+            20.1641225,
+            46.2404971
+          ],
+          [
+            20.1642117,
+            46.2404456
+          ],
+          [
+            20.1643546,
+            46.2403642
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:209280293",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 209280293,
+          "url": "https://www.openstreetmap.org/way/209280293",
+          "nodeRefs": [
+            4001673423,
+            9323806084,
+            5833429475
+          ],
+          "objectVersion": 27,
+          "objectTimestamp": "2026-02-16 13:44:31+00:00",
+          "tags": {
+            "access:lanes": "yes|no",
+            "bicycle": "yes",
+            "bicycle:lanes": "no|designated",
+            "cycleway:lanes": "no|lane",
+            "cycleway:right": "lane",
+            "cycleway:right:lane": "exclusive",
+            "highway": "tertiary",
+            "incline": "up",
+            "lanes": "1",
+            "maxspeed": "50",
+            "name": "Torontál tér",
+            "oneway": "yes",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "width:lanes": "3|1"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.158542,
+            46.2491125
+          ],
+          [
+            20.1585112,
+            46.2491432
+          ],
+          [
+            20.1584752,
+            46.249179
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:209280294",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 209280294,
+          "url": "https://www.openstreetmap.org/way/209280294",
+          "nodeRefs": [
+            2195024070,
+            7316522838,
+            7316522856
+          ],
+          "objectVersion": 29,
+          "objectTimestamp": "2023-10-24 10:08:34+00:00",
+          "tags": {
+            "access:lanes": "yes|yes|yes|no",
+            "bicycle:lanes": "no|designated|no|designated",
+            "cycleway:lanes": "no|lane|no|lane",
+            "cycleway:left": "no",
+            "cycleway:right": "lane",
+            "cycleway:right:lane": "exclusive",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lcn": "yes",
+            "maxspeed": "50",
+            "name": "Torontál tér",
+            "oneway": "yes",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes": "through|through|slight_right|slight_right",
+            "vehicle:lanes": "designated|yes|designated|no",
+            "width:lanes": "3|1|3|1"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1586898,
+            46.2485663
+          ],
+          [
+            20.1586819,
+            46.2486115
+          ],
+          [
+            20.1586729,
+            46.2487061
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:209280301",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 209280301,
+          "url": "https://www.openstreetmap.org/way/209280301",
+          "nodeRefs": [
+            6502119410,
+            10977671705,
+            27191041,
+            27191042,
+            644932241,
+            4040863318,
+            5839640204,
+            644932244,
+            3988829849,
+            5839640205
+          ],
+          "objectVersion": 27,
+          "objectTimestamp": "2023-10-24 10:08:31+00:00",
+          "tags": {
+            "bicycle:backward": "use_sidepath",
+            "bicycle:forward": "yes",
+            "bicycle:lanes:backward": "no|no",
+            "cycleway:left": "separate",
+            "cycleway:right": "shared_lane",
+            "cycleway:right:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "oneway": "no",
+            "oneway:bicycle": "yes",
+            "parking:lane:both": "no_parking",
+            "psv:lanes:backward": "designated|yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1594089,
+            46.2477531
+          ],
+          [
+            20.160141,
+            46.2471771
+          ],
+          [
+            20.1602362,
+            46.2471022
+          ],
+          [
+            20.1609014,
+            46.2465811
+          ],
+          [
+            20.1613037,
+            46.2462727
+          ],
+          [
+            20.1616001,
+            46.2460732
+          ],
+          [
+            20.1618031,
+            46.2459489
+          ],
+          [
+            20.1620135,
+            46.2458317
+          ],
+          [
+            20.1620962,
+            46.245789
+          ],
+          [
+            20.1623893,
+            46.2456434
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:209280331",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 209280331,
+          "url": "https://www.openstreetmap.org/way/209280331",
+          "nodeRefs": [
+            2195024043,
+            12745142465,
+            2195024038
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2025-04-10 17:42:21+00:00",
+          "tags": {
+            "highway": "living_street",
+            "maxspeed": "20",
+            "name": "Székely sor",
+            "source:maxspeed": "HU:living_street",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1598974,
+            46.2469027
+          ],
+          [
+            20.1599428,
+            46.2468662
+          ],
+          [
+            20.1603058,
+            46.2465739
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:231722415",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 231722415,
+          "url": "https://www.openstreetmap.org/way/231722415",
+          "nodeRefs": [
+            27185882,
+            4231008250,
+            8725200847
+          ],
+          "objectVersion": 14,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "4",
+            "lanes:backward": "2",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "through|through;right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1653662,
+            46.247231
+          ],
+          [
+            20.165317,
+            46.2471474
+          ],
+          [
+            20.1652826,
+            46.2470899
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:231722416",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 231722416,
+          "url": "https://www.openstreetmap.org/way/231722416",
+          "nodeRefs": [
+            27190732,
+            4231008247,
+            3699202226
+          ],
+          "objectVersion": 13,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "3",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|through|through;right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1639921,
+            46.2449933
+          ],
+          [
+            20.1639005,
+            46.24491
+          ],
+          [
+            20.1636213,
+            46.2446562
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:235059102",
+      "properties": {
+        "name": "Alsó kikötő sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 235059102,
+          "url": "https://www.openstreetmap.org/way/235059102",
+          "nodeRefs": [
+            413274371,
+            413274372,
+            10814838479,
+            3983011884,
+            1119810158,
+            413274375,
+            413274376,
+            413274377,
+            413274378,
+            3698798939,
+            1119810336,
+            1119810170,
+            413274379,
+            413274380,
+            413274381
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2023-04-15 16:39:28+00:00",
+          "tags": {
+            "embankment": "yes",
+            "highway": "residential",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Alsó kikötő sor",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.152819,
+            46.2388857
+          ],
+          [
+            20.1525612,
+            46.2384322
+          ],
+          [
+            20.1525423,
+            46.2383994
+          ],
+          [
+            20.1523492,
+            46.2380634
+          ],
+          [
+            20.1520519,
+            46.237549
+          ],
+          [
+            20.1512601,
+            46.2361669
+          ],
+          [
+            20.1509502,
+            46.2356342
+          ],
+          [
+            20.1507801,
+            46.235324
+          ],
+          [
+            20.1507668,
+            46.2351941
+          ],
+          [
+            20.1507889,
+            46.2350918
+          ],
+          [
+            20.1508419,
+            46.2349787
+          ],
+          [
+            20.1508972,
+            46.2349023
+          ],
+          [
+            20.1509456,
+            46.2348492
+          ],
+          [
+            20.1510663,
+            46.2347586
+          ],
+          [
+            20.1512333,
+            46.2346898
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:235059161",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 235059161,
+          "url": "https://www.openstreetmap.org/way/235059161",
+          "nodeRefs": [
+            2195024087,
+            1184569013,
+            5833429480,
+            5833429477,
+            643438163,
+            5833429478,
+            5833429479,
+            2195024084,
+            9323806082,
+            2195024091
+          ],
+          "objectVersion": 18,
+          "objectTimestamp": "2026-02-16 13:44:25+00:00",
+          "tags": {
+            "bicycle": "no",
+            "cycleway:both": "no",
+            "highway": "tertiary",
+            "incline": "up",
+            "lanes": "1",
+            "maxspeed": "50",
+            "name": "Torontál tér",
+            "oneway": "yes",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1589016,
+            46.2492877
+          ],
+          [
+            20.158858,
+            46.2492639
+          ],
+          [
+            20.1588098,
+            46.2492472
+          ],
+          [
+            20.1587654,
+            46.2492371
+          ],
+          [
+            20.1587225,
+            46.2492317
+          ],
+          [
+            20.1586651,
+            46.2492304
+          ],
+          [
+            20.1586153,
+            46.2492349
+          ],
+          [
+            20.1585159,
+            46.2492522
+          ],
+          [
+            20.1583973,
+            46.2492855
+          ],
+          [
+            20.1583039,
+            46.2493117
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:237092318",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 237092318,
+          "url": "https://www.openstreetmap.org/way/237092318",
+          "nodeRefs": [
+            2148354176,
+            8293842239,
+            972498852
+          ],
+          "objectVersion": 12,
+          "objectTimestamp": "2023-10-24 10:08:30+00:00",
+          "tags": {
+            "cycleway:both": "lane",
+            "cycleway:both:lane": "exclusive",
+            "highway": "tertiary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1632924,
+            46.2452688
+          ],
+          [
+            20.1637687,
+            46.2450807
+          ],
+          [
+            20.1638366,
+            46.2450539
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:237092319",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 237092319,
+          "url": "https://www.openstreetmap.org/way/237092319",
+          "nodeRefs": [
+            3699202226,
+            30437024,
+            3699202230,
+            30437025
+          ],
+          "objectVersion": 13,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "oneway": "yes",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes": "through|through;right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1636213,
+            46.2446562
+          ],
+          [
+            20.163176,
+            46.24434
+          ],
+          [
+            20.162688,
+            46.2439185
+          ],
+          [
+            20.1624765,
+            46.2437244
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:365879305",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 365879305,
+          "url": "https://www.openstreetmap.org/way/365879305",
+          "nodeRefs": [
+            347635117,
+            10992709069,
+            10992709067,
+            10992709068,
+            5837072212,
+            5837072213,
+            10992681267,
+            10992681268,
+            3698795598,
+            10992681269,
+            10992709031,
+            10992709035,
+            3698795599,
+            10992709032,
+            3698795600,
+            10992709033,
+            5837072215,
+            3698795601,
+            3698795602,
+            10992709008,
+            10992709010,
+            3698795605,
+            10992709012,
+            10992709006,
+            10992709016,
+            10992709014,
+            7828889435,
+            1118753557
+          ],
+          "objectVersion": 11,
+          "objectTimestamp": "2024-07-13 15:35:56+00:00",
+          "tags": {
+            "axle_load": "17",
+            "electrified": "no",
+            "gauge": "1435",
+            "loading_gauge": "TSI_GC",
+            "maxspeed": "30",
+            "operator": "MÁV",
+            "passenger_lines": "1",
+            "railway": "rail",
+            "railway:ballastless": "no",
+            "railway:bidirectional": "regular",
+            "railway:etcs": "no",
+            "railway:evm": "no",
+            "railway:lzb": "no",
+            "railway:preferred_direction": "both",
+            "railway:pzb": "no",
+            "railway:rail": "jointed",
+            "railway:track_class": "B2",
+            "railway:track_ref": "02",
+            "railway:track_type": "main",
+            "railway:traffic_mode": "mixed",
+            "ref": "121",
+            "source:maxspeed": "MERÁFI",
+            "usage": "branch"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1639854,
+            46.2405093
+          ],
+          [
+            20.1638191,
+            46.2406009
+          ],
+          [
+            20.1637628,
+            46.240632
+          ],
+          [
+            20.1637091,
+            46.2406603
+          ],
+          [
+            20.1636501,
+            46.240689
+          ],
+          [
+            20.1632866,
+            46.2408527
+          ],
+          [
+            20.1631583,
+            46.2409098
+          ],
+          [
+            20.1630248,
+            46.2409669
+          ],
+          [
+            20.1628062,
+            46.2410575
+          ],
+          [
+            20.162715,
+            46.2410944
+          ],
+          [
+            20.1626228,
+            46.241131
+          ],
+          [
+            20.1625242,
+            46.2411681
+          ],
+          [
+            20.1622018,
+            46.2412848
+          ],
+          [
+            20.162087,
+            46.241324
+          ],
+          [
+            20.1619729,
+            46.2413621
+          ],
+          [
+            20.1618329,
+            46.2414074
+          ],
+          [
+            20.1617004,
+            46.2414485
+          ],
+          [
+            20.1615443,
+            46.2414945
+          ],
+          [
+            20.1601155,
+            46.2418939
+          ],
+          [
+            20.1592888,
+            46.2421216
+          ],
+          [
+            20.1591836,
+            46.2421485
+          ],
+          [
+            20.1590485,
+            46.2421814
+          ],
+          [
+            20.1588872,
+            46.2422195
+          ],
+          [
+            20.1587584,
+            46.2422475
+          ],
+          [
+            20.1586297,
+            46.2422747
+          ],
+          [
+            20.1584205,
+            46.242316
+          ],
+          [
+            20.1582133,
+            46.2423547
+          ],
+          [
+            20.1576061,
+            46.2424564
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:365920629",
+      "properties": {
+        "name": "Szőregi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 365920629,
+          "url": "https://www.openstreetmap.org/way/365920629",
+          "nodeRefs": [
+            30437028,
+            3699202238,
+            3699202237,
+            3699201516,
+            3699201517,
+            3699201518,
+            4001325557
+          ],
+          "objectVersion": 13,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Szőregi út",
+            "oneway": "yes",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "1910",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes": "left|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1627482,
+            46.2426489
+          ],
+          [
+            20.162632,
+            46.2427816
+          ],
+          [
+            20.1625533,
+            46.242874
+          ],
+          [
+            20.1624702,
+            46.243024
+          ],
+          [
+            20.1624631,
+            46.2430427
+          ],
+          [
+            20.1624418,
+            46.2431141
+          ],
+          [
+            20.1624299,
+            46.243183
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:365920630",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 365920630,
+          "url": "https://www.openstreetmap.org/way/365920630",
+          "nodeRefs": [
+            4001325562,
+            3699201522,
+            3699201523,
+            3699201524,
+            3699202225,
+            4010290552,
+            3699202226
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "oneway": "yes",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1624619,
+            46.2434492
+          ],
+          [
+            20.1624864,
+            46.2435084
+          ],
+          [
+            20.1625331,
+            46.2435917
+          ],
+          [
+            20.1625923,
+            46.2436712
+          ],
+          [
+            20.1626619,
+            46.2437471
+          ],
+          [
+            20.1632882,
+            46.2442841
+          ],
+          [
+            20.1636213,
+            46.2446562
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:365920635",
+      "properties": {
+        "name": "Szőregi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 365920635,
+          "url": "https://www.openstreetmap.org/way/365920635",
+          "nodeRefs": [
+            30437028,
+            2148354167,
+            643083797,
+            643083799,
+            3362043259,
+            12628086074,
+            643083794,
+            3698799022,
+            3362043256
+          ],
+          "objectVersion": 17,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "embankment": "yes",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Szőregi út",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "1910",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1627482,
+            46.2426489
+          ],
+          [
+            20.1629262,
+            46.242507
+          ],
+          [
+            20.1632086,
+            46.242287
+          ],
+          [
+            20.1642335,
+            46.2414825
+          ],
+          [
+            20.1643955,
+            46.2413548
+          ],
+          [
+            20.1651369,
+            46.2407705
+          ],
+          [
+            20.1652689,
+            46.2406665
+          ],
+          [
+            20.1652997,
+            46.2406422
+          ],
+          [
+            20.1665488,
+            46.2396685
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:395000794",
+      "properties": {
+        "name": "Alsó kikötő sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 395000794,
+          "url": "https://www.openstreetmap.org/way/395000794",
+          "nodeRefs": [
+            410220987,
+            6614686515,
+            6533651124,
+            4037362971,
+            410220989,
+            4781391994,
+            1118753468
+          ],
+          "objectVersion": 12,
+          "objectTimestamp": "2023-04-15 16:39:28+00:00",
+          "tags": {
+            "embankment": "yes",
+            "highway": "residential",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Alsó kikötő sor",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1564182,
+            46.2477681
+          ],
+          [
+            20.1563562,
+            46.2475305
+          ],
+          [
+            20.1560741,
+            46.2464495
+          ],
+          [
+            20.1559125,
+            46.2459283
+          ],
+          [
+            20.1557011,
+            46.2453555
+          ],
+          [
+            20.1554044,
+            46.2446522
+          ],
+          [
+            20.1553388,
+            46.2444969
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:397337627",
+      "properties": {
+        "name": "Szőregi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 397337627,
+          "url": "https://www.openstreetmap.org/way/397337627",
+          "nodeRefs": [
+            4001325557,
+            4216395862,
+            13653300948,
+            4001325558,
+            13653300947,
+            30437026
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2026-03-16 20:00:11+00:00",
+          "tags": {
+            "highway": "residential",
+            "lane_markings": "no",
+            "name": "Szőregi út",
+            "oneway": "yes",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1624299,
+            46.243183
+          ],
+          [
+            20.1624044,
+            46.2432283
+          ],
+          [
+            20.1623835,
+            46.2432628
+          ],
+          [
+            20.1623626,
+            46.2432925
+          ],
+          [
+            20.1623368,
+            46.2433144
+          ],
+          [
+            20.1622912,
+            46.2433437
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:418996066",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 418996066,
+          "url": "https://www.openstreetmap.org/way/418996066",
+          "nodeRefs": [
+            4001319630,
+            2148354172,
+            3699202233,
+            30437026
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "1",
+            "maxspeed": "40",
+            "name": "Temesvári körút",
+            "oneway": "yes",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.162351,
+            46.2435546
+          ],
+          [
+            20.1623218,
+            46.2434857
+          ],
+          [
+            20.162302,
+            46.2434151
+          ],
+          [
+            20.1622912,
+            46.2433437
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:419482495",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 419482495,
+          "url": "https://www.openstreetmap.org/way/419482495",
+          "nodeRefs": [
+            7807729388,
+            5745992836,
+            7017221277,
+            7807729386,
+            5745773440
+          ],
+          "objectVersion": 13,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bridge": "yes",
+            "class:bicycle": "-2",
+            "class:bicycle:non_experienced": "-3",
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "2",
+            "lanes:forward": "3",
+            "layer": "1",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "psv:lanes:forward": "||designated",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1668492,
+            46.2520814
+          ],
+          [
+            20.1668818,
+            46.2516497
+          ],
+          [
+            20.1668924,
+            46.2514621
+          ],
+          [
+            20.1669101,
+            46.2511462
+          ],
+          [
+            20.1669268,
+            46.2508497
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:428251518",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 428251518,
+          "url": "https://www.openstreetmap.org/way/428251518",
+          "nodeRefs": [
+            4273793478,
+            4273793480
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2026-02-08 17:02:43+00:00",
+          "tags": {
+            "bridge": "yes",
+            "gauge": "1435",
+            "layer": "1",
+            "proposed:railway": "rail",
+            "railway": "proposed",
+            "source": "SZÉSZ"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1490619,
+            46.2409743
+          ],
+          [
+            20.1532744,
+            46.2403481
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:428251519",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 428251519,
+          "url": "https://www.openstreetmap.org/way/428251519",
+          "nodeRefs": [
+            4273793480,
+            13534597271,
+            13534597272,
+            4273793481,
+            13534597275,
+            13534597274,
+            13534597276,
+            13534597273,
+            13534597277,
+            13534597278,
+            13534597279,
+            4273793482,
+            4273793497,
+            4273793498
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2026-02-08 17:02:43+00:00",
+          "tags": {
+            "gauge": "1435",
+            "proposed:railway": "rail",
+            "railway": "proposed",
+            "source": "SZÉSZ"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1532744,
+            46.2403481
+          ],
+          [
+            20.1543576,
+            46.2401799
+          ],
+          [
+            20.1553805,
+            46.240042
+          ],
+          [
+            20.1563973,
+            46.2399462
+          ],
+          [
+            20.1576188,
+            46.2399835
+          ],
+          [
+            20.1586246,
+            46.2401019
+          ],
+          [
+            20.1597682,
+            46.2402678
+          ],
+          [
+            20.1607885,
+            46.24034
+          ],
+          [
+            20.1620708,
+            46.2402518
+          ],
+          [
+            20.1632629,
+            46.2400993
+          ],
+          [
+            20.1643067,
+            46.2398862
+          ],
+          [
+            20.1653224,
+            46.2396054
+          ],
+          [
+            20.166038,
+            46.2393037
+          ],
+          [
+            20.1666576,
+            46.2389683
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:431589169",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 431589169,
+          "url": "https://www.openstreetmap.org/way/431589169",
+          "nodeRefs": [
+            1178890000,
+            2192394930,
+            5969688733,
+            347635111,
+            2192394959,
+            347635112,
+            347635113,
+            347635114,
+            2192394909,
+            347635115,
+            2192394956,
+            347635116,
+            5837072206,
+            3698795597,
+            2192394928,
+            5837072207
+          ],
+          "objectVersion": 14,
+          "objectTimestamp": "2024-07-13 15:35:56+00:00",
+          "tags": {
+            "axle_load": "17",
+            "electrified": "no",
+            "gauge": "1435",
+            "loading_gauge": "TSI_GC",
+            "maxspeed": "60",
+            "operator": "MÁV",
+            "passenger_lines": "1",
+            "railway": "rail",
+            "railway:ballastless": "no",
+            "railway:bidirectional": "regular",
+            "railway:etcs": "no",
+            "railway:evm": "no",
+            "railway:lzb": "no",
+            "railway:preferred_direction": "both",
+            "railway:pzb": "no",
+            "railway:rail": "jointed",
+            "railway:track_class": "B2",
+            "railway:track_type": "main",
+            "railway:traffic_mode": "mixed",
+            "ref": "121",
+            "usage": "branch"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1737957,
+            46.229079
+          ],
+          [
+            20.171306,
+            46.2340735
+          ],
+          [
+            20.1712064,
+            46.2342702
+          ],
+          [
+            20.1710724,
+            46.2345066
+          ],
+          [
+            20.1708679,
+            46.2348239
+          ],
+          [
+            20.1705823,
+            46.2351998
+          ],
+          [
+            20.169742,
+            46.2362343
+          ],
+          [
+            20.1692052,
+            46.2368366
+          ],
+          [
+            20.168698,
+            46.2373325
+          ],
+          [
+            20.1678304,
+            46.2380884
+          ],
+          [
+            20.1672293,
+            46.2385813
+          ],
+          [
+            20.1667217,
+            46.2389391
+          ],
+          [
+            20.1663903,
+            46.2391572
+          ],
+          [
+            20.1660541,
+            46.2393693
+          ],
+          [
+            20.1652962,
+            46.2398179
+          ],
+          [
+            20.1650794,
+            46.2399414
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:432929279",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 432929279,
+          "url": "https://www.openstreetmap.org/way/432929279",
+          "nodeRefs": [
+            27186093,
+            4131408412,
+            27186044
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "2",
+            "lanes:forward": "3",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1669448,
+            46.2503756
+          ],
+          [
+            20.1669594,
+            46.2500282
+          ],
+          [
+            20.1669579,
+            46.249969
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:432929548",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 432929548,
+          "url": "https://www.openstreetmap.org/way/432929548",
+          "nodeRefs": [
+            2196056162,
+            7017083490
+          ],
+          "objectVersion": 12,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "6",
+            "lanes:backward": "4",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|through|through|right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1667699,
+            46.2495911
+          ],
+          [
+            20.1665289,
+            46.2491855
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:456421148",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 456421148,
+          "url": "https://www.openstreetmap.org/way/456421148",
+          "nodeRefs": [
+            4526823579,
+            4526823578,
+            3497254919,
+            1232200069
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2019-11-13 10:44:29+00:00",
+          "tags": {
+            "highway": "residential",
+            "lit": "yes",
+            "maxspeed": "30",
+            "name": "Temesvári körút",
+            "surface": "asphalt",
+            "zone:maxspeed": "HU:30"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1671395,
+            46.251284
+          ],
+          [
+            20.1671447,
+            46.2512066
+          ],
+          [
+            20.167178,
+            46.250846
+          ],
+          [
+            20.1672506,
+            46.2507852
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:605919360",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 605919360,
+          "url": "https://www.openstreetmap.org/way/605919360",
+          "nodeRefs": [
+            5745773440,
+            7807729387
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "class:bicycle": "-2",
+            "class:bicycle:non_experienced": "-3",
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "6",
+            "lanes:backward": "2",
+            "lanes:forward": "4",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "psv:lanes:forward": "||yes|designated",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through|through|"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1669268,
+            46.2508497
+          ],
+          [
+            20.1669382,
+            46.2505476
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:617783957",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 617783957,
+          "url": "https://www.openstreetmap.org/way/617783957",
+          "nodeRefs": [
+            2195024037,
+            2195024033,
+            5839640213,
+            5839640212
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2019-06-21 15:20:13+00:00",
+          "tags": {
+            "highway": "living_street",
+            "maxspeed": "20",
+            "name": "Székely sor",
+            "source:maxspeed": "HU:living_street",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1600658,
+            46.2464308
+          ],
+          [
+            20.1602426,
+            46.2463039
+          ],
+          [
+            20.1603419,
+            46.2462327
+          ],
+          [
+            20.1607342,
+            46.2464869
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:642943934",
+      "properties": {
+        "name": "Alsó kikötő sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 642943934,
+          "url": "https://www.openstreetmap.org/way/642943934",
+          "nodeRefs": [
+            6192390090,
+            3978855374,
+            8697537905
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2025-04-10 17:42:21+00:00",
+          "tags": {
+            "embankment": "yes",
+            "hgv": "no",
+            "highway": "residential",
+            "maxheight": "2.5",
+            "maxspeed": "30",
+            "name": "Alsó kikötő sor",
+            "surface": "paving_stones",
+            "zone:maxspeed": "HU:30"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1570151,
+            46.2495872
+          ],
+          [
+            20.157009,
+            46.2495763
+          ],
+          [
+            20.156967,
+            46.2494908
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:726030207",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 726030207,
+          "url": "https://www.openstreetmap.org/way/726030207",
+          "nodeRefs": [
+            27191038,
+            9323808626,
+            9323806116,
+            2195024066
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2023-10-24 10:08:33+00:00",
+          "tags": {
+            "bicycle": "designated",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lanes:backward": "1",
+            "lanes:forward": "1",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "oneway": "no",
+            "psv:lanes:backward": "designated",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes:backward": "left;through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1585342,
+            46.2485387
+          ],
+          [
+            20.1585884,
+            46.2484373
+          ],
+          [
+            20.1586401,
+            46.2483677
+          ],
+          [
+            20.1587042,
+            46.2483042
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:746997604",
+      "properties": {
+        "name": "Alsó kikötő sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 746997604,
+          "url": "https://www.openstreetmap.org/way/746997604",
+          "nodeRefs": [
+            1118753468,
+            410220990,
+            8082275963,
+            1119810196,
+            410220991,
+            7010708471,
+            456935063
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2025-03-15 20:39:51+00:00",
+          "tags": {
+            "embankment": "yes",
+            "highway": "residential",
+            "lanes": "2",
+            "man_made": "dyke",
+            "maxspeed": "50",
+            "name": "Alsó kikötő sor",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1553388,
+            46.2444969
+          ],
+          [
+            20.1550411,
+            46.243847
+          ],
+          [
+            20.1546713,
+            46.2430133
+          ],
+          [
+            20.1545591,
+            46.2427604
+          ],
+          [
+            20.1544893,
+            46.2425804
+          ],
+          [
+            20.1537972,
+            46.2408555
+          ],
+          [
+            20.1537651,
+            46.2407755
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:750454788",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 750454788,
+          "url": "https://www.openstreetmap.org/way/750454788",
+          "nodeRefs": [
+            30437025,
+            3699202231,
+            3699202232,
+            4001319630
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed": "40",
+            "name": "Temesvári körút",
+            "oneway": "yes",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "surface": "asphalt",
+            "turn:lanes": "through|right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1624765,
+            46.2437244
+          ],
+          [
+            20.1624303,
+            46.2436718
+          ],
+          [
+            20.1623894,
+            46.2436197
+          ],
+          [
+            20.162351,
+            46.2435546
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:750459903",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 750459903,
+          "url": "https://www.openstreetmap.org/way/750459903",
+          "nodeRefs": [
+            4049358945,
+            4231008249,
+            27190732
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "2",
+            "lanes:forward": "3",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through|through;right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1643886,
+            46.2455822
+          ],
+          [
+            20.1641147,
+            46.2451483
+          ],
+          [
+            20.1639921,
+            46.2449933
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:750459904",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 750459904,
+          "url": "https://www.openstreetmap.org/way/750459904",
+          "nodeRefs": [
+            7017083488,
+            643438172
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "2",
+            "lanes:forward": "3",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1649579,
+            46.2465476
+          ],
+          [
+            20.1647144,
+            46.2461214
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:750459905",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 750459905,
+          "url": "https://www.openstreetmap.org/way/750459905",
+          "nodeRefs": [
+            643438172,
+            4049358945
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "4",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1647144,
+            46.2461214
+          ],
+          [
+            20.1643886,
+            46.2455822
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:750459906",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 750459906,
+          "url": "https://www.openstreetmap.org/way/750459906",
+          "nodeRefs": [
+            7017083489,
+            4329722572,
+            27185882
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "2",
+            "lanes:forward": "3",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1657788,
+            46.2479121
+          ],
+          [
+            20.1654223,
+            46.2473262
+          ],
+          [
+            20.1653662,
+            46.247231
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:750459907",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 750459907,
+          "url": "https://www.openstreetmap.org/way/750459907",
+          "nodeRefs": [
+            3644699074,
+            12628086075,
+            7017083489
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "4",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1660393,
+            46.2483433
+          ],
+          [
+            20.1660084,
+            46.2482922
+          ],
+          [
+            20.1657788,
+            46.2479121
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:759068231",
+      "properties": {
+        "name": "Szőregi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 759068231,
+          "url": "https://www.openstreetmap.org/way/759068231",
+          "nodeRefs": [
+            30437026,
+            13653300945,
+            4001325561,
+            13653300946,
+            4001325562
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2026-03-16 20:00:11+00:00",
+          "tags": {
+            "highway": "residential",
+            "lane_markings": "no",
+            "name": "Szőregi út",
+            "oneway": "yes",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1622912,
+            46.2433437
+          ],
+          [
+            20.1623363,
+            46.2433562
+          ],
+          [
+            20.1623717,
+            46.2433735
+          ],
+          [
+            20.1624106,
+            46.2434039
+          ],
+          [
+            20.1624619,
+            46.2434492
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:759068235",
+      "properties": {
+        "name": "Szőregi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 759068235,
+          "url": "https://www.openstreetmap.org/way/759068235",
+          "nodeRefs": [
+            4001325557,
+            4216395863,
+            4010290553,
+            3699201521,
+            4001325562
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Szőregi út",
+            "oneway": "yes",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "1910",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1624299,
+            46.243183
+          ],
+          [
+            20.1624266,
+            46.2432304
+          ],
+          [
+            20.162434,
+            46.2433418
+          ],
+          [
+            20.1624482,
+            46.2434061
+          ],
+          [
+            20.1624619,
+            46.2434492
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:759068236",
+      "properties": {
+        "name": "Szőregi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 759068236,
+          "url": "https://www.openstreetmap.org/way/759068236",
+          "nodeRefs": [
+            2148354169,
+            3699202239,
+            30437027,
+            3699202234,
+            3699202235,
+            3699202236,
+            30437028
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "1",
+            "maxspeed": "50",
+            "name": "Szőregi út",
+            "oneway": "yes",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "1910",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1622978,
+            46.2432202
+          ],
+          [
+            20.1623257,
+            46.2431108
+          ],
+          [
+            20.1623739,
+            46.2430047
+          ],
+          [
+            20.1624415,
+            46.2429038
+          ],
+          [
+            20.1625275,
+            46.2428099
+          ],
+          [
+            20.1626303,
+            46.2427244
+          ],
+          [
+            20.1627482,
+            46.2426489
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:759435661",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 759435661,
+          "url": "https://www.openstreetmap.org/way/759435661",
+          "nodeRefs": [
+            644932226,
+            7316522800
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2023-10-24 10:08:33+00:00",
+          "tags": {
+            "bicycle": "yes",
+            "cycleway:right": "no",
+            "highway": "tertiary",
+            "lanes": "1",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "oneway": "yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes": "through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.158867,
+            46.2481701
+          ],
+          [
+            20.1588987,
+            46.2481168
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:759435662",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 759435662,
+          "url": "https://www.openstreetmap.org/way/759435662",
+          "nodeRefs": [
+            1118753420,
+            2148354176
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2023-10-24 10:08:31+00:00",
+          "tags": {
+            "bicycle": "yes",
+            "cycleway:left": "lane",
+            "cycleway:left:lane": "exclusive",
+            "cycleway:right": "shared_lane",
+            "cycleway:right:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lanes:backward": "1",
+            "lanes:forward": "1",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1626463,
+            46.2455299
+          ],
+          [
+            20.1632924,
+            46.2452688
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:759436082",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 759436082,
+          "url": "https://www.openstreetmap.org/way/759436082",
+          "nodeRefs": [
+            27191038,
+            6563677743
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2026-06-03 14:46:21+00:00",
+          "tags": {
+            "bicycle": "yes",
+            "highway": "residential",
+            "lane_markings": "no",
+            "lit": "yes",
+            "name": "Torontál tér",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "smoothness": "good",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1585342,
+            46.2485387
+          ],
+          [
+            20.1584064,
+            46.2485582
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:783408764",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 783408764,
+          "url": "https://www.openstreetmap.org/way/783408764",
+          "nodeRefs": [
+            7316522801,
+            7316522802
+          ],
+          "objectVersion": 8,
+          "objectTimestamp": "2023-10-24 10:08:32+00:00",
+          "tags": {
+            "cycleway:right": "separate",
+            "highway": "tertiary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "oneway": "yes",
+            "psv:lanes": "designated|no",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes": "left;slight_left;through|through;slight_right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1590419,
+            46.248031
+          ],
+          [
+            20.1589368,
+            46.2481438
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:783408766",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 783408766,
+          "url": "https://www.openstreetmap.org/way/783408766",
+          "nodeRefs": [
+            2195024061,
+            2195024070
+          ],
+          "objectVersion": 14,
+          "objectTimestamp": "2023-10-24 10:08:33+00:00",
+          "tags": {
+            "bicycle:lanes": "no|designated|designated",
+            "cycleway:lanes": "no|lane|no",
+            "cycleway:left": "no",
+            "cycleway:right": "lane",
+            "cycleway:right:lane": "exclusive",
+            "highway": "tertiary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "oneway": "yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes": "through|through|slight_right",
+            "vehicle:lanes": "designated|yes|designated",
+            "width:lanes": "3|1|3"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1587933,
+            46.2482335
+          ],
+          [
+            20.1586898,
+            46.2485663
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:783408767",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 783408767,
+          "url": "https://www.openstreetmap.org/way/783408767",
+          "nodeRefs": [
+            27191038,
+            2195024070
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2026-06-03 14:46:25+00:00",
+          "tags": {
+            "highway": "residential",
+            "lane_markings": "no",
+            "name": "Torontál tér",
+            "oneway": "yes",
+            "sidewalk:left": "separate",
+            "sidewalk:right": "no",
+            "smoothness": "good",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1585342,
+            46.2485387
+          ],
+          [
+            20.1586898,
+            46.2485663
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:783408774",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 783408774,
+          "url": "https://www.openstreetmap.org/way/783408774",
+          "nodeRefs": [
+            7316522801,
+            6502119410
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2023-10-24 10:08:31+00:00",
+          "tags": {
+            "bicycle:backward": "use_sidepath",
+            "bicycle:forward": "yes",
+            "bicycle:lanes:backward": "no|no",
+            "cycleway:left": "separate",
+            "cycleway:right": "shared_lane",
+            "cycleway:right:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "oneway": "no",
+            "oneway:bicycle": "yes",
+            "parking:lane:both": "parallel",
+            "psv:lanes:backward": "designated|yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left;slight_left;through|through;slight_right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1590419,
+            46.248031
+          ],
+          [
+            20.1594089,
+            46.2477531
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:783408777",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 783408777,
+          "url": "https://www.openstreetmap.org/way/783408777",
+          "nodeRefs": [
+            7316522830,
+            9323806110,
+            7316522831,
+            2168072234
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-06-03 14:46:21+00:00",
+          "tags": {
+            "highway": "residential",
+            "lane_markings": "no",
+            "name": "Torontál tér",
+            "oneway": "yes",
+            "smoothness": "good",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1584591,
+            46.2486807
+          ],
+          [
+            20.1584295,
+            46.2486464
+          ],
+          [
+            20.158393,
+            46.2486243
+          ],
+          [
+            20.1582965,
+            46.2485899
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:783408785",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 783408785,
+          "url": "https://www.openstreetmap.org/way/783408785",
+          "nodeRefs": [
+            7316522800,
+            7316522801
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2023-10-24 10:08:31+00:00",
+          "tags": {
+            "bicycle": "yes",
+            "cycleway:right": "shared_lane",
+            "cycleway:right:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "1",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "oneway": "yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1588987,
+            46.2481168
+          ],
+          [
+            20.1590419,
+            46.248031
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:783408786",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 783408786,
+          "url": "https://www.openstreetmap.org/way/783408786",
+          "nodeRefs": [
+            2168072234,
+            4001673453
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-10-17 06:11:33+00:00",
+          "tags": {
+            "bicycle": "yes",
+            "cycleway:both": "no",
+            "highway": "residential",
+            "lane_markings": "no",
+            "lit": "yes",
+            "name": "Torontál tér",
+            "sidewalk:both": "yes",
+            "smoothness": "good",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1582965,
+            46.2485899
+          ],
+          [
+            20.1581825,
+            46.2486159
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:783408787",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 783408787,
+          "url": "https://www.openstreetmap.org/way/783408787",
+          "nodeRefs": [
+            7316522830,
+            7316522836,
+            27191038
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2024-04-03 18:46:28+00:00",
+          "tags": {
+            "bicycle": "designated",
+            "cycleway:left": "no",
+            "highway": "tertiary",
+            "lanes": "1",
+            "maxspeed": "30",
+            "name": "Torontál tér",
+            "oneway": "yes",
+            "sidewalk": "separate",
+            "source:maxspeed": "sign",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1584591,
+            46.2486807
+          ],
+          [
+            20.1584867,
+            46.2486011
+          ],
+          [
+            20.1585342,
+            46.2485387
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:783408788",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 783408788,
+          "url": "https://www.openstreetmap.org/way/783408788",
+          "nodeRefs": [
+            2195024066,
+            2195024061
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2023-10-24 10:08:33+00:00",
+          "tags": {
+            "bicycle": "designated",
+            "highway": "tertiary",
+            "lanes": "2",
+            "lanes:backward": "1",
+            "lanes:forward": "1",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "oneway": "no",
+            "psv:lanes:backward": "designated",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes:backward": "left;slight_left;through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1587042,
+            46.2483042
+          ],
+          [
+            20.1587933,
+            46.2482335
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:783408789",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 783408789,
+          "url": "https://www.openstreetmap.org/way/783408789",
+          "nodeRefs": [
+            2195024061,
+            644932226
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2023-10-24 10:08:32+00:00",
+          "tags": {
+            "access:lanes:backward": "yes|yes|no",
+            "bicycle:lanes:backward": "yes|no|designated",
+            "cycleway:lanes:backward": "no|no|lane",
+            "cycleway:left": "lane",
+            "cycleway:left:lane": "exclusive",
+            "cycleway:right": "no",
+            "highway": "tertiary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "oneway": "no",
+            "psv:lanes:backward": "designated|no|no",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left;slight_left;through|through;slight_right|through;slight_right",
+            "vehicle:lanes:backward": "yes|yes|no",
+            "width:lanes:backward": "3|3|1",
+            "width:lanes:forward": "3"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1587933,
+            46.2482335
+          ],
+          [
+            20.158867,
+            46.2481701
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:783408790",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 783408790,
+          "url": "https://www.openstreetmap.org/way/783408790",
+          "nodeRefs": [
+            4001673453,
+            1118754168,
+            4001673413,
+            7266264124,
+            7266264118,
+            5904539392,
+            410220986
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2023-05-29 16:58:51+00:00",
+          "tags": {
+            "bicycle": "yes",
+            "highway": "residential",
+            "lit": "yes",
+            "name": "Torontál tér",
+            "smoothness": "good",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1581825,
+            46.2486159
+          ],
+          [
+            20.1580563,
+            46.2486535
+          ],
+          [
+            20.1579363,
+            46.2486892
+          ],
+          [
+            20.1574766,
+            46.2488261
+          ],
+          [
+            20.157417,
+            46.2488438
+          ],
+          [
+            20.1568491,
+            46.2490128
+          ],
+          [
+            20.156769,
+            46.2490222
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:783408791",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 783408791,
+          "url": "https://www.openstreetmap.org/way/783408791",
+          "nodeRefs": [
+            7316522856,
+            9323806114,
+            4037362983,
+            1837343948,
+            9323806085,
+            2195024080
+          ],
+          "objectVersion": 10,
+          "objectTimestamp": "2023-10-24 10:08:35+00:00",
+          "tags": {
+            "access:lanes": "yes|no",
+            "bicycle:lanes": "no|designated",
+            "cycleway:lanes": "no|lane",
+            "cycleway:left": "no",
+            "cycleway:right": "lane",
+            "cycleway:right:lane": "exclusive",
+            "highway": "tertiary_link",
+            "lanes": "1",
+            "maxspeed": "50",
+            "name": "Torontál tér",
+            "oneway": "yes",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "width:lanes": "3|1"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1586729,
+            46.2487061
+          ],
+          [
+            20.1587252,
+            46.2488643
+          ],
+          [
+            20.1587837,
+            46.2489951
+          ],
+          [
+            20.1587995,
+            46.2490208
+          ],
+          [
+            20.1588501,
+            46.2491041
+          ],
+          [
+            20.1588941,
+            46.2491764
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:783408792",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 783408792,
+          "url": "https://www.openstreetmap.org/way/783408792",
+          "nodeRefs": [
+            7316522856,
+            9323808627,
+            8697688882,
+            4037362982
+          ],
+          "objectVersion": 15,
+          "objectTimestamp": "2023-10-24 10:08:36+00:00",
+          "tags": {
+            "access:lanes": "yes|no",
+            "bicycle:lanes": "no|designated",
+            "cycleway:lanes": "no|lane",
+            "cycleway:left": "no",
+            "cycleway:right": "lane",
+            "cycleway:right:lane": "exclusive",
+            "highway": "tertiary",
+            "incline": "up",
+            "lanes": "1",
+            "lcn": "yes",
+            "maxspeed": "50",
+            "name": "Torontál tér",
+            "oneway": "yes",
+            "sidewalk:left": "separate",
+            "sidewalk:right": "no",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "width:lanes": "3|1"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1586729,
+            46.2487061
+          ],
+          [
+            20.1586424,
+            46.2488386
+          ],
+          [
+            20.1586218,
+            46.2489789
+          ],
+          [
+            20.1586117,
+            46.2490104
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:823482229",
+      "properties": {
+        "name": "Szőregi út",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 823482229,
+          "url": "https://www.openstreetmap.org/way/823482229",
+          "nodeRefs": [
+            3362043256,
+            13608462330,
+            643083796,
+            11951822455,
+            11784032709
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "embankment": "yes",
+            "highway": "primary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Szőregi út",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "1910",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1665488,
+            46.2396685
+          ],
+          [
+            20.1673183,
+            46.2390599
+          ],
+          [
+            20.1688127,
+            46.2378784
+          ],
+          [
+            20.1688351,
+            46.2378606
+          ],
+          [
+            20.1692289,
+            46.2375472
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:836532041",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 836532041,
+          "url": "https://www.openstreetmap.org/way/836532041",
+          "nodeRefs": [
+            7807729387,
+            7103211563,
+            27186093
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "cycleway:both": "no",
+            "highway": "primary",
+            "lanes": "6",
+            "lanes:backward": "2",
+            "lanes:forward": "4",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through|through|slight_right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1669382,
+            46.2505476
+          ],
+          [
+            20.1669436,
+            46.2504062
+          ],
+          [
+            20.1669448,
+            46.2503756
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:838938767",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 838938767,
+          "url": "https://www.openstreetmap.org/way/838938767",
+          "nodeRefs": [
+            347635118,
+            2192394940,
+            10992706444,
+            2192395006,
+            10992669904,
+            10992669903,
+            10992669902,
+            10992709043,
+            10992669901,
+            10992709042,
+            10992709039,
+            10992709041,
+            10992709040,
+            10177712111,
+            10992709038,
+            10992709036,
+            10992709037,
+            3698795603,
+            10992709044,
+            10992709048,
+            10992709045,
+            10992709050,
+            10992709046,
+            10992709049,
+            10992709047,
+            10992709051,
+            7828889437,
+            10992709052,
+            10992709053,
+            10992709054,
+            1118753557
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2023-06-20 20:17:06+00:00",
+          "tags": {
+            "electrified": "no",
+            "gauge": "1435",
+            "maxspeed": "30",
+            "operator": "MÁV",
+            "railway": "rail",
+            "railway:etcs": "no",
+            "railway:evm": "no",
+            "railway:lzb": "no",
+            "railway:pzb": "no",
+            "railway:track_ref": "01",
+            "railway:track_type": "main",
+            "service": "siding",
+            "source:maxspeed": "MERÁFI"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1633483,
+            46.2408765
+          ],
+          [
+            20.1630577,
+            46.2410092
+          ],
+          [
+            20.1628449,
+            46.2410941
+          ],
+          [
+            20.1626305,
+            46.2411736
+          ],
+          [
+            20.1620183,
+            46.2414005
+          ],
+          [
+            20.1619057,
+            46.2414404
+          ],
+          [
+            20.1617836,
+            46.2414849
+          ],
+          [
+            20.1616609,
+            46.2415271
+          ],
+          [
+            20.1614732,
+            46.2415897
+          ],
+          [
+            20.1612861,
+            46.2416523
+          ],
+          [
+            20.1610936,
+            46.2417154
+          ],
+          [
+            20.1608945,
+            46.2417785
+          ],
+          [
+            20.1606906,
+            46.2418383
+          ],
+          [
+            20.1604947,
+            46.2418916
+          ],
+          [
+            20.1592804,
+            46.2421829
+          ],
+          [
+            20.1590142,
+            46.2422464
+          ],
+          [
+            20.1589116,
+            46.24227
+          ],
+          [
+            20.1588208,
+            46.2422889
+          ],
+          [
+            20.1587249,
+            46.2423083
+          ],
+          [
+            20.1586246,
+            46.2423275
+          ],
+          [
+            20.1585261,
+            46.2423454
+          ],
+          [
+            20.1584245,
+            46.2423616
+          ],
+          [
+            20.1583273,
+            46.2423762
+          ],
+          [
+            20.158228,
+            46.2423897
+          ],
+          [
+            20.1581298,
+            46.2424015
+          ],
+          [
+            20.1580302,
+            46.2424115
+          ],
+          [
+            20.1579467,
+            46.2424174
+          ],
+          [
+            20.1578907,
+            46.242421
+          ],
+          [
+            20.1578351,
+            46.2424259
+          ],
+          [
+            20.1577747,
+            46.2424333
+          ],
+          [
+            20.1576061,
+            46.2424564
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:892318535",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 892318535,
+          "url": "https://www.openstreetmap.org/way/892318535",
+          "nodeRefs": [
+            5839640205,
+            1118753420
+          ],
+          "objectVersion": 6,
+          "objectTimestamp": "2023-10-24 10:08:31+00:00",
+          "tags": {
+            "bicycle": "yes",
+            "cycleway:left": "lane",
+            "cycleway:left:lane": "exclusive",
+            "cycleway:right": "shared_lane",
+            "cycleway:right:lane": "pictogram",
+            "highway": "tertiary",
+            "lanes": "3",
+            "lanes:backward": "2",
+            "lanes:forward": "1",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "parking:lane:both": "no_parking",
+            "psv:lanes:backward": "designated|yes",
+            "sidewalk:both": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1623893,
+            46.2456434
+          ],
+          [
+            20.1626463,
+            46.2455299
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:936287913",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 936287913,
+          "url": "https://www.openstreetmap.org/way/936287913",
+          "nodeRefs": [
+            7316522802,
+            644932226
+          ],
+          "objectVersion": 7,
+          "objectTimestamp": "2023-10-24 10:08:32+00:00",
+          "tags": {
+            "access:lanes": "yes|yes|no",
+            "bicycle:lanes": "yes|no|designated",
+            "cycleway:lanes": "no|no|lane",
+            "cycleway:right": "lane",
+            "cycleway:right:lane": "exclusive",
+            "highway": "tertiary",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "oneway": "yes",
+            "oneway:bicycle": "yes",
+            "psv:lanes": "designated|no|no",
+            "sidewalk:left": "no",
+            "sidewalk:right": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes": "left;slight_left;through|through;slight_right|through;slight_right",
+            "vehicle:lanes": "yes|yes|no",
+            "width:lanes": "3|3|1"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1589368,
+            46.2481438
+          ],
+          [
+            20.158867,
+            46.2481701
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:936287918",
+      "properties": {
+        "name": "Székely sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 936287918,
+          "url": "https://www.openstreetmap.org/way/936287918",
+          "nodeRefs": [
+            972498852,
+            27190732
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2026-10-17 06:09:36+00:00",
+          "tags": {
+            "cycleway:both": "lane",
+            "cycleway:both:lane": "exclusive",
+            "highway": "tertiary",
+            "lanes": "3",
+            "lanes:backward": "1",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "Székely sor",
+            "sidewalk:both": "yes",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1638366,
+            46.2450539
+          ],
+          [
+            20.1639921,
+            46.2449933
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:938867175",
+      "properties": {
+        "name": "Alsó kikötő sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 938867175,
+          "url": "https://www.openstreetmap.org/way/938867175",
+          "nodeRefs": [
+            8697537905,
+            5599095571
+          ],
+          "objectVersion": 1,
+          "objectTimestamp": "2021-05-04 14:51:37+00:00",
+          "tags": {
+            "embankment": "yes",
+            "hgv": "no",
+            "highway": "residential",
+            "maxheight": "2.5",
+            "name": "Alsó kikötő sor",
+            "smoothness": "bad",
+            "surface": "cobblestone"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.156967,
+            46.2494908
+          ],
+          [
+            20.1567881,
+            46.2490689
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:938867176",
+      "properties": {
+        "name": "Alsó kikötő sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 938867176,
+          "url": "https://www.openstreetmap.org/way/938867176",
+          "nodeRefs": [
+            5599095571,
+            410220986,
+            3966949857,
+            12745162512,
+            410220987
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2025-04-10 17:42:21+00:00",
+          "tags": {
+            "embankment": "yes",
+            "highway": "residential",
+            "lanes": "2",
+            "maxspeed": "30",
+            "name": "Alsó kikötő sor",
+            "source:maxspeed": "sign",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1567881,
+            46.2490689
+          ],
+          [
+            20.156769,
+            46.2490222
+          ],
+          [
+            20.1567356,
+            46.2489442
+          ],
+          [
+            20.1566858,
+            46.2487792
+          ],
+          [
+            20.1564182,
+            46.2477681
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1010547438",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1010547438,
+          "url": "https://www.openstreetmap.org/way/1010547438",
+          "nodeRefs": [
+            5833429475,
+            2195024082,
+            2195024091
+          ],
+          "objectVersion": 9,
+          "objectTimestamp": "2026-02-16 13:44:45+00:00",
+          "tags": {
+            "access:lanes": "yes|no",
+            "bicycle:lanes": "no|designated",
+            "cycleway:lanes": "no|lane",
+            "cycleway:left": "no",
+            "cycleway:right": "lane",
+            "cycleway:right:lane": "exclusive",
+            "highway": "tertiary",
+            "incline": "up",
+            "lanes": "1",
+            "maxspeed": "50",
+            "name": "Torontál tér",
+            "oneway": "yes",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "width:lanes": "3|1"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1584752,
+            46.249179
+          ],
+          [
+            20.1584142,
+            46.249233
+          ],
+          [
+            20.1583039,
+            46.2493117
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1070144917",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1070144917,
+          "url": "https://www.openstreetmap.org/way/1070144917",
+          "nodeRefs": [
+            8675838442,
+            2196056162
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "3",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "left|through|through"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1668603,
+            46.2497705
+          ],
+          [
+            20.1667699,
+            46.2495911
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1175349446",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1175349446,
+          "url": "https://www.openstreetmap.org/way/1175349446",
+          "nodeRefs": [
+            10992709063,
+            10992709058,
+            10992709057,
+            10992709060,
+            10992709059,
+            10992709056,
+            10992709055,
+            10992709062,
+            2192395003
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2026-10-06 19:21:27+00:00",
+          "tags": {
+            "gauge": "1435",
+            "railway": "razed",
+            "razed:railway": "rail",
+            "usage": "main"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1553778,
+            46.2427862
+          ],
+          [
+            20.1555482,
+            46.2427639
+          ],
+          [
+            20.1556293,
+            46.2427556
+          ],
+          [
+            20.1557225,
+            46.2427482
+          ],
+          [
+            20.155815,
+            46.2427398
+          ],
+          [
+            20.1558978,
+            46.2427312
+          ],
+          [
+            20.1559927,
+            46.2427215
+          ],
+          [
+            20.15609,
+            46.2427092
+          ],
+          [
+            20.1567209,
+            46.242605
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1175349447",
+      "properties": {
+        "name": "Szeged–Temesvár",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1175349447,
+          "url": "https://www.openstreetmap.org/way/1175349447",
+          "nodeRefs": [
+            7282172728,
+            10921869183
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2025-02-28 20:13:48+00:00",
+          "tags": {
+            "destroyed:bridge": "yes",
+            "end_date": "1944-10-06",
+            "gauge": "1435",
+            "layer": "1",
+            "name": "Szeged–Temesvár",
+            "note": "Mivel már nincsenek meg a sínek, ja razed a helyes tag",
+            "railway": "razed",
+            "razed:railway": "rail",
+            "usage": "main",
+            "wikidata": "Q15627657",
+            "wikipedia": "hu:Szeged–Temesvár-vasútvonal"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1497299,
+            46.24392
+          ],
+          [
+            20.1542549,
+            46.2429954
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1175349448",
+      "properties": {
+        "name": "Szeged–Temesvár",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1175349448,
+          "url": "https://www.openstreetmap.org/way/1175349448",
+          "nodeRefs": [
+            10921869183,
+            10921869185
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2025-02-28 20:13:48+00:00",
+          "tags": {
+            "gauge": "1435",
+            "name": "Szeged–Temesvár",
+            "railway": "razed",
+            "razed:railway": "rail",
+            "usage": "main",
+            "wikidata": "Q15627657",
+            "wikipedia": "hu:Szeged–Temesvár-vasútvonal"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1542549,
+            46.2429954
+          ],
+          [
+            20.1545352,
+            46.2429434
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1175349449",
+      "properties": {
+        "name": "Szeged–Temesvár",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1175349449,
+          "url": "https://www.openstreetmap.org/way/1175349449",
+          "nodeRefs": [
+            10921869185,
+            10921869186
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2025-02-28 20:13:48+00:00",
+          "tags": {
+            "destroyed:bridge": "yes",
+            "gauge": "1435",
+            "layer": "1",
+            "name": "Szeged–Temesvár",
+            "railway": "razed",
+            "razed:railway": "rail",
+            "usage": "main",
+            "wikidata": "Q15627657",
+            "wikipedia": "hu:Szeged–Temesvár-vasútvonal"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1545352,
+            46.2429434
+          ],
+          [
+            20.1548047,
+            46.2428942
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1175349450",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1175349450,
+          "url": "https://www.openstreetmap.org/way/1175349450",
+          "nodeRefs": [
+            1118753557,
+            2192395003
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2024-07-13 15:35:56+00:00",
+          "tags": {
+            "axle_load": "17",
+            "electrified": "no",
+            "gauge": "1435",
+            "loading_gauge": "TSI_GC",
+            "maxspeed": "30",
+            "operator": "MÁV",
+            "passenger_lines": "1",
+            "railway": "rail",
+            "railway:ballastless": "no",
+            "railway:bidirectional": "regular",
+            "railway:etcs": "no",
+            "railway:evm": "no",
+            "railway:lzb": "no",
+            "railway:preferred_direction": "both",
+            "railway:pzb": "no",
+            "railway:rail": "jointed",
+            "railway:track_class": "B2",
+            "railway:track_type": "main",
+            "railway:traffic_mode": "mixed",
+            "ref": "121",
+            "source:maxspeed": "MERÁFI",
+            "usage": "branch"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1576061,
+            46.2424564
+          ],
+          [
+            20.1567209,
+            46.242605
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1183757084",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1183757084,
+          "url": "https://www.openstreetmap.org/way/1183757084",
+          "nodeRefs": [
+            10992709063,
+            12626366905,
+            10992709061,
+            10992709018,
+            10992709019,
+            10992709013,
+            10992709015,
+            10992709005,
+            10992709011,
+            10992709017,
+            10992709009,
+            10992709007,
+            10992709020,
+            10992709030,
+            10992709021,
+            10992709024,
+            10992709023,
+            10992709022,
+            10992709029,
+            10992709028,
+            10992709027,
+            10992709026,
+            10992709025,
+            10992709034,
+            10992681266,
+            10992681265,
+            10992709074,
+            10992681264,
+            10992709075
+          ],
+          "objectVersion": 4,
+          "objectTimestamp": "2025-02-28 20:13:48+00:00",
+          "tags": {
+            "gauge": "1435",
+            "railway": "razed",
+            "razed:railway": "rail",
+            "usage": "main",
+            "wikidata": "Q15627657",
+            "wikipedia": "hu:Szeged–Temesvár-vasútvonal"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1553778,
+            46.2427862
+          ],
+          [
+            20.1555589,
+            46.242756
+          ],
+          [
+            20.1567082,
+            46.2425645
+          ],
+          [
+            20.157588,
+            46.2424175
+          ],
+          [
+            20.1581942,
+            46.2423164
+          ],
+          [
+            20.1584,
+            46.2422775
+          ],
+          [
+            20.1586072,
+            46.2422357
+          ],
+          [
+            20.1587403,
+            46.2422098
+          ],
+          [
+            20.1588701,
+            46.2421819
+          ],
+          [
+            20.159029,
+            46.242143
+          ],
+          [
+            20.1591584,
+            46.2421114
+          ],
+          [
+            20.159265,
+            46.2420841
+          ],
+          [
+            20.1600922,
+            46.2418585
+          ],
+          [
+            20.1615214,
+            46.2414575
+          ],
+          [
+            20.1616757,
+            46.2414125
+          ],
+          [
+            20.1618118,
+            46.2413694
+          ],
+          [
+            20.1619432,
+            46.2413281
+          ],
+          [
+            20.1620579,
+            46.2412896
+          ],
+          [
+            20.1621739,
+            46.2412488
+          ],
+          [
+            20.1624984,
+            46.2411329
+          ],
+          [
+            20.1625809,
+            46.2411032
+          ],
+          [
+            20.1626533,
+            46.2410768
+          ],
+          [
+            20.1627187,
+            46.2410503
+          ],
+          [
+            20.1627868,
+            46.2410225
+          ],
+          [
+            20.162998,
+            46.2409335
+          ],
+          [
+            20.1631301,
+            46.2408773
+          ],
+          [
+            20.1632595,
+            46.2408198
+          ],
+          [
+            20.1636196,
+            46.2406566
+          ],
+          [
+            20.1644403,
+            46.2402577
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1183761913",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1183761913,
+          "url": "https://www.openstreetmap.org/way/1183761913",
+          "nodeRefs": [
+            347635117,
+            10992709076,
+            10992709064,
+            10992709065,
+            10992709066,
+            347635118
+          ],
+          "objectVersion": 1,
+          "objectTimestamp": "2023-06-20 20:17:06+00:00",
+          "tags": {
+            "electrified": "no",
+            "gauge": "1435",
+            "maxspeed": "30",
+            "operator": "MÁV",
+            "railway": "rail",
+            "railway:etcs": "no",
+            "railway:evm": "no",
+            "railway:lzb": "no",
+            "railway:pzb": "no",
+            "railway:track_type": "main",
+            "service": "siding",
+            "source:maxspeed": "MERÁFI"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1639854,
+            46.2405093
+          ],
+          [
+            20.1636226,
+            46.2407269
+          ],
+          [
+            20.1635811,
+            46.2407514
+          ],
+          [
+            20.1635378,
+            46.2407769
+          ],
+          [
+            20.1634888,
+            46.2408038
+          ],
+          [
+            20.1633483,
+            46.2408765
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1183761914",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1183761914,
+          "url": "https://www.openstreetmap.org/way/1183761914",
+          "nodeRefs": [
+            5837072207,
+            10992681262,
+            3698795594,
+            3698798948,
+            10992709075,
+            10992709072,
+            10992709070,
+            10992709071,
+            10992709073,
+            347635117
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2024-07-13 15:35:56+00:00",
+          "tags": {
+            "axle_load": "17",
+            "electrified": "no",
+            "gauge": "1435",
+            "loading_gauge": "TSI_GC",
+            "maxspeed": "30",
+            "operator": "MÁV",
+            "passenger_lines": "1",
+            "railway": "rail",
+            "railway:ballastless": "no",
+            "railway:bidirectional": "regular",
+            "railway:etcs": "no",
+            "railway:evm": "no",
+            "railway:lzb": "no",
+            "railway:preferred_direction": "both",
+            "railway:pzb": "no",
+            "railway:rail": "jointed",
+            "railway:track_class": "B2",
+            "railway:track_type": "main",
+            "railway:traffic_mode": "mixed",
+            "ref": "121",
+            "source:maxspeed": "MERÁFI",
+            "usage": "branch"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1650794,
+            46.2399414
+          ],
+          [
+            20.1649037,
+            46.2400337
+          ],
+          [
+            20.1647209,
+            46.2401256
+          ],
+          [
+            20.1645273,
+            46.2402173
+          ],
+          [
+            20.1644403,
+            46.2402577
+          ],
+          [
+            20.1642761,
+            46.2403424
+          ],
+          [
+            20.1642167,
+            46.2403744
+          ],
+          [
+            20.1641621,
+            46.240405
+          ],
+          [
+            20.1641098,
+            46.2404356
+          ],
+          [
+            20.1639854,
+            46.2405093
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1217988705",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1217988705,
+          "url": "https://www.openstreetmap.org/way/1217988705",
+          "nodeRefs": [
+            6563677743,
+            2168072234
+          ],
+          "objectVersion": 5,
+          "objectTimestamp": "2026-10-17 06:11:39+00:00",
+          "tags": {
+            "bicycle": "yes",
+            "cycleway:both": "no",
+            "highway": "residential",
+            "lane_markings": "yes",
+            "lanes": "2",
+            "lit": "yes",
+            "name": "Torontál tér",
+            "sidewalk:both": "yes",
+            "smoothness": "good",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1584064,
+            46.2485582
+          ],
+          [
+            20.1582965,
+            46.2485899
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1217988707",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1217988707,
+          "url": "https://www.openstreetmap.org/way/1217988707",
+          "nodeRefs": [
+            4037362982,
+            6308614353,
+            4001673423
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2023-10-24 10:08:37+00:00",
+          "tags": {
+            "access:lanes": "yes|no",
+            "bicycle:lanes": "no|designated",
+            "cycleway:lanes": "no|lane",
+            "cycleway:left": "no",
+            "cycleway:right": "lane",
+            "cycleway:right:lane": "exclusive",
+            "highway": "tertiary",
+            "incline": "up",
+            "lanes": "1",
+            "lcn": "yes",
+            "maxspeed": "50",
+            "name": "Torontál tér",
+            "oneway": "yes",
+            "sidewalk": "separate",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "width:lanes": "3|1"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1586117,
+            46.2490104
+          ],
+          [
+            20.1585866,
+            46.2490542
+          ],
+          [
+            20.158542,
+            46.2491125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1268786067",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1268786067,
+          "url": "https://www.openstreetmap.org/way/1268786067",
+          "nodeRefs": [
+            643438165,
+            7316522830
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2025-03-28 11:55:46+00:00",
+          "tags": {
+            "bicycle": "designated",
+            "cycleway:both": "no",
+            "highway": "tertiary",
+            "incline": "down",
+            "lanes": "1",
+            "maxspeed": "30",
+            "name": "Torontál tér",
+            "oneway": "yes",
+            "sidewalk": "separate",
+            "smoothness": "good",
+            "source:maxspeed": "sign",
+            "surface": "asphalt",
+            "trolley_wire": "yes",
+            "turn:lanes": "through;right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1584372,
+            46.2488809
+          ],
+          [
+            20.1584591,
+            46.2486807
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1268786068",
+      "properties": {
+        "name": "Torontál tér",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1268786068,
+          "url": "https://www.openstreetmap.org/way/1268786068",
+          "nodeRefs": [
+            2195024074,
+            643438165
+          ],
+          "objectVersion": 1,
+          "objectTimestamp": "2024-04-03 18:46:28+00:00",
+          "tags": {
+            "bicycle": "designated",
+            "cycleway:both": "no",
+            "highway": "tertiary",
+            "incline": "down",
+            "lanes": "1",
+            "maxspeed": "30",
+            "name": "Torontál tér",
+            "oneway": "yes",
+            "sidewalk": "separate",
+            "smoothness": "good",
+            "source:maxspeed": "sign",
+            "surface": "asphalt",
+            "trolley_wire": "yes"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1583946,
+            46.2489997
+          ],
+          [
+            20.1584372,
+            46.2488809
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1274914114",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1274914114,
+          "url": "https://www.openstreetmap.org/way/1274914114",
+          "nodeRefs": [
+            11837535444,
+            3644699074
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "5",
+            "lanes:backward": "2",
+            "lanes:forward": "3",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:forward": "left||"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1662923,
+            46.2487579
+          ],
+          [
+            20.1660393,
+            46.2483433
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1274914115",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1274914115,
+          "url": "https://www.openstreetmap.org/way/1274914115",
+          "nodeRefs": [
+            7017083490,
+            11837535444
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "4",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1665289,
+            46.2491855
+          ],
+          [
+            20.1662923,
+            46.2487579
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1355278679",
+      "properties": {
+        "name": "",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1355278679,
+          "url": "https://www.openstreetmap.org/way/1355278679",
+          "nodeRefs": [
+            10921869186,
+            10992709063
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2025-02-28 20:13:48+00:00",
+          "tags": {
+            "gauge": "1435",
+            "railway": "razed",
+            "razed:railway": "rail",
+            "usage": "main",
+            "wikidata": "Q15627657",
+            "wikipedia": "hu:Szeged–Temesvár-vasútvonal"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1548047,
+            46.2428942
+          ],
+          [
+            20.1553778,
+            46.2427862
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1367976178",
+      "properties": {
+        "name": "Alsó kikötő sor",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1367976178,
+          "url": "https://www.openstreetmap.org/way/1367976178",
+          "nodeRefs": [
+            456935063,
+            413274369,
+            413274370,
+            3999774483,
+            413274371
+          ],
+          "objectVersion": 1,
+          "objectTimestamp": "2025-03-15 20:39:51+00:00",
+          "tags": {
+            "embankment": "yes",
+            "highway": "residential",
+            "lanes": "2",
+            "maxspeed": "50",
+            "name": "Alsó kikötő sor",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1537651,
+            46.2407755
+          ],
+          [
+            20.1535961,
+            46.240334
+          ],
+          [
+            20.1534707,
+            46.2400331
+          ],
+          [
+            20.1530746,
+            46.2393243
+          ],
+          [
+            20.152819,
+            46.2388857
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osm:way:1486351617",
+      "properties": {
+        "name": "Temesvári körút",
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 1486351617,
+          "url": "https://www.openstreetmap.org/way/1486351617",
+          "nodeRefs": [
+            8725200847,
+            7017083488
+          ],
+          "objectVersion": 2,
+          "objectTimestamp": "2026-09-22 20:40:34+00:00",
+          "tags": {
+            "bicycle": "use_sidepath",
+            "highway": "primary",
+            "lanes": "4",
+            "lanes:backward": "2",
+            "lanes:forward": "2",
+            "maxspeed": "50",
+            "name": "Temesvári körút",
+            "priority_road": "yes",
+            "ref": "43",
+            "ref:HU:mkasz": "3224",
+            "source:maxspeed": "HU:urban",
+            "surface": "asphalt",
+            "turn:lanes:backward": "through|through;right"
+          },
+          "geometryUnmodified": true,
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.1652826,
+            46.2470899
+          ],
+          [
+            20.1649579,
+            46.2465476
+          ]
+        ]
+      }
+    }
+  ]
+}

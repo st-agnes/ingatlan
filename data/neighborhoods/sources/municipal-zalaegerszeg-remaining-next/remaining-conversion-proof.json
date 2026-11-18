@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "sourcePdfUrl": "https://zalaegerszeg.hu/wp-content/uploads/2023/05/Zalaegerszeg_ITS.pdf",
+  "sourcePdfSha256": "4534775c49466eba0460e583aa45a12127f0a46cd8c0e768ed689b830e4eb035",
+  "sourcePdfPageOneBased": 12,
+  "sourceNameTablePageOneBased": 13,
+  "sourceEmbeddedImageXref": 105,
+  "sourceImageSizePixels": [
+    1663,
+    2360
+  ],
+  "sourceImageSha256": "cf259e0c7c54c3b58a0cf1e624ef178432ae734336cd3b676a9c7f2675aa8e37",
+  "registrationSha256": "565a5bc9cd6887aedaddd2d6cacbdaff48c8ad8a9e541b11f6b4c555e45aa2a5",
+  "sourcePixelConvention": "Original JPEG pixel index denotes center; the observed inside-stroke cell edges are half-integer coordinates.",
+  "colorMask": "R<135, G-R>30, B-R>30, G>65; original JPEG RGB values; four-neighbor non-mask interiors.",
+  "registration": {
+    "matrixPixelToEov": [
+      [
+        6.669106283398234,
+        -0.011967985204445038
+      ],
+      [
+        0.07039290059433008,
+        -7.181104249368163
+      ],
+      [
+        475978.3545650848,
+        176188.8141156766
+      ]
+    ],
+    "inheritedUnchanged": true,
+    "method": "Robust affine matching of actual small source-color dash component centroids to the contemporary municipal perimeter. This is a registration diagnostic, not independent boundary accuracy.",
+    "independentInteriorControlCount": 0,
+    "absoluteAccuracyM": null,
+    "pixelScaleSingularValuesM": [
+      7.184456888009832,
+      6.66587687232575
+    ],
+    "determinantM2PerPixel": 47.89070501000617,
+    "perimeterResidualMedianM": 35.346172554167325,
+    "perimeterResidualP95M": 150.4358560558331,
+    "residualMeaning": "Registration diagnostics against fitted municipal perimeter, not independent interior accuracy.",
+    "namePointsUsedAsControls": false,
+    "currentRoadsUsedAsControls": false,
+    "municipalGeometrySha256": "24c706edf9def6ec7d8c5659edf831a2be192bf5bfa2c4ada9f290fdd9f7b734"
+  },
+  "candidates": [
+    {
+      "name": "Iparterület",
+      "file": "remaining-literal-world.geojson",
+      "areaM2": 2973390.201405735,
+      "geometryValid": true,
+      "municipalityOverlapFraction": 0.9999893334096662,
+      "sourceLabelEvidence": [],
+      "currentNameStatus": "not_independently_confirmed"
+    },
+    {
+      "name": "Zalabesenyő",
+      "file": "remaining-manual-world.geojson",
+      "areaM2": 492826.41385331634,
+      "geometryValid": true,
+      "municipalityOverlapFraction": 1.0000000000000007,
+      "sourceLabelEvidence": [
+        {
+          "id": "osm:node:990019150",
+          "requestedName": "Zalabesenyő",
+          "name": "Zalabesenyő",
+          "osmType": "node",
+          "osmId": 990019150,
+          "objectVersion": 6,
+          "objectTimestamp": "2024-12-11 16:39:33+00:00",
+          "tags": {
+            "name": "Zalabesenyő",
+            "place": "suburb"
+          },
+          "sourceUrl": "https://www.openstreetmap.org/node/990019150",
+          "nameRole": "named_place",
+          "insideOrIntersectsArchivedCurrentMunicipality": true,
+          "usedForGeoreferencing": false,
+          "establishesHistoricalContour": false,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              16.8551318,
+              46.8113302
+            ]
+          },
+          "intersectsHistoricalCandidate": false,
+          "distanceFromHistoricalCandidateM": 45.69116226985789
+        }
+      ],
+      "currentNameStatus": "same_city_exact_osm_name_observed"
+    },
+    {
+      "name": "Botfa",
+      "file": "remaining-manual-world.geojson",
+      "areaM2": 661422.6497133974,
+      "geometryValid": true,
+      "municipalityOverlapFraction": 0.9999999999999993,
+      "sourceLabelEvidence": [
+        {
+          "id": "osm:node:514956911",
+          "requestedName": "Botfa",
+          "name": "Botfa",
+          "osmType": "node",
+          "osmId": 514956911,
+          "objectVersion": 5,
+          "objectTimestamp": "2018-05-31 19:37:29+00:00",
+          "tags": {
+            "name": "Botfa",
+            "place": "suburb"
+          },
+          "sourceUrl": "https://www.openstreetmap.org/node/514956911",
+          "nameRole": "named_place",
+          "insideOrIntersectsArchivedCurrentMunicipality": true,
+          "usedForGeoreferencing": false,
+          "establishesHistoricalContour": false,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              16.8706464,
+              46.8012636
+            ]
+          },
+          "intersectsHistoricalCandidate": true,
+          "distanceFromHistoricalCandidateM": 0.0
+        }
+      ],
+      "currentNameStatus": "same_city_exact_osm_name_observed"
+    },
+    {
+      "name": "Bazita",
+      "file": "remaining-manual-world.geojson",
+      "areaM2": 708267.6492400432,
+      "geometryValid": true,
+      "municipalityOverlapFraction": 0.9999999999999992,
+      "sourceLabelEvidence": [
+        {
+          "id": "osm:node:990019893",
+          "requestedName": "Bazita",
+          "name": "Bazita",
+          "osmType": "node",
+          "osmId": 990019893,
+          "objectVersion": 2,
+          "objectTimestamp": "2018-05-31 19:37:32+00:00",
+          "tags": {
+            "name": "Bazita",
+            "place": "suburb"
+          },
+          "sourceUrl": "https://www.openstreetmap.org/node/990019893",
+          "nameRole": "named_place",
+          "insideOrIntersectsArchivedCurrentMunicipality": true,
+          "usedForGeoreferencing": false,
+          "establishesHistoricalContour": false,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              16.8047285,
+              46.8023212
+            ]
+          },
+          "intersectsHistoricalCandidate": true,
+          "distanceFromHistoricalCandidateM": 0.0
+        }
+      ],
+      "currentNameStatus": "same_city_exact_osm_name_observed"
+    },
+    {
+      "name": "Ebergény",
+      "file": "remaining-manual-world.geojson",
+      "areaM2": 180814.307602172,
+      "geometryValid": true,
+      "municipalityOverlapFraction": 1.0000000000000002,
+      "sourceLabelEvidence": [
+        {
+          "id": "osm:node:525433120",
+          "requestedName": "Ebergény",
+          "name": "Ebergény",
+          "osmType": "node",
+          "osmId": 525433120,
+          "objectVersion": 3,
+          "objectTimestamp": "2018-05-31 19:37:29+00:00",
+          "tags": {
+            "name": "Ebergény",
+            "place": "suburb"
+          },
+          "sourceUrl": "https://www.openstreetmap.org/node/525433120",
+          "nameRole": "named_place",
+          "insideOrIntersectsArchivedCurrentMunicipality": true,
+          "usedForGeoreferencing": false,
+          "establishesHistoricalContour": false,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              16.8020731,
+              46.82877
+            ]
+          },
+          "intersectsHistoricalCandidate": true,
+          "distanceFromHistoricalCandidateM": 0.0
+        }
+      ],
+      "currentNameStatus": "same_city_exact_osm_name_observed"
+    },
+    {
+      "name": "Szenterzsébethegy",
+      "file": "remaining-manual-world.geojson",
+      "areaM2": 644663.0246688448,
+      "geometryValid": true,
+      "municipalityOverlapFraction": 1.0000000000000009,
+      "sourceLabelEvidence": [
+        {
+          "id": "osm:node:990000886",
+          "requestedName": "Szenterzsébethegy",
+          "name": "Szenterzsébethegy",
+          "osmType": "node",
+          "osmId": 990000886,
+          "objectVersion": 3,
+          "objectTimestamp": "2018-05-31 19:37:31+00:00",
+          "tags": {
+            "name": "Szenterzsébethegy",
+            "place": "suburb"
+          },
+          "sourceUrl": "https://www.openstreetmap.org/node/990000886",
+          "nameRole": "named_place",
+          "insideOrIntersectsArchivedCurrentMunicipality": true,
+          "usedForGeoreferencing": false,
+          "establishesHistoricalContour": false,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              16.7870474,
+              46.8401446
+            ]
+          },
+          "intersectsHistoricalCandidate": true,
+          "distanceFromHistoricalCandidateM": 0.0
+        }
+      ],
+      "currentNameStatus": "same_city_exact_osm_name_observed"
+    },
+    {
+      "name": "Iparterület",
+      "file": "remaining-iparterulet-one-pixel-inferred-world.geojson",
+      "areaM2": 2973438.09211073,
+      "geometryValid": true,
+      "municipalityOverlapFraction": 0.9999893335814641,
+      "sourceLabelEvidence": [],
+      "currentNameStatus": "not_independently_confirmed"
+    }
+  ],
+  "globalRegistriesModified": false,
+  "admissionRecommendation": {
+    "literalIparterulet": "Retain raw literal source quarantine because strict validator rejects a1px corner-touching hole. Functional industrial character does not exclude this explicit historical quarter.",
+    "onePixelIparteruletAlternative": "Retain as explicit estimated interpretation for review; current exact OSM name was not independently confirmed. No silent correction or primary admission.",
+    "fiveNamedManualCandidates": "Eligible only for existing inferred/estimated layer after independent review; same inherited approximate registration as original5 does not establish surveyed/current boundaries. Ebergény has extra semantic uncertainty about unlabelled lobe70, with alternative retained.",
+    "primaryAdmission": "No new primary candidates recommended from this subset without a consistent project decision on inherited georeferencing and current-quarter identity. Existing5 global records were not changed."
+  }
+}

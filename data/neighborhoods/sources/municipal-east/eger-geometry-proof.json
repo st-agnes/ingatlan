@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Eger",
+  "sourceUrl": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf",
+  "sourceSha256": "7db28b2b5922e6dea7bde9dc3263087534b26e9cd1e52b63335249265df6febe",
+  "sourcePdfPage": 1,
+  "sourceScale": "1:15000",
+  "outputFeatureCount": 32,
+  "boundaryKind": "planning_unit",
+  "originalVectorPathCount": 33,
+  "exportedNamedPathCount": 32,
+  "excludedPaths": [
+    {
+      "pdfDrawingIndex": 165652,
+      "reason": "Unlabelled TSZT road/area overlay; no defensible unique quarter or planning-unit label."
+    }
+  ],
+  "affineToEov": {
+    "matrix": [
+      [
+        5.2953011414266005,
+        -0.002017536751523444
+      ],
+      [
+        0.0012046146742738229,
+        -5.293419739291413
+      ]
+    ],
+    "offset": [
+      744179.3374196934,
+      297005.02544437646
+    ]
+  },
+  "boundaryMatchResidualMeters": {
+    "median": 7.224128421579061,
+    "p95": 18.447915790396877,
+    "max": 30.438304285958054
+  },
+  "calibrationTarget": {
+    "osmRelationId": 1418156,
+    "epsg": 23700,
+    "source": "Actual municipal boundary from Hungary2026-11-12 PBF; not neighborhood proximity geometry"
+  },
+  "geometryProcessing": [
+    "Original colored PDF fill line segments extracted with PyMuPDF.",
+    "Line coordinate rounding at0.001PDFpoint removes only float serialization noise.",
+    "Polygonize source closed rings; do not generate point buffers or Voronoi polygons.",
+    "Subtract three separately filled nested plan areas from containing TSZT polygon.",
+    "Apply affine source-pixel→EOV fit; convert EPSG23700→EPSG4326 with pyproj."
+  ],
+  "checks": {
+    "allPolygonsValid": true,
+    "allOutputNamesManuallyVerifiedAgainstSource": true,
+    "independentInteriorControlVerified": false,
+    "usableForAddressAssignment": false,
+    "rightsEstablished": false
+  },
+  "files": [
+    {
+      "path": "eger-planning-units.geojson",
+      "bytes": 295942,
+      "sha256": "c3619e702df579b23776b977daf62c0ee1aafb9f629a8b447fb29b64f558011b"
+    },
+    {
+      "path": "eger-map-2016.pdf",
+      "bytes": 2129117,
+      "sha256": "7db28b2b5922e6dea7bde9dc3263087534b26e9cd1e52b63335249265df6febe"
+    },
+    {
+      "path": "eger-pdf-vector-paths.json",
+      "bytes": 451452,
+      "sha256": "49777221551b60333e8991b4ce3e7b6b40c5f8c6cc501116d62a7cd411b183d0"
+    }
+  ]
+}

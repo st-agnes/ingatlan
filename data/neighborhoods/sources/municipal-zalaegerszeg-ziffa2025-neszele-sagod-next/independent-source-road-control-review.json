@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "independent_actual_road_correspondence_and_holdout_suggestions",
+  "reviewer": "independent child agent zala_semantic_qa",
+  "status": "four_proposed_actual_road_junction_correspondences_are_visually_credible; final_world_geometry_pending",
+  "inputs": [
+    {
+      "path": "p138-xref768.jpeg",
+      "sha256": "d33dc07a77423c6b72d2a889dad7181db24c366258bb29851b4fe30d3b745019"
+    },
+    {
+      "path": "p138-xref758.jpeg",
+      "sha256": "2f75ee7dcadf2696b4635eca37b02985868a6756d313bbbf7304b93c0f94a0f8"
+    },
+    {
+      "path": "road-geographic-reference.geojson",
+      "sha256": "a9c5b4dbd55079275740828d9888ae7289cd35718d369e8e617f4e6a1393d798"
+    },
+    {
+      "path": "neszele-registration-initial.png",
+      "sha256": "ea817d99399de7baec90ac613d22e74fc0d38b1eecb57d37b76a5e0491e36391"
+    }
+  ],
+  "proposedControlsReviewed": [
+    {
+      "id": "irinyi_jedlik",
+      "pixelXY": [
+        216,
+        200
+      ],
+      "wgs84": [
+        16.8283727,
+        46.8564648
+      ],
+      "sourceObservation": "Identifiable street junction south of the large quarter label; the crossing road centers correspond to the actual reference intersection.",
+      "sourcePixelPickingIsApproximate": true
+    },
+    {
+      "id": "kiraly_jedlik",
+      "pixelXY": [
+        268,
+        202
+      ],
+      "wgs84": [
+        16.830206,
+        46.8564452
+      ],
+      "sourceObservation": "Identifiable eastern junction on the same near-horizontal street. The reference models a small offset between two street arms, so native-pixel picking should remain approximate.",
+      "sourcePixelPickingIsApproximate": true
+    },
+    {
+      "id": "bukkfa_ilosvai",
+      "pixelXY": [
+        169.5,
+        157.5
+      ],
+      "wgs84": [
+        16.826764,
+        46.857424
+      ],
+      "sourceObservation": "Credible northwest road junction immediately above the large label. The gray street is faint; a manual pick within about2sourcepixels is reasonable as a picking description, not an absolute uncertainty bound.",
+      "sourcePixelPickingIsApproximate": true
+    },
+    {
+      "id": "jedlik_gebarti",
+      "pixelXY": [
+        280,
+        165.5
+      ],
+      "wgs84": [
+        16.8306148,
+        46.8572548
+      ],
+      "sourceObservation": "Credible northeast junction where the northward street meets the curved east-west street. It remains visually identifiable beside the large quarter label.",
+      "sourcePixelPickingIsApproximate": true
+    }
+  ],
+  "suggestedDiagnosticHoldouts": [
+    {
+      "id": "jegmadar_jedlik",
+      "sourcePixelXYApproximate": [
+        310,
+        213
+      ],
+      "wgs84": [
+        16.8317051,
+        46.8561736
+      ],
+      "originalOsmNodeId": 386168968,
+      "originalOsmWayIds": [
+        33754362,
+        209175688
+      ],
+      "confidence": "moderate",
+      "observation": "Small junction east of the Király control; identifiable in the native map, with approximately2pixel manual source picking. Suitable as an independent comparison diagnostic, not a survey check.",
+      "usedForFitByThisReview": false
+    },
+    {
+      "id": "neszele_zala_malom",
+      "sourcePixelXYApproximate": [
+        179,
+        267
+      ],
+      "wgs84": [
+        16.8270657,
+        46.8548101
+      ],
+      "originalOsmNodeId": 347300965,
+      "originalOsmWayIds": [
+        33754353,
+        33754355,
+        229324208
+      ],
+      "confidence": "moderate_to_low",
+      "observation": "Southern street junction beside the source quarter edge. Thick boundary and gray road detail interfere; allow a few sourcepixels of picking ambiguity. It can corroborate broad placement, but should not be promoted into a precise control.",
+      "usedForFitByThisReview": false
+    }
+  ],
+  "otherObservations": [
+    "The major Ilosvai/Gébárti junction is obscured by the quarter label and should remain excluded from fitting.",
+    "The initial two-control overlay generally tracks the actual street network around the quarter. Adding the northwest and northeast controls improves lateral coverage, but does not establish source projection or map accuracy.",
+    "Source place nodes are label/name evidence only, never geographic fit controls.",
+    "Road geometry and source backdrop may reflect different dates and generalization; retain the two-road placement alternative and all residuals as descriptive comparisons."
+  ],
+  "claimedAbsoluteAccuracyMetres": null,
+  "sourceNarrativeQuotationWords": 0,
+  "geometryOrGeographicRegistrationWrittenByThisReview": false,
+  "hathazFrozenPacketModified": false,
+  "globalRegistryModified": false
+}

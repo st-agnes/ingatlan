@@ -1,0 +1,106 @@
+{
+  "collectedOn": "2026-11-14",
+  "sourceInputs": [
+    {
+      "path": "road-extraction.json",
+      "sha256": "faf70a6f708a17fbed87700ce9f29c8d50fed76bae22c466c654a48709d815d1",
+      "bytes": 640
+    },
+    {
+      "path": "eger-existing-source-shapes.geojson",
+      "sha256": "94544a6ee652bec395796b7f7d97174ddd91bfdda14b7e881d6a30625a1d6ac3",
+      "bytes": 40310
+    },
+    {
+      "path": "eger-roads.geojson",
+      "sha256": "6fbea83beb6de80dbc46bf33824ad5fff004415a6d9e41d3983216484ce19821",
+      "bytes": 2050520
+    },
+    {
+      "path": "eger-areas.geojson",
+      "sha256": "cd549799d601e6663530b69e97ae42dc121c29b346f3f1864a8d78d5d30da540",
+      "bytes": 502469
+    },
+    {
+      "path": "eger-registration.json",
+      "sha256": "06be03390ef859b459a5847d25057f7202307b20d3045579ea13428931b5a7d6",
+      "bytes": 4069
+    },
+    {
+      "path": "eger-traces.json",
+      "sha256": "5b0f7adbdfde24a55da3048467ea499bb76ebd31841c65bf1e4b72985374d67a",
+      "bytes": 3981
+    },
+    {
+      "path": "veszprem-roads.geojson",
+      "sha256": "1b0cae67be13faa7ae9c9b29d9937fdceab50a643f6bbafa0064f4677feae2a6",
+      "bytes": 2968557
+    },
+    {
+      "path": "veszprem-areas.geojson",
+      "sha256": "df790db57ec5a772287ddfe2d7716f567fea58cc9483e54bec7d9e51057dcdbc",
+      "bytes": 281490
+    },
+    {
+      "path": "veszprem-registration.json",
+      "sha256": "cf238bb5fa1d91261b4fe3e153f82489f8e2e27b0ea81d0f31984a4fa2f9185e",
+      "bytes": 5787
+    },
+    {
+      "path": "veszprem-traces.json",
+      "sha256": "588cfe6370f10c075e6cb681199c51d7e0ec9e0b252602d0d9ad774db22a2a66",
+      "bytes": 9972
+    },
+    {
+      "path": "szolnok-roads.geojson",
+      "sha256": "c6443b4d1dbcfa02a32df3e234865cde520c63298a738328862be532cf57ba47",
+      "bytes": 3337341
+    },
+    {
+      "path": "szolnok-areas.geojson",
+      "sha256": "fe1cfb85c3a71f3923863633cc9823b44b1ec37a7d74c018da8cc65d369af9fa",
+      "bytes": 302185
+    },
+    {
+      "path": "szolnok-registration.json",
+      "sha256": "a7f65f5d432b904d39c48bcc283e7d3bdea31425591719d87d81d3138b8f4744",
+      "bytes": 3180
+    },
+    {
+      "path": "szolnok-traces.json",
+      "sha256": "5f7fcd5c2c837dd7b4af707a71035aea79039d140434db2d90f3d2b8d71ccda6",
+      "bytes": 6690
+    }
+  ],
+  "sources": [
+    {
+      "municipality": "Eger",
+      "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf",
+      "retainedPath": "data/neighborhoods/sources/municipal-east/eger-map-2016.pdf",
+      "use": "Broad native municipal source-map polygons and name context; precise geometry claimed only to be a trace of this source, not current fine-neighborhood official boundaries."
+    },
+    {
+      "municipality": "Veszprém",
+      "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+      "retainedPath": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+      "use": "Broader city-quarter context only, smaller housing estate/valley links inferred from retained physical street fabric."
+    },
+    {
+      "municipality": "Szolnok",
+      "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+      "retainedPath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+      "use": "Broader city-quarter context only, fine blocks and settlement clusters inferred from retained physical street/rail fabric."
+    },
+    {
+      "provider": "OpenStreetMap / Geofabrik",
+      "url": "https://download.geofabrik.de/europe/hungary.html",
+      "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "sourceSnapshot": "2026-11-12T21:23:05Z",
+      "license": "ODbL-1.0",
+      "use": "Literal street/rail/waterway lines, named-place evidence and unchanged Érsekkert park way 120931688. Retained way versions and node references do not claim that every referenced node version is stored."
+    }
+  ],
+  "coordinateSystem": "GeoJSON EPSG:4326; manual trace map registration EPSG:23700, deterministic inverse transform",
+  "noNetworkUsedInReproduction": true,
+  "municipalMapReuse": "Explicit open licensing of municipal/dissertation source images not established; retained for research/source traceability."
+}

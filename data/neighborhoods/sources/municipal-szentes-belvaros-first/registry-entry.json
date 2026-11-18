@@ -1,0 +1,49 @@
+{
+  "id": "szentes-belvaros-explicit-circuit-inferred",
+  "path": "data/neighborhoods/sources/municipal-szentes-belvaros-first/inferred-candidate.geojson",
+  "sha256": "2a2aab8baf53aae2f55b8dfbdec0b6cda8cd13863ae18f1c00bbfc16ec909c69",
+  "municipality": "Szentes",
+  "featureCount": 1,
+  "method": "LOW-CONFIDENCE older municipal IVS explicit quarter circuit reconstructed from literal current OSM road/path/river segments; six source-unspecified junction interpretations are individually bounded and disclosed. Source contour not observed. No synthetic connectors, snapping, repair, buffers or bounding boxes.",
+  "evidenceUrls": [
+    "https://szentes.hu/wp-content/uploads/2015/01/szentes_ivs.pdf",
+    "https://www.szentesinfo.hu/testulet/2015/5/eloterjesztes/ITS_megalapozo.pdf",
+    "https://www.szentes.hu/wp-content/uploads/2025/03/Szentes_FVS_mod_20240627_elfogadott.pdf",
+    "https://or.njt.hu/download/1919/resources/EJR_70471950-1._mellekletV3.pdf",
+    "https://www.openstreetmap.org/node/12088970184"
+  ],
+  "sourceEra": "Municipal upload2015; older edition containing2009/2010 material; exact adoption/date unknown. Current2026 OSM linework does not establish historical alignment.",
+  "license": "ODbL-1.0",
+  "rightsStatus": "Independently assembled literal OpenStreetMap geometry underODbL; municipal street/river boundary facts only, no source PDF map geometry copied or map reuse license assumed.",
+  "reviewPath": "data/neighborhoods/sources/municipal-szentes-belvaros-first/review.json",
+  "semanticProofPath": "data/neighborhoods/sources/municipal-szentes-belvaros-first/semantic-proof.json",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false,
+    "sourceIsOfficial": false,
+    "sourceIsHardBoundary": false,
+    "sourceContourIsObserved": false,
+    "confidence": "low",
+    "reviewStatus": "independently_reviewed_low_confidence_estimated_candidate"
+  },
+  "uncertainties": [
+    "Historical municipal street facts combined with presentOSM linework; exact source edition/alignment date unknown.",
+    "Apponyi square side and two parcel-to-current-road identities remain inferred.",
+    "Two source river junctions use chosen nearby physical bridge detours, not observed source contours.",
+    "Six current street/path/junction choices require review; alternatives differ by41611.4187m² (3.6% of preferred area), not an absolute positional accuracy bound.",
+    "Original municipalPDF bytes/map pixels not acquired; source text/indexed map descriptions read via web connector.",
+    "Only the Apponyi square interpretation has two reconstructed footprints and the41611.4187m² comparison. The other five assumptions each retain one chosen physical path and an unresolved source choice; the two footprints are not a full uncertainty envelope."
+  ],
+  "requirements": [
+    "Independent technical/source-role review passed for low-confidence inferred treatment only; keep every source-era and junction limitation.",
+    "Only the preferred blue Deák-side candidate may be compiled; orange alternate is the same quarter, never a second count.",
+    "Keep all six junction assumptions and cadastral identity limits explicit."
+  ],
+  "calibrationObservations": null,
+  "accuracyMeters": null,
+  "independentReviewPath": "data/neighborhoods/sources/municipal-szentes-belvaros-first/independent-review.json",
+  "independentReviewSha256": "7561d6cba28d88b8e39bd44511d3883e75bf1c5f6e373c2070142caac5bdf163"
+}

@@ -1,0 +1,138 @@
+{
+  "municipality": "Miskolc",
+  "featureCount": 27,
+  "method": "Coarse source-map/manual internal partition estimates under user2026-11-14 policy.",
+  "pointRadiusFallbackCount": 0,
+  "names": [
+    "Martinkertváros",
+    "Szirma",
+    "Hejőcsaba",
+    "Görömböly",
+    "Vargahegy",
+    "Komlóstető",
+    "Egyetemváros",
+    "Ruzsin",
+    "Szentpéteri kapu",
+    "Zsarnai-telep",
+    "Selyemrét",
+    "Szondi-telep",
+    "Tetemvár",
+    "Bábonyibérc",
+    "Bodótető",
+    "Vologda",
+    "Jókai-lakótelep",
+    "Belváros",
+    "Avasalja",
+    "Népkert",
+    "Csabai kapu",
+    "Kilián",
+    "Újdiósgyőr",
+    "Győri kapu",
+    "Diósgyőr",
+    "Berekalja",
+    "Majláth"
+  ],
+  "manualSeparators": {
+    "martin_szirma": [
+      [
+        700,
+        237
+      ],
+      [
+        729,
+        237
+      ],
+      [
+        757,
+        241
+      ],
+      [
+        792,
+        241
+      ],
+      [
+        831,
+        238
+      ],
+      [
+        880,
+        242
+      ]
+    ],
+    "hejo_goromboly": [
+      [
+        580,
+        307
+      ],
+      [
+        621,
+        307
+      ],
+      [
+        658,
+        301
+      ],
+      [
+        692,
+        306
+      ],
+      [
+        727,
+        303
+      ],
+      [
+        790,
+        309
+      ]
+    ],
+    "varga_komlo": [
+      [
+        460,
+        240
+      ],
+      [
+        520,
+        240
+      ],
+      [
+        550,
+        230
+      ],
+      [
+        574,
+        238
+      ],
+      [
+        594,
+        243
+      ],
+      [
+        640,
+        241
+      ]
+    ]
+  },
+  "allGeometryValid": true,
+  "limitations": [
+    "The17group map is not a map of the32fine KSH constituents; new internal boundaries are explicitly estimates.",
+    "These are coarse map-context estimates with unknown absolute accuracy; do not describe them as official boundaries."
+  ],
+  "inputs": [
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-p228-original.jpeg",
+      "sha256": "ae66dab154832f52a833d7c696a4b10882e8fadbc47a22d9128932ab7d684384"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-registration.json",
+      "sha256": "a05fbe258f9215f11f4e5350b78fd8c9bc50ffd9bfd912d9471d8c9ccebf6c19"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-source-raster.geojson",
+      "sha256": "0c8d6fdc7f1f075355b704cf2e376ce3815031b3beb616763c3529bb0a2cf22d"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-source-semantics.json",
+      "sha256": "53eec0d892cf3952bce546da7687888069f98770b713274a9f96f458ebb9101d"
+    }
+  ]
+}

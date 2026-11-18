@@ -1,0 +1,268 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "gray-corner-1",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.1846708,
+          46.1118906
+        ]
+      },
+      "properties": {
+        "id": "gray-corner-1",
+        "sourcePixel": [
+          160,
+          162
+        ],
+        "sourceRgb": [
+          192,
+          192,
+          190
+        ],
+        "sourceImageReadingUncertaintyPixels": [
+          2,
+          2
+        ],
+        "sourceContext": "Northwestern concave rectangular hook where the gray border turns west",
+        "targetEov": [
+          583294.2601798109,
+          85623.63153689538
+        ],
+        "targetType": "Literal archived/PBF municipal boundary node coordinate, not a generated geographic point",
+        "actualOsmNodeIds": [
+          684770958
+        ],
+        "actualSourceMemberWays": [
+          54308725
+        ],
+        "correspondenceStatus": "Manual distinctive gray-corner candidate, source-stroke identity independently reviewed; historical/current exact boundary correspondence and absolute accuracy are not established.",
+        "fitPredictedEov": [
+          583291.7980576725,
+          85665.77137100189
+        ],
+        "fitResidualEov": [
+          -2.4621221384732053,
+          42.139834106506896
+        ],
+        "fitResidualMetres": 42.21170055741277,
+        "fitInverseImageResidualPixels": [
+          0.06894590147814483,
+          1.2989797015887063
+        ],
+        "fitInverseImageResidualPixelNorm": 1.3008081343803624,
+        "fitResidualWithinDeclaredPixelReadingRange": true
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gray-corner-2",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.2374226,
+          46.1358913
+        ]
+      },
+      "properties": {
+        "id": "gray-corner-2",
+        "sourcePixel": [
+          286,
+          83
+        ],
+        "sourceRgb": [
+          189,
+          189,
+          187
+        ],
+        "sourceImageReadingUncertaintyPixels": [
+          2,
+          2
+        ],
+        "sourceContext": "Northern lower bend just west of the source gray outline north of city core",
+        "targetEov": [
+          587400.1916523103,
+          88247.79243027077
+        ],
+        "targetType": "Literal archived/PBF municipal boundary node coordinate, not a generated geographic point",
+        "actualOsmNodeIds": [
+          684771052
+        ],
+        "actualSourceMemberWays": [
+          450896636
+        ],
+        "correspondenceStatus": "Manual distinctive gray-corner candidate, source-stroke identity independently reviewed; historical/current exact boundary correspondence and absolute accuracy are not established.",
+        "fitPredictedEov": [
+          587384.0467764107,
+          88241.34130094667
+        ],
+        "fitResidualEov": [
+          -16.144875899655744,
+          -6.451129324093927
+        ],
+        "fitResidualMetres": 17.386031386474297,
+        "fitInverseImageResidualPixels": [
+          0.4965166221524555,
+          -0.1973281395433446
+        ],
+        "fitInverseImageResidualPixelNorm": 0.5342912602030113,
+        "fitResidualWithinDeclaredPixelReadingRange": true
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gray-corner-3",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.1484784,
+          46.1154127
+        ]
+      },
+      "properties": {
+        "id": "gray-corner-3",
+        "sourcePixel": [
+          75,
+          151
+        ],
+        "sourceRgb": [
+          191,
+          191,
+          189
+        ],
+        "sourceImageReadingUncertaintyPixels": [
+          2,
+          2
+        ],
+        "sourceContext": "Northwestern outward shoulder north of the long western vertical side",
+        "targetEov": [
+          580500.7544552248,
+          86046.71654400154
+        ],
+        "targetType": "Literal archived/PBF municipal boundary node coordinate, not a generated geographic point",
+        "actualOsmNodeIds": [
+          684770855
+        ],
+        "actualSourceMemberWays": [
+          54308725
+        ],
+        "correspondenceStatus": "Manual distinctive gray-corner candidate, source-stroke identity independently reviewed; historical/current exact boundary correspondence and absolute accuracy are not established.",
+        "fitPredictedEov": [
+          580520.4775343548,
+          86014.35018698152
+        ],
+        "fitResidualEov": [
+          19.723079129937105,
+          -32.36635702001513
+        ],
+        "fitResidualMetres": 37.90225477610591,
+        "fitInverseImageResidualPixels": [
+          -0.6002380978407871,
+          -0.9993600698564933
+        ],
+        "fitInverseImageResidualPixelNorm": 1.1657642657600642,
+        "fitResidualWithinDeclaredPixelReadingRange": true
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road-crossing-1",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.23573984070238,
+          46.012552516215166
+        ]
+      },
+      "properties": {
+        "id": "road-crossing-1",
+        "sourcePixel": [
+          275,
+          505
+        ],
+        "sourceRgb": [
+          255,
+          253,
+          254
+        ],
+        "sourceImageReadingUncertaintyPixels": [
+          3,
+          3
+        ],
+        "sourceContext": "M60 /58 main-road plan crossing",
+        "targetEov": [
+          587127.5472355257,
+          74538.95926790597
+        ],
+        "targetType": "Mean of two calculated plan-view crossings of actual original main-carriageway polyline segments. This is NOT a literal OSM-node coordinate or a surveyed point.",
+        "correspondenceStatus": "Independently manually read actual source road crossing, identity corroborated by original current road topology; reading and historical/cartographic uncertainty retained.",
+        "fitPredictedEov": [
+          587095.7186311163,
+          74548.08674461722
+        ],
+        "fitResidualEov": [
+          -31.82860440935474,
+          9.127476711248164
+        ],
+        "fitResidualMetres": 33.11149180815587,
+        "fitInverseImageResidualPixels": [
+          0.9754197640736493,
+          0.2842584178433185
+        ],
+        "fitInverseImageResidualPixelNorm": 1.0159953564166917,
+        "fitResidualWithinDeclaredPixelReadingRange": true
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "road-crossing-2",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.287370874606783,
+          46.01964052464612
+        ]
+      },
+      "properties": {
+        "id": "road-crossing-2",
+        "sourcePixel": [
+          400,
+          483
+        ],
+        "sourceRgb": [
+          226,
+          177,
+          183
+        ],
+        "sourceImageReadingUncertaintyPixels": [
+          3,
+          3
+        ],
+        "sourceContext": "M60 /578 main-road plan crossing at Kozármisleny western interchange",
+        "targetEov": [
+          591134.1379149097,
+          75286.59126514875
+        ],
+        "targetType": "Mean of two calculated plan-view crossings of actual original main-carriageway polyline segments. This is NOT a literal OSM-node coordinate or a surveyed point.",
+        "correspondenceStatus": "Independently manually read actual source road crossing, identity corroborated by original current road topology; reading and historical/cartographic uncertainty retained.",
+        "fitPredictedEov": [
+          591164.8504382303,
+          75274.14144067542
+        ],
+        "fitResidualEov": [
+          30.712523320573382,
+          -12.449824473325862
+        ],
+        "fitResidualMetres": 33.13996406355003,
+        "fitInverseImageResidualPixels": [
+          -0.9406441899620859,
+          -0.38654991002283623
+        ],
+        "fitInverseImageResidualPixelNorm": 1.0169721358267843,
+        "fitResidualWithinDeclaredPixelReadingRange": true
+      }
+    }
+  ]
+}

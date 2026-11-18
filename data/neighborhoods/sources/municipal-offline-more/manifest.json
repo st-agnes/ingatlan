@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "scope": "One independently source-map-reviewed Kecskemét fine-quarter circuit. Diagnostic alternatives remain nonimportable.",
+  "quarterCount": 1,
+  "names": [
+    "Városközpont"
+  ],
+  "importPath": "kecskemet-varoskozpont.geojson",
+  "importSha256": "a88369fcb74adec953e308822d873c0f429be73b2299d708e697b43e9fc6eba4",
+  "sourceWayCount": 40,
+  "coordinateCount": 139,
+  "files": [
+    {
+      "path": "Kossuthváros-ordered-diagnostic.geojson",
+      "sha256": "e98dac20eac22a8d5f1b1f0dd8b46701a2a6f28062857c2e56f1738c6f20a0b8",
+      "bytes": 10069
+    },
+    {
+      "path": "README.txt",
+      "sha256": "6d12c18d29ffc2c03ae81f6d0f6fe91ecb759c5b47b75e8c001f2273fd11950e",
+      "bytes": 2931
+    },
+    {
+      "path": "Városközpont-candidate-0.geojson",
+      "sha256": "a3da807b4bb7e6f1f65a82cbf7c447a9cb76be751050406c59187114e142c1ef",
+      "bytes": 15332
+    },
+    {
+      "path": "Városközpont-ordered-diagnostic.geojson",
+      "sha256": "14223d938a05659e57ebd385e399b42ecc9a7b02e09291ed81005e3437915057",
+      "bytes": 16737
+    },
+    {
+      "path": "explore_more.py",
+      "sha256": "db60ce35a2339497c374db7f01bf3ddcb635e4c6348927fd93544d591281e465",
+      "bytes": 2024
+    },
+    {
+      "path": "kecskemet-varoskozpont.geojson",
+      "sha256": "a88369fcb74adec953e308822d873c0f429be73b2299d708e697b43e9fc6eba4",
+      "bytes": 15641
+    },
+    {
+      "path": "registry-entry.json",
+      "sha256": "48cba632f7ed33e7accfb9b885b00088276a0cb6323bb049eecc012f7440ca8d",
+      "bytes": 1614
+    },
+    {
+      "path": "source-way-subset.geojson",
+      "sha256": "ecc7ad00b857cda97aaf7f23a4fd272f9228262898d31d22131240bc0aef1ca4",
+      "bytes": 62106
+    },
+    {
+      "path": "south-road-source-overlay.png",
+      "sha256": "06e5d5ac081ed9e652906dabe120986a0a802dcf9a8a5af2ac839de6bf2026e5",
+      "bytes": 2067737
+    },
+    {
+      "path": "south-source-review.json",
+      "sha256": "06a6f83369e88b9f4ebed841cf6849f19540e763e444123f988d994ad2e827ad",
+      "bytes": 17784
+    },
+    {
+      "path": "trace-proof.json",
+      "sha256": "8c34ea044c2f2d9617d95f1cb4cb2cd3fbf8f9b93d95fe6a6a633141dbec286b",
+      "bytes": 4587
+    },
+    {
+      "path": "trace_ordered_diagnostic.py",
+      "sha256": "05b8fe1378ca4786715a74765bcc2e5d5c2d9516bc98c075226ad3bd1f43feaf",
+      "bytes": 2647
+    },
+    {
+      "path": "varoskozpont-overlay.png",
+      "sha256": "cfbe9b50ffc64784837130d11ae019f2aab5595a022a8a00cb5a43e9c23ee690",
+      "bytes": 1148615
+    },
+    {
+      "path": "varoskozpont-source-overlay.png",
+      "sha256": "71ac6a564bd65bc01156000d00863b05c42862d680380f8e30edfa954492041f",
+      "bytes": 1867893
+    },
+    {
+      "path": "Árpádváros-candidate-0.geojson",
+      "sha256": "fd01455653a149e9b7502777f50726f39715a2fa255f64bc8d1e59a8b17338d0",
+      "bytes": 11396
+    }
+  ],
+  "converter": {
+    "path": "scripts/neighborhoods/derive-offline-more.py",
+    "sha256": "858b3ecd4c90d96ceba053a630c41fe1abd029e520463b350217a5d86c195852"
+  },
+  "independentReview": {
+    "path": "south-source-review.json",
+    "sha256": "06a6f83369e88b9f4ebed841cf6849f19540e763e444123f988d994ad2e827ad",
+    "verdict": "qualified_source_map_consistency_pass",
+    "currentExactFineNameLabelPresent": false
+  },
+  "reproducibility": "PYTHONPATH=.local/geodata python3 scripts/neighborhoods/derive-offline-more.py --check",
+  "usableForAddressAssignment": false,
+  "unresolved": [
+    "Árpádváros",
+    "Kossuthváros"
+  ],
+  "noNetworkUsed": true
+}

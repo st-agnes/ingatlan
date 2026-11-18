@@ -86,7 +86,20 @@ public static class Rules
         p.WholeRooms = savedCounts.WholeRooms;
         p.HalfRooms = savedCounts.HalfRooms;
         p.LotArea = house ? i.LotArea : null;
-        p.Neighborhood = PublicText(i.Neighborhood, 100); p.Address = Optional(i.Address, 255); p.Description = PublicText(i.Description);
+        p.Neighborhood = PublicText(i.Neighborhood, 100);
+        // Existing non-address clients can retain an owned structured address;
+        // new HTTP saves are checked by PropertyGeocodingService before commit.
+        if (i.Street is not null || i.HouseNumber is not null || i.PostalCode is not null)
+        {
+            p.Street = Required(i.Street, "közterület neve és típusa", 180);
+            p.HouseNumber = Required(i.HouseNumber, "házszám", 32);
+            p.PostalCode = Optional(i.PostalCode, 4);
+            if (p.Street.Any(char.IsControl) || !Regex.IsMatch(p.HouseNumber, @"^\d[\p{L}\d./ -]{0,31}$")
+                || p.PostalCode.Length > 0 && !Regex.IsMatch(p.PostalCode, @"^[0-9]{4}$"))
+                throw new ApiException(400, "Ellenőrizd a közterületet, a házszámot és a négyjegyű irányítószámot.");
+        }
+        p.Address = p.Street.Length > 0 && p.HouseNumber.Length > 0 ? p.Street + " " + p.HouseNumber : Optional(i.Address, 255);
+        p.Description = PublicText(i.Description);
         PropertyAttributes.Apply(p, i); p.Balcony = !house && i.Balcony; p.Elevator = !house && i.Elevator; p.Archived = i.Archived;
         var images = i.Images ?? [];
         if (images.Length > 12 || images.Any(x => !Uri.TryCreate(x, UriKind.Absolute, out var uri) || uri.Scheme != "https" || x.Length > 2000)) throw new ApiException(400, "Legfeljebb 12 HTTPS-képhivatkozás adható meg.");

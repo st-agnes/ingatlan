@@ -1,0 +1,590 @@
+{
+  "schemaVersion": 1,
+  "aliases": [
+    {
+      "municipality": "Budapest",
+      "name": "Gercse",
+      "aliases": [
+        "Gerce"
+      ],
+      "reason": "Historic/reference spelling variant of the same district-II place; not the separate Vas-county municipality.",
+      "evidence": [
+        "data/neighborhoods/budapest-current-reference.json",
+        "data/neighborhoods/expansion-20261114/inventory/reference-benchmarks.json"
+      ]
+    },
+    {
+      "municipality": "Debrecen",
+      "name": "Debreceni Egyetem tud-tech park",
+      "aliases": [
+        "Debreceni Egyetemi Ipari Park"
+      ],
+      "reason": "Same named university industrial/science park in the ArcGIS source and municipal FVS map; accepted as a broad search-name alias.",
+      "evidence": [
+        "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson"
+      ]
+    },
+    {
+      "municipality": "Debrecen",
+      "name": "Déli ipari terület",
+      "aliases": [
+        "Déli Ipari Park",
+        "Déli Gazdasági Övezet"
+      ],
+      "reason": "Alternative source names for the southern economic/industrial area; approximate source extent retained without imposing a new partition.",
+      "evidence": [
+        "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson"
+      ]
+    },
+    {
+      "municipality": "Debrecen",
+      "name": "Akadémiakert",
+      "aliases": [
+        "Akadémiaikert"
+      ],
+      "reason": "Minor spelling/word-formation variant in the historical municipal reference inventory; the ArcGIS and selected catalogue use Akadémiakert.",
+      "evidence": [
+        "data/neighborhoods/reference-inventories.json",
+        "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson"
+      ]
+    },
+    {
+      "municipality": "Debrecen",
+      "name": "Nagycsere",
+      "aliases": [
+        "Nagycserte"
+      ],
+      "reason": "The reference inventory explicitly flags Nagycserte as a transcription anomaly; the same municipal-part series and source polygons use Nagycsere. Keep the anomalous source spelling as a searchable alias, not another area.",
+      "evidence": [
+        "data/neighborhoods/reference-inventories.json",
+        "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson"
+      ]
+    },
+    {
+      "municipality": "Debrecen",
+      "name": "Nagyerdőtölgyes",
+      "aliases": [
+        "Nagyerdőtőlgyes"
+      ],
+      "reason": "The reference inventory explicitly flags this source spelling as a transcription anomaly; the source polygon and current catalogue use the ordinary tölgyes spelling.",
+      "evidence": [
+        "data/neighborhoods/reference-inventories.json",
+        "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson"
+      ]
+    },
+    {
+      "municipality": "Debrecen",
+      "name": "Tócórét",
+      "aliases": [
+        "Tócóret"
+      ],
+      "reason": "Accent-only reference transcription variant of the same named Tócó area.",
+      "evidence": [
+        "data/neighborhoods/reference-inventories.json",
+        "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson"
+      ]
+    },
+    {
+      "municipality": "Szombathely",
+      "name": "KISZ-lakótelep",
+      "aliases": [
+        "Ifjúsági lakótelep",
+        "Ifjúsági (KISZ) lakótelep"
+      ],
+      "reason": "The OSM named-place source explicitly has alt_name=Ifjúsági lakótelep; the municipal list itself supplies KISZ parenthetically.",
+      "evidence": [
+        "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz",
+        "data/neighborhoods/sources/nationwide-inventory/municipal-inventories.json"
+      ]
+    },
+    {
+      "municipality": "Cegléd",
+      "name": "Kenderföld",
+      "aliases": [
+        "Kenderföldek"
+      ],
+      "reason": "Singular/plural source labels for the same local area; keep the explicitly named residential source outline rather than adding another search identity for the rough barrier cell.",
+      "evidence": [
+        "https://www.openstreetmap.org/relation/17763739",
+        "https://www.openstreetmap.org/node/10657991745",
+        "data/neighborhoods/expansion-20261114/physical-cells-small/features.geojson"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XXI. kerület",
+      "aliases": [
+        "21. kerület",
+        "Csepel"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/215618"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XXII. kerület",
+      "aliases": [
+        "22. kerület",
+        "Budafok-Tétény"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/215621"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "III. kerület",
+      "aliases": [
+        "3. kerület",
+        "Óbuda-Békásmegyer"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/221976"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "II. kerület",
+      "aliases": [
+        "2. kerület"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/221980"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "I. kerület",
+      "aliases": [
+        "1. kerület",
+        "Budavár"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/221984"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XII. kerület",
+      "aliases": [
+        "12. kerület",
+        "Hegyvidék"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/221995"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XI. kerület",
+      "aliases": [
+        "11. kerület",
+        "Újbuda"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/221998"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "IV. kerület",
+      "aliases": [
+        "4. kerület",
+        "Újpest"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/367963"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XXIII. kerület",
+      "aliases": [
+        "23. kerület",
+        "Soroksár"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1550597"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XVIII. kerület",
+      "aliases": [
+        "18. kerület",
+        "Pestszentlőrinc‑Pestszentimre"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1550598"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XVII. kerület",
+      "aliases": [
+        "17. kerület",
+        "Rákosmente"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1550599"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XIX. kerület",
+      "aliases": [
+        "19. kerület",
+        "Kispest"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1551290"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XX. kerület",
+      "aliases": [
+        "20. kerület",
+        "Pesterzsébet"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1551291"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "IX. kerület",
+      "aliases": [
+        "9. kerület",
+        "Ferencváros"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1552462"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "X. kerület",
+      "aliases": [
+        "10. kerület",
+        "Kőbánya"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1552463"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XVI. kerület",
+      "aliases": [
+        "16. kerület"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1552464"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XIII. kerület",
+      "aliases": [
+        "13. kerület",
+        "Újlipótváros-Angyalföld"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1605916"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XV. kerület",
+      "aliases": [
+        "15. kerület",
+        "Rákospalota-Pestújhely-Újpalota"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1606009"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "XIV. kerület",
+      "aliases": [
+        "14. kerület",
+        "Zugló"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1606043"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "VIII. kerület",
+      "aliases": [
+        "8. kerület",
+        "Józsefváros"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1606100"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "VI. kerület",
+      "aliases": [
+        "6. kerület",
+        "Terézváros"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1606101"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "VII. kerület",
+      "aliases": [
+        "7. kerület",
+        "Erzsébetváros"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1606102"
+      ]
+    },
+    {
+      "municipality": "Budapest",
+      "name": "V. kerület",
+      "aliases": [
+        "5. kerület",
+        "Belváros-Lipótváros"
+      ],
+      "reason": "Explicit aliases on the same OSM district relation. Numbered district and its whole-district name are one search identity; differently named smaller quarters remain separate.",
+      "evidence": [
+        "data/neighborhoods/sources/openstreetmap/budapest.json",
+        "https://www.openstreetmap.org/relation/1606103"
+      ]
+    },
+    {
+      "municipality": "Szeged",
+      "name": "Makkosháza",
+      "aliases": [
+        "Makkosház"
+      ],
+      "reason": "The same local quarter appears as Makkosháza in the Henits2013/KSH2003 figure24 unit24 and Makkosház in the saved current OSM suburb point. The point lies in the already selected broad quarter outline. Treat the ending variation as a search alias, not another polygon.",
+      "evidence": [
+        "https://www.openstreetmap.org/node/982335824",
+        "data/neighborhoods/sources/municipal-szeged-raw-next/henits-p24-xref249.jpeg",
+        "data/neighborhoods/expansion-20261114/szeged-miskolc/szeged-features.geojson"
+      ]
+    },
+    {
+      "municipality": "Kaposvár",
+      "name": "Kisgát és környéke, Cukorgyár, Pécsi utca és környéke",
+      "aliases": [
+        "Kisgát és környéke"
+      ],
+      "reason": "The same FVS 2023 source group number4 has the long constituent legend title and the short section heading; section description explicitly includes Cukorgyár and Pécsi utca. Do not alias the smaller Kisgát quarter to the whole group.",
+      "evidence": [
+        "data/neighborhoods/sources/municipal-west/kaposvar-boundary-definitions.json",
+        "data/neighborhoods/sources/municipal-kaposvar-supplement-next/kaposvar-fvs-p182-source.jpeg"
+      ]
+    },
+    {
+      "municipality": "Kaposvár",
+      "name": "Toponár – Répáspuszta – Fészerlak – Deseda",
+      "aliases": [
+        "Toponár – Répáspuszta – Fészerlakpuszta – Deseda"
+      ],
+      "reason": "Same source planning group number9, with Fészerlak/Fészerlakpuszta as a constituent-name spelling variation. Does not merge the separate constituent quarters.",
+      "evidence": [
+        "data/neighborhoods/sources/municipal-west/kaposvar-boundary-definitions.json",
+        "data/neighborhoods/sources/municipal-kaposvar-supplement-next/kaposvar-fvs-p182-source.jpeg"
+      ]
+    },
+    {
+      "municipality": "Eger",
+      "name": "Felsőváros",
+      "aliases": [
+        "Felsőváros (Északi városrész)",
+        "Északi városrész"
+      ],
+      "reason": "Documented source name equivalence; see retained evidence.",
+      "evidence": {
+        "literalSavedName": "Felsőváros (Északi városrész)",
+        "sourceUrl": "https://www.openstreetmap.org/node/1288766289",
+        "sourcePoint": {
+          "sourceId": "osm:node:1288766289",
+          "coordinates": [
+            20.3748039,
+            47.9170799
+          ],
+          "placeKind": "suburb",
+          "sourceUrl": "https://www.openstreetmap.org/node/1288766289",
+          "snapshotDate": "2026-11-12T21:23:05Z"
+        },
+        "existingPolygonSourceUrl": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf",
+        "reason": "The retained named-place source explicitly writes Északi városrész as the parenthetical alternative of Felsőváros. The existing municipal polygon already uses Felsőváros. This declares a scoped name equivalence, not an assertion of independently surveyed boundaries."
+      }
+    },
+    {
+      "municipality": "Győr",
+      "name": "Győrszentiván-Kertváros",
+      "aliases": [
+        "Kertváros"
+      ],
+      "reason": "Circuit39 is named Győrszentiván-Kertváros in the same municipal document that calls the adjoining northern garden colony Kertváros. Preserve a searchable alias rather than importing a second place geometry.",
+      "evidence": [
+        "data/neighborhoods/sources/municipal-gyor-next/gyor-its.source.pdf",
+        "data/neighborhoods/expansion-20261114/major-city-maps/evidence/gyor-crosswalk.json",
+        "https://gyor.hu/easy-docs/5dc9829cb6d4c"
+      ]
+    },
+    {
+      "municipality": "Kecskemét",
+      "name": "Úrihegy",
+      "aliases": [
+        "Űrhegy"
+      ],
+      "reason": "The archived Figure71 label plainly reads Úrihegy. Current literal OSM node984273243 also has name Úrihegy. This is not a newly discovered separate quarter.",
+      "evidence": [
+        "data/neighborhoods/expansion-20261114-next/small-remaining/kecskemet-alias-review.json",
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ]
+    },
+    {
+      "municipality": "Kecskemét",
+      "name": "Kecskeméti Katonai Repülőtér",
+      "aliases": [
+        "Repülőtér",
+        "MH 59. Szentgyörgyi Dezső Repülőbázis"
+      ],
+      "reason": "Figure71 explicitly labels its yellow northeastern airfield polygon Repülőtér; it is east of Hunyadiváros/Ceglédi út and north of Szentistvánváros/Szolnokihegy. Matkó is separately shown far to the south. Applying the existing rough source-map registration places this printed label inside the exact current military-airfield polygon. The binding is contextual, not a statement that the old and current polygon edges coincide.",
+      "evidence": [
+        "data/neighborhoods/expansion-20261114-next/small-remaining/kecskemet-alias-review.json",
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+      ]
+    },
+    {
+      "municipality": "Nyíregyháza",
+      "name": "Belső lakóterület (Belváros)",
+      "aliases": [
+        "Belső lakóterület"
+      ],
+      "reason": "In the same official ITS, map/list p15 and boundary table p16 both identify numbered unit1, using the long and short names respectively; p16 prose explicitly pairs downtown and inner residential area. This proposal is restricted to the planning-unit pair, not every narrower use of Belváros.",
+      "evidence": [
+        "data/neighborhoods/sources/municipal-east/nyiregyhaza-its-2022.pdf",
+        "data/neighborhoods/expansion-20261115/nyiregyhaza/alias-proposals.json",
+        "https://uj.nyiregyhaza.hu/lib/rend_terv/its/felulvizsg/220804_its_jovahagyott_its.pdf"
+      ]
+    },
+    {
+      "municipality": "Dombóvár",
+      "name": "Gunarasfürdő",
+      "aliases": [
+        "Gunaras"
+      ],
+      "reason": "The municipal name-use page repeatedly uses Gunarasfürdő/Gunaras and says the2016 decree regulates both as the names of the same településrész. This is an explicit municipal name equivalence, not a parent/child inference.",
+      "evidence": [
+        "data/neighborhoods/expansion-20261115-round2/west-planning/dombovar/gunaras-alias-evidence.json",
+        "https://dombovar.hu/lakohelyunk/a-varosnev-hasznalata/"
+      ]
+    },
+    {
+      "municipality": "Kisvárda",
+      "name": "Keleti városrész",
+      "aliases": [
+        "Keleti Kertvárosi rész"
+      ],
+      "reason": "The same ITS labels numbered unitV as Keleti Kertvárosi rész in the six-unit list on p21 and the corresponding boundary-table row as Keleti városrész on p22; p44 describes the eastern garden action unit with the same street list. Restricted to this ITS functional unit, not a blanket synonym for unrelated eastern areas.",
+      "evidence": [
+        "data/neighborhoods/expansion-20261115-round3/kisvarda/alias-proposals.json",
+        "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf"
+      ]
+    },
+    {
+      "municipality": "Kisvárda",
+      "name": "Déli Ipari Szolgáltatói Városrész",
+      "aliases": [
+        "Déli Szolgáltató és Ipari városrész"
+      ],
+      "reason": "The same ITS labels numbered unitVI as Déli Szolgáltató és Ipari városrész in the six-unit list and gives the corresponding southern industrial/service boundary row with the canonical wording. Restricted to the same ITS functional unit.",
+      "evidence": [
+        "data/neighborhoods/expansion-20261115-round3/kisvarda/alias-proposals.json",
+        "https://www.kisvarda.hu/wp-content/uploads/2025/03/ITS__Kisvarda.pdf"
+      ]
+    },
+    {
+      "municipality": "Dombóvár",
+      "name": "Szuhajdomb",
+      "aliases": [
+        "Szuhay-domb",
+        "Szuhaj-domb"
+      ],
+      "reason": "Municipal ITS boundary circuit, later traffic/nature-plan spellings and street-renaming records identify one historical southern-city place with j/y spelling and source-scope variants. Prefer the explicitly source-defined whole planning-unit estimate while retaining the older partial street-cell as an alternative; no geometry union.",
+      "evidence": [
+        "data/neighborhoods/expansion-20261115-round4/shard-1/identity-followup/review.json",
+        "https://www.dombovar.hu/media/files/Dombovar_helyzetertekeles_0804.pdf",
+        "https://dombovar.hu/wp-content/uploads/2025/02/01.-melleklet-Forgalmi-rend-felulvizsgalat-2024-teljes-anyag-egyben.pdf",
+        "https://www.dombovar.hu/media/files/03._Termeszetvedelmi_alapterv_15.12.17..pdf"
+      ]
+    },
+    {
+      "municipality": "Kecskemét",
+      "name": "Borbás belterület",
+      "aliases": [
+        "Bordás",
+        "Bordás belterület"
+      ],
+      "reason": "The same municipal source map prints Bordás belterület on the small satellite, while its next-page enumeration and independent companion volume name Borbás. Correct the inner-settlement child spelling only; the broader Borbás rural parent retains its separate identity and geometry.",
+      "evidence": [
+        "data/neighborhoods/expansion-20261115-round4/shard-1/identity-followup/review.json",
+        "data/neighborhoods/expansion-20261115-round4/shard-4/alias-review.json",
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+        "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_I-es_kotet.pdf"
+      ]
+    }
+  ]
+}

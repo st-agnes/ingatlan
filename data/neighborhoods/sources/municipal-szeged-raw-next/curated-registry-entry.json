@@ -1,0 +1,56 @@
+{
+  "id": "szeged-henits-ksh2003-four-first",
+  "path": "data/neighborhoods/sources/municipal-szeged-raw-next/szeged-four-inferred-import.geojson",
+  "sha256": "098f2b9aa742f74113a745a5793733a458e788e34e1b28f025b2859cabf8ab1d",
+  "municipality": "Szeged",
+  "method": "Four actual named fine units from the historicalKSH2003 map reproduced inHenits2013. Exact observed native-raster cell contours, with low-confidence six-road-junction similarity placement. Allfour interiors are outside the control hull; absolute accuracy is unknown.",
+  "evidenceUrls": [
+    "https://doktori.bibl.u-szeged.hu/id/eprint/1759/1/doktori_HL.pdf",
+    "https://www.ksh.hu/docs/hun/xftp/idoszaki/pdf/muhelytanulmanyok4.pdf",
+    "https://www.klebelsberg-egyesulet.hu/wp-content/uploads/2016/04/helytortenet.pdf"
+  ],
+  "sourcePeriod": "KSH2003 scheme reproduced2013; original delineation/survey date and current equivalence not established",
+  "sourceFeatureNumbers": [
+    19,
+    20,
+    28,
+    11
+  ],
+  "license": "Academic/KSH map redistribution rights unknown; ODbL-1.0 for original OSM road controls/current-name evidence.",
+  "rightsStatus": "unknown_academic_and_KSH_map_redistribution_rights; ODbL_controls_and_name_evidence",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "sourceContourObserved": true,
+    "sourceContourIsObserved": true,
+    "estimatedContour": false,
+    "estimatedPlacement": true,
+    "georeferencingIsApproximate": true,
+    "placementConfidence": "low",
+    "controlHullCoverageFraction": 0.0,
+    "claimedAbsoluteAccuracyMetres": null,
+    "sourceIsOfficial": false,
+    "sourceIsHardBoundary": false,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-szeged-raw-next/root-independent-proposal-review.json",
+  "additionalReviewPaths": [
+    "data/neighborhoods/sources/municipal-szeged-raw-next/independent-registration-review.json",
+    "data/neighborhoods/sources/municipal-szeged-raw-next/henits-road-pbf-review-working.json",
+    "data/neighborhoods/sources/municipal-szeged-raw-next/independent-content-review.json",
+    "data/neighborhoods/sources/municipal-szeged-raw-next/working-semantic-review.json",
+    "data/neighborhoods/sources/municipal-szeged-raw-next/strict-world-validator-review.json"
+  ],
+  "placementAlternativePath": "data/neighborhoods/sources/municipal-szeged-raw-next/szeged-four-placement-alternative.geojson",
+  "uncertainties": [
+    "Allfour source interiors lie100percent outside the six-control convex hull; every placement extrapolates the isotropic map assumption.",
+    "Map generalization, original projection/date, manual road correspondence and current-road differences create unknown geographic error.",
+    "Printed scale, fit/holdout residuals and alternative-model differences do not establish metre accuracy or confidence bounds.",
+    "Klebersberg is corrected explicitly using independent correct-name evidence; Kecskés current loc_name alias is explicit; the distinct southern Hattyas point is not merged.",
+    "Source-era map extents are not asserted equal to2007 natural-corridor descriptions, current whole-quarter boundaries, cadastral/legal boundaries or address areas.",
+    "Újszőreg27 remains a source occlusion quarantine; Tarján/Felsőváros and incompatible32/34/Bodomi27 schema interpretations are outside this cohort."
+  ],
+  "registryEntryAppliedByThisBatch": false
+}

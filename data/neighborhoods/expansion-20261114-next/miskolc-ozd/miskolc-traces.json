@@ -1,0 +1,22 @@
+{
+ "coordinateSpace":"Original municipal map pixels, x-right/y-down; approximate hand interpretation of visible built-up/road/terrain sectors, not printed fine KSH borders",
+ "sourcePath":"data/neighborhoods/sources/municipal-local-map-next/miskolc-p228-original.jpeg",
+ "areas":[
+ {"name":"Kisavas","points":[[672,174],[692,174],[703,183],[698,197],[684,201],[671,194],[666,183]],"note":"Historic built-up/pince hillside immediately south of the city centre, source group7 southern edge."},
+ {"name":"Tampere","points":[[667,193],[684,189],[696,197],[699,209],[687,219],[673,217],[663,208]],"note":"Northern Avas slope estate; approximate visible housing/green transition."},
+ {"name":"Papis","points":[[663,215],[679,212],[690,223],[688,240],[675,248],[660,241],[654,227]],"note":"Avas residential slope sector north of the southern estate; broad built-up boundaries inferred from municipal map."},
+ {"name":"Szentgyörgy lakóparkok","points":[[665,250],[680,246],[688,255],[684,267],[675,275],[663,271],[658,261]],"note":"Southern Avas/Hejőcsaba residential estate sector near the mapped urban edge."},
+ {"name":"Európa Liget","points":[[675,217],[686,217],[692,224],[688,234],[678,237],[672,230]],"note":"Small modern housing sector within Avas; outline intentionally rough, not cadastral."},
+ {"name":"Békeszálló-telep","aliases":["Békeszálló telep"],"points":[[606,171],[623,167],[636,174],[637,183],[626,193],[611,194],[604,184]],"note":"Built-up strip southwest of source city-centre group, partitioned from the neighbouring Muszkás sector using the map context."},
+ {"name":"Muszkástelep","aliases":["Muszkás telep"],"points":[[625,184],[643,185],[649,194],[645,205],[634,211],[624,201],[618,193]],"note":"Neighbouring built-up/hillside strip southeast of Békeszálló; manually estimated fine separator."},
+ {"name":"Vasgyár","points":[[532,189],[550,184],[579,191],[590,201],[584,215],[568,221],[543,220],[531,207]],"note":"Large visible industrial and former workers-estate block in source Miskolc-Közép; table59 explicitly identifies the DAM and former ironworks area."},
+ {"name":"Vasgyári újtelep","points":[[540,175],[557,173],[569,181],[569,190],[556,197],[539,191],[533,183]],"note":"Northern residential strip adjoining the source ironworks block; extent inferred from visible built-up divisions."},
+ {"name":"Gorkij-telep","points":[[553,218],[567,218],[573,226],[568,235],[557,238],[548,233],[548,225]],"note":"Small estate south of the visible ironworks, mapped from its built-up block context."},
+ {"name":"Láditelep","points":[[539,216],[549,214],[556,219],[554,229],[548,233],[538,228]],"note":"Adjacent western estate strip at the industrial/residential edge; intentionally separate overlapping estimate."},
+ {"name":"Mechatronikai Ipari Park","points":[[697,48],[722,48],[735,61],[733,77],[722,84],[708,79],[696,67]],"note":"Visible northern industrial compound in source group1; source table describes the Bosch/industrial zone here."},
+ {"name":"MÁV-telep","points":[[725,169],[740,168],[751,175],[751,186],[740,192],[725,188],[718,179]],"note":"Railway-adjacent built-up block between the city-centre and eastern group; rough estate outline."},
+ {"name":"Vörösmarty városrész","points":[[698,174],[710,172],[720,179],[723,190],[713,196],[701,192],[693,183]],"note":"Southeastern city-centre built-up block at the edge of Avas/Népkert; hand-inferred internal boundary."},
+ {"name":"Zsolcaikapu","aliases":["Zsolcai kapu"],"points":[[699,149],[712,145],[723,150],[729,161],[725,173],[711,176],[700,168],[696,159]],"note":"Northeastern city-centre corridor shown in the source urban fabric; fine edge not printed on the source."},
+ {"name":"Hodobay Sándor-telep","points":[[703,131],[717,130],[726,138],[722,149],[711,154],[701,147],[697,139]],"note":"Small estate in the transition from northern group1 to eastern group2; approximate source-map sector."}
+ ]
+}

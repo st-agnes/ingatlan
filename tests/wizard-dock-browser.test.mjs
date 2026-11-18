@@ -51,7 +51,7 @@ async function createWizard(page,interact,kind,viewport){
  await page.locator('#f-title').fill(title);
  await page.locator('#location-input').fill('Debrecen');await interact(page.locator('[data-location-id="city:Debrecen"]'));
  if(kind==='search'){await page.locator('#location-input').fill('Hajdúszoboszló');await interact(page.locator('[data-location-id="city:Hajdúszoboszló"]'));}
- if(kind==='property')await page.locator('#f-type').selectOption('Ház');
+ if(kind==='property'){await page.locator('#f-street').fill('Teszt utca');await page.locator('#f-houseNumber').fill('12/A');await page.locator('#f-type').selectOption('Ház');}
  await page.evaluate(()=>{globalThis.wizardOriginalTitle=document.getElementById('f-title');});
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,1);
  await alignedBounds(page,kind,viewport);
@@ -157,7 +157,7 @@ async function verifyCriteriaSummary(page,interact,kind,viewport){
  await page.evaluate(async kind=>{
   const {STORAGE_KEY}=await import('/model.js'),raw=JSON.parse(localStorage.getItem(STORAGE_KEY));
   if(kind==='property')Object.assign(raw.properties.find(item=>item.id==='own-p1'),{
-   type:'Lakás',title:'Összesített tesztotthon',locationId:'district:Budapest:5',city:'Budapest',district:'V.',neighborhood:'Belváros',address:'Teszt utca 12.',
+   type:'Lakás',title:'Összesített tesztotthon',locationId:'district:Budapest:5',city:'Budapest',district:'V.',neighborhood:'Belváros',address:'Teszt utca 12.',addressDetails:{street:'Teszt utca',houseNumber:'12.',postalCode:''},
    price:95.5,area:72.5,lotArea:null,rooms:3.5,wholeRooms:3,halfRooms:1,floor:0,condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Panorámás',ceilingHeight:'3 m feletti',
    heatingType:'Hőszivattyú',secondaryHeatingType:'Klíma',insulated:false,energyRating:'BB',airConditioning:true,solarPanels:false,parkingTypes:['Udvari beálló','Garázs'],parkingType:'Udvari beálló, Garázs',balcony:false,elevator:true,
    description:'Eladói összesítő <b>szöveg</b>',images:['https://images.unsplash.com/photo-1600585154340-be6161a56a0c','https://images.unsplash.com/photo-1600585154340-be6161a56a0c?view=2']

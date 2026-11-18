@@ -1,0 +1,87 @@
+{
+  "type": "FeatureCollection",
+  "status": "rejected_initial_coarse_scout",
+  "registryAdmissionAllowed": false,
+  "features": [
+    {
+      "type": "Feature",
+      "id": "rejected-scout:vac:marialiget-before-native-review",
+      "properties": {
+        "name": "Mária-liget",
+        "researchOnly": true,
+        "admitted": false,
+        "sourceContourIsObserved": false,
+        "usableForAddressAssignment": false,
+        "reason": "Independent source-pixel review showed this coarse scout crossed actual magenta dashes and omitted a deep concave notch. Rejected before freeze; never registered.",
+        "initialSourcePixelPath": "review-reconciliation.json"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.15970460617576,
+              47.75653027337474
+            ],
+            [
+              19.162028580778273,
+              47.755684378982636
+            ],
+            [
+              19.16481328341401,
+              47.75448738526675
+            ],
+            [
+              19.168298959222184,
+              47.753218371522365
+            ],
+            [
+              19.171550774712255,
+              47.7519732440775
+            ],
+            [
+              19.17153747000996,
+              47.75136704889842
+            ],
+            [
+              19.169865100861276,
+              47.749867939688286
+            ],
+            [
+              19.16771884023898,
+              47.748113675889016
+            ],
+            [
+              19.16516822398695,
+              47.74928676377193
+            ],
+            [
+              19.161923020359797,
+              47.75083481157169
+            ],
+            [
+              19.158914616145225,
+              47.75251035099293
+            ],
+            [
+              19.158460368767365,
+              47.753164478445626
+            ],
+            [
+              19.159187805115383,
+              47.75430497341471
+            ],
+            [
+              19.158973837665,
+              47.75523823360964
+            ],
+            [
+              19.15970460617576,
+              47.75653027337474
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

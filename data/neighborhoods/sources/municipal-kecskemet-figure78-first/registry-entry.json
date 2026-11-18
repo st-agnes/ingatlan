@@ -1,0 +1,21 @@
+{
+  "id": "kecskemet-figure78-source-pixel-inferred",
+  "path": "data/neighborhoods/sources/municipal-kecskemet-figure78-first/source-inferred.geojson",
+  "sha256": "1ef7475d6573753e7b273c5e4cee7ed42b2608a655ef8b72450c2b8d32d1a6be",
+  "municipality": "Kecskemét",
+  "featureCount": 4,
+  "method": "Literal original Figure78 maxRGB<=45 black-source-pixel circuits, every dense edge an 8-neighbor source step. Shared dividers are reused exactly; no source-frame closure, label crossing, invented connector, simplification, buffer, snap or repair. Actual photographic texture establishes a Figure79-to-Figure78 image affine relation: fourteen fitted and sixteen separately held-out NCC patches, with no world coordinates, names or boundary rings used by image matching. The inverse image relation is composed with the archived new EOV affine calibration, independently fitted from the five original Figure79 manual source-junction observations and literal OSM coordinates. The frozen Figure79 geographic-degree affine is retained as a model-family comparison and is never modified. Figure78 contours extend beyond the observed common-image overlap and the original calibration image; their full geographic placement is not independently validated. All output is therefore an explicit inferred geographic candidate; exact source contours are proved separately from placement.",
+  "evidenceUrls": [
+    "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+  ],
+  "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name points.",
+  "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-figure78-first/independent-review.json",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false
+  },
+  "rightsStatus": "Public municipal consultation draft; open reuse rights not independently established."
+}

@@ -1,0 +1,1143 @@
+{
+  "schemaVersion": 1,
+  "status": "author_paths_for_independent_source_qa",
+  "sourceImage": "../municipal-pecs-first-inferred/pecs-p48-names.jpeg",
+  "sourceImageSha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8",
+  "method": "Explicit manually listed original pixel-center paths. Validation checks only literal RGB, 8-neighbour adjacency, closure, and simple ring arithmetic. No automatic pathfinding, mask expansion or stroke gap closure.",
+  "records": [
+    {
+      "sourceName": "Árpádtető",
+      "sourceLabelAnchorPixel": [
+        343,
+        80
+      ],
+      "sourceObservation": "Complete purple island below the gray administration line. The north path uses [324,75] and [325,76] rather than the separate gray line near [327,72–73]. The western brown-purple stroke is adjacent to the yellow road. The pale right-upper edge pixel [329,82] is ambiguous even though the two neighbouring path vertices are dark purple strokes.",
+      "completeStrokePathAuthorApproved": false,
+      "id": "arpadteto",
+      "coordinateSpace": "Original Figure9 integer pixel centers, x right/y down, zero-based; no geographic coordinates.",
+      "path": [
+        [
+          324,
+          75
+        ],
+        [
+          325,
+          76
+        ],
+        [
+          326,
+          77
+        ],
+        [
+          326,
+          78
+        ],
+        [
+          327,
+          79
+        ],
+        [
+          327,
+          80
+        ],
+        [
+          328,
+          81
+        ],
+        [
+          329,
+          82
+        ],
+        [
+          329,
+          83
+        ],
+        [
+          330,
+          84
+        ],
+        [
+          330,
+          85
+        ],
+        [
+          330,
+          86
+        ],
+        [
+          329,
+          87
+        ],
+        [
+          328,
+          87
+        ],
+        [
+          327,
+          88
+        ],
+        [
+          326,
+          88
+        ],
+        [
+          325,
+          89
+        ],
+        [
+          324,
+          89
+        ],
+        [
+          323,
+          90
+        ],
+        [
+          322,
+          90
+        ],
+        [
+          321,
+          90
+        ],
+        [
+          320,
+          89
+        ],
+        [
+          320,
+          88
+        ],
+        [
+          319,
+          87
+        ],
+        [
+          319,
+          86
+        ],
+        [
+          319,
+          85
+        ],
+        [
+          319,
+          84
+        ],
+        [
+          319,
+          83
+        ],
+        [
+          319,
+          82
+        ],
+        [
+          319,
+          81
+        ],
+        [
+          319,
+          80
+        ],
+        [
+          319,
+          79
+        ],
+        [
+          320,
+          78
+        ],
+        [
+          321,
+          77
+        ],
+        [
+          322,
+          77
+        ],
+        [
+          323,
+          76
+        ],
+        [
+          324,
+          75
+        ]
+      ],
+      "vertices": [
+        {
+          "sequenceIndex": 0,
+          "sourcePixel": [
+            324,
+            75
+          ],
+          "originalRgb": [
+            151,
+            138,
+            166
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 1,
+          "sourcePixel": [
+            325,
+            76
+          ],
+          "originalRgb": [
+            88,
+            70,
+            112
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 2,
+          "sourcePixel": [
+            326,
+            77
+          ],
+          "originalRgb": [
+            140,
+            118,
+            165
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 3,
+          "sourcePixel": [
+            326,
+            78
+          ],
+          "originalRgb": [
+            61,
+            36,
+            93
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 4,
+          "sourcePixel": [
+            327,
+            79
+          ],
+          "originalRgb": [
+            111,
+            81,
+            133
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 5,
+          "sourcePixel": [
+            327,
+            80
+          ],
+          "originalRgb": [
+            136,
+            91,
+            158
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 6,
+          "sourcePixel": [
+            328,
+            81
+          ],
+          "originalRgb": [
+            99,
+            64,
+            118
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 7,
+          "sourcePixel": [
+            329,
+            82
+          ],
+          "originalRgb": [
+            206,
+            181,
+            220
+          ],
+          "manualOuterStrokeAssessment": "Pale mixed purple edge between dark path pixels [328,81] and [329,83]; its exact stroke identity is not independently certain. No gap is bridged beyond one neighbouring pixel.",
+          "authorUnresolvedStrokeIdentity": true
+        },
+        {
+          "sequenceIndex": 8,
+          "sourcePixel": [
+            329,
+            83
+          ],
+          "originalRgb": [
+            68,
+            39,
+            85
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 9,
+          "sourcePixel": [
+            330,
+            84
+          ],
+          "originalRgb": [
+            128,
+            108,
+            136
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 10,
+          "sourcePixel": [
+            330,
+            85
+          ],
+          "originalRgb": [
+            59,
+            34,
+            64
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 11,
+          "sourcePixel": [
+            330,
+            86
+          ],
+          "originalRgb": [
+            73,
+            49,
+            75
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 12,
+          "sourcePixel": [
+            329,
+            87
+          ],
+          "originalRgb": [
+            79,
+            49,
+            87
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 13,
+          "sourcePixel": [
+            328,
+            87
+          ],
+          "originalRgb": [
+            61,
+            20,
+            80
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 14,
+          "sourcePixel": [
+            327,
+            88
+          ],
+          "originalRgb": [
+            75,
+            37,
+            96
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 15,
+          "sourcePixel": [
+            326,
+            88
+          ],
+          "originalRgb": [
+            72,
+            29,
+            101
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 16,
+          "sourcePixel": [
+            325,
+            89
+          ],
+          "originalRgb": [
+            112,
+            79,
+            132
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 17,
+          "sourcePixel": [
+            324,
+            89
+          ],
+          "originalRgb": [
+            84,
+            45,
+            100
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 18,
+          "sourcePixel": [
+            323,
+            90
+          ],
+          "originalRgb": [
+            118,
+            94,
+            110
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 19,
+          "sourcePixel": [
+            322,
+            90
+          ],
+          "originalRgb": [
+            66,
+            35,
+            43
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 20,
+          "sourcePixel": [
+            321,
+            90
+          ],
+          "originalRgb": [
+            119,
+            83,
+            83
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 21,
+          "sourcePixel": [
+            320,
+            89
+          ],
+          "originalRgb": [
+            172,
+            129,
+            148
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context. Brown/purple mixing with the adjacent yellow road limits edge-center precision.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 22,
+          "sourcePixel": [
+            320,
+            88
+          ],
+          "originalRgb": [
+            148,
+            95,
+            139
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context. Brown/purple mixing with the adjacent yellow road limits edge-center precision.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 23,
+          "sourcePixel": [
+            319,
+            87
+          ],
+          "originalRgb": [
+            158,
+            124,
+            138
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context. Brown/purple mixing with the adjacent yellow road limits edge-center precision.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 24,
+          "sourcePixel": [
+            319,
+            86
+          ],
+          "originalRgb": [
+            156,
+            117,
+            138
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context. Brown/purple mixing with the adjacent yellow road limits edge-center precision.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 25,
+          "sourcePixel": [
+            319,
+            85
+          ],
+          "originalRgb": [
+            155,
+            112,
+            140
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context. Brown/purple mixing with the adjacent yellow road limits edge-center precision.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 26,
+          "sourcePixel": [
+            319,
+            84
+          ],
+          "originalRgb": [
+            144,
+            99,
+            132
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context. Brown/purple mixing with the adjacent yellow road limits edge-center precision.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 27,
+          "sourcePixel": [
+            319,
+            83
+          ],
+          "originalRgb": [
+            148,
+            103,
+            136
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context. Brown/purple mixing with the adjacent yellow road limits edge-center precision.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 28,
+          "sourcePixel": [
+            319,
+            82
+          ],
+          "originalRgb": [
+            146,
+            103,
+            133
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context. Brown/purple mixing with the adjacent yellow road limits edge-center precision.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 29,
+          "sourcePixel": [
+            319,
+            81
+          ],
+          "originalRgb": [
+            133,
+            90,
+            118
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context. Brown/purple mixing with the adjacent yellow road limits edge-center precision.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 30,
+          "sourcePixel": [
+            319,
+            80
+          ],
+          "originalRgb": [
+            145,
+            108,
+            125
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context. Brown/purple mixing with the adjacent yellow road limits edge-center precision.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 31,
+          "sourcePixel": [
+            319,
+            79
+          ],
+          "originalRgb": [
+            137,
+            109,
+            105
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context. Brown/purple mixing with the adjacent yellow road limits edge-center precision.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 32,
+          "sourcePixel": [
+            320,
+            78
+          ],
+          "originalRgb": [
+            150,
+            122,
+            144
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 33,
+          "sourcePixel": [
+            321,
+            77
+          ],
+          "originalRgb": [
+            152,
+            126,
+            161
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 34,
+          "sourcePixel": [
+            322,
+            77
+          ],
+          "originalRgb": [
+            127,
+            100,
+            145
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 35,
+          "sourcePixel": [
+            323,
+            76
+          ],
+          "originalRgb": [
+            139,
+            118,
+            157
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 36,
+          "sourcePixel": [
+            324,
+            75
+          ],
+          "originalRgb": [
+            151,
+            138,
+            166
+          ],
+          "manualOuterStrokeAssessment": "Manually read center of the continuous original purple/dark outer stroke in local source context.",
+          "authorUnresolvedStrokeIdentity": false
+        }
+      ],
+      "sourcePixelPathSha256": "ea0655f832db9cfc8adad974253e3e6ce9e72ed537c02e56434445d1674c00f3",
+      "closed": true,
+      "allStepsAre8Neighbour": true,
+      "maximumChebyshevStepPixels": 1,
+      "simpleValidSourcePixelRing": true,
+      "sourcePixelCenterRingArea": 112.0,
+      "unresolvedVertexIndices": [
+        7
+      ],
+      "cropBox": [
+        316,
+        72,
+        335,
+        94
+      ],
+      "maskGrowthThresholdChangeClosingFillRepairSnapUsed": false,
+      "sourceQuarterMapFootprintRoleSupported": true,
+      "independentQaCompleted": false,
+      "approvedForGeographicPolygon": false,
+      "claimedAbsoluteAccuracy": null
+    },
+    {
+      "sourceName": "M utca",
+      "sourceLabelAnchorPixel": [
+        514,
+        43
+      ],
+      "sourceObservation": "Complete tiny dark curved/vertical island separate from the M utca label and neighbouring islands. The path follows the dark upper cap, eastern side, small southeastern foot, then inner western contour back to the cap. Figure12 shows the corresponding isolated curved island with a gray center, not a landuse surface.",
+      "completeStrokePathAuthorApproved": true,
+      "id": "m-utca",
+      "coordinateSpace": "Original Figure9 integer pixel centers, x right/y down, zero-based; no geographic coordinates.",
+      "path": [
+        [
+          498,
+          38
+        ],
+        [
+          499,
+          38
+        ],
+        [
+          500,
+          38
+        ],
+        [
+          501,
+          38
+        ],
+        [
+          502,
+          39
+        ],
+        [
+          502,
+          40
+        ],
+        [
+          502,
+          41
+        ],
+        [
+          502,
+          42
+        ],
+        [
+          502,
+          43
+        ],
+        [
+          502,
+          44
+        ],
+        [
+          503,
+          45
+        ],
+        [
+          503,
+          46
+        ],
+        [
+          502,
+          46
+        ],
+        [
+          501,
+          46
+        ],
+        [
+          501,
+          45
+        ],
+        [
+          501,
+          44
+        ],
+        [
+          501,
+          43
+        ],
+        [
+          500,
+          42
+        ],
+        [
+          499,
+          41
+        ],
+        [
+          499,
+          40
+        ],
+        [
+          498,
+          39
+        ],
+        [
+          498,
+          38
+        ]
+      ],
+      "vertices": [
+        {
+          "sequenceIndex": 0,
+          "sourcePixel": [
+            498,
+            38
+          ],
+          "originalRgb": [
+            113,
+            107,
+            121
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 1,
+          "sourcePixel": [
+            499,
+            38
+          ],
+          "originalRgb": [
+            59,
+            52,
+            68
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 2,
+          "sourcePixel": [
+            500,
+            38
+          ],
+          "originalRgb": [
+            63,
+            56,
+            74
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 3,
+          "sourcePixel": [
+            501,
+            38
+          ],
+          "originalRgb": [
+            61,
+            54,
+            72
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 4,
+          "sourcePixel": [
+            502,
+            39
+          ],
+          "originalRgb": [
+            103,
+            99,
+            114
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 5,
+          "sourcePixel": [
+            502,
+            40
+          ],
+          "originalRgb": [
+            59,
+            55,
+            70
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 6,
+          "sourcePixel": [
+            502,
+            41
+          ],
+          "originalRgb": [
+            33,
+            29,
+            44
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 7,
+          "sourcePixel": [
+            502,
+            42
+          ],
+          "originalRgb": [
+            44,
+            40,
+            54
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 8,
+          "sourcePixel": [
+            502,
+            43
+          ],
+          "originalRgb": [
+            37,
+            34,
+            45
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 9,
+          "sourcePixel": [
+            502,
+            44
+          ],
+          "originalRgb": [
+            56,
+            53,
+            62
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 10,
+          "sourcePixel": [
+            503,
+            45
+          ],
+          "originalRgb": [
+            24,
+            22,
+            25
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 11,
+          "sourcePixel": [
+            503,
+            46
+          ],
+          "originalRgb": [
+            119,
+            117,
+            120
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid. Gray antialias toe; connected directly to the dark foot [503,45] and [502,46].",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 12,
+          "sourcePixel": [
+            502,
+            46
+          ],
+          "originalRgb": [
+            38,
+            35,
+            42
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 13,
+          "sourcePixel": [
+            501,
+            46
+          ],
+          "originalRgb": [
+            58,
+            52,
+            62
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 14,
+          "sourcePixel": [
+            501,
+            45
+          ],
+          "originalRgb": [
+            50,
+            44,
+            56
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 15,
+          "sourcePixel": [
+            501,
+            44
+          ],
+          "originalRgb": [
+            33,
+            27,
+            41
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 16,
+          "sourcePixel": [
+            501,
+            43
+          ],
+          "originalRgb": [
+            67,
+            60,
+            76
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 17,
+          "sourcePixel": [
+            500,
+            42
+          ],
+          "originalRgb": [
+            78,
+            71,
+            89
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 18,
+          "sourcePixel": [
+            499,
+            41
+          ],
+          "originalRgb": [
+            69,
+            62,
+            78
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 19,
+          "sourcePixel": [
+            499,
+            40
+          ],
+          "originalRgb": [
+            93,
+            86,
+            102
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 20,
+          "sourcePixel": [
+            498,
+            39
+          ],
+          "originalRgb": [
+            44,
+            38,
+            52
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        },
+        {
+          "sequenceIndex": 21,
+          "sourcePixel": [
+            498,
+            38
+          ],
+          "originalRgb": [
+            113,
+            107,
+            121
+          ],
+          "manualOuterStrokeAssessment": "Manually read dark original island outer-stroke center; adjacent non-island background and gray internal fill were compared in the native grid.",
+          "authorUnresolvedStrokeIdentity": false
+        }
+      ],
+      "sourcePixelPathSha256": "7ead50fe28eb6fda93d5c02f12771a2aff60937bb5ae53f5b21af94969e0b783",
+      "closed": true,
+      "allStepsAre8Neighbour": true,
+      "maximumChebyshevStepPixels": 1,
+      "simpleValidSourcePixelRing": true,
+      "sourcePixelCenterRingArea": 18.5,
+      "unresolvedVertexIndices": [],
+      "cropBox": [
+        494,
+        35,
+        508,
+        50
+      ],
+      "maskGrowthThresholdChangeClosingFillRepairSnapUsed": false,
+      "sourceQuarterMapFootprintRoleSupported": true,
+      "independentQaCompleted": false,
+      "approvedForGeographicPolygon": false,
+      "claimedAbsoluteAccuracy": null
+    }
+  ],
+  "newGeographicPolygons": 0,
+  "primaryApproval": false,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false
+}

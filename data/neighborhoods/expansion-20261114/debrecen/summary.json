@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Debrecen",
+  "policy": "20261114-throughput-all-machine-polygons",
+  "rawSourceRecords": 77,
+  "exportedSourcePolygons": 75,
+  "distinctExportedNames": 75,
+  "previousSelectedDistinctNames": 55,
+  "additionalDistinctNamesAgainstPreviousSelected": 21,
+  "additionalNames": [
+    "Auguszta",
+    "Basahalom",
+    "Debreceni Egyetem tud-tech park",
+    "Dombos",
+    "Déli ipari terület",
+    "Gyógyszergyár",
+    "Hőforrás",
+    "Józsa",
+    "József Attila-telep",
+    "Kétútköz",
+    "Köntösgát",
+    "Lóskúti",
+    "Műhelytelep",
+    "Nagyerdőtölgyes",
+    "Pércsikert",
+    "Repülőtér",
+    "Téglagyár",
+    "Tócórét",
+    "Veres Péter-kert",
+    "Wesselényi-lakótelep",
+    "Zsibogó"
+  ],
+  "combinedDistinctNamesWithPreviousSelected": 76,
+  "includedPreviousDispositions": {
+    "deferred_facility_use_or_forest_role": 11,
+    "selected_estimated": 23,
+    "previous_six_estimated_identity": 6,
+    "existing_primary_identity": 25,
+    "deferred_name_variant": 5,
+    "deferred_broad_parent": 1,
+    "deferred_name_point_outside_extent": 3,
+    "deferred_later_schema_area": 1
+  },
+  "excluded": [
+    {
+      "sourceId": 4,
+      "sourceName": "Közterület",
+      "reason": "generic_area_label_not_a_distinct_named_place",
+      "retainedRawSourcePath": "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson",
+      "preferredSourceId": null,
+      "note": "Közterület means generic public space."
+    },
+    {
+      "sourceId": 11,
+      "sourceName": "Széchenyikert",
+      "reason": "duplicate_literal_name_with_known_identity_conflict",
+      "retainedRawSourcePath": "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson",
+      "preferredSourceId": 67,
+      "note": "FID11 is labelled Széchenyikert but lies by Újkert; FID67 is the actual same-name source polygon. Retain existing OSM Újkert separately; do not rename FID11 or invent a further place."
+    }
+  ],
+  "explicitAliases": [
+    {
+      "sourceFID": 15,
+      "canonicalName": "József Attila-telep",
+      "aliases": [
+        "József Attila telep"
+      ]
+    },
+    {
+      "sourceFID": 52,
+      "canonicalName": "Pércsikert",
+      "aliases": [
+        "Percsikert"
+      ]
+    },
+    {
+      "sourceFID": 56,
+      "canonicalName": "Veres Péter-kert",
+      "aliases": [
+        "Veres Péter kert",
+        "Veres Péter lakótelep"
+      ]
+    },
+    {
+      "sourceFID": 57,
+      "canonicalName": "Hőforrás",
+      "aliases": [
+        "Hőforras"
+      ]
+    },
+    {
+      "sourceFID": 70,
+      "canonicalName": "Wesselényi-lakótelep",
+      "aliases": [
+        "Wesselényi lakótelep",
+        "Wesselényi"
+      ]
+    }
+  ],
+  "geometryChanges": 0,
+  "generatedCircles": 0,
+  "inputSha256": "fb7d0f0bae18b05263d5658221f0a612a2839193ce47413e05dc71401b18cf3e",
+  "inputPath": "data/neighborhoods/sources/municipal-debrecen-remaining-next/debrecen-source-service.geojson",
+  "outputSha256": "4698c5731838e806f57ef802bc277782758b58b7eb4833425ba8e861367f4a43",
+  "scope": "All useful named source polygons, including parent Józsa and named industrial/forest areas. Cross-source overlaps and historical differences are intentionally allowed. Root catalogue deduplication selects one boundary per municipality/name; this packet preserves alternatives.",
+  "remainingKnownReferenceGaps": [
+    "Köztemető",
+    "Alsójózsa",
+    "Felsőjózsa",
+    "Észak-Nyugati Gazdasági Övezet"
+  ],
+  "possibleReferenceAliasesNotForced": [
+    [
+      "Déli ipari terület",
+      "Déli Gazdasági Övezet"
+    ],
+    [
+      "Debreceni Egyetem tud-tech park",
+      "Debreceni Egyetemi Ipari Park"
+    ]
+  ],
+  "nationalCompletenessClaimed": false
+}

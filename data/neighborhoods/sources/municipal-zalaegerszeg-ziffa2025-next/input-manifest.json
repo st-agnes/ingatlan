@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_source_inputs_for_one_estimated_neighborhood",
+  "originalPdf": {
+    "path": ".local/neighborhoods/supplement-originals/zalaegerszeg-ziffa2025.pdf",
+    "sha256": "b132fd75d6c95538023ced5eda3ad8ac7f7131c6e27f889ed7206c23e4a44745",
+    "sourceUrl": "https://zalaegerszeg.hu/wp-content/uploads/2025/09/ZEG_ZIFFA_egyeztetesi-valt.pdf",
+    "fullOriginalRemainsLocal": true,
+    "pageCount": 229
+  },
+  "sourcePdfPagesOneBased": [
+    63,
+    99,
+    141,
+    142
+  ],
+  "sourceImageXref": 778,
+  "sourceImageSizePixels": [
+    355,
+    451
+  ],
+  "pinnedOsmPbf": {
+    "path": ".local/neighborhoods/hungary-latest.osm.pbf",
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "osmSnapshotTimestamp": "2026-11-12T21:23:05Z",
+    "networkUsedForExtraction": false
+  },
+  "inputs": [
+    {
+      "path": "source-map-only-p141.pdf",
+      "sha256": "3173564e67ca54fd62153ee52e182c4f63ddfd55c74c0930e24715e5781b000c"
+    },
+    {
+      "path": "source-page-facts.json",
+      "sha256": "3cfd6efb85abf30b3a6c4ed8bd675d98999d4310a427a5d6255f91a21d847599"
+    },
+    {
+      "path": "p141-xref773.jpeg",
+      "sha256": "4e29b629c1a49f610a9c6a2754523e53bf881ea972551b46e6a9d7be4ddaba82"
+    },
+    {
+      "path": "p141-xref778.jpeg",
+      "sha256": "030e9fe46f8bce31c9a4f9bbea282a72c66e3af3d29d508c72659583f1569d76"
+    },
+    {
+      "path": "hathaz-geographic-reference.geojson",
+      "sha256": "3110f65a7b125cca870158014476dc7e1684a9b15d62230f1ffa59fc3e3d3960"
+    },
+    {
+      "path": "current-name-evidence.geojson",
+      "sha256": "43bb020b9f3e725676133064944f8dcdbe6052fc04f1cbd1579693b333e54d35"
+    }
+  ],
+  "export": "hathaz-inferred-import.geojson",
+  "estimatedFeatureCount": 1,
+  "sourcePixelGeometry": "hathaz-observed-source-pixels.geojson",
+  "placementAlternative": "hathaz-placement-alternative.geojson",
+  "registeredGlobally": false,
+  "sourcePointsUsedForGeoreferencing": false,
+  "claimedAbsoluteAccuracyMetres": null
+}

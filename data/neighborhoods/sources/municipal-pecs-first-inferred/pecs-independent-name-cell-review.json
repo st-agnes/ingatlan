@@ -1,0 +1,1669 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "reviewer": "Independent pecs_cell_names_review agent",
+  "scope": "Literal original Figure 9 fine labels, source topology/relative fine-cell shapes and Figure 12 actual free-pixel cells. Geographic transform and absolute accuracy are outside this review.",
+  "networkUsed": false,
+  "sourcePdfSha256": "995d0db03e454a34046b248526e0882aee26ffbf40ba916e996afa4c8b49f6b1",
+  "sourceImagesOriginalPdfByteIdentityVerified": true,
+  "sourceMaskRecomputedByThisReview": false,
+  "criticalCorrections": [
+    "Bálics belongs to original density cell 64; Szkókó to 66. The previous label anchors had those names swapped.",
+    "Újmecsekalja 94 and Uránváros 99 are separate fine source units.",
+    "Kovácstelep 107 is the orange southwestern II triangle; industrial X cell 122 must not receive this name.",
+    "Piricsizma 68 is the IV upper wedge; adjacent blue I cell 76 is different.",
+    "Nyugati ipari út is the lower blue X strip 122. The red label east of it is Szigeti tanya 118."
+  ],
+  "summary": {
+    "previousLiteralAnchorsReviewed": 39,
+    "sourceNameCellPairsSupportedOrCorrected": 60,
+    "unresolvedCompleteSourceExtents": 7,
+    "additionalLiteralLabelsRead": 28,
+    "totalOriginalFineNamesAccountedFor": 67,
+    "neighbourhoodSourceCandidates": 57,
+    "planningUnits": 2,
+    "functionalLocalAreas": 1,
+    "newGeometriesCreated": 0
+  },
+  "records": [
+    {
+      "sourceName": "Kismélyvölgy",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 59,
+      "reviewedSourceComponentId": 59,
+      "verifiedDensityInteriorPixel": [
+        304,
+        388
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        164,
+        207
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Narrow northwestern purple III strip between Szentkút and Deindol; full long source name is readable.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Deindol",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 57,
+      "reviewedSourceComponentId": 57,
+      "verifiedDensityInteriorPixel": [
+        335,
+        397
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        187,
+        214
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Broad northeastern purple III body east of Kismélyvölgy.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Donátus",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 71,
+      "reviewedSourceComponentId": 71,
+      "verifiedDensityInteriorPixel": [
+        346,
+        470
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        185,
+        253
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Central eastern purple III body east of Ürög and above Makár.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Ürög",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 65,
+      "reviewedSourceComponentId": 65,
+      "verifiedDensityInteriorPixel": [
+        305,
+        489
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        160,
+        272
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Tall western purple III body south of Kismélyvölgy and west of Donátus.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Patacs",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 87,
+      "reviewedSourceComponentId": 87,
+      "verifiedDensityInteriorPixel": [
+        248,
+        555
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        122,
+        309
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Broad southwestern purple III body below Zsebedomb and west of Ürög.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Makár",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 82,
+      "reviewedSourceComponentId": 82,
+      "verifiedDensityInteriorPixel": [
+        339,
+        531
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        188,
+        292
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Southeastern purple III body above the orange II strip and west of the blue I neighbourhoods.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Somogy",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 45,
+      "reviewedSourceComponentId": 45,
+      "verifiedDensityInteriorPixel": [
+        774,
+        248
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        451,
+        122
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Detached XII body southwest of Vasas; its lower narrow extension is distinct from the hatched Murom cell.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Vasas",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 38,
+      "reviewedSourceComponentId": 38,
+      "verifiedDensityInteriorPixel": [
+        856,
+        199
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        500,
+        91
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Large northeastern XII body, distinct from smaller northern Petőfi-akna/Flóriántelep islands.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Hird",
+      "status": "corrected_source_name_cell",
+      "provisionalComponentIdBeforeReview": null,
+      "reviewedSourceComponentId": 49,
+      "verifiedDensityInteriorPixel": [
+        900,
+        300
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        532,
+        156
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Distinct eastern detached XII footprint with northern fingers and southern lobe; the transformed provisional seed fell just on its outer border.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Murom",
+      "status": "unresolved_full_source_extent",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [
+        53,
+        54
+      ],
+      "reason": "The original density map uses no-data hatching that divides the full labelled area into more than one free-pixel cell; a single half-cell must not be exported as the whole named area.",
+      "sourceLabelAnchorPixel": [
+        454,
+        176
+      ],
+      "canUseUnchangedSourceCell": false,
+      "semanticKind": "historical_named_area",
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Újhegy",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 69,
+      "reviewedSourceComponentId": 69,
+      "verifiedDensityInteriorPixel": [
+        688,
+        482
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        400,
+        270
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Single turquoise VII body east of the VIII green industrial fine cells.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Gyárváros",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 77,
+      "reviewedSourceComponentId": 77,
+      "verifiedDensityInteriorPixel": [
+        631,
+        500
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        362,
+        282
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Northern green VIII fine cell west of Újhegy; actual lower/source boundaries distinguish it from Basamalom.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Basamalom",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 86,
+      "reviewedSourceComponentId": 86,
+      "verifiedDensityInteriorPixel": [
+        602,
+        557
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        344,
+        319
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Western/southwestern green VIII fine cell below Gyárváros.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Üszög",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 101,
+      "reviewedSourceComponentId": 101,
+      "verifiedDensityInteriorPixel": [
+        654,
+        596
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        371,
+        335
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Southern green VIII fine cell; literal historical label Üszög, not automatically current Üszögpuszta.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Balokány",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 90,
+      "reviewedSourceComponentId": 90,
+      "verifiedDensityInteriorPixel": [
+        548,
+        546
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        302,
+        314
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Small northern red IX cell south of blue Kisbalokány and north of Tüskésrét.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Tüskésrét",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 103,
+      "reviewedSourceComponentId": 103,
+      "verifiedDensityInteriorPixel": [
+        545,
+        612
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        310,
+        349
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Large southeastern red IX body; distinguish it from the small Balokány cell above.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Füzes",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 120,
+      "reviewedSourceComponentId": 120,
+      "verifiedDensityInteriorPixel": [
+        381,
+        650
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        205,
+        368
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Southwestern red IX triangular body west of green Kertváros.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Kertváros",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 121,
+      "reviewedSourceComponentId": 121,
+      "verifiedDensityInteriorPixel": [
+        463,
+        645
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        254,
+        370
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Northwestern green XI fine body above Megyer and west of Köztemető.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Köztemető",
+      "status": "unresolved_full_source_extent",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [
+        134,
+        143
+      ],
+      "reason": "The original density map uses no-data hatching that divides the full labelled area into more than one free-pixel cell; a single half-cell must not be exported as the whole named area.",
+      "sourceLabelAnchorPixel": [
+        283,
+        379
+      ],
+      "canUseUnchangedSourceCell": false,
+      "semanticKind": "functional_cemetery_area",
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Nagyárpád",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 135,
+      "reviewedSourceComponentId": 135,
+      "verifiedDensityInteriorPixel": [
+        568,
+        700
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        325,
+        394
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Eastern XI fine body east of Köztemető/Árpádváros.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Megyer",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 144,
+      "reviewedSourceComponentId": 144,
+      "verifiedDensityInteriorPixel": [
+        437,
+        706
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        248,
+        404
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Western middle XI fine body south of Kertváros, west of Árpádváros. Dark density fill corroborates the table but is not the sole name evidence.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Árpádváros",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 148,
+      "reviewedSourceComponentId": 148,
+      "verifiedDensityInteriorPixel": [
+        506,
+        705
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        292,
+        404
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Eastern middle XI fine body below Köztemető and west of Nagyárpád.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Málom",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 158,
+      "reviewedSourceComponentId": 158,
+      "verifiedDensityInteriorPixel": [
+        446,
+        774
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        246,
+        443
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Large southwestern XI fine body below Megyer.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Postavölgy",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 159,
+      "reviewedSourceComponentId": 159,
+      "verifiedDensityInteriorPixel": [
+        522,
+        759
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        293,
+        444
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Long southeastern XI fine body south of Árpádváros and east of Málom.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Déli gazdasági terület",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 184,
+      "reviewedSourceComponentId": 184,
+      "verifiedDensityInteriorPixel": [
+        428,
+        825
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        244,
+        474
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Single blue XIII functional/economic source unit. Keep planning_unit, never count as a residential fine quarter.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "planning_unit",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Belváros",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 83,
+      "reviewedSourceComponentId": 83,
+      "verifiedDensityInteriorPixel": [
+        479,
+        514
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        267,
+        281
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Central upper blue I fine cell, east of Szigeti külváros; actual density-cell83 is separate from85 under the current ridge mask.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Szigeti külváros",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 85,
+      "reviewedSourceComponentId": 85,
+      "verifiedDensityInteriorPixel": [
+        426,
+        527
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        230,
+        295
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Western upper blue I fine cell, east of Makár and west of Belváros; source-cell85 must remain separate from83.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Ispitaalja",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 96,
+      "reviewedSourceComponentId": 96,
+      "verifiedDensityInteriorPixel": [
+        420,
+        567
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        237,
+        315
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Southwestern/lower blue I fine cell west of Siklósi külváros. Original table 8 Ispitaalja/table 10 Ispitalja spelling difference is not two areas.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "medium",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Rácváros",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 100,
+      "reviewedSourceComponentId": 100,
+      "verifiedDensityInteriorPixel": [
+        286,
+        567
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        152,
+        318
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Small upper western orange II rectangle, above blue X and west of Újmecsekalja.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Újmecsekalja",
+      "status": "corrected_source_name_cell",
+      "provisionalComponentIdBeforeReview": null,
+      "reviewedSourceComponentId": 94,
+      "verifiedDensityInteriorPixel": [
+        361,
+        550
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        193,
+        311
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Thin top strip of II immediately south of Makár, east of Rácváros and north of Uránváros. Do not merge it into Uránváros.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Uránváros",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 99,
+      "reviewedSourceComponentId": 99,
+      "verifiedDensityInteriorPixel": [
+        369,
+        577
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        187,
+        330
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Broad central/lower eastern orange II body, south of the separate Újmecsekalja strip and east of Kovácstelep.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Kovácstelep",
+      "status": "corrected_source_name_cell",
+      "provisionalComponentIdBeforeReview": null,
+      "reviewedSourceComponentId": 107,
+      "verifiedDensityInteriorPixel": [
+        315,
+        600
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        169,
+        341
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Southwestern orange II triangle, west of Uránváros. Cell122 is the longer industrial X strip to its south and is not Kovácstelep.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Bálics",
+      "status": "corrected_source_name_cell",
+      "provisionalComponentIdBeforeReview": 66,
+      "reviewedSourceComponentId": 64,
+      "verifiedDensityInteriorPixel": [
+        385,
+        450
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        211,
+        247
+      ],
+      "provisionalSourceLabelCorrected": true,
+      "evidence": "The original Figure 9 label Bálics is in the narrow western IV cell; previous anchor list had this and Szkókó swapped.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Szkókó",
+      "status": "corrected_source_name_cell",
+      "provisionalComponentIdBeforeReview": 64,
+      "reviewedSourceComponentId": 66,
+      "verifiedDensityInteriorPixel": [
+        415,
+        440
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        222,
+        234
+      ],
+      "provisionalSourceLabelCorrected": true,
+      "evidence": "The original Figure 9 label Szkókó is in the broad cell east of Bálics; previous anchor list had this and Bálics swapped.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Mecsekoldal",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 63,
+      "reviewedSourceComponentId": 63,
+      "verifiedDensityInteriorPixel": [
+        480,
+        432
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        257,
+        239
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Broad central pale-green IV body, east of Szkókó and north of Rókusdomb.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Havihegy",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 75,
+      "reviewedSourceComponentId": 75,
+      "verifiedDensityInteriorPixel": [
+        513,
+        472
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        290,
+        258
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Eastern pale-green IV body east of Mecsekoldal and west of Piricsizma/I blue taper.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Piricsizma",
+      "status": "corrected_source_name_cell",
+      "provisionalComponentIdBeforeReview": null,
+      "reviewedSourceComponentId": 68,
+      "verifiedDensityInteriorPixel": [
+        545,
+        440
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        317,
+        239
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Upper narrow eastern IV wedge below Rigóder, west of the upper blue I taper. Adjacent76 belongs to the I blue source group, not Piricsizma.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Rókusdomb",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 79,
+      "reviewedSourceComponentId": 79,
+      "verifiedDensityInteriorPixel": [
+        418,
+        491
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        235,
+        269
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Lower pale-green IV body immediately above the western blue I band.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Csoronika",
+      "status": "supported_source_name_cell",
+      "provisionalComponentIdBeforeReview": 81,
+      "reviewedSourceComponentId": 81,
+      "verifiedDensityInteriorPixel": [
+        370,
+        498
+      ],
+      "interiorPixelRole": "Original source-cell seed after independent semantic/shape reading, not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        213,
+        283
+      ],
+      "provisionalSourceLabelCorrected": false,
+      "evidence": "Small southwestern pale-green IV fine cell east of Makár and west of Rókusdomb; cramped label needs source-table spelling corroboration.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "medium",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Szentkút",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 56,
+      "verifiedDensityInteriorPixel": [
+        289,
+        385
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        150,
+        185
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        151,
+        180
+      ],
+      "evidence": "Distinct upper mushroom and narrow northern finger of the purple III area. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Szentmiklós",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 98,
+      "verifiedDensityInteriorPixel": [
+        142,
+        571
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        66,
+        322
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        62,
+        326
+      ],
+      "evidence": "Westernmost broad purple III body; distinct from Zsebedomb above and Patacs east. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Zsebedomb",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 84,
+      "verifiedDensityInteriorPixel": [
+        225,
+        530
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        110,
+        295
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        112,
+        300
+      ],
+      "evidence": "Thin upper western purple III corridor, north of Patacs. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Gyükés",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 55,
+      "verifiedDensityInteriorPixel": [
+        511,
+        380
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        286,
+        201
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        286,
+        208
+      ],
+      "evidence": "Western tall green V body, left of Pécsbánya and Rigóder. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Pécsbánya",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 50,
+      "verifiedDensityInteriorPixel": [
+        569,
+        331
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        318,
+        173
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        316,
+        180
+      ],
+      "evidence": "Large upper green V body; literal long label Pécsbánya. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Rigóder",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 61,
+      "verifiedDensityInteriorPixel": [
+        571,
+        402
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        320,
+        215
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        319,
+        221
+      ],
+      "evidence": "Southern oval green V body. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Szabolcs",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 48,
+      "verifiedDensityInteriorPixel": [
+        628,
+        331
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        365,
+        174
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        365,
+        181
+      ],
+      "evidence": "Upper tall orange VI body. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Szabolcsi zártkert",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 52,
+      "verifiedDensityInteriorPixel": [
+        681,
+        354
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        402,
+        186
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        400,
+        192
+      ],
+      "evidence": "Eastern protruding orange VI body. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Meszes",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 58,
+      "verifiedDensityInteriorPixel": [
+        624,
+        434
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        370,
+        234
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        372,
+        240
+      ],
+      "evidence": "Large southern orange VI body. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Diós",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 72,
+      "verifiedDensityInteriorPixel": [
+        593,
+        460
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        334,
+        248
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        338,
+        250
+      ],
+      "evidence": "Very small lower western orange VI cell; white label close to blue I boundary. Validate a transformed interior carefully. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "medium",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Budai külváros",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 76,
+      "verifiedDensityInteriorPixel": [
+        567,
+        463
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        325,
+        257
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        325,
+        264
+      ],
+      "evidence": "Upper eastern blue I taper, above Budaiváros. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Budaiváros",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 80,
+      "verifiedDensityInteriorPixel": [
+        547,
+        494
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        300,
+        276
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        303,
+        281
+      ],
+      "evidence": "Middle eastern blue I cell, north of Kisbalokány. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Kisbalokány",
+      "status": "unresolved_missing_fine_separator_in_mask",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [
+        92
+      ],
+      "sourceLabelAnchorPixel": [
+        288,
+        291
+      ],
+      "reason": "The source name-map explicitly separates Kisbalokány and Siklósi külváros, but both independently read interior locations fall in the same current density free-cell 92. A read-only threshold-sensitivity check at local contrast deltas4,6,8,10,12,14,16,20,24,30 still merges the two. Do not clone 92 onto both names.",
+      "canUseUnchangedSourceCell": false,
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Siklósi külváros",
+      "status": "unresolved_missing_fine_separator_in_mask",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [
+        92
+      ],
+      "sourceLabelAnchorPixel": [
+        266,
+        306
+      ],
+      "reason": "Separate literal fine name from Kisbalokány, but the current Figure 12 source-mask does not separate their two interiors. Additional literal Figure 9 separator tracing may be possible; one shared 92 polygon is not two fine footprints.",
+      "canUseUnchangedSourceCell": false,
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Észak-Megyer",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 104,
+      "verifiedDensityInteriorPixel": [
+        419,
+        616
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        235,
+        342
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        235,
+        348
+      ],
+      "evidence": "Long red IX middle strip above green Kertváros. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Szigeti tanya",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 118,
+      "verifiedDensityInteriorPixel": [
+        353,
+        619
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        194,
+        348
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        196,
+        351
+      ],
+      "evidence": "Small red IX strip west of Észak-Megyer and above Füzes; label overlaps a nearby fine border. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "medium",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Fogadó",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 105,
+      "verifiedDensityInteriorPixel": [
+        233,
+        588
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        101,
+        333
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        101,
+        336
+      ],
+      "evidence": "Western blue X horizontal strip. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Bolgárkert",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 106,
+      "verifiedDensityInteriorPixel": [
+        282,
+        594
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        145,
+        333
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        147,
+        337
+      ],
+      "evidence": "Blue X cell south of Rácváros and west of Kovácstelep. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Nyugati ipari út",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 122,
+      "verifiedDensityInteriorPixel": [
+        323,
+        623
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        159,
+        357
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        161,
+        351
+      ],
+      "evidence": "Long bottom blue X industrial strip below the II orange cells; the red label to its right is Szigeti tanya, not this industrial unit. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "planning_unit",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Üszögi tározó-major",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 95,
+      "verifiedDensityInteriorPixel": [
+        697,
+        571
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        418,
+        325
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        404,
+        333
+      ],
+      "evidence": "Eastern green VIII cell, east of Üszög; reservoir/major functional source label, not automatically residential. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "local_area",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Péterpuszta",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 177,
+      "verifiedDensityInteriorPixel": [
+        398,
+        789
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        202,
+        455
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        205,
+        459
+      ],
+      "evidence": "Small green XI southwestern finger; label is outside the tiny original shape. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "medium",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Árpádtető",
+      "status": "unresolved_full_source_extent",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [
+        40,
+        41
+      ],
+      "sourceLabelAnchorPixel": [
+        343,
+        80
+      ],
+      "reason": "The original density island is divided by a visible no-data hatch into two substantial free-cell fragments. Figure 9 has a complete solid-purple island that may supply a separate lower-resolution contour; do not export one half as the whole quarter.",
+      "canUseUnchangedSourceCell": false,
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Józsefháza",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 39,
+      "verifiedDensityInteriorPixel": [
+        649,
+        165
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        389,
+        72
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        377,
+        75
+      ],
+      "evidence": "Small detached purple XII L-shaped island northeast of Árpádtető. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "medium",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Rücker-akna",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 42,
+      "verifiedDensityInteriorPixel": [
+        736,
+        196
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        444,
+        87
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        428,
+        88
+      ],
+      "evidence": "Tiny purple XII hooked/slender island southwest of Vasas; outside label. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "medium",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "István-akna",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 46,
+      "verifiedDensityInteriorPixel": [
+        680,
+        241
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        413,
+        115
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        398,
+        115
+      ],
+      "evidence": "Detached north-south hooked purple XII island west of Somogy. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Petőfi-akna",
+      "status": "unresolved_full_source_extent",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [
+        12
+      ],
+      "sourceLabelAnchorPixel": [
+        515,
+        23
+      ],
+      "reason": "The tiny density island has a visible no-data hatch across its northern cap; cell 12 is only one interior fragment. Figure 9 has a complete solid-purple island, a possible separate lower-resolution source.",
+      "canUseUnchangedSourceCell": false,
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "Flóriántelep",
+      "status": "supported_source_name_cell",
+      "reviewedSourceComponentId": 24,
+      "verifiedDensityInteriorPixel": [
+        837,
+        114
+      ],
+      "interiorPixelRole": "Reference inside the original free-cell after independent literal label/relative-shape review; not a geographic calibration control.",
+      "sourceLabelAnchorPixel": [
+        470,
+        38
+      ],
+      "sourceFigure9InteriorAnchorPixel": [
+        485,
+        37
+      ],
+      "evidence": "Tiny purple XII island south-west of Petőfi-akna; outside label left. The corresponding original Figure 12 cell was compared by its outline and relative adjacency, rather than accepting transformed-point containment alone.",
+      "sourceFigure9NameReadingIndependentlyChecked": true,
+      "sourceFineShapeAndAdjacencyComparedToFigure12": true,
+      "canUseUnchangedSourceCell": true,
+      "confidence": "high",
+      "semanticKind": "neighbourhood_source_candidate",
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    },
+    {
+      "sourceName": "M utca",
+      "status": "unresolved_tiny_source_extent",
+      "reviewedSourceComponentId": null,
+      "partialSourceComponents": [],
+      "sourceLabelAnchorPixel": [
+        514,
+        43
+      ],
+      "reason": "Literal label M utca is readable, but the extremely small dark adjacent original shape does not support a reliable whole interior seed in this review.",
+      "canUseUnchangedSourceCell": false,
+      "currentLegalFootprintConfirmed": false,
+      "usableForAddressAssignment": false
+    }
+  ],
+  "additionalLiteralAnchorFile": "pecs-review-name-more-anchors.json",
+  "inputFingerprints": [
+    {
+      "path": ".local/neighborhoods/nationwide-docs/originals/pecs-its.pdf",
+      "sha256": "995d0db03e454a34046b248526e0882aee26ffbf40ba916e996afa4c8b49f6b1"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-next/pecs-p48-names.jpeg",
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-next/pecs-p63-density.jpeg",
+      "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-next/pecs-provisional-ridge-name-cell-pairs.json",
+      "sha256": "cccb180707e9e0be8eacc3e150388d51384a0ea9e1958d648378d9bf55b062b1"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-next/pecs-p63-ridge-mask.npz",
+      "sha256": "030d2064902101a780683ccfd472bdf9ca820ddcd20b49321982d15c6d205e21"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-next/pecs-image-alignment.json",
+      "sha256": "bbfeea6e96ef9233058c991533c0572ec0df4c1baeac88db5593c91f336e67b6"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-next/pecs-review-name-more-anchors.json",
+      "sha256": "506f3dbe9b2fb73e423d3cb4ac5e2bd8ca1f9217187d59a76176ccdcd2c592e1"
+    }
+  ],
+  "limits": [
+    "This review does not claim current legally authoritative cadastral or surveyed quarter boundaries.",
+    "Image alignment remains approximate; original labels and matching relative topology were read rather than assigning a name solely by transformed-point inclusion.",
+    "No name or OSM name coordinate created, moved, clipped or repaired a polygon.",
+    "Four source areas have no-data hatching that cannot silently be treated as true fine borders. Two separate source names are merged by the current detailed-source mask; one tiny source field remains unresolved.",
+    "Unresolved in the current density source-mask is not general source absence. Complete solid Figure 9 islands offer additional local tracing possibilities for Árpádtető and Petőfi-akna.",
+    "The exact source-cell geometry/topology and geographic calibration still require their separate reviews; this report supplies name/semantic correspondence, not a blanket geographic import approval."
+  ],
+  "usableForAddressAssignment": false
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "root independent of producer",
+  "accepted": true,
+  "nativePixelFootprintCount": 1,
+  "geographicFeatureCount": 0,
+  "checkedAt": "2026-11-14",
+  "checks": {
+    "actualMapAndOverlayVisuallyReviewed": true,
+    "independentFourNeighbourFloodFillExactlyMatches5724SourcePixels": true,
+    "enclosedInkHoleCount158Explicit": true,
+    "independentPixelCellUnionEquals5882AreaContour": true,
+    "geographicScaleAndOrientationNotInvented": true,
+    "sourceHierarchyAndFunctionalColorClassLimitsExplicit": true
+  },
+  "decision": "Accept as native raster evidence only, not a world-coordinate neighborhood polygon. One confluence does not determine georeferencing.",
+  "pinnedInputs": {
+    "figure9-native-pixels.png": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+    "szandaszoelos-native-pixel-contour.json": "b592a7c14a42ce371c1cc94ce9be9698372b8c7b956f4a403cf2c90a3b89f333",
+    "assessment.json": "2682a2bf621a08b66f3e5a26f6abe22b1651f185438a7a9d8217dca67aeccbb1",
+    "source-inventory.json": "6059222085e40acbb2691003456f4c254e53411bdf8d15114aa4487886ddc579"
+  }
+}

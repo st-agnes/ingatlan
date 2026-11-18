@@ -1,0 +1,33 @@
+{
+  "validator": "scripts/neighborhoods/build.mjs validateGeometry, without repair",
+  "results": [
+    {
+      "file": "hathaz-inferred-import.geojson",
+      "id": "manual:zalaegerszeg-ziffa2025:unit17-hathaz-estimated-placement",
+      "name": "Hatház",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        16.79052717558374,
+        46.88510460985413,
+        16.79795359951649,
+        46.89183437924415
+      ],
+      "vertices": 893
+    },
+    {
+      "file": "hathaz-placement-alternative.geojson",
+      "id": "alternative:zalaegerszeg-ziffa2025:hathaz-road-only-placement",
+      "name": "Hatház",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        16.79045037861907,
+        46.88508754031164,
+        16.797897259348094,
+        46.891821507689514
+      ],
+      "vertices": 893
+    }
+  ]
+}

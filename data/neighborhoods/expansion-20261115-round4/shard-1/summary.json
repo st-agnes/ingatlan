@@ -1,0 +1,75 @@
+{
+  "targetCount": 61,
+  "attemptedCount": 61,
+  "municipalityCount": 33,
+  "collectedCount": 60,
+  "unresolvedCount": 1,
+  "nativeFootprintAssociationCount": 5,
+  "manualMapStreetFieldEstimateCount": 55,
+  "allInferredLowConfidence": true,
+  "wholeQuarterAccuracyVerified": false,
+  "batches": [
+    {
+      "path": "features-batch-01.geojson",
+      "featureCount": 17,
+      "sha256": "534066d40a73f1c286d03be66f1481543a71003a4d59d74186c67b8a91e44bd6"
+    },
+    {
+      "path": "features-batch-02.geojson",
+      "featureCount": 16,
+      "sha256": "01898060fb4821a23b88213c29782aa25f9c2a42c8ca92bbba21a1f96874aae7"
+    },
+    {
+      "path": "features-batch-03.geojson",
+      "featureCount": 16,
+      "sha256": "a21daf719456f5dfb02a9eabcc1e917b39127de77ea460e0610dbe23af36ea18"
+    },
+    {
+      "path": "features-batch-04.geojson",
+      "featureCount": 10,
+      "sha256": "a4ca7bbda481e2a97eccf2d3f2de86618ab08fdefcdd3fab3b4eba9ccf1d8430"
+    },
+    {
+      "path": "features-batch-05.geojson",
+      "featureCount": 1,
+      "sha256": "a9e93f4450ba8b23742dc5044c8fc99ee4c6305cb8ea4a0ad4f7fcdd9caeea6d"
+    }
+  ],
+  "combinedFeatureSha256": "6cf93c3986e2df8e519982eda788cb2971825a9468cd442e15230c9903c021b7",
+  "byMunicipality": {
+    "Aba": 1,
+    "Alcsútdoboz": 1,
+    "Balatonfüred": 4,
+    "Balatonfűzfő": 1,
+    "Balinka": 1,
+    "Biatorbágy": 2,
+    "Dombóvár": 1,
+    "Ercsi": 2,
+    "Esztergom": 2,
+    "Etyek": 1,
+    "Királyegyháza": 1,
+    "Kisdorog": 1,
+    "Kisjakabfalva": 1,
+    "Komló": 1,
+    "Komárom": 3,
+    "Kőröshegy": 5,
+    "Lovasberény": 2,
+    "Mór": 1,
+    "Nagykovácsi": 2,
+    "Paks": 6,
+    "Perbál": 1,
+    "Polgárdi": 1,
+    "Pusztahencse": 1,
+    "Pákozd": 1,
+    "Siófok": 1,
+    "Szabadegyháza": 1,
+    "Székesfehérvár": 3,
+    "Tata": 1,
+    "Tokod": 1,
+    "Velence": 2,
+    "Várpalota": 5,
+    "Zamárdi": 1,
+    "Zirc": 2
+  },
+  "canonicalizationCaveat": "Szuhay-domb official planning extent south of Dózsa differs from the current small Szuhajdomb street-cell north of Dózsa; review as a spelling/extent candidate, not automatically as an unrelated extra whole quarter. Source-name points are not invented for unlocated planning units."
+}

@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_FOR_EXPLICIT_INFERRED_LAYER_ONLY",
+  "independentOfDerivationCode": true,
+  "portableReplay": {
+    "requiredExternalSourceDirectories": [],
+    "sourcePdfFormReadFromFrozenBatch": true,
+    "controlWaysValidatedAgainstPortableOriginalPbfObjectDigests": true,
+    "optionalOriginalPbfDirectRevalidationCommand": "PYTHONPATH=.local/geodata python3 audit-independent.py --refresh-pbf-proof",
+    "finalManifestExcludedFromAuditFingerprintToAvoidCircularHashDependency": true
+  },
+  "provenanceSha256": {
+    "input-manifest.json": "d95ff26dbd22159c9efb25fe0c37f6c4c086dcf5d53e1a3a062ffb831e874cdd",
+    "generated-manifest.json": "5fda6f9d2f963f45a360cc8e065ee9edaae34c7b0a1b3a920dfd2f871de1d6ad",
+    "control-specification.json": "47f064551cd169b599d4f2ea31d26e2e13f764745a2716e890505c8565d53523",
+    "control-roads.geojson": "6ca352cd2f35fb3134c3e41e9fa1541179dad82b0bf8407b091dc93e09605faa",
+    "independent-pbf-object-proof.json": "fdb7743c382faeb9df587eaa79cd854fea5e4ce0394e343288d5a90df2eedbae",
+    "independent-gcp-visual-review.json": "9874ec4204ef8f7309b9b8d6072b65b1ed4abc60d4dfdb305f88a5849d1cd19e",
+    "fine-inferred.geojson": "08e0b715176fa8b3bd1b804508d46ae6fd0efad72b9ec27eedde4846a33dd1a8",
+    "local-units-inferred.geojson": "0f03d75e0482f23769d379fc06fb1d946644490e285505edf8528065aa35f046",
+    "georeference.json": "b95e198864f276dcd8a23cae7034f969d795feea9520df5a821a70f9336ccb7b",
+    "audit-independent.py": "1bd89d31ac413235189adb7949adc4558a131879b30c0ac1868f845fc7314e06"
+  },
+  "nativeSource": {
+    "originalFormStreamSha256": "1a572f913226e234c8862baa59118bf79468977d7f8bef079775cf4e1bb50d07",
+    "archivedFormXref": 44,
+    "nativePathCount": 7,
+    "nativeNonzeroSegmentCount": 497,
+    "everySourceSubpathExplicitLinetoClosed": true,
+    "additionalImplicitClosureEdges": 0,
+    "sourceFrameClosure": false,
+    "polygonizerCutsDanglesInvalidRings": 0,
+    "originalCentralCellHolesExactlyMatchMuszajAndKosafalu": true,
+    "originalPathsBeyondImageCropPreserved": [
+      "Déli iparterület II.",
+      "Nyugati iparterület"
+    ]
+  },
+  "controlSourceWays": {
+    "wayCount": 20,
+    "directOriginalPbfSnapshotSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "allFullNodeSequencesCoordinatesTagsVersionsTimestampsVerified": true,
+    "coordinatePairCount": 206,
+    "currentNameNodeCount": 3
+  },
+  "sourceToWorld": {
+    "allOutputVerticesChecked": 506,
+    "maximumCoordinateDisagreementDegrees": 0.0,
+    "outputFeatureCount": 7,
+    "allOriginalHolesPreserved": true,
+    "noIntroducedOutputEdge": true,
+    "geographicAffineIndependentlyRecomputed": true,
+    "rmsFittedControlResidualMeters": 6.870169117559825,
+    "controlResidualsDoNotProveFeatureIdentityOrAbsoluteAccuracy": true
+  },
+  "gcpVisualReviewPath": "independent-gcp-visual-review.json",
+  "heldOutIndependentChecks": [
+    {
+      "osmNodeId": 4405130517,
+      "predictedSourcePagePoint": [
+        332.3263920395257,
+        548.2614208689865
+      ],
+      "insideUnchangedInspectedSourceWindow": false,
+      "sourceFeatureIdentityUnconfirmed": true,
+      "identityCaution": "Modern cycleway attachment versus historical road junction center. The exact historical counterpart of this modern cycleway attachment is unconfirmed.",
+      "usedInFit": false
+    }
+  ],
+  "modelSensitivity": {
+    "leaveOneControlOut": [
+      {
+        "omittedControlId": "kiskorosi-konyves",
+        "omittedControlPredictionErrorMeters": 9.686574845310085,
+        "maximumSourceVertexDisplacementMeters": 6.184168936174704,
+        "meanSourceVertexDisplacementMeters": 1.8542255103594185
+      },
+      {
+        "omittedControlId": "halasi-konyves",
+        "omittedControlPredictionErrorMeters": 14.264174385130316,
+        "maximumSourceVertexDisplacementMeters": 27.6789092987016,
+        "meanSourceVertexDisplacementMeters": 6.590360848946685
+      },
+      {
+        "omittedControlId": "matkoi-szent-laszlo",
+        "omittedControlPredictionErrorMeters": 17.756756633753092,
+        "maximumSourceVertexDisplacementMeters": 61.55385506772844,
+        "meanSourceVertexDisplacementMeters": 13.923493684563082
+      },
+      {
+        "omittedControlId": "matkoi-mindszenti",
+        "omittedControlPredictionErrorMeters": 10.57701613687713,
+        "maximumSourceVertexDisplacementMeters": 19.228208481361673,
+        "meanSourceVertexDisplacementMeters": 4.608499214808078
+      },
+      {
+        "omittedControlId": "halasi-mindszenti",
+        "omittedControlPredictionErrorMeters": 12.727212019231148,
+        "maximumSourceVertexDisplacementMeters": 36.61274985266899,
+        "meanSourceVertexDisplacementMeters": 8.316220513527083
+      },
+      {
+        "omittedControlId": "mindszenti-mester",
+        "omittedControlPredictionErrorMeters": 32.15525581711429,
+        "maximumSourceVertexDisplacementMeters": 35.799051297701155,
+        "meanSourceVertexDisplacementMeters": 12.015507948151026
+      }
+    ],
+    "similarityVsAffineMaximumSourceVertexDisplacementMeters": 66.63665002513703,
+    "similarityVsAffineMeanSourceVertexDisplacementMeters": 15.105644434140414,
+    "diagnosticNotCalibratedErrorBound": true
+  },
+  "featureChecks": [
+    {
+      "name": "Szent László város — belső forráscella",
+      "outputVerticesIncludingRingClosures": 149,
+      "sourceHoleCount": 2,
+      "outputHoleCount": 2,
+      "everyVertexAndEdgeMatchesIndependentlyTransformedOriginalSource": true,
+      "currentNamePointCovered": null,
+      "semanticScope": "qualified central/planning/economic source cell",
+      "inferredOnly": true
+    },
+    {
+      "name": "Kósafalu",
+      "outputVerticesIncludingRingClosures": 40,
+      "sourceHoleCount": 0,
+      "outputHoleCount": 0,
+      "everyVertexAndEdgeMatchesIndependentlyTransformedOriginalSource": true,
+      "currentNamePointCovered": true,
+      "semanticScope": "separately named residential quarter",
+      "inferredOnly": true
+    },
+    {
+      "name": "Déli iparterület I.",
+      "outputVerticesIncludingRingClosures": 84,
+      "sourceHoleCount": 0,
+      "outputHoleCount": 0,
+      "everyVertexAndEdgeMatchesIndependentlyTransformedOriginalSource": true,
+      "currentNamePointCovered": null,
+      "semanticScope": "qualified central/planning/economic source cell",
+      "inferredOnly": true
+    },
+    {
+      "name": "Muszáj",
+      "outputVerticesIncludingRingClosures": 19,
+      "sourceHoleCount": 0,
+      "outputHoleCount": 0,
+      "everyVertexAndEdgeMatchesIndependentlyTransformedOriginalSource": true,
+      "currentNamePointCovered": true,
+      "semanticScope": "separately named residential quarter",
+      "inferredOnly": true
+    },
+    {
+      "name": "Déli iparterület II.",
+      "outputVerticesIncludingRingClosures": 81,
+      "sourceHoleCount": 0,
+      "outputHoleCount": 0,
+      "everyVertexAndEdgeMatchesIndependentlyTransformedOriginalSource": true,
+      "currentNamePointCovered": null,
+      "semanticScope": "qualified central/planning/economic source cell",
+      "inferredOnly": true
+    },
+    {
+      "name": "Rendőrfalu",
+      "outputVerticesIncludingRingClosures": 19,
+      "sourceHoleCount": 0,
+      "outputHoleCount": 0,
+      "everyVertexAndEdgeMatchesIndependentlyTransformedOriginalSource": true,
+      "currentNamePointCovered": true,
+      "semanticScope": "separately named residential quarter",
+      "inferredOnly": true
+    },
+    {
+      "name": "Nyugati iparterület",
+      "outputVerticesIncludingRingClosures": 114,
+      "sourceHoleCount": 0,
+      "outputHoleCount": 0,
+      "everyVertexAndEdgeMatchesIndependentlyTransformedOriginalSource": true,
+      "currentNamePointCovered": null,
+      "semanticScope": "qualified central/planning/economic source cell",
+      "inferredOnly": true
+    }
+  ],
+  "semanticDecision": {
+    "fineResidentialQuarters": [
+      "Kósafalu",
+      "Muszáj",
+      "Rendőrfalu"
+    ],
+    "separateQualifiedLocalCells": [
+      "Szent László város — belső forráscella",
+      "Déli iparterület I.",
+      "Déli iparterület II.",
+      "Nyugati iparterület"
+    ],
+    "centralCellNotPromotedToWholeCaptionDistrict": true,
+    "industrialFunctionAloneNotGroundForExclusion": true,
+    "groupGeometryNotCopiedUnderFineNames": true,
+    "currentNamesDoNotVerifyHistoricalExtent": true
+  },
+  "geographicRegistrationVerified": false,
+  "primaryLayerApproved": false,
+  "inferredLayerApproved": true,
+  "sourceFeatureIdentityUnconfirmed": true,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "approvalReason": "Literal historical source contours, topology and conversion are verified. The six fitted historical junction centers are plausible visual correspondences but lack independent exact historical-to-modern point identity. The southern candidate pairs a modern cycleway attachment with a historical road junction center whose identity is unconfirmed; strict held-out-window failure remains visible. Leave-one-out/model-family sensitivity reaches tens of meters at extrapolated source vertices. These concrete registration uncertainties justify inferred-only status; unknown absolute accuracy by itself is not the rejection criterion."
+}

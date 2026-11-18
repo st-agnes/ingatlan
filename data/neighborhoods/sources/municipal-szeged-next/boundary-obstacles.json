@@ -1,0 +1,41 @@
+{
+  "reviewedAt": "2026-11-13",
+  "municipality": "Szeged",
+  "notAnExhaustiveMissingNeighborhoodInventory": true,
+  "items": [
+    {
+      "name": "Kálvária",
+      "sourceUrl": "https://www.szegedvaros.hu/storage/document/17/default/3602/FVS_Szeged_MJV_2021_2027_egys_szerk_VFKB_231130.pdf",
+      "sourceRetrievedAs": "Indexed municipal2023 FVS text; original PDF open timed out, no local original-byte hash",
+      "otherSourceUrl": "https://szegedma.hu/szeged/2012/02/9-tol-kozgyules-lesz-e-budzse-s-ha-igen-milyen-elo",
+      "fact": "The adopted2012 boundary is Kálvária sugárút/Londoni körút/Bakay Nándor utca/railway. The earlier Párizsi-körút/Kossuth-Lajos proposal is not the adopted area.",
+      "obstacle": "Current named Bakay Nándor road way449464359 ends near[20.1214188,46.26162], roughly75m short of the main135 railway, way606753195. Complete local highway/railway extraction found private yard roads and abandoned/disused rail branches, but no unambiguous Bakay continuation to the main railway. Alternative historic rail branches make closure ambiguous. No connector or guessed choice was emitted.",
+      "newPolygonEmitted": false,
+      "possibleNextStep": "Obtain the2012 naming-resolution map or a source-era local map that resolves which railway branch and the Bakay endpoint define the corner."
+    },
+    {
+      "name": "Móraváros",
+      "sourceUrl": "https://szegedma.hu/szeged/2024/04/varosreszek-moravaros-tortenete",
+      "fact": "Local-history article supplies an explicitly approximate four-side description: Petőfi Sándor sugárút/Moszkvai körút/Kálvária sugárút/Szeged–Békéscsaba railway.",
+      "obstacle": "The current named Petőfi sugárút does not reach the railway; the nearest gap is over600m. Szabadkai út is a plausible omitted continuation and mentioned by other sources, but the literal four-side text is not sufficient to resolve the whole circuit. The much larger ten-side2008/2013 planning Móraváros unit must not be substituted as the same quarter.",
+      "newPolygonEmitted": false,
+      "possibleNextStep": "A whole-quarter municipal/historical map or an explicit complete perimeter including the southern continuation."
+    },
+    {
+      "name": "Tarján housing estate (2019 description)",
+      "sourceUrl": "https://szegedfolyoirat.sk-szeged.hu/2019/02/23/toth-marcell-a-tarjan-lakotelep-tortenete/",
+      "obstacle": "The author specifies road sides, extends both sides of József Attila north of Budapesti körút, and mentions Murányi. Current named Murányi road segments stop short of the named Körtöltés line; Csillag-to-Retek also needs a verified square/junction transition. No guessed gap connector and no substitution of the distinct IVS circuit.",
+      "newPolygonEmitted": false,
+      "possibleNextStep": "Trace the author’s source map or resolve the exact sides/junctions on a primary estate plan."
+    },
+    {
+      "name": "Klebelsberg-telep",
+      "sourceUrl": "https://www.klebelsberg-egyesulet.hu/wp-content/uploads/2016/04/helytortenet.pdf",
+      "sourceTitle": "Szeged-Klebelsberg-telep története, edited by Újvári Edit,2007, ISBN978-963-06-2610-1",
+      "fact": "Printedp9 describes a closed quarter between a western drainage channel, southern Holt-Tisza section, northern Körtöltés and eastern railway embankment.",
+      "obstacle": "Positive source exists; western unnamed drainage channel and precise bank/embankment intersections have not yet been matched to literal linework. It is a remaining derivation task, not an assertion that data does not exist.",
+      "newPolygonEmitted": false,
+      "possibleNextStep": "Use the source map/photo appendix and actual waterway/embankment ways to distinguish the western channel from other drainage features."
+    }
+  ]
+}

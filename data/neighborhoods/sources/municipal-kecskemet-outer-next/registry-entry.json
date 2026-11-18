@@ -1,0 +1,18 @@
+{
+  "id": "kecskemet-petofi-source-raster",
+  "path": "data/neighborhoods/sources/municipal-kecskemet-outer-next/petofi-source-raster.geojson",
+  "sha256": "46c456e00e409d722289fe3d25d9cf3c756ff40a782db1dd08d82328769ff417",
+  "municipality": "Kecskemét",
+  "method": "Manual source-black-outline interpretation on the exact original embedded2021 municipal figure79 JPEG. Manually selected source-stroke seeds guide connected dark source-pixel paths; every dense vertex is an actual source pixel(maxRGB45) and every step is an8-neighbor source-pixel step. Only strictly collinear vertices are compressed. A frozen affine transform fitted to five exact contemporary OSM-node coordinates and manually located image junctions georeferences the historical illustration. No current-road substitution, generated closing chord, gap bridge, snapping of geographic geometry, buffer, repair or inferred extent.",
+  "evidenceUrls": [
+    "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+  ],
+  "license": "Source municipal map reuse rights unverified; ODbL for OSM georeferencing controls.",
+  "propertyOverrides": {
+    "boundaryKind": "neighbourhood",
+    "canonicalNameIsNeighborhood": true,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-outer-next/raster-independent-review.json",
+  "rightsStatus": "Municipal map public publication, open-reuse licence not independently established."
+}

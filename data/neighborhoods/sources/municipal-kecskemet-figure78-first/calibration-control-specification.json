@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "controls": [
+    {
+      "id": "node-4459257122",
+      "osmNodeId": 4459257122,
+      "coordinates": [
+        19.639965,
+        46.8889091
+      ],
+      "sourceImagePixel": [
+        848.3445202694755,
+        1091.4541867963997
+      ],
+      "sourceWayIds": [
+        "osm:way:448957353",
+        "osm:way:599070284",
+        "osm:way:599070285"
+      ],
+      "feature": "Csalánosi/Izsáki junction",
+      "roadNames": [
+        "",
+        "Csalánosi út"
+      ]
+    },
+    {
+      "id": "node-411750381",
+      "osmNodeId": 411750381,
+      "coordinates": [
+        19.6625059,
+        46.8943325
+      ],
+      "sourceImagePixel": [
+        1664.3835976795726,
+        783.3448249214587
+      ],
+      "sourceWayIds": [
+        "osm:way:118349039",
+        "osm:way:419057566",
+        "osm:way:424836633",
+        "osm:way:435407314"
+      ],
+      "feature": "Vízmű/Izsáki junction",
+      "roadNames": [
+        "Izsáki út",
+        "Könyves Kálmán körút",
+        "Vízmű utca"
+      ]
+    },
+    {
+      "id": "node-1803696400",
+      "osmNodeId": 1803696400,
+      "coordinates": [
+        19.6440856,
+        46.9002983
+      ],
+      "sourceImagePixel": [
+        1003.335923988098,
+        486.4394398419704
+      ],
+      "sourceWayIds": [
+        "osm:way:118349041",
+        "osm:way:407204003"
+      ],
+      "feature": "Csalánosi/Szüret junction",
+      "roadNames": [
+        "Csalánosi út",
+        "Szüret utca"
+      ]
+    },
+    {
+      "id": "node-765800655",
+      "osmNodeId": 765800655,
+      "coordinates": [
+        19.6510893,
+        46.8966027
+      ],
+      "sourceImagePixel": [
+        1253.56300950973,
+        675.0397158987523
+      ],
+      "sourceWayIds": [
+        "osm:way:57771718",
+        "osm:way:61299776",
+        "osm:way:148182772"
+      ],
+      "feature": "Szüret/Tópart junction",
+      "roadNames": [
+        "Muskotály utca",
+        "Szüret utca",
+        "Tópart utca"
+      ]
+    },
+    {
+      "id": "node-801515835",
+      "osmNodeId": 801515835,
+      "coordinates": [
+        19.6355324,
+        46.9093647
+      ],
+      "sourceImagePixel": [
+        704.5573144100305,
+        12.13775550115247
+      ],
+      "sourceWayIds": [
+        "osm:way:66155987",
+        "osm:way:331099510",
+        "osm:way:857786671",
+        "osm:way:1443932814"
+      ],
+      "feature": "Széles/Sutus junction",
+      "roadNames": [
+        "Hetényegyházi út",
+        "Sutus sor",
+        "Széles köz"
+      ]
+    }
+  ],
+  "sourceImageSha256": "8d6217e4ae20dadfd07141aaed4dff0c057166fd60f30d8a7c0eec9b9fd5079d",
+  "sourceOriginalRoadArchiveSha256": "ee16b15f2dcc1379f5638abd8990151c8865065307331f0ee54b8c53bf2bd7f9",
+  "method": "Original five Figure79 manual historical junction observations paired with literal OSM road nodes. A new EPSG:23700 affine fit is used for this inferred Figure78 cohort; the original Figure79 WGS84-degree affine is retained as a model-family comparison, not changed.",
+  "absoluteAccuracyMeters": null
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "status": "separate_inferred_batch_not_primary",
+  "inputSha256": {
+    "kaposvar-p18-source.jpeg": "54dc5dc7a697bafdc3cb662a41ed6f6cfcc21ac98ec38cffa45ac14148477676",
+    "all-city-roads-rails.geojson": "b0556317cdf5e911c95206f73a37a2f954583cb519410aec8c5f5b682290b793",
+    "local-place-controls.geojson": "b3e5890dd2d3429629029e200d7073782d347e52ca91a2858bfa438a8cfa4afb",
+    "provisional-georeference-anchors.json": "930a29688f7a54ab5d7ab9b056a4288cf0884b7eeb3fa5799c12605414ae1878",
+    "source-extraction.json": "580dd4f15c2518975e181cb677df52e3122d6093afc1e2f90060d50151be56c8",
+    "visual-review.json": "930237c14721264126d41fbf4b2150747b6f7b34314c76ba080494ac535bc5dd",
+    "control-review.json": "df087606841ffc45603b2b6c1447dca3b554410a33ddf9e74b8287519a680b6d"
+  },
+  "converterPath": "scripts/neighborhoods/derive-kaposvar-raster-next.py",
+  "converterSha256": "726e2fad78ba865e76d1fc795714287953caa3548e9001e5b402dd26803fccde",
+  "maskHelperSha256": "f64afb52606c4ad944db86797cb8dde83e55c956cd5dd65843984c66fe2117dd",
+  "darkOverrideHelperSha256": "c3276772a8af29f5e391a8b239b31261fe0a1e8aa5522de5e9f01cec57651e3b",
+  "artifactsSha256": {
+    "source-contour-components.json": "a187912b10147887a47d59d91dd697a5e8f6b6b7e5b1280ab8203a27b5f543c7",
+    "registration-sensitivity.json": "f6955c9882816433f9bacde78aadf02bad1c807a493fcc229e38aef748f8d50d",
+    "provisional-georeference.json": "9324037367a125d505780b05270cc01f0bdec768b9d76f71161ee8abf295e260",
+    "inferred-georeference.geojson": "d81c2f8afbf754406af1c3ffc6f1b2e2a6bdd9daf1a196ecd6bbff958c81c862",
+    "native-legend-unit-contours.json": "e76f54030c2809bdb8d34afdf2e6bb4e225fa1161667932cfd293960a9ebfc9a",
+    "coarse-place-diagnostics.json": "d3515d9d13aa89a842e600b4bd388532a87024d67b570da0750e1b3abc86b30b",
+    "projection-provenance.json": "000f6b7dc6c3da215622750bcb0bc4e2f0511110fd51863b53cbfee0285f4d09",
+    "conversion-proof.json": "0b01bf9898a1f621f8d09cd61324766f62af11dd99a8037f67821ba60e28c148",
+    "inferred-registry-entry.json": "4db55a0d0c76f9c774a4d89e9d3d589899a019dd9fcc5495830ddc0e0722f349"
+  },
+  "primaryFeatures": 0,
+  "inferredFeatures": 10,
+  "sourceComponents": 16,
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false
+}

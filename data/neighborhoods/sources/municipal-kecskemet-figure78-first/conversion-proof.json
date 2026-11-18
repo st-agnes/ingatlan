@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "featureCount": 4,
+  "denseOriginalAndWorldVertexCountIncludingClosures": 5790,
+  "records": [
+    {
+      "name": "Alsócsalános",
+      "denseVertexCountIncludingClosure": 1043,
+      "maximumMaxRgb": 44,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 817,
+      "outsideCalibrationImageRectangleVertexCount": 490,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 299.0619368497172,
+      "metricVsOriginalGeographicalAffineMaximumVertexDifferenceMeters": 0.24423058597442932
+    },
+    {
+      "name": "Homokbánya",
+      "denseVertexCountIncludingClosure": 1617,
+      "maximumMaxRgb": 45,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 1267,
+      "outsideCalibrationImageRectangleVertexCount": 1139,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 408.37078549622237,
+      "metricVsOriginalGeographicalAffineMaximumVertexDifferenceMeters": 0.3040905306113906
+    },
+    {
+      "name": "Alsószéktó",
+      "denseVertexCountIncludingClosure": 1468,
+      "maximumMaxRgb": 43,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 964,
+      "outsideCalibrationImageRectangleVertexCount": 575,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 214.80029809897817,
+      "metricVsOriginalGeographicalAffineMaximumVertexDifferenceMeters": 0.25510804946880106
+    },
+    {
+      "name": "Szeleifalu",
+      "denseVertexCountIncludingClosure": 1662,
+      "maximumMaxRgb": 43,
+      "sourceHoleCount": 0,
+      "worldHoleCount": 0,
+      "outsideMatchedTextureHullVertexCount": 1662,
+      "outsideCalibrationImageRectangleVertexCount": 1479,
+      "maximumSourcePixelDistanceBeyondMatchedTextureHull": 643.7843985671267,
+      "metricVsOriginalGeographicalAffineMaximumVertexDifferenceMeters": 0.8238452976071963
+    }
+  ],
+  "projectValidatorResults": [
+    {
+      "id": "manual:kecskemet-figure78:alsocsalanos",
+      "valid": true,
+      "bbox": [
+        19.627206362010835,
+        46.88234132982805,
+        19.640139762395425,
+        46.88894800030728
+      ],
+      "vertices": 1043
+    },
+    {
+      "id": "manual:kecskemet-figure78:homokbanya",
+      "valid": true,
+      "bbox": [
+        19.635875031239827,
+        46.87928769012407,
+        19.655484643602065,
+        46.89008228450937
+      ],
+      "vertices": 1617
+    },
+    {
+      "id": "manual:kecskemet-figure78:alsoszekto",
+      "valid": true,
+      "bbox": [
+        19.646650576702843,
+        46.88455770074678,
+        19.667237600288058,
+        46.89474023019985
+      ],
+      "vertices": 1468
+    },
+    {
+      "id": "manual:kecskemet-figure78:szeleifalu",
+      "valid": true,
+      "bbox": [
+        19.654793725040868,
+        46.8753747618121,
+        19.675666153078488,
+        46.89147104088918
+      ],
+      "vertices": 1662
+    }
+  ],
+  "sourcePixelInteriorOverlap": 0.0,
+  "allOriginalContoursLiteralBlack8NeighborCircuits": true,
+  "noSourceFrameClosureGapFillInventedChordSnapRepairBufferOrSimplification": true,
+  "estimatedPlacementOnly": true,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

@@ -1,4 +1,5 @@
 """Read-only normalized location-index checks in the disposable CI MySQL database."""
+import gzip
 import json
 import os
 from pathlib import Path
@@ -12,9 +13,14 @@ ROMANS = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XI
           'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI', 'XXII', 'XXIII']
 SETTLEMENTS = json.loads((ROOT / 'dist/data/settlements.json').read_text(encoding='utf-8'))['settlements']
 AREAS = json.loads((ROOT / 'dist/data/agglomerations.json').read_text(encoding='utf-8'))['areas']
+with gzip.open(ROOT / 'dist/data/neighborhoods.json.gz', 'rt', encoding='utf-8') as runtime:
+    assert runtime.readline().strip() == '[', 'Unexpected generated neighborhood runtime format.'
+    NEIGHBORHOODS = json.loads(runtime.readline().rstrip(',\r\n'))['areas']
+assert len(NEIGHBORHOODS) == 4308, 'The location-index verifier requires the full generated neighborhood catalog.'
 KNOWN_IDS = ({'city:' + city for city in SETTLEMENTS}
              | {'district:Budapest:' + str(index) for index in range(1, 24)}
-             | {area['id'] for area in AREAS})
+             | {area['id'] for area in AREAS}
+             | {area['id'] for area in NEIGHBORHOODS})
 
 
 def normalize(value):

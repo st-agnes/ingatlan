@@ -1,0 +1,523 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent child agent fig81_visual; offline source/geometry QA",
+  "verdict": "PASS_WITH_EXPLICIT_HISTORICAL_AND_ESTIMATE_LIMITS",
+  "scope": "Two literal historical source outlines may enter source-based primary layer; two blue-label-interpreted candidates remain estimated only; no current/legal/address/absolute-accuracy certification.",
+  "independentComputation": "Temporary standalone audit used actual publisher PDF xref bytes, PIL RGB arrays, literal archived OSM-node coordinates, independently solved pseudoinverse metric affine, coordinate-by-coordinate inverse-projection reconstruction and Shapely geometry operations; converter booleans were not accepted as evidence.",
+  "sourceIdentity": {
+    "publisherPdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+    "pdfPageOneBased": 175,
+    "printedPage": 173,
+    "figure": 81,
+    "xref": 216,
+    "imageSha256": "4d9d33cf34268d28653d0955b8619e515653b29cea59914397246eaa7589f1ec",
+    "embeddedJpegBytesExactlyIdentical": true,
+    "sourceImageSize": [
+      1259,
+      893
+    ],
+    "sourceFineNamedUnitCount": 6,
+    "sourceFineNames": [
+      "Külső-Máriahegy",
+      "Belső-Máriahegy",
+      "Széchenyiváros III.",
+      "Széchenyiváros II.",
+      "Széchenyiváros I.",
+      "Villanegyed"
+    ]
+  },
+  "visualInspection": {
+    "performedOnOriginalAndFinalOverlay": true,
+    "observations": [
+      "Distinct blue labels and black outlines identify six fine units; I. and Villanegyed are two units despite overlapping label text.",
+      "Red final traces follow the full Belső-Máriahegy and Széchenyiváros III. black outlines, including interior bends.",
+      "Orange II./I. traces follow visible boundaries except two narrow blue-label crossings; no black closure is claimed through glyphs.",
+      "Külső-Máriahegy top tip and Villanegyed bottom tip terminate at source frame; their missing corners cannot be reconstructed literally."
+    ],
+    "controlPixelReview": "Five approximate visible old-road junction placements are plausible; corrected Akadémia/Budai source point (1066,535) is on the arterial junction, unlike initial discarded (1048,529). Held-out Ladánybenei/Máriahegy junction is partly line-occluded and supports an approximate window only."
+  },
+  "controls": {
+    "wholeUnchangedRoadCount": 19,
+    "uniqueLiteralNodeCount": 122,
+    "fullRoadArchiveSha256": "ee16b15f2dcc1379f5638abd8990151c8865065307331f0ee54b8c53bf2bd7f9",
+    "ownRoadArchiveSha256": "2b3222aa9c78e24c492a1b4e34c5f3ec551d5671d6f1a92a38bcd4e26f3fc0ff",
+    "fitControlCount": 5,
+    "allControlAndHeldoutNodeCoordinatesLiteral": true,
+    "matrixPixelRowToEovIndependentPseudoinverse": [
+      [
+        3.597699948544572,
+        0.02488711744245335
+      ],
+      [
+        0.005283338354224814,
+        -3.5923505699781386
+      ],
+      [
+        694525.4293678841,
+        176999.93331705316
+      ]
+    ],
+    "matrixMaximumAbsoluteDifference": 4.377566018010093e-13,
+    "fitResidualMetresIndependent": [
+      3.891643632692557,
+      6.306818043376321,
+      11.17246263888053,
+      10.27738744254195,
+      7.502613896408839
+    ],
+    "heldOutNotUsedInFit": true,
+    "heldOutPredictedSourcePixelIndependent": [
+      351.61550094161066,
+      70.36653621377627
+    ],
+    "heldOutWithinApproximateWindow": true,
+    "manualPixelUncertaintyClaim": "3–5 px approximate placement metadata, not a calibrated accuracy bound",
+    "claimedAbsoluteAccuracyMetres": null,
+    "projNetworkDisabled": true,
+    "pyprojVersion": "3.7.2",
+    "projVersion": "9.5.1"
+  },
+  "geometryChecks": [
+    {
+      "name": "Belső-Máriahegy",
+      "primaryLiteralBlack": true,
+      "denseClosedPixelCount": 1123,
+      "compressedClosedPixelCount": 450,
+      "nonblackInterpretedPixels": [],
+      "compressionSymmetricDifferencePixelArea": 0.0,
+      "sourcePixelArea": 89545.0,
+      "worldCoordinatesExactlyRecomputed": true,
+      "canonicalMunicipalityCovered": true,
+      "areaM2": 1157443.8098933743,
+      "incidentInterpretedPixelLength": 0,
+      "incidentInterpretedMetresApproximate": 0
+    },
+    {
+      "name": "Széchenyiváros III.",
+      "primaryLiteralBlack": true,
+      "denseClosedPixelCount": 895,
+      "compressedClosedPixelCount": 317,
+      "nonblackInterpretedPixels": [],
+      "compressionSymmetricDifferencePixelArea": 0.0,
+      "sourcePixelArea": 51711.0,
+      "worldCoordinatesExactlyRecomputed": true,
+      "canonicalMunicipalityCovered": true,
+      "areaM2": 668407.3985315337,
+      "incidentInterpretedPixelLength": 0,
+      "incidentInterpretedMetresApproximate": 0
+    },
+    {
+      "name": "Széchenyiváros II.",
+      "primaryLiteralBlack": false,
+      "denseClosedPixelCount": 695,
+      "compressedClosedPixelCount": 199,
+      "nonblackInterpretedPixels": [
+        {
+          "ringIndex": 278,
+          "pixel": [
+            897,
+            705
+          ],
+          "rgb": [
+            2,
+            11,
+            54
+          ],
+          "window": "I-II-label-crossing"
+        },
+        {
+          "ringIndex": 280,
+          "pixel": [
+            895,
+            707
+          ],
+          "rgb": [
+            0,
+            0,
+            84
+          ],
+          "window": "I-II-label-crossing"
+        },
+        {
+          "ringIndex": 281,
+          "pixel": [
+            894,
+            708
+          ],
+          "rgb": [
+            19,
+            12,
+            178
+          ],
+          "window": "I-II-label-crossing"
+        },
+        {
+          "ringIndex": 282,
+          "pixel": [
+            893,
+            709
+          ],
+          "rgb": [
+            0,
+            0,
+            105
+          ],
+          "window": "I-II-label-crossing"
+        }
+      ],
+      "compressionSymmetricDifferencePixelArea": 0.0,
+      "sourcePixelArea": 37915.0,
+      "worldCoordinatesExactlyRecomputed": true,
+      "canonicalMunicipalityCovered": true,
+      "areaM2": 490082.5811445169,
+      "incidentInterpretedPixelLength": 8.071067811865476,
+      "incidentInterpretedMetresApproximate": 29.089586863781314
+    },
+    {
+      "name": "Széchenyiváros I.",
+      "primaryLiteralBlack": false,
+      "denseClosedPixelCount": 465,
+      "compressedClosedPixelCount": 163,
+      "nonblackInterpretedPixels": [
+        {
+          "ringIndex": 112,
+          "pixel": [
+            897,
+            705
+          ],
+          "rgb": [
+            2,
+            11,
+            54
+          ],
+          "window": "I-II-label-crossing"
+        },
+        {
+          "ringIndex": 114,
+          "pixel": [
+            895,
+            707
+          ],
+          "rgb": [
+            0,
+            0,
+            84
+          ],
+          "window": "I-II-label-crossing"
+        },
+        {
+          "ringIndex": 115,
+          "pixel": [
+            894,
+            708
+          ],
+          "rgb": [
+            19,
+            12,
+            178
+          ],
+          "window": "I-II-label-crossing"
+        },
+        {
+          "ringIndex": 116,
+          "pixel": [
+            893,
+            709
+          ],
+          "rgb": [
+            0,
+            0,
+            105
+          ],
+          "window": "I-II-label-crossing"
+        },
+        {
+          "ringIndex": 349,
+          "pixel": [
+            1023,
+            714
+          ],
+          "rgb": [
+            0,
+            0,
+            53
+          ],
+          "window": "I-Villanegyed-label-crossing"
+        },
+        {
+          "ringIndex": 350,
+          "pixel": [
+            1023,
+            713
+          ],
+          "rgb": [
+            0,
+            0,
+            69
+          ],
+          "window": "I-Villanegyed-label-crossing"
+        },
+        {
+          "ringIndex": 351,
+          "pixel": [
+            1023,
+            712
+          ],
+          "rgb": [
+            0,
+            0,
+            83
+          ],
+          "window": "I-Villanegyed-label-crossing"
+        },
+        {
+          "ringIndex": 352,
+          "pixel": [
+            1023,
+            711
+          ],
+          "rgb": [
+            0,
+            0,
+            87
+          ],
+          "window": "I-Villanegyed-label-crossing"
+        },
+        {
+          "ringIndex": 353,
+          "pixel": [
+            1023,
+            710
+          ],
+          "rgb": [
+            1,
+            8,
+            99
+          ],
+          "window": "I-Villanegyed-label-crossing"
+        },
+        {
+          "ringIndex": 354,
+          "pixel": [
+            1023,
+            709
+          ],
+          "rgb": [
+            0,
+            8,
+            79
+          ],
+          "window": "I-Villanegyed-label-crossing"
+        },
+        {
+          "ringIndex": 355,
+          "pixel": [
+            1023,
+            708
+          ],
+          "rgb": [
+            0,
+            0,
+            71
+          ],
+          "window": "I-Villanegyed-label-crossing"
+        },
+        {
+          "ringIndex": 356,
+          "pixel": [
+            1023,
+            707
+          ],
+          "rgb": [
+            0,
+            3,
+            96
+          ],
+          "window": "I-Villanegyed-label-crossing"
+        },
+        {
+          "ringIndex": 357,
+          "pixel": [
+            1023,
+            706
+          ],
+          "rgb": [
+            0,
+            0,
+            100
+          ],
+          "window": "I-Villanegyed-label-crossing"
+        },
+        {
+          "ringIndex": 358,
+          "pixel": [
+            1023,
+            705
+          ],
+          "rgb": [
+            0,
+            0,
+            91
+          ],
+          "window": "I-Villanegyed-label-crossing"
+        },
+        {
+          "ringIndex": 359,
+          "pixel": [
+            1023,
+            704
+          ],
+          "rgb": [
+            2,
+            9,
+            89
+          ],
+          "window": "I-Villanegyed-label-crossing"
+        },
+        {
+          "ringIndex": 360,
+          "pixel": [
+            1023,
+            703
+          ],
+          "rgb": [
+            10,
+            16,
+            68
+          ],
+          "window": "I-Villanegyed-label-crossing"
+        }
+      ],
+      "compressionSymmetricDifferencePixelArea": 0.0,
+      "sourcePixelArea": 17238.0,
+      "worldCoordinatesExactlyRecomputed": true,
+      "canonicalMunicipalityCovered": true,
+      "areaM2": 222815.2376429664,
+      "incidentInterpretedPixelLength": 21.071067811865476,
+      "incidentInterpretedMetresApproximate": 75.79287970788498
+    }
+  ],
+  "pairwiseInteriorOverlapChecks": [
+    {
+      "names": [
+        "Belső-Máriahegy",
+        "Széchenyiváros III."
+      ],
+      "sourcePixelArea": 0.0,
+      "worldSquareDegrees": 0.0
+    },
+    {
+      "names": [
+        "Belső-Máriahegy",
+        "Széchenyiváros II."
+      ],
+      "sourcePixelArea": 0.0,
+      "worldSquareDegrees": 0.0
+    },
+    {
+      "names": [
+        "Belső-Máriahegy",
+        "Széchenyiváros I."
+      ],
+      "sourcePixelArea": 0.0,
+      "worldSquareDegrees": 0.0
+    },
+    {
+      "names": [
+        "Széchenyiváros III.",
+        "Széchenyiváros II."
+      ],
+      "sourcePixelArea": 0.0,
+      "worldSquareDegrees": 0.0
+    },
+    {
+      "names": [
+        "Széchenyiváros III.",
+        "Széchenyiváros I."
+      ],
+      "sourcePixelArea": 0.0,
+      "worldSquareDegrees": 0.0
+    },
+    {
+      "names": [
+        "Széchenyiváros II.",
+        "Széchenyiváros I."
+      ],
+      "sourcePixelArea": 0.0,
+      "worldSquareDegrees": 0.0
+    }
+  ],
+  "sharedSectionProtection": {
+    "protectedEndpointCount": 10,
+    "allAppearingEndpointsRetainedInCompressedRings": true,
+    "uniqueDenseEdgesSharedByTwoRings": 807,
+    "maximumDenseEdgeMultiplicity": 2,
+    "compressionCreatesNoSourceAreaChange": true,
+    "worldInteriorOverlapSquareDegrees": 0
+  },
+  "clippedUnitsExcluded": {
+    "names": [
+      "Külső-Máriahegy",
+      "Villanegyed"
+    ],
+    "bottomLastPhotoRow": 887,
+    "bottomBlackPixelXs": [
+      1082,
+      1083,
+      1084,
+      1085,
+      1091,
+      1092,
+      1093
+    ],
+    "bottomFrameBlackPixelCount": 0,
+    "topFrameRows0To3BlackCount": 0,
+    "topFirstPhotographicRow4BlackPixelXs": [
+      169,
+      170,
+      171,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      199,
+      204,
+      205,
+      206,
+      207,
+      209,
+      210
+    ],
+    "noFrameClosureExported": true
+  },
+  "classifications": {
+    "literalPrimaryCount": 2,
+    "separateEstimateCount": 2,
+    "currentFineNamesIndependentlyConfirmed": false,
+    "sourceIsOfficial": false,
+    "sourceIsHardBoundary": false,
+    "usableForAddressAssignment": false,
+    "claimedAbsoluteAccuracyMetres": null,
+    "sourceMapReuseRightsIndependentlyEstablished": false
+  },
+  "artifactsSha256": {
+    "szechenyi-source-raster.geojson": "06ccbe775220cf9260abcc184c87a7620cfffa5d931d156eda3fa1d3f3a2c000",
+    "szechenyi-label-inferred.geojson": "a141e2a7f899672f9c833c21994d65b1fd512e4484ddacc183b082581e529b85",
+    "raster-pixel-trace.json": "79cef4eb05dc6f0a310dd92986e9eeb4218e8654d2af249f1317c5124475fb67",
+    "raster-georeference.json": "8876f968de1884efcf7e012503711be6e36568f49e0a7d80ba75cd95df61b22f",
+    "conversion-proof.json": "bfcd1c559ff623e52f624de611b4d1c27d0df371a77b952cfb05b813bc5491ed",
+    "generated-manifest.json": "f27a9d646ddc6c251be99b433fffde8774c5cf5b86690c410dc7b4508487093e",
+    "registry-entry.json": "d9ffd325147a6dafa8d2861e37c793753ced7a0c0ad29525bd63c3e1ae6d2a2e",
+    "inferred-registry-entry.json": "590b6fec6309f80acd2995bbe1f0734c94528afef06bbbeab1efa80864d0f32c"
+  },
+  "limitations": [
+    "Historical 2021 consultation-map labels/outlines; no independent current fine-name confirmation.",
+    "Unknown source orthophoto date, original projection, legal/cadastral status and absolute positional accuracy.",
+    "OSM controls are literal modern nodes; historical source-image placements are manually approximated and a small residual does not prove boundary accuracy.",
+    "Dark-blue glyph pixels in II./I. are explicit estimates of obscured continuation; retain inferred_area, estimated:true, canonicalNameIsNeighborhood:false.",
+    "Municipal publisher-source reuse rights have not been independently established; ODbL attribution pertains to OSM georeference controls.",
+    "Not usable for automatic address-to-quarter assignment."
+  ]
+}

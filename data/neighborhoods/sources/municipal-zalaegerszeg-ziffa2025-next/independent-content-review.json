@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "independent_content_minimization_and_unchanged_geometry_audit",
+  "reviewer": "independent child agent zala_semantic_qa",
+  "status": "passes_content_minimization_and_unchanged_geometry_checks",
+  "auditDate": "2026-11-14",
+  "originalRawPdfCheckedLocally": {
+    "localPath": ".local/neighborhoods/supplement-originals/zalaegerszeg-ziffa2025.pdf",
+    "sha256": "b132fd75d6c95538023ced5eda3ad8ac7f7131c6e27f889ed7206c23e4a44745",
+    "pageCount": 229,
+    "fullOriginalRemainsOutsidePublicPacket": true
+  },
+  "inputs": [
+    {
+      "path": "source-map-only-p141.pdf",
+      "sha256": "3173564e67ca54fd62153ee52e182c4f63ddfd55c74c0930e24715e5781b000c"
+    },
+    {
+      "path": "p141-xref773.jpeg",
+      "sha256": "4e29b629c1a49f610a9c6a2754523e53bf881ea972551b46e6a9d7be4ddaba82"
+    },
+    {
+      "path": "p141-xref778.jpeg",
+      "sha256": "030e9fe46f8bce31c9a4f9bbea282a72c66e3af3d29d508c72659583f1569d76"
+    },
+    {
+      "path": "source-page-facts.json",
+      "sha256": "3cfd6efb85abf30b3a6c4ed8bd675d98999d4310a427a5d6255f91a21d847599"
+    },
+    {
+      "path": "independent-source-review.json",
+      "sha256": "9486febdc236e2edb711dca05d0d07129b0d99d509397489af4858c99dca43c1"
+    },
+    {
+      "path": "curated-registry-entry.json",
+      "sha256": "8b0bcfb6ca4c2c23e36171f74cff8c8033e7e09498412123cf3bc902eb72cfdf"
+    },
+    {
+      "path": "prepare-source-evidence.py",
+      "sha256": "f78c393f599132eade8e4999b7d86b0c0536642c6d5eea6740f17fe4ce25fbf8"
+    },
+    {
+      "path": "hathaz-inferred-import.geojson",
+      "sha256": "a941d069ca1e8219eddbac61ad6f2b49cc47425dd06750853b99bd2d4965578e"
+    },
+    {
+      "path": "hathaz-placement-alternative.geojson",
+      "sha256": "122ab9e25c9ee7f8ce5bf17b94a81c9b86fb938e41e06bdc5651935b36982a68"
+    }
+  ],
+  "mapOnlyPdf": {
+    "path": "source-map-only-p141.pdf",
+    "pageCount": 2,
+    "embeddedFileCount": 0,
+    "xmlMetadataPresent": false,
+    "narrativeTextObjects": 0,
+    "originalNarrativePageRetained": false,
+    "mapPanels": [
+      {
+        "mapOnlyPdfPage": 1,
+        "originalPdfPageOneBased": 141,
+        "originalImageXref": 773,
+        "nativeMapPanelPath": "p141-xref773.jpeg",
+        "nativeImageSha256": "4e29b629c1a49f610a9c6a2754523e53bf881ea972551b46e6a9d7be4ddaba82",
+        "dimensionsPixels": [
+          194,
+          246
+        ],
+        "selectedAndReembeddedImagesAreBitExact": true,
+        "textCharacters": 0,
+        "annotations": 0,
+        "widgets": 0,
+        "links": 0
+      },
+      {
+        "mapOnlyPdfPage": 2,
+        "originalPdfPageOneBased": 141,
+        "originalImageXref": 778,
+        "nativeMapPanelPath": "p141-xref778.jpeg",
+        "nativeImageSha256": "030e9fe46f8bce31c9a4f9bbea282a72c66e3af3d29d508c72659583f1569d76",
+        "dimensionsPixels": [
+          355,
+          451
+        ],
+        "selectedAndReembeddedImagesAreBitExact": true,
+        "textCharacters": 0,
+        "annotations": 0,
+        "widgets": 0,
+        "links": 0
+      }
+    ]
+  },
+  "packetContentAudit": {
+    "directNarrativeQuotationWords": 0,
+    "sourceNarrativeProseTreatment": "English paraphrases only; page/figure numbers, geographic labels and bibliographic identifiers retained.",
+    "fullNarrativePdfRemoved": true,
+    "fullExtractedSourceTextRemoved": true,
+    "textOrMarkdownFilesPresent": [],
+    "otherPdfFilesPresent": [],
+    "rasterImageReview": "Only the two selected native map panels and map-only contour/registration previews remain. Visual inspection found geographic labels and overlays, with no source narrative paragraphs.",
+    "allCurrentPacketTextFilesInspectedForPreviousNarrativeQuotes": true,
+    "narrativeEvidenceCheckedAgainstLocalOriginalPagesOneBased": [
+      7,
+      63,
+      99,
+      141,
+      142
+    ]
+  },
+  "geometryIntegrity": {
+    "mainSha256": "a941d069ca1e8219eddbac61ad6f2b49cc47425dd06750853b99bd2d4965578e",
+    "alternativeSha256": "122ab9e25c9ee7f8ce5bf17b94a81c9b86fb938e41e06bdc5651935b36982a68",
+    "bothMatchPreviouslyReviewedFrozenHashes": true,
+    "geometriesOrRegistrationModifiedByThisAudit": false
+  },
+  "curatedMetadataChecks": {
+    "canonicalNameIsNeighborhoodFalse": true,
+    "candidateBoundaryKind": "neighbourhood",
+    "observedSourceContourTrue": true,
+    "estimatedPlacementTrue": true,
+    "absoluteAccuracyNull": true,
+    "addressAssignmentFalse": true,
+    "documentDate": "2025-08-30",
+    "documentStatus": "consultation_draft",
+    "rightsRemainRecordedUnknownWithOsmOdblAttribution": true,
+    "registryEntryAppliedByThisBatch": false
+  },
+  "scope": "Content minimization audit only; previous semantic, raster and registration limitations remain. This audit does not establish redistribution rights or geographic accuracy.",
+  "networkCallsPerformed": false,
+  "globalRegistryModified": false,
+  "artifactManifestRefreshRequiredAfterAddingThisReview": true
+}

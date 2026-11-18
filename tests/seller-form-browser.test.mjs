@@ -36,7 +36,7 @@ async function verify(browser,viewport){
  const page=await context.newPage();page.setDefaultTimeout(8000);page.setDefaultNavigationTimeout(15000);
  const errors=[];page.on('pageerror',error=>errors.push(error.message));const interact=locator=>viewport.touch?locator.tap():locator.click();
  try{
-  await openNew(page,interact,'property');await chooseLocation(page,interact);
+  await openNew(page,interact,'property');await chooseLocation(page,interact);await page.locator('#f-street').fill('Teszt utca');await page.locator('#f-houseNumber').fill('12/A');
   const title=`Eladói űrlap – ${viewport.name}`;await (await editorField(page,'#f-title')).fill(title);
   const primaryOptions=await page.locator('#f-heatingType option').evaluateAll(options=>options.map(option=>option.value));
   assert.equal(primaryOptions.length,14);assert.ok(primaryOptions.includes('Nincs fűtés'));assert.deepEqual(await page.locator('#f-secondaryHeatingType option').evaluateAll(options=>options.map(option=>option.value)),primaryOptions);

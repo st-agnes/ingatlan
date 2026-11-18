@@ -1,0 +1,412 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_FOR_THREE_EXPLICIT_INFERRED_SOURCE_CELLS",
+  "independentOfProducerCode": true,
+  "provenanceSha256": {
+    "input-manifest.json": "de17991e528cf76d3d0037ba7e63117db73b082c71e5c1427171758536624597",
+    "generated-manifest.json": "9b975c3bdcbda311d081e220063d30363cd85c5721265e1a5960fd4575537b2c",
+    "image-registration.json": "788967ed12e69816e18726b8c1994a053a7ce54c47d16911ffc8fb86f340eaf1",
+    "independent-physical-landmarks.json": "d7cffc6ad6fddc329041bd5e9558705c2c729c70e7bc7801342603f9898459f4",
+    "independent-physical-landmark-model-check.json": "d7bfd91621c98057eb87157dc3970ce76f69c9d2e7fdd030d5f694e25891627f",
+    "source-pixel-rings.json": "3ceeea0fd133cdba0c0f46ddbd2827d8516f0e6a37e957eb88bfcaeb79322a46",
+    "source-inferred.geojson": "25fc43ab9733cc89f73b4a4184939a05643f0ba853ed089110a5085a829d63d0",
+    "calibration-figure73-manifest.json": "ccb04d4774e71a3cc3d3d35f9ce5050214134875dbc406236738bebdcd6363fc",
+    "calibration-figure73-georeference.json": "ca53ee79f25c5e44157a7d1271c76d58208672810d5976a424891a71a949711e",
+    "calibration-figure73-control-specification.json": "ebf0b071b4d3ab3824e50ecced9ede8482188a288fa18762f47501467cec1a6b",
+    "calibration-figure73-control-roads.geojson": "626c532130175afb62c52f968bfd1bda7e477a7ccf8f1c0a76df8e3419cd1f09",
+    "original-pbf-verification.json": "343266ca10ea09f2cada4ad024e978862978de7eaa8d95080883ce1811aa3f11",
+    "current-name-points.geojson": "f871f6cf362d1bad67aeec48dd7713f29186b03e2180c4624737ec777fcd0216",
+    "georeference.json": "ee00c153ed2454879aeff9e79cca735486c92bca573ea2d9295398b4e7a96096",
+    "conversion-proof.json": "6dc585a406bdc2aba3169d3ed94d67c21e894d331fd2c5e13b3cdeec873eb886",
+    "registry-entry.json": "f5f0669decfcd5b3992e72c2877c9347d215560c27f6a548a1e607fda5d003ff",
+    "finalaudit-independent.py": "550eb20fb00810444195907b6cc12bea95a36017447e5e1944f437e87d854543"
+  },
+  "portableReplay": {
+    "requiresExternalFrozen73Or77Directory": false,
+    "requiresFullOriginalPdfOrPbfForDefaultAudit": false,
+    "usesCopiedPinnedCalibrationInputsAndProof": true,
+    "finalManifestNotHashedInOwnReportAvoidingCycles": true
+  },
+  "originalSourceEvidence": {
+    "figure": 76,
+    "originalImageSha256": "9afccf14486eb5ed86581d07f9a588da4b53df6fa0c47cdbcaf6f667659055cd",
+    "archivedPublisherEmbeddedJpegBytesExactlyPreserved": true,
+    "threeSeparateNamedFineUnitsExplicitInArchivedPdf161": true,
+    "groupNotDuplicatedAsEachFineName": true,
+    "everyDensePointActualBlackMaxRgb45OrLess": true,
+    "everySourceEdge8Neighbor": true,
+    "noFrameClosureGapFillLabelCrossingPixelAdditionRepairBufferOrSimplification": true,
+    "sourceAndWorldInteriorRingCount": 0,
+    "allSourceAndWorldVerticesChecked": 4635,
+    "maximumCoordinateDisagreementDegrees": 0.0,
+    "pairwiseAreaOverlapChecks": [
+      {
+        "a": "Külső Árpádváros",
+        "b": "Mezeiváros",
+        "sourceIntersectionArea": 0.0,
+        "worldIntersectionArea": 0.0
+      },
+      {
+        "a": "Külső Árpádváros",
+        "b": "Ürgés",
+        "sourceIntersectionArea": 0.0,
+        "worldIntersectionArea": 0.0
+      },
+      {
+        "a": "Mezeiváros",
+        "b": "Ürgés",
+        "sourceIntersectionArea": 0.0,
+        "worldIntersectionArea": 0.0
+      }
+    ]
+  },
+  "independentPhotographicNcc": {
+    "numericMethod": "Direct strided-window dot products and window sum/square normalization, independently implemented instead of the producer FFT convolution.",
+    "allSearchPatchCountDirectlyRecomputed": 42,
+    "usableMatchCount": 20,
+    "trainingCount": 10,
+    "heldOutCount": 10,
+    "usableNccThreshold": 0.85,
+    "maximumNccCoefficientDisagreement": 8.881784197001252e-16,
+    "maximumPeakCenterDisagreementPixels": 1.1368683772161603e-13,
+    "affineIndependentlyFittedFromRevalidatedImagePairs": true,
+    "heldOutResiduals": [
+      {
+        "id": "r0c1",
+        "residualTargetPixels": 0.21259864799881936,
+        "usedInImageFit": false
+      },
+      {
+        "id": "r0c3",
+        "residualTargetPixels": 0.3467147782322313,
+        "usedInImageFit": false
+      },
+      {
+        "id": "r1c0",
+        "residualTargetPixels": 0.43269789419945576,
+        "usedInImageFit": false
+      },
+      {
+        "id": "r1c2",
+        "residualTargetPixels": 0.42682366825851753,
+        "usedInImageFit": false
+      },
+      {
+        "id": "r1c4",
+        "residualTargetPixels": 0.46716827203245326,
+        "usedInImageFit": false
+      },
+      {
+        "id": "r2c1",
+        "residualTargetPixels": 0.2539945634752232,
+        "usedInImageFit": false
+      },
+      {
+        "id": "r2c5",
+        "residualTargetPixels": 0.37409541658210627,
+        "usedInImageFit": false
+      },
+      {
+        "id": "r4c5",
+        "residualTargetPixels": 0.42009549001527546,
+        "usedInImageFit": false
+      },
+      {
+        "id": "r5c2",
+        "residualTargetPixels": 0.044145404665589194,
+        "usedInImageFit": false
+      },
+      {
+        "id": "r5c6",
+        "residualTargetPixels": 0.2993718860723521,
+        "usedInImageFit": false
+      }
+    ],
+    "maximumHeldOutResidualTargetPixels": 0.46716827203245326,
+    "geographicCoordinatesNamesAndBoundaryRingsUsedByImageMatch": false,
+    "independentManualPhysicalFeatureChecks": [
+      {
+        "id": "gym-northern-roof-tip",
+        "manualSourcePixel": [
+          704,
+          1004
+        ],
+        "manualTargetPixel": [
+          1103,
+          382
+        ],
+        "predictedTargetPixel": [
+          1103.7941567572882,
+          381.8881785746421
+        ],
+        "distanceTargetPixels": 0.8019906397929901,
+        "withinPreviouslyDeclaredCombinedManualInterpretation": true,
+        "manualPointAdjustedToModel": false
+      },
+      {
+        "id": "T-building-second-roof-box",
+        "manualSourcePixel": [
+          826,
+          1196
+        ],
+        "manualTargetPixel": [
+          1234,
+          587
+        ],
+        "predictedTargetPixel": [
+          1234.0389008142229,
+          586.913802648419
+        ],
+        "distanceTargetPixels": 0.0945687938316446,
+        "withinPreviouslyDeclaredCombinedManualInterpretation": true,
+        "manualPointAdjustedToModel": false
+      },
+      {
+        "id": "small-red-roof-north-ridge",
+        "manualSourcePixel": [
+          837,
+          1286
+        ],
+        "manualTargetPixel": [
+          1245,
+          684
+        ],
+        "predictedTargetPixel": [
+          1245.7542958720596,
+          683.0189058344477
+        ],
+        "distanceTargetPixels": 1.2375411202408817,
+        "withinPreviouslyDeclaredCombinedManualInterpretation": true,
+        "manualPointAdjustedToModel": false
+      },
+      {
+        "id": "rail-side-long-shed-ne-corner",
+        "manualSourcePixel": [
+          789,
+          1337
+        ],
+        "manualTargetPixel": [
+          1191,
+          739
+        ],
+        "predictedTargetPixel": [
+          1194.4617466119091,
+          737.4776915676234
+        ],
+        "distanceTargetPixels": 3.7816811828007264,
+        "withinPreviouslyDeclaredCombinedManualInterpretation": true,
+        "manualPointAdjustedToModel": false
+      }
+    ]
+  },
+  "inheritedMetricCalibration": {
+    "copiedFrozenFigure73ManifestSha256": "ccb04d4774e71a3cc3d3d35f9ce5050214134875dbc406236738bebdcd6363fc",
+    "copiedCalibrationFileHashesMatchFrozenSourceManifest": true,
+    "sixLiteralOsmRoadNodeControlsIndependentlyRefittedInCrs": "EPSG:23700",
+    "controlResidualMeters": [
+      3.287598810620155,
+      4.787726003229771,
+      1.1242697205185157,
+      1.9731379398351536,
+      9.735168889125108,
+      8.494347407926316
+    ],
+    "originalControlWayPbfVerificationCount": 23,
+    "newCurrentNamePointPbfVerificationCount": 1,
+    "exactHistoricalToModernPhysicalPointIdentityVerified": false,
+    "geographicRegistrationVerified": false,
+    "excludedFailedPriorCandidate": {
+      "osmNodeId": 495545211,
+      "predictedSource73Pixel": [
+        423.5567545903614,
+        569.3776212119701
+      ],
+      "insideOriginalInterpretationWindow": false,
+      "sourceFeatureIdentityUnconfirmed": true,
+      "usedInFitOrAsValidatedControl": false
+    }
+  },
+  "conversion": {
+    "inverseImageAffineIndependentlyRecomputed": true,
+    "composedFigure76PixelToEovIndependentlyRecomputed": true,
+    "sequentialAndComposedCoordinatesAgreeWithin1eMinus8Meters": true,
+    "all4635WorldVerticesAndEdgesChecked": true
+  },
+  "sourceCellChecks": [
+    {
+      "name": "Külső Árpádváros",
+      "allOriginalAndWorldVerticesChecked": 1617,
+      "everyDenseVertexMaxRgb": 45,
+      "closedActualBlack8NeighborCircuit": true,
+      "minimumDistanceFromImageFramePixels": 41,
+      "sourceAndWorldHoles": 0,
+      "maxIndependentWorldCoordinateDisagreementDegrees": 0.0,
+      "allWorldEdgesMatchConsecutiveOriginalSourcePixels": true,
+      "verticesOutsideOriginalFigure73Image": 1055,
+      "verticesOutsideObservedTextureHull": 1339,
+      "maximumDistanceBeyondObservedTextureHullTargetPixels": 522.8227678626655,
+      "currentExactNamePointStatus": "unknown exact current name point; no alias invented",
+      "currentNamePointInsideHistoricalEstimatedCell": null
+    },
+    {
+      "name": "Mezeiváros",
+      "allOriginalAndWorldVerticesChecked": 1996,
+      "everyDenseVertexMaxRgb": 44,
+      "closedActualBlack8NeighborCircuit": true,
+      "minimumDistanceFromImageFramePixels": 275,
+      "sourceAndWorldHoles": 0,
+      "maxIndependentWorldCoordinateDisagreementDegrees": 0.0,
+      "allWorldEdgesMatchConsecutiveOriginalSourcePixels": true,
+      "verticesOutsideOriginalFigure73Image": 415,
+      "verticesOutsideObservedTextureHull": 954,
+      "maximumDistanceBeyondObservedTextureHullTargetPixels": 219.2175706754037,
+      "currentExactNamePointStatus": "unknown exact current name point; no alias invented",
+      "currentNamePointInsideHistoricalEstimatedCell": null
+    },
+    {
+      "name": "Ürgés",
+      "allOriginalAndWorldVerticesChecked": 1022,
+      "everyDenseVertexMaxRgb": 39,
+      "closedActualBlack8NeighborCircuit": true,
+      "minimumDistanceFromImageFramePixels": 18,
+      "sourceAndWorldHoles": 0,
+      "maxIndependentWorldCoordinateDisagreementDegrees": 0.0,
+      "allWorldEdgesMatchConsecutiveOriginalSourcePixels": true,
+      "verticesOutsideOriginalFigure73Image": 556,
+      "verticesOutsideObservedTextureHull": 846,
+      "maximumDistanceBeyondObservedTextureHullTargetPixels": 351.03031238617615,
+      "currentExactNamePointStatus": "original PBF Ürgés point inside; not used in registration",
+      "currentNamePointInsideHistoricalEstimatedCell": true
+    }
+  ],
+  "actualProjectGeometryValidator": {
+    "modulePath": "scripts/neighborhoods/build.mjs",
+    "moduleSha256": "7d234a3c4750b6a735483befd02661c6ba199491fec102bd2d301dabf4cb216c",
+    "actualValidateGeometryExportCalled": true,
+    "acceptedCount": 3,
+    "rejectedCount": 0,
+    "results": [
+      {
+        "id": "manual:kecskemet-figure76:kulso-arpadvaros",
+        "name": "Külső Árpádváros",
+        "valid": true,
+        "bbox": [
+          19.673970701327775,
+          46.89310130354236,
+          19.689137827381728,
+          46.901345300791355
+        ],
+        "vertices": 1617
+      },
+      {
+        "id": "manual:kecskemet-figure76:mezeivaros",
+        "name": "Mezeiváros",
+        "valid": true,
+        "bbox": [
+          19.686862189467675,
+          46.894619826637005,
+          19.704829618515422,
+          46.90273586783943
+        ],
+        "vertices": 1996
+      },
+      {
+        "id": "manual:kecskemet-figure76:urges",
+        "name": "Ürgés",
+        "valid": true,
+        "bbox": [
+          19.70380176692297,
+          46.897841353227484,
+          19.71224574128091,
+          46.90282388709237
+        ],
+        "vertices": 1022
+      }
+    ]
+  },
+  "sensitivityDiagnostics": {
+    "inheritedRoadControlLeaveOneOut": [
+      {
+        "omittedRoadControlId": "node-4170613208",
+        "maximumFigure76SourceVertexDisplacementMeters": 11.071744277612622
+      },
+      {
+        "omittedRoadControlId": "node-4331477437",
+        "maximumFigure76SourceVertexDisplacementMeters": 11.56497523838021
+      },
+      {
+        "omittedRoadControlId": "node-494254692",
+        "maximumFigure76SourceVertexDisplacementMeters": 0.6021244713217787
+      },
+      {
+        "omittedRoadControlId": "node-265343223",
+        "maximumFigure76SourceVertexDisplacementMeters": 6.749591547990452
+      },
+      {
+        "omittedRoadControlId": "node-494064509",
+        "maximumFigure76SourceVertexDisplacementMeters": 13.673703415387179
+      },
+      {
+        "omittedRoadControlId": "node-494254697",
+        "maximumFigure76SourceVertexDisplacementMeters": 7.61015367007564
+      }
+    ],
+    "imageTrainingMatchLeaveOneOut": [
+      {
+        "omittedTexturePatchId": "r0c0",
+        "maximumFigure76SourceVertexDisplacementMeters": 0.3745326488414518
+      },
+      {
+        "omittedTexturePatchId": "r0c2",
+        "maximumFigure76SourceVertexDisplacementMeters": 0.1470757332434605
+      },
+      {
+        "omittedTexturePatchId": "r0c4",
+        "maximumFigure76SourceVertexDisplacementMeters": 0.03431052079702635
+      },
+      {
+        "omittedTexturePatchId": "r0c6",
+        "maximumFigure76SourceVertexDisplacementMeters": 0.20135211101352252
+      },
+      {
+        "omittedTexturePatchId": "r3c1",
+        "maximumFigure76SourceVertexDisplacementMeters": 0.18882962636280035
+      },
+      {
+        "omittedTexturePatchId": "r3c3",
+        "maximumFigure76SourceVertexDisplacementMeters": 0.14286344152332325
+      },
+      {
+        "omittedTexturePatchId": "r3c5",
+        "maximumFigure76SourceVertexDisplacementMeters": 0.5680106343100729
+      },
+      {
+        "omittedTexturePatchId": "r4c0",
+        "maximumFigure76SourceVertexDisplacementMeters": 0.6323482247311775
+      },
+      {
+        "omittedTexturePatchId": "r4c2",
+        "maximumFigure76SourceVertexDisplacementMeters": 0.04259967775816559
+      },
+      {
+        "omittedTexturePatchId": "r5c3",
+        "maximumFigure76SourceVertexDisplacementMeters": 0.280852616313521
+      }
+    ],
+    "notCalibratedAbsoluteErrorBounds": true
+  },
+  "limits": {
+    "photographicImageAgreementValidatesOnlyObservedOverlap": true,
+    "fullFrameOrGeographicValidationClaimed": false,
+    "largeSouthernWesternEasternExtrapolationExplicit": true,
+    "unknownCurrentMezeivarosAndKulsoArpadvarosExactOsmNamePointsPreserved": true,
+    "urgesNamePointNotUsedAsControlOrBoundaryGeometry": true,
+    "inheritedSource73PhysicalControlUncertaintyNotRemovedByImageMatching": true
+  },
+  "primaryLayerApproved": false,
+  "explicitInferredLayerApproved": true,
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "approvalReason": "Original source contours, observed common photographic texture, copied calibration provenance, every composed world vertex/edge and actual project admission are verified. The inherited Figure73 physical road-point identities remain unvalidated and its failed excluded candidate remains failed. Thousands of source vertices lie outside the observed texture hull and many outside the Figure73 image itself. This is an explicit inferred extension, with no full geographic registration or address-assignment approval."
+}

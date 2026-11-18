@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "sourcePbfBytes": 329791850,
+  "sourceOsmTimestamp": "2026-11-12T21:23:05Z",
+  "independentFreshPbfPass": true,
+  "completeWaysVerified": 98,
+  "originalNodeReferenceSequencesVerified": 98,
+  "allReferencedNodeCoordinatesVerified": 512,
+  "sourceNamePointsVerified": 12,
+  "targetControlAndCheckNodes": [
+    {
+      "osmNodeId": 330464105,
+      "coordinates": [
+        20.3179779,
+        46.4217615
+      ],
+      "version": 5,
+      "timestamp": "2012-08-13 19:50:40+00:00",
+      "tags": {
+        "highway": "traffic_signals"
+      },
+      "actualPbfVerified": true
+    },
+    {
+      "osmNodeId": 416869829,
+      "coordinates": [
+        20.3188232,
+        46.4304088
+      ],
+      "version": 4,
+      "timestamp": "2012-08-13 19:50:40+00:00",
+      "tags": {
+        "highway": "traffic_signals"
+      },
+      "actualPbfVerified": true
+    },
+    {
+      "osmNodeId": 711942683,
+      "coordinates": [
+        20.338883,
+        46.4251754
+      ],
+      "version": 3,
+      "timestamp": "2022-01-15 19:34:30+00:00",
+      "tags": {},
+      "actualPbfVerified": true
+    },
+    {
+      "osmNodeId": 711942888,
+      "coordinates": [
+        20.3391792,
+        46.4249679
+      ],
+      "version": 3,
+      "timestamp": "2013-06-13 21:23:27+00:00",
+      "tags": {
+        "highway": "traffic_signals"
+      },
+      "actualPbfVerified": true
+    },
+    {
+      "osmNodeId": 931592387,
+      "coordinates": [
+        20.3073997,
+        46.4214795
+      ],
+      "version": 2,
+      "timestamp": "2012-08-16 12:09:18+00:00",
+      "tags": {},
+      "actualPbfVerified": true
+    }
+  ],
+  "noSourceGeometryModified": true,
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors"
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "scope": "Parent-proposed fixed final grid/partition archived before any final-grid computation. The preliminary scale-search report was already available; no pre-NCC or blind physical observation claim.",
+  "sourceGridX": [
+    208,
+    272,
+    336,
+    400,
+    464,
+    528,
+    656,
+    848,
+    912
+  ],
+  "sourceGridY": [
+    1168,
+    1232,
+    1296
+  ],
+  "sourcePatchSizePixels": 48,
+  "fixedTemplateSizePixels": 48,
+  "trainingPartition": "(row+column)%2==0",
+  "heldOutPartition": "(row+column)%2==1",
+  "usabilityThresholdNcc": 0.85,
+  "peaksOnSearchEdgesRejected": true,
+  "initialScaleForLocalSearch": 1.0,
+  "initialOffsetForLocalSearch": [
+    -160,
+    -1136
+  ],
+  "searchPadTargetPixels": 18,
+  "preliminaryPatchBoxesExcludedFromFinalGrid": [
+    [
+      568,
+      1218,
+      632,
+      1282
+    ],
+    [
+      718,
+      1218,
+      782,
+      1282
+    ]
+  ],
+  "preliminaryResultsRetained": "exploratory-scale-search.json",
+  "manualPhotoObservationsAlreadyArchived": false,
+  "geographicCoordinatesNamesOrQuarterGeometryUsed": false
+}

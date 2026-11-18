@@ -1,0 +1,334 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_semantic_proposal_not_applied",
+  "sourceFeatureCount": 32,
+  "proposedQualifiedHistoricalQuarterCount": 23,
+  "proposedRetainedPlanningCount": 9,
+  "newGeometryAcquisitionCount": 0,
+  "geometryChangedCount": 0,
+  "originalNamesAndIdsChangedCount": 0,
+  "globalRegistryOrExportChangesApplied": 0,
+  "currentNameIdentityVerifiedCount": 0,
+  "earlier89NameAuditReused": false,
+  "independentInteriorControlCount": 0,
+  "absoluteAccuracyMetres": null,
+  "proposedExport": "proposed-semantic-revision.geojson",
+  "proposedExportSha256": "3f0f6f7e2e0efb6e3328e6d715c8d2f083553131483be80ec395e075b97b4b7e",
+  "proposedRegistryEntry": "proposed-registry-entry.json",
+  "applyByReplacementOnly": true,
+  "strictGeometryPassCount": 32,
+  "inputFingerprints": [
+    {
+      "path": "data/neighborhoods/sources/municipal-east/eger-map-2016.pdf",
+      "bytes": 2129117,
+      "sha256": "7db28b2b5922e6dea7bde9dc3263087534b26e9cd1e52b63335249265df6febe"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-east/eger-pdf-vector-paths.json",
+      "bytes": 451452,
+      "sha256": "49777221551b60333e8991b4ce3e7b6b40c5f8c6cc501116d62a7cd411b183d0"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-east/eger-planning-units.geojson",
+      "bytes": 295942,
+      "sha256": "c3619e702df579b23776b977daf62c0ee1aafb9f629a8b447fb29b64f558011b"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-east/eger-geometry-proof.json",
+      "bytes": 2348,
+      "sha256": "f7bc999a9a6c038979d1dc1284f5f2d5e79c1dd6914b4aaa98886034a6dd3573"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-east/eger-extract.py",
+      "bytes": 3322,
+      "sha256": "ad5bc736ad6e48083fadb00854b8421ba5e5e170854f7d9f9d156b7c10a80265"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-east/export-eger.py",
+      "bytes": 6268,
+      "sha256": "9598574d263ee05a70c1348d02cd6e9681764cf7c46ccc0887cf6e0015ead439"
+    },
+    {
+      "path": "data/neighborhoods/research/planning-semantics-recheck.json",
+      "bytes": 67972,
+      "sha256": "affc314b5d7e55a96e47df9fd7fe39a6c1cbcb61c2a2d9495855289d49e48bb8"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "REVIEW.txt",
+      "bytes": 6482,
+      "sha256": "0799396cf18d6c8a11e4badbb4ef77f25f16e7078a4e4eb072be15b55082efb9"
+    },
+    {
+      "path": "calibration-municipality.geojson",
+      "bytes": 41658,
+      "sha256": "b6a627d9329a45d8d247a589b7f5196552e03b4f4bd2e3c972b480e3e6a2a8ee"
+    },
+    {
+      "path": "check-proposal.mjs",
+      "bytes": 4261,
+      "sha256": "b97fc0df1932fcaa2682e27fdd57a9f8b24180bb117b19228e035f6436ad572d"
+    },
+    {
+      "path": "existing-admission-comparison.json",
+      "bytes": 5329,
+      "sha256": "3cf92a92787dd57da4d666e3198b23f0e95ae672e10be7647f8505fba37c9f70"
+    },
+    {
+      "path": "geometry-unchanged-check.json",
+      "bytes": 19492,
+      "sha256": "50c137aa571453fb8312ca0bb3237a4bd4c92b99e8100100979761540fffd524"
+    },
+    {
+      "path": "manifest.py",
+      "bytes": 1980,
+      "sha256": "85e9bc5616a3603c6fd72ce4cf823a95b253eb4e3516fd16bbc73a3bd7b7ca3c"
+    },
+    {
+      "path": "native-page-text.txt",
+      "bytes": 3236,
+      "sha256": "49bd2f8348d49eed15189c02ad5a0829013e4d20b58853b19a76a19258562551"
+    },
+    {
+      "path": "native-semantic-source.py",
+      "bytes": 2280,
+      "sha256": "8660c1d50d27f4d75f901a637bf7dfe145d104db1a6de7c7dab4d52512bf2452"
+    },
+    {
+      "path": "native-source-records.json",
+      "bytes": 20933,
+      "sha256": "c4e0161e69affe2cc888df0e9386840b1a16a6449e5532350593bcc28de20eb7"
+    },
+    {
+      "path": "native-text-blocks.json",
+      "bytes": 28436,
+      "sha256": "667a08f782b3aac65c70f7f3abdb307d067208bcc0cea3cfffca85edc4616da1"
+    },
+    {
+      "path": "proposal-check.json",
+      "bytes": 7765,
+      "sha256": "0ce1663629f6195719c8d0707cf2e06d7e0ecbe4362751ad0f8a53d2b3279e41"
+    },
+    {
+      "path": "propose-semantic-revision.mjs",
+      "bytes": 8641,
+      "sha256": "86fcf87feed6417540e279766f3c566424546d1f6ca205c783703594e8db5d26"
+    },
+    {
+      "path": "proposed-registry-entry.json",
+      "bytes": 1603,
+      "sha256": "ed157f4d8b8a2cf2bc7f25f3bcc97bb1f39a56f9025ce84852518523714801ed"
+    },
+    {
+      "path": "proposed-semantic-revision.geojson",
+      "bytes": 741209,
+      "sha256": "3f0f6f7e2e0efb6e3328e6d715c8d2f083553131483be80ec395e075b97b4b7e"
+    },
+    {
+      "path": "root-native-geometry-audit.json",
+      "bytes": 14885,
+      "sha256": "4e5aeba8ea21f75d9164aee0df56705b1b9e924c87134124bba0fa7444b6cfd4"
+    },
+    {
+      "path": "root-native-geometry-audit.py",
+      "bytes": 7436,
+      "sha256": "7743c237299aab5412734a3cf3048d71bb1e2052e84368d841e43a5b2bf22c44"
+    },
+    {
+      "path": "semantic-audit.json",
+      "bytes": 66182,
+      "sha256": "9849215d87712cf49965ca30aa672a9165b477987e8a8e8cc98decf1a07c1df8"
+    },
+    {
+      "path": "semantic-decisions.json",
+      "bytes": 16143,
+      "sha256": "5fa74c4a6d5e34a4c8aaceec4276b7e70751d7e77999334205219983cd2c58f6"
+    },
+    {
+      "path": "source-legend-title.png",
+      "bytes": 320255,
+      "sha256": "573308e9c374e3fed8f94ed859319537165f24f2569df7de684e4596e796962c"
+    },
+    {
+      "path": "source-legend.png",
+      "bytes": 101191,
+      "sha256": "1c7a1dbf488d230b696624bb8db8fa82da1e5efa07a0e89b5e5501a312c47b26"
+    },
+    {
+      "path": "source-overview.png",
+      "bytes": 648571,
+      "sha256": "0918ae6e37f0ed6e5e97fee6b20c12c5b3db6cc7583e627bbf688eef80ab74fd"
+    },
+    {
+      "path": "source-title.png",
+      "bytes": 113290,
+      "sha256": "9ee86460e7a9bb8484f8aa4adf6c90a6af34c1785d065e348aad5962eba783ed"
+    },
+    {
+      "path": "source-unit-00-164815.png",
+      "bytes": 298712,
+      "sha256": "b9ce64c16063308e06ac86ac332e42f00cc57c4478216d11713e36e3e82b3167"
+    },
+    {
+      "path": "source-unit-01-164816.png",
+      "bytes": 44832,
+      "sha256": "f1cf5fe1b458fd80efd19648e57fac9e4036c99f2b116db3bcd4f35a3e250184"
+    },
+    {
+      "path": "source-unit-02-164817.png",
+      "bytes": 34748,
+      "sha256": "4dd2d0661d8e6bc88083919dfa2d60c3268e8392a0a77ebc740525eebd0a7861"
+    },
+    {
+      "path": "source-unit-03-164818.png",
+      "bytes": 336194,
+      "sha256": "dd5df29f0da18c2c23aac18c47dd24f31406632bacd07f8cac13f5932785b5d5"
+    },
+    {
+      "path": "source-unit-04-164819.png",
+      "bytes": 132748,
+      "sha256": "51544b251a0a0d11f82f9f4bd78371ae2d1d281642113c46302a1aa755ce0946"
+    },
+    {
+      "path": "source-unit-05-164820.png",
+      "bytes": 181931,
+      "sha256": "8f70b8c0a674131a30b8f106d50d94f21bd140f7c358b89d30e09153d9f86afe"
+    },
+    {
+      "path": "source-unit-06-164828.png",
+      "bytes": 318291,
+      "sha256": "d56b766655850ed319a6ecf1303e33bb198c40d7036d839fe8eb89b20ebae633"
+    },
+    {
+      "path": "source-unit-07-164829.png",
+      "bytes": 174278,
+      "sha256": "3d184a299541521d0b540a761099599d3207213965cf17379fe863b7f60e74a2"
+    },
+    {
+      "path": "source-unit-08-164830.png",
+      "bytes": 295628,
+      "sha256": "bcbe73c139ad52a7add23ebdf31ea664d5952e3d570098f87a68794dbcdde178"
+    },
+    {
+      "path": "source-unit-09-164831.png",
+      "bytes": 223172,
+      "sha256": "dda759240888809d30168db1c80467f0868c504aecb158b0694516d8ee75b2c8"
+    },
+    {
+      "path": "source-unit-10-164832.png",
+      "bytes": 93973,
+      "sha256": "f645943088aed6448f5abda90059f99b5ca052bdc916e6c1edff07c8ba3e7a84"
+    },
+    {
+      "path": "source-unit-11-164833.png",
+      "bytes": 297715,
+      "sha256": "82b528ec7d164322174a40ff2b6922597a71ca15144db932d92775b56ecf415d"
+    },
+    {
+      "path": "source-unit-12-164834.png",
+      "bytes": 100319,
+      "sha256": "942822af6159e50aa37c0626c55ead168afff687f24dc27e2da8ce6db6b4b4f6"
+    },
+    {
+      "path": "source-unit-13-164835.png",
+      "bytes": 199287,
+      "sha256": "58f5a5923674e0b904df18b6b52e92504666fadc4d95fc38ab07d156f76cb39b"
+    },
+    {
+      "path": "source-unit-14-164836.png",
+      "bytes": 252821,
+      "sha256": "21fcb398624000126b77b924eacd4c92aeb65e96a44326f5714ef2177e6d0e4a"
+    },
+    {
+      "path": "source-unit-15-164837.png",
+      "bytes": 231260,
+      "sha256": "1a3561f291790696af0ece902f2d59ba71214e716c7796b2d25eca7bf020881e"
+    },
+    {
+      "path": "source-unit-16-164838.png",
+      "bytes": 351473,
+      "sha256": "c081e93e2ece0764728d56ffda6437130ff7a1689959f43346e094fd34ffaac0"
+    },
+    {
+      "path": "source-unit-17-164839.png",
+      "bytes": 182889,
+      "sha256": "420e23e0f7e371f80ba906ad81fc0eab54f17d79de1560c10c02ae7197cd33ec"
+    },
+    {
+      "path": "source-unit-18-164842.png",
+      "bytes": 324767,
+      "sha256": "1c03a05270f1b4b836948c0835162e7e3c4e895153806cfaba2be7d7900db60c"
+    },
+    {
+      "path": "source-unit-19-164843.png",
+      "bytes": 225911,
+      "sha256": "01be3bd375649edc6edcc42827908ea9eeaab609ca017e6f966806379ddaeb0c"
+    },
+    {
+      "path": "source-unit-20-164844.png",
+      "bytes": 220222,
+      "sha256": "ab37c2110d0a77fd5c1727989a2d35b31b746681041ec1c7c3e2222f4b52d129"
+    },
+    {
+      "path": "source-unit-21-164845.png",
+      "bytes": 153051,
+      "sha256": "9513890f41d4888e8e9bf501e9e0874fa92666f0a57d07f1f0ece5537aa50d41"
+    },
+    {
+      "path": "source-unit-22-164846.png",
+      "bytes": 203781,
+      "sha256": "3dedd77a661d85c6ac524f0b66387fa10fb9b00ac563d1340de99fce1fcc4688"
+    },
+    {
+      "path": "source-unit-23-164847.png",
+      "bytes": 213435,
+      "sha256": "ef1df887847b1ac3e0e6ac5636cff837cac2839803c6519ada059e84178d7b24"
+    },
+    {
+      "path": "source-unit-24-164848.png",
+      "bytes": 318363,
+      "sha256": "e4f8a7a69408386ed319c6cb1465a0df79a82b37e424d3f1be8ed34fa1a0e820"
+    },
+    {
+      "path": "source-unit-25-164849.png",
+      "bytes": 95288,
+      "sha256": "c04a102a2601e0a82e5e5b71a5d765fe5301afa47b985b6a872df0ef83957d13"
+    },
+    {
+      "path": "source-unit-26-164850.png",
+      "bytes": 126737,
+      "sha256": "f60e4a864e69911d8809ed4cb6e20048d5a468bd460d9abe6abdabf4f50aeb36"
+    },
+    {
+      "path": "source-unit-27-164851.png",
+      "bytes": 125569,
+      "sha256": "7f2429ab902507e36c9d09d880352a8e14fb1460ed73b150c640f9cb67b3cd67"
+    },
+    {
+      "path": "source-unit-28-164852.png",
+      "bytes": 233625,
+      "sha256": "dcb26b0e97c624508625dcd79eb84855e8741ec55c6816348ed948af061e6fcf"
+    },
+    {
+      "path": "source-unit-29-164853.png",
+      "bytes": 131041,
+      "sha256": "ae0a808ee431711876e78007e97bf5505881a2fd7de933a2f9f85cd96fa2505d"
+    },
+    {
+      "path": "source-unit-30-165658.png",
+      "bytes": 26281,
+      "sha256": "4b703321b472fc41324a6c474070bfc8d8c07b5fd9175ddd93d611fe2000246f"
+    },
+    {
+      "path": "source-unit-31-165659.png",
+      "bytes": 180318,
+      "sha256": "569f51942abda4973af55c596172c4bb226a1d1358591a4604c7fe7cce9f1ae1"
+    },
+    {
+      "path": "web-evidence.json",
+      "bytes": 8046,
+      "sha256": "6d01307f54e94a76e031bd5b9d4b3a4155d579b8af038b51fd1455b4b2edf030"
+    }
+  ]
+}

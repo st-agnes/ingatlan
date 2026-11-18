@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/kaposvar_supplement",
+  "reviewDate": "2026-11-14",
+  "accepted": true,
+  "featureCount": 1,
+  "acceptanceScope": "One LOW-CONFIDENCE historical-source ESTIMATED Mária-liget neighbourhood candidate only. No primary/current hard-boundary/address admission. Root final review remains separate.",
+  "reviewRoleTransparency": "Reviewer independently inspected original p7 inline raster, rejected producer initial coarse scout, supplied a manual concave countertrace, and reviewed the producer-adopted correction. Thus this is a reconciled manual source review, not a blinded independent re-extraction of the final native trace. World geometry, affine intersections/solve and all24variants were recomputed here using separate code. Producer performed full-PBF record verification; reviewer did not repeat the full PBF scan.",
+  "sourceVisualReview": {
+    "actualOriginalMapInspected": true,
+    "mapLegendInspected": true,
+    "legendExplicitlyNamesPurpleDashedLine": "Mária-liget",
+    "distinctNamedCircuitAccepted": true,
+    "traceInterpretation": "One simple closed concave magenta dashed circuit: northwestern tip near[341,394], upper small V near[356,406], deep northwest notch near[354,421], southern tip near[356,445]. Conventional short dash-gap interpolation is manually inferred at native low resolution.",
+    "labelLeaderExcluded": true,
+    "labelLeaderLocation": "Nearx372running down from the circle aroundy415 to the Mária-liget label",
+    "mapFrameUsedForClosure": false,
+    "frameClosureCaveatForAdmittedFeature": false,
+    "sourcePixelTraceIsExactNativeVector": false,
+    "traceReadLimit": "Manual centerline convention, not exact stroke-edge extraction; dash gaps, tiny turns and stroke centers are uncertain by native pixels.",
+    "parentHierarchyPreserved": true,
+    "fiveParentGeometriesClonedToChildren": false,
+    "sourceAreaRole": "The source prose identifies Márialiget as a városrész and an outlying inhabited place; its distinct map contour is separate from the five main colored urban parents.",
+    "sourceProseName": "Márialiget",
+    "sourceMapName": "Mária-liget",
+    "formerName": "Máriaudvar",
+    "currentMáriaudvarPointMerged": false
+  },
+  "independentNumericChecks": {
+    "sourceRgbSha256": "14c68c91f68657c46fed0edea93140b66a0ead33fe02df453c2d59d28ac4badb",
+    "sourceInlineStripsVerified": 523,
+    "nativeVerticesIncludingClosure": 33,
+    "nativeAreaSquarePixels": 1338.0,
+    "nativeBounds": [
+      331.0,
+      394.0,
+      381.0,
+      445.0
+    ],
+    "worldAreaM2Epsg23700": 395940.5179934165,
+    "outsideMunicipalityM2": 0.0,
+    "sameNamePointInside": false,
+    "sameNamePointOutsideDistanceM": 8.241715275602674,
+    "allTraceVerticesOutsideCalibrationTriangle": true,
+    "minimumNativeDistanceFromCalibrationTrianglePixels": 10.92748827498798,
+    "affineSolveMaximumCoefficientDelta": 4.656612873077393e-10,
+    "candidateWgs84MaximumCoordinateDeltaDegrees": 4.263256414560601e-14,
+    "variantWgs84MaximumCoordinateDeltaDegrees": 4.263256414560601e-14,
+    "variantsRecomputed": 24,
+    "sensitivityCentroidDisplacementRangeM": [
+      1.3288750087336008,
+      51.4470443601671
+    ],
+    "sensitivityHausdorffRangeM": [
+      4.857951167730486,
+      59.8966387262467
+    ],
+    "sensitivityAreaRangeM2": [
+      383142.9098840866,
+      409622.59134393
+    ],
+    "kisderecskeOutsideMunicipalityM2": 3288.5746920350903,
+    "controlIntersections": [
+      {
+        "id": "C1",
+        "actualWayIds": [
+          "osm:way:38834348",
+          "osm:way:636162955"
+        ],
+        "independentlyRecomputedEov": [
+          656962.3811877787,
+          268972.4147935001
+        ]
+      },
+      {
+        "id": "C2",
+        "actualWayIds": [
+          "osm:way:78176191",
+          "osm:way:39256016"
+        ],
+        "independentlyRecomputedEov": [
+          658286.1871772984,
+          268016.6272141197
+        ]
+      },
+      {
+        "id": "C3",
+        "actualWayIds": [
+          "osm:way:503376947",
+          "osm:way:39256016"
+        ],
+        "independentlyRecomputedEov": [
+          657591.1329187966,
+          270037.62956475053
+        ]
+      }
+    ],
+    "literalWayRefCoordinateLengthsVerified": true,
+    "selectedWayRecords": 48,
+    "pbfOriginalScanRepeatedByReviewer": false,
+    "producerOriginalSourceVerification": {
+      "schemaVersion": 1,
+      "originalPdfSha256Verified": true,
+      "originalPbfSha256Verified": true,
+      "exactOriginalMapInlineCommandsVerified": true,
+      "nativeMapRowsIndependentlyDecodedByMuPdf": 523,
+      "literalSelectedWaysVerified": 48,
+      "literalIdentityNodesVerified": 3
+    }
+  },
+  "registrationAssessment": {
+    "physicalControlReadingsVisuallyReviewed": true,
+    "fitControls": 3,
+    "placeFitControls": 0,
+    "independentHoldouts": 0,
+    "classification": "Approximate manual physical-road/rail crossing affine, wholly extrapolated to the southern candidate.",
+    "zeroTrainingResidualIsAccuracy": false,
+    "printedRoadRailCentersLowResolution": true,
+    "manualControlPixelInterpretationUncertainty": "The thick low-resolution road/rail strokes limit center readings. Decimal source pixels do not establish subpixel precision. ±1/±2pixel scenarios omit systematic map distortion, route age differences and tracing ambiguity.",
+    "sensitivityRangesAreConfidenceOrAccuracyBounds": false,
+    "claimedAbsoluteAccuracyMetres": null,
+    "currentWholeQuarterExtentVerified": false,
+    "sourceMapReferenceYearKnown": false,
+    "coverHorizonNotMapSurveyDate": true
+  },
+  "quarantineChecks": {
+    "kisderecskeAdmitted": false,
+    "kisderecskeClippedOrShifted": false,
+    "kisderecskeFrameClosureUnresolved": true,
+    "initialIncorrectScoutRejectedBeforeGlobalAdmission": true,
+    "registrationVariantsAdmitted": 0,
+    "furtherFineChildrenInvented": 0
+  },
+  "rightsAndTextHygiene": {
+    "fullPdfStoredInRepositoryPacket": false,
+    "selectedOriginalMapOnly": true,
+    "selectedMapCommandsContainProseTextOperators": false,
+    "retainedNarrativeParagraphsFound": false,
+    "factsAndShortLabelsOnly": true,
+    "mapReuseLicenceEstablished": false,
+    "publicAccessTreatedAsReuseLicence": false,
+    "osmAttributionAndOdbLPresent": true,
+    "sourceYearAndLicenceUnresolvedProminentlyRecorded": true
+  },
+  "guardsVerified": {
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "sourceIsOfficial": false,
+    "sourceIsHardBoundary": false,
+    "usableForAddressAssignment": false,
+    "sourceGeometryIsPublishedNative": false,
+    "claimedAbsoluteAccuracyMetres": null
+  },
+  "checkedInputsSha256": {
+    "source-manifest.json": "31bd83b9318bccbc96fa003f70e1ba1b7eb67d7418d48b9fe97ef3f57f9e4157",
+    "map-extraction-proof.json": "5dca0fd296611ec0b6255b5303a7f5dbee9578786e0e6721c96653d9b2bb7f4d",
+    "source-map-native.png": "54f4c42c9b1ff59d1c9a4aa1b39be8f8fc6ccbb161c2e46ad2f2dfa65410c6eb",
+    "source-map-inline-commands.bin.gz": "283bfa589674ed19af866d0964841137801dc85c745b6014e6a107c7581595cb",
+    "hierarchy-and-source-facts.json": "e5eb65fd338a6c214e0693ad92baa3f5f71e6bb265ffb31edbddf1485d1cd563",
+    "native-contour-traces.json": "fcbd41b0092cffcc0328bc8da560d391a453b69e89c7f496534a161f43540ede",
+    "registration-control-specification.json": "a806ef7add269a44069aaafdffcfcdf900d950636297db6aa844b3b2367012f1",
+    "selected-actual-osm-ways.geojson": "a3ebbc949857cbd0deb29453555399cc78adb18938862e2b15b1663a938b31ea",
+    "identity-points.geojson": "d4d59cba94893f6972606f396b7768b4f144181516060dcee444c02205f90593",
+    "vac-municipality-reference.geojson": "de118bedbdaf46a4b8e80db435fec82798ec1839d1b2f3255ea5ff56f8408c51",
+    "registration-proof.json": "e3f942da1d64f58eb9c4029dc89cb663ce53122a39fb50dba955bd73fd4f0ad3",
+    "marialiget-estimated-proposal.geojson": "39f809aa0443eb0bba84d4f8ca4e11520a3dddb6df29ab1a18517066c262c7ab",
+    "kisderecske-unadmitted-scout.geojson": "3f93f495f43ae0b55b1af9c9166d5046652fb6127ff581c1651089525bc20f31",
+    "unadmitted-registration-variants.geojson": "d7485916e2e44bb5005daa7d6676c6120b0288038af0d349280d9db141ab15da",
+    "proposal-review.json": "77acbf055936bc7314b49afa46b0655a08c5169d9bac0da3192ac03db8f85afc",
+    "bounded-source-gaps.json": "b415f5780ca56cda82578742f788867013f94cd6b91c7fdaf814cb786609de0c",
+    "registry-entry-proposal.json": "503eac68ca4bfe39debf38cd1b7e4407117ce88c72ab5992451461cd6e0230ea",
+    "reproduce.py": "569ac4b2d81d5bdfddadfdf17cf39f96c1a964eacd8ac24e1d846c27d165fa59",
+    "original-source-revalidation.json": "49e9a45eff5d6d30c801d0b154994e0a714a992a86cd4d3843df37a47457f24d",
+    "review-reconciliation.json": "97b15a4fca7825b2d92da63c73c6644c6946cb5e54867527a25cf4deb9af6874",
+    "rejected-initial-marialiget-scout.geojson": "1936dfe48d712abd80e2251220135190d126dab265994b7cbc546c3abfcd5a0f",
+    "physical-control-review.png": "ddf8988962078c1a52c834a0b17cc79b1d379394ad19adfd85352be9c45f7ac4",
+    "candidate-and-native-review.png": "f5b072a54d36a9ce3d1b2f2176c1ad7f90f38e50b480986603387a9b3b2e97be",
+    "README.txt": "e02d44b406b7264ad016ceede378be5e16d5713fe06060b23baf21baa05e5710",
+    "verify.py": "b0cd77d688925a45b7dc2e28954b76da4aadda5844a7558a8172e8c06d04d403",
+    "render-previews.py": "20c67d7da82a4f83a30c5d750d654df4ea08493ffd781bd30ed2e64ef8134367"
+  },
+  "originalPdfSha256": "f6120b4782812f17894cbebbaacbb3390892e98fbd673a2faaadfb1577164285",
+  "reviewDoesNotModifyCandidateGeometry": true,
+  "globalRegistryOrExportsModified": false,
+  "networkCalls": 0
+}

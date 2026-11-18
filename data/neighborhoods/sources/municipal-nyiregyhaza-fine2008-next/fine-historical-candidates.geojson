@@ -1,0 +1,855 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-ksh2003-erkert",
+      "properties": {
+        "name": "Érkert",
+        "municipality": "Nyíregyháza",
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "local_area",
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceIsHardBoundary": false,
+        "sourceIsOfficial": false,
+        "confidence": "low",
+        "sourcePeriod": "KSH 2003 division / 2001 census, reproduced in March 2008 municipal IVS",
+        "historicalGeometryOnly": true,
+        "currentWholeExtentValidated": false,
+        "sourceScope": "Historical housing-estate-class footprint. Name assignment is inferred across the upper27/lower11 statistical schemas; whole Érkert quarter identity is unverified.",
+        "nameAssignmentInferredAcrossStatisticalSchemas": true,
+        "lowerLegendDirectlyLabelsUpperComponent": false,
+        "wholeHistoricalQuarterIdentityVerified": false,
+        "currentExactNameObservedInPbf": true,
+        "currentNamePointEvidence": [
+          {
+            "name": "Érkert",
+            "osmNodeId": 984100890,
+            "wgs84": [
+              21.7120972,
+              47.9451037
+            ],
+            "withinHistoricalCandidate": false,
+            "distanceToHistoricalCandidateMetres": 600.8272122872412,
+            "nativeImageCoordinateUnderFit": [
+              448.93074849479524,
+              395.23719891285106
+            ],
+            "usedAsRegistrationControl": false,
+            "interpretation": "A current named point supports existence of the name, not historical or current extent. Outside does not disqualify an explicitly historical estimated footprint and is not corrected by moving the fit."
+          }
+        ],
+        "pointLocationUsedAsRegistrationControl": false,
+        "sourceFineMapUnnumberedComponent": true,
+        "identityNamedLowerIvsUnit": 2,
+        "sourcePdfSha256": "71378558090b173cf10e558ca50175c2b1f6aca78a150a3beb42224f785161d1",
+        "sourcePdfPage": 43,
+        "sourceImageXref": 139,
+        "sourceUrl": "https://varoshaza.nyiregyhaza.hu/lib/fooldal/140210_ivs.pdf",
+        "georeferenceStatus": "inferred_georeference",
+        "georeferenceValidated": false,
+        "independentInteriorPhysicalHoldoutCount": 0,
+        "claimedAbsoluteAccuracyMetres": null,
+        "modelExtrapolationBeyondFitControlHullPixels": 0.0,
+        "hullDistanceIsAccuracyClaim": false,
+        "method": "Actual upper KSH 27 map component, four-neighbour HSV color mask and pixel-cell boundary. Only fully enclosed raster ink/noise holes filled; only collinear cell-edge vertices removed. Inferred affine from 11 municipal-outline corner correspondences to current OSM relation 1447608; 10 outline corners withheld. Current name points are diagnostic only. No class-to-name cloning, lower-group geometry substitution, buffers, hull boundary, missing-edge cap, frame closure or current-municipality clipping.",
+        "sourceControlAndAgeUncertainty": "The underlying 2003 quarter outlines are historical; source map generalization and equivalence of 2003/2008 versus 2026 municipal corners are unverified. Manual corner residuals and withheld same-outline points do not validate internal quarter positions. Exact current named points can lie outside the historical source footprint and the fit is not shifted to them.",
+        "areaSquareMetresEov": 399293.45690109953,
+        "perimeterMetresEov": 3291.229297856011,
+        "outsideCurrentMunicipalityAreaM2Diagnostic": 0.0,
+        "municipalityClippingApplied": false,
+        "license": "Municipal/KSH map open-reuse rights unverified; ODbL-1.0 for OSM references."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.702949041558437,
+              47.940358092948074
+            ],
+            [
+              21.702933865561388,
+              47.940121023406
+            ],
+            [
+              21.70189284814664,
+              47.94015579418434
+            ],
+            [
+              21.701862505939935,
+              47.93968165475519
+            ],
+            [
+              21.70220950877381,
+              47.93967006561962
+            ],
+            [
+              21.70217916399276,
+              47.939195926175756
+            ],
+            [
+              21.702526163548114,
+              47.93918433609445
+            ],
+            [
+              21.702510989801656,
+              47.938947266378136
+            ],
+            [
+              21.702857987640886,
+              47.938935675306595
+            ],
+            [
+              21.70284281246971,
+              47.93869860560892
+            ],
+            [
+              21.703189808592818,
+              47.938687013547124
+            ],
+            [
+              21.703159455538756,
+              47.9382128741631
+            ],
+            [
+              21.703506448383436,
+              47.938201281155585
+            ],
+            [
+              21.70349127050059,
+              47.93796421146924
+            ],
+            [
+              21.703838261629176,
+              47.9379526174715
+            ],
+            [
+              21.70382308232171,
+              47.937715547803855
+            ],
+            [
+              21.704170071734204,
+              47.937703952815866
+            ],
+            [
+              21.70415489100215,
+              47.937466883166806
+            ],
+            [
+              21.704501878698558,
+              47.93745528718867
+            ],
+            [
+              21.70447151452304,
+              47.936981147902
+            ],
+            [
+              21.704818498941126,
+              47.93696955097821
+            ],
+            [
+              21.704788132191975,
+              47.93649541167709
+            ],
+            [
+              21.70513511333181,
+              47.9364838138077
+            ],
+            [
+              21.70511992860161,
+              47.93624674416291
+            ],
+            [
+              21.705466908025414,
+              47.936235145303364
+            ],
+            [
+              21.705451721870755,
+              47.93599807567719
+            ],
+            [
+              21.706145677132408,
+              47.93597487494305
+            ],
+            [
+              21.70613048799118,
+              47.935737805380164
+            ],
+            [
+              21.706477463829025,
+              47.9357262035056
+            ],
+            [
+              21.706462273263423,
+              47.93548913396146
+            ],
+            [
+              21.707156221353127,
+              47.935465927197335
+            ],
+            [
+              21.70714102780106,
+              47.93522885771647
+            ],
+            [
+              21.708181944094765,
+              47.93519403994373
+            ],
+            [
+              21.70816674599421,
+              47.93495697057084
+            ],
+            [
+              21.70781977561235,
+              47.93496857748517
+            ],
+            [
+              21.70780457921171,
+              47.93473150804179
+            ],
+            [
+              21.711621227758965,
+              47.9346037755663
+            ],
+            [
+              21.71163644134236,
+              47.93484084451873
+            ],
+            [
+              21.71233037856318,
+              47.934817606891926
+            ],
+            [
+              21.71234559540869,
+              47.93505467572919
+            ],
+            [
+              21.713039535137124,
+              47.935031433874286
+            ],
+            [
+              21.713054755244787,
+              47.935268502596315
+            ],
+            [
+              21.71409566836741,
+              47.935233631919715
+            ],
+            [
+              21.714110893299374,
+              47.93547070048184
+            ],
+            [
+              21.714804837734295,
+              47.93544744810123
+            ],
+            [
+              21.71483529426086,
+              47.93592158496901
+            ],
+            [
+              21.714488318996302,
+              47.93593321176609
+            ],
+            [
+              21.714610138129853,
+              47.93782975855886
+            ],
+            [
+              21.714263150213686,
+              47.937841384678755
+            ],
+            [
+              21.714278376664645,
+              47.938078452955935
+            ],
+            [
+              21.71323740730412,
+              47.938113325241154
+            ],
+            [
+              21.71325262920641,
+              47.93835039362647
+            ],
+            [
+              21.71290563754891,
+              47.93836201569669
+            ],
+            [
+              21.71292085802698,
+              47.93859908410072
+            ],
+            [
+              21.712226871124912,
+              47.93862232522628
+            ],
+            [
+              21.712242088616456,
+              47.93885939369375
+            ],
+            [
+              21.711548097973182,
+              47.93888263076949
+            ],
+            [
+              21.71156331247814,
+              47.93911969930034
+            ],
+            [
+              21.710869318093728,
+              47.93914293232635
+            ],
+            [
+              21.71088452961202,
+              47.93938000092053
+            ],
+            [
+              21.710190531486536,
+              47.939403229896705
+            ],
+            [
+              21.710205740018104,
+              47.939640298554245
+            ],
+            [
+              21.709511738151612,
+              47.93966352348049
+            ],
+            [
+              21.709526943696396,
+              47.93990059220138
+            ],
+            [
+              21.708832938088953,
+              47.93992381307772
+            ],
+            [
+              21.708848140646886,
+              47.94016088186186
+            ],
+            [
+              21.707807126393394,
+              47.94019570554924
+            ],
+            [
+              21.707822324402013,
+              47.94043277444132
+            ],
+            [
+              21.707128311004897,
+              47.940455985148056
+            ],
+            [
+              21.7071131161211,
+              47.94021891616682
+            ],
+            [
+              21.702949041558437,
+              47.940358092948074
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nyiregyhaza-ksh2003-orokosfold-estate",
+      "properties": {
+        "name": "Örökösföld lakótelep",
+        "municipality": "Nyíregyháza",
+        "estimated": true,
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "canonicalNameIsNeighborhood": false,
+        "usableForAddressAssignment": false,
+        "sourceIsHardBoundary": false,
+        "sourceIsOfficial": false,
+        "confidence": "low",
+        "sourcePeriod": "KSH 2003 division / 2001 census, reproduced in March 2008 municipal IVS",
+        "historicalGeometryOnly": true,
+        "currentWholeExtentValidated": false,
+        "sourceScope": "Estimated historical neighborhood candidate supported by the strong upper-component/lower-unit3 source-map correspondence. The lower legend does not directly label the upper27 map.",
+        "nameAssignmentInferredAcrossStatisticalSchemas": true,
+        "lowerLegendDirectlyLabelsUpperComponent": false,
+        "wholeHistoricalQuarterIdentityVerified": false,
+        "currentExactNameObservedInPbf": true,
+        "currentNamePointEvidence": [
+          {
+            "name": "Örökösföld",
+            "osmNodeId": 984100891,
+            "wgs84": [
+              21.7402559,
+              47.9544678
+            ],
+            "withinHistoricalCandidate": true,
+            "distanceToHistoricalCandidateMetres": 0.0,
+            "nativeImageCoordinateUnderFit": [
+              528.1536517466358,
+              351.8402250674677
+            ],
+            "usedAsRegistrationControl": false,
+            "interpretation": "A current named point supports existence of the name, not historical or current extent. Outside does not disqualify an explicitly historical estimated footprint and is not corrected by moving the fit."
+          },
+          {
+            "name": "Örökösföld lakótelep",
+            "osmNodeId": 7966635459,
+            "wgs84": [
+              21.7399108,
+              47.9572425
+            ],
+            "withinHistoricalCandidate": false,
+            "distanceToHistoricalCandidateMetres": 86.79896745184092,
+            "nativeImageCoordinateUnderFit": [
+              526.6451586183047,
+              340.21020945414216
+            ],
+            "usedAsRegistrationControl": false,
+            "interpretation": "A current named point supports existence of the name, not historical or current extent. Outside does not disqualify an explicitly historical estimated footprint and is not corrected by moving the fit."
+          }
+        ],
+        "pointLocationUsedAsRegistrationControl": false,
+        "sourceFineMapUnnumberedComponent": true,
+        "identityNamedLowerIvsUnit": 3,
+        "sourcePdfSha256": "71378558090b173cf10e558ca50175c2b1f6aca78a150a3beb42224f785161d1",
+        "sourcePdfPage": 43,
+        "sourceImageXref": 139,
+        "sourceUrl": "https://varoshaza.nyiregyhaza.hu/lib/fooldal/140210_ivs.pdf",
+        "georeferenceStatus": "inferred_georeference",
+        "georeferenceValidated": false,
+        "independentInteriorPhysicalHoldoutCount": 0,
+        "claimedAbsoluteAccuracyMetres": null,
+        "modelExtrapolationBeyondFitControlHullPixels": 0.0,
+        "hullDistanceIsAccuracyClaim": false,
+        "method": "Actual upper KSH 27 map component, four-neighbour HSV color mask and pixel-cell boundary. Only fully enclosed raster ink/noise holes filled; only collinear cell-edge vertices removed. Inferred affine from 11 municipal-outline corner correspondences to current OSM relation 1447608; 10 outline corners withheld. Current name points are diagnostic only. No class-to-name cloning, lower-group geometry substitution, buffers, hull boundary, missing-edge cap, frame closure or current-municipality clipping.",
+        "sourceControlAndAgeUncertainty": "The underlying 2003 quarter outlines are historical; source map generalization and equivalence of 2003/2008 versus 2026 municipal corners are unverified. Manual corner residuals and withheld same-outline points do not validate internal quarter positions. Exact current named points can lie outside the historical source footprint and the fit is not shifted to them.",
+        "areaSquareMetresEov": 1036245.2835186385,
+        "perimeterMetresEov": 5499.885541376081,
+        "outsideCurrentMunicipalityAreaM2Diagnostic": 0.0,
+        "municipalityClippingApplied": false,
+        "license": "Municipal/KSH map open-reuse rights unverified; ODbL-1.0 for OSM references."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.736323536768303,
+              47.956344214159
+            ],
+            [
+              21.73630820546445,
+              47.95610715066051
+            ],
+            [
+              21.733878475565223,
+              47.95618896429335
+            ],
+            [
+              21.733863155343087,
+              47.95595190045372
+            ],
+            [
+              21.733516052014387,
+              47.9559635839303
+            ],
+            [
+              21.733393507747007,
+              47.954067071908376
+            ],
+            [
+              21.733740598570314,
+              47.95405538879148
+            ],
+            [
+              21.733725279599227,
+              47.9538183247156
+            ],
+            [
+              21.73337819033903,
+              47.95383000778752
+            ],
+            [
+              21.733270972374566,
+              47.95217055820761
+            ],
+            [
+              21.73361805069338,
+              47.95215887545032
+            ],
+            [
+              21.733587415114002,
+              47.95168474685296
+            ],
+            [
+              21.73324033992116,
+              47.95169642952029
+            ],
+            [
+              21.73317907668189,
+              47.9507481718315
+            ],
+            [
+              21.732832007585785,
+              47.950759853284055
+            ],
+            [
+              21.73281669368627,
+              47.95052278875144
+            ],
+            [
+              21.73246962599803,
+              47.950534469124094
+            ],
+            [
+              21.732423689821776,
+              47.949823275234436
+            ],
+            [
+              21.732076626667173,
+              47.94983495443731
+            ],
+            [
+              21.73206131644912,
+              47.949597889710155
+            ],
+            [
+              21.73171425470238,
+              47.949609567833136
+            ],
+            [
+              21.73148464153986,
+              47.94605359311595
+            ],
+            [
+              21.731831679845325,
+              47.946041915666946
+            ],
+            [
+              21.731770448695,
+              47.94509365493001
+            ],
+            [
+              21.732117480595022,
+              47.945081976625836
+            ],
+            [
+              21.73208686272788,
+              47.94460784619074
+            ],
+            [
+              21.732433891347785,
+              47.94459616694162
+            ],
+            [
+              21.732418581059974,
+              47.94435910172992
+            ],
+            [
+              21.732765607962335,
+              47.944347421490846
+            ],
+            [
+              21.732750296250877,
+              47.94411035629801
+            ],
+            [
+              21.735179469288916,
+              47.94402856596369
+            ],
+            [
+              21.73519479193805,
+              47.944265630841834
+            ],
+            [
+              21.73554181760001,
+              47.94425394232405
+            ],
+            [
+              21.735557141950668,
+              47.94449100713114
+            ],
+            [
+              21.73590416902005,
+              47.94447931753351
+            ],
+            [
+              21.73596547406309,
+              47.945427576321165
+            ],
+            [
+              21.73665954023693,
+              47.94540419366152
+            ],
+            [
+              21.73669019984306,
+              47.94587832271887
+            ],
+            [
+              21.737384271646636,
+              47.94585493573978
+            ],
+            [
+              21.737399604783537,
+              47.9460920001393
+            ],
+            [
+              21.738093679091556,
+              47.94606860893071
+            ],
+            [
+              21.738078342829425,
+              47.945831544621214
+            ],
+            [
+              21.73842537818799,
+              47.945819847509625
+            ],
+            [
+              21.738440716012736,
+              47.94605691177415
+            ],
+            [
+              21.74364625119418,
+              47.94588133024148
+            ],
+            [
+              21.743661612597172,
+              47.946118393804085
+            ],
+            [
+              21.74400864859549,
+              47.946106680044615
+            ],
+            [
+              21.743993285629905,
+              47.94586961652708
+            ],
+            [
+              21.744687354034973,
+              47.94584618599375
+            ],
+            [
+              21.744718086355885,
+              47.94632031282228
+            ],
+            [
+              21.744371049105897,
+              47.94633202869656
+            ],
+            [
+              21.74438641391284,
+              47.94656909211677
+            ],
+            [
+              21.744733452725434,
+              47.94655737619734
+            ],
+            [
+              21.74488712408833,
+              47.94892800851091
+            ],
+            [
+              21.74454006964882,
+              47.94893972488134
+            ],
+            [
+              21.744555435989128,
+              47.94917678801396
+            ],
+            [
+              21.7449024919914,
+              47.949165071598436
+            ],
+            [
+              21.744917860033905,
+              47.9494021346598
+            ],
+            [
+              21.74457080246884,
+              47.94941385112043
+            ],
+            [
+              21.744586169087963,
+              47.94965091420072
+            ],
+            [
+              21.744933228215817,
+              47.94963919769501
+            ],
+            [
+              21.744979333598163,
+              47.95035038664351
+            ],
+            [
+              21.74463226978183,
+              47.95036210328455
+            ],
+            [
+              21.744663004274837,
+              47.950836229209486
+            ],
+            [
+              21.745010071216893,
+              47.950824512478256
+            ],
+            [
+              21.745025440235413,
+              47.951061575356356
+            ],
+            [
+              21.74467837173048,
+              47.951073292132676
+            ],
+            [
+              21.74469373932554,
+              47.95131035502967
+            ],
+            [
+              21.744346669102182,
+              47.95132207081615
+            ],
+            [
+              21.74436203527377,
+              47.951559133732054
+            ],
+            [
+              21.743667891234722,
+              47.95158256229037
+            ],
+            [
+              21.743683254419857,
+              47.95181962527023
+            ],
+            [
+              21.742989106633008,
+              47.95184304977886
+            ],
+            [
+              21.743004466831643,
+              47.95208011282272
+            ],
+            [
+              21.742657391142078,
+              47.95209182356964
+            ],
+            [
+              21.74268810883149,
+              47.95256594966882
+            ],
+            [
+              21.743035187647,
+              47.952554238831766
+            ],
+            [
+              21.74305054826374,
+              47.95279130179692
+            ],
+            [
+              21.742703467885224,
+              47.952803012679084
+            ],
+            [
+              21.742780265244306,
+              47.95398832733697
+            ],
+            [
+              21.74312735343799,
+              47.953976616229376
+            ],
+            [
+              21.74317343821511,
+              47.95468780457398
+            ],
+            [
+              21.74352053094259,
+              47.95467609229612
+            ],
+            [
+              21.74353589437685,
+              47.95491315498001
+            ],
+            [
+              21.743188800086248,
+              47.95492486730296
+            ],
+            [
+              21.743204162096777,
+              47.95516193000571
+            ],
+            [
+              21.743551257950518,
+              47.95515021763769
+            ],
+            [
+              21.743597349507954,
+              47.955861405453014
+            ],
+            [
+              21.74325024896474,
+              47.955873117956315
+            ],
+            [
+              21.743265611532845,
+              47.956110180554
+            ],
+            [
+              21.74291850927094,
+              47.95612189206733
+            ],
+            [
+              21.742933870415243,
+              47.956358954683786
+            ],
+            [
+              21.742586766434645,
+              47.956370665207174
+            ],
+            [
+              21.74260212615512,
+              47.95660772784242
+            ],
+            [
+              21.74121370242522,
+              47.956654559765525
+            ],
+            [
+              21.741198348957663,
+              47.95641749694998
+            ],
+            [
+              21.73946282361463,
+              47.95647601333954
+            ],
+            [
+              21.73944747810251,
+              47.95623895027246
+            ],
+            [
+              21.737364851943887,
+              47.95630913551245
+            ],
+            [
+              21.737349515950342,
+              47.95607207214898
+            ],
+            [
+              21.737002412610288,
+              47.95608376602124
+            ],
+            [
+              21.737017747040614,
+              47.95632082942972
+            ],
+            [
+              21.736323536768303,
+              47.956344214159
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

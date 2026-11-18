@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "independent_map_only_content_minimization_and_frozen_geometry_audit",
+  "reviewer": "independent child agent zala_semantic_qa",
+  "status": "passes_map_only_minimization; one_Neszele_estimated_candidate_unchanged; Sagod_quarantine_excluded",
+  "auditDate": "2026-11-14",
+  "originalRawPdfCheckedLocally": {
+    "localPath": ".local/neighborhoods/supplement-originals/zalaegerszeg-ziffa2025.pdf",
+    "sha256": "b132fd75d6c95538023ced5eda3ad8ac7f7131c6e27f889ed7206c23e4a44745",
+    "pageCount": 229,
+    "fullOriginalRemainsOutsidePublicPacket": true
+  },
+  "inputs": [
+    {
+      "path": "source-map-only-p138.pdf",
+      "sha256": "2ea419d5c91fbfd8e608a6b9b4ddffc7ddb80d3be6e84ea0ce862386476f16c6"
+    },
+    {
+      "path": "source-page-facts.json",
+      "sha256": "77363dc099cdb057d7c0ce741c05d1b6d3ae6528e1dfbfde7ca6ea07320d82b3"
+    },
+    {
+      "path": "independent-source-review.json",
+      "sha256": "b23610fd722dac86d50047679db150e93b3fa896ada033e1f43c7de28ff8a0ca"
+    },
+    {
+      "path": "curated-registry-entry.json",
+      "sha256": "6c8f20dd9d2c3cc354cce61cce06c8aca46935c98e3b77705c4320fb1b057348"
+    },
+    {
+      "path": "prepare-source-evidence.py",
+      "sha256": "36ea7a96be80d1338c416e8d7a741ae119df4c0e7a3900039b50a757bd422ef6"
+    },
+    {
+      "path": "independent-registration-review.json",
+      "sha256": "12ec33f3fb81ef69d12155ac4319591fd5f3b1e0b16d0241754604b648a77951"
+    },
+    {
+      "path": "independent-road-pbf-review.json",
+      "sha256": "0c8b0184546a541f5e42c2af695ce8228c41887e18d9f79d11eaeba9901625da"
+    },
+    {
+      "path": "neszele-inferred-import.geojson",
+      "sha256": "7575f4cd8c6f3ea8172069b2ef24c1cc3fc0319d523098102234e97807adea2b"
+    },
+    {
+      "path": "neszele-placement-alternative.geojson",
+      "sha256": "08483d919770dba450a71d965153eab65bce74b79129fb08078a0aa362a3524d"
+    },
+    {
+      "path": "sagod-literal-source-pixels.geojson",
+      "sha256": "d4a761f752a6bb8ace10cff3efcd2306d9a92cd2b64d94ec8a2c5dd1ae73c447"
+    }
+  ],
+  "mapOnlyPdf": {
+    "path": "source-map-only-p138.pdf",
+    "pageCount": 4,
+    "narrativeTextObjects": 0,
+    "embeddedFileCount": 0,
+    "xmlMetadataPresent": false,
+    "originalNarrativePagesRetained": false,
+    "nativePanels": [
+      {
+        "mapOnlyPdfPage": 1,
+        "originalPdfPageOneBased": 138,
+        "originalImageXref": 758,
+        "nativePanelPath": "p138-xref758.jpeg",
+        "sha256": "2f75ee7dcadf2696b4635eca37b02985868a6756d313bbbf7304b93c0f94a0f8",
+        "dimensionsPixels": [
+          234,
+          199
+        ],
+        "nativeAndReembeddedImageBitExact": true,
+        "narrativeTextCharacters": 0,
+        "annotations": 0,
+        "widgets": 0,
+        "links": 0
+      },
+      {
+        "mapOnlyPdfPage": 2,
+        "originalPdfPageOneBased": 138,
+        "originalImageXref": 759,
+        "nativePanelPath": "p138-xref759.jpeg",
+        "sha256": "08f9b86af6add2f278d11e5e84af63ad28f51530b7311c1c0bd079a05e42c9b6",
+        "dimensionsPixels": [
+          234,
+          360
+        ],
+        "nativeAndReembeddedImageBitExact": true,
+        "narrativeTextCharacters": 0,
+        "annotations": 0,
+        "widgets": 0,
+        "links": 0
+      },
+      {
+        "mapOnlyPdfPage": 3,
+        "originalPdfPageOneBased": 138,
+        "originalImageXref": 768,
+        "nativePanelPath": "p138-xref768.jpeg",
+        "sha256": "d33dc07a77423c6b72d2a889dad7181db24c366258bb29851b4fe30d3b745019",
+        "dimensionsPixels": [
+          387,
+          329
+        ],
+        "nativeAndReembeddedImageBitExact": true,
+        "narrativeTextCharacters": 0,
+        "annotations": 0,
+        "widgets": 0,
+        "links": 0
+      },
+      {
+        "mapOnlyPdfPage": 4,
+        "originalPdfPageOneBased": 138,
+        "originalImageXref": 769,
+        "nativePanelPath": "p138-xref769.jpeg",
+        "sha256": "9bc20ed9959fc3b688629475d504e6ce7c9c4bd55415923d9ce4b6af44ac835e",
+        "dimensionsPixels": [
+          387,
+          598
+        ],
+        "nativeAndReembeddedImageBitExact": true,
+        "narrativeTextCharacters": 0,
+        "annotations": 0,
+        "widgets": 0,
+        "links": 0
+      }
+    ]
+  },
+  "packetContentAudit": {
+    "directNarrativeQuotationWords": 0,
+    "fullNarrativePdfOrExtractedTextPresent": false,
+    "textOrMarkdownFilesPresent": [],
+    "otherPdfsPresent": [],
+    "sourceNarrativeTreatment": "English paraphrases only. Geographic labels, source names and bibliographic/page facts retained.",
+    "rasterVisualReview": "Four original selected map panels and literal-mask/road-registration previews contain maps and geographic labels only; no source narrative paragraphs.",
+    "allCurrentTextFilesReviewedForNarrativeCarryover": true,
+    "sourceSemanticsCheckedAgainstLocalRawPagesOneBased": [
+      63,
+      99,
+      138,
+      139
+    ]
+  },
+  "geometryIntegrity": {
+    "mainSha256": "7575f4cd8c6f3ea8172069b2ef24c1cc3fc0319d523098102234e97807adea2b",
+    "alternativeSha256": "08483d919770dba450a71d965153eab65bce74b79129fb08078a0aa362a3524d",
+    "bothEqualPreviouslyIndependentlyReviewedFrozenHashes": true,
+    "geometryOrRegistrationModifiedByThisAudit": false
+  },
+  "independentRoadSourceVerification": {
+    "all86CompleteWaysMatchPinnedPbf": true,
+    "uniqueOriginalNodes": 623,
+    "coordinateOccurrences": 711,
+    "maximumCoordinateDifferenceDegrees": 0.0
+  },
+  "scopeAndMetadata": {
+    "estimatedNeszeleCandidateCount": 1,
+    "primaryFeatureCount": 0,
+    "placementAlternativeAdditionalFeatureCount": 0,
+    "SagodWorldCandidateCount": 0,
+    "SagodSourcePixelQuarantineExplicit": true,
+    "canonicalNameIsNeighborhoodOverrideFalse": true,
+    "candidateBoundaryKind": "neighbourhood",
+    "sourceContourObservedTrue": true,
+    "estimatedPlacementTrue": true,
+    "claimedAbsoluteAccuracyNull": true,
+    "addressAssignmentFalse": true,
+    "documentDate": "2025-08-30",
+    "documentStatus": "consultation_draft",
+    "rightsRemainRecordedUnknownWithOsmOdblAttribution": true,
+    "registryEntryAppliedByThisBatch": false
+  },
+  "limits": "Content minimization and local fidelity checks do not establish redistribution rights, legal/cadastral boundaries or absolute geographic accuracy. Previous source/raster/registration caveats remain.",
+  "networkCallsPerformed": false,
+  "globalRegistryModified": false,
+  "hathazFrozenPacketModified": false,
+  "artifactManifestRefreshRequiredAfterAddingThisReview": true
+}

@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Szombathely",
+  "status": "frozen_independent_inferred_only_review_complete",
+  "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+  "primaryFeatures": 0,
+  "inferredFeatures": 1,
+  "newDistinctQuarterCoverage": 0,
+  "existingNamedQuarterId": "osm:relation:8356511",
+  "featureName": "Joskar-Ola-lakótelep",
+  "coordinateCountIncludingClosure": 80,
+  "originalSourceNodeEdges": 79,
+  "inputWays": 72,
+  "usedWays": 35,
+  "areaM2": 296658.87809125055,
+  "perimeterM": 2526.2804259590694,
+  "inferredCompletionM": 42.5669013906784,
+  "alternativeJunctionSymmetricDifferenceM2": 299.68659934574873,
+  "existingJoskarIoU": 0.43287393960326354,
+  "coverageAuditPath": "data/neighborhoods/sources/municipal-szombathely-more/coverage-audit.json",
+  "sourceFactsPath": "data/neighborhoods/sources/municipal-szombathely-more/source-facts.json",
+  "proofPath": "data/neighborhoods/sources/municipal-szombathely-more/conversion-proof.json",
+  "entryPath": "data/neighborhoods/sources/municipal-szombathely-more/inferred-registry-entry.json",
+  "independentReviewPath": "data/neighborhoods/sources/municipal-szombathely-more/independent-review.json",
+  "originalPbfVerificationPath": "data/neighborhoods/sources/municipal-szombathely-more/pbf-way-verification.json",
+  "sourceUnitsAudited": 18,
+  "existingNamedSourceUnits": 15,
+  "sourceUnitLabelsWithUnresolvedPerimeters": [
+    2,
+    10,
+    16
+  ],
+  "noProposedWayUsed": true,
+  "sourceOverviewIsTopologyOnly": true,
+  "usableForAddressAssignment": false,
+  "claimedAbsoluteAccuracyMetres": null,
+  "reproduce": "PYTHONPATH=.local/geodata python scripts/neighborhoods/derive-szombathely-more.py --check",
+  "verifyOriginalPbf": "PYTHONPATH=.local/geodata python scripts/neighborhoods/derive-szombathely-more.py --verify-pbf",
+  "converter": {
+    "path": "scripts/neighborhoods/derive-szombathely-more.py",
+    "sha256": "7e900078031dae45df4a9c68728b33014bbf09a836636700e2e6899ec72f17ed"
+  },
+  "files": [
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/conversion-proof.json",
+      "sha256": "41bc054c49426493b60e021bb4764174e5f95b51a8694a14defa44fb85d45573",
+      "bytes": 12547
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/coverage-audit.json",
+      "sha256": "5a34d2f0f318ee0cfa14f52336ddbdbe97870c2aa3d88d148d4a437df7809365",
+      "bytes": 24707
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/existing-joskar-snapshot.geojson",
+      "sha256": "972d51a3fcb57613841a2f59bb05db04063406fba9566634bd792b04d1c72369",
+      "bytes": 11560
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/extraction-proof.json",
+      "sha256": "2a3f88c7b893e2020c845e28aacb8b108ef75a41ee9b646f7bd22d4da1a98641",
+      "bytes": 751
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/independent-audit.json",
+      "sha256": "bb6367c566e675316b73f314bd6666bcdad428b155181e3d068766954d4e8f5c",
+      "bytes": 28120
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/independent-audit.py",
+      "sha256": "2eefa8fd5e8e126c522409323912ebceaf14457e0682b72b3b60f80d535366df",
+      "bytes": 18301
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/independent-review.json",
+      "sha256": "dcfc508421497e09501bc8fa64fbac8b407aef36e62fe1b1ac342719913d637f",
+      "bytes": 3074
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/inferred-completion.geojson",
+      "sha256": "b600b2a0460aa0487c9d8d2d1281ff8048100ded010c03d490102cee40b4c476",
+      "bytes": 792
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/inferred-registry-entry.json",
+      "sha256": "a93b8004803932c0c91e1fded468943d1ac609c311bf297dfc530f13e78b60ba",
+      "bytes": 1881
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/joskar-ola-inferred.geojson",
+      "sha256": "2f5286b40b1249281184ed9715c04b583c1de3cc2dbde3bd18a7ccc349501154",
+      "bytes": 11090
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/junction-alternative.geojson",
+      "sha256": "6f769dcab55f84f6c62c829627b8c5dd514ea6f25848a6dc13534a5730939c2a",
+      "bytes": 6953
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/municipality.geojson",
+      "sha256": "88e248409bbf466d26e3443630d7b992f4b2c86ec496605841ea14f44ed311eb",
+      "bytes": 57048
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/pbf-way-verification.json",
+      "sha256": "c75df757857b096ec6cbd00c387d97e6e580ee5502ebc240f42f982aa3e8ce42",
+      "bytes": 1523
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/source-facts.json",
+      "sha256": "61082151fb44c012ccc18da141c0b8d2774275cd5a423abb488cab1e5614f095",
+      "bytes": 4393
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/source-overview.jpeg",
+      "sha256": "8056b84dd92a0347c497bd12c63a3f4ed88d1e3c98dfe959ab2fd4906eca47f0",
+      "bytes": 37603
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/source-proof-pages.pdf",
+      "sha256": "a65645bea3cbcca2dd1a81105ce696b037a5fab1bd5a1a2cd94dcd2078cc8147",
+      "bytes": 107657
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szombathely-more/source-ways.geojson",
+      "sha256": "2477196a7bda272d802b7ee6bbd96843ab6c9b6594a3da128e469e4dcb7e8c6e",
+      "bytes": 98487
+    }
+  ],
+  "independentReviewDecision": "pass_inferred_historical_alternative_only",
+  "reviewedPreQaManifestSha256": "a32f27b18ea10d51ebf2302f1b32ec9c32dcc139f5f7633ad108b9af9d8bd694",
+  "manifestLifecycleNote": "Independent source/geometry QA retained. Reproduction compares a stable sorted producer-path/SHA256 logical fingerprint, excluding only the three QA files and manifest-wrapper metadata. The original pre-QA manifest byte hash remains historical provenance and does not assert identity with this final wrapper.",
+  "producerInputFingerprintSha256": "75dd6c63c4945c6cedeacb6bb573918a0ea07856f0afff2686474b2d63483c40",
+  "reproductionMetadataMaintenance": {
+    "date": "2026-11-14",
+    "by": "producer agent, explicitly requested by root after independent geometry QA",
+    "scope": "Reproduction bookkeeping only: replace recursive final-manifest byte hash with a sorted producer path/SHA256 logical fingerprint. Original independent geometry/source checks and producer coordinates unchanged.",
+    "originalIndependentGeometryReviewRetained": true,
+    "freshIndependentReviewOfThisBookkeepingEditClaimed": false
+  }
+}

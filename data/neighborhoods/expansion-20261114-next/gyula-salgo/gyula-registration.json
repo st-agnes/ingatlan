@@ -1,0 +1,905 @@
+{
+  "matrixPixelToEov": [
+    [
+      6.149390204857292,
+      0.2226736238080079
+    ],
+    [
+      0.21332180218077829,
+      -5.741431342646122
+    ],
+    [
+      818493.5191497242,
+      149532.43748745904
+    ]
+  ],
+  "sourceImage": "gyula-sump-xref477.jpeg",
+  "method": "Affine inferred placement from source printed name positions and current same-name OSM place points. Labels are not independent geographic control points.",
+  "controls": [
+    {
+      "name": "Gyulavári",
+      "pixel": [
+        1043,
+        547
+      ],
+      "eov": [
+        825144.1417271313,
+        146748.04671739187
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:269208692",
+        "properties": {
+          "name": "Gyulavári",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 269208692,
+            "tags": {
+              "name": "Gyulavári",
+              "name:ru": "Дьюлавари",
+              "place": "suburb",
+              "postal_code": "5711"
+            },
+            "objectVersion": 21,
+            "objectTimestamp": "2023-08-21 21:01:41+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/269208692",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.3354522,
+            46.6420404
+          ]
+        }
+      }
+    },
+    {
+      "name": "Ajtósfalva",
+      "pixel": [
+        97,
+        174
+      ],
+      "eov": [
+        819135.5217056153,
+        148594.59128605825
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:1681706711",
+        "properties": {
+          "name": "Ajtósfalva",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 1681706711,
+            "tags": {
+              "loc_name": "Kolbászfalu",
+              "name": "Ajtósfalva",
+              "place": "suburb"
+            },
+            "objectVersion": 6,
+            "objectTimestamp": "2020-12-25 21:43:26+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/1681706711",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.2576827,
+            46.6601994
+          ]
+        }
+      }
+    },
+    {
+      "name": "Szentpálfalva",
+      "pixel": [
+        344,
+        156
+      ],
+      "eov": [
+        820464.2413973695,
+        148722.87853284559
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:2363416151",
+        "properties": {
+          "name": "Szentpálfalva",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 2363416151,
+            "tags": {
+              "name": "Szentpálfalva",
+              "place": "suburb"
+            },
+            "objectVersion": 5,
+            "objectTimestamp": "2019-11-05 12:25:11+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/2363416151",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.2750845,
+            46.6610139
+          ]
+        }
+      }
+    },
+    {
+      "name": "Újvári",
+      "pixel": [
+        685,
+        569
+      ],
+      "eov": [
+        822837.8090169169,
+        146328.78190328626
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:2388638202",
+        "properties": {
+          "name": "Újvári",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 2388638202,
+            "tags": {
+              "name": "Újvári",
+              "place": "suburb"
+            },
+            "objectVersion": 5,
+            "objectTimestamp": "2021-08-01 18:46:06+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/2388638202",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.3051822,
+            46.6388732
+          ]
+        }
+      }
+    },
+    {
+      "name": "Máriafalva",
+      "pixel": [
+        495,
+        181
+      ],
+      "eov": [
+        821622.4331291495,
+        148551.02633019217
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:5738486522",
+        "properties": {
+          "name": "Máriafalva",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 5738486522,
+            "tags": {
+              "name": "Máriafalva",
+              "place": "suburb"
+            },
+            "objectVersion": 4,
+            "objectTimestamp": "2019-07-23 11:50:36+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/5738486522",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.2901471,
+            46.6591708
+          ]
+        }
+      }
+    },
+    {
+      "name": "Paradicsom",
+      "pixel": [
+        743,
+        662
+      ],
+      "eov": [
+        823171.977578656,
+        145930.0561017198
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:5962997520",
+        "properties": {
+          "name": "Paradicsom",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 5962997520,
+            "tags": {
+              "name": "Paradicsom",
+              "place": "suburb"
+            },
+            "objectVersion": 1,
+            "objectTimestamp": "2018-10-06 23:29:20+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/5962997520",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.3093943,
+            46.6352009
+          ]
+        }
+      }
+    },
+    {
+      "name": "Törökzug",
+      "pixel": [
+        104,
+        316
+      ],
+      "eov": [
+        819362.297352704,
+        147894.0538950063
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:6077210257",
+        "properties": {
+          "name": "Törökzug",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 6077210257,
+            "tags": {
+              "name": "Törökzug",
+              "place": "suburb"
+            },
+            "objectVersion": 1,
+            "objectTimestamp": "2018-11-20 19:12:27+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/6077210257",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.2603856,
+            46.6538422
+          ]
+        }
+      }
+    },
+    {
+      "name": "Németváros",
+      "pixel": [
+        200,
+        404
+      ],
+      "eov": [
+        819821.1041882205,
+        147130.4893872669
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:6077210263",
+        "properties": {
+          "name": "Németváros",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 6077210263,
+            "tags": {
+              "name": "Németváros",
+              "place": "suburb"
+            },
+            "objectVersion": 1,
+            "objectTimestamp": "2018-11-20 19:12:27+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/6077210263",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.2660943,
+            46.646859
+          ]
+        }
+      }
+    },
+    {
+      "name": "Kisrománváros",
+      "pixel": [
+        102,
+        486
+      ],
+      "eov": [
+        819316.0078361075,
+        146782.19557183833
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:6077210264",
+        "properties": {
+          "name": "Kisrománváros",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 6077210264,
+            "tags": {
+              "name": "Kisrománváros",
+              "place": "suburb"
+            },
+            "objectVersion": 1,
+            "objectTimestamp": "2018-11-20 19:12:27+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/6077210264",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.2593703,
+            46.6438557
+          ]
+        }
+      }
+    },
+    {
+      "name": "Magyarváros",
+      "pixel": [
+        305,
+        605
+      ],
+      "eov": [
+        820502.8612360068,
+        146175.71422111295
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:6077210266",
+        "properties": {
+          "name": "Magyarváros",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 6077210266,
+            "tags": {
+              "name": "Magyarváros",
+              "place": "suburb"
+            },
+            "objectVersion": 1,
+            "objectTimestamp": "2018-11-20 19:12:27+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/6077210266",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.2746412,
+            46.638099
+          ]
+        }
+      }
+    },
+    {
+      "name": "Kisváros",
+      "pixel": [
+        217,
+        634
+      ],
+      "eov": [
+        819922.1542953838,
+        145975.16635707527
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:6077210267",
+        "properties": {
+          "name": "Kisváros",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 6077210267,
+            "tags": {
+              "name": "Kisváros",
+              "place": "suburb"
+            },
+            "objectVersion": 1,
+            "objectTimestamp": "2018-11-20 19:12:27+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/6077210267",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.2669855,
+            46.6364441
+          ]
+        }
+      }
+    },
+    {
+      "name": "Galbácskert",
+      "pixel": [
+        455,
+        666
+      ],
+      "eov": [
+        821444.4606710782,
+        145800.02363020356
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:6077210268",
+        "properties": {
+          "name": "Galbácskert",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 6077210268,
+            "tags": {
+              "name": "Galbácskert",
+              "place": "suburb"
+            },
+            "objectVersion": 1,
+            "objectTimestamp": "2018-11-20 19:12:27+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/6077210268",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.2867936,
+            46.6344788
+          ]
+        }
+      }
+    },
+    {
+      "name": "Krinolinkert",
+      "pixel": [
+        490,
+        593
+      ],
+      "eov": [
+        821528.6088784405,
+        146207.09103426072
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:6077210269",
+        "properties": {
+          "name": "Krinolinkert",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 6077210269,
+            "tags": {
+              "name": "Krinolinkert",
+              "place": "suburb"
+            },
+            "objectVersion": 1,
+            "objectTimestamp": "2018-11-20 19:12:27+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/6077210269",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.2880444,
+            46.6381176
+          ]
+        }
+      }
+    },
+    {
+      "name": "Kastélykert",
+      "pixel": [
+        501,
+        522
+      ],
+      "eov": [
+        821589.3169975207,
+        146544.08418840944
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:6077210270",
+        "properties": {
+          "name": "Kastélykert",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 6077210270,
+            "tags": {
+              "name": "Kastélykert",
+              "place": "suburb"
+            },
+            "objectVersion": 2,
+            "objectTimestamp": "2026-07-02 08:59:41+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/6077210270",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.2889631,
+            46.6411323
+          ]
+        }
+      }
+    },
+    {
+      "name": "Újváros",
+      "pixel": [
+        365,
+        344
+      ],
+      "eov": [
+        820732.5305375459,
+        147591.7931576272
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:6077222449",
+        "properties": {
+          "name": "Újváros",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 6077222449,
+            "tags": {
+              "name": "Újváros",
+              "place": "suburb"
+            },
+            "objectVersion": 1,
+            "objectTimestamp": "2018-11-20 19:17:28+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/6077222449",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.2781671,
+            46.650774
+          ]
+        }
+      }
+    },
+    {
+      "name": "Nagyrománváros",
+      "pixel": [
+        478,
+        345
+      ],
+      "eov": [
+        821571.1708307419,
+        147656.72617730207
+      ],
+      "feature": {
+        "type": "Feature",
+        "id": "osm:node:6077222450",
+        "properties": {
+          "name": "Nagyrománváros",
+          "place": "suburb",
+          "reviewStatus": "unreviewed",
+          "hasSourcePolygon": false,
+          "source": {
+            "osmType": "node",
+            "osmId": 6077222450,
+            "tags": {
+              "name": "Nagyrománváros",
+              "place": "suburb"
+            },
+            "objectVersion": 1,
+            "objectTimestamp": "2018-11-20 19:17:28+00:00",
+            "changeset": 0,
+            "url": "https://www.openstreetmap.org/node/6077222450",
+            "provider": "openstreetmap",
+            "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+            "osmTimestamp": "2026-11-12T21:23:05Z",
+            "license": "ODbL-1.0",
+            "attribution": "© OpenStreetMap contributors",
+            "attributionUrl": "https://www.openstreetmap.org/copyright",
+            "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges."
+          },
+          "municipality": "Gyula",
+          "municipalityId": "city:Gyula",
+          "municipalityOsmId": "osm:relation:1026161",
+          "municipalityEvidence": "source_full_containment",
+          "coveringMunicipalityOsmIds": [
+            "osm:relation:1026161"
+          ],
+          "hierarchyMunicipalityOsmIds": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            21.2891427,
+            46.6511422
+          ]
+        }
+      }
+    }
+  ],
+  "residualRmsM": 112.51044095869766,
+  "absoluteAccuracyEstablished": false
+}

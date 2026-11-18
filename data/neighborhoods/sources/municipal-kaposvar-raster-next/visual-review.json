@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent fig81_visual agent; offline source visual/semantic review",
+  "scope": "Native source identity, named-area meaning and visually complete colored-component inventory; geographic coordinates and exact pixel traces are not certified by this review.",
+  "source": {
+    "pdfPath": ".local/neighborhoods/nationwide-docs/originals/kaposvar-its.pdf",
+    "pdfSha256": "8dcf6a39c018d11e9b7283a263d5887f919f7c5ba7c36862a6e83c76a13f159a",
+    "sourcePeriod": "2014 September; strategy2014–2020",
+    "pdfCreationMetadata": "D:20140916184758+02'00'",
+    "pdfPageOneBased": 18,
+    "printedPage": 18,
+    "embeddedImageXref": 124,
+    "sourceImagePath": "data/neighborhoods/sources/municipal-kaposvar-raster-next/kaposvar-p18-source.jpeg",
+    "sourceImageSha256": "54dc5dc7a697bafdc3cb662a41ed6f6cfcc21ac98ec38cffa45ac14148477676",
+    "sourceImagePixels": [
+      625,
+      883
+    ],
+    "archivedJpegBytesExactlyEqualActualPdfXref": true,
+    "embeddedImageAppearsOnActualPage18": true,
+    "sourceMapProjectionKnown": false,
+    "sourceMapUnderlyingDataDateKnown": false
+  },
+  "sourceTextEvidence": {
+    "municipalQuote": "Kaposvár Megyei Jogú Város Önkormányzata a korábbi IVS–t alapul véve 10 városrészre osztotta a települést",
+    "mapHeading": "KAPOSVÁR MEGYEI JOGÚ VÁROS – VÁROSRÉSZEK",
+    "legendIntroducedAs": "Városrészek",
+    "fullSourceNamesByNumber": {
+      "1": "Belváros",
+      "2": "Északnyugati városrész",
+      "3": "Északi városrész",
+      "4": "Kisgát és környéke, Cukorgyár, Pécsi utca és környéke",
+      "5": "Kecelhegy – Cser",
+      "6": "Donner – Rómahegy",
+      "7": "Ivánfahegy – Kaposszentjakab",
+      "8": "Kaposfüred",
+      "9": "Toponár – Répáspuszta – Fészerlak – Deseda",
+      "10": "Töröcske – Zselic kertváros"
+    },
+    "interpretation": "The source itself explicitly calls the ten numbered units városrészek. Preserve each full source name as one named quarter, including compound toponyms; do not invent separate fine boundaries or assign detached components independently to constituent place names."
+  },
+  "visualInventory": {
+    "namedQuarterCount": 10,
+    "coloredConnectedFootprintsVisuallyCounted": 16,
+    "componentCountBySourceNumber": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 3,
+      "9": 4,
+      "10": 2
+    },
+    "initial14ComponentCountCorrected": true,
+    "reason": "Kaposfüred8 has THREE separate cyan source footprints, including two smaller unnumbered islands. Ignoring these would omit actual source areas. Together with9 having4 and10 having2, total7+3+4+2=16.",
+    "components": [
+      {
+        "quarterNumber": 1,
+        "quarterNameFull": "Belváros",
+        "visualComponentId": "central-blue",
+        "approximateSourceInspectionWindowXYXY": [
+          145,
+          473,
+          269,
+          555
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          220,
+          512
+        ],
+        "actualSampleRgb": [
+          65,
+          124,
+          200
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 2,
+        "quarterNameFull": "Északnyugati városrész",
+        "visualComponentId": "northwest-bright-green",
+        "approximateSourceInspectionWindowXYXY": [
+          47,
+          335,
+          185,
+          495
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          120,
+          434
+        ],
+        "actualSampleRgb": [
+          79,
+          205,
+          105
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 3,
+        "quarterNameFull": "Északi városrész",
+        "visualComponentId": "north-central-red",
+        "approximateSourceInspectionWindowXYXY": [
+          164,
+          320,
+          263,
+          485
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          206,
+          429
+        ],
+        "actualSampleRgb": [
+          183,
+          88,
+          108
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 4,
+        "quarterNameFull": "Kisgát és környéke, Cukorgyár, Pécsi utca és környéke",
+        "visualComponentId": "central-east-lime-with-eastward-arm",
+        "approximateSourceInspectionWindowXYXY": [
+          228,
+          353,
+          501,
+          555
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          278,
+          438
+        ],
+        "actualSampleRgb": [
+          189,
+          250,
+          0
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 5,
+        "quarterNameFull": "Kecelhegy – Cser",
+        "visualComponentId": "southwest-orange-red",
+        "approximateSourceInspectionWindowXYXY": [
+          64,
+          467,
+          189,
+          685
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          118,
+          563
+        ],
+        "actualSampleRgb": [
+          208,
+          108,
+          74
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 6,
+        "quarterNameFull": "Donner – Rómahegy",
+        "visualComponentId": "south-central-purple",
+        "approximateSourceInspectionWindowXYXY": [
+          158,
+          531,
+          336,
+          683
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          270,
+          613
+        ],
+        "actualSampleRgb": [
+          167,
+          36,
+          194
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 7,
+        "quarterNameFull": "Ivánfahegy – Kaposszentjakab",
+        "visualComponentId": "southeast-blue-green",
+        "approximateSourceInspectionWindowXYXY": [
+          257,
+          494,
+          449,
+          690
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          356,
+          617
+        ],
+        "actualSampleRgb": [
+          125,
+          179,
+          166
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 8,
+        "quarterNameFull": "Kaposfüred",
+        "visualComponentId": "northwest-main-cyan",
+        "approximateSourceInspectionWindowXYXY": [
+          92,
+          170,
+          203,
+          290
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          175,
+          249
+        ],
+        "actualSampleRgb": [
+          140,
+          199,
+          205
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 8,
+        "quarterNameFull": "Kaposfüred",
+        "visualComponentId": "small-western-cyan-island",
+        "approximateSourceInspectionWindowXYXY": [
+          95,
+          168,
+          117,
+          206
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          106,
+          184
+        ],
+        "actualSampleRgb": [
+          111,
+          255,
+          255
+        ],
+        "sameQuarterNumberPrintedInsideComponent": false,
+        "associationEvidence": "Unique cyan fill and separate black source outline matching the numbered Kaposfüred8 main component; no separate fine name or extra quarter number is claimed.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 8,
+        "quarterNameFull": "Kaposfüred",
+        "visualComponentId": "northeast-cyan-island",
+        "approximateSourceInspectionWindowXYXY": [
+          217,
+          140,
+          261,
+          203
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          239,
+          177
+        ],
+        "actualSampleRgb": [
+          136,
+          185,
+          181
+        ],
+        "sameQuarterNumberPrintedInsideComponent": false,
+        "associationEvidence": "Unique cyan fill and separate black source outline matching the numbered Kaposfüred8 main component; no separate fine name or extra quarter number is claimed.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 9,
+        "quarterNameFull": "Toponár – Répáspuszta – Fészerlak – Deseda",
+        "visualComponentId": "small-northern-orange-island",
+        "approximateSourceInspectionWindowXYXY": [
+          383,
+          120,
+          424,
+          160
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          398,
+          145
+        ],
+        "actualSampleRgb": [
+          239,
+          128,
+          38
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 9,
+        "quarterNameFull": "Toponár – Répáspuszta – Fészerlak – Deseda",
+        "visualComponentId": "northwest-middle-brown-island",
+        "approximateSourceInspectionWindowXYXY": [
+          291,
+          181,
+          368,
+          262
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          328,
+          218
+        ],
+        "actualSampleRgb": [
+          201,
+          135,
+          74
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 9,
+        "quarterNameFull": "Toponár – Répáspuszta – Fészerlak – Deseda",
+        "visualComponentId": "northeast-main-orange-brown",
+        "approximateSourceInspectionWindowXYXY": [
+          299,
+          241,
+          441,
+          419
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          393,
+          333
+        ],
+        "actualSampleRgb": [
+          222,
+          139,
+          37
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 9,
+        "quarterNameFull": "Toponár – Répáspuszta – Fészerlak – Deseda",
+        "visualComponentId": "far-eastern-orange-island",
+        "approximateSourceInspectionWindowXYXY": [
+          433,
+          436,
+          555,
+          522
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          508,
+          477
+        ],
+        "actualSampleRgb": [
+          244,
+          128,
+          19
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 10,
+        "quarterNameFull": "Töröcske – Zselic kertváros",
+        "visualComponentId": "southern-narrow-green-main",
+        "approximateSourceInspectionWindowXYXY": [
+          149,
+          577,
+          219,
+          748
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          199,
+          710
+        ],
+        "actualSampleRgb": [
+          71,
+          164,
+          93
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      },
+      {
+        "quarterNumber": 10,
+        "quarterNameFull": "Töröcske – Zselic kertváros",
+        "visualComponentId": "detached-southern-green-island",
+        "approximateSourceInspectionWindowXYXY": [
+          134,
+          737,
+          199,
+          837
+        ],
+        "windowIsNotGeometryOrBoundaryExtent": true,
+        "representativeSourceFillPixel": [
+          158,
+          797
+        ],
+        "actualSampleRgb": [
+          4,
+          183,
+          55
+        ],
+        "sameQuarterNumberPrintedInsideComponent": true,
+        "associationEvidence": "Repeated source number plus full page18 legend.",
+        "boundaryVisuallyCompleteInsideImageFrame": true,
+        "sourcePixelClosureNotYetDigitallyVerified": true
+      }
+    ]
+  },
+  "boundaryFeasibility": {
+    "all16FootprintsAppearVisuallyClosedWithinImage": true,
+    "noColoredQuarterBoundaryTouchesImageFrame": true,
+    "noSourceFrameClosureNeeded": true,
+    "noGenuineInteriorHoleVisuallyEstablished": true,
+    "clearOuterContourAndDistinctFillAvailable": true,
+    "outerMapAndCadastralBackgroundNotCompleteMunicipalityPartition": true,
+    "observations": [
+      "Distinct black outer quarter outlines bound the sixteen colored footprints; there is generous image margin around every colored component.",
+      "Gray cadastral parcel, road and rail strokes are overlaid throughout colored areas. These do not independently establish quarter holes or missing area strips.",
+      "White notches in several footprints connect to exterior uncolored background; do not convert them into invented closed interior holes.",
+      "The pale-blue-green7 and cyan8 are separate source colors/areas; the two small northern cyan islands belong to the full Kaposfüred source unit by color association.",
+      "Several fine gray road strokes cross outer quarter boundaries. A black/gray line crossing alone must not be followed away from the actual quarter outline.",
+      "Uncolored rural/cadastral gaps remain unassigned in this map; do not fill them from a municipal envelope or create guessed bridges between detached components."
+    ],
+    "pixelBoundaryAccuracy": "Native625×883 raster, with antialiasing/JPEG artifacts and overlapping CAD linework. Exact black-pixel continuity, simplified geometry and georeference require separate numeric QA."
+  },
+  "georegistrationReview": {
+    "actualGeographicControlsIndependentlyIdentified": 0,
+    "reason": "The native map lacks road names, coordinates, grid, scale bar and known source projection. Colored-unit corners and number-label positions must not be used as independently known road-junction coordinates.",
+    "controlRecommendation": "Use actual, visibly identifiable physical road/rail junctions from the frozen original OSM ways, document manual pixel-placement windows, and retain inferred_georeference if the relationship cannot be independently established. Review overlays against multiple places, including detached northern/southern/eastern components, rather than only the central built area.",
+    "labelPositionsAreNotGeographicControls": true,
+    "claimedAbsoluteAccuracyMetres": null,
+    "geographicCoordinatesReviewed": false
+  },
+  "classificationLimits": {
+    "sourceNamedQuarterSemanticsSupported": true,
+    "allFullCompoundNamesPreserved": true,
+    "fineSubdivisionsWithinCompoundNamesSupported": false,
+    "currentNamesIndependentlyConfirmed": false,
+    "currentLegalOrCadastralStatusConfirmed": false,
+    "currentNeighborhoodBoundariesConfirmed": false,
+    "sourceMapOpenReuseRightsIndependentlyEstablished": false,
+    "usableForAddressAssignment": false,
+    "georeferenceInferenceMustRemainExplicit": true
+  },
+  "visualEvidenceInspected": [
+    "Original native625×883 JPEG extracted from the actual PDF",
+    "Northern three cyan components at nearest-neighbor3× crop",
+    "Central/southeastern shared boundaries at nearest-neighbor3× crop",
+    "All four source9 components at nearest-neighbor3× crop",
+    "Both source10 components at nearest-neighbor3× crop",
+    "Original PDF page18 text/legend and title-page2014 September date"
+  ],
+  "verdict": "POSITIVE_SOURCE_DIGITIZATION_FEASIBILITY_FOR_10_FULL_NAMED_UNITS_AND_16_COMPONENTS; GEOREFERENCE_AND_PIXEL_CLOSURE_REVIEW_PENDING"
+}

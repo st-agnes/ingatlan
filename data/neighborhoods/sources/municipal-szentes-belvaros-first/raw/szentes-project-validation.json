@@ -1,0 +1,31 @@
+{
+  "projectValidator": "scripts/neighborhoods/build.mjs validateGeometry",
+  "results": [
+    {
+      "filename": "szentes-belvaros-deak-side-inferred-review.geojson",
+      "result": {
+        "valid": true,
+        "bbox": [
+          20.252101229375157,
+          46.6469605,
+          20.2717193,
+          46.658672
+        ],
+        "vertices": 99
+      }
+    },
+    {
+      "filename": "szentes-belvaros-apponyi-around-inferred-review.geojson",
+      "result": {
+        "valid": true,
+        "bbox": [
+          20.252101229375157,
+          46.6469605,
+          20.2717193,
+          46.658672
+        ],
+        "vertices": 129
+      }
+    }
+  ]
+}

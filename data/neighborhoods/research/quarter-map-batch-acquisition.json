@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "status": "partial_public_original_acquisition",
+  "checkedAt": "2026-11-14",
+  "downloadedPdfCount": 9,
+  "failedRequestCount": 8,
+  "rawPdfBytes": 57506198,
+  "records": [
+    {
+      "id": "szeged-ivs-review-18325",
+      "requestedUrl": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18325&as_attachment=1",
+      "status": "failed",
+      "reason": "http_503",
+      "transportClass": "str"
+    },
+    {
+      "id": "szeged-ivs2008-update2009-18324",
+      "requestedUrl": "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=18324",
+      "status": "failed",
+      "reason": "http_503",
+      "transportClass": "str"
+    },
+    {
+      "id": "szeged-ivs2008-18320",
+      "requestedUrl": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18320",
+      "status": "failed",
+      "reason": "http_503",
+      "transportClass": "str"
+    },
+    {
+      "requestedUrl": "https://megujul.szeged.hu/data/portal/cikk/miert-pont-igy/szeged_kerekparhalozati_terv_2015.pdf",
+      "finalUrl": "https://megujul.szeged.hu/data/portal/cikk/miert-pont-igy/szeged_kerekparhalozati_terv_2015.pdf",
+      "bytes": 4808502,
+      "sha256": "df9df685757048f4536e64df0789dc7e378e2d805627707394a5454a43ecf83b",
+      "httpStatus": 200,
+      "id": "szeged-cycle-network-2015",
+      "status": "downloaded",
+      "localPath": ".local/neighborhoods/quarter-map-batch/szeged-cycle-network-2015.pdf",
+      "acquiredAt": "2026-11-14T08:21:41.922458+00:00"
+    },
+    {
+      "requestedUrl": "https://geography.hu/mfk2001/cikkek/TothKKeseru.pdf",
+      "finalUrl": "https://geography.hu/mfk2001/cikkek/TothKKeseru.pdf",
+      "bytes": 478986,
+      "sha256": "aabc06b2029dc335fb509be6025ddeb26787d15d0033938990f7de80e4437216",
+      "httpStatus": 200,
+      "id": "szeged-estate-map-2001",
+      "status": "downloaded",
+      "localPath": ".local/neighborhoods/quarter-map-batch/szeged-estate-map-2001.pdf",
+      "acquiredAt": "2026-11-14T08:21:44.415578+00:00"
+    },
+    {
+      "requestedUrl": "https://www.klebelsberg-egyesulet.hu/wp-content/uploads/2016/04/helytortenet.pdf",
+      "finalUrl": "https://www.klebelsberg-egyesulet.hu/wp-content/uploads/2016/04/helytortenet.pdf",
+      "bytes": 9934551,
+      "sha256": "aa6b8466ea597f604691f6b4def6104b68e000a6348cb85c1f2ec47e33d136f3",
+      "httpStatus": 200,
+      "id": "klebelsberg-history-2007",
+      "status": "downloaded",
+      "localPath": ".local/neighborhoods/quarter-map-batch/klebelsberg-history-2007.pdf",
+      "acquiredAt": "2026-11-14T08:21:47.637900+00:00"
+    },
+    {
+      "requestedUrl": "https://www.ksh.hu/docs/hun/xftp/idoszaki/pdf/muhelytanulmanyok4.pdf",
+      "finalUrl": "https://www.ksh.hu/docs/hun/xftp/idoszaki/pdf/muhelytanulmanyok4.pdf",
+      "bytes": 923816,
+      "sha256": "9a61caa7d022e0d623bd78f21ce8d8953fa7e47f49ba48be5c18b13c44286995",
+      "httpStatus": 200,
+      "id": "ksh-szeged-map-2014",
+      "status": "downloaded",
+      "localPath": ".local/neighborhoods/quarter-map-batch/ksh-szeged-map-2014.pdf",
+      "acquiredAt": "2026-11-14T08:21:50.151595+00:00"
+    },
+    {
+      "requestedUrl": "https://doktori.bibl.u-szeged.hu/id/eprint/1759/1/doktori_HL.pdf",
+      "finalUrl": "https://doktori.bibl.u-szeged.hu/id/eprint/1759/1/doktori_HL.pdf",
+      "bytes": 9059165,
+      "sha256": "b490214f9f038afe38fb1c74e24c0d5b99aeb04e54f192c417b06018363b3d0f",
+      "httpStatus": 200,
+      "id": "szeged-henits-ksh-map-2013",
+      "status": "downloaded",
+      "localPath": ".local/neighborhoods/quarter-map-batch/szeged-henits-ksh-map-2013.pdf",
+      "acquiredAt": "2026-11-14T08:21:53.468728+00:00"
+    },
+    {
+      "requestedUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+      "finalUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+      "bytes": 3633854,
+      "sha256": "a794b371c17810d421cf6bc6a9453d602fd964488ed674a2017cda6472d1f019",
+      "httpStatus": 200,
+      "id": "szolnok-foldi-ksh-map-2012",
+      "status": "downloaded",
+      "localPath": ".local/neighborhoods/quarter-map-batch/szolnok-foldi-ksh-map-2012.pdf",
+      "acquiredAt": "2026-11-14T08:21:56.054365+00:00"
+    },
+    {
+      "id": "szeged-its-adopted-annex-2017",
+      "requestedUrl": "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101",
+      "status": "failed",
+      "reason": "http_503",
+      "transportClass": "str"
+    },
+    {
+      "id": "szeged-corroborating-its-20490",
+      "requestedUrl": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=20490",
+      "status": "failed",
+      "reason": "http_503",
+      "transportClass": "str"
+    },
+    {
+      "id": "szeged-fvs-2023-kalvaria",
+      "requestedUrl": "https://www.szegedvaros.hu/storage/document/17/default/3602/FVS_Szeged_MJV_2021_2027_egys_szerk_VFKB_231130.pdf",
+      "status": "failed",
+      "reason": "http_503",
+      "transportClass": "str"
+    },
+    {
+      "id": "szeged-ivs-odessza-chapter5",
+      "requestedUrl": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18321&as_attachment=1",
+      "status": "failed",
+      "reason": "http_503",
+      "transportClass": "str"
+    },
+    {
+      "id": "szeged-concept-19546",
+      "requestedUrl": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=19546&as_attachment=1",
+      "status": "failed",
+      "reason": "http_503",
+      "transportClass": "str"
+    },
+    {
+      "requestedUrl": "https://varoshaza.nyiregyhaza.hu/lib/fooldal/140210_ivs.pdf",
+      "finalUrl": "https://varoshaza.nyiregyhaza.hu/lib/fooldal/140210_ivs.pdf",
+      "bytes": 15470929,
+      "sha256": "71378558090b173cf10e558ca50175c2b1f6aca78a150a3beb42224f785161d1",
+      "httpStatus": 200,
+      "id": "nyiregyhaza-ivs-ksh-reproduction",
+      "status": "downloaded",
+      "localPath": ".local/neighborhoods/quarter-map-batch/nyiregyhaza-ivs-ksh-reproduction.pdf",
+      "acquiredAt": "2026-11-14T08:23:11.353549+00:00"
+    },
+    {
+      "requestedUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+      "finalUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+      "bytes": 12378814,
+      "sha256": "6d51272ac0f8f8beb2e6dac07e5baf3cf620d380a4a0458ea23a97122108bd2c",
+      "httpStatus": 200,
+      "id": "veszprem-ivs-2008-related-ksh-source",
+      "status": "downloaded",
+      "localPath": ".local/neighborhoods/quarter-map-batch/veszprem-ivs-2008-related-ksh-source.pdf",
+      "acquiredAt": "2026-11-14T08:23:22.227626+00:00"
+    },
+    {
+      "requestedUrl": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+      "finalUrl": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+      "bytes": 817581,
+      "sha256": "3dc2a4f4fcf3afd1b387a278be6a7fc7dcccdb75db8f1d4af3a5f07d811d8342",
+      "httpStatus": 200,
+      "id": "ksh-hodmezovasarhely-2005",
+      "status": "downloaded",
+      "localPath": ".local/neighborhoods/quarter-map-batch/ksh-hodmezovasarhely-2005.pdf",
+      "acquiredAt": "2026-11-14T08:23:24.719222+00:00"
+    }
+  ],
+  "sourcePublicationDatesNotInferredFromAcquisition": true,
+  "failedUrlsAreNotEvidenceOfSourceAbsence": true,
+  "fullRawDocumentsPackaged": false,
+  "newPolygonsProducedByAcquisition": false,
+  "completeNationalCoverage": false
+}

@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 4,
+  "checkedAt": "2026-11-14",
+  "status": "partial_nationwide_checkpoint",
+  "completeNationalCoverage": false,
+  "primaryFeatures": 506,
+  "primaryMunicipalities": 48,
+  "planningFeatures": 31,
+  "inferredFeatures": 137,
+  "inferredMunicipalities": 13,
+  "checks": [
+    {
+      "label": "geometry",
+      "cmd": "node tests/neighborhoods.test.mjs",
+      "exit_code": 0,
+      "output": "✔ polygon validator rejects open, degenerate, malformed, nonfinite and crossing geometries (7.802888ms)\n✔ holes and duplicate vertices are checked without repairing or changing the source geometry (9.819502ms)\n✔ names and bounding boxes never become polygons; unknown city associations stay excluded (3.85051ms)\n✔ retired and superseded records cannot enter the draft catalog; duplicate IDs fail explicitly (1.544148ms)\n✔ a valid geometry retains its coordinates and source hashes but never implies reviewed city coverage (1.213589ms)\n✔ different canonical municipalities never merge when only their accents differ (43.720708ms)\n✔ checked-in draft is reproducible from pinned original records and canonical municipality names (7381.637992ms)\nℹ tests 7\nℹ suites 0\nℹ pass 7\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 7516.024152\n"
+    },
+    {
+      "label": "semantic",
+      "cmd": "node tests/neighborhoods-semantic.test.mjs",
+      "exit_code": 0,
+      "output": "✔ a reviewed venue keeps its actual geometry and source while leaving the quarter count (9.100838ms)\n✔ semantic corrections never become blanket filters for industrial or cemetery wording (17.037665ms)\n✔ changed source bytes, name, geometry, or missing objects require a new review (1.613208ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 88.475491\n"
+    },
+    {
+      "label": "report",
+      "cmd": "node tests/neighborhoods-report.test.mjs",
+      "exit_code": 0,
+      "output": "✔ the export preserves different canonical towns whose names differ only by accents (18.83095ms)\n✔ geometry counts and distinct source names remain separate; district fallbacks never become neighborhoods (2.256021ms)\n✔ failed, successful-empty and unrequested queries do not collapse to a common zero-status (0.439007ms)\n✔ known point names subtract existing names without inventing all missing city neighborhoods (0.371025ms)\n✔ reference comparisons retain the cited time period and match only explicit normalized names (1.623912ms)\n✔ joined and spaced neighborhood spellings use the same inventory and canonical-name identity (0.363665ms)\n✔ documented name equivalents and a same-named distinct missing area remain separate reference facts (1.134912ms)\n✔ mapped names outside the reference stay separate and documented aliases never become false extra names (0.545377ms)\n✔ Google/name verification is never inferred; explicit name-audit evidence is counted separately (1.679859ms)\n✔ supported canonical aliases count once; large areas and unsupported legacy names do not inflate neighborhood counts (0.578762ms)\n✔ exact canonical city/name evidence transfers across sources without transferring the audited geometry classification (0.773088ms)\n✔ actual stored city report is reproducible from current catalog and explicit references (4751.012537ms)\n✔ unified export selects one real source geometry per accepted name and preserves provenance and coordinates (0.752938ms)\n✔ actual unified export exactly follows the current accepted city-name inventory (2079.614699ms)\n✔ standalone export rejects changed coverage and references before accepting or replacing an old release (15.080574ms)\nℹ tests 15\nℹ suites 0\nℹ pass 15\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 6887.425025\n"
+    },
+    {
+      "label": "country",
+      "cmd": "node tests/neighborhoods-country.test.mjs",
+      "exit_code": 0,
+      "output": "✔ country polygons preserve exact geometry, actual source IDs and snapshot provenance (18.33323ms)\n✔ administrative country classifications distinguish Budapest districts from quarter candidates (0.888848ms)\n✔ source points remain an excluded inventory and incomplete source polygons stay audited (1.204824ms)\n✔ unresolved/unknown municipalities, unsupported association evidence and malformed geometry never enter the catalogue (45.071488ms)\n✔ a country feature needs matching real OSM identity, source tags and the pinned input PBF (1.639659ms)\n✔ the freshest actual OSM object wins across country/city sources and country wins timestamp ties (5.612186ms)\n✔ PBF replication time overrides contradictory feature dates and retrieval/generation times never establish freshness (1.153676ms)\n✔ old per-city audit exclusions cannot remove a fresh same-ID country feature (0.640892ms)\n✔ country loader verifies every declared output fingerprint, including noncatalogue source files (325.2002ms)\n✔ gzip sources retain separate stored and decompressed fingerprints and still reject tampering (304.020792ms)\n✔ the preserved country snapshot supplies actual nationwide geometry with complete candidate accounting (4411.690066ms)\nℹ tests 11\nℹ suites 0\nℹ pass 11\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 5181.250791\n"
+    },
+    {
+      "label": "manual",
+      "cmd": "node tests/neighborhoods-manual.test.mjs",
+      "exit_code": 0,
+      "output": "✔ manual import preserves actual source geometry and evidence while retaining review flags (10.614486ms)\n✔ open rings, missing evidence, unknown municipalities and inferred areas cannot become admitted manual polygons (1.076943ms)\n✔ a planning cluster remains a planning cluster and never counts as a fine neighborhood (0.345533ms)\n✔ manual registry binds exact GeoJSON bytes and rejects changed sources and path traversal (128.480357ms)\nℹ tests 4\nℹ suites 0\nℹ pass 4\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 196.344967\n"
+    },
+    {
+      "label": "secondary",
+      "cmd": "node tests/neighborhoods-secondary.test.mjs",
+      "exit_code": 0,
+      "output": "✔ an inferred source remains a separate, explicitly unverified geometry without coordinate changes (15.975138ms)\n✔ unknown towns and open source rings stay quarantined even in the inferred layer (0.401398ms)\n✔ estimated city statistics count features rather than components and retain source-level distinctions (80.321381ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 141.880401\n"
+    },
+    {
+      "label": "nationwide",
+      "cmd": "node tests/neighborhoods-nationwide-report.test.mjs",
+      "exit_code": 0,
+      "output": "✔ unknown quarter coverage and KSH categories remain distinct from observed geometry counts (80.821051ms)\n✔ manual construction method and planning semantic level are independent, and points deduplicate by city/name (10.178268ms)\n✔ accent distinctions in municipality names never merge separate KSH municipalities (0.929009ms)\n✔ official quarter gaps retain distinct identities and documented equivalences, and planning units cannot fill them (7.267039ms)\n✔ all 3155 real municipality rows retain exact KSH part categories and unknown unreviewed totals (1957.405374ms)\n✔ custom-file CLI writer rejects stale city catalog references and detects stale generated outputs (88.583842ms)\nℹ tests 6\nℹ suites 0\nℹ pass 6\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2167.768352\n"
+    },
+    {
+      "label": "association",
+      "cmd": "node tests/neighborhoods-association.test.mjs",
+      "exit_code": 0,
+      "output": "✔ audited name-municipality association corrects metadata without changing geometry, provenance or query history (51.695887ms)\n✔ association audit rejects stale hashes, wrong query identities, unknown municipalities and duplicate evidence keys (1.26662ms)\n✔ actual boundary-crossing source records become one audited Dorog neighborhood and one documented exclusion (845.606856ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 923.441009\n"
+    },
+    {
+      "label": "osm",
+      "cmd": "node tests/neighborhoods-osm.test.mjs",
+      "exit_code": 0,
+      "output": "✔ Budapest kerületek and other administrative fallbacks are distinct from neighbourhood candidates (11.090082ms)\n✔ closed named ways preserve source vertices and open ways never gain a fabricated closing edge (8.152508ms)\n✔ outer member ways stitch through exact shared endpoints with direction reversal and no source mutation (36.2899ms)\n✔ gaps, ambiguous joins, missing geometry, repeated members and boundary subrelations are rejected (0.807434ms)\n✔ inner rings belong to exactly one containing shell and disjoint outers become MultiPolygon (9.544842ms)\n✔ node references resolve only from complete actual node geometry; malformed topology stays excluded (0.716102ms)\n✔ conflicting city contexts never pick an arbitrary municipality; repeated identical snapshots deduplicate (1.775364ms)\n✔ current OSM shadows only accent/case-equivalent WOF neighbourhood names within the same canonical city (15.999825ms)\n✔ local Overpass snapshots require matching fingerprints and a complete response (305.720326ms)\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 414.912563\n"
+    },
+    {
+      "label": "national",
+      "cmd": "node tests/neighborhoods-national.test.mjs",
+      "exit_code": 0,
+      "output": "✔ all 203 historical Budapest polygons retain every converted source vertex and original source fingerprints (2235.027553ms)\n✔ the 2025 archived polygons supersede equivalent 2022 names while older-only actual geometry is retained (1510.075558ms)\n✔ unknown municipalities, points and broken rings cannot become national polygons (90.684282ms)\n✔ hash corruption in any original component or converted GeoJSON fails before import (94.778057ms)\n✔ source priority deduplicates accent/case/punctuation variants and preserves failed query status (5.914469ms)\n✔ name evidence deduplicates historical aliases but never silently moves wrong-city or ambiguous geometry (1.569706ms)\nℹ tests 6\nℹ suites 0\nℹ pass 6\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 4007.844363\n"
+    },
+    {
+      "label": "fetch",
+      "cmd": "node tests/neighborhoods-fetch.test.mjs",
+      "exit_code": 0,
+      "output": "Neighborhood acquisition safeguards passed.\n"
+    },
+    {
+      "label": "supplement",
+      "cmd": "python3 tests/neighborhood-supplement.test.py",
+      "exit_code": 0,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.522s\n\nOK\n"
+    },
+    {
+      "label": "build-check",
+      "cmd": "node scripts/neighborhoods/build.mjs --check",
+      "exit_code": 0,
+      "output": "Verified 572 unreviewed polygons; 5331 excluded records. No boundary is enabled for address assignment.\n"
+    },
+    {
+      "label": "report-check",
+      "cmd": "node scripts/neighborhoods/report.mjs --check",
+      "exit_code": 0,
+      "output": "Verified city statistics: 506 accepted neighborhood names across 48 settlements (549 geometries); unknown full coverage remains explicit.\n"
+    },
+    {
+      "label": "export-check",
+      "cmd": "node scripts/neighborhoods/export.mjs --check",
+      "exit_code": 0,
+      "output": "Verified unified neighborhood export: 506 accepted city/name boundaries.\n"
+    },
+    {
+      "label": "secondary-check",
+      "cmd": "node scripts/neighborhoods/export-secondary.mjs --check",
+      "exit_code": 0,
+      "output": "31 planning units and 137 inferred candidates in separate layers; primary neighbourhood export unchanged.\n"
+    },
+    {
+      "label": "nationwide-check",
+      "cmd": "node scripts/neighborhoods/nationwide-report.mjs --check",
+      "exit_code": 0,
+      "output": "Verified 3155 municipality rows; 506 accepted quarter names, 3081 point-only name gaps; national quarter totals remain unknown.\n"
+    },
+    {
+      "label": "preview-behavior",
+      "cmd": "node .local/neighborhoods/check-preview.mjs",
+      "exit_code": 0,
+      "output": "{\"status\":\"passed_generated_behavior_checks\",\"inferredFeatures\":137,\"inferredMunicipalities\":13,\"sourceCoverageUnchanged\":true,\"realBrowserLayoutVerified\":false}\n"
+    },
+    {
+      "label": "pecs-current-name",
+      "cmd": "python3 data/neighborhoods/research/pecs-current-name-review.py --check",
+      "exit_code": 0,
+      "output": "{\n  \"sourceNames\": 67,\n  \"currentPlaceOrQuarterOsmLabels\": 54,\n  \"officialKshNamesAtReferenceDate\": 17,\n  \"dated2026OfficialWebLocalityNames\": 4,\n  \"distinctSourceNamesWithCurrentSameCityPlaceOrAreaCorroboration\": 59,\n  \"statusCounts\": {\n    \"current_official_ksh_settlement_part_name\": 4,\n    \"current_osm_place_or_quarter_label\": 54,\n    \"current_street_name_only_not_place_confirmation\": 2,\n    \"dated_2026_official_same_city_locality_use\": 1,\n    \"official_undated_address_name_use_freshness_unverified\": 1,\n    \"related_prefixed_current_facility_name_not_exact_quarter_confirmation\": 1,\n    \"unknown_current_name_from_checked_sources\": 4\n  },\n  \"unknownCurrentNameNames\": [\n    \"Déli gazdasági terület\",\n    \"Szabolcs\",\n    \"Budaiváros\",\n    \"Üszögi tározó-major\"\n  ],\n  \"sourceNamesWithoutStrictCurrentPlaceOrAreaCorroboration\": [\n    \"Déli gazdasági terület\",\n    \"Újmecsekalja\",\n    \"Szabolcs\",\n    \"Budaiváros\",\n    \"Szigeti tanya\",\n    \"Nyugati ipari út\",\n    \"Üszögi tározó-major\",\n    \"Köztemető\"\n  ],\n  \"newGeometryOrBoundaryApprovals\": 0,\n  \"nameOnly\": true,\n  \"frozenSourcesModified\": false,\n  \"globalChanges\": false,\n  \"check\": true\n}\n\n"
+    }
+  ],
+  "nodeTestCount": 67,
+  "pythonTestCount": 10,
+  "freshFullPrimaryTestRun": true,
+  "previousCheckpointValidationPath": "data/neighborhoods/research/checkpoint-validation-483-124.json",
+  "catalogComparisonToPreviousRelease": {
+    "referenceArchive": "otthonra-ingyenes-varosreszhatarok-483-124-allapot.zip",
+    "featureIdsAndNamesAndMunicipalitiesUnchanged": 572,
+    "sourceGeometryValuesUnchanged": 572,
+    "sourceGeometryAcquisitionsFromThisReclassification": 0,
+    "boundaryKindChanges": 23,
+    "changedKindMunicipality": "Eger",
+    "explanation": "Only 23 qualified historical Eger source base-plan records move from planning to primary quarter-candidate classification; all 572 catalog geometries remain unchanged."
+  },
+  "generatedPreviewBehavior": {
+    "status": "passed_actual_generated_script_behavior",
+    "inferredFeatures": 137,
+    "inferredMunicipalities": 13,
+    "sourceCoverageUnchangedByLayerToggle": true,
+    "realBrowserLayoutVerified": false
+  },
+  "realBrowserLayout": "not verified: bundled Chromium absent; system Chromium startup denied setsockopt by runtime",
+  "sourceEraAndCurrentExtent": {
+    "egerHistoricalQualifiedBasePlanCandidates": 23,
+    "egerCurrentOrdinaryWholeQuarterExtentsVerified": 0,
+    "pecsHistoricalSourceNames": 67,
+    "pecsObservedContours": 65,
+    "pecsLowConfidenceCapReconstructions": 2,
+    "pecsCurrentSameCityNamesCorroborated": 59,
+    "allInferredLayersSeparate": true
+  },
+  "remoteCiRun": false,
+  "applicationDeploymentPerformed": false,
+  "outputFingerprints": {
+    "catalog.geojson": "9c34e39523391ba52ab49877f9a055289a82fa88b5f75c1187c09716e3cc6406",
+    "neighborhoods.geojson": "8eca9d097fb6714c31ca942f57ff0d8f683f8f4fe13af0161b12da19b20e8f74",
+    "planning-units.geojson": "210d68a378ab01d26383825c2beb8896655e43b0e40d39f2add541ac7f090ce5",
+    "nationwide-report.csv": "b3eb4cf9f35d40c70944bc394d9a03b148a45f9d01e46e37c686e0e1a197c4a7",
+    "estimated-candidates.geojson": "a1b393c1f176e2914a62314b2d11941338fd97c1165cec20feae10071b23ec7b",
+    "estimated-report.csv": "d67ca6ef02295e8983b8323697e89dfe11654e6757edaaca8639f7eaf80fc78b",
+    "estimated-report.json": "728dbac286bc59051d4682c4ae261ee3198b9b87997b4efba258db20cf7d17f0",
+    "review.html": "dc4c3e2845f9bfb7c4e84c81c6ba1b32868260f2206bae19724f8f1494884aaa"
+  }
+}

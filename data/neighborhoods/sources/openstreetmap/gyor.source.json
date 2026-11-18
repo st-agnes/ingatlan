@@ -1,0 +1,29 @@
+{
+  "city": "Győr",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:30][maxsize:67108864];\nrelation(1440627)[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"=\"Győr\"]->.municipality;\n.municipality out tags center;\n.municipality map_to_area ->.city;\n(\n  relation(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"];\n  way(area.city)[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(9|10|11)$\"][\"name\"](if:is_closed());\n  relation(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"];\n  way(area.city)[\"place\"~\"^(suburb|quarter|neighbourhood)$\"][\"name\"](if:is_closed());\n);\nout geom;\n",
+  "retrievedAt": "2026-11-13T09:34:29.809Z",
+  "sha256": "6f6ad3c88b7ec9257ad817c9830e00d515b379d6e6dc031217b522e719295e89",
+  "bytes": 813,
+  "attribution": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "licenseUrl": "https://www.openstreetmap.org/copyright",
+  "municipalityRelationId": 1440627,
+  "municipalityAdminLevel": "8",
+  "candidates": 0,
+  "byAdminLevel": {},
+  "relationsWithWayGeometry": 0,
+  "closedWays": 0,
+  "osmTimestamp": "2026-11-13T09:32:55Z",
+  "completeCoverage": false,
+  "reviewStatus": "unreviewed",
+  "usableForAddressAssignment": false,
+  "attempts": [
+    {
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "status": "ok"
+    }
+  ],
+  "status": "downloaded",
+  "file": "gyor.json"
+}

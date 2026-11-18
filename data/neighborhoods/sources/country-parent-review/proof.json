@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Three explicit source parent associations; no change to general country association rules.",
+  "inputs": [
+    {
+      "path": "data/neighborhoods/sources/country-osm/polygons.geojson.gz",
+      "decompressedSha256": "555f12d1537c5df370477c4547723d4501bf030835fe758ff72cf9bed8a58683"
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz",
+      "decompressedSha256": "05c02b8ac8f32df2d917e01f6de81c6133c5e7dd527114f67000b43467a3a048"
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/municipalities.geojson.gz",
+      "decompressedSha256": "b9cf74fc6a3a4769f7f4e4d01497fa217c7ee79dfc1c55f1fa6c66eabe281d56"
+    }
+  ],
+  "records": [
+    {
+      "sourceId": "osm:way:971577592",
+      "sourceName": "Piac",
+      "canonicalName": "Piac",
+      "municipality": "Csenger",
+      "labelNodeId": "osm:node:8992354720",
+      "labelName": "Piac",
+      "labelAliases": [
+        "Piac",
+        ""
+      ],
+      "sameNameOrExplicitAlias": true,
+      "pointInsideOriginalPolygon": true,
+      "pointInsideCanonicalMunicipality": true,
+      "independentProviderCorroboration": false,
+      "fullContainment": false,
+      "overlapFraction": 0.9690400278810914,
+      "outsideParentAreaM2": 12531.505705503223,
+      "geometryChanged": false,
+      "legalBoundaryVerified": false
+    },
+    {
+      "sourceId": "osm:way:981846405",
+      "sourceName": "Berekalja",
+      "canonicalName": "Berekalja",
+      "municipality": "Csenger",
+      "labelNodeId": "osm:node:9080910862",
+      "labelName": "Berekalja",
+      "labelAliases": [
+        "Berekalja",
+        ""
+      ],
+      "sameNameOrExplicitAlias": true,
+      "pointInsideOriginalPolygon": true,
+      "pointInsideCanonicalMunicipality": true,
+      "independentProviderCorroboration": false,
+      "fullContainment": false,
+      "overlapFraction": 0.9890036467940169,
+      "outsideParentAreaM2": 2222.988673120475,
+      "geometryChanged": false,
+      "legalBoundaryVerified": false
+    },
+    {
+      "sourceId": "osm:way:988254771",
+      "sourceName": "Akna",
+      "canonicalName": "VI. akna lakótelep",
+      "municipality": "Dorog",
+      "labelNodeId": "osm:node:6344717844",
+      "labelName": "VI. akna lakótelep",
+      "labelAliases": [
+        "VI. akna lakótelep",
+        "Akna"
+      ],
+      "sameNameOrExplicitAlias": true,
+      "pointInsideOriginalPolygon": true,
+      "pointInsideCanonicalMunicipality": true,
+      "independentProviderCorroboration": false,
+      "fullContainment": false,
+      "overlapFraction": 0.9952650227135711,
+      "outsideParentAreaM2": 343.3555415633018,
+      "geometryChanged": false,
+      "legalBoundaryVerified": false
+    }
+  ],
+  "outputSha256": "4f6404e725f62e36d96bc71fa9428e74947a16ea033f4de65acf6102c3ed89c1",
+  "limits": [
+    "No geometry or legal boundary verification is implied.",
+    "Full original crossing geometries and exact label identities are preserved."
+  ],
+  "reproduce": "PYTHONPATH=.local/geodata python3 scripts/neighborhoods/derive-parent-review.py"
+}

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "fitCrs": "EPSG:23700",
+  "outputCrs": "EPSG:4326",
+  "affineImagePixelToEovRows": [
+    [
+      1.8947350291400653,
+      0.006141250124499827
+    ],
+    [
+      0.0037289284334560925,
+      -1.872700383547181
+    ],
+    [
+      698285.4219558695,
+      175299.1565333398
+    ]
+  ],
+  "controlCount": 6,
+  "controlResidualMeters": [
+    3.287598810620155,
+    4.787726003229771,
+    1.1242697205185157,
+    1.9731379398351536,
+    9.735168889125108,
+    8.494347407926316
+  ],
+  "maximumControlResidualMeters": 9.735168889125108,
+  "rmsControlResidualMeters": 5.8568383556036325,
+  "sameImagePriorPageImageRectanglePixelsExactlyEqualArchivedPdfRender": true,
+  "sourceImageRectangleCheckPageRenderBounds": [
+    190,
+    396,
+    1000,
+    1543
+  ],
+  "sourceImageRectanglePixelMismatchCount": 0,
+  "otherFigureTransformReused": false,
+  "excludedPriorComparisonDiagnostic": {
+    "osmNodeId": 495545211,
+    "originalSourcePixel": [
+      434.31839988191007,
+      590.0191757742499
+    ],
+    "newModelPredictedSourcePixel": [
+      423.5567545903614,
+      569.3776212119701
+    ],
+    "insideOriginalInterpretationWindow": false,
+    "sourceFeatureIdentityUnconfirmed": true,
+    "usedInFit": false,
+    "identityCaution": "Previous same-image comparison treated the source quarter triple junction as the modern Jókai/Piaristák road junction. Its exact physical identity is unconfirmed and it fails the new fit check; preserve it as an excluded diagnostic, not a validated control."
+  },
+  "modelSensitivity": {
+    "leaveOneControlOut": [
+      {
+        "omittedControlId": "node-4170613208",
+        "omittedControlPredictionErrorMeters": 15.093033111085605,
+        "maximumSourceVertexDisplacementMeters": 4.047437942658035,
+        "meanSourceVertexDisplacementMeters": 1.7840144203179624
+      },
+      {
+        "omittedControlId": "node-4331477437",
+        "omittedControlPredictionErrorMeters": 12.663773359699935,
+        "maximumSourceVertexDisplacementMeters": 3.614846118693894,
+        "meanSourceVertexDisplacementMeters": 1.2205279036306174
+      },
+      {
+        "omittedControlId": "node-494254692",
+        "omittedControlPredictionErrorMeters": 1.4058635972798694,
+        "maximumSourceVertexDisplacementMeters": 0.29644390281095734,
+        "meanSourceVertexDisplacementMeters": 0.18884853787052336
+      },
+      {
+        "omittedControlId": "node-265343223",
+        "omittedControlPredictionErrorMeters": 5.393990019052212,
+        "maximumSourceVertexDisplacementMeters": 3.411509740398772,
+        "meanSourceVertexDisplacementMeters": 1.7873677613552619
+      },
+      {
+        "omittedControlId": "node-494064509",
+        "omittedControlPredictionErrorMeters": 16.924543892969325,
+        "maximumSourceVertexDisplacementMeters": 7.215149820425513,
+        "meanSourceVertexDisplacementMeters": 4.349277534837254
+      },
+      {
+        "omittedControlId": "node-494254697",
+        "omittedControlPredictionErrorMeters": 12.80427331490296,
+        "maximumSourceVertexDisplacementMeters": 4.890817346518833,
+        "meanSourceVertexDisplacementMeters": 3.8689913777313247
+      }
+    ],
+    "similarityVsAffineMaximumSourceVertexDisplacementMeters": 5.328324500294829,
+    "similarityVsAffineMeanSourceVertexDisplacementMeters": 2.6573401487273864,
+    "diagnosticNotCalibratedBoundaryErrorBound": true
+  },
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

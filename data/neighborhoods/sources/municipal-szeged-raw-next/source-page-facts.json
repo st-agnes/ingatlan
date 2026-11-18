@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "henits2013",
+      "url": "https://doktori.bibl.u-szeged.hu/id/eprint/1759/1/doktori_HL.pdf",
+      "localOriginal": ".local/neighborhoods/quarter-map-batch/szeged-henits-ksh-map-2013.pdf",
+      "sha256": "b490214f9f038afe38fb1c74e24c0d5b99aeb04e54f192c417b06018363b3d0f",
+      "fullRawOriginalStaysLocal": true
+    },
+    {
+      "id": "ksh2014",
+      "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/pdf/muhelytanulmanyok4.pdf",
+      "localOriginal": ".local/neighborhoods/quarter-map-batch/ksh-szeged-map-2014.pdf",
+      "sha256": "9a61caa7d022e0d623bd78f21ce8d8953fa7e47f49ba48be5c18b13c44286995",
+      "fullRawOriginalStaysLocal": true
+    },
+    {
+      "id": "kleb2007",
+      "url": "https://www.klebelsberg-egyesulet.hu/wp-content/uploads/2016/04/helytortenet.pdf",
+      "localOriginal": ".local/neighborhoods/quarter-map-batch/klebelsberg-history-2007.pdf",
+      "sha256": "aa6b8466ea597f604691f6b4def6104b68e000a6348cb85c1f2ec47e33d136f3",
+      "fullRawOriginalStaysLocal": true
+    }
+  ],
+  "selectedMaps": [
+    {
+      "path": "henits-p24-xref249.jpeg",
+      "sha256": "e3ba7c2ba2d955fbf0ae08c847edba5502ce90d776a649819b33a26f51323c6e",
+      "pdfPageOneBased": 24,
+      "printedPage": 23,
+      "figure": "3.2",
+      "xref": 249,
+      "dimensionsPixels": [
+        1174,
+        1018
+      ],
+      "processing": "Bit-exact original native JPEG; no interpolation."
+    },
+    {
+      "path": "ksh-p54-map-assembled.png",
+      "sha256": "56585d091db293434df406d3d75eeb563328faf47d4dbf50697e2d4253d20649",
+      "pdfPageOneBased": 54,
+      "printedPage": 53,
+      "figure": 1,
+      "originalImageXrefs": [
+        159,
+        160,
+        161,
+        162,
+        163
+      ],
+      "processing": "Exact decoded-pixel concatenation of five native914x278strips in page order, then90degree clockwise rotation; no resampling.",
+      "dimensionsPixels": [
+        1390,
+        914
+      ],
+      "role": "Companion for physical road-junction identification and source-schema comparison only."
+    }
+  ],
+  "mapOnlyPdf": {
+    "path": "source-map-only.pdf",
+    "sha256": "4e0f5625e56e60170e951834dfe68502fb26aac6ca10f071da45e737d11a2960",
+    "mapPages": 2,
+    "sourceNarrativeTextObjects": 0
+  },
+  "bibliographicFacts": {
+    "henits2013": {
+      "author": "Henits László",
+      "year": 2013,
+      "title": "Szubpixel-alapú osztályozás alkalmazása a városi felszínborítás és területhasználat elemzésében",
+      "type": "University doctoral dissertation",
+      "upstreamMap": "KSH2003; original boundary delineation/survey date not established"
+    },
+    "ksh2014": {
+      "author": "Rácz Attila",
+      "year": 2014,
+      "title": "Szegregáció a fejekben",
+      "publisher": "KSH",
+      "upstreamMap": "Kovács2003"
+    },
+    "kleb2007": {
+      "editor": "Újvári Edit",
+      "year": 2007,
+      "title": "Szeged-Klebelsberg-telep története",
+      "isbn": "978-963-06-2610-1",
+      "role": "Correct place-name spelling and historical alias/perimeter context only, not a copied geometric circuit."
+    }
+  },
+  "nameKeyFacts": [
+    {
+      "sourceUnit": 19,
+      "nameAsPrinted": "Klebersberg-telep",
+      "candidateName": "Klebelsberg-telep",
+      "bodyPdfPageOneBased": 26,
+      "bodyPrintedPage": 25,
+      "normalization": "Explicit spelling correction supported by correct Klebelsberg name in KSH2014 PDF53 and local2007history PDF9; current OSM Klebelsbergtelep is a punctuation variant. Distinct southern Hattyas point is not merged."
+    },
+    {
+      "sourceUnit": 20,
+      "nameAsPrinted": "Kecskés-telep",
+      "candidateName": "Kecskés-telep",
+      "bodyPdfPageOneBased": 25,
+      "bodyPrintedPage": 24,
+      "currentEvidence": "OSM Kecskés István-telep explicitly lists Kecskés-telep in loc_name."
+    },
+    {
+      "sourceUnit": 28,
+      "nameAsPrinted": "Odessza",
+      "candidateName": "Odessza",
+      "bodyPdfPageOneBased": 25,
+      "bodyPrintedPage": 24
+    },
+    {
+      "sourceUnit": 11,
+      "nameAsPrinted": "Marostő",
+      "candidateName": "Marostő",
+      "bodyPdfPageOneBased": 25,
+      "bodyPrintedPage": 24
+    }
+  ],
+  "scopeFacts": [
+    "Black individual numbered contours are fine named areas within nine functional color groups; functional colors are not whole-neighborhood identifiers.",
+    "The admitted four are historical source-map extents; equality with a present whole-quarter boundary or the2007 natural-perimeter description has not been established.",
+    "Tarján source-version identity and Felsőváros planning/name conflict remain outside this cohort.",
+    "KSH/Henits numbering32/34 and conflicting Bodomi27 references are not silently reconciled.",
+    "Újszőreg27 has an explicit source key but its label occludes its narrow map perimeter; no polygon is emitted."
+  ],
+  "contentMinimization": {
+    "verbatimNarrativeQuotationWords": 0,
+    "fullNarrativeParagraphsOrPagesRetained": false,
+    "onlySelectedMapGraphicsGeographicLabelsBibliographyAndParaphrasedFacts": true
+  }
+}

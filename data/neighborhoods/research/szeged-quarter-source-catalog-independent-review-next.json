@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "independent_read_only_exact_source_catalog_audit",
+  "reviewer": "independent child agent zala_semantic_qa",
+  "reviewedAt": "2026-11-14",
+  "status": "passes_local_provenance_counts_scope_and_minimization_checks",
+  "catalog": {
+    "path": "data/neighborhoods/research/szeged-quarter-source-catalog-next.json",
+    "sha256": "ee6fe1c89b5a9b37d54f3f1247dffcd0017079e0da10b53c2b80ff2649348735",
+    "schemaVersion": 2,
+    "entryCount": 11,
+    "uniqueExactUrls": 11,
+    "officialMunicipalEntries": 9,
+    "supportingNonMunicipalEntries": 2,
+    "previousPublicReadEntries": 8,
+    "newRootReportedIndexedEntries": 3
+  },
+  "pinnedInputChecks": [
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/source-facts.json",
+      "sha256": "27c323788f68cbe7eb17d96a108baa7fcd32e47ad75027c8983760b088e81469",
+      "matchesPinnedHash": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/independent-review.json",
+      "sha256": "d1716bab050d70356542fb364498aae99b1b43475b6e6e9cc9b1d24581e1349c",
+      "matchesPinnedHash": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/boundary-obstacles.json",
+      "sha256": "4d54ffd4a0a3cfa8897c347966b719c9aa23b2f9a64d1361c356afc933d91f7f",
+      "matchesPinnedHash": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-more/source-facts.json",
+      "sha256": "b06447d58d364e30c76ce16e1ba6850249c2a8c4bedb44718c848c4b7c13ba56",
+      "matchesPinnedHash": true
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-more/independent-obstacle-review.json",
+      "sha256": "9f8640611c10e46020269c9f9533bedefe8b1b63a1845c8bf7823903c12ae2c9",
+      "matchesPinnedHash": true
+    },
+    {
+      "path": "data/neighborhoods/research/szeged-local-source-scout-next.json",
+      "sha256": "0d02ba5f749f8ced8fe33a0452387726d4af88a9cd4da8357b4ce3d03c964b4e",
+      "matchesPinnedHash": true
+    }
+  ],
+  "previousEightExactUrlChecks": [
+    {
+      "id": "szeged-cycle-network-2015",
+      "url": "https://megujul.szeged.hu/data/portal/cikk/miert-pont-igy/szeged_kerekparhalozati_terv_2015.pdf",
+      "pinnedEvidencePath": "data/neighborhoods/sources/municipal-szeged-more/independent-obstacle-review.json",
+      "exactUrlFoundInProof": true,
+      "rawOriginalClaimedPresent": false
+    },
+    {
+      "id": "szeged-estate-map-2001",
+      "url": "https://geography.hu/mfk2001/cikkek/TothKKeseru.pdf",
+      "pinnedEvidencePath": "data/neighborhoods/sources/municipal-szeged-more/source-facts.json",
+      "exactUrlFoundInProof": true,
+      "rawOriginalClaimedPresent": false
+    },
+    {
+      "id": "klebelsberg-history-2007",
+      "url": "https://www.klebelsberg-egyesulet.hu/wp-content/uploads/2016/04/helytortenet.pdf",
+      "pinnedEvidencePath": "data/neighborhoods/sources/municipal-szeged-more/source-facts.json",
+      "exactUrlFoundInProof": true,
+      "rawOriginalClaimedPresent": false
+    },
+    {
+      "id": "szeged-its-adopted-annex-2017",
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101",
+      "pinnedEvidencePath": "data/neighborhoods/sources/municipal-szeged-next/source-facts.json",
+      "exactUrlFoundInProof": true,
+      "rawOriginalClaimedPresent": false
+    },
+    {
+      "id": "szeged-corroborating-its-20490",
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=20490",
+      "pinnedEvidencePath": "data/neighborhoods/sources/municipal-szeged-next/source-facts.json",
+      "exactUrlFoundInProof": true,
+      "rawOriginalClaimedPresent": false
+    },
+    {
+      "id": "szeged-fvs-2023-kalvaria",
+      "url": "https://www.szegedvaros.hu/storage/document/17/default/3602/FVS_Szeged_MJV_2021_2027_egys_szerk_VFKB_231130.pdf",
+      "pinnedEvidencePath": "data/neighborhoods/sources/municipal-szeged-next/boundary-obstacles.json",
+      "exactUrlFoundInProof": true,
+      "rawOriginalClaimedPresent": false
+    },
+    {
+      "id": "szeged-ivs-odessza-chapter5",
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18321&as_attachment=1",
+      "pinnedEvidencePath": "data/neighborhoods/sources/municipal-szeged-more/source-facts.json",
+      "exactUrlFoundInProof": true,
+      "rawOriginalClaimedPresent": false
+    },
+    {
+      "id": "szeged-concept-19546",
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=19546&as_attachment=1",
+      "pinnedEvidencePath": "data/neighborhoods/sources/municipal-szeged-next/source-facts.json",
+      "exactUrlFoundInProof": true,
+      "rawOriginalClaimedPresent": false
+    }
+  ],
+  "newThreeRootReportedUrlCheck": {
+    "expectedUrls": [
+      "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18320",
+      "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18325&as_attachment=1",
+      "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=18324"
+    ],
+    "allExactMatchIncluding18324NoSlashAnd18325AttachmentFlag": true,
+    "rootReportedTitlesAndChapterHintsRetained": true,
+    "exactPrintedPdfAndMapPagesNotInvented": true,
+    "sourceYearsNotTakenFromCrawlDates": true,
+    "provenanceLimit": "This reviewer verified local catalog and parent/root-reported exact URLs only. New indexed titles/contents remain attributed to the root web search; this agent made no independent network request."
+  },
+  "scopeChecks": {
+    "fineNamed2017SubdivisionSeparatedFromBelsőTarjánActionArea": true,
+    "OdesszaChapter5ExplicitlyCorroborationOnlyNotWholeQuarter": true,
+    "cyclePlanTreatedAsAlignmentLeadNotQuarterPolygon": true,
+    "academic2001MapNotClaimedCurrentMunicipalSurvey": true,
+    "KlebelsbergPage9IdentifiedAsTextNotGuessedMapPage": true,
+    "conceptNameMorphologyConflictPreserved": true,
+    "TarjanSourceVersionsNotDoubleCounted": true,
+    "unconfirmed18319AttachmentChapterMappingNotPromoted": true,
+    "unconfirmed18327FineMapScopeNotPromoted": true,
+    "currentInfoterkepNotReusedAsQuarterSource": true,
+    "rawHttpSuccessPdfHashesAndNativeContourSemanticsRemainAcquisitionChecks": true
+  },
+  "dateAndPageChecks": {
+    "newRevisionDocumentYearUnknownPreserved": true,
+    "20490And19546YearsUnknownPreserved": true,
+    "knownPriorPrintedPageHintsSupportedByPinnedProofs": true,
+    "unknownMapPagesRemainUnknown": true
+  },
+  "contentMinimization": {
+    "directNarrativeQuotationWords": 0,
+    "fullNarrativeSourceTextOrRenderedPagesPresent": false,
+    "bibliographicTitlesAndShortPageChapterIdentifiersOnly": true
+  },
+  "noGeometryProduced": true,
+  "noNetworkCallsPerformed": true,
+  "noPermissionRequestsPerformed": true,
+  "noFrozenPacketModified": true,
+  "noGlobalRegistryModified": true
+}

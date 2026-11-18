@@ -1,0 +1,47 @@
+{
+  "municipality": "Mezőberény",
+  "name": "Városközpont",
+  "definitionSource": {
+    "url": "https://mezobereny.hu/adattar/PMH/antiszegr._2010_._majus_.pdf",
+    "title": "Mezőberény antiszegregációs terv, 2010. május",
+    "pdfPageIndex": 7,
+    "printedPage": 8,
+    "consultedVia": "public web PDF text extraction, 2026-11-15",
+    "binaryPdfArchived": false,
+    "role": "Explicit ordered street circuit defining the complete Városközpont district, transcribed below as factual road identifiers."
+  },
+  "contextSource": {
+    "url": "https://mezobereny.hu/adattar/Kozerdeku/megalapozo-tanulmany-mezobereny-integralt-telepuelesfejlesztesi-strategiajahoz_vegleges_210303-653048pdf.pdf",
+    "title": "Mezőberény Integrált Településfejlesztési Stratégia – megalapozó tanulmány, 2021. február",
+    "pdfPageIndices": [144, 145, 146],
+    "figure": 54,
+    "consultedVia": "public web PDF text extraction, 2026-11-15",
+    "binaryPdfArchived": false,
+    "facts": [
+      "The study reassesses and retains the previous seven-part subdivision.",
+      "The central district includes residential blocks, Luther tér, Kismester and Nagymester streets and the Kölcsey estate context, rather than just the municipal office building or a commercial zoning parcel.",
+      "The complete district and the narrower town-center building zone are different concepts."
+    ]
+  },
+  "historicalSourceYear": 2010,
+  "sourceSidesQualification": "The planning text explicitly includes both sides of the Puskin segment up to Madách. This reconstruction follows street centerlines and does not claim cadastral parcel-side precision.",
+  "legs": [
+    {"sourceStreet": "Hunyadi János u.", "osmNames": ["Hunyadi János utca"]},
+    {"sourceStreet": "Kodály Zoltán út", "osmNames": ["Kodály Zoltán út"]},
+    {"sourceStreet": "Korona u.", "osmNames": ["Korona utca"]},
+    {"sourceStreet": "Vésztői út", "osmNames": ["Vésztői út"]},
+    {"sourceStreet": "Belencéresi út", "osmNames": ["Belencéresi utca"]},
+    {"sourceStreet": "Bajcsy-Zsilinszky u.", "osmNames": ["Bajcsy-Zsilinszky Endre utca"]},
+    {"sourceStreet": "Liget u.", "osmNames": ["Liget utca", "Liget köz"]},
+    {"sourceStreet": "Liget tér", "osmNames": ["Liget tér"]},
+    {"sourceStreet": "Hajnal u.", "osmNames": ["Hajnal utca"]},
+    {"sourceStreet": "Békési út", "osmNames": ["Békési út"]},
+    {"sourceStreet": "Tavasz u.", "osmNames": ["Tavasz utca"]},
+    {"sourceStreet": "Vadász u.", "osmNames": ["Vadász utca"]},
+    {"sourceStreet": "Madách Imre u.", "osmNames": ["Madách Imre utca", "Madách utca"]},
+    {"sourceStreet": "Puskin u.", "osmNames": ["Puskin utca"]},
+    {"sourceStreet": "Luther u.", "osmNames": ["Luther utca", "Luther Márton utca", "Luther Márton tér"]},
+    {"sourceStreet": "Orlai u.", "osmNames": ["Orlai Petrich Soma utca"]},
+    {"sourceStreet": "Gyomai u.", "osmNames": ["Gyomai út"]}
+  ]
+}

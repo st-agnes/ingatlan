@@ -1,0 +1,17 @@
+{
+  "id": "public-vector-esztergom-2013",
+  "path": "data/neighborhoods/sources/public-vector-next/esztergom-candidates.geojson",
+  "sha256": "169bb059c571c1f85e8809b6dd23249d36fe4d41ecc4a5023578207f20d90592",
+  "municipality": "Esztergom",
+  "method": "Unmodified historical Esztergom quarter GeoJSON from a pinned public repository. Metadata cites a2008municipal proposal/decree location; feature timestamps are2013-11-28, not a verified survey date. No coordinate transformation, clipping, snapping, repair, buffer, or generated closing edges.",
+  "evidenceUrls": [
+    "https://github.com/codeforgermany/click_that_hood/blob/48ba05ad4c6969e3b3c25735492169227ae411f1/public/data/esztergom.geojson",
+    "https://github.com/codeforgermany/click_that_hood/blob/48ba05ad4c6969e3b3c25735492169227ae411f1/public/data/esztergom.metadata.json"
+  ],
+  "license": "Individual dataset licence not specified; upstream software MIT; cited municipal source not retrieved",
+  "propertyOverrides": {
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/public-vector-next/esztergom-proof.json",
+  "rightsStatus": "Individual dataset licence not explicit; MIT is preserved as software licence only."
+}

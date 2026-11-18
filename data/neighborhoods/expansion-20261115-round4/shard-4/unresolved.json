@@ -1,0 +1,205 @@
+{
+  "allAssignedTargetsAttempted": true,
+  "assignedTargetCount": 63,
+  "missingGeometryTargets": [],
+  "fullyVerifiedModernQuarterBoundaries": 0,
+  "remainingBoundaryUncertainty": "All63 outputs remain approximate search areas. Physical compartments need not coincide with traditional/legal boundaries. No modern cadastral accuracy is claimed.",
+  "sourceIdentityAmbiguities": [
+    {
+      "municipality": "Kecskemét",
+      "sourceName": "Bordás",
+      "proposedCanonicalName": "Borbás",
+      "confidence": "high",
+      "status": "source-supported map spelling discrepancy; root identity decision requested",
+      "sourceUrl": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+      "sourceLocalPath": "kecskemet/municipal-source-pages.pdf",
+      "pagesOneBasedOriginal": [
+        138,
+        139
+      ],
+      "evidence": "Figure71/PDFp138 prints Bordás belterület on the orange northeastern satellite. The following page139 enumerates the satellite settlements as Szarkás,Borbás,Kisfái in that small-settlement group and does not list another Bordás. ExistingBorbásplace is at the same mapped orange satellite. This strongly supports a map typo/spelling variant rather than a separate quarter.",
+      "geometryHandling": "Kept separate estimate pending root decision; do not create a second identity if alias is accepted."
+    },
+    {
+      "municipality": "Kecskemét",
+      "sourceName": "Északi ipari övezet",
+      "proposedCanonicalName": "Északi logisztikai övezet",
+      "confidence": "medium",
+      "status": "probable planning-edition rename; do not merge automatically",
+      "sourceUrl": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+      "relatedEarlierUrl": "https://kecskemet.hu/uploaded_files/files/document/2022-11/69-2021_%28X_21%29_normativ_hatarozat_melleklet_2.pdf",
+      "pagesOneBasedOriginal": [
+        138
+      ],
+      "evidence": "The current cached figure71 says Északi logisztikai övezet between the same northern garden units where the earlier municipal-document web index lists Északi ipari övezet. Spatial/functional agreement supports a versioned label, but no explicit textual statement of equivalence was found.",
+      "geometryHandling": "Retained requested inventoryname and explicit semantic uncertainty."
+    },
+    {
+      "municipality": "Kecskemét",
+      "sourceName": "Bödögsor",
+      "sourceMapSpelling": "Bódogsor",
+      "confidence": "high for printed source spelling",
+      "status": "spelling review only; no duplicate inventorycanonical known",
+      "sourceUrl": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+      "pagesOneBasedOriginal": [
+        138
+      ],
+      "evidence": "The source map clearly prints Bódogsor; inventory spelling Bödögsor is retained for matching until root chooses canonical display/alias."
+    }
+  ],
+  "partialOrSpecialCases": [
+    {
+      "municipality": "Bér",
+      "name": "Virágospuszta",
+      "note": "Low-confidence settlement estimate: literal complete OSM farmyard enclosure at the named source settlement, including adjoining yard land rather than a single building. Source place point identifies the farmstead; it does not set its shape. The wider historical settlement may extend beyond this footprint."
+    },
+    {
+      "municipality": "Ecséd",
+      "name": "Fáy tanyák",
+      "note": "Low-confidence settlement estimate: literal complete OSM farmyard enclosure at the named source settlement, including adjoining yard land rather than a single building. Source place point identifies the farmstead; it does not set its shape. The wider historical settlement may extend beyond this footprint."
+    },
+    {
+      "municipality": "Felsőlajos",
+      "name": "Benedűlő",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Lajosmizse",
+      "name": "Bene",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Lajosmizse",
+      "name": "Berénybene",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Bugac",
+      "name": "Bugac Puszta",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Nagykáta",
+      "name": "Erdőszőlő",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Cegléd",
+      "name": "Akasztó",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Farmos",
+      "name": "Muszály",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Zabar",
+      "name": "Hármashatár",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Zabar",
+      "name": "Malom út",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Domaháza",
+      "name": "Sipos-kút",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Tiszakécske",
+      "name": "Pereghalom",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Váraszó",
+      "name": "Szalajkaház",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Váraszó",
+      "name": "Tőzsértanya",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Váraszó",
+      "name": "Vaskapu",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Tarnalelesz",
+      "name": "Vállós-puszta",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Borsodszentgyörgy",
+      "name": "Palina-puszta",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Hódmezővásárhely",
+      "name": "Tegehalom tanya",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Szarvaskő",
+      "name": "Denár",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Nagykörű",
+      "name": "Homok",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Békésszentandrás",
+      "name": "Hegyeszug",
+      "note": "Low-confidence broad local search-area estimate from a complete compartment enclosed by actual archived roads/tracks, streams, railway, mapped surface edges or municipal limits. The OSM locality label identifies the compartment only; no radius, point rectangle or Voronoi construction is used. Adjoining rural land is retained. This is an approximate representative extent, and the traditional locality may cross these physical boundaries."
+    },
+    {
+      "municipality": "Kecskemét",
+      "name": "Bödögsor",
+      "note": "Low-confidence manual trace of the depicted whole area in municipal2021 consultation overview, figure71, PDF page138/printed136. Rough nine settlement/label affine fit has162m residual; that is not a boundary-accuracy guarantee. Boundaries follow the visible municipal map rather than a point buffer. Source spellings/semantics and possible incompleteness are recorded in kecskemet/source-provenance.json. Only42%of the coarse source-map trace survives clipping to the modern municipal boundary; the surviving city-side portion is a partial estimate, and its full source/map extent remains uncertain."
+    },
+    {
+      "municipality": "Kecskemét",
+      "name": "Bordás",
+      "note": "Low-confidence manual trace of the depicted whole area in municipal2021 consultation overview, figure71, PDF page138/printed136. Rough nine settlement/label affine fit has162m residual; that is not a boundary-accuracy guarantee. Boundaries follow the visible municipal map rather than a point buffer. Source spellings/semantics and possible incompleteness are recorded in kecskemet/source-provenance.json. The source says Bordás belterület; only that complete orange settlement footprint is represented, not the larger Borbás rural district."
+    },
+    {
+      "municipality": "Kecskemét",
+      "name": "Északi ipari övezet",
+      "note": "Low-confidence manual trace of the depicted whole area in municipal2021 consultation overview, figure71, PDF page138/printed136. Rough nine settlement/label affine fit has162m residual; that is not a boundary-accuracy guarantee. Boundaries follow the visible municipal map rather than a point buffer. Source spellings/semantics and possible incompleteness are recorded in kecskemet/source-provenance.json. Source overview labels the corresponding northern employment compartment Északi logisztikai övezet; identity alignment to the inventory industrial-area name is inferred and uncertain."
+    },
+    {
+      "municipality": "Újszentiván",
+      "name": "Major lakópark",
+      "note": "Low-confidence whole-quarter estimate from a visually reviewed group of real archived road/landscape blocks. Whole small housing estate loop at Major/Fürj street and its access from Fő street. The manual source-map selection groups blocks into an approximate neighborhood; source place point only checks identity and never sets size. Internal/outer transitions are inferred, may overlap adjacent quarters and have no claimed modern boundary accuracy. The selected closed road blocks are a conservative representative extent; open peripheral frontage can be omitted."
+    },
+    {
+      "municipality": "Noszvaj",
+      "name": "Alvég",
+      "note": "Low-confidence whole-quarter estimate from a visually reviewed group of real archived road/landscape blocks. Lower village roads around Mátyás tér, Deák Ferenc, Arany János and Honvéd streets; adjoining residential land included. The manual source-map selection groups blocks into an approximate neighborhood; source place point only checks identity and never sets size. Internal/outer transitions are inferred, may overlap adjacent quarters and have no claimed modern boundary accuracy. The selected closed road blocks are a conservative representative extent; open peripheral frontage can be omitted."
+    },
+    {
+      "municipality": "Tiszakécske",
+      "name": "Óbög",
+      "note": "Low-confidence broad Óbög estimate reusing the actual complete Bög residential corridor (OSMway228352517) and adjoining real road/landscape compartment containing the named Óbög place. This intentionally covers land and dwellings along the settlement corridor rather than a point buffer. It can include land associated with neighboring Újbög; exact traditional north/south separation is unresolved and overlaps are retained."
+    },
+    {
+      "municipality": "Salgótarján",
+      "name": "Külterület (Eresztvény nélkül)",
+      "note": "Low-confidence broad rural remainder informed by the2022municipal ITS sectionIII.3.1.10/PDFp139, explicitly excluding Eresztvény. Actual municipal boundary is retained; continuous native residential/employment/railway surfaces>=3ha and the prior municipal-map Eresztvény estimate are excluded. Physical mapped built-up land is only an approximation of the planning/cadastral rural classification; wooded urban interiors and sparse peripheral dwellings can be misclassified. All remaining rural land and scattered dwellings are retained, without any radius or point-derived partition."
+    }
+  ],
+  "searchesAndReviewedInputs": [
+    "All31 shared parent country-extraction contexts: actual native roads, waterways, railways, closed surfaces, municipal polygons and place/address records. No separate PBF scan.",
+    "All30 point-bearing town source-road maps rendered in inspection/; dense-quarter grouping recorded in manual-quarter-mask-review.json.",
+    "Full cached Kecskemét2021municipalPDF reviewed pp138–140,175,178, six named overview traces and three source-road block groups. Source subset and image archived in kecskemet/.",
+    "Cached Salgótarján2022ITS reviewed p139(sectionIII.3.1.10) and existing Eresztvény source estimate archived in salgotarjan/.",
+    "Primary municipal web text checked for Tiszaföldvár2021Homok circuit, municipal geography, Pásztó Plathi-negyed and Csongrád historic names; see primary-web-source-facts.json. No new binary downloads or shell network."
+  ],
+  "aliasMutationsPerformed": false
+}

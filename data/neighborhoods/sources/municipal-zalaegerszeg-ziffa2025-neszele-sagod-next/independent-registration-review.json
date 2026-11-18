@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "independent_neszele_registration_topology_containment_and_identity_audit",
+  "reviewer": "independent child agent zala_semantic_qa",
+  "status": "passes_as_one_estimated_Neszele_candidate_with_placement_alternative; Sagod_remains_source_pixel_quarantine",
+  "limitations": [
+    "Absolute geographic accuracy remains unknown. Native387x329 map, thick quarter band, manual road centerlines, unknown backdrop age/projection and current-road generalization limit placement.",
+    "Four-point similarity is a model assumption. Fit and holdout residuals are comparison diagnostics only; neither metre accuracy nor a complete uncertainty envelope is established.",
+    "Ságod is separately named in the source but its literal dark component is thematically contaminated and remains excluded from world candidates.",
+    "Consultation-study neighborhood extents do not establish surveyed/legal/cadastral boundaries or address assignment approval."
+  ],
+  "inputs": [
+    {
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/neszele-registration.json",
+      "sha256": "22d4d2bbb57165bb8fdb080635160b145f2b2b30f281ffdca0280ab047c2f8f4"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/neszele-literal-source-pixels.geojson",
+      "sha256": "f6982afed75fa4450a9db1e3368bfb5b754453f7ec6535f1a023ed599bdcc3ba"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-calibration-municipality.geojson",
+      "sha256": "24c706edf9def6ec7d8c5659edf831a2be192bf5bfa2c4ada9f290fdd9f7b734"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/current-name-evidence.geojson",
+      "sha256": "34a14b61786b8f27fd94f7cc72aba6c698733d9ff6ca1bda9b067530fe7f74cf"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/neszele-registration-preview.png",
+      "sha256": "273a545b85e6eb118f4680869b08cd3cd91ff7bed461ac10fe7ac58b7dddc2e9"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-road-pbf-review.json",
+      "sha256": "0c8b0184546a541f5e42c2af695ce8228c41887e18d9f79d11eaeba9901625da"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-source-road-control-review.json",
+      "sha256": "91397e4ec072fc47a2fc5828c11779c4ff192037d4d789574ffee434132d9195"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/sagod-literal-source-pixels.geojson",
+      "sha256": "d4a761f752a6bb8ace10cff3efcd2306d9a92cd2b64d94ec8a2c5dd1ae73c447"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-registration-review.py",
+      "sha256": "4eed681b508dc39b7a3cee352960cebab12eef12e2b0452f884faa5513118c86"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+      "sha256": "70b502949fcc8333ead5ffc0d404cbdd6198ec0a1f09241f88bd3509fc056b6a"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-quarantine.geojson",
+      "sha256": "0e5f6d1f016ad295205f27c6fb102b2ef77a4a54d71573ce079b340bd8908a80"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+      "sha256": "ad3c6702f5c9d72edd2073c8bd4f8cf40d988489a602c513b944874ddbe1409b"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/hathaz-inferred-import.geojson",
+      "sha256": "a941d069ca1e8219eddbac61ad6f2b49cc47425dd06750853b99bd2d4965578e"
+    }
+  ],
+  "sourceTopology": {
+    "type": "Polygon",
+    "isValid": true,
+    "areaSquarePixels": 40385.0,
+    "holes": 0,
+    "exteriorCoordinateCountIncludingClosure": 1035
+  },
+  "independentRefit": {
+    "model": "E=a*x+b*y+c; N=b*x-a*y+d, independently least-squares fitted from4 recorded actual road-junction correspondences",
+    "maximumMatrixCoefficientDifference": 0.0,
+    "maximumOffsetCoefficientDifference": 0.0,
+    "namePointUsedForFit": false
+  },
+  "visualRegistrationReview": "Source/road correspondence reviewed independently: four junctions are identifiable, while the central label-obscured junction is excluded. Preview generally follows the network; manual-pick and model ambiguity remain.",
+  "variants": [
+    {
+      "path": "neszele-inferred-import.geojson",
+      "sha256": "7575f4cd8c6f3ea8172069b2ef24c1cc3fc0319d523098102234e97807adea2b",
+      "type": "Polygon",
+      "isValidWgs84": true,
+      "isValidEov": true,
+      "validityReason": "Valid Geometry",
+      "holes": 0,
+      "exteriorCoordinateCountIncludingClosure": 1035,
+      "areaM2RecomputedEov": 279856.86452848953,
+      "areaMetadataAbsoluteDifferenceM2": 5.1849696319550276e-05,
+      "sourceForwardTransformHausdorffDegrees": 0.0,
+      "municipalityFullContainment": true,
+      "outsideMunicipalityAreaM2": 0.0,
+      "exactNamePointContained": true,
+      "namePointToBoundaryMetresDiagnosticOnly": 179.53481926523781
+    },
+    {
+      "path": "neszele-placement-alternative.geojson",
+      "sha256": "08483d919770dba450a71d965153eab65bce74b79129fb08078a0aa362a3524d",
+      "type": "Polygon",
+      "isValidWgs84": true,
+      "isValidEov": true,
+      "validityReason": "Valid Geometry",
+      "holes": 0,
+      "exteriorCoordinateCountIncludingClosure": 1035,
+      "areaM2RecomputedEov": 291530.63327106804,
+      "areaMetadataAbsoluteDifferenceM2": 5.3871015552431345e-05,
+      "sourceForwardTransformHausdorffDegrees": 0.0,
+      "municipalityFullContainment": true,
+      "outsideMunicipalityAreaM2": 0.0,
+      "exactNamePointContained": true,
+      "namePointToBoundaryMetresDiagnosticOnly": 183.83364648966392
+    }
+  ],
+  "independentRoadHoldoutDiagnostics": [
+    {
+      "id": "jegmadar_jedlik",
+      "sourcePixelXYApproximate": [
+        310,
+        213
+      ],
+      "wgs84": [
+        16.8317051,
+        46.8561736
+      ],
+      "originalOsmNodeId": 386168968,
+      "sourcePickingCaveat": "Moderate: small visible junction, approximately2sourcepixel manual picking.",
+      "usedForFit": false,
+      "mainDifferenceMetresDiagnosticOnly": 4.299482914734919,
+      "alternativeDifferenceMetresDiagnosticOnly": 3.3254133336736276
+    },
+    {
+      "id": "neszele_zala_malom",
+      "sourcePixelXYApproximate": [
+        179,
+        267
+      ],
+      "wgs84": [
+        16.8270657,
+        46.8548101
+      ],
+      "originalOsmNodeId": 347300965,
+      "sourcePickingCaveat": "Moderate-to-low: source quarter band interferes with gray road, a few sourcepixels of picking ambiguity.",
+      "usedForFit": false,
+      "mainDifferenceMetresDiagnosticOnly": 7.9136768606010195,
+      "alternativeDifferenceMetresDiagnosticOnly": 4.716929621359372
+    }
+  ],
+  "alternativeDifference": {
+    "symmetricDifferenceAreaM2": 15313.106149748803,
+    "hausdorffMetres": 13.765649013504953,
+    "meaning": "Two placement hypotheses of one contour only; not additional quarters or accuracy bounds."
+  },
+  "identityReview": {
+    "name": "Neszele",
+    "sourceSchemaId": "zalaegerszeg-ziffa2025-chapter3.4-unit16-map-neszele",
+    "sourceUnitNumber": 16,
+    "sharedChapterGroup": "Neszele-Ságod",
+    "separateObservedFineContour": true,
+    "notParentCloneOrGroupAlias": true,
+    "previousFrozenFeaturesCompared": 14,
+    "comparisons": [
+      {
+        "input": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+        "name": "Belváros",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 412.4655190426837
+      },
+      {
+        "input": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+        "name": "Páterdomb",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 1888.2039659097954
+      },
+      {
+        "input": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+        "name": "Kertváros",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 1891.6804090823744
+      },
+      {
+        "input": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+        "name": "Csácsbozsok",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 1631.812919548858
+      },
+      {
+        "input": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+        "name": "Vorhota",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 463.33931320436807
+      },
+      {
+        "input": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-quarantine.geojson",
+        "name": "Ola",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 196.89502368099235
+      },
+      {
+        "input": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-quarantine.geojson",
+        "name": "Landorhegy",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 843.3122203637929
+      },
+      {
+        "input": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+        "name": "Iparterület",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 1864.0584867729203
+      },
+      {
+        "input": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+        "name": "Zalabesenyő",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 4428.912328594521
+      },
+      {
+        "input": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+        "name": "Botfa",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 5911.886368602227
+      },
+      {
+        "input": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+        "name": "Bazita",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 5019.048159895114
+      },
+      {
+        "input": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+        "name": "Ebergény",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 3184.655238675932
+      },
+      {
+        "input": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+        "name": "Szenterzsébethegy",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 2698.1459727181746
+      },
+      {
+        "input": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-next/hathaz-inferred-import.geojson",
+        "name": "Hatház",
+        "exactCanonicalNameEqual": false,
+        "exactGeometryEqual": false,
+        "intersectionAreaM2": 0.0,
+        "distanceMetresDiagnosticOnly": 3721.914169863329
+      }
+    ],
+    "SagodWorldCandidateAbsent": true,
+    "SagodSourcePixelQuarantineExplicit": true
+  },
+  "primaryFeatureCount": 0,
+  "estimatedFeatureCount": 1,
+  "placementAlternativeAdditionalFeatureCount": 0,
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "directNarrativeQuotationWords": 0,
+  "networkCallsPerformed": false,
+  "globalRegistryModified": false,
+  "hathazFrozenPacketModified": false
+}

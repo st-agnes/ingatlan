@@ -29,7 +29,10 @@ assert.deepEqual(buyerEntities.searchRequests.map(item=>item.id).sort(),fixture.
 const property=sellerEntities.properties.find(item=>item.id===fixture.propertyId);
 assert.ok(property);assert.equal(property.ownerAccountType,'private');assert.equal(property.city,'Budapest');assert.equal(property.district,'XIII.');
 assert.equal(property.locationId,'district:Budapest:13');assert.equal(property.location.id,'district:Budapest:13');
-assert.equal(property.address,'Private street 12');assert.equal(property.lotArea,null);
+assert.equal(property.address,'OTTHONRA TEST 1');assert.equal(property.lotArea,null);
+assert.equal(property.addressDetails.latitude,null);assert.equal(property.addressDetails.longitude,null);
+assert.equal(property.addressDetails.geocodingStatus,'missing','An additive upgrade must leave legacy coordinates unknown until the owner saves an exact address');
+assert.deepEqual(property.neighborhoodIds,[],'An old unlocated property must never acquire invented quarter membership');
 for(const field of ['constructionAge','view','ceilingHeight','heatingType','energyRating','parkingType'])assert.equal(property[field],'',`Old property must have unset ${field}`);
 for(const field of ['insulated','airConditioning','solarPanels'])assert.equal(property[field],null,`Old property must retain unknown ${field}`);
 assert.equal(property.rooms,3,'The original weighted room total must survive the schema upgrade');
@@ -57,7 +60,8 @@ for(const field of ['conditions','buildings','constructionAges','views','floors'
 assert.equal(search.ceilingHeight,'');
 const match=matches.find(item=>item.id===fixture.matchId);
 assert.ok(match);assert.equal(match.property.ownerAccountType,'private');assert.equal(match.searchRequest.ownerAccountType,'private');assert.equal(match.property.id,fixture.propertyId);assert.equal(match.searchRequest.id,fixture.searchId);
-assert.equal(match.property.address,'Private street 12');assert.equal(match.contact.id,fixture.sellerId);
+assert.equal(match.property.address,'OTTHONRA TEST 1');assert.equal(match.contact.id,fixture.sellerId);
+assert.equal(match.property.addressDetails,null,'A historical buyer match must retain owner-only coordinate privacy');
 assert.equal(match.property.wholeRooms,3);assert.equal(match.property.halfRooms,0);
 assert.equal(match.property.secondaryHeatingType,'');assert.deepEqual(match.property.parkingTypes,[]);
 assert.deepEqual(match.searchRequest.heatingTypes,[],'Historical matches must retain an unfiltered primary-heating selection');

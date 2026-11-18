@@ -1,0 +1,393 @@
+{
+  "schemaVersion": 1,
+  "controls": [
+    {
+      "id": "C1",
+      "label": "Gödöllői út / Szent László út",
+      "sourcePixel": [
+        250.5,
+        350.7
+      ],
+      "sourcePixelInterpretation": "Approximate manual center reading of the corresponding visible major road/rail crossing in the native raster; no subpixel accuracy is implied.",
+      "actualWayIds": [
+        "osm:way:38834348",
+        "osm:way:636162955"
+      ],
+      "expectedIntersectionEov": [
+        656962.3811877787,
+        268972.4147935001
+      ],
+      "fitRole": "calibration",
+      "usedPlacePoint": false,
+      "sourceYearMismatchUnresolved": true,
+      "recomputedActualIntersectionEov": [
+        656962.3811877787,
+        268972.4147935001
+      ],
+      "groundCoordinateMethod": "Analytical intersection of literal source-way segments after EPSG4326→23700; not a place node and not an inferred boundary edge."
+    },
+    {
+      "id": "C2",
+      "label": "Gödöllői út / railway70",
+      "sourcePixel": [
+        326.6,
+        395.5
+      ],
+      "sourcePixelInterpretation": "Approximate manual center reading of the corresponding visible major road/rail crossing in the native raster; no subpixel accuracy is implied.",
+      "actualWayIds": [
+        "osm:way:78176191",
+        "osm:way:39256016"
+      ],
+      "expectedIntersectionEov": [
+        658286.1871772984,
+        268016.6272141197
+      ],
+      "fitRole": "calibration",
+      "usedPlacePoint": false,
+      "sourceYearMismatchUnresolved": true,
+      "recomputedActualIntersectionEov": [
+        658286.1871772984,
+        268016.6272141197
+      ],
+      "groundCoordinateMethod": "Analytical intersection of literal source-way segments after EPSG4326→23700; not a place node and not an inferred boundary edge."
+    },
+    {
+      "id": "C3",
+      "label": "Rádi út / railway70",
+      "sourcePixel": [
+        285.5,
+        282.0
+      ],
+      "sourcePixelInterpretation": "Approximate manual center reading of the corresponding visible major road/rail crossing in the native raster; no subpixel accuracy is implied.",
+      "actualWayIds": [
+        "osm:way:503376947",
+        "osm:way:39256016"
+      ],
+      "expectedIntersectionEov": [
+        657591.1329187966,
+        270037.62956475053
+      ],
+      "fitRole": "calibration",
+      "usedPlacePoint": false,
+      "sourceYearMismatchUnresolved": true,
+      "recomputedActualIntersectionEov": [
+        657591.1329187966,
+        270037.62956475053
+      ],
+      "groundCoordinateMethod": "Analytical intersection of literal source-way segments after EPSG4326→23700; not a place node and not an inferred boundary edge."
+    }
+  ],
+  "controlCount": 3,
+  "placePointFitControls": 0,
+  "sourcePixelBasis": "Original431×523stitched raster; x right/y down; continuous pixel coordinates are approximate manual line-center readings, not subpixel accuracy.",
+  "metricCrs": "EPSG:23700",
+  "outputCrs": "EPSG:4326",
+  "affinePixelToEovRows": [
+    [
+      17.52682786222327,
+      -2.6399058502046144
+    ],
+    [
+      -0.22289309811238378,
+      -16.850239825440287
+    ],
+    [
+      652650.0794178001,
+      275543.0903157583
+    ]
+  ],
+  "trainingResidualM": [
+    3.5406337878074377e-10,
+    3.681375715146283e-10,
+    4.973264728508383e-10
+  ],
+  "trainingResidualIsAccuracyEstimate": false,
+  "independentlySelectedHoldoutCount": 0,
+  "calibrationTriangleSourcePixels": [
+    [
+      250.5,
+      350.7
+    ],
+    [
+      326.6,
+      395.5
+    ],
+    [
+      285.5,
+      282.0
+    ]
+  ],
+  "candidateExtrapolatedBeyondTriangle": true,
+  "relativeScaleSingularValuesMPerPixel": [
+    18.502994127824852,
+    15.993069424712365
+  ],
+  "scaleIsAccuracyBound": false,
+  "sensitivityScenarios": [
+    {
+      "scenario": "control1-x-2",
+      "controlIndexOneBased": 1,
+      "axis": "x",
+      "deltaNativePixels": -2,
+      "centroidDisplacementM": 11.739049471393441,
+      "hausdorffDisplacementM": 26.912592449237525,
+      "areaM2Epsg23700": 383142.9098842422,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control1-x-1",
+      "controlIndexOneBased": 1,
+      "axis": "x",
+      "deltaNativePixels": -1,
+      "centroidDisplacementM": 5.965940440079818,
+      "hausdorffDisplacementM": 13.677335974172054,
+      "areaM2Epsg23700": 389436.6040318181,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control1-x+1",
+      "controlIndexOneBased": 1,
+      "axis": "x",
+      "deltaNativePixels": 1,
+      "centroidDisplacementM": 6.168597272992381,
+      "hausdorffDisplacementM": 14.141940948274776,
+      "areaM2Epsg23700": 402665.36319405906,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control1-x+2",
+      "controlIndexOneBased": 1,
+      "axis": "x",
+      "deltaNativePixels": 2,
+      "centroidDisplacementM": 12.550355859406972,
+      "hausdorffDisplacementM": 28.77256912291447,
+      "areaM2Epsg23700": 409622.5913440414,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control1-y-2",
+      "controlIndexOneBased": 1,
+      "axis": "y",
+      "deltaNativePixels": -2,
+      "centroidDisplacementM": 11.674988673536953,
+      "hausdorffDisplacementM": 21.50140148904759,
+      "areaM2Epsg23700": 400788.1409857662,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control1-y-1",
+      "controlIndexOneBased": 1,
+      "axis": "y",
+      "deltaNativePixels": -1,
+      "centroidDisplacementM": 5.801976633978834,
+      "hausdorffDisplacementM": 10.685289084424673,
+      "areaM2Epsg23700": 398349.5820292094,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control1-y+1",
+      "controlIndexOneBased": 1,
+      "axis": "y",
+      "deltaNativePixels": 1,
+      "centroidDisplacementM": 5.732222265021735,
+      "hausdorffDisplacementM": 10.4950815819304,
+      "areaM2Epsg23700": 393560.41697365115,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control1-y+2",
+      "controlIndexOneBased": 1,
+      "axis": "y",
+      "deltaNativePixels": 2,
+      "centroidDisplacementM": 11.39594057908043,
+      "hausdorffDisplacementM": 20.743735982426376,
+      "areaM2Epsg23700": 391208.7597782311,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control2-x-2",
+      "controlIndexOneBased": 2,
+      "axis": "x",
+      "deltaNativePixels": -2,
+      "centroidDisplacementM": 51.4470443601671,
+      "hausdorffDisplacementM": 59.89663872614893,
+      "areaM2Epsg23700": 404110.6521453744,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control2-x-1",
+      "controlIndexOneBased": 2,
+      "axis": "x",
+      "deltaNativePixels": -1,
+      "centroidDisplacementM": 25.460833198973667,
+      "hausdorffDisplacementM": 29.642486691770806,
+      "areaM2Epsg23700": 399983.8683050969,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control2-x+1",
+      "controlIndexOneBased": 2,
+      "axis": "x",
+      "deltaNativePixels": 1,
+      "centroidDisplacementM": 24.951228582808717,
+      "hausdorffDisplacementM": 29.049185288799876,
+      "areaM2Epsg23700": 391978.0962975047,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control2-x+2",
+      "controlIndexOneBased": 2,
+      "axis": "x",
+      "deltaNativePixels": 2,
+      "centroidDisplacementM": 49.40800073753897,
+      "hausdorffDisplacementM": 57.52270528165978,
+      "areaM2Epsg23700": 388094.1975835947,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control2-y-2",
+      "controlIndexOneBased": 2,
+      "axis": "y",
+      "deltaNativePixels": -2,
+      "centroidDisplacementM": 48.42348081108629,
+      "hausdorffDisplacementM": 53.774603538304426,
+      "areaM2Epsg23700": 400061.17630648625,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control2-y-1",
+      "controlIndexOneBased": 2,
+      "axis": "y",
+      "deltaNativePixels": -1,
+      "centroidDisplacementM": 24.08640360035359,
+      "hausdorffDisplacementM": 26.748114397763093,
+      "areaM2Epsg23700": 397990.1814535212,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control2-y+1",
+      "controlIndexOneBased": 2,
+      "axis": "y",
+      "deltaNativePixels": 1,
+      "centroidDisplacementM": 23.839583079637602,
+      "hausdorffDisplacementM": 26.450441380108323,
+      "areaM2Epsg23700": 393911.85804275254,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control2-y+2",
+      "controlIndexOneBased": 2,
+      "axis": "y",
+      "deltaNativePixels": 2,
+      "centroidDisplacementM": 47.43612016424348,
+      "hausdorffDisplacementM": 52.58128510038933,
+      "areaM2Epsg23700": 391903.8804032243,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control3-x-2",
+      "controlIndexOneBased": 3,
+      "axis": "x",
+      "deltaNativePixels": -2,
+      "centroidDisplacementM": 2.864471938359817,
+      "hausdorffDisplacementM": 9.927030065373701,
+      "areaM2Epsg23700": 401230.37546132266,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control3-x-1",
+      "controlIndexOneBased": 3,
+      "axis": "x",
+      "deltaNativePixels": -1,
+      "centroidDisplacementM": 1.4227319549088469,
+      "hausdorffDisplacementM": 4.9305781972622755,
+      "areaM2Epsg23700": 398567.89553963556,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control3-x+1",
+      "controlIndexOneBased": 3,
+      "axis": "x",
+      "deltaNativePixels": 1,
+      "centroidDisplacementM": 1.4040973672031305,
+      "hausdorffDisplacementM": 4.857951167148313,
+      "areaM2Epsg23700": 393347.55317965685,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control3-x+2",
+      "controlIndexOneBased": 3,
+      "axis": "x",
+      "deltaNativePixels": 2,
+      "centroidDisplacementM": 2.7899238738452916,
+      "hausdorffDisplacementM": 9.635698370936229,
+      "areaM2Epsg23700": 390788.3294030652,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control3-y-2",
+      "controlIndexOneBased": 3,
+      "axis": "y",
+      "deltaNativePixels": -2,
+      "centroidDisplacementM": 2.6286413654548584,
+      "hausdorffDisplacementM": 11.88319809667036,
+      "areaM2Epsg23700": 387267.5466151403,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control3-y-1",
+      "controlIndexOneBased": 3,
+      "axis": "y",
+      "deltaNativePixels": -1,
+      "centroidDisplacementM": 1.3288750087382202,
+      "hausdorffDisplacementM": 6.007394231979282,
+      "areaM2Epsg23700": 391556.0115828951,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control3-y+1",
+      "controlIndexOneBased": 3,
+      "axis": "y",
+      "deltaNativePixels": 1,
+      "centroidDisplacementM": 1.3589725808847843,
+      "hausdorffDisplacementM": 6.143455167635438,
+      "areaM2Epsg23700": 400424.3286978683,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    },
+    {
+      "scenario": "control3-y+2",
+      "controlIndexOneBased": 3,
+      "axis": "y",
+      "deltaNativePixels": 2,
+      "centroidDisplacementM": 2.749076959927492,
+      "hausdorffDisplacementM": 12.427646663732318,
+      "areaM2Epsg23700": 405010.85604023427,
+      "outsideVacM2": 0.0,
+      "alternativeAdmitted": false
+    }
+  ],
+  "sensitivityMeaning": "Each control x/y manually perturbed by±1and±2native pixels independently, refitting all three pairs; scenarios are unadmitted diagnostics, not confidence bounds."
+}

@@ -1,0 +1,1430 @@
+{
+  "schemaVersion": 1,
+  "sourceArchivePath": ".local/neighborhoods/country-osm-preserved-initial/named-nodes.geojson.gz",
+  "sourceArchiveSha256": "10ed8235f9caac518f61a14cb305500814444f2702829048c3729f8043e839fe",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "osmTimestamp": "2026-11-12T21:23:05Z",
+  "municipalityNamePointsInspected": 122,
+  "sourcePointFeaturesRetained": 72,
+  "matchedRecords": 73,
+  "coordinateOperation": "Actual point EPSG4326→23700; containment/distance only. No fitting, snapping or outline inference.",
+  "fitControls": 0,
+  "pointOnlyGeometryGenerated": false,
+  "records": [
+    {
+      "FID": 1,
+      "name": "Nagyerdőtölgyes",
+      "matches": [
+        {
+          "name": "Nagyerdőtölgyes",
+          "id": "osm:node:11861568148",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2024-04-28 05:59:23+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 2,
+      "name": "Pallag",
+      "matches": [
+        {
+          "name": "Pallag",
+          "id": "osm:node:968749147",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 3,
+      "name": "Gyógyszergyár",
+      "matches": [
+        {
+          "name": "Gyógyszergyár",
+          "id": "osm:node:8717038895",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2021-05-10 06:13:18+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 4,
+      "name": "Közterület",
+      "matches": [],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 5,
+      "name": "Debreceni Egyetem tud-tech park",
+      "matches": [],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 6,
+      "name": "Ispotály",
+      "matches": [
+        {
+          "name": "Ispotály",
+          "id": "osm:node:3290546146",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2015-01-15 17:42:54+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 7,
+      "name": "Belváros",
+      "matches": [
+        {
+          "name": "Belváros",
+          "id": "osm:node:968697762",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 8,
+      "name": "Repülőtér",
+      "matches": [
+        {
+          "name": "Repülőtér",
+          "id": "osm:node:1306547604",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 9,
+      "name": "Déli ipari terület",
+      "matches": [
+        {
+          "name": "Déli ipari terület",
+          "id": "osm:node:11861573479",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2024-04-28 06:04:06+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 10,
+      "name": "Epreskert",
+      "matches": [
+        {
+          "name": "Epreskert",
+          "id": "osm:node:968697801",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 13:08:23+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 11,
+      "name": "Széchenyikert",
+      "matches": [
+        {
+          "name": "Széchenyikert",
+          "id": "osm:node:968697782",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": false,
+          "distanceOutsidePolygonM": 1707.2311903459345,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 12,
+      "name": "Sestakert",
+      "matches": [
+        {
+          "name": "Sestakert",
+          "id": "osm:node:968712519",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-25 08:57:43+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 13,
+      "name": "Libakert",
+      "matches": [
+        {
+          "name": "Libakert",
+          "id": "osm:node:968719503",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 14,
+      "name": "Vénkert",
+      "matches": [
+        {
+          "name": "Vénkert",
+          "id": "osm:node:968697787",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 15,
+      "name": "József Attila telep",
+      "matches": [
+        {
+          "name": "József Attila-telep",
+          "id": "osm:node:968679365",
+          "place": "suburb",
+          "matchRule": "explicit_spacing_or_hyphen_variant_diagnostic_only",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 5,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 16,
+      "name": "Zsibogó",
+      "matches": [
+        {
+          "name": "Zsibogó",
+          "id": "osm:node:968719480",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 17,
+      "name": "Auguszta",
+      "matches": [
+        {
+          "name": "Auguszta",
+          "id": "osm:node:968712524",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 18,
+      "name": "Egyetemváros",
+      "matches": [
+        {
+          "name": "Egyetemváros",
+          "id": "osm:node:968712523",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 19,
+      "name": "Nagyerdőpark",
+      "matches": [
+        {
+          "name": "Nagyerdőpark",
+          "id": "osm:node:7934713831",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2020-09-23 14:21:04+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 20,
+      "name": "Nagyerdő",
+      "matches": [
+        {
+          "name": "Nagyerdő",
+          "id": "osm:node:968712520",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 5,
+          "sourceObjectTimestamp": "2025-10-21 15:02:03+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 21,
+      "name": "Nagyerdőalja",
+      "matches": [
+        {
+          "name": "Nagyerdőalja",
+          "id": "osm:node:968712521",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 22,
+      "name": "Péterfia",
+      "matches": [
+        {
+          "name": "Péterfia",
+          "id": "osm:node:968719512",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 23,
+      "name": "Szentlászlófalva",
+      "matches": [
+        {
+          "name": "Szentlászlófalva",
+          "id": "osm:node:1297103100",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2024-01-25 05:18:17+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 24,
+      "name": "Burgundia",
+      "matches": [
+        {
+          "name": "Burgundia",
+          "id": "osm:node:3195354827",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:11+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 25,
+      "name": "Kandia",
+      "matches": [
+        {
+          "name": "Kandia",
+          "id": "osm:node:968719467",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 26,
+      "name": "Miklóskapu",
+      "matches": [
+        {
+          "name": "Miklóskapu",
+          "id": "osm:node:3204260694",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 14:19:30+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 27,
+      "name": "Tizenháromváros",
+      "matches": [
+        {
+          "name": "Tizenháromváros",
+          "id": "osm:node:5499197958",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2024-03-31 05:05:32+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 28,
+      "name": "Mesterfalva",
+      "matches": [
+        {
+          "name": "Mesterfalva",
+          "id": "osm:node:5499189180",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2019-11-05 12:25:13+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 29,
+      "name": "Nyulas",
+      "matches": [
+        {
+          "name": "Nyulas",
+          "id": "osm:node:968712525",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 30,
+      "name": "Úrrétje",
+      "matches": [
+        {
+          "name": "Úrrétje",
+          "id": "osm:node:968712526",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 31,
+      "name": "Tócóliget",
+      "matches": [
+        {
+          "name": "Tócóliget",
+          "id": "osm:node:7934653257",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2020-09-23 13:57:24+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 32,
+      "name": "Akadémiakert",
+      "matches": [
+        {
+          "name": "Akadémiakert",
+          "id": "osm:node:968712518",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 33,
+      "name": "Kertváros",
+      "matches": [
+        {
+          "name": "Kertváros",
+          "id": "osm:node:968697765",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2021-05-10 06:13:18+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 34,
+      "name": "Köntöskert",
+      "matches": [
+        {
+          "name": "Köntöskert",
+          "id": "osm:node:968719497",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 35,
+      "name": "Csigekert",
+      "matches": [
+        {
+          "name": "Csigekert",
+          "id": "osm:node:968697767",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 36,
+      "name": "Nagysándortelep",
+      "matches": [
+        {
+          "name": "Nagysándortelep",
+          "id": "osm:node:968697776",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 6,
+          "sourceObjectTimestamp": "2024-04-28 05:47:07+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 37,
+      "name": "Hatvan utcai kert",
+      "matches": [
+        {
+          "name": "Hatvan utcai kert",
+          "id": "osm:node:968697785",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 13:13:56+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 38,
+      "name": "Kismacs",
+      "matches": [
+        {
+          "name": "Kismacs",
+          "id": "osm:node:1290057778",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 39,
+      "name": "Józsa",
+      "matches": [
+        {
+          "name": "Józsa",
+          "id": "osm:node:968749154",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 13,
+          "sourceObjectTimestamp": "2024-05-17 12:38:19+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 40,
+      "name": "Sámsonikert",
+      "matches": [
+        {
+          "name": "Sámsonikert",
+          "id": "osm:node:968712522",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 41,
+      "name": "Tócóvölgy",
+      "matches": [
+        {
+          "name": "Tócóvölgy",
+          "id": "osm:node:7936513509",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2020-09-24 06:07:27+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 42,
+      "name": "Tócóskert",
+      "matches": [
+        {
+          "name": "Tócóskert",
+          "id": "osm:node:968697784",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 43,
+      "name": "Sóház",
+      "matches": [
+        {
+          "name": "Sóház",
+          "id": "osm:node:968719477",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2025-03-29 08:21:34+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 44,
+      "name": "Dobozikert",
+      "matches": [
+        {
+          "name": "Dobozikert",
+          "id": "osm:node:968719517",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2025-03-10 13:06:17+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 45,
+      "name": "Téglagyár",
+      "matches": [
+        {
+          "name": "Téglagyár",
+          "id": "osm:node:968727478",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": false,
+          "distanceOutsidePolygonM": 245.18846230963982,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 46,
+      "name": "Tócórét",
+      "matches": [
+        {
+          "name": "Tócórét",
+          "id": "osm:node:7934617897",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2021-10-22 14:53:20+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 47,
+      "name": "Köntösgát",
+      "matches": [
+        {
+          "name": "Köntösgát",
+          "id": "osm:node:3228064697",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 13:29:46+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 48,
+      "name": "Basahalom",
+      "matches": [
+        {
+          "name": "Basahalom",
+          "id": "osm:node:968719552",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 5,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 49,
+      "name": "Kétútköz",
+      "matches": [
+        {
+          "name": "Kétútköz",
+          "id": "osm:node:11861568146",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2024-04-28 05:59:23+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 50,
+      "name": "Kondoros",
+      "matches": [
+        {
+          "name": "Kondoros",
+          "id": "osm:node:968719532",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2020-09-23 14:16:17+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 51,
+      "name": "Biharikert",
+      "matches": [
+        {
+          "name": "Biharikert",
+          "id": "osm:node:968719564",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 12:57:21+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 52,
+      "name": "Percsikert",
+      "matches": [],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 53,
+      "name": "Műhelytelep",
+      "matches": [
+        {
+          "name": "Műhelytelep",
+          "id": "osm:node:7934691563",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": false,
+          "distanceOutsidePolygonM": 49.10562111393359,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2020-09-23 14:03:52+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 54,
+      "name": "Kincseshegy",
+      "matches": [
+        {
+          "name": "Kincseshegy",
+          "id": "osm:node:968712513",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 14:11:45+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 55,
+      "name": "Csapókert",
+      "matches": [
+        {
+          "name": "Csapókert",
+          "id": "osm:node:5331910720",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:13+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 56,
+      "name": "Veres Péter kert",
+      "matches": [
+        {
+          "name": "Veres Péter-kert",
+          "id": "osm:node:968712515",
+          "place": "suburb",
+          "matchRule": "explicit_spacing_or_hyphen_variant_diagnostic_only",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 57,
+      "name": "Hőforras",
+      "matches": [],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 58,
+      "name": "Júliatelep",
+      "matches": [
+        {
+          "name": "Júliatelep",
+          "id": "osm:node:1297068296",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 6,
+          "sourceObjectTimestamp": "2020-09-23 13:21:36+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 59,
+      "name": "Kerekestelep",
+      "matches": [
+        {
+          "name": "Kerekestelep",
+          "id": "osm:node:968679368",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 60,
+      "name": "Homokkert",
+      "matches": [
+        {
+          "name": "Homokkert",
+          "id": "osm:node:968679370",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 13:16:41+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 61,
+      "name": "Lencztelep",
+      "matches": [
+        {
+          "name": "Lencztelep",
+          "id": "osm:node:968679371",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 62,
+      "name": "Boldogfalvikert",
+      "matches": [
+        {
+          "name": "Boldogfalvikert",
+          "id": "osm:node:968697796",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2020-09-23 12:59:18+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 63,
+      "name": "Tégláskert",
+      "matches": [
+        {
+          "name": "Tégláskert",
+          "id": "osm:node:968719539",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2024-09-27 15:18:39+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 64,
+      "name": "Majorság",
+      "matches": [
+        {
+          "name": "Majorság",
+          "id": "osm:node:968719545",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 14:11:05+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 65,
+      "name": "Vargakert",
+      "matches": [
+        {
+          "name": "Vargakert",
+          "id": "osm:node:968697803",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 66,
+      "name": "Postakert",
+      "matches": [
+        {
+          "name": "Postakert",
+          "id": "osm:node:968697780",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-25 08:59:48+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 67,
+      "name": "Széchenyikert",
+      "matches": [
+        {
+          "name": "Széchenyikert",
+          "id": "osm:node:968697782",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 68,
+      "name": "Lóskúti",
+      "matches": [
+        {
+          "name": "Lóskúti",
+          "id": "osm:node:11861568145",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 1,
+          "sourceObjectTimestamp": "2024-04-28 05:59:23+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 69,
+      "name": "Falóger",
+      "matches": [
+        {
+          "name": "Falóger",
+          "id": "osm:node:968719484",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 2,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 70,
+      "name": "Wesselényi lakótelep",
+      "matches": [
+        {
+          "name": "Wesselényi-lakótelep",
+          "id": "osm:node:968719471",
+          "place": "neighbourhood",
+          "matchRule": "explicit_spacing_or_hyphen_variant_diagnostic_only",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2024-04-28 06:01:06+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 71,
+      "name": "Gerébytelep",
+      "matches": [
+        {
+          "name": "Gerébytelep",
+          "id": "osm:node:968712514",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2020-09-23 13:12:12+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 72,
+      "name": "Nagymacs",
+      "matches": [
+        {
+          "name": "Nagymacs",
+          "id": "osm:node:968749137",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 6,
+          "sourceObjectTimestamp": "2022-10-29 10:26:05+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 73,
+      "name": "Nagycsere",
+      "matches": [
+        {
+          "name": "Nagycsere",
+          "id": "osm:node:968749162",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 7,
+          "sourceObjectTimestamp": "2022-10-17 15:37:43+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 74,
+      "name": "Dombos",
+      "matches": [
+        {
+          "name": "Dombos",
+          "id": "osm:node:968749145",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": false,
+          "distanceOutsidePolygonM": 139.69716593818615,
+          "sourceObjectVersion": 3,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 75,
+      "name": "Haláp",
+      "matches": [
+        {
+          "name": "Haláp",
+          "id": "osm:node:968749159",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 7,
+          "sourceObjectTimestamp": "2024-04-28 05:34:34+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 76,
+      "name": "Bánk",
+      "matches": [
+        {
+          "name": "Bánk",
+          "id": "osm:node:968749165",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 4,
+          "sourceObjectTimestamp": "2019-11-05 12:25:10+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    },
+    {
+      "FID": 77,
+      "name": "Ondód",
+      "matches": [
+        {
+          "name": "Ondód",
+          "id": "osm:node:925163275",
+          "place": "suburb",
+          "matchRule": "exact_source_name",
+          "sourcePolygonCoversPoint": true,
+          "distanceOutsidePolygonM": 0.0,
+          "sourceObjectVersion": 9,
+          "sourceObjectTimestamp": "2020-09-25 09:05:47+00:00",
+          "usedForFit": false
+        }
+      ],
+      "pointMatchAloneDoesNotProveWholeQuarterGeometry": true,
+      "noAutomaticAliasAdopted": true
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import {withTestAddress} from './smoke-address.mjs';
 /** New ranking and approximate-match consent through the real disposable API/MySQL. */
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
@@ -13,6 +14,7 @@ const suffix = randomUUID();
 const privatePhone = '+36 30 555 8801';
 const feedTimes = [];
 async function api(path, {token, method='GET', body, status=200}={}) {
+ body=withTestAddress(path,method,body);
   const started = performance.now();
   const response = await fetch(new URL('/api'+path, origin), {
     method, redirect:'error', signal:AbortSignal.timeout(20000),
@@ -40,7 +42,7 @@ const town = 'Abádszalók';
 const propertyBase = {
   title:'Matching property fixture', city:town, district:'', locationId:`city:${town}`,
   type:'Lakás', price:80_000_000, area:80, rooms:3, floor:2,
-  condition:'Jó', building:'Tégla', address:'Private matching street 42',
+  condition:'Jó', building:'Tégla', address:'OTTHONRA TEST 1',
   description:'Kitalált integrációs tesztadat.', balcony:false, elevator:false, images:[]
 };
 const searchBase = {
@@ -174,6 +176,8 @@ const matches = await api('/matches',{token:buyer.token});
 const matched = matches.find(item=>item.id===replies[0].matchId);
 assert.ok(matched);assert.equal(matched.contact.email,seller.email);assert.equal(matched.contact.phone,privatePhone);
 assert.equal(matched.property.address,propertyBase.address);
+assert.equal(matched.property.addressDetails,null,'Matching must not grant the buyer access to owner-only coordinate details');
+for(const key of ['latitude','longitude','street','houseNumber','postalCode','geocodingAddressKey','geocodingPlaceId'])assert.equal(Object.hasOwn(matched.property,key),false);
 await api(`/matches/${matched.id}/messages`,{token:secondBuyer.token,method:'POST',body:{text:'Forbidden outsider message'},status:404});
 
 // Seller order: existing likes, percentage, then search specialization.

@@ -1,3 +1,4 @@
+import {withTestAddress} from './smoke-address.mjs';
 /** Real API integration. Loopback disposable CI only; the companion SQL fixture ages known decisions. */
 import assert from 'node:assert/strict';
 import {mkdir,readFile,writeFile,chmod} from 'node:fs/promises';
@@ -10,6 +11,7 @@ const mode=process.argv[3]||'--setup';
 if(process.env.CI!=='true'||origin.protocol!=='http:'||!['localhost','127.0.0.1','[::1]'].includes(origin.hostname)||origin.username||origin.password||origin.pathname!=='/'||origin.search||origin.hash)throw new Error('Use only a disposable loopback CI API.');
 const fixturePath=resolve('.local/landing-refund-fixture.json');
 async function api(path,{token,method='GET',body,status=200}={}){
+ body=withTestAddress(path,method,body);
  // The web proxy deliberately forwards only /api; internal jobs target the API directly.
  const internal=path.startsWith('/internal/');
  const response=await fetch(new URL(internal?path:'/api'+path,internal?'http://127.0.0.1:5080':origin),{method,redirect:'error',signal:AbortSignal.timeout(20000),headers:{...(token?{Authorization:`Bearer ${token}`} : {}),...(body===undefined?{}:{'Content-Type':'application/json'})},...(body===undefined?{}:{body:JSON.stringify(body)})});

@@ -1,0 +1,2584 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-13",
+  "scope": "A katalógus 64 Who’s On First / Quattroshapes poligonjának név- és településbesorolási ellenőrzése.",
+  "policy": "Régi geometria megtartható kutatási jelöltként. Mai név létezésének igazolása nem bizonyítja a régi poligon pontosságát. A geometria változatlan; automatikus cím-városrész besorolás nincs engedélyezve.",
+  "verificationMethod": "Nyilvános önkormányzati névjegyzékek, önkormányzati és múzeumi helytörténeti források, néhány névváltozatnál GeoNames és történeti amerikai kormányzati helységnévtár; az egyértelmű nyers WOF-metaadatokkal összevetve.",
+  "googleMapsChecked": false,
+  "caveats": [
+    "A 2024. január 22-én archivált budapesti hivatalos lista névlétezési alátámasztásként szerepel, nem 2026-os határvonal-nyilvántartásként.",
+    "A name_supported státusz név és város összerendelését támogatja, nem jelent földmérési vagy címhozzárendelési hitelesítést.",
+    "A történelmi és írásváltozatok külön poligonjai ugyanahhoz a mai névhez is tartozhatnak; geometria-unió vagy határmódosítás nem történt.",
+    "Az ambiguous_name rekordok proposedHungarianName mezője csak ellenőrzési jelölt, nem elfogadott átnevezés.",
+    "Nem készült Google Maps-lekérdezés, térképszolgáltatói határvonal-másolás vagy automatizált Google-adatkinyerés.",
+    "A Ferencváros, Józsefváros és Pesterzsébet nevek kisebb városrészként való besorolását a jelenlegi önkormányzati/NJT-felosztás alapján felülvizsgáltuk: kerület/nagy területi névként tartjuk meg. A régi archív budapesti összesítő önmagában nem bizonyítja a ma érvényes városrészi szintet."
+  ],
+  "summary": {
+    "records": 64,
+    "byValidationStatus": {
+      "name_supported": 45,
+      "historical_alias": 7,
+      "macro_area": 4,
+      "spelling_variant": 3,
+      "ambiguous_name": 2,
+      "geographic_name_only": 3
+    },
+    "byAreaKind": {
+      "neighbourhood": 45,
+      "macro_area": 4,
+      "district_or_large_named_area": 10,
+      "unresolved": 2,
+      "geographic_feature": 3
+    },
+    "supportedCurrentNamedAreas": 46,
+    "strictNeighborhoodNames": 38,
+    "municipalityCorrections": 1,
+    "geometryAssociationsNeedingReview": 5,
+    "supportedCanonicalCurrentNamesIncludingAliases": 47,
+    "supportedCanonicalNeighborhoodNamesIncludingAliases": 38
+  },
+  "records": [
+    {
+      "id": "wof:85901033",
+      "sourceName": "Albertfalva",
+      "originalName": "Albertfalva",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Albertfalva",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://ujbuda.hu/keruletunk/Keruletunket/Helytortenet",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Albertfalva",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/33/85901033.geojson",
+      "sourceSha256": "3d9a4c345102504c4996c5f2a04b98733b727777569240969565fc56a10d3b3c",
+      "sourceRecordHints": {
+        "wof:name": "Albertfalva",
+        "name:hun_x_preferred": [
+          "Albertfalva"
+        ],
+        "name:hun_x_variant": [
+          "Budapest XI. kerülete"
+        ],
+        "geom:bbox": "19.016078,47.448522,19.041818,47.461892"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901045",
+      "sourceName": "Angyalfold",
+      "originalName": "Angyalföld",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Angyalföld",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Angyalföld",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/45/85901045.geojson",
+      "sourceSha256": "a16db81537e9d7be5773deca707a054ff1b42e81e340aa5fc3321422df852dde",
+      "sourceRecordHints": {
+        "wof:name": "Angyalfold",
+        "name:hun_x_preferred": [
+          "Angyalföld"
+        ],
+        "geom:bbox": "19.0491252305,47.5198000959,19.1187144595,47.557993859"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901047",
+      "sourceName": "Aquincum",
+      "originalName": "Aquincum",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Aquincum",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Aquincum",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/47/85901047.geojson",
+      "sourceSha256": "effe3cd3df8827abf1c00c26b5ae21cb801e86f8f7e9005c9eeb984ec13f213e",
+      "sourceRecordHints": {
+        "wof:name": "Aquincum",
+        "qs:name_adm2": "Budapest III.",
+        "name:hun_x_preferred": [
+          "Aquincum"
+        ],
+        "geom:bbox": "19.031067,47.538533,19.064847,47.569114"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901053",
+      "sourceName": "Auwinkel",
+      "originalName": "Auwinkel",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Zugliget",
+      "validationStatus": "historical_alias",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://mandadb.hu/tetel/604141/Zugliget_Szarvas_vendeglo",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Zugliget",
+      "aliasOf": "wof:85901345",
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/53/85901053.geojson",
+      "sourceSha256": "a7c9a3985f1713cb5fe9a34a4f63f55de87def77bdde9e565a061d340f5e416a",
+      "sourceRecordHints": {
+        "wof:name": "Auwinkel",
+        "qs:gn_name": "Zugliget",
+        "qs:name_adm2": "Budapest XII.",
+        "name:hun_x_preferred": [
+          "Auwinkel"
+        ],
+        "geom:bbox": "18.9345495606,47.4782316057,18.9966150821,47.5233363041"
+      },
+      "notes": "Auwinkel Zugliget történelmi német neve; nem külön mai városrész. A forrás poligonját nem vontuk össze a másik poligonnal.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901063",
+      "sourceName": "Buda",
+      "originalName": "Buda",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Buda",
+      "validationStatus": "macro_area",
+      "nameExistenceConfidence": "high",
+      "areaKind": "macro_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Documents/V%C3%A1ros%C3%A9p%C3%ADt%C3%A9si%20F%C5%91oszt%C3%A1ly/Budapest2030_HUN_teljes.pdf"
+      ],
+      "duplicateGroup": "Budapest:Buda",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/63/85901063.geojson",
+      "sourceSha256": "b371028b26ba7e0eb99e336d354c5ebb7d19d17f652fc320f764a40592925978",
+      "sourceRecordHints": {
+        "wof:name": "Buda",
+        "qs:gn_name": "Buda",
+        "qs:name_adm2": "Budapest II.",
+        "name:hun_x_preferred": [
+          "Buda"
+        ],
+        "geom:bbox": "19.006348,47.49872,19.033813,47.518681"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": false,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901065",
+      "sourceName": "Budafok",
+      "originalName": "Budafok",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Budafok",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Budafok",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/65/85901065.geojson",
+      "sourceSha256": "32ced4e44537b3a8aa10777e042bd131b5c90eeebcd4be3979a9326fa398e074",
+      "sourceRecordHints": {
+        "wof:name": "Budafok",
+        "qs:gn_name": "Budafok",
+        "qs:name_adm2": "Budapest XXII.",
+        "name:hun_x_preferred": [
+          "Budafok"
+        ],
+        "name:hun_x_variant": [
+          "XII. kerület",
+          "Promontor",
+          "Budapest XXII. kerülete"
+        ],
+        "geom:bbox": "18.971628418,47.3902082884,19.0294977507,47.4401156102"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901071",
+      "sourceName": "Chepel",
+      "originalName": "Chepel",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Csepel",
+      "validationStatus": "spelling_variant",
+      "nameExistenceConfidence": "high",
+      "areaKind": "district_or_large_named_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Csepel",
+      "aliasOf": "wof:85901077",
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/71/85901071.geojson",
+      "sourceSha256": "243fc8b8183c8fab5a1fa5a16da7dc1df21e659ca86773636a6a89918bc28141",
+      "sourceRecordHints": {
+        "wof:name": "Chepel",
+        "qs:gn_name": "Csepel",
+        "qs:name_adm2": "Budapest XXI.",
+        "name:hun_x_preferred": [
+          "Chepel"
+        ],
+        "geom:bbox": "19.0543663625,47.3939263332,19.1134643555,47.4340052102"
+      },
+      "notes": "A forrás qs:gn_name mezője Csepel, és a Csepel-rekord name:und_x_variant mezője Chepel. A két poligon nem egyforma; ez névazonosság, nem geometriai azonosság.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901077",
+      "sourceName": "Csepel",
+      "originalName": "Csepel",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Csepel",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "district_or_large_named_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Csepel",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/77/85901077.geojson",
+      "sourceSha256": "21a6c958f7163eca785f9fd47f3c6600d55e976c291cff0033a6e1a65e76ac76",
+      "sourceRecordHints": {
+        "wof:name": "Csepel",
+        "qs:gn_name": "Csepel",
+        "qs:name_adm2": "Budapest XXI.",
+        "name:hun_x_preferred": [
+          "Csepel"
+        ],
+        "name:hun_x_variant": [
+          "XXI. kerület",
+          "Budapest XXI. kerülete"
+        ],
+        "geom:bbox": "19.054041,47.428087,19.085999,47.452237"
+      },
+      "notes": "Mai, ismert nagyobb területi vagy kerületnév. Nem azonos a kerület alatti összes kisebb városrész külön határvonalával; szűken vett városrészként nem számoljuk.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901087",
+      "sourceName": "Erzsebet-Telep",
+      "originalName": "Erzsebet-Telep",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Erzsébettelep",
+      "validationStatus": "ambiguous_name",
+      "nameExistenceConfidence": "unresolved",
+      "areaKind": "unresolved",
+      "actualMunicipality": null,
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx",
+        "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/87/85901087.geojson"
+      ],
+      "duplicateGroup": "Budapest:Erzsébettelep",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": true,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/87/85901087.geojson",
+      "sourceSha256": "00011f254e53f748f5fb112db4f9872cf1a5991121fca230c16cd0f04d8497cb",
+      "sourceRecordHints": {
+        "wof:name": "Erzsebet-Telep",
+        "qs:name_adm2": "Budapest X.",
+        "name:hun_x_preferred": [
+          "Erzsebet-Telep"
+        ],
+        "geom:bbox": "19.1876220703,47.4645193329,19.2315673828,47.4931726833"
+      },
+      "notes": "A mai Erzsébettelep neve szerepel a XVIII. kerület listáján, de a WOF-rekord qs:name_adm2 értéke Budapest X., a poligon is máshol fekszik. A névazonosság önmagában nem igazolja, hogy ez ugyanaz a terület. A javasolt név csak ellenőrzési jelölt.",
+      "canonicalNameSupported": false,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901091",
+      "sourceName": "Erzsébetváros",
+      "originalName": "Erzsébetváros",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Erzsébetváros",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Erzsébetváros",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": true,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/91/85901091.geojson",
+      "sourceSha256": "8c43666603e101c4ddc2c98c5c5f960fc11249fa975b441ad8af52f6a329cb4e",
+      "sourceRecordHints": {
+        "wof:name": "Erzsébetváros",
+        "qs:gn_name": "Erzsébetváros",
+        "qs:name_adm2": "Budapest XIV.",
+        "name:hun_x_preferred": [
+          "Erzsébetváros"
+        ],
+        "name:hun_x_variant": [
+          "VII. kerület",
+          "Erzsebetvaros",
+          "Budapest VII. kerület",
+          "Budapest VII. kerülete"
+        ],
+        "geom:bbox": "19.109718,47.51572,19.127197,47.528329"
+      },
+      "notes": "A mai Erzsébetváros név igazolt. A forrás befoglaló téglalapja nem a VII. kerület központi részére esik; a név és a poligon összerendelését külön ellenőrizni kell.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901111",
+      "sourceName": "Ferencvaros",
+      "originalName": "Ferencvaros",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Ferencváros",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "district_or_large_named_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://or.njt.hu/onkormanyzati-rendelet/2012-94-SP-4191",
+        "https://www.ferencvaros.hu/wp-content/uploads/2023/07/TAK_Ferencvaros-Telepuleskepi-Arculati-Kezikonyve-tom.pdf",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Ferencváros",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/11/85901111.geojson",
+      "sourceSha256": "61300d69ed20a9df79e773eccb195e11e23478cc7a6131dc898239b55b308ab6",
+      "sourceRecordHints": {
+        "wof:name": "Ferencvaros",
+        "qs:name_adm2": "Budapest IX.",
+        "name:hun_x_preferred": [
+          "Budapest IX. kerülete"
+        ],
+        "name:hun_x_variant": [
+          "Ferencvaros",
+          "Ferencváros",
+          "IX. kerület"
+        ],
+        "geom:bbox": "19.058521,47.452237,19.128452,47.488367"
+      },
+      "notes": "Ferencváros mai kerületnév és nagyobb történelmi területi név. A jelenlegi önkormányzati kézikönyv és a fővárosi rendelet Belső-, Középső- és Külső-Ferencvárost, valamint a József Attila-lakótelepet sorolja a kerület alatti városrészek közé. A nyers WOF preferred magyar neve is Budapest IX. kerülete; önálló mai kisebb városrészként nem számoljuk.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901115",
+      "sourceName": "Gellert",
+      "originalName": "Gellert",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Gellérthegy",
+      "validationStatus": "historical_alias",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://www.cia.gov/readingroom/docs/CIA-RDP01-00707R000100110002-4.pdf",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Gellérthegy",
+      "aliasOf": "wof:85901117",
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/15/85901115.geojson",
+      "sourceSha256": "8825745c0a3972a23f5e3faacafef1c12d4126fda52e371a9793252455dac873",
+      "sourceRecordHints": {
+        "wof:name": "Gellert",
+        "qs:name_adm2": "Budapest XI.",
+        "name:hun_x_preferred": [
+          "Gellert"
+        ],
+        "geom:bbox": "19.0393066406,47.4726628599,19.069519043,47.4919649637"
+      },
+      "notes": "Az amerikai kormányzati történeti helységnévtár Gellert névről Gellérthegyre utal; a mai magyar név a fővárosi listában is szerepel. Nem külön mai név.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901117",
+      "sourceName": "Gellerthegy",
+      "originalName": "Gellérthegy",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Gellérthegy",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://ujbuda.hu/keruletunk/Keruletunket/Helytortenet",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Gellérthegy",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/17/85901117.geojson",
+      "sourceSha256": "7ea9093603f2a03df6142e35be415027a6a4ce701a713d5d88757296d98ef601",
+      "sourceRecordHints": {
+        "wof:name": "Gellerthegy",
+        "qs:gn_name": "Gellérthegy",
+        "qs:name_adm2": "Budapest I.",
+        "name:hun_x_preferred": [
+          "Gellérthegy"
+        ],
+        "name:hun_x_variant": [
+          "Gellért-hegy"
+        ],
+        "geom:bbox": "19.038306,47.482321,19.047921,47.492153"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901129",
+      "sourceName": "Huvosvolgy",
+      "originalName": "Huvosvolgy",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Hűvösvölgy",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Hűvösvölgy",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/29/85901129.geojson",
+      "sourceSha256": "e9dc2ad8ca243d6742310a9be233013e669bf1be6d032a157a924a9bd74bf77f",
+      "sourceRecordHints": {
+        "wof:name": "Huvosvolgy",
+        "qs:name_adm2": "Budapest II.",
+        "name:hun_x_preferred": [
+          "Huvosvolgy"
+        ],
+        "name:hun_x_variant": [
+          "Gyermekvasút"
+        ],
+        "geom:bbox": "18.9621134107,47.5157202388,19.0118408203,47.5513095509"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901135",
+      "sourceName": "Kelenfold",
+      "originalName": "Kelenföld",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Kelenföld",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://ujbuda.hu/keruletunk/Keruletunket/Helytortenet",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Kelenföld",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/35/85901135.geojson",
+      "sourceSha256": "fc213394c2c169cf25fd2d6e0c44be7e18f883bbbca57a24fd021f5f3e96a684",
+      "sourceRecordHints": {
+        "wof:name": "Kelenfold",
+        "qs:gn_name": "Kelenföld",
+        "qs:name_adm2": "Budapest XI.",
+        "name:hun_x_preferred": [
+          "Kelenföld"
+        ],
+        "geom:bbox": "19.0283203125,47.4685796283,19.0502929688,47.4782321549"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901137",
+      "sourceName": "Kelenvolgy",
+      "originalName": "Kelenvölgy",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Kelenvölgy",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://ujbuda.hu/keruletunk/Keruletunket/Helytortenet",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Kelenvölgy",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/37/85901137.geojson",
+      "sourceSha256": "74084be29d95a2cdf54189b9cbe16e153b336a365f5bc7f6d71b5eb71e873512",
+      "sourceRecordHints": {
+        "wof:name": "Kelenvolgy",
+        "qs:gn_name": "Kelenvölgy",
+        "qs:name_adm2": "Budapest XI.",
+        "name:hun_x_preferred": [
+          "Kelenvölgy"
+        ],
+        "name:hun_x_variant": [
+          "Titkos Pál"
+        ],
+        "geom:bbox": "18.9881079102,47.4355188252,19.0458217997,47.4596653886"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901143",
+      "sourceName": "Kis-Gellerthegy",
+      "originalName": "Kis-Gellérthegy",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Kis-Gellérthegy",
+      "validationStatus": "geographic_name_only",
+      "nameExistenceConfidence": "high",
+      "areaKind": "geographic_feature",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://kozigazgatas.ujbuda.hu/sites/default/files/attachments/files/kozigazgatasujbudahu/2015_10/integralt_telepulesfejlesztesi_strategia_2014-2020_helyzetfeltaro_munkaresz.pdf"
+      ],
+      "duplicateGroup": "Budapest:Kis-Gellérthegy",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/43/85901143.geojson",
+      "sourceSha256": "c1909bcd9368fbebf3de187a381f01cca76908da85fdb9460bc3a9bdc22d3c7c",
+      "sourceRecordHints": {
+        "wof:name": "Kis-Gellerthegy",
+        "qs:gn_name": "Kis-Gellérthegy",
+        "qs:name_adm2": "Budapest XI.",
+        "name:hun_x_preferred": [
+          "Kis-Gellérthegy"
+        ],
+        "geom:bbox": "19.0173339844,47.471182878,19.0420532227,47.4927050278"
+      },
+      "notes": "Az újbudai stratégia a Kis-Gellért-hegyet a Gellérthegy városrész részeként írja le. Létező földrajzi név, önálló hivatalos városrészként nem számoljuk.",
+      "canonicalNameSupported": false,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901153",
+      "sourceName": "Kispest",
+      "originalName": "Kispest",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Kispest",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Kispest",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/53/85901153.geojson",
+      "sourceSha256": "df3287b752fdf36fd2275ff410ed2f9d766c1f6669139cecf2de602c8d34b193",
+      "sourceRecordHints": {
+        "wof:name": "Kispest",
+        "qs:gn_name": "Kispest",
+        "qs:name_adm2": "Budapest XIX.",
+        "name:hun_x_preferred": [
+          "Kispest"
+        ],
+        "name:hun_x_variant": [
+          "XIX. kerület"
+        ],
+        "geom:bbox": "19.120486,47.425885,19.159534,47.448522"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901161",
+      "sourceName": "Klein-Pest",
+      "originalName": "Klein-Pest",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Kispest",
+      "validationStatus": "historical_alias",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://uj.kispest.hu/2058-history",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Kispest",
+      "aliasOf": "wof:85901153",
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/61/85901161.geojson",
+      "sourceSha256": "ff278ecb47e20f5f56acdd2f2a91911f36e88b2bf9714fa662a9eff25788ddff",
+      "sourceRecordHints": {
+        "wof:name": "Klein-Pest",
+        "qs:name_adm2": "Budapest XIX.",
+        "name:hun_x_preferred": [
+          "Klein-Pest"
+        ],
+        "geom:bbox": "19.1134643555,47.4416948069,19.16015625,47.4745192018"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901165",
+      "sourceName": "Kobanya",
+      "originalName": "Kobanya",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Kőbánya",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "district_or_large_named_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Kőbánya",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/65/85901165.geojson",
+      "sourceSha256": "c86c228be801487e452f6d95095f7078e5084c09ab6a121da59aa79c7e3242f0",
+      "sourceRecordHints": {
+        "wof:name": "Kobanya",
+        "qs:gn_name": "Kőbánya",
+        "qs:name_adm2": "Budapest X.",
+        "name:hun_x_preferred": [
+          "Budapest X. kerülete"
+        ],
+        "name:hun_x_variant": [
+          "Kőbánya",
+          "X. kerület"
+        ],
+        "geom:bbox": "19.123636,47.455951,19.198346,47.501358"
+      },
+      "notes": "Mai, ismert nagyobb területi vagy kerületnév. Nem azonos a kerület alatti összes kisebb városrész külön határvonalával; szűken vett városrészként nem számoljuk.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901197",
+      "sourceName": "Lagymanyos",
+      "originalName": "Lágymányos",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Lágymányos",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://ujbuda.hu/keruletunk/Keruletunket/Helytortenet",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Lágymányos",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/97/85901197.geojson",
+      "sourceSha256": "c8b4cda65322f794213fbc79bf29194782beaebab6496cf3ed19638ff138ff43",
+      "sourceRecordHints": {
+        "wof:name": "Lagymanyos",
+        "qs:gn_name": "Lágymányos",
+        "qs:name_adm2": "Budapest XI.",
+        "name:hun_x_preferred": [
+          "Lágymányos"
+        ],
+        "geom:bbox": "19.02832,47.446664,19.066772,47.472663"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901203",
+      "sourceName": "Leninváros",
+      "originalName": "Leninváros",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Pesterzsébet",
+      "validationStatus": "historical_alias",
+      "nameExistenceConfidence": "high",
+      "areaKind": "district_or_large_named_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://or.njt.hu/onkormanyzati-rendelet/2012-94-SP-4191",
+        "https://pesterzsebet.hu/wp-content/uploads/dokumentumtar/testuleti-eloterjesztesek/2014/januar/1390218557_11-javaslat_bp_20_pe_ertekalapu_koncepc_elfog-mell-01.pdf",
+        "https://muzeum.pesterzsebet.hu/pesterzsebeti-muzeum/pesterzsebet-tortenete/",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Pesterzsébet",
+      "aliasOf": "name:Budapest:Pesterzsébet",
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/03/85901203.geojson",
+      "sourceSha256": "425325c443f493746f904ad4a887c64a2952a14cd236b136d9c8b91dfdd5d993",
+      "sourceRecordHints": {
+        "wof:name": "Leninváros",
+        "qs:name_adm2": "Budapest XX.",
+        "name:hun_x_preferred": [
+          "Leninváros"
+        ],
+        "geom:bbox": "19.0970623411,47.4112473684,19.1393253177,47.4399453002"
+      },
+      "notes": "Leninváros Pesterzsébet történelmi neve. Pesterzsébet a mai XX. kerület neve; annak hivatalos kisebb városrészei Erzsébetfalva, Gubacs, Gubacsipuszta, Kossuthfalva, Pacsirtatelep és Szabótelep. A történelmi forrásnév mai megfelelője támogatott, de Pesterzsébetet nem számoljuk külön hetedik városrésznek, és nem nevezzük át automatikusan Erzsébetfalvára.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901209",
+      "sourceName": "Martonhegy",
+      "originalName": "Mártonhegy",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Mártonhegy",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Mártonhegy",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/09/85901209.geojson",
+      "sourceSha256": "ed6a3aa010f89b39cd49f4682523e45d26225155afb5ffa2ae89fb979d9ce22d",
+      "sourceRecordHints": {
+        "wof:name": "Martonhegy",
+        "qs:gn_name": "Mártonhegy",
+        "qs:name_adm2": "Budapest XII.",
+        "name:hun_x_preferred": [
+          "Mártonhegy"
+        ],
+        "geom:bbox": "18.9736259732,47.4589395458,19.0200805664,47.5001311862"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901213",
+      "sourceName": "Matiasfold",
+      "originalName": "Matiasfold",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Mátyásföld",
+      "validationStatus": "spelling_variant",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://www.geonames.org/search.html?q=%27Budapest%27&startRow=50",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Mátyásföld",
+      "aliasOf": "wof:85901215",
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/13/85901213.geojson",
+      "sourceSha256": "ab14b07df70bf52a0447235f803c81a8f43569fc9160ed32177355b0a1d76041",
+      "sourceRecordHints": {
+        "wof:name": "Matiasfold",
+        "qs:name_adm2": "Budapest XVI.",
+        "name:hun_x_preferred": [
+          "Matiasfold"
+        ],
+        "geom:bbox": "19.1738891602,47.4997435921,19.2443139649,47.5364746249"
+      },
+      "notes": "A GeoNames névváltozatlistájában együtt szerepel Matiasfold, Matyasfold és Mátyásföld; a mai magyar alakot a fővárosi és XVI. kerületi listák igazolják.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901215",
+      "sourceName": "Matyasfold",
+      "originalName": "Mátyásföld",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Mátyásföld",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Mátyásföld",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/15/85901215.geojson",
+      "sourceSha256": "3abfece4d43c179d2de1d3bf63cf6670a208836b9fd1d12b5284708a295314b2",
+      "sourceRecordHints": {
+        "wof:name": "Matyasfold",
+        "qs:gn_name": "Mátyásföld",
+        "qs:name_adm2": "Budapest XVI.",
+        "name:hun_x_preferred": [
+          "Mátyásföld"
+        ],
+        "name:hun_x_variant": [
+          "Bárány Imre"
+        ],
+        "geom:bbox": "19.1769545,47.4893688174,19.212566179,47.511635371"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901227",
+      "sourceName": "Neu-Pest",
+      "originalName": "Neu-Pest",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Újpest",
+      "validationStatus": "historical_alias",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://www.ujpest.hu/feltolt/ujpesti_naplo_2021-1.pdf",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Újpest",
+      "aliasOf": "wof:85901323",
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/27/85901227.geojson",
+      "sourceSha256": "de418d414698d5ca2a65dc4b1d11d8c03e2e9a76f5ed918520ac5495c584d964",
+      "sourceRecordHints": {
+        "wof:name": "Neu-Pest",
+        "name:hun_x_preferred": [
+          "Neu-Pest"
+        ],
+        "geom:bbox": "19.06028,47.555033,19.083252,47.57282"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901233",
+      "sourceName": "Obuda",
+      "originalName": "Óbuda",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Óbuda",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Óbuda",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/33/85901233.geojson",
+      "sourceSha256": "3d4c2a466cb7f698d8379c1c5e9144118117ed49dbe5ac3c179800e3810f6dd3",
+      "sourceRecordHints": {
+        "wof:name": "Obuda",
+        "qs:gn_name": "Óbuda",
+        "qs:name_adm2": "Budapest III.",
+        "name:hun_x_preferred": [
+          "Óbuda"
+        ],
+        "geom:bbox": "19.004587,47.530779,19.049421,47.569847"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901235",
+      "sourceName": "Ofen",
+      "originalName": "Ofen",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Buda",
+      "validationStatus": "macro_area",
+      "nameExistenceConfidence": "high",
+      "areaKind": "macro_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/telepulesrendezesitervek/TSZT/K%C3%B6rnyezeti%20%C3%89rt%C3%A9kel%C3%A9s/Budapest%20f%C5%91v%C3%A1ros%20telep%C3%BCl%C3%A9sszerkezeti%20terv%C3%A9nek%20fel%C3%BClvizsg%C3%A1lat%C3%A1hoz/2017.%20szeptember/Budapest_F%C5%91v%C3%A1ros_TSZT_m%C3%B3dos%C3%ADt%C3%A1s_K%C3%89_17_09.pdf",
+        "https://archiv.budapest.hu/Documents/V%C3%A1ros%C3%A9p%C3%ADt%C3%A9si%20F%C5%91oszt%C3%A1ly/Budapest2030_HUN_teljes.pdf"
+      ],
+      "duplicateGroup": "Budapest:Buda",
+      "aliasOf": "wof:85901063",
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/35/85901235.geojson",
+      "sourceSha256": "6407ab73bc4225d0b0070afaac99c203b7b9aab6b209e320bb426ef6c4475ae8",
+      "sourceRecordHints": {
+        "wof:name": "Ofen",
+        "qs:name_adm2": "Budapest I.",
+        "name:hun_x_preferred": [
+          "Ofen"
+        ],
+        "geom:bbox": "19.0141532853,47.4912248882,19.0393066406,47.5068099355"
+      },
+      "notes": "Ofen Buda történelmi német neve. Nagy területi gyűjtőnév, nem külön mai városrész.",
+      "canonicalNameSupported": false,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901241",
+      "sourceName": "Pest",
+      "originalName": "Pest",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Pest",
+      "validationStatus": "macro_area",
+      "nameExistenceConfidence": "high",
+      "areaKind": "macro_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Documents/V%C3%A1ros%C3%A9p%C3%ADt%C3%A9si%20F%C5%91oszt%C3%A1ly/Budapest2030_HUN_teljes.pdf"
+      ],
+      "duplicateGroup": "Budapest:Pest",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/41/85901241.geojson",
+      "sourceSha256": "673c8d6f73bccd3323f921bea35b706b67dbf44cfca036f1ed7d68e056fe044a",
+      "sourceRecordHints": {
+        "wof:name": "Pest",
+        "name:hun_x_preferred": [
+          "Pest"
+        ],
+        "geom:bbox": "19.061279,47.481945,19.075012,47.498648"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": false,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901243",
+      "sourceName": "Pesthidegkut",
+      "originalName": "Pesthidegkút",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Pesthidegkút",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "district_or_large_named_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://masodikkerulet.hu/sites/default/files/attachments/files/masodikkerulethu/2026_01/onkormanyzat_szmsz.pdf",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Pesthidegkút",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/43/85901243.geojson",
+      "sourceSha256": "663b8ff494350e0be193bc631141349abbc53c386c77320693496cbe35fb6a86",
+      "sourceRecordHints": {
+        "wof:name": "Pesthidegkut",
+        "qs:gn_name": "Pesthidegkút",
+        "qs:name_adm2": "Budapest II.",
+        "name:hun_x_preferred": [
+          "Pesthidegkút"
+        ],
+        "geom:bbox": "18.9057104492,47.5127652377,19.0026147461,47.5772605732"
+      },
+      "notes": "A Pesthidegkút név ma is használatos területi és részönkormányzati név. Nem azonosítjuk automatikusan a szűkebb Pesthidegkút-Ófalu városrésszel.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901245",
+      "sourceName": "Pestj",
+      "originalName": "Pestj",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Pest",
+      "validationStatus": "macro_area",
+      "nameExistenceConfidence": "high",
+      "areaKind": "macro_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/45/85901245.geojson",
+        "https://archiv.budapest.hu/Documents/V%C3%A1ros%C3%A9p%C3%ADt%C3%A9si%20F%C5%91oszt%C3%A1ly/Budapest2030_HUN_teljes.pdf"
+      ],
+      "duplicateGroup": "Budapest:Pest",
+      "aliasOf": "wof:85901241",
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/45/85901245.geojson",
+      "sourceSha256": "b810526e00967361d3cacfad91849f457777ad95fc886707ee50096f2f4886ef",
+      "sourceRecordHints": {
+        "wof:name": "Pestj",
+        "qs:gn_name": "Pest",
+        "qs:name_adm2": "Budapest VIII.",
+        "name:hun_x_preferred": [
+          "Pestj"
+        ],
+        "name:hun_x_variant": [
+          "Pest"
+        ],
+        "geom:bbox": "19.075012,47.498648,19.088745,47.50755"
+      },
+      "notes": "A nyers forrás name:hun_x_variant és qs:gn_name értéke Pest. A Pestj forrásnév hibás változat; Pest nagy területi gyűjtőnév, nem önálló kis városrész.",
+      "canonicalNameSupported": false,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901249",
+      "sourceName": "Pestlőrinc",
+      "originalName": "Pestlőrinc",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Pestlőrinc",
+      "validationStatus": "ambiguous_name",
+      "nameExistenceConfidence": "unresolved",
+      "areaKind": "unresolved",
+      "actualMunicipality": null,
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx",
+        "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/49/85901249.geojson"
+      ],
+      "duplicateGroup": "Budapest:Pestlőrinc",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/49/85901249.geojson",
+      "sourceSha256": "8eb5078dca5fe0841020082497ac0ef53d34fe906c83e257a452cf4a7fc9c569",
+      "sourceRecordHints": {
+        "wof:name": "Pestlőrinc",
+        "qs:gn_name": "Pestlőrinc",
+        "qs:name_adm2": "Budapest XVIII.",
+        "name:hun_x_preferred": [
+          "Budapest XVIII. kerülete"
+        ],
+        "name:hun_x_variant": [
+          "Pestlőrinc"
+        ],
+        "geom:bbox": "19.1381835938,47.4050788934,19.1968200626,47.4633788419"
+      },
+      "notes": "A forrás egyszerre tartalmazza a Pestlőrinc és Pestszentlőrinc alakot, valamint a teljes XVIII. kerület megnevezését. Ezért nem dönthető el biztosan, hogy a poligon melyik területet jelöli. Nem rendeltük automatikusan a Pestszentlőrinc-poligonhoz.",
+      "canonicalNameSupported": false,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901251",
+      "sourceName": "Pestszenterzsébet",
+      "originalName": "Pestszenterzsébet",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Pesterzsébet",
+      "validationStatus": "historical_alias",
+      "nameExistenceConfidence": "high",
+      "areaKind": "district_or_large_named_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://or.njt.hu/onkormanyzati-rendelet/2012-94-SP-4191",
+        "https://pesterzsebet.hu/wp-content/uploads/dokumentumtar/testuleti-eloterjesztesek/2014/januar/1390218557_11-javaslat_bp_20_pe_ertekalapu_koncepc_elfog-mell-01.pdf",
+        "https://muzeum.pesterzsebet.hu/pesterzsebeti-muzeum/pesterzsebet-tortenete/",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Pesterzsébet",
+      "aliasOf": "name:Budapest:Pesterzsébet",
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/51/85901251.geojson",
+      "sourceSha256": "2f2d4ef76d510bad43fbf7a0a919ff7815263abc14a3a888e059f33c7decc9db",
+      "sourceRecordHints": {
+        "wof:name": "Pestszenterzsébet",
+        "qs:name_adm2": "Budapest XX.",
+        "name:hun_x_preferred": [
+          "Pestszenterzsébet"
+        ],
+        "name:hun_x_variant": [
+          "Budapest XX. kerülete"
+        ],
+        "geom:bbox": "19.083252,47.424142,19.117971,47.446665"
+      },
+      "notes": "Pestszenterzsébet Pesterzsébet korábbi neve. A mai Pesterzsébet kerületnév, mely alatt hat külön kisebb városrész szerepel a fővárosi rendeletben. A nyers WOF name:hun_x_variant értéke is Budapest XX. kerülete. A történelmi név mai megfelelőjét megtartjuk, de nem számoljuk külön kisebb városrészként.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901253",
+      "sourceName": "Pestszentlorinc",
+      "originalName": "Pestszentlőrinc",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Pestszentlőrinc",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "district_or_large_named_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Pestszentlőrinc",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/53/85901253.geojson",
+      "sourceSha256": "47076fd81f2f831572473521acc035c20189195b4d9dcf9c3b74b7414171461a",
+      "sourceRecordHints": {
+        "wof:name": "Pestszentlorinc",
+        "qs:name_adm2": "Budapest XVIII.",
+        "name:hun_x_preferred": [
+          "Pestszentlőrinc"
+        ],
+        "geom:bbox": "19.174875,47.393926,19.233328,47.443661"
+      },
+      "notes": "Mai, ismert nagyobb területi vagy kerületnév. Nem azonos a kerület alatti összes kisebb városrész külön határvonalával; szűken vett városrészként nem számoljuk.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901255",
+      "sourceName": "Pestujhely",
+      "originalName": "Pestújhely",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Pestújhely",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Pestújhely",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/55/85901255.geojson",
+      "sourceSha256": "d8be823f1aeb5d7f16f25505fb37836024df5834bc41f3d948c1591c51b03385",
+      "sourceRecordHints": {
+        "wof:name": "Pestujhely",
+        "qs:gn_name": "Pestújhely",
+        "qs:name_adm2": "Budapest XV.",
+        "name:hun_x_preferred": [
+          "Pestújhely"
+        ],
+        "geom:bbox": "19.096985,47.526474,19.14944,47.569847"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901259",
+      "sourceName": "Promontor",
+      "originalName": "Promontor",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Budafok",
+      "validationStatus": "historical_alias",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://budafokteteny.hu/hir/telthazas-elodassal-nyilt-meg-budafok-centenariumi-eve",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Budafok",
+      "aliasOf": "wof:85901065",
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/59/85901259.geojson",
+      "sourceSha256": "156ba6b5971589107ae4830715752e1f6588aa8ac7ccb7c7c6002ef03f74e793",
+      "sourceRecordHints": {
+        "wof:name": "Promontor",
+        "qs:gn_name": "Budafok",
+        "qs:name_adm2": "Budapest XI.",
+        "name:hun_x_preferred": [
+          "Promontor"
+        ],
+        "name:hun_x_variant": [
+          "Budafok"
+        ],
+        "geom:bbox": "19.020081,47.401362,19.064654,47.446664"
+      },
+      "notes": "Promontor Budafok korábbi neve; az önkormányzati centenáriumi cikk ezt kifejezetten leírja.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901261",
+      "sourceName": "Rakoskeresztur",
+      "originalName": "Rákoskeresztúr",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Rákoskeresztúr",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Rákoskeresztúr",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/61/85901261.geojson",
+      "sourceSha256": "7b9f51a4106386d64f7048a79a41c7065ae0206423a4849d0184941f488d6357",
+      "sourceRecordHints": {
+        "wof:name": "Rakoskeresztur",
+        "name:hun_x_preferred": [
+          "Rákoskeresztúr"
+        ],
+        "geom:bbox": "19.228821,47.464519,19.293752,47.503081"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901263",
+      "sourceName": "Rakosszentmihaly",
+      "originalName": "Rákosszentmihály",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Rákosszentmihály",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Rákosszentmihály",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/63/85901263.geojson",
+      "sourceSha256": "df043c05ee744005ca2bb1149cfbfa8045ba2e4291b21523b116f907977c5781",
+      "sourceRecordHints": {
+        "wof:name": "Rakosszentmihaly",
+        "qs:gn_name": "Rákosszentmihály",
+        "qs:name_adm2": "Budapest XVI.",
+        "name:hun_x_preferred": [
+          "Rákosszentmihály"
+        ],
+        "name:hun_x_variant": [
+          "Budapesti Helyiérdekű Vasút"
+        ],
+        "geom:bbox": "19.1519165039,47.5254572235,19.1848754883,47.5502771097"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901271",
+      "sourceName": "Romaifurdo",
+      "originalName": "Rómaifürdő",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Rómaifürdő",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Rómaifürdő",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/71/85901271.geojson",
+      "sourceSha256": "93277cd6ba68a8448758a25ffaf15bd6d9cf28014815f0491467263feeca676a",
+      "sourceRecordHints": {
+        "wof:name": "Romaifurdo",
+        "qs:gn_name": "Rómaifürdő",
+        "qs:name_adm2": "Budapest III.",
+        "name:hun_x_preferred": [
+          "Rómaifürdő"
+        ],
+        "geom:bbox": "19.0210668946,47.5615187473,19.0777587891,47.5957891496"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901275",
+      "sourceName": "Sasad",
+      "originalName": "Sasad",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Sasad",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://ujbuda.hu/keruletunk/Keruletunket/Helytortenet",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Sasad",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/75/85901275.geojson",
+      "sourceSha256": "b70561fd722e6d69df12ea43d9ccff0f39fe7da1c2023824a1e414a874596df0",
+      "sourceRecordHints": {
+        "wof:name": "Sasad",
+        "qs:gn_name": "Vasad",
+        "qs:name_adm2": "Budapest XI.",
+        "name:hun_x_preferred": [
+          "Sasad"
+        ],
+        "name:hun_x_variant": [
+          "Vasad"
+        ],
+        "geom:bbox": "18.970408,47.441308,19.02832,47.476376"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901277",
+      "sourceName": "Sashalom",
+      "originalName": "Sashalom",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Sashalom",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Sashalom",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/77/85901277.geojson",
+      "sourceSha256": "9e4149968671ed501cf7c47456053b235dd17c2de51a248a0c4433c15cc679c8",
+      "sourceRecordHints": {
+        "wof:name": "Sashalom",
+        "qs:gn_name": "Sashalom",
+        "qs:name_adm2": "Budapest XVI.",
+        "name:hun_x_preferred": [
+          "Sashalom"
+        ],
+        "geom:bbox": "19.15778,47.496792,19.184382,47.52623"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901293",
+      "sourceName": "Szemeretelep",
+      "originalName": "Szemere-Telep",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Szemeretelep",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Szemeretelep",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/012/93/85901293.geojson",
+      "sourceSha256": "5ff272e47d1275fe3e8b5188daf27304dd974ed40648165249c3c3e11bdd1828",
+      "sourceRecordHints": {
+        "wof:name": "Szemeretelep",
+        "qs:gn_name": "Szentimretelep",
+        "qs:name_adm2": "Budapest XVIII.",
+        "name:hun_x_preferred": [
+          "Szemere-Telep"
+        ],
+        "geom:bbox": "19.1776225279,47.4278577964,19.2223413086,47.4653130539"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901305",
+      "sourceName": "Tabán",
+      "originalName": "Tabán",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Tabán",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Tabán",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/05/85901305.geojson",
+      "sourceSha256": "5cff7dd7d4b5cf073a6e2694c1c7c85d743e62c69635f66c0d14454c7ada27fe",
+      "sourceRecordHints": {
+        "wof:name": "Tabán",
+        "name:hun_x_preferred": [
+          "Tabán"
+        ],
+        "geom:bbox": "19.02832,47.483801,19.048046,47.49772"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901309",
+      "sourceName": "Terezvaro",
+      "originalName": "Terezvaro",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Terézváros",
+      "validationStatus": "spelling_variant",
+      "nameExistenceConfidence": "medium",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Terézváros",
+      "aliasOf": "wof:85906419",
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/09/85901309.geojson",
+      "sourceSha256": "01b51c5c6e558428d95cd7a9b299144150e4bb22c687a3a35e5891c49f8db4db",
+      "sourceRecordHints": {
+        "wof:name": "Terezvaro",
+        "qs:name_adm2": "Budapest VI.",
+        "name:hun_x_preferred": [
+          "Terezvaro"
+        ],
+        "geom:bbox": "19.0667724609,47.5060697163,19.0969848633,47.5247663521"
+      },
+      "notes": "A forrásnév csonkoltnak látszik, qs:name_adm2 értéke Budapest VI.; Terézváros mai neve a fővárosi listában szerepel. Névnormalizálási javaslat, közepes bizonyosságú rekordazonosítás.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901323",
+      "sourceName": "Újpest",
+      "originalName": "Újpest",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Újpest",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Újpest",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/23/85901323.geojson",
+      "sourceSha256": "4ee4720a1d117dba20c3e27615dac0f7af2688293c73242ec6c629c543e478b3",
+      "sourceRecordHints": {
+        "wof:name": "Újpest",
+        "qs:gn_name": "Pest",
+        "qs:name_adm2": "Budapest IV.",
+        "name:hun_x_preferred": [
+          "Újpest"
+        ],
+        "name:hun_x_variant": [
+          "IV. kerület",
+          "Budapest IV. kerülete"
+        ],
+        "geom:bbox": "19.077759,47.55614,19.112478,47.576673"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901333",
+      "sourceName": "Vár",
+      "originalName": "Vár",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Vár",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Vár",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": true,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/33/85901333.geojson",
+      "sourceSha256": "69304b3cfc7009c9b417ecbf0723f3e34a530c803ff08d956028025ca32b0898",
+      "sourceRecordHints": {
+        "wof:name": "Vár",
+        "qs:name_adm2": "Budapest XIII.",
+        "name:hun_x_preferred": [
+          "Vár"
+        ],
+        "geom:bbox": "19.033813,47.507925,19.066772,47.537804"
+      },
+      "notes": "Vár mai városrésznév. A forráspoligon befoglaló téglalapja a Várnegyed szokásos elhelyezkedéséhez képest északra nyúlik; külön összerendelési ellenőrzést igényel.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901335",
+      "sourceName": "Varhegy",
+      "originalName": "Varhegy",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Várhegy",
+      "validationStatus": "geographic_name_only",
+      "nameExistenceConfidence": "high",
+      "areaKind": "geographic_feature",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx",
+        "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/35/85901335.geojson"
+      ],
+      "duplicateGroup": "Budapest:Várhegy",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": false,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": true,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/35/85901335.geojson",
+      "sourceSha256": "3d2422a8cda1adef764254d710270d189bff95cd880c8c047142c565cec9a31f",
+      "sourceRecordHints": {
+        "wof:name": "Varhegy",
+        "qs:gn_name": "Várhegy",
+        "qs:name_adm2": "Budapest I.",
+        "name:hun_x_preferred": [
+          "Varhegy"
+        ],
+        "name:hun_x_variant": [
+          "Vár",
+          "Várhegy"
+        ],
+        "geom:bbox": "19.0283203125,47.4967921988,19.0557861328,47.511635535"
+      },
+      "notes": "Várhegy létező földrajzi név; nem számoljuk külön a Vár városrésztől. A nyers rekord idegen nyelvű neveiben romániai település is szerepel, és gn:latitude/longitude eltér a budapesti geometriától: összekevert metaadat gyanúja.",
+      "canonicalNameSupported": false,
+      "sourceLabelIsCurrentName": false,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85901341",
+      "sourceName": "Viranyos",
+      "originalName": "Viranyos",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Virányos",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Virányos",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/41/85901341.geojson",
+      "sourceSha256": "0c7cebc62c637ade86e7134efe8e1619e9908c4e71a379001a64c5f2482e68fc",
+      "sourceRecordHints": {
+        "wof:name": "Viranyos",
+        "qs:name_adm2": "Budapest XII.",
+        "name:hun_x_preferred": [
+          "Viranyos"
+        ],
+        "geom:bbox": "18.9898681641,47.4966097847,19.0118408203,47.5264744938"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901345",
+      "sourceName": "Zugliget",
+      "originalName": "Zugliget",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Zugliget",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Zugliget",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/45/85901345.geojson",
+      "sourceSha256": "298229da7bd16f705984338bcad4726b391e3e32e0a82434fa43be1d508e884e",
+      "sourceRecordHints": {
+        "wof:name": "Zugliget",
+        "qs:gn_name": "Zugliget",
+        "qs:name_adm2": "Budapest XII.",
+        "name:hun_x_preferred": [
+          "Zugliget"
+        ],
+        "name:hun_x_variant": [
+          "János-hegy"
+        ],
+        "geom:bbox": "18.9661945531,47.5023586241,18.9968659217,47.5227651066"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901347",
+      "sourceName": "Zugló",
+      "originalName": "Zugló",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Zugló",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "district_or_large_named_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Zugló",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/013/47/85901347.geojson",
+      "sourceSha256": "cf6cbe4879683d6653f4359f9d84635eff5394530b66ebc7b2a82e2d64ea88ed",
+      "sourceRecordHints": {
+        "wof:name": "Zugló",
+        "qs:gn_name": "Zugló",
+        "qs:name_adm2": "Budapest XIV.",
+        "name:hun_x_preferred": [
+          "Budapest XIV. kerülete"
+        ],
+        "name:hun_x_variant": [
+          "Zugló",
+          "XIV. kerület"
+        ],
+        "geom:bbox": "19.105225,47.486211,19.135437,47.517201"
+      },
+      "notes": "Mai, ismert nagyobb területi vagy kerületnév. Nem azonos a kerület alatti összes kisebb városrész külön határvonalával; szűken vett városrészként nem számoljuk.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85906419",
+      "sourceName": "Terézváros",
+      "originalName": "Terézváros",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Terézváros",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Terézváros",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/064/19/85906419.geojson",
+      "sourceSha256": "b2aed3b7febab4dc65a70445e22631c441df3237356c97f1fbb1c41cde539114",
+      "sourceRecordHints": {
+        "wof:name": "Terézváros",
+        "qs:name_adm2": "Budapest VI.",
+        "name:hun_x_preferred": [
+          "Budapest VI. kerülete"
+        ],
+        "name:hun_x_variant": [
+          "Terézváros",
+          "Terezvaros",
+          "VI. kerület"
+        ],
+        "geom:bbox": "19.050293,47.498648,19.078759,47.518681"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85906421",
+      "sourceName": "Istvanmezo",
+      "originalName": "Istvanmezo",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Istvánmező",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Istvánmező",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/064/21/85906421.geojson",
+      "sourceSha256": "704de18107fe3e40d22ef009691d351a4e370d475c32ef8e01730811bd8d279e",
+      "sourceRecordHints": {
+        "wof:name": "Istvanmezo",
+        "qs:name_adm2": "Budapest XIV.",
+        "name:hun_x_preferred": [
+          "Istvanmezo"
+        ],
+        "geom:bbox": "19.0859985352,47.4854748251,19.1198740545,47.5149710288"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85906423",
+      "sourceName": "Herminamezo",
+      "originalName": "Herminamezo",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Herminamező",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Herminamező",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/064/23/85906423.geojson",
+      "sourceSha256": "d369e4500122390b890ffead3371836fc9a732a96728d2a0c18d264f38d0adc9",
+      "sourceRecordHints": {
+        "wof:name": "Herminamezo",
+        "qs:name_adm2": "Budapest XIV.",
+        "name:hun_x_preferred": [
+          "Herminamezo"
+        ],
+        "name:hun_x_variant": [
+          "Herminamező"
+        ],
+        "geom:bbox": "19.088745115,47.5134905892,19.1107177734,47.5301836187"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85906425",
+      "sourceName": "Rozsadomb",
+      "originalName": "Rozsadomb",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Rózsadomb",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Rózsadomb",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/064/25/85906425.geojson",
+      "sourceSha256": "81b49403783aa9c467e27b93f927256c818eb3b2a01ace5f726c0bba613f06a3",
+      "sourceRecordHints": {
+        "wof:name": "Rozsadomb",
+        "qs:name_adm2": "Budapest II.",
+        "name:hun_x_preferred": [
+          "Rozsadomb"
+        ],
+        "name:hun_x_variant": [
+          "Rózsadomb"
+        ],
+        "geom:bbox": "19.02832,47.511636,19.03656,47.52091"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85906427",
+      "sourceName": "Alsorakos",
+      "originalName": "Alsórákos",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Alsórákos",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Alsórákos",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/064/27/85906427.geojson",
+      "sourceSha256": "b3c6e7696f525e17da879ecb36693c13a4df2356bace52a0099d694f0d9e5c50",
+      "sourceRecordHints": {
+        "wof:name": "Alsorakos",
+        "qs:name_adm2": "Budapest XIV.",
+        "name:hun_x_preferred": [
+          "Alsórákos"
+        ],
+        "name:hun_x_variant": [
+          "Alsoprakos"
+        ],
+        "geom:bbox": "19.109465614,47.5246199313,19.1162109375,47.5320382468"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85906429",
+      "sourceName": "Rakosfalva",
+      "originalName": "Rákosfalva",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Rákosfalva",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Rákosfalva",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/064/29/85906429.geojson",
+      "sourceSha256": "435d04a252ea15fb10578c250aa33c0243a4066d8fe3e8f9c10a9c3b9930e7cf",
+      "sourceRecordHints": {
+        "wof:name": "Rakosfalva",
+        "qs:name_adm2": "Budapest XIV.",
+        "name:hun_x_preferred": [
+          "Rákosfalva"
+        ],
+        "name:hun_x_variant": [
+          "Rakosfalva"
+        ],
+        "geom:bbox": "19.1271972656,47.4893688174,19.1718016254,47.5309620233"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85906435",
+      "sourceName": "Káposztásmegyer",
+      "originalName": "Kaposztasmegyer",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Káposztásmegyer",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Káposztásmegyer",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/064/35/85906435.geojson",
+      "sourceSha256": "449514500cb56ca8f3d4b264af2f211a96cdd3c824f1ac1caec7189580ef5e2c",
+      "sourceRecordHints": {
+        "wof:name": "Káposztásmegyer",
+        "qs:name_adm2": "Budapest IV.",
+        "name:hun_x_preferred": [
+          "Kaposztasmegyer"
+        ],
+        "name:hun_x_variant": [
+          "Újpest-Központ"
+        ],
+        "geom:bbox": "19.061518091,47.5646727905,19.1344506836,47.618014787"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85906437",
+      "sourceName": "Belvaros",
+      "originalName": "Belvaros",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Belváros",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Belváros",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/064/37/85906437.geojson",
+      "sourceSha256": "351759008557261dc51334b7dc79eae2ad1439ae39d387f10e5cf62c132170d9",
+      "sourceRecordHints": {
+        "wof:name": "Belvaros",
+        "qs:name_adm2": "Budapest V.",
+        "name:hun_x_preferred": [
+          "Belvaros"
+        ],
+        "name:hun_x_variant": [
+          "Belváros"
+        ],
+        "geom:bbox": "19.0475463867,47.4875130008,19.0647759938,47.5034691632"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85906439",
+      "sourceName": "Rakoshegy",
+      "originalName": "Rakoshegy",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Rákoshegy",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Rákoshegy",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/064/39/85906439.geojson",
+      "sourceSha256": "e4fe8456968e076a30f9b01773fd4bb0cf07132b324029955a61d509360d00bf",
+      "sourceRecordHints": {
+        "wof:name": "Rakoshegy",
+        "name:hun_x_preferred": [
+          "Rakoshegy"
+        ],
+        "name:hun_x_variant": [
+          "Budapest XVII. kerülete"
+        ],
+        "geom:bbox": "19.2176006317,47.4385224052,19.2772729492,47.4748842268"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85906441",
+      "sourceName": "Gubacsi Dulo",
+      "originalName": "Gubacsi Dulo",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Gubacsidűlő",
+      "validationStatus": "geographic_name_only",
+      "nameExistenceConfidence": "high",
+      "areaKind": "geographic_feature",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://www.ferencvaros.hu/wp-content/uploads/2026/03/Ferencvaros_fejlesztesi_terve.pdf",
+        "https://www.ferencvaros.hu/wp-content/uploads/2025/09/KT-2025-09-11-jkv-HONLAPRA.pdf",
+        "https://or.njt.hu/onkormanyzati-rendelet/2012-94-SP-4191",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Gubacsidűlő",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/064/41/85906441.geojson",
+      "sourceSha256": "7a41a3fb421f01e8da95dc5c965ca337b1444c859f7495224e1b0ddd8c653770",
+      "sourceRecordHints": {
+        "wof:name": "Gubacsi Dulo",
+        "qs:name_adm2": "Budapest IX.",
+        "name:hun_x_preferred": [
+          "Gubacsi Dulo"
+        ],
+        "name:hun_x_variant": [
+          "VándorMások"
+        ],
+        "geom:bbox": "19.0710097431,47.4429499296,19.118721903,47.4652362244"
+      },
+      "notes": "Gubacsidűlő ma is használt földrajzi/fejlesztési területnév: 2025-ös képviselő-testületi jegyzőkönyv és 2026-os önkormányzati fejlesztési terv is használja. A hatályos fővárosi városrészjegyzék IX. kerületi felosztása viszont Belső-, Középső-, Külső-Ferencvárost és József Attila-lakótelepet tartalmaz; Gubacsidűlőt nem számoljuk külön jelenlegi hivatalos városrésznek. A régi poligon kutatási jelöltként megmarad.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85906443",
+      "sourceName": "Jozsefvaros",
+      "originalName": "Jozsefvaros",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Józsefváros",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "district_or_large_named_area",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://or.njt.hu/onkormanyzati-rendelet/2012-94-SP-4191",
+        "https://jozsefvaros.hu/otthon/kozosseg-es-kerulet/jozsefvaros-negyedei/2022/07/altalanos-informaciok/",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Józsefváros",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": true,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/064/43/85906443.geojson",
+      "sourceSha256": "f48c2c03bda4c5de289780c1ac9af66bd701d7de1f53db874c87e39cf114dc47",
+      "sourceRecordHints": {
+        "wof:name": "Jozsefvaros",
+        "name:hun_x_preferred": [
+          "Budapest VIII. kerülete"
+        ],
+        "name:hun_x_variant": [
+          "Józsefváros",
+          "Jozsefvaros",
+          "VIII. kerület"
+        ],
+        "geom:bbox": "19.075012,47.483801,19.099731,47.498648"
+      },
+      "notes": "Józsefváros mai kerületnév. Az önkormányzat jelenlegi ismertetője a kerület városrészeit 11 külön negyedként mutatja be. A nyers WOF preferred magyar neve Budapest VIII. kerülete; Józsefvárost nem adjuk hozzá tizenkettedik városrészként a kisebb negyedekhez.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": false
+    },
+    {
+      "id": "wof:85906445",
+      "sourceName": "Pasaret",
+      "originalName": "Pasaret",
+      "originalMunicipality": "Budapest",
+      "proposedHungarianName": "Pasarét",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Pasarét",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/064/45/85906445.geojson",
+      "sourceSha256": "4f1f1920ad886da8dda8fa165f1ce8e423f4c37e911503af614e77423938db17",
+      "sourceRecordHints": {
+        "wof:name": "Pasaret",
+        "qs:name_adm2": "Budapest II.",
+        "name:hun_x_preferred": [
+          "Pasaret"
+        ],
+        "name:hun_x_variant": [
+          "Pasarét"
+        ],
+        "geom:bbox": "19.0063476562,47.5172006322,19.0460750386,47.5374143736"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901113",
+      "sourceName": "Frankhegy",
+      "originalName": "Frankhegy",
+      "originalMunicipality": "Budaörs",
+      "proposedHungarianName": "Frankhegy",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budaörs",
+      "evidenceUrls": [
+        "https://budaors.hu/varoshaza/hirdetotabla/aktualis-palyazatok/palyazati-felhivas-1049-m2-teruletu-onkormanyzati-tulajdonu-ingatlan-berbeadas-utjan-torteno-hasznositasara-202603"
+      ],
+      "duplicateGroup": "Budaörs:Frankhegy",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": false,
+      "geometryAssociationNeedsReview": false,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/011/13/85901113.geojson",
+      "sourceSha256": "b123e85b6521118b12259eb094215446ff43bff316dc5cf925fe46b2a088ee9e",
+      "sourceRecordHints": {
+        "wof:name": "Frankhegy",
+        "qs:gn_name": "Frankhegy",
+        "qs:name_adm2": "Budapest XII.",
+        "name:hun_x_preferred": [
+          "Frankhegy"
+        ],
+        "geom:bbox": "18.916697,47.442237,18.980489,47.496792"
+      },
+      "notes": "A név és a településnév összerendelése nyilvános önkormányzati névjegyzék vagy önkormányzati közlés alapján támogatott. A geometria pontosságát ez az ellenőrzés nem minősíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    },
+    {
+      "id": "wof:85901051",
+      "sourceName": "Arpadfold",
+      "originalName": "Arpadfold",
+      "originalMunicipality": "Csömör",
+      "proposedHungarianName": "Árpádföld",
+      "validationStatus": "name_supported",
+      "nameExistenceConfidence": "high",
+      "areaKind": "neighbourhood",
+      "actualMunicipality": "Budapest",
+      "evidenceUrls": [
+        "https://www.bp16.hu/sites/default/files/oldal/2023/dokumentum/5-2023_mellekletek.pdf",
+        "https://archiv.budapest.hu/Lapok/Fovaros/Keruletek.aspx"
+      ],
+      "duplicateGroup": "Budapest:Árpádföld",
+      "aliasOf": null,
+      "countsAsCurrentNamedArea": true,
+      "excludeFromUniqueNeighborhoodCount": false,
+      "municipalityCorrectionNeeded": true,
+      "geometryAssociationNeedsReview": true,
+      "geometryVerified": false,
+      "usableForAddressAssignment": false,
+      "sourceGeometryUnmodified": true,
+      "sourceUrl": "https://raw.githubusercontent.com/whosonfirst-data/whosonfirst-data-admin-hu/4b64e4ebf99e9fbadc4e828bea25d41a9085b7f1/data/859/010/51/85901051.geojson",
+      "sourceSha256": "910776c2ffedfdbde11c03c9518b47a552a78e49cb77455ee279ebcd8bef69f5",
+      "sourceRecordHints": {
+        "wof:name": "Arpadfold",
+        "qs:name_adm2": "Budapest XVI.",
+        "name:hun_x_preferred": [
+          "Arpadfold"
+        ],
+        "geom:bbox": "19.184875,47.528574,19.244314,47.562433"
+      },
+      "notes": "Árpádföld Budapest XVI. kerületének városrésze; Csömör a szomszéd település. A nyers WOF szülőtelepülés-besorolás hibás. A poligon alakját a névellenőrzés nem hitelesíti.",
+      "canonicalNameSupported": true,
+      "sourceLabelIsCurrentName": true,
+      "canonicalNameIsNeighborhood": true
+    }
+  ],
+  "fieldSemantics": {
+    "countsAsCurrentNamedArea": "A rekord saját forrásneve ma is használt helynévként támogatott; ez lehet földrajzi/fejlesztési területnév is, és nem egyedi városrész-névcsoport-szám.",
+    "canonicalNameSupported": "A javasolt mai név támogatott; történelmi vagy írásváltozatú forrásrekordnál is lehet igaz. Egyedi mai nevek számlálásakor a duplicateGroup értéke szerint kell deduplikálni.",
+    "excludeFromUniqueNeighborhoodCount": "A saját forrásnév szerinti szigorú városrész-statisztikából kizárt. A modern névre átnevezett aliaspoligonok deduplikált számlálása külön összesítés.",
+    "geometryAssociationNeedsReview": "Név/metaadat/befoglaló téglalap alapján észlelt jelentős összerendelési kérdés; nem részletes határvonal-ellenőrzés.",
+    "canonicalNameIsNeighborhood": "A javasolt mai név támogatott és nem kerület/nagy területi gyűjtőnév. Ezt szűrve, duplicateGroup szerint deduplikálva a summary.supportedCanonicalNeighborhoodNamesIncludingAliases mezőben szereplő számú mai városrésznév kap támogatást; ez nem a kerületi és országos jelenlegi hivatalos városrészek teljes jegyzéke."
+  }
+}

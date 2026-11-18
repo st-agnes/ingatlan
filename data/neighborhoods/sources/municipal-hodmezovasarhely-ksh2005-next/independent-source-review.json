@@ -1,0 +1,858 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent_native_source_path_semantics_rights_and_duplicate_identity_review",
+  "reviewDate": "2026-11-14",
+  "municipality": "Hódmezővásárhely",
+  "source": {
+    "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+    "localOriginalPath": ".local/neighborhoods/quarter-map-batch/ksh-hodmezovasarhely-2005.pdf",
+    "sha256": "3dc2a4f4fcf3afd1b387a278be6a7fc7dcccdb75db8f1d4af3a5f07d811d8342",
+    "bytes": 817581,
+    "pages": 72,
+    "publisher": "Központi Statisztikai Hivatal, Szegedi Igazgatósága",
+    "title": "A nagyvárosok belső tagozódása – Hódmezővásárhely",
+    "edition": "8/2005",
+    "publicationPeriod": "July 2005, printed cover page 1",
+    "statisticsReference": "Principally 2001-02-01 according to page4; some other data refer to December 31 unless otherwise stated.",
+    "originalMapSurveyOrBoundaryReferenceDate": "Not established; publication and statistical dates are distinct and neither establishes exact boundary vintage or current 2026 extent.",
+    "pdfMetadataCreationDate": "D:20050804125258Z",
+    "downloadManifestPath": ".local/neighborhoods/quarter-map-batch/download-manifest.json",
+    "downloadManifestSha256": "b3bf66004d94d5eac6d38448f9926adcecb9e7bfcd1111f4be7c5a66e2939f18",
+    "downloadHashMatched": true
+  },
+  "inspectionScope": {
+    "independentlyReadPhysicalPages": [
+      1,
+      2,
+      4,
+      8,
+      9,
+      10,
+      11
+    ],
+    "selectedMapPageOneBased": 9,
+    "printedMapPage": 9,
+    "nativeCoordinateSpace": "PDF page points, top-left origin, x right/y down; these are source coordinates only.",
+    "sourcePageSizePoints": [
+      595,
+      842
+    ],
+    "nativeImageObjectsOnMapPage": 0,
+    "allDrawingObjects": 28,
+    "namedFillObjects": 15,
+    "totalExplicitClosedSubpaths": 17,
+    "strokeOnlyObjects": 13,
+    "mapContentStreamXref": 26,
+    "mapContentStreamRawSha256": "16ca91ddf819fcc3d80bee53e65232c5a335eb1cbebb5350988a93f463df1b38",
+    "mapContentStreamDecodedSha256": "7900d7981175d4c03ae4c430a549ca1e7d6b5e972b82ac12ee53e6d891a0e0e6",
+    "pageObjectHasGeospatialReferenceEntry": false,
+    "tools": {
+      "Python": "3.12.14",
+      "PyMuPDF": "1.26.6"
+    }
+  },
+  "semantics": {
+    "centralNineSourceQuarterNames": [
+      "Belváros",
+      "Tarján",
+      "Tabán",
+      "Csúcs",
+      "Béketelep",
+      "Kertváros",
+      "Hódtó",
+      "Susán",
+      "Újváros"
+    ],
+    "outlyingFormerFarmCentreNames": [
+      "Batida",
+      "Erzsébet",
+      "Kútvölgy",
+      "Szikáncs"
+    ],
+    "Kishomok": "Page 9 describes garden character, but pages 10–11 also treat Kishomok as an individual named statistical city part; do not reject the source identity solely because it is a garden area.",
+    "Kiskertek": "A separately drawn and labelled western garden strip. It is absent from the individual named rows of page 11. Page 8 relates the adjacent garden area to Tabán; do not assume a separate fine-quarter identity, union it with Tabán, or clone Tabán geometry onto it without further evidence.",
+    "sourceNamedStatisticalPartsSupported": 14,
+    "independentCurrentQuarterIdentitiesEstablished": 0,
+    "legalOrCadastralBoundaryAuthorityEstablished": false,
+    "sourceIsOfficialPublication": "Official KSH publication. This describes publisher provenance, not municipal legal designation or survey accuracy.",
+    "schemaMeaning": "The map distinguishes historical named central quarters, named outlying settlements and garden/local areas. The 15 map labels do not automatically mean 15 current canonical neighborhoods."
+  },
+  "nativePathFindings": {
+    "fillDrawingIndices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      27
+    ],
+    "allSubpathsExplicitlyClosed": true,
+    "sourceClosePathBooleanCaveat": "get_drawings reports closePath=false, but coordinate continuity shows every actual subpath returns exactly to its own start. No closing edge needs to be invented.",
+    "twoPartObjects": {
+      "Belváros": {
+        "drawingIndex": 0,
+        "partAreasSquarePdfPoints": [
+          0.0647974731400609,
+          1293.0242589479312
+        ]
+      },
+      "Kiskertek": {
+        "drawingIndex": 27,
+        "partAreasSquarePdfPoints": [
+          0.1295949462801218,
+          1246.723224866204
+        ]
+      }
+    },
+    "twoPartHandling": "Both tiny triangles and main rings are separately closed; they touch at a point, have zero area intersection, and form valid MultiPolygons. Preserve both native parts or explicitly quarantine; do not join disconnected command sequences or silently drop small parts.",
+    "HodtoInvalidLiteralPath": {
+      "drawingIndex": 6,
+      "verticesIncludingClosure": 20,
+      "validityReason": "Self-intersection[232.740005493164 321.599975585938]",
+      "decision": "Retain the literal raw source path and quarantine its OGC polygon representation. No buffer(0), make_valid, line deletion, simplification or polygon repair was performed."
+    },
+    "strokeOnlyRole": "Drawing 14 is the separate outline of the Kútvölgy fill 13. Drawings 15–26 are transport overlays, not additional quarter fills.",
+    "whiteFillIsRealLocalArea": "Drawing 27 is a bounded labelled Kiskertek garden/local-area depiction, not an image or map-frame backdrop. Semantic identity remains separate from geometric authenticity.",
+    "all15LabelsAssociateOneToOneWithFillCenters": true,
+    "sourceCoordinateHashesSerialization": "SHA256 of Python json.dumps(array, ensure_ascii=False, sort_keys=True, separators=(comma,colon), allow_nan=False).encode(UTF-8), no trailing newline; actual source part order and closing repeats retained."
+  },
+  "labelsAndPaths": [
+    {
+      "literalName": "Belváros",
+      "zeroBasedDrawingIndex": 0,
+      "sourceSemanticRole": "central_named_quarter",
+      "fillType": "fs",
+      "fillRgb": [
+        0.9959868788719177,
+        0.32899975776672363,
+        0.0
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 2,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 4,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 0.0647974731400609,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "49968b0c4895982aca820d3dea6923db4a949886181e7a05cd97178a3a142ae0"
+        },
+        {
+          "verticesIncludingClosingRepeat": 25,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 1293.0242589479312,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "27f66f91665ae10523906b1ba07148bae4975f63bd812216bbc08ef64db42ed5"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "44e9088130eea12216e55ba81a4f6d7b3aabfaf7ba0fbe9bdbc6420b8aa90fc7",
+      "literalObjectTypeIfSubpathsPreserved": "MultiPolygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        208.0201416015625,
+        299.6633605957031,
+        234.12477111816406,
+        306.81024169921875
+      ],
+      "sourceLabelCenterPdfPoints": [
+        221.07245635986328,
+        303.23680114746094
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [
+        "preserve_tiny_closed_triangular_subpath_and_point_touching_main_part_no_concatenation_or_silent_discard"
+      ],
+      "sourceLabelCenterContainedByFillObjects": [
+        0
+      ]
+    },
+    {
+      "literalName": "Tarján",
+      "zeroBasedDrawingIndex": 1,
+      "sourceSemanticRole": "central_named_quarter",
+      "fillType": "fs",
+      "fillRgb": [
+        1.0,
+        0.9759975671768188,
+        0.6469978094100952
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 1,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 24,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 891.0130320191383,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "2fab42901fde2233db0dc42ac901a92cf9dda1dbdb37fe30b8cb9d9d5ee84c0d"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "a96700132aca495f609a4304989593c2d5eb53891824e7b4e0a8b814d1abbaee",
+      "literalObjectTypeIfSubpathsPreserved": "Polygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        174.42027282714844,
+        301.1036071777344,
+        192.9521942138672,
+        308.25048828125
+      ],
+      "sourceLabelCenterPdfPoints": [
+        183.6862335205078,
+        304.6770477294922
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [],
+      "sourceLabelCenterContainedByFillObjects": [
+        1
+      ]
+    },
+    {
+      "literalName": "Tabán",
+      "zeroBasedDrawingIndex": 2,
+      "sourceSemanticRole": "central_named_quarter",
+      "fillType": "fs",
+      "fillRgb": [
+        0.9879911541938782,
+        0.8589913845062256,
+        0.0
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 1,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 29,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 2402.499182959087,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "f336f2f4ba8f74f22028ec9611a432d2e0a9dd2b1ff1559aaf42ac5d67b13c52"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "1ac6196ba6a4f89b26b187272bd0f4e047a0d893b5a3f783274ac5e406b76f13",
+      "literalObjectTypeIfSubpathsPreserved": "Polygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        188.33999633789062,
+        259.5839538574219,
+        206.5734405517578,
+        266.7308349609375
+      ],
+      "sourceLabelCenterPdfPoints": [
+        197.45671844482422,
+        263.1573944091797
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [],
+      "sourceLabelCenterContainedByFillObjects": [
+        2
+      ]
+    },
+    {
+      "literalName": "Csúcs",
+      "zeroBasedDrawingIndex": 3,
+      "sourceSemanticRole": "central_named_quarter",
+      "fillType": "fs",
+      "fillRgb": [
+        1.0,
+        0.6779888868331909,
+        0.0
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 1,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 18,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 1218.0934456423856,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "8326614b04ce43f27009a23521e3f6acc2bd128007aa4283b1d673483f7bdb01"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "4e360f36267525c5187cc4bb772b5f06331ca7fc4ad44a5461b84e7df79c662d",
+      "literalObjectTypeIfSubpathsPreserved": "Polygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        231.29995727539062,
+        272.1236267089844,
+        249.85105895996094,
+        279.2705078125
+      ],
+      "sourceLabelCenterPdfPoints": [
+        240.57550811767578,
+        275.6970672607422
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [],
+      "sourceLabelCenterContainedByFillObjects": [
+        3
+      ]
+    },
+    {
+      "literalName": "Béketelep",
+      "zeroBasedDrawingIndex": 4,
+      "sourceSemanticRole": "central_named_quarter",
+      "fillType": "fs",
+      "fillRgb": [
+        0.7409933805465698,
+        0.8469977974891663,
+        0.4469977915287018
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 1,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 21,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 2947.6060879030265,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "a9ba80c0c5b9cc41071f14ac9b1a65fe56e2d94853e334c5d8cb3b4be90690a9"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "ffb8e55ffc163c4cd86404ec2b439a71a587b3b432a3d2911ff7784bea84dbb7",
+      "literalObjectTypeIfSubpathsPreserved": "Polygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        239.51947021484375,
+        245.66415405273438,
+        268.7940368652344,
+        252.81101989746094
+      ],
+      "sourceLabelCenterPdfPoints": [
+        254.15675354003906,
+        249.23758697509766
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [],
+      "sourceLabelCenterContainedByFillObjects": [
+        4
+      ]
+    },
+    {
+      "literalName": "Kertváros",
+      "zeroBasedDrawingIndex": 5,
+      "sourceSemanticRole": "central_named_quarter",
+      "fillType": "fs",
+      "fillRgb": [
+        0.5609979629516602,
+        0.7329976558685303,
+        0.0
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 1,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 19,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 2312.960006799316,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "d83769a15b6947dda56799f090c1b7797ba025b98bf25c103993a4082fa19f15"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "4efd0c716dd1793f174b4c5fd553b7e0e51b11df1a3fc62844636a5b9bd9c23a",
+      "literalObjectTypeIfSubpathsPreserved": "Polygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        175.49998474121094,
+        328.64337158203125,
+        204.42880249023438,
+        335.7902526855469
+      ],
+      "sourceLabelCenterPdfPoints": [
+        189.96439361572266,
+        332.21681213378906
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [],
+      "sourceLabelCenterContainedByFillObjects": [
+        5
+      ]
+    },
+    {
+      "literalName": "Hódtó",
+      "zeroBasedDrawingIndex": 6,
+      "sourceSemanticRole": "central_named_quarter",
+      "fillType": "fs",
+      "fillRgb": [
+        0.7289997935295105,
+        0.6349889636039734,
+        0.0
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 1,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 20,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 653.1716639646329,
+          "validAsPolygon": false,
+          "validityReason": "Self-intersection[232.740005493164 321.599975585938]",
+          "coordinateArraySha256": "9a4a7ee08cf27cca7ba8e46fd64363e561203a8e72987545910288e43fe59b94"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "5d4305689633b6b7de1ad51830982cadb93f203d7ec182dbf786c129c19fb055",
+      "literalObjectTypeIfSubpathsPreserved": "Polygon",
+      "literalObjectValid": false,
+      "literalObjectValidityReason": "Self-intersection[232.740005493164 321.599975585938]",
+      "sourceLabelRectPdfPoints": [
+        238.4397735595703,
+        316.4635925292969,
+        256.3133239746094,
+        323.6104736328125
+      ],
+      "sourceLabelCenterPdfPoints": [
+        247.37654876708984,
+        320.0370330810547
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [
+        "literal_native_path_invalid_as_ogc_polygon_quarantine_no_silent_repair",
+        "existing_frozen_estimated_identity_do_not_count_as_new_quarter"
+      ],
+      "sourceLabelCenterContainedByFillObjects": [
+        6
+      ]
+    },
+    {
+      "literalName": "Susán",
+      "zeroBasedDrawingIndex": 7,
+      "sourceSemanticRole": "central_named_quarter",
+      "fillType": "fs",
+      "fillRgb": [
+        0.5879911780357361,
+        0.16499580442905426,
+        0.1759975552558899
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 1,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 19,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 3081.7283824766055,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "e1dbe0275d759b87b279f49f1f16198c289f3da5444a3f4586adb18b723626ca"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "efd71301df6eda4e9ef9e3f962e68bb953f5314c9dc93701893ce92bd94d7960",
+      "literalObjectTypeIfSubpathsPreserved": "Polygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        277.79937744140625,
+        279.2640686035156,
+        296.39208984375,
+        286.41094970703125
+      ],
+      "sourceLabelCenterPdfPoints": [
+        287.0957336425781,
+        282.83750915527344
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [],
+      "sourceLabelCenterContainedByFillObjects": [
+        7
+      ]
+    },
+    {
+      "literalName": "Újváros",
+      "zeroBasedDrawingIndex": 8,
+      "sourceSemanticRole": "central_named_quarter",
+      "fillType": "fs",
+      "fillRgb": [
+        0.48599985241889954,
+        0.6549935340881348,
+        0.6039978861808777
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 1,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 12,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 3844.1250027464703,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "08ff54e65f231f7d1b3d2eca936dc9d367bc127dde3feb28063ad2dcdbce0752"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "30db1fc34123f590c23b1be752698059c756b3f44481525c9284cf0e37217569",
+      "literalObjectTypeIfSubpathsPreserved": "Polygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        286.0195617675781,
+        325.4637756347656,
+        308.8844299316406,
+        332.61065673828125
+      ],
+      "sourceLabelCenterPdfPoints": [
+        297.4519958496094,
+        329.03721618652344
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [],
+      "sourceLabelCenterContainedByFillObjects": [
+        8
+      ]
+    },
+    {
+      "literalName": "Kishomok",
+      "zeroBasedDrawingIndex": 9,
+      "sourceSemanticRole": "named_garden_city_part",
+      "fillType": "fs",
+      "fillRgb": [
+        0.8589913845062256,
+        0.7329976558685303,
+        0.5959869027137756
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 1,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 11,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 1373.1850349578308,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "fc44191d7098cc611a4eed51b8eccb30d5c9b7ef1ad9e5b0457659b737afb085"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "5ae16679b0b0ed381b62a0354fd778a1def27164545e5631a7029e86e21b63c3",
+      "literalObjectTypeIfSubpathsPreserved": "Polygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        137.94052124023438,
+        360.14337158203125,
+        167.93557739257812,
+        367.2902526855469
+      ],
+      "sourceLabelCenterPdfPoints": [
+        152.93804931640625,
+        363.71681213378906
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [
+        "garden_character_but_individual_named_Varosresz_table_row_on_page 11"
+      ],
+      "sourceLabelCenterContainedByFillObjects": [
+        9
+      ]
+    },
+    {
+      "literalName": "Batida",
+      "zeroBasedDrawingIndex": 10,
+      "sourceSemanticRole": "named_outlying_former_farm_centre",
+      "fillType": "fs",
+      "fillRgb": [
+        0.5249866247177124,
+        0.23498894274234772,
+        0.0
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 1,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 10,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 498.14441550313495,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "9ced25f634071d7ea9c4b8630632a5fd2dd7ab4cd5cd6c512a13f8adb2df8888"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "8f7b01dfb0d3836b15860186a55905072aa74e8d1f4a676596a35b37300d3edf",
+      "literalObjectTypeIfSubpathsPreserved": "Polygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        250.61952209472656,
+        424.162841796875,
+        269.5267333984375,
+        431.3097229003906
+      ],
+      "sourceLabelCenterPdfPoints": [
+        260.07312774658203,
+        427.7362823486328
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [],
+      "sourceLabelCenterContainedByFillObjects": [
+        10
+      ]
+    },
+    {
+      "literalName": "Szikáncs",
+      "zeroBasedDrawingIndex": 11,
+      "sourceSemanticRole": "named_outlying_former_farm_centre",
+      "fillType": "fs",
+      "fillRgb": [
+        0.003997863736003637,
+        0.3919890224933624,
+        0.0
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 1,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 6,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 314.8649899289012,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "2114d4d1a0795acef11bed7e0070b1681c7af547f452c34e9389d42ff5472420"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "0be02a096234addff12b08f47f5e817e02f00f8d4bcd414d3c16c6977bceb0fc",
+      "literalObjectTypeIfSubpathsPreserved": "Polygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        404.0984191894531,
+        398.4232482910156,
+        430.498291015625,
+        405.57012939453125
+      ],
+      "sourceLabelCenterPdfPoints": [
+        417.29835510253906,
+        401.99668884277344
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [],
+      "sourceLabelCenterContainedByFillObjects": [
+        11
+      ]
+    },
+    {
+      "literalName": "Erzsébet",
+      "zeroBasedDrawingIndex": 12,
+      "sourceSemanticRole": "named_outlying_former_farm_centre",
+      "fillType": "fs",
+      "fillRgb": [
+        0.8199893236160278,
+        0.3649958074092865,
+        0.0
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 1,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 6,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 373.45246406272054,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "cbd49e1c1e0a03079e07381c12019afb8da64efed1d9abdb7883f00c465b7306"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "69d887a599b9567988df4e816d68f6d72ad93f1faba83431f3333d46b3296c9a",
+      "literalObjectTypeIfSubpathsPreserved": "Polygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        430.5584716796875,
+        308.6039733886719,
+        456.3153381347656,
+        315.7508544921875
+      ],
+      "sourceLabelCenterPdfPoints": [
+        443.43690490722656,
+        312.1774139404297
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [],
+      "sourceLabelCenterContainedByFillObjects": [
+        12
+      ]
+    },
+    {
+      "literalName": "Kútvölgy",
+      "zeroBasedDrawingIndex": 13,
+      "sourceSemanticRole": "named_outlying_former_farm_centre",
+      "fillType": "f",
+      "fillRgb": [
+        0.8629892468452454,
+        0.0,
+        0.0
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 1,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 5,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 426.38887606188655,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "4b63db103cc554d3d778127afc27a0b588d27515ef1fb43a54706e27b001aac6"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "badf2c7e09c34ffff6a2101433f08697053addb275bfdf899a8504d9663f63a7",
+      "literalObjectTypeIfSubpathsPreserved": "Polygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        394.4386291503906,
+        258.9242858886719,
+        420.833984375,
+        266.0711669921875
+      ],
+      "sourceLabelCenterPdfPoints": [
+        407.6363067626953,
+        262.4977264404297
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [],
+      "sourceLabelCenterContainedByFillObjects": [
+        13
+      ]
+    },
+    {
+      "literalName": "Kiskertek",
+      "zeroBasedDrawingIndex": 27,
+      "sourceSemanticRole": "garden_strip_local_area_quarter_identity_unestablished",
+      "fillType": "fs",
+      "fillRgb": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "sourceEvenOddFillRule": true,
+      "sourceOpacity": 1.0,
+      "subpathCount": 2,
+      "nativeSubpaths": [
+        {
+          "verticesIncludingClosingRepeat": 4,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 0.1295949462801218,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "ead842b69fa5ccc586e1fa3dc0f4bc6b23229187a08b90a498750f3a5bc63589"
+        },
+        {
+          "verticesIncludingClosingRepeat": 49,
+          "explicitlyClosed": true,
+          "areaSquarePdfPoints": 1246.723224866204,
+          "validAsPolygon": true,
+          "validityReason": "Valid Geometry",
+          "coordinateArraySha256": "6a3a8768f884720509660690343d447e9fa4076a0cb07c07808556c14c949500"
+        }
+      ],
+      "nativeCoordinatePartsSha256": "57264042fd03b7d46632617837226f099c09c801eb513d160e4fe4317cf4948a",
+      "literalObjectTypeIfSubpathsPreserved": "MultiPolygon",
+      "literalObjectValid": true,
+      "literalObjectValidityReason": "Valid Geometry",
+      "sourceLabelRectPdfPoints": [
+        150.4199981689453,
+        283.8126525878906,
+        168.50686645507812,
+        288.4580078125
+      ],
+      "sourceLabelCenterPdfPoints": [
+        159.46343231201172,
+        286.1353302001953
+      ],
+      "labelCenterStrictlyInsideLargestPart": true,
+      "sourceLabelUsedAsWorldFitControl": false,
+      "flags": [
+        "preserve_tiny_closed_triangular_subpath_and_point_touching_main_part_no_concatenation_or_silent_discard",
+        "not_a_separate_named_row_in_comparative_citypart_table_role_remains_garden_local_area"
+      ],
+      "sourceLabelCenterContainedByFillObjects": [
+        27
+      ]
+    }
+  ],
+  "rights": {
+    "sourcePageOneBased": 2,
+    "clauseParaphrase": "The source requires attribution for secondary publication and separately requires permission from KSH Szegedi Igazgatósága for data transfer.",
+    "unrestrictedDataTransferLicenseEstablished": false,
+    "ccByLicenseClaimed": false,
+    "permissionForRedistributingDerivedPolygonDataEstablished": false,
+    "attributionRecommendation": "Központi Statisztikai Hivatal, Szegedi Igazgatósága: A nagyvárosok belső tagozódása – Hódmezővásárhely, 8/2005, July 2005, p. 9; statistics principally 2001-02-01.",
+    "quotedSourceNarrativeWordsArchivedByThisReview": 0,
+    "fullPdfOrNarrativeCopiedIntoSourcePacketByThisReview": false
+  },
+  "existingHodtoIdentity": {
+    "frozenEstimatedExportPath": "data/neighborhoods/estimated-candidates.geojson",
+    "frozenEstimatedExportSha256": "4c3d4e31a89fcdaa2c14dcc5de2a043fbc7a73d624514a1a9b0e31d15a974a43",
+    "matchingExistingEstimatedFeatures": 1,
+    "datasetId": "hodmezovasarhely-hodto-2014-circuit-inferred",
+    "featureId": "inferred:hodmezovasarhely-hodto-2014-circuit-inferred:135",
+    "sourceGeometryMayServeAsAlternateHistoricalEvidence": true,
+    "additionalNewQuarterCountPermittedFromSameName": 0,
+    "currentExtentEquivalenceClaimed": false
+  },
+  "worldPlacementAndAccuracy": {
+    "sourceAlreadyGeoreferenced": false,
+    "worldFitPerformedByThisReview": false,
+    "sourceLabelCentersOrNamePointsUsedAsFitControls": false,
+    "visibleMapScaleOrCrsEstablished": false,
+    "absoluteAccuracyEstablished": false,
+    "currentWholeQuarterExtentsEstablished": false,
+    "requirement": "Any geographic placement needs separately documented actual road/rail/map correspondence and full placement uncertainty. Native path fidelity and label association do not supply world accuracy."
+  },
+  "outcome": {
+    "sourceOnlyReviewComplete": true,
+    "nativeObjectsWithValidLiteralPolygonTopology": 14,
+    "nativeObjectRequiringRawPathQuarantine": 1,
+    "newWorldPolygonsGenerated": 0,
+    "newCanonicalQuarterAdmissions": 0,
+    "newEstimatedQuarterAdmissions": 0,
+    "noBboxBufferVoronoiOrFrameClosuresCreated": true,
+    "noSourceGeometryRepairPerformed": true,
+    "noGlobalRegistryExportsOrFrozen147ArtifactsModified": true,
+    "usableForAddressAssignment": false,
+    "nextStep": "Preserve native source paths and semantic roles; independently assess real geographic registration where supported, without re-counting Hódtó or promoting Kiskertek solely from its garden label."
+  }
+}

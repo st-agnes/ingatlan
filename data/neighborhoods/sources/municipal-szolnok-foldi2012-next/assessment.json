@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Szolnok",
+  "status": "NATIVE_PIXEL_EVIDENCE_ONLY_NO_GEOGRAPHIC_ADMISSION",
+  "assessmentDate": "2026-11-14",
+  "newPrimaryFeatureCount": 0,
+  "newEstimatedGeographicFeatureCount": 0,
+  "nativePixelFootprintCount": 1,
+  "sourceHierarchy": [
+    "KSH Szolnok 2003 functional-division publication, cited by the thesis but not locally acquired as an original volume.",
+    "Földi Katalin doctoral thesis, cover Pécs 2012, PDF metadata January 2013; Figure 9 on PDF/printed page 72 reproduces the KSH map.",
+    "Native 441×539 RGB raster decoded from PDF image xref153; it is not a native vector map.",
+    "A selected source-colored component is represented in native pixel-cell coordinates only."
+  ],
+  "functionalLegendClasses": [
+    "Belváros (városmag)",
+    "Hagyományos beépítésű belső lakóterület",
+    "Lakótelep",
+    "Kertvárosias lakóövezet",
+    "Üdülőterület",
+    "Ipari, üzemi terület",
+    "Egyéb övezet"
+  ],
+  "classAndNamePolicy": "Colors represent functional classes shared by multiple places. A color is not assigned one quarter name globally. Specific map labels and their leader lines require separate unit-level review; housing estates and generic functional classes are not automatically promoted to whole neighborhoods.",
+  "selectedNativeCandidate": {
+    "sourceLabel": "Szanda-szőlős",
+    "normalizedCandidateName": "Szandaszőlős",
+    "path": "szandaszoelos-native-pixel-contour.json",
+    "identityBasis": "The label is printed inside the isolated southern green footprint. The chosen component has an actual closed raster-cell exterior and is not an entire map-wide green class.",
+    "sourceFootprintEstimated": true,
+    "literalBlackStrokeOutlineClaimed": false,
+    "wholeQuarterIdentityEstablished": false,
+    "currentCanonicalNameAndBoundaryEstablished": false,
+    "nativeImageCoordinateOnly": true
+  },
+  "otherNamedCandidates": [
+    {
+      "name": "Pletykafalu",
+      "status": "visible_named_footprint_not_extracted_in_first_subset",
+      "reason": "Leader lines cross the green fill and split a naive four-connected color mask into several parts. This packet does not merge those parts or treat internal leaders as quarter boundaries. A separately reviewed outer-contour extraction is needed."
+    },
+    {
+      "names": ["Alcsi", "Kertváros", "Széchenyi lakótelep", "Tallinn lakótelep", "Zagyvaparti lakótelep"],
+      "status": "source_labels_only",
+      "reason": "Labels demonstrate historical names or estate/functional units. Their independent whole-quarter extents, hierarchy and current identity are not established here."
+    }
+  ],
+  "geographicRegistration": {
+    "performed": false,
+    "wgs84GeometryEmitted": false,
+    "independentlyPinnedImageCoordinateControls": 0,
+    "independentPhysicalHoldouts": 0,
+    "uniquePotentialControlFeature": "Tisza/Zagyva confluence",
+    "controlGap": "One uniquely identifiable confluence alone cannot determine source scale, rotation or anisotropic stretching. No source coordinate grid, scale bar, street base, second reviewed control or spatially distributed holdout is established.",
+    "sourcePlacementIssue": "The native portrait image is stretched nonuniformly in the PDF page. Neither its native aspect ratio nor page placement establishes a geographic transform.",
+    "sourceAgeUncertaintyMetres": null,
+    "controlUncertaintyMetres": null,
+    "extrapolationUncertaintyMetres": null,
+    "claimedAbsoluteAccuracyMetres": null,
+    "meaningOfNull": "Unknown/unquantified; no zero-error or geographic-accuracy interpretation.",
+    "placeNamePointsUsedAsControls": false,
+    "assumedScaleOrOrientationUsed": false,
+    "sourceShapeFitToModernMunicipalBoundaryPerformed": false
+  },
+  "futureEvidenceNeeded": [
+    "Prefer the original KSH 2003 map/vector data or a clearer authoritative quarter map with explicit names and extent definitions.",
+    "Establish multiple distributed source-to-geographic correspondences plus independent physical holdouts; justify any anisotropic registration and quantify extrapolation separately.",
+    "Check whether the historical functional footprint equals a whole named quarter and whether present-day name/extent evidence supports that identity."
+  ],
+  "usableForAddressAssignment": false,
+  "sourceOpenReuseLicenceEstablished": false,
+  "rawPdfCommitted": false,
+  "existingFrozenBatchesRegistriesExportsOrGlobalDocsModified": false
+}

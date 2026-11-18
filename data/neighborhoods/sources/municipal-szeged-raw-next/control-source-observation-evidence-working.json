@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "status": "working_manual_road_correspondence_proposal",
+  "sourceContours": "Henits2013 PDF24 native image249",
+  "companionForRoadIdentification": "KSH2014 PDF54 five native strips assembled then rotated clockwise; no body paragraphs retained in crop",
+  "junctionCorrespondences": [
+    {
+      "number": 1,
+      "physicalRoadJunction": "Kossuth / outer ring",
+      "henitsNativePixelXY": [
+        626,
+        330
+      ],
+      "kshRotatedAssembledNativePixelXY": [
+        835,
+        403
+      ],
+      "observationRole": "Same distinct junction in the shared quarter/ring scheme. KSH gray major-road network and outgoing-road directions identify the physical road corridor; current complete OSM ways/nodes supply geographic positions.",
+      "sourceNamesOrPlacePointsUsedAsControls": false
+    },
+    {
+      "number": 2,
+      "physicalRoadJunction": "Kalvaria / outer ring",
+      "henitsNativePixelXY": [
+        599,
+        390
+      ],
+      "kshRotatedAssembledNativePixelXY": [
+        821,
+        451
+      ],
+      "observationRole": "Same distinct junction in the shared quarter/ring scheme. KSH gray major-road network and outgoing-road directions identify the physical road corridor; current complete OSM ways/nodes supply geographic positions.",
+      "sourceNamesOrPlacePointsUsedAsControls": false
+    },
+    {
+      "number": 3,
+      "physicalRoadJunction": "Petofi / outer ring",
+      "henitsNativePixelXY": [
+        603,
+        437
+      ],
+      "kshRotatedAssembledNativePixelXY": [
+        826,
+        480
+      ],
+      "observationRole": "Same distinct junction in the shared quarter/ring scheme. KSH gray major-road network and outgoing-road directions identify the physical road corridor; current complete OSM ways/nodes supply geographic positions.",
+      "sourceNamesOrPlacePointsUsedAsControls": false
+    },
+    {
+      "number": 4,
+      "physicalRoadJunction": "Csongradi / outer ring",
+      "henitsNativePixelXY": [
+        654,
+        210
+      ],
+      "kshRotatedAssembledNativePixelXY": [
+        859,
+        307
+      ],
+      "observationRole": "Same distinct junction in the shared quarter/ring scheme. KSH gray major-road network and outgoing-road directions identify the physical road corridor; current complete OSM ways/nodes supply geographic positions.",
+      "sourceNamesOrPlacePointsUsedAsControls": false
+    },
+    {
+      "number": 5,
+      "physicalRoadJunction": "Csongradi / middle ring",
+      "henitsNativePixelXY": [
+        675,
+        304
+      ],
+      "kshRotatedAssembledNativePixelXY": [
+        881,
+        383
+      ],
+      "observationRole": "Same distinct junction in the shared quarter/ring scheme. KSH gray major-road network and outgoing-road directions identify the physical road corridor; current complete OSM ways/nodes supply geographic positions.",
+      "sourceNamesOrPlacePointsUsedAsControls": false
+    },
+    {
+      "number": 6,
+      "physicalRoadJunction": "Jozsef Attila / outermost ring",
+      "henitsNativePixelXY": [
+        720,
+        208
+      ],
+      "kshRotatedAssembledNativePixelXY": [
+        911,
+        306
+      ],
+      "observationRole": "Same distinct junction in the shared quarter/ring scheme. KSH gray major-road network and outgoing-road directions identify the physical road corridor; current complete OSM ways/nodes supply geographic positions.",
+      "sourceNamesOrPlacePointsUsedAsControls": false
+    }
+  ],
+  "identificationCaveats": [
+    "This is manual source-to-geographic feature identification, with a few source pixels of picking uncertainty plus unknown map generalization.",
+    "KSH and Henits figure number32/34 differences are retained; no whole-map name-key transfer is assumed.",
+    "Residuals are correspondence diagnostics only, not absolute accuracy.",
+    "Controls cluster central/north; cohort19/20/28/11 placement extrapolates a similarity model."
+  ],
+  "previewPaths": [
+    ".local/neighborhoods/szeged-raw-review/henits-six-junction-control-crop-working.png",
+    ".local/neighborhoods/szeged-raw-review/ksh-six-junction-control-crop-working.png"
+  ],
+  "globalRegistryModified": false
+}

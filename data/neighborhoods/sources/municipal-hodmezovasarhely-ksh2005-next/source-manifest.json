@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "sourcePdf": {
+    "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+    "sha256": "3dc2a4f4fcf3afd1b387a278be6a7fc7dcccdb75db8f1d4af3a5f07d811d8342",
+    "bytes": 817581,
+    "originalLocalPath": ".local/neighborhoods/quarter-map-batch/ksh-hodmezovasarhely-2005.pdf",
+    "pages": 72,
+    "mapPage": 9,
+    "mapPublication": "July2005",
+    "statisticsReference": "Principally2001-02-01",
+    "mapSurveyDate": null,
+    "rights": "KSH attribution required for secondary publication; separate data-transfer permission reserved toKSHSzeged, not established here",
+    "fullOriginalIncluded": false
+  },
+  "sourceGeometry": {
+    "nativeObjects": 15,
+    "nativeSubpaths": 17,
+    "nativeValidObjects": 14,
+    "exactDecimalOperandProof": "source-native-paths.json",
+    "sourceTransportPaths": "source-transport-paths.json",
+    "sourceMapOnlyCrop": "page9-map-only.png",
+    "sourceContoursRepaired": false,
+    "sourcePartsDiscarded": false
+  },
+  "osmInputs": {
+    "pbfLocalPath": ".local/neighborhoods/hungary-latest.osm.pbf",
+    "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "pbfBytes": 329791850,
+    "timestamp": "2026-11-12T21:23:05Z",
+    "waysPath": "road-source-ways.geojson",
+    "waysSha256": "2fc2cde009c0d0964ef8d254f46f9fd2aa49a1e60d017982b34472c5a0471f2f",
+    "namePointPath": "source-name-points.geojson",
+    "namePointSha256": "07e6ebf87df026b81b8302eb6c88fe4cdf8d8fdbb95349f649b7554cb2b4d65a",
+    "freshPbfRevalidation": "road-pbf-verification.json",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "namePointsUsedForFit": false
+  },
+  "worldEstimate": {
+    "candidateFile": "estimated-world-candidates.geojson",
+    "sha256": "0c4f5a6358aea2aee2418fdab4664e89511f81f1c132b47eaeaa619612bc8219",
+    "features": 9,
+    "parts": 10,
+    "classification": "Observed source contours with estimated placement; not primary/official/current complete quarter boundaries",
+    "registrationAndFullUncertainty": "registration-and-uncertainty.json",
+    "alternativePath": "alternative-two-control-world.geojson",
+    "alternativeIsAdditionalQuarter": false,
+    "sourceFitControls": "road-control-specification.json",
+    "absoluteGroundAccuracyM": null,
+    "detachedVillageGeometriesOnlyNative": true,
+    "HodtoDuplicateAndInvalidSourceNotExported": true,
+    "KiskertekGenericGardenOnlyNative": true
+  },
+  "reviews": {
+    "independentSourceReview": "independent-source-review.json",
+    "independentWorldReview": "independent-world-review.json",
+    "independentWorldReviewPresent": true,
+    "independentWorldReviewSha256": "d3c91fb4dd3f6569dec1ba4aae1a031ac59178816f028628e510832ae99d4ebf"
+  },
+  "curatedUnregisteredEntry": "registry-entry.json",
+  "fullOriginalPdfOrBulkNarrativeIncluded": false,
+  "globalRegistryAdmissionPerformed": false
+}

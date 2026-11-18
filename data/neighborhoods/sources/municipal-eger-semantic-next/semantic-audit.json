@@ -1,0 +1,1701 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "status": "qualified_individual_proposal_root_review_required",
+  "sourcePath": "data/neighborhoods/sources/municipal-east/eger-planning-units.geojson",
+  "sourceGeojsonSha256": "c3619e702df579b23776b977daf62c0ee1aafb9f629a8b447fb29b64f558011b",
+  "sourcePdfSha256": "7db28b2b5922e6dea7bde9dc3263087534b26e9cd1e52b63335249265df6febe",
+  "admissionMeaning": "A historical source-defined named quarter candidate, preserving the entire native source unit and its schema/date. This does not assert the current legal, ITS, cadastral or ordinary common-name extent, independent absolute positional accuracy, or address suitability.",
+  "comparisonPath": "existing-admission-comparison.json",
+  "nativeGeometryAuditPath": "root-native-geometry-audit.json",
+  "webEvidencePath": "web-evidence.json",
+  "summary": {
+    "sourceRecords": 32,
+    "existingFine": 0,
+    "existingPlanning": 32,
+    "proposedQualifiedHistoricalQuarters": 23,
+    "proposedRetainedPlanning": 9,
+    "allGeometryHashesUnchanged": true,
+    "allGeometryValidatorPass": true,
+    "decisionCounts": {
+      "retain_planning_group": 3,
+      "retain_planning_site": 1,
+      "retain_planning_partial": 3,
+      "propose_qualified_quarter": 23,
+      "retain_planning_ambiguous_subarea": 1,
+      "retain_planning_residual": 1
+    },
+    "globalRegistryOrExportChangesApplied": 0
+  },
+  "changesFromPriorAudit": [
+    {
+      "featureIndex": 7,
+      "name": "Galagonyás-dűlő",
+      "finding": "The actual selected2004 base path is distinct from its2012 small amendment; the prior partial reasoning cited the amendment as if it defined this base geometry."
+    },
+    {
+      "featureIndex": 10,
+      "name": "Volt kemping",
+      "finding": "Conflicting quarter-language and direct Rác-hóstya subarea evidence require retention as planning pending scope resolution."
+    },
+    {
+      "featureIndex": 30,
+      "name": "Északnyugati külterület",
+      "finding": "Contemporaneous2016 law and supporting report restrict M1.23 to a road24 operational-site plan, not the entire northwest quarter."
+    }
+  ],
+  "globalSafety": {
+    "applyOnlyAfterRootReview": true,
+    "replaceExistingDatasetDoNotAppend": true,
+    "featureIdsPreserved": true,
+    "frozenSourceFilesModified": false,
+    "frozenZalaModified": false,
+    "noCurrentItsCoincidenceRequirementInvented": true,
+    "usableForAddressAssignment": false,
+    "absoluteAccuracyMetres": null,
+    "independentInteriorControlCount": 0
+  },
+  "features": [
+    {
+      "featureIndex": 0,
+      "decision": "retain_planning_group",
+      "scope": "combined_quarters",
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        }
+      ],
+      "reason": "The orange V1.1 footprint expressly combines Északkeleti külterület and Bikalegelő; the native legend uses plural quarters. One footprint cannot establish either child's independent boundary.",
+      "blocker": "No separate source circuits for the two constituent names.",
+      "name": "Északkeleti külterület és Bikalegelő",
+      "sourceFeatureId": "municipal:eger:plan:164815",
+      "sourcePlanId": "V1.1.",
+      "sourcePdfDrawingIndex": 164815,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "planning_unit",
+      "proposedCanonicalNameIsNeighborhood": false,
+      "sourceNativeCrop": "source-unit-00-164815.png",
+      "sourceNativeLabels": [
+        "2015\nV1.1.-m1",
+        "Øs Bikalegelı\nÉszakkeleti külterület",
+        "V 1.1.\n2014",
+        "Øs Bikalegelı\nÉszakkeleti külterület",
+        "V 1.1.\n2014",
+        "Øs Bikalegelı\nÉszakkeleti külterület",
+        "V 1.1.\n2014"
+      ],
+      "geometrySha256Before": "757102e2209d15f5c013d01fc92e640194014a3fc018043d426c48243aad8020",
+      "geometrySha256After": "757102e2209d15f5c013d01fc92e640194014a3fc018043d426c48243aad8020",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.368716968377978,
+          47.90950253228238,
+          20.44939497949496,
+          47.954300112709134
+        ],
+        "vertices": 508
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 1,
+      "decision": "retain_planning_site",
+      "scope": "company_quarry_site",
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "municipalIndex",
+          "url": "https://www.eger.hu/hu/varoshaza-fo/foepiteszi-csoport-2219/telepulesrendezes/c/szabalyozasi-tervek"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "The purple 1998 OMYA footprint is identified by the official index/register as the Berva–OMYA quarry industrial site. No independent OMYA quarter designation is established.",
+      "blocker": "A company/quarry site label does not establish an independent quarter; industrial function alone is not the reason for exclusion.",
+      "name": "OMYA",
+      "sourceFeatureId": "municipal:eger:plan:164816",
+      "sourcePlanId": "3.29.",
+      "sourcePdfDrawingIndex": 164816,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "planning_unit",
+      "proposedCanonicalNameIsNeighborhood": false,
+      "sourceNativeCrop": "source-unit-01-164816.png",
+      "sourceNativeLabels": [
+        "OMYA",
+        "1998",
+        "3.29."
+      ],
+      "geometrySha256Before": "34f098a55c941db4f8f3676e9f9eb8c58e8b7f36349e5e2b0a54251a6118aecf",
+      "geometrySha256After": "34f098a55c941db4f8f3676e9f9eb8c58e8b7f36349e5e2b0a54251a6118aecf",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.36078784864568,
+          47.96654462435473,
+          20.368929757585665,
+          47.97291817252115
+        ],
+        "vertices": 32
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 2,
+      "decision": "retain_planning_partial",
+      "scope": "partial_Almar_block",
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "municipalIndex",
+          "url": "https://www.eger.hu/hu/varoshaza-fo/foepiteszi-csoport-2219/telepulesrendezes/c/szabalyozasi-tervek"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Almár is an authentic quarter name, but the linked 2008 plan explicitly covers a block bounded by road25 and named cadastral roads/forest. The source index calls it a partial area.",
+      "blocker": "The extracted small block is not the whole Almár quarter footprint.",
+      "name": "Almár",
+      "sourceFeatureId": "municipal:eger:plan:164817",
+      "sourcePlanId": "3.28.",
+      "sourcePdfDrawingIndex": 164817,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "planning_unit",
+      "proposedCanonicalNameIsNeighborhood": false,
+      "sourceNativeCrop": "source-unit-02-164817.png",
+      "sourceNativeLabels": [],
+      "geometrySha256Before": "d47df05883302a080b7f4c99946ceaf1dd4f310c7d86fb365f754b2659830ce2",
+      "geometrySha256After": "d47df05883302a080b7f4c99946ceaf1dd4f310c7d86fb365f754b2659830ce2",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.35686706220301,
+          47.956435156365565,
+          20.358072885369943,
+          47.95808548603377
+        ],
+        "vertices": 21
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 3,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2001,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "The purple Hajdúhegy 2.24/2001 base footprint is closed and distinct from the smaller dashed amendment outlines and the separately named northern unit. The municipal register identifies the corresponding historical base as a Hajdúhegy quarter plan.",
+      "qualification": "This is the retained2001 Hajdúhegy footprint displayed in2016, not the whole current/common-name Hajdúhegy extent.",
+      "name": "Hajdúhegy",
+      "sourceFeatureId": "municipal:eger:plan:164818",
+      "sourcePlanId": "2.24.",
+      "sourcePdfDrawingIndex": 164818,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-03-164818.png",
+      "sourceNativeLabels": [
+        "2004\n2.24.-m3",
+        "2007\n2.24.-m4",
+        "2010\n2.24.-m5",
+        "Hajdœhegy",
+        "2001",
+        "2.24."
+      ],
+      "geometrySha256Before": "8ee2c07567ebe144b92d07bf967aaf27c73042a653ac8eb8980ddf22e8a41add",
+      "geometrySha256After": "8ee2c07567ebe144b92d07bf967aaf27c73042a653ac8eb8980ddf22e8a41add",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.35229301083169,
+          47.893784024814146,
+          20.365750226693567,
+          47.91174117069422
+        ],
+        "vertices": 225
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 4,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2000,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "The purple Szent Miklós 2.26/2000 footprint is the named base plan, with its small dashed changes visibly separate. The municipal register expressly identifies the2000 Szent Miklós quarter plan.",
+      "qualification": "Native2016 unit number differs from the earlier register's numbering; correspondence rests on name/year/base-plan description, not a claimed unchanged index number.",
+      "name": "Szent Miklós",
+      "sourceFeatureId": "municipal:eger:plan:164819",
+      "sourcePlanId": "2.26.",
+      "sourcePdfDrawingIndex": 164819,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-04-164819.png",
+      "sourceNativeLabels": [
+        "2002\n2.26.-m1",
+        "Miklós",
+        "Szent",
+        "2.26.",
+        "2000",
+        "2.26.-m2"
+      ],
+      "geometrySha256Before": "cf93dc9efcd90a7f2270ee265fb6023934f595dd3e444ee65ba46cf5ee1a604f",
+      "geometrySha256After": "cf93dc9efcd90a7f2270ee265fb6023934f595dd3e444ee65ba46cf5ee1a604f",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.3694977832825,
+          47.9031965634575,
+          20.37514177316655,
+          47.9099553257093
+        ],
+        "vertices": 50
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 5,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2001,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "The purple Belváros 2.25/2001 native base footprint has its own closed circuit and its own historical quarter-plan designation. The separately mapped Dobó-tér plan remains a subarea and is not substituted for this footprint.",
+      "qualification": "Belváros means this historical statutory source unit; no whole present-day Belváros or ITS footprint is claimed.",
+      "name": "Belváros",
+      "sourceFeatureId": "municipal:eger:plan:164820",
+      "sourcePlanId": "2.25.",
+      "sourcePdfDrawingIndex": 164820,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-05-164820.png",
+      "sourceNativeLabels": [
+        "2006\n2.25.-m1",
+        "BelvÆros",
+        "2.25.\n2001",
+        "2016"
+      ],
+      "geometrySha256Before": "baf43a591cce001d0d9b6a39cb32af8a96ae372448922271db2fd6b9faf81723",
+      "geometrySha256After": "baf43a591cce001d0d9b6a39cb32af8a96ae372448922271db2fd6b9faf81723",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.370147552661575,
+          47.89692774357249,
+          20.38026339785082,
+          47.904834203857256
+        ],
+        "vertices": 47
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 6,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2003,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Lajosváros–nyugat is the separately labelled purple2.23/2003 base plan. Several dashed amendments inside it are distinct from the entire selected outer filled path. The register independently calls the base a named quarter plan.",
+      "qualification": "The west qualifier is retained; the polygon is not assigned to all Lajosváros.",
+      "name": "Lajosváros – nyugat",
+      "sourceFeatureId": "municipal:eger:plan:164828",
+      "sourcePlanId": "2.23.",
+      "sourcePdfDrawingIndex": 164828,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-06-164828.png",
+      "sourceNativeLabels": [
+        "2006\n2.23.-m2",
+        "2007\n2.23.-m3",
+        "2007\n2.23.-m3",
+        "2012\n2.23.-m6",
+        "LajosvÆros - nyugat",
+        "2.23.\n2003",
+        "2012\n2.23.-m5",
+        "2004\n2.23.-m1",
+        "2008\n2.23.-m4",
+        "2008\n2.23.-m4"
+      ],
+      "geometrySha256Before": "a00a312cfb223e234cb29d798ea652175c75620039c199802c8cbcdc7417fa18",
+      "geometrySha256After": "a00a312cfb223e234cb29d798ea652175c75620039c199802c8cbcdc7417fa18",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.3654485868945,
+          47.87312367444923,
+          20.3826893690622,
+          47.8892687087763
+        ],
+        "vertices": 126
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 7,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2004,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "The selected native path164829 is the large closed purple Galagonyás-dűlő3.27/2004 base footprint. Its2012 3.27-m1 cellar amendment is a separate small dashed outline inside it. The register expressly calls the2004 32/2004 base a Galagonyás-dűlő quarter plan.",
+      "qualification": "This corrects the prior audit's conflation of a2012 partial amendment with the actual2004 base geometry. Full current/common-name extent remains unknown; source-era numbering drift is preserved.",
+      "name": "Galagonyás-dűlő",
+      "sourceFeatureId": "municipal:eger:plan:164829",
+      "sourcePlanId": "3.27.",
+      "sourcePdfDrawingIndex": 164829,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-07-164829.png",
+      "sourceNativeLabels": [
+        "GalagonyÆs - dßlı",
+        "3.27.\n2004",
+        "2012\n3.27.-m1"
+      ],
+      "geometrySha256Before": "ba17c436cb20ef74e65b3d7a7ab79dc2bf3046447d2e61e0b90ea63a15c232cf",
+      "geometrySha256After": "ba17c436cb20ef74e65b3d7a7ab79dc2bf3046447d2e61e0b90ea63a15c232cf",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.35485586971183,
+          47.85922988265699,
+          20.37995745396189,
+          47.87169291045545
+        ],
+        "vertices": 220
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 8,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Felnémet M1.8 is one complete named green base-unit circuit, not an M1.8-m amendment. The contemporaneous HÉSZ names it among quarter areas and the earlier register identifies the quarter's base plan.",
+      "qualification": "This does not extend the mapped unit to all land historically associated with the former independent settlement.",
+      "name": "Felnémet",
+      "sourceFeatureId": "municipal:eger:plan:164830",
+      "sourcePlanId": "M1.8.",
+      "sourcePdfDrawingIndex": 164830,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-08-164830.png",
+      "sourceNativeLabels": [
+        "FelnØmet",
+        "M1.8.",
+        "2016"
+      ],
+      "geometrySha256Before": "45f23555d660e904341aef832377543355312d967e6f19d9aea5c021f24ce95d",
+      "geometrySha256After": "45f23555d660e904341aef832377543355312d967e6f19d9aea5c021f24ce95d",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.353828754772167,
+          47.927855165607816,
+          20.384009290633443,
+          47.952716865356
+        ],
+        "vertices": 296
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 9,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Nagylapos M1.16 is a full named green base-unit circuit and is independently listed as a quarter plan. The selection is not one of the smaller Töviskes-area or other amendment blocks.",
+      "qualification": "Only the native2016 Nagylapos schema is asserted.",
+      "name": "Nagylapos",
+      "sourceFeatureId": "municipal:eger:plan:164831",
+      "sourcePlanId": "M1.16.",
+      "sourcePdfDrawingIndex": 164831,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-09-164831.png",
+      "sourceNativeLabels": [
+        "Nagylapos",
+        "M1.16.",
+        "2016"
+      ],
+      "geometrySha256Before": "9c839b6dcc668306bfd1f33cb3024f953dc900c99826d14f6df3dff9e354a3f6",
+      "geometrySha256After": "9c839b6dcc668306bfd1f33cb3024f953dc900c99826d14f6df3dff9e354a3f6",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.359298846909052,
+          47.91611262619848,
+          20.37291741380737,
+          47.932966848050924
+        ],
+        "vertices": 139
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 10,
+      "decision": "retain_planning_ambiguous_subarea",
+      "scope": "former_camping_subarea_with_conflicting_quarter_language",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "campingStudy2015",
+          "url": "https://eger.hu/public/uploads/eger-kemp-teltan_555c4f701d962.pdf"
+        },
+        {
+          "id": "campingCommittee2015",
+          "url": "https://www.clld.eger.hu/hu/onkormanyzat/kozgyules/kozgyulesi-anyagok/c/a-2015-februar-26-i-kozgyules-anyaga"
+        },
+        {
+          "id": "campingPlan2024",
+          "url": "https://eger.hu/public/uploads/m1-22-volt-kemping-2024-0223_6603f3ae61847.pdf"
+        }
+      ],
+      "reason": "M1.22 is a complete source planning footprint, but contemporaneous HÉSZ§83 locates the former camping area within Rác hóstya. A2015 study reports its attachment to that quarter; some municipal material and a later map form also use quarter language for the camping area.",
+      "blocker": "Independent whole-quarter identity is unresolved against direct subarea evidence. Preserve both sides; a generic quarter-list heading does not resolve the contradiction.",
+      "name": "Volt kemping",
+      "sourceFeatureId": "municipal:eger:plan:164832",
+      "sourcePlanId": "M1.22.",
+      "sourcePdfDrawingIndex": 164832,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "planning_unit",
+      "proposedCanonicalNameIsNeighborhood": false,
+      "sourceNativeCrop": "source-unit-10-164832.png",
+      "sourceNativeLabels": [
+        "M1.22.",
+        "kemping",
+        "Volt",
+        "2016"
+      ],
+      "geometrySha256Before": "a1aa30323f9e23fc22c6a5fc46c46c52e139ab144f751f72b9347e4723a8bfad",
+      "geometrySha256After": "a1aa30323f9e23fc22c6a5fc46c46c52e139ab144f751f72b9347e4723a8bfad",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.363454655973037,
+          47.9152703658611,
+          20.369873238573813,
+          47.921099827402266
+        ],
+        "vertices": 54
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 11,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Rác hóstya M1.17 is the complete named green base circuit, distinguishable from the adjacent camping plan and its own dashed amendment. The HÉSZ separately gives quarter-specific provisions for Rác hóstya.",
+      "qualification": "Its2016 regulatory footprint excludes separately regulated camping land; it is not asserted to cover every area of the ordinary/common-name Rác hóstya.",
+      "name": "Rác hóstya",
+      "sourceFeatureId": "municipal:eger:plan:164833",
+      "sourcePlanId": "M1.17.",
+      "sourcePdfDrawingIndex": 164833,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-11-164833.png",
+      "sourceNativeLabels": [
+        "Øszak\nHajdœhegy\nVØcseyvölgy",
+        "M1.17.",
+        "2016",
+        "2016\nM1.17.-m1"
+      ],
+      "geometrySha256Before": "bc6ac091fe4af15422a97bfd6a81a4504ac00a20e0aeb466e700e6981c235f17",
+      "geometrySha256After": "bc6ac091fe4af15422a97bfd6a81a4504ac00a20e0aeb466e700e6981c235f17",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.34094431025083,
+          47.908275178595055,
+          20.37124313647369,
+          47.92027140180774
+        ],
+        "vertices": 194
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 12,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        }
+      ],
+      "reason": "Hajdúhegy észak has its own green M1.10/2016 base circuit and contemporaneous quarter-specific HÉSZ chapter. It is a named northern source unit, not an inferred northern half or an unnamed amendment.",
+      "qualification": "Retain the northern qualifier and2016 code; later M1.10 numbering/name changes must not be read back into this geometry.",
+      "name": "Hajdúhegy észak",
+      "sourceFeatureId": "municipal:eger:plan:164834",
+      "sourcePlanId": "M1.10.",
+      "sourcePdfDrawingIndex": 164834,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-12-164834.png",
+      "sourceNativeLabels": [
+        "M1.10.",
+        "2016"
+      ],
+      "geometrySha256Before": "2bdc228e7632657af3e01735849ddee4919cc969d9f67cf7ea2e190cc04cdbc8",
+      "geometrySha256After": "2bdc228e7632657af3e01735849ddee4919cc969d9f67cf7ea2e190cc04cdbc8",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.3470971448077,
+          47.90812437547487,
+          20.356491775763917,
+          47.91326541140053
+        ],
+        "vertices": 100
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 13,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Felsőváros M1.9 is a complete green named base-unit footprint, with quarter-specific law provisions. Its native outer path is distinct from local amendment outlines.",
+      "qualification": "Source-era statutory footprint only.",
+      "name": "Felsőváros",
+      "sourceFeatureId": "municipal:eger:plan:164835",
+      "sourcePlanId": "M1.9.",
+      "sourcePdfDrawingIndex": 164835,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-13-164835.png",
+      "sourceNativeLabels": [
+        "FelsıvÆros",
+        "M1.9.",
+        "2016"
+      ],
+      "geometrySha256Before": "3461baf7ae49a77c705bf471667a27496e79c3824d4c32dff4ccc89f2369d4c5",
+      "geometrySha256After": "3461baf7ae49a77c705bf471667a27496e79c3824d4c32dff4ccc89f2369d4c5",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.369309191580278,
+          47.90919277981262,
+          20.378646406092724,
+          47.92192947553482
+        ],
+        "vertices": 77
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 14,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Károlyváros M1.12 is the named green base-unit extent. The register identifies the quarter plan and the HÉSZ separately marks its Tündérpart change as an amendment, not the selected whole base circuit.",
+      "qualification": "Source-era statutory footprint only.",
+      "name": "Károlyváros",
+      "sourceFeatureId": "municipal:eger:plan:164836",
+      "sourcePlanId": "M1.12.",
+      "sourcePdfDrawingIndex": 164836,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-14-164836.png",
+      "sourceNativeLabels": [
+        "KÆrolyvÆros",
+        "M1.12.",
+        "2016",
+        "2016\nM1.12.-m1 2016"
+      ],
+      "geometrySha256Before": "a3f3554d3009d253827aba9d0378ec265b146ed4251ba8b92debb7caee0aaf3b",
+      "geometrySha256After": "a3f3554d3009d253827aba9d0378ec265b146ed4251ba8b92debb7caee0aaf3b",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.360694357214808,
+          47.896037357860116,
+          20.371882328152044,
+          47.90877726029165
+        ],
+        "vertices": 74
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 15,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Szépasszonyvölgy M1.19 is the closed green base footprint, not a smaller Pavilonsor/pincés amendment. Both quarter-specific law and the municipal plan register establish the named quarter schema.",
+      "qualification": "Functional/tourist character does not make the explicitly named source quarter a point or venue.",
+      "name": "Szépasszonyvölgy",
+      "sourceFeatureId": "municipal:eger:plan:164837",
+      "sourcePlanId": "M1.19.",
+      "sourcePdfDrawingIndex": 164837,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-15-164837.png",
+      "sourceNativeLabels": [
+        "SzØpasszonyvölgy",
+        "M1.19.",
+        "2016"
+      ],
+      "geometrySha256Before": "44bc1902660d37f64fe294c224c0ed66539818841eb1c383ae21bdc2d54c0d99",
+      "geometrySha256After": "44bc1902660d37f64fe294c224c0ed66539818841eb1c383ae21bdc2d54c0d99",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.35656968046553,
+          47.88895500934437,
+          20.371249483182805,
+          47.89795866528664
+        ],
+        "vertices": 265
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 16,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Hatvani hóstya M1.11 is the complete labelled green source base unit, supported by a quarter-specific chapter and its independent quarter-plan register entry.",
+      "qualification": "Source-era statutory footprint only.",
+      "name": "Hatvani hóstya",
+      "sourceFeatureId": "municipal:eger:plan:164838",
+      "sourcePlanId": "M1.11.",
+      "sourcePdfDrawingIndex": 164838,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-16-164838.png",
+      "sourceNativeLabels": [
+        "hóstya\nHatvani",
+        "M1.11.",
+        "2016"
+      ],
+      "geometrySha256Before": "45ae6346b57d61600cd63a2be561e45a7376a0a147ee33aede32a43e4a290243",
+      "geometrySha256After": "45ae6346b57d61600cd63a2be561e45a7376a0a147ee33aede32a43e4a290243",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.362769252829906,
+          47.887302666339686,
+          20.385077738633697,
+          47.89890500480773
+        ],
+        "vertices": 164
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 17,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "k2Quarter2016",
+          "url": "https://www.eger.hu/hu/onkormanyzat/bizottsagok-es-jegyzokonyveik/megszunt-varoskepi-es-kornyezetvedelmi-biz-/c/a-2016-augusztus-15-i-ules-anyaga"
+        }
+      ],
+      "reason": "The2016 base M1.13 footprint covers the named K2 road-and-surroundings unit. The contemporary municipal agenda expressly calls that unit a quarter; smaller M1.13-m1 motorway modifications are distinct source outlines.",
+      "qualification": "Its unusual road-based name does not negate explicit source-era quarter designation. No current ordinary-quarter equivalence is claimed.",
+      "name": "K2 jelű út és környéke",
+      "sourceFeatureId": "municipal:eger:plan:164839",
+      "sourcePlanId": "M1.13.",
+      "sourcePdfDrawingIndex": 164839,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-17-164839.png",
+      "sourceNativeLabels": [
+        "Øs környØke",
+        "K2 jelß œt",
+        "M1.13.",
+        "2016",
+        "2016\nM1.13.-m1",
+        "2016\nM1.13.-m1",
+        "2016\nM1.13.-m1"
+      ],
+      "geometrySha256Before": "32f001f846acd71604a284191e26d75ad8284b98b5a19e9c18b5bf1a1df9142d",
+      "geometrySha256After": "32f001f846acd71604a284191e26d75ad8284b98b5a19e9c18b5bf1a1df9142d",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.37450842027598,
+          47.86420447608337,
+          20.396432690100333,
+          47.8737271212532
+        ],
+        "vertices": 171
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 18,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        },
+        {
+          "id": "industrialQuarter",
+          "url": "https://eger.hu/hu/varoshaza-fo/foepiteszi-csoport-2219/telepulesrendezes/c/szabalyozasi-tervek"
+        }
+      ],
+      "reason": "Déli iparterület M1.6 is the whole named green source circuit with repeated labels across its long shape. Municipal law/register and explicit municipal quarter usage support quarter identity independently of its industrial function.",
+      "qualification": "Industrial use is not a semantic exclusion; this is the named2016 source unit, not every industrial parcel in Eger.",
+      "name": "Déli iparterület",
+      "sourceFeatureId": "municipal:eger:plan:164842",
+      "sourcePlanId": "M1.6.",
+      "sourcePdfDrawingIndex": 164842,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-18-164842.png",
+      "sourceNativeLabels": [
+        "iparterület",
+        "DØli",
+        "iparterület",
+        "DØli",
+        "M1.6.",
+        "2016",
+        "M1.6.",
+        "2016",
+        "2016\nM1.6.-m1"
+      ],
+      "geometrySha256Before": "1994e7a760c0110e5b7b27c1ac327ec7d4e34590a226d708e63797e8fe11f4c0",
+      "geometrySha256After": "1994e7a760c0110e5b7b27c1ac327ec7d4e34590a226d708e63797e8fe11f4c0",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.38058591699199,
+          47.864544930742845,
+          20.405820690727392,
+          47.88928192120732
+        ],
+        "vertices": 243
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 19,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Lajosváros kelet M1.14 is a separate named green base footprint, while its local changes are dashed amendment outlines. The name is independently designated as a quarter unit.",
+      "qualification": "Retain east; do not assign the polygon to whole Lajosváros.",
+      "name": "Lajosváros kelet",
+      "sourceFeatureId": "municipal:eger:plan:164843",
+      "sourcePlanId": "M1.14.",
+      "sourcePdfDrawingIndex": 164843,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-19-164843.png",
+      "sourceNativeLabels": [
+        "kelet\nLajosvÆros",
+        "M1.14.",
+        "2016",
+        "2016\nM1.14.-m1",
+        "2016\nM1.14.-m1"
+      ],
+      "geometrySha256Before": "450026d85a060f35ba0bd429d1fd6cee5a3a8c2969eb248e92e45de87ca1cfca",
+      "geometrySha256After": "450026d85a060f35ba0bd429d1fd6cee5a3a8c2969eb248e92e45de87ca1cfca",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.380282031545736,
+          47.874481208804795,
+          20.392098637010314,
+          47.889902583611565
+        ],
+        "vertices": 13
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 20,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "southeastQuarter2016",
+          "url": "https://www.eger.hu/hu/onkormanyzat/bizottsagok-es-jegyzokonyveik/megszunt-varoskepi-es-kornyezetvedelmi-biz-/c/a-2016-szeptember-19-i-ules-anyaga-15235"
+        }
+      ],
+      "reason": "Délkeleti külterület M1.7 is the complete large green named unit with repeated labels, with contemporaneous explicit municipal quarter usage. Its rural character is not evidence of partial scope.",
+      "qualification": "A source-defined outer quarter is supported; current ITS/rural-name extent remains unknown.",
+      "name": "Délkeleti külterület",
+      "sourceFeatureId": "municipal:eger:plan:164844",
+      "sourcePlanId": "M1.7.",
+      "sourcePdfDrawingIndex": 164844,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-20-164844.png",
+      "sourceNativeLabels": [
+        "külterület",
+        "DØlkeleti",
+        "külterület",
+        "DØlkeleti",
+        "külterület",
+        "DØlkeleti",
+        "M1.7.\n2016",
+        "M1.7.\n2016",
+        "M1.7.\n2016"
+      ],
+      "geometrySha256Before": "a9eea20d6ac4b2b7d160e9b9bca530b479823ed0217dcf8fe22db3e04321f3f5",
+      "geometrySha256After": "a9eea20d6ac4b2b7d160e9b9bca530b479823ed0217dcf8fe22db3e04321f3f5",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.39181053197095,
+          47.8662136619187,
+          20.471573016730293,
+          47.941653057519076
+        ],
+        "vertices": 675
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 21,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Csákó M1.5 is a complete labelled green base circuit, not the separately indexed Tinódi-street amendment block; the law and register establish its quarter identity.",
+      "qualification": "Source-era statutory footprint only.",
+      "name": "Csákó",
+      "sourceFeatureId": "municipal:eger:plan:164845",
+      "sourcePlanId": "M1.5.",
+      "sourcePdfDrawingIndex": 164845,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-21-164845.png",
+      "sourceNativeLabels": [
+        "CsÆkó",
+        "M1.5.",
+        "2016"
+      ],
+      "geometrySha256Before": "e590c2082ade496296a05bd3bdbc1708542d53f1a63fe77548cbb4d9eeac31aa",
+      "geometrySha256After": "e590c2082ade496296a05bd3bdbc1708542d53f1a63fe77548cbb4d9eeac31aa",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.381302065349033,
+          47.88773430430506,
+          20.393450737673845,
+          47.89502725890772
+        ],
+        "vertices": 14
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 22,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Tihamér M1.20 is the named green base unit. Kertész-street and other smaller changes have separate dashed identifiers; the selected geometry is the whole native base footprint.",
+      "qualification": "Source-era statutory footprint only.",
+      "name": "Tihamér",
+      "sourceFeatureId": "municipal:eger:plan:164846",
+      "sourcePlanId": "M1.20.",
+      "sourcePdfDrawingIndex": 164846,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-22-164846.png",
+      "sourceNativeLabels": [
+        "TihamØr",
+        "M1.20.",
+        "2016",
+        "2016\nM1.20.-m1"
+      ],
+      "geometrySha256Before": "d375666d1f5f7c785b84dda435cd83cd5d8b69d7de920bf3acb2b56cce7f6f19",
+      "geometrySha256After": "d375666d1f5f7c785b84dda435cd83cd5d8b69d7de920bf3acb2b56cce7f6f19",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.383534870257748,
+          47.887525320986605,
+          20.39797236095788,
+          47.89741146192747
+        ],
+        "vertices": 38
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 23,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Maklári hóstya M1.15 has its own closed green base-unit path. The repeated smaller M1.15-m1 changes do not define the outer circuit; quarter identity is independently established.",
+      "qualification": "Source-era statutory footprint only.",
+      "name": "Maklári hóstya",
+      "sourceFeatureId": "municipal:eger:plan:164847",
+      "sourcePlanId": "M1.15.",
+      "sourcePdfDrawingIndex": 164847,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-23-164847.png",
+      "sourceNativeLabels": [
+        "hóstya\nMaklÆri",
+        "M1.15.",
+        "2016",
+        "2016\nM1.15.-m1",
+        "2016\nM1.15.-m1",
+        "2016\nM1.15.-m1"
+      ],
+      "geometrySha256Before": "aba638fe1350ec6248e7b043ecb26603fa071c8dcfece2639199630f72d8b3fc",
+      "geometrySha256After": "aba638fe1350ec6248e7b043ecb26603fa071c8dcfece2639199630f72d8b3fc",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.378211666792087,
+          47.89502725890772,
+          20.393477014458906,
+          47.903366264535684
+        ],
+        "vertices": 54
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 24,
+      "decision": "retain_planning_group",
+      "scope": "combined_quarters",
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        }
+      ],
+      "reason": "Almagyar–Merengő is one combined named source footprint for two quarter names. Neither child boundary can be recovered from it.",
+      "blocker": "No separate child circuits; no duplication onto Almagyar and Merengő.",
+      "name": "Almagyar – Merengő",
+      "sourceFeatureId": "municipal:eger:plan:164848",
+      "sourcePlanId": "M1.1.",
+      "sourcePdfDrawingIndex": 164848,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "planning_unit",
+      "proposedCanonicalNameIsNeighborhood": false,
+      "sourceNativeCrop": "source-unit-24-164848.png",
+      "sourceNativeLabels": [
+        "Merengı\nAlmagyar",
+        "M1.1.",
+        "2016"
+      ],
+      "geometrySha256Before": "74bb8c432fae79d5cd3183c0c6e6d8855dd8602877ef43e938c1ef32cc612d02",
+      "geometrySha256After": "74bb8c432fae79d5cd3183c0c6e6d8855dd8602877ef43e938c1ef32cc612d02",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.380765501200084,
+          47.896917989863354,
+          20.399350450077392,
+          47.911073216954755
+        ],
+        "vertices": 93
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 25,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Sánc M1.18 is the complete labelled green base-unit circuit, distinct from separately indexed Gárdonyi/Bástya amendment blocks and neighbouring units.",
+      "qualification": "Source-era statutory footprint only.",
+      "name": "Sánc",
+      "sourceFeatureId": "municipal:eger:plan:164849",
+      "sourcePlanId": "M1.18.",
+      "sourcePdfDrawingIndex": 164849,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-25-164849.png",
+      "sourceNativeLabels": [
+        "SÆnc",
+        "M1.18.",
+        "2016"
+      ],
+      "geometrySha256Before": "0ab41fb7e9c87c9ca624ce31e7e3003db5c17899a0e109c749c5ca8e8d280cec",
+      "geometrySha256After": "0ab41fb7e9c87c9ca624ce31e7e3003db5c17899a0e109c749c5ca8e8d280cec",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.380632008010014,
+          47.90327408302317,
+          20.384894897883402,
+          47.9072402223492
+        ],
+        "vertices": 32
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 26,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Belváros kelet M1.3 is a separately named source quarter/base-plan footprint, supported by quarter-specific law provisions and independent register identity.",
+      "qualification": "Retain east; this does not stand in for ordinary whole Belváros or the separate Dobó-tér subarea.",
+      "name": "Belváros kelet",
+      "sourceFeatureId": "municipal:eger:plan:164850",
+      "sourcePlanId": "M1.3.",
+      "sourcePdfDrawingIndex": 164850,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-26-164850.png",
+      "sourceNativeLabels": [
+        "kelet\nBelvÆros",
+        "M1.3.",
+        "2016"
+      ],
+      "geometrySha256Before": "f3cba561adb2f0a1b705de29eb52703f348d1003106a44693a99ddcb4517b760",
+      "geometrySha256After": "f3cba561adb2f0a1b705de29eb52703f348d1003106a44693a99ddcb4517b760",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.375533511641116,
+          47.90145277634085,
+          20.381836500537577,
+          47.90593326918182
+        ],
+        "vertices": 31
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 27,
+      "decision": "retain_planning_partial",
+      "scope": "Dobo_square_and_surroundings_subarea",
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        },
+        {
+          "id": "doboScope2009",
+          "url": "https://www.eger.hu/hu/onkormanyzat/kozgyules/kozgyulesi-anyagok/c/2009-augusztus-27-i-kozgyules-anyaga"
+        }
+      ],
+      "reason": "The small M1.2 native footprint is Belváros–Dobó tér és környéke. Its underlying2009 proposal concerns parts of Belváros, Belváros-kelet and Maklári hóstya; it is not a separate whole Belváros quarter.",
+      "blocker": "A specifically bounded square-area regulatory subplan cannot replace or duplicate any of those full named quarter footprints. The broad HÉSZ cover wording is insufficient.",
+      "name": "Belváros Dobó tér",
+      "sourceFeatureId": "municipal:eger:plan:164851",
+      "sourcePlanId": "M1.2.",
+      "sourcePdfDrawingIndex": 164851,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "planning_unit",
+      "proposedCanonicalNameIsNeighborhood": false,
+      "sourceNativeCrop": "source-unit-27-164851.png",
+      "sourceNativeLabels": [
+        "Dobó tØr\nBelvÆros",
+        "M1.2."
+      ],
+      "geometrySha256Before": "bbeca98623d04ba0de89d0756c7f8c110834f1b7654b21982a141e3ff28d0460",
+      "geometrySha256After": "bbeca98623d04ba0de89d0756c7f8c110834f1b7654b21982a141e3ff28d0460",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.3731143954264,
+          47.900381861605894,
+          20.37952969248804,
+          47.904946910675356
+        ],
+        "vertices": 36
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 28,
+      "decision": "retain_planning_group",
+      "scope": "combined_quarters",
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        }
+      ],
+      "reason": "Cifra hóstya–Tetemvár combines two expressly named quarters in one footprint. The source does not supply their internal division.",
+      "blocker": "No independent child circuits; preserve one combined planning group.",
+      "name": "Cifra hóstya – Tetemvár",
+      "sourceFeatureId": "municipal:eger:plan:164852",
+      "sourcePlanId": "M1.4.",
+      "sourcePdfDrawingIndex": 164852,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "planning_unit",
+      "proposedCanonicalNameIsNeighborhood": false,
+      "sourceNativeCrop": "source-unit-28-164852.png",
+      "sourceNativeLabels": [
+        "2015\nV1.1.-m2\nRÆc hóstya",
+        "TetemvÆr\nCifra hóstya",
+        "M1.4.",
+        "2016"
+      ],
+      "geometrySha256Before": "e5d8cccd7e7cc452f8e99a084400da1619ec5ea0cd17ad05ab04afeb1ed72457",
+      "geometrySha256After": "e5d8cccd7e7cc452f8e99a084400da1619ec5ea0cd17ad05ab04afeb1ed72457",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.372599643121717,
+          47.90332620947957,
+          20.3812288148869,
+          47.91667126353668
+        ],
+        "vertices": 80
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 29,
+      "decision": "propose_qualified_quarter",
+      "scope": "whole_named_source_base_plan",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "planRegister2015",
+          "url": "https://eger.hu/public/uploads/szt-rendeletszamok-2015-06-25_55c0b18e18216.pdf"
+        }
+      ],
+      "reason": "Vécseyvölgy M1.21 is the complete native green base footprint with its own quarter-specific legal chapter. It is distinct from nearby orange combined northeast/Bikalegelő coverage and local amendments.",
+      "qualification": "Source-era statutory footprint only; no present-day ITS equivalence is claimed.",
+      "name": "Vécseyvölgy",
+      "sourceFeatureId": "municipal:eger:plan:164853",
+      "sourcePlanId": "M1.21.",
+      "sourcePdfDrawingIndex": 164853,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "neighbourhood",
+      "proposedCanonicalNameIsNeighborhood": true,
+      "sourceNativeCrop": "source-unit-29-164853.png",
+      "sourceNativeLabels": [
+        "M1.21.",
+        "2016"
+      ],
+      "geometrySha256Before": "7f2ba2f735cbbec3f080f581f2bc7ddf8330a1a5b49bf6285c8a14d8dfcfe22b",
+      "geometrySha256After": "7f2ba2f735cbbec3f080f581f2bc7ddf8330a1a5b49bf6285c8a14d8dfcfe22b",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.379674409951427,
+          47.907866590816035,
+          20.390456741846915,
+          47.912849639064596
+        ],
+        "vertices": 56
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 30,
+      "decision": "retain_planning_partial",
+      "scope": "northwest_operational_site_subarea",
+      "basePlanYear": 2016,
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        },
+        {
+          "id": "hesz2016",
+          "url": "https://www.eger.hu/public/uploads/3-hesz_57839b4f89ec8.pdf"
+        },
+        {
+          "id": "northwestFacility2016",
+          "url": "https://eger.hu/public/uploads/01-eszaknyugati-kulterulet-11-2016-iv-01_5bc5e621de8d8.pdf"
+        }
+      ],
+      "reason": "M1.23 is a tiny closed green operational-area plan next to road24. Contemporaneous law§1 explicitly narrows its scope; the2016 supporting report concerns the Baktai-road animal-shelter/pound site and states the wider northwest lands were not yet regulated.",
+      "blocker": "This is not the whole Északnyugati külterület quarter. A generic map title form saying quarter name cannot override explicit partial-site scope.",
+      "name": "Északnyugati külterület",
+      "sourceFeatureId": "municipal:eger:plan:165658",
+      "sourcePlanId": "M1.23.",
+      "sourcePdfDrawingIndex": 165658,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "planning_unit",
+      "proposedCanonicalNameIsNeighborhood": false,
+      "sourceNativeCrop": "source-unit-30-165658.png",
+      "sourceNativeLabels": [
+        "M1.23.",
+        "2016"
+      ],
+      "geometrySha256Before": "ad176b74413a73e014b72d821af45c424d0fac42139affc9666a734ea5272ca7",
+      "geometrySha256After": "ad176b74413a73e014b72d821af45c424d0fac42139affc9666a734ea5272ca7",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.335095224918142,
+          47.91858638447784,
+          20.34073913249914,
+          47.92027007767365
+        ],
+        "vertices": 26
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    },
+    {
+      "featureIndex": 31,
+      "decision": "retain_planning_residual",
+      "scope": "residual_general_TSΖT_coverage",
+      "evidence": [
+        {
+          "id": "native2016",
+          "url": "https://eger.hu/public/uploads/m2-melleklet-2016-0826_57d7ea2877316.pdf"
+        }
+      ],
+      "reason": "The cyan2004 TSZT residual covers general planning land with genuine holes for other plan areas. The suffix általános tervterület was supplied by the exporter, not established as an independent quarter name.",
+      "blocker": "Residual planning coverage is not a source-defined fine quarter.",
+      "name": "Északnyugati külterület – általános tervterület",
+      "sourceFeatureId": "municipal:eger:plan:165659",
+      "sourcePlanId": "TSZT2004",
+      "sourcePdfDrawingIndex": 165659,
+      "currentEffectiveKind": "planning_unit",
+      "proposedBoundaryKind": "planning_unit",
+      "proposedCanonicalNameIsNeighborhood": false,
+      "sourceNativeCrop": "source-unit-31-165659.png",
+      "sourceNativeLabels": [
+        "2002\n2.24.-m2",
+        "2001\n2.24.-m1",
+        "OMYA",
+        "AlmÆr",
+        "1998",
+        "2008",
+        "3.28.",
+        "3.29.",
+        "M1.23.",
+        "2016",
+        "külterület\nÉszaknyugati"
+      ],
+      "geometrySha256Before": "dcd01b687d20b56ae204f803121a622e5ce6c93ae07aba1071e94099561d4139",
+      "geometrySha256After": "dcd01b687d20b56ae204f803121a622e5ce6c93ae07aba1071e94099561d4139",
+      "geometryUnchanged": true,
+      "validator": {
+        "valid": true,
+        "bbox": [
+          20.311279788457252,
+          47.86550682769853,
+          20.39111683936204,
+          48.00142539208026
+        ],
+        "vertices": 1771
+      },
+      "sourceDate": "2016-08",
+      "currentCommonOrItsExtentEstablished": false,
+      "globalChangeApplied": false
+    }
+  ]
+}

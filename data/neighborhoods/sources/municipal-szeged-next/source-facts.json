@@ -1,0 +1,51 @@
+{
+  "retrievedAt": "2026-11-13",
+  "retrievalMethod": "Public web READ connector: indexed factual text of municipal PDF; no authenticated or shell network request.",
+  "fullSourceBytesDownloaded": false,
+  "sourcePdfSha256": null,
+  "primarySource": {
+    "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101",
+    "title": "200/2017. (IV.28.) Kgy. sz. határozat 1. sz. melléklete",
+    "documentType": "Adopted integrated settlement development strategy (ITS) annex",
+    "printedPage": 96,
+    "sourceEra": "The2017 annex quotes the subdivisions in the IVS approved under455/2009(IX.25).",
+    "scopeFact": "The paragraph subdivides the named Felsőváros és lakótelepek macro unit into three smaller named areas. It separately describes the Belső-Tarján action area. The circuits below are the numbered subdivision definitions, not that action area.",
+    "shortScopeExcerpt": "Felsővárost az IVS további három részre bontja",
+    "boundaries": [
+      {
+        "sourceName": "Tarjánváros",
+        "orderedRoadFacts": ["József A. sgt.", "Körtöltés", "Lugas utca", "Csillag tér", "Szilléri sgt.", "Debreceni utca"],
+        "expandedOsmNames": ["József Attila sugárút", "Körtöltés", "Lugas utca", "Csillag tér", "Szilléri sugárút", "Debreceni utca"],
+        "treatedAs": "historical_source_named_neighborhood_subdivision",
+        "presentExactExtentConfirmed": false
+      },
+      {
+        "sourceName": "Felsővárosi lakótelep",
+        "orderedRoadFacts": ["Római krt.", "Szilléri sgt.", "Debreceni u.", "József A sgt."],
+        "expandedOsmNames": ["Római körút", "Szilléri sugárút", "Debreceni utca", "József Attila sugárút"],
+        "treatedAs": "historical_planning_subdivision_name_conflict_not_verified_current_neighborhood",
+        "presentExactExtentConfirmed": false
+      }
+    ],
+    "corroboratingSameParagraph": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=20490",
+    "retrievalNote": "Search queries for the exact factual heading returned the complete numbered paragraph. Direct open of several old municipal download links returned502. The transcript and URL are preserved; no hash is claimed for unavailable original PDF bytes."
+  },
+  "scopeAndNamingChecks": [
+    {
+      "url": "https://szegedfolyoirat.sk-szeged.hu/2019/02/23/toth-marcell-a-tarjan-lakotelep-tortenete/",
+      "title": "Tóth Marcell: A sártengertől a színes panelokig – a Tarján lakótelep története",
+      "publishedAt": "2019-02-23",
+      "publisher": "Szeged city-history and cultural journal, hosted by municipal Somogyi Library",
+      "retrieval": "Full public webpage read, boundary paragraph at indexed lines25–29",
+      "factualDifference": "The historian describes the present Tarján housing estate using Lugas/Csillag/Retek/József Attila/Murányi/Körtöltés, with specified house-number-side differences. That differs from the official IVS Debreceni-road footprint. We do not combine them or assert identical extents.",
+      "supports": "Tarján remains a named quarter; the IVS circuit is a source-era extent rather than independently verified current estate extent."
+    },
+    {
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=19546&as_attachment=1",
+      "retrieval": "Public indexed text, printedp23",
+      "factualDifference": "The municipal concept describes the Római/Szilléri/Debreceni/József Attila four-road area as suburban/garden construction, while describing panel estate farther out. This conflicts with the numbered2017 IVS subdivision label. The small circuit is retained only as historical planning evidence.",
+      "supports": "A name-to-footprint ambiguity remains; do not count it as a verified current neighborhood or automatically assign addresses."
+    }
+  ],
+  "copyrightNote": "Manual factual street-name transcription and paraphrases only, not a reproduction of the municipal PDF or the local-history article."
+}

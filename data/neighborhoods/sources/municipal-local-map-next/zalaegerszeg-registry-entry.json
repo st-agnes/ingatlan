@@ -1,0 +1,18 @@
+{
+  "id": "zalaegerszeg-source-raster",
+  "path": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-import.geojson",
+  "sha256": "70b502949fcc8333ead5ffc0d404cbdd6198ec0a1f09241f88bd3509fc056b6a",
+  "municipality": "Zalaegerszeg",
+  "method": "Historical municipal map, figure 1, PDF page 12 of the 2014-08-28 ITS draft: exact non-stroke source raster cell regions inside the actual teal cartographic boundary band. Four-neighbor cells; only enclosed numeric label disks restored. Pixel-cell union, no gap bridging or geographic repair. Frozen affine registration from actual municipal-dash source pixels to the contemporary municipal perimeter in EOV, then EPSG:4326. Unknown absolute accuracy, historical status, not address assignment. The original seven-feature extraction is retained; two conservative-validator failures are quarantined without geometry changes.",
+  "evidenceUrls": [
+    "https://zalaegerszeg.hu/wp-content/uploads/2023/05/Zalaegerszeg_ITS.pdf"
+  ],
+  "license": "Municipal map reuse rights not independently established; ODbL for OSM calibration and name evidence.",
+  "propertyOverrides": {
+    "boundaryKind": "neighbourhood",
+    "canonicalNameIsNeighborhood": true,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-local-map-next/zalaegerszeg-independent-review.json",
+  "rightsStatus": "Municipal public publication, title page says approval draft; open-reuse licence not independently established."
+}

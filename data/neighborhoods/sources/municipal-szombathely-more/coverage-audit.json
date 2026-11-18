@@ -1,0 +1,613 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Szombathely",
+  "auditDate": "2026-11-14",
+  "scope": "All 18 source-defined IVS2013 quarters checked against the current catalog; source names, current names and whole-footprint geometry treated separately. No nationwide coverage claim.",
+  "sourceFactsPath": "data/neighborhoods/sources/municipal-szombathely-more/source-facts.json",
+  "currentCatalogSzombathelyFeaturesObserved": 46,
+  "currentCatalogNamesObserved": [
+    "Alsóhegy",
+    "Angolkert lakópark",
+    "Aranypatak lakópark",
+    "Belváros",
+    "Bogát",
+    "Brenner-telep",
+    "Bádonfa",
+    "Derkovits-lakótelep",
+    "Déli városrész",
+    "Felsőhegy",
+    "Gyöngyös-patak lakópark",
+    "Gyöngyöshermán",
+    "Gyöngyösszőlős",
+    "Herény",
+    "Hunyadi park",
+    "Joskar-Ola-lakótelep",
+    "KISZ-lakótelep",
+    "Karicsa",
+    "Kenderes",
+    "Kismező",
+    "Krúdy lakópark",
+    "Kámon",
+    "Középhegy",
+    "Minerva lakópark",
+    "ONCSA-telep",
+    "Olad",
+    "Oladi Parkerdő",
+    "Oladi Plató",
+    "Oladi lakótelep",
+    "Parkerdő lakókert",
+    "Petőfitelep",
+    "Sarlay-telep",
+    "Stromfeld-lakótelep",
+    "Szent István lakópark",
+    "Szentkirály",
+    "Szentmárton",
+    "Százhold",
+    "Vasúti előváros",
+    "Városközpont",
+    "Zanat",
+    "Zarkaháza",
+    "Éhen Gyula kertváros",
+    "Északi városrész",
+    "Óperint",
+    "Újperint",
+    "Újvilág utcai lakópark"
+  ],
+  "existingNamedSourceUnits": 15,
+  "sourceUnitExactLabelsStillMissing": [
+    2,
+    10,
+    16
+  ],
+  "newDistinctQuarterNamesAdded": 0,
+  "newPrimaryPolygons": 0,
+  "newHistoricalEstimatedAlternatives": 1,
+  "units": [
+    {
+      "sourceId": 1,
+      "sourceName": "Belváros (városmag)",
+      "originalPdfPageOneBased": 150,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Zrínyi Ilona utca",
+        "Hunyadi János utca",
+        "Szent Márton utca",
+        "Vörösmarty utca",
+        "Szelestey utca",
+        "Petőfi Sándor utca",
+        "Sörház utca",
+        "Hollán Ernő utca",
+        "Kiskar utca",
+        "Mátyás király út",
+        "Zrínyi Ilona utca"
+      ],
+      "observations": [
+        "Already derived from the same annex in municipal-west; no duplicate output."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Belváros",
+        "originalSourceId": "osm:relation:8503983",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "693e74997449741982258a79d2407b85e21d40914cba3ab841d0704877cfce31"
+      },
+      "status": "already_source_derived_do_not_duplicate"
+    },
+    {
+      "sourceId": 2,
+      "sourceName": "Hagyományos beépítésű belső lakóterület",
+      "originalPdfPageOneBased": 150,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Lipp Vilmos utca",
+        "Alsóőr utca",
+        "Pinkafői utca",
+        "Söptei út",
+        "Semmelweis Ignác utca",
+        "Vasút utca",
+        "Szent Márton utca",
+        "Vörösmarty utca",
+        "Szelestey utca",
+        "Petőfi Sándor utca",
+        "Sörház utca",
+        "Hollán Ernő utca",
+        "Kiskar utca",
+        "Mátyás király út",
+        "Zrínyi Ilona utca",
+        "Hunyadi János utca",
+        "Szent Gellért utca",
+        "Szőlősi sétány",
+        "Négyesi utca",
+        "Rumi út",
+        "Szent Flórián körút",
+        "Brenner Tóbiás körút",
+        "Jókai Mór utca",
+        "Bartók Béla körút",
+        "Bolyai János utca",
+        "Szűrcsapó utca",
+        "Paragvári utca",
+        "2606 hrsz. utca",
+        "Dr. Szabolcs Zoltán utca",
+        "Lipp Vilmos utca"
+      ],
+      "observations": [
+        "Exact source-unit name is absent from the catalog. This is an explicit source quarter with broad inner-residential scope, not a geometry that can be copied to smaller named quarters.",
+        "The source says outside Belváros and includes both sides of Vasút utca; topology/street-side inclusion must be interpreted explicitly.",
+        "2606 hrsz. street remains unidentified; the low-resolution overview does not settle its exact road/parcel route. No candidate geometry created."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "status": "genuine_source_unit_exact_label_missing_boundary_unresolved"
+    },
+    {
+      "sourceId": 3,
+      "sourceName": "Oladi lakótelep",
+      "originalPdfPageOneBased": 150,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Dolgozók útja",
+        "Faludi Ferenc utca",
+        "Bakó József utca",
+        "Kodály Zoltán utca",
+        "Simon István utca",
+        "Perint-patak",
+        "Dolgozók útja"
+      ],
+      "observations": [
+        "Existing named quarter is present; whole source-footprint identity is not established.",
+        "Source omits punctuation between Kodály Z. and Simon István; source2013 street chain does not directly connect the current Perint waterway to Simon/Dolgozók. Historical water/street alignment needs source-map/cadastral confirmation."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Oladi lakótelep",
+        "originalSourceId": "osm:relation:8449354",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "b32e0a12d51bc080281124176e8a306de7e57ed78a59a54588d1dbc37481983b"
+      },
+      "status": "existing_name_boundary_scope_not_assumed"
+    },
+    {
+      "sourceId": 4,
+      "sourceName": "Derkovits lakótelep",
+      "originalPdfPageOneBased": 150,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Paragvári utca",
+        "Szűrcsapó utca",
+        "Bolyai János utca",
+        "Bartók Béla körút",
+        "Perint parti sétány",
+        "Váci Mihály utca",
+        "Paragvári utca"
+      ],
+      "observations": [
+        "Existing named quarter is present; source-current footprint identity is not established.",
+        "Full extraction reveals28.170 m unnamed actual tertiary way307240372 between Bolyai/Bartók. Bartók/Perintparti has only a projected bridge/path crossing, not a common OSM node.",
+        "Both sides of Váci Mihály are expressly included by source; a centreline ring alone does not establish this inclusion. No new polygon created."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Derkovits-lakótelep",
+        "originalSourceId": "osm:relation:8465948",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "25c48b5207080893de4889943a8a482d7574856f077995aaf78ae5da6f7a4047"
+      },
+      "status": "existing_name_boundary_scope_not_assumed"
+    },
+    {
+      "sourceId": 5,
+      "sourceName": "Joskar-Ola-lakótelep",
+      "originalPdfPageOneBased": 150,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Szent Márton utca",
+        "Barátság utca",
+        "Mikes Kelemen utca",
+        "Károlyi Antal utca",
+        "Hunyadi János út",
+        "Szent Márton utca"
+      ],
+      "observations": [
+        "Existing named quarter is present; the new historical estimated road circuit is an alternative footprint, not additional distinct-quarter coverage.",
+        "One42.567 m unnamed residential way112539408 and divided-road junction choice are explicit manual interpretations. Current OSM footprint IoU≈ 0.433, so historical/current whole-footprint equivalence is not asserted."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Joskar-Ola-lakótelep",
+        "originalSourceId": "osm:relation:8356511",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "4d1572e5a18331040ede0096624931902439c6273ea5a66290d7e18f61fbe1a6"
+      },
+      "status": "existing_name_new_historical_inferred_alternative_only"
+    },
+    {
+      "sourceId": 6,
+      "sourceName": "Ifjúsági (KISZ) lakótelep",
+      "originalPdfPageOneBased": 150,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Szent Flórián körút",
+        "Rumi út",
+        "Krúdy Gyula utca",
+        "Jászai Mari utca",
+        "Budai Nagy Antal utca",
+        "Kőrösi Csoma Sándor utca",
+        "Gábor Áron utca",
+        "Kismarton utca",
+        "Fogaras utca",
+        "Móra Ferenc utca",
+        "Diófa utca",
+        "Újvilág utca",
+        "Perint-patak"
+      ],
+      "observations": [
+        "The source heading explicitly establishes Ifjúsági (KISZ) as the same named source quarter. This is authentic name/alias evidence, not a second quarter.",
+        "Whole-footprint equivalence with current KISZ remains unverified. Full extraction exposes224.789 m unnamed footway293775384 between Krúdy/Jászai, and road/stream bridge crossings do not necessarily share original nodes. No second KISZ polygon created."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "KISZ-lakótelep",
+        "originalSourceId": "osm:relation:8316162",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "523f419cc0978be1269bb551b6375dbcfbf144967d69ef03d09afecb08d5a24c"
+      },
+      "status": "existing_name_boundary_scope_not_assumed",
+      "provenAlias": {
+        "sourceHeading": "Ifjúsági (KISZ) lakótelep",
+        "existingName": "KISZ-lakótelep",
+        "nameEvidenceOnly": true,
+        "sourcePage": 150
+      }
+    },
+    {
+      "sourceId": 7,
+      "sourceName": "Herényi kertváros",
+      "originalPdfPageOneBased": 150,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Perint-patak",
+        "Vízöntő utca",
+        "Bertalanffy Miklós utca",
+        "Hóvirág utca",
+        "Tulipán utca",
+        "Görgey Artúr utca",
+        "Vajdahunyad tér",
+        "Szent Imre herceg utca",
+        "belterületi határ",
+        "Perint-patak"
+      ],
+      "observations": [
+        "Existing Herény is a name-level correspondence only; source-specific entire footprint not asserted.",
+        "Historical built-up limit and parenthesized Vízöntő/Bertalanffy/Hóvirág/Tulipán sequence are unresolved. Current municipal boundary is not substituted for built-up limit."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Herény",
+        "originalSourceId": "osm:relation:11274363",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "6289dd570cdef9757aa471f59846339a58f8f7a5e5d5a4863901d0c6a6be4160"
+      },
+      "status": "existing_name_boundary_scope_not_assumed"
+    },
+    {
+      "sourceId": 8,
+      "sourceName": "Kámoni kertváros",
+      "originalPdfPageOneBased": 150,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Perint-patak",
+        "Görgey Artúr utca",
+        "Vajdahunyad tér",
+        "Szent Imre herceg utca",
+        "belterületi határ",
+        "Söptei út",
+        "Pinkafői utca",
+        "Alsóőr utca",
+        "Lipp Vilmos utca",
+        "768 hrsz. út",
+        "1636/5 hrsz. út"
+      ],
+      "observations": [
+        "Existing Kámon is a name-level correspondence only; source-specific entire footprint not asserted.",
+        "768 and1636/5 cadastral roads and historical built-up limit remain unresolved."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Kámon",
+        "originalSourceId": "osm:relation:8449635",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "da1d0ca6a2f19c0f8f03e5a0ad002fdcc6ef4ce2ce1d3a2daf7076dd4b2892db"
+      },
+      "status": "existing_name_boundary_scope_not_assumed"
+    },
+    {
+      "sourceId": 9,
+      "sourceName": "Oladi kertváros",
+      "originalPdfPageOneBased": 151,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Dolgozók útja",
+        "Perint-patak",
+        "Bartók Béla körút",
+        "Jégpince utca",
+        "Kétrózsa köz",
+        "Homok utca",
+        "belterületi határ"
+      ],
+      "observations": [
+        "Existing Olad is a name-level correspondence only; source-specific entire footprint not asserted.",
+        "Source Jégpince utca / current Jégpince út is plausible geographic correspondence but not independently established historical renaming. Historical built-up-limit closure remains missing."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Olad",
+        "originalSourceId": "osm:relation:8466047",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "b8ac93081eb8ac19b0ff4083f94e82a8e559c7af8d5c228b9df801a12a5c6643"
+      },
+      "status": "existing_name_boundary_scope_not_assumed"
+    },
+    {
+      "sourceId": 10,
+      "sourceName": "Alsóhegy-Középhegy kertváros",
+      "originalPdfPageOneBased": 151,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Homok utca",
+        "Kétrózsa köz",
+        "Jégpince utca",
+        "Jókai Mór utca",
+        "Brenner Tóbiás körút",
+        "Körmendi út",
+        "Külső Pozsonyi út",
+        "Pap-árok"
+      ],
+      "observations": [
+        "Exact combined source-unit name is absent. Existing separate Alsóhegy and Középhegy polygons do not equal the documented larger road-bounded region. Felsőhegy is not blindly appended.",
+        "Kétrózsa köz is the actual source spelling; previous generic utca normalization is not reused. Current Jégpince út and Külső Pozsonyi út/utca require explicit source-era interpretation.",
+        "Pap-árok is chiefly a current waterway, while source calls the last two boundaries streets and assigns both entirely to Újperint.",
+        "Homok/Pap-árok have no direct shared source-node junction; closest relevant geometry is roughly0.6–0.7 km apart depending on candidate extent. An actual-node shortest-route exploration reaches1.205 km and includes a proposed road, so it was rejected.",
+        "No arbitrary straight closure, OSM polygon union, or synthetic region is produced. Need historical cadastral/built-up map or clearer official contour."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "status": "genuine_source_unit_exact_label_missing_boundary_unresolved"
+    },
+    {
+      "sourceId": 11,
+      "sourceName": "Újperint kertváros",
+      "originalPdfPageOneBased": 151,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Pap-árok",
+        "Külső Pozsonyi út",
+        "Körmendi út",
+        "belterületi határ"
+      ],
+      "observations": [
+        "Existing Újperint is present; whole source-footprint identity is not established.",
+        "Shared Pap-árok/Külső Pozsonyi ambiguity and historical built-up limit remain unresolved."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Újperint",
+        "originalSourceId": "osm:relation:8353143",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "3adf165a1af4705792e7c8734aa7d4eb0203742c813f7a20b98ee09c92775652"
+      },
+      "status": "existing_name_boundary_scope_not_assumed"
+    },
+    {
+      "sourceId": 12,
+      "sourceName": "Gyöngyösszőlős kertváros",
+      "originalPdfPageOneBased": 151,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "belterületi határ",
+        "Szombathely–Szentgotthárd railway",
+        "86 road",
+        "Gyöngyös-patak",
+        "Szent Gellért utca",
+        "Szőlősi sétány",
+        "Négyesi utca",
+        "Rumi út",
+        "Krúdy Gyula utca",
+        "Jászai Mari utca",
+        "Budai Nagy Antal utca",
+        "Kőrösi Csoma Sándor utca",
+        "Gábor Áron utca",
+        "Kismarton utca",
+        "Fogaras utca",
+        "Móra Ferenc utca",
+        "Diófa utca",
+        "Újvilág utca",
+        "Perint-patak"
+      ],
+      "observations": [
+        "Existing Gyöngyösszőlős is present; whole source-footprint identity is not established.",
+        "Historical built-up-limit closure and historical86 road/rail/water sequence need confirmation; named road/stream crossings alone do not establish legal/statistical street-side boundary."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Gyöngyösszőlős",
+        "originalSourceId": "osm:relation:8327901",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "11ce7769cf4edc9fd4cc4e64efe9501d209e4d650dfacce0935a6c9206658c7f"
+      },
+      "status": "existing_name_boundary_scope_not_assumed"
+    },
+    {
+      "sourceId": 13,
+      "sourceName": "Gyöngyöshermán kertváros",
+      "originalPdfPageOneBased": 151,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Szombathely–Szentgotthárd railway",
+        "86 road",
+        "Szombathely–Zalaegerszeg/Nagykanizsa railway",
+        "belterületi határ"
+      ],
+      "observations": [
+        "Existing Gyöngyöshermán is present; whole source-footprint identity is not established.",
+        "Source requires a historical built-up-limit segment; railway and86-road features alone do not close it."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Gyöngyöshermán",
+        "originalSourceId": "osm:relation:8336491",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "6fa79915fb2e7771cb13ac224b512443d5afdfdccd091f84a7693e5578bbacc0"
+      },
+      "status": "existing_name_boundary_scope_not_assumed"
+    },
+    {
+      "sourceId": 14,
+      "sourceName": "Szentkirály kertváros",
+      "originalPdfPageOneBased": 151,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Szombathely–Zalaegerszeg/Nagykanizsa railway"
+      ],
+      "observations": [
+        "Existing Szentkirály is present; whole source-footprint identity is not established.",
+        "Source only says east of the Zalaegerszeg/Nagykanizsa railway; this is not a complete perimeter."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Szentkirály",
+        "originalSourceId": "osm:relation:8318346",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "aae159942d5ce0e920f00b0a1d67225799209a8ede78c225b44ba0f688682ae0"
+      },
+      "status": "existing_name_boundary_scope_not_assumed"
+    },
+    {
+      "sourceId": 15,
+      "sourceName": "Éhen Gyula kertváros",
+      "originalPdfPageOneBased": 151,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Alkotás utca",
+        "Sas utca",
+        "Zanati út",
+        "Vépi út",
+        "Ikervár utca",
+        "Zanati út",
+        "Bártfa utca",
+        "Hámor utca",
+        "Vas utca",
+        "Alkotás utca"
+      ],
+      "observations": [
+        "Already derived from the same annex in municipal-szombathely-next; no duplicate output."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Éhen Gyula kertváros",
+        "localSource": "municipal-szombathely-next"
+      },
+      "status": "already_source_derived_do_not_duplicate"
+    },
+    {
+      "sourceId": 16,
+      "sourceName": "Ipartelep",
+      "originalPdfPageOneBased": 151,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [
+        "Söptei út",
+        "Semmelweis Ignác utca",
+        "Vasút utca",
+        "railway",
+        "Károlyi Antal utca",
+        "Körmendi út",
+        "Szent Gellért utca",
+        "Gyöngyös-patak",
+        "86 road",
+        "belterületi határ",
+        "unreadable road number in original PDF text",
+        "Söptei út"
+      ],
+      "observations": [
+        "Exact source name Ipartelep is absent. It is a broad functional source quarter; no automatic replacement by the finer Vasúti előváros or industrial landuse patches.",
+        "Historical built-up limit and literally malformed road number (= are unresolved in the original rendered PDF.",
+        "Listed Károlyi Antal–Körmendi–Szent Gellért sequence cannot be followed directly in current geography; potential textual error/scope ambiguity must not be silently corrected.",
+        "Source explicitly excludes quarter 15 Éhen Gyula, so any future valid geometry must preserve that exclusion. No guessed ring or copied child-quarter union created."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "status": "genuine_source_unit_exact_label_missing_boundary_unresolved"
+    },
+    {
+      "sourceId": 17,
+      "sourceName": "Zanat",
+      "originalPdfPageOneBased": 151,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [],
+      "observations": [
+        "Existing Zanat is present; source text lists contained streets rather than a complete perimeter.",
+        "No new geometry is inferred from the street list or overview bbox."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Zanat",
+        "originalSourceId": "osm:relation:8319258",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "5d2d3fc9366ede2864fe2a905d278019e14cc0caf7854c70097a0dbe63fa11f2"
+      },
+      "status": "existing_name_boundary_scope_not_assumed"
+    },
+    {
+      "sourceId": 18,
+      "sourceName": "Petőfi telep",
+      "originalPdfPageOneBased": 151,
+      "sourceHeadingAuthentic": true,
+      "boundaryFacts": [],
+      "observations": [
+        "Existing Petőfitelep is present; source text lists contained streets rather than a complete perimeter.",
+        "No new geometry is inferred from the street list or overview bbox."
+      ],
+      "newDistinctQuarterCoverage": false,
+      "usableForAddressAssignment": false,
+      "existingCatalogCorrespondence": {
+        "name": "Petőfitelep",
+        "originalSourceId": "osm:relation:8343624",
+        "nameLevelOnlyUnlessSeparatelyProven": true,
+        "sourceGeometrySha256": "3652d8bf734982de8e03fb158947a8736682e9807ceeec27e43fa4d106a127c6"
+      },
+      "status": "existing_name_boundary_scope_not_assumed"
+    }
+  ],
+  "localGeometrySearch": {
+    "completeOriginalWayExtractionPath": ".local/neighborhoods/szombathely-more-all-lines.geojson",
+    "proofPath": "data/neighborhoods/sources/municipal-szombathely-more/extraction-proof.json",
+    "unnamedHighwaysIncluded": true,
+    "selectedWays": 9754,
+    "unnamedHighwayWays": 6567,
+    "importantLimitation": "Older west-lines.json had only 4 unnamed highways and must not be treated as a complete connectivity search. New extraction included the missing actual-road connectors.",
+    "noExternalServicesUsed": true,
+    "rejectedApproach": "Shortest road path is not accepted as a historical boundary merely because it closes a ring. Proposed ways and arbitrary straight bridges are prohibited."
+  },
+  "openNeeds": [
+    "Historical cadastral/built-up-limit source for 2606/768/1636/5 and source-unit 2/7/8/9/11/12/13/16 perimeter portions.",
+    "A legible source contour or boundary narrative resolving Pap-árok–Homok and old street/water alignment for unit 10.",
+    "Clarification of original Ipartelep malformed road number and Károlyi–Körmendi–Szent Gellért sequence.",
+    "Current source-boundary or street-side comparison before any historical source footprint is used for address assignment."
+  ],
+  "historicalSourcesAcceptedButNotAutomaticallyCurrent": true,
+  "wholeTownAreaNotSubstitutedForBuiltUpLimit": true,
+  "groupGeometryNotCopiedToChildren": true
+}

@@ -21,6 +21,7 @@ public static class SchemaUpgrade
     public const string RecommendationIndexesVersion = "20261110-ranked-recommendation-indexes";
     public const string SellerFeedbackVersion = "20261110-seller-feedback-and-insights";
     public const string ContinuousFeedbackVersion = "20261111-continuous-seller-feedback";
+    public const string NeighborhoodsVersion = "20261116-neighborhood-address-search";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
@@ -51,7 +52,18 @@ public static class SchemaUpgrade
         ("CreditEntries", "RefundedDecisionId", "char(36) COLLATE ascii_general_ci NULL"),
         ("CreditEntries", "FeedbackPackageId", "char(36) COLLATE ascii_general_ci NULL"),
         ("CreditEntries", "RefundedFeedbackPackageId", "char(36) COLLATE ascii_general_ci NULL"),
-        ("Users", "FeedbackPassCounter", "int NOT NULL DEFAULT 0")
+        ("Users", "FeedbackPassCounter", "int NOT NULL DEFAULT 0"),
+        ("Properties", "Street", "varchar(180) NOT NULL DEFAULT ''"),
+        ("Properties", "HouseNumber", "varchar(32) NOT NULL DEFAULT ''"),
+        ("Properties", "PostalCode", "varchar(4) NOT NULL DEFAULT ''"),
+        ("Properties", "Latitude", "double NULL"),
+        ("Properties", "Longitude", "double NULL"),
+        ("Properties", "GeocodedAt", "datetime(6) NULL"),
+        ("Properties", "GeocodingProvider", "varchar(255) NOT NULL DEFAULT ''"),
+        ("Properties", "GeocodingPlaceId", "varchar(255) NOT NULL DEFAULT ''"),
+        ("Properties", "GeocodingQuality", "varchar(40) NOT NULL DEFAULT ''"),
+        ("Properties", "GeocodingAddressKey", "varchar(64) NOT NULL DEFAULT ''"),
+        ("Properties", "NeighborhoodIdsJson", "longtext NULL")
     ];
 
     public static async Task ApplyAsync(AppDb db, CancellationToken cancellationToken = default)
@@ -85,6 +97,16 @@ public static class SchemaUpgrade
                 ) CHARACTER SET=utf8mb4
                 """, cancellationToken);
             await SearchLocationIndex.BackfillAsync(db, cancellationToken);
+            await Execute(connection, """
+                CREATE TABLE IF NOT EXISTS `PropertyNeighborhoods` (
+                    `PropertyId` char(36) COLLATE ascii_general_ci NOT NULL,
+                    `NeighborhoodId` varchar(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+                    CONSTRAINT `PK_PropertyNeighborhoods` PRIMARY KEY (`PropertyId`, `NeighborhoodId`),
+                    KEY `IX_PropertyNeighborhoods_NeighborhoodId_PropertyId` (`NeighborhoodId`, `PropertyId`),
+                    CONSTRAINT `FK_PropertyNeighborhoods_Properties_PropertyId` FOREIGN KEY (`PropertyId`)
+                        REFERENCES `Properties` (`Id`) ON DELETE RESTRICT
+                ) CHARACTER SET=utf8mb4
+                """, cancellationToken);
             // EnsureCreated does not add tables once a database contains user
             // tables. Keep the new report table additive for those installations.
             // Guid columns match Pomelo's char(36)/ASCII mapping and user keys.
@@ -190,6 +212,7 @@ public static class SchemaUpgrade
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", LikeRefundsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", RecommendationIndexesVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", SellerFeedbackVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", NeighborhoodsVersion));
             if (Convert.ToInt32(await Scalar(connection,
                     "SELECT COUNT(*) FROM `__OtthonraSchemaVersions` WHERE `Version` = @version",
                     cancellationToken, ("version", ContinuousFeedbackVersion))) == 0)

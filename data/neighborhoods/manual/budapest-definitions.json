@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "sourceReadDate": "2026-11-13",
+  "records": [
+    {
+      "name": "Apostolhegy",
+      "referenceName": "Apostolhegy",
+      "municipality": "Budapest",
+      "district": 23,
+      "sourceParagraph": "3. melléklet 23.1.",
+      "boundaryText": "Gyáli-patak–Grassalkovich út–Haraszti út–közigazgatási határ–Ráckevei (Soroksári)–Duna által határolt városrész",
+      "sourceDocuments": [
+        {
+          "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+          "paragraph": "3. melléklet 23.1."
+        }
+      ],
+      "constructionStatus": "derived_candidate",
+      "usableForAddressAssignment": false,
+      "boundaryComponentsInSourceOrder": [
+        "Gyáli-patak",
+        "Grassalkovich út",
+        "Haraszti út",
+        "közigazgatási határ",
+        "Ráckevei (Soroksári)-Duna"
+      ],
+      "candidateGeometryPath": "data/neighborhoods/manual/budapest-apostolhegy.geojson",
+      "constructionNotes": [
+        "A Gyáli-patak az OSM-ben Gyáli (1.)-csatorna (way43001647). A mai Grassalkovich–Haraszti csomópont névtelen ref510-as megközelítését használó közelítés külön jelölt."
+      ]
+    },
+    {
+      "name": "Hets-telep",
+      "referenceName": "Hets-telep",
+      "municipality": "Budapest",
+      "district": 23,
+      "sourceParagraph": "3. melléklet 23.2.",
+      "boundaryText": "a Dobó utcától északra lévő telkek belterületi határa–a Felső Duna sor elején lévő telkek határa–a Táncsics Mihály utca folytatásában a természetes rézsű határvonala–Táncsics Mihály utca–Tárcsás utca természetbeni folytatása–Ráckevei (Soroksári)–Duna mellékága által határolt városrész",
+      "sourceDocuments": [
+        {
+          "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+          "paragraph": "3. melléklet 23.2."
+        }
+      ],
+      "constructionStatus": "requires_unresolved_boundary_evidence",
+      "usableForAddressAssignment": false,
+      "boundaryComponentsInSourceOrder": [
+        "Dobó utcától északra lévő telkek belterületi határa",
+        "Felső Duna sor elején lévő telkek határa",
+        "Táncsics Mihály utca folytatásában természetes rézsű határvonala",
+        "Táncsics Mihály utca",
+        "Tárcsás utca természetbeni folytatása",
+        "Ráckevei (Soroksári)-Duna mellékága"
+      ],
+      "unresolvedIssues": [
+        "A leírás két telekhatárt, a belterületi határt és természetes rézsűt nevez meg; a megnevezett utcák középvonala önmagában nem határozza meg ezeket.",
+        "Az OSM landuse=residential széle csak külön bizonyítékkal feleltethető meg a jogi belterületi/telekhatárnak."
+      ]
+    },
+    {
+      "name": "Molnár-sziget",
+      "referenceName": "Molnár-sziget",
+      "municipality": "Budapest",
+      "district": 23,
+      "sourceParagraph": "3. melléklet 23.4.",
+      "boundaryText": "Ráckevei (Soroksári)–Duna és a Ráckevei (Soroksári)–Duna mellékága által határolt terület (sziget)",
+      "sourceDocuments": [
+        {
+          "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+          "paragraph": "3. melléklet 23.4."
+        }
+      ],
+      "constructionStatus": "derived_candidate",
+      "usableForAddressAssignment": false,
+      "boundaryComponentsInSourceOrder": [
+        "Ráckevei (Soroksári)-Duna",
+        "Ráckevei (Soroksári)-Duna mellékága"
+      ],
+      "candidateGeometryPath": "data/neighborhoods/manual/budapest-molnar.geojson",
+      "constructionNotes": [
+        "Az OSM Ráckevei-Duna-észak vízpoligon (relation417508) tényleges belső gyűrűjének változatlan szigetpartvonala; a Molnársziget mellékág (way1084440121) helyileg megerősíti az azonosságot."
+      ]
+    },
+    {
+      "name": "Orbánhegy (XXIII. kerület)",
+      "referenceName": "Orbánhegy",
+      "municipality": "Budapest",
+      "district": 23,
+      "sourceParagraph": "3. melléklet 23.5.",
+      "boundaryText": "Budapest–Kelebia vasútvonal–Grassalkovich út–Haraszti út–Millennium utca (Millenniumtelep) között lehatárolt városrész",
+      "sourceDocuments": [
+        {
+          "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+          "paragraph": "3. melléklet 23.5."
+        }
+      ],
+      "constructionStatus": "derived_candidate",
+      "usableForAddressAssignment": false,
+      "boundaryComponentsInSourceOrder": [
+        "Budapest–Kelebia vasútvonal",
+        "Grassalkovich út",
+        "Haraszti út",
+        "Millennium utca (Millenniumtelep)"
+      ],
+      "candidateGeometryPath": "data/neighborhoods/manual/budapest-orban.geojson",
+      "constructionNotes": [
+        "A forrás útközépvonalaihoz és a vasútvonalhoz kötött jelölt; a megosztott útpályák kapcsolatai, valamint a Millennium utca és Grassalkovich út vasútig következtetett folytatásai tételes koordinátás, hosszmértékes constructionProof mezőt kaptak."
+      ]
+    },
+    {
+      "name": "Péterimajor",
+      "referenceName": "Péterimajor",
+      "municipality": "Budapest",
+      "district": 23,
+      "sourceParagraph": "3. melléklet 23.6.",
+      "boundaryText": "Majori út mellett található belterületi városrész",
+      "sourceDocuments": [
+        {
+          "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+          "paragraph": "3. melléklet 23.6."
+        }
+      ],
+      "constructionStatus": "derived_proxy_candidate",
+      "usableForAddressAssignment": false,
+      "boundaryComponentsInSourceOrder": [
+        "Majori út mellett található belterületi városrész"
+      ],
+      "unresolvedIssues": [
+        "A leírás a Majori út melletti belterületi területet nevezi meg, tételes körüljárás nélkül; a tényleges településrész körvonalához a belterületi határ vagy önkormányzati térkép szükséges."
+      ],
+      "candidateGeometryPath": "data/neighborhoods/manual/budapest-peterimajor.geojson",
+      "constructionNotes": [
+        "Az OSM115726893 tényleges, változatlan lakóterületi körvonala csak közelítő jelölt. Az OSM905070343 Péterimajor névpontja a területen belül van, és a Majori út melletti azonosságot támasztja alá; a pontból nem generáltunk geometriát. A lakóterületi körvonal jogi belterületi határral való egyezése nincs igazolva."
+      ]
+    },
+    {
+      "name": "Sólyom-telep",
+      "referenceName": "Sólyom-telep",
+      "municipality": "Budapest",
+      "district": 23,
+      "sourceParagraph": "3. melléklet 23.9.",
+      "boundaryText": "Csendes utca–Sínpár utca–Grassalkovich út–Budapest–Kelebia vasútvonal által határolt városrész",
+      "sourceDocuments": [
+        {
+          "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+          "paragraph": "3. melléklet 23.9."
+        }
+      ],
+      "constructionStatus": "requires_unresolved_boundary_evidence",
+      "usableForAddressAssignment": false,
+      "boundaryComponentsInSourceOrder": [
+        "Csendes utca",
+        "Sínpár utca",
+        "Grassalkovich út",
+        "Budapest–Kelebia vasútvonal"
+      ],
+      "unresolvedIssues": [
+        "A 2026-11-12-i OSM Csendes utca és Sínpár utca szakaszai nem kapcsolódnak; legközelebbi távolságuk kb.620 méter.",
+        "A Sínpár utca és Grassalkovich út között kb.770 méter hiányzik. Ezek nem kezelhetők rövid csomóponti illesztésként; a mai/korábbi név vagy a határfolyosó független ellenőrzése szükséges."
+      ]
+    },
+    {
+      "name": "Történeti központ",
+      "referenceName": "Történeti központ",
+      "municipality": "Budapest",
+      "district": 23,
+      "sourceParagraph": "3. melléklet 23.10.",
+      "boundaryText": "Grassalkovich út–Rézöntő utca–Budapest–Kelebia vasútvonal–Csendes utca–Sínpár utca–Grassalkovich út–Gyáli patak–Ráckevei (Soroksári)–Duna mellékága–Tárcsás utca természetbeni folytatása–Táncsics Mihály utca–Táncsics Mihály utca folytatásában a természetes rézsű határvonala–Dobó utca által határolt városrész",
+      "sourceDocuments": [
+        {
+          "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+          "paragraph": "3. melléklet 23.10."
+        }
+      ],
+      "constructionStatus": "requires_unresolved_boundary_evidence",
+      "usableForAddressAssignment": false,
+      "boundaryComponentsInSourceOrder": [
+        "Grassalkovich út",
+        "Rézöntő utca",
+        "Budapest–Kelebia vasútvonal",
+        "Csendes utca",
+        "Sínpár utca",
+        "Grassalkovich út",
+        "Gyáli patak",
+        "Ráckevei (Soroksári)-Duna mellékága",
+        "Tárcsás utca természetbeni folytatása",
+        "Táncsics Mihály utca",
+        "Táncsics Mihály utca folytatásában természetes rézsű határvonala",
+        "Dobó utca"
+      ],
+      "unresolvedIssues": [
+        "A Csendes utca–Sínpár utca és Sínpár utca–Grassalkovich út kapcsolatok mai OSM-vonalakkal nem zárulnak (kb.620 és874 méteres rés).",
+        "A Tárcsás utca természetbeni folytatását a Táncsics Mihály utcai csomóponttól kb.155 méteren, a Táncsics utca északi végének természetes rézsű menti kapcsolatát Dobó utcáig kb.185 méteren kell forrás alapján azonosítani."
+      ],
+      "constructionAuditPath": "data/neighborhoods/manual/budapest-torteneti-audit.json"
+    },
+    {
+      "name": "Vargatelep",
+      "referenceName": "Vargatelep",
+      "municipality": "Budapest",
+      "district": 23,
+      "sourceParagraph": "3. melléklet 23.11.",
+      "boundaryText": "Budapest–Kelebia vasútvonal–Homokszem utca–Véderdő sáv–Könyves utca–Kő utca–Ugarszél út–Szentlőrinci út–Erzsébet utca–Budapest–Kelebia vasútvonal–Rézöntő utca–Grassalkovich út által határolt városrész",
+      "sourceDocuments": [
+        {
+          "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+          "paragraph": "3. melléklet 23.11."
+        }
+      ],
+      "constructionStatus": "requires_unresolved_boundary_evidence",
+      "usableForAddressAssignment": false,
+      "boundaryComponentsInSourceOrder": [
+        "Budapest–Kelebia vasútvonal",
+        "Homokszem utca",
+        "Véderdő sáv",
+        "Könyves utca",
+        "Kő utca",
+        "Ugarszél út",
+        "Szentlőrinci út",
+        "Erzsébet utca",
+        "Budapest–Kelebia vasútvonal",
+        "Rézöntő utca",
+        "Grassalkovich út"
+      ],
+      "unresolvedIssues": [
+        "A Véderdő sáv térképi vagy jogi nyomvonala szükséges a Homokszem és Könyves utca közötti szakaszhoz; a név önmagában nem jelöl OSM-utcát."
+      ]
+    },
+    {
+      "name": "Wesselényi-telep",
+      "referenceName": "Wesselényi-telep",
+      "municipality": "Budapest",
+      "district": 23,
+      "sourceParagraph": "3. melléklet 23.12.",
+      "boundaryText": "Budapest–Kelebia vasútvonal–Vecsés út–belterületi határ által határolt városrész",
+      "sourceDocuments": [
+        {
+          "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+          "paragraph": "3. melléklet 23.12."
+        }
+      ],
+      "constructionStatus": "requires_unresolved_boundary_evidence",
+      "usableForAddressAssignment": false,
+      "boundaryComponentsInSourceOrder": [
+        "Budapest–Kelebia vasútvonal",
+        "Vecsés út",
+        "belterületi határ"
+      ],
+      "unresolvedIssues": [
+        "A Vecsés út és vasút közötti harmadik határszakasz a belterületi határ; a beépítés széle vagy OSM lakóterület csak külön indoklással használható közelítésként.",
+        "A lehetséges zárt forrásfelület a Vecsés útból csak2,318 métert követ; a határosztályok érintése ezért nem bizonyítja a városrész azonosságát. A felület nincs névhez rendelve és nem exportálható. A közeli északi lakóterületi körvonal kb.799 méterre van a Vecsés úttól."
+      ],
+      "constructionAuditPath": "data/neighborhoods/manual/budapest-wesselenyi-audit.json"
+    }
+  ],
+  "interpretationRule": "A felsorolt nevek sorrendje a jogforrás sorrendje. A modern forrásvonalak közötti nagy rések nem kapnak automatikus összekötő szakaszt; minden következtetett szakasz külön indoklást és bizonytalanságot igényel."
+}

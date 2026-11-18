@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-13",
+  "scope": "New primary-source municipal GIS and map research beyond the419-feature snapshot. No public fine-quarter FeatureServer/WFS successfully verified yet.",
+  "networkMethod": "Available web-search/read connector only; no shell network permission requests, credentials, paid service, or deployment.",
+  "counts": {
+    "records": 20,
+    "verifiedNewQuarterPolygonDatasets": 0
+  },
+  "records": [
+    {
+      "municipality": "Szeged",
+      "url": "https://infoterkep.szegedvaros.hu/",
+      "kind": "official_leaflet_application",
+      "status": "promising_raw_javascript_inspection_needed",
+      "provider": "Szeged MJV Polgármesteri Hivatala",
+      "evidenceUrl": "https://www.szegedvaros.hu/szegedvaros-hu-informacios-terkepe",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "Official Leaflet application opens but the web reader exposes no text. No quarter layer or GeoJSON endpoint has yet been verified."
+      ]
+    },
+    {
+      "municipality": "Szeged",
+      "url": "https://terkep.szeged.eu/",
+      "kind": "municipal_webgis",
+      "status": "web_reader_timeout",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "Do not treat a failed fetch as evidence that no quarter data exists."
+      ]
+    },
+    {
+      "municipality": "Szeged",
+      "url": "https://www.szegedvaros.hu/terkep/szegedgis.html",
+      "kind": "official_gis_application",
+      "status": "web_reader_502",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "Search-indexed official GIS description identifies Interspect and Ökomozaik as system creators. Raw assets and actual quarter layers remain unverified."
+      ]
+    },
+    {
+      "municipality": "Szeged",
+      "url": "https://services5.arcgis.com/WB7BaTnYFoeERRZC/ArcGIS/rest/services/Szeged/FeatureServer",
+      "kind": "student_arcgis_false_positive",
+      "status": "token_required_no_usable_data",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "The service name alone does not establish neighborhood boundaries. No authentication bypass attempted."
+      ]
+    },
+    {
+      "municipality": "Nyíregyháza",
+      "url": "https://nyeh.hu/varosreszek",
+      "kind": "independent_local_information_site",
+      "status": "rejected_for_actual_boundary_layer",
+      "advertisedNamedAreas": 26,
+      "geometryType": "derived Voronoi partitions, not source quarter boundaries",
+      "featureCount": null,
+      "notes": [
+        "The page explicitly describes assigning every municipal point to its nearest neighborhood center. Such polygons cannot fill a real-source boundary gap. The site is independent rather than municipal."
+      ]
+    },
+    {
+      "municipality": "Nyíregyháza",
+      "url": "https://varoshaza.nyiregyhaza.hu/lib/rend_terv/1/260106_1_telepulesszerkezeti_terv_2026.pdf",
+      "kind": "official_2026_structure_plan_pdf",
+      "status": "new_pdf_lead_geometry_not_inspected",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "Current large municipal structure map; distinguish land-use/parcel zoning from fine named-quarter extents before extracting."
+      ]
+    },
+    {
+      "municipality": "Veszprém",
+      "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+      "kind": "official_2019_character_manual_pdf",
+      "status": "promising_pdf_direct_download_needed",
+      "reportedBytes": 23948899,
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "Contains a section on present-day officially designated quarters and explicitly distinguishes them from architectural character areas. Web reader rejects the PDF only because of content length. Vector/raster type remains unverified."
+      ]
+    },
+    {
+      "municipality": "Zalaegerszeg",
+      "url": "https://zalaegerszeg.hu/wp-content/uploads/2025/09/ZEG_ZIFFA_egyeztetesi-valt.pdf",
+      "kind": "official_2025_green_infrastructure_action_plan_pdf",
+      "status": "promising_pdf_direct_download_needed",
+      "reportedBytes": 19633295,
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "Includes a named-quarter map. The source is newer than the archived ITS; linework resolution and semantics remain to be inspected. Web reader rejects content length."
+      ]
+    },
+    {
+      "municipality": "Zalaegerszeg",
+      "url": "https://zalaegerszeg.hu/terinformatika/",
+      "kind": "official_IVTR_map_portal",
+      "status": "official_maintenance_notice",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "Official page currently states that the city map is temporarily unavailable for maintenance. This is not evidence of absent data."
+      ]
+    },
+    {
+      "municipality": "Pécs",
+      "url": "https://zoldpecs.envimap.hu/",
+      "kind": "officially_linked_environment_mapping_application",
+      "status": "raw_application_inspection_needed",
+      "evidenceUrl": "https://pecs.hu/hirek/lezarult-a-zero-move-projekt-pecsen-kezzelfoghato-eredmenyek-a-fenntarthatobb-varosi-kozlekedesert/",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "The municipal2026-11-11ZeroMove report links this public map. It establishes public mapping availability, not a verified quarter layer; reader cannot fetch app."
+      ]
+    },
+    {
+      "municipality": "Pécs",
+      "url": "https://hungairy.hu/projekteredmenyek",
+      "kind": "official_project_green_cadastre_information",
+      "status": "potential_quarter_filter_source_not_confirmed",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "The project describes a digital urban green cadastre. Public fine-quarter polygons have not been located; green surface polygons alone are not quarter boundaries."
+      ]
+    },
+    {
+      "municipality": "Nagykanizsa",
+      "url": "https://hungarocad.nagykanizsa.hu/mapguide/Nagykanizsa/szabterv/SZTForm.php",
+      "kind": "public_municipal_MapGuide",
+      "status": "application_accessible_quarter_layer_unverified",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "Public form displays Internet as user and exposes zoning/parcel tools. Standard WFS/WMS capability probes were inaccessible through the web reader. No layer names, quarter counts, or permissions are inferred."
+      ]
+    },
+    {
+      "municipality": "Miskolc",
+      "url": "https://www.miskolc.hu/varoshaza/polgarmesteri-hivatal/szervezeti-egysegek/varosfejlesztesi-foosztaly",
+      "kind": "official_gis_responsibility_description",
+      "status": "gis_exists_public_quarter_endpoint_not_located",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "Department description confirms maintenance and external/internal service of the city digital GIS. This does not establish a public WFS/FeatureServer endpoint."
+      ]
+    },
+    {
+      "municipality": "Eger",
+      "url": "https://eger.hu/public/uploads/eger-adatbazis-kiepites-megalapozo-vizsgalat-web_59561e98cbcd9.pdf",
+      "kind": "official_planning_source",
+      "status": "semantic_warning_existing_regulatory_boundary_map",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "The relevant map is explicitly about the boundaries of regulatory plans. Do not promote its32planning footprints to fine quarters merely because the surrounding text uses the word cityquarter."
+      ]
+    },
+    {
+      "municipality": "Szeged",
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18319",
+      "kind": "official_2008_IVS_chapter3_updated2009",
+      "status": "new_pdf_lead_web_reader_timeout",
+      "reportedApproxMB": 11.25,
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "Official document listing identifies chapter3filenameIVS_3_fejezet_felulvizsgalt.pdf. Boundary semantics and possible vectors require direct acquisition.",
+        "The exact attachment-id to chapter3 mapping is inferred from adjacent official attachment ids and must be confirmed on acquisition; the fetch timed out before document identity could be verified."
+      ]
+    },
+    {
+      "municipality": "Orosháza",
+      "url": "https://oroshaza.hu/wp-content/uploads/2016/02/megalapozo_vizsgalat.pdf",
+      "kind": "official_2015_baseline_study",
+      "status": "new_precise_street_circuit_lead",
+      "section": "3.3.1",
+      "mapNumber": 51,
+      "geometryType": "text-defined street circuit; source map type not inspected",
+      "featureCount": null,
+      "notes": [
+        "Belváros has a nine-street boundary list that could be traced against original OSM ways. Other units include broad peripheral/rural areas and need separate semantic classification."
+      ],
+      "boundaryStreetNames": [
+        "Móricz Zsigmond utca",
+        "Huba utca",
+        "Október 6. utca",
+        "Arany János utca",
+        "Székács József utca",
+        "Kelet utca",
+        "Árpád utca",
+        "Bajcsy Zsilinszky utca",
+        "Sámsoni utca"
+      ]
+    },
+    {
+      "municipality": "Orosháza",
+      "url": "https://oroshaza.hu/wp-content/uploads/2024/05/2015.10.30-i-Kepviselo-testuleti-ules-03.-1.-melleklet.pdf",
+      "kind": "official_alternative_publication_of_2015_baseline",
+      "status": "alternate_source_acquisition_lead",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "Potential alternative archive of the same cityquarter table/map; hash and content equality not checked."
+      ]
+    },
+    {
+      "municipality": "Pécs",
+      "url": "https://pecs.hu/app/uploads/2022/12/pecs_tak_2025.pdf",
+      "kind": "official_2025_character_manual_pdf",
+      "status": "new_pdf_lead_geometry_not_inspected",
+      "evidenceUrl": "https://pecs.hu/telepuleskepi-arculati-kezikonyv/",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "An official newer character manual can offer clearer map linework than archived ITS. Character zones are not automatically cityquarters; inspect actual named boundary maps before extraction."
+      ]
+    },
+    {
+      "municipality": "Miskolc",
+      "url": "https://www.miskolc.hu/varoshaza/onkormanyzat/strategiak-koncepciok/telepules-arculati-kezikonyv",
+      "kind": "official_2017_character_manual_download_index",
+      "status": "new_pdf_index_lead_geometry_not_inspected",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "Official index offers splitPDFparts1–50,51–100andlater. Explicit fine-quarter names and any boundary maps need semantic inspection; no quarter extent inferred from character zones."
+      ]
+    },
+    {
+      "municipality": "Nyíregyháza",
+      "url": "https://varoshaza.nyiregyhaza.hu/varoshaza/telepueleskepi-arculati-kezikoenyv-es-telepueleskepi-rendelet",
+      "kind": "official_2017_character_manual_index",
+      "status": "new_pdf_index_lead_geometry_not_inspected",
+      "geometryType": null,
+      "featureCount": null,
+      "notes": [
+        "Official source index can supplement the old ITS with better map images or specific named areas. Character-area divisions must remain distinct from actual quarter boundaries."
+      ]
+    }
+  ],
+  "interpretation": [
+    "Unavailable retrieval is distinct from missing data.",
+    "Public access does not by itself establish redistribution rights.",
+    "Record source facts and unresolved geometry types rather than fabricating API layers or counts."
+  ]
+}

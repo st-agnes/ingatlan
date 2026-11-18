@@ -1,0 +1,30 @@
+{
+  "id": "szeged-source-street-circuits-next",
+  "path": "data/neighborhoods/sources/municipal-szeged-next/szeged-street-candidates.geojson",
+  "sha256": "b013b77347086689ec7d68c9fe897b7725e7acc401739e94dd51875dc2ceafc4",
+  "municipality": "Szeged",
+  "method": "Explicit municipal IVS2009/ITS2017 named subdivision circuits on actual complete OSM street ways; all182 boundary edges are consecutive original nodes, no synthetic closure/repair. Source-era scope retained.",
+  "evidenceUrls": [
+    "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101"
+  ],
+  "sourceDocuments": [
+    {
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101",
+      "documentTitle": "200/2017.(IV.28.)Kgy.sz.határozat1.sz.melléklete",
+      "printedPage": 96,
+      "sourceEra": "IVS2009 quoted in2017 adopted ITS",
+      "retrieval": "public_web_search_indexed_factual_text",
+      "fullPdfDownloaded": false,
+      "sourcePdfSha256": null,
+      "factsPath": "data/neighborhoods/sources/municipal-szeged-next/source-facts.json",
+      "factsSha256": "27c323788f68cbe7eb17d96a108baa7fcd32e47ad75027c8983760b088e81469"
+    }
+  ],
+  "license": "ODbL-1.0",
+  "reviewPath": "data/neighborhoods/sources/municipal-szeged-next/independent-review.json",
+  "rightsStatus": "OSM actual street geometry ODbL-1.0; only factual municipal street descriptions paraphrased/transcribed, no full municipal PDF or article copied.",
+  "propertyOverrides": {
+    "usableForAddressAssignment": false
+  },
+  "featureClassificationNote": "Preserve per-feature classification:1 source-era named neighborhood Tarjánváros with unconfirmed current exact footprint;1 name-conflicted historical planning_unit Felsővárosi lakótelep falsecanonical. Do not label2 current verified quarters or promote small planning unit."
+}

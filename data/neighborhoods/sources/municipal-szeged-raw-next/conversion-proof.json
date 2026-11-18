@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen_four_low_confidence_estimated_candidates_pending_global_admission",
+  "counts": {
+    "estimatedCandidates": 4,
+    "primaryFeatures": 0,
+    "observedSourceContours": 4,
+    "placementAlternativesNotAdditionalQuarters": 4,
+    "ujszoregWorldFeatures": 0
+  },
+  "preferredExport": "szeged-four-inferred-import.geojson",
+  "rootAcceptedProposalPath": "root-independent-proposal-review.json",
+  "rootAcceptedProposalSha256": "e80f16390395e0ffe7ccdda7266622eb79a2d3e5bd8ecb051d9ee59514ee9946",
+  "preservedRootProposalInputs": {
+    "henits-four-main-world-working.geojson": "34b92c9fe00b86b9e3ee50b48584f0c955ff49d4365614fbf400c9837bfa2fb0",
+    "henits-five-black60-source-pixels-working.geojson": "1788910d7cbbba8115f75527bf08544a20e86874d4ed889e6bf01531ad9577e9",
+    "henits-four-registration-working.json": "23f684d398680ce50d671838b19be62e898025578dd6cb811e975c943d438744",
+    "control-source-observation-evidence-working.json": "f2268c4c1c0f16b516793f46504d178f677184f51e8fd9299a3c108164e32bf9",
+    "henits-five-trace-proof-working.json": "0353219d6e5f953459a7624aaf1d72c99bc1f105026267aaf97bacb1a95051fe"
+  },
+  "proposalToFinalMapping": {
+    "proposalFile": "henits-four-main-world-working.geojson",
+    "proposalSha256": "34b92c9fe00b86b9e3ee50b48584f0c955ff49d4365614fbf400c9837bfa2fb0",
+    "finalFile": "szeged-four-inferred-import.geojson",
+    "finalSha256": "098f2b9aa742f74113a745a5793733a458e788e34e1b28f025b2859cabf8ab1d",
+    "matchKey": "sourceUnitNumber",
+    "allFourCoordinateArraysExactlyEqual": true,
+    "metadataChangesOnly": [
+      "Stable final feature IDs",
+      "Explicit low placement confidence and100percent outside control hull",
+      "Historical source extent not asserted equal to2007/full current boundary",
+      "Accurate alternative model method labels"
+    ]
+  },
+  "features": [
+    {
+      "name": "Klebelsberg-telep",
+      "sourceNameAsPrinted": "Klebersberg-telep",
+      "unit": 19,
+      "sourcePixelArea": 4019.0,
+      "sourceVerticesIncludingClosure": 236,
+      "sourceHoles": 0,
+      "worldVerticesIncludingClosure": 236,
+      "worldValid": true,
+      "worldHoles": 0,
+      "areaM2": 640941.4266798114,
+      "insideMunicipality": true,
+      "outsideMunicipalityAreaM2": 0.0,
+      "sourceInteriorFractionOutsideControlHull": 1.0,
+      "finalCoordinateArrayExactlyEqualRootProposal": true,
+      "currentNameEvidence": [
+        {
+          "name": "Klebelsbergtelep",
+          "id": "osm:node:982345167",
+          "insideCandidate": true,
+          "usedForFit": false
+        },
+        {
+          "name": "Hattyas",
+          "id": "osm:node:9176083977",
+          "insideCandidate": false,
+          "usedForFit": false
+        }
+      ],
+      "existingSourceComparisons": [
+        {
+          "name": "Tarjánváros",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        },
+        {
+          "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Kecskés-telep",
+      "sourceNameAsPrinted": "Kecskés-telep",
+      "unit": 20,
+      "sourcePixelArea": 7382.0,
+      "sourceVerticesIncludingClosure": 411,
+      "sourceHoles": 0,
+      "worldVerticesIncludingClosure": 411,
+      "worldValid": true,
+      "worldHoles": 0,
+      "areaM2": 1177265.392322711,
+      "insideMunicipality": true,
+      "outsideMunicipalityAreaM2": 0.0,
+      "sourceInteriorFractionOutsideControlHull": 1.0,
+      "finalCoordinateArrayExactlyEqualRootProposal": true,
+      "currentNameEvidence": [
+        {
+          "name": "Kecskés István-telep",
+          "id": "osm:node:982345190",
+          "insideCandidate": true,
+          "usedForFit": false
+        }
+      ],
+      "existingSourceComparisons": [
+        {
+          "name": "Tarjánváros",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        },
+        {
+          "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Odessza",
+      "sourceNameAsPrinted": "Odessza",
+      "unit": 28,
+      "sourcePixelArea": 1812.0,
+      "sourceVerticesIncludingClosure": 204,
+      "sourceHoles": 0,
+      "worldVerticesIncludingClosure": 204,
+      "worldValid": true,
+      "worldHoles": 0,
+      "areaM2": 288973.8405432478,
+      "insideMunicipality": true,
+      "outsideMunicipalityAreaM2": 0.0,
+      "sourceInteriorFractionOutsideControlHull": 1.0,
+      "finalCoordinateArrayExactlyEqualRootProposal": true,
+      "currentNameEvidence": [
+        {
+          "name": "Odessza",
+          "id": "osm:node:982345136",
+          "insideCandidate": true,
+          "usedForFit": false
+        }
+      ],
+      "existingSourceComparisons": [
+        {
+          "name": "Tarjánváros",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        },
+        {
+          "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        }
+      ]
+    },
+    {
+      "name": "Marostő",
+      "sourceNameAsPrinted": "Marostő",
+      "unit": 11,
+      "sourcePixelArea": 4553.0,
+      "sourceVerticesIncludingClosure": 354,
+      "sourceHoles": 0,
+      "worldVerticesIncludingClosure": 354,
+      "worldValid": true,
+      "worldHoles": 0,
+      "areaM2": 726102.5916081718,
+      "insideMunicipality": true,
+      "outsideMunicipalityAreaM2": 0.0,
+      "sourceInteriorFractionOutsideControlHull": 1.0,
+      "finalCoordinateArrayExactlyEqualRootProposal": true,
+      "currentNameEvidence": [
+        {
+          "name": "Marostő",
+          "id": "osm:node:982369714",
+          "insideCandidate": true,
+          "usedForFit": false
+        }
+      ],
+      "existingSourceComparisons": [
+        {
+          "name": "Tarjánváros",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        },
+        {
+          "name": "Felsővárosi lakótelep (IVS2009/2017 subdivision)",
+          "exactGeometryEqual": false,
+          "intersectionAreaM2": 0.0
+        }
+      ]
+    }
+  ],
+  "sourceInterpretation": {
+    "sourceMap": "Henits2013 PDF24 image249, citing KSH2003",
+    "nameKeyPdfPagesOneBased": [
+      25,
+      26
+    ],
+    "insideEdgeCellRule": "Original large8-neighbor maxRGB<60 boundary components retained wholly;4-neighbor enclosed pixel-cell interiors traced exactly. Number annotations are excluded by documented component separation.",
+    "sourceNoInventedClosingEdges": true,
+    "sourceNoClippingSnappingBufferingOrRepair": true,
+    "black50And70AlternativesRetained": true,
+    "ujszoreg27": "Allthreecutoffs leak to raster edge through the printed label occlusion; no closing cap or world polygon emitted.",
+    "schemaDifferences": "KSH/Henits32/34 and conflicting Bodomi27 remain unresolved and are not transferred into this cohort."
+  },
+  "placement": {
+    "model": "Six actual road-junction EOV similarity, inverse to WGS84",
+    "sourcePlacePointsUsedForFit": false,
+    "allFourInteriorsEntirelyOutsideControlHull": true,
+    "placementConfidence": "low",
+    "absoluteAccuracyMetres": null,
+    "publishedThreeJunctionAlternative": "szeged-four-placement-alternative.geojson",
+    "affineDiagnostic": "Nonpreferred weakly constrained local-only world diagnostic; matrix and model differences retained in registration/summary.",
+    "residualMeaning": "Fit/holdout residuals, printed scale and model differences are diagnostics, not absolute accuracy bounds or confidence envelopes."
+  },
+  "rights": "Academic/KSH map redistribution rights unknown; ODbL applies to original OSM road and name references.",
+  "content": {
+    "onlySelectedMapGraphicsAndParaphrasedFacts": true,
+    "verbatimNarrativeQuotationWords": 0,
+    "fullRawPdfsStayLocal": true
+  },
+  "globalRegistryModified": false,
+  "usableForAddressAssignment": false
+}

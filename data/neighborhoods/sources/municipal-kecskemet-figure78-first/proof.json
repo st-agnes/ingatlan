@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "sourceFigure": 78,
+  "sourcePdfPageOneBased": 166,
+  "printedPage": 164,
+  "sourceImageSha256": "63a05d0c439ef62c8feea3ca0347f7d944b98676c030960a38ccd4a9788870fd",
+  "method": "Manual source-stroke seeds guide bounded Dijkstra traversal on literal maxRGB<=45 JPEG pixels. Every dense edge is an 8-neighbor source-pixel step; shared dividers are reused exactly in reverse.",
+  "records": [
+    {
+      "name": "Alsócsalános",
+      "denseSourceVertexCountIncludingClosure": 1043,
+      "closed": true,
+      "valid": true,
+      "interiorRingCount": 0,
+      "sourcePixelArea": 76114.0,
+      "sourcePixelBounds": [
+        14.0,
+        441.0,
+        428.0,
+        757.0
+      ],
+      "allVerticesActualSourceBlackPixels": true,
+      "maximumMaxRgbOnTrace": 44,
+      "everyStep8Neighbor": true,
+      "minimumDistanceToImageFramePixels": 14,
+      "addedClosureOrBridgeEdgeCount": 0,
+      "georeferencingPerformed": false
+    },
+    {
+      "name": "Homokbánya",
+      "denseSourceVertexCountIncludingClosure": 1617,
+      "closed": true,
+      "valid": true,
+      "interiorRingCount": 0,
+      "sourcePixelArea": 170926.0,
+      "sourcePixelBounds": [
+        289.0,
+        382.0,
+        917.0,
+        888.0
+      ],
+      "allVerticesActualSourceBlackPixels": true,
+      "maximumMaxRgbOnTrace": 45,
+      "everyStep8Neighbor": true,
+      "minimumDistanceToImageFramePixels": 289,
+      "addedClosureOrBridgeEdgeCount": 0,
+      "georeferencingPerformed": false
+    },
+    {
+      "name": "Alsószéktó",
+      "denseSourceVertexCountIncludingClosure": 1468,
+      "closed": true,
+      "valid": true,
+      "interiorRingCount": 0,
+      "sourcePixelArea": 131260.5,
+      "sourcePixelBounds": [
+        638.0,
+        149.0,
+        1298.0,
+        635.0
+      ],
+      "allVerticesActualSourceBlackPixels": true,
+      "maximumMaxRgbOnTrace": 43,
+      "everyStep8Neighbor": true,
+      "minimumDistanceToImageFramePixels": 149,
+      "addedClosureOrBridgeEdgeCount": 0,
+      "georeferencingPerformed": false
+    },
+    {
+      "name": "Szeleifalu",
+      "denseSourceVertexCountIncludingClosure": 1662,
+      "closed": true,
+      "valid": true,
+      "interiorRingCount": 0,
+      "sourcePixelArea": 264770.5,
+      "sourcePixelBounds": [
+        895.0,
+        300.0,
+        1564.0,
+        1057.0
+      ],
+      "allVerticesActualSourceBlackPixels": true,
+      "maximumMaxRgbOnTrace": 43,
+      "everyStep8Neighbor": true,
+      "minimumDistanceToImageFramePixels": 133,
+      "addedClosureOrBridgeEdgeCount": 0,
+      "georeferencingPerformed": false
+    }
+  ],
+  "pairwisePixelInteriorOverlaps": [
+    {
+      "a": "Alsócsalános",
+      "b": "Homokbánya",
+      "intersectionAreaPixelsSquared": 0.0
+    },
+    {
+      "a": "Alsócsalános",
+      "b": "Alsószéktó",
+      "intersectionAreaPixelsSquared": 0.0
+    },
+    {
+      "a": "Alsócsalános",
+      "b": "Szeleifalu",
+      "intersectionAreaPixelsSquared": 0.0
+    },
+    {
+      "a": "Homokbánya",
+      "b": "Alsószéktó",
+      "intersectionAreaPixelsSquared": 0.0
+    },
+    {
+      "a": "Homokbánya",
+      "b": "Szeleifalu",
+      "intersectionAreaPixelsSquared": 0.0
+    },
+    {
+      "a": "Alsószéktó",
+      "b": "Szeleifalu",
+      "intersectionAreaPixelsSquared": 0.0
+    }
+  ],
+  "blueOrOtherLabelPixelWindowsAllowed": [],
+  "blackComponentSelectionAddsPixelsOrClosesGaps": false,
+  "allSourcePathsLiteralBlack": true,
+  "sourceImageFrameUsedToClose": false,
+  "geometryRepairBufferSnapOrArbitraryChordUsed": false,
+  "noteOnSeedSelection": "Snapping selects an actual nearby source pixel for a manual seed; no geographic geometry is snapped.",
+  "georeferencingPerformed": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "independentReviewStillRequired": true
+}

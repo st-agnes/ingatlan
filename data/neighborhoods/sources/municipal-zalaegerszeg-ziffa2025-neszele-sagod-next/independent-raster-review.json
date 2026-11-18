@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "independent_source_raster_semantics_and_literal_component_check",
+  "reviewer": "independent child agent zala_semantic_qa",
+  "status": "Neszele_literal_contour_passes; Sagod_literal_dark_component_is_thematically_contaminated_and_must_not_be_admitted_as_exact_quarter",
+  "sourceOnly": true,
+  "inputs": [
+    {
+      "path": "p138-xref768.jpeg",
+      "sha256": "d33dc07a77423c6b72d2a889dad7181db24c366258bb29851b4fe30d3b745019"
+    },
+    {
+      "path": "p138-xref769.jpeg",
+      "sha256": "9bc20ed9959fc3b688629475d504e6ce7c9c4bd55415923d9ce4b6af44ac835e"
+    },
+    {
+      "path": "p138-xref759.jpeg",
+      "sha256": "08f9b86af6add2f278d11e5e84af63ad28f51530b7311c1c0bd079a05e42c9b6"
+    },
+    {
+      "path": "neszele-mask.npz",
+      "sha256": "7d3c03307893de90e44936e69f8695f8ae3e17c577fd32a26aa4e126edca15fd"
+    },
+    {
+      "path": "sagod-mask.npz",
+      "sha256": "6f7c7c76d8601210dd884966acdeb50c19f374c6917e2511beb490dfeb02ea77"
+    },
+    {
+      "path": "neszele-literal-mask-preview.png",
+      "sha256": "3a62fe17662b94c8494304aaba8ea4a8fefbe6db26efb70aad9e04ee1987668a"
+    },
+    {
+      "path": "sagod-literal-mask-preview.png",
+      "sha256": "e1fbbaf53ea8d4abbada6924396bbf4d4f70e328ee42e81367ef46d2636deff5"
+    },
+    {
+      "path": "sagod-grayscale-exploration.json",
+      "sha256": "e0d77fd85480ad2036e9ba65ae7cb2045585535e0ad04de952dca428d2b3effa"
+    }
+  ],
+  "independentComponentReconstruction": [
+    {
+      "name": "neszele",
+      "strokePixels": 4157,
+      "interiorPixels": 40385,
+      "independentlyEqualsStoredMask": true,
+      "sourceCellUnionType": "Polygon",
+      "isValid": true,
+      "validityReason": "Valid Geometry",
+      "holeCount": 0,
+      "regionTouchesRasterEdge": false,
+      "seedXY": [
+        180,
+        180
+      ]
+    },
+    {
+      "name": "sagod",
+      "strokePixels": 7029,
+      "interiorPixels": 99489,
+      "independentlyEqualsStoredMask": true,
+      "sourceCellUnionType": "Polygon",
+      "isValid": true,
+      "validityReason": "Valid Geometry",
+      "holeCount": 3,
+      "regionTouchesRasterEdge": false,
+      "seedXY": [
+        100,
+        300
+      ]
+    }
+  ],
+  "NeszeleVisualReview": "One thick closed quarter perimeter is visible and matches selected region, including northern narrow lobe, eastern road steps and southern bends; clipped other neighborhood outlines are excluded. The selected stroke does not acquire the isolated internal green element.",
+  "SagodVisualFindings": [
+    "The shared-unit16 label lies outside a large concavity in the true quarter outline; using the label as an interior seed is invalid.",
+    "The large northern/eastern/western/southern irregular outline corresponds to the purple satellite contour. The central concavity is an actual source exclusion, not an invented hole.",
+    "Dark thematic green fills and their borders connect to the black quarter line. The largest dark component therefore combines quarter-boundary pixels with ZI-element pixels. Its inside mask spuriously removes narrow western strips and southern internal green-edge slits.",
+    "Approximate affected native-pixel regions include west x15–32/y350–440 and south x110–190/y470–565. These ranges identify inspection locations only, not masks or replacement geometry.",
+    "The two isolated free pixels near(178,226) and(164,237) are corner slivers. They do not justify ignoring the larger thematic-contamination problem."
+  ],
+  "grayscaleAttempt": {
+    "proofPath": "sagod-grayscale-exploration.json",
+    "testedMaxRgbExclusiveCutoffs": [
+      120,
+      140,
+      160,
+      180
+    ],
+    "testedMaxMinusMinExclusiveSpreads": [
+      10,
+      15,
+      25,
+      40
+    ],
+    "all16SeedRegionsLeakToRasterEdge": true,
+    "meaning": "Neutral-dark filtering drops real quarter-band pixels where the band is blended with colored thematic features. No tested grayscale rule isolates a closed source contour without additional classification."
+  },
+  "disposition": {
+    "Neszele": "Eligible for independent registration and strict geometry review. This raster-only review does not certify world placement.",
+    "Sagod": "Preserve literal extraction as reference/quarantine. Do not count it as an exact quarter. A future separately counted estimated interpretation could follow the visible quarter perimeter, explicitly classify thematic branches using the purple companion map, retain alternatives and corner choices, and document every bounded correction. No closing edge may be invented to make a grayscale mask pass.",
+    "admittedSagodGeometryProducedByThisReview": false
+  },
+  "contentMinimization": {
+    "directNarrativeQuotationWords": 0,
+    "mapOnlySourceEvidence": true
+  },
+  "worldPlacementReviewed": false,
+  "hathazFrozenPacketModified": false,
+  "globalRegistryModified": false
+}

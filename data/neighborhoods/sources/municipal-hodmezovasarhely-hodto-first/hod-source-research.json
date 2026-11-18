@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Hódmezővásárhely",
+  "scoutedAt": "2026-11-14",
+  "scope": "Bounded search for an explicit city-quarter circuit; no nationwide absence assertion.",
+  "positiveSource": {
+    "title": "Hódmezővásárhely Megyei Jogú Város Integrált Településfejlesztési Stratégia",
+    "sourceUrl": "https://hodmezovasarhely.hu/wp-content/uploads/strategiak_koncepciok/Integr%C3%A1lt-Telfejli-Stra%C3%A9gia_2014.pdf",
+    "sourceAdoptedAt": "2014-09-17",
+    "adoptionResolution": "217/2014. (09.17) Kgy.",
+    "sourceAgeYearsAtScout": 12.16,
+    "verification": "Municipality-hosted PDF text inspected through read-only web tool; cover adoption and section circuits confirmed. Initial full text readable; subsequent screenshot and direct re-open returned HTTP403. PDF bytes have not been downloaded or archived locally.",
+    "printedPages": {
+      "Belváros": 53,
+      "Kertváros": 59,
+      "Hódtó": 61
+    },
+    "semanticAssertionParaphrase": "In sections2.3.1,2.3.3,2.3.4 the document states that each named action area contains the respective city quarter and equates that quarter with the enclosed named road/rail circuit. This explicit equivalence supports use as a quarter extent, unlike a generic action-area name.",
+    "circuits": [
+      {
+        "name": "Belváros",
+        "section": "2.3.1",
+        "chain": [
+          "Kaszap utca",
+          "Andrássy út",
+          "Táncsics Mihály út",
+          "Teleki utca",
+          "Holló utca",
+          "Damjanich utca",
+          "Vajda utca",
+          "Árvíz utca",
+          "Kodály Zoltán utca",
+          "Hősök tere",
+          "Tóalj utca"
+        ],
+        "closedBySourceText": true,
+        "geometryAcquired": false
+      },
+      {
+        "name": "Kertváros",
+        "section": "2.3.3",
+        "chain": [
+          "Kodály Zoltán utca",
+          "Hősök tere",
+          "Tóalj utca",
+          "Kaszap utca",
+          "135 sz. vasútvonal",
+          "140 sz. vasútvonal"
+        ],
+        "closedBySourceText": true,
+        "geometryAcquired": false
+      },
+      {
+        "name": "Hódtó",
+        "section": "2.3.4",
+        "chain": [
+          "Kaszap utca",
+          "Andrássy út",
+          "Bajcsy-Zsilinszky utca",
+          "135 sz. vasútvonal"
+        ],
+        "closedBySourceText": true,
+        "geometryAcquired": true,
+        "selectedFirstCandidate": true,
+        "geometryAcquisitionKind": "independent_low_confidence_road_rail_reconstruction_not_source_polygon_download"
+      }
+    ],
+    "rights": {
+      "boundaryFacts": "Independently recorded geographic facts / road-name circuit; no copied source map paths.",
+      "sourcePdfMapRights": "Not established; no right to redistribute source map geometry inferred.",
+      "derivedGeometryIntendedSource": "OpenStreetMap contributors, ODbL1.0; independent road/rail reconstruction if closure can be verified."
+    },
+    "temporalCaveat": "2014 definition, not current legal boundary certification. The2023 municipal name decree confirms these neighborhood names but provides only an urban name inventory, not matching geometries."
+  },
+  "corroboratingSource": {
+    "title": "Gazdasági Program2014–2019",
+    "sourceUrl": "https://hodmezovasarhely.hu/wp-content/uploads/strategiak_koncepciok/gazdasag_fejlesztesi_strategia/hmvhely_gazdasagi_program_2014-2019.pdf",
+    "printedPages": {
+      "Belváros": 145,
+      "Kertváros": 152,
+      "Hódtó": 154
+    },
+    "verifiedTextMatchesCircuits": true,
+    "verificationLimit": "Indexed/full extracted PDF text was readable but later direct URL returned a request verification interstitial; source bytes not acquired."
+  },
+  "currentNameSource": {
+    "sourceUrl": "https://njt.jog.gov.hu/jogszabaly/2023-1-SP-5Y1882.0",
+    "sourceDate": "2023-01-19",
+    "effectiveDate": "2023-01-20",
+    "section": "§2(c), annex1",
+    "confirmsNames": [
+      "Belváros",
+      "Hódtó",
+      "Kertváros"
+    ],
+    "doesNotProvideUrbanCircuits": true,
+    "semanticWarning": "Annex2 cadastral boundary circuits define rural populated districts, not the urban quarters."
+  },
+  "rejectedOrLimitedSources": [
+    {
+      "sourceUrl": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+      "title": "KSH8/2005: A nagyvárosok belső tagozódása – Hódmezővásárhely",
+      "publicationDate": "2005-07",
+      "statisticalReferenceDate": "2001-02-01",
+      "printedPages": [
+        2,
+        8,
+        9
+      ],
+      "mapActuallyViewed": true,
+      "usableMapObserved": "Small color filled district map on printedp9, screenshot PDFindex8. Belváros rough four-direction road description on printedp8.",
+      "limit": "Old partition; generic north/west/south/east labels do not fully specify intermediate road links. Imprint allows attributed secondary publication but states data-transfer permission, so no derived map coordinates acquired."
+    },
+    {
+      "sourceUrl": "https://njt.jog.gov.hu/jogszabaly/2021-33-SP-5Y1882",
+      "title": "33/2021. (X.25.) településkép decree",
+      "limit": "Heritage/character-area circuits are not assumed to equal common-name whole quarters."
+    },
+    {
+      "sourceUrl": "https://hodmezovasarhely.hu/wp-content/uploads/2023/09/Hodmezovasarhely_FVS_1.mod_.pdf",
+      "title": "Fenntartható Városfejlesztési Stratégia2021–2030",
+      "observedIndexedContent": "Hódtó action-area circuit differs, using Hódtó utca in place of the135railway.",
+      "limit": "Action area can be narrower than the quarter; this later action-area extent is not silently substituted for2014 explicit full-quarter definition."
+    }
+  ],
+  "status": "one_low_confidence_historical_explicit_circuit_polygon_reconstructed_pending_independent_review",
+  "usableForAddressAssignment": false,
+  "machinePolygonAcquired": false,
+  "sourceMachinePolygonAcquired": false,
+  "reconstructedPolygonCandidateCount": 1,
+  "candidateFile": "hod-hodto-first-candidate.geojson",
+  "candidateProof": "hod-hodto-first-candidate-proof.json",
+  "reconstructionSummary": {
+    "name": "Hódtó",
+    "areaSquareMeters": 634216.374674207,
+    "vertexCount": 126,
+    "allEdgesSupportedByOriginalOsmLinework": true,
+    "inferredPhysicalJunctionLengthMeters": 115.94184229377554,
+    "syntheticConnectors": 0,
+    "snapOrBufferToCloseRing": false,
+    "sourcePdfBytesAcquired": false,
+    "sourceMapGeometryCopied": false,
+    "independentReview": "pending",
+    "globalRegistration": "not_changed"
+  }
+}

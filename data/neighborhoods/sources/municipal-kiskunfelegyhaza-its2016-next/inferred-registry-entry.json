@@ -1,0 +1,31 @@
+{
+  "id": "kiskunfelegyhaza-its2016-five",
+  "path": "data/neighborhoods/sources/municipal-kiskunfelegyhaza-its2016-next/kiskunfelegyhaza-inferred-import.geojson",
+  "sha256": "7e4a3160b967a8331016204c50e38dbe2241456fba5876403b06174f9d276462",
+  "municipality": "Kiskunfélegyháza",
+  "method": "Literal source pixel-cell contour placed with one full-map six-parameter EOV affine model from five actual road/rail junction correspondences, then inverse projected to EPSG:4326. Source color barriers and actual pixel cells are retained; Petőfi alone has the separately recorded two-pixel cap under its numeric label. No name-point fitting, per-feature shift, clipping, snapping, repair, smoothing, buffers or frame closures.",
+  "evidenceUrls": [
+    "https://kiskunfelegyhaza.hu/wp-content/uploads/2017/03/its_kiskunfelegyhaza_2016_felulvizsgalt.pdf"
+  ],
+  "propertyOverrides": {
+    "estimated": true,
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "canonicalNameIsNeighborhood": false,
+    "sourceIsOfficial": false,
+    "sourceIsHardBoundary": false,
+    "usableForAddressAssignment": false,
+    "claimedAbsoluteAccuracyMetres": null,
+    "estimatedPlacement": true,
+    "georeferencingIsApproximate": true
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-kiskunfelegyhaza-its2016-next/independent-parent-review.json",
+  "uncertainties": [
+    "Native 945×1364 JPEG; colored boundary bands and manual road picks are several pixels wide. Original map projection, cartographic generalization, boundary survey date and current whole-quarter extent are unestablished. Five-control fit residuals and manually picked road holdouts measure correspondence consistency only, not absolute ground accuracy. A separate full-map similarity model illustrates placement variation without defining a confidence envelope. Municipal 2014 submission, census 2011 statistics and ITS 2016 review periods are distinct. No current-name point is used to fit or correct any coordinate.",
+    "Petőfi contains the explicit bounded two-pixel source cap; its alternative is retained separately."
+  ],
+  "license": "Municipal map reuse rights unestablished; ODbL-1.0 controls and identity evidence.",
+  "newPrimaryFeatures": 0,
+  "newEstimatedFineCandidates": 5,
+  "globalRegistryApplied": false
+}

@@ -1,0 +1,720 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent offline QA of pinned historical Esztergom source and converted candidate layer; no network or source edits.",
+  "rawSource": {
+    "file": "esztergom.source.geojson",
+    "bytes": 41761,
+    "gitBlobSha1": "f24bdf1489d74c081b8f78086cf09bfb43016c81",
+    "sha256": "2268e0debd0e8e79afcc32c76b6c90d095d24bd93a162fb9c2695d68acb4caf6",
+    "commit": "48ba05ad4c6969e3b3c25735492169227ae411f1"
+  },
+  "converted": {
+    "file": "esztergom-candidates.geojson",
+    "sha256": "169bb059c571c1f85e8809b6dd23249d36fe4d41ecc4a5023578207f20d90592",
+    "features": 33,
+    "fineHistoricalQuarterCandidates": 32,
+    "otherLocalAreas": 1,
+    "allNamesAndSourcePropertiesUnchanged": true,
+    "allCoordinateArraysUnchanged": true,
+    "allRingsLiterallyClosed": true,
+    "allGeometriesValid": true,
+    "allAddressAssignmentDisabled": true
+  },
+  "inputFingerprints": [
+    {
+      "path": "data/neighborhoods/sources/public-vector-next/esztergom.source.geojson",
+      "sha256": "2268e0debd0e8e79afcc32c76b6c90d095d24bd93a162fb9c2695d68acb4caf6",
+      "verified": true
+    },
+    {
+      "path": "data/neighborhoods/sources/public-vector-next/esztergom.metadata.source.json",
+      "sha256": "e0dd10bdb7c1b0114cd94d37e7e9a131021d4d436f67c2e6e66582ce255132dc",
+      "verified": true
+    },
+    {
+      "path": "data/neighborhoods/sources/public-vector-next/official-name-evidence.json",
+      "sha256": "21585634ac3b07b99e0b80f3ef74f59cd55a2c47b7165530a3a99395c4c270a8",
+      "verified": true
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/municipalities.geojson.gz",
+      "sha256": "fb5f1293628b9eeaabce243ae6ebc884f6bdc93443a2488e5fb213029bf766b7",
+      "verified": true
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz",
+      "sha256": "5c9193a72d4327e133f86d9c2625a4caeae3d21ec71d2575a3128b1d97931ecc",
+      "verified": true
+    }
+  ],
+  "canonicalMunicipalitySourceId": "osm:relation:1027785",
+  "areaMethod": "Original WGS84 polygons; independent EPSG:3035 area calculations after actual geometric intersection/difference.",
+  "fullyContainedFeatures": 31,
+  "crossingFeatures": [
+    {
+      "index": 25,
+      "sourceCartodbId": 26,
+      "name": "Kenyérmező",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 1501875.852007784,
+      "outsideParentAreaM2": 516.7927093332291,
+      "insideParentAreaFraction": 0.9996559018452541,
+      "parentFullyContains": false,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:4073099498"
+      ],
+      "municipalNameUse2023": false
+    },
+    {
+      "index": 26,
+      "sourceCartodbId": 27,
+      "name": "Tábor",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 2316988.6765808514,
+      "outsideParentAreaM2": 3132.7630073556884,
+      "insideParentAreaFraction": 0.9986479161339802,
+      "parentFullyContains": false,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:4073099499"
+      ],
+      "municipalNameUse2023": false
+    }
+  ],
+  "currentNameStatusCounts": {
+    "current_osm_name_present": 26,
+    "municipal_name_used_2023": 6,
+    "not_separately_verified": 1
+  },
+  "fineQuarterCurrentNameEvidenceCounts": {
+    "current_osm_name_present": 25,
+    "municipal_name_used_2023": 6,
+    "not_separately_verified": 1
+  },
+  "sameNameCurrentPointsOutsideHistoricalGeometry": [
+    {
+      "quarter": "Libád",
+      "nodeId": "osm:node:12084738316",
+      "nodeName": "Libád",
+      "distanceToHistoricalPolygonM": 94.30402744787288
+    },
+    {
+      "quarter": "Bánom",
+      "nodeId": "osm:node:12084781715",
+      "nodeName": "Bánom",
+      "distanceToHistoricalPolygonM": 37.80188313786562
+    },
+    {
+      "quarter": "Szentanna",
+      "nodeId": "osm:node:12084807694",
+      "nodeName": "Szentanna",
+      "distanceToHistoricalPolygonM": 23.927835462479006
+    }
+  ],
+  "industrialAreaExcludedFromFineCount": [
+    "Ipari park"
+  ],
+  "originalMunicipal2008DocumentRetrieved": false,
+  "currentLegalBoundariesVerified": false,
+  "absoluteBoundaryAccuracyMetres": null,
+  "individualDatasetReuseRightsEstablished": false,
+  "conclusion": "PASS as unchanged historical, explicitly review-required source candidates:32finequarter candidates +1local industrial area. Not a verified current or complete municipal-quarter inventory.",
+  "limitations": [
+    "The raw GeoJSON metadata cites a2008government proposal/decree URL; neither source map nor legal text was retrieved in this offline review.",
+    "Source feature2013timestamps do not establish survey or boundary date.",
+    "Kerektó has no separate later-name corroboration in the preserved OSM/2023name-evidence inputs; retain not_separately_verified.",
+    "Current OSM names and a2023municipal service announcement support name use, not present-day boundary shape.",
+    "3 matching current name-point records lie outside historical source geometry; preserve these discrepancies rather than moving points or borders.",
+    "Two minor municipal-border crossings remain unchanged and explicitly quantified.",
+    "The archived MIT licence covers software wording; no independent individual-dataset reuse licence was established."
+  ],
+  "records": [
+    {
+      "index": 0,
+      "sourceCartodbId": 11,
+      "name": "Csutimonostor",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 120139.1596288744,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:8196618389"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 1,
+      "sourceCartodbId": 2,
+      "name": "Petény",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 44145.651032602465,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:12084683751"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 2,
+      "sourceCartodbId": 5,
+      "name": "Libád",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 8425.819607853891,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:12084738316"
+      ],
+      "municipalNameUse2023": false
+    },
+    {
+      "index": 3,
+      "sourceCartodbId": 1,
+      "name": "Szentgyörgymező",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 979383.2855573416,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:8222823889"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 4,
+      "sourceCartodbId": 3,
+      "name": "Hévíz",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 64629.99002070891,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:8196669386"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 5,
+      "sourceCartodbId": 4,
+      "name": "Bánom",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 241581.07437221007,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:12084781715"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 6,
+      "sourceCartodbId": 6,
+      "name": "Víziváros",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 129347.46645424205,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:4070801484"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 7,
+      "sourceCartodbId": 7,
+      "name": "Prímás-sziget",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 888469.1066395598,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "municipal_name_used_2023",
+      "matchingCurrentNamePointIds": [],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 8,
+      "sourceCartodbId": 8,
+      "name": "Szentpál",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 476183.5869900303,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "municipal_name_used_2023",
+      "matchingCurrentNamePointIds": [],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 9,
+      "sourceCartodbId": 9,
+      "name": "Királyi város",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 385943.5127034492,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "municipal_name_used_2023",
+      "matchingCurrentNamePointIds": [],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 10,
+      "sourceCartodbId": 10,
+      "name": "Szentlázár",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 353105.3877370581,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:12084957151"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 11,
+      "sourceCartodbId": 12,
+      "name": "Ripária",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 53956.1083898801,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:8196658173"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 12,
+      "sourceCartodbId": 13,
+      "name": "Csalamádé",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 116638.03865181288,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:8222813255"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 13,
+      "sourceCartodbId": 14,
+      "name": "Szentanna",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 78132.125236675,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:12084807694"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 14,
+      "sourceCartodbId": 15,
+      "name": "Örmény",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 32743.742588401154,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:12084802677"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 15,
+      "sourceCartodbId": 16,
+      "name": "Szenttamás",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 111861.46287534798,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:4070801485"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 16,
+      "sourceCartodbId": 17,
+      "name": "Várhegy",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 197196.79051384988,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:12084767303"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 17,
+      "sourceCartodbId": 18,
+      "name": "Kovácsi",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 381940.36999300413,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:8185087893"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 18,
+      "sourceCartodbId": 19,
+      "name": "Szentjánoskút",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 788947.6252536853,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:8222823884"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 19,
+      "sourceCartodbId": 20,
+      "name": "Aranyhegy",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 784603.058971555,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:3180684626"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 20,
+      "sourceCartodbId": 21,
+      "name": "Döbönkút",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 4245281.395266178,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "municipal_name_used_2023",
+      "matchingCurrentNamePointIds": [],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 21,
+      "sourceCartodbId": 22,
+      "name": "Szamárhegy",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 2309475.6085586245,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "municipal_name_used_2023",
+      "matchingCurrentNamePointIds": [],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 22,
+      "sourceCartodbId": 23,
+      "name": "Búbánatvölgy",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 476821.9442244286,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:419882524"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 23,
+      "sourceCartodbId": 24,
+      "name": "Kerektó",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 1491757.8564208949,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "not_separately_verified",
+      "matchingCurrentNamePointIds": [],
+      "municipalNameUse2023": false
+    },
+    {
+      "index": 24,
+      "sourceCartodbId": 25,
+      "name": "Pilisszentlélek",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 541521.6453591879,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:354538416"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 25,
+      "sourceCartodbId": 26,
+      "name": "Kenyérmező",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 1501875.852007784,
+      "outsideParentAreaM2": 516.7927093332291,
+      "insideParentAreaFraction": 0.9996559018452541,
+      "parentFullyContains": false,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:4073099498"
+      ],
+      "municipalNameUse2023": false
+    },
+    {
+      "index": 26,
+      "sourceCartodbId": 27,
+      "name": "Tábor",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 2316988.6765808514,
+      "outsideParentAreaM2": 3132.7630073556884,
+      "insideParentAreaFraction": 0.9986479161339802,
+      "parentFullyContains": false,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:4073099499"
+      ],
+      "municipalNameUse2023": false
+    },
+    {
+      "index": 27,
+      "sourceCartodbId": 28,
+      "name": "Szalézi lakótelep",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 271715.0269296043,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:4073099497"
+      ],
+      "municipalNameUse2023": false
+    },
+    {
+      "index": 28,
+      "sourceCartodbId": 29,
+      "name": "Újfalu",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 1159669.914930834,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:12084946925"
+      ],
+      "municipalNameUse2023": false
+    },
+    {
+      "index": 29,
+      "sourceCartodbId": 30,
+      "name": "Kovácsi lakótelep",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 267247.92269105074,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:12084947164"
+      ],
+      "municipalNameUse2023": false
+    },
+    {
+      "index": 30,
+      "sourceCartodbId": 31,
+      "name": "Ipari park",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 1805830.306154569,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "local_area",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:12084973064"
+      ],
+      "municipalNameUse2023": false
+    },
+    {
+      "index": 31,
+      "sourceCartodbId": 32,
+      "name": "Kenderes",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 879795.0448271803,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "current_osm_name_present",
+      "matchingCurrentNamePointIds": [
+        "osm:node:8222813256"
+      ],
+      "municipalNameUse2023": true
+    },
+    {
+      "index": 32,
+      "sourceCartodbId": 33,
+      "name": "Diósvölgy",
+      "geometryUnchanged": true,
+      "literalRingsClosed": true,
+      "validGeometry": true,
+      "areaM2": 1569749.9291646965,
+      "outsideParentAreaM2": 0.0,
+      "insideParentAreaFraction": 1.0,
+      "parentFullyContains": true,
+      "boundaryKind": "neighbourhood",
+      "currentNameStatus": "municipal_name_used_2023",
+      "matchingCurrentNamePointIds": [],
+      "municipalNameUse2023": true
+    }
+  ]
+}

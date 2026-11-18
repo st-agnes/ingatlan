@@ -12,6 +12,12 @@ const photos = [
   'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85'
 ];
 const fictional = 'Kitalált tesztadat, nem valódi ingatlanhirdetés. ';
+export const DEMO_NEIGHBORHOOD_SCENARIO = Object.freeze({
+  venkertId: 'neighborhood:e8c749e1fc0a306c717ad312',
+  sestakertId: 'neighborhood:f22df415c7b5ea79925e8886',
+  venkertProperty: 'reka-debrecen-1', sestakertProperty: 'bence-debrecen-1',
+  quarterSearch: 'julia-debrecen-search-1', mixedSearch: 'marton-debrecen-search-1'
+});
 const propertyDefaults = {
   neighborhood: '', address: '', description: fictional, type: 'Lakás', floor: 1,
   condition: 'Jó állapotú', building: 'Tégla', balcony: false, elevator: false,
@@ -337,6 +343,32 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
       city:'Abádszalók',locationIds:['city:Abádszalók'],type:'Nyaraló',maxPrice:50_000_000,minArea:50,maxArea:80,minRooms:2,maxRooms:4,
       description:fictional + 'Az első Most nem gombbal azonnal kipróbálható a visszajelzési ablak.'}}
   );
+  // These fictional street/house identifiers never represent a real address.
+  // Startup assigns explicitly synthetic catalogue points, then asks MySQL for
+  // polygon membership; it never invokes Google to manufacture fixture data.
+  let houseNumber = 0;
+  for (const fixture of fixtures.filter(item => item.kind === 'property')) {
+    Object.assign(fixture.input, {street:'OTTHONRA TEST', houseNumber:String(++houseNumber), postalCode:null});
+  }
+  const fixture = key => fixtures.find(item => item.key === key);
+  const venkert = fixture(`reka${keySuffix}-debrecen-1`);
+  const sestakert = fixture(`bence${keySuffix}-debrecen-1`);
+  Object.assign(venkert.input, {neighborhood:'Vénkert', houseNumber:'1',
+    title:'Teszt · Vénkerti lakás · szintetikus címpont' + titleSuffix,
+    description:fictional + 'Szintetikus tesztkoordináta a Vénkert keresési területén; nem Google által ellenőrzött valódi cím.'});
+  Object.assign(sestakert.input, {neighborhood:'Sestakert', houseNumber:'2',
+    title:'Teszt · Sestakerti lakás · szintetikus címpont' + titleSuffix,
+    description:fictional + 'Szintetikus tesztkoordináta a Sestakert keresési területén; nem Google által ellenőrzött valódi cím.'});
+  Object.assign(fixture(`julia${keySuffix}-debrecen-search-1`).input, {
+    title:'Teszt · Vénkert vagy Sestakert' + titleSuffix,
+    locationIds:[DEMO_NEIGHBORHOOD_SCENARIO.venkertId, DEMO_NEIGHBORHOOD_SCENARIO.sestakertId],
+    description:fictional + 'A két városrész bármelyike megfelelő. A városrészhatárok közelítő keresési területek.'
+  });
+  Object.assign(fixture(`marton${keySuffix}-debrecen-search-1`).input, {
+    title:'Teszt · Vénkert vagy Hajdúsámson' + titleSuffix,
+    locationIds:[DEMO_NEIGHBORHOOD_SCENARIO.venkertId, 'city:Hajdúsámson'],
+    description:fictional + 'Vénkerti tesztlakás vagy bármely hajdúsámsoni lakás megfelelő; a sestakerti minta kívül esik a keresésen.'
+  });
   return {users, fixtures, feedbackScenarios:[{key:'feedback-first-pass' + keySuffix,seller,buyer,property:propertyKey,search:searchKey,size:10}]};
 }
 

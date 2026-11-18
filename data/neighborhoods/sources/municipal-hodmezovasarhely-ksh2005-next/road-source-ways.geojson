@@ -1,0 +1,5390 @@
+{
+  "type": "FeatureCollection",
+  "sourceArchivePath": "data/neighborhoods/sources/municipal-hodmezovasarhely-hodto-first/hod-local-lines.geojson",
+  "sourceArchiveSha256": "c485ccbf0352f2a38bc725bf8326f4192ac37d497aaa113d6bafcd477d59fa02",
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "osmTimestamp": "2026-11-12T21:23:05Z",
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "selection": "Complete original ways on the eleven source-mentioned/control/check roads, plus actual rail130/135 ways. No clipping, snapping or repair.",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 30030471,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Tóalj utca",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          7884663781,
+          7884663782,
+          1881233257,
+          7884663794,
+          712932041
+        ],
+        "version": 19,
+        "timestamp": "2023-03-14 06:56:52+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3233163,
+            46.4115607
+          ],
+          [
+            20.3233731,
+            46.4115398
+          ],
+          [
+            20.323615,
+            46.4115019
+          ],
+          [
+            20.3237047,
+            46.4114769
+          ],
+          [
+            20.3237715,
+            46.4114605
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 30565287,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "80",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:evm": "yes",
+          "railway:preferred_direction": "both",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          3625012900,
+          936125497,
+          12006268179,
+          12006268178,
+          345108479,
+          9784201368
+        ],
+        "version": 36,
+        "timestamp": "2025-05-23 16:56:54+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3143111,
+            46.4038976
+          ],
+          [
+            20.3144775,
+            46.403959
+          ],
+          [
+            20.3145532,
+            46.4039871
+          ],
+          [
+            20.3145903,
+            46.4040024
+          ],
+          [
+            20.3146703,
+            46.40403
+          ],
+          [
+            20.3211571,
+            46.4064318
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 31279481,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "60",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:etcs": "no",
+          "railway:evm": "no",
+          "railway:lzb": "no",
+          "railway:preferred_direction": "both",
+          "railway:pzb": "no",
+          "railway:rail": "jointed",
+          "railway:track_class": "CM2",
+          "railway:track_ref": "III",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "freight",
+          "ref": "130",
+          "usage": "branch"
+        },
+        "nodeRefs": [
+          7556849051,
+          12244090111,
+          12244090112,
+          12244090113,
+          4022742078,
+          4022742099,
+          4022742068
+        ],
+        "version": 27,
+        "timestamp": "2024-10-12 12:34:11+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3403613,
+            46.4134243
+          ],
+          [
+            20.3472886,
+            46.4159717
+          ],
+          [
+            20.3474087,
+            46.4160154
+          ],
+          [
+            20.3475285,
+            46.4160588
+          ],
+          [
+            20.3476535,
+            46.4161025
+          ],
+          [
+            20.3482661,
+            46.4163033
+          ],
+          [
+            20.348481,
+            46.4163746
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 39993111,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          7884663800,
+          7884663801,
+          1881233167,
+          7884663803,
+          712932015
+        ],
+        "version": 17,
+        "timestamp": "2025-03-25 11:04:50+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3237125,
+            46.411104
+          ],
+          [
+            20.3237669,
+            46.411172
+          ],
+          [
+            20.3238593,
+            46.4113391
+          ],
+          [
+            20.3238966,
+            46.4113853
+          ],
+          [
+            20.3239352,
+            46.4114303
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 40764516,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "80",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:etcs": "no",
+          "railway:evm": "no",
+          "railway:lzb": "no",
+          "railway:preferred_direction": "both",
+          "railway:pzb": "no",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "branch"
+        },
+        "nodeRefs": [
+          12244076395,
+          337745928,
+          3133195689,
+          5836187860,
+          6261395228,
+          3133183382,
+          337745933,
+          337745935,
+          337745941,
+          337745946,
+          337745948,
+          337745949,
+          2195761721,
+          4034002394,
+          4034002409,
+          10224033981,
+          14208263711,
+          337745952,
+          4034002398,
+          11385812825,
+          4034002401,
+          337745956,
+          6138875283,
+          337745959,
+          4010021159,
+          6138875396,
+          2818269875,
+          2818269899,
+          2818270107,
+          342860126,
+          10177712100,
+          14208263712,
+          342860130,
+          4035908748,
+          1694293613,
+          10177712085,
+          3736329708,
+          7187084923,
+          342860875,
+          342860143,
+          2684082446,
+          342860147,
+          2684076929,
+          342860150,
+          3647622310,
+          342860155,
+          1245785707,
+          342860861,
+          6685424730,
+          342860276,
+          9828784647
+        ],
+        "version": 29,
+        "timestamp": "2026-10-25 01:11:13+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3496885,
+            46.4169011
+          ],
+          [
+            20.3574358,
+            46.4197521
+          ],
+          [
+            20.3658699,
+            46.4228423
+          ],
+          [
+            20.3675458,
+            46.4234548
+          ],
+          [
+            20.3681211,
+            46.4236611
+          ],
+          [
+            20.3757128,
+            46.4264396
+          ],
+          [
+            20.3860987,
+            46.4302607
+          ],
+          [
+            20.4093494,
+            46.4388186
+          ],
+          [
+            20.4128586,
+            46.4401786
+          ],
+          [
+            20.4175127,
+            46.4421087
+          ],
+          [
+            20.4212377,
+            46.4437884
+          ],
+          [
+            20.436241,
+            46.4513345
+          ],
+          [
+            20.4460044,
+            46.4562905
+          ],
+          [
+            20.4465877,
+            46.4565865
+          ],
+          [
+            20.4469981,
+            46.4567916
+          ],
+          [
+            20.4521108,
+            46.4593722
+          ],
+          [
+            20.4521308,
+            46.4593823
+          ],
+          [
+            20.4549401,
+            46.4607993
+          ],
+          [
+            20.4567614,
+            46.4617194
+          ],
+          [
+            20.4574557,
+            46.462071
+          ],
+          [
+            20.4574909,
+            46.4620889
+          ],
+          [
+            20.4684213,
+            46.467612
+          ],
+          [
+            20.4815143,
+            46.4742364
+          ],
+          [
+            20.4837482,
+            46.4752906
+          ],
+          [
+            20.4849152,
+            46.4759405
+          ],
+          [
+            20.5031002,
+            46.4851063
+          ],
+          [
+            20.512687,
+            46.4899483
+          ],
+          [
+            20.5359434,
+            46.5016544
+          ],
+          [
+            20.538615,
+            46.5030206
+          ],
+          [
+            20.5389365,
+            46.5031736
+          ],
+          [
+            20.5408704,
+            46.5041554
+          ],
+          [
+            20.5408983,
+            46.5041694
+          ],
+          [
+            20.5489007,
+            46.5081865
+          ],
+          [
+            20.5501732,
+            46.5088397
+          ],
+          [
+            20.5647284,
+            46.5161523
+          ],
+          [
+            20.5934569,
+            46.5306011
+          ],
+          [
+            20.5941409,
+            46.5309482
+          ],
+          [
+            20.5977418,
+            46.5327536
+          ],
+          [
+            20.597926,
+            46.5328424
+          ],
+          [
+            20.6034513,
+            46.5357039
+          ],
+          [
+            20.6123624,
+            46.5401186
+          ],
+          [
+            20.618241,
+            46.5431281
+          ],
+          [
+            20.6297437,
+            46.5488297
+          ],
+          [
+            20.6324781,
+            46.5503151
+          ],
+          [
+            20.6431664,
+            46.5556006
+          ],
+          [
+            20.6461914,
+            46.5571743
+          ],
+          [
+            20.6490896,
+            46.5585449
+          ],
+          [
+            20.6492028,
+            46.5586023
+          ],
+          [
+            20.6511971,
+            46.5596184
+          ],
+          [
+            20.6517037,
+            46.559878
+          ],
+          [
+            20.6580404,
+            46.5630695
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 57363388,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          7884663742,
+          1908551950,
+          7882246008,
+          712931968
+        ],
+        "version": 16,
+        "timestamp": "2025-03-25 10:54:10+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3228727,
+            46.4093382
+          ],
+          [
+            20.3228849,
+            46.4092404
+          ],
+          [
+            20.3228981,
+            46.4091618
+          ],
+          [
+            20.3229328,
+            46.4089842
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 65739826,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "80",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:etcs": "no",
+          "railway:evm": "no",
+          "railway:lzb": "no",
+          "railway:preferred_direction": "both",
+          "railway:pzb": "no",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_ref": "II",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          4022742111,
+          4022742070,
+          4022742104,
+          4022742069,
+          4022742100
+        ],
+        "version": 14,
+        "timestamp": "2026-09-23 04:33:10+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3374105,
+            46.4123905
+          ],
+          [
+            20.3388321,
+            46.4129097
+          ],
+          [
+            20.3425543,
+            46.41428
+          ],
+          [
+            20.3473257,
+            46.4160321
+          ],
+          [
+            20.348744,
+            46.4165506
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 78502992,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "maxspeed": "30",
+          "name": "Tóalj utca"
+        },
+        "nodeRefs": [
+          920249812,
+          1864871695,
+          2131230330,
+          2131230327
+        ],
+        "version": 8,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3146721,
+            46.4123278
+          ],
+          [
+            20.316208,
+            46.4122086
+          ],
+          [
+            20.3163052,
+            46.4121875
+          ],
+          [
+            20.3164034,
+            46.4121836
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 79805673,
+        "tags": {
+          "highway": "tertiary",
+          "name": "Damjanich utca"
+        },
+        "nodeRefs": [
+          931592188,
+          1339428635,
+          957266803,
+          957267076,
+          957267106,
+          957267132,
+          957266855
+        ],
+        "version": 12,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3025922,
+            46.4346467
+          ],
+          [
+            20.3025814,
+            46.434512
+          ],
+          [
+            20.3025138,
+            46.4336314
+          ],
+          [
+            20.3024377,
+            46.4327459
+          ],
+          [
+            20.302189,
+            46.4304394
+          ],
+          [
+            20.3021619,
+            46.4301202
+          ],
+          [
+            20.302152,
+            46.4296956
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 82223595,
+        "tags": {
+          "highway": "residential",
+          "name": "Damjanich utca"
+        },
+        "nodeRefs": [
+          957267039,
+          1881301046,
+          957267152
+        ],
+        "version": 3,
+        "timestamp": "2012-08-24 19:02:14+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3085734,
+            46.4206041
+          ],
+          [
+            20.3086713,
+            46.4206191
+          ],
+          [
+            20.3093661,
+            46.4207252
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 82223652,
+        "tags": {
+          "highway": "tertiary",
+          "name": "László utca"
+        },
+        "nodeRefs": [
+          957267114,
+          957266991,
+          9456757645
+        ],
+        "version": 5,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.303329,
+            46.4209429
+          ],
+          [
+            20.3031437,
+            46.4209399
+          ],
+          [
+            20.3029729,
+            46.4209366
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 92231086,
+        "tags": {
+          "highway": "tertiary",
+          "name": "Imre utca"
+        },
+        "nodeRefs": [
+          957266817,
+          1868560916,
+          957267083,
+          931592387
+        ],
+        "version": 5,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3039936,
+            46.420771
+          ],
+          [
+            20.3059285,
+            46.4211545
+          ],
+          [
+            20.3067429,
+            46.4213249
+          ],
+          [
+            20.3073997,
+            46.4214795
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 92231110,
+        "tags": {
+          "cycleway": "lane",
+          "highway": "tertiary",
+          "name": "Teleki utca"
+        },
+        "nodeRefs": [
+          920249758,
+          920249878,
+          957240962
+        ],
+        "version": 8,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3222469,
+            46.4204991
+          ],
+          [
+            20.3237435,
+            46.4200771
+          ],
+          [
+            20.3244665,
+            46.4198307
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 92239493,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "maxspeed": "50",
+          "name": "Kutasi út"
+        },
+        "nodeRefs": [
+          957266621,
+          1935275554,
+          447609717,
+          2785095528,
+          31094621,
+          711942888
+        ],
+        "version": 14,
+        "timestamp": "2023-03-14 07:32:51+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3430541,
+            46.4262159
+          ],
+          [
+            20.3428413,
+            46.4261046
+          ],
+          [
+            20.3426715,
+            46.4260458
+          ],
+          [
+            20.3413705,
+            46.4256651
+          ],
+          [
+            20.339711,
+            46.4251794
+          ],
+          [
+            20.3391792,
+            46.4249679
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 92239499,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "name": "Jókai utca"
+        },
+        "nodeRefs": [
+          711942715,
+          5410176651,
+          7880262933,
+          7880262934,
+          416869911,
+          957266820,
+          416869912,
+          957266772,
+          7880262887,
+          7880262879,
+          416869913,
+          7880262877,
+          7880262878,
+          957267055,
+          7880262876,
+          416869914,
+          7880262875,
+          7880262873,
+          931592188
+        ],
+        "version": 16,
+        "timestamp": "2024-01-13 12:10:49+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.297495,
+            46.4342377
+          ],
+          [
+            20.2975694,
+            46.4342148
+          ],
+          [
+            20.2976519,
+            46.4342061
+          ],
+          [
+            20.2977332,
+            46.4342063
+          ],
+          [
+            20.2978405,
+            46.4342199
+          ],
+          [
+            20.298825,
+            46.4344738
+          ],
+          [
+            20.2995999,
+            46.4346886
+          ],
+          [
+            20.3001265,
+            46.4348022
+          ],
+          [
+            20.3004301,
+            46.4348404
+          ],
+          [
+            20.3006822,
+            46.4348596
+          ],
+          [
+            20.3008631,
+            46.434872
+          ],
+          [
+            20.301026,
+            46.4348744
+          ],
+          [
+            20.3011814,
+            46.4348768
+          ],
+          [
+            20.3013781,
+            46.4348744
+          ],
+          [
+            20.301555,
+            46.4348549
+          ],
+          [
+            20.3017319,
+            46.4348307
+          ],
+          [
+            20.3019236,
+            46.4348011
+          ],
+          [
+            20.30216,
+            46.4347478
+          ],
+          [
+            20.3025922,
+            46.4346467
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 92239504,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "maxspeed": "50",
+          "name": "Szántó Kovács János utca",
+          "source:maxspeed": "HU:urban"
+        },
+        "nodeRefs": [
+          711942874,
+          3496803166,
+          3881204264,
+          1868778559
+        ],
+        "version": 18,
+        "timestamp": "2024-01-13 12:10:49+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3182977,
+            46.4348898
+          ],
+          [
+            20.318311,
+            46.4348268
+          ],
+          [
+            20.3183635,
+            46.4345778
+          ],
+          [
+            20.318477,
+            46.4340388
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 92239512,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "3",
+          "lanes:backward": "2",
+          "lanes:forward": "1",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          920249924,
+          31094630,
+          712916306
+        ],
+        "version": 15,
+        "timestamp": "2023-10-26 08:44:21+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3252298,
+            46.4147566
+          ],
+          [
+            20.3251857,
+            46.4146453
+          ],
+          [
+            20.3251435,
+            46.4145408
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 155190230,
+        "tags": {
+          "highway": "residential",
+          "maxspeed": "30",
+          "name": "Tóalj utca"
+        },
+        "nodeRefs": [
+          712916202,
+          1864905043,
+          7262944175,
+          2136474967,
+          712916278
+        ],
+        "version": 5,
+        "timestamp": "2020-03-04 08:58:53+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3262863,
+            46.4139883
+          ],
+          [
+            20.3263228,
+            46.4139939
+          ],
+          [
+            20.3273692,
+            46.4143975
+          ],
+          [
+            20.3275226,
+            46.4144567
+          ],
+          [
+            20.3294469,
+            46.4150539
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 155422141,
+        "tags": {
+          "highway": "tertiary",
+          "name": "Kodály Zoltán utca"
+        },
+        "nodeRefs": [
+          957267098,
+          920249962
+        ],
+        "version": 5,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3064218,
+            46.4132936
+          ],
+          [
+            20.3070457,
+            46.413213
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 175912265,
+        "tags": {
+          "axle_load": "21",
+          "bridge": "viaduct",
+          "electrified": "no",
+          "gauge": "1435",
+          "layer": "1",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "40",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:evm": "yes",
+          "railway:preferred_direction": "both",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          1864725070,
+          345108480
+        ],
+        "version": 9,
+        "timestamp": "2025-05-23 16:56:54+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3230554,
+            46.4071321
+          ],
+          [
+            20.3234126,
+            46.4072639
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 175912267,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "40",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:evm": "yes",
+          "railway:preferred_direction": "both",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          345108480,
+          337745923
+        ],
+        "version": 11,
+        "timestamp": "2025-05-23 16:56:54+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3234126,
+            46.4072639
+          ],
+          [
+            20.3281722,
+            46.4090198
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 175912274,
+        "tags": {
+          "axle_load": "21",
+          "bridge": "viaduct",
+          "electrified": "no",
+          "gauge": "1435",
+          "layer": "1",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "80",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:evm": "yes",
+          "railway:preferred_direction": "both",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          1864725068,
+          4034002246
+        ],
+        "version": 10,
+        "timestamp": "2025-05-23 16:56:54+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3366668,
+            46.4121144
+          ],
+          [
+            20.3368483,
+            46.4121824
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 175921592,
+        "tags": {
+          "highway": "residential",
+          "name": "Damjanich utca"
+        },
+        "nodeRefs": [
+          1864838978,
+          1881301051,
+          1864838951
+        ],
+        "version": 2,
+        "timestamp": "2012-08-24 19:02:14+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3072777,
+            46.4215954
+          ],
+          [
+            20.3073533,
+            46.4216177
+          ],
+          [
+            20.307997,
+            46.4218076
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 175927409,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "80",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:evm": "yes",
+          "railway:preferred_direction": "both",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          1864893061,
+          1864725068
+        ],
+        "version": 9,
+        "timestamp": "2025-05-23 16:56:54+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3329665,
+            46.4107788
+          ],
+          [
+            20.3366668,
+            46.4121144
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 175927410,
+        "tags": {
+          "axle_load": "21",
+          "bridge": "viaduct",
+          "electrified": "no",
+          "gauge": "1435",
+          "layer": "1",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "80",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:evm": "yes",
+          "railway:preferred_direction": "both",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          1864893056,
+          1864893061
+        ],
+        "version": 9,
+        "timestamp": "2025-05-23 16:56:54+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3328176,
+            46.4107259
+          ],
+          [
+            20.3329665,
+            46.4107788
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 175928355,
+        "tags": {
+          "highway": "residential",
+          "maxspeed": "30",
+          "name": "Tóalj utca"
+        },
+        "nodeRefs": [
+          1864905037,
+          1864905036,
+          1864905031,
+          712916202
+        ],
+        "version": 2,
+        "timestamp": "2012-08-24 20:13:59+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3265005,
+            46.411892
+          ],
+          [
+            20.3257693,
+            46.4119591
+          ],
+          [
+            20.3262376,
+            46.4139549
+          ],
+          [
+            20.3262863,
+            46.4139883
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 175933635,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "2",
+          "maxspeed": "50",
+          "name": "Andrássy út",
+          "oneway": "yes",
+          "turn:lanes": "through|through;right"
+        },
+        "nodeRefs": [
+          6449439151,
+          447609720,
+          8741213321,
+          1864949285
+        ],
+        "version": 15,
+        "timestamp": "2023-04-02 07:35:47+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3286759,
+            46.4166939
+          ],
+          [
+            20.3289375,
+            46.4168254
+          ],
+          [
+            20.3290756,
+            46.4168927
+          ],
+          [
+            20.3291455,
+            46.4169229
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 175933639,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Andrássy út",
+          "oneway": "yes"
+        },
+        "nodeRefs": [
+          1864949279,
+          10249852529,
+          6449439152,
+          6449439150,
+          6449439153,
+          8741201115,
+          8477119283,
+          8741201114,
+          6449439154
+        ],
+        "version": 17,
+        "timestamp": "2023-03-14 07:15:13+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3289048,
+            46.4170735
+          ],
+          [
+            20.3288484,
+            46.4169694
+          ],
+          [
+            20.3287725,
+            46.4168862
+          ],
+          [
+            20.3285968,
+            46.4167863
+          ],
+          [
+            20.3284495,
+            46.4166924
+          ],
+          [
+            20.3277427,
+            46.4163429
+          ],
+          [
+            20.3275515,
+            46.4162825
+          ],
+          [
+            20.3275214,
+            46.4162787
+          ],
+          [
+            20.3274543,
+            46.4162774
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 175934375,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "pedestrian",
+          "maxspeed": "20",
+          "name": "Andrássy út"
+        },
+        "nodeRefs": [
+          920249774,
+          1864956854,
+          8420552563,
+          330464498
+        ],
+        "version": 8,
+        "timestamp": "2024-01-15 11:27:18+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3206131,
+            46.4147267
+          ],
+          [
+            20.3189978,
+            46.4147079
+          ],
+          [
+            20.318144,
+            46.4146955
+          ],
+          [
+            20.3180232,
+            46.4146937
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 176313430,
+        "tags": {
+          "highway": "residential",
+          "name": "Imre utca"
+        },
+        "nodeRefs": [
+          1868560916,
+          1868560923
+        ],
+        "version": 1,
+        "timestamp": "2012-08-16 11:42:11+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3059285,
+            46.4211545
+          ],
+          [
+            20.3066018,
+            46.4203455
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 176318998,
+        "tags": {
+          "highway": "residential",
+          "name": "Damjanich utca",
+          "surface": "dirt"
+        },
+        "nodeRefs": [
+          1868589432,
+          1868589446,
+          1868589438,
+          1868589431,
+          1868589444,
+          1868589437
+        ],
+        "version": 2,
+        "timestamp": "2012-09-22 19:25:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3027816,
+            46.4298317
+          ],
+          [
+            20.3031074,
+            46.4291172
+          ],
+          [
+            20.3036573,
+            46.4279469
+          ],
+          [
+            20.3042032,
+            46.4267957
+          ],
+          [
+            20.3047686,
+            46.4256343
+          ],
+          [
+            20.3056374,
+            46.4236502
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 177700940,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "residential",
+          "maxspeed": "30",
+          "name": "Andrássy út",
+          "oneway": "no",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          920249924,
+          1881275511,
+          7884663787,
+          920249756,
+          920249959,
+          9281594620,
+          2136474971,
+          9281594622,
+          920249774
+        ],
+        "version": 13,
+        "timestamp": "2024-01-15 11:27:18+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3252298,
+            46.4147566
+          ],
+          [
+            20.3251321,
+            46.4147563
+          ],
+          [
+            20.325084,
+            46.4147559
+          ],
+          [
+            20.3245375,
+            46.4147516
+          ],
+          [
+            20.3229386,
+            46.4147455
+          ],
+          [
+            20.3227179,
+            46.414744
+          ],
+          [
+            20.321666,
+            46.4147367
+          ],
+          [
+            20.3208805,
+            46.414732
+          ],
+          [
+            20.3206131,
+            46.4147267
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 182429576,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "name": "Damjanich utca"
+        },
+        "nodeRefs": [
+          931592477,
+          957267105,
+          1864838978,
+          931592387,
+          9413978339,
+          957266667,
+          957267039,
+          931592073,
+          957267085,
+          931592261,
+          1868589434,
+          931592113,
+          1675185890,
+          931592520,
+          957266703,
+          931592088
+        ],
+        "version": 5,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3052057,
+            46.4235603
+          ],
+          [
+            20.306899,
+            46.4219151
+          ],
+          [
+            20.3072777,
+            46.4215954
+          ],
+          [
+            20.3073997,
+            46.4214795
+          ],
+          [
+            20.3079253,
+            46.4211063
+          ],
+          [
+            20.3079801,
+            46.4210674
+          ],
+          [
+            20.3085734,
+            46.4206041
+          ],
+          [
+            20.3092166,
+            46.4201018
+          ],
+          [
+            20.3095634,
+            46.4198341
+          ],
+          [
+            20.3096675,
+            46.419742
+          ],
+          [
+            20.3099463,
+            46.4195086
+          ],
+          [
+            20.3102366,
+            46.4192099
+          ],
+          [
+            20.3105234,
+            46.418814
+          ],
+          [
+            20.3107715,
+            46.4184869
+          ],
+          [
+            20.3113666,
+            46.4175351
+          ],
+          [
+            20.3119317,
+            46.4165611
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 182429577,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "name": "Damjanich utca"
+        },
+        "nodeRefs": [
+          957266855,
+          1881301145,
+          957266804,
+          957266623,
+          957267103,
+          957267057,
+          931592477
+        ],
+        "version": 4,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.302152,
+            46.4296956
+          ],
+          [
+            20.3021734,
+            46.4296532
+          ],
+          [
+            20.3025114,
+            46.4289818
+          ],
+          [
+            20.3030886,
+            46.4278171
+          ],
+          [
+            20.3036634,
+            46.4266553
+          ],
+          [
+            20.3042286,
+            46.4254992
+          ],
+          [
+            20.3052057,
+            46.4235603
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 183010895,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "2",
+          "maxheight": "4.5",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          920250036,
+          372618747,
+          712932065
+        ],
+        "version": 11,
+        "timestamp": "2023-10-26 08:30:41+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3226903,
+            46.4078266
+          ],
+          [
+            20.3227887,
+            46.4076709
+          ],
+          [
+            20.3233674,
+            46.4070162
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 183010896,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "2",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          1866026683,
+          7882246002,
+          372618764,
+          7882245999,
+          7882245998,
+          712932048,
+          7882245997,
+          330668258,
+          9107807042,
+          7882245996,
+          920250036
+        ],
+        "version": 13,
+        "timestamp": "2026-06-01 16:19:28+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3226956,
+            46.4087035
+          ],
+          [
+            20.3226383,
+            46.4086227
+          ],
+          [
+            20.3226079,
+            46.4085368
+          ],
+          [
+            20.3225862,
+            46.408423
+          ],
+          [
+            20.3225726,
+            46.4083185
+          ],
+          [
+            20.3225725,
+            46.4082439
+          ],
+          [
+            20.3225832,
+            46.4081548
+          ],
+          [
+            20.3226074,
+            46.4080469
+          ],
+          [
+            20.3226353,
+            46.4079628
+          ],
+          [
+            20.3226489,
+            46.4079218
+          ],
+          [
+            20.3226903,
+            46.4078266
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 191449873,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "maxspeed": "30",
+          "name": "Kodály Zoltán utca"
+        },
+        "nodeRefs": [
+          920249819,
+          920250020,
+          2975747593,
+          1659341810
+        ],
+        "version": 7,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3124892,
+            46.4124802
+          ],
+          [
+            20.3129493,
+            46.4124517
+          ],
+          [
+            20.3140949,
+            46.4123776
+          ],
+          [
+            20.3141513,
+            46.4123739
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 195388924,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "maxspeed": "30",
+          "name": "Kodály Zoltán utca"
+        },
+        "nodeRefs": [
+          920249962,
+          1868560911,
+          2308323231,
+          2308323229,
+          2058329267,
+          920249883
+        ],
+        "version": 4,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3070457,
+            46.413213
+          ],
+          [
+            20.3078785,
+            46.4131044
+          ],
+          [
+            20.3084763,
+            46.4130264
+          ],
+          [
+            20.3095532,
+            46.412886
+          ],
+          [
+            20.310708,
+            46.4127354
+          ],
+          [
+            20.3118793,
+            46.4125294
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 203149206,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "junction": "roundabout",
+          "name": "Tóalj utca"
+        },
+        "nodeRefs": [
+          2131230315,
+          2131230317,
+          2131230322,
+          2131230326
+        ],
+        "version": 7,
+        "timestamp": "2023-09-08 09:10:21+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.318527,
+            46.4120092
+          ],
+          [
+            20.3185239,
+            46.4120509
+          ],
+          [
+            20.3184789,
+            46.4120951
+          ],
+          [
+            20.3184034,
+            46.4121122
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 203149207,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "name": "Tóalj utca"
+        },
+        "nodeRefs": [
+          31094634,
+          936125503,
+          1659352399,
+          480508942,
+          2131230328
+        ],
+        "version": 4,
+        "timestamp": "2023-03-14 06:56:52+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3182832,
+            46.4120483
+          ],
+          [
+            20.3182114,
+            46.412069
+          ],
+          [
+            20.3169166,
+            46.4121843
+          ],
+          [
+            20.3167513,
+            46.4121847
+          ],
+          [
+            20.316656,
+            46.4121758
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 225621432,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "name": "Jókai utca"
+        },
+        "nodeRefs": [
+          711942758,
+          6314413345,
+          1879321336,
+          1879321340,
+          1879282304,
+          1879282307,
+          6271614261,
+          1879282305,
+          2785095526,
+          711942839,
+          9421211089,
+          711942683,
+          1242155393,
+          711942888
+        ],
+        "version": 12,
+        "timestamp": "2024-01-13 12:10:49+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3307725,
+            46.4273128
+          ],
+          [
+            20.3309383,
+            46.4272702
+          ],
+          [
+            20.3317929,
+            46.4270503
+          ],
+          [
+            20.3328859,
+            46.4267669
+          ],
+          [
+            20.3351436,
+            46.4261814
+          ],
+          [
+            20.3360131,
+            46.4259691
+          ],
+          [
+            20.3361472,
+            46.4259343
+          ],
+          [
+            20.3368701,
+            46.4257652
+          ],
+          [
+            20.3377809,
+            46.4255302
+          ],
+          [
+            20.3383895,
+            46.4253827
+          ],
+          [
+            20.338672,
+            46.4252917
+          ],
+          [
+            20.338883,
+            46.4251754
+          ],
+          [
+            20.3390256,
+            46.4250764
+          ],
+          [
+            20.3391792,
+            46.4249679
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 225621433,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "name": "Szántó Kovács János utca"
+        },
+        "nodeRefs": [
+          330464102,
+          920249763,
+          920249935,
+          920249941,
+          1868754468,
+          957267130,
+          2084931591
+        ],
+        "version": 4,
+        "timestamp": "2024-01-13 12:10:49+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3187672,
+            46.4296907
+          ],
+          [
+            20.3185848,
+            46.4280254
+          ],
+          [
+            20.3184484,
+            46.4267346
+          ],
+          [
+            20.3183256,
+            46.4254486
+          ],
+          [
+            20.3183055,
+            46.4252551
+          ],
+          [
+            20.3181918,
+            46.424115
+          ],
+          [
+            20.3180562,
+            46.422525
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 226241195,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "maxspeed": "50",
+          "name": "Szántó Kovács János utca",
+          "source:maxspeed": "HU:urban"
+        },
+        "nodeRefs": [
+          1868778559,
+          711942907,
+          920249914,
+          330464098,
+          416869829
+        ],
+        "version": 7,
+        "timestamp": "2024-01-13 12:10:49+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.318477,
+            46.4340388
+          ],
+          [
+            20.3187969,
+            46.4324799
+          ],
+          [
+            20.3189016,
+            46.4318877
+          ],
+          [
+            20.3189657,
+            46.431525
+          ],
+          [
+            20.3188232,
+            46.4304088
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 273676540,
+        "tags": {
+          "highway": "residential",
+          "name": "Kutasi út"
+        },
+        "nodeRefs": [
+          2785095534,
+          2785095532,
+          2785095528
+        ],
+        "version": 1,
+        "timestamp": "2014-04-12 11:04:44+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3412285,
+            46.4259034
+          ],
+          [
+            20.3412982,
+            46.4257865
+          ],
+          [
+            20.3413705,
+            46.4256651
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 273676541,
+        "tags": {
+          "highway": "residential",
+          "name": "Kutasi út"
+        },
+        "nodeRefs": [
+          2785095487,
+          1879282280,
+          2785095500
+        ],
+        "version": 1,
+        "timestamp": "2014-04-12 11:04:44+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3357676,
+            46.4237832
+          ],
+          [
+            20.3366658,
+            46.4241815
+          ],
+          [
+            20.337895,
+            46.4247073
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 273676542,
+        "tags": {
+          "highway": "residential",
+          "name": "Kutasi út"
+        },
+        "nodeRefs": [
+          2785095543,
+          2785095534,
+          2785095520,
+          711942683
+        ],
+        "version": 1,
+        "timestamp": "2014-04-12 11:04:44+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3432331,
+            46.4264733
+          ],
+          [
+            20.3412285,
+            46.4259034
+          ],
+          [
+            20.3393208,
+            46.4253609
+          ],
+          [
+            20.338883,
+            46.4251754
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 399541334,
+        "tags": {
+          "axle_load": "21",
+          "bridge": "yes",
+          "electrified": "no",
+          "gauge": "1435",
+          "layer": "1",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "40",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:evm": "yes",
+          "railway:preferred_direction": "both",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          337745923,
+          4022742022
+        ],
+        "version": 8,
+        "timestamp": "2025-05-23 16:56:54+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3281722,
+            46.4090198
+          ],
+          [
+            20.3283393,
+            46.4090814
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 399541335,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "40",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:evm": "yes",
+          "railway:preferred_direction": "both",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          4022742022,
+          9784201370
+        ],
+        "version": 7,
+        "timestamp": "2025-05-23 16:56:54+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3283393,
+            46.4090814
+          ],
+          [
+            20.3314674,
+            46.4102353
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 600835373,
+        "tags": {
+          "axle_load": "22.5",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "100",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:evm": "yes",
+          "railway:preferred_direction": "both",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "D3",
+          "railway:track_ref": "02",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          5711976954,
+          7486967824,
+          14208263709,
+          7486967820,
+          337739054,
+          3625012900
+        ],
+        "version": 13,
+        "timestamp": "2026-09-23 04:33:10+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.308925,
+            46.4019117
+          ],
+          [
+            20.30999,
+            46.40231
+          ],
+          [
+            20.3116072,
+            46.4029082
+          ],
+          [
+            20.3125886,
+            46.4032712
+          ],
+          [
+            20.3135698,
+            46.4036341
+          ],
+          [
+            20.3143111,
+            46.4038976
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 800495958,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed:backward": "40",
+          "maxspeed:forward": "80",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:evm": "yes",
+          "railway:preferred_direction": "both",
+          "railway:rail": "jointed",
+          "railway:track_class": "CM3",
+          "railway:track_ref": "01",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "130",
+          "usage": "branch"
+        },
+        "nodeRefs": [
+          7486967826,
+          14209473663,
+          7486967827
+        ],
+        "version": 6,
+        "timestamp": "2026-09-23 14:10:48+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3106088,
+            46.4025962
+          ],
+          [
+            20.3115664,
+            46.4029423
+          ],
+          [
+            20.3116152,
+            46.4029599
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 844875089,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          712931968,
+          7882246004,
+          7882246005,
+          7882246006,
+          7882246007,
+          3011995719
+        ],
+        "version": 4,
+        "timestamp": "2023-03-14 08:09:51+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3229328,
+            46.4089842
+          ],
+          [
+            20.3229504,
+            46.4090395
+          ],
+          [
+            20.3229788,
+            46.4091587
+          ],
+          [
+            20.3229924,
+            46.4092333
+          ],
+          [
+            20.32301,
+            46.4093085
+          ],
+          [
+            20.3230305,
+            46.4093417
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 844875090,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "2",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          712931968,
+          7882246003,
+          712932038,
+          1866026683
+        ],
+        "version": 4,
+        "timestamp": "2023-10-26 08:31:03+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3229328,
+            46.4089842
+          ],
+          [
+            20.3229112,
+            46.4089356
+          ],
+          [
+            20.3228781,
+            46.4088811
+          ],
+          [
+            20.3226956,
+            46.4087035
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 845133456,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "1",
+          "name": "Kaszap utca",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          3011995722,
+          7884663719,
+          7884663720,
+          7884663721,
+          7884663722,
+          7884663723,
+          7884663701
+        ],
+        "version": 4,
+        "timestamp": "2023-10-26 08:34:41+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3231096,
+            46.409497
+          ],
+          [
+            20.323127,
+            46.4095431
+          ],
+          [
+            20.3231439,
+            46.409575
+          ],
+          [
+            20.3231612,
+            46.4096051
+          ],
+          [
+            20.3232552,
+            46.4097484
+          ],
+          [
+            20.3233172,
+            46.4098306
+          ],
+          [
+            20.3233299,
+            46.4098847
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 845133457,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          7884663701,
+          712932025,
+          7884663724,
+          1908551966,
+          7884663762,
+          712932035
+        ],
+        "version": 4,
+        "timestamp": "2024-08-22 07:42:56+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3233299,
+            46.4098847
+          ],
+          [
+            20.3232904,
+            46.4098539
+          ],
+          [
+            20.3232329,
+            46.4097853
+          ],
+          [
+            20.3230717,
+            46.4096456
+          ],
+          [
+            20.3230221,
+            46.4096133
+          ],
+          [
+            20.3229572,
+            46.4095712
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 845133461,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Tóalj utca",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          712931996,
+          7884663778,
+          7884663779,
+          7884663780,
+          7884663781
+        ],
+        "version": 2,
+        "timestamp": "2023-03-14 06:56:52+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3238013,
+            46.4115849
+          ],
+          [
+            20.3236776,
+            46.4115713
+          ],
+          [
+            20.3236258,
+            46.4115708
+          ],
+          [
+            20.3233796,
+            46.4115691
+          ],
+          [
+            20.3233163,
+            46.4115607
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 845133462,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "name": "Tóalj utca"
+        },
+        "nodeRefs": [
+          7884663781,
+          1864798572,
+          31094633,
+          1864798568,
+          921240623,
+          2131230315
+        ],
+        "version": 2,
+        "timestamp": "2023-03-14 06:56:52+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3233163,
+            46.4115607
+          ],
+          [
+            20.3222469,
+            46.4116661
+          ],
+          [
+            20.3219908,
+            46.4116898
+          ],
+          [
+            20.3213368,
+            46.411751
+          ],
+          [
+            20.3206429,
+            46.4118218
+          ],
+          [
+            20.318527,
+            46.4120092
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 845133466,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          12698661253,
+          7884663796,
+          7884663797,
+          7884663798,
+          7884663799,
+          7884663800
+        ],
+        "version": 5,
+        "timestamp": "2025-03-25 11:04:50+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3237916,
+            46.4114448
+          ],
+          [
+            20.3237642,
+            46.4113629
+          ],
+          [
+            20.3237501,
+            46.4113194
+          ],
+          [
+            20.3237436,
+            46.4112755
+          ],
+          [
+            20.3237126,
+            46.411181
+          ],
+          [
+            20.3237125,
+            46.411104
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 845133467,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "2",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          7884663800,
+          1881426176,
+          1881426170,
+          7884663700,
+          712932046,
+          1881426165,
+          7884663698,
+          712931993,
+          7884663701
+        ],
+        "version": 3,
+        "timestamp": "2023-03-14 08:09:51+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3237125,
+            46.411104
+          ],
+          [
+            20.3236383,
+            46.410936
+          ],
+          [
+            20.3234609,
+            46.4104875
+          ],
+          [
+            20.3233897,
+            46.4103027
+          ],
+          [
+            20.3233614,
+            46.4102271
+          ],
+          [
+            20.323359,
+            46.4101454
+          ],
+          [
+            20.3233533,
+            46.4099923
+          ],
+          [
+            20.3233476,
+            46.409939
+          ],
+          [
+            20.3233299,
+            46.4098847
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 845133468,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          7884663805,
+          7884663809,
+          7884663806,
+          7884663807,
+          2131230307
+        ],
+        "version": 5,
+        "timestamp": "2025-03-25 11:04:50+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3240389,
+            46.4119048
+          ],
+          [
+            20.3239975,
+            46.4118628
+          ],
+          [
+            20.3239102,
+            46.4117026
+          ],
+          [
+            20.3238645,
+            46.4116395
+          ],
+          [
+            20.3238378,
+            46.411598
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 845133469,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "oneway": "yes",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          12698661252,
+          7884663810,
+          7884663817,
+          7884663819,
+          7884663805
+        ],
+        "version": 5,
+        "timestamp": "2025-03-25 11:04:50+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3239699,
+            46.411576
+          ],
+          [
+            20.3239897,
+            46.4116952
+          ],
+          [
+            20.3240078,
+            46.4117549
+          ],
+          [
+            20.3240407,
+            46.4118578
+          ],
+          [
+            20.3240389,
+            46.4119048
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 874173762,
+        "tags": {
+          "axle_load": "20",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "60",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:etcs": "no",
+          "railway:evm": "no",
+          "railway:lzb": "no",
+          "railway:preferred_direction": "both",
+          "railway:pzb": "no",
+          "railway:rail": "jointed",
+          "railway:track_class": "C3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "freight",
+          "ref": "130",
+          "usage": "branch"
+        },
+        "nodeRefs": [
+          2785027049,
+          348022463,
+          348022464,
+          348022465,
+          348022466,
+          7008990667,
+          1693609616,
+          348022468,
+          348022469,
+          3984376622,
+          348022470,
+          348022471,
+          348022472,
+          348022473,
+          4191550044,
+          6271655448,
+          348022474,
+          348022475,
+          348022476,
+          348022477,
+          348022478,
+          348022479,
+          8038389669,
+          348022480,
+          348022481,
+          348022482,
+          348022483,
+          8140079533,
+          8140079532,
+          348022484,
+          3984540072,
+          348022486,
+          348022491,
+          348022493,
+          3984540069,
+          348022494,
+          348022495,
+          348022496,
+          8140079550,
+          348022497,
+          8140079551,
+          8138415827,
+          348022498,
+          348022499,
+          348022500,
+          348022501,
+          348022502,
+          348022503,
+          348022504,
+          6808472871
+        ],
+        "version": 7,
+        "timestamp": "2024-10-12 12:34:11+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3603786,
+            46.4089182
+          ],
+          [
+            20.3622692,
+            46.4063542
+          ],
+          [
+            20.3626126,
+            46.4059318
+          ],
+          [
+            20.3630939,
+            46.4054858
+          ],
+          [
+            20.3636446,
+            46.4050788
+          ],
+          [
+            20.3681691,
+            46.4019176
+          ],
+          [
+            20.3717978,
+            46.3993748
+          ],
+          [
+            20.376635,
+            46.3959864
+          ],
+          [
+            20.380301,
+            46.3935538
+          ],
+          [
+            20.3806692,
+            46.3933118
+          ],
+          [
+            20.380778,
+            46.3932399
+          ],
+          [
+            20.3811176,
+            46.3930345
+          ],
+          [
+            20.3816206,
+            46.392783
+          ],
+          [
+            20.382501,
+            46.3923637
+          ],
+          [
+            20.3844915,
+            46.3913836
+          ],
+          [
+            20.3887452,
+            46.3893671
+          ],
+          [
+            20.3899794,
+            46.388782
+          ],
+          [
+            20.3916146,
+            46.3880045
+          ],
+          [
+            20.3919751,
+            46.3878376
+          ],
+          [
+            20.3923623,
+            46.3876773
+          ],
+          [
+            20.3928898,
+            46.3875037
+          ],
+          [
+            20.3961254,
+            46.3865054
+          ],
+          [
+            20.3996771,
+            46.3853528
+          ],
+          [
+            20.4021024,
+            46.3845519
+          ],
+          [
+            20.402483,
+            46.3844244
+          ],
+          [
+            20.4028124,
+            46.3843095
+          ],
+          [
+            20.4032323,
+            46.3841347
+          ],
+          [
+            20.4038674,
+            46.3838608
+          ],
+          [
+            20.4043338,
+            46.3836478
+          ],
+          [
+            20.4046966,
+            46.38346
+          ],
+          [
+            20.4052331,
+            46.3831584
+          ],
+          [
+            20.4059266,
+            46.3827029
+          ],
+          [
+            20.4062635,
+            46.3824527
+          ],
+          [
+            20.4065389,
+            46.3822402
+          ],
+          [
+            20.4091059,
+            46.3801101
+          ],
+          [
+            20.4107094,
+            46.378779
+          ],
+          [
+            20.4111023,
+            46.3784815
+          ],
+          [
+            20.4114227,
+            46.378263
+          ],
+          [
+            20.4117714,
+            46.3780427
+          ],
+          [
+            20.4120927,
+            46.3778538
+          ],
+          [
+            20.4124907,
+            46.3776391
+          ],
+          [
+            20.4138251,
+            46.3769917
+          ],
+          [
+            20.4153338,
+            46.3762826
+          ],
+          [
+            20.4155939,
+            46.3761696
+          ],
+          [
+            20.4158737,
+            46.3760655
+          ],
+          [
+            20.4161595,
+            46.375963
+          ],
+          [
+            20.4164019,
+            46.3758843
+          ],
+          [
+            20.4166593,
+            46.3758219
+          ],
+          [
+            20.4169146,
+            46.3757611
+          ],
+          [
+            20.4194579,
+            46.3752402
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 912545859,
+        "tags": {
+          "highway": "tertiary",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Andrássy út",
+          "oneway": "yes"
+        },
+        "nodeRefs": [
+          6449439175,
+          8741201093,
+          8741201094,
+          6449440489
+        ],
+        "version": 4,
+        "timestamp": "2023-03-29 20:18:53+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3272558,
+            46.4161586
+          ],
+          [
+            20.3272321,
+            46.4160822
+          ],
+          [
+            20.3270895,
+            46.4159448
+          ],
+          [
+            20.3270314,
+            46.4159138
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 912545860,
+        "tags": {
+          "highway": "tertiary",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Andrássy út",
+          "oneway": "yes"
+        },
+        "nodeRefs": [
+          6449439184,
+          8741201095,
+          8741201096,
+          8741201097,
+          6449439158
+        ],
+        "version": 4,
+        "timestamp": "2023-03-29 20:18:53+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3272099,
+            46.4158327
+          ],
+          [
+            20.3272127,
+            46.4159015
+          ],
+          [
+            20.3272722,
+            46.4159796
+          ],
+          [
+            20.3273558,
+            46.4160547
+          ],
+          [
+            20.3273946,
+            46.416083
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 912545861,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "maxspeed": "50",
+          "name": "Andrássy út",
+          "oneway": "yes"
+        },
+        "nodeRefs": [
+          920249924,
+          6449439160,
+          6449439159,
+          8741201091,
+          8741201090,
+          8741201101,
+          8741201102,
+          6449440498
+        ],
+        "version": 4,
+        "timestamp": "2023-03-14 07:15:13+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3252298,
+            46.4147566
+          ],
+          [
+            20.3253724,
+            46.4147974
+          ],
+          [
+            20.3266534,
+            46.4155331
+          ],
+          [
+            20.3267376,
+            46.4155837
+          ],
+          [
+            20.3268598,
+            46.4156342
+          ],
+          [
+            20.3269215,
+            46.4156594
+          ],
+          [
+            20.3269896,
+            46.4156864
+          ],
+          [
+            20.3270704,
+            46.4157149
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 912545862,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "maxspeed": "50",
+          "name": "Andrássy út",
+          "oneway": "yes"
+        },
+        "nodeRefs": [
+          6449439155,
+          8741201089,
+          2146710645,
+          6449439156,
+          8185247785,
+          6449439157,
+          8420552561,
+          920249924
+        ],
+        "version": 4,
+        "timestamp": "2023-03-14 07:15:13+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3269196,
+            46.4158217
+          ],
+          [
+            20.3268349,
+            46.4157443
+          ],
+          [
+            20.3265801,
+            46.415593
+          ],
+          [
+            20.3258542,
+            46.4151718
+          ],
+          [
+            20.3253656,
+            46.4148873
+          ],
+          [
+            20.3253205,
+            46.4148611
+          ],
+          [
+            20.32527,
+            46.414803
+          ],
+          [
+            20.3252298,
+            46.4147566
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1020683102,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "junction": "roundabout",
+          "name": "Tóalj utca"
+        },
+        "nodeRefs": [
+          2131230311,
+          2131230310
+        ],
+        "version": 2,
+        "timestamp": "2023-03-14 06:56:52+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3183654,
+            46.4119438
+          ],
+          [
+            20.3184272,
+            46.411941
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1020683103,
+        "tags": {
+          "highway": "tertiary",
+          "name": "Imre utca"
+        },
+        "nodeRefs": [
+          957267006,
+          957266817
+        ],
+        "version": 2,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3037232,
+            46.4208017
+          ],
+          [
+            20.3039936,
+            46.420771
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1020683104,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "maxspeed": "50",
+          "name": "Kutasi út"
+        },
+        "nodeRefs": [
+          711942888,
+          447609718,
+          1879282302,
+          1928030580,
+          1866193465,
+          920260583
+        ],
+        "version": 3,
+        "timestamp": "2023-03-14 07:15:13+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3391792,
+            46.4249679
+          ],
+          [
+            20.3385952,
+            46.4247357
+          ],
+          [
+            20.3368515,
+            46.4239616
+          ],
+          [
+            20.3365156,
+            46.4238198
+          ],
+          [
+            20.3357267,
+            46.4234744
+          ],
+          [
+            20.3355045,
+            46.4233686
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1020683109,
+        "tags": {
+          "highway": "tertiary",
+          "maxspeed": "30",
+          "name": "Kodály Zoltán utca"
+        },
+        "nodeRefs": [
+          920249883,
+          2975747595,
+          920249819
+        ],
+        "version": 2,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3118793,
+            46.4125294
+          ],
+          [
+            20.3123338,
+            46.4124919
+          ],
+          [
+            20.3124892,
+            46.4124802
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1020683112,
+        "tags": {
+          "highway": "residential",
+          "name": "László utca"
+        },
+        "nodeRefs": [
+          957266787,
+          957267018,
+          957267127
+        ],
+        "version": 1,
+        "timestamp": "2022-01-12 22:30:45+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3026858,
+            46.4209311
+          ],
+          [
+            20.3004146,
+            46.4209589
+          ],
+          [
+            20.29965,
+            46.4209785
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1020683117,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "name": "Jókai utca"
+        },
+        "nodeRefs": [
+          416869915,
+          957266871,
+          957240949,
+          9413977313,
+          957266657,
+          957240893,
+          957240913,
+          957266859,
+          957240937,
+          957240942,
+          957240975,
+          957240987,
+          957240991
+        ],
+        "version": 7,
+        "timestamp": "2024-01-13 12:10:49+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3032269,
+            46.4344804
+          ],
+          [
+            20.305723,
+            46.4338258
+          ],
+          [
+            20.3081361,
+            46.4331995
+          ],
+          [
+            20.3084193,
+            46.4331216
+          ],
+          [
+            20.3085391,
+            46.4330886
+          ],
+          [
+            20.3098126,
+            46.4327617
+          ],
+          [
+            20.3108307,
+            46.4324958
+          ],
+          [
+            20.3116343,
+            46.432286
+          ],
+          [
+            20.3117324,
+            46.4322604
+          ],
+          [
+            20.3125223,
+            46.4320541
+          ],
+          [
+            20.3133781,
+            46.4318307
+          ],
+          [
+            20.3150282,
+            46.4313998
+          ],
+          [
+            20.3170777,
+            46.4308646
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1020683118,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "junction": "roundabout",
+          "name": "Tóalj utca"
+        },
+        "nodeRefs": [
+          2131230310,
+          2131230313,
+          2131230315
+        ],
+        "version": 2,
+        "timestamp": "2023-03-14 06:56:52+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3184272,
+            46.411941
+          ],
+          [
+            20.3184914,
+            46.411964
+          ],
+          [
+            20.318527,
+            46.4120092
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1020683119,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "junction": "roundabout",
+          "name": "Tóalj utca"
+        },
+        "nodeRefs": [
+          31094634,
+          2131230314,
+          2131230312,
+          2131230311
+        ],
+        "version": 2,
+        "timestamp": "2023-03-14 06:56:52+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3182832,
+            46.4120483
+          ],
+          [
+            20.3182824,
+            46.4120058
+          ],
+          [
+            20.3183197,
+            46.4119621
+          ],
+          [
+            20.3183654,
+            46.4119438
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1021490719,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "maxspeed": "30",
+          "name": "Kodály Zoltán utca"
+        },
+        "nodeRefs": [
+          1659341810,
+          920249812
+        ],
+        "version": 4,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3141513,
+            46.4123739
+          ],
+          [
+            20.3146721,
+            46.4123278
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1021490730,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "maxspeed": "50",
+          "name": "Szántó Kovács János utca",
+          "source:maxspeed": "HU:urban"
+        },
+        "nodeRefs": [
+          957267060,
+          711942874
+        ],
+        "version": 5,
+        "timestamp": "2024-01-13 12:10:49+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3181349,
+            46.4356859
+          ],
+          [
+            20.3182977,
+            46.4348898
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1021490731,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "name": "Jókai utca"
+        },
+        "nodeRefs": [
+          931592188,
+          416869915
+        ],
+        "version": 6,
+        "timestamp": "2024-01-13 12:10:49+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3025922,
+            46.4346467
+          ],
+          [
+            20.3032269,
+            46.4344804
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1021490739,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "name": "Jókai utca"
+        },
+        "nodeRefs": [
+          416869829,
+          920249777,
+          920249885,
+          920249884,
+          920249862,
+          9413977309,
+          920249874,
+          920260593,
+          711942758
+        ],
+        "version": 6,
+        "timestamp": "2024-01-13 12:10:49+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3188232,
+            46.4304088
+          ],
+          [
+            20.3215296,
+            46.4297081
+          ],
+          [
+            20.3232261,
+            46.4292772
+          ],
+          [
+            20.3248695,
+            46.4288418
+          ],
+          [
+            20.326541,
+            46.4284105
+          ],
+          [
+            20.3280929,
+            46.4280135
+          ],
+          [
+            20.3282236,
+            46.4279801
+          ],
+          [
+            20.3298634,
+            46.4275523
+          ],
+          [
+            20.3307725,
+            46.4273128
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1021490741,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "3",
+          "lanes:backward": "1",
+          "lanes:forward": "2",
+          "name": "Jókai utca",
+          "turn:lanes:forward": "left|through;right"
+        },
+        "nodeRefs": [
+          957240991,
+          1339428656,
+          416869829
+        ],
+        "version": 6,
+        "timestamp": "2024-01-13 12:10:49+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3170777,
+            46.4308646
+          ],
+          [
+            20.318641,
+            46.4304558
+          ],
+          [
+            20.3188232,
+            46.4304088
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1025682037,
+        "tags": {
+          "highway": "tertiary",
+          "name": "László utca"
+        },
+        "nodeRefs": [
+          9456757645,
+          957266787
+        ],
+        "version": 2,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3029729,
+            46.4209366
+          ],
+          [
+            20.3026858,
+            46.4209311
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1025852206,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "highway": "tertiary",
+          "lanes": "3",
+          "lanes:backward": "2",
+          "lanes:forward": "1",
+          "name": "Teleki utca",
+          "turn:lanes:backward": "left|through;right"
+        },
+        "nodeRefs": [
+          330464105,
+          10777409554
+        ],
+        "version": 4,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3179779,
+            46.4217615
+          ],
+          [
+            20.318245,
+            46.4216838
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1025852208,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "3",
+          "lanes:backward": "1",
+          "lanes:forward": "2",
+          "name": "Szántó Kovács János utca",
+          "turn:lanes:forward": "left|through;right"
+        },
+        "nodeRefs": [
+          2084931591,
+          2084931588,
+          10777409552,
+          330464105
+        ],
+        "version": 4,
+        "timestamp": "2024-01-13 12:10:49+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3180562,
+            46.422525
+          ],
+          [
+            20.3180242,
+            46.4222132
+          ],
+          [
+            20.3179872,
+            46.4218522
+          ],
+          [
+            20.3179779,
+            46.4217615
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1025852213,
+        "tags": {
+          "highway": "tertiary",
+          "name": "Jókai utca",
+          "oneway": "yes"
+        },
+        "nodeRefs": [
+          1865947153,
+          9458242234
+        ],
+        "version": 2,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3090554,
+            46.4266575
+          ],
+          [
+            20.3089162,
+            46.4268563
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1025852214,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "3",
+          "lanes:backward": "2",
+          "lanes:forward": "1",
+          "name": "Szántó Kovács János utca",
+          "turn:lanes:backward": "left|through;right"
+        },
+        "nodeRefs": [
+          416869829,
+          1339428628,
+          330464102
+        ],
+        "version": 3,
+        "timestamp": "2024-01-13 12:10:49+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3188232,
+            46.4304088
+          ],
+          [
+            20.3188078,
+            46.4302856
+          ],
+          [
+            20.3187672,
+            46.4296907
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1026122542,
+        "tags": {
+          "cycleway": "lane",
+          "highway": "tertiary",
+          "name": "Teleki utca"
+        },
+        "nodeRefs": [
+          920249960,
+          920249905,
+          920249758
+        ],
+        "version": 3,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.318959,
+            46.4214762
+          ],
+          [
+            20.3206204,
+            46.4209845
+          ],
+          [
+            20.3222469,
+            46.4204991
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1065369422,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "40",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:evm": "yes",
+          "railway:preferred_direction": "both",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          9784201368,
+          1864725070
+        ],
+        "version": 2,
+        "timestamp": "2025-05-23 16:56:54+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3211571,
+            46.4064318
+          ],
+          [
+            20.3230554,
+            46.4071321
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1065369423,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "80",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:evm": "yes",
+          "railway:preferred_direction": "both",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          9784201370,
+          9784201369,
+          1864893056
+        ],
+        "version": 2,
+        "timestamp": "2025-05-23 16:56:54+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3314674,
+            46.4102353
+          ],
+          [
+            20.3315073,
+            46.4102501
+          ],
+          [
+            20.3328176,
+            46.4107259
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1120676143,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "1",
+          "maxspeed": "50",
+          "name": "Andrássy út",
+          "oneway": "yes"
+        },
+        "nodeRefs": [
+          6449439178,
+          1927494680,
+          6449439151
+        ],
+        "version": 3,
+        "timestamp": "2023-03-29 20:18:53+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3275414,
+            46.4161672
+          ],
+          [
+            20.3285106,
+            46.4166377
+          ],
+          [
+            20.3286759,
+            46.4166939
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1136280622,
+        "tags": {
+          "highway": "tertiary",
+          "name": "Teleki utca",
+          "oneway": "yes"
+        },
+        "nodeRefs": [
+          10592427259,
+          10592427255,
+          957240962
+        ],
+        "version": 3,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.324831,
+            46.4197152
+          ],
+          [
+            20.3246963,
+            46.4197653
+          ],
+          [
+            20.3244665,
+            46.4198307
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1136280623,
+        "tags": {
+          "highway": "tertiary",
+          "name": "Teleki utca",
+          "oneway": "yes"
+        },
+        "nodeRefs": [
+          1888429932,
+          10592427254,
+          2131230355
+        ],
+        "version": 3,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3246526,
+            46.4197089
+          ],
+          [
+            20.3247097,
+            46.4196765
+          ],
+          [
+            20.3247601,
+            46.4196497
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1136280624,
+        "tags": {
+          "highway": "tertiary",
+          "name": "Teleki utca",
+          "oneway": "yes"
+        },
+        "nodeRefs": [
+          957240962,
+          1888429932
+        ],
+        "version": 3,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3244665,
+            46.4198307
+          ],
+          [
+            20.3246526,
+            46.4197089
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1158920101,
+        "tags": {
+          "cycleway": "lane",
+          "highway": "tertiary",
+          "lanes": "3",
+          "lanes:backward": "2",
+          "lanes:forward": "1",
+          "name": "Teleki utca",
+          "turn:lanes:backward": "left|through;right"
+        },
+        "nodeRefs": [
+          10777409554,
+          920249960
+        ],
+        "version": 3,
+        "timestamp": "2024-01-14 19:53:30+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.318245,
+            46.4216838
+          ],
+          [
+            20.318959,
+            46.4214762
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1206072889,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "lanes": "2",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          920249936,
+          7884663805
+        ],
+        "version": 3,
+        "timestamp": "2023-10-26 08:41:32+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3245557,
+            46.4131025
+          ],
+          [
+            20.3240389,
+            46.4119048
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1206072890,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "junction": "roundabout",
+          "name": "Tóalj utca"
+        },
+        "nodeRefs": [
+          2131230326,
+          2131230324,
+          2131230320,
+          31094634
+        ],
+        "version": 1,
+        "timestamp": "2023-09-08 09:08:16+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3184034,
+            46.4121122
+          ],
+          [
+            20.3183496,
+            46.4121036
+          ],
+          [
+            20.3183047,
+            46.4120784
+          ],
+          [
+            20.3182832,
+            46.4120483
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1206073043,
+        "tags": {
+          "bicycle": "use_sidepath",
+          "cycleway": "separate",
+          "highway": "tertiary",
+          "maxspeed": "50",
+          "name": "Kaszap utca",
+          "surface": "asphalt"
+        },
+        "nodeRefs": [
+          920249936,
+          7884663790,
+          712916306
+        ],
+        "version": 3,
+        "timestamp": "2023-10-26 08:42:27+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3245557,
+            46.4131025
+          ],
+          [
+            20.3245831,
+            46.4131693
+          ],
+          [
+            20.3251435,
+            46.4145408
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1323167417,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "80",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:etcs": "no",
+          "railway:evm": "no",
+          "railway:lzb": "no",
+          "railway:preferred_direction": "both",
+          "railway:pzb": "no",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          4034002246,
+          371323586,
+          1930628878,
+          4022742111
+        ],
+        "version": 2,
+        "timestamp": "2025-05-23 16:56:54+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.3368483,
+            46.4121824
+          ],
+          [
+            20.3372475,
+            46.4123302
+          ],
+          [
+            20.3373334,
+            46.412362
+          ],
+          [
+            20.3374105,
+            46.4123905
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1323405171,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "60",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:etcs": "no",
+          "railway:evm": "no",
+          "railway:lzb": "no",
+          "railway:preferred_direction": "both",
+          "railway:pzb": "no",
+          "railway:rail": "jointed",
+          "railway:track_class": "CM2",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "freight",
+          "ref": "130",
+          "usage": "branch"
+        },
+        "nodeRefs": [
+          4022742068,
+          957231883,
+          11385703270,
+          8181353099,
+          12244090131,
+          12244090133,
+          4022742067,
+          4022742066,
+          12244090132,
+          4022742064,
+          348022451,
+          12244090134,
+          8181353097,
+          348022452,
+          12244090135,
+          348022453,
+          8181353096,
+          348022454,
+          12244090136,
+          348022455,
+          8181353098,
+          348022456,
+          12244090137,
+          12244090138,
+          348022457,
+          348022458,
+          348022459,
+          8181353095,
+          348022460,
+          348022461,
+          372618843,
+          3311663977,
+          348022462,
+          6297667761,
+          712916230,
+          6297667744,
+          4022750105,
+          2785027049
+        ],
+        "version": 1,
+        "timestamp": "2024-10-12 12:34:11+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.348481,
+            46.4163746
+          ],
+          [
+            20.3489299,
+            46.4165215
+          ],
+          [
+            20.3489935,
+            46.4165423
+          ],
+          [
+            20.3490539,
+            46.4165621
+          ],
+          [
+            20.349226,
+            46.4166155
+          ],
+          [
+            20.3494359,
+            46.4166748
+          ],
+          [
+            20.3496459,
+            46.4167219
+          ],
+          [
+            20.349807,
+            46.4167537
+          ],
+          [
+            20.3499892,
+            46.4167847
+          ],
+          [
+            20.3501496,
+            46.4168055
+          ],
+          [
+            20.3503621,
+            46.4168259
+          ],
+          [
+            20.3505839,
+            46.4168392
+          ],
+          [
+            20.3508064,
+            46.4168444
+          ],
+          [
+            20.3510669,
+            46.4168427
+          ],
+          [
+            20.3513149,
+            46.4168304
+          ],
+          [
+            20.3515621,
+            46.4168133
+          ],
+          [
+            20.3518145,
+            46.4167847
+          ],
+          [
+            20.3520388,
+            46.4167541
+          ],
+          [
+            20.3522827,
+            46.41671
+          ],
+          [
+            20.3525388,
+            46.4166543
+          ],
+          [
+            20.3527834,
+            46.4165941
+          ],
+          [
+            20.3530355,
+            46.4165184
+          ],
+          [
+            20.3532863,
+            46.4164321
+          ],
+          [
+            20.3535019,
+            46.4163487
+          ],
+          [
+            20.3537123,
+            46.4162641
+          ],
+          [
+            20.3540106,
+            46.4161313
+          ],
+          [
+            20.35446,
+            46.4158779
+          ],
+          [
+            20.3547328,
+            46.4156886
+          ],
+          [
+            20.354969,
+            46.4154909
+          ],
+          [
+            20.3552159,
+            46.4152572
+          ],
+          [
+            20.3556905,
+            46.4146623
+          ],
+          [
+            20.3561729,
+            46.4140895
+          ],
+          [
+            20.3589129,
+            46.4108405
+          ],
+          [
+            20.3597537,
+            46.4096842
+          ],
+          [
+            20.3597825,
+            46.4096446
+          ],
+          [
+            20.3598397,
+            46.4095795
+          ],
+          [
+            20.3601587,
+            46.4092163
+          ],
+          [
+            20.3603786,
+            46.4089182
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1389075640,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "80",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:evm": "yes",
+          "railway:preferred_direction": "both",
+          "railway:rail": "jointed",
+          "railway:track_class": "CM3",
+          "railway:track_ref": "01",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "130",
+          "usage": "branch"
+        },
+        "nodeRefs": [
+          5629469203,
+          7486967826
+        ],
+        "version": 1,
+        "timestamp": "2025-05-23 16:56:54+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.310089,
+            46.4024108
+          ],
+          [
+            20.3106088,
+            46.4025962
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osmWayId": 1389075649,
+        "tags": {
+          "axle_load": "21",
+          "electrified": "no",
+          "gauge": "1435",
+          "loading_gauge": "TSI_GC",
+          "maxspeed": "80",
+          "operator": "MÁV",
+          "passenger_lines": "1",
+          "railway": "rail",
+          "railway:ballastless": "no",
+          "railway:bidirectional": "regular",
+          "railway:etcs": "no",
+          "railway:evm": "no",
+          "railway:lzb": "no",
+          "railway:preferred_direction": "both",
+          "railway:pzb": "no",
+          "railway:radio": "analogue",
+          "railway:rail": "continuous",
+          "railway:track_class": "CM3",
+          "railway:track_type": "main",
+          "railway:traffic_mode": "mixed",
+          "ref": "135",
+          "usage": "main"
+        },
+        "nodeRefs": [
+          4022742100,
+          1864736658,
+          11385703269,
+          12244076396,
+          12244076395
+        ],
+        "version": 1,
+        "timestamp": "2025-05-23 16:56:54+00:00"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.348744,
+            46.4165506
+          ],
+          [
+            20.3488865,
+            46.4166034
+          ],
+          [
+            20.3489503,
+            46.416627
+          ],
+          [
+            20.3493297,
+            46.4167675
+          ],
+          [
+            20.3496885,
+            46.4169011
+          ]
+        ]
+      }
+    }
+  ]
+}

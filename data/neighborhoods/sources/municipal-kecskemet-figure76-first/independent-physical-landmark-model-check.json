@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "scope": "Compare previously completed independent manual physical-feature measurements with the later-read parent NCC affine. No points or uncertainty widths are adjusted to the model. This is a local image-to-image consistency check, not geographic or full-frame validation.",
+  "manualObservationFileSha256": "d7cffc6ad6fddc329041bd5e9558705c2c729c70e7bc7801342603f9898459f4",
+  "imageRegistrationFileSha256": "788967ed12e69816e18726b8c1994a053a7ce54c47d16911ffc8fb86f340eaf1",
+  "manualPointMeasurementUsedParentNccFit": false,
+  "manualPointsAdjustedAfterModelRead": false,
+  "records": [
+    {
+      "id": "gym-northern-roof-tip",
+      "manualFigure73Pixel": [
+        704,
+        1004
+      ],
+      "manualFigure76Pixel": [
+        1103,
+        382
+      ],
+      "nccModelPredictedFigure76Pixel": [
+        1103.7941567572882,
+        381.8881785746421
+      ],
+      "modelMinusManualTargetPixel": [
+        0.7941567572881922,
+        -0.11182142535790263
+      ],
+      "euclideanDisagreementTargetPixels": 0.8019906397929901,
+      "combinedManualInterpretationHalfWidthsTargetPixels": [
+        4.63714143021869,
+        4.635693973569323
+      ],
+      "modelWithinConservativelyCombinedManualInterpretationBoxes": true
+    },
+    {
+      "id": "T-building-second-roof-box",
+      "manualFigure73Pixel": [
+        826,
+        1196
+      ],
+      "manualFigure76Pixel": [
+        1234,
+        587
+      ],
+      "nccModelPredictedFigure76Pixel": [
+        1234.0389008142229,
+        586.913802648419
+      ],
+      "modelMinusManualTargetPixel": [
+        0.038900814222870395,
+        -0.08619735158094954
+      ],
+      "euclideanDisagreementTargetPixels": 0.0945687938316446,
+      "combinedManualInterpretationHalfWidthsTargetPixels": [
+        2.585713393886681,
+        2.584808733480827
+      ],
+      "modelWithinConservativelyCombinedManualInterpretationBoxes": true
+    },
+    {
+      "id": "small-red-roof-north-ridge",
+      "manualFigure73Pixel": [
+        837,
+        1286
+      ],
+      "manualFigure76Pixel": [
+        1245,
+        684
+      ],
+      "nccModelPredictedFigure76Pixel": [
+        1245.7542958720596,
+        683.0189058344477
+      ],
+      "modelMinusManualTargetPixel": [
+        0.7542958720596289,
+        -0.9810941655523493
+      ],
+      "euclideanDisagreementTargetPixels": 1.2375411202408817,
+      "combinedManualInterpretationHalfWidthsTargetPixels": [
+        4.63714143021869,
+        4.635693973569323
+      ],
+      "modelWithinConservativelyCombinedManualInterpretationBoxes": true
+    },
+    {
+      "id": "rail-side-long-shed-ne-corner",
+      "manualFigure73Pixel": [
+        789,
+        1337
+      ],
+      "manualFigure76Pixel": [
+        1191,
+        739
+      ],
+      "nccModelPredictedFigure76Pixel": [
+        1194.4617466119091,
+        737.4776915676234
+      ],
+      "modelMinusManualTargetPixel": [
+        3.4617466119091205,
+        -1.522308432376576
+      ],
+      "euclideanDisagreementTargetPixels": 3.7816811828007264,
+      "combinedManualInterpretationHalfWidthsTargetPixels": [
+        4.63714143021869,
+        4.635693973569323
+      ],
+      "modelWithinConservativelyCombinedManualInterpretationBoxes": true
+    }
+  ],
+  "allFourManualPhysicalFeaturesConsistentWithNccWithinDeclaredManualInterpretation": true,
+  "globalGeographicRegistrationVerified": false,
+  "outsideObservedImageOverlapValidated": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false
+}

@@ -1,0 +1,195 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "manual:Budapest:Peterimajor",
+      "properties": {
+        "name": "Péterimajor",
+        "municipality": "Budapest",
+        "district": 23,
+        "boundaryKind": "neighbourhood",
+        "method": "legal_named_builtup_area_with_existing_osm_residential_outline_as_explicit_proxy",
+        "evidenceUrls": [
+          "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+          "https://www.openstreetmap.org/way/115726893",
+          "https://www.openstreetmap.org/node/905070343",
+          "https://www.openstreetmap.org/way/574785521",
+          "https://www.openstreetmap.org/way/854074581",
+          "https://www.openstreetmap.org/way/854074582",
+          "https://www.openstreetmap.org/way/854074583",
+          "https://www.openstreetmap.org/way/854074585"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://net.jogtar.hu/rendelet?council=fovaros&dbnum=104&docid=A1200094.FOV",
+            "sha256": "fb61b865266990e43e6407f7d46e8421a17541b5efa4962bcff3cd8f9f0ecfac",
+            "paragraph": "3. melléklet 23.6."
+          }
+        ],
+        "sourceParagraph": "3. melléklet 23.6.",
+        "boundaryText": "Majori út mellett található belterületi városrész",
+        "sourceLineIds": [
+          "osm:way:115726893"
+        ],
+        "identitySourceIds": [
+          "osm:node:905070343",
+          "osm:way:574785521",
+          "osm:way:854074581",
+          "osm:way:854074582",
+          "osm:way:854074583",
+          "osm:way:854074585"
+        ],
+        "sourceGeometry": {
+          "path": "data/neighborhoods/manual/sources/budapest-peterimajor-input.geojson",
+          "sha256": "4a85c3669fd67a99963f5d34f93beb7c1e02b0d4767f00879d0a5de1d827816f",
+          "featureId": "osm:way:115726893",
+          "geometrySha256": "087962c9b0ab3af7814a746ea0f0b32e34d4d828254e0f5eac608e5bff1f2206",
+          "geometryOperation": "Copy complete existing residential Polygon without any coordinate or edge change.",
+          "originalVertexCount": 20,
+          "addedVertices": 0,
+          "addedSegments": 0,
+          "pointUsedToGenerateGeometry": false,
+          "buffersUsed": false
+        },
+        "quality": "source_based_inferred_boundary_candidate",
+        "reviewNotes": [
+          "The legal description identifies a built-up neighborhood beside Majori út but does not supply a surveyed ring.",
+          "The actual OSM residential land-use polygon beside Majori út contains the independently named Péterimajor neighborhood point.",
+          "The complete existing residential outline is used as a candidate proxy. Its land-use edge has not been established as the legal belterület or neighborhood boundary.",
+          "The named point and street establish identity only; neither supplies a radius, bounding box, Voronoi cell or synthetic polygon.",
+          "This inferred candidate requires municipal boundary-map review before precise legal or address assignment use."
+        ],
+        "usableForAddressAssignment": false,
+        "source": {
+          "provider": "openstreetmap",
+          "osmType": "way",
+          "osmId": 115726893,
+          "url": "https://www.openstreetmap.org/way/115726893",
+          "tags": {
+            "landuse": "residential"
+          },
+          "nodeRefs": [
+            1306688699,
+            1306688664,
+            13460904443,
+            1306688705,
+            1306688677,
+            1306688694,
+            1306688686,
+            1306688684,
+            1306688691,
+            1306688697,
+            1306688683,
+            1306688690,
+            1306688665,
+            1306688668,
+            12045642754,
+            1306688698,
+            1306688662,
+            1306688703,
+            1306688676,
+            1306688699
+          ],
+          "objectVersion": 3,
+          "objectTimestamp": "2026-01-16 18:18:13+00:00",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "geometryProcessing": "Actual complete closed source way ring without snapping, clipping, interpolation, repair or inferred closure."
+        },
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors",
+        "attributionUrl": "https://www.openstreetmap.org/copyright"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.1589193,
+              47.3937559
+            ],
+            [
+              19.1571619,
+              47.3928005
+            ],
+            [
+              19.1571539,
+              47.3927177
+            ],
+            [
+              19.1573335,
+              47.3925826
+            ],
+            [
+              19.15684,
+              47.3922049
+            ],
+            [
+              19.1573979,
+              47.3917982
+            ],
+            [
+              19.1570975,
+              47.3916239
+            ],
+            [
+              19.159608,
+              47.3898371
+            ],
+            [
+              19.1587068,
+              47.3893286
+            ],
+            [
+              19.159608,
+              47.3887185
+            ],
+            [
+              19.1603015,
+              47.3891182
+            ],
+            [
+              19.1612253,
+              47.3886354
+            ],
+            [
+              19.1618906,
+              47.3890926
+            ],
+            [
+              19.1617753,
+              47.3892415
+            ],
+            [
+              19.1628746,
+              47.3900066
+            ],
+            [
+              19.1632466,
+              47.3902655
+            ],
+            [
+              19.161536,
+              47.3914075
+            ],
+            [
+              19.1611009,
+              47.3917706
+            ],
+            [
+              19.1600518,
+              47.392614
+            ],
+            [
+              19.1589193,
+              47.3937559
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

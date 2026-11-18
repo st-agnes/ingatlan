@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-14",
+  "status": "bounded_public_service_role_review",
+  "records": [
+    {
+      "sourceUrl": "https://infoterkep.szegedvaros.hu/assets/data/map.json",
+      "rawSha256": "9f30b23aec878dc381cdc023f96f8a65610421cee84694da2104e62c1eae9278",
+      "filterCount": 12,
+      "markerCount": 692,
+      "polygonCount": 0,
+      "role": "amenity_marker_map_not_quarter_boundary_source",
+      "unrelatedPointAddressesContactsCameraLocationsPublished": false,
+      "globalConclusionThatNoSzegedBoundariesExist": false
+    },
+    {
+      "sourceUrl": "https://services5.arcgis.com/U5XLnNfWSBVhIdqv/arcgis/rest/services/DÉSZ_test/FeatureServer",
+      "sourceItemId": "1fa4713b823846ada57d837e6ab6ec02",
+      "layersMetadataSha256": "dbe1140382f6300554f1e9517e82e0ab22bb09f8e7855648117528c1e6369b84",
+      "layerCount": 128,
+      "fineNamedQuarterLayerIdentified": false,
+      "observedRole": "Budapest planning, parcel and district metadata; no fine-quarter layer identified in this bounded review",
+      "sourceFeaturesDownloaded": false,
+      "globalConclusionThatNoBudapestOrDeszQuarterDataExists": false
+    }
+  ],
+  "newPrimaryPolygons": 0,
+  "newEstimatedPolygons": 0,
+  "networkAccessOrAuthorizationBypassPerformed": false
+}

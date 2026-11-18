@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Kaposvár",
+  "status": "FROZEN_BOUNDED_NEGATIVE_FOR_NEW_FINE_CONTOURS",
+  "assessmentDate": "2026-11-14",
+  "scope": "Two downloaded supplemental municipal PDFs and their city-quarter map/context pages; this is not an exhaustive search of all possible Kaposvár sources.",
+  "newPrimaryFeatureCount": 0,
+  "newEstimatedFeatureCount": 0,
+  "newFineQuarterContourCount": 0,
+  "sourceLegendUnitCountPerMap": 10,
+  "existingFineSourceUnitCount": 4,
+  "existingCompoundSourceUnitCount": 6,
+  "sourceUnitSamenessBasis": "Names, numbering and the explicit FVS retention statement establish the same ten-unit functional planning scheme. Exact geometric equality between historical maps has not been measured or claimed.",
+  "existingBatch": "data/neighborhoods/sources/municipal-kaposvar-raster-next",
+  "existingBatchModified": false,
+  "registriesOrExportsModified": false,
+  "fineSourceUnits": [
+    "Belváros",
+    "Északnyugati városrész",
+    "Északi városrész",
+    "Kaposfüred"
+  ],
+  "compoundSourceUnits": [
+    "Kisgát és környéke, Cukorgyár, Pécsi utca és környéke",
+    "Kecelhegy – Cser",
+    "Donner – Rómahegy",
+    "Ivánfahegy – Kaposszentjakab",
+    "Toponár – Répáspuszta – Fészerlak – Deseda",
+    "Töröcske – Zselic kertváros"
+  ],
+  "spellingPolicy": "These comparison labels preserve existing full source-unit identities; map abbreviations, hyphens and Fészerlak/Fészerlakpuszta variants remain source variants, not new canonical-name decisions.",
+  "nativeGeometry": {
+    "mapPages": ["kaposvar-belvaros2009:26", "kaposvar-fvs:182"],
+    "mapNativeVectorPathCounts": [0, 0],
+    "nativeMapImagesRetained": true,
+    "pixelContourExtractionPerformed": false,
+    "pixelContourExtractionDisposition": "The ten source-unit outlines are useful map evidence but duplicating existing units would not add a new fine quarter. Neither map draws finer internal divisions within compound units.",
+    "mapComponentCountClaimed": null,
+    "georeferencePerformed": false,
+    "acceptedPhysicalControlCount": 0,
+    "independentPhysicalHoldoutCount": 0,
+    "sourceControlUncertaintyMetres": null,
+    "extrapolationUncertaintyMetres": null,
+    "claimedAbsoluteAccuracyMetres": null,
+    "uncertaintyExplanation": "No geographic polygon was emitted and no geographic transform was fitted. Raster source outlines have no established geographic projection or accepted physical control correspondence in this packet. Null is unknown, not zero error.",
+    "manualCapsOrBridgingPerformed": false,
+    "bboxBufferHullFrameClosureOrInventedParentChildPerformed": false
+  },
+  "identityEvidence": [
+    {
+      "sourceId": "kaposvar-belvaros2009",
+      "pdfPages": [25, 26],
+      "finding": "The document lists ten functional IVS quarters; its city map numbers the same ten units. Six compound labels remain undivided."
+    },
+    {
+      "sourceId": "kaposvar-belvaros2009",
+      "pdfPages": [27, 44],
+      "shortQuote": "ezen a városrészen belül",
+      "finding": "The whole Belváros quarter contains the smaller Városközpont intervention area. Page 44 identifies the 13.85 ha intervention area explicitly, so its later closed maps and street-number list do not establish a whole-quarter contour."
+    },
+    {
+      "sourceId": "kaposvar-fvs",
+      "pdfPages": [1, 181, 182],
+      "shortQuote": "jelen stratégia is megtartja a korábban lehatárolt városrészi felosztást",
+      "finding": "The July 2023 version 2.0 strategy, titled for 2021–2027, explicitly retains the prior ten-quarter division. The PDF creation date in February 2024 is separate metadata. Its map again has ten legend units. This does not establish that exact boundary coordinates remained unchanged or validate all names for November 2026."
+    },
+    {
+      "sourceId": "kaposvar-fvs",
+      "pdfPages": [182, 183],
+      "finding": "The map shows Belváros as one unit. Its four named internal parts are described in prose; no individual closed mapped contours are supplied."
+    }
+  ],
+  "remainingFineQuarterLeads": [
+    {
+      "name": "Donner",
+      "sourceId": "kaposvar-fvs",
+      "pdfPage": 186,
+      "evidenceType": "Prose location and physical-edge description within compound unit 6",
+      "namedEdges": ["Kapos", "67-es út", "Zselic-csatorna", "Szigetvári út"],
+      "disposition": "No finer source contour extracted. Modern road/waterway geometry plus an assumed interpretation would be a separate reconstruction, not extraction of an internal boundary from this map. The combined introductory sentence also requires careful textual interpretation."
+    },
+    {
+      "name": "Rómahegy",
+      "sourceId": "kaposvar-fvs",
+      "pdfPage": 186,
+      "evidenceType": "Prose named-edge sequence within compound unit 6",
+      "namedEdges": ["Kapos-folyó", "Ivánfai árok", "belterület határ", "Szigetvári út", "Zselic patak"],
+      "disposition": "No finer source contour extracted. The relevant historical belterületi boundary and its exact junctions with the named edges are not established. A closed fine polygon cannot be completed here without an additional source or unproved assumptions."
+    }
+  ],
+  "sourceAgeAndNames": {
+    "belvarosDocumentDate": "2009-02",
+    "fvsDocumentDate": "2023-07",
+    "fvsPlanningPeriod": "2021–2027",
+    "fvsPdfCreationMetadata": "2024-02-02",
+    "fvsEmbeddedMapOriginalSurveyDateEstablished": false,
+    "retainedPlanningDivisionOfficiallySupportedIn2023": true,
+    "exactFineNeighborhoodNameSetIndependentlyValidatedFor2026": false,
+    "historicalMapShapeAndModernRoadAgreementEstablished": false
+  },
+  "usableForAddressAssignment": false,
+  "municipalMapOpenReuseLicenceEstablished": false,
+  "furtherSourceNeeded": "An actual finer municipal map/GIS layer or authoritative fine-boundary definition with independently identifiable geographic edges and controls."
+}

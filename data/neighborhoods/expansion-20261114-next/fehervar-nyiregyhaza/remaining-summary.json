@@ -1,0 +1,98 @@
+{
+  "featureCount": 18,
+  "municipalities": {
+    "Nyíregyháza": 6,
+    "Székesfehérvár": 12
+  },
+  "sourceCellCandidates": 20,
+  "names": {
+    "Székesfehérvár": [
+      "Almássytelep",
+      "Demkóhegy",
+      "Fecskepart",
+      "Feketehegy",
+      "Kadocsa",
+      "Királykút",
+      "Oncsatelep",
+      "Palotavárosi lakótelep",
+      "Papagáj-telep",
+      "Szedreskert",
+      "Sóstó",
+      "Tóváros"
+    ],
+    "Nyíregyháza": [
+      "Fáklyás lakópark",
+      "Green City lakópark",
+      "Ipari park",
+      "Jókaitelep",
+      "Ókistelekiszőlő",
+      "Újkistelekiszőlő"
+    ]
+  },
+  "unresolvedNames": {
+    "Székesfehérvár": [
+      "Laguna Lakópark",
+      "Velinszky László-lakótelep",
+      "Ősz utca"
+    ],
+    "Nyíregyháza": [
+      "Báthory-lakópark",
+      "Cúgosrész I.",
+      "Kerti lak",
+      "Kun lakópark",
+      "Sóstóhegyi lakópark",
+      "Tópart",
+      "Őzdomb-lakókert"
+    ]
+  },
+  "sourceProcessing": [
+    {
+      "municipality": "Székesfehérvár",
+      "targetNames": [
+        "Almássytelep",
+        "Demkóhegy",
+        "Fecskepart",
+        "Feketehegy",
+        "Kadocsa",
+        "Királykút",
+        "Laguna Lakópark",
+        "Oncsatelep",
+        "Palotavárosi lakótelep",
+        "Papagáj-telep",
+        "Szedreskert",
+        "Sóstó",
+        "Tóváros",
+        "Velinszky László-lakótelep",
+        "Ősz utca"
+      ],
+      "sourceCellsByNetworkLevel": {
+        "major": 306,
+        "local": 2134
+      }
+    },
+    {
+      "municipality": "Nyíregyháza",
+      "targetNames": [
+        "Báthory-lakópark",
+        "Cúgosrész I.",
+        "Fáklyás lakópark",
+        "Green City lakópark",
+        "Ipari park",
+        "Jókaitelep",
+        "Kerti lak",
+        "Kun lakópark",
+        "Sóstóhegyi lakópark",
+        "Tópart",
+        "Ókistelekiszőlő",
+        "Újkistelekiszőlő",
+        "Őzdomb-lakókert"
+      ],
+      "sourceCellsByNetworkLevel": {
+        "major": 318,
+        "local": 2235
+      }
+    }
+  ],
+  "circleCount": 0,
+  "validGeometryCount": 18
+}

@@ -1,0 +1,204 @@
+{
+  "type": "FeatureCollection",
+  "scope": "One LOW-CONFIDENCE historical-source fine-neighborhood candidate only, no parent/fine-child completeness claim",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "manual:vac-hep2023-marialiget-estimated:marialiget",
+      "properties": {
+        "name": "Mária-liget",
+        "municipality": "Vác",
+        "municipalityId": "city:Vác",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_low_confidence_source_raster_candidate",
+        "sourceContourIsObserved": true,
+        "sourceGeometryIsPublishedNative": false,
+        "literalSourceMapName": "Mária-liget",
+        "literalSourceTextName": "Márialiget",
+        "sourceNameVariantsMeaning": "The same source map uses the hyphenated label and its municipal prose uses Márialiget. Current exact map-name PBF point corroborates identity only; no automatic alias or current Máriaudvar merge.",
+        "sourceNameEvidence": {
+          "exactMapLabelNamePointId": "osm:node:2443651955",
+          "exactMapLabelNamePointInside": false,
+          "namePointOutsideDistanceM": 8.241715275293803,
+          "pointDisagreementNotCorrected": true,
+          "placePointsUsedForFit": false,
+          "historicalTextFormerName": "Máriaudvar",
+          "currentMáriaudvarPointElsewhereNotMerged": true
+        },
+        "georeferencingIsApproximate": true,
+        "georeferenceFitPerformed": true,
+        "georeferencingStatus": "three_physical_control_affine_low_confidence_southern_extrapolation",
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "sourcePeriod": "HEP2023–2028; PDF creation metadata2022-11-30; original map reference year and current extent unknown",
+        "method": "Manual trace of the observed closed dashed Mária-liget perimeter in the original431×523municipal raster, preserving selected source-pixel vertices. Affine source-pixel→EPSG23700 registration uses three physical road/rail crossings from literal same-PBF ways, then EPSG23700→4326. No place points are fit controls; no Voronoi, hull, parcel clone, parent clone, snapping, buffering, repair or clipping. Placement is LOW-CONFIDENCE and extrapolated south of calibration controls. Raster tracing and conventional dash-gap interpolation are explicit estimates, not native geographic source geometry.",
+        "placementUncertainty": "Source map reference year, survey lineage, CRS, present whole-quarter extent and unrestricted map reuse rights are unknown. HEP horizon2023–2028and PDF creation metadataNovember2022do not date the map or certify adoption. Only three manually read noncollinear controls define an exact affine fit with no independently selected holdout; zero training residual is an algebraic result, not ground accuracy. Both southern scout footprints extrapolate beyond the calibration triangle. Pixel perturbation alternatives are sensitivity scenarios, not confidence limits or extra quarters. Absolute accuracy is unclaimed.",
+        "nativeContourPath": "native-contour-traces.json",
+        "nativeTraceId": "source-pixel:marialiget",
+        "registrationPath": "registration-control-specification.json",
+        "nativeTraceCanonicalSha256": "0c1c6557d98ab30b1faae53d11dcf43bc6f67a3e14fac572a52c7a9e9c482555",
+        "evidenceUrls": [
+          "https://www.vac.hu/docs/VacVarosOnkormanyzatHEP20232028.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.vac.hu/docs/VacVarosOnkormanyzatHEP20232028.pdf",
+            "sha256": "f6120b4782812f17894cbebbaacbb3390892e98fbd673a2faaadfb1577164285",
+            "pdfPageOneBased": 7,
+            "selectedMapPath": "source-map-native.png",
+            "selectedOriginalInlineMapCommandsPath": "source-map-inline-commands.bin.gz",
+            "identityFactsPath": "hierarchy-and-source-facts.json"
+          }
+        ],
+        "license": "Public municipal PDF access; unrestricted map reuse rights unestablished. OSM control and identity evidence ODbL-1.0.",
+        "rightsStatus": "Public access is not a map reuse licence; original map provider/reference year unknown."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.161327439751087,
+              47.75575629358994
+            ],
+            [
+              19.162486105928856,
+              47.75518178700492
+            ],
+            [
+              19.163411038894324,
+              47.754631243993046
+            ],
+            [
+              19.164335952536174,
+              47.75408069349043
+            ],
+            [
+              19.16479344176204,
+              47.753578092113706
+            ],
+            [
+              19.165748108840784,
+              47.75439147001943
+            ],
+            [
+              19.166916635839165,
+              47.75427156535195
+            ],
+            [
+              19.168996738027605,
+              47.75299486588293
+            ],
+            [
+              19.170385632084262,
+              47.75224474436974
+            ],
+            [
+              19.170602708762864,
+              47.75146301094809
+            ],
+            [
+              19.16941433214007,
+              47.75067365959199
+            ],
+            [
+              19.16845967582434,
+              47.74986031079984
+            ],
+            [
+              19.167745360472622,
+              47.74932606840553
+            ],
+            [
+              19.166790754317425,
+              47.748512705471434
+            ],
+            [
+              19.165602501296352,
+              47.747723314190694
+            ],
+            [
+              19.164664487711725,
+              47.74766767928841
+            ],
+            [
+              19.163512616185788,
+              47.748545307610044
+            ],
+            [
+              19.162130319721992,
+              47.74959844611738
+            ],
+            [
+              19.16120546169559,
+              47.75014897990506
+            ],
+            [
+              19.159816492224817,
+              47.75089899195775
+            ],
+            [
+              19.15889487700096,
+              47.75160105618533
+            ],
+            [
+              19.15890474648796,
+              47.752055703626695
+            ],
+            [
+              19.15915160733144,
+              47.75263793386629
+            ],
+            [
+              19.159398473629057,
+              47.75322016345805
+            ],
+            [
+              19.159187805115383,
+              47.75430497341471
+            ],
+            [
+              19.160346462710113,
+              47.75373048792014
+            ],
+            [
+              19.16196590193681,
+              47.75280494936505
+            ],
+            [
+              19.16288749730377,
+              47.752102861019175
+            ],
+            [
+              19.16427645479812,
+              47.751352812483596
+            ],
+            [
+              19.163598497657283,
+              47.75248558385012
+            ],
+            [
+              19.16269010831938,
+              47.75379387354888
+            ],
+            [
+              19.162235896738533,
+              47.754448015497
+            ],
+            [
+              19.161327439751087,
+              47.75575629358994
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

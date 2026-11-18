@@ -15,7 +15,7 @@ public class TestDataSeedTests
     [Fact]
     public void EmbeddedCatalogBuildsTheEntireReadyDatasetWithRolesCreditsAndStableIds()
     {
-        Assert.Equal("20261110-test-fixtures-v4", TestDataSeed.CatalogVersion);
+        Assert.Equal("20261116-test-fixtures-v5", TestDataSeed.CatalogVersion);
         Assert.Equal(14, Plan.Users.Length);
         Assert.Equal(3, Plan.Users.Count(user => user.AccountType == AccountTypes.Agent));
         Assert.Equal(355, Plan.Properties.Length);
@@ -58,6 +58,36 @@ public class TestDataSeedTests
         var charge = Assert.Single(Plan.Credits, row => row.FeedbackPackageId == package.Id);
         Assert.Equal(-10, charge.Amount); Assert.Equal(seller.Id, charge.UserId); Assert.Equal(90, seller.Credits);
         Assert.Null(charge.DecisionId); Assert.Null(charge.RefundedDecisionId); Assert.Null(charge.RefundedFeedbackPackageId);
+    }
+
+    [Fact]
+    public void EveryFixtureUsesAnExplicitlySyntheticOwnerScopedPointWithoutCallingGoogle()
+    {
+        Assert.All(Plan.Properties, property => {
+            Assert.Equal("OTTHONRA TEST", property.Street);
+            Assert.False(string.IsNullOrWhiteSpace(property.HouseNumber));
+            Assert.True(PropertyGeocodingAddress.ValidCoordinates(property.Latitude, property.Longitude));
+            Assert.Equal("synthetic-test-fixture", property.GeocodingProvider);
+            Assert.Equal("SYNTHETIC", property.GeocodingQuality);
+            Assert.StartsWith("synthetic:", property.GeocodingPlaceId);
+            Assert.NotNull(property.GeocodedAt);
+            Assert.Equal(PropertyGeocodingService.AddressKey(property), property.GeocodingAddressKey);
+            Assert.Empty(Dto.Strings(property.NeighborhoodIdsJson)); // Native MySQL classifies them during startup.
+        });
+        var venkert = Plan.Properties.Single(property => property.Id == TestDataSeed.StableId("property:reka-debrecen-1"));
+        var sestakert = Plan.Properties.Single(property => property.Id == TestDataSeed.StableId("property:bence-debrecen-1"));
+        var venkertPoint = NeighborhoodCatalog.RepresentativePoint("neighborhood:e8c749e1fc0a306c717ad312")!;
+        var sestakertPoint = NeighborhoodCatalog.RepresentativePoint("neighborhood:f22df415c7b5ea79925e8886")!;
+        Assert.Equal(venkertPoint.Latitude, venkert.Latitude); Assert.Equal(venkertPoint.Longitude, venkert.Longitude);
+        Assert.Equal(sestakertPoint.Latitude, sestakert.Latitude); Assert.Equal(sestakertPoint.Longitude, sestakert.Longitude);
+        Assert.NotEqual((venkert.Latitude, venkert.Longitude), (sestakert.Latitude, sestakert.Longitude));
+        foreach (var property in Plan.Properties.Where(property => property.City is "Abádszalók" or "Hajdúszoboszló"))
+        {
+            var ownMunicipality = NeighborhoodCatalog.TestPointForCity(property.City)!;
+            Assert.Equal(ownMunicipality.Latitude, property.Latitude);
+            Assert.Equal(ownMunicipality.Longitude, property.Longitude);
+            Assert.Equal("synthetic:city:" + property.City, property.GeocodingPlaceId);
+        }
     }
 
     [Fact]
@@ -160,7 +190,7 @@ public class TestDataSeedTests
     [Fact]
     public void DeploymentHistoryKeysDistinguishRevisionsAndLocalCatalogVersions()
     {
-        Assert.Equal("local:20261110-test-fixtures-v4", TestDataSeed.RevisionKey(null, TestDataSeed.CatalogVersion));
+        Assert.Equal("local:20261116-test-fixtures-v5", TestDataSeed.RevisionKey(null, TestDataSeed.CatalogVersion));
         Assert.Equal("ci-fixtures-a", TestDataSeed.RevisionKey("ci-fixtures-a", TestDataSeed.CatalogVersion));
         Assert.NotEqual(TestDataSeed.RevisionKey("ci-fixtures-a", TestDataSeed.CatalogVersion), TestDataSeed.RevisionKey("ci-fixtures-b", TestDataSeed.CatalogVersion));
         Assert.NotEqual(TestDataSeed.RevisionKey(null, "catalog-v1"), TestDataSeed.RevisionKey(null, "catalog-v2"));
@@ -176,7 +206,10 @@ public class TestDataSeedTests
         var tables = db.Model.GetEntityTypes().Select(entity => entity.GetTableName()!).Distinct().ToArray();
         Assert.Equal(tables.Length, order.Count);
         Assert.Contains("PaymentOrders", order); Assert.Contains("UserReports", order);
+        Assert.Contains("PropertyNeighborhoods", order);
+        Assert.True(order.IndexOf("PropertyNeighborhoods") < order.IndexOf("Properties"));
         Assert.DoesNotContain("__OtthonraTestSeeds", order); Assert.DoesNotContain("__OtthonraSchemaVersions", order);
+        Assert.DoesNotContain("NeighborhoodSearchAreas", order); Assert.DoesNotContain("__OtthonraNeighborhoodDataset", order);
         foreach (var entity in db.Model.GetEntityTypes())
         foreach (var foreignKey in entity.GetForeignKeys())
             Assert.True(order.IndexOf(entity.GetTableName()!) < order.IndexOf(foreignKey.PrincipalEntityType.GetTableName()!),

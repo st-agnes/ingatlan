@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-15",
+  "assignedTargetCount": 24,
+  "featureCount": 13,
+  "aliasProposalCount": 1,
+  "coveredTargetCount": 14,
+  "partialFootprintNames": [
+    {
+      "municipality": "Dombóvár",
+      "name": "Perekac"
+    },
+    {
+      "municipality": "Tata",
+      "name": "Remeteség"
+    }
+  ],
+  "byCity": {
+    "Keszthely": {
+      "newPolygonCount": 6,
+      "aliasCount": 0,
+      "unresolvedNames": [
+        "Szendreytelep"
+      ]
+    },
+    "Dombóvár": {
+      "newPolygonCount": 2,
+      "aliasCount": 1,
+      "unresolvedNames": [
+        "Külterületek",
+        "Szuhay-domb"
+      ]
+    },
+    "Tata": {
+      "newPolygonCount": 5,
+      "aliasCount": 0,
+      "unresolvedNames": [
+        "Tófarok"
+      ]
+    },
+    "Körmend": {
+      "newPolygonCount": 0,
+      "aliasCount": 0,
+      "unresolvedNames": [
+        "Bartók Béla lakótelep",
+        "Belváros",
+        "Kis Amerika",
+        "Rokkant telep",
+        "Tisztviselő telep",
+        "Vasúton túl"
+      ]
+    }
+  },
+  "unresolvedNames": [
+    {
+      "municipality": "Dombóvár",
+      "name": "Külterületek"
+    },
+    {
+      "municipality": "Dombóvár",
+      "name": "Szuhay-domb"
+    },
+    {
+      "municipality": "Keszthely",
+      "name": "Szendreytelep"
+    },
+    {
+      "municipality": "Körmend",
+      "name": "Bartók Béla lakótelep"
+    },
+    {
+      "municipality": "Körmend",
+      "name": "Belváros"
+    },
+    {
+      "municipality": "Körmend",
+      "name": "Kis Amerika"
+    },
+    {
+      "municipality": "Körmend",
+      "name": "Rokkant telep"
+    },
+    {
+      "municipality": "Körmend",
+      "name": "Tisztviselő telep"
+    },
+    {
+      "municipality": "Körmend",
+      "name": "Vasúton túl"
+    },
+    {
+      "municipality": "Tata",
+      "name": "Tófarok"
+    }
+  ],
+  "allEstimated": true,
+  "allLowConfidence": true,
+  "allValid": true,
+  "geometryCrs": "EPSG:4326",
+  "pointBuffersCreated": 0,
+  "voronoiCellsCreated": 0,
+  "nativeTataCurrentMunicipalityOverlapPercent": 99.56
+}

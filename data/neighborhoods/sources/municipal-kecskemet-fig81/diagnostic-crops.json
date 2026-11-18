@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "crops": [
+    {
+      "path": "top-clipped-tip.png",
+      "sourceImageSha256": "4d9d33cf34268d28653d0955b8619e515653b29cea59914397246eaa7589f1ec",
+      "nativeSourcePixelCropPIL": [
+        140,
+        0,
+        220,
+        45
+      ],
+      "scale": 8,
+      "resampling": "nearest-neighbour, diagnostic magnification only; geometry uses original image",
+      "sha256": "52837cdd012bb6015e278476a2e5d2ef74dccb0a287d00c2c743814867fd8c81"
+    },
+    {
+      "path": "bottom-clipped-tip.png",
+      "sourceImageSha256": "4d9d33cf34268d28653d0955b8619e515653b29cea59914397246eaa7589f1ec",
+      "nativeSourcePixelCropPIL": [
+        1060,
+        860,
+        1121,
+        893
+      ],
+      "scale": 8,
+      "resampling": "nearest-neighbour, diagnostic magnification only; geometry uses original image",
+      "sha256": "df52f1fea914f2a5f38140f95ad4993770836cde12f4d456763cdeec92f556c7"
+    },
+    {
+      "path": "blue-label-I-II.png",
+      "sourceImageSha256": "4d9d33cf34268d28653d0955b8619e515653b29cea59914397246eaa7589f1ec",
+      "nativeSourcePixelCropPIL": [
+        875,
+        690,
+        915,
+        725
+      ],
+      "scale": 8,
+      "resampling": "nearest-neighbour, diagnostic magnification only; geometry uses original image",
+      "sha256": "bd0d8e5175cb39328fa0ea56875f76e662324b40672e6c270fe7c4d36616e889"
+    },
+    {
+      "path": "blue-label-I-villa.png",
+      "sourceImageSha256": "4d9d33cf34268d28653d0955b8619e515653b29cea59914397246eaa7589f1ec",
+      "nativeSourcePixelCropPIL": [
+        1005,
+        690,
+        1040,
+        725
+      ],
+      "scale": 8,
+      "resampling": "nearest-neighbour, diagnostic magnification only; geometry uses original image",
+      "sha256": "75e8707c0b9b1e6beaecd0e992a5c4afe80c254d2fa07d15d29a9e06821ce0f4"
+    }
+  ]
+}

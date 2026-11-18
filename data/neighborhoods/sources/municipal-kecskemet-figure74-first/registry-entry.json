@@ -1,0 +1,21 @@
+{
+  "id": "kecskemet-figure74-source-overprint-inferred",
+  "path": "data/neighborhoods/sources/municipal-kecskemet-figure74-first/source-inferred.geojson",
+  "sha256": "9d689aa4fef30c95e28f50e1984de8b931a0837d41f3b823209dc63bd916717c",
+  "municipality": "Kecskemét",
+  "featureCount": 1,
+  "method": "Manual Figure74 source-stroke guides trace original maxRGB<=45 JPEG pixels. Three explicitly enumerated blue-text-overprint intervals use low-confidence bounded manual continuations with unselected alternative paths; thirteen vertices are not strict source-black observations. No source-frame closure, buffer, repair, geographic snap or simplification is used. A photo-only Figure73-to-Figure74 affine uses thirteen fitted and ten held-out texture patches, with all twenty-five rejected searches and preliminary attempts retained. Its inverse is composed with the archived Figure73 metric EOV affine, independently refitted from its six original manual image observations and literal OSM road coordinates. The new footprint extends beyond the observed photo overlap and the original calibration image. Source-text overprints and full geographic placement remain explicit inferences; photographic residuals are not absolute boundary accuracy.",
+  "evidenceUrls": [
+    "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+  ],
+  "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name point.",
+  "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-figure74-first/independent-review.json",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false
+  },
+  "rightsStatus": "Public municipal consultation draft; open source-map reuse rights not independently established."
+}

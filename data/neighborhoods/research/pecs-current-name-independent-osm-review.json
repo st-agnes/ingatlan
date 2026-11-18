@@ -1,0 +1,3590 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-11-14",
+  "status": "fresh_typed_id_pbf_metadata_reference_geometry_and_name_roles_pass",
+  "scope": "Independent fresh local PBF readback for all135same-city exact-name/explicit-alias objects,complete original node/way/member references,and the Pecs municipality reference. No producer extractor imported or invoked.",
+  "inputFingerprints": [
+    {
+      "path": "data/neighborhoods/research/pecs-current-name-osm-evidence.json",
+      "sha256": "cdeb221d457f66ad741b91bb491b5b5974bdcb30a6afeccd34ba992711f05649",
+      "bytes": 415492
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/source-municipality.geojson",
+      "sha256": "f88ce9a098698c26775574013b687dc1e1a15b0b4a3f5c40ff7ec1fceeb3a305",
+      "bytes": 43635
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-grounded-next/boundary-source-proof.json",
+      "sha256": "869ba87df37a36b093b758f02011b90e19efaa877d529a7d110f0f645163ebab",
+      "bytes": 126009
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/source-coverage-accounting.json",
+      "sha256": "c59c2e0e6e9d7d39c75cebe84f43f25e79573cd59dec6a050a1ac1b5ede74bee",
+      "bytes": 15238
+    },
+    {
+      "path": "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz",
+      "sha256": "5c9193a72d4327e133f86d9c2625a4caeae3d21ec71d2575a3128b1d97931ecc",
+      "bytes": 233653
+    }
+  ],
+  "pbf": {
+    "file": "hungary-latest.osm.pbf",
+    "bytes": 329791850,
+    "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "header": {
+      "generator": "osmium/1.16.0",
+      "osmosis_replication_timestamp": "2026-11-12T21:23:05Z",
+      "osmosis_replication_sequence_number": "4968",
+      "osmosis_replication_base_url": "https://download.geofabrik.de/europe/hungary-updates"
+    },
+    "acquisition": {
+      "version": 1,
+      "provider": "Geofabrik",
+      "source": "OpenStreetMap",
+      "scope": "Hungary country extract",
+      "url": "https://download.geofabrik.de/europe/hungary-latest.osm.pbf",
+      "checksumUrl": "https://download.geofabrik.de/europe/hungary-latest.osm.pbf.md5",
+      "checksumFilename": "hungary-latest.osm.pbf",
+      "file": "hungary-latest.osm.pbf",
+      "retrievedAt": "2026-11-13T12:20:44.741874+00:00",
+      "bytes": 329791850,
+      "md5": "5a6ed18c027725713203b046c2a9bd93",
+      "sha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+      "finalUrl": "https://download.geofabrik.de/europe/hungary-261112.osm.pbf",
+      "lastModified": "Fri, 13 Nov 2026 00:00:56 GMT",
+      "etag": "\"13a8396a-6601d1f56d49e\"",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "attributionUrl": "https://www.openstreetmap.org/copyright",
+      "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "notes": [
+        "The latest URL is mutable; SHA256 identifies this exact snapshot.",
+        "MD5 verifies the publisher checksum; SHA256 pins the acquired bytes.",
+        "OSM community boundaries are not necessarily official legal boundaries."
+      ]
+    }
+  },
+  "pbfSha256IndependentlyRecomputed": true,
+  "freshReadMethod": "One new osmium.FileProcessor pass with IdFilter over the union of required IDs;retain typed IDs only. No missing coordinate,way,relation or geometry is invented.",
+  "freshReadTypedObjectCount": 1201,
+  "freshReadCounts": {
+    "node": 1085,
+    "way": 112,
+    "relation": 4
+  },
+  "allRequestedTypedObjectsPresent": true,
+  "freshRawReadbackCanonicalSha256": "9f69a402cfe45f9bd30f3f68e70c964906d55c343135596fd5b8d656b45317ce",
+  "municipalityReview": {
+    "name": "Pécs",
+    "relationId": 575380,
+    "originalRelationTagsMembersVersionTimeExactlyMatch": true,
+    "originalWayCount": 32,
+    "originalBoundaryNodeCount": 535,
+    "allOriginalRefsCoordinatesVersionTimeExactlyMatch": true,
+    "freshExactEndpointRingGeometryEqualsArchivedF88Geometry": true,
+    "fullObjectCoverageUsesThisFreshMunicipality": true,
+    "legalOrSurveyBoundaryAccuracyApproved": false
+  },
+  "sourceNameCount": 67,
+  "matchingReview": {
+    "fullNormalizedStringOnly": true,
+    "normalization": "Unicode NFD/casefold followed by alphanumeric characters;combining diacritics,punctuation and whitespace ignored. No spelling replacement,fuzzy matching,substring,nearest name point or invented alias.",
+    "explicitAliasFieldsOnly": [
+      "alt_name",
+      "loc_name",
+      "old_name",
+      "short_name",
+      "was:name"
+    ],
+    "oldNameAndWasNameNeverCurrentSupport": true
+  },
+  "sameCityObjectCount": 135,
+  "sameCityEvidenceCategoryCounts": {
+    "place_or_quarter_label": 54,
+    "other_poi_or_named_feature_only": 7,
+    "transport_stop_name_only": 37,
+    "other_named_landuse_or_functional_area": 6,
+    "street_or_highway_name_only": 31
+  },
+  "records": [
+    {
+      "osmType": "node",
+      "osmId": 343385876,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2019-11-05 12:25:06+00:00",
+      "originalTagsSha256": "d5c9015cd48ec28ec2670ed24b6e13e5acfcda3cf388fbf376c993bfb4665e5b",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Kovácstelep",
+          "tagKey": "name",
+          "literalTagValue": "Kovácstelep",
+          "matchedLiteralToken": "Kovácstelep",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 343457812,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2019-11-05 12:25:06+00:00",
+      "originalTagsSha256": "84fbddf410758194e38b506240555d49bed19181aeb01bc4e58d8770e379e6f5",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Basamalom",
+          "tagKey": "name",
+          "literalTagValue": "Basamalom",
+          "matchedLiteralToken": "Basamalom",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 345212720,
+      "originalObjectVersion": 22,
+      "originalObjectTimestamp": "2023-08-21 21:01:41+00:00",
+      "originalTagsSha256": "ea8fd26aee96a89ef91efd3966e619aebb9240dfe6adb7ba6f25c74729c66b83",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Hird",
+          "tagKey": "name",
+          "literalTagValue": "Hird",
+          "matchedLiteralToken": "Hird",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 345213571,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2019-11-05 12:25:06+00:00",
+      "originalTagsSha256": "dc7af8a60f905ef661fdf7652d679c91a2bb0c0ab55bfce200c1e53ca48e8417",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Újhegy",
+          "tagKey": "name",
+          "literalTagValue": "Újhegy",
+          "matchedLiteralToken": "Újhegy",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 348234974,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2019-11-05 12:25:06+00:00",
+      "originalTagsSha256": "268f1f22b7e334128eb729b0e5b3739379500385cb2f1d9f61f99882f86048f6",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Meszes",
+          "tagKey": "name",
+          "literalTagValue": "Meszes",
+          "matchedLiteralToken": "Meszes",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 348235380,
+      "originalObjectVersion": 5,
+      "originalObjectTimestamp": "2020-11-05 18:25:07+00:00",
+      "originalTagsSha256": "d8df3afe312c70d1ac91ef512493afc0b8c21cdb8b52d0e70d7ae2baf7221aff",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Pécsbánya",
+          "tagKey": "name",
+          "literalTagValue": "Pécsbánya",
+          "matchedLiteralToken": "Pécsbánya",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 348235711,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2020-11-05 17:03:56+00:00",
+      "originalTagsSha256": "0628c02047e83207ad242306a4081bce5cac164e0a901e626f86c499d27083dd",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Kertváros",
+          "tagKey": "name",
+          "literalTagValue": "Kertváros",
+          "matchedLiteralToken": "Kertváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 348235864,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2019-11-05 12:25:06+00:00",
+      "originalTagsSha256": "9a34de385f8a157f39842d5a72afbabc96d912fa5551efd530f13134d5c29885",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Nagyárpád",
+          "tagKey": "name",
+          "literalTagValue": "Nagyárpád",
+          "matchedLiteralToken": "Nagyárpád",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 348236212,
+      "originalObjectVersion": 7,
+      "originalObjectTimestamp": "2026-04-22 08:41:22+00:00",
+      "originalTagsSha256": "2e36658c288c2e0f1a7c7a78ed143957c617b74b25c1c19d4c52eb85f781be99",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Uránváros",
+          "tagKey": "name",
+          "literalTagValue": "Uránváros",
+          "matchedLiteralToken": "Uránváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 348237529,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2019-11-05 12:25:06+00:00",
+      "originalTagsSha256": "a1cca7a86783c84a5bbea7a25ce1fc6a9345d2df1c56f2ca4050eb25bc78dc08",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Somogy",
+          "tagKey": "name",
+          "literalTagValue": "Somogy",
+          "matchedLiteralToken": "Somogy",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 348238174,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2019-11-05 12:25:06+00:00",
+      "originalTagsSha256": "65398409a3e5979f0698e8d69b99b21787a189a81905f070ee9f857cbb20d514",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Vasas",
+          "tagKey": "name",
+          "literalTagValue": "Vasas",
+          "matchedLiteralToken": "Vasas",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413559373,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2014-02-18 10:43:09+00:00",
+      "originalTagsSha256": "ac430a19a9b8d1bf593c97c5d93b9bf6825993b03364feb15a03e899c5a6121e",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "other_poi_or_named_feature_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Uránváros",
+          "tagKey": "name",
+          "literalTagValue": "Uránváros",
+          "matchedLiteralToken": "Uránváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413559375,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2014-02-18 12:58:56+00:00",
+      "originalTagsSha256": "c4533b09e2f9c023abe57cd6d24f668bbcc9d98198c5acc8025e3165219881d0",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "other_poi_or_named_feature_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Kertváros",
+          "tagKey": "name",
+          "literalTagValue": "Kertváros",
+          "matchedLiteralToken": "Kertváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597371,
+      "originalObjectVersion": 5,
+      "originalObjectTimestamp": "2025-11-21 20:33:14+00:00",
+      "originalTagsSha256": "a1cf7885a6a77dc5fa6ad1daa18a4b2103d9798271b49abcf3892efd84c89601",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Meszes",
+          "tagKey": "name",
+          "literalTagValue": "Meszes",
+          "matchedLiteralToken": "Meszes",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597405,
+      "originalObjectVersion": 8,
+      "originalObjectTimestamp": "2025-11-21 18:37:29+00:00",
+      "originalTagsSha256": "1ec4a7a263be32a86c4effcd3d5658547afe5f07dcc5d2849a1809930ba18b4e",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "István-akna",
+          "tagKey": "name",
+          "literalTagValue": "István-akna",
+          "matchedLiteralToken": "István-akna",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597413,
+      "originalObjectVersion": 8,
+      "originalObjectTimestamp": "2025-11-27 15:17:08+00:00",
+      "originalTagsSha256": "a053b1af18dd9152c6ada69b64852ef906d950763223699d76920e5d3c96b27e",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Murom",
+          "tagKey": "name",
+          "literalTagValue": "Murom",
+          "matchedLiteralToken": "Murom",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597425,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2025-11-21 17:44:28+00:00",
+      "originalTagsSha256": "0b1054986cfc7f57933f4c7b6113e5845d513f6cfc1fcf69789b110ee03ae168",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Petőfi-akna",
+          "tagKey": "name",
+          "literalTagValue": "Petőfi-akna",
+          "matchedLiteralToken": "Petőfi-akna",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597426,
+      "originalObjectVersion": 7,
+      "originalObjectTimestamp": "2025-11-21 17:44:28+00:00",
+      "originalTagsSha256": "b7952d270e87fb504aaad99d9dea4ae8ffc3c319698b3bb241850a967d78c875",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "M utca",
+          "tagKey": "name",
+          "literalTagValue": "M utca",
+          "matchedLiteralToken": "M utca",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597427,
+      "originalObjectVersion": 6,
+      "originalObjectTimestamp": "2025-11-21 18:37:29+00:00",
+      "originalTagsSha256": "1558062ee29381d28ac8304e2e7c100ed507b61bf17725e0acbbc7c5797e634e",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Somogy",
+          "tagKey": "name",
+          "literalTagValue": "Somogy",
+          "matchedLiteralToken": "Somogy",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597438,
+      "originalObjectVersion": 5,
+      "originalObjectTimestamp": "2025-11-21 18:37:29+00:00",
+      "originalTagsSha256": "8467999a23af39d8da9604ff7b7932a4b12b60863a14cc5d0344a85c6b9f0cea",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Rücker-akna",
+          "tagKey": "name",
+          "literalTagValue": "Rücker-akna",
+          "matchedLiteralToken": "Rücker-akna",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597459,
+      "originalObjectVersion": 7,
+      "originalObjectTimestamp": "2025-11-21 23:20:05+00:00",
+      "originalTagsSha256": "b3408c6308ccbea68fabb8afc3c019f892285a987eb290231287be1d88904b6b",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Deindol",
+          "tagKey": "name",
+          "literalTagValue": "Deindol",
+          "matchedLiteralToken": "Deindol",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597470,
+      "originalObjectVersion": 7,
+      "originalObjectTimestamp": "2025-11-21 23:20:05+00:00",
+      "originalTagsSha256": "11a66f87d43342f17b33feea16c221a177508513b1654294c048cede757cfae2",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Rácváros",
+          "tagKey": "name",
+          "literalTagValue": "Rácváros",
+          "matchedLiteralToken": "Rácváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597500,
+      "originalObjectVersion": 5,
+      "originalObjectTimestamp": "2025-11-21 18:37:29+00:00",
+      "originalTagsSha256": "a6a57bf15322483714521593a33ce1a86806f67525f0b87509c726fd1e4bb5da",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Árpádtető",
+          "tagKey": "name",
+          "literalTagValue": "Árpádtető",
+          "matchedLiteralToken": "Árpádtető",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597510,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2025-11-21 22:29:56+00:00",
+      "originalTagsSha256": "7f957abb45e9badc4f707aee854f756967c18c334ef74f6c7d95a68040ac19f5",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Bálics",
+          "tagKey": "name",
+          "literalTagValue": "Bálics",
+          "matchedLiteralToken": "Bálics",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597536,
+      "originalObjectVersion": 7,
+      "originalObjectTimestamp": "2025-11-21 22:29:56+00:00",
+      "originalTagsSha256": "a6547298b9393c5b1d54456bc024c33cb36e788b62fba53bb0a1b472ac0764e9",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Donátus",
+          "tagKey": "name",
+          "literalTagValue": "Donátus",
+          "matchedLiteralToken": "Donátus",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597540,
+      "originalObjectVersion": 5,
+      "originalObjectTimestamp": "2025-11-27 15:17:08+00:00",
+      "originalTagsSha256": "f6c138a47bad1a5ff079507dcd888b8b418b61693c6cb945c72bd7e15b2fca82",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Árpádváros",
+          "tagKey": "name",
+          "literalTagValue": "Árpádváros",
+          "matchedLiteralToken": "Árpádváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597541,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2025-11-21 18:52:51+00:00",
+      "originalTagsSha256": "b24c48a60a619d37a0076aebf2fccc57eb2b7c2b350ce9544ea7633e44340fd9",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Málom",
+          "tagKey": "name",
+          "literalTagValue": "Malom",
+          "matchedLiteralToken": "Malom",
+          "matchType": "orthographic_normalized_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597553,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2025-11-22 09:29:15+00:00",
+      "originalTagsSha256": "a8238a875863aaf6cca64428839c5751303fd4bd1d3eb3b1aa408b0db1c25d92",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Nagyárpád",
+          "tagKey": "name",
+          "literalTagValue": "Nagyárpád",
+          "matchedLiteralToken": "Nagyárpád",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597563,
+      "originalObjectVersion": 5,
+      "originalObjectTimestamp": "2025-11-22 09:29:15+00:00",
+      "originalTagsSha256": "26099e7ada0b9b3b313a47459b8e839ba5756dfe83c7695c3c61131a6933fb1c",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Postavölgy",
+          "tagKey": "name",
+          "literalTagValue": "Postavölgy",
+          "matchedLiteralToken": "Postavölgy",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 413597592,
+      "originalObjectVersion": 7,
+      "originalObjectTimestamp": "2025-11-21 21:09:07+00:00",
+      "originalTagsSha256": "43315bea35b8c5674fa2998ff90b07ba3765fbc53e89dbec940190b69b3875de",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Újhegy",
+          "tagKey": "name",
+          "literalTagValue": "Újhegy",
+          "matchedLiteralToken": "Újhegy",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 427549870,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2019-11-05 12:25:08+00:00",
+      "originalTagsSha256": "3043dc2375a061799e1f953995a3ada855f5846f9cef1ecbf44a905ff587bb18",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Patacs",
+          "tagKey": "name",
+          "literalTagValue": "Patacs",
+          "matchedLiteralToken": "Patacs",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 427550296,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2019-11-05 12:25:08+00:00",
+      "originalTagsSha256": "fa79cfba23760541ab5f40f75f10a8ba7335aa93fd4b7e2ac7096d2d987c034e",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Rácváros",
+          "tagKey": "name",
+          "literalTagValue": "Rácváros",
+          "matchedLiteralToken": "Rácváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 427550575,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2020-11-05 19:09:06+00:00",
+      "originalTagsSha256": "75801a0f98129e05a2205a82c12f510e281328c69c6f739d53aace9915d1d00f",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Ürög",
+          "tagKey": "name",
+          "literalTagValue": "Ürög",
+          "matchedLiteralToken": "Ürög",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 513384395,
+      "originalObjectVersion": 5,
+      "originalObjectTimestamp": "2020-11-05 15:48:32+00:00",
+      "originalTagsSha256": "6d1eadb4af4818687f25b17542ddf93e12ec8b44906763e8f7791e36a8617151",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Csoronika",
+          "tagKey": "name",
+          "literalTagValue": "Csoronika",
+          "matchedLiteralToken": "Csoronika",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 543658159,
+      "originalObjectVersion": 9,
+      "originalObjectTimestamp": "2024-04-01 12:19:47+00:00",
+      "originalTagsSha256": "9671eda2c4b0cf0ead987ba779db40b642ef8fd77abd56f664f014428837efb6",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "other_named_landuse_or_functional_area",
+      "currentNameMatches": [
+        {
+          "sourceName": "Szentkút",
+          "tagKey": "name",
+          "literalTagValue": "Szent-kút",
+          "matchedLiteralToken": "Szent-kút",
+          "matchType": "orthographic_normalized_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983186564,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "1e7bd6b1fd335b56eefc967fefc918ba9d115b800f32408cd9e058d25c35b406",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Füzes",
+          "tagKey": "name",
+          "literalTagValue": "Füzes",
+          "matchedLiteralToken": "Füzes",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983186588,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "6dbba4e4f3587094155eec560dee51b51fccba1e9afc04a36f956484e47c278b",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Makár",
+          "tagKey": "name",
+          "literalTagValue": "Makár",
+          "matchedLiteralToken": "Makár",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983186593,
+      "originalObjectVersion": 5,
+      "originalObjectTimestamp": "2020-11-05 16:10:24+00:00",
+      "originalTagsSha256": "d7b970458e63e72de6be6820020d98791d9b7b12ca05186713469cd8e31f501b",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Donátus",
+          "tagKey": "name",
+          "literalTagValue": "Donátus",
+          "matchedLiteralToken": "Donátus",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983186601,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "5e64cfa9b8071359375c12ab0f0919a42e0ac79fcf6c2daa7ba58fc7d5b8f16e",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Deindol",
+          "tagKey": "name",
+          "literalTagValue": "Deindol",
+          "matchedLiteralToken": "Deindol",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983186614,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "05c91e0ad2213a8a928e996ee36633f8ec6531aeada6165b2ee97b2f90ac0ab7",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Megyer",
+          "tagKey": "name",
+          "literalTagValue": "Megyer",
+          "matchedLiteralToken": "Megyer",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983186629,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "e9713ee0fe0097468faf32315af1fc830c0d697a27fbaa5a8991972ab02fef00",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Málom",
+          "tagKey": "name",
+          "literalTagValue": "Málom",
+          "matchedLiteralToken": "Málom",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983186637,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "c91e205fe5f7d143ee52e5d2b3f7c1cf486ce6c3dbba20835be1c959ba5dd6f3",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Ispitaalja",
+          "tagKey": "name",
+          "literalTagValue": "Ispitaalja",
+          "matchedLiteralToken": "Ispitaalja",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983197633,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2020-11-05 18:30:29+00:00",
+      "originalTagsSha256": "b5564f8e79c2858cdd0fd3a16e159753ae35a4382bfd6d5aa58a961c996151ae",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Postavölgy",
+          "tagKey": "name",
+          "literalTagValue": "Postavölgy",
+          "matchedLiteralToken": "Postavölgy",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983211206,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2020-11-05 18:44:36+00:00",
+      "originalTagsSha256": "cbbec74c6be2821e6cc98d3f8b1961165bce325738ffc41655e48eefafcaae71",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Szentmiklós",
+          "tagKey": "name",
+          "literalTagValue": "Szentmiklós",
+          "matchedLiteralToken": "Szentmiklós",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983211212,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "8c5d5e63483a7856d060f4ff33a7fcb6bd67656a591973cfff916d284ad13f8c",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Fogadó",
+          "tagKey": "name",
+          "literalTagValue": "Fogadó",
+          "matchedLiteralToken": "Fogadó",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983211216,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "74375baed5ff12116dc507902539c1082ff3c431a8a01562bfbf0b16848299ef",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Bolgárkert",
+          "tagKey": "name",
+          "literalTagValue": "Bolgárkert",
+          "matchedLiteralToken": "Bolgárkert",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983211219,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2020-11-05 15:37:45+00:00",
+      "originalTagsSha256": "606a3adff3da9254c81f77088ebf2f619b4b833a19d370150eda6046627132de",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Belváros",
+          "tagKey": "name",
+          "literalTagValue": "Belváros",
+          "matchedLiteralToken": "Belváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983216152,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "2554cbfd1a76a4e2c1bbca3e31a87660ca60490b70a88e2bb68bc91648a5a947",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Bálics",
+          "tagKey": "name",
+          "literalTagValue": "Bálics",
+          "matchedLiteralToken": "Bálics",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983222333,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2020-11-05 18:47:08+00:00",
+      "originalTagsSha256": "094f5d4e46fdeacf00cdd6eb68cd977145c8589affdd91e724c7d675b9cfcb6b",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Szkókó",
+          "tagKey": "name",
+          "literalTagValue": "Szkókó",
+          "matchedLiteralToken": "Szkókó",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983222336,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2020-11-05 18:15:41+00:00",
+      "originalTagsSha256": "9c829f41bc6066fe3783996a5f577e3f4f5ef98c0b08fae7ddd9b1b9dbb64b45",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Mecsekoldal",
+          "tagKey": "name",
+          "literalTagValue": "Mecsekoldal",
+          "matchedLiteralToken": "Mecsekoldal",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983240903,
+      "originalObjectVersion": 8,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "8fc0585a98d55cad85fccbafb6b5027f80f90237bbc20175672b3f478f89a783",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Szentkút",
+          "tagKey": "name",
+          "literalTagValue": "Szentkút",
+          "matchedLiteralToken": "Szentkút",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983300952,
+      "originalObjectVersion": 7,
+      "originalObjectTimestamp": "2020-11-05 15:17:04+00:00",
+      "originalTagsSha256": "016fc2b212ba9e3f078dff96457ee94d810f3860ec6561399b4e5f40ba21bf7f",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Árpádváros",
+          "tagKey": "name",
+          "literalTagValue": "Árpádváros",
+          "matchedLiteralToken": "Árpádváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983300956,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "999b784d9f51cdb9868713feb9aed01a5075b369fdb0fcfd70b84defc6d90948",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Észak-Megyer",
+          "tagKey": "name",
+          "literalTagValue": "Északmegyer",
+          "matchedLiteralToken": "Északmegyer",
+          "matchType": "orthographic_normalized_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983300959,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2020-11-05 15:32:03+00:00",
+      "originalTagsSha256": "88321273ed96a60e16e5518c64e79f7e51481069422efc9009b4fcad40bc3334",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Balokány",
+          "tagKey": "name",
+          "literalTagValue": "Balokány",
+          "matchedLiteralToken": "Balokány",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983314608,
+      "originalObjectVersion": 6,
+      "originalObjectTimestamp": "2020-11-05 18:34:58+00:00",
+      "originalTagsSha256": "d681953b82c8f686ceb41fca3916a4cdfec5dd3594626cbb56ce691af006f17a",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Rigóder",
+          "tagKey": "name",
+          "literalTagValue": "Rigóder",
+          "matchedLiteralToken": "Rigóder",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983343143,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2020-11-05 16:37:54+00:00",
+      "originalTagsSha256": "16c66742720eb477c15746bdca5aa0995a782b6f0d4c71bab8b1b6f962247554",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Gyükés",
+          "tagKey": "name",
+          "literalTagValue": "Gyükés",
+          "matchedLiteralToken": "Gyükés",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983343145,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2020-11-05 16:40:28+00:00",
+      "originalTagsSha256": "75d7825eff0153962da20e5215ed4e87799e35ca6cbfd07b675464b386ebb7d0",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Havihegy",
+          "tagKey": "name",
+          "literalTagValue": "Havihegy",
+          "matchedLiteralToken": "Havihegy",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983343147,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "41464b4942f57ea0561b71304997fe7a517abcf64273c363a8946baf04db6bd3",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Piricsizma",
+          "tagKey": "name",
+          "literalTagValue": "Piricsizma",
+          "matchedLiteralToken": "Piricsizma",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983343148,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "6bd603101f9dabb3a0a966bbe2e4442e371a3a7c9481670db1d95eb9e23cf07c",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Diós",
+          "tagKey": "name",
+          "literalTagValue": "Diós",
+          "matchedLiteralToken": "Diós",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983346083,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2022-02-05 11:20:37+00:00",
+      "originalTagsSha256": "c1921221d27275112631909b9613c24018441e4cd1f92748d98f6382d474aa73",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "István-akna",
+          "tagKey": "name",
+          "literalTagValue": "Istvánakna",
+          "matchedLiteralToken": "Istvánakna",
+          "matchType": "orthographic_normalized_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983346885,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "4d133e524b99a6056505972739bfd8472ccfe06af288e402887c599f97733ed6",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Árpádtető",
+          "tagKey": "name",
+          "literalTagValue": "Árpádtető",
+          "matchedLiteralToken": "Árpádtető",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983351065,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "82291c2b56c681e3df1165c21f07f8dfc0063d8a171be794feea023810750231",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Rókusdomb",
+          "tagKey": "name",
+          "literalTagValue": "Rókusdomb",
+          "matchedLiteralToken": "Rókusdomb",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983351066,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2020-11-05 16:15:35+00:00",
+      "originalTagsSha256": "8ae77333ef49dd3cad5a7fc6cbd511641a6af9991e341b6a8ab58ac277c8a3f2",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Szigeti külváros",
+          "tagKey": "name",
+          "literalTagValue": "Szigeti külváros",
+          "matchedLiteralToken": "Szigeti külváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983351068,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "0a126a9fded5b75a4b13bb2edb47279c680668626b264700b5fce4b973b21835",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Siklósi külváros",
+          "tagKey": "name",
+          "literalTagValue": "Siklósi külváros",
+          "matchedLiteralToken": "Siklósi külváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983353475,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "84134b7fad9f0835e0862dafb1c94b0b6703b5ceca9ae48de4c8366a2c3b7df2",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Tüskésrét",
+          "tagKey": "name",
+          "literalTagValue": "Tüskésrét",
+          "matchedLiteralToken": "Tüskésrét",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983354298,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2020-11-05 16:25:16+00:00",
+      "originalTagsSha256": "735d1e908b2a932b4d7f7512548e7b758d63ced5de7f7cfe61f865ef75b4503c",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Gyárváros",
+          "tagKey": "name",
+          "literalTagValue": "Gyárváros",
+          "matchedLiteralToken": "Gyárváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 983355806,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "05c9f1c1ba6e7eb7ae87a2fd6083d58f36176adf3ea9158a86f41994ddd4bcd2",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Zsebedomb",
+          "tagKey": "name",
+          "literalTagValue": "Zsebedomb",
+          "matchedLiteralToken": "Zsebedomb",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 1288907880,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2025-10-27 10:37:48+00:00",
+      "originalTagsSha256": "6d66a34a73e05f6f44b7f10fcf959b353ba09873ca2271821fa5c22ad60fd156",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Murom",
+          "tagKey": "name",
+          "literalTagValue": "Murom",
+          "matchedLiteralToken": "Murom",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 1288907882,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2024-12-11 16:39:33+00:00",
+      "originalTagsSha256": "e8060c05ca00462fb86c3ce98e20eb7bff82b2d54774a2a2b185634725c3fbb9",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Szabolcsi zártkert",
+          "tagKey": "name",
+          "literalTagValue": "Szabolcsi zártkert",
+          "matchedLiteralToken": "Szabolcsi zártkert",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 1288970170,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "67388507c329156d12a4859671317bd868e8a33e0765a2ae75c1111e64d5cb74",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Budai külváros",
+          "tagKey": "name",
+          "literalTagValue": "Budai külváros",
+          "matchedLiteralToken": "Budai külváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 1288970174,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "4fdadb7bc16b3e7e6921815c7123bf5c16d9d6b7a96522e1b8494b3b49c42a59",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Kisbalokány",
+          "tagKey": "name",
+          "literalTagValue": "Kisbalokány",
+          "matchedLiteralToken": "Kisbalokány",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 1298280216,
+      "originalObjectVersion": 6,
+      "originalObjectTimestamp": "2019-08-04 13:00:16+00:00",
+      "originalTagsSha256": "ed99f31adfa2cccd6b0a20085ca220a22d9b651f78a13bdc013a98ae39030f4d",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Petőfi-akna",
+          "tagKey": "name",
+          "literalTagValue": "Petőfi-akna",
+          "matchedLiteralToken": "Petőfi-akna",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 1306551385,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2019-11-05 12:25:10+00:00",
+      "originalTagsSha256": "e917e6691bc9fd1e86152acc4d2c78810b2217e6b1f998ef3dce16a43284cc97",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Kismélyvölgy",
+          "tagKey": "name",
+          "literalTagValue": "Kismélyvölgy",
+          "matchedLiteralToken": "Kismélyvölgy",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2605937823,
+      "originalObjectVersion": 6,
+      "originalObjectTimestamp": "2025-11-27 15:17:08+00:00",
+      "originalTagsSha256": "c17d5d797eac7a92f15d5029e3215d7e73e59d42583c4714516c4808d636dd2f",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Árpádváros",
+          "tagKey": "name",
+          "literalTagValue": "Árpádváros",
+          "matchedLiteralToken": "Árpádváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2624520437,
+      "originalObjectVersion": 5,
+      "originalObjectTimestamp": "2025-10-27 10:37:48+00:00",
+      "originalTagsSha256": "7109bc6f4b6cd91a18e5b63b1b1ecfbaebe1f82d2e9fac571ca559d99a9183d3",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "place_or_quarter_label",
+      "currentNameMatches": [
+        {
+          "sourceName": "Józsefháza",
+          "tagKey": "name",
+          "literalTagValue": "Józsefháza",
+          "matchedLiteralToken": "Józsefháza",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": true,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2673578059,
+      "originalObjectVersion": 6,
+      "originalObjectTimestamp": "2025-11-21 23:20:05+00:00",
+      "originalTagsSha256": "5e95b76578db2438a8af62c1de1d4a40ef313b222349592fda40f477cd1bf18c",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Rácváros",
+          "tagKey": "name",
+          "literalTagValue": "Rácváros",
+          "matchedLiteralToken": "Rácváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2678549522,
+      "originalObjectVersion": 9,
+      "originalObjectTimestamp": "2025-11-21 23:20:05+00:00",
+      "originalTagsSha256": "ed8c7d82471ce49c7fff717fa48bfbe111d3a5026f1b1af75bef34e6195968b7",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Uránváros",
+          "tagKey": "name",
+          "literalTagValue": "Uránváros",
+          "matchedLiteralToken": "Uránváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2678549523,
+      "originalObjectVersion": 10,
+      "originalObjectTimestamp": "2025-11-21 23:20:05+00:00",
+      "originalTagsSha256": "7a7804bec306e9a1e58da4246e3468a7757526fb2a56101cd0694e80581ff5c4",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Uránváros",
+          "tagKey": "name",
+          "literalTagValue": "Uránváros",
+          "matchedLiteralToken": "Uránváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2678549524,
+      "originalObjectVersion": 9,
+      "originalObjectTimestamp": "2025-11-21 23:20:05+00:00",
+      "originalTagsSha256": "5df299b5c01f904413a250892c0155639a6dbb525a41b5e7b8b2b5a1909b78ca",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Uránváros",
+          "tagKey": "name",
+          "literalTagValue": "Uránváros",
+          "matchedLiteralToken": "Uránváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2678549526,
+      "originalObjectVersion": 9,
+      "originalObjectTimestamp": "2025-11-21 23:20:05+00:00",
+      "originalTagsSha256": "c85a717fdd91691cccb9fdb8b6c1b3db6fa3193cd84f1388179e85edc96ea0df",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Uránváros",
+          "tagKey": "name",
+          "literalTagValue": "Uránváros",
+          "matchedLiteralToken": "Uránváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2678549534,
+      "originalObjectVersion": 9,
+      "originalObjectTimestamp": "2025-11-21 23:20:05+00:00",
+      "originalTagsSha256": "89b7046276bc6bfa794d4d80033510bfdb54a96dd0b93c6c92a5bf6b51d4e2ff",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Uránváros",
+          "tagKey": "name",
+          "literalTagValue": "Uránváros",
+          "matchedLiteralToken": "Uránváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2678659234,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2025-11-22 10:30:29+00:00",
+      "originalTagsSha256": "9d64fa0062966a6a3c4499f5c2af520ea0ba59441e3dd7f4ad6048b2e5849af6",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Kertváros",
+          "tagKey": "name",
+          "literalTagValue": "Kertváros",
+          "matchedLiteralToken": "Kertváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2678659235,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2025-11-22 10:30:29+00:00",
+      "originalTagsSha256": "c1788904c0060e09c428e220947d3997a84914ef67181f694448ef0ec83fca6a",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Kertváros",
+          "tagKey": "name",
+          "literalTagValue": "Kertváros",
+          "matchedLiteralToken": "Kertváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2678659236,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2025-11-22 10:30:29+00:00",
+      "originalTagsSha256": "8f3bacf4d433b23ca41e941ea2ba69dd54a08776c71283009b17b97fb8fce840",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Kertváros",
+          "tagKey": "name",
+          "literalTagValue": "Kertváros",
+          "matchedLiteralToken": "Kertváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2678659238,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2025-11-22 10:30:29+00:00",
+      "originalTagsSha256": "138401cb8208e648204c1ac6eeea3cbd84ea4c70f5d22ee171494bb64dc57fe5",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Kertváros",
+          "tagKey": "name",
+          "literalTagValue": "Kertváros",
+          "matchedLiteralToken": "Kertváros",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2794726381,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2025-11-21 22:29:56+00:00",
+      "originalTagsSha256": "905747d021ddb07275d1ed3ee8ddc37344f422eb8da5d4c3472c42f7d22175ff",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Gyükés",
+          "tagKey": "name",
+          "literalTagValue": "Gyükés",
+          "matchedLiteralToken": "Gyükés",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 2794792669,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2025-11-21 18:52:51+00:00",
+      "originalTagsSha256": "9c862cd7f3600735f860e00895941eb1aceeb5aa9ece38a8dcb5537c5f4caea6",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Málom",
+          "tagKey": "name",
+          "literalTagValue": "Malom",
+          "matchedLiteralToken": "Malom",
+          "matchType": "orthographic_normalized_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 3181501885,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2025-11-27 15:17:08+00:00",
+      "originalTagsSha256": "5a6e86f21e6c4cd802b3124546f55bafdb48099debbf5578d0f1f29083fbe023",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Murom",
+          "tagKey": "name",
+          "literalTagValue": "Murom",
+          "matchedLiteralToken": "Murom",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 3350790237,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2025-11-21 18:37:29+00:00",
+      "originalTagsSha256": "4edb6d055cc73816708dba7a40f26e070d7c25729bddefb2d3c620a70cae0dee",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Murom",
+          "tagKey": "name",
+          "literalTagValue": "Murom",
+          "matchedLiteralToken": "Murom",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 3440860244,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2023-04-17 05:42:28+00:00",
+      "originalTagsSha256": "59749aaa30a00cd0a214bba2801a27e8371f4b04e07e04ca2e483ed6db73dc5e",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "other_poi_or_named_feature_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Petőfi-akna",
+          "tagKey": "alt_name",
+          "literalTagValue": "Petőfi akna",
+          "matchedLiteralToken": "Petőfi akna",
+          "matchType": "orthographic_normalized_exact",
+          "role": "explicit_current_alias_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 3442490909,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2018-03-10 07:54:34+00:00",
+      "originalTagsSha256": "1c68431fda75c82afc847952dd1c6faa76f741ef7a5427d2237860afafd75ee3",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "other_named_landuse_or_functional_area",
+      "currentNameMatches": [
+        {
+          "sourceName": "Havihegy",
+          "tagKey": "name",
+          "literalTagValue": "Havi-hegy",
+          "matchedLiteralToken": "Havi-hegy",
+          "matchType": "orthographic_normalized_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 3586071349,
+      "originalObjectVersion": 5,
+      "originalObjectTimestamp": "2025-11-21 17:44:28+00:00",
+      "originalTagsSha256": "1f99853e0cd92be7e98f688c47f4c6d72417ccee8cbdea8b1988575cc804a5d3",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "M utca",
+          "tagKey": "name",
+          "literalTagValue": "M utca",
+          "matchedLiteralToken": "M utca",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 4340981717,
+      "originalObjectVersion": 7,
+      "originalObjectTimestamp": "2025-11-25 10:52:20+00:00",
+      "originalTagsSha256": "aaf3579100bdcb1fe53b0e598baba16c061e0658c45546653241934476f4be4d",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "other_poi_or_named_feature_only",
+      "currentNameMatches": [],
+      "historicalOnlyMatches": [
+        {
+          "sourceName": "Üszög",
+          "tagKey": "old_name",
+          "literalTagValue": "Üszög",
+          "matchedLiteralToken": "Üszög",
+          "matchType": "literal_exact",
+          "role": "historical_name_only"
+        }
+      ],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 5056377779,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2025-11-22 09:29:15+00:00",
+      "originalTagsSha256": "343519641c15ebd6432e4b3a969c96479ceaeb5883a1f2cb83510f72a9df4561",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Postavölgy",
+          "tagKey": "name",
+          "literalTagValue": "Postavölgy",
+          "matchedLiteralToken": "Postavölgy",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 5056377788,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2025-11-21 22:29:56+00:00",
+      "originalTagsSha256": "3d6416f66121031de8d9b380b0d64b6e5fb19dc71812c569c0efc0035155de57",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Bálics",
+          "tagKey": "name",
+          "literalTagValue": "Bálics",
+          "matchedLiteralToken": "Bálics",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 5056380636,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2025-11-21 18:37:29+00:00",
+      "originalTagsSha256": "803aae8b586bb868f76024895672cc3a50167fb685aa5a712edf5630768dadc7",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Rücker-akna",
+          "tagKey": "name",
+          "literalTagValue": "Rücker-akna",
+          "matchedLiteralToken": "Rücker-akna",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 5056380685,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2025-11-21 20:33:14+00:00",
+      "originalTagsSha256": "1f3419b6f40eb7b87f65803417a2082a9b760173240be4a50b6d45652bcb09fa",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "transport_stop_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Meszes",
+          "tagKey": "name",
+          "literalTagValue": "Meszes",
+          "matchedLiteralToken": "Meszes",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 5916374100,
+      "originalObjectVersion": 1,
+      "originalObjectTimestamp": "2018-09-19 16:37:39+00:00",
+      "originalTagsSha256": "627cf1d8927061e3956eebf7debc1468aa5efdd18d9926a73528d8f7648bc489",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "other_poi_or_named_feature_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Vasas",
+          "tagKey": "name",
+          "literalTagValue": "Vasas",
+          "matchedLiteralToken": "Vasas",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 7504709753,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2021-12-16 12:34:41+00:00",
+      "originalTagsSha256": "0a32d6ba192a2bab9f90de6681ea81aefed581fa5dc0af4b8fef69fdc353ed46",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "other_poi_or_named_feature_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Havihegy",
+          "tagKey": "name",
+          "literalTagValue": "Havihegy",
+          "matchedLiteralToken": "Havihegy",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "node",
+      "osmId": 13934910101,
+      "originalObjectVersion": 1,
+      "originalObjectTimestamp": "2026-06-13 06:43:35+00:00",
+      "originalTagsSha256": "24c4ffe5df2d945c6231e959c363017d79fc10b1bc64a556d105221a579e8d8c",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "other_poi_or_named_feature_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Petőfi-akna",
+          "tagKey": "name",
+          "literalTagValue": "Petőfi akna",
+          "matchedLiteralToken": "Petőfi akna",
+          "matchType": "orthographic_normalized_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "relation",
+      "osmId": 3975904,
+      "originalObjectVersion": 11,
+      "originalObjectTimestamp": "2025-11-05 22:28:36+00:00",
+      "originalTagsSha256": "16be5c72202bb7a8bc275a9c1c875b3980841b8e388020149fe6364e2b5e37c4",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "other_named_landuse_or_functional_area",
+      "currentNameMatches": [
+        {
+          "sourceName": "Tüskésrét",
+          "tagKey": "name",
+          "literalTagValue": "Tüskésrét",
+          "matchedLiteralToken": "Tüskésrét",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "relation",
+      "osmId": 4537964,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2024-11-27 12:17:06+00:00",
+      "originalTagsSha256": "52d79bc2dcd2bde6b503fd052d48a87f8bce4a3f37616eb057dc9a67cba2f02c",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "other_named_landuse_or_functional_area",
+      "currentNameMatches": [
+        {
+          "sourceName": "Péterpuszta",
+          "tagKey": "name",
+          "literalTagValue": "Péterpuszta",
+          "matchedLiteralToken": "Péterpuszta",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "relation",
+      "osmId": 6485457,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2022-02-05 11:08:58+00:00",
+      "originalTagsSha256": "a205cdc31032d7a7b3bb2336d2c4f293d5c2b4b6bc08a2f6afdc7b6370e37388",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "other_named_landuse_or_functional_area",
+      "currentNameMatches": [
+        {
+          "sourceName": "István-akna",
+          "tagKey": "name",
+          "literalTagValue": "István akna",
+          "matchedLiteralToken": "István akna",
+          "matchType": "orthographic_normalized_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 31022219,
+      "originalObjectVersion": 11,
+      "originalObjectTimestamp": "2026-03-28 14:18:00+00:00",
+      "originalTagsSha256": "881828a300b2addd2025469780f321aa9d135f60b046a5110ccb2672afc827da",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "István-akna",
+          "tagKey": "name",
+          "literalTagValue": "István-akna",
+          "matchedLiteralToken": "István-akna",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 41712247,
+      "originalObjectVersion": 9,
+      "originalObjectTimestamp": "2025-08-13 08:12:34+00:00",
+      "originalTagsSha256": "457bee157c4368242f9f9e59558933cbbbe2ee787a4926aa94f7b8277b8550b0",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Nyugati ipari út",
+          "tagKey": "name",
+          "literalTagValue": "Nyugati ipari út",
+          "matchedLiteralToken": "Nyugati ipari út",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 41762924,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2013-06-12 11:56:38+00:00",
+      "originalTagsSha256": "919e37f263b2d4d16f4fa8930ba4a85bc5f5f10cbe5b83f8866a4d63713d665f",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "István-akna",
+          "tagKey": "name",
+          "literalTagValue": "István-akna",
+          "matchedLiteralToken": "István-akna",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 168280948,
+      "originalObjectVersion": 5,
+      "originalObjectTimestamp": "2014-12-03 23:39:56+00:00",
+      "originalTagsSha256": "5eaacc862e3a787f29d94e27fd590a6f2ebc88b20ff20e53351de4f850536a85",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Szigeti tanya",
+          "tagKey": "name",
+          "literalTagValue": "Szigeti tanya",
+          "matchedLiteralToken": "Szigeti tanya",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 168280955,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2014-12-03 23:39:57+00:00",
+      "originalTagsSha256": "5eaacc862e3a787f29d94e27fd590a6f2ebc88b20ff20e53351de4f850536a85",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Szigeti tanya",
+          "tagKey": "name",
+          "literalTagValue": "Szigeti tanya",
+          "matchedLiteralToken": "Szigeti tanya",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 168697598,
+      "originalObjectVersion": 7,
+      "originalObjectTimestamp": "2022-04-19 18:20:49+00:00",
+      "originalTagsSha256": "cb68687949fef1854b80e26cd296ad83d7a8a67b5343bf75b56320a9197d3944",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Árpádtető",
+          "tagKey": "name",
+          "literalTagValue": "Árpádtető",
+          "matchedLiteralToken": "Árpádtető",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 168697605,
+      "originalObjectVersion": 9,
+      "originalObjectTimestamp": "2025-02-20 16:18:59+00:00",
+      "originalTagsSha256": "f0cdf9b74fba987db9f26f8657d1e9a04a50c05c86c69ec16ead04b04f3d520c",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Árpádtető",
+          "tagKey": "name",
+          "literalTagValue": "Árpádtető",
+          "matchedLiteralToken": "Árpádtető",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 168697614,
+      "originalObjectVersion": 7,
+      "originalObjectTimestamp": "2023-11-03 21:03:37+00:00",
+      "originalTagsSha256": "cb68687949fef1854b80e26cd296ad83d7a8a67b5343bf75b56320a9197d3944",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Árpádtető",
+          "tagKey": "name",
+          "literalTagValue": "Árpádtető",
+          "matchedLiteralToken": "Árpádtető",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 220025559,
+      "originalObjectVersion": 6,
+      "originalObjectTimestamp": "2025-08-13 08:12:34+00:00",
+      "originalTagsSha256": "93a6e554de54ffea1c1695215e9cc27ad62d37b05df546498e7646dc48fd53de",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Nyugati ipari út",
+          "tagKey": "name",
+          "literalTagValue": "Nyugati ipari út",
+          "matchedLiteralToken": "Nyugati ipari út",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 224879339,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2024-05-26 11:13:03+00:00",
+      "originalTagsSha256": "3fc7d05f7b03904e61ae68abfe45e0c2f45b3fb69fe3890a5ab297ca8a9fbc6e",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "M utca",
+          "tagKey": "name",
+          "literalTagValue": "M. utca",
+          "matchedLiteralToken": "M. utca",
+          "matchType": "orthographic_normalized_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 224879372,
+      "originalObjectVersion": 5,
+      "originalObjectTimestamp": "2023-10-31 21:03:53+00:00",
+      "originalTagsSha256": "971bbc49f833a1611be8094b0d56c296ffadb9889f85b04e4ea9c3853836f583",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Rücker-akna",
+          "tagKey": "name",
+          "literalTagValue": "Rücker-akna",
+          "matchedLiteralToken": "Rücker-akna",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 257771842,
+      "originalObjectVersion": 1,
+      "originalObjectTimestamp": "2014-01-22 15:19:22+00:00",
+      "originalTagsSha256": "f248380d0bb672c4a8336c444673e15b921b2d7299d69683e17d6651f35a70ca",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Józsefháza",
+          "tagKey": "name",
+          "literalTagValue": "Józsefháza",
+          "matchedLiteralToken": "Józsefháza",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 257771843,
+      "originalObjectVersion": 1,
+      "originalObjectTimestamp": "2014-01-22 15:19:22+00:00",
+      "originalTagsSha256": "f248380d0bb672c4a8336c444673e15b921b2d7299d69683e17d6651f35a70ca",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Józsefháza",
+          "tagKey": "name",
+          "literalTagValue": "Józsefháza",
+          "matchedLiteralToken": "Józsefháza",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 257771844,
+      "originalObjectVersion": 1,
+      "originalObjectTimestamp": "2014-01-22 15:19:22+00:00",
+      "originalTagsSha256": "f248380d0bb672c4a8336c444673e15b921b2d7299d69683e17d6651f35a70ca",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Józsefháza",
+          "tagKey": "name",
+          "literalTagValue": "Józsefháza",
+          "matchedLiteralToken": "Józsefháza",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 257771850,
+      "originalObjectVersion": 1,
+      "originalObjectTimestamp": "2014-01-22 15:19:22+00:00",
+      "originalTagsSha256": "5eb75452230aa5466b5a233f81a8b824db05901cabed7d3e1c50268b478bddae",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Szigeti tanya",
+          "tagKey": "name",
+          "literalTagValue": "Szigeti tanya",
+          "matchedLiteralToken": "Szigeti tanya",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 322863699,
+      "originalObjectVersion": 6,
+      "originalObjectTimestamp": "2022-07-21 12:47:15+00:00",
+      "originalTagsSha256": "f0cdf9b74fba987db9f26f8657d1e9a04a50c05c86c69ec16ead04b04f3d520c",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Árpádtető",
+          "tagKey": "name",
+          "literalTagValue": "Árpádtető",
+          "matchedLiteralToken": "Árpádtető",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 322863700,
+      "originalObjectVersion": 3,
+      "originalObjectTimestamp": "2018-08-02 11:16:47+00:00",
+      "originalTagsSha256": "f0cdf9b74fba987db9f26f8657d1e9a04a50c05c86c69ec16ead04b04f3d520c",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Árpádtető",
+          "tagKey": "name",
+          "literalTagValue": "Árpádtető",
+          "matchedLiteralToken": "Árpádtető",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 330830799,
+      "originalObjectVersion": 6,
+      "originalObjectTimestamp": "2026-03-28 14:18:00+00:00",
+      "originalTagsSha256": "881828a300b2addd2025469780f321aa9d135f60b046a5110ccb2672afc827da",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "István-akna",
+          "tagKey": "name",
+          "literalTagValue": "István-akna",
+          "matchedLiteralToken": "István-akna",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 330830806,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2023-10-31 21:03:53+00:00",
+      "originalTagsSha256": "f9fa078e412b57c6c4ef076a6a14ff0a7185edb137ca9b0e11c0696e88f24b6f",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Rücker-akna",
+          "tagKey": "name",
+          "literalTagValue": "Rücker-akna",
+          "matchedLiteralToken": "Rücker-akna",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 330918492,
+      "originalObjectVersion": 4,
+      "originalObjectTimestamp": "2018-07-03 14:36:38+00:00",
+      "originalTagsSha256": "cb68687949fef1854b80e26cd296ad83d7a8a67b5343bf75b56320a9197d3944",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Árpádtető",
+          "tagKey": "name",
+          "literalTagValue": "Árpádtető",
+          "matchedLiteralToken": "Árpádtető",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 356925074,
+      "originalObjectVersion": 6,
+      "originalObjectTimestamp": "2025-08-13 08:12:34+00:00",
+      "originalTagsSha256": "449b35a1044d5a2d263a2bb03797ac83c3b3e5844383cf3b8d885d677e8455bf",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Nyugati ipari út",
+          "tagKey": "name",
+          "literalTagValue": "Nyugati ipari út",
+          "matchedLiteralToken": "Nyugati ipari út",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 356925075,
+      "originalObjectVersion": 5,
+      "originalObjectTimestamp": "2025-08-13 08:12:34+00:00",
+      "originalTagsSha256": "82464423e3795921d1fcc9daf751c864a824fae390b704e96ecfbc4d7bd409f9",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Nyugati ipari út",
+          "tagKey": "name",
+          "literalTagValue": "Nyugati ipari út",
+          "matchedLiteralToken": "Nyugati ipari út",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 458856104,
+      "originalObjectVersion": 1,
+      "originalObjectTimestamp": "2016-12-10 13:58:55+00:00",
+      "originalTagsSha256": "60c917cc6ab8fed7e669aa0c43c98b620190d37ea4d04dda8c6559d1cb0ed2c9",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "other_named_landuse_or_functional_area",
+      "currentNameMatches": [
+        {
+          "sourceName": "Kismélyvölgy",
+          "tagKey": "name",
+          "literalTagValue": "Kis-mélyvölgy",
+          "matchedLiteralToken": "Kis-mélyvölgy",
+          "matchType": "orthographic_normalized_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 518338231,
+      "originalObjectVersion": 6,
+      "originalObjectTimestamp": "2025-08-13 08:12:34+00:00",
+      "originalTagsSha256": "82464423e3795921d1fcc9daf751c864a824fae390b704e96ecfbc4d7bd409f9",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Nyugati ipari út",
+          "tagKey": "name",
+          "literalTagValue": "Nyugati ipari út",
+          "matchedLiteralToken": "Nyugati ipari út",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 518338334,
+      "originalObjectVersion": 1,
+      "originalObjectTimestamp": "2017-08-24 14:00:57+00:00",
+      "originalTagsSha256": "919e37f263b2d4d16f4fa8930ba4a85bc5f5f10cbe5b83f8866a4d63713d665f",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "István-akna",
+          "tagKey": "name",
+          "literalTagValue": "István-akna",
+          "matchedLiteralToken": "István-akna",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 518338337,
+      "originalObjectVersion": 1,
+      "originalObjectTimestamp": "2017-08-24 14:00:57+00:00",
+      "originalTagsSha256": "919e37f263b2d4d16f4fa8930ba4a85bc5f5f10cbe5b83f8866a4d63713d665f",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "István-akna",
+          "tagKey": "name",
+          "literalTagValue": "István-akna",
+          "matchedLiteralToken": "István-akna",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 518338385,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2018-07-03 14:36:38+00:00",
+      "originalTagsSha256": "cb68687949fef1854b80e26cd296ad83d7a8a67b5343bf75b56320a9197d3944",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Árpádtető",
+          "tagKey": "name",
+          "literalTagValue": "Árpádtető",
+          "matchedLiteralToken": "Árpádtető",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 604657834,
+      "originalObjectVersion": 1,
+      "originalObjectTimestamp": "2018-07-03 14:36:37+00:00",
+      "originalTagsSha256": "cb68687949fef1854b80e26cd296ad83d7a8a67b5343bf75b56320a9197d3944",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Árpádtető",
+          "tagKey": "name",
+          "literalTagValue": "Árpádtető",
+          "matchedLiteralToken": "Árpádtető",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 615866287,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2018-08-12 20:32:13+00:00",
+      "originalTagsSha256": "36ff64e23df529ed13cb88ae23702a5e8d25331f87422eb376dcb69733af29b0",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Kismélyvölgy",
+          "tagKey": "name",
+          "literalTagValue": "Kis-mélyvölgy",
+          "matchedLiteralToken": "Kis-mélyvölgy",
+          "matchType": "orthographic_normalized_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 615866288,
+      "originalObjectVersion": 1,
+      "originalObjectTimestamp": "2018-08-10 14:14:51+00:00",
+      "originalTagsSha256": "36ff64e23df529ed13cb88ae23702a5e8d25331f87422eb376dcb69733af29b0",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Kismélyvölgy",
+          "tagKey": "name",
+          "literalTagValue": "Kis-mélyvölgy",
+          "matchedLiteralToken": "Kis-mélyvölgy",
+          "matchType": "orthographic_normalized_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 1219877856,
+      "originalObjectVersion": 1,
+      "originalObjectTimestamp": "2023-10-31 21:03:53+00:00",
+      "originalTagsSha256": "eac06562e9de75f48c6921d866dd2eae59c09c83f7d856e3eef756367ad9b75c",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Rücker-akna",
+          "tagKey": "name",
+          "literalTagValue": "Rücker-akna",
+          "matchedLiteralToken": "Rücker-akna",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    },
+    {
+      "osmType": "way",
+      "osmId": 1306683153,
+      "originalObjectVersion": 2,
+      "originalObjectTimestamp": "2025-08-13 08:12:34+00:00",
+      "originalTagsSha256": "82464423e3795921d1fcc9daf751c864a824fae390b704e96ecfbc4d7bd409f9",
+      "allOriginalTagsExactlyMatch": true,
+      "originalNodeCoordinatesOrRefsAndMembersExactlyMatch": true,
+      "completeGeometryIndependentlyReconstructedFromFreshPbfReferences": true,
+      "freshGeometryFullyCoveredByFreshPecsMunicipality": true,
+      "evidenceCategory": "street_or_highway_name_only",
+      "currentNameMatches": [
+        {
+          "sourceName": "Nyugati ipari út",
+          "tagKey": "name",
+          "literalTagValue": "Nyugati ipari út",
+          "matchedLiteralToken": "Nyugati ipari út",
+          "matchType": "literal_exact",
+          "role": "current_name_tag"
+        }
+      ],
+      "historicalOnlyMatches": [],
+      "quarterNameSupportCategory": false,
+      "streetStopPoiOrLanduseDoesNotBecomeQuarterGeometry": true
+    }
+  ],
+  "historicalNameOnlyObjects": [
+    {
+      "osmType": "node",
+      "osmId": 4340981717,
+      "currentOsmName": "Pécsbánya-Rendező",
+      "historicalMatches": [
+        {
+          "sourceName": "Üszög",
+          "tagKey": "old_name",
+          "literalTagValue": "Üszög",
+          "matchedLiteralToken": "Üszög",
+          "matchType": "literal_exact",
+          "role": "historical_name_only"
+        }
+      ],
+      "countsAsCurrentNameSupportForTheseMatches": false
+    }
+  ],
+  "earlierNamedNodeArchiveReview": {
+    "path": "data/neighborhoods/sources/country-osm/named-nodes.geojson.gz",
+    "gzipSha256": "5c9193a72d4327e133f86d9c2625a4caeae3d21ec71d2575a3128b1d97931ecc",
+    "uncompressedSha256": "05c02b8ac8f32df2d917e01f6de81c6133c5e7dd527114f67000b43467a3a048",
+    "matchedPlaceNodeCount": 54,
+    "allPlaceTagsCoordinatesVersionTimeAndPecsAssociationExactlyMatchFreshPbf": true,
+    "nodeIds": [
+      343385876,
+      343457812,
+      345212720,
+      345213571,
+      348234974,
+      348235380,
+      348235711,
+      348235864,
+      348236212,
+      348237529,
+      348238174,
+      427549870,
+      427550296,
+      427550575,
+      513384395,
+      983186564,
+      983186588,
+      983186593,
+      983186601,
+      983186614,
+      983186629,
+      983186637,
+      983197633,
+      983211206,
+      983211212,
+      983211216,
+      983211219,
+      983216152,
+      983222333,
+      983222336,
+      983240903,
+      983300952,
+      983300956,
+      983300959,
+      983314608,
+      983343143,
+      983343145,
+      983343147,
+      983343148,
+      983346083,
+      983346885,
+      983351065,
+      983351066,
+      983351068,
+      983353475,
+      983354298,
+      983355806,
+      1288907880,
+      1288907882,
+      1288970170,
+      1288970174,
+      1298280216,
+      1306551385,
+      2624520437
+    ]
+  },
+  "excludedCountryCandidates": {
+    "count": 311,
+    "authorMissingMemberWayRefCount": 5,
+    "authorMissingNodeRefCount": 1,
+    "allKeptSameCityObjectsCompleteInFreshRead": true,
+    "excludedObjectsDoNotProvideCurrentPecsSupport": true,
+    "excludedCountryObjectsIndependentlyRescannedByThisAudit": false,
+    "scope": "Fresh PBF pass covers all retained same-city objects and their dependencies;no claim of a second whole-country name-completeness extraction."
+  },
+  "limits": [
+    "CurrentOSMplace labels are community name evidence,not an official complete urban-neighbourhood inventory.",
+    "A street,bus stop,POI,functional area or historicalold_name match does not become current quarter-name/footprint approval.",
+    "Fresh city association confirms complete object geometry inside this PBF municipality;it does not certify legal jurisdiction,source-quarter extent or absolute boundary accuracy."
+  ],
+  "producerScriptImportedOrInvoked": false,
+  "newGeometriesOrRegistriesWritten": false,
+  "georeferenceChanged": false,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false,
+  "networkUsed": false
+}

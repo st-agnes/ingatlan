@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "status": "FROZEN_SOURCE_GEOMETRIES_READY_FOR_ROOT_INTAKE",
+  "assignedResidualNames": 2,
+  "sourceBackedRepresentations": 2,
+  "frozenMainFeatureCollection": {
+    "path": "features.geojson",
+    "count": 1,
+    "sha256": "7663baf1a55e1bfa3ac29d07078a45db625d50e19155d5df01f0839123e58c74",
+    "names": [
+      "Gyugy / Sandipuszta"
+    ]
+  },
+  "separateReviewedCandidate": {
+    "path": "arkoshaza-reviewed-candidate.geojson",
+    "count": 1,
+    "sha256": "16193c336185a9a8de2756a953f1d847509a475fbc191162383ff07409ea73b6",
+    "names": [
+      "Babosdöbréte / Árkosháza-puszta"
+    ],
+    "quality": 9,
+    "historicEstateBoundaryKnown": false,
+    "disappearedSettlement": true,
+    "representativeLandscapeTract": true,
+    "rootIntakeRequired": true
+  },
+  "unsupportedResidualNames": 0,
+  "partialRepresentations": 2,
+  "aliasesProposed": 0,
+  "pointBuffersCreated": 0,
+  "syntheticClosureEdgesAdded": 0,
+  "limitations": [
+    "Sandipuszta covers the occupied building cluster and generalized yards, not its historical estate.",
+    "Árkosháza is a coarse representative rural landscape, not a recovered compound or historical property boundary.",
+    "The Árkosháza tract closes along 998 m of native administrative boundary; no physical-only circuit contains its name point.",
+    "The Árkosháza anonymous-building window covers 95.93% of the tract; its northern tip has no complete building inventory claim.",
+    "No unseen PDF map pixels were digitized."
+  ],
+  "frozenParentPacketModified": false,
+  "featureCollectionMustRemainByteForByteFrozen": true
+}

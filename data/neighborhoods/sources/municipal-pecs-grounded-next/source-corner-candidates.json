@@ -1,0 +1,46 @@
+{
+  "purpose": "Initial orientation only, using manually identified corresponding distinctive gray municipality-perimeter corners and actual archived municipality vertices. These are initial corner candidates, not independent survey controls or claimed absolute accuracy. The final fit uses the actual34gray-outline source pixels against the real archived perimeter. No neighbourhood name or name coordinate is used by the final fitter.",
+  "sourceImage": "pecs-p48-names.jpeg",
+  "archivedMunicipality": "pecs-calibration-municipality.geojson",
+  "records": [
+    {
+      "sourcePixel": [
+        160,
+        162
+      ],
+      "sourceGrayControlIndex": 21,
+      "sourceContext": "Northwestern concave rectangular hook where the gray border turns west",
+      "archivedOuterRingVertexIndex": 455,
+      "worldCoordinates": [
+        18.1846708,
+        46.1118906
+      ]
+    },
+    {
+      "sourcePixel": [
+        286,
+        83
+      ],
+      "sourceGrayControlIndex": 6,
+      "sourceContext": "Northern lower bend just west of the source gray outline north of city core",
+      "archivedOuterRingVertexIndex": 388,
+      "worldCoordinates": [
+        18.2374226,
+        46.1358913
+      ]
+    },
+    {
+      "sourcePixel": [
+        75,
+        151
+      ],
+      "sourceGrayControlIndex": 24,
+      "sourceContext": "Northwestern outward shoulder north of the long western vertical side",
+      "archivedOuterRingVertexIndex": 467,
+      "worldCoordinates": [
+        18.1484784,
+        46.1154127
+      ]
+    }
+  ]
+}

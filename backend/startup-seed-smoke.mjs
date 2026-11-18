@@ -1,20 +1,26 @@
+import {withTestAddress} from './smoke-address.mjs';
 /** Embedded test fixtures through the actual disposable API. No external importer is used. */
 import assert from 'node:assert/strict';
 import {mkdir,readFile,writeFile,chmod} from 'node:fs/promises';
 import {resolve,dirname} from 'node:path';
-import {DEMO_USERS,DEMO_FIXTURES,DEMO_PASSWORD,FEEDBACK_TEST_SCENARIO} from '../scripts/gcp/demo-data.mjs';
+import {DEMO_USERS,DEMO_FIXTURES,DEMO_PASSWORD,FEEDBACK_TEST_SCENARIO,DEMO_NEIGHBORHOOD_SCENARIO} from '../scripts/gcp/demo-data.mjs';
+import {TEST_FIXTURE_VERSION} from '../scripts/gcp/export-demo-data.mjs';
+import {neighborhoods} from '../dist/neighborhoods-data.js';
 const origin=new URL(process.argv[2]||'http://127.0.0.1:3000');
 if(origin.protocol!=='http:'||!['localhost','127.0.0.1','[::1]'].includes(origin.hostname)||origin.username||origin.password||origin.pathname!=='/'||origin.search||origin.hash)throw new Error('Use only a disposable loopback API.');
-const mode=process.argv[3],fixturePath=resolve('.local/startup-seed-fixture.json'),version='20261110-test-fixtures-v4';
+const mode=process.argv[3],fixturePath=resolve('.local/startup-seed-fixture.json'),version=TEST_FIXTURE_VERSION;
 if(!['--initial','--preserved','--reset','--production'].includes(mode))throw new Error('Choose a startup seed check mode.');
 async function api(path,{token,method='GET',body,status=200}={}){
+ body=withTestAddress(path,method,body);
  const response=await fetch(new URL('/api'+path,origin),{method,redirect:'error',signal:AbortSignal.timeout(20000),headers:{...(token?{Authorization:`Bearer ${token}`} : {}),...(body===undefined?{}:{'Content-Type':'application/json'})},...(body===undefined?{}:{body:JSON.stringify(body)})});
  assert.equal(response.status,status,`${method} ${path}: HTTP ${response.status}`);return response.status===204?null:response.json();
 }
 const health=await api('/health');assert.equal(health.status,'ready');
 if(mode==='--production'){assert.equal(health.deployment,'production');assert.equal(health.testCreditsEnabled,false);assert.equal(health.testDataVersion??null,null);}
 else{assert.equal(health.deployment,'test');assert.equal(health.testDataVersion,version);}
-const agent=DEMO_USERS.find(user=>user.accountType==='agent'),scenario=FEEDBACK_TEST_SCENARIO,scenarioKeys=new Set([scenario.seller,scenario.buyer]),accounts=[...DEMO_USERS.slice(0,3),agent,...DEMO_USERS.filter(user=>scenarioKeys.has(user.key))];
+const agent=DEMO_USERS.find(user=>user.accountType==='agent'),scenario=FEEDBACK_TEST_SCENARIO,scenarioKeys=new Set([scenario.seller,scenario.buyer]);
+const quarterAccountKeys=new Set(['reka','bence','julia','marton']);
+const accounts=[...DEMO_USERS.slice(0,3),agent,...DEMO_USERS.filter(user=>scenarioKeys.has(user.key)||quarterAccountKeys.has(user.key))];
 const catalog=key=>DEMO_FIXTURES.find(fixture=>fixture.key===key);
 async function snapshot(f){return Promise.all(accounts.map(async user=>({key:user.key,profile:await api('/me',{token:f.tokens[user.key]}),entities:await api('/me/entities',{token:f.tokens[user.key]}),ledger:await api('/credits/ledger',{token:f.tokens[user.key]}),matches:await api('/matches',{token:f.tokens[user.key]})})));}
 async function save(f){await mkdir(dirname(fixturePath),{recursive:true});await writeFile(fixturePath,JSON.stringify(f),{mode:0o600});await chmod(fixturePath,0o600);}
@@ -29,6 +35,7 @@ async function seededLanding(){
  const labelRegions=new Map([...cityRegions].map(([city,id])=>[city,new Set([id])]));
  for(const roman of ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII','XXIII'])labelRegions.set(`Budapest ${roman}. kerület`,new Set(['HU110']));
  for(const area of areas)labelRegions.set(`${area.city} és környéke (${area.settlements.length} település)`,new Set(area.settlements.map(city=>cityRegions.get(city))));
+ for(const area of neighborhoods)labelRegions.set(area.label,new Set([cityRegions.get(area.city)]));
  const searchKeys=['key','title','type','locations','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','ownerAccountType','ownerFirstName'].sort();
  const propertyKeys=['key','title','type','location','price','area','wholeRooms','halfRooms','rooms','lotArea','ownerAccountType','ownerFirstName'].sort();
  const publishedOwners={property:new Map(),search:new Map()};
@@ -106,7 +113,31 @@ async function fresh(f){
   else if(!isTrial)assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='agent'));
   assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='private'));
  }
+ await seededNeighborhoods(f,rows);
  return rows;
+}
+async function seededNeighborhoods(f,rows){
+ const quarter=DEMO_NEIGHBORHOOD_SCENARIO,row=key=>rows.find(item=>item.key===key);
+ const venkert=entity(row('reka'),catalog(quarter.venkertProperty)),sestakert=entity(row('bence'),catalog(quarter.sestakertProperty));
+ const nearby=entity(row('bence'),catalog('bence-debrecen-2'));
+ const quarters=entity(row('julia'),catalog(quarter.quarterSearch)),mixed=entity(row('marton'),catalog(quarter.mixedSearch));
+ for(const [property,included,excluded] of [[venkert,quarter.venkertId,quarter.sestakertId],[sestakert,quarter.sestakertId,quarter.venkertId]]){
+  assert.equal(property.addressDetails.provider,'synthetic-test-fixture');assert.equal(property.addressDetails.quality,'SYNTHETIC');
+  assert.ok(Number.isFinite(property.addressDetails.latitude));assert.ok(Number.isFinite(property.addressDetails.longitude));
+  assert.ok(property.neighborhoodIds.includes(included));assert.equal(property.neighborhoodIds.includes(excluded),false);
+ }
+ const select=(key,kind,id)=>api('/me/active',{token:f.tokens[key],method:'PUT',body:{kind,id}});
+ await select('julia','search',quarters.id);let page=await api('/feed',{token:f.tokens.julia});
+ for(const property of [venkert,sestakert])assert.ok(page.items.some(item=>item.propertyId===property.id),'The deployed quarter OR search must find both synthetic fixture points');
+ for(const card of page.items){assert.equal(card.property.address,'');assert.equal(card.property.addressDetails??null,null);}
+ await select('marton','search',mixed.id);page=await api('/feed?includeApproximate=true',{token:f.tokens.marton});
+ for(const property of [venkert,nearby])assert.ok(page.items.some(item=>item.propertyId===property.id),'The deployed mixed search must accept the quarter or the separate town');
+ assert.equal(page.items.some(item=>item.propertyId===sestakert.id),false,'The other quarter stays outside even with approximate consent');
+ await api('/decisions',{token:f.tokens.marton,method:'POST',body:{propertyId:sestakert.id,searchRequestId:mixed.id,liked:false,allowApproximate:true},status:400});
+ await select('reka','property',venkert.id);page=await api('/feed',{token:f.tokens.reka});
+ for(const search of [quarters,mixed])assert.ok(page.items.some(item=>item.searchRequestId===search.id),'Seller discovery must use the same seeded polygon membership');
+ for(const key of ['julia','marton','reka'])await select(key,row(key).entities.active.kind,row(key).entities.active.id);
+ console.log('Embedded neighborhood fixtures passed: actual seeded Vénkert/Sestakert points, two-quarter OR, mixed town inclusion, private coordinates and hard location gates for both roles.');
 }
 async function proveFeedbackScenario(f){
  const buyerToken=f.tokens[scenario.buyer],sellerToken=f.tokens[scenario.seller];

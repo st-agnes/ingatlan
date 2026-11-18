@@ -1,0 +1,16 @@
+{
+  "id": "country-parent-review",
+  "path": "data/neighborhoods/sources/country-parent-review/named-crossing-quarters.geojson",
+  "sha256": "4f6404e725f62e36d96bc71fa9428e74947a16ea033f4de65acf6102c3ed89c1",
+  "method": "Per-object source parent association with separate exact label nodes; original source geometry retained.",
+  "evidenceUrls": [
+    "https://www.openstreetmap.org/copyright"
+  ],
+  "license": "ODbL-1.0",
+  "propertyOverrides": {
+    "boundaryKind": "neighbourhood",
+    "canonicalNameIsNeighborhood": true,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/country-parent-review/proof.json"
+}

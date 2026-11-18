@@ -1,0 +1,30 @@
+{
+  "id": "zalaegerszeg-six-explicit-source-inferences",
+  "path": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/remaining-inferred-import.geojson",
+  "sha256": "ad3c6702f5c9d72edd2073c8bd4f8cf40d988489a602c513b944874ddbe1409b",
+  "municipality": "Zalaegerszeg",
+  "method": "Six explicit low-confidence source-based interpretations:five numbered quarter contours with small separately recorded label-occlusion caps, and two-part historical Iparterület with one original1px corner-touching hole explicitly filled as an estimated interpretation. Original raw6 contour and strict failure retained. Frozen inherited approximate municipal-perimeter affine with zero independent interior controls; unknown absolute accuracy.",
+  "evidenceUrls": [
+    "https://zalaegerszeg.hu/wp-content/uploads/2023/05/Zalaegerszeg_ITS.pdf"
+  ],
+  "license": "Municipal map reuse rights not independently established; ODbL for archived OSM perimeter calibration and independent current-name evidence.",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false,
+    "sourceContourIsObserved": false,
+    "reconstructionConfidence": "low"
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-remaining-next/independent-source-registration-review.json",
+  "uncertainties": [
+    "The complete candidate boundaries include explicit inferred segments or a single-pixel ambiguity interpretation; neither is wholly observed source geometry.",
+    "The inherited affine has zero independent interior controls and unknown absolute accuracy. Cap lengths measure reconstructed hidden source segments, not positional accuracy.",
+    "The historical table explicitly defines Iparterület as unit6; no exact current OSM named-place match was observed, so current identity remains unknown. Industrial function alone is not an exclusion.",
+    "Ebergény southwest unlabelled lobe70 has low-confidence assignment; an alternative omitting it is retained. Bazita-adjacent unnumbered closed cell92 remains unassigned.",
+    "Source history/name evidence does not establish current legal boundaries or unrestricted map-reuse rights."
+  ],
+  "rightsStatus": "Municipal public publication; open map redistribution licence not independently established.",
+  "registryEntryAppliedByThisBatch": false
+}

@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "status": "read_only_local_proof_scout; no_acquisition_or_geometry_changes",
+  "reviewedAt": "2026-11-14",
+  "municipality": "Szeged",
+  "inputs": [
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/source-facts.json",
+      "sha256": "27c323788f68cbe7eb17d96a108baa7fcd32e47ad75027c8983760b088e81469"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/boundary-obstacles.json",
+      "sha256": "4d54ffd4a0a3cfa8897c347966b719c9aa23b2f9a64d1361c356afc933d91f7f"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-next/independent-review.json",
+      "sha256": "d1716bab050d70356542fb364498aae99b1b43475b6e6e9cc9b1d24581e1349c"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-more/source-facts.json",
+      "sha256": "b06447d58d364e30c76ce16e1ba6850249c2a8c4bedb44718c848c4b7c13ba56"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-more/independent-obstacle-review.json",
+      "sha256": "9f8640611c10e46020269c9f9533bedefe8b1b63a1845c8bf7823903c12ae2c9"
+    },
+    {
+      "path": "data/neighborhoods/research/east.json",
+      "sha256": "0addb003e2c254669396ace4481e6c980ee5e7bae8f18f2067abe6bf5566e836"
+    },
+    {
+      "path": "data/neighborhoods/research/new-municipal-gis-sources.json",
+      "sha256": "9ea4556e9144fd18e7a276c18893c552d46001572b7c1447e27cd1ff1bdc89cf"
+    }
+  ],
+  "exactMunicipalPdfAcquisitionLeads": [
+    {
+      "priority": 1,
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany?ID=26101",
+      "documentDate": "2017-04-28",
+      "title": "200/2017. (IV.28.) Kgy. annex1, integrated settlement development strategy",
+      "printedPages": [
+        96
+      ],
+      "role": "Verified indexed numbered fine-subdivision street circuits, quoting455/2009(IX.25)IVS. Tarjánváros is a named source-era fine subdivision; the small Felsővárosi lakótelep name/extent is conflicting and planning-only.",
+      "actualFineBoundaryEvidence": "Tarjánváros six-corridor circuit; Felsővárosi four-corridor circuit, each distinct from nearby action-area material.",
+      "mapPresence": "Original bytes unavailable, so contour map/vector content unverified.",
+      "caveat": "Printedp95 Belső-Tarján is an action area and must not replace printedp96 named subdivision. Current Tarján2019 extent differs from the2009/2017 circuit.",
+      "localEvidence": "municipal-szeged-next/source-facts.json and independent-review.json"
+    },
+    {
+      "priority": 2,
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18327&as_attachment=1",
+      "documentDate": "2009, based on local indexed description; exact issue date unverified",
+      "title": "Integrált Városfejlesztési Stratégia, old municipal attachment",
+      "printedPages": [],
+      "role": "Indexed official IVS source lead; locate actual quarter delineation chapter and any fine contour maps.",
+      "actualFineBoundaryEvidence": "Not yet verified from original bytes.",
+      "mapPresence": "Unverified.",
+      "caveat": "Do not substitute later ten ITS macro groups or action areas for fine neighborhoods.",
+      "localEvidence": "research/east.json entry szeged-ivs-2009"
+    },
+    {
+      "priority": 3,
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18319",
+      "documentDate": "2008 IVS updated2009, reported chapter listing; attachment mapping unconfirmed",
+      "title": "Reported IVS_3_fejezet_felulvizsgalt.pdf",
+      "reportedApproxMB": 11.25,
+      "printedPages": [],
+      "role": "Targeted official chapter3 acquisition lead, potentially neighborhood-characterization maps/perimeters.",
+      "actualFineBoundaryEvidence": "Unverified until original acquired.",
+      "mapPresence": "Unverified.",
+      "caveat": "Local proof explicitly says exact ID-to-chapter mapping was inferred from adjacent IDs; verify document identity first.",
+      "localEvidence": "research/new-municipal-gis-sources.json"
+    },
+    {
+      "priority": 4,
+      "url": "https://www.szegedvaros.hu/storage/document/17/default/3602/FVS_Szeged_MJV_2021_2027_egys_szerk_VFKB_231130.pdf",
+      "documentDate": "2023-11-30 from filename/version notation",
+      "title": "Szeged FVS2021-2027, consolidated version",
+      "printedPages": [],
+      "role": "Indexed municipal source for Kálvária adopted2012 perimeter; possible source-era map or naming-resolution citation.",
+      "actualFineBoundaryEvidence": "Kálvária circuit uses Kálvária sugárút, Londoni körút, Bakay Nándor utca and railway.",
+      "mapPresence": "Unverified from raw PDF; exact page not preserved in local proof.",
+      "caveat": "Current Bakay road and railway corner unresolved; source map needed. Earlier unadopted boundary proposal must not be substituted.",
+      "localEvidence": "municipal-szeged-next/boundary-obstacles.json"
+    },
+    {
+      "priority": 5,
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=20490",
+      "documentDate": null,
+      "title": "Municipal attachment corroborating the numbered Felsőváros subdivision paragraph",
+      "printedPages": [],
+      "role": "Corroborates the fine-subdivision paragraph used by the2017source.",
+      "actualFineBoundaryEvidence": "Same numbered paragraph reported locally, but date/title/page and original map not independently recovered.",
+      "mapPresence": "Unverified.",
+      "caveat": "Do not infer that attachment date or page equals2017source.",
+      "localEvidence": "municipal-szeged-next/source-facts.json primarySource.corroboratingSameParagraph"
+    },
+    {
+      "priority": 6,
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=19546&as_attachment=1",
+      "documentDate": null,
+      "title": "Municipal development concept; exact edition date not retained",
+      "printedPages": [
+        23
+      ],
+      "role": "Scope/name-to-footprint check for Felsőváros fine circuit, not a positive modern quarter assertion.",
+      "actualFineBoundaryEvidence": "Római/Szilléri/Debreceni/József Attila circuit is described as garden/suburban construction rather than the small estate label used elsewhere.",
+      "mapPresence": "Unverified.",
+      "caveat": "Conflicting identity is material; keep the small four-road circuit planning-only unless a source map resolves it.",
+      "localEvidence": "municipal-szeged-next/source-facts.json and independent-review.json"
+    }
+  ],
+  "additionalNonMunicipalOrInstitutionalMapLeads": [
+    {
+      "url": "https://geography.hu/mfk2001/cikkek/TothKKeseru.pdf",
+      "year": 2001,
+      "title": "A lakótelepi panellakások árainak területi különbségei Szegeden",
+      "printedMapPage": 4,
+      "figure": 1,
+      "role": "Actual estate overview-map lead; extracted text names multiple housing estates and roads. Potential fine-contour value exceeds generic marker GIS.",
+      "mapVisuallyVerifiedLocally": false,
+      "localOriginalPdfPresent": false,
+      "caveat": "Academic source, not municipal authority; screenshot bytes were unavailable in prior session. Source scope/contours must be visually checked after acquisition."
+    },
+    {
+      "url": "https://www.klebelsberg-egyesulet.hu/wp-content/uploads/2016/04/helytortenet.pdf",
+      "year": 2007,
+      "title": "Szeged-Klebelsberg-telep története",
+      "printedBoundaryPage": 9,
+      "role": "Local-history association source for one whole-quarter four-sided physical corridor definition; possible source map/photo appendix may resolve embankment-to-old-waterbody corner.",
+      "localOriginalPdfPresent": false,
+      "caveat": "Not municipal; exact source map presence and historical embankment extent still unresolved."
+    }
+  ],
+  "excludedOrSecondaryLeads": [
+    {
+      "url": "https://regi.szegedvaros.hu/letoltheto-csatolmany/?ID=18321&as_attachment=1",
+      "year": "2008updated2009",
+      "printedPage": 48,
+      "section": "5.3.2.2 Odessza lakótelep",
+      "reason": "Explicit action-area scope. Useful corridor interpretation only; not direct authority for whole fine quarter."
+    },
+    {
+      "url": "https://megujul.szeged.hu/data/portal/cikk/miert-pont-igy/szeged_kerekparhalozati_terv_2015.pdf",
+      "year": 2015,
+      "reason": "Municipal cycle-network plan is a historical embankment-alignment lead, not a closed neighborhood map."
+    }
+  ],
+  "localPdfFinding": {
+    "actualSzegedRawPdfOrMapEvidenceIdentified": false,
+    "frozenMunicipalSzegedProofsExplicitlySayFullPdfBytesUnavailable": true,
+    "localPdfPathsContainingSzegedInFilename": [],
+    "inventoryMethod": "Inspected filenames for240.local PDFs and first2pages/metadata of them. No Szeged-primary document identified; three hits were Kecskemét excerpts mentioning Szeged railway directions. This was not an exhaustive content/map scan of every page.",
+    "networkFetchStillRequiredForOriginalMapInspection": true
+  },
+  "semanticRules": [
+    "Preserve historical Tarján2009/2017 versus2019 footprint versions as one neighborhood identity.",
+    "Do not silently alias or clone macro groups/action areas into fine quarters.",
+    "No source-map contour or vector geometry is claimed without original visual inspection."
+  ],
+  "directNarrativeQuotationWords": 0,
+  "networkCallsPerformed": false,
+  "globalRegistryModified": false,
+  "frozenZalaPacketsModified": false
+}

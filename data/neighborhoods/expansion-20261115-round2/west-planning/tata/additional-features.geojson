@@ -1,0 +1,358 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "estimated:west-planning:Tata:Fácánoskert-lakópark",
+      "properties": {
+        "name": "Fácánoskert-lakópark",
+        "municipality": "Tata",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "method": "Estimated outer envelope of the explicit locally scoped OSM estate street set; convex hull of original source vertices. No point buffer, Voronoi cell or parent-quarter geometry.",
+        "sourceUrl": "https://tata.hu/mindennapok/egeszsegugy/egeszsegugyi-alapellatas/fogorvosok/04-szamu-korzet/",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/1154387633",
+          "https://tata.hu/wp-content/uploads/2021/11/kdits_tata_its_08141.pdf"
+        ],
+        "approximationNote": "Municipal street documentation explicitly equates Császár Attila utca with Fácános kert. Eight archived OSM ways carrying the older Fácánoskert estate-road name outline the connected housing development. The outer street-vertex envelope estimates its quarter extent; plot depths and newer development phases are unresolved. Straight connections between outer street vertices are estimated search-area boundaries, not legal or cadastral lines.",
+        "partialFootprint": false,
+        "sourceLineIds": [
+          "osm:way:99859253",
+          "osm:way:99859256",
+          "osm:way:99859264",
+          "osm:way:99859268",
+          "osm:way:99859269",
+          "osm:way:954767144",
+          "osm:way:954767145",
+          "osm:way:954767146"
+        ],
+        "sourcePeriod": "Municipal quarter/street evidence; OSM snapshot2026-11-12",
+        "boundaryKind": "neighbourhood",
+        "usableForAddressAssignment": false,
+        "areaM2": 90365,
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.3260659,
+              47.6267144
+            ],
+            [
+              18.3259991,
+              47.6267303
+            ],
+            [
+              18.3259283,
+              47.6267754
+            ],
+            [
+              18.3257031,
+              47.6269576
+            ],
+            [
+              18.3232634,
+              47.6291543
+            ],
+            [
+              18.3232451,
+              47.6291735
+            ],
+            [
+              18.3232369,
+              47.6291947
+            ],
+            [
+              18.3232381,
+              47.6292105
+            ],
+            [
+              18.3232591,
+              47.6292538
+            ],
+            [
+              18.3232754,
+              47.6292673
+            ],
+            [
+              18.3233096,
+              47.6292812
+            ],
+            [
+              18.3273873,
+              47.6307129
+            ],
+            [
+              18.3283263,
+              47.6287137
+            ],
+            [
+              18.3283271,
+              47.6286962
+            ],
+            [
+              18.3283149,
+              47.6286726
+            ],
+            [
+              18.3261224,
+              47.6267393
+            ],
+            [
+              18.3260659,
+              47.6267144
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:west-planning:Tata:Levendulakert",
+      "properties": {
+        "name": "Levendulakert",
+        "municipality": "Tata",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "method": "Estimated outer envelope of the explicit locally scoped OSM estate street set; convex hull of original source vertices. No point buffer, Voronoi cell or parent-quarter geometry.",
+        "sourceUrl": "https://tata.hu/mindennapok/egeszsegugy/egeszsegugyi-alapellatas/felnott-haziorvosok/2-szamu-korzet/",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/2690548887",
+          "https://utcak-magyarorszag.openalfa.com/utcak/vecsey-karoly-utca-levendulakert-tata"
+        ],
+        "approximationNote": "Municipal documentation confirms Levendulakert utca; the street guide places Vécsey Károly utca in Levendulakert. The named local housing-street network provides a recognizable full built-up estate envelope, not the broader Nagykert/Felső-Tata parent. Outer plot boundaries remain uncertain. Straight connections between outer street vertices are estimated search-area boundaries, not legal or cadastral lines.",
+        "partialFootprint": false,
+        "sourceLineIds": [
+          "osm:way:66709246",
+          "osm:way:66709247",
+          "osm:way:66709249",
+          "osm:way:1489070928"
+        ],
+        "sourcePeriod": "Municipal quarter/street evidence; OSM snapshot2026-11-12",
+        "boundaryKind": "neighbourhood",
+        "usableForAddressAssignment": false,
+        "areaM2": 40796,
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.3002596,
+              47.6388782
+            ],
+            [
+              18.3002034,
+              47.6388906
+            ],
+            [
+              18.3001405,
+              47.6389145
+            ],
+            [
+              18.3000697,
+              47.6389665
+            ],
+            [
+              18.2997039,
+              47.6393322
+            ],
+            [
+              18.2983021,
+              47.6407792
+            ],
+            [
+              18.2997268,
+              47.6412477
+            ],
+            [
+              18.3025186,
+              47.6398124
+            ],
+            [
+              18.3004829,
+              47.6389361
+            ],
+            [
+              18.3003801,
+              47.6388984
+            ],
+            [
+              18.300325,
+              47.6388826
+            ],
+            [
+              18.3002596,
+              47.6388782
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:west-planning:Tata:Boglárka apartmanpark",
+      "properties": {
+        "name": "Boglárka apartmanpark",
+        "municipality": "Tata",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "method": "Estimated outer envelope of the explicit locally scoped OSM estate street set; convex hull of original source vertices. No point buffer, Voronoi cell or parent-quarter geometry.",
+        "sourceUrl": "https://tata.hu/wp-content/uploads/2021/11/kdits_tata_its_08141.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/2774661333",
+          "https://utcak-magyarorszag.openalfa.com/utcak/nyirfa-utca-boglarka-apartmanpark-tata"
+        ],
+        "approximationNote": "The municipal ITS explicitly labels Boglárka apartmanpark on the eastern lakeside. The estate-named street and locally bounded portions of Nyírfa/Boróka streets support this residential envelope. Streets with the same names outside this locality are excluded. Development-phase and parcel extents remain approximate. Straight connections between outer street vertices are estimated search-area boundaries, not legal or cadastral lines.",
+        "partialFootprint": false,
+        "sourceLineIds": [
+          "osm:way:83990600",
+          "osm:way:83990605",
+          "osm:way:244517367",
+          "osm:way:246768235",
+          "osm:way:272530777"
+        ],
+        "sourcePeriod": "Municipal quarter/street evidence; OSM snapshot2026-11-12",
+        "boundaryKind": "neighbourhood",
+        "usableForAddressAssignment": false,
+        "areaM2": 103251,
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.3458358,
+              47.6325578
+            ],
+            [
+              18.3455633,
+              47.6327337
+            ],
+            [
+              18.3441101,
+              47.6336718
+            ],
+            [
+              18.3431352,
+              47.6343353
+            ],
+            [
+              18.341411,
+              47.6355127
+            ],
+            [
+              18.3413898,
+              47.6355272
+            ],
+            [
+              18.3422225,
+              47.6361157
+            ],
+            [
+              18.3434034,
+              47.6369307
+            ],
+            [
+              18.3478968,
+              47.6339107
+            ],
+            [
+              18.3458358,
+              47.6325578
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "estimated:west-planning:Tata:Remeteség",
+      "properties": {
+        "name": "Remeteség",
+        "municipality": "Tata",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "method": "Estimated outer envelope of the explicit locally scoped OSM estate street set; convex hull of original source vertices. No point buffer, Voronoi cell or parent-quarter geometry.",
+        "sourceUrl": "https://tata.hu/wp-content/uploads/2021/11/kdits_tata_its_08141.pdf",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/1299482165",
+          "https://tata.hu/mindennapok/egeszsegugy/egeszsegugyi-alapellatas/fogorvosok/04-szamu-korzet/"
+        ],
+        "approximationNote": "The municipality recognizes Remeteség as a separate quarter and lists its residential street network. This envelope estimates the connected housing part around the source label, not a single building. The broader historic Remeteség forest/golf landscape is not reconstructed; this feature is explicitly a partial quarter footprint. Straight connections between outer street vertices are estimated search-area boundaries, not legal or cadastral lines.",
+        "partialFootprint": true,
+        "sourceLineIds": [
+          "osm:way:70082675",
+          "osm:way:237049646",
+          "osm:way:237049650",
+          "osm:way:237049652",
+          "osm:way:237049653",
+          "osm:way:237049654",
+          "osm:way:237049655",
+          "osm:way:237049659",
+          "osm:way:237049666",
+          "osm:way:237049667",
+          "osm:way:237049753",
+          "osm:way:1288850907"
+        ],
+        "sourcePeriod": "Municipal quarter/street evidence; OSM snapshot2026-11-12",
+        "boundaryKind": "neighbourhood",
+        "usableForAddressAssignment": false,
+        "areaM2": 81911,
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.3365177,
+              47.6204317
+            ],
+            [
+              18.335578,
+              47.6216845
+            ],
+            [
+              18.3350605,
+              47.6251592
+            ],
+            [
+              18.3351257,
+              47.6257225
+            ],
+            [
+              18.3390363,
+              47.6215824
+            ],
+            [
+              18.3389677,
+              47.6215306
+            ],
+            [
+              18.3377984,
+              47.6206482
+            ],
+            [
+              18.3365177,
+              47.6204317
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

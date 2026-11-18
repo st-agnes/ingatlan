@@ -1,0 +1,1524 @@
+{
+  "Tatabánya": {
+    "Sárberki lakótelep": [
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Municipality",
+        "area": 638611.4,
+        "id": "candidate:0",
+        "boundaries": [
+          "{'axle_load': '22.5', 'electrified': 'contact_line', 'frequency': '50', 'gauge': '1435', 'loading_gauge': 'TSI_GC', 'maxspeed': '140', 'operator': 'MÁV', 'passenger_lines': '2', 'railway': 'rail', 'railway:ballastless': 'no', 'railway:bidirectional': 'regular', 'railway:etcs': '1', 'railway:evm': 'yes', 'railway:preferred_direction': 'forward', 'railway:radio': 'gsm-r', 'railway:rail': 'continuous', 'railway:track_class': 'CM3', 'railway:track_side': 'right', 'railway:track_type': 'main', 'railway:traffic_mode': 'mixed', 'ref': '1', 'usage': 'main', 'voltage': '25000'}",
+          "{'axle_load': '22.5', 'bridge': 'yes', 'electrified': 'contact_line', 'frequency': '50', 'gauge': '1435', 'layer': '1', 'loading_gauge': 'TSI_GC', 'maxspeed': '140', 'operator': 'MÁV', 'passenger_lines': '2', 'railway': 'rail', 'railway:ballastless': 'no', 'railway:bidirectional': 'regular', 'railway:etcs': '1', 'railway:evm': 'yes', 'railway:preferred_direction': 'forward', 'railway:radio': 'gsm-r', 'railway:rail': 'continuous', 'railway:track_class': 'CM3', 'railway:track_side': 'right', 'railway:track_type': 'main', 'railway:traffic_mode': 'mixed', 'ref': '1', 'usage': 'main', 'voltage': '25000'}",
+          "Összekötő út",
+          "Köztársaság útja",
+          "Galla-patak"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 74657.7,
+        "id": "candidate:3",
+        "boundaries": [
+          "Köztársaság útja",
+          "Sárberki lakótelep",
+          "{'highway': 'residential', 'lane_markings': 'yes', 'lanes': '2', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'maxweight': '7.5', 'surface': 'asphalt'}",
+          "{'highway': 'service', 'service': 'parking_aisle'}",
+          "Sárbereki Gyűjtőút",
+          "Galla-patak"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Szőlőhegy – Újváros – Sárberek",
+        "area": 620726.1,
+        "id": "candidate:19",
+        "boundaries": [
+          "Összekötő út",
+          "Köztársaság útja",
+          "Galla-patak"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Szőlőhegy – Újváros – Sárberek",
+        "area": 74657.7,
+        "id": "candidate:20",
+        "boundaries": [
+          "Köztársaság útja",
+          "Sárberki lakótelep",
+          "{'highway': 'residential', 'lane_markings': 'yes', 'lanes': '2', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'maxweight': '7.5', 'surface': 'asphalt'}",
+          "{'highway': 'service', 'service': 'parking_aisle'}",
+          "Sárbereki Gyűjtőút",
+          "Galla-patak"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Sárberek",
+        "area": 695979.5,
+        "id": "candidate:21",
+        "boundaries": [
+          "Köztársaság útja"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Sárberek",
+        "area": 74657.7,
+        "id": "candidate:22",
+        "boundaries": [
+          "Köztársaság útja",
+          "Sárberki lakótelep",
+          "{'highway': 'residential', 'lane_markings': 'yes', 'lanes': '2', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'maxweight': '7.5', 'surface': 'asphalt'}",
+          "{'highway': 'service', 'service': 'parking_aisle'}",
+          "Sárbereki Gyűjtőút",
+          "Galla-patak"
+        ]
+      }
+    ],
+    "Gál István-lakótelep": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 19868.8,
+        "id": "candidate:1",
+        "boundaries": [
+          "{'highway': 'residential', 'lane_markings': 'yes', 'lanes': '2', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'surface': 'asphalt'}",
+          "{'highway': 'residential', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'surface': 'asphalt'}",
+          "{'highway': 'residential', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed:backward': '50', 'maxspeed:forward': '40', 'maxspeed:type:backward': 'HU:urban', 'maxspeed:type:forward': 'sign', 'maxweight': '7.5', 'surface': 'asphalt'}",
+          "{'highway': 'residential', 'lane_markings': 'yes', 'lanes': '3', 'lanes:backward': '1', 'lanes:forward': '2', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'maxweight': '7.5', 'surface': 'asphalt', 'turn:lanes:backward': 'through', 'turn:lanes:forward': 'left|through;right'}"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Óváros",
+        "area": 19868.8,
+        "id": "candidate:23",
+        "boundaries": [
+          "{'highway': 'residential', 'lane_markings': 'yes', 'lanes': '2', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'surface': 'asphalt'}",
+          "{'highway': 'residential', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'surface': 'asphalt'}",
+          "{'highway': 'residential', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed:backward': '50', 'maxspeed:forward': '40', 'maxspeed:type:backward': 'HU:urban', 'maxspeed:type:forward': 'sign', 'maxweight': '7.5', 'surface': 'asphalt'}",
+          "{'highway': 'residential', 'lane_markings': 'yes', 'lanes': '3', 'lanes:backward': '1', 'lanes:forward': '2', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'maxweight': '7.5', 'surface': 'asphalt', 'turn:lanes:backward': 'through', 'turn:lanes:forward': 'left|through;right'}"
+        ]
+      }
+    ],
+    "Paletta lakópark": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 65779.7,
+        "id": "candidate:2",
+        "boundaries": [
+          "{'highway': 'residential', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'surface': 'asphalt'}",
+          "{'highway': 'residential', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed:backward': '50', 'maxspeed:forward': '40', 'maxspeed:type:backward': 'HU:urban', 'maxspeed:type:forward': 'sign', 'maxweight': '7.5', 'surface': 'asphalt'}",
+          "Béke utca",
+          "{'highway': 'service', 'service': 'parking_aisle', 'surface': 'asphalt'}",
+          "{'highway': 'residential', 'lane_markings': 'yes', 'lanes': '2', 'lit': 'yes', 'maxspeed': '30', 'maxspeed:type': 'sign', 'surface': 'asphalt'}",
+          "{'highway': 'residential', 'lane_markings': 'yes', 'lanes': '2', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'surface': 'asphalt'}",
+          "Paletta lakópark"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Óváros",
+        "area": 65779.7,
+        "id": "candidate:24",
+        "boundaries": [
+          "{'highway': 'residential', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'surface': 'asphalt'}",
+          "{'highway': 'residential', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed:backward': '50', 'maxspeed:forward': '40', 'maxspeed:type:backward': 'HU:urban', 'maxspeed:type:forward': 'sign', 'maxweight': '7.5', 'surface': 'asphalt'}",
+          "Béke utca",
+          "{'highway': 'service', 'service': 'parking_aisle', 'surface': 'asphalt'}",
+          "{'highway': 'residential', 'lane_markings': 'yes', 'lanes': '2', 'lit': 'yes', 'maxspeed': '30', 'maxspeed:type': 'sign', 'surface': 'asphalt'}",
+          "{'highway': 'residential', 'lane_markings': 'yes', 'lanes': '2', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'surface': 'asphalt'}",
+          "Paletta lakópark"
+        ]
+      }
+    ],
+    "Kossuthkert": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 29105.8,
+        "id": "candidate:4",
+        "boundaries": [
+          "Kökörcsin utca",
+          "Gyöngyvirág utca",
+          "Kossuth Kertalja utca",
+          "Banyi János utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Bánhida",
+        "area": 29105.8,
+        "id": "candidate:10",
+        "boundaries": [
+          "Kökörcsin utca",
+          "Gyöngyvirág utca",
+          "Kossuth Kertalja utca",
+          "Banyi János utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Bánhida – Dózsakert",
+        "area": 29105.8,
+        "id": "candidate:12",
+        "boundaries": [
+          "Kökörcsin utca",
+          "Gyöngyvirág utca",
+          "Kossuth Kertalja utca",
+          "Banyi János utca"
+        ]
+      }
+    ],
+    "Millennium lakópark": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 184967.5,
+        "id": "candidate:5",
+        "boundaries": [
+          "Által-ér",
+          "Dankó Pista utca",
+          "Szövetkezet utca",
+          "Jegenye utca",
+          "{'access': 'private', 'highway': 'service'}",
+          "{'highway': 'track'}",
+          "{'highway': 'service', 'service': 'driveway'}",
+          "{'highway': 'residential', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed': '30', 'maxspeed:type': 'sign', 'surface': 'asphalt'}",
+          "{'highway': 'living_street', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed': '20', 'maxspeed:type': 'HU:living_street', 'surface': 'asphalt'}",
+          "Réti utca",
+          "{'highway': 'track', 'tracktype': 'grade2'}",
+          "Erdész utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Bánhida – Dózsakert",
+        "area": 98414.0,
+        "id": "candidate:11",
+        "boundaries": [
+          "Szövetkezet utca",
+          "Jegenye utca",
+          "{'access': 'private', 'highway': 'service'}",
+          "{'highway': 'track'}",
+          "{'highway': 'service', 'service': 'driveway'}",
+          "{'highway': 'residential', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed': '30', 'maxspeed:type': 'sign', 'surface': 'asphalt'}",
+          "{'highway': 'living_street', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed': '20', 'maxspeed:type': 'HU:living_street', 'surface': 'asphalt'}",
+          "Réti utca",
+          "{'highway': 'track', 'tracktype': 'grade2'}"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Dózsakert",
+        "area": 89566.6,
+        "id": "candidate:15",
+        "boundaries": [
+          "Jegenye utca",
+          "{'access': 'private', 'highway': 'service'}",
+          "{'highway': 'track'}",
+          "{'highway': 'service', 'service': 'driveway'}",
+          "{'highway': 'residential', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed': '30', 'maxspeed:type': 'sign', 'surface': 'asphalt'}",
+          "{'highway': 'living_street', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed': '20', 'maxspeed:type': 'HU:living_street', 'surface': 'asphalt'}",
+          "Réti utca",
+          "{'highway': 'track', 'tracktype': 'grade2'}"
+        ]
+      }
+    ],
+    "Bánhidai lakótelep": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 19977.9,
+        "id": "candidate:6",
+        "boundaries": [
+          "Bánhidai lakótelep",
+          "{'highway': 'service', 'service': 'parking_aisle'}",
+          "Turul utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Bánhida – Dózsakert",
+        "area": 19977.9,
+        "id": "candidate:13",
+        "boundaries": [
+          "Bánhidai lakótelep",
+          "{'highway': 'service', 'service': 'parking_aisle'}",
+          "Turul utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Dózsakert",
+        "area": 344368.3,
+        "id": "candidate:14",
+        "boundaries": [
+          "{'axle_load': '22.5', 'electrified': 'contact_line', 'frequency': '50', 'gauge': '1435', 'loading_gauge': 'TSI_GC', 'maxspeed': '140', 'operator': 'MÁV', 'passenger_lines': '2', 'railway': 'rail', 'railway:ballastless': 'no', 'railway:bidirectional': 'regular', 'railway:etcs': '1', 'railway:evm': 'yes', 'railway:preferred_direction': 'forward', 'railway:radio': 'gsm-r', 'railway:rail': 'continuous', 'railway:track_class': 'CM3', 'railway:track_side': 'right', 'railway:track_type': 'main', 'railway:traffic_mode': 'mixed', 'ref': '1', 'usage': 'main', 'voltage': '25000'}",
+          "{'highway': 'tertiary', 'lane_markings': 'yes', 'lanes': '1', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'oneway': 'yes', 'surface': 'asphalt'}",
+          "{'highway': 'tertiary', 'junction': 'roundabout', 'lanes': '1', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'surface': 'asphalt'}",
+          "Dózsa György út",
+          "{'electrified': 'contact_line', 'frequency': '50', 'gauge': '1435', 'maxspeed': '40', 'operator': 'MÁV', 'railway': 'rail', 'railway:etcs': '1', 'railway:evm': 'yes', 'railway:track_type': 'main', 'service': 'siding', 'voltage': '25000'}"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Dózsakert",
+        "area": 19977.9,
+        "id": "candidate:16",
+        "boundaries": [
+          "Bánhidai lakótelep",
+          "{'highway': 'service', 'service': 'parking_aisle'}",
+          "Turul utca"
+        ]
+      }
+    ],
+    "Ságvári-lakótelep": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 14606.7,
+        "id": "candidate:7",
+        "boundaries": [
+          "Molnár János utca",
+          "Szent Borbála út",
+          "Solymos Mihály utca",
+          "Radnóti Miklós utca",
+          "Szent Flórián utca",
+          "Ótelep utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Óváros",
+        "area": 14606.7,
+        "id": "candidate:25",
+        "boundaries": [
+          "Molnár János utca",
+          "Szent Borbála út",
+          "Solymos Mihály utca",
+          "Radnóti Miklós utca",
+          "Szent Flórián utca",
+          "Ótelep utca"
+        ]
+      }
+    ],
+    "Panoráma lakópark": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 30548.6,
+        "id": "candidate:8",
+        "boundaries": [
+          "Mályva utca",
+          "Boróka utca",
+          "Levendula utca",
+          "Kamilla utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Kertváros",
+        "area": 30548.6,
+        "id": "candidate:17",
+        "boundaries": [
+          "Mályva utca",
+          "Boróka utca",
+          "Levendula utca",
+          "Kamilla utca"
+        ]
+      }
+    ],
+    "Kertvárosi lakótelep": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 77462.9,
+        "id": "candidate:9",
+        "boundaries": [
+          "{'highway': 'service', 'lit': 'yes', 'surface': 'concrete'}",
+          "{'highway': 'service', 'lit': 'yes', 'surface': 'asphalt'}",
+          "Dr. Vitális István utca",
+          "Verebély László utca",
+          "{'highway': 'residential', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'surface': 'asphalt'}"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Kertváros",
+        "area": 77462.9,
+        "id": "candidate:18",
+        "boundaries": [
+          "{'highway': 'service', 'lit': 'yes', 'surface': 'concrete'}",
+          "{'highway': 'service', 'lit': 'yes', 'surface': 'asphalt'}",
+          "Dr. Vitális István utca",
+          "Verebély László utca",
+          "{'highway': 'residential', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed': '50', 'maxspeed:type': 'HU:urban', 'surface': 'asphalt'}"
+        ]
+      }
+    ]
+  },
+  "Budaörs": {
+    "Törökugrató": [
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Municipality",
+        "area": 1960719.0,
+        "id": "candidate:26",
+        "boundaries": [
+          "{'HU:ed_direction': 'forward', 'highway': 'motorway', 'lanes': '3', 'lit': 'yes', 'maxspeed': '100', 'note': 'it is not \"toll=no\"', 'oneway': 'yes', 'ref': 'M1;M7', 'ref:HU:edid': 'M7u10k312m', 'surface': 'asphalt', 'toll': 'yes', 'toll:bus': 'yes', 'toll:hgv': 'yes'}",
+          "{'HU:ed_direction': 'forward', 'bicycle': 'no', 'foot': 'no', 'highway': 'motorway', 'lanes': '4', 'lit': 'yes', 'maxspeed': '100', 'oneway': 'yes', 'ref': 'M1;M7', 'ref:HU:edid': 'M7u10k312m', 'surface': 'asphalt', 'toll': 'yes', 'toll:bus': 'yes', 'toll:hgv': 'yes', 'turn:lanes': 'none|none|none|merge_to_left'}",
+          "{'HU:ed_direction': 'forward', 'destination:exit_ref': '12', 'destination:lanes': 'Nagykanizsa;Balaton;Székesfehérvár|Nagykanizsa;Balaton;Székesfehérvár;Bécs-Wien;Győr|Bécs-Wien;Győr', 'destination:ref:lanes': 'E 71;M7|E 71;M7;E 60;E 75|E 60;E 75;M1', 'highway': 'motorway', 'lanes': '3', 'lit': 'yes', 'maxspeed': '100', 'oneway': 'yes', 'ref': 'M1;M7', 'ref:HU:edid': 'M7u10k312m', 'surface': 'asphalt', 'toll': 'yes', 'toll:bus': 'yes', 'toll:hgv': 'yes', 'turn:lanes': 'slight_left|slight_left;slight_right|slight_right'}",
+          "{'highway': 'unclassified', 'lanes': '1', 'maxspeed': '20', 'oneway': 'yes'}",
+          "{'highway': 'unclassified', 'lanes': '1', 'maxspeed': '20', 'oneway': 'yes', 'turn:lanes': 'left;through'}",
+          "{'access': 'permissive', 'destination': 'IKEA', 'highway': 'unclassified', 'lanes': '1', 'maxspeed': '30', 'maxspeed:type': 'sign', 'oneway': 'yes', 'surface': 'asphalt', 'turn:lanes': 'through;right'}",
+          "{'access': 'permissive', 'highway': 'unclassified', 'lanes': '1', 'maxspeed': '20', 'oneway': 'yes'}",
+          "{'destination': 'Bécs-Wien;Győr', 'destination:exit_ref': '12', 'destination:ref': 'E 60;E 75;M1', 'highway': 'motorway', 'lanes': '2', 'lit': 'yes', 'maxspeed': '100', 'oneway': 'yes', 'ref': 'M1', 'surface': 'asphalt', 'toll': 'yes'}",
+          "{'bridge': 'yes', 'highway': 'secondary', 'lanes': '4', 'lanes:backward': '2', 'lanes:forward': '2', 'layer': '1', 'lit': 'yes', 'maxspeed': '50', 'ref': '8105', 'source:maxspeed': 'HU:urban', 'surface': 'asphalt', 'turn:lanes:backward': 'left|through', 'turn:lanes:forward': 'through|through;right'}",
+          "Sport utca",
+          "{'HU:ed_direction': 'forward', 'destination': 'Bécs-Wien;Győr', 'destination:ref': 'M1', 'highway': 'motorway', 'lanes': '2', 'lit': 'yes', 'maxspeed': '100', 'oneway': 'yes', 'ref': 'M1', 'ref:HU:edid': 'M1u12k359m', 'surface': 'asphalt', 'toll': 'yes', 'toll:bus': 'yes', 'toll:hgv': 'yes'}",
+          "Budakeszi-árok",
+          "Szabadság út",
+          "{'access': 'customers', 'highway': 'unclassified', 'lanes': '2', 'maxspeed': '30', 'oneway': 'yes', 'turn:lanes': 'through|through;slight_right'}",
+          "{'access': 'permissive', 'highway': 'unclassified', 'lanes': '3', 'lanes:backward': '2', 'lanes:forward': '1', 'turn:lanes:backward': 'through|through;right'}",
+          "{'highway': 'unclassified', 'lanes': '1', 'maxspeed': '30', 'oneway': 'yes', 'turn:lanes': 'slight_right'}",
+          "{'access': 'permissive', 'highway': 'unclassified', 'lanes': '1', 'lit': 'yes', 'oneway': 'yes'}",
+          "{'access': 'permissive', 'highway': 'unclassified', 'lanes': '2', 'maxspeed': '30', 'oneway': 'yes'}",
+          "{'foot': 'yes', 'highway': 'unclassified', 'lanes': '2', 'maxspeed': '30', 'oneway': 'yes', 'sidewalk:both': 'no', 'surface': 'asphalt'}",
+          "{'highway': 'unclassified', 'lanes': '2', 'maxspeed': '50', 'oneway': 'yes'}",
+          "{'destination': 'Törökbálint;Budapest', 'highway': 'unclassified', 'lanes': '1', 'lit': 'yes', 'maxspeed': '50', 'oneway': 'yes', 'source:maxspeed': 'HU:urban'}",
+          "{'highway': 'unclassified', 'lanes': '1', 'oneway': 'yes'}",
+          "{'highway': 'unclassified', 'lanes': '3', 'oneway': 'yes', 'turn:lanes': 'none|none|right'}",
+          "{'highway': 'unclassified', 'junction': 'roundabout', 'lanes': '1', 'surface': 'asphalt'}",
+          "{'highway': 'unclassified', 'lanes': '3', 'oneway': 'yes', 'turn:lanes': 'through|through|slight_right'}",
+          "{'highway': 'unclassified', 'oneway': 'yes', 'surface': 'asphalt'}",
+          "{'access': 'permissive', 'highway': 'unclassified', 'lanes': '2', 'lit': 'yes', 'maxspeed': '30', 'oneway': 'yes'}",
+          "Szivárvány utca",
+          "Baross utca",
+          "{'highway': 'secondary', 'junction': 'roundabout', 'lanes': '1', 'surface': 'asphalt'}"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 79136.2,
+        "id": "candidate:30",
+        "boundaries": [
+          "Nárcisz utca",
+          "Ibolya utca",
+          "Őszirózsa utca",
+          "Kővirág utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Hegyvidékek",
+        "area": 1084977.6,
+        "id": "candidate:40",
+        "boundaries": [
+          "{'destination': 'Bécs-Wien;Győr', 'destination:exit_ref': '12', 'destination:ref': 'E 60;E 75;M1', 'highway': 'motorway', 'lanes': '2', 'lit': 'yes', 'maxspeed': '100', 'oneway': 'yes', 'ref': 'M1', 'surface': 'asphalt', 'toll': 'yes'}",
+          "{'HU:ed_direction': 'forward', 'destination': 'Bécs-Wien;Győr', 'destination:ref': 'M1', 'highway': 'motorway', 'lanes': '2', 'lit': 'yes', 'maxspeed': '100', 'oneway': 'yes', 'ref': 'M1', 'ref:HU:edid': 'M1u12k359m', 'surface': 'asphalt', 'toll': 'yes', 'toll:bus': 'yes', 'toll:hgv': 'yes'}",
+          "Szabadság út"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Hegyvidékek",
+        "area": 79136.2,
+        "id": "candidate:41",
+        "boundaries": [
+          "Nárcisz utca",
+          "Ibolya utca",
+          "Őszirózsa utca",
+          "Kővirág utca"
+        ]
+      }
+    ],
+    "Kertváros": [
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Municipality",
+        "area": 1399250.5,
+        "id": "candidate:27",
+        "boundaries": [
+          "{'HU:ed_direction': 'forward', 'bicycle': 'no', 'foot': 'no', 'highway': 'motorway', 'lanes': '4', 'lit': 'yes', 'maxheight': 'default', 'maxspeed': '100', 'oneway': 'yes', 'ref': 'M1;M7', 'ref:HU:edid': 'M7u7k681m', 'surface': 'asphalt', 'toll': 'yes', 'toll:bus': 'yes', 'toll:hgv': 'yes', 'turn:lanes': 'through|through|through|slight_right'}",
+          "Károly király út",
+          "Károly király utca",
+          "{'HU:ed_direction': 'forward', 'bicycle': 'no', 'foot': 'no', 'highway': 'motorway', 'lanes': '3', 'lit': 'yes', 'maxspeed': '100', 'oneway': 'yes', 'ref': 'M1;M7', 'ref:HU:edid': 'M7u7k681m', 'surface': 'asphalt', 'toll': 'yes', 'toll:bus': 'yes', 'toll:hgv': 'yes'}",
+          "{'HU:ed_direction': 'forward', 'bicycle': 'no', 'foot': 'no', 'highway': 'motorway', 'lanes': '4', 'lit': 'yes', 'maxspeed': '100', 'oneway': 'yes', 'ref': 'M1;M7', 'ref:HU:edid': 'M7u7k681m', 'surface': 'asphalt', 'toll': 'yes', 'toll:bus': 'yes', 'toll:hgv': 'yes', 'turn:lanes': 'through|through|through|slight_right'}",
+          "Szabadság út",
+          "Budapesti út",
+          "Templom tér",
+          "{'HU:ed_direction': 'forward', 'bicycle': 'no', 'foot': 'no', 'highway': 'motorway', 'lanes': '5', 'lit': 'yes', 'maxspeed': '100', 'oneway': 'yes', 'ref': 'M1;M7', 'ref:HU:edid': 'M7u7k681m', 'surface': 'asphalt', 'toll': 'yes', 'toll:bus': 'yes', 'toll:hgv': 'yes', 'turn:lanes': 'through|through|through|through|slight_right'}"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 57995.3,
+        "id": "candidate:31",
+        "boundaries": [
+          "Őszibarack utca",
+          "Bóbita utca",
+          "Szellő utca",
+          "Csillag utca",
+          "Budapesti út"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Kertvárosias lakóterület",
+        "area": 612529.5,
+        "id": "candidate:48",
+        "boundaries": [
+          "{'HU:ed_direction': 'forward', 'bicycle': 'no', 'foot': 'no', 'highway': 'motorway', 'lanes': '3', 'lit': 'yes', 'maxspeed': '100', 'oneway': 'yes', 'ref': 'M1;M7', 'ref:HU:edid': 'M7u7k681m', 'surface': 'asphalt', 'toll': 'yes', 'toll:bus': 'yes', 'toll:hgv': 'yes'}",
+          "{'HU:ed_direction': 'forward', 'bicycle': 'no', 'foot': 'no', 'highway': 'motorway', 'lanes': '4', 'lit': 'yes', 'maxspeed': '100', 'oneway': 'yes', 'ref': 'M1;M7', 'ref:HU:edid': 'M7u7k681m', 'surface': 'asphalt', 'toll': 'yes', 'toll:bus': 'yes', 'toll:hgv': 'yes', 'turn:lanes': 'through|through|through|slight_right'}",
+          "Budapesti út"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Kertvárosias lakóterület",
+        "area": 57995.3,
+        "id": "candidate:49",
+        "boundaries": [
+          "Őszibarack utca",
+          "Bóbita utca",
+          "Szellő utca",
+          "Csillag utca",
+          "Budapesti út"
+        ]
+      }
+    ],
+    "Lakótelep": [
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Municipality",
+        "area": 275668.1,
+        "id": "candidate:28",
+        "boundaries": [
+          "Szivárvány utca",
+          "Baross utca",
+          "Bretzfeld utca",
+          "Szabadság út"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 119512.9,
+        "id": "candidate:35",
+        "boundaries": [
+          "Baross utca",
+          "{'highway': 'service'}",
+          "Szivárvány utca",
+          "{'highway': 'service', 'oneway': 'yes', 'service': 'parking_aisle'}",
+          "Ifjúság utca",
+          "{'highway': 'service', 'lcn': 'proposed'}",
+          "Bretzfeld utca",
+          "Lévai utca",
+          "{'highway': 'service', 'oneway': 'yes'}",
+          "Patkó utca",
+          "{'highway': 'service', 'lcn': 'yes'}"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Intézményi Városközpont és lakótelep",
+        "area": 275668.1,
+        "id": "candidate:46",
+        "boundaries": [
+          "Szivárvány utca",
+          "Baross utca",
+          "Bretzfeld utca",
+          "Szabadság út"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Intézményi Városközpont és lakótelep",
+        "area": 119512.9,
+        "id": "candidate:47",
+        "boundaries": [
+          "Baross utca",
+          "{'highway': 'service'}",
+          "Szivárvány utca",
+          "{'highway': 'service', 'oneway': 'yes', 'service': 'parking_aisle'}",
+          "Ifjúság utca",
+          "{'highway': 'service', 'lcn': 'proposed'}",
+          "Bretzfeld utca",
+          "Lévai utca",
+          "{'highway': 'service', 'oneway': 'yes'}",
+          "Patkó utca",
+          "{'highway': 'service', 'lcn': 'yes'}"
+        ]
+      }
+    ],
+    "Öröm-völgy": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 2779948.0,
+        "id": "candidate:29",
+        "boundaries": [
+          "Szabadság út",
+          "Budakeszi-árok",
+          "{'highway': 'track'}",
+          "{'highway': 'track', 'incline': 'up'}",
+          "Csiki utca",
+          "Orchidea utca",
+          "Fügefa utca",
+          "Szüret utca",
+          "Sóvirág utca",
+          "Akácos utca",
+          "Felsőszállás utca",
+          "{'highway': 'track', 'motor_vehicle': 'no', 'surface': 'gravel', 'tracktype': 'grade1'}",
+          "{'highway': 'track', 'lit': 'no', 'motor_vehicle': 'no', 'surface': 'gravel', 'tracktype': 'grade1'}",
+          "{'highway': 'track', 'motor_vehicle': 'no', 'smoothness': 'bad', 'source': 'survey', 'surface': 'gravel', 'tracktype': 'grade1', 'width': '2.5'}",
+          "{'embankment': 'yes', 'highway': 'track'}",
+          "Budakeszi árok",
+          "{'highway': 'track', 'source': 'Bing', 'tracktype': 'grade2'}",
+          "{'highway': 'track', 'tracktype': 'grade2'}",
+          "{'highway': 'track', 'surface': 'compacted', 'tracktype': 'grade1'}",
+          "{'highway': 'unclassified', 'motor_vehicle': 'no', 'surface': 'asphalt', 'tracktype': 'grade1'}",
+          "{'highway': 'track', 'motor_vehicle': 'no', 'surface': 'gravel', 'tracktype': 'grade2'}",
+          "{'highway': 'track', 'smoothness': 'bad', 'surface': 'gravel', 'tracktype': 'grade1', 'width': '2.5'}"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Hegyvidékek",
+        "area": 250608.6,
+        "id": "candidate:44",
+        "boundaries": [
+          "Tárogató utca",
+          "Sóska utca",
+          "Orchidea utca",
+          "Fügefa utca",
+          "Szüret utca"
+        ]
+      }
+    ],
+    "Kőhegy": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 10389.2,
+        "id": "candidate:32",
+        "boundaries": [
+          "Bor utca",
+          "Kárpát utca",
+          "Présház utca",
+          "Kőkapu utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Történelmi belváros",
+        "area": 855094.9,
+        "id": "candidate:54",
+        "boundaries": [
+          "Szabadság út",
+          "Templom tér",
+          "Budapesti út",
+          "{'highway': 'primary', 'junction': 'roundabout', 'lane_markings': 'no', 'lit': 'yes', 'maxspeed': '50', 'ref': '1', 'sidewalk': 'right', 'source:maxspeed': 'HU:urban', 'surface': 'asphalt'}"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Történelmi belváros",
+        "area": 10389.2,
+        "id": "candidate:55",
+        "boundaries": [
+          "Bor utca",
+          "Kárpát utca",
+          "Présház utca",
+          "Kőkapu utca"
+        ]
+      }
+    ],
+    "Naphegy": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 227102.7,
+        "id": "candidate:33",
+        "boundaries": [
+          "Kökény utca",
+          "Halom utca",
+          "Gesztenye utca",
+          "Liliom utca",
+          "{'highway': 'track', 'surface': 'unpaved'}",
+          "{'highway': 'track'}",
+          "Ringló utca",
+          "Gesztenye köz",
+          "Naphegy utca",
+          "Szarvas utca",
+          "Rigó utca",
+          "Merengő utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Kertvárosias lakóterület",
+        "area": 72714.5,
+        "id": "candidate:50",
+        "boundaries": [
+          "Alma utca",
+          "Liliom utca",
+          "{'highway': 'track', 'surface': 'unpaved'}",
+          "{'highway': 'track'}"
+        ]
+      }
+    ],
+    "Ganztelep": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 14433.8,
+        "id": "candidate:34",
+        "boundaries": [
+          "Farkasréti út",
+          "Cserebogár utca",
+          "Széchenyi utca",
+          "Bányász utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Kertvárosias lakóterület",
+        "area": 14433.8,
+        "id": "candidate:51",
+        "boundaries": [
+          "Farkasréti út",
+          "Cserebogár utca",
+          "Széchenyi utca",
+          "Bányász utca"
+        ]
+      }
+    ],
+    "Csikidűlő": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 47764.7,
+        "id": "candidate:36",
+        "boundaries": [
+          "Szilva utca",
+          "Szüret utca",
+          "{'access': 'unknown', 'highway': 'service'}",
+          "Fügefa utca",
+          "Csík falu köz"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Hegyvidékek",
+        "area": 47764.7,
+        "id": "candidate:45",
+        "boundaries": [
+          "Szilva utca",
+          "Szüret utca",
+          "{'access': 'unknown', 'highway': 'service'}",
+          "Fügefa utca",
+          "Csík falu köz"
+        ]
+      }
+    ],
+    "Úthegy": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 106193.0,
+        "id": "candidate:37",
+        "boundaries": [
+          "Szabadság út",
+          "Koszorú utca",
+          "Lejtő utca",
+          "Panoráma utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Hegyvidékek",
+        "area": 106193.0,
+        "id": "candidate:42",
+        "boundaries": [
+          "Szabadság út",
+          "Koszorú utca",
+          "Lejtő utca",
+          "Panoráma utca"
+        ]
+      }
+    ],
+    "Odvashegy": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 194174.6,
+        "id": "candidate:38",
+        "boundaries": [
+          "Víg utca",
+          "Szálláshegy utca",
+          "Csap utca",
+          "Csap köz",
+          "Hegyalja utca",
+          "Odvas-hegy utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Hegyvidékek",
+        "area": 194174.6,
+        "id": "candidate:43",
+        "boundaries": [
+          "Víg utca",
+          "Szálláshegy utca",
+          "Csap utca",
+          "Csap köz",
+          "Hegyalja utca",
+          "Odvas-hegy utca"
+        ]
+      }
+    ],
+    "Felsőszállás": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 241005.0,
+        "id": "candidate:39",
+        "boundaries": [
+          "Szüret utca",
+          "Sóvirág utca",
+          "Felsőszállás utca",
+          "{'highway': 'track', 'tracktype': 'grade2'}",
+          "{'highway': 'track', 'surface': 'compacted', 'tracktype': 'grade1'}"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Szállások területe",
+        "area": 825202.9,
+        "id": "candidate:52",
+        "boundaries": []
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Szállások területe",
+        "area": 315182.8,
+        "id": "candidate:53",
+        "boundaries": [
+          "Szüret utca",
+          "Sóvirág utca",
+          "Akácos utca"
+        ]
+      }
+    ]
+  },
+  "Gödöllő": {
+    "Palota-kert": [
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Municipality",
+        "area": 297233.1,
+        "id": "candidate:56",
+        "boundaries": [
+          "Állomás út",
+          "Ady Endre sétány",
+          "Szabadság út",
+          "Rákos-patak"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Központ",
+        "area": 297233.1,
+        "id": "candidate:67",
+        "boundaries": [
+          "Állomás út",
+          "Ady Endre sétány",
+          "Szabadság út",
+          "Rákos-patak"
+        ]
+      }
+    ],
+    "Nagyfenyves": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 76484.4,
+        "id": "candidate:57",
+        "boundaries": [
+          "Rómer Flóris utca",
+          "Szabó Pál utca",
+          "Esze Tamás utca",
+          "Thököly Imre utca",
+          "Németh László utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Fenyves",
+        "area": 76484.4,
+        "id": "candidate:63",
+        "boundaries": [
+          "Rómer Flóris utca",
+          "Szabó Pál utca",
+          "Esze Tamás utca",
+          "Thököly Imre utca",
+          "Németh László utca"
+        ]
+      }
+    ],
+    "Újfenyves": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 49882.4,
+        "id": "candidate:58",
+        "boundaries": [
+          "Nefelejcs utca",
+          "Jászóvár utca",
+          "Ipolyság utca",
+          "Ottlik Géza utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Fenyves",
+        "area": 49882.4,
+        "id": "candidate:64",
+        "boundaries": [
+          "Nefelejcs utca",
+          "Jászóvár utca",
+          "Ipolyság utca",
+          "Ottlik Géza utca"
+        ]
+      }
+    ],
+    "Incső": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 10838.6,
+        "id": "candidate:59",
+        "boundaries": [
+          "Szkíta körút",
+          "Hun utca",
+          "Avar utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Máriabesnyő",
+        "area": 10838.6,
+        "id": "candidate:68",
+        "boundaries": [
+          "Szkíta körút",
+          "Hun utca",
+          "Avar utca"
+        ]
+      }
+    ],
+    "Királytelep": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 76236.1,
+        "id": "candidate:60",
+        "boundaries": [
+          "Dankó Pista utca",
+          "Aulich Lajos utca",
+          "Gróf Teleki Pál tér",
+          "Batthyány Lajos utca",
+          "Iskola utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Kertváros",
+        "area": 76236.1,
+        "id": "candidate:65",
+        "boundaries": [
+          "Dankó Pista utca",
+          "Aulich Lajos utca",
+          "Gróf Teleki Pál tér",
+          "Batthyány Lajos utca",
+          "Iskola utca"
+        ]
+      }
+    ],
+    "Antalhegy": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 92166.5,
+        "id": "candidate:61",
+        "boundaries": [
+          "Árvácska utca",
+          "Antalhegyi utca",
+          "Panoráma utca",
+          "Antalhegy lejtő"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Máriabesnyő",
+        "area": 92166.5,
+        "id": "candidate:69",
+        "boundaries": [
+          "Árvácska utca",
+          "Antalhegyi utca",
+          "Panoráma utca",
+          "Antalhegy lejtő"
+        ]
+      }
+    ],
+    "Csanak": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 37059.5,
+        "id": "candidate:62",
+        "boundaries": [
+          "Kard utca",
+          "Korona tér",
+          "Palást utca",
+          "Címer utca",
+          "Présház utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Kertváros",
+        "area": 37059.5,
+        "id": "candidate:66",
+        "boundaries": [
+          "Kard utca",
+          "Korona tér",
+          "Palást utca",
+          "Címer utca",
+          "Présház utca"
+        ]
+      }
+    ]
+  },
+  "Dunakeszi": {
+    "Felsőtabán": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 150443.3,
+        "id": "candidate:70",
+        "boundaries": [
+          "Fő út",
+          "{'highway': 'service', 'oneway': 'yes', 'service': 'driveway'}",
+          "{'destination:symbol': 'fuel', 'highway': 'service', 'oneway': 'yes', 'service': 'driveway'}",
+          "{'highway': 'service', 'service': 'parking_aisle'}",
+          "{'cycleway:both': 'no', 'highway': 'unclassified', 'source': 'Yahoo'}",
+          "{'highway': 'track', 'source': 'survey', 'tracktype': 'grade4'}",
+          "{'highway': 'track', 'source': 'Bing', 'tracktype': 'grade4'}",
+          "Felsőtabán köz",
+          "Nagykert utca",
+          "Felsőtabán utca"
+        ]
+      }
+    ],
+    "Tiszti lakótelep": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 637840.1,
+        "id": "candidate:71",
+        "boundaries": [
+          "Repülőtéri út",
+          "{'highway': 'service', 'lanes': '2', 'oneway': 'yes', 'surface': 'asphalt', 'turn:lanes': 'left|right'}",
+          "{'highway': 'service', 'lanes': '2', 'oneway': 'yes', 'surface': 'asphalt'}",
+          "{'highway': 'track', 'surface': 'sand', 'tracktype': 'grade3'}",
+          "{'highway': 'track'}",
+          "{'highway': 'track', 'horse': 'designated', 'surface': 'ground', 'tracktype': 'grade4'}",
+          "{'access': 'private', 'highway': 'track'}",
+          "{'access': 'private', 'highway': 'track', 'tracktype': 'grade4'}",
+          "Fóti út",
+          "Pejachevich Albert utca",
+          "Shejbal József utca",
+          "{'highway': 'service'}",
+          "{'highway': 'track', 'surface': 'sand', 'tracktype': 'grade4'}",
+          "{'highway': 'track', 'smoothness': 'bad'}",
+          "{'access': 'permissive', 'highway': 'residential', 'source': 'Bing', 'surface': 'asphalt'}",
+          "{'highway': 'track', 'surface': 'compacted', 'tracktype': 'grade2'}",
+          "Nándori utca",
+          "{'highway': 'track', 'source': 'Bing', 'surface': 'sand', 'tracktype': 'grade4'}",
+          "Karinthy Frigyes utca",
+          "{'access': 'no', 'highway': 'track'}",
+          "{'highway': 'track', 'source': 'Bing', 'tracktype': 'grade4'}"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Alag",
+        "area": 637840.1,
+        "id": "candidate:78",
+        "boundaries": [
+          "Repülőtéri út",
+          "{'highway': 'service', 'lanes': '2', 'oneway': 'yes', 'surface': 'asphalt', 'turn:lanes': 'left|right'}",
+          "{'highway': 'service', 'lanes': '2', 'oneway': 'yes', 'surface': 'asphalt'}",
+          "{'highway': 'track', 'surface': 'sand', 'tracktype': 'grade3'}",
+          "{'highway': 'track'}",
+          "{'highway': 'track', 'horse': 'designated', 'surface': 'ground', 'tracktype': 'grade4'}",
+          "{'access': 'private', 'highway': 'track'}",
+          "{'access': 'private', 'highway': 'track', 'tracktype': 'grade4'}",
+          "Fóti út",
+          "Pejachevich Albert utca",
+          "Shejbal József utca",
+          "{'highway': 'service'}",
+          "{'highway': 'track', 'surface': 'sand', 'tracktype': 'grade4'}",
+          "{'highway': 'track', 'smoothness': 'bad'}",
+          "{'access': 'permissive', 'highway': 'residential', 'source': 'Bing', 'surface': 'asphalt'}",
+          "{'highway': 'track', 'surface': 'compacted', 'tracktype': 'grade2'}",
+          "Nándori utca",
+          "{'highway': 'track', 'source': 'Bing', 'surface': 'sand', 'tracktype': 'grade4'}",
+          "Karinthy Frigyes utca",
+          "{'access': 'no', 'highway': 'track'}",
+          "{'highway': 'track', 'source': 'Bing', 'tracktype': 'grade4'}"
+        ]
+      }
+    ],
+    "Dombliget-lakópark": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 29322.2,
+        "id": "candidate:72",
+        "boundaries": [
+          "{'highway': 'service', 'service': 'parking_aisle'}",
+          "Kacsóh Pongrác utca",
+          "Huszka Jenő utca",
+          "{'highway': 'service', 'service': 'driveway'}",
+          "Kacsóh Pongrác köz"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Alag",
+        "area": 29322.2,
+        "id": "candidate:79",
+        "boundaries": [
+          "{'highway': 'service', 'service': 'parking_aisle'}",
+          "Kacsóh Pongrác utca",
+          "Huszka Jenő utca",
+          "{'highway': 'service', 'service': 'driveway'}",
+          "Kacsóh Pongrác köz"
+        ]
+      }
+    ],
+    "Toldi-lakópark": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 20237.1,
+        "id": "candidate:73",
+        "boundaries": [
+          "Lehár Ferenc utca",
+          "Ábrahám Pál utca",
+          "Szent Margit utca",
+          "Szent Erzsébet utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Alag",
+        "area": 20237.1,
+        "id": "candidate:80",
+        "boundaries": [
+          "Lehár Ferenc utca",
+          "Ábrahám Pál utca",
+          "Szent Margit utca",
+          "Szent Erzsébet utca"
+        ]
+      }
+    ],
+    "Tóváros": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 16928.5,
+        "id": "candidate:74",
+        "boundaries": [
+          "Szabadka utca",
+          "Ungvár utca",
+          "Kolozsvár utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Alag",
+        "area": 16928.5,
+        "id": "candidate:81",
+        "boundaries": [
+          "Szabadka utca",
+          "Ungvár utca",
+          "Kolozsvár utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Tóváros (Barackos)",
+        "area": 352693.5,
+        "id": "candidate:82",
+        "boundaries": [
+          "{'highway': 'tertiary', 'junction': 'roundabout', 'maxspeed': '50', 'surface': 'asphalt'}",
+          "Kossuth Lajos utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Tóváros (Barackos)",
+        "area": 16928.5,
+        "id": "candidate:83",
+        "boundaries": [
+          "Szabadka utca",
+          "Ungvár utca",
+          "Kolozsvár utca"
+        ]
+      }
+    ],
+    "Révdűlő": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 32940.0,
+        "id": "candidate:75",
+        "boundaries": [
+          "Zoltán utca",
+          "Tavasz utca",
+          "Katona József utca",
+          "Rév utca"
+        ]
+      }
+    ],
+    "Malomárok": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 62841.9,
+        "id": "candidate:76",
+        "boundaries": [
+          "Kiscsurgó utca",
+          "Csendes köz",
+          "{'highway': 'service', 'oneway': 'yes', 'surface': 'paving_stones'}",
+          "Pihenő utca",
+          "Duna sor",
+          "Lejtő utca"
+        ]
+      }
+    ],
+    "Malomárok lakópark": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 33958.0,
+        "id": "candidate:77",
+        "boundaries": [
+          "Kiss Ernő utca",
+          "{'highway': 'track', 'surface': 'ground', 'tracktype': 'grade5'}",
+          "{'highway': 'track', 'smoothness': 'bad', 'surface': 'ground', 'tracktype': 'grade5'}",
+          "Lázár Vilmos utca",
+          "Leiningen Károly utca",
+          "Knézich Károly utca",
+          "Aulich Lajos utca"
+        ]
+      }
+    ]
+  },
+  "Szigetszentmiklós": {
+    "Felsőtag": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 456968.3,
+        "id": "candidate:84",
+        "boundaries": [
+          "Tagi út",
+          "Lapály köz",
+          "{'highway': 'track', 'surface': 'dirt'}",
+          "{'highway': 'track'}",
+          "Zsák utca",
+          "Királyerdő út",
+          "{'highway': 'track', 'source': 'maxar'}",
+          "Zsálya utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Felsőtag negyed",
+        "area": 456968.3,
+        "id": "candidate:91",
+        "boundaries": [
+          "Tagi út",
+          "Lapály köz",
+          "{'highway': 'track', 'surface': 'dirt'}",
+          "{'highway': 'track'}",
+          "Zsák utca",
+          "Királyerdő út",
+          "{'highway': 'track', 'source': 'maxar'}",
+          "Zsálya utca"
+        ]
+      }
+    ],
+    "Tihanyi lakópark": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 37625.5,
+        "id": "candidate:85",
+        "boundaries": [
+          "Futórózsa utca",
+          "Fehérrózsa utca",
+          "Sárgarózsa utca",
+          "Tihanyi utca"
+        ]
+      }
+    ],
+    "Szent Miklós úti lakótelep": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 39601.4,
+        "id": "candidate:86",
+        "boundaries": [
+          "{'highway': 'living_street'}",
+          "{'highway': 'living_street', 'maxspeed': '20', 'motor_vehicle': 'destination'}",
+          "Szent Miklós útja",
+          "{'highway': 'track'}"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Városközpont negyed",
+        "area": 39601.4,
+        "id": "candidate:95",
+        "boundaries": [
+          "{'highway': 'living_street'}",
+          "{'highway': 'living_street', 'maxspeed': '20', 'motor_vehicle': 'destination'}",
+          "Szent Miklós útja",
+          "{'highway': 'track'}"
+        ]
+      }
+    ],
+    "Minta lakótelep": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 13918.8,
+        "id": "candidate:87",
+        "boundaries": [
+          "Csokonai köz",
+          "Csokonai utca",
+          "{'highway': 'living_street', 'oneway': 'no', 'surface': 'paving_stones'}"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Városközpont negyed",
+        "area": 13918.8,
+        "id": "candidate:96",
+        "boundaries": [
+          "Csokonai köz",
+          "Csokonai utca",
+          "{'highway': 'living_street', 'oneway': 'no', 'surface': 'paving_stones'}"
+        ]
+      }
+    ],
+    "Ragád": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 24240.7,
+        "id": "candidate:88",
+        "boundaries": [
+          "Hold utca",
+          "Nap utca",
+          "Nyár utca",
+          "Tél utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "major",
+        "parent": "Városközpont negyed",
+        "area": 260249.1,
+        "id": "candidate:94",
+        "boundaries": [
+          "Tököli út",
+          "Dobó István utca",
+          "Ősz utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Városközpont negyed",
+        "area": 24240.7,
+        "id": "candidate:97",
+        "boundaries": [
+          "Hold utca",
+          "Nap utca",
+          "Nyár utca",
+          "Tél utca"
+        ]
+      }
+    ],
+    "Dujmó lakópark": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 10214.2,
+        "id": "candidate:89",
+        "boundaries": [
+          "Zöldmező utca",
+          "Kerektó utca",
+          "Napfény utca",
+          "Forrás utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Városkörnyék negyed",
+        "area": 10214.2,
+        "id": "candidate:92",
+        "boundaries": [
+          "Zöldmező utca",
+          "Kerektó utca",
+          "Napfény utca",
+          "Forrás utca"
+        ]
+      }
+    ],
+    "Ragáddűlő": [
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Municipality",
+        "area": 27724.7,
+        "id": "candidate:90",
+        "boundaries": [
+          "Gyümölcsös utca",
+          "Dió utca",
+          "Eper utca",
+          "Szüret utca"
+        ]
+      },
+      {
+        "kind": "road_cell",
+        "level": "local",
+        "parent": "Városkörnyék negyed",
+        "area": 27724.7,
+        "id": "candidate:93",
+        "boundaries": [
+          "Gyümölcsös utca",
+          "Dió utca",
+          "Eper utca",
+          "Szüret utca"
+        ]
+      }
+    ]
+  }
+}

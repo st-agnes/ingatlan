@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "frozenDate": "2026-11-14",
+  "scope": "Rejected five-pair georeferencing experiment and source-link audit; no quarter polygons, first inferred snapshot, primary records or registries changed.",
+  "modelStatus": "rejected_pending_ground_control_reidentification",
+  "networkUsed": false,
+  "primaryRecordsAdded": 0,
+  "quarterPolygonCount": 0,
+  "absoluteBoundaryAccuracyMetres": null,
+  "files": [
+    {
+      "path": "README.txt",
+      "sha256": "12fccdf74ce8daa9f2bab91fd5bda01b6733700412d9378e44fede98a01a12f4",
+      "bytes": 6671
+    },
+    {
+      "path": "boundary-source-proof.json",
+      "sha256": "869ba87df37a36b093b758f02011b90e19efaa877d529a7d110f0f645163ebab",
+      "bytes": 126009
+    },
+    {
+      "path": "build-model.py",
+      "sha256": "b6d3e8df1afac629e9d25a7628ea91e5afadd9ec5ef674d835ee4a47a28ae019",
+      "bytes": 13164
+    },
+    {
+      "path": "calculation-proof.json",
+      "sha256": "3676f2f969da7ef9f262d78d0a007271ccb509675bea83546443b88958375261",
+      "bytes": 13358
+    },
+    {
+      "path": "candidate-model-overlay.png",
+      "sha256": "a4d9ff563d60fade64e40454d7dae460b840e5066ae9c81997b6e7e5d0f3bd81",
+      "bytes": 2210417
+    },
+    {
+      "path": "comparison-all54-model.json",
+      "sha256": "2d5bd37a05baa504b40cf360aa35c7c3a55ccf9df67e60622f9a860b6b727e04",
+      "bytes": 5078
+    },
+    {
+      "path": "comparison-northwest-model.json",
+      "sha256": "8ba7ab1515b94f37253b64bdbe2144e73e540081ede3ae2cf9838f65b7b87f13",
+      "bytes": 5222
+    },
+    {
+      "path": "control-pairs.geojson",
+      "sha256": "e4a1220e3e65741eb732ded43fdc11925c8fffb6e0886b725d67ca927a991389",
+      "bytes": 8010
+    },
+    {
+      "path": "decision.json",
+      "sha256": "0e6b9b1de3b5c20b64b0f41bddc0b342ac436dabca055d6e04dceac5f71543ec",
+      "bytes": 1687
+    },
+    {
+      "path": "diagnostics.json",
+      "sha256": "3bc23a8ee54746cdd49b6496042c06947c9db749a0ccaefeff83d4b392f44de9",
+      "bytes": 46416
+    },
+    {
+      "path": "extract-boundary-controls.py",
+      "sha256": "20b0f57dab2fd9627dd7eeea856f0aa1cd7832ae3af7810fe464c4521aa959e5",
+      "bytes": 3113
+    },
+    {
+      "path": "freeze-package.py",
+      "sha256": "47442d7dc607c447f7ca7e0022d3b178250fdef6006be3cd37006ec253e09b8b",
+      "bytes": 1859
+    },
+    {
+      "path": "independent-audit.py",
+      "sha256": "fc0d569aac4ea44388af46165f83ebe66875f025a4863c533e5bca06740708cf",
+      "bytes": 14549
+    },
+    {
+      "path": "independent-review.json",
+      "sha256": "034181262ae1f5c8796b86ef31b574bdb4df3e9d2b336f94b6a890d62e0845a3",
+      "bytes": 8788
+    },
+    {
+      "path": "input-copy-proof.json",
+      "sha256": "4551f94b0e9655156906a85b8d5e4d4240e7abb02ec73016c7e68cac7961fdfa",
+      "bytes": 3565
+    },
+    {
+      "path": "model.json",
+      "sha256": "df64edde82a50357415fc2524fb8ad4790aea1a60ba3c8742e36b892a897e36f",
+      "bytes": 2279
+    },
+    {
+      "path": "render-diagnostics.py",
+      "sha256": "49921e0185bf32f112b888f863edd3eea8d283d50706ac8cbb4198911f793afa",
+      "bytes": 2962
+    },
+    {
+      "path": "runtime-proof.json",
+      "sha256": "7c11a9d42fb720f896f307f0ee3729205af5196471185ef988fca375e83e5850",
+      "bytes": 2016
+    },
+    {
+      "path": "source-control-crops.png",
+      "sha256": "e6997bcb7ec6af85e294ac524302ff6ec8b7775727ae8c6ab373bf8288624067",
+      "bytes": 254978
+    },
+    {
+      "path": "source-corner-candidates.json",
+      "sha256": "6f745c9b954b64370c5da057f66e9b8bbb3f9656848e23e56292a002cb52d18d",
+      "bytes": 1530
+    },
+    {
+      "path": "source-gray-control-pixels.json",
+      "sha256": "fde575f32906374579ea3095fb90ff97510e9524ee3c1065e74822b7e7524c69",
+      "bytes": 10446
+    },
+    {
+      "path": "source-gray-control-review.json",
+      "sha256": "975b64fb9d4fe92ea345d4819ffddae339b83c2ae072bc61fe571b976e7f1336",
+      "bytes": 29685
+    },
+    {
+      "path": "source-municipality.geojson",
+      "sha256": "f88ce9a098698c26775574013b687dc1e1a15b0b4a3f5c40ff7ec1fceeb3a305",
+      "bytes": 43635
+    },
+    {
+      "path": "source-name-map.jpeg",
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8",
+      "bytes": 58340
+    },
+    {
+      "path": "source-road-controls.json",
+      "sha256": "c988f1e8c26696c59d0c76dfe589bb3dedb00cb2d9f9374c63ab602017ad2ac1",
+      "bytes": 31062
+    },
+    {
+      "path": "source-road-proof.json",
+      "sha256": "c7b7d2c64135bc2d52466f84b6b6e43262a6d6ecb13041288d03f72dba5c0dc0",
+      "bytes": 508
+    },
+    {
+      "path": "source-road-ways.geojson",
+      "sha256": "eaa118a93a5768d98ccb4980936b1369829716def21ca0354f372af1f647ff78",
+      "bytes": 205596
+    }
+  ]
+}

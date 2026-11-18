@@ -1,0 +1,805 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "manual:country-parent-review:osm:way:971577592",
+      "bbox": [
+        22.6759721,
+        47.8307656,
+        22.6876478,
+        47.8402321
+      ],
+      "properties": {
+        "id": "osm:way:971577592",
+        "name": "Piac",
+        "sourceName": "Piac",
+        "preferredHungarianName": null,
+        "adminLevel": null,
+        "boundaryKind": "neighbourhood",
+        "classificationReason": "place_suburb",
+        "reviewStatus": "unreviewed",
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "source": {
+          "osmType": "way",
+          "osmId": 971577592,
+          "tags": {
+            "name": "Piac",
+            "place": "suburb"
+          },
+          "objectVersion": 6,
+          "objectTimestamp": "2024-11-16 15:01:28+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/971577592",
+          "nodeRefs": [
+            1891285570,
+            1891285562,
+            9080910880,
+            9080910881,
+            8992320212,
+            8992320213,
+            8672767935,
+            1891285512,
+            1891285509,
+            10157723371,
+            1891285501,
+            1930528548,
+            1930528543,
+            1930528560,
+            1891285488,
+            1891285485,
+            1891285484,
+            1891285482,
+            1891285480,
+            1891285478,
+            1988951777,
+            1988951779,
+            1988951789,
+            8488460700,
+            5212493583,
+            8488460701,
+            8488460702,
+            5212493580,
+            5212493579,
+            5213278776,
+            1988951814,
+            1988951839,
+            8488460810,
+            8488460809,
+            1988951854,
+            1988951816,
+            1988951923,
+            1988951975,
+            1988952012,
+            1988952055,
+            1988952063,
+            1988952081,
+            1891285632,
+            11767392179,
+            1891285657,
+            11767392178,
+            1891285661,
+            8992320214,
+            8992320215,
+            8992320216,
+            1891285625,
+            12346029478,
+            1891285594,
+            1891285587,
+            8992354717,
+            8488444005,
+            8488444004,
+            8488443995,
+            8488443996,
+            8488443997,
+            8488443998,
+            8488443999,
+            8992354718,
+            8992354719,
+            10209190227,
+            1891285570
+          ],
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges.",
+          "geometrySha256": "a262325991622e91da14cbce04625e0b6903eb85c035da425ac0f43e645259a2"
+        },
+        "municipality": "Csenger",
+        "municipalityId": null,
+        "municipalityEvidence": "no_full_containment",
+        "coveringMunicipalityOsmIds": [],
+        "hierarchyMunicipalityOsmIds": [],
+        "canonicalNameIsNeighborhood": true,
+        "method": "Explicit per-object municipality association review using an actual same-name/alias OSM label node inside both the unchanged source polygon and canonical municipality; no bulk overlap threshold, clipping, repair or generated edges.",
+        "evidenceUrls": [
+          "https://www.openstreetmap.org/way/971577592",
+          "https://www.openstreetmap.org/node/8992354720",
+          "https://www.openstreetmap.org/relation/1456960"
+        ],
+        "sourceRecordId": "osm:way:971577592",
+        "sourceSnapshotSha256": "555f12d1537c5df370477c4547723d4501bf030835fe758ff72cf9bed8a58683",
+        "parentAssociationReview": {
+          "municipality": "Csenger",
+          "labelNodeId": "osm:node:8992354720",
+          "labelName": "Piac",
+          "labelAliases": [
+            "Piac",
+            ""
+          ],
+          "sameNameOrExplicitAlias": true,
+          "pointInsideOriginalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "independentProviderCorroboration": false,
+          "fullContainment": false,
+          "overlapFraction": 0.9690400278810914,
+          "outsideParentAreaM2": 12531.505705503223,
+          "geometryChanged": false,
+          "legalBoundaryVerified": false
+        },
+        "reviewNotes": [
+          "Actual source outline crosses the canonical municipal boundary. Preserve that discrepancy for review; never use this polygon for automatic address assignment.",
+          "The label is a separate OSM object, not independent official corroboration."
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                22.6759721,
+                47.8362761
+              ],
+              [
+                22.6767647,
+                47.835793
+              ],
+              [
+                22.6777493,
+                47.8353929
+              ],
+              [
+                22.6784645,
+                47.8346592
+              ],
+              [
+                22.6801149,
+                47.833627
+              ],
+              [
+                22.6796415,
+                47.833342
+              ],
+              [
+                22.6797631,
+                47.8332503
+              ],
+              [
+                22.6812021,
+                47.8323083
+              ],
+              [
+                22.6815211,
+                47.832273
+              ],
+              [
+                22.6815681,
+                47.8323092
+              ],
+              [
+                22.6822736,
+                47.831986
+              ],
+              [
+                22.6822371,
+                47.8315725
+              ],
+              [
+                22.6822257,
+                47.8312852
+              ],
+              [
+                22.6822499,
+                47.8310973
+              ],
+              [
+                22.6822758,
+                47.8309849
+              ],
+              [
+                22.6822702,
+                47.8309161
+              ],
+              [
+                22.6822148,
+                47.8308232
+              ],
+              [
+                22.682329,
+                47.8307936
+              ],
+              [
+                22.6832456,
+                47.8309467
+              ],
+              [
+                22.6832803,
+                47.8310269
+              ],
+              [
+                22.6838952,
+                47.8309324
+              ],
+              [
+                22.6848708,
+                47.8307656
+              ],
+              [
+                22.6848876,
+                47.830888
+              ],
+              [
+                22.6849494,
+                47.8320256
+              ],
+              [
+                22.6849571,
+                47.8321514
+              ],
+              [
+                22.6850865,
+                47.8326602
+              ],
+              [
+                22.6853185,
+                47.8333179
+              ],
+              [
+                22.6855292,
+                47.8337407
+              ],
+              [
+                22.6857489,
+                47.8341832
+              ],
+              [
+                22.6854582,
+                47.8342339
+              ],
+              [
+                22.6851183,
+                47.8342945
+              ],
+              [
+                22.6849897,
+                47.8343518
+              ],
+              [
+                22.6847826,
+                47.8345325
+              ],
+              [
+                22.6850187,
+                47.8347781
+              ],
+              [
+                22.6853981,
+                47.835571
+              ],
+              [
+                22.6859997,
+                47.8368578
+              ],
+              [
+                22.6865059,
+                47.8373938
+              ],
+              [
+                22.6869481,
+                47.8379621
+              ],
+              [
+                22.6876478,
+                47.8383469
+              ],
+              [
+                22.6863446,
+                47.838908
+              ],
+              [
+                22.6860295,
+                47.8391009
+              ],
+              [
+                22.6856982,
+                47.8392847
+              ],
+              [
+                22.685538,
+                47.8393696
+              ],
+              [
+                22.6853556,
+                47.8394558
+              ],
+              [
+                22.6836941,
+                47.8402321
+              ],
+              [
+                22.6831125,
+                47.839492
+              ],
+              [
+                22.6834433,
+                47.8393452
+              ],
+              [
+                22.6829244,
+                47.8387231
+              ],
+              [
+                22.6828677,
+                47.8386688
+              ],
+              [
+                22.6819782,
+                47.8378169
+              ],
+              [
+                22.6818803,
+                47.837704
+              ],
+              [
+                22.6814332,
+                47.8370817
+              ],
+              [
+                22.6812034,
+                47.8371548
+              ],
+              [
+                22.6808906,
+                47.8372467
+              ],
+              [
+                22.6805694,
+                47.8373409
+              ],
+              [
+                22.6804422,
+                47.8373701
+              ],
+              [
+                22.6802971,
+                47.8373805
+              ],
+              [
+                22.6801701,
+                47.8373426
+              ],
+              [
+                22.6801026,
+                47.8372491
+              ],
+              [
+                22.6800581,
+                47.8371776
+              ],
+              [
+                22.6789242,
+                47.8376068
+              ],
+              [
+                22.6783708,
+                47.8370763
+              ],
+              [
+                22.677741,
+                47.837296
+              ],
+              [
+                22.6769763,
+                47.83665
+              ],
+              [
+                22.6766186,
+                47.8368352
+              ],
+              [
+                22.6759721,
+                47.8362761
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:country-parent-review:osm:way:981846405",
+      "bbox": [
+        22.6831832,
+        47.8383469,
+        22.6921428,
+        47.8437108
+      ],
+      "properties": {
+        "id": "osm:way:981846405",
+        "name": "Berekalja",
+        "sourceName": "Berekalja",
+        "preferredHungarianName": null,
+        "adminLevel": null,
+        "boundaryKind": "neighbourhood",
+        "classificationReason": "place_suburb",
+        "reviewStatus": "unreviewed",
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "source": {
+          "osmType": "way",
+          "osmId": 981846405,
+          "tags": {
+            "name": "Berekalja",
+            "place": "suburb"
+          },
+          "objectVersion": 2,
+          "objectTimestamp": "2024-03-27 21:33:34+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/981846405",
+          "nodeRefs": [
+            9080910851,
+            9080910861,
+            8992320214,
+            1891285661,
+            11767392178,
+            1891285657,
+            11767392179,
+            1891285632,
+            1988952081,
+            1988952080,
+            1988952077,
+            1988952058,
+            1988952056,
+            1988952158,
+            1988952239,
+            1988952247,
+            5212493567,
+            1988952449,
+            1988952949,
+            1988952982,
+            1988952955,
+            1988952943,
+            1988953144,
+            1988953179,
+            5970484786,
+            1891285845,
+            9080910856,
+            9080910857,
+            9080910858,
+            9080910854,
+            9080910853,
+            9080910852,
+            9080910851
+          ],
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges.",
+          "geometrySha256": "55d2b30294b70e5478e6f23c90b151ea0847a9950b35ecc92669bc8b13c8fbd2"
+        },
+        "municipality": "Csenger",
+        "municipalityId": null,
+        "municipalityEvidence": "no_full_containment",
+        "coveringMunicipalityOsmIds": [],
+        "hierarchyMunicipalityOsmIds": [],
+        "canonicalNameIsNeighborhood": true,
+        "method": "Explicit per-object municipality association review using an actual same-name/alias OSM label node inside both the unchanged source polygon and canonical municipality; no bulk overlap threshold, clipping, repair or generated edges.",
+        "evidenceUrls": [
+          "https://www.openstreetmap.org/way/981846405",
+          "https://www.openstreetmap.org/node/9080910862",
+          "https://www.openstreetmap.org/relation/1456960"
+        ],
+        "sourceRecordId": "osm:way:981846405",
+        "sourceSnapshotSha256": "555f12d1537c5df370477c4547723d4501bf030835fe758ff72cf9bed8a58683",
+        "parentAssociationReview": {
+          "municipality": "Csenger",
+          "labelNodeId": "osm:node:9080910862",
+          "labelName": "Berekalja",
+          "labelAliases": [
+            "Berekalja",
+            ""
+          ],
+          "sameNameOrExplicitAlias": true,
+          "pointInsideOriginalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "independentProviderCorroboration": false,
+          "fullContainment": false,
+          "overlapFraction": 0.9890036467940169,
+          "outsideParentAreaM2": 2222.988673120475,
+          "geometryChanged": false,
+          "legalBoundaryVerified": false
+        },
+        "reviewNotes": [
+          "Actual source outline crosses the canonical municipal boundary. Preserve that discrepancy for review; never use this polygon for automatic address assignment.",
+          "The label is a separate OSM object, not independent official corroboration."
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                22.6831832,
+                47.8404256
+              ],
+              [
+                22.6836941,
+                47.8402321
+              ],
+              [
+                22.6853556,
+                47.8394558
+              ],
+              [
+                22.685538,
+                47.8393696
+              ],
+              [
+                22.6856982,
+                47.8392847
+              ],
+              [
+                22.6860295,
+                47.8391009
+              ],
+              [
+                22.6863446,
+                47.838908
+              ],
+              [
+                22.6876478,
+                47.8383469
+              ],
+              [
+                22.6880715,
+                47.8385857
+              ],
+              [
+                22.6891034,
+                47.8389758
+              ],
+              [
+                22.6891998,
+                47.8390912
+              ],
+              [
+                22.6893891,
+                47.8390959
+              ],
+              [
+                22.6894468,
+                47.8393659
+              ],
+              [
+                22.6896253,
+                47.8395767
+              ],
+              [
+                22.6898181,
+                47.8397797
+              ],
+              [
+                22.6900238,
+                47.8397747
+              ],
+              [
+                22.6900732,
+                47.8398643
+              ],
+              [
+                22.6901149,
+                47.8399012
+              ],
+              [
+                22.6903709,
+                47.8401721
+              ],
+              [
+                22.6912122,
+                47.8413229
+              ],
+              [
+                22.6915351,
+                47.8417698
+              ],
+              [
+                22.6919982,
+                47.8423317
+              ],
+              [
+                22.6921428,
+                47.8425206
+              ],
+              [
+                22.69164,
+                47.8426633
+              ],
+              [
+                22.6904807,
+                47.8429374
+              ],
+              [
+                22.6900526,
+                47.8431046
+              ],
+              [
+                22.6898437,
+                47.8432559
+              ],
+              [
+                22.6893742,
+                47.8434998
+              ],
+              [
+                22.6888334,
+                47.8437108
+              ],
+              [
+                22.6859305,
+                47.8416085
+              ],
+              [
+                22.6849938,
+                47.8420314
+              ],
+              [
+                22.6836315,
+                47.8407409
+              ],
+              [
+                22.6831832,
+                47.8404256
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:country-parent-review:osm:way:988254771",
+      "bbox": [
+        18.731081,
+        47.7007788,
+        18.7358049,
+        47.7040872
+      ],
+      "properties": {
+        "id": "osm:way:988254771",
+        "name": "VI. akna lakótelep",
+        "sourceName": "Akna",
+        "preferredHungarianName": null,
+        "adminLevel": null,
+        "boundaryKind": "neighbourhood",
+        "classificationReason": "place_suburb",
+        "reviewStatus": "unreviewed",
+        "usableForAddressAssignment": false,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "source": {
+          "osmType": "way",
+          "osmId": 988254771,
+          "tags": {
+            "name": "Akna",
+            "place": "suburb"
+          },
+          "objectVersion": 1,
+          "objectTimestamp": "2021-09-30 09:00:16+00:00",
+          "changeset": 0,
+          "url": "https://www.openstreetmap.org/way/988254771",
+          "nodeRefs": [
+            3383662497,
+            7419864234,
+            7419864231,
+            7419864228,
+            7419864225,
+            2121232887,
+            3383662497
+          ],
+          "provider": "openstreetmap",
+          "pbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+          "osmTimestamp": "2026-11-12T21:23:05Z",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "attributionUrl": "https://www.openstreetmap.org/copyright",
+          "geometryProcessing": "libosmium source-member ring assembly; no snapping, simplification, repair, clipping or generated closing edges.",
+          "geometrySha256": "7cefce1c9a48c405ceb31bbe664fc51ac784f29e1a08beb5e74d9b8a1dee9d32"
+        },
+        "municipality": "Dorog",
+        "municipalityId": null,
+        "municipalityEvidence": "no_full_containment",
+        "coveringMunicipalityOsmIds": [],
+        "hierarchyMunicipalityOsmIds": [],
+        "canonicalNameIsNeighborhood": true,
+        "method": "Explicit per-object municipality association review using an actual same-name/alias OSM label node inside both the unchanged source polygon and canonical municipality; no bulk overlap threshold, clipping, repair or generated edges.",
+        "evidenceUrls": [
+          "https://www.openstreetmap.org/way/988254771",
+          "https://www.openstreetmap.org/node/6344717844",
+          "https://www.openstreetmap.org/relation/1027821"
+        ],
+        "sourceRecordId": "osm:way:988254771",
+        "sourceSnapshotSha256": "555f12d1537c5df370477c4547723d4501bf030835fe758ff72cf9bed8a58683",
+        "parentAssociationReview": {
+          "municipality": "Dorog",
+          "labelNodeId": "osm:node:6344717844",
+          "labelName": "VI. akna lakótelep",
+          "labelAliases": [
+            "VI. akna lakótelep",
+            "Akna"
+          ],
+          "sameNameOrExplicitAlias": true,
+          "pointInsideOriginalPolygon": true,
+          "pointInsideCanonicalMunicipality": true,
+          "independentProviderCorroboration": false,
+          "fullContainment": false,
+          "overlapFraction": 0.9952650227135711,
+          "outsideParentAreaM2": 343.3555415633018,
+          "geometryChanged": false,
+          "legalBoundaryVerified": false
+        },
+        "reviewNotes": [
+          "Actual source outline crosses the canonical municipal boundary. Preserve that discrepancy for review; never use this polygon for automatic address assignment.",
+          "The label is a separate OSM object, not independent official corroboration."
+        ]
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                18.731081,
+                47.7027965
+              ],
+              [
+                18.7337456,
+                47.7007788
+              ],
+              [
+                18.7358049,
+                47.7029392
+              ],
+              [
+                18.7333222,
+                47.7039458
+              ],
+              [
+                18.7321771,
+                47.7040872
+              ],
+              [
+                18.7311681,
+                47.7035613
+              ],
+              [
+                18.731081,
+                47.7027965
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

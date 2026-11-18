@@ -1,0 +1,33 @@
+{
+  "featureCount": 15,
+  "municipalities": [
+    {
+      "municipality": "Komló",
+      "sourceYear": 2016,
+      "count": 10,
+      "municipalityReferenceEovBounds": [
+        585021.4730120373,
+        90618.39944146412,
+        594087.5174206503,
+        99888.42143484979
+      ],
+      "sourcePdfSha256": "72eecd95033b8fbe8c387e859fa564f55a5f609c425654fec532a59679d78d4e"
+    },
+    {
+      "municipality": "Szigetszentmiklós",
+      "sourceYear": 2015,
+      "count": 5,
+      "municipalityReferenceEovBounds": [
+        645782.8995954158,
+        218680.0134243319,
+        654362.1401120753,
+        228989.1120176446
+      ],
+      "sourcePdfSha256": "433a8ad78a2532bf8d3549812e2278114ead88d90d9a0b095477b177f39e4b14"
+    }
+  ],
+  "radiusFallbackCount": 0,
+  "method": "rough_manual_map_trace_with_municipality_extent_registration",
+  "completeCurrentCityCoverageClaimed": false,
+  "originalMunicipalitiesSha256": "fb5f1293628b9eeaabce243ae6ebc884f6bdc93443a2488e5fb213029bf766b7"
+}

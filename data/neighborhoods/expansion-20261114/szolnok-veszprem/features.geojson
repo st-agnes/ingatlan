@@ -1,0 +1,4341 @@
+{
+  "type": "FeatureCollection",
+  "coordinateReferenceSystem": "EPSG:4326",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.134729571751684,
+              47.17346638719543
+            ],
+            [
+              20.137237242144412,
+              47.17738457349916
+            ],
+            [
+              20.14114710184334,
+              47.18043924683206
+            ],
+            [
+              20.15081024007928,
+              47.18191101829717
+            ],
+            [
+              20.161687321600045,
+              47.1801121781605
+            ],
+            [
+              20.171099565537357,
+              47.178374120443294
+            ],
+            [
+              20.16680120832739,
+              47.17506856345648
+            ],
+            [
+              20.15888531086211,
+              47.17245171285134
+            ],
+            [
+              20.15047916450846,
+              47.16824562609502
+            ],
+            [
+              20.146486383313675,
+              47.16412187713658
+            ],
+            [
+              20.1452515902957,
+              47.16712417573539
+            ],
+            [
+              20.139258934142834,
+              47.17032610498861
+            ],
+            [
+              20.134729571751684,
+              47.17346638719543
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Pletykafalu",
+        "sourceName": "Pletykafalu",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:2",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.174637581150275,
+              47.19539119235276
+            ],
+            [
+              20.17600874895164,
+              47.1988202162144
+            ],
+            [
+              20.179880400163267,
+              47.20133887670916
+            ],
+            [
+              20.19558384426799,
+              47.20013751106006
+            ],
+            [
+              20.195077977752867,
+              47.1937214419387
+            ],
+            [
+              20.19161438380812,
+              47.191722449054424
+            ],
+            [
+              20.186875943910174,
+              47.1921914074722
+            ],
+            [
+              20.18524327356493,
+              47.19011469827764
+            ],
+            [
+              20.18248253004523,
+              47.19237734406103
+            ],
+            [
+              20.178758349769858,
+              47.191730144146646
+            ],
+            [
+              20.174637581150275,
+              47.19539119235276
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Széchenyi-lakótelep",
+        "sourceName": "Széchenyi lakótelep",
+        "aliases": [
+          "Széchenyi lakótelep"
+        ],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:3",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.152921094702776,
+              47.19013714470939
+            ],
+            [
+              20.156307882354024,
+              47.20528333879515
+            ],
+            [
+              20.16066063780069,
+              47.204563721204735
+            ],
+            [
+              20.16939679140841,
+              47.19883109219234
+            ],
+            [
+              20.178758349769858,
+              47.191730144146646
+            ],
+            [
+              20.184582874512223,
+              47.18638745376181
+            ],
+            [
+              20.16903990320883,
+              47.184898456084525
+            ],
+            [
+              20.15341435252131,
+              47.182337972685346
+            ],
+            [
+              20.153831628885154,
+              47.187684861691174
+            ],
+            [
+              20.152921094702776,
+              47.19013714470939
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Északi ipari terület",
+        "sourceName": "Északi ipari terület",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:4",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.127794882901625,
+              47.1455938767918
+            ],
+            [
+              20.134145891174217,
+              47.151765111410356
+            ],
+            [
+              20.144406989867203,
+              47.160990560196126
+            ],
+            [
+              20.149925653303846,
+              47.16585489708837
+            ],
+            [
+              20.15833137896523,
+              47.17006102630725
+            ],
+            [
+              20.16809776559322,
+              47.172868064549135
+            ],
+            [
+              20.17187222832734,
+              47.169490032153796
+            ],
+            [
+              20.180226393621158,
+              47.16833226236215
+            ],
+            [
+              20.181501236611986,
+              47.165864268590475
+            ],
+            [
+              20.17911675109956,
+              47.16355108833522
+            ],
+            [
+              20.18125832140128,
+              47.158095909029406
+            ],
+            [
+              20.17505736768227,
+              47.1492384074425
+            ],
+            [
+              20.167970964479288,
+              47.15248823504612
+            ],
+            [
+              20.16196087460071,
+              47.146036109987406
+            ],
+            [
+              20.159306733174386,
+              47.140247023607856
+            ],
+            [
+              20.159505494706742,
+              47.13809284437173
+            ],
+            [
+              20.15206536320838,
+              47.13679681852036
+            ],
+            [
+              20.145639593638236,
+              47.1343848096145
+            ],
+            [
+              20.140739607039578,
+              47.1327130790719
+            ],
+            [
+              20.13245802100074,
+              47.12528209084024
+            ],
+            [
+              20.12888414578122,
+              47.126504721322355
+            ],
+            [
+              20.127794882901625,
+              47.1455938767918
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Déli ipari terület",
+        "sourceName": "Déli ipari terület",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:5",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.185626684295627,
+              47.1809786940185
+            ],
+            [
+              20.190237863873133,
+              47.178905758159054
+            ],
+            [
+              20.197861077541194,
+              47.17777772782485
+            ],
+            [
+              20.20544172752243,
+              47.17611451956403
+            ],
+            [
+              20.202302669506786,
+              47.173565610302084
+            ],
+            [
+              20.1955885012865,
+              47.172241315498276
+            ],
+            [
+              20.188529730173812,
+              47.1711994734757
+            ],
+            [
+              20.188353051648107,
+              47.173621028739866
+            ],
+            [
+              20.186775414285215,
+              47.176906613490104
+            ],
+            [
+              20.185626684295627,
+              47.1809786940185
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Belváros",
+        "sourceName": "Belváros",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:6",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.172762036363405,
+              47.1761581181493
+            ],
+            [
+              20.177970092221965,
+              47.17701097140446
+            ],
+            [
+              20.186106461491892,
+              47.177739630785176
+            ],
+            [
+              20.187726226229522,
+              47.17498873323188
+            ],
+            [
+              20.18885363173621,
+              47.17064928839138
+            ],
+            [
+              20.184659859351996,
+              47.16868109063752
+            ],
+            [
+              20.179212471426673,
+              47.169448061178194
+            ],
+            [
+              20.172625110896373,
+              47.1697264637903
+            ],
+            [
+              20.17173669780071,
+              47.17244624604042
+            ],
+            [
+              20.172762036363405,
+              47.1761581181493
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Déli városközpont",
+        "sourceName": "Déli városközpont",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:7",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.186371201282338,
+              47.185775290200155
+            ],
+            [
+              20.189059955470803,
+              47.18727078807818
+            ],
+            [
+              20.19463544448352,
+              47.188107373137576
+            ],
+            [
+              20.201612149906065,
+              47.18807949387582
+            ],
+            [
+              20.20116897514312,
+              47.18246544427911
+            ],
+            [
+              20.19859310577891,
+              47.17774665179762
+            ],
+            [
+              20.18987183946697,
+              47.17892127007731
+            ],
+            [
+              20.187111872314407,
+              47.1811840321064
+            ],
+            [
+              20.186371201282338,
+              47.185775290200155
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Északi városközpont",
+        "sourceName": "Északi városközpont",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:8",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.178263872233558,
+              47.18075373545012
+            ],
+            [
+              20.180973145489833,
+              47.18251676445606
+            ],
+            [
+              20.183064399933198,
+              47.18108714980294
+            ],
+            [
+              20.180763155568172,
+              47.1798433677575
+            ],
+            [
+              20.178263872233558,
+              47.18075373545012
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Mátyás király úti lakótelep",
+        "sourceName": "Mátyás király úti lakótelep",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:9",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.174801751792014,
+              47.17875422985289
+            ],
+            [
+              20.17895397433383,
+              47.18018810447314
+            ],
+            [
+              20.18259332037991,
+              47.17976594190285
+            ],
+            [
+              20.18063717172692,
+              47.178239328908965
+            ],
+            [
+              20.177259041349558,
+              47.17730925627993
+            ],
+            [
+              20.174801751792014,
+              47.17875422985289
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Nagy Imre körúti lakótelep",
+        "sourceName": "Nagy Imre körúti lakótelep",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:10",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.17164305312704,
+              47.175937141420015
+            ],
+            [
+              20.174048732037015,
+              47.17851781290997
+            ],
+            [
+              20.177991075140195,
+              47.177278311805466
+            ],
+            [
+              20.176077095256627,
+              47.1762863011955
+            ],
+            [
+              20.17164305312704,
+              47.175937141420015
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "József Attila úti lakótelep",
+        "sourceName": "József Attila úti lakótelep",
+        "aliases": [
+          "József Attila-lakótelep"
+        ],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:11",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.201591044228444,
+              47.187812158355236
+            ],
+            [
+              20.209299866750932,
+              47.18775271153776
+            ],
+            [
+              20.211157883841036,
+              47.18338190885573
+            ],
+            [
+              20.201471712050914,
+              47.18164788879024
+            ],
+            [
+              20.201591044228444,
+              47.187812158355236
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Tallinn lakótelep",
+        "sourceName": "Tallinn lakótelep",
+        "aliases": [
+          "Tallinn városrész"
+        ],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:12",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.19964151008436,
+              47.1817256159885
+            ],
+            [
+              20.203323020465856,
+              47.18183746789585
+            ],
+            [
+              20.20420997812161,
+              47.179117445823344
+            ],
+            [
+              20.205807728114763,
+              47.17609895792692
+            ],
+            [
+              20.200746990738867,
+              47.17711872325511
+            ],
+            [
+              20.19964151008436,
+              47.1817256159885
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Várkonyi téri lakótelep",
+        "sourceName": "Várkonyi téri lakótelep",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:13",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.19675533374217,
+              47.182384592154634
+            ],
+            [
+              20.199359836950297,
+              47.18281050283439
+            ],
+            [
+              20.200373591511603,
+              47.18169452861533
+            ],
+            [
+              20.20181664754743,
+              47.18136500403895
+            ],
+            [
+              20.20076808794832,
+              47.17738605947061
+            ],
+            [
+              20.197861077541194,
+              47.17777772782485
+            ],
+            [
+              20.19675533374217,
+              47.182384592154634
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Zagyvaparti lakótelep",
+        "sourceName": "Zagyvaparti lakótelep",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:14",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.209644800205968,
+              47.18746980356275
+            ],
+            [
+              20.216515512619956,
+              47.18610434694071
+            ],
+            [
+              20.223688281852723,
+              47.18392086449759
+            ],
+            [
+              20.22532751638311,
+              47.18143677092935
+            ],
+            [
+              20.228600552104567,
+              47.18102877198436
+            ],
+            [
+              20.229422481967866,
+              47.177506561431755
+            ],
+            [
+              20.219004795028802,
+              47.17580529365272
+            ],
+            [
+              20.207447555368752,
+              47.17361511642586
+            ],
+            [
+              20.20418886296205,
+              47.17885011032822
+            ],
+            [
+              20.20224600415007,
+              47.18215146115563
+            ],
+            [
+              20.210791834792985,
+              47.18339748755291
+            ],
+            [
+              20.209644800205968,
+              47.18746980356275
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Alcsi",
+        "sourceName": "Alcsi",
+        "aliases": [
+          "Alcsi városrész"
+        ],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:15",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.185118570501878,
+              47.16517468436995
+            ],
+            [
+              20.188319405855175,
+              47.16852608498522
+            ],
+            [
+              20.19466696468296,
+              47.16986633374003
+            ],
+            [
+              20.202436507695978,
+              47.17060936110954
+            ],
+            [
+              20.214942649100358,
+              47.17088193745426
+            ],
+            [
+              20.224070420569088,
+              47.17022445501598
+            ],
+            [
+              20.222760507212545,
+              47.16759798589907
+            ],
+            [
+              20.219621122669825,
+              47.165049546924784
+            ],
+            [
+              20.20705295400872,
+              47.163975473750234
+            ],
+            [
+              20.198939481841055,
+              47.16351563651319
+            ],
+            [
+              20.194379994358005,
+              47.161563331583665
+            ],
+            [
+              20.183381773624312,
+              47.16176123901376
+            ],
+            [
+              20.185118570501878,
+              47.16517468436995
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Tiszaliget",
+        "sourceName": "Tiszaliget",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:16",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.202344876930162,
+              47.17410028249767
+            ],
+            [
+              20.210396556199804,
+              47.173757873942215
+            ],
+            [
+              20.218039788718897,
+              47.17289583536605
+            ],
+            [
+              20.224542443812343,
+              47.17154549465274
+            ],
+            [
+              20.22592141252954,
+              47.17041366960149
+            ],
+            [
+              20.21679363147985,
+              47.17107129941473
+            ],
+            [
+              20.208742399111326,
+              47.171414157486815
+            ],
+            [
+              20.202091645090466,
+              47.170892248294344
+            ],
+            [
+              20.202344876930162,
+              47.17410028249767
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Alcsiszög",
+        "sourceName": "Alcsiszög",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:17",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.202274916753467,
+              47.16391039945854
+            ],
+            [
+              20.209290720916954,
+              47.16441672591916
+            ],
+            [
+              20.21594073750376,
+              47.16493821804749
+            ],
+            [
+              20.216953805088675,
+              47.16382209353331
+            ],
+            [
+              20.20992344007248,
+              47.158488624695885
+            ],
+            [
+              20.205047322465905,
+              47.15252670730373
+            ],
+            [
+              20.20362616879079,
+              47.153123611180504
+            ],
+            [
+              20.202274916753467,
+              47.16391039945854
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Kertváros",
+        "sourceName": "Kertváros",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:18",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.205026213636756,
+              47.152259370657546
+            ],
+            [
+              20.210676335940526,
+              47.15872480684367
+            ],
+            [
+              20.216116134148603,
+              47.16251661653291
+            ],
+            [
+              20.219451633655652,
+              47.16291087965268
+            ],
+            [
+              20.219282158238563,
+              47.16077221129372
+            ],
+            [
+              20.21767036256691,
+              47.15896328551599
+            ],
+            [
+              20.21855620776149,
+              47.15624314100119
+            ],
+            [
+              20.215571914904825,
+              47.15100564120305
+            ],
+            [
+              20.210716984411913,
+              47.145311292124696
+            ],
+            [
+              20.21029433676253,
+              47.13996457007139
+            ],
+            [
+              20.210877906517563,
+              47.13806206109454
+            ],
+            [
+              20.20872571807848,
+              47.13869018444793
+            ],
+            [
+              20.206355502879354,
+              47.141205190434874
+            ],
+            [
+              20.204906563908292,
+              47.14609506434576
+            ],
+            [
+              20.205026213636756,
+              47.152259370657546
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Holt-Tisza parti üdülőterület",
+        "sourceName": "Holt-Tisza parti üdülőterület",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:19",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.17484005241161,
+              47.16051316474845
+            ],
+            [
+              20.176921214620737,
+              47.16364392954224
+            ],
+            [
+              20.178729847552294,
+              47.16329922385081
+            ],
+            [
+              20.180286590322936,
+              47.15974640077206
+            ],
+            [
+              20.17835221955723,
+              47.158487084047984
+            ],
+            [
+              20.17484005241161,
+              47.16051316474845
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Papírgyári lakótelep",
+        "sourceName": "Papírgyári lakótelep",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:20",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.150644036071387,
+              47.13739306680437
+            ],
+            [
+              20.154447479258288,
+              47.1391105725447
+            ],
+            [
+              20.156192849592234,
+              47.13796418126539
+            ],
+            [
+              20.15352834707539,
+              47.13673524620443
+            ],
+            [
+              20.150644036071387,
+              47.13739306680437
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "TVM-lakótelep",
+        "sourceName": "TVM-lakótelep",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:szolnok:21",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.194393172794904,
+              47.129106639102254
+            ],
+            [
+              20.197113754225715,
+              47.13569694007195
+            ],
+            [
+              20.200946065576165,
+              47.14706816045504
+            ],
+            [
+              20.201916926211418,
+              47.14541748982829
+            ],
+            [
+              20.201642768498132,
+              47.14194210023474
+            ],
+            [
+              20.20457592594617,
+              47.13725737749345
+            ],
+            [
+              20.20956943261423,
+              47.135435426077855
+            ],
+            [
+              20.216454603320923,
+              47.13433729660029
+            ],
+            [
+              20.21591964250814,
+              47.13221420813931
+            ],
+            [
+              20.217473001133914,
+              47.128660860666784
+            ],
+            [
+              20.218485347744227,
+              47.12754471540874
+            ],
+            [
+              20.21924361499242,
+              47.123220537452895
+            ],
+            [
+              20.220001759327566,
+              47.11889635128224
+            ],
+            [
+              20.22235466199879,
+              47.11155340385258
+            ],
+            [
+              20.220871276423132,
+              47.11134851982676
+            ],
+            [
+              20.221475330349303,
+              47.109713283253846
+            ],
+            [
+              20.207345706588008,
+              47.111925309299615
+            ],
+            [
+              20.19648406479828,
+              47.113728503695235
+            ],
+            [
+              20.195492566319192,
+              47.115111797203255
+            ],
+            [
+              20.197397076778337,
+              47.120663803774264
+            ],
+            [
+              20.19800784749899,
+              47.1284166435131
+            ],
+            [
+              20.194393172794904,
+              47.129106639102254
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Szolnok",
+        "name": "Szandaszőlős",
+        "sourceName": "Szanda-szőlős",
+        "aliases": [
+          "Szanda-szőlős"
+        ],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "KSH functional division 2003, reproduced by Földi Katalin 2012 thesis, Figure9/page72",
+        "sourceUrl": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+        "evidenceUrls": [
+          "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+        "sourceSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+        "sourceKey": "szolnok",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://ktk.pte.hu/sites/ktk.pte.hu/files/images/kepzes/phd/Foldi%20Katalin%20-%20disszertacio.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-szolnok-foldi2012-next/figure9-native-pixels.png",
+          "sourceImageSha256": "7134f2cc093d8e703e4dbfd4d29f5bd3a109dcbd7273a579af36253fde21d1b4",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-ivs:1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.904866394230847,
+              47.1004216053374
+            ],
+            [
+              17.90864134930495,
+              47.09790016385859
+            ],
+            [
+              17.913031851866624,
+              47.09874763441149
+            ],
+            [
+              17.915759015035352,
+              47.09732077962369
+            ],
+            [
+              17.919686122717568,
+              47.093215016816636
+            ],
+            [
+              17.915448974771387,
+              47.090783844914185
+            ],
+            [
+              17.913125695207707,
+              47.0880348179327
+            ],
+            [
+              17.910139840297852,
+              47.087273100350444
+            ],
+            [
+              17.907588448799416,
+              47.09175231131981
+            ],
+            [
+              17.90472196461872,
+              47.09461891915919
+            ],
+            [
+              17.90215891067009,
+              47.09677978970019
+            ],
+            [
+              17.904866394230847,
+              47.1004216053374
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Belváros",
+        "sourceName": "Belváros",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal IVS 2008-10-15, page10",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+        "sourceSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+        "sourceKey": "veszprem-ivs",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+          "sourceImageSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55,
+        "sourceHierarchy": "IVS strategic group; may differ from traditional neighborhood; disconnected compound components separated using their mapped location."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-ivs:2",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.86538907060004,
+              47.1045205640752
+            ],
+            [
+              17.873500290776928,
+              47.1034253728805
+            ],
+            [
+              17.879753029815177,
+              47.102070810860404
+            ],
+            [
+              17.886109716676298,
+              47.10448838213857
+            ],
+            [
+              17.89165660596991,
+              47.10555235512712
+            ],
+            [
+              17.90384063962092,
+              47.10615277578817
+            ],
+            [
+              17.90598073667276,
+              47.101069083471025
+            ],
+            [
+              17.90208917689712,
+              47.09749976091363
+            ],
+            [
+              17.89356731117457,
+              47.09799235837378
+            ],
+            [
+              17.887109367720708,
+              47.099045353879
+            ],
+            [
+              17.87865717067526,
+              47.09881687933758
+            ],
+            [
+              17.870668504466746,
+              47.10107873041715
+            ],
+            [
+              17.86538907060004,
+              47.1045205640752
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Dózsaváros",
+        "sourceName": "Dózsaváros",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal IVS 2008-10-15, page10",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+        "sourceSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+        "sourceKey": "veszprem-ivs",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+          "sourceImageSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55,
+        "sourceHierarchy": "IVS strategic group; may differ from traditional neighborhood; disconnected compound components separated using their mapped location."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-ivs:3",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.858798097798964,
+              47.10933007008953
+            ],
+            [
+              17.86133950192376,
+              47.112238568854664
+            ],
+            [
+              17.869185231763517,
+              47.113879473421115
+            ],
+            [
+              17.87311344395217,
+              47.11948013321026
+            ],
+            [
+              17.878637777288098,
+              47.11837051588934
+            ],
+            [
+              17.880476650488095,
+              47.11399291080932
+            ],
+            [
+              17.882481265175098,
+              47.11759219039058
+            ],
+            [
+              17.890496238960797,
+              47.117503737022524
+            ],
+            [
+              17.894252196299895,
+              47.1200511700219
+            ],
+            [
+              17.892595979495944,
+              47.12255709009974
+            ],
+            [
+              17.897743172859812,
+              47.12533434724044
+            ],
+            [
+              17.90524114716092,
+              47.12086780568345
+            ],
+            [
+              17.9035526546722,
+              47.11641926720526
+            ],
+            [
+              17.90971982470316,
+              47.11838923602814
+            ],
+            [
+              17.911603884173843,
+              47.120821754969114
+            ],
+            [
+              17.919067629300365,
+              47.121566694846685
+            ],
+            [
+              17.920474565151885,
+              47.119190118693595
+            ],
+            [
+              17.914031051807427,
+              47.117638432979675
+            ],
+            [
+              17.916103521229598,
+              47.11081233464794
+            ],
+            [
+              17.911410954748636,
+              47.108208467452855
+            ],
+            [
+              17.904528825987196,
+              47.10633967756233
+            ],
+            [
+              17.89281281799775,
+              47.10576798261001
+            ],
+            [
+              17.88634374749395,
+              47.10450272135293
+            ],
+            [
+              17.880193052524056,
+              47.1023874977041
+            ],
+            [
+              17.871763922990556,
+              47.104332737191974
+            ],
+            [
+              17.864574595380027,
+              47.10562933225218
+            ],
+            [
+              17.858798097798964,
+              47.10933007008953
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Iparváros",
+        "sourceName": "Iparváros",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal IVS 2008-10-15, page10",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+        "sourceSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+        "sourceKey": "veszprem-ivs",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+          "sourceImageSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55,
+        "sourceHierarchy": "IVS strategic group; may differ from traditional neighborhood; disconnected compound components separated using their mapped location."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-ivs:4",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.877501166423315,
+              47.098601108649646
+            ],
+            [
+              17.88644931539265,
+              47.098570362592
+            ],
+            [
+              17.892879270817907,
+              47.097805390454056
+            ],
+            [
+              17.90210312380221,
+              47.09735576668109
+            ],
+            [
+              17.904529791010976,
+              47.094172633699934
+            ],
+            [
+              17.900226684287173,
+              47.08999866063372
+            ],
+            [
+              17.89495709701664,
+              47.08851744127641
+            ],
+            [
+              17.883960969165756,
+              47.087843806983244
+            ],
+            [
+              17.88017155553396,
+              47.09050843024317
+            ],
+            [
+              17.878403517083076,
+              47.09416609039143
+            ],
+            [
+              17.877501166423315,
+              47.098601108649646
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Jeruzsálemhegy",
+        "sourceName": "Jeruzsálemhegy",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal IVS 2008-10-15, page10",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+        "sourceSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+        "sourceKey": "veszprem-ivs",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+          "sourceImageSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55,
+        "sourceHierarchy": "IVS strategic group; may differ from traditional neighborhood; disconnected compound components separated using their mapped location."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-ivs:5",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.836568652867143,
+              47.10071773616667
+            ],
+            [
+              17.844801068054913,
+              47.100790907514195
+            ],
+            [
+              17.848412734849187,
+              47.104779721113616
+            ],
+            [
+              17.85321457583718,
+              47.106234266903954
+            ],
+            [
+              17.8584898589998,
+              47.10525520021314
+            ],
+            [
+              17.856473254541065,
+              47.101799481961926
+            ],
+            [
+              17.853193732141097,
+              47.096817410229626
+            ],
+            [
+              17.850433616599005,
+              47.093750323109376
+            ],
+            [
+              17.84390482069234,
+              47.09552082149458
+            ],
+            [
+              17.83996356057173,
+              47.09730576142332
+            ],
+            [
+              17.836568652867143,
+              47.10071773616667
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Csatárhegy",
+        "sourceName": "Csatárhegy",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal IVS 2008-10-15, page10",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+        "sourceSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+        "sourceKey": "veszprem-ivs",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+          "sourceImageSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55,
+        "sourceHierarchy": "IVS strategic group; may differ from traditional neighborhood; disconnected compound components separated using their mapped location."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-ivs:6",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.895205023365392,
+              47.088387768841194
+            ],
+            [
+              17.900474604714518,
+              47.089868976814
+            ],
+            [
+              17.905025648523033,
+              47.09391324705281
+            ],
+            [
+              17.90761630986432,
+              47.091464321242064
+            ],
+            [
+              17.910195529926465,
+              47.08669711851916
+            ],
+            [
+              17.913139609872765,
+              47.0878908221368
+            ],
+            [
+              17.914967107496107,
+              47.090899280898036
+            ],
+            [
+              17.918960982036516,
+              47.08853577150306
+            ],
+            [
+              17.918882223406936,
+              47.08447532374917
+            ],
+            [
+              17.923616826877385,
+              47.08418468954156
+            ],
+            [
+              17.925270397356062,
+              47.08167830522742
+            ],
+            [
+              17.92864268603913,
+              47.080869905866
+            ],
+            [
+              17.92311363308756,
+              47.077201506972656
+            ],
+            [
+              17.920005469601577,
+              47.07527380327157
+            ],
+            [
+              17.917193745259897,
+              47.08002695996556
+            ],
+            [
+              17.909529750438978,
+              47.0789796105228
+            ],
+            [
+              17.90443916839736,
+              47.07808909901547
+            ],
+            [
+              17.89861585803362,
+              47.07990562599192
+            ],
+            [
+              17.895379380384444,
+              47.081735417664696
+            ],
+            [
+              17.895205023365392,
+              47.088387768841194
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Egyetemváros",
+        "sourceName": "Egyetemváros",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal IVS 2008-10-15, page10",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+        "sourceSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+        "sourceKey": "veszprem-ivs",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+          "sourceImageSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55,
+        "sourceHierarchy": "IVS strategic group; may differ from traditional neighborhood; disconnected compound components separated using their mapped location."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-ivs:7",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.914967107496107,
+              47.090899280898036
+            ],
+            [
+              17.919204242659838,
+              47.09333047059459
+            ],
+            [
+              17.91807128643229,
+              47.097751536625125
+            ],
+            [
+              17.921759882990642,
+              47.098555847886985
+            ],
+            [
+              17.928324325372028,
+              47.101273335640535
+            ],
+            [
+              17.933101960013328,
+              47.10055031779074
+            ],
+            [
+              17.93538835289265,
+              47.09880651222143
+            ],
+            [
+              17.933091423206477,
+              47.09576989758339
+            ],
+            [
+              17.93147073420716,
+              47.090601761817446
+            ],
+            [
+              17.930001106893634,
+              47.08631183602901
+            ],
+            [
+              17.930264599420088,
+              47.08357587538174
+            ],
+            [
+              17.936624370518967,
+              47.081066218714646
+            ],
+            [
+              17.931094748913367,
+              47.07739820561896
+            ],
+            [
+              17.924830278024555,
+              47.08136179064844
+            ],
+            [
+              17.920079774107418,
+              47.084258686840286
+            ],
+            [
+              17.918328577662077,
+              47.087772970259095
+            ],
+            [
+              17.914967107496107,
+              47.090899280898036
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Cholnokyváros",
+        "sourceName": "Cholnokyváros",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal IVS 2008-10-15, page10",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+        "sourceSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+        "sourceKey": "veszprem-ivs",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+          "sourceImageSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55,
+        "sourceHierarchy": "IVS strategic group; may differ from traditional neighborhood; disconnected compound components separated using their mapped location."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-ivs:8",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.914279067105465,
+              47.117508719849766
+            ],
+            [
+              17.919579864525502,
+              47.11870105067318
+            ],
+            [
+              17.92295457933644,
+              47.11789282387954
+            ],
+            [
+              17.92655333444164,
+              47.112318346789
+            ],
+            [
+              17.92921328620249,
+              47.10914895501147
+            ],
+            [
+              17.932725922154304,
+              47.10690046598953
+            ],
+            [
+              17.936895856098833,
+              47.11005098264193
+            ],
+            [
+              17.93933212216894,
+              47.11164752987691
+            ],
+            [
+              17.94193465644444,
+              47.11151604041117
+            ],
+            [
+              17.94444260437934,
+              47.10746807610127
+            ],
+            [
+              17.94562782065887,
+              47.104932965798945
+            ],
+            [
+              17.93921299415532,
+              47.103094694686796
+            ],
+            [
+              17.93341751689036,
+              47.10216278111573
+            ],
+            [
+              17.9316700700112,
+              47.10075284431696
+            ],
+            [
+              17.928090297469137,
+              47.1012590822412
+            ],
+            [
+              17.92244803413682,
+              47.09874264217333
+            ],
+            [
+              17.9178372767104,
+              47.09773726225646
+            ],
+            [
+              17.914984934523897,
+              47.1004601282357
+            ],
+            [
+              17.914871124499935,
+              47.10407430078375
+            ],
+            [
+              17.91295448460465,
+              47.10685423211056
+            ],
+            [
+              17.911631084666844,
+              47.108366750071376
+            ],
+            [
+              17.915869454760887,
+              47.11079805628698
+            ],
+            [
+              17.914279067105465,
+              47.117508719849766
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Jutasi úti menti lakóövezet",
+        "sourceName": "Jutasi úti menti lakóövezet",
+        "aliases": [],
+        "candidateBoundaryKind": "planning_unit",
+        "boundaryKind": "planning_unit",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal IVS 2008-10-15, page10",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+        "sourceSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+        "sourceKey": "veszprem-ivs",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+          "sourceImageSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55,
+        "sourceHierarchy": "IVS strategic group; may differ from traditional neighborhood; disconnected compound components separated using their mapped location."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-ivs:9",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.931465478469274,
+              47.11754203745625
+            ],
+            [
+              17.93315799498335,
+              47.11952796338355
+            ],
+            [
+              17.932922213665815,
+              47.1219759197454
+            ],
+            [
+              17.93690078324988,
+              47.12468019242824
+            ],
+            [
+              17.942504934587774,
+              47.12762790432409
+            ],
+            [
+              17.94660997022859,
+              47.12657365478941
+            ],
+            [
+              17.95284899335872,
+              47.12782130266325
+            ],
+            [
+              17.950313944602136,
+              47.12969523987587
+            ],
+            [
+              17.953054766664543,
+              47.13058570116168
+            ],
+            [
+              17.953565262764716,
+              47.12771990964399
+            ],
+            [
+              17.96072780705729,
+              47.12670573298314
+            ],
+            [
+              17.963744417109655,
+              47.12471592567968
+            ],
+            [
+              17.959020703989555,
+              47.12240201868294
+            ],
+            [
+              17.95947561003271,
+              47.12011219917926
+            ],
+            [
+              17.953003221680827,
+              47.11885070825843
+            ],
+            [
+              17.949394787439825,
+              47.11964561063222
+            ],
+            [
+              17.944562580398795,
+              47.11602089960714
+            ],
+            [
+              17.94164393514017,
+              47.114540012681786
+            ],
+            [
+              17.939345972275603,
+              47.11150353145869
+            ],
+            [
+              17.93391904286823,
+              47.114070297437365
+            ],
+            [
+              17.936754299349463,
+              47.11641536940322
+            ],
+            [
+              17.931465478469274,
+              47.11754203745625
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Kádárta",
+        "sourceName": "Kádárta",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal IVS 2008-10-15, page10",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+        "sourceSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+        "sourceKey": "veszprem-ivs",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+          "sourceImageSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55,
+        "sourceHierarchy": "IVS strategic group; may differ from traditional neighborhood; disconnected compound components separated using their mapped location."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-ivs:10",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.935277076336888,
+              47.14399008998331
+            ],
+            [
+              17.942977408171792,
+              47.14720989632564
+            ],
+            [
+              17.954688569817808,
+              47.150382640207845
+            ],
+            [
+              17.961124903635834,
+              47.14222727383138
+            ],
+            [
+              17.956495846827217,
+              47.1413674590088
+            ],
+            [
+              17.958562825700202,
+              47.13946500723796
+            ],
+            [
+              17.95481558391356,
+              47.13923788596964
+            ],
+            [
+              17.955904941449354,
+              47.13524848716928
+            ],
+            [
+              17.9512074544964,
+              47.135108456829975
+            ],
+            [
+              17.948686778070602,
+              47.134376162686785
+            ],
+            [
+              17.943893647141955,
+              47.13278163079413
+            ],
+            [
+              17.941083611843062,
+              47.13261094126141
+            ],
+            [
+              17.938919274841275,
+              47.135521064457265
+            ],
+            [
+              17.93707207421076,
+              47.1375813959477
+            ],
+            [
+              17.939027350677588,
+              47.1392934682473
+            ],
+            [
+              17.935277076336888,
+              47.14399008998331
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Gyulafirátót",
+        "sourceName": "Gyulafirátót",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal IVS 2008-10-15, page10",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+        "sourceSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+        "sourceKey": "veszprem-ivs",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+          "sourceImageSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55,
+        "sourceHierarchy": "IVS strategic group; may differ from traditional neighborhood; disconnected compound components separated using their mapped location."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-ivs:11",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.95573343983711,
+              47.1051118861256
+            ],
+            [
+              17.966747689748765,
+              47.10809682595263
+            ],
+            [
+              17.972985023278802,
+              47.10934338069684
+            ],
+            [
+              17.979003217459677,
+              47.11535584952199
+            ],
+            [
+              17.983355074414916,
+              47.11663262924459
+            ],
+            [
+              17.988683862136394,
+              47.11507155180945
+            ],
+            [
+              17.990060098642633,
+              47.11298212767115
+            ],
+            [
+              17.982238261162724,
+              47.111061500149674
+            ],
+            [
+              17.98153543478035,
+              47.10855686464254
+            ],
+            [
+              17.977390854633754,
+              47.10758217328167
+            ],
+            [
+              17.982195854781803,
+              47.10656910107743
+            ],
+            [
+              17.98475397799193,
+              47.0970198180809
+            ],
+            [
+              17.984422472306914,
+              47.093089288641664
+            ],
+            [
+              17.987325738506318,
+              47.08978867145841
+            ],
+            [
+              17.986375254482333,
+              47.087413928904795
+            ],
+            [
+              17.97676832745708,
+              47.08697801546896
+            ],
+            [
+              17.966610989975436,
+              47.08737696076227
+            ],
+            [
+              17.961160621815804,
+              47.08777081926342
+            ],
+            [
+              17.960113992709775,
+              47.091328295603496
+            ],
+            [
+              17.957126728871298,
+              47.093030016352365
+            ],
+            [
+              17.95855782627404,
+              47.09528938212921
+            ],
+            [
+              17.956161933465527,
+              47.0981856577235
+            ],
+            [
+              17.95573343983711,
+              47.1051118861256
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Repülőtér",
+        "sourceName": "Repülőtér",
+        "aliases": [],
+        "candidateBoundaryKind": "local_area",
+        "boundaryKind": "local_area",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal IVS 2008-10-15, page10",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+        "sourceSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+        "sourceKey": "veszprem-ivs",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-ivs2008-next/page10-native-map.jpeg",
+          "sourceImageSha256": "dabc71d4cfd18a085ad7fc2089d78609a601fe9c3113f5707bc810e88f7b981a",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55,
+        "sourceHierarchy": "IVS strategic group; may differ from traditional neighborhood; disconnected compound components separated using their mapped location."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:1",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.900883960379666,
+              47.09847555537637
+            ],
+            [
+              17.909666573807318,
+              47.10081657341998
+            ],
+            [
+              17.91450534990928,
+              47.096379935938295
+            ],
+            [
+              17.913195589368605,
+              47.09068912189638
+            ],
+            [
+              17.903534816713073,
+              47.08911306325079
+            ],
+            [
+              17.898476156874196,
+              47.09354832711747
+            ],
+            [
+              17.900883960379666,
+              47.09847555537637
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Belváros",
+        "sourceName": "Belváros",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Central quarter has no individually drawn division on the 2019 map. Its polygon is an explicit coarse estimate using numbered location, visible roads/watercourses, outer built-up outline and the overlapping 2008 IVS-group map; internal divisions are inferred, not source lines.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:2",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.86572176256095,
+              47.10616121100479
+            ],
+            [
+              17.87449518034446,
+              47.112653787495724
+            ],
+            [
+              17.889875969605043,
+              47.112105397049
+            ],
+            [
+              17.898232435862475,
+              47.10768431002445
+            ],
+            [
+              17.903512619911787,
+              47.10294264915999
+            ],
+            [
+              17.900884214620753,
+              47.09832189337544
+            ],
+            [
+              17.894518716830614,
+              47.095836715412155
+            ],
+            [
+              17.882875660957627,
+              47.09686284647065
+            ],
+            [
+              17.876716886599308,
+              47.100985087912605
+            ],
+            [
+              17.86572176256095,
+              47.10616121100479
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Dózsaváros",
+        "sourceName": "Dózsaváros",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Central quarter has no individually drawn division on the 2019 map. Its polygon is an explicit coarse estimate using numbered location, visible roads/watercourses, outer built-up outline and the overlapping 2008 IVS-group map; internal divisions are inferred, not source lines.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:3",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.894518989382483,
+              47.09568305335988
+            ],
+            [
+              17.898476679169754,
+              47.09324100287668
+            ],
+            [
+              17.903534816713073,
+              47.08911306325079
+            ],
+            [
+              17.903767707717662,
+              47.08081620224417
+            ],
+            [
+              17.897843298841337,
+              47.07833301151396
+            ],
+            [
+              17.891467951264502,
+              47.08260880442145
+            ],
+            [
+              17.893439261413786,
+              47.085383067830094
+            ],
+            [
+              17.89145247923786,
+              47.091060229030155
+            ],
+            [
+              17.894518989382483,
+              47.09568305335988
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Jeruzsálemhegy",
+        "sourceName": "Jeruzsálemhegy",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Central quarter has no individually drawn division on the 2019 map. Its polygon is an explicit coarse estimate using numbered location, visible roads/watercourses, outer built-up outline and the overlapping 2008 IVS-group map; internal divisions are inferred, not source lines.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:4",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.903755413016217,
+              47.08849931960779
+            ],
+            [
+              17.91297597015605,
+              47.09068823467395
+            ],
+            [
+              17.916497202657602,
+              47.08532419949787
+            ],
+            [
+              17.918700479489264,
+              47.07980113780606
+            ],
+            [
+              17.912339456915657,
+              47.07516566740669
+            ],
+            [
+              17.902461719543187,
+              47.07374228794971
+            ],
+            [
+              17.897843561736657,
+              47.078179349024275
+            ],
+            [
+              17.903767707717662,
+              47.08081620224417
+            ],
+            [
+              17.903755413016217,
+              47.08849931960779
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Egyetemváros",
+        "sourceName": "Egyetemváros",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Central quarter has no individually drawn division on the 2019 map. Its polygon is an explicit coarse estimate using numbered location, visible roads/watercourses, outer built-up outline and the overlapping 2008 IVS-group map; internal divisions are inferred, not source lines.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:5",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.913195589368605,
+              47.09068912189638
+            ],
+            [
+              17.92088383947887,
+              47.089490611208895
+            ],
+            [
+              17.926816842774826,
+              47.08659442475838
+            ],
+            [
+              17.92484764302759,
+              47.08059382571291
+            ],
+            [
+              17.918481515500037,
+              47.07933927364554
+            ],
+            [
+              17.916497202657602,
+              47.08532419949787
+            ],
+            [
+              17.913195589368605,
+              47.09068912189638
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Füredidomb",
+        "sourceName": "Füredidomb",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Central quarter has no individually drawn division on the 2019 map. Its polygon is an explicit coarse estimate using numbered location, visible roads/watercourses, outer built-up outline and the overlapping 2008 IVS-group map; internal divisions are inferred, not source lines.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:6",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.91450534990928,
+              47.096379935938295
+            ],
+            [
+              17.92680193691693,
+              47.0993483861324
+            ],
+            [
+              17.930760608109736,
+              47.09490761352642
+            ],
+            [
+              17.93406182793402,
+              47.088466552124125
+            ],
+            [
+              17.926816842774826,
+              47.08659442475838
+            ],
+            [
+              17.92088383947887,
+              47.089490611208895
+            ],
+            [
+              17.913195589368605,
+              47.09068912189638
+            ],
+            [
+              17.91450534990928,
+              47.096379935938295
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Cholnokyváros",
+        "sourceName": "Cholnokyváros",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Central quarter has no individually drawn division on the 2019 map. Its polygon is an explicit coarse estimate using numbered location, visible roads/watercourses, outer built-up outline and the overlapping 2008 IVS-group map; internal divisions are inferred, not source lines.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:7",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.912958194681213,
+              47.103134861770506
+            ],
+            [
+              17.92635611385009,
+              47.10487849390341
+            ],
+            [
+              17.927241247067677,
+              47.09935010709196
+            ],
+            [
+              17.91450534990928,
+              47.096379935938295
+            ],
+            [
+              17.912958194681213,
+              47.103134861770506
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Újtelep",
+        "sourceName": "Újtelep",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Central quarter has no individually drawn division on the 2019 map. Its polygon is an explicit coarse estimate using numbered location, visible roads/watercourses, outer built-up outline and the overlapping 2008 IVS-group map; internal divisions are inferred, not source lines.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:8",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.907234495132393,
+              47.11110205849472
+            ],
+            [
+              17.920634030241168,
+              47.113000019752754
+            ],
+            [
+              17.926128627707097,
+              47.111485089405654
+            ],
+            [
+              17.926575971975826,
+              47.104725693560326
+            ],
+            [
+              17.912958194681213,
+              47.103134861770506
+            ],
+            [
+              17.907462906511565,
+              47.10541747141106
+            ],
+            [
+              17.907234495132393,
+              47.11110205849472
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Jutasi úti lakótelep",
+        "sourceName": "Jutasi úti lakótelep",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Central quarter has no individually drawn division on the 2019 map. Its polygon is an explicit coarse estimate using numbered location, visible roads/watercourses, outer built-up outline and the overlapping 2008 IVS-group map; internal divisions are inferred, not source lines.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:9",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.906124975900312,
+              47.11816599453958
+            ],
+            [
+              17.91556901407944,
+              47.12143122063867
+            ],
+            [
+              17.91733339697165,
+              47.11667476007696
+            ],
+            [
+              17.920634030241168,
+              47.113000019752754
+            ],
+            [
+              17.907234495132393,
+              47.11110205849472
+            ],
+            [
+              17.904812658420116,
+              47.1143190446287
+            ],
+            [
+              17.906124975900312,
+              47.11816599453958
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Bakonyalja",
+        "sourceName": "Bakonyalja",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Central quarter has no individually drawn division on the 2019 map. Its polygon is an explicit coarse estimate using numbered location, visible roads/watercourses, outer built-up outline and the overlapping 2008 IVS-group map; internal divisions are inferred, not source lines.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:10",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.894030672199815,
+              47.12318665184422
+            ],
+            [
+              17.897540908042746,
+              47.12658192727012
+            ],
+            [
+              17.902822028706836,
+              47.12245495891888
+            ],
+            [
+              17.903047237286984,
+              47.119075314092534
+            ],
+            [
+              17.89997299132948,
+              47.117833290135394
+            ],
+            [
+              17.896235160703448,
+              47.119200672022735
+            ],
+            [
+              17.894030672199815,
+              47.12318665184422
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Jutaspuszta",
+        "sourceName": "Jutaspuszta",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:11",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.867674408645442,
+              47.11692630741807
+            ],
+            [
+              17.87117847647162,
+              47.12216633018246
+            ],
+            [
+              17.87601586942235,
+              47.120804563963674
+            ],
+            [
+              17.873603695760604,
+              47.1184890757784
+            ],
+            [
+              17.877125556480696,
+              47.11558486165912
+            ],
+            [
+              17.875373032870016,
+              47.11311861390778
+            ],
+            [
+              17.867021914518624,
+              47.114003814400505
+            ],
+            [
+              17.867674408645442,
+              47.11692630741807
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Csererdő",
+        "sourceName": "Csererdő",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:12",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.875813760647098,
+              47.11250588595369
+            ],
+            [
+              17.88195849521114,
+              47.1160667810574
+            ],
+            [
+              17.882609069943182,
+              47.1203721405956
+            ],
+            [
+              17.88832349730995,
+              47.11978194060869
+            ],
+            [
+              17.893381073173185,
+              47.11780572897231
+            ],
+            [
+              17.89667676494906,
+              47.11797321848168
+            ],
+            [
+              17.899966566916987,
+              47.12167482645254
+            ],
+            [
+              17.905240486019732,
+              47.121696602435854
+            ],
+            [
+              17.9072262337416,
+              47.11648021530039
+            ],
+            [
+              17.905255717020697,
+              47.11201592545
+            ],
+            [
+              17.89845186347984,
+              47.107838887294434
+            ],
+            [
+              17.889437130240882,
+              47.11179620943323
+            ],
+            [
+              17.875813760647098,
+              47.11250588595369
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Iparváros",
+        "sourceName": "Iparváros",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Central quarter has no individually drawn division on the 2019 map. Its polygon is an explicit coarse estimate using numbered location, visible roads/watercourses, outer built-up outline and the overlapping 2008 IVS-group map; internal divisions are inferred, not source lines.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:13",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.835412801673748,
+              47.10356363213785
+            ],
+            [
+              17.844419728076574,
+              47.10345210305154
+            ],
+            [
+              17.845289709338104,
+              47.10668307067658
+            ],
+            [
+              17.851217202713336,
+              47.10824700077098
+            ],
+            [
+              17.85781283552858,
+              47.10627938769094
+            ],
+            [
+              17.852771533952033,
+              47.10180024073181
+            ],
+            [
+              17.851467825829967,
+              47.096262389006824
+            ],
+            [
+              17.847078279414657,
+              47.09501290020764
+            ],
+            [
+              17.842242485951385,
+              47.09637344984951
+            ],
+            [
+              17.835412801673748,
+              47.10356363213785
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Csatár",
+        "sourceName": "Csatár",
+        "aliases": [
+          "Csatárhegy"
+        ],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:14",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.912799672555877,
+              47.06041581788421
+            ],
+            [
+              17.918285207285916,
+              47.06182084709927
+            ],
+            [
+              17.920264679254462,
+              47.05875546606988
+            ],
+            [
+              17.914780905736766,
+              47.05627488991442
+            ],
+            [
+              17.912799672555877,
+              47.06041581788421
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Szabadságpuszta",
+        "sourceName": "Szabadságpuszta",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:15",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.934249806747513,
+              47.11919978338738
+            ],
+            [
+              17.93710188611679,
+              47.12382059784656
+            ],
+            [
+              17.94303410366155,
+              47.125226107361065
+            ],
+            [
+              17.945668362889702,
+              47.12877024481022
+            ],
+            [
+              17.95248069767346,
+              47.129871236700374
+            ],
+            [
+              17.957757439744864,
+              47.126510045144116
+            ],
+            [
+              17.954901452164165,
+              47.124962976222726
+            ],
+            [
+              17.958857500253934,
+              47.12436278785137
+            ],
+            [
+              17.961056869349548,
+              47.12099020834855
+            ],
+            [
+              17.957761876614533,
+              47.11898063345348
+            ],
+            [
+              17.95908211636748,
+              47.11575854111155
+            ],
+            [
+              17.952051300718782,
+              47.11527177369191
+            ],
+            [
+              17.95161034329109,
+              47.1174214106938
+            ],
+            [
+              17.943480474806822,
+              47.11723736861425
+            ],
+            [
+              17.93996807292215,
+              47.11368983474044
+            ],
+            [
+              17.934259616453613,
+              47.10967276089323
+            ],
+            [
+              17.93315919178812,
+              47.111512463684804
+            ],
+            [
+              17.937988579856395,
+              47.115833560052046
+            ],
+            [
+              17.934249806747513,
+              47.11919978338738
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Kádárta",
+        "sourceName": "Kádárta",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "expansion:veszprem-tak:16",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              17.937739959869933,
+              47.14579665974444
+            ],
+            [
+              17.944772493026445,
+              47.14889653659866
+            ],
+            [
+              17.952246333891452,
+              47.150921980223885
+            ],
+            [
+              17.954227160922756,
+              47.14785605684904
+            ],
+            [
+              17.958184378709344,
+              47.14817785892205
+            ],
+            [
+              17.96170509708189,
+              47.14235150287948
+            ],
+            [
+              17.958188846501315,
+              47.14049481456231
+            ],
+            [
+              17.95203514054753,
+              47.13847463733282
+            ],
+            [
+              17.950715243242637,
+              47.139852704068026
+            ],
+            [
+              17.948081404335056,
+              47.134618417212856
+            ],
+            [
+              17.9423680738349,
+              47.13290668027351
+            ],
+            [
+              17.940169432948814,
+              47.133666654745866
+            ],
+            [
+              17.939504603269746,
+              47.13950326804529
+            ],
+            [
+              17.941480789694385,
+              47.14196935513766
+            ],
+            [
+              17.937739959869933,
+              47.14579665974444
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "municipality": "Veszprém",
+        "name": "Gyulafirátót",
+        "sourceName": "Gyulafirátót",
+        "aliases": [],
+        "candidateBoundaryKind": "neighbourhood",
+        "boundaryKind": "neighbourhood",
+        "method": "map_trace_estimate",
+        "estimated": true,
+        "sourcePeriod": "Municipal TAK2019 page14 official-quarter name map",
+        "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+        "evidenceUrls": [
+          "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+        ],
+        "sourcePath": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+        "sourceSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+        "sourceKey": "veszprem-tak",
+        "georeferencingMethod": "approximate_affine_named_place_anchors",
+        "absoluteAccuracyMetres": null,
+        "precision": "coarse",
+        "coordinateReferenceSystem": "EPSG:4326",
+        "approximationNote": "Visible historical source-map outlines were coarsely digitized; lettering/leader-line gaps bridged by eye. Name-anchor placement is approximate. Not an official or cadastral boundary.",
+        "rightsStatus": "Publicly accessible source document; separate reuse licence not identified. OSM-derived anchor data subject to ODbL.",
+        "source": {
+          "provider": "municipal-or-KSH-map-inference",
+          "url": "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf",
+          "method": "manual_coarse_trace_and_approximate_registration",
+          "sourceImage": "data/neighborhoods/sources/municipal-veszprem-tak2019-next/page14-original.jpeg",
+          "sourceImageSha256": "2485c9d9b8509586bf2e5fe2c6f4cacb73671971e6f57bfc5eb8ee1f0e99c734",
+          "license": "Source map reuse not explicitly licensed; OSM calibration ODbL-1.0"
+        },
+        "qualityScore": 55
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "collectionDate": "2026-11-15",
+  "primarySource": {
+    "url": "https://tokaj.hu/images/uploads/2017/03/TOKAJ_ITS_Megalapozo_vegleges_egyeztetes_utan_20220617.pdf",
+    "title": "Tokaj ITS megalapozó vizsgálat, 2022.06.17.",
+    "section": "A.) Központi városrész – Tokaj magterület",
+    "access": "Text facts exposed through web connector search excerpts; no full local PDF or native municipal PDF polygon is claimed.",
+    "paraphrasedFacts": [
+      "The old town comprises the medieval core, former mining village, fishing village and later central urban part.",
+      "The central unit is described in connection with the38main road; the medieval core arose near the river confluence and Erzsébet királyné bridge.",
+      "Street-level descriptions connect the historic components with Rákóczi, Kis Albert tér, Serház, Vasvári Pál, Görög, Bethlen Gábor, Táncsics and Váradi streets."
+    ],
+    "sourceQuotedAsNativeBoundary": false
+  },
+  "additionalContextUrl": "https://old.tokaj.hu/wp-content/uploads/2017/12/TAK-Tokaj_k-2.pdf",
+  "nativeUrbanGeometry": {
+    "sourceObject": "osm:relation:13573620",
+    "sourceUrl": "https://www.openstreetmap.org/relation/13573620",
+    "retainedFile": "source-contexts.geojson",
+    "objectVersion": 7,
+    "objectTimestamp": "2025-11-24T20:18:24Z",
+    "meaning": "Literal multi-part urban residential footprint; only the old-town portion selected with explicit estimated entry cuts."
+  },
+  "cachedSourcePaths": [
+    "data/neighborhoods/expansion-20261115/national-cells/source-contexts.geojson",
+    "data/neighborhoods/expansion-20261115/national-cells/source-barriers.geojson"
+  ],
+  "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "sourceSnapshot": "2026-11-12T21:23:05Z",
+  "newPbfScanPerformed": false,
+  "binarySourceDownloaded": false,
+  "estimatedCuts": [
+    "South: short landward continuation of actual Erzsébet bridge alignment",
+    "North: approximate Váradi/Bethlen historic-entry transition"
+  ],
+  "noRadiusOrPointRectangle": true,
+  "nativeMunicipalPdfGeometryClaimed": false,
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors"
+}

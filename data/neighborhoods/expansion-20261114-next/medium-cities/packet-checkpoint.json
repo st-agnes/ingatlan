@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "sourceAlternativeCount": 72,
+  "cities": {
+    "Vác": 26,
+    "Kiskunfélegyháza": 25,
+    "Pápa": 21
+  },
+  "circleGeometryCount": 0,
+  "registeredFiles": [
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/medium-cities/vac-features.geojson",
+      "features": 26,
+      "sha256": "74ea68b171d2ffbb4d5e44ff9d077e1d95a77a787426298c185c8225f959b297"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/medium-cities/kiskun-features.geojson",
+      "features": 25,
+      "sha256": "86f5d17c5c134395f7823421d28c3d66deaf01c2ad679d5669f022042afbed46"
+    },
+    {
+      "path": "data/neighborhoods/expansion-20261114-next/medium-cities/papa-features.geojson",
+      "features": 21,
+      "sha256": "90bb4af756cd3ec66f780e43f64c99610069cf689dfdfc1bcb00caeb48e17c9c"
+    }
+  ],
+  "note": "Use the three city-specific files. features.geojson is an earlier Vác+Kiskun51 combined export and must not also be registered. Parent deduplicates/chooses among sources.",
+  "completeCityCoverageClaimed": false
+}

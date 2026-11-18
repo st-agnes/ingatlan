@@ -1,0 +1,81 @@
+{
+  "type": "FeatureCollection",
+  "researchOnly": true,
+  "registryAdmissionAllowed": false,
+  "features": [
+    {
+      "type": "Feature",
+      "id": "scout:vac-hep2023:kisderecske",
+      "properties": {
+        "name": "Kisderecske",
+        "municipality": "Vác",
+        "researchOnly": true,
+        "admitted": false,
+        "rejectionReason": "Source-frame/closure interpretation and extrapolated registration unresolved; literal scout has positive outside-municipality area. No clipping or fitted shift.",
+        "sourcePixelsPath": "native-contour-traces.json",
+        "frameCaveat": "The footprint reaches the map bottom. Whether the nearly horizontal southern edge is a real quarter boundary or a map-frame truncation is unresolved. The unshifted registered scout also crosses the frozen Vác municipality slightly. No clipping or closure repair.",
+        "outsideVacM2": 3288.5746920799847,
+        "usableForAddressAssignment": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.140750667048685,
+              47.7464737484335
+            ],
+            [
+              19.14237022735362,
+              47.745548481322444
+            ],
+            [
+              19.144220156035043,
+              47.74444770511479
+            ],
+            [
+              19.14537876006768,
+              47.74387336724043
+            ],
+            [
+              19.144651766435807,
+              47.742732781347414
+            ],
+            [
+              19.143444506573257,
+              47.741033860590456
+            ],
+            [
+              19.14176030501212,
+              47.73892813927808
+            ],
+            [
+              19.133816140823356,
+              47.73974153827921
+            ],
+            [
+              19.13503272249434,
+              47.74189521123609
+            ],
+            [
+              19.136012506439904,
+              47.74392123966936
+            ],
+            [
+              19.137219592895548,
+              47.74562023610496
+            ],
+            [
+              19.138877970820612,
+              47.74651361865731
+            ],
+            [
+              19.140750667048685,
+              47.7464737484335
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

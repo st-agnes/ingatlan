@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "sourceUrl": "https://uj.nyiregyhaza.hu/lib/rend_terv/its/felulvizsg/220804_its_jovahagyott_its.pdf",
+  "sourceSha256": "159c8b3112c842f25f6799cf0a34645c90143dd9b5d071000b3160ec499c3a90",
+  "sourcePdfPage": 15,
+  "featureCount": 10,
+  "boundaryKind": "planning_unit",
+  "sourceRasterSize": [
+    598,
+    583
+  ],
+  "sourcePdfImageXref": 125,
+  "palette": [
+    [
+      255.0,
+      246.0,
+      126.0
+    ],
+    [
+      222.0,
+      158.0,
+      112.0
+    ],
+    [
+      129.0,
+      155.0,
+      235.0
+    ],
+    [
+      225.0,
+      126.0,
+      253.0
+    ],
+    [
+      148.0,
+      218.0,
+      192.0
+    ],
+    [
+      56.0,
+      116.0,
+      101.0
+    ],
+    [
+      255.0,
+      130.0,
+      131.0
+    ],
+    [
+      210.0,
+      215.0,
+      209.0
+    ],
+    [
+      168.0,
+      249.0,
+      128.0
+    ],
+    [
+      255.0,
+      203.0,
+      49.0
+    ]
+  ],
+  "affineToEov": {
+    "matrix": [
+      [
+        39.64652845640726,
+        -0.01394952149879729
+      ],
+      [
+        0.0840535240189661,
+        -39.75196304000038
+      ]
+    ],
+    "offset": [
+      836684.32158877,
+      303616.79338775954
+    ]
+  },
+  "boundaryMatchResidualMeters": {
+    "median": 32.939810496946556,
+    "p95": 187.2072482817856,
+    "max": 585.7757655442443
+  },
+  "allValid": true,
+  "usableForAddressAssignment": false,
+  "files": [
+    {
+      "path": "nyiregyhaza-planning-units.geojson",
+      "bytes": 122948,
+      "sha256": "3aaa7f60e30c2ba1c0ae1de85eb58bb1e50fbf3c6ce7ca645adc07d260e67126"
+    },
+    {
+      "path": "nyiregyhaza-its-2022.pdf",
+      "bytes": 4786105,
+      "sha256": "159c8b3112c842f25f6799cf0a34645c90143dd9b5d071000b3160ec499c3a90"
+    },
+    {
+      "path": "nyiregyhaza-source-map.jpeg",
+      "bytes": 24008,
+      "sha256": "76267d9334c81b78874f791f3c15bf417b7b0b92e04f2ab126be85a01ded8b4a"
+    },
+    {
+      "path": "nyiregyhaza-pixel-paths.json",
+      "bytes": 37986,
+      "sha256": "31188b0f2d3c266cc3ad2d60993fa412793f7ee450a7a676d593c92952b8930f"
+    }
+  ]
+}

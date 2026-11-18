@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "scope": "Offline continuation after the398-name snapshot; all primary boundaries remain review-required, not legal/address-assignment verified.",
+  "previous": {
+    "primaryGeometryCount": 398,
+    "municipalityCount": 41,
+    "archiveSha256": "31a6fde2e4b3a2bdc24031120d5c0f853b34c669022de5426f7cb226a50aef24"
+  },
+  "current": {
+    "primaryGeometryCount": 419,
+    "municipalityCount": 43,
+    "planningUnitCount": 45,
+    "inferredCandidateCount": 19,
+    "pointOnlyNameGaps": 3118,
+    "nationwideCompletenessVerified": false
+  },
+  "addedPrimaryGeometries": 21,
+  "addedNamesByMunicipality": {
+    "Csenger": [
+      "Berekalja",
+      "Piac"
+    ],
+    "Dorog": [
+      "VI. akna lakótelep"
+    ],
+    "Győr": [
+      "Adyváros",
+      "Bácsa",
+      "Belváros",
+      "Góré-dűlő",
+      "Gyárváros",
+      "Gyirmót",
+      "Kismegyer",
+      "Likócs",
+      "Marcalváros",
+      "Ménfőcsanak",
+      "Pinnyéd",
+      "Rabkert",
+      "Révfalu",
+      "Sárás",
+      "Szabadhegy",
+      "Sziget"
+    ],
+    "Kecskemét": [
+      "Erzsébetváros"
+    ],
+    "Szombathely": [
+      "Éhen Gyula kertváros"
+    ]
+  },
+  "newDataReviews": [
+    "data/neighborhoods/sources/municipal-szombathely-next/manifest.json",
+    "data/neighborhoods/sources/municipal-maps-next/scout/kecskemet-independent-review.json",
+    "data/neighborhoods/sources/country-parent-review/proof.json",
+    "data/neighborhoods/sources/municipal-gyor-next/independent-review.json",
+    "data/neighborhoods/sources/municipal-gyor-next/aggregation-independent-review.json"
+  ],
+  "limits": [
+    "Győr geometry depicts a2006 source division in a2014 document; fit residuals do not establish absolute boundary accuracy.",
+    "Crossing source outlines remain unchanged and explicitly flagged.",
+    "Kisbácsa planned extent is planning-only; five source2006Győrquarters remain unresolved as fine-quarter geometries.",
+    "All3155municipalities appear in the inventory; this does not establish all urban-quarter names or boundaries.",
+    "No online data acquisition, application deployment or remote repository update was performed in this continuation."
+  ]
+}

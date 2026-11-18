@@ -81,13 +81,23 @@ function entityLocations(value, kind, strict = false) {
   return locations;
 }
 
-function propertyFromApi(value) {
+function privateAddressFromApi(value) {
+  if (!value || typeof value !== 'object') return null;
+  return {
+    street: inputText(value.street), houseNumber: inputText(value.houseNumber), postalCode: inputText(value.postalCode),
+    latitude: value.latitude == null ? null : numeric(value.latitude), longitude: value.longitude == null ? null : numeric(value.longitude),
+    geocodedAt: value.geocodedAt ?? null, provider: inputText(value.provider), quality: inputText(value.quality), geocodingStatus: inputText(value.geocodingStatus)
+  };
+}
+function propertyFromApi(value, own = false) {
   if (!value) return null;
   const location = entityLocations(value, 'property')[0] || null;
   const declaredId = value.locationId ?? value.location?.id;
   return normalizePropertyAttributes({
     id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''), ownerAccountType:normalizeAccountType(value.ownerAccountType), ownerFirstName:publicFirstName(value.ownerFirstName),
-    title: value.title || '', locationId:location?.id ?? declaredId ?? '', location:clone(location), city: location?.city ?? value.city ?? '', district: location ? location.district || '' : value.district ?? '', neighborhood: value.neighborhood || '', address: value.address || '', description: value.description || '', createdAt: value.createdAt,
+    title: value.title || '', locationId:location?.id ?? declaredId ?? '', location:clone(location), city: location?.city ?? value.city ?? '', district: location ? location.district || '' : value.district ?? '', neighborhood: value.neighborhood || '', address: own ? value.address || '' : '', description: value.description || '', createdAt: value.createdAt,
+    neighborhoodIds: [...new Set((Array.isArray(value.neighborhoodIds) ? value.neighborhoodIds : []).filter(id => getLocation(id)?.kind === 'neighborhood'))],
+    ...(own ? {addressDetails:privateAddressFromApi(value.addressDetails)} : {}),
     type: value.type || value.propertyType || 'Lakás',
     price: millions(value.priceHuf ?? value.price), area: numeric(value.area ?? value.areaSqm ?? value.sizeSqm), rooms: numeric(value.rooms ?? value.roomCount), wholeRooms:value.wholeRooms, halfRooms:value.halfRooms,
     lotArea: numeric(value.lotArea ?? value.lotAreaSqm ?? null), floor: numeric(value.floor), condition: value.condition || '', building: value.building || value.buildingMaterial || '',
@@ -102,8 +112,8 @@ function searchFromApi(value) {
   if (!value) return null;
   const locations = entityLocations(value, 'search');
   // Retain explicit invalid selections so the matcher cannot revive them through a legacy city.
-  const declaredIds = value.locationIds != null ? (Array.isArray(value.locationIds) ? clone(value.locationIds) : [clone(value.locationIds)]) : Array.isArray(value.locations) ? value.locations.map(location=>location?.id) : null;
-  const locationIds = declaredIds?.length ? declaredIds : locations.map(location=>location.id);
+  const declaredIds = value.locationIds != null ? clone(value.locationIds) : Array.isArray(value.locations) ? value.locations.map(location=>location?.id) : null;
+  const locationIds = declaredIds == null || Array.isArray(declaredIds) && !declaredIds.length ? locations.map(location=>location.id) : declaredIds;
   const search = normalizeSearchAttributes({
     id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''), ownerAccountType:normalizeAccountType(value.ownerAccountType), ownerFirstName:publicFirstName(value.ownerFirstName),
     title: value.title || '', locationIds, locations:clone(locations), city: locations[0]?.city ?? value.city ?? '', districts: locations.filter(location=>location.city===locations[0]?.city&&location.district).map(location=>location.district), description: value.description || '', moveIn: value.moveIn || '', buyerName: value.buyerName || '', financing: value.financing || '', avatar: value.avatar || '', createdAt: value.createdAt,
@@ -145,8 +155,13 @@ function propertyToApi(value, updating = false) {
   const location = entityLocations(value, 'property', true)[0];
   const lotArea = type === 'Ház' ? inputNumber(value.lotArea, 'telekméret') : null;
   if (lotArea != null && (lotArea <= 0 || lotArea > 10000000)) throw new Error('A telekméret pozitív szám legyen.');
+  const street = inputText(value.street ?? value.addressDetails?.street), houseNumber = inputText(value.houseNumber ?? value.addressDetails?.houseNumber);
+  const postalCode = inputText(value.postalCode ?? value.addressDetails?.postalCode);
+  if (!street || !houseNumber) throw new Error('Add meg az ingatlan utcáját és házszámát.');
+  if (street.length > 180 || /\p{Cc}/u.test(street) || !/^\d[\p{L}\d./ -]{0,31}$/u.test(houseNumber)
+      || postalCode && !/^\d{4}$/.test(postalCode)) throw new Error('Adj meg érvényes utcát, házszámot és négyjegyű irányítószámot.');
   return {
-    title: inputText(value.title), locationId:location.id, city:location.city, district:location.district || '', neighborhood: inputText(value.neighborhood), address: inputText(value.address), description: inputText(value.description),
+    title: inputText(value.title), locationId:location.id, city:location.city, district:location.district || '', street, houseNumber, postalCode, address: inputText(value.address), description: inputText(value.description),
     type, price: Math.round(price * MILLION), area, rooms, wholeRooms:countsSupplied ? attributes.wholeRooms : null, halfRooms:countsSupplied ? attributes.halfRooms : null, lotArea, floor,
     condition:attributes.condition, building:attributes.building,
     constructionAge:attributes.constructionAge, view:attributes.view, ceilingHeight:attributes.ceilingHeight,
@@ -250,19 +265,20 @@ function matchFromApi(value) {
 }
 
 export class ApiModel {
-  constructor(config) { this.mode = 'api'; this.baseUrl = apiBase(config.baseUrl); this.token = config.token; this.active = null; this.feedbackScenarioCapability = undefined; }
+  constructor(config) { this.mode = 'api'; this.baseUrl = apiBase(config.baseUrl); this.token = config.token; this.active = null; this.userId = null; this.feedbackScenarioCapability = undefined; }
   call(path, method, body) { return request(this.baseUrl, this.token, path, method, body); }
   async getState() {
     const [profile, entities, ledgerResponse] = await Promise.all([this.call('/me'), this.call('/me/entities'), this.call('/credits/ledger')]);
     const user = profile.user || profile;
+    this.userId = String(user.id);
     const rawActive = entities.active || entities.activeEntity || profile.active || profile.activeEntity;
     const active = rawActive ? { kind: String(rawActive.kind).toLowerCase() === 'property' ? 'property' : 'search', id: String(rawActive.id ?? rawActive.entityId ?? '') || null } : { kind: String(profile.activeKind).toLowerCase() === 'property' ? 'property' : 'search', id: profile.activeEntityId == null ? null : String(profile.activeEntityId) };
     this.active = active;
     return {
       user: { accountType:normalizeAccountType(user.accountType), id: String(user.id), name: user.name || user.displayName || '', email: user.email || '', phone: user.phone || user.phoneNumber || '', avatar: user.avatar || initials(user.name || user.displayName) },
       credits: Number(profile.credits ?? profile.creditBalance ?? profile.balance ?? user.credits ?? 0), active,
-      properties: rows(entities.properties).map(propertyFromApi), searches: rows(entities.searches || entities.searchRequests).map(searchFromApi),
-      decisions: rows(entities.decisions || profile.decisions).map(d=>({...clone(d),id:String(d.id),actorId:String(d.actorId),propertyId:String(d.propertyId),searchId:String(d.searchId??d.searchRequestId),property:propertyFromApi(d.property),search:searchFromApi(d.search??d.searchRequest)})),
+      properties: rows(entities.properties).map(value=>propertyFromApi(value,true)), searches: rows(entities.searches || entities.searchRequests).map(searchFromApi),
+      decisions: rows(entities.decisions || profile.decisions).map(d=>({...clone(d),id:String(d.id),actorId:String(d.actorId),propertyId:String(d.propertyId),searchId:String(d.searchId??d.searchRequestId),property:propertyFromApi(d.property,String(d.property?.ownerId)===this.userId),search:searchFromApi(d.search??d.searchRequest)})),
       ledger: rows(ledgerResponse.ledger || ledgerResponse).map(entry => ({ ...clone(entry), amount: Number(entry.amount ?? entry.delta ?? 0), description: entry.description || entry.reason || '', createdAt: entry.createdAt })),
       createdAt: user.createdAt,
       unreadNotificationCount:Number(profile.unreadNotificationCount??user.unreadNotificationCount??0),
@@ -359,7 +375,7 @@ export class ApiModel {
   async saveEntity(kind, data, id) {
     const route = kind === 'property' ? '/properties' : '/searches';
     const result = await this.call(`${route}${id ? `/${encodeURIComponent(id)}` : ''}`, id ? 'PUT' : 'POST', kind === 'property' ? propertyToApi(data,!!id) : searchToApi(data));
-    return kind === 'property' ? propertyFromApi(result) : searchFromApi(result);
+    return kind === 'property' ? propertyFromApi(result,true) : searchFromApi(result);
   }
   async deleteEntity(kind, id) { const result = await this.call(`/${kind === 'property' ? 'properties' : 'searches'}/${encodeURIComponent(id)}`, 'DELETE'); this.active = null; return result; }
   async reportAccount(entityKind,entityId,reason) {

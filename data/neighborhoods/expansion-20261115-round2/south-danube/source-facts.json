@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "scope": "Source facts supporting manual, approximate searchable extents; no assertion of legally current whole-quarter accuracy.",
+  "facts": [
+    {"municipality":"Fonyód","names":["Bélatelep","Alsóbélatelep"],"url":"https://njt.jog.gov.hu/jogszabaly/2021-17-SP-5Y2507.1","section":"2. § (1) a–b","fact":"The municipal healthcare ordinance places the two named western neighbourhoods on the western side of the Balaton/Sándor/Szent István street boundary. This is supporting location evidence, not an individual quarter boundary."},
+    {"municipality":"Kalocsa","names":["Csajdakert"],"url":"https://www.kalocsa.hu/wp-content/uploads/2015/01/67_Epitett-orokseg-helyi-vedelmenek-szabalyai.pdf","section":"5. melléklet","fact":"Municipal heritage rule identifies the Csajdakert park/bath complex by Kossuth, Csajda, Zöldfa and Hősök streets. The source cites parcels1479/13 and1479/14."},
+    {"municipality":"Kalocsa","names":["Érsekkert"],"url":"https://www.kalocsa.hu/kiemelt-latnivaloink/ersekkert/","fact":"Municipal tourism description identifies Érsekkert as the historical park at Érsekkert út1; park name and mapped landuse are appropriate identity evidence."},
+    {"municipality":"Kalocsa","names":["Zrínyi-lakótelep"],"url":"https://www.kalocsa.hu/wp-content/uploads/2017/05/KALOCSA_TK_MEGALAPOZO_VIZSGALAT_es_CELFA-min-4.pdf","section":"1.14 Az épített környezet vizsgálata","fact":"Municipal planning study describes the estate using Pataji, Kossuth Lajos, Gombolyagi and Zrínyi streets. Reconstruct coarsely from actual street geometry rather than a point radius."},
+    {"municipality":"Kalocsa","names":["Homokgyőr"],"url":"https://www.kalocsa.hu/wp-content/uploads/2015/01/8_a_kozterulet_elnevezes_es_hazszamozas_helyi_szabalyozasarol.pdf","section":"1. számú melléklet: Városrészek meghatározása","fact":"The source locates Homokgyőr north-east of Gombolyagi út and references the railway as a boundary. Other closure segments remain estimates."},
+    {"municipality":"Dunaföldvár","names":["Tabán","Kálváriahegy"],"url":"https://dunafoldvar.hu/storage/media/files/onkormanyzat/kepviselotestulet/2022/2022-01-25/20-eloterjesztes-its-elfogadasa-20220125.pdf","fact":"Indexed municipal ITS text places Tabán and Kálvária in the central action area and refers to Sóház/Ady Endre streets. The binary endpoint returned403 to the web connector, so exact map boundaries are not claimed."}
+  ],
+  "webAcquisitionNote":"Public sources were searched/read using the connected web tool. Binary download is centrally managed by the parent agent; blocked sources are leads, not evidence of source absence."
+}

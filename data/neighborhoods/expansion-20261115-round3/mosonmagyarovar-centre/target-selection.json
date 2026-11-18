@@ -1,0 +1,53 @@
+[
+  {
+    "municipality": "Mosonmagyaróvár",
+    "name": "Belváros",
+    "nameKey": "belváros",
+    "sourceNames": [
+      "Belváros"
+    ],
+    "pointCandidates": [
+      {
+        "sourceId": "osm:node:11587375344",
+        "coordinates": [
+          17.2703715,
+          47.8775346
+        ],
+        "placeKind": "suburb",
+        "sourceUrl": "https://www.openstreetmap.org/node/11587375344",
+        "snapshotDate": "2026-11-12T21:23:05Z"
+      }
+    ],
+    "nameReferences": [],
+    "collectedGeometries": [],
+    "hasCollectedPolygon": false,
+    "hasKnownPoint": true,
+    "nextAction": "find_map_or_polygon_before_radius_fallback"
+  },
+  {
+    "municipality": "Mosonmagyaróvár",
+    "name": "Dunapart",
+    "nameKey": "dunapart",
+    "sourceNames": [
+      "Dunapart",
+      "Donauufer"
+    ],
+    "pointCandidates": [
+      {
+        "sourceId": "osm:node:1298236966",
+        "coordinates": [
+          17.2823042,
+          47.8607643
+        ],
+        "placeKind": "suburb",
+        "sourceUrl": "https://www.openstreetmap.org/node/1298236966",
+        "snapshotDate": "2026-11-12T21:23:05Z"
+      }
+    ],
+    "nameReferences": [],
+    "collectedGeometries": [],
+    "hasCollectedPolygon": false,
+    "hasKnownPoint": true,
+    "nextAction": "find_map_or_polygon_before_radius_fallback"
+  }
+]

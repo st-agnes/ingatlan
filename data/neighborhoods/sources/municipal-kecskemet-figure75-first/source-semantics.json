@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "scope": "Read-only Figure75 source semantics and literal local image identity review; no geometry approved.",
+  "sourceOriginalPdf": {
+    "path": ".local/neighborhoods/nationwide-docs/originals/kecskemet-map.pdf",
+    "sha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+    "pdfPagesOneBased": [
+      158,
+      159,
+      160
+    ],
+    "printedPages": [
+      156,
+      157,
+      158
+    ],
+    "period": "May2021 consultation draft",
+    "orthophotoCaptureDateKnown": false
+  },
+  "sourceImage": {
+    "path": "data/neighborhoods/sources/municipal-kecskemet-raster-more/figure75-p158-xref180.jpeg",
+    "sha256": "13c9a38ba1b554b7125064ffce3384eb813d9590b9f327a152f1da4b0de4c991",
+    "bytes": 436596,
+    "width": 1700,
+    "height": 1210,
+    "originalPdfPageOneBased": 158,
+    "originalImageXref": 180,
+    "matchesOriginalEmbeddedJpegBytes": true
+  },
+  "umbrellaHeading": "III. SZENT ISTVÁN VÁROS - SZOLNOKIHEGY",
+  "caption": "75. ábra: Szent István Város - Szolnokihegy városrész lehatárolása",
+  "literalSourceQuotes": [
+    {
+      "pdfPageOneBased": 158,
+      "printedPage": 156,
+      "quote": "A városrészen belül több, eltérő területhasználattal rendelkező rész különíthető el: műkertvárosi- és reptéri lakónegyedek, keleti gazdasági terület, külső Rákócziváros intézményi és kereskedelmi szolgáltató területe, valamint a Kisfái és Parasztfőiskola gazdasági övezetek."
+    },
+    {
+      "pdfPageOneBased": 158,
+      "printedPage": 156,
+      "quote": "Műkertváros 4.300 lakójával már a népesebb kecskeméti lakónegyedek közé tartozik."
+    },
+    {
+      "pdfPageOneBased": 159,
+      "printedPage": 157,
+      "quote": "Az iskola tangazdasága számára a város 193 kh területű birtok biztosítását vállalta a ma Parasztfőiskolaként ismert külterületi városrészen."
+    },
+    {
+      "pdfPageOneBased": 159,
+      "printedPage": 157,
+      "quote": "A volt tangazdaság területe jelenleg kereskedelmi gazdasági területként funkcionál, a körülötte lévő területek pedig mezőgazdasági hasznosításúak."
+    }
+  ],
+  "sourceCells": [
+    {
+      "mapName": "Reptéri lakótelep",
+      "proseNameForm": "reptéri lakónegyedek",
+      "sourceSemantics": "A distinct residential source cell. Small quadrilateral at upper right, not the whole airport.",
+      "sourceContourOverviewAssessment": "Four sides appear locally visible; blue label intersects/approaches lateral edges, so literal closure and explicit overprint handling need separate review.",
+      "firstSubsetStatus": "Parent is deriving this one source cell; geometry and geographic placement remain pending."
+    },
+    {
+      "mapName": "Külső Rákócziváros",
+      "proseNameForm": "külső Rákócziváros intézményi és kereskedelmi szolgáltató területe",
+      "sourceSemantics": "Distinct narrow western institutional/commercial source cell. Keep separate from central Rákócziváros. Functional use alone is not a rejection reason.",
+      "sourceContourOverviewAssessment": "Looks complete within image; label crosses/approaches divider, so pixel tracing still needed.",
+      "firstSubsetStatus": "Not included in planned Reptéri-only first subset; pending, not rejected."
+    },
+    {
+      "mapName": "Szolnokihegy",
+      "sourceSemantics": "Broad source cell mixing residential and economic settings. It must not be relabelled wholesale as Műkertváros.",
+      "sourceContourOverviewAssessment": "Northern contour reaches/crosses top image frame; no source-frame closure. Overview Figure72 may provide a distinct coarser complete source outline, requiring its own trace/georeference."
+    },
+    {
+      "mapName": "Kisfái gazdasági övezet",
+      "sourceSemantics": "Separately named eastern economic source cell, not automatically the whole Kisfái settlement part. Functional semantics can be retained as local/economic inferred source scope.",
+      "sourceContourOverviewAssessment": "Appears complete within image; quantitative literal closure unproved."
+    },
+    {
+      "mapName": "Parasztfőiskola gazdasági övezet",
+      "sourceSemantics": "Separately named southern economic source cell. Prose associates Parasztfőiskola with a historical outlying quarter and former training farm, but the map labels the economic zone specifically; do not expand to the whole name.",
+      "sourceContourOverviewAssessment": "Appears complete within image; quantitative literal closure unproved."
+    }
+  ],
+  "proseOnlyFineNameScope": {
+    "name": "Műkertváros",
+    "residentialQuarterIdentitySupported": true,
+    "separateLabelledFineContourInFigure75": false,
+    "wholeSzolnokihegyShapeCopiedUnderNamePermitted": false
+  },
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "rightsStatus": "Public municipal consultation draft; open municipal source-map reuse rights unverified."
+}

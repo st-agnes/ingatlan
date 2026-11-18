@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-13",
+  "originalSourceFilesArchived": true,
+  "originalSourceHashesVerified": true,
+  "geometryFeatureCount": 48,
+  "geometryCounts": {
+    "Eger_planning_unit": 32,
+    "Bekescsaba_neighbourhood_footprint": 6,
+    "Nyiregyhaza_planning_unit": 10
+  },
+  "usableForAddressAssignment": false,
+  "items": [
+    {
+      "path": "bekescsaba-export.py",
+      "bytes": 6332,
+      "sha256": "b59124b2e546904a4d29235bd0e0569575569e4ec093cace4336bff76a103c27"
+    },
+    {
+      "path": "bekescsaba-extract.py",
+      "bytes": 1458,
+      "sha256": "c36a7ac07e2ab98444f52d864b6bc3ba2d8675da6e8a128af7bc3b8cee00dacd"
+    },
+    {
+      "path": "bekescsaba-geometry-proof.json",
+      "bytes": 82813,
+      "sha256": "1bb03dbfcecdbf7e8fdf155d99065e74b0bfe33cf2d6cbb8c8ad4c7cc99f463f"
+    },
+    {
+      "path": "bekescsaba-map-derived.geojson",
+      "bytes": 54933,
+      "sha256": "ecc52cb671d33673d3c421ba0156a740ff399e79224e9b0643c0902cbd22540b",
+      "featureCount": 6,
+      "allGeometryValid": true,
+      "allAssignmentDisabled": true
+    },
+    {
+      "path": "bekescsaba-pixel-paths.json",
+      "bytes": 16295,
+      "sha256": "49a53dfd118705cd22b59b44236188567450b71dfee34f98e52321ab10a2d088"
+    },
+    {
+      "path": "bekescsaba-quarters-map.webp",
+      "bytes": 42448,
+      "sha256": "7ccbddf49e33959b17895bb2b85c1ea733f2b19af9e1de53b71a96a0d58cc2b0"
+    },
+    {
+      "path": "eger-extract.py",
+      "bytes": 3322,
+      "sha256": "ad5bc736ad6e48083fadb00854b8421ba5e5e170854f7d9f9d156b7c10a80265"
+    },
+    {
+      "path": "eger-geometry-proof.json",
+      "bytes": 2348,
+      "sha256": "f7bc999a9a6c038979d1dc1284f5f2d5e79c1dd6914b4aaa98886034a6dd3573"
+    },
+    {
+      "path": "eger-map-2016.pdf",
+      "bytes": 2129117,
+      "sha256": "7db28b2b5922e6dea7bde9dc3263087534b26e9cd1e52b63335249265df6febe"
+    },
+    {
+      "path": "eger-pdf-vector-paths.json",
+      "bytes": 451452,
+      "sha256": "49777221551b60333e8991b4ce3e7b6b40c5f8c6cc501116d62a7cd411b183d0"
+    },
+    {
+      "path": "eger-planning-units.geojson",
+      "bytes": 295942,
+      "sha256": "c3619e702df579b23776b977daf62c0ee1aafb9f629a8b447fb29b64f558011b",
+      "featureCount": 32,
+      "allGeometryValid": true,
+      "allAssignmentDisabled": true
+    },
+    {
+      "path": "export-eger.py",
+      "bytes": 6268,
+      "sha256": "9598574d263ee05a70c1348d02cd6e9681764cf7c46ccc0887cf6e0015ead439"
+    },
+    {
+      "path": "gyongyos-boundary-definitions.json",
+      "bytes": 3753,
+      "sha256": "d108b3cd6716ace0f0e955289433ccd51428ec5e6f9c6272db5fde91d1f01f19"
+    },
+    {
+      "path": "kisvarda-boundary-definitions.json",
+      "bytes": 3740,
+      "sha256": "b1d1b0f4631262bfc2a10fe98bef53d484a7459f058ea8ce83b51a8365d955e3"
+    },
+    {
+      "path": "nyiregyhaza-boundary-definitions.json",
+      "bytes": 6865,
+      "sha256": "9eb178f337dde194738140fe47ad657aaa971ab3334a5749053e5802a8c7a57f"
+    },
+    {
+      "path": "nyiregyhaza-export.py",
+      "bytes": 7117,
+      "sha256": "9609c76cd2d467df54907828edc46dcf9941f772a9c946b2b550013f0f2e9240"
+    },
+    {
+      "path": "nyiregyhaza-geometry-proof.json",
+      "bytes": 2027,
+      "sha256": "aaf4c43ccb203b6dc6eb1bfe667949d0bf3058a4d2236bbfd1a6154446f33efb"
+    },
+    {
+      "path": "nyiregyhaza-its-2022.pdf",
+      "bytes": 4786105,
+      "sha256": "159c8b3112c842f25f6799cf0a34645c90143dd9b5d071000b3160ec499c3a90"
+    },
+    {
+      "path": "nyiregyhaza-pixel-paths.json",
+      "bytes": 37986,
+      "sha256": "31188b0f2d3c266cc3ad2d60993fa412793f7ee450a7a676d593c92952b8930f"
+    },
+    {
+      "path": "nyiregyhaza-planning-units.geojson",
+      "bytes": 122948,
+      "sha256": "3aaa7f60e30c2ba1c0ae1de85eb58bb1e50fbf3c6ce7ca645adc07d260e67126",
+      "featureCount": 10,
+      "allGeometryValid": true,
+      "allAssignmentDisabled": true
+    },
+    {
+      "path": "nyiregyhaza-source-map.jpeg",
+      "bytes": 24008,
+      "sha256": "76267d9334c81b78874f791f3c15bf417b7b0b92e04f2ab126be85a01ded8b4a"
+    }
+  ]
+}

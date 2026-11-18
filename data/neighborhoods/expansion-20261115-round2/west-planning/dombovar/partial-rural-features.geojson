@@ -1,0 +1,82 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "estimated:west-planning:Dombóvár:Perekac",
+      "properties": {
+        "sourceUrl": "https://www.openstreetmap.org/way/279506656",
+        "tags": {
+          "landuse": "farmyard"
+        },
+        "nodeRefs": [
+          2837317432,
+          2837317433,
+          2837317434,
+          2837317435,
+          2837317436,
+          2837317437,
+          2837317438,
+          2837317432
+        ],
+        "objectVersion": 1,
+        "objectTimestamp": "2014-05-05 08:39:48+00:00",
+        "name": "Perekac",
+        "municipality": "Dombóvár",
+        "estimated": true,
+        "lowConfidence": true,
+        "confidence": "low",
+        "partialFootprint": true,
+        "method": "Unchanged original OSM farmyard surface containing the independently named Perekac locality; an explicit occupied-compound footprint estimate.",
+        "supportingUrls": [
+          "https://www.openstreetmap.org/node/3551737891"
+        ],
+        "approximationNote": "The source farmyard polygon covers the Perekac occupied agricultural compound, including its mapped locality label. This is a partial locality footprint rather than a verified complete neighbourhood boundary; surrounding rural land and any outlying properties are not included.",
+        "boundaryKind": "neighbourhood",
+        "usableForAddressAssignment": false,
+        "sourcePeriod": "OSM snapshot2026-11-12",
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.1311475,
+              46.3943661
+            ],
+            [
+              18.1316705,
+              46.3928329
+            ],
+            [
+              18.1319974,
+              46.3917893
+            ],
+            [
+              18.1320161,
+              46.3911451
+            ],
+            [
+              18.1346966,
+              46.3916476
+            ],
+            [
+              18.1339681,
+              46.3931744
+            ],
+            [
+              18.1332489,
+              46.3947268
+            ],
+            [
+              18.1311475,
+              46.3943661
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

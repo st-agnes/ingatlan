@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "root independent of producer",
+  "accepted": true,
+  "featureCount": 4,
+  "checkedAt": "2026-11-14",
+  "admission": "Separate estimated historical research layer only; zero primary/address approvals.",
+  "checks": {
+    "actualHenitsAndKshRoadCorrespondencePanelsVisuallyReviewed": true,
+    "originalEmbeddedImageReadDirectly": true,
+    "fourNativeMasksIndependentlyRecomputedUsingDifferentComponentImplementation": true,
+    "fourObservedClosedNativeToWorldTransformsIndependentlyRecomputed": true,
+    "sixRoadJunctionSimilarityIndependentlyRefitted": true,
+    "sourceUnitNumbersKeptInHenitsSchema": true,
+    "unclosedUjszoregNotAdmitted": true,
+    "KlebersbergSpellingAndDistinctHattyasPointExplicit": true
+  },
+  "limitations": [
+    "The historical2003 scheme is generalized; manual road interpretations and extrapolation remain estimated.",
+    "KSH2014 road overlay is a correspondence aid, not permission to transfer its conflicting number keys.",
+    "Fit residuals, printed scale and alternative placements do not establish geographic accuracy.",
+    "This approves the four proposal geometries only; final frozen packet must preserve them and retain independent topology/registration checks."
+  ],
+  "pinnedInputs": {
+    "henits-four-main-world-working.geojson": "34b92c9fe00b86b9e3ee50b48584f0c955ff49d4365614fbf400c9837bfa2fb0",
+    "henits-five-black60-source-pixels-working.geojson": "1788910d7cbbba8115f75527bf08544a20e86874d4ed889e6bf01531ad9577e9",
+    "henits-four-registration-working.json": "23f684d398680ce50d671838b19be62e898025578dd6cb811e975c943d438744",
+    "control-source-observation-evidence-working.json": "f2268c4c1c0f16b516793f46504d178f677184f51e8fd9299a3c108164e32bf9",
+    "henits-five-trace-proof-working.json": "0353219d6e5f953459a7624aaf1d72c99bc1f105026267aaf97bacb1a95051fe"
+  }
+}

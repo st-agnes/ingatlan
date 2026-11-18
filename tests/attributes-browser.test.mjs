@@ -46,7 +46,7 @@ async function verify(browser,viewport){
   saved=(await state(page)).searches.find(value=>value.id===saved.id);
   for(const name of ['conditions','buildings','constructionAges','views','floors'])assert.deepEqual(saved[name],[]);
   assert.equal(saved.ceilingHeight,'');
-  await openNew(page,interact,'property');await location(page,interact);
+  await openNew(page,interact,'property');await location(page,interact);await page.locator('#f-street').fill('Teszt utca');await page.locator('#f-houseNumber').fill('12/A');
   const propertyTitle=`Opcionális ingatlanadatok – ${viewport.name}`;
   await (await editorField(page,'#f-title')).fill(propertyTitle);await (await editorField(page,'#f-price')).fill('85');await (await editorField(page,'#f-area')).fill('65');await (await editorField(page,'#f-wholeRooms')).fill('3');await (await editorField(page,'#f-halfRooms')).fill('0');
   for(const name of ['condition','building','constructionAge','view','ceilingHeight','floor','insulated','airConditioning','solarPanels'])assert.equal(await page.locator(`#f-${name}`).inputValue(),'');

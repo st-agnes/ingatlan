@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 3,
+  "checkedAt": "2026-11-14",
+  "status": "partial_nationwide_checkpoint",
+  "primaryFeatures": 483,
+  "primaryMunicipalities": 47,
+  "inferredFeatures": 124,
+  "inferredMunicipalities": 10,
+  "planningFeatures": 54,
+  "completeNationalCoverage": false,
+  "previousCheckpointValidationPath": "data/neighborhoods/research/checkpoint-validation-483-71.json",
+  "primaryValidation": {
+    "nodeTestCountPreviouslyPassed": 66,
+    "pythonTestCountPreviouslyPassed": 10,
+    "freshFullPrimaryTestRun": false,
+    "meaning": "All five regeneration checks rerun successfully. Four primary output fingerprints are identical to the fully tested 483/60 checkpoint. The seven manual/secondary regression tests ran again on this checkpoint.",
+    "unchangedPrimaryOutputFingerprints": {
+      "catalog.geojson": "7257c46808e37d08b5ce8ea32daddbde357d097e977a8aa580714147705cecc4",
+      "neighborhoods.geojson": "8a242edafec268aa55095b5713774d7c28dddf8f41617bcb9eabb375d2253ddf",
+      "planning-units.geojson": "c004c4d622e83fbf570b466bdd83cb48c7a3c8c7bae5d20a7620fb9dd0d44b1b",
+      "nationwide-report.csv": "55b8cbf5835975c510c53ca04b41cd6aa43e0f1bbe6d5b58e2364ee8c0c35bae"
+    }
+  },
+  "updatedChecks": [
+    {
+      "cmd": "node scripts/neighborhoods/export-secondary.mjs --check",
+      "exit_code": 0,
+      "output": "54 planning units and 124 inferred candidates in separate layers; primary neighbourhood export unchanged.\n"
+    },
+    {
+      "cmd": "node scripts/neighborhoods/build.mjs --check",
+      "exit_code": 0,
+      "output": "Verified 572 unreviewed polygons; 5331 excluded records. No boundary is enabled for address assignment.\n"
+    },
+    {
+      "cmd": "node scripts/neighborhoods/report.mjs --check",
+      "exit_code": 0,
+      "output": "Verified city statistics: 483 accepted neighborhood names across 47 settlements (549 geometries); unknown full coverage remains explicit.\n"
+    },
+    {
+      "cmd": "node scripts/neighborhoods/export.mjs --check",
+      "exit_code": 0,
+      "output": "Verified unified neighborhood export: 483 accepted city/name boundaries.\n"
+    },
+    {
+      "cmd": "node scripts/neighborhoods/nationwide-report.mjs --check",
+      "exit_code": 0,
+      "output": "Verified 3155 municipality rows; 483 accepted quarter names, 3081 point-only name gaps; national quarter totals remain unknown.\n"
+    },
+    {
+      "cmd": "node .local/neighborhoods/check-preview.mjs",
+      "exit_code": 0,
+      "output": "{\"status\":\"passed_generated_behavior_checks\",\"inferredFeatures\":124,\"inferredMunicipalities\":10,\"sourceCoverageUnchanged\":true,\"realBrowserLayoutVerified\":false}\n"
+    },
+    {
+      "cmd": "python3 data/neighborhoods/sources/municipal-pecs-semantic-revision/revise.py --check",
+      "exit_code": 0,
+      "output": "Pécs category revision verified: 33 unchanged inferred geometries, no primary increase.\n"
+    },
+    {
+      "cmd": "node tests/neighborhoods-manual.test.mjs",
+      "exit_code": 0,
+      "output": "✔ manual import preserves actual source geometry and evidence while retaining review flags (2.304715ms)\n✔ open rings, missing evidence, unknown municipalities and inferred areas cannot become admitted manual polygons (0.780704ms)\n✔ a planning cluster remains a planning cluster and never counts as a fine neighborhood (0.276796ms)\n✔ manual registry binds exact GeoJSON bytes and rejects changed sources and path traversal (20.783114ms)\nℹ tests 4\nℹ suites 0\nℹ pass 4\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 30.018117\n"
+    },
+    {
+      "cmd": "node tests/neighborhoods-secondary.test.mjs",
+      "exit_code": 0,
+      "output": "✔ an inferred source remains a separate, explicitly unverified geometry without coordinate changes (2.462868ms)\n✔ unknown towns and open source rings stay quarantined even in the inferred layer (0.344716ms)\n✔ estimated city statistics count features rather than components and retain source-level distinctions (11.486284ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 25.327043\n"
+    }
+  ],
+  "freshTargetedNodeTestCount": 7,
+  "generatedPreviewBehavior": {
+    "status": "passed_actual_generated_script_behavior",
+    "inferredFeatures": 124,
+    "inferredMunicipalities": 10,
+    "sourceCoverageUnchanged": true,
+    "realBrowserLayoutVerified": false
+  },
+  "realBrowserLayout": "not verified: bundled Chromium absent; system Chromium startup denied setsockopt by runtime",
+  "pecsSourceCoverage": {
+    "sourceNames": 67,
+    "observedSourceContours": 65,
+    "lowConfidenceCapReconstructions": 2,
+    "allWorldPlacementEstimated": true,
+    "primaryCoverageCredit": 0
+  },
+  "rejectedInferredSourceRecords": [
+    {
+      "dataset": "kecskemet-native77-local-inferred",
+      "id": "manual:kecskemet-figure77:szent-laszlo-belso-forrascella",
+      "name": "Szent László város — belső forráscella",
+      "municipality": "Kecskemét",
+      "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-native77-admission-review/admission-review.json",
+      "reason": "hole_outside_shell"
+    }
+  ],
+  "remoteCiRun": false,
+  "applicationDeploymentPerformed": false,
+  "outputFingerprints": {
+    "catalog.geojson": "7257c46808e37d08b5ce8ea32daddbde357d097e977a8aa580714147705cecc4",
+    "neighborhoods.geojson": "8a242edafec268aa55095b5713774d7c28dddf8f41617bcb9eabb375d2253ddf",
+    "planning-units.geojson": "c004c4d622e83fbf570b466bdd83cb48c7a3c8c7bae5d20a7620fb9dd0d44b1b",
+    "nationwide-report.csv": "55b8cbf5835975c510c53ca04b41cd6aa43e0f1bbe6d5b58e2364ee8c0c35bae",
+    "estimated-candidates.geojson": "fb6991cbde2d103ddcefa162158f2c315b328886ca414fd904871f47684019f8",
+    "estimated-report.csv": "52d689395dafe87dffe3e8e43bdef8fe72de75a3d6858388c7bc3b2679efc3c2",
+    "estimated-report.json": "0506646bbc46782c9a995bc485599f8eb15d68bbcb31ab932310b5930df13414",
+    "review.html": "d93579f9e63dc7753b897228e7dd007ff4c2dc29a09b7a2552badd98182de6ae"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-14",
+  "scope": "One bounded source-only pass on Murom and Koztemeto original Figure9 outer-contour continuity, compared with the original hatched Figure12 shapes. No new cell or world geometry.",
+  "networkUsed": false,
+  "inputHashes": [
+    {
+      "path": "../municipal-pecs-remaining-next/pecs-p48-names.jpeg",
+      "sha256": "75758682472a880dee3488068f324d3feb4ba916237de33d36734696ed1d78f8"
+    },
+    {
+      "path": "../municipal-pecs-remaining-next/pecs-p63-density.jpeg",
+      "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+    }
+  ],
+  "pixelConvention": "Original respective JPEG pixels, zero-based upper-left, x right/y down; crop boxes left/top inclusive,right/bottom exclusive.",
+  "records": [
+    {
+      "sourceName": "Murom",
+      "sourceNameAnchorFigure9": [
+        454,
+        176
+      ],
+      "candidateFigure9OuterExtentApproximate": [
+        439,
+        150,
+        469,
+        184
+      ],
+      "literalNameAndFootprintRelationship": "The label is on the lower purple lobe; its thin northward stem continues toward the lower Somogy tip. Figure12 shows the matching complete outlined hatched lobe and stem.",
+      "source9ContourObservations": [
+        "The thin northern stem and lobed southwestern body are visible inside the image; no frame clipping is involved.",
+        "The broad white Murom label band reaches/crosses the eastern lobe edge near x467–469,y173–178. That area is also close to the black dashed railway. The displayed label/rail/boundary marks do not yield one unambiguous complete literal outer-stroke pixel path in this pass.",
+        "A pure saturated-purple mask would carve the white label out of the eastern perimeter. Treating that notch as the named complete outer footprint, or bridging it automatically, would change the interpretation."
+      ],
+      "blockers": [
+        {
+          "sourceFigure": 9,
+          "sourceRegion": [
+            465,
+            171,
+            471,
+            181
+          ],
+          "kind": "label_and_rail_confounded_external_boundary",
+          "canResolveByAutomaticClosing": false
+        }
+      ],
+      "unchangedClosedFigure9ComponentCertified": false,
+      "newSourceCellCreated": false,
+      "proposedNextLiteralMethod": "A separate explicit Figure12 external-stroke trace may follow the complete visible outer cycle while treating hatch diagonals as internal graphic strokes. It must retain the thin northern stem and every actual external step, record exact original pixels, and supply independent contour QA. No fill, buffer, gap bridge or connecting chord is authorized by this review.",
+      "figure12RelevantFreeFragments": [
+        51,
+        53,
+        54
+      ],
+      "figure12FragmentListIsNotAWholeFootprintGeometry": true
+    },
+    {
+      "sourceName": "Köztemető",
+      "sourceNameAnchorFigure9": [
+        283,
+        379
+      ],
+      "candidateFigure9OuterExtentApproximate": [
+        272,
+        357,
+        315,
+        391
+      ],
+      "literalNameAndFootprintRelationship": "The cemetery label lies in the green XI fine cell immediately south of the red district. Figure12 shows the matching complete no-data outlined cell split by diagonal hatching.",
+      "source9ContourObservations": [
+        "The northern red/green perimeter is strong; the western and southern fine separators are low-contrast green/gray strokes shared with other green XI fine cells.",
+        "The western separator near x272–275 crosses the white Koztemeto label band at roughly y377–381. In that band the actual fine stroke is obscured or confounded with label glyph pixels; source9 alone does not expose an unambiguous complete closed pixel ring.",
+        "A green colour-component extraction joins neighbouring XI areas or admits label-driven gaps; colour alone does not define this named whole fine-cell exterior."
+      ],
+      "blockers": [
+        {
+          "sourceFigure": 9,
+          "sourceRegion": [
+            270,
+            374,
+            278,
+            384
+          ],
+          "kind": "fine_separator_obscured_by_label_band",
+          "canResolveByAutomaticClosing": false
+        },
+        {
+          "sourceFigure": 9,
+          "sourceRegion": [
+            270,
+            357,
+            317,
+            393
+          ],
+          "kind": "same_colour_adjoining_fine_units",
+          "canResolveByColourThresholdAlone": false
+        }
+      ],
+      "unchangedClosedFigure9ComponentCertified": false,
+      "newSourceCellCreated": false,
+      "proposedNextLiteralMethod": "A separate explicit Figure12 external-stroke trace may follow the complete visible outer cycle and exclude internal hatch diagonals. The source-name assignment must still use the Figure9 literal label plus matching shape/adjacency. Exact external pixels and independent source-contour QA are required; no automatic closing, shared-cell cloning or inferred label-band stroke.",
+      "figure12RelevantFreeFragments": [
+        131,
+        132,
+        134,
+        143,
+        147
+      ],
+      "figure12FragmentListIsNotAWholeFootprintGeometry": true
+    }
+  ],
+  "nativeCropEvidence": [
+    {
+      "path": "murom-source12-native.png",
+      "sourceFigure": 12,
+      "sourcePixelBox": [
+        740,
+        280,
+        820,
+        355
+      ],
+      "nativePixels": true,
+      "resampling": "none",
+      "sha256": "411646eccbabb5077014436e1571bdc247eb8a0a5480d368cd106ddf09897ad2"
+    },
+    {
+      "path": "cemetery-source12-native.png",
+      "sourceFigure": 12,
+      "sourcePixelBox": [
+        470,
+        625,
+        535,
+        695
+      ],
+      "nativePixels": true,
+      "resampling": "none",
+      "sha256": "0e3e2d12c4fb136b23856975bfaf3d8ac4d6ecc02aabee46c61a5f22e0fa42db"
+    },
+    {
+      "path": "murom-source9-native.png",
+      "sourceFigure": 9,
+      "sourcePixelBox": [
+        420,
+        120,
+        480,
+        195
+      ],
+      "nativePixels": true,
+      "resampling": "none",
+      "sha256": "ea782cfb6f39bad5225f8766d1449222f1070902ac0790247a63f366fc4bd7df"
+    },
+    {
+      "path": "cemetery-source9-native.png",
+      "sourceFigure": 9,
+      "sourcePixelBox": [
+        255,
+        342,
+        324,
+        410
+      ],
+      "nativePixels": true,
+      "resampling": "none",
+      "sha256": "2ec6f040e5aa07cb6c2d1e6e701ba33f406020462cff135dc0250b79bd311b45"
+    }
+  ],
+  "geographicRegistrationEvaluated": false,
+  "georeferenceModelApproved": false,
+  "automaticPrimaryApproval": false,
+  "claimedAbsoluteAccuracy": null,
+  "usableForAddressAssignment": false,
+  "quarterGeometriesGeneratedOrChanged": false,
+  "completedFrozenSourcesChanged": false
+}

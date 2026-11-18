@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Gyöngyös",
+  "primarySource": {
+    "url": "https://gyongyos.hu/wp-content/uploads/2021/01/integralt-telepulesfejlesztesi-strategia-2016-its-gyongyos.pdf",
+    "title": "Gyöngyös Város Integrált Településfejlesztési Stratégia",
+    "sourceYear": 2016,
+    "retrievedAt": "2026-11-13T12:20:06.811667+00:00",
+    "originalPdfBytes": 5934654,
+    "originalPdfSha256": "1e215b16a31dd6b97aca1eca765151f27acf691d23ccc5e8adf216bcb19ceef0",
+    "mapPdfPageOneBased": 19,
+    "mapPrintedPage": 18,
+    "mapFigure": 1,
+    "mapCaption": "Gyöngyös városrészeinek lehatárolása",
+    "imageXref": 44,
+    "imageSize": [
+      809,
+      933
+    ]
+  },
+  "semanticEvidence": {
+    "pdfPagesOneBased": [
+      17,
+      18,
+      19,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37
+    ],
+    "heading": "A VÁROSRÉSZEK BEMUTATÁSA / VÁROSRÉSZEK BEAZONOSÍTÁSA",
+    "sourceStatement": "Gyöngyös fejlődéstörténeti szempontból kialakult városrészei; Gyöngyös központi településrésze településszerkezeti szempontból az alábbi egységekre bontható.",
+    "decision": "The document expressly identifies these as individually named city quarters, not mere electoral districts or an unspecified planning aggregation. The individual maps and their same-page or immediately preceding section headings independently associate the overview colors with their names. No polygon is copied to contained smaller names.",
+    "colorNameEvidence": [
+      {
+        "color": "blue",
+        "name": "Észak-nyugati városrész",
+        "labelledMapPdfPage": 29,
+        "headingPdfPageOneBased": 29,
+        "headingLocation": "same page"
+      },
+      {
+        "color": "red",
+        "name": "Városközpont",
+        "labelledMapPdfPage": 31,
+        "sourceSectionHeading": "Központi városrész",
+        "headingPdfPageOneBased": 30,
+        "headingLocation": "immediately preceding page; map page itself has no quarter-name heading"
+      },
+      {
+        "color": "yellow",
+        "name": "Keleti városrész",
+        "labelledMapPdfPage": 33,
+        "headingPdfPageOneBased": 32,
+        "headingLocation": "immediately preceding page; map page itself has no quarter-name heading"
+      },
+      {
+        "color": "dark red",
+        "name": "Déli városrész",
+        "labelledMapPdfPage": 35,
+        "headingPdfPageOneBased": 34,
+        "headingLocation": "immediately preceding page; map page itself has no quarter-name heading"
+      },
+      {
+        "color": "purple",
+        "name": "Nyugati városrész",
+        "labelledMapPdfPage": 37,
+        "headingPdfPageOneBased": 36,
+        "headingLocation": "immediately preceding page; map page itself has no quarter-name heading"
+      }
+    ],
+    "containedNamesNotDuplicated": [
+      "Harmadosztály",
+      "Duranda",
+      "Zsellérközök",
+      "Béke tér"
+    ],
+    "additionalNorth": {
+      "name": "Északi városrész",
+      "included": false,
+      "reason": "The actual dark green outline reaches the JPEG upper edge; the missing cap is not drawn from the image frame."
+    }
+  },
+  "geometryEvidence": {
+    "actualSourceContours": 5,
+    "manuallyTracedWhiteInk": true,
+    "noFrameClosure": true,
+    "noStreetReplacement": true,
+    "noBufferHullOrCentroidPolygon": true,
+    "coordinateStatus": "source_contours_with_unverified_manual_georeference",
+    "primaryLayerAdmission": false,
+    "inferredCandidateCount": 5,
+    "reasonForInferredLayer": "Manual scene landmark identifications and image-to-image correspondence are approximate. Independent image registration did not establish nationwide geographic placement to source-pixel accuracy. These are genuine source outlines, but their national placement is unverified."
+  },
+  "calibrationSources": {
+    "osmPbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "osmGeometryUse": "Calibration and QA only. Exported vertices come from the source contour pixels, not modern road vertices.",
+    "projectedCrs": "EPSG:23700",
+    "exportCrs": "EPSG:4326"
+  },
+  "rightsStatus": "Municipal publication contains Google Earth / 2015 DigitalGlobe imagery. No open-reuse or redistribution licence for imagery/map has been independently established. OSM calibration ODbL-1.0.",
+  "usableForAddressAssignment": false,
+  "claimedAbsoluteAccuracyMetres": null
+}

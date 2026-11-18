@@ -1,0 +1,16 @@
+{
+  "id": "miskolc-source-raster",
+  "path": "data/neighborhoods/sources/municipal-local-map-next/miskolc-source-raster.geojson",
+  "sha256": "0c8d6fdc7f1f075355b704cf2e376ce3815031b3beb616763c3529bb0a2cf22d",
+  "municipality": "Miskolc",
+  "method": "Original exact 884×557 municipal source raster, byte-identical between the 2014 ITS and later FVS annex. Four-neighbor non-cyan source-cell regions inside actual cyan boundary band; all residual holes retained. Manually identified numbered seeds; exact raster-cell run union. No edge closure, repair, hole filling, clipping or geometry copying to constituents. Frozen approximate affine EOV registration from actual original outer-stroke pixels to current archived municipal boundary. Five individually named statistical units plus twelve whole planning units; unknown absolute accuracy and no address assignment.",
+  "evidenceUrls": [
+    "https://www.miskolc.hu/sites/default/files/dokumentumtar/mellekletek/2024-11/197_melleklet.pdf"
+  ],
+  "license": "Municipal map reuse rights unverified; ODbL for OSM municipality and name evidence.",
+  "propertyOverrides": {
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-local-map-next/miskolc-independent-review.json",
+  "rightsStatus": "Municipal public publication; unrestricted reuse licence and present legal boundary validity unverified."
+}

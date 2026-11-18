@@ -1,0 +1,394 @@
+{
+  "type": "FeatureCollection",
+  "status": "estimated_candidates_only",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "manual:dunaujvaros:dozsa-vasmu-inference",
+      "properties": {
+        "name": "Dózsa városrész",
+        "municipality": "Dunaújváros",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "canonicalNameIsNeighborhood": false,
+        "method": "Manually inferred completion of a three-road source description along actual modern Vasmű út and roundabout original-node edges; unique inside face containing the genuine Dózsa place node.",
+        "sourcePeriod": "Named quarter description in 2003 law / 2015 version and 2020 municipal concept; actual OSM ways snapshot 2026-11-12T21:23:05Z.",
+        "sourceDocuments": [
+          {
+            "url": "https://dunaujvaros.hu/sites/all/files/dokumentumok/8060/35496.pdf",
+            "title": "Dunaújváros MJV Településfejlesztési Koncepciója – 2020 felülvizsgálat",
+            "page": 12,
+            "retrieval": "web_reader_factual_transcription",
+            "fullSourcePdfArchivedLocally": false,
+            "sourcePdfSha256": null
+          }
+        ],
+        "evidenceUrls": [
+          "https://dunaujvaros.hu/sites/all/files/dokumentumok/8060/35496.pdf",
+          "https://njt.jog.gov.hu/jogszabaly/2003-19-SP-5Y3929",
+          "https://dunaujvaros.com/hirek/201407/korforgo_atadas_utan_vegre"
+        ],
+        "sourceLineIds": [
+          "osm:way:141655441",
+          "osm:way:1466052795",
+          "osm:way:1466052796",
+          "osm:way:1466475436",
+          "osm:way:1466475439",
+          "osm:way:1466475440",
+          "osm:way:1466475441",
+          "osm:way:1467064818",
+          "osm:way:1467064819",
+          "osm:way:1467064820",
+          "osm:way:1467064821",
+          "osm:way:310153560",
+          "osm:way:360390725",
+          "osm:way:360390860",
+          "osm:way:360390861",
+          "osm:way:378921127",
+          "osm:way:378921132",
+          "osm:way:390927631",
+          "osm:way:390927632",
+          "osm:way:391403845",
+          "osm:way:391465569",
+          "osm:way:391465571",
+          "osm:way:391465575",
+          "osm:way:392491918",
+          "osm:way:392491924",
+          "osm:way:445985377",
+          "osm:way:445990097",
+          "osm:way:935331692"
+        ],
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "reviewStatus": "estimated_candidate_not_verified",
+        "geometryVerificationStatus": "inferred_not_verified",
+        "usableForAddressAssignment": false,
+        "claimedAbsoluteAccuracyMetres": null,
+        "areaM2": 188365.18892405834,
+        "perimeterM": 2102.8405688896896,
+        "unprovenVasmuBoundaryMetres": 165.15755061802778,
+        "unprovenRoundaboutBoundaryMetres": 29.865930529980794,
+        "reviewNotes": [
+          "The municipal name is authentic; the whole quarter boundary is not verified.",
+          "The source does not mention Vasmű út. Its boundary role and the selected roundabout arc are explicit manual interpretations, not silently renamed source streets.",
+          "All geographical edges follow consecutive original PBF nodes. No chord, buffer, hull, snapping, clipping, geometric repair or interpolated intersection vertex.",
+          "Opposite roundabout arc and alternative carriageway/parcel-side choices remain possible. No statistical confidence or legal boundary accuracy is asserted."
+        ],
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors; factual quarter descriptions Dunaújváros MJV."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.9320894,
+              46.9684692
+            ],
+            [
+              18.9319934,
+              46.9686979
+            ],
+            [
+              18.9318725,
+              46.9690317
+            ],
+            [
+              18.9318598,
+              46.969155
+            ],
+            [
+              18.9318978,
+              46.9692604
+            ],
+            [
+              18.9319353,
+              46.9693227
+            ],
+            [
+              18.9332681,
+              46.9684471
+            ],
+            [
+              18.9343841,
+              46.9677421
+            ],
+            [
+              18.9345239,
+              46.9676436
+            ],
+            [
+              18.934639,
+              46.9675624
+            ],
+            [
+              18.9349839,
+              46.9673398
+            ],
+            [
+              18.9353022,
+              46.967163
+            ],
+            [
+              18.9356574,
+              46.9669919
+            ],
+            [
+              18.9361961,
+              46.9667222
+            ],
+            [
+              18.9365977,
+              46.9665313
+            ],
+            [
+              18.9367726,
+              46.9664496
+            ],
+            [
+              18.9369002,
+              46.96639
+            ],
+            [
+              18.9374647,
+              46.9661105
+            ],
+            [
+              18.9376255,
+              46.9660308
+            ],
+            [
+              18.9377491,
+              46.9659863
+            ],
+            [
+              18.9378761,
+              46.9659591
+            ],
+            [
+              18.9380002,
+              46.965941
+            ],
+            [
+              18.9382292,
+              46.9659139
+            ],
+            [
+              18.938347,
+              46.9658893
+            ],
+            [
+              18.9383679,
+              46.9658544
+            ],
+            [
+              18.9384005,
+              46.965824
+            ],
+            [
+              18.9384428,
+              46.9657999
+            ],
+            [
+              18.938509,
+              46.9657799
+            ],
+            [
+              18.9385977,
+              46.9657766
+            ],
+            [
+              18.9386256,
+              46.9657799
+            ],
+            [
+              18.9386615,
+              46.9657878
+            ],
+            [
+              18.9387676,
+              46.9657692
+            ],
+            [
+              18.9388142,
+              46.9657524
+            ],
+            [
+              18.9390065,
+              46.9656831
+            ],
+            [
+              18.9393177,
+              46.9655117
+            ],
+            [
+              18.939525,
+              46.9653651
+            ],
+            [
+              18.9396813,
+              46.9652289
+            ],
+            [
+              18.9399357,
+              46.9650066
+            ],
+            [
+              18.9400565,
+              46.9648584
+            ],
+            [
+              18.9401455,
+              46.9647515
+            ],
+            [
+              18.9399213,
+              46.9646627
+            ],
+            [
+              18.9391641,
+              46.964363
+            ],
+            [
+              18.9391318,
+              46.9643491
+            ],
+            [
+              18.9387502,
+              46.9642039
+            ],
+            [
+              18.9384043,
+              46.9640737
+            ],
+            [
+              18.9375711,
+              46.9637653
+            ],
+            [
+              18.9368596,
+              46.9634888
+            ],
+            [
+              18.9361941,
+              46.9632214
+            ],
+            [
+              18.9358155,
+              46.9630767
+            ],
+            [
+              18.935148,
+              46.962804
+            ],
+            [
+              18.9348096,
+              46.9626681
+            ],
+            [
+              18.9346652,
+              46.9626084
+            ],
+            [
+              18.9344477,
+              46.9625264
+            ],
+            [
+              18.9344249,
+              46.962576
+            ],
+            [
+              18.934372,
+              46.9626933
+            ],
+            [
+              18.9340775,
+              46.963373
+            ],
+            [
+              18.934017,
+              46.9635309
+            ],
+            [
+              18.933971,
+              46.963651
+            ],
+            [
+              18.9339402,
+              46.9637314
+            ],
+            [
+              18.9337724,
+              46.9641695
+            ],
+            [
+              18.9336777,
+              46.9644167
+            ],
+            [
+              18.9336355,
+              46.964527
+            ],
+            [
+              18.933598,
+              46.9646248
+            ],
+            [
+              18.9335708,
+              46.9647017
+            ],
+            [
+              18.9335515,
+              46.9647457
+            ],
+            [
+              18.9334993,
+              46.9648705
+            ],
+            [
+              18.933405,
+              46.9651029
+            ],
+            [
+              18.9331004,
+              46.9658635
+            ],
+            [
+              18.9330282,
+              46.9660431
+            ],
+            [
+              18.932852,
+              46.9664412
+            ],
+            [
+              18.9326386,
+              46.9669377
+            ],
+            [
+              18.9325591,
+              46.9671288
+            ],
+            [
+              18.9325245,
+              46.9672232
+            ],
+            [
+              18.9324745,
+              46.9673729
+            ],
+            [
+              18.9324438,
+              46.967465
+            ],
+            [
+              18.9320894,
+              46.9684692
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

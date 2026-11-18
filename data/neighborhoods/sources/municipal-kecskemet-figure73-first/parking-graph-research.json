@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "fullOriginalRoadArchivePath": "data/neighborhoods/sources/municipal-kecskemet-outer-next/all-local-roads.geojson",
+  "fullOriginalRoadArchiveSha256": "ee16b15f2dcc1379f5638abd8990151c8865065307331f0ee54b8c53bf2bd7f9",
+  "fullHighwayWayCount": 6434,
+  "fullUnnamedWayCount": 4532,
+  "allOriginalHighwayTypesAvailable": [
+    "cycleway",
+    "footway",
+    "living_street",
+    "motorway",
+    "motorway_link",
+    "path",
+    "pedestrian",
+    "primary",
+    "primary_link",
+    "raceway",
+    "residential",
+    "rest_area",
+    "secondary",
+    "service",
+    "steps",
+    "tertiary",
+    "tertiary_link",
+    "track",
+    "unclassified"
+  ],
+  "localInspectionWayCount": 98,
+  "localInspectionHighwayTypes": [
+    "footway",
+    "living_street",
+    "pedestrian",
+    "residential",
+    "service",
+    "steps",
+    "tertiary",
+    "tertiary_link"
+  ],
+  "localSubsetOnlyAcquisitionBox": [
+    19.6892,
+    46.9018,
+    19.6924,
+    46.9042
+  ],
+  "allSubsetWaysFullOriginalGeometry": true,
+  "scope": "Read-only continuation of the shared Árpádváros/Kossuthváros parking corridor investigation. No highway subtype or name filter was used to acquire the source graph.",
+  "result": "No unique actual-node chain following the historical northern parking zigzag has been established. The modern northern Forrás loop runs differently around the buildings; footways west of the Batthyány apartment row do not replace the eastern source-map boundary. No shortest-path chain or invented connector is exported as a quarter boundary.",
+  "geometryUsedInstead": "The complete closed black Figure73 source-pixel contour, including the original shared parking zigzag. This retains the actual historical source extent independently of unresolved modern road-graph interpretation.",
+  "usableForAddressAssignment": false
+}

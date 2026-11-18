@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-13",
+  "municipality": "Győr",
+  "features": 17,
+  "historicalFineQuarterCandidates": 16,
+  "historicalPlanningExtentCandidates": 1,
+  "sourceYear": 2006,
+  "publication": "2014-01",
+  "sourceUrl": "https://gyor.hu/easy-docs/5dc9829cb6d4c",
+  "sourcePdfPrintedPages": {
+    "map": 269,
+    "classificationTable": [
+      271,
+      272
+    ],
+    "kisbacsaExtensionExplanation": 285
+  },
+  "method": "Actual closed blue PDF vector path from figure97 of the January2014 Győr ITS, showing the2006 division; affine registration to EPSG:23700 by robust closest-point alignment of actual OPEN black source-stroke endpoints to the current OSM municipal exterior; vertexwise inverse projection to WGS84. No outline repair, clipping, snapping, synthetic closing edge or physical-boundary inference. Explicit source-defined circuit aggregation, where used, is recorded per feature.",
+  "registryEntry": "registry-entry.json",
+  "proof": "conversion-proof.json",
+  "independentReview": "independent-review.json",
+  "independentBoundaryPositionAccuracyKnown": false,
+  "geometryRightsStatus": "source_map_reuse_not_established; OSM controls ODbL-1.0",
+  "sourceMapRightsStatus": "No explicit open municipal map reuse/redistribution licence independently established. ODbL applies to the OSM controls, not automatically to the municipal PDF or municipal outlines.",
+  "attribution": "Municipal source: Győr ITS,January2014,figure97 and table23; OSM calibration ©OpenStreetMap contributors.",
+  "fullCityQuarterCoverage": false,
+  "usableForAddressAssignment": false,
+  "reproduce": "PYTHONPATH=.local/geodata python3 scripts/neighborhoods/derive-gyor-next.py",
+  "files": [
+    {
+      "path": "aggregation-independent-review.json",
+      "bytes": 11506,
+      "sha256": "c9be843067a5a5b20163cef1f24ef23de97c126e0cfcace5c63c76d73e132b90"
+    },
+    {
+      "path": "calibration-municipality.geojson",
+      "bytes": 15525,
+      "sha256": "093e12543bbd557f5aad2d6687ed4b6135e06f55770b71a0a0b404ca8fc719fa"
+    },
+    {
+      "path": "conversion-proof.json",
+      "bytes": 21063,
+      "sha256": "1300243974d37e069d68a6c0589cb6f27290ec1d3965efcb2dd611610cd1612c"
+    },
+    {
+      "path": "gyor-its.source.pdf",
+      "bytes": 7144051,
+      "sha256": "40f318435f5719cb5a06b253d6e15fbd5acc7d5a6bec53fc38ae1e199b6ca21d"
+    },
+    {
+      "path": "gyor-source-candidates.geojson",
+      "bytes": 673934,
+      "sha256": "4ce29697da5be99269079cd42221242ddc10ed3a96eb697ddf527ebfb10c5f5a"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 32808,
+      "sha256": "d11e2c723adc658b056f16fabedb1ee31ff18036ecebe928a98d53ab61686ee8"
+    },
+    {
+      "path": "name-control-points.geojson",
+      "bytes": 29132,
+      "sha256": "fa4bab01550bf782bd026ce94baf452db4783eed555444e01f9633cad08967a4"
+    },
+    {
+      "path": "original-pdf-paths.json",
+      "bytes": 606627,
+      "sha256": "9e21383d4a236ad7cf68a587b26e178d5c7373743e3c740f279bc22051162f18"
+    },
+    {
+      "path": "registration.json",
+      "bytes": 9206,
+      "sha256": "0ea4a456897cd8cd5e80763959395958f7bd7161aa78112ba5eef063f3bc20a3"
+    },
+    {
+      "path": "registry-entry.json",
+      "bytes": 1974,
+      "sha256": "c024edc63b6291883cace5cb04cfbc61ed23cc804ed532233dcfd36225f17e7c"
+    }
+  ],
+  "reproductionScript": {
+    "path": "scripts/neighborhoods/derive-gyor-next.py",
+    "sha256": "636a7167bf94c7caf68aac2ab009f96dacdd52494f22ceddc63c230205f48995"
+  },
+  "singleCircuitFineCandidates": 11,
+  "explicitSourceGroupedFineCandidates": 5,
+  "independentAggregationReview": "aggregation-independent-review.json"
+}

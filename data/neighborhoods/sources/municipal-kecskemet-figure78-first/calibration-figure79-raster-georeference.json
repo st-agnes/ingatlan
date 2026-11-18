@@ -1,0 +1,116 @@
+{
+  "sourceImageSha256": "8d6217e4ae20dadfd07141aaed4dff0c057166fd60f30d8a7c0eec9b9fd5079d",
+  "actualControlRoadInputSha256": "ee16b15f2dcc1379f5638abd8990151c8865065307331f0ee54b8c53bf2bd7f9",
+  "allControlCoordinatesMatchLiteralOsmNodes": true,
+  "affineMatrixReproducesControlFit": true,
+  "controls": [
+    {
+      "osmNodeId": 4459257122,
+      "coordinates": [
+        19.639965,
+        46.8889091
+      ],
+      "feature": "Csalánosi/Izsáki junction",
+      "renderedPage2xPixels": [
+        596,
+        983
+      ],
+      "originalJpegPixels": [
+        848.3445202694755,
+        1091.4541867963997
+      ]
+    },
+    {
+      "osmNodeId": 411750381,
+      "coordinates": [
+        19.6625059,
+        46.8943325
+      ],
+      "feature": "Vízmű/Izsáki junction",
+      "renderedPage2xPixels": [
+        1033,
+        818
+      ],
+      "originalJpegPixels": [
+        1664.3835976795726,
+        783.3448249214587
+      ]
+    },
+    {
+      "osmNodeId": 1803696400,
+      "coordinates": [
+        19.6440856,
+        46.9002983
+      ],
+      "feature": "Csalánosi/Szüret junction",
+      "renderedPage2xPixels": [
+        679,
+        659
+      ],
+      "originalJpegPixels": [
+        1003.335923988098,
+        486.4394398419704
+      ]
+    },
+    {
+      "osmNodeId": 765800655,
+      "coordinates": [
+        19.6510893,
+        46.8966027
+      ],
+      "feature": "Szüret/Tópart junction",
+      "renderedPage2xPixels": [
+        813,
+        760
+      ],
+      "originalJpegPixels": [
+        1253.56300950973,
+        675.0397158987523
+      ]
+    },
+    {
+      "osmNodeId": 801515835,
+      "coordinates": [
+        19.6355324,
+        46.9093647
+      ],
+      "feature": "Széles/Sutus junction",
+      "renderedPage2xPixels": [
+        519,
+        405
+      ],
+      "originalJpegPixels": [
+        704.5573144100305,
+        12.13775550115247
+      ]
+    }
+  ],
+  "matrixOriginalJpegColumnToWgs84": [
+    [
+      2.7780936038575028e-05,
+      3.9654244509343817e-07,
+      19.61597828159317
+    ],
+    [
+      -4.817068197481257e-07,
+      -1.889373596369315e-05,
+      46.909948043499426
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "fitResidualRenderedPixels": [
+    0.3703029284714672,
+    0.5701511120778605,
+    1.065292853499344,
+    0.5090606728601502,
+    0.6330876638696357
+  ],
+  "controlInterpretation": "Literal geographical OSM node coordinates with manually selected approximate image-junction locations, not surveyed black-boundary control positions.",
+  "absoluteBoundaryAccuracyMetres": null,
+  "sourceMapProjectionKnown": false,
+  "outputCrs": "EPSG:4326"
+}

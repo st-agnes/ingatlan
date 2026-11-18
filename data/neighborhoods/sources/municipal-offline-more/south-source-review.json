@@ -1,0 +1,728 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent southern Kecskemét source-corridor review; research candidates only.",
+  "roadInput": {
+    "path": "data/neighborhoods/sources/municipal-offline-next/kecskemet-all-local-roads.geojson",
+    "sha256": "c8a1efef355fa22f676098d5dbf557bf2f308920c4af6da42ad58fce80c77a86"
+  },
+  "comparisonMethod": "Existing six-junction image registration from north-review; source-map comparison only, never geographical coordinate generation.",
+  "varoskozpont": {
+    "candidateForIndependentComparison": {
+      "type": "Feature",
+      "properties": {
+        "name": "Városközpont",
+        "reviewOnly": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.6916797,
+              46.9034581
+            ],
+            [
+              19.6915643,
+              46.9034813
+            ],
+            [
+              19.691384,
+              46.903533
+            ],
+            [
+              19.6913172,
+              46.9036069
+            ],
+            [
+              19.6912492,
+              46.9036568
+            ],
+            [
+              19.6912159,
+              46.9036837
+            ],
+            [
+              19.6911812,
+              46.9037163
+            ],
+            [
+              19.6911314,
+              46.9037821
+            ],
+            [
+              19.6911309,
+              46.9038025
+            ],
+            [
+              19.6911253,
+              46.9038225
+            ],
+            [
+              19.6911161,
+              46.9038797
+            ],
+            [
+              19.6911235,
+              46.9039088
+            ],
+            [
+              19.6911394,
+              46.9039337
+            ],
+            [
+              19.6912074,
+              46.9040352
+            ],
+            [
+              19.6910844,
+              46.9039613
+            ],
+            [
+              19.6910489,
+              46.9039421
+            ],
+            [
+              19.6909993,
+              46.9039212
+            ],
+            [
+              19.6909784,
+              46.9039139
+            ],
+            [
+              19.6909452,
+              46.9039084
+            ],
+            [
+              19.690916,
+              46.9039052
+            ],
+            [
+              19.6908881,
+              46.9038986
+            ],
+            [
+              19.6907943,
+              46.9038939
+            ],
+            [
+              19.6907132,
+              46.9039099
+            ],
+            [
+              19.6905474,
+              46.9039771
+            ],
+            [
+              19.6903285,
+              46.9040575
+            ],
+            [
+              19.6899955,
+              46.9042627
+            ],
+            [
+              19.689831,
+              46.9044361
+            ],
+            [
+              19.6893491,
+              46.9047598
+            ],
+            [
+              19.6891179,
+              46.9049355
+            ],
+            [
+              19.6888971,
+              46.9051009
+            ],
+            [
+              19.6886332,
+              46.905343
+            ],
+            [
+              19.6884863,
+              46.9055011
+            ],
+            [
+              19.6884275,
+              46.9055936
+            ],
+            [
+              19.688405,
+              46.905635
+            ],
+            [
+              19.6884259,
+              46.9056695
+            ],
+            [
+              19.688433,
+              46.9057065
+            ],
+            [
+              19.688426,
+              46.9057435
+            ],
+            [
+              19.6884057,
+              46.9057774
+            ],
+            [
+              19.6883736,
+              46.9058067
+            ],
+            [
+              19.6883317,
+              46.9058295
+            ],
+            [
+              19.6882827,
+              46.9058442
+            ],
+            [
+              19.6882298,
+              46.9058501
+            ],
+            [
+              19.6881737,
+              46.9058461
+            ],
+            [
+              19.6881212,
+              46.9058321
+            ],
+            [
+              19.688076,
+              46.9058091
+            ],
+            [
+              19.6880414,
+              46.9057787
+            ],
+            [
+              19.68802,
+              46.905743
+            ],
+            [
+              19.6879993,
+              46.9058085
+            ],
+            [
+              19.6879755,
+              46.9058352
+            ],
+            [
+              19.6879486,
+              46.9058654
+            ],
+            [
+              19.6879183,
+              46.9058994
+            ],
+            [
+              19.6878913,
+              46.9059297
+            ],
+            [
+              19.68785,
+              46.9059738
+            ],
+            [
+              19.6877844,
+              46.9060072
+            ],
+            [
+              19.6877516,
+              46.9060443
+            ],
+            [
+              19.6877042,
+              46.9061116
+            ],
+            [
+              19.6876747,
+              46.9061585
+            ],
+            [
+              19.6876629,
+              46.9061965
+            ],
+            [
+              19.6876522,
+              46.906248
+            ],
+            [
+              19.6876462,
+              46.9063036
+            ],
+            [
+              19.6876428,
+              46.9063715
+            ],
+            [
+              19.6876497,
+              46.9064354
+            ],
+            [
+              19.6876608,
+              46.9064797
+            ],
+            [
+              19.6877032,
+              46.9065549
+            ],
+            [
+              19.6877432,
+              46.9065987
+            ],
+            [
+              19.6877867,
+              46.9066459
+            ],
+            [
+              19.6878778,
+              46.9067468
+            ],
+            [
+              19.6879571,
+              46.9068341
+            ],
+            [
+              19.6880132,
+              46.9069073
+            ],
+            [
+              19.6880476,
+              46.9069701
+            ],
+            [
+              19.6880592,
+              46.9070185
+            ],
+            [
+              19.6880887,
+              46.9071422
+            ],
+            [
+              19.6881516,
+              46.9076798
+            ],
+            [
+              19.6881607,
+              46.9077247
+            ],
+            [
+              19.6881691,
+              46.9077448
+            ],
+            [
+              19.6881908,
+              46.9078023
+            ],
+            [
+              19.6882482,
+              46.9079
+            ],
+            [
+              19.6882934,
+              46.907962
+            ],
+            [
+              19.6883559,
+              46.9080297
+            ],
+            [
+              19.6887496,
+              46.908275
+            ],
+            [
+              19.6888317,
+              46.9083319
+            ],
+            [
+              19.6898546,
+              46.9089096
+            ],
+            [
+              19.6899637,
+              46.9089827
+            ],
+            [
+              19.6900474,
+              46.9090387
+            ],
+            [
+              19.6907618,
+              46.9095197
+            ],
+            [
+              19.6910119,
+              46.9096899
+            ],
+            [
+              19.6910941,
+              46.9097363
+            ],
+            [
+              19.6914811,
+              46.9099378
+            ],
+            [
+              19.691572,
+              46.9099819
+            ],
+            [
+              19.6917993,
+              46.9100939
+            ],
+            [
+              19.6919544,
+              46.9101636
+            ],
+            [
+              19.6920067,
+              46.910181
+            ],
+            [
+              19.6920519,
+              46.9101934
+            ],
+            [
+              19.6921115,
+              46.9102052
+            ],
+            [
+              19.6921599,
+              46.9102073
+            ],
+            [
+              19.6922159,
+              46.9102058
+            ],
+            [
+              19.6922868,
+              46.9101917
+            ],
+            [
+              19.6923753,
+              46.9101801
+            ],
+            [
+              19.6924488,
+              46.9101342
+            ],
+            [
+              19.6925304,
+              46.9100741
+            ],
+            [
+              19.6925725,
+              46.9100116
+            ],
+            [
+              19.6926182,
+              46.9099836
+            ],
+            [
+              19.6934566,
+              46.9093945
+            ],
+            [
+              19.6936191,
+              46.9092515
+            ],
+            [
+              19.6937095,
+              46.9091775
+            ],
+            [
+              19.6937797,
+              46.9091092
+            ],
+            [
+              19.6939936,
+              46.9088941
+            ],
+            [
+              19.694234,
+              46.9086983
+            ],
+            [
+              19.6944363,
+              46.9085511
+            ],
+            [
+              19.6945086,
+              46.9085
+            ],
+            [
+              19.6947228,
+              46.9083753
+            ],
+            [
+              19.6957689,
+              46.9077107
+            ],
+            [
+              19.6959463,
+              46.907513
+            ],
+            [
+              19.696054,
+              46.9073666
+            ],
+            [
+              19.6960624,
+              46.9073107
+            ],
+            [
+              19.6960603,
+              46.9072759
+            ],
+            [
+              19.6960468,
+              46.9072343
+            ],
+            [
+              19.6960214,
+              46.9071964
+            ],
+            [
+              19.6960028,
+              46.9071717
+            ],
+            [
+              19.6959647,
+              46.9071447
+            ],
+            [
+              19.6955404,
+              46.9069591
+            ],
+            [
+              19.6952542,
+              46.9068183
+            ],
+            [
+              19.695096,
+              46.9067496
+            ],
+            [
+              19.6949447,
+              46.9066584
+            ],
+            [
+              19.6948405,
+              46.9065598
+            ],
+            [
+              19.6947193,
+              46.9064235
+            ],
+            [
+              19.694408,
+              46.9059867
+            ],
+            [
+              19.6943729,
+              46.9058416
+            ],
+            [
+              19.6943605,
+              46.9057873
+            ],
+            [
+              19.6943438,
+              46.9057132
+            ],
+            [
+              19.694289,
+              46.9054622
+            ],
+            [
+              19.6941777,
+              46.9037283
+            ],
+            [
+              19.693592,
+              46.9038045
+            ],
+            [
+              19.6934679,
+              46.9038139
+            ],
+            [
+              19.6929811,
+              46.9036897
+            ],
+            [
+              19.6920825,
+              46.9034832
+            ],
+            [
+              19.6918846,
+              46.9034531
+            ],
+            [
+              19.6917726,
+              46.9034548
+            ],
+            [
+              19.6916797,
+              46.9034581
+            ]
+          ]
+        ]
+      }
+    },
+    "sourceWayIds": [
+      "osm:way:40694691",
+      "osm:way:40771052",
+      "osm:way:40771062",
+      "osm:way:40771094",
+      "osm:way:40917272",
+      "osm:way:237950829",
+      "osm:way:237950832",
+      "osm:way:248405154",
+      "osm:way:248405159",
+      "osm:way:308483085",
+      "osm:way:326407696",
+      "osm:way:326407704",
+      "osm:way:326407705",
+      "osm:way:326407706",
+      "osm:way:327511579",
+      "osm:way:327511581",
+      "osm:way:407203987",
+      "osm:way:427779015",
+      "osm:way:427779017",
+      "osm:way:599070272",
+      "osm:way:768453204",
+      "osm:way:768453206",
+      "osm:way:1479071683",
+      "osm:way:1479072405",
+      "osm:way:1488786703",
+      "osm:way:1498415648",
+      "osm:way:1503947678",
+      "osm:way:1538404966",
+      "osm:way:1538404982",
+      "osm:way:1538404983",
+      "osm:way:1538404992",
+      "osm:way:1541089581",
+      "osm:way:1541089583",
+      "osm:way:1541089587",
+      "osm:way:1546761077",
+      "osm:way:40771056",
+      "osm:way:599070240",
+      "osm:way:599070245",
+      "osm:way:599070287",
+      "osm:way:599070291"
+    ],
+    "coordinateCount": 139,
+    "missingLiteralEdges": [],
+    "interiorRings": 0,
+    "valid": true,
+    "literalRingClosed": true,
+    "areaM2": 290752.33997298015,
+    "currentExactNameLabelFound": false,
+    "sourceNameEvidence": {
+      "sourcePdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+      "printedPage": 143,
+      "originalPdfPageOneBased": 145,
+      "corroboratingMapPrintedPage": 141,
+      "figure": 73
+    },
+    "extraCurrentCorridors": [
+      "Bajcsy-Zsilinszky Endre körút",
+      "Kölcsey utca",
+      "Piaristák tere",
+      "Szilády Károly utca",
+      "Széchenyi tér"
+    ],
+    "sourceVisual": "varoskozpont-source-overlay.png",
+    "visualQualifiedPass": true,
+    "selectionRule": "Named source core/current map-corroborated transition streets, plus only actual roundabout/_link unnamed junctions; internal parking/service loops and grade-separated ways excluded before topology construction.",
+    "internalRoadLoopHolesNotTreatedAsQuarterExclusions": true,
+    "groundServiceLoopsExcluded": [
+      "osm:way:120170608",
+      "osm:way:1059029471",
+      "osm:way:237988894",
+      "osm:way:1538405013"
+    ],
+    "allSourceVerticesUnchanged": true,
+    "canonicalMunicipality": {
+      "name": "Kecskemét",
+      "sourceOsmRelation": 1130433,
+      "polygonFullyContained": true
+    },
+    "otherQuarterOverlaps": [
+      {
+        "name": "Bethlenváros",
+        "interiorAreaSquareDegrees": 0.0
+      },
+      {
+        "name": "Homoki-domb",
+        "interiorAreaSquareDegrees": 0.0
+      },
+      {
+        "name": "Rákócziváros",
+        "interiorAreaSquareDegrees": 0.0
+      },
+      {
+        "name": "Erzsébetváros",
+        "interiorAreaSquareDegrees": 0.0
+      }
+    ],
+    "absoluteBoundaryAccuracyMetres": null,
+    "currentNameIndependentlyVerified": false,
+    "usableForAddressAssignment": false,
+    "actualFinalCandidatePath": "data/neighborhoods/sources/municipal-offline-more/kecskemet-varoskozpont.geojson",
+    "actualFinalCandidateSha256": "a88369fcb74adec953e308822d873c0f429be73b2299d708e697b43e9fc6eba4",
+    "actualGeometryMatchesIndependentReconstructionExactly": true,
+    "symmetricDifferenceAreaSquareDegrees": 0.0,
+    "hausdorffDifferenceDegrees": 0.0,
+    "rejectedAlternative": {
+      "path": "Városközpont-ordered-diagnostic.geojson",
+      "name": "Katona József tér interior connector",
+      "reason": "A shortest named-network route cuts across the interior instead of following the source-map eastern Bajcsy-Zsilinszky corridor. This diagnostic is not an importable quarter boundary.",
+      "actualSourceWayIdsOnRejectedDiagnosticBoundary": [
+        "osm:way:40917271",
+        "osm:way:599070286",
+        "osm:way:1538404991"
+      ]
+    }
+  },
+  "unresolvedSouthQuarters": [
+    "Árpádváros",
+    "Kossuthváros"
+  ],
+  "finalVerdict": "PASS for the exact final Városközpont source-corridor reconstruction, with 2021 source-only fine-name evidence, no claimed absolute/current/legal boundary accuracy and address assignment disabled.",
+  "frozen": true,
+  "remainingSouthQuarterReview": [
+    {
+      "quarter": "Árpádváros",
+      "sourcePrintedPage": 145,
+      "status": "unresolved_actual_parking_corridor_chain",
+      "sourceDescription": "Unnamed parking road behind Batthyány apartment blocks, Magyar/Tizedes/Árpád/Petőfi/Dobó perimeter.",
+      "findings": [
+        "Source map excludes the main Batthyány apartment strip differently from simply tracing the current main Batthyány road.",
+        "Actual Forrás utca169309074/1443642690, Rávágy tér388105656/388105658 and unnamed residential388105655 are nearby candidate pieces.",
+        "The northern zigzag/parking connection between the surface circle and the current Forrás corridor is not an identified unique source-node chain; no artificial closing segment or road-shifting is justified.",
+        "All current highway classes, including actual footways, were inspected in that local gap; broadening to footways did not establish the missing map-consistent connection."
+      ],
+      "usableForAddressAssignment": false
+    },
+    {
+      "quarter": "Kossuthváros",
+      "sourcePrintedPage": 151,
+      "status": "unresolved_shared_parking_corridor",
+      "findings": [
+        "The western source-map border is shared with Árpádváros and uses the apartment-back parking corridor before Magyar and Tizedes.",
+        "A candidate routed directly along the main present Batthyány road would take the apartment strip on the wrong side relative to figure73.",
+        "Current street-centerline interpretation requires resolving the same northern parking connection; naive shortest-path traces are diagnostic-only."
+      ],
+      "usableForAddressAssignment": false
+    }
+  ]
+}

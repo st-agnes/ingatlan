@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "coordinateConvention": "PDF page points, x right/y down from page top left, page163 size595.32x841.92. The native vector-to-page transform is separately archived.",
+  "method": "Six manually measured old-map junctions paired with literal current OSM nodes fit a six-parameter affine transform in EPSG:23700. A candidate southern Daimler historical road junction versus modern cycleway attachment is held out; its physical identity is unconfirmed and it does not affect the fit.",
+  "controls": [
+    {
+      "id": "kiskorosi-konyves",
+      "osmNodeId": 495569829,
+      "coordinates": [
+        19.6754204,
+        46.8858738
+      ],
+      "sourceWayIds": [
+        "osm:way:57771723",
+        "osm:way:424836628",
+        "osm:way:426744463",
+        "osm:way:426744464"
+      ],
+      "roadNames": [
+        "Kiskőrösi út",
+        "Könyves Kálmán körút"
+      ],
+      "sourcePagePoint": [
+        149.2,
+        365.9
+      ],
+      "sourcePagePointWindow": {
+        "x": [
+          147.2,
+          151.2
+        ],
+        "y": [
+          363.9,
+          367.9
+        ]
+      },
+      "sourceMeasurement": "Manual visual road-center/junction correspondence in the historical embedded raster; window is an interpretation range, not calibrated error."
+    },
+    {
+      "id": "halasi-konyves",
+      "osmNodeId": 495569801,
+      "coordinates": [
+        19.6822703,
+        46.8835553
+      ],
+      "sourceWayIds": [
+        "osm:way:40774484",
+        "osm:way:57771723",
+        "osm:way:420918859",
+        "osm:way:420918863"
+      ],
+      "roadNames": [
+        "Halasi út",
+        "Könyves Kálmán körút",
+        "Szent László körút"
+      ],
+      "sourcePagePoint": [
+        191.3,
+        387.1
+      ],
+      "sourcePagePointWindow": {
+        "x": [
+          189.3,
+          193.3
+        ],
+        "y": [
+          385.1,
+          389.1
+        ]
+      },
+      "sourceMeasurement": "Manual visual road-center/junction correspondence in the historical embedded raster; window is an interpretation range, not calibrated error."
+    },
+    {
+      "id": "matkoi-szent-laszlo",
+      "osmNodeId": 495569764,
+      "coordinates": [
+        19.6898014,
+        46.8824841
+      ],
+      "sourceWayIds": [
+        "osm:way:40774484",
+        "osm:way:789874841",
+        "osm:way:789874842",
+        "osm:way:984444564"
+      ],
+      "roadNames": [
+        "Matkói út",
+        "Szent László körút"
+      ],
+      "sourcePagePoint": [
+        237.2,
+        395.0
+      ],
+      "sourcePagePointWindow": {
+        "x": [
+          235.2,
+          239.2
+        ],
+        "y": [
+          393.0,
+          397.0
+        ]
+      },
+      "sourceMeasurement": "Manual visual road-center/junction correspondence in the historical embedded raster; window is an interpretation range, not calibrated error."
+    },
+    {
+      "id": "matkoi-mindszenti",
+      "osmNodeId": 494064578,
+      "coordinates": [
+        19.6902386,
+        46.8907068
+      ],
+      "sourceWayIds": [
+        "osm:way:407203997",
+        "osm:way:407203998",
+        "osm:way:420919721",
+        "osm:way:426954719"
+      ],
+      "roadNames": [
+        "Matkói út",
+        "Mindszenti körút"
+      ],
+      "sourcePagePoint": [
+        239.1,
+        321.2
+      ],
+      "sourcePagePointWindow": {
+        "x": [
+          237.1,
+          241.1
+        ],
+        "y": [
+          319.2,
+          323.2
+        ]
+      },
+      "sourceMeasurement": "Manual visual road-center/junction correspondence in the historical embedded raster; window is an interpretation range, not calibrated error."
+    },
+    {
+      "id": "halasi-mindszenti",
+      "osmNodeId": 314897620,
+      "coordinates": [
+        19.6855188,
+        46.8915002
+      ],
+      "sourceWayIds": [
+        "osm:way:40712326",
+        "osm:way:420918859",
+        "osm:way:420919721"
+      ],
+      "roadNames": [
+        "Halasi út",
+        "Mindszenti körút"
+      ],
+      "sourcePagePoint": [
+        211.0,
+        315.2
+      ],
+      "sourcePagePointWindow": {
+        "x": [
+          209.0,
+          213.0
+        ],
+        "y": [
+          313.2,
+          317.2
+        ]
+      },
+      "sourceMeasurement": "Manual visual road-center/junction correspondence in the historical embedded raster; window is an interpretation range, not calibrated error."
+    },
+    {
+      "id": "mindszenti-mester",
+      "osmNodeId": 1943809333,
+      "coordinates": [
+        19.7221346,
+        46.8929508
+      ],
+      "sourceWayIds": [
+        "osm:way:180183620",
+        "osm:way:183942487"
+      ],
+      "roadNames": [
+        "Mester utca",
+        "Mindszenti körút"
+      ],
+      "sourcePagePoint": [
+        432.0,
+        300.0
+      ],
+      "sourcePagePointWindow": {
+        "x": [
+          430.0,
+          434.0
+        ],
+        "y": [
+          298.0,
+          302.0
+        ]
+      },
+      "sourceMeasurement": "Manual visual road-center/junction correspondence in the historical embedded raster; window is an interpretation range, not calibrated error."
+    }
+  ],
+  "heldOutVisualControls": [
+    {
+      "id": "daimler-held-out",
+      "osmNodeId": 4405130517,
+      "coordinates": [
+        19.7054132,
+        46.8653544
+      ],
+      "sourceWayIds": [
+        "osm:way:113795931",
+        "osm:way:442866768",
+        "osm:way:1100930321"
+      ],
+      "roadNames": [
+        "",
+        "Daimler út"
+      ],
+      "sourcePagePoint": [
+        335.0,
+        546.4
+      ],
+      "sourcePagePointWindow": {
+        "x": [
+          333.0,
+          337.0
+        ],
+        "y": [
+          544.4,
+          548.4
+        ]
+      },
+      "sourceMeasurement": "Manual visual road-center/junction correspondence in the historical embedded raster; window is an interpretation range, not calibrated error.",
+      "sourceFeatureIdentityVerified": false,
+      "identityCaution": "The modern node is a Daimler út / two-cycleway attachment. The prominent historical raster road junction center has not been proved to be the same physical point. Preserve the first manually measured source point and narrow window as a failed candidate check; do not use as independent registration validation."
+    }
+  ],
+  "absoluteAccuracyMeters": null,
+  "geographicRegistrationVerified": false,
+  "controlResidualsAreNotBoundaryAccuracy": true,
+  "existingFigure79Or81ControlsReused": false
+}

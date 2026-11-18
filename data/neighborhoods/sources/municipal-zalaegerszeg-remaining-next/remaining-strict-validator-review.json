@@ -1,0 +1,90 @@
+{
+  "validator": "scripts/neighborhoods/build.mjs validateGeometry, called without repair",
+  "results": [
+    {
+      "name": "Iparterület",
+      "file": "remaining-literal-world.geojson",
+      "estimated": false,
+      "valid": false,
+      "reason": "hole_outside_shell"
+    },
+    {
+      "name": "Zalabesenyő",
+      "file": "remaining-manual-world.geojson",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        16.847525668274983,
+        46.804625632719905,
+        16.855181061720586,
+        46.8161955912088
+      ],
+      "vertices": 433
+    },
+    {
+      "name": "Botfa",
+      "file": "remaining-manual-world.geojson",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        16.858007340239116,
+        46.79423752965538,
+        16.873590000750376,
+        46.808295090186114
+      ],
+      "vertices": 943
+    },
+    {
+      "name": "Bazita",
+      "file": "remaining-manual-world.geojson",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        16.798779004111175,
+        46.79033022004935,
+        16.809506295763597,
+        46.811611159718424
+      ],
+      "vertices": 944
+    },
+    {
+      "name": "Ebergény",
+      "file": "remaining-manual-world.geojson",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        16.79696407523526,
+        46.82602643182287,
+        16.803841566324248,
+        46.83218346527948
+      ],
+      "vertices": 260
+    },
+    {
+      "name": "Szenterzsébethegy",
+      "file": "remaining-manual-world.geojson",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        16.783405361998927,
+        46.8304820341624,
+        16.797005723123057,
+        46.843324755813406
+      ],
+      "vertices": 966
+    },
+    {
+      "name": "Iparterület",
+      "file": "remaining-iparterulet-one-pixel-inferred-world.geojson",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        16.837775889703607,
+        46.78897548458375,
+        16.863611244299964,
+        46.8451896768885
+      ],
+      "vertices": 2722
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Szeged",
+  "status": "positive_sources_with_precisely_documented_geometry_obstacles",
+  "admittedQuarterPolygons": 0,
+  "researchCandidates": [
+    "Klebelsberg-telep / Hattyas",
+    "Tarján housingestate2019 source version",
+    "Odessza residential estate"
+  ],
+  "existingFrozenBatchModified": false,
+  "files": [
+    {
+      "path": "README.txt",
+      "bytes": 4367,
+      "sha256": "2f473a39b4414db69ac49283bddd1b6052173b442856b86a58ff9e3e5569919e"
+    },
+    {
+      "path": "extraction-proof.json",
+      "bytes": 623,
+      "sha256": "4a42d6cf41b48ea3830743abbfa9be889b35d233402de7dd891d939ea8f04e4b"
+    },
+    {
+      "path": "gyalai-water-relation.json",
+      "bytes": 4564,
+      "sha256": "5a7ea45a96a536d7226d3922fd5e5430d9b04f67c1891d625fa9f063dc6e9b5e"
+    },
+    {
+      "path": "gyalai-water-source-members.geojson",
+      "bytes": 90192,
+      "sha256": "c109b6ec14fa3b90d5cd96b88e48742a0d3ef8c953d10aee86fc3d0146b2221f"
+    },
+    {
+      "path": "independent-obstacle-review.json",
+      "bytes": 6688,
+      "sha256": "9f8640611c10e46020269c9f9533bedefe8b1b63a1845c8bf7823903c12ae2c9"
+    },
+    {
+      "path": "klebel-evidence-lines.geojson",
+      "bytes": 474476,
+      "sha256": "337b33b7f0672fbecb97ff8cae6011e1d513ffc63a8f4b0265526fb0b7a36794"
+    },
+    {
+      "path": "name-control-points.geojson",
+      "bytes": 3261,
+      "sha256": "67a0a0671b37fdc5d0338733d199b71dd3145411b7dce6c4fd03af6af5990ef8"
+    },
+    {
+      "path": "obstacle-proof.json",
+      "bytes": 6238,
+      "sha256": "e79d9a630c6782c9f21898b14cd65b5a36bcb03e3f4c9f95c73e9363c29df15f"
+    },
+    {
+      "path": "odessza-evidence-lines.geojson",
+      "bytes": 137679,
+      "sha256": "9722925b69b21e97c6c614cda351f39baf327c6aa422c2adc6bbd60fdd17131a"
+    },
+    {
+      "path": "source-facts.json",
+      "bytes": 6553,
+      "sha256": "b06447d58d364e30c76ce16e1ba6850249c2a8c4bedb44718c848c4b7c13ba56"
+    },
+    {
+      "path": "tarjan2019-evidence-lines.geojson",
+      "bytes": 153569,
+      "sha256": "020d3e227e24fbb975cd0440f49485d08e589ec224a516cfd7fadfddeb8f43c0"
+    }
+  ],
+  "script": {
+    "path": "scripts/neighborhoods/derive-szeged-more.py",
+    "sha256": "3c81f0f6cac532bad21c39104b5af9b3d09044465ca9f75fa1726138956ede4e"
+  },
+  "primaryBoundaryFacts": "source-facts.json",
+  "reproducibleGeometryObstacleProof": "obstacle-proof.json",
+  "independentReview": "independent-obstacle-review.json",
+  "sourceGeometry": {
+    "originalPbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+    "osmSnapshot": "2026-11-12T21:23:05Z",
+    "klebelActualRailWaysExamined": 183,
+    "gyalaiActualOuterBankMembers": 54,
+    "tarjanActualNamedCorridorsAndTransitionsArchived": 93,
+    "odesszaActualNamedCorridorsAndRailWaysArchived": 85
+  },
+  "geometryRepairs": 0,
+  "inventedClosingEdges": 0,
+  "usableForAddressAssignment": false,
+  "notClaimed": "Not a complete city boundary inventory, not an absence-of-all-public-sources finding, not a current exact neighborhood survey.",
+  "networkUsed": "Public web READ connector only; no shell network or permissions/escalation calls.",
+  "readme": "README.txt"
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "status": "incomplete_nationwide_research_checkpoint",
+  "municipalityRows": 3155,
+  "primaryFeatures": 506,
+  "primaryMunicipalities": 48,
+  "planningFeatures": 31,
+  "estimatedFeatures": 191,
+  "estimatedNeighbourhoodCandidates": 165,
+  "estimatedPlanningCandidates": 16,
+  "estimatedLocalAreas": 10,
+  "estimatedMunicipalities": 17,
+  "municipalitiesWithPrimaryOrEstimatedGeometry": 59,
+  "completeNationalCoverage": false,
+  "approvedForAddressAssignment": false,
+  "nationalTotalNumberOfNeighbourhoodsEstablished": false,
+  "inputSha256": {
+    "nationwide-report.csv": "b3eb4cf9f35d40c70944bc394d9a03b148a45f9d01e46e37c686e0e1a197c4a7",
+    "estimated-report.json": "308d0062bed0a5eefe95ddcc86e7438cf9aeb96c37319848c650a69887792c41"
+  },
+  "interpretation": [
+    "Counts represent source-specific geometry candidates, not a verified complete boundary register.",
+    "Estimated neighbourhoods, broader planning groups and local areas are counted separately.",
+    "Blank current totals or missing-name fields mean unknown/not established, not zero or complete coverage.",
+    "Named gaps belong to their cited local inventory and period. Different historical systems are not interchangeable.",
+    "A municipality with a geometry is only partly researched; no coverage percentage is computed."
+  ],
+  "regenerate": "python3 scripts/neighborhoods/combined-report.py"
+}

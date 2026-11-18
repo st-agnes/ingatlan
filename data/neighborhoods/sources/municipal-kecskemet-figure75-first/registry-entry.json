@@ -1,0 +1,21 @@
+{
+  "id": "kecskemet-figure75-source-overprint-inferred",
+  "path": "data/neighborhoods/sources/municipal-kecskemet-figure75-first/source-inferred.geojson",
+  "sha256": "90e2e9b5fda92a4f1b177d78bcb7bf48b725e3071e55a78c9d3af8c602078f22",
+  "municipality": "Kecskemét",
+  "featureCount": 1,
+  "method": "Manual Figure75 source-stroke guides trace original maxRGB<=45 JPEG pixels. Four explicitly enumerated blue-label-overprint intervals use low-confidence bounded manual continuations with unselected alternative paths; twenty vertices are not strict source-black observations. No source-frame closure, buffer, repair, geographic snap or simplification is used. A photo-only Figure74-to-Figure75 affine uses six fitted and seven held-out texture patches, with all fourteen rejected searches and preliminary attempts retained. Its inverse is composed with the archived Figure74-to-Figure73 photo relation and the Figure73 EOV metric calibration. Both photographic relations and the six original Figure73 manual image observations/literal OSM coordinates are independently refitted. The entire new cell is beyond observed overlap and the calibration image footprints. Source-text overprints and full geographic placement remain explicit inferences; photographic residuals are not absolute boundary accuracy.",
+  "evidenceUrls": [
+    "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+  ],
+  "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name point.",
+  "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-figure75-first/independent-review.json",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false
+  },
+  "rightsStatus": "Public municipal consultation draft; open source-map reuse rights not independently established."
+}

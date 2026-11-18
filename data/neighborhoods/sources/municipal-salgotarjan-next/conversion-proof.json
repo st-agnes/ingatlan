@@ -1,0 +1,578 @@
+{
+  "schemaVersion": 1,
+  "status": "FROZEN_SEPARATE_INFERRED_BATCH_NOT_GEOGRAPHICALLY_VALIDATED",
+  "sourceUrl": "https://www.salgotarjan.hu/wp-content/uploads/fejlesztesidokumentumok_20220629_its.pdf",
+  "sourceOriginalPdfSha256": "d0c46f2a4797517874b770da6d64dba88cf81de5170cf09e2857284644a31a25",
+  "sourceDate": "2022-06",
+  "primaryFeatureCount": 0,
+  "inferredFeatureCount": 8,
+  "nativeContoursUnchanged": true,
+  "inputFingerprints": [
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/source-image-inventory.json",
+      "sha256": "38948768c3c5c0f9d499988b13e59d46572464c570c369056ea55a3a4bb9b721"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/profile-source-pixel-contours.geojson",
+      "sha256": "114319fcc6be22126508a93a4c8418d3db9ba53b4dcb0a210f1cf61d9a5b99bc"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/profile-main-correspondence-review.json",
+      "sha256": "6851d9c7eb091e67de8df079f1ef5c31f433fa238d61b42a6bd633a0ea6c0020"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/profile-main-registration-refined.json",
+      "sha256": "725e74a8dc203ae59449e6f26b52e46a5cb89c99fed313793ba046d4813270d2"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/exploratory-frame-registration.json",
+      "sha256": "8b058eb33012df398f76d32d7b7f8f290e5244fb68f1eacea30e7f95108c7015"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/calibration-municipality.geojson",
+      "sha256": "449af490d117d243950acbdabdca21657371e8c1e7168046a31645a9b3915cd8"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/current-source-name-points.geojson",
+      "sha256": "2db4c6302e9d20e2fa47a89683a35cea3bd44926e50485be5d7c461a15899cc6"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/source-pages125-137.pdf",
+      "sha256": "b37c08559774bc818069eb048b9a310acf64d12dc1e44402bbef3f5592d2451b"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/review-frame-scope-and-pixels.json",
+      "sha256": "fb681a729034196166a35e31ed2ba7bbbc05ac8ee7dc868bb6cda555342fefe6"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-salgotarjan-next/salgotarjan-name-semantics-review.json",
+      "sha256": "82ab0da0797d2a8c66cb9c9256868b0bf4b8d5f9791d393ccea55c011577ba1b"
+    }
+  ],
+  "sourcePixelToGeographicPipeline": [
+    "Archived raw source-color component pixel cells",
+    "Actual external outlines; tiny enclosed cartographic-ink void interpretation archived separately",
+    "Refined profile→overview similarity, one shared continuous lower Róna panel",
+    "Unvalidated approximate overview→EPSG:23700 affine from municipal silhouette",
+    "EPSG:23700→EPSG:4326 using pyproj; round8 decimal places"
+  ],
+  "overviewPixelToEovMatrix": [
+    [
+      19.055464318317735,
+      0.025636764106543766
+    ],
+    [
+      -0.018716622064615284,
+      -19.065861978398516
+    ],
+    [
+      700702.1195530887,
+      315406.07469955244
+    ]
+  ],
+  "absoluteAccuracyMetres": null,
+  "claimedFitResidualsAreAbsoluteAccuracy": false,
+  "physicalControlCount": 0,
+  "sourceFrameClosureUsed": false,
+  "sourcePointBufferingUsed": false,
+  "sourceNamePointsUsedForGeoreference": false,
+  "sourceGeometryClippedToCurrentMunicipality": false,
+  "inventedConstituentSplits": false,
+  "sourceConflictsPreserved": [
+    "Salgóbánya/Eresztvény five-name/four-body disagreement; neither emitted",
+    "Szabadságtelep/Ferenctelep disagreement; neither silently aliased",
+    "Acélgyár dual source-unit discussion; no arbitrary partition",
+    "Zagyvapálfalva full industrial legend; no fine historical footprint invented"
+  ],
+  "omittedSourceBodies": "No cropped neighbor fragment or partially cropped Városközpont is closed; no ten-unit group is copied to constituent names. This batch contains only the eight unambiguous separately named complete profile contours.",
+  "records": [
+    {
+      "name": "Somoskő",
+      "sourceImage": "source-p126-xref927.jpeg",
+      "sourceImageSha256": "570aa1432441418fbd5183acf28ed75796bfcbb1a75f368dc1698a3fc6f13921",
+      "rawColorPixelCount": 20669,
+      "cartographicInteriorPixelsFilled": 31,
+      "nativeRawMaskAreaPixels": 20669.0,
+      "nativeOuterContourAreaPixels": 20700.0,
+      "newExternalBoundaryLengthPixels": 0.0,
+      "componentCount": 2,
+      "sourceVertexCountIncludingClosure": 827,
+      "outputVertexCountIncludingClosure": 827,
+      "matrixProfilePixelsToMainPixels": [
+        [
+          0.2734030068425187,
+          0.002919821884674405
+        ],
+        [
+          -0.002919821884674403,
+          0.2734030068425187
+        ],
+        [
+          451.1742334987086,
+          -0.3539115097984791
+        ]
+      ],
+      "matrixProfilePixelsToEov": [
+        [
+          5.209766592205684,
+          -0.048659752662268206
+        ],
+        [
+          -0.060755742489657184,
+          -5.2127388477234975
+        ],
+        [
+          709299.4606848956,
+          315424.388974946
+        ]
+      ],
+      "profileMainResidualMainPixels": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.0002885913755363845,
+          0.7613501507261162,
+          1.4463423728889553,
+          1.9127898128129117,
+          2.208068304157401,
+          3.126325374861853
+        ]
+      },
+      "geographicGeometryValid": true,
+      "absoluteAccuracyMetres": null
+    },
+    {
+      "name": "Rónafalu",
+      "sourceImage": "source-p126-xref927.jpeg",
+      "sourceImageSha256": "570aa1432441418fbd5183acf28ed75796bfcbb1a75f368dc1698a3fc6f13921",
+      "rawColorPixelCount": 9519,
+      "cartographicInteriorPixelsFilled": 13,
+      "nativeRawMaskAreaPixels": 9519.0,
+      "nativeOuterContourAreaPixels": 9532.0,
+      "newExternalBoundaryLengthPixels": 0.0,
+      "componentCount": 1,
+      "sourceVertexCountIncludingClosure": 651,
+      "outputVertexCountIncludingClosure": 651,
+      "matrixProfilePixelsToMainPixels": [
+        [
+          0.26436172876257313,
+          -0.0007541831675119485
+        ],
+        [
+          0.0007541831675119319,
+          0.26436172876257313
+        ],
+        [
+          544.7977174611417,
+          172.95762978279888
+        ]
+      ],
+      "matrixProfilePixelsToEov": [
+        [
+          5.037549605325317,
+          0.02115653145729841
+        ],
+        [
+          0.00942335187240205,
+          -5.040264898142086
+        ],
+        [
+          711080.2558362805,
+          312122.455252571
+        ]
+      ],
+      "profileMainResidualMainPixels": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.0046076593419002165,
+          0.9037836855542877,
+          1.5244220419531302,
+          1.797775076419498,
+          2.073697165302206,
+          3.571943356917025
+        ]
+      },
+      "geographicGeometryValid": true,
+      "absoluteAccuracyMetres": null
+    },
+    {
+      "name": "Rónabánya",
+      "sourceImage": "source-p126-xref927.jpeg",
+      "sourceImageSha256": "570aa1432441418fbd5183acf28ed75796bfcbb1a75f368dc1698a3fc6f13921",
+      "rawColorPixelCount": 3622,
+      "cartographicInteriorPixelsFilled": 7,
+      "nativeRawMaskAreaPixels": 3622.0,
+      "nativeOuterContourAreaPixels": 3629.0,
+      "newExternalBoundaryLengthPixels": 0.0,
+      "componentCount": 1,
+      "sourceVertexCountIncludingClosure": 332,
+      "outputVertexCountIncludingClosure": 332,
+      "matrixProfilePixelsToMainPixels": [
+        [
+          0.26436172876257313,
+          -0.0007541831675119485
+        ],
+        [
+          0.0007541831675119319,
+          0.26436172876257313
+        ],
+        [
+          544.7977174611417,
+          172.95762978279888
+        ]
+      ],
+      "matrixProfilePixelsToEov": [
+        [
+          5.037549605325317,
+          0.02115653145729841
+        ],
+        [
+          0.00942335187240205,
+          -5.040264898142086
+        ],
+        [
+          711080.2558362805,
+          312122.455252571
+        ]
+      ],
+      "profileMainResidualMainPixels": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.0031814702527981353,
+          0.9700255035625673,
+          1.7223703426806185,
+          1.9807367949369223,
+          2.1989029142936998,
+          3.258218887105473
+        ]
+      },
+      "geographicGeometryValid": true,
+      "absoluteAccuracyMetres": null
+    },
+    {
+      "name": "Zagyvaróna",
+      "sourceImage": "source-p128-xref931.jpeg",
+      "sourceImageSha256": "98d670e9427b9c329d1c89e8a42b54c92d598528199639215b2f8245aeab2e03",
+      "rawColorPixelCount": 32415,
+      "cartographicInteriorPixelsFilled": 3,
+      "nativeRawMaskAreaPixels": 32415.0,
+      "nativeOuterContourAreaPixels": 32418.0,
+      "newExternalBoundaryLengthPixels": 0.0,
+      "componentCount": 1,
+      "sourceVertexCountIncludingClosure": 1237,
+      "outputVertexCountIncludingClosure": 1237,
+      "matrixProfilePixelsToMainPixels": [
+        [
+          0.34910526746825643,
+          0.0007697991146065175
+        ],
+        [
+          -0.0007697991146065164,
+          0.3491052674682565
+        ],
+        [
+          470.31697885373865,
+          255.22977695039756
+        ]
+      ],
+      "matrixProfilePixelsToEov": [
+        [
+          6.652348559539036,
+          -0.005726954279745685
+        ],
+        [
+          -0.021202950912626847,
+          -6.656012580639986
+        ],
+        [
+          709659.4509226603,
+          310551.9564048809
+        ]
+      ],
+      "profileMainResidualMainPixels": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.002147593908773615,
+          0.9594301008177025,
+          1.7577064353890124,
+          2.823952797880833,
+          5.085139582605545,
+          9.848894066898607
+        ]
+      },
+      "geographicGeometryValid": true,
+      "absoluteAccuracyMetres": null
+    },
+    {
+      "name": "Beszterce lakótelep",
+      "sourceImage": "source-p129-xref936.jpeg",
+      "sourceImageSha256": "fe3bd234d1365e11979484b35d5ce175d2ec7940c0b6a2184b2f787921542529",
+      "rawColorPixelCount": 62026,
+      "cartographicInteriorPixelsFilled": 9,
+      "nativeRawMaskAreaPixels": 62026.0,
+      "nativeOuterContourAreaPixels": 62035.0,
+      "newExternalBoundaryLengthPixels": 0.0,
+      "componentCount": 1,
+      "sourceVertexCountIncludingClosure": 1571,
+      "outputVertexCountIncludingClosure": 1571,
+      "matrixProfilePixelsToMainPixels": [
+        [
+          0.2615914735163341,
+          0.0003375832875352611
+        ],
+        [
+          -0.0003375832875352746,
+          0.2615914735163341
+        ],
+        [
+          293.3518061661818,
+          237.9466717759367
+        ]
+      ],
+      "matrixProfilePixelsToEov": [
+        [
+          4.984740671147856,
+          0.0002700425324601406
+        ],
+        [
+          -0.011328915035219865,
+          -4.987475583331426
+        ],
+        [
+          706287.6208702753,
+          310876.93688830803
+        ]
+      ],
+      "profileMainResidualMainPixels": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.00035359122693989775,
+          0.34422671922823156,
+          0.7521875440938288,
+          1.1280433873330935,
+          1.7626068328472,
+          4.314072039552163
+        ]
+      },
+      "geographicGeometryValid": true,
+      "absoluteAccuracyMetres": null
+    },
+    {
+      "name": "Forgáchtelep",
+      "sourceImage": "source-p133-xref946.jpeg",
+      "sourceImageSha256": "dfd94beea1290b8fbcdb6e4c9cc1d843a89052949bd2d1e11c0fc79a068fdd80",
+      "rawColorPixelCount": 15680,
+      "cartographicInteriorPixelsFilled": 5,
+      "nativeRawMaskAreaPixels": 15680.0,
+      "nativeOuterContourAreaPixels": 15685.0,
+      "newExternalBoundaryLengthPixels": 0.0,
+      "componentCount": 1,
+      "sourceVertexCountIncludingClosure": 888,
+      "outputVertexCountIncludingClosure": 888,
+      "matrixProfilePixelsToMainPixels": [
+        [
+          0.3888453238764443,
+          -0.0017299824824054645
+        ],
+        [
+          0.0017299824824054209,
+          0.38884532387644427
+        ],
+        [
+          259.97160379375987,
+          479.2143154301832
+        ]
+      ],
+      "matrixProfilePixelsToEov": [
+        [
+          7.40966057390059,
+          0.04295234307674284
+        ],
+        [
+          0.0256877484962029,
+          -7.413626924821146
+        ],
+        [
+          705647.0298997266,
+          306276.1055341687
+        ]
+      ],
+      "profileMainResidualMainPixels": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.0012284634499337699,
+          0.9423349397781262,
+          2.1290910683078095,
+          2.7938794789685177,
+          4.2504352173864985,
+          10.380148813429267
+        ]
+      },
+      "geographicGeometryValid": true,
+      "absoluteAccuracyMetres": null
+    },
+    {
+      "name": "Somlyóbánya",
+      "sourceImage": "source-p133-xref950.jpeg",
+      "sourceImageSha256": "92fa598076bc61541dfef62078dd4e15977349d31b22136dd6a3e49bdbbab444",
+      "rawColorPixelCount": 10575,
+      "cartographicInteriorPixelsFilled": 14,
+      "nativeRawMaskAreaPixels": 10575.0,
+      "nativeOuterContourAreaPixels": 10589.0,
+      "newExternalBoundaryLengthPixels": 0.0,
+      "componentCount": 1,
+      "sourceVertexCountIncludingClosure": 737,
+      "outputVertexCountIncludingClosure": 737,
+      "matrixProfilePixelsToMainPixels": [
+        [
+          0.3984932581830628,
+          0.005966481818065756
+        ],
+        [
+          -0.00596648181806575,
+          0.3984932581830627
+        ],
+        [
+          330.39896370497854,
+          498.96551401362615
+        ]
+      ],
+      "matrixProfilePixelsToEov": [
+        [
+          7.593362390012286,
+          -0.10354004118177872
+        ],
+        [
+          -0.12115252909875297,
+          -7.597770421127514
+        ],
+        [
+          706988.686267829,
+          305901.3374376815
+        ]
+      ],
+      "profileMainResidualMainPixels": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          0.00011888109719393469,
+          0.48376520302434756,
+          1.1488124941807796,
+          1.5889371382657145,
+          2.2012342697277365,
+          6.811198349238305
+        ]
+      },
+      "geographicGeometryValid": true,
+      "absoluteAccuracyMetres": null
+    },
+    {
+      "name": "Baglyasalja",
+      "sourceImage": "source-p136-xref957.jpeg",
+      "sourceImageSha256": "9c46094bda1f3255491bf11fc073015eeaecfc6354aee61a5c8bfd4b46b40a38",
+      "rawColorPixelCount": 33604,
+      "cartographicInteriorPixelsFilled": 1,
+      "nativeRawMaskAreaPixels": 33604.0,
+      "nativeOuterContourAreaPixels": 33605.0,
+      "newExternalBoundaryLengthPixels": 0.0,
+      "componentCount": 3,
+      "sourceVertexCountIncludingClosure": 1937,
+      "outputVertexCountIncludingClosure": 1937,
+      "matrixProfilePixelsToMainPixels": [
+        [
+          0.32012837796562765,
+          -0.0019612724939395668
+        ],
+        [
+          0.00196127249393955,
+          0.3201283779656276
+        ],
+        [
+          144.6982669182717,
+          415.40571075393973
+        ]
+      ],
+      "matrixProfilePixelsToEov": [
+        [
+          6.100231592000986,
+          0.0456004063811965
+        ],
+        [
+          0.031381236164222163,
+          -6.103473188980972
+        ],
+        [
+          703451.6372235805,
+          307489.7163486149
+        ]
+      ],
+      "profileMainResidualMainPixels": {
+        "percentiles": [
+          0,
+          50,
+          80,
+          90,
+          95,
+          100
+        ],
+        "values": [
+          3.4779537543272454e-06,
+          0.5403294560401832,
+          1.0374493874468476,
+          1.3834162546924285,
+          1.710521558842339,
+          3.4572770256188363
+        ]
+      },
+      "geographicGeometryValid": true,
+      "absoluteAccuracyMetres": null
+    }
+  ]
+}

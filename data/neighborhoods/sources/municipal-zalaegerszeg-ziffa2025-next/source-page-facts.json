@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "originalPdf": {
+    "localPath": ".local/neighborhoods/supplement-originals/zalaegerszeg-ziffa2025.pdf",
+    "sha256": "b132fd75d6c95538023ced5eda3ad8ac7f7131c6e27f889ed7206c23e4a44745",
+    "sourceUrl": "https://zalaegerszeg.hu/wp-content/uploads/2025/09/ZEG_ZIFFA_egyeztetesi-valt.pdf",
+    "title": "Zalaegerszeg Zöldinfrastruktúra-fejlesztési és -fenntartási akcióterv",
+    "documentDate": "2025-08-30",
+    "status": "consultation_draft; adoption_not_independently_established",
+    "pageCount": 229,
+    "fullRawOriginalStaysLocal": true
+  },
+  "selectedMapPdf": {
+    "path": "source-map-only-p141.pdf",
+    "sha256": "3173564e67ca54fd62153ee52e182c4f63ddfd55c74c0930e24715e5781b000c",
+    "mapOnlyPages": 2,
+    "sourceNarrativeTextObjects": 0
+  },
+  "selectedPanels": [
+    {
+      "sourcePdfPageOneBased": 141,
+      "sourceImageXref": 773,
+      "path": "p141-xref773.jpeg",
+      "sha256": "4e29b629c1a49f610a9c6a2754523e53bf881ea972551b46e6a9d7be4ddaba82",
+      "dimensionsPixels": [
+        194,
+        246
+      ],
+      "retainedContent": "Native map panel with geographic labels only; no source narrative."
+    },
+    {
+      "sourcePdfPageOneBased": 141,
+      "sourceImageXref": 778,
+      "path": "p141-xref778.jpeg",
+      "sha256": "030e9fe46f8bce31c9a4f9bbea282a72c66e3af3d29d508c72659583f1569d76",
+      "dimensionsPixels": [
+        355,
+        451
+      ],
+      "retainedContent": "Native map panel with geographic labels only; no source narrative."
+    }
+  ],
+  "sourcePageFacts": [
+    {
+      "pdfPageOneBased": 63,
+      "fact": "Methodology describes defining neighborhood analysis boundaries using settlement structure and administrative data. Paraphrase only."
+    },
+    {
+      "pdfPageOneBased": 99,
+      "fact": "Section3.4 introduces a neighborhood-by-neighborhood green-infrastructure comparison. Paraphrase only."
+    },
+    {
+      "pdfPageOneBased": 141,
+      "fact": "Section3.4.17, figure54, provides separately labeled Hatház map panels."
+    },
+    {
+      "pdfPageOneBased": 142,
+      "fact": "Hatház is described as a small residential neighborhood outside belterület. A nearby recreation parcel0679/2 is outside the neighborhood extent. This page contains no map; no narrative image or text is retained. Paraphrase only."
+    }
+  ],
+  "contentMinimization": {
+    "verbatimNarrativeQuotationWords": 0,
+    "fullNarrativePagesRetained": false,
+    "fullSourceTextRetained": false,
+    "geographicLabelsAndBibliographicFactsRetained": true
+  }
+}

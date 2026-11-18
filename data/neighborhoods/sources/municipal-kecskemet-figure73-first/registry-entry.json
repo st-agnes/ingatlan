@@ -1,0 +1,21 @@
+{
+  "id": "kecskemet-figure73-source-pixel-inferred",
+  "path": "data/neighborhoods/sources/municipal-kecskemet-figure73-first/source-inferred.geojson",
+  "sha256": "36cc4e59c1516338ba34928dcffdf871e9f01f2432701506a91b5fceb4a2cb5a",
+  "municipality": "Kecskemét",
+  "featureCount": 2,
+  "method": "Every boundary vertex is an original maxRGB<=45 black pixel on the exact embedded municipal Figure73 JPEG. Dense rings follow only 8-neighbor source-pixel paths guided by manually inspected stroke corridors. A literal black connected-component subset excludes detached photographic specks; no pixel is added, no missing edge is filled and no image-frame closure, buffer, snap, simplification or repair is used. The complete original apartment-back parking zigzag is retained instead of replacing it by an unresolved modern road-node chain. Six approximate historical source-junction observations fit an affine transform to literal current OSM nodes in EPSG:23700. Four old observations are transferred through the exact PDF page-image placement on the same byte-identical Figure73 image; two southern observations are new. A failed earlier same-image Jókai/Piaristák candidate is preserved outside the fit. Exact historical-to-current physical point identity has not been independently validated, so all geographic output remains inferred.",
+  "evidenceUrls": [
+    "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+  ],
+  "license": "Municipal source-map reuse rights unverified; ODbL-1.0 for OSM geographical controls and name points.",
+  "reviewPath": "data/neighborhoods/sources/municipal-kecskemet-figure73-first/independent-review.json",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false
+  },
+  "rightsStatus": "Public municipal consultation draft; open reuse rights not independently established."
+}

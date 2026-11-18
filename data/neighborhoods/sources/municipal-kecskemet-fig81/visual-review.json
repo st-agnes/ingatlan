@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent visual and semantic reading of original2021figure81, before any candidate geometry or georeferencing output. This is not a boundary/geodetic certification.",
+  "source": {
+    "pdfPath": ".local/neighborhoods/nationwide-docs/originals/kecskemet-map.pdf",
+    "pdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+    "pdfPageOneBased": 175,
+    "printedPage": 173,
+    "figure": 81,
+    "jpegXref": 216,
+    "jpegPath": "data/neighborhoods/sources/municipal-kecskemet-fig81/page175-xref216.jpeg",
+    "jpegSha256": "4d9d33cf34268d28653d0955b8619e515653b29cea59914397246eaa7589f1ec",
+    "sizePixels": [
+      1259,
+      893
+    ]
+  },
+  "semanticReading": {
+    "separatelyOutlinedSourceUnitCount": 6,
+    "names": [
+      "Külső-Máriahegy",
+      "Belső-Máriahegy",
+      "Széchenyiváros III.",
+      "Széchenyiváros II.",
+      "Széchenyiváros I.",
+      "Villanegyed"
+    ],
+    "sourceIAndVillaAreSeparate": true,
+    "basis": [
+      "The lower-right map contains a continuous black internal line between two separately shaded street-pattern areas. The blue Széchenyiváros I. and Villanegyed labels run into each other across this line; they are not a single compound-source label.",
+      "The adjacent source text on printed173–174 describes Villanegyed separately from the three housing-estate phases divided by Akadémia körút and Március15utca."
+    ],
+    "fineNameCurrentStatus": "Not independently verified from this visual review."
+  },
+  "closureReview": {
+    "külsőMáriahegy": {
+      "sourceTopCornerClippedOrOccluded": true,
+      "visibleLiteralClosureEstablished": false,
+      "sourceFrameRows": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "topFrameRgbObservation": "Rows0–3 in the critical x165–209 window have no source-black pixels(maxRGB<45). At row4, the northwest and northeast boundary rays appear in disjoint black runs.",
+      "affectedApproximateNativePixelWindow": [
+        165,
+        0,
+        210,
+        16
+      ],
+      "interpretation": "The nominal northwestern tip meets or lies just above the top image frame. A line drawn along the raster edge or a fitted continuation between the two rays would be an inferred/source-clip reconstruction, not a literal closed source-pixel trace.",
+      "recommendation": "Do not silently export a main raster-only quarter ring until another source or explicitly classified reconstruction resolves this missing corner."
+    },
+    "fourOtherCircuitsVisuallyComplete": true,
+    "visuallyCompleteSourceUnits": [
+      "Belső-Máriahegy",
+      "Széchenyiváros III.",
+      "Széchenyiváros II.",
+      "Széchenyiváros I."
+    ],
+    "villanegyed": {
+      "sourceBottomCornerClippedOrOccluded": true,
+      "visibleLiteralClosureEstablished": false,
+      "affectedApproximateNativePixelWindow": [
+        1060,
+        860,
+        1121,
+        893
+      ],
+      "lastPhotographicRow": 887,
+      "disjointBlackRunsAtRow887X1070To1104": [
+        [
+          1082,
+          1083,
+          1084,
+          1085
+        ],
+        [
+          1091,
+          1092,
+          1093
+        ]
+      ],
+      "bottomFramePixelProof": [
+        {
+          "row": 888,
+          "minimumMaxRgbInX1060To1120": 236,
+          "blackPixelCountMaxRgbAtMost45": 0
+        },
+        {
+          "row": 889,
+          "minimumMaxRgbInX1060To1120": 236,
+          "blackPixelCountMaxRgbAtMost45": 0
+        },
+        {
+          "row": 890,
+          "minimumMaxRgbInX1060To1120": 236,
+          "blackPixelCountMaxRgbAtMost45": 0
+        },
+        {
+          "row": 891,
+          "minimumMaxRgbInX1060To1120": 236,
+          "blackPixelCountMaxRgbAtMost45": 0
+        },
+        {
+          "row": 892,
+          "minimumMaxRgbInX1060To1120": 236,
+          "blackPixelCountMaxRgbAtMost45": 0
+        }
+      ],
+      "interpretation": "The southeastern and southwestern black boundary rays reach the final photographic row separately. The white bottom frame begins at row888, hiding their apparent junction below the available aerial illustration. They are not visibly closed in the literal source raster.",
+      "recommendation": "Do not add a flat segment along the image frame or bridge the gap and describe it as a literal source boundary. Keep Villanegyed unresolved without an additional source or explicitly inferred/source-clip reconstruction."
+    }
+  },
+  "geographicalControlCandidates": {
+    "archivePath": "data/neighborhoods/sources/municipal-kecskemet-outer-next/all-local-roads.geojson",
+    "archiveSha256": "ee16b15f2dcc1379f5638abd8990151c8865065307331f0ee54b8c53bf2bd7f9",
+    "method": "Actual common OSM node IDs of the two named road objects. Native-image positions below are approximate visual locations only, not surveyed or fitted control points. Quarter-label positions are not controls.",
+    "nodes": [
+      {
+        "roads": [
+          "Budai út",
+          "Március 15. utca"
+        ],
+        "osmNodeId": 494552209,
+        "coordinates": [
+          19.6783939,
+          46.9210658
+        ],
+        "approximateNativeImagePixel": [
+          979,
+          453
+        ]
+      },
+      {
+        "roads": [
+          "Budai út",
+          "Akadémia körút"
+        ],
+        "osmNodeId": 325657655,
+        "coordinates": [
+          19.682452,
+          46.9184663
+        ],
+        "approximateNativeImagePixel": [
+          1066,
+          535
+        ]
+      },
+      {
+        "roads": [
+          "Nyíri út",
+          "Március 15. utca"
+        ],
+        "osmNodeId": 1251210477,
+        "coordinates": [
+          19.6670287,
+          46.9132077
+        ],
+        "approximateNativeImagePixel": [
+          743,
+          694
+        ]
+      },
+      {
+        "roads": [
+          "Nyíri út",
+          "Széles köz"
+        ],
+        "osmNodeId": 770384253,
+        "coordinates": [
+          19.6530069,
+          46.9202812
+        ],
+        "approximateNativeImagePixel": [
+          441,
+          480
+        ]
+      },
+      {
+        "roads": [
+          "Széles köz",
+          "Ladánybenei út"
+        ],
+        "osmNodeId": 770384250,
+        "coordinates": [
+          19.6632827,
+          46.929398
+        ],
+        "approximateNativeImagePixel": [
+          660,
+          194
+        ]
+      }
+    ],
+    "importantMisidentificationGuard": "The outer bottom-right corner near1092,879 is the Nyíri/Széchenyi junction. The stepped housing corner near574,622 must not be substituted as that geographical control.",
+    "limits": [
+      "Current road junction positions and the older aerial/map boundary may differ. Choose the visible centerline/control location explicitly and preserve residuals and independent controls.",
+      "These four candidates occupy the southern/eastern part of the figure. Northern extrapolation should have additional independent geographically identifiable controls; no absolute accuracy is asserted."
+    ],
+    "manualPixelPlacementUncertainty": "Approximately several source pixels (typically3–5px); this is a visual judgement, not a calibrated statistical interval or absolute-position bound.",
+    "sourceGeometryEvidence": {
+      "BudaiAkademiaNode325657655": "Shared by tertiary Akadémia körút29547881 and 4-lane primary/ref5 Budai út412223167/428796217; not a frontage-road node.",
+      "correction": "Initial rough1048,529 guess was a housing-block interior. Close source-image inspection identifies the physical junction near1063–1067,532–536;1066,535 is a reasonable approximate choice."
+    },
+    "diagnosticAffineFit": {
+      "method": "WGS84column[longitude,latitude,1] least squares to manually placed imagepixel[rowX,rowY]; consistency diagnostic only.",
+      "matrixWorldRowToPixelRows": [
+        [
+          21168.663215653818,
+          -19.98416991539774
+        ],
+        [
+          -201.5266581352266,
+          -30940.290949398663
+        ],
+        [
+          -406129.3699366546,
+          1452597.6855560578
+        ]
+      ],
+      "fitResidualPixels": [
+        1.0775719156894292,
+        1.7259659036320147,
+        3.04601121183875,
+        2.8713352295541026,
+        2.1132012588200277
+      ],
+      "fitUsesSurveyedPixels": false,
+      "absoluteAccuracyEstablished": false
+    },
+    "heldOutVisualCandidate": {
+      "roads": [
+        "Ladánybenei út",
+        "Máriahegy tanya"
+      ],
+      "osmNodeId": 2298202646,
+      "coordinates": [
+        19.6488187,
+        46.9334497
+      ],
+      "approximateSourcePixelRange": {
+        "x": [
+          348,
+          356
+        ],
+        "y": [
+          69,
+          77
+        ]
+      },
+      "predictedPixelFromFiveControlFit": [
+        351.5144362875144,
+        70.4312475528568
+      ],
+      "visualInterpretation": "The dirt-track/road junction is partly occluded by the black source outline. Native-image crop supports the stated approximate window; no exact surveyed pixel location is claimed.",
+      "usedInFiveControlFit": false
+    },
+    "rejectedOrUnusablePriorCandidates": [
+      {
+        "roads": [
+          "Nyíri út",
+          "Széchenyi körút"
+        ],
+        "osmNodeId": 265343217,
+        "coordinates": [
+          19.6834248,
+          46.9068482
+        ],
+        "priorApproximatePixel": [
+          1092,
+          879
+        ],
+        "reason": "Literal geographical node is valid, but focused bottom-tip inspection shows this corner is clipped/occluded by the frame. Do not use the guessed black-boundary intersection as an exact image control."
+      }
+    ]
+  },
+  "claimedAbsoluteAccuracyMetres": null,
+  "usableForAddressAssignment": false,
+  "geometryCreated": false,
+  "status": "VISUAL_SEMANTIC_REVIEW_COMPLETE; candidate overlays may receive a later independent geometry review.",
+  "reviewRevision": "Six named units, four complete rastercircuits; two clippedtips. Revised approximate source-control pixels after detailed road-junction inspection; all five geographical coordinates independently checked against literal archived OSMnodes. Fit is a consistency diagnostic only."
+}

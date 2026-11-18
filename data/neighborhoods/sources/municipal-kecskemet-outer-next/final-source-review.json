@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "scope": "New independent offline verification of the two historical source-raster quarter candidates, not a current/legal boundary survey.",
+  "inputGeojson": {
+    "path": "data/neighborhoods/sources/municipal-kecskemet-outer-next/petofi-source-raster.geojson",
+    "sha256": "46c456e00e409d722289fe3d25d9cf3c756ff40a782db1dd08d82328769ff417"
+  },
+  "sourceProof": {
+    "publisherPdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+    "sourcePdfPageOneBased": 169,
+    "printedPage": 167,
+    "figure": 79,
+    "imageXref": 208,
+    "literalPublisherJpegMatches": true,
+    "imageSha256": "8d6217e4ae20dadfd07141aaed4dff0c057166fd60f30d8a7c0eec9b9fd5079d",
+    "imageSizePixels": [
+      1694,
+      1202
+    ],
+    "captionAndNamesVerifiedOnOriginalPage": true,
+    "sourcePbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a"
+  },
+  "calibration": {
+    "controlCount": 5,
+    "allFiveCoordinatesRecheckedDirectlyInOriginalPbf": true,
+    "allFiveCoordinatesMatchArchivedWays": true,
+    "matrixRebuiltFromOriginalPdfImageRectangleAndActualControls": true,
+    "matrixExactlyMatchesFrozenExportMatrix": true,
+    "fitResidualRenderedPixels": [
+      0.3703029284714672,
+      0.5701511120778605,
+      1.065292853499344,
+      0.5090606728601502,
+      0.6330876638696357
+    ],
+    "fitResidualIsNotBoundaryAccuracy": true,
+    "coordinateConvention": "Original raster integer indices fitted edge-to-edge to actual publisher PDF image rectangle; no half-pixel offset.",
+    "absoluteBoundaryAccuracyMetres": null
+  },
+  "records": [
+    {
+      "name": "Petőfiváros I.",
+      "sourcePixelCount": 2190,
+      "compressedVertexCount": 881,
+      "allDensePixelsLiteralBlackSourcePixels": true,
+      "allDenseStepsLiteralEightNeighbors": true,
+      "literalClosure": true,
+      "independentRunCompressionMatchesExactly": true,
+      "compressionSymmetricDifferencePixelArea": 0.0,
+      "exactIndependentWorldCoordinates": true,
+      "worldGeometryValid": true,
+      "municipalityContained": true,
+      "interiors": 0,
+      "sourceLabelInsideCorrespondingPixelRegion": true,
+      "areaM2": 1314459.6387859806,
+      "currentNameIndependentlyConfirmed": false,
+      "absoluteBoundaryAccuracyMetres": null,
+      "usableForAddressAssignment": false
+    },
+    {
+      "name": "Petőfiváros II.",
+      "sourcePixelCount": 956,
+      "compressedVertexCount": 407,
+      "allDensePixelsLiteralBlackSourcePixels": true,
+      "allDenseStepsLiteralEightNeighbors": true,
+      "literalClosure": true,
+      "independentRunCompressionMatchesExactly": true,
+      "compressionSymmetricDifferencePixelArea": 0.0,
+      "exactIndependentWorldCoordinates": true,
+      "worldGeometryValid": true,
+      "municipalityContained": true,
+      "interiors": 0,
+      "sourceLabelInsideCorrespondingPixelRegion": true,
+      "areaM2": 372571.093166839,
+      "currentNameIndependentlyConfirmed": false,
+      "absoluteBoundaryAccuracyMetres": null,
+      "usableForAddressAssignment": false
+    }
+  ],
+  "pairwisePixelInteriorOverlapArea": 0,
+  "pairwiseWorldInteriorOverlapSquareDegrees": 0,
+  "existingJsValidator": [
+    {
+      "name": "Petőfiváros I.",
+      "valid": true,
+      "bbox": [
+        19.63986678928088,
+        46.888925152229426,
+        19.662492039841833,
+        46.90032225018007
+      ],
+      "vertices": 881
+    },
+    {
+      "name": "Petőfiváros II.",
+      "valid": true,
+      "bbox": [
+        19.643949954547832,
+        46.89657229934283,
+        19.65479245045178,
+        46.90470998642817
+      ],
+      "vertices": 407
+    }
+  ],
+  "manifestFilesIndependentlyHashVerified": [
+    "Petőfiváros-I.-0-diagnostic-independent-overlay.png",
+    "Petőfiváros-I.-0-diagnostic.geojson",
+    "Petőfiváros-I.-1-diagnostic-independent-overlay.png",
+    "Petőfiváros-I.-1-diagnostic.geojson",
+    "Petőfiváros-I.-2-diagnostic-independent-overlay.png",
+    "Petőfiváros-I.-2-diagnostic.geojson",
+    "Petőfiváros-I.-3-diagnostic-independent-overlay.png",
+    "Petőfiváros-I.-3-diagnostic.geojson",
+    "Petőfiváros-II.-0-diagnostic-independent-overlay.png",
+    "Petőfiváros-II.-0-diagnostic.geojson",
+    "README.txt",
+    "all-local-roads.geojson",
+    "bottom-trace-grid.png",
+    "conversion-proof.json",
+    "explore_outer.py",
+    "extraction-proof.json",
+    "figure79-source.jpeg",
+    "fine-map-review.json",
+    "fineI-strict-independent.png",
+    "fineII-initial-overlay.png",
+    "fineII-strict-independent.png",
+    "kecskemet-outer-source-pages.pdf",
+    "petofi-source-raster.geojson",
+    "raster-extraction-proof.json",
+    "raster-georeference.json",
+    "raster-independent-review.json",
+    "raster-pixel-trace.json",
+    "raster-trace-diagnostic.geojson",
+    "raster-trace-preview.png",
+    "raw-pixel-trace.json",
+    "registry-entry.json",
+    "source-page-169.png",
+    "source-page-175.png",
+    "source-page169-grid.png",
+    "trace-figure79-pixels.py",
+    "trace_raster_diagnostic.py"
+  ],
+  "sourceVisualReviewed": "Actual figure79 source-raster preview visibly labels the two regions and the digitized paths follow its black boundaries. No western Felsőszéktó–Felsőcsalános compound region was substituted.",
+  "limits": [
+    "Five manually chosen image-junction positions provide registration consistency, not independent geodetic boundary accuracy.",
+    "The older source line is retained even where a current road has shifted; resulting world vertices are georeferenced JPEG pixels, not original OSM vertices.",
+    "Exact present-day fine labels I./II. are not independently established; the municipal2021 source names are retained as historical evidence.",
+    "No official/legal/cadastral/address-assignment verification or source-map reuse-rights clearance is implied."
+  ],
+  "verdict": "PASS as two explicitly unreviewed historical source-raster quarter candidates.",
+  "networkUsed": false,
+  "sourceFilesModified": false
+}

@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "independent_source_graphic_minimization_and_current_hash_audit",
+  "reviewer": "zala_semantic_qa",
+  "status": "passes_map_only_minimization_and_current_geometry_metadata_integrity",
+  "sourcesVerifiedAgainstIgnoredLocalOriginals": [
+    {
+      "id": "henits2013",
+      "localPath": ".local/neighborhoods/quarter-map-batch/szeged-henits-ksh-map-2013.pdf",
+      "sha256": "b490214f9f038afe38fb1c74e24c0d5b99aeb04e54f192c417b06018363b3d0f",
+      "fullOriginalStaysLocal": true
+    },
+    {
+      "id": "ksh2014",
+      "localPath": ".local/neighborhoods/quarter-map-batch/ksh-szeged-map-2014.pdf",
+      "sha256": "9a61caa7d022e0d623bd78f21ce8d8953fa7e47f49ba48be5c18b13c44286995",
+      "fullOriginalStaysLocal": true
+    },
+    {
+      "id": "kleb2007",
+      "localPath": ".local/neighborhoods/quarter-map-batch/klebelsberg-history-2007.pdf",
+      "sha256": "aa6b8466ea597f604691f6b4def6104b68e000a6348cb85c1f2ec47e33d136f3",
+      "fullOriginalStaysLocal": true
+    }
+  ],
+  "inputs": [
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/source-map-only.pdf",
+      "sha256": "4e0f5625e56e60170e951834dfe68502fb26aac6ca10f071da45e737d11a2960"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/henits-p24-xref249.jpeg",
+      "sha256": "e3ba7c2ba2d955fbf0ae08c847edba5502ce90d776a649819b33a26f51323c6e"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/ksh-p54-map-assembled.png",
+      "sha256": "56585d091db293434df406d3d75eeb563328faf47d4dbf50697e2d4253d20649"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/source-page-facts.json",
+      "sha256": "985f8546543615c629877f5de5e40863fd2882a9833e9ac0e8754b7bc983db30"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/prepare-source-evidence.py",
+      "sha256": "f247cee4d67b4c97d080b62ff47cc06cd280b77ea4c261426dfad8ddbd848ee8"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/szeged-four-inferred-import.geojson",
+      "sha256": "098f2b9aa742f74113a745a5793733a458e788e34e1b28f025b2859cabf8ab1d"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/szeged-four-placement-alternative.geojson",
+      "sha256": "50cd1d39eaf00f83f9ba41afe2f9088c0dd8d61e1fcb0b07003884298bdecb91"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/registration.json",
+      "sha256": "042bf4088192d2bde038722069df31f6c2341867f325965bc1a5055b7f883763"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/independent-registration-review.json",
+      "sha256": "5100160fb50199726cebdae3437e5eb2c8b9cb02bb6869c11cb837274e84de90"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-szeged-raw-next/henits-road-pbf-review-working.json",
+      "sha256": "6615d7ea010c186f1b16786b1c412e021d12525fb240c4f474f78168e4445ca9"
+    }
+  ],
+  "mapOnlyPdf": {
+    "path": "source-map-only.pdf",
+    "mapPages": 2,
+    "embeddedFiles": 0,
+    "xmlMetadataPresent": false,
+    "originalNarrativePagesOrTextObjects": 0,
+    "mapChecks": [
+      {
+        "pdfPageOneBased": 1,
+        "textCharacters": 0,
+        "imageCount": 1,
+        "dimensionsPixels": [
+          1174,
+          1018
+        ],
+        "sourceImageIntegrity": "Henits native JPEG is bit-exact",
+        "links": 0,
+        "annotations": 0,
+        "widgets": 0
+      },
+      {
+        "pdfPageOneBased": 2,
+        "textCharacters": 0,
+        "imageCount": 1,
+        "dimensionsPixels": [
+          1390,
+          914
+        ],
+        "sourceImageIntegrity": "KSH image decodes exactly to original5strip pixels concatenated and rotated90degrees, no resampling",
+        "links": 0,
+        "annotations": 0,
+        "widgets": 0
+      }
+    ]
+  },
+  "KshAssemblyIndependentPixelCheck": {
+    "originalImageXrefs": [
+      159,
+      160,
+      161,
+      162,
+      163
+    ],
+    "originalStripDimensionsPixels": [
+      914,
+      278
+    ],
+    "sourceDecodedPixelsExactlyConcatenatedAndRotated": true,
+    "outputDimensionsPixels": [
+      1390,
+      914
+    ],
+    "resamplingPerformed": false
+  },
+  "packetTextAndRasterAudit": {
+    "directNarrativeQuotationWords": 0,
+    "publicFullNarrativeParagraphsOrPageImagesFound": false,
+    "textOrMarkdownFilesPresent": [],
+    "otherPdfFilesPresent": [],
+    "onlyMapGraphicsMapOnlyCropsGeographicLabelsAndAuthoredPreviews": "Verified native maps, six-road control comparison crops and4contour overlays visually; no narrative paragraphs.",
+    "bibliographicAndSourceKeyFactsAreFactualOrParaphrased": true,
+    "newRawBodyRetainedOnlyLocally": true
+  },
+  "candidateScopeIntegrity": {
+    "estimatedSourceIdentities": 4,
+    "primaryFeatureCount": 0,
+    "placementAlternativeAdditionalIdentityCount": 0,
+    "canonicalNeighborhoodOverrideFalse": true,
+    "sourceContourObservedTrue": true,
+    "estimatedPlacementTrue": true,
+    "placementConfidence": "low",
+    "allFourInteriorsEntirelyOutsideGcpHull": true,
+    "controlHullCoverageFraction": 0,
+    "absoluteAccuracyNull": true,
+    "addressAssignmentFalse": true,
+    "historicalSchemeNotClaimedEqualToPresentWholeOr2007NaturalBoundary": true,
+    "Ujszoreg27LiteralQuarantineNoWorldGeometry": true
+  },
+  "independentRoadReferenceCheck": {
+    "originalCompleteWays": 23,
+    "uniqueNodes": 66,
+    "coordinateOccurrences": 83,
+    "maximumCoordinateDifferenceDegrees": 0
+  },
+  "limits": "Content minimization/fidelity is not redistribution-rights clearance or geographic accuracy. Source/raster and extrapolation caveats remain. Source-mask computational checks were by its tracing author; parent/root independent source visual review is separate.",
+  "geometryOrRegistrationModifiedByThisAudit": false,
+  "networkCallsPerformed": false,
+  "globalRegistryModified": false,
+  "frozenPacketsModified": false,
+  "finalArtifactManifestNeedsRefreshAfterReviewAddition": true
+}

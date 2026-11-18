@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_FOR_ONE_EXPLICIT_SOURCE_GAP_AND_GEOGRAPHIC_INFERRED_CANDIDATE",
+  "logicalCohortPath": "data/neighborhoods/sources/municipal-kecskemet-figure74-first",
+  "independentOfSourceAndGeographicProducerCodeExecution": true,
+  "producerSourceAndDeriveModulesImported": false,
+  "photographicWorkProducedByThisReviewingAgent": true,
+  "photographicNumericImplementationIndependentlyCrossCheckedButSeparateBlindVisualReviewer": false,
+  "provenanceSha256": {
+    "input-manifest.json": "305123adac2ea86824a780982e0d3f763e47028106f2d2c2b1a8b5b9f83a772f",
+    "generated-manifest.json": "f2382c22dc83d4a3602c777d96db125a87b3773253b2c482d9ed3f49cba5350e",
+    "source-pixel-trace.json": "f49881e85c39c22c991a77d6ae16474b876147abaf2303271e88ee4061165e6e",
+    "source-semantics.json": "00d12e83d27b29b62c46b3dff854ca2f1af7a306e4701df6321942b6ee65e057",
+    "source-independent-review.py": "a1c783b3903308698720da60e21431a16c68179476bfc13f34086edd47faa143",
+    "source-independent-review.json": "5da96c50962f910c792cb861e343aa78832a0d6de9b8bd2bae0e8db930624bcc",
+    "source-inferred.geojson": "9d689aa4fef30c95e28f50e1984de8b931a0837d41f3b823209dc63bd916717c",
+    "source-inference-alternatives.json": "c3e942dfb10649d13fca8b9f1e9d2033bcbcdfab0e628ffe56dca7be4ddf8698",
+    "georeference.json": "797dc06c27fd8095e8c9dd9f6ae2e54c09b85fad576e09b99b09ffb5b3e56c13",
+    "conversion-proof.json": "25313434147e4b60624274fc60f91340d51c4eb8f5036a363fd9c069e3c0745b",
+    "registry-entry.json": "b10f8eff04b35d8822f1ffa37061412412625b8ba61fc85763ae59d225043fd7",
+    "calibration-figure73-manifest.json": "ccb04d4774e71a3cc3d3d35f9ce5050214134875dbc406236738bebdcd6363fc",
+    "calibration-figure73-georeference.json": "ca53ee79f25c5e44157a7d1271c76d58208672810d5976a424891a71a949711e",
+    "calibration-figure73-control-specification.json": "ebf0b071b4d3ab3824e50ecced9ede8482188a288fa18762f47501467cec1a6b",
+    "calibration-figure73-control-roads.geojson": "626c532130175afb62c52f968bfd1bda7e477a7ccf8f1c0a76df8e3419cd1f09",
+    "calibration-figure73-original-pbf-verification.json": "51ca65408c34688d6c576140aa8958d79bd6c788687c2cc45d8cd76f091243f9",
+    "calibration-figure73-prior-same-image-comparison.json": "fb935841f7c9e9055d3e39327226ec51e6ebaa0f42c9df737e6e2abc668bba7d",
+    "current-name-points.geojson": "6f378d92adcf5a69dfa574edcae85979671f0c78b995a319ecdd6f1696448618",
+    "current-name-original-pbf-proof.json": "d2909fc1fb83021ee42356b12112e189cc7d8448407621cff1bea811342bb016",
+    "original-pbf-verification.json": "8c5b7834345d1c50814a6494c44f86dce7b599293969b78d58fd7998f5792d6c",
+    "verify-original-pbf.py": "9b9478f566367210f90011a78f8619c9067d9b12fe59e6d7b6bead05f9c4f8cf",
+    "image-registration-work/work-manifest.json": "86327304767a82eded6b13203a25cacf4ccc35cce54ad622ba59918cec999689",
+    "image-registration-work/image-registration.json": "9b638c564b30f3bdac4b9b9829d42fcd43116a0f93d1cc25da3b1b6c7c6c8359",
+    "image-registration-work/direct-verification.json": "dda2e4a4ba759021383d873eb96fcb50231f98b2135f96d3783c38af9a21a843",
+    "finalaudit-independent.py": "d61189b6355b1c427285368530ec7081264185162731731e4d7eeb2c0052a074"
+  },
+  "portableReplay": {
+    "requiresExternalFrozenCohortDirectoryOrFullPbf": false,
+    "requiresRepositoryProjectValidator": true,
+    "allProvenancePathsRelativeToCohort": true,
+    "finalManifestExcludedFromOwnFingerprintAvoidingCycles": true
+  },
+  "sourceContour": {
+    "all2391SourceVerticesAnd2390EdgesChecked": true,
+    "strictBlackVerticesIncludingClosure": 2378,
+    "explicitBlueTextOverprintNonBlackVertices": 13,
+    "gapCount": 3,
+    "sourceContourFullyObserved": false,
+    "frameClosureOrUnlistedGapDetected": false,
+    "sourceAndWorldHoles": 0,
+    "sourceScopeReview": "source-independent-review.json",
+    "allThreeGapWorldPathsAndSixUnselectedAlternativePathsChecked": true,
+    "gapChecks": [
+      {
+        "id": "blue-overprint-1",
+        "chosenAndBothAlternativeWorldPathsChecked": true,
+        "sourceNonBlackChosenVertexCount": 7,
+        "alternativeReplacementPolygonValidFlags": [
+          true,
+          true
+        ],
+        "alternativesAreUnselectedAndNotAccuracyBounds": true
+      },
+      {
+        "id": "blue-overprint-2",
+        "chosenAndBothAlternativeWorldPathsChecked": true,
+        "sourceNonBlackChosenVertexCount": 2,
+        "alternativeReplacementPolygonValidFlags": [
+          true,
+          true
+        ],
+        "alternativesAreUnselectedAndNotAccuracyBounds": true
+      },
+      {
+        "id": "blue-overprint-3",
+        "chosenAndBothAlternativeWorldPathsChecked": true,
+        "sourceNonBlackChosenVertexCount": 4,
+        "alternativeReplacementPolygonValidFlags": [
+          false,
+          true
+        ],
+        "alternativesAreUnselectedAndNotAccuracyBounds": true
+      }
+    ]
+  },
+  "photographicRelation": {
+    "all48SearchesDirectlyCrossCheckedBySeparateNumericImplementation": true,
+    "trainingCount": 13,
+    "heldOutCount": 10,
+    "rejectedCount": 25,
+    "maximumHeldOutResidualTargetPixels": 0.47120478654527725,
+    "allFourProducerManualPreFitPhotoChecksInsideOriginalInterpretation": true,
+    "separateBlindPhysicalReview": false,
+    "geographicCoordinatesNamesOrQuarterGeometryUsed": false
+  },
+  "calibration": {
+    "copiedFrozenFigure73EvidenceHashesMatch": true,
+    "sixOriginalManualImageObservationsPreserved": true,
+    "originalMetricAffineIndependentlyRefitted": true,
+    "controlResidualMeters": [
+      3.287598810620155,
+      4.787726003229771,
+      1.1242697205185157,
+      1.9731379398351536,
+      9.735168889125108,
+      8.494347407926316
+    ],
+    "priorManualObservationTransfersChecked": [
+      {
+        "osmNodeId": 4170613208,
+        "priorObservationRetainedExactlyThroughImagePlacement": true,
+        "usedInNewFit": true
+      },
+      {
+        "osmNodeId": 4331477437,
+        "priorObservationRetainedExactlyThroughImagePlacement": true,
+        "usedInNewFit": true
+      },
+      {
+        "osmNodeId": 494254692,
+        "priorObservationRetainedExactlyThroughImagePlacement": true,
+        "usedInNewFit": true
+      },
+      {
+        "osmNodeId": 265343223,
+        "priorObservationRetainedExactlyThroughImagePlacement": true,
+        "usedInNewFit": true
+      },
+      {
+        "osmNodeId": 495545211,
+        "priorObservationRetainedExactlyThroughImagePlacement": true,
+        "usedInNewFit": false
+      }
+    ],
+    "priorTransferExactlyReproducedArchivedRoundedDecimalFormula": true,
+    "rawPdfFloatBoxVsArchivedFormulaMaximumSourcePixelDifference": 8.01678379502846e-06,
+    "excludedOldSameImageCandidateNodeId": 495545211,
+    "excludedOldCandidatePredictedSourcePixelRecomputed": [
+      423.5567545903614,
+      569.3776212119701
+    ],
+    "excludedOldCandidateStillUnconfirmedOutsideInterpretationAndNotUsedInFit": true,
+    "inheritedPbfProofBoundToExactCopiedRoadAndNameInputs": true,
+    "inheritedWayCount": 23,
+    "inheritedNamePointCount": 2,
+    "freshOriginalPbfProofBoundToExactCurrentInputs": true,
+    "freshOriginalPbfProofWayCount": 23,
+    "freshOriginalPbfProofCurrentNameCount": 1,
+    "freshOriginalPbfProofUniqueNodeCount": 117,
+    "fullOriginalPbfRereadByThisAudit": false,
+    "inheritedGeographicRegistrationVerified": false
+  },
+  "conversion": {
+    "photoTrainingAffineAndInverseIndependentlyComputed": true,
+    "metricCompositionAndSequentialConversionAgreeWithin1eMinus8Meters": true,
+    "all2391WorldVerticesAndEveryEdgeChecked": true,
+    "maximumWorldCoordinateDisagreementDegrees": 0.0,
+    "sourceVerticesOutsideObservedTextureHull": 2008,
+    "sourceVerticesOutsideOriginalFigure73Image": 1914,
+    "maximumDistanceBeyondTextureHullTargetPixels": 517.4211135309429,
+    "fullGeographicFootprintValidated": false
+  },
+  "currentNameEvidence": {
+    "originalPbfProofContainsExactNode": "osm:node:984225130",
+    "pointInsideInferredCandidate": true,
+    "pointNotUsedAsControl": true,
+    "nameOccurrenceProvesCurrentExactExtent": false,
+    "originalPbfRereadByThisAudit": false
+  },
+  "sensitivityDiagnostics": {
+    "leaveOneControlOut": [
+      {
+        "omittedControlId": "node-4170613208",
+        "maximumFigure74VertexDisplacementMeters": 13.30411423161211
+      },
+      {
+        "omittedControlId": "node-4331477437",
+        "maximumFigure74VertexDisplacementMeters": 22.53991373052291
+      },
+      {
+        "omittedControlId": "node-494254692",
+        "maximumFigure74VertexDisplacementMeters": 0.8660045309754483
+      },
+      {
+        "omittedControlId": "node-265343223",
+        "maximumFigure74VertexDisplacementMeters": 8.058486464456012
+      },
+      {
+        "omittedControlId": "node-494064509",
+        "maximumFigure74VertexDisplacementMeters": 11.726760568485902
+      },
+      {
+        "omittedControlId": "node-494254697",
+        "maximumFigure74VertexDisplacementMeters": 6.009821490579359
+      }
+    ],
+    "notCalibratedAccuracyBounds": true
+  },
+  "actualProjectGeometryValidator": {
+    "modulePath": "scripts/neighborhoods/build.mjs",
+    "moduleSha256": "7d234a3c4750b6a735483befd02661c6ba199491fec102bd2d301dabf4cb216c",
+    "actualValidateGeometryExportCalled": true,
+    "acceptedCount": 1,
+    "rejectedCount": 0,
+    "results": [
+      {
+        "id": "manual:kecskemet-figure74:hunyadivaros",
+        "valid": true,
+        "bbox": [
+          19.698420812566685,
+          46.91024494650795,
+          19.724297587556794,
+          46.92632342869466
+        ],
+        "vertices": 2391
+      }
+    ]
+  },
+  "sourceScope": {
+    "properHunyadivarosSeparatedFromUmbrella": true,
+    "otherThreeSourceCellsNotRejectedForFunctionalUse": true,
+    "factoryMapProseNuanceRetained": true,
+    "separateSouthernEconomicCellNotSubstitutedForPoultryFactory": true
+  },
+  "primaryLayerApproved": false,
+  "explicitInferredLayerApproved": true,
+  "sourceRasterContourFullyVerified": false,
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "rightsStatus": "Municipal source-map reuse rights unverified; ODbL-1.0 applies to OSM controls and current name.",
+  "approvalReason": "All recorded source/gap coordinates, archived calibration evidence, independent numeric composition, all transformed vertices/edges and actual project admission pass. Three low-confidence source overprint continuations and extensive geographic extrapolation remain explicit inferences. The photo producer is this reviewing agent; no separate blind physical independence is claimed. Preserve inferred-only status."
+}

@@ -1,0 +1,24 @@
+{
+  "id": "pecs-final-five-source-contours-estimated-placement",
+  "path": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/source-inferred.geojson",
+  "sha256": "a27535ffae4e4549f76200e207fa80fc6796dfbe394740eacce57b7df7693acc",
+  "municipality": "Pécs",
+  "method": "Five additional whole original quarter contours:two distinct closed raster cells and three independently approved literal manual outer-stroke paths. Placement remains the frozen unverified estimate.",
+  "evidenceUrls": [
+    "https://logoweb.pecs.hu/download/koncepcio/ITS.pdf"
+  ],
+  "license": "Municipal map reuse rights unverified; ODbL for archived OSM calibration evidence.",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "estimated": true,
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-pecs-final-gaps-review/independent-final-gap-review.json",
+  "uncertainties": [
+    "Geographic placement remains unverified; claimedAbsoluteAccuracy=null, no primary or automatic address approval.",
+    "Historic names/geometry do not establish current legal boundaries or municipal-map reuse rights."
+  ],
+  "rightsStatus": "Public municipal publication; unrestricted map redistribution/reuse licence unverified.",
+  "registryEntryAppliedByThisBatch": false
+}

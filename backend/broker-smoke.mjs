@@ -1,3 +1,4 @@
+import {withTestAddress} from './smoke-address.mjs';
 /** Real account-type, billing and reporting integration. Disposable loopback API only. */
 import assert from 'node:assert/strict';
 import {mkdir,readFile,writeFile,chmod} from 'node:fs/promises';
@@ -6,6 +7,7 @@ const origin=new URL(process.argv[2]||'http://127.0.0.1:3000');
 if(origin.protocol!=='http:'||!['localhost','127.0.0.1','[::1]'].includes(origin.hostname)||origin.username||origin.password||origin.pathname!=='/'||origin.search||origin.hash)throw new Error('Use only a disposable loopback API.');
 const fixturePath=resolve('.local/broker-upgrade-fixture.json');
 async function call(path,{token,method='GET',body,status=200}={}){
+ body=withTestAddress(path,method,body);
  const response=await fetch(new URL('/api'+path,origin),{method,redirect:'error',signal:AbortSignal.timeout(20000),headers:{...(token?{Authorization:`Bearer ${token}`} : {}),...(body===undefined?{}:{'Content-Type':'application/json'})},...(body===undefined?{}:{body:JSON.stringify(body)})});
  assert.ok((Array.isArray(status)?status:[status]).includes(response.status),`${method} ${path}: HTTP ${response.status}`);
  const text=await response.text();if(response.status>=400||!text)return null;

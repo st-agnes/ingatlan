@@ -1,0 +1,28 @@
+{
+  "id": "kecskemet-erzsebetvaros",
+  "path": "data/neighborhoods/sources/municipal-maps-next/kecskemet-manual.geojson",
+  "sha256": "160a740fb414cb3605ed93adceabfb857bdcadf95661c8ac762284f463d54889",
+  "municipality": "Kecskemét",
+  "method": "Manual municipal street-circuit interpretation; polygonized actual OSM street centerlines with exact source vertices and no inferred connector.",
+  "evidenceUrls": [
+    "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf"
+  ],
+  "sourceDocuments": [
+    {
+      "url": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+      "sha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+      "pdfPageOneBased": 152,
+      "printedPage": 150,
+      "corroboratingMapPdfPageOneBased": 143,
+      "mapFigure": 73
+    }
+  ],
+  "license": "ODbL-1.0",
+  "propertyOverrides": {
+    "boundaryKind": "neighbourhood",
+    "canonicalNameIsNeighborhood": true,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-maps-next/scout/kecskemet-independent-review.json",
+  "rightsStatus": "ODbL-1.0 road geometry; municipal document redistribution rights not independently established"
+}

@@ -1,0 +1,32 @@
+{
+  "sourceImages": {
+    "west": {"bbox":[20.669,48.098,20.735,48.125],"width":1800,"height":1100},
+    "south": {"bbox":[20.749,48.048,20.786,48.081],"width":1800,"height":2399},
+    "mexiko": {"bbox":[20.70,48.08,20.726,48.096],"width":1800,"height":1655}
+  },
+  "traces": [
+    {"name":"Szilvásvölgy","image":"west","vertices":[[20,300],[85,240],[155,205],[235,250],[281,325],[260,385],[180,438],[74,450],[30,386]],"context":"Szilvásvölgyi/Őz utcai valley access and neighbouring dűlő tracks; coarse outer slope joins."},
+    {"name":"Bakoshegy","image":"west","vertices":[[326,158],[454,198],[537,276],[597,352],[555,430],[473,464],[393,403],[328,348],[293,302]],"context":"Kisbakos–Ködbérc–Fény utcai hillside tracks and Pecér-völgy side; inferred ridge joins, no surveyed contour."},
+    {"name":"Baráthegy","image":"west","vertices":[[230,420],[325,383],[397,418],[455,487],[515,546],[557,627],[509,666],[410,623],[331,587],[253,559],[212,495]],"context":"Baráthegy dűlő, Bakancs dűlő and Pecér dűlő slopes above Baráthegyalja; manually estimated internal outline."},
+    {"name":"Előhegy","image":"west","vertices":[[584,662],[712,698],[846,724],[956,757],[952,803],[902,827],[805,849],[685,817],[600,762]],"context":"Előhegy dűlő and Előhegy utca strip between northern hill paths and the forest railway/urban-edge corridor."},
+    {"name":"Diósgyőri-lakótelep","image":"west","vertices":[[344,836],[447,864],[551,899],[632,928],[680,982],[611,1002],[503,977],[396,933],[337,882]],"context":"Diósgyőr linear housing strip along the Bartók Béla/Árpád corridor below Előhegy; small estate extent inferred from the street fabric."},
+    {"name":"Pünkösdhegy","image":"west","vertices":[[938,274],[1031,232],[1150,267],[1252,347],[1262,424],[1193,471],[1117,538],[1024,510],[959,418]],"context":"Pünkösd dűlő and Pünkösdhegy dűlő side between Pereces-patak and Lyukó road valley; coarse hillside outer joins."},
+    {"name":"Kerekhegy","image":"west","vertices":[[1483,298],[1605,325],[1688,362],[1734,456],[1686,536],[1710,611],[1599,628],[1483,583],[1442,507],[1464,426]],"context":"Small ridge east of Lyukóvölgyi road, local paths towards Görögszőlő; estimated ridge extent, not elevation-derived boundary."},
+    {"name":"Hejőpark","image":"south","vertices":[[811,358],[885,329],[1034,389],[1145,499],[1105,554],[1160,618],[1083,637],[994,552],[865,551],[790,478]],"context":"Panoráma/Haladás/Csemetekert housing streets below Miskolctapolcai út and west of Futó utca, bounded approximately by the Hejő channel arms."},
+    {"name":"Mésztelep","image":"south","vertices":[[1453,488],[1573,482],[1735,527],[1762,639],[1666,705],[1713,778],[1591,783],[1454,735],[1372,667],[1345,578]],"context":"Mésztelep utca and Mécses/Majus1.telep local fabric east of Futó utca, north of the Hejő channel. The name point is beside the cemetery, not used as the cemetery outline."},
+    {"name":"Benedekhegy","image":"south","vertices":[[562,796],[719,820],[894,868],[1004,918],[1073,1003],[1025,1108],[900,1155],[747,1097],[674,1116],[569,1076],[513,997],[520,897]],"clipAllotments":true,"context":"Northern Benedek hillside between Külsőcsabai/Miskolctapolcai access and Benedeki pincés paths; clip to the actual mapped allotment hillside."},
+    {"name":"Nagyszentbenedek","image":"south","vertices":[[1017,1041],[1131,1000],[1283,1070],[1245,1130],[1129,1215],[1044,1245],[963,1261],[880,1224],[900,1155],[1025,1108]],"clipAllotments":true,"context":"Szentbenedekhegyi/Szent Márton hillside tracks and dűlő fabric north of Perzsák; clip to the actual mapped allotment hillside."},
+    {"name":"Perzsák","image":"south","vertices":[[963,1261],[1044,1245],[1129,1215],[1244,1277],[1193,1351],[1151,1428],[1047,1444],[955,1374],[899,1316]],"clipAllotments":true,"context":"Perzsák dűlő and Szentbenedekhegyi road area, northeast of Fajdos and above Győzelem utca; inferred internal paths and ridge joins."},
+    {"name":"Fajdos","image":"south","vertices":[[367,1341],[511,1334],[649,1362],[737,1451],[713,1529],[655,1585],[600,1665],[516,1666],[421,1591],[372,1513],[327,1431]],"clipAllotments":true,"context":"Fajdos dűlő/Fajdos köz above the residential streets, between Fajdos access paths and Győzelem-side slope; actual allotment outer contour retained where intersected."},
+    {"name":"Lapocka","image":"south","vertices":[[343,1724],[474,1711],[617,1744],[680,1811],[684,1905],[633,2011],[540,2044],[452,2008],[405,1935],[366,1822]],"clipAllotments":true,"context":"Lapocka dűlő strip east of Görömbölyi/Fenyő streets, west of Tapolcai/Alma road paths; coarse hillside division."},
+    {"name":"Mihályka","image":"south","vertices":[[684,1905],[797,1864],[917,1902],[1019,1990],[1054,2083],[980,2182],[826,2226],[677,2198],[608,2100],[633,2011]],"clipAllotments":true,"context":"Southern smallholder hillside east of Lapocka and above Bacsinszky András út/stream valley, around Alma utca; approximate ridge joins."},
+    {"name":"Mexikóitelep","image":"mexiko","vertices":[[404,1127],[593,1053],[760,1003],[972,940],[1062,936],[1066,1008],[1021,1112],[943,1158],[764,1180],[595,1172],[444,1228],[383,1230]],"context":"Elongated Mexikóvölgy street/industrial settlement strip between Mexikóvölgy utca and the railway corridor, with coarse west/east end closures."}
+  ],
+  "industrialEstimate":{
+    "name":"Miskolc Déli Technológiai Park",
+    "aliases":["Miskolc Déli Ipari park","Miskolc Déli Ipari Park","Miskolc Déli Tudományos és Technológiai Park"],
+    "actualIndustrialWay":326611316,
+    "southernApproximateVerticesWgs84":[[20.807,48.056],[20.8145,48.056],[20.824,48.044],[20.8115,48.0435],[20.8116,48.047],[20.8084,48.049],[20.8055,48.055]],
+    "context":"Actual northern V. számú iparterület outline plus a rough southern development sector around Doni/Gábor Dénes roads and the rail/Hejő corridors. Existing municipal text explicitly identifies the industrial and technology park names as the same place. The newer development perimeter is an estimate, not an official industrial-park property plan."
+  }
+}

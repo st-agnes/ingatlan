@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "municipality": "Szombathely",
+  "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+  "sourceTitle": "Szombathely Megyei Jogú Város – Integrált Városfejlesztési Stratégia 2008–13",
+  "sourceDate": "2013-06-06",
+  "originalPdfSha256": "aade0d35a60e4ecd230a26c2c7dabcfc26ec76466ab86310e6828f34db714500",
+  "originalPdfPageCount": 179,
+  "archivedProofPages": [
+    {
+      "excerptPdfPageOneBased": 1,
+      "originalPdfPageOneBased": 49,
+      "printedPage": 49,
+      "role": "KSH 2003/2001 census grouping rationale"
+    },
+    {
+      "excerptPdfPageOneBased": 2,
+      "originalPdfPageOneBased": 50,
+      "printedPage": 50,
+      "role": "18-unit overview map and name list"
+    },
+    {
+      "excerptPdfPageOneBased": 3,
+      "originalPdfPageOneBased": 150,
+      "printedPage": 150,
+      "role": "annex1 quarter definitions 1–8"
+    },
+    {
+      "excerptPdfPageOneBased": 4,
+      "originalPdfPageOneBased": 151,
+      "printedPage": 151,
+      "role": "annex1 quarter definitions 9–18"
+    }
+  ],
+  "originalSourceFileLocal": ".local/neighborhoods/nationwide-docs/originals/szombathely-ivs.pdf",
+  "sourceExcerptPath": "data/neighborhoods/sources/municipal-szombathely-more/source-proof-pages.pdf",
+  "sourceExcerptSha256": "a65645bea3cbcca2dd1a81105ce696b037a5fab1bd5a1a2cd94dcd2078cc8147",
+  "overview": {
+    "originalPdfPageOneBased": 50,
+    "embeddedImageXref": 282,
+    "pixels": [
+      480,
+      476
+    ],
+    "titleTranscription": "Szombathely város belső tagozódása",
+    "geometryUse": "coarse topology check only; no raster-derived polygon coordinates"
+  },
+  "quotes": [
+    {
+      "originalPdfPageOneBased": 150,
+      "section": "1. sz melléklet",
+      "text": "Városrészek határai",
+      "normalization": "none"
+    },
+    {
+      "originalPdfPageOneBased": 150,
+      "section": "5. Joskar-Ola-lakótelep",
+      "text": "Szent Márton u - Barátság u. – Mikes Kelemen U (vasúti sínek mellett végig) - Károlyi Antal utca - Hunyadi János út - Szent Márton u",
+      "normalization": "line breaks removed; source spelling otherwise retained"
+    },
+    {
+      "originalPdfPageOneBased": 150,
+      "section": "6. Ifjúsági (KISZ) lakótelep",
+      "text": "6. Ifjúsági (KISZ) lakótelep",
+      "normalization": "none"
+    },
+    {
+      "originalPdfPageOneBased": 151,
+      "section": "10. Alsóhegy-Középhegy kertváros",
+      "text": "Homok utca –Kétrózsa köz – Jégpince utca – Jókai Mór utca – Brenner Tóbiás körút – Körmendi út – Külső Pozsonyi út – Pap árok belüli terület (utóbbi két utca teljes egészében Újperinthez tartozik.",
+      "normalization": "line breaks removed; ő substituted for old encoded ı; unclosed source parenthesis retained"
+    },
+    {
+      "originalPdfPageOneBased": 151,
+      "section": "16. Ipartelep",
+      "text": "Söptei út – Semmelweis Ignác utca – Vasút utca – Vasút vonal - Károlyi Antal utca – Körmendi út - Szent Gellért utca – Gyöngyös patak – 86-os út – belterületi határ – (=-es út – Söptei út Leszámítva a 15. számú városrész területét",
+      "normalization": "line breaks removed; literal unreadable source road number (= retained, checked in rendered PDF, not merely OCR"
+    }
+  ],
+  "semanticConclusion": "The municipality explicitly calls these 18 units city quarters; some are broad functional/statistical units and some garden-city or estate quarters. Planning/statistical purpose alone does not invalidate the source names. Their footprints must be checked separately; no group geometry is copied to individual contained quarters.",
+  "rightsStatus": "Municipal document is source evidence, no open municipal-map reuse licence claimed. New coordinates derive only from ODbL OSM ways.",
+  "usableForAddressAssignment": false,
+  "historicalStatisticsContext": {
+    "originalPdfPageOneBased": 49,
+    "description": "KSH Vas Megyei Igazgatósága 2003 publication A nagyvárosok belső tagozódása – Szombathely, based on the 2001 census; source units assembled from smaller census districts using built-up form and dominant functions.",
+    "sourceMapOrigin": "The source says the map was taken from the study underpinning the settlement structure plan.",
+    "historicalBuiltUpBoundaryNotEquivalentToCurrentMunicipalityBoundary": true
+  }
+}

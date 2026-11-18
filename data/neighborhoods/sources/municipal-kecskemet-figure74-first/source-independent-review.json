@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_AS_EXPLICIT_GAP_INFERRED_SOURCE_CANDIDATE_ONLY",
+  "independentOfSourceProducerCodeExecution": true,
+  "sourceProducerCodeReadForContextButNotImported": true,
+  "sourceInputsSha256": {
+    "figure74-p154-xref176.jpeg": "1ecb076700d1be46f1712ca2c0ca1ed986581a99e5d5592b95b0b4511de30cd2",
+    "source-pixel-trace.json": "f49881e85c39c22c991a77d6ae16474b876147abaf2303271e88ee4061165e6e",
+    "source-pixel-preview.png": "fa5e403cca307beabe2096d073e8434010c801a46a2d38bc436c96e89d413eff",
+    "source-economic-divider-grid.png": "0067b4af3d1c0ef2a59a5c0d6c4f6b03f9ccb1509c8f285a5a3bb598c6b56019",
+    "source-pages154-156.pdf": "c3576305d346796d019c2b5d2aaf0863be6bca6518040f9e1f014d6803687ae4",
+    "source-semantics.json": "00d12e83d27b29b62c46b3dff854ca2f1af7a306e4701df6321942b6ee65e057",
+    "exploratory-diagnostics/strict-trace-attempt.json": "43b98be3b2d156b9260f392215af88cf01f424ad7601ba78f511fb88b7be591f",
+    "exploratory-diagnostics/initial-strict-black-trace.py": "c02247ade8d3d7e2603b1cd74c75f3c7fafd1d821cb176b0c051c19264deb2e1"
+  },
+  "auditScriptSha256": "a1c783b3903308698720da60e21431a16c68179476bfc13f34086edd47faa143",
+  "sourceOriginalJpegPreservedInArchivedPdf": true,
+  "sourceImageSize": [
+    956,
+    1348
+  ],
+  "sourceDenseVertexCountIncludingClosure": 2391,
+  "strictBlackVertexCountIncludingClosure": 2378,
+  "nonBlackInferredVertexCount": 13,
+  "all13NonBlackVerticesListedInExactlyThreeDeclaredGapPaths": true,
+  "allSourceAndGapEdgesDense8Neighbor": true,
+  "closedValidSourcePolygon": true,
+  "sourceHoleCount": 0,
+  "sourceAreaSquarePixels": 238592.0,
+  "minimumDistanceFromImageFramePixels": 53,
+  "frameClosureOrUnlistedGapDetected": false,
+  "allThreeArchivedSectionsRecomposeExactRing": true,
+  "sourceContourFullyObserved": false,
+  "sourceGaps": [
+    {
+      "id": "blue-overprint-1",
+      "literalBlackEndpoints": [
+        [
+          771,
+          1120
+        ],
+        [
+          763,
+          1112
+        ]
+      ],
+      "chosenPathVertexCountIncludingEndpoints": 9,
+      "chosenPathNonBlackVertexCount": 7,
+      "chosenPathEuclideanLengthPixels": 11.313708498984761,
+      "localStrictBlack8NeighborConnectionWithinEndpointBoxPlus14Pixels": false,
+      "allNonBlackPixelsBlueDominant": true,
+      "confidence": "low",
+      "inferredPathNotObservedBoundary": true,
+      "alternativeDiagnostics": [
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -8.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": 8.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ]
+    },
+    {
+      "id": "blue-overprint-2",
+      "literalBlackEndpoints": [
+        [
+          762,
+          1111
+        ],
+        [
+          759,
+          1109
+        ]
+      ],
+      "chosenPathVertexCountIncludingEndpoints": 4,
+      "chosenPathNonBlackVertexCount": 2,
+      "chosenPathEuclideanLengthPixels": 3.8284271247461903,
+      "localStrictBlack8NeighborConnectionWithinEndpointBoxPlus14Pixels": false,
+      "allNonBlackPixelsBlueDominant": true,
+      "confidence": "low",
+      "inferredPathNotObservedBoundary": true,
+      "alternativeDiagnostics": [
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -2.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": 2.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ]
+    },
+    {
+      "id": "blue-overprint-3",
+      "literalBlackEndpoints": [
+        [
+          504,
+          1106
+        ],
+        [
+          500,
+          1111
+        ]
+      ],
+      "chosenPathVertexCountIncludingEndpoints": 6,
+      "chosenPathNonBlackVertexCount": 4,
+      "chosenPathEuclideanLengthPixels": 6.656854249492381,
+      "localStrictBlack8NeighborConnectionWithinEndpointBoxPlus14Pixels": false,
+      "allNonBlackPixelsBlueDominant": true,
+      "confidence": "low",
+      "inferredPathNotObservedBoundary": true,
+      "alternativeDiagnostics": [
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": false,
+          "replacementSourceAreaDifferenceSquarePixels": 5.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        },
+        {
+          "sameEndpointsAndAll8Neighbor": true,
+          "insideDeclaredWindow": true,
+          "replacementSourcePolygonValid": true,
+          "replacementSourceAreaDifferenceSquarePixels": -5.0,
+          "notAnAccuracyBoundOrChosenOutput": true
+        }
+      ]
+    }
+  ],
+  "failedStrictTraceAttemptPreservedAndHashed": true,
+  "properSourceScopeSampleChecks": [
+    {
+      "diagnostic": "properHunyadivarosLabel",
+      "originalImagePixel": [
+        500,
+        925
+      ],
+      "insideProperSourceCell": true,
+      "notAGeographicControl": true
+    },
+    {
+      "diagnostic": "CeglediCorridorLabel",
+      "originalImagePixel": [
+        325,
+        490
+      ],
+      "insideProperSourceCell": false,
+      "notAGeographicControl": true
+    },
+    {
+      "diagnostic": "southernEconomicCellInterior",
+      "originalImagePixel": [
+        650,
+        1115
+      ],
+      "insideProperSourceCell": false,
+      "notAGeographicControl": true
+    },
+    {
+      "diagnostic": "railStationSideCellInterior",
+      "originalImagePixel": [
+        250,
+        1150
+      ],
+      "insideProperSourceCell": false,
+      "notAGeographicControl": true
+    },
+    {
+      "diagnostic": "northwesternFactoryFootprint",
+      "originalImagePixel": [
+        230,
+        920
+      ],
+      "insideProperSourceCell": false,
+      "notAGeographicControl": true
+    }
+  ],
+  "semanticEvidence": {
+    "sourcePdfPagesOneBased": [
+      154,
+      155,
+      156
+    ],
+    "printedPages": [
+      152,
+      153,
+      154
+    ],
+    "properHunyadivarosDistinctFromFourPartUmbrella": true,
+    "otherThreeMappedCellsNotRejectedForFunctionalUse": true,
+    "economicMapAndProseNameVariantsPreserved": true,
+    "factoryCartographicProseScopeNuancePreserved": true,
+    "prosePoultryFactoryDoesNotIdentifySouthernEconomicTriangle": true
+  },
+  "visualReview": "Original Figure74 and source preview were visually inspected. The selected ring follows the Hunyadiváros proper cell and explicitly continues three short blue-label-overprinted intervals. The southern economic triangle, railway/station strip and Ceglédi corridor remain distinct. Northwestern factory is cartographically outside selected cell despite prose assigning factory to Hunyadiváros; that nuance remains unresolved.",
+  "primaryLayerApproved": false,
+  "explicitInferredSourceCandidateSupported": true,
+  "geographicRegistrationVerified": false,
+  "absoluteAccuracyMeters": null,
+  "usableForAddressAssignment": false,
+  "rightsStatus": "Municipal consultation draft source-map open reuse rights unverified.",
+  "limits": [
+    "The three missing source intervals are low-confidence manual hypotheses with alternatives, not observed black strokes.",
+    "This source review does not validate geographic conversion, current exact neighborhood scope, legal/cadastral extent or absolute accuracy.",
+    "Alternative pixel paths are diagnostic hypotheses and not accuracy bounds."
+  ]
+}

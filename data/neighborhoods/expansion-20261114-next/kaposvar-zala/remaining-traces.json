@@ -1,0 +1,15 @@
+{
+ "kaposNorth":[
+  {"name":"Gombási-dűlő","points":[[390,253],[448,244],[503,243],[578,256],[649,280],[623,323],[576,374],[547,412],[492,474],[451,522],[426,532],[408,460],[402,399],[393,342]]},
+  {"name":"Bánkuta","points":[[448,540],[490,527],[549,518],[580,529],[587,581],[599,638],[616,706],[554,721],[505,740],[476,768],[417,780],[353,779],[334,697],[344,632],[372,582],[413,550]]},
+  {"name":"Füredi-szőlőhegy","points":[[698,538],[734,521],[771,526],[786,557],[796,598],[802,642],[820,663],[772,679],[714,686],[708,632],[703,581]]},
+  {"name":"Toponári-szőlőhegy","points":[[1089,708],[1128,688],[1171,678],[1216,650],[1253,640],[1276,675],[1270,728],[1257,781],[1234,821],[1204,853],[1169,865],[1136,862],[1098,830],[1081,789],[1067,748]]}
+ ],
+ "zalaOuter":[
+  {"name":"Nyugati külterület","unit":17,"pixelClip":[0,760,700,1450],"printedLabel":[530,1315]},
+  {"name":"Északi külterület","unit":18,"pixelClip":[0,0,1663,770],"printedLabel":[431,360]},
+  {"name":"Keleti külterület","unit":19,"pixelClip":[1030,500,1663,2050],"printedLabel":[1378,1239]},
+  {"name":"Déli külterület","unit":20,"pixelClip":[0,1300,1450,2050],"printedLabel":[770,1620]}
+ ],
+ "zalaOuterNote":"Broad source-map outer groups approximated by the depicted north/west/east/south sectors. Current OSM municipal outline supplies the outer frame; registered source built-up groups are removed. Sector connectors are rough manual links, not printed legal divider lines. Only the connected area associated with the printed group number is selected."
+}

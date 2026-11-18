@@ -1,0 +1,52 @@
+{
+  "id": "zalaegerszeg-ziffa2025-neszele",
+  "path": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/neszele-inferred-import.geojson",
+  "sha256": "7575f4cd8c6f3ea8172069b2ef24c1cc3fc0319d523098102234e97807adea2b",
+  "municipality": "Zalaegerszeg",
+  "method": "One separately observed Neszele source-raster quarter contour with estimated road-junction EOV similarity placement. A two-junction placement alternative remains separate; Ságod thematic-mask extraction is quarantined and contributes no world feature.",
+  "evidenceUrls": [
+    "https://zalaegerszeg.hu/wp-content/uploads/2025/09/ZEG_ZIFFA_egyeztetesi-valt.pdf"
+  ],
+  "sourceDocument": {
+    "date": "2025-08-30",
+    "status": "consultation_draft",
+    "adoptionIndependentlyEstablished": false,
+    "sha256": "b132fd75d6c95538023ced5eda3ad8ac7f7131c6e27f889ed7206c23e4a44745",
+    "figure": 53,
+    "mapPageOneBased": 138,
+    "semanticsPagesOneBased": [
+      63,
+      139
+    ]
+  },
+  "license": "Municipal map redistribution rights unknown; ODbL applies to OSM controls and name evidence.",
+  "propertyOverrides": {
+    "boundaryKind": "inferred_area",
+    "candidateBoundaryKind": "neighbourhood",
+    "canonicalNameIsNeighborhood": false,
+    "estimated": true,
+    "sourceContourObserved": true,
+    "sourceContourIsObserved": true,
+    "estimatedContour": false,
+    "estimatedPlacement": true,
+    "georeferencingIsApproximate": true,
+    "claimedAbsoluteAccuracyMetres": null,
+    "sourceIsOfficial": false,
+    "sourceIsHardBoundary": false,
+    "usableForAddressAssignment": false
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-registration-review.json",
+  "sourceReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-source-review.json",
+  "rasterReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-raster-review.json",
+  "roadPbfReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-road-pbf-review.json",
+  "contentMinimizationReviewPath": "data/neighborhoods/sources/municipal-zalaegerszeg-ziffa2025-neszele-sagod-next/independent-content-review.json",
+  "uncertainties": [
+    "Native387×329 raster and manually selected road junction pixels have unknown positional error.",
+    "Source projection/backdrop age and source-to-current-road correspondence remain uncertain.",
+    "Main and two-junction alternatives are plausible models, not confidence bounds.",
+    "Grouped section16 has two fine map identities; no grouped-parent clone is admitted.",
+    "Consultation draft map does not establish statutory/legal/cadastral boundaries or address approval."
+  ],
+  "rightsStatus": "unknown_municipal_map_redistribution_rights; ODbL-1.0_controls_and_name_evidence",
+  "registryEntryAppliedByThisBatch": false
+}

@@ -1,0 +1,447 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent source-map corridor review for three Kecskemét northern subquarters; final converted polygons still require full geometric/source-edge validation.",
+  "source": {
+    "url": "https://kecskemet.hu/uploaded_files/files/document/2022-11/126_2021._%28XII.16%29_hatarozat_1._melleklete_II-es_kotet.pdf",
+    "sourcePdfSha256": "83f78c5dbb85964a1fc4aecb2df014254e1985fdb446d8135182dedad56da939",
+    "figure": 73,
+    "originalPdfPageOneBased": 143,
+    "printedPage": 141,
+    "period": "Egyeztetési változat2021május"
+  },
+  "actualRoadInput": {
+    "path": "data/neighborhoods/sources/municipal-offline-next/kecskemet-all-local-roads.geojson",
+    "sha256": "c8a1efef355fa22f676098d5dbf557bf2f308920c4af6da42ad58fce80c77a86",
+    "kind": "Literal local OSM roads and nodeRefs from archived Hungary PBF; no network requests"
+  },
+  "comparisonMethod": {
+    "name": "Visual source-map comparison with manual six-junction affine image alignment",
+    "purpose": "Comparison only; never used to generate or alter output geographical coordinates",
+    "controls": [
+      [
+        19.6873802,
+        46.9153542,
+        383,
+        622
+      ],
+      [
+        19.7000245,
+        46.9112122,
+        790,
+        820
+      ],
+      [
+        19.691873,
+        46.9105411,
+        537,
+        868
+      ],
+      [
+        19.6948405,
+        46.9065598,
+        625,
+        1040
+      ],
+      [
+        19.6840294,
+        46.9026573,
+        277,
+        1228
+      ],
+      [
+        19.7030924,
+        46.9027689,
+        906,
+        1222
+      ]
+    ],
+    "matrixLonLatToImagePixels": [
+      [
+        32629.44575398477,
+        -89.61819456536695
+      ],
+      [
+        -555.1051128927033,
+        -47392.800787585795
+      ],
+      [
+        -615963.9899971194,
+        2225841.7028480866
+      ]
+    ],
+    "fitResidualPx": [
+      5.566570495724282,
+      6.714859822780885,
+      14.455344304736725,
+      5.800578034236272,
+      2.481695191172831,
+      4.985507126802388
+    ],
+    "absoluteBoundaryAccuracyMetres": null,
+    "independentSurvey": false
+  },
+  "findings": [
+    {
+      "quarter": "Bethlenváros",
+      "boundaryTextPrintedPage": 147,
+      "assessment": "Candidate follows the published figure73 boundary on all sides at the map comparison scale.",
+      "reviewedCandidatePath": "data/neighborhoods/sources/municipal-offline-next/Bethlenváros-candidate.geojson",
+      "reviewedCandidateSha256": "1f770ee872845124ff542985f6e29f464a3b7fd48c7bf713e1832f8d8f21f310",
+      "resolvedTransition": {
+        "from": "Jókai utca",
+        "to": "Koháry István körút",
+        "actualWay": "osm:way:237950831",
+        "actualName": "Piaristák tere",
+        "lengthM": 55.87065432296239,
+        "interpretation": "Current square-name transition at the source-map southwest apex, not an invented closing chord."
+      },
+      "additionalNotes": [
+        "The service-way portion308226351 lies along the diagonal Koháry corridor, not Rákóczi. Its precise road-side selection remains unverified.",
+        "Unnamed actual junction/carriageway pieces may explain the named-road-only topology gaps; original street facts do not imply surveyed parcel-side boundary."
+      ],
+      "visualPreview": ".local/neighborhoods/kec-north/bethlen-overlay.png"
+    },
+    {
+      "quarter": "Homoki-domb",
+      "boundaryTextPrintedPage": 146,
+      "assessment": "Two current name-transition corridors omitted from the short four-road description are visible in the source map.",
+      "resolvedTransitions": [
+        {
+          "from": "Petőfi Sándor utca",
+          "to": "Széchenyi körút",
+          "actualIntermediateName": "Mária körút",
+          "support": "The parent Belváros outer-ring list on printed141 explicitly includes Mária körút; actual current geometry joins Petőfi and Széchenyi at shared source nodes."
+        },
+        {
+          "from": "Hornyik János körút",
+          "to": "Gáspár András körút",
+          "actualIntermediateNames": [
+            "Széchenyi tér",
+            "Szilády Károly utca",
+            "Kölcsey utca"
+          ],
+          "sourceWays": [
+            "osm:way:40771062",
+            "osm:way:427779017",
+            "osm:way:427779015",
+            "osm:way:1503947678",
+            "osm:way:248405154"
+          ],
+          "lengthM": 400.42377313908366,
+          "support": "This actual western kiskörút road corridor tracks the published Homoki-domb/Városközpont outline; its400m length is not itself evidence of an interior shortcut."
+        }
+      ],
+      "visualPreview": ".local/neighborhoods/kec-north/diagnostic-shortcuts.png",
+      "remainingChecks": [
+        "Validate final whole polygon, every actual source edge, exact name/label evidence and ownership of junction segments."
+      ]
+    },
+    {
+      "quarter": "Rákócziváros",
+      "boundaryTextPrintedPage": 148,
+      "assessment": "The published southeast cap follows the outer arterial route, not the shortest residential connector.",
+      "resolvedTransition": {
+        "from": "Kuruc körút",
+        "to": "Csongrádi út",
+        "actualWayChain": [
+          "osm:way:261970423",
+          "osm:way:40813324",
+          "osm:way:248973372",
+          "osm:way:248405156"
+        ],
+        "actualNameChain": [
+          "Nap utca",
+          "Kurucz tér",
+          "Kurucz tér",
+          "Kurucz tér"
+        ],
+        "junctionNodeChain": [
+          276211206,
+          2676145374,
+          494255270,
+          2676167799,
+          2676152007
+        ],
+        "sourceCoordinateCount": 13,
+        "allSuccessiveWaysHaveActualSharedNodes": true,
+        "support": "The13actual source coordinates track the curved cap in figure73. The latter two Kurucz tér ways are primary roads with ref5."
+      },
+      "rejectedAlternative": {
+        "actualWay": "osm:way:40694660",
+        "name": "Búzaszentelő utca",
+        "reason": "The shortest residential connector visibly cuts inside the published quarter and omits its southeast cap."
+      },
+      "visualPreview": ".local/neighborhoods/kec-north/rakoczi-cap-overlay.png",
+      "remainingChecks": [
+        "Validate the final complete Rákócziváros ring after forcing this source-map-guided outer corridor."
+      ]
+    }
+  ],
+  "limits": [
+    "Comparison registration residuals are pixels of a manually aligned source illustration and do not establish metre accuracy.",
+    "This review confirms plausible source-grounded road corridors; it does not verify present official/legal quarter boundaries or enable address assignment.",
+    "No Google geocoding, paid provider, external network request, fabricated source geometry or arbitrary closing edge was used."
+  ],
+  "usableForAddressAssignment": false,
+  "finalCandidateChecks": {
+    "Bethlenváros": {
+      "path": "data/neighborhoods/sources/municipal-offline-next/Bethlenváros-candidate.geojson",
+      "sha256": "1f770ee872845124ff542985f6e29f464a3b7fd48c7bf713e1832f8d8f21f310",
+      "geometrySha256": "e1ab37edf3d5d7d9345f4254a8f163bbdc27729bdc82c739af6ca64fdd8218bb",
+      "valid": true,
+      "literalClosed": true,
+      "interiorRingCount": 0,
+      "coordinateCount": 107,
+      "missingLiteralSourceVertices": [],
+      "missingConsecutiveSourceEdges": [],
+      "sourceWayCount": 26,
+      "sourceWayIds": [
+        "osm:way:1484251196",
+        "osm:way:1516152859",
+        "osm:way:1516152861",
+        "osm:way:1537752338",
+        "osm:way:237950829",
+        "osm:way:237950831",
+        "osm:way:248976499",
+        "osm:way:248976508",
+        "osm:way:265204534",
+        "osm:way:30007279",
+        "osm:way:308226351",
+        "osm:way:308482959",
+        "osm:way:40694716",
+        "osm:way:40695395",
+        "osm:way:416268352",
+        "osm:way:416268353",
+        "osm:way:416268354",
+        "osm:way:416268370",
+        "osm:way:416268372",
+        "osm:way:419057565",
+        "osm:way:421560887",
+        "osm:way:435407313",
+        "osm:way:495082721",
+        "osm:way:599070160",
+        "osm:way:599070188",
+        "osm:way:599070189"
+      ],
+      "gradeSeparatedUsedSourceWays": [],
+      "sourceWayNames": [
+        "",
+        "Bethlen körút",
+        "Jókai utca",
+        "Koháry István körút",
+        "Piaristák tere",
+        "Rákóczi út"
+      ],
+      "canonicalMunicipalContainment": {
+        "municipality": "Kecskemét",
+        "sourceOsmRelation": 1130433,
+        "fullPolygonContained": true
+      },
+      "containingCurrentLabelNodes": [
+        {
+          "id": "osm:node:984225151",
+          "name": "Bethlenváros",
+          "coordinates": [
+            19.6931715,
+            46.9158144
+          ]
+        }
+      ],
+      "archivedVisualComparison": {
+        "path": "data/neighborhoods/sources/municipal-offline-next/north-visual-bethlen.png",
+        "sha256": "710d0aa94765934a4828d68ec56237167f72a9f7a6734c2347b20ce58bc0a848",
+        "interpretation": "Red current-source road circuit follows the black published2021quarter corridor at this coarse visualcomparison scale. Registration is illustrative, not a boundary-accuracy measurement."
+      },
+      "currentNameEvidenceStatus": "same_snapshot_matching_osm_label_not_independent_official_confirmation",
+      "currentNameIndependentlyConfirmed": false,
+      "usableForAddressAssignment": false,
+      "qualifiedVisualConsistency": true
+    },
+    "Rákócziváros": {
+      "path": "data/neighborhoods/sources/municipal-offline-next/Rákócziváros-candidate.geojson",
+      "sha256": "a7c3a4c7f2d6ab9bffe6afb963f7bac5397d2ff14f59cdf650dbc134e7330150",
+      "geometrySha256": "44dd298386dc134b71c1a9b665477d86419dfbbd26e875ea161c66d918bc8b7d",
+      "valid": true,
+      "literalClosed": true,
+      "interiorRingCount": 0,
+      "coordinateCount": 138,
+      "missingLiteralSourceVertices": [],
+      "missingConsecutiveSourceEdges": [],
+      "sourceWayCount": 33,
+      "sourceWayIds": [
+        "osm:way:1159135130",
+        "osm:way:1159135131",
+        "osm:way:1442900445",
+        "osm:way:1442900446",
+        "osm:way:1488786703",
+        "osm:way:1497328421",
+        "osm:way:1497328424",
+        "osm:way:1541089581",
+        "osm:way:1541089583",
+        "osm:way:1541089587",
+        "osm:way:1546761077",
+        "osm:way:248405159",
+        "osm:way:248973372",
+        "osm:way:248976500",
+        "osm:way:261970423",
+        "osm:way:261970466",
+        "osm:way:261970476",
+        "osm:way:261971006",
+        "osm:way:400881772",
+        "osm:way:405332307",
+        "osm:way:40694701",
+        "osm:way:40694896",
+        "osm:way:40695396",
+        "osm:way:407203981",
+        "osm:way:407203982",
+        "osm:way:40813324",
+        "osm:way:615838306",
+        "osm:way:731569268",
+        "osm:way:731569271",
+        "osm:way:731569272",
+        "osm:way:789874843",
+        "osm:way:789874844",
+        "osm:way:789874849"
+      ],
+      "gradeSeparatedUsedSourceWays": [],
+      "sourceWayNames": [
+        "",
+        "Csongrádi út",
+        "Csányi János körút",
+        "Kuruc körút",
+        "Kurucz tér",
+        "Nap utca",
+        "Rákóczi út"
+      ],
+      "canonicalMunicipalContainment": {
+        "municipality": "Kecskemét",
+        "sourceOsmRelation": 1130433,
+        "fullPolygonContained": true
+      },
+      "containingCurrentLabelNodes": [
+        {
+          "id": "osm:node:984225154",
+          "name": "Rákócziváros",
+          "coordinates": [
+            19.7007675,
+            46.9066383
+          ]
+        }
+      ],
+      "archivedVisualComparison": {
+        "path": "data/neighborhoods/sources/municipal-offline-next/north-visual-rakoczi.png",
+        "sha256": "8bdb5d2c819ceeb51d9aa0d2cfd3b0d07065f42e8378486e68c80b46671c1931",
+        "interpretation": "Red current-source road circuit follows the black published2021quarter corridor at this coarse visualcomparison scale. Registration is illustrative, not a boundary-accuracy measurement."
+      },
+      "currentNameEvidenceStatus": "same_snapshot_matching_osm_label_not_independent_official_confirmation",
+      "currentNameIndependentlyConfirmed": false,
+      "usableForAddressAssignment": false,
+      "qualifiedVisualConsistency": true
+    },
+    "Homoki-domb": {
+      "path": "data/neighborhoods/sources/municipal-offline-next/Homoki-domb-candidate.geojson",
+      "sha256": "761b90863ddf74e38f1ecd8bfd1e2afa95130a6853cd72650814b056d7bf85be",
+      "geometrySha256": "dcf07c76584e54164364ab95a1f4e90711943672e48a0e0477bde44830c7ae98",
+      "valid": true,
+      "literalClosed": true,
+      "interiorRingCount": 0,
+      "coordinateCount": 136,
+      "missingLiteralSourceVertices": [],
+      "missingConsecutiveSourceEdges": [],
+      "sourceWayCount": 28,
+      "sourceWayIds": [
+        "osm:way:1503947678",
+        "osm:way:1516152859",
+        "osm:way:1516152861",
+        "osm:way:1550573064",
+        "osm:way:180171789",
+        "osm:way:237950833",
+        "osm:way:248405154",
+        "osm:way:308482960",
+        "osm:way:308483085",
+        "osm:way:40712294",
+        "osm:way:40771062",
+        "osm:way:40771095",
+        "osm:way:40771101",
+        "osm:way:412223431",
+        "osm:way:416268353",
+        "osm:way:416268355",
+        "osm:way:416268363",
+        "osm:way:416268364",
+        "osm:way:427779015",
+        "osm:way:427779017",
+        "osm:way:428796225",
+        "osm:way:436543252",
+        "osm:way:436543253",
+        "osm:way:599070188",
+        "osm:way:599070189",
+        "osm:way:599070272",
+        "osm:way:768453204",
+        "osm:way:768453206"
+      ],
+      "gradeSeparatedUsedSourceWays": [],
+      "sourceWayNames": [
+        "",
+        "Hornyik János körút",
+        "Jókai utca",
+        "Kölcsey utca",
+        "Mária körút",
+        "Petőfi Sándor utca",
+        "Piaristák tere",
+        "Szilády Károly utca",
+        "Széchenyi körút",
+        "Széchenyi tér"
+      ],
+      "canonicalMunicipalContainment": {
+        "municipality": "Kecskemét",
+        "sourceOsmRelation": 1130433,
+        "fullPolygonContained": true
+      },
+      "containingCurrentLabelNodes": [],
+      "archivedVisualComparison": {
+        "path": "data/neighborhoods/sources/municipal-offline-next/north-visual-homoki.png",
+        "sha256": "d9213d59c8fe47838c98a8e157ca3bf528ca7a913d2682a3517abafdbfbcf724",
+        "interpretation": "Red current-source road circuit follows the black published2021quarter corridor at this coarse visualcomparison scale. Registration is illustrative, not a boundary-accuracy measurement."
+      },
+      "currentNameEvidenceStatus": "source_2021_only_no_matching_country_osm_label",
+      "currentNameIndependentlyConfirmed": false,
+      "usableForAddressAssignment": false,
+      "qualifiedVisualConsistency": true
+    }
+  },
+  "pairwiseIntersectionChecksIncludingPriorErzsebetvaros": [
+    {
+      "first": "Bethlenváros",
+      "second": "Rákócziváros",
+      "interiorIntersectionAreaSquareDegrees": 0.0
+    },
+    {
+      "first": "Bethlenváros",
+      "second": "Homoki-domb",
+      "interiorIntersectionAreaSquareDegrees": 0.0
+    },
+    {
+      "first": "Bethlenváros",
+      "second": "Erzsébetváros",
+      "interiorIntersectionAreaSquareDegrees": 0.0
+    },
+    {
+      "first": "Rákócziváros",
+      "second": "Homoki-domb",
+      "interiorIntersectionAreaSquareDegrees": 0.0
+    },
+    {
+      "first": "Rákócziváros",
+      "second": "Erzsébetváros",
+      "interiorIntersectionAreaSquareDegrees": 0.0
+    },
+    {
+      "first": "Homoki-domb",
+      "second": "Erzsébetváros",
+      "interiorIntersectionAreaSquareDegrees": 0.0
+    }
+  ],
+  "finalVerdict": "All three complete candidates pass literal source-coordinate/consecutive-source-edge checks, validity, full canonicalmunicipal containment and qualified visualsource-map consistency. Admit only as review-required historicalsource street-corridor interpretations; no surveyed/current legal boundary orabsoluteaccuracy claim.",
+  "homokiNameLimitation": "Homoki-domb is explicitlynamed in the2021municipal map/text; no matching current OSMlabel appears in the preserved nationwide nodecohort. Do not mark its currentname independentlyconfirmed.",
+  "frozen": true
+}

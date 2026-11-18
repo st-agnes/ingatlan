@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "status": "classification_only_frozen_revision",
+  "sourceInputs": [
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-first-inferred/source-inferred.geojson",
+      "sha256": "3de4d89461e243563c5bd99d2bc33914f6ca059bdc97548e8f7ee0b41c968a95"
+    },
+    {
+      "path": "data/neighborhoods/sources/municipal-pecs-remaining-next/first-cohort-semantic-recommendation.json",
+      "sha256": "0e54f646a59226af019152d89b418f479866b3332cafffbf862e53ddfbd25403"
+    }
+  ],
+  "files": [
+    {
+      "path": "source-inferred-reclassified.geojson",
+      "sha256": "10ed5b4c853084185dc593d57bf541837a399645e02eb3584269a2fbd51286ad"
+    },
+    {
+      "path": "review.json",
+      "sha256": "90edfc344860037d303b774fee16baadf0270aa28e3426c1385cc040e39c0186"
+    },
+    {
+      "path": "registry-entry.json",
+      "sha256": "bcdb202316fa9902944520c255e6e0ba42f867631239bef3712f6224ee80646f"
+    },
+    {
+      "path": "revise.py",
+      "sha256": "c644fd02a365afbea7c48ac4e2b651f8dfb98e917d2b282289760db34df4182d"
+    },
+    {
+      "path": "original-registry-entry.json",
+      "sha256": "ecadc9685acdeea8d73ad24e04171b1a17baeafbcc1a0e7a450c184efa4dcec2"
+    }
+  ]
+}

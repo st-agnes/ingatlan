@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "pixelToEovRows": [
+    [
+      7.295265666551262,
+      -0.10742882641549654
+    ],
+    [
+      -0.8084406658282984,
+      -7.146965908083763
+    ],
+    [
+      528472.9757213925,
+      224419.3272565886
+    ]
+  ],
+  "controls": [
+    {
+      "name": "Bástya lakótelep",
+      "sourcePixel": [
+        281,
+        389
+      ],
+      "worldPoint": [
+        17.4626784,
+        47.3276185
+      ],
+      "pointSource": "https://www.openstreetmap.org/node/3396698123",
+      "fitResidualMetresDiagnostic": 15.54769230239968
+    },
+    {
+      "name": "Kilián lakótelep",
+      "sourcePixel": [
+        488,
+        554
+      ],
+      "worldPoint": [
+        17.4805581,
+        47.3168755
+      ],
+      "pointSource": "https://www.openstreetmap.org/node/3396698126",
+      "fitResidualMetresDiagnostic": 37.79569962005096
+    },
+    {
+      "name": "Igal-lakótelep",
+      "sourcePixel": [
+        674,
+        770
+      ],
+      "worldPoint": [
+        17.49728,
+        47.3032193
+      ],
+      "pointSource": "https://www.openstreetmap.org/node/3396698125",
+      "fitResidualMetresDiagnostic": 17.694754572167
+    },
+    {
+      "name": "Vajda Péter-lakótelep",
+      "sourcePixel": [
+        472,
+        278
+      ],
+      "worldPoint": [
+        17.4819576,
+        47.3347989
+      ],
+      "pointSource": "https://www.openstreetmap.org/node/1300562764",
+      "fitResidualMetresDiagnostic": 4.553252745224856
+    }
+  ],
+  "fitRmsMetresDiagnostic": 22.383487751188046,
+  "method": "Approximate source-estate-marker to current named-place-point affine fit; marker identification and node placement are approximate, not surveyed controls.",
+  "absoluteAccuracyMetres": null
+}

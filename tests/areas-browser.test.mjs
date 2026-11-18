@@ -64,7 +64,7 @@ async function verify(browser,viewport){
   await save(page,interact);
   search=(await readState(page)).searches.find(item=>item.id===search.id);
   assert.deepEqual(search.locationIds,['area:Budapest','city:Solymár']);
-  await newEntity(page,interact,'property');
+  await newEntity(page,interact,'property');await page.locator('#f-street').fill('Teszt utca');await page.locator('#f-houseNumber').fill('12/A');
   assert.equal(await page.locator('.location-source').count(),0,'Seller field must stay a precise location selector');
   await query(page,'Debrecen');
   assert.equal(await page.locator('#location-options [data-location-id^="area:"]').count(),0);

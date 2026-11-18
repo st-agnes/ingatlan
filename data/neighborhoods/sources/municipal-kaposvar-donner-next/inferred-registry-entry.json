@@ -1,0 +1,22 @@
+{
+  "id": "kaposvar-donner-interpreted-2023",
+  "path": "data/neighborhoods/sources/municipal-kaposvar-donner-next/donner-candidate.geojson",
+  "sha256": "aef93bcb4722d7d72892dd179e21d5bd4901533cbec4317138602b204b5252bc",
+  "municipality": "Kaposvár",
+  "method": "Interpreted July2023 municipal whole-Donner description using actual November2026 OSM Kapos, Zselic-patak, Szigetvári utca and road67/Zselici arcs. Distinct Donner identity is supported separately from eastern Rómahegy. Two common OSM nodes and two analytical bridge-crossing intersections; all other vertices and node-ref connections are original source geometry. The printed source is malformed and route-age/spelling equivalence remains inferred. No compound-map cloning, fabricated child boundary, missing-edge connection, snapping, buffer, hull, frame closure or municipal clipping.",
+  "evidenceUrls": [
+    "https://kph.kaposvar.hu/data/adattar/fvs21-27/fvs21-27.pdf"
+  ],
+  "license": "ODbL-1.0 for OSM geometry; municipal-source open reuse rights unverified.",
+  "propertyOverrides": {
+    "estimated": true,
+    "boundaryKind": "inferred_area",
+    "canonicalNameIsNeighborhood": false,
+    "usableForAddressAssignment": false,
+    "confidence": "low",
+    "claimedAbsoluteAccuracyMetres": null
+  },
+  "reviewPath": "data/neighborhoods/sources/municipal-kaposvar-donner-next/independent-geometry-review.json",
+  "additionalReviewPath": "data/neighborhoods/sources/municipal-kaposvar-donner-next/independent-source-review.json",
+  "rightsStatus": "Public municipal publication; open reuse licence not independently established. ODbL applies to literal OSM geometry."
+}

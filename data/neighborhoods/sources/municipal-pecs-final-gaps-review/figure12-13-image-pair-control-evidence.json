@@ -1,0 +1,501 @@
+{
+  "schemaVersion": 1,
+  "scope": "Bounded image-pair correspondence evidence only for central I fine stroke sequence. These actual source pixels are not surveyed vertices or absolute georeferencing controls. No transform is fitted.",
+  "sourceImages": [
+    {
+      "figure": 12,
+      "path": "pdf63-figure12-xref642.jpeg",
+      "size": [
+        1341,
+        946
+      ],
+      "sha256": "08ec2a2ffe63222113424c7353ab502399b20b4e8d41f7262545ee4483283788"
+    },
+    {
+      "figure": 13,
+      "path": "pdf65-figure13-xref647.jpeg",
+      "size": [
+        1341,
+        946
+      ],
+      "sha256": "f46d9d8c8e40ef73ed185784150343934757c9eea9f64578c5cee9a28c5a9b0b"
+    }
+  ],
+  "sameCanvasDoesNotMeanSamePixelFrame": true,
+  "observedGlobalMainBodyDarkComponentBounds": {
+    "12": [
+      109,
+      247,
+      744,
+      871
+    ],
+    "13": [
+      101,
+      239,
+      737,
+      863
+    ],
+    "14": [
+      101,
+      229,
+      736,
+      853
+    ],
+    "15": [
+      103,
+      249,
+      742,
+      875
+    ]
+  },
+  "bboxMethod": "Diagnostic connected8component of original minRGB<180 pixels withinx90..999, chosen as main city body. This is not exported geography and no morphological closing or repair is performed.",
+  "centralFinePartitionAssessment": "The I-area corner/step sequence is visibly repeated in Figure12 density and Figure13 age map. In13 the short west boundary of the hatched thin eastern wedge is clearer because its fill differs from the brown long southwest body. Figure9 literal name/shape interpretation is a separate review.",
+  "records": [
+    {
+      "id": "belvaros-northwest-junction",
+      "sameFineStrokeSequenceObservation": "Belváros83 northwestern near-vertical limb meets the northern/western outline arms.",
+      "sourceFigure": 12,
+      "targetFigure": 13,
+      "pointRole": "Actual original dark boundary-pixel observations within the visually corresponding corner/junction neighbourhoods; no geographic control.",
+      "observations": [
+        {
+          "figure": 12,
+          "nominalVisuallyObservedPixel": [
+            441,
+            501
+          ],
+          "actualDarkOriginalPixel": [
+            441,
+            501
+          ],
+          "rgb": [
+            50,
+            5,
+            0
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-1-figure12-native.png",
+          "sourcePixelBox": [
+            433,
+            493,
+            450,
+            510
+          ],
+          "nativeCropSha256": "588fb3b3e04a9327af1bc04d2eb739492db0c8c97b9977443f3a980eddc27e88"
+        },
+        {
+          "figure": 13,
+          "nominalVisuallyObservedPixel": [
+            433,
+            493
+          ],
+          "actualDarkOriginalPixel": [
+            433,
+            493
+          ],
+          "rgb": [
+            23,
+            24,
+            8
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-1-figure13-native.png",
+          "sourcePixelBox": [
+            425,
+            485,
+            442,
+            502
+          ],
+          "nativeCropSha256": "bef19da0fd61c4176662098d5d3c8ce50c2ddd216a73cadec9014ef564c90503"
+        }
+      ],
+      "actualPixelDelta12To13": [
+        -8,
+        -8
+      ]
+    },
+    {
+      "id": "belvaros-northeast-saddle",
+      "sameFineStrokeSequenceObservation": "Belváros83 northern/eastern concave shoulder under the adjoining eastward cell.",
+      "sourceFigure": 12,
+      "targetFigure": 13,
+      "pointRole": "Actual original dark boundary-pixel observations within the visually corresponding corner/junction neighbourhoods; no geographic control.",
+      "observations": [
+        {
+          "figure": 12,
+          "nominalVisuallyObservedPixel": [
+            500,
+            499
+          ],
+          "actualDarkOriginalPixel": [
+            501,
+            500
+          ],
+          "rgb": [
+            92,
+            36,
+            21
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-2-figure12-native.png",
+          "sourcePixelBox": [
+            492,
+            491,
+            509,
+            508
+          ],
+          "nativeCropSha256": "88e8357386263d951905486b9f09ccf04231e0e00c9c9144fc2bf09e415dce09"
+        },
+        {
+          "figure": 13,
+          "nominalVisuallyObservedPixel": [
+            492,
+            491
+          ],
+          "actualDarkOriginalPixel": [
+            493,
+            492
+          ],
+          "rgb": [
+            51,
+            43,
+            22
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-2-figure13-native.png",
+          "sourcePixelBox": [
+            484,
+            483,
+            501,
+            500
+          ],
+          "nativeCropSha256": "95f6ca770ea20c259616d8c49a15bc9318bc8e2a8574265c9be754924b2b4878"
+        }
+      ],
+      "actualPixelDelta12To13": [
+        -8,
+        -8
+      ]
+    },
+    {
+      "id": "belvaros-southeast-triple-junction",
+      "sameFineStrokeSequenceObservation": "Belváros83 southern/eastern corner meets the Siklósi long body and the Kisbalokány thin eastern wedge.",
+      "sourceFigure": 12,
+      "targetFigure": 13,
+      "pointRole": "Actual original dark boundary-pixel observations within the visually corresponding corner/junction neighbourhoods; no geographic control.",
+      "observations": [
+        {
+          "figure": 12,
+          "nominalVisuallyObservedPixel": [
+            515,
+            523
+          ],
+          "actualDarkOriginalPixel": [
+            516,
+            524
+          ],
+          "rgb": [
+            107,
+            39,
+            20
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-3-figure12-native.png",
+          "sourcePixelBox": [
+            507,
+            515,
+            524,
+            532
+          ],
+          "nativeCropSha256": "085a633415bd5c3d548de6131464656bb0da21a6a35aeaa7652bf1175222a112"
+        },
+        {
+          "figure": 13,
+          "nominalVisuallyObservedPixel": [
+            507,
+            515
+          ],
+          "actualDarkOriginalPixel": [
+            508,
+            516
+          ],
+          "rgb": [
+            77,
+            75,
+            62
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-3-figure13-native.png",
+          "sourcePixelBox": [
+            499,
+            507,
+            516,
+            524
+          ],
+          "nativeCropSha256": "3dfa73c0c1f2f93d5d56c8db5276f2020438b51aef95ce8b1f582c8a480331ba"
+        }
+      ],
+      "actualPixelDelta12To13": [
+        -8,
+        -8
+      ]
+    },
+    {
+      "id": "ispitaalja-eastward-lower-step",
+      "sameFineStrokeSequenceObservation": "Ispitaalja96 eastern limb makes the lower westward step next to the long Siklósi body.",
+      "sourceFigure": 12,
+      "targetFigure": 13,
+      "pointRole": "Actual original dark boundary-pixel observations within the visually corresponding corner/junction neighbourhoods; no geographic control.",
+      "observations": [
+        {
+          "figure": 12,
+          "nominalVisuallyObservedPixel": [
+            454,
+            568
+          ],
+          "actualDarkOriginalPixel": [
+            455,
+            568
+          ],
+          "rgb": [
+            99,
+            40,
+            6
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-4-figure12-native.png",
+          "sourcePixelBox": [
+            446,
+            560,
+            463,
+            577
+          ],
+          "nativeCropSha256": "d42bb28c6cbf7036a9f5145c09995ddea1a4e36f0be5f58c3462915d5e40c8db"
+        },
+        {
+          "figure": 13,
+          "nominalVisuallyObservedPixel": [
+            446,
+            560
+          ],
+          "actualDarkOriginalPixel": [
+            447,
+            560
+          ],
+          "rgb": [
+            89,
+            59,
+            25
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-4-figure13-native.png",
+          "sourcePixelBox": [
+            438,
+            552,
+            455,
+            569
+          ],
+          "nativeCropSha256": "9855d8c4e628d2542a5ef79bd6d802e7c01282beadfbe861ba7527ae9857799e"
+        }
+      ],
+      "actualPixelDelta12To13": [
+        -8,
+        -8
+      ]
+    },
+    {
+      "id": "siklosi-southwest-outer-step",
+      "sameFineStrokeSequenceObservation": "Long Siklósi92 body makes a short southern notch immediately west of the IX caption.",
+      "sourceFigure": 12,
+      "targetFigure": 13,
+      "pointRole": "Actual original dark boundary-pixel observations within the visually corresponding corner/junction neighbourhoods; no geographic control.",
+      "observations": [
+        {
+          "figure": 12,
+          "nominalVisuallyObservedPixel": [
+            479,
+            570
+          ],
+          "actualDarkOriginalPixel": [
+            479,
+            570
+          ],
+          "rgb": [
+            57,
+            51,
+            39
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-5-figure12-native.png",
+          "sourcePixelBox": [
+            471,
+            562,
+            488,
+            579
+          ],
+          "nativeCropSha256": "b885b8de1c57b626fb33882bdc99ba094be8f73cbb44c23d3dfa416413b3e133"
+        },
+        {
+          "figure": 13,
+          "nominalVisuallyObservedPixel": [
+            471,
+            562
+          ],
+          "actualDarkOriginalPixel": [
+            471,
+            562
+          ],
+          "rgb": [
+            72,
+            51,
+            32
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-5-figure13-native.png",
+          "sourcePixelBox": [
+            463,
+            554,
+            480,
+            571
+          ],
+          "nativeCropSha256": "ec0667b7edf0c241dd20f007cde58e3115bbc8527c3927ad30cc4f54a14aaf88"
+        }
+      ],
+      "actualPixelDelta12To13": [
+        -8,
+        -8
+      ]
+    },
+    {
+      "id": "kisbalokany-eastern-junction",
+      "sameFineStrokeSequenceObservation": "Eastern fine wedge89 narrows to the long southeastward IX/rail-like shared border at its eastern junction.",
+      "sourceFigure": 12,
+      "targetFigure": 13,
+      "pointRole": "Actual original dark boundary-pixel observations within the visually corresponding corner/junction neighbourhoods; no geographic control.",
+      "observations": [
+        {
+          "figure": 12,
+          "nominalVisuallyObservedPixel": [
+            550,
+            516
+          ],
+          "actualDarkOriginalPixel": [
+            551,
+            515
+          ],
+          "rgb": [
+            53,
+            41,
+            27
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-6-figure12-native.png",
+          "sourcePixelBox": [
+            542,
+            508,
+            559,
+            525
+          ],
+          "nativeCropSha256": "051f8a6ebe38fe6040fee1ee80275e52dd6b3606ad0d0c965e0a512fdcb37a02"
+        },
+        {
+          "figure": 13,
+          "nominalVisuallyObservedPixel": [
+            542,
+            508
+          ],
+          "actualDarkOriginalPixel": [
+            543,
+            507
+          ],
+          "rgb": [
+            36,
+            47,
+            49
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-6-figure13-native.png",
+          "sourcePixelBox": [
+            534,
+            500,
+            551,
+            517
+          ],
+          "nativeCropSha256": "ed020cb5643b5e7a4de8806e7f63b3aeb7e9eb714edc4f919032e5f707f17765"
+        }
+      ],
+      "actualPixelDelta12To13": [
+        -8,
+        -8
+      ]
+    },
+    {
+      "id": "ispitaalja-siklosi-upper-west-junction",
+      "sameFineStrokeSequenceObservation": "Horizontal lower Ispitaalja/Belváros boundary joins the western near-vertical side of the long Siklósi body.",
+      "sourceFigure": 12,
+      "targetFigure": 13,
+      "pointRole": "Actual original dark boundary-pixel observations within the visually corresponding corner/junction neighbourhoods; no geographic control.",
+      "observations": [
+        {
+          "figure": 12,
+          "nominalVisuallyObservedPixel": [
+            450,
+            545
+          ],
+          "actualDarkOriginalPixel": [
+            449,
+            545
+          ],
+          "rgb": [
+            108,
+            36,
+            14
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-7-figure12-native.png",
+          "sourcePixelBox": [
+            442,
+            537,
+            459,
+            554
+          ],
+          "nativeCropSha256": "9dee2b93b7d89f890bf4eca441d069e3323f0bd9eff472638f016b66de063374"
+        },
+        {
+          "figure": 13,
+          "nominalVisuallyObservedPixel": [
+            442,
+            537
+          ],
+          "actualDarkOriginalPixel": [
+            441,
+            537
+          ],
+          "rgb": [
+            86,
+            60,
+            25
+          ],
+          "refinement": "Darkest sumRGB within independently inspected original3x3 neighbourhood; tie by distance. No world coordinates, fit or residual input.",
+          "nativeCrop": "frame-control-7-figure13-native.png",
+          "sourcePixelBox": [
+            434,
+            529,
+            451,
+            546
+          ],
+          "nativeCropSha256": "96bdb64e974ee9674d6b7ba89f38c37d9c89f0fc2713dc761be9a3a515468df0"
+        }
+      ],
+      "actualPixelDelta12To13": [
+        -8,
+        -8
+      ]
+    }
+  ],
+  "frameTransformApproved": false,
+  "worldGeoreferenceEvaluated": false,
+  "newGeographicGeometryCreated": 0,
+  "claimedAbsoluteAccuracy": null,
+  "contactSheet": "figure12-13-central-source-control-contact.png"
+}

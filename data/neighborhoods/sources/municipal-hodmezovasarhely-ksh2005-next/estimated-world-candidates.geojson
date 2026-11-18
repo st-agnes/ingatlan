@@ -1,0 +1,1588 @@
+{
+  "type": "FeatureCollection",
+  "status": "estimated_historical_source_placement_candidates_only",
+  "completeNationalCoverage": false,
+  "usableForAddressAssignment": false,
+  "features": [
+    {
+      "type": "Feature",
+      "id": "manual:hodmezovasarhely-ksh2005-native:0",
+      "properties": {
+        "name": "Belváros",
+        "municipality": "Hódmezővásárhely",
+        "municipalityId": "city:Hódmezővásárhely",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceContourObserved": true,
+        "sourceNativeFillOrdinal": 0,
+        "sourceNativePaintIndex": 0,
+        "sourceNativePartCount": 2,
+        "sourceNativeGeometryCanonicalSha256": "b2394ba262e970f2a918a8c30049c373ab916b06daed6e4a5aec4a8a38fc85bb",
+        "sourceContourCoordinatesPreservedVertexwise": true,
+        "sourceHistoricalQuarterIdentitySupported": true,
+        "sourceNameEvidence": {
+          "literalSourceName": "Belváros",
+          "sourcePageOneBased": 9,
+          "sourceLabelRectanglePdfPoints": [
+            208.0201416015625,
+            299.6633605957031,
+            234.12477111816406,
+            306.81024169921875
+          ],
+          "sourceLabelUsedForFit": false,
+          "currentNamePointDiagnostics": [
+            {
+              "id": "osm:node:1864706584",
+              "name": "Belváros",
+              "place": "suburb",
+              "sourcePolygonCoversPoint": true,
+              "distanceOutsideM": 0.0,
+              "usedForFit": false
+            }
+          ],
+          "currentNamePointsUsedForFit": false,
+          "identityOnly": true,
+          "sourceCategory": "central_historical_quarter",
+          "currentWholeExtentVerified": false
+        },
+        "sourcePeriod": "KSH issue8/2005, publishedJuly2005; statistics principally2001-02-01; map survey/reference date unknown",
+        "georeferencingStatus": "estimated_three_interpreted_road_junction_similarity",
+        "georeferencingIsApproximate": true,
+        "georeferenceConfidence": "low_unquantified_absolute_accuracy",
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "controlHullCoveredFraction": 0.06163564560965387,
+        "mainVsTwoControlAlternativeVertexShiftM": {
+          "minimum": 12.549727832118444,
+          "median": 23.13250863107997,
+          "maximum": 30.80719806441768,
+          "notAnAccuracyBound": true
+        },
+        "sourceDocumentIsOfficialStatisticalPublication": true,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_historical_source_candidate_pending_independent_world_review",
+        "method": "Literal closed source fill contours from the original July2005KSH PDF page9, including all actual native subpaths and touching micro-triangles. Original decimal PDF vertices are evaluated exactly, then mapped by a three-road-junction EOV similarity and vertexwise EPSG23700→4326. No polygon repair, dropped component, smoothing, buffer, clipping, snapping, missing-edge cap, frame closure or current-name-point fit. Placement remains estimated; one two-control alternative is retained separately. Hódtó is invalid in source and already represented, so it is quarantined rather than repaired or counted again.",
+        "placementUncertainty": "Geographic placement is estimated from three interpreted source-boundary road junctions, not surveyed source controls. C2 has historical/current street-name ambiguity. Main fit RMS15.03m is not an accuracy bound; an ambiguous held-out junction differs55.76–74.73m. The control triangle covers only small portions ofBelváros/Tabán; other candidate footprints are extrapolated. Source cartographic generalization, road-centre convention,2005/current change and unknown survey/CRS remain material. Literal current-street-name line checks diverge up to1014m where simplified historical descriptions do not match the whole mapped border under current names; no aliases or source corrections are inferred. Independent source Susán/Újváros rail135 check differs by up to84.21m. These diagnostics do not establish absolute accuracy or whole current extents. Four detached village depictions are schematic/compressed and are retained only in native source coordinates.",
+        "evidenceUrls": [
+          "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+            "sha256": "3dc2a4f4fcf3afd1b387a278be6a7fc7dcccdb75db8f1d4af3a5f07d811d8342",
+            "pdfPageOneBased": 9,
+            "publicationPeriod": "July2005",
+            "sourceNameStreetFactsPages": [
+              8,
+              9
+            ],
+            "statisticsReferenceEvidencePage": 4
+          }
+        ],
+        "license": "KSH2005 requires source attribution for secondary publication and reserves data-transfer permission toKSHSzeged. Unrestricted reuse permission is not established. Actual OSM control/name-point evidence ODbL-1.0.",
+        "rightsStatus": "Source attribution and separate KSH data-transfer permission conditions retained; no unrestricted data-transfer/reuse permission established."
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                20.322607788530995,
+                46.41154530288928
+              ],
+              [
+                20.32275225531304,
+                46.41153909914103
+              ],
+              [
+                20.32274328612809,
+                46.41143917399321
+              ],
+              [
+                20.322607788530995,
+                46.41154530288928
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                20.31164966560807,
+                46.42278187613326
+              ],
+              [
+                20.313991276877683,
+                46.42328340561307
+              ],
+              [
+                20.317753648283414,
+                46.421834791617464
+              ],
+              [
+                20.31999383541355,
+                46.42093620554488
+              ],
+              [
+                20.321514323319075,
+                46.4203693982305
+              ],
+              [
+                20.324597232437366,
+                46.419434537977466
+              ],
+              [
+                20.32386448020187,
+                46.419081486259195
+              ],
+              [
+                20.328314149022628,
+                46.41748594744636
+              ],
+              [
+                20.328004365781826,
+                46.416997710102066
+              ],
+              [
+                20.325848490336668,
+                46.41560242013847
+              ],
+              [
+                20.323913614339908,
+                46.41478274605571
+              ],
+              [
+                20.322607788530995,
+                46.41154530288928
+              ],
+              [
+                20.322463321715848,
+                46.41155150645286
+              ],
+              [
+                20.317313449899927,
+                46.412073455668356
+              ],
+              [
+                20.31003838338902,
+                46.4128868250097
+              ],
+              [
+                20.31004732932971,
+                46.41298675116775
+              ],
+              [
+                20.309755548749845,
+                46.414587477806215
+              ],
+              [
+                20.31003704630992,
+                46.41449183118357
+              ],
+              [
+                20.31014291182783,
+                46.41567429078858
+              ],
+              [
+                20.31063003429622,
+                46.41625528356144
+              ],
+              [
+                20.311406131670946,
+                46.41682389595125
+              ],
+              [
+                20.30924832750927,
+                46.41999246208279
+              ],
+              [
+                20.30734169928628,
+                46.421378099357234
+              ],
+              [
+                20.307486194092156,
+                46.421371915127196
+              ],
+              [
+                20.31164966560807,
+                46.42278187613326
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:hodmezovasarhely-ksh2005-native:1",
+      "properties": {
+        "name": "Tarján",
+        "municipality": "Hódmezővásárhely",
+        "municipalityId": "city:Hódmezővásárhely",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceContourObserved": true,
+        "sourceNativeFillOrdinal": 1,
+        "sourceNativePaintIndex": 1,
+        "sourceNativePartCount": 1,
+        "sourceNativeGeometryCanonicalSha256": "cc1acd55ae73172ec0c184f6b3ee7c6e414bf7066f29b6ffc5afb872176e28e9",
+        "sourceContourCoordinatesPreservedVertexwise": true,
+        "sourceHistoricalQuarterIdentitySupported": true,
+        "sourceNameEvidence": {
+          "literalSourceName": "Tarján",
+          "sourcePageOneBased": 9,
+          "sourceLabelRectanglePdfPoints": [
+            174.42027282714844,
+            301.1036071777344,
+            192.9521942138672,
+            308.25048828125
+          ],
+          "sourceLabelUsedForFit": false,
+          "currentNamePointDiagnostics": [
+            {
+              "id": "osm:node:1864706612",
+              "name": "Tarján",
+              "place": "suburb",
+              "sourcePolygonCoversPoint": true,
+              "distanceOutsideM": 0.0,
+              "usedForFit": false
+            }
+          ],
+          "currentNamePointsUsedForFit": false,
+          "identityOnly": true,
+          "sourceCategory": "central_historical_quarter",
+          "currentWholeExtentVerified": false
+        },
+        "sourcePeriod": "KSH issue8/2005, publishedJuly2005; statistics principally2001-02-01; map survey/reference date unknown",
+        "georeferencingStatus": "estimated_three_interpreted_road_junction_similarity",
+        "georeferencingIsApproximate": true,
+        "georeferenceConfidence": "low_unquantified_absolute_accuracy",
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "controlHullCoveredFraction": 0.0,
+        "mainVsTwoControlAlternativeVertexShiftM": {
+          "minimum": 12.960851871450943,
+          "median": 22.26863354900258,
+          "maximum": 27.645606016291644,
+          "notAnAccuracyBound": true
+        },
+        "sourceDocumentIsOfficialStatisticalPublication": true,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_historical_source_candidate_pending_independent_world_review",
+        "method": "Literal closed source fill contours from the original July2005KSH PDF page9, including all actual native subpaths and touching micro-triangles. Original decimal PDF vertices are evaluated exactly, then mapped by a three-road-junction EOV similarity and vertexwise EPSG23700→4326. No polygon repair, dropped component, smoothing, buffer, clipping, snapping, missing-edge cap, frame closure or current-name-point fit. Placement remains estimated; one two-control alternative is retained separately. Hódtó is invalid in source and already represented, so it is quarantined rather than repaired or counted again.",
+        "placementUncertainty": "Geographic placement is estimated from three interpreted source-boundary road junctions, not surveyed source controls. C2 has historical/current street-name ambiguity. Main fit RMS15.03m is not an accuracy bound; an ambiguous held-out junction differs55.76–74.73m. The control triangle covers only small portions ofBelváros/Tabán; other candidate footprints are extrapolated. Source cartographic generalization, road-centre convention,2005/current change and unknown survey/CRS remain material. Literal current-street-name line checks diverge up to1014m where simplified historical descriptions do not match the whole mapped border under current names; no aliases or source corrections are inferred. Independent source Susán/Újváros rail135 check differs by up to84.21m. These diagnostics do not establish absolute accuracy or whole current extents. Four detached village depictions are schematic/compressed and are retained only in native source coordinates.",
+        "evidenceUrls": [
+          "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+            "sha256": "3dc2a4f4fcf3afd1b387a278be6a7fc7dcccdb75db8f1d4af3a5f07d811d8342",
+            "pdfPageOneBased": 9,
+            "publicationPeriod": "July2005",
+            "sourceNameStreetFactsPages": [
+              8,
+              9
+            ],
+            "statisticsReferenceEvidencePage": 4
+          }
+        ],
+        "license": "KSH2005 requires source attribution for secondary publication and reserves data-transfer permission toKSHSzeged. Unrestricted reuse permission is not established. Actual OSM control/name-point evidence ODbL-1.0.",
+        "rightsStatus": "Source attribution and separate KSH data-transfer permission conditions retained; no unrestricted data-transfer/reuse permission established."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.293093046091766,
+              46.413410681040304
+            ],
+            [
+              20.294909682790582,
+              46.41453683300669
+            ],
+            [
+              20.295198638628886,
+              46.41452449614875
+            ],
+            [
+              20.297173507706916,
+              46.415526833066764
+            ],
+            [
+              20.29811129786632,
+              46.418178381591076
+            ],
+            [
+              20.298161669585443,
+              46.420366296166186
+            ],
+            [
+              20.298991255752895,
+              46.42153455666568
+            ],
+            [
+              20.303302044147554,
+              46.42135029951369
+            ],
+            [
+              20.304006647449082,
+              46.4211195490011
+            ],
+            [
+              20.306808426520902,
+              46.421902466692636
+            ],
+            [
+              20.307486194092156,
+              46.421371915127196
+            ],
+            [
+              20.30734169928628,
+              46.421378099357234
+            ],
+            [
+              20.30924832750927,
+              46.41999246208279
+            ],
+            [
+              20.311406131670946,
+              46.41682389595125
+            ],
+            [
+              20.31063003429622,
+              46.41625528356144
+            ],
+            [
+              20.31014291182783,
+              46.41567429078858
+            ],
+            [
+              20.31003704630992,
+              46.41449183118357
+            ],
+            [
+              20.309755548749845,
+              46.414587477806215
+            ],
+            [
+              20.31004732932971,
+              46.41298675116775
+            ],
+            [
+              20.30946944072449,
+              46.41301150008065
+            ],
+            [
+              20.30810244991543,
+              46.41367188648667
+            ],
+            [
+              20.301905179673707,
+              46.413836719166056
+            ],
+            [
+              20.29595846340668,
+              46.413288353928884
+            ],
+            [
+              20.293093046091766,
+              46.413410681040304
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:hodmezovasarhely-ksh2005-native:2",
+      "properties": {
+        "name": "Tabán",
+        "municipality": "Hódmezővásárhely",
+        "municipalityId": "city:Hódmezővásárhely",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceContourObserved": true,
+        "sourceNativeFillOrdinal": 2,
+        "sourceNativePaintIndex": 2,
+        "sourceNativePartCount": 1,
+        "sourceNativeGeometryCanonicalSha256": "26321b16ef1d8b6d1db2938c040abd60c8b1956af2a1273bf046139c6a97154b",
+        "sourceContourCoordinatesPreservedVertexwise": true,
+        "sourceHistoricalQuarterIdentitySupported": true,
+        "sourceNameEvidence": {
+          "literalSourceName": "Tabán",
+          "sourcePageOneBased": 9,
+          "sourceLabelRectanglePdfPoints": [
+            188.33999633789062,
+            259.5839538574219,
+            206.5734405517578,
+            266.7308349609375
+          ],
+          "sourceLabelUsedForFit": false,
+          "currentNamePointDiagnostics": [
+            {
+              "id": "osm:node:1864706598",
+              "name": "Tabán",
+              "place": "suburb",
+              "sourcePolygonCoversPoint": true,
+              "distanceOutsideM": 0.0,
+              "usedForFit": false
+            }
+          ],
+          "currentNamePointsUsedForFit": false,
+          "identityOnly": true,
+          "sourceCategory": "central_historical_quarter",
+          "currentWholeExtentVerified": false
+        },
+        "sourcePeriod": "KSH issue8/2005, publishedJuly2005; statistics principally2001-02-01; map survey/reference date unknown",
+        "georeferencingStatus": "estimated_three_interpreted_road_junction_similarity",
+        "georeferencingIsApproximate": true,
+        "georeferenceConfidence": "low_unquantified_absolute_accuracy",
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "controlHullCoveredFraction": 0.1302623317814497,
+        "mainVsTwoControlAlternativeVertexShiftM": {
+          "minimum": 5.8214956980460615,
+          "median": 11.278529158326126,
+          "maximum": 16.466106243463614,
+          "notAnAccuracyBound": true
+        },
+        "sourceDocumentIsOfficialStatisticalPublication": true,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_historical_source_candidate_pending_independent_world_review",
+        "method": "Literal closed source fill contours from the original July2005KSH PDF page9, including all actual native subpaths and touching micro-triangles. Original decimal PDF vertices are evaluated exactly, then mapped by a three-road-junction EOV similarity and vertexwise EPSG23700→4326. No polygon repair, dropped component, smoothing, buffer, clipping, snapping, missing-edge cap, frame closure or current-name-point fit. Placement remains estimated; one two-control alternative is retained separately. Hódtó is invalid in source and already represented, so it is quarantined rather than repaired or counted again.",
+        "placementUncertainty": "Geographic placement is estimated from three interpreted source-boundary road junctions, not surveyed source controls. C2 has historical/current street-name ambiguity. Main fit RMS15.03m is not an accuracy bound; an ambiguous held-out junction differs55.76–74.73m. The control triangle covers only small portions ofBelváros/Tabán; other candidate footprints are extrapolated. Source cartographic generalization, road-centre convention,2005/current change and unknown survey/CRS remain material. Literal current-street-name line checks diverge up to1014m where simplified historical descriptions do not match the whole mapped border under current names; no aliases or source corrections are inferred. Independent source Susán/Újváros rail135 check differs by up to84.21m. These diagnostics do not establish absolute accuracy or whole current extents. Four detached village depictions are schematic/compressed and are retained only in native source coordinates.",
+        "evidenceUrls": [
+          "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+            "sha256": "3dc2a4f4fcf3afd1b387a278be6a7fc7dcccdb75db8f1d4af3a5f07d811d8342",
+            "pdfPageOneBased": 9,
+            "publicationPeriod": "July2005",
+            "sourceNameStreetFactsPages": [
+              8,
+              9
+            ],
+            "statisticsReferenceEvidencePage": 4
+          }
+        ],
+        "license": "KSH2005 requires source attribution for secondary publication and reserves data-transfer permission toKSHSzeged. Unrestricted reuse permission is not established. Actual OSM control/name-point evidence ODbL-1.0.",
+        "rightsStatus": "Source attribution and separate KSH data-transfer permission conditions retained; no unrestricted data-transfer/reuse permission established."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.299135751928496,
+              46.42152838311157
+            ],
+            [
+              20.29963173701127,
+              46.42220935047809
+            ],
+            [
+              20.3013746411479,
+              46.42223517269245
+            ],
+            [
+              20.302518307466386,
+              46.42556334251883
+            ],
+            [
+              20.30119088399647,
+              46.42991663922483
+            ],
+            [
+              20.30045042979936,
+              46.429747664311066
+            ],
+            [
+              20.29851058516032,
+              46.432120914589525
+            ],
+            [
+              20.298982571822574,
+              46.43280291391089
+            ],
+            [
+              20.296405902046104,
+              46.437794617973495
+            ],
+            [
+              20.298338489139947,
+              46.43831395345949
+            ],
+            [
+              20.299931143766088,
+              46.43854685368942
+            ],
+            [
+              20.30400634892037,
+              46.43895782669223
+            ],
+            [
+              20.3070775070222,
+              46.43922771464553
+            ],
+            [
+              20.30705961749744,
+              46.43902786164801
+            ],
+            [
+              20.307652378147562,
+              46.43781550830165
+            ],
+            [
+              20.31432573933013,
+              46.43483812495067
+            ],
+            [
+              20.31430782444798,
+              46.43463827312984
+            ],
+            [
+              20.31466357613942,
+              46.434021170160136
+            ],
+            [
+              20.31442947300785,
+              46.43302810463098
+            ],
+            [
+              20.319077567143438,
+              46.43174213523559
+            ],
+            [
+              20.318961015204795,
+              46.43044310341279
+            ],
+            [
+              20.317753648283414,
+              46.421834791617464
+            ],
+            [
+              20.313991276877683,
+              46.42328340561307
+            ],
+            [
+              20.31164966560807,
+              46.42278187613326
+            ],
+            [
+              20.307486194092156,
+              46.421371915127196
+            ],
+            [
+              20.306808426520902,
+              46.421902466692636
+            ],
+            [
+              20.304006647449082,
+              46.4211195490011
+            ],
+            [
+              20.303302044147554,
+              46.42135029951369
+            ],
+            [
+              20.299135751928496,
+              46.42152838311157
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:hodmezovasarhely-ksh2005-native:3",
+      "properties": {
+        "name": "Csúcs",
+        "municipality": "Hódmezővásárhely",
+        "municipalityId": "city:Hódmezővásárhely",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceContourObserved": true,
+        "sourceNativeFillOrdinal": 3,
+        "sourceNativePaintIndex": 3,
+        "sourceNativePartCount": 1,
+        "sourceNativeGeometryCanonicalSha256": "55a98068e045c97df50a860018296d8587d31fac3ae8b704a2990cce62dba29e",
+        "sourceContourCoordinatesPreservedVertexwise": true,
+        "sourceHistoricalQuarterIdentitySupported": true,
+        "sourceNameEvidence": {
+          "literalSourceName": "Csúcs",
+          "sourcePageOneBased": 9,
+          "sourceLabelRectanglePdfPoints": [
+            231.29995727539062,
+            272.1236267089844,
+            249.85105895996094,
+            279.2705078125
+          ],
+          "sourceLabelUsedForFit": false,
+          "currentNamePointDiagnostics": [
+            {
+              "id": "osm:node:1864706597",
+              "name": "Csúcs",
+              "place": "suburb",
+              "sourcePolygonCoversPoint": true,
+              "distanceOutsideM": 0.0,
+              "usedForFit": false
+            }
+          ],
+          "currentNamePointsUsedForFit": false,
+          "identityOnly": true,
+          "sourceCategory": "central_historical_quarter",
+          "currentWholeExtentVerified": false
+        },
+        "sourcePeriod": "KSH issue8/2005, publishedJuly2005; statistics principally2001-02-01; map survey/reference date unknown",
+        "georeferencingStatus": "estimated_three_interpreted_road_junction_similarity",
+        "georeferencingIsApproximate": true,
+        "georeferenceConfidence": "low_unquantified_absolute_accuracy",
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "controlHullCoveredFraction": 0.0,
+        "mainVsTwoControlAlternativeVertexShiftM": {
+          "minimum": 11.25769293154894,
+          "median": 23.064843430362256,
+          "maximum": 31.399988502551658,
+          "notAnAccuracyBound": true
+        },
+        "sourceDocumentIsOfficialStatisticalPublication": true,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_historical_source_candidate_pending_independent_world_review",
+        "method": "Literal closed source fill contours from the original July2005KSH PDF page9, including all actual native subpaths and touching micro-triangles. Original decimal PDF vertices are evaluated exactly, then mapped by a three-road-junction EOV similarity and vertexwise EPSG23700→4326. No polygon repair, dropped component, smoothing, buffer, clipping, snapping, missing-edge cap, frame closure or current-name-point fit. Placement remains estimated; one two-control alternative is retained separately. Hódtó is invalid in source and already represented, so it is quarantined rather than repaired or counted again.",
+        "placementUncertainty": "Geographic placement is estimated from three interpreted source-boundary road junctions, not surveyed source controls. C2 has historical/current street-name ambiguity. Main fit RMS15.03m is not an accuracy bound; an ambiguous held-out junction differs55.76–74.73m. The control triangle covers only small portions ofBelváros/Tabán; other candidate footprints are extrapolated. Source cartographic generalization, road-centre convention,2005/current change and unknown survey/CRS remain material. Literal current-street-name line checks diverge up to1014m where simplified historical descriptions do not match the whole mapped border under current names; no aliases or source corrections are inferred. Independent source Susán/Újváros rail135 check differs by up to84.21m. These diagnostics do not establish absolute accuracy or whole current extents. Four detached village depictions are schematic/compressed and are retained only in native source coordinates.",
+        "evidenceUrls": [
+          "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+            "sha256": "3dc2a4f4fcf3afd1b387a278be6a7fc7dcccdb75db8f1d4af3a5f07d811d8342",
+            "pdfPageOneBased": 9,
+            "publicationPeriod": "July2005",
+            "sourceNameStreetFactsPages": [
+              8,
+              9
+            ],
+            "statisticsReferenceEvidencePage": 4
+          }
+        ],
+        "license": "KSH2005 requires source attribution for secondary publication and reserves data-transfer permission toKSHSzeged. Unrestricted reuse permission is not established. Actual OSM control/name-point evidence ODbL-1.0.",
+        "rightsStatus": "Source attribution and separate KSH data-transfer permission conditions retained; no unrestricted data-transfer/reuse permission established."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.318961015204795,
+              46.43044310341279
+            ],
+            [
+              20.321636579215095,
+              46.429542540960284
+            ],
+            [
+              20.32485554575848,
+              46.428501545589796
+            ],
+            [
+              20.32960395947456,
+              46.426993467095706
+            ],
+            [
+              20.33426016645228,
+              46.425806798295454
+            ],
+            [
+              20.338905667575755,
+              46.42450335981571
+            ],
+            [
+              20.339041165666348,
+              46.42439721132106
+            ],
+            [
+              20.335165847028776,
+              46.42297582014293
+            ],
+            [
+              20.33140826420282,
+              46.42124830785181
+            ],
+            [
+              20.33003596308727,
+              46.420504837651535
+            ],
+            [
+              20.32862107506328,
+              46.41767337459647
+            ],
+            [
+              20.328314149022628,
+              46.41748594744636
+            ],
+            [
+              20.32386448020187,
+              46.419081486259195
+            ],
+            [
+              20.324597232437366,
+              46.419434537977466
+            ],
+            [
+              20.321514323319075,
+              46.4203693982305
+            ],
+            [
+              20.31999383541355,
+              46.42093620554488
+            ],
+            [
+              20.317753648283414,
+              46.421834791617464
+            ],
+            [
+              20.318961015204795,
+              46.43044310341279
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:hodmezovasarhely-ksh2005-native:4",
+      "properties": {
+        "name": "Béketelep",
+        "municipality": "Hódmezővásárhely",
+        "municipalityId": "city:Hódmezővásárhely",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceContourObserved": true,
+        "sourceNativeFillOrdinal": 4,
+        "sourceNativePaintIndex": 4,
+        "sourceNativePartCount": 1,
+        "sourceNativeGeometryCanonicalSha256": "7d1b0555f935d51259ab5b4b449c227cc0e799223b8980a85faea9adafecbe9a",
+        "sourceContourCoordinatesPreservedVertexwise": true,
+        "sourceHistoricalQuarterIdentitySupported": true,
+        "sourceNameEvidence": {
+          "literalSourceName": "Béketelep",
+          "sourcePageOneBased": 9,
+          "sourceLabelRectanglePdfPoints": [
+            239.51947021484375,
+            245.66415405273438,
+            268.7940368652344,
+            252.81101989746094
+          ],
+          "sourceLabelUsedForFit": false,
+          "currentNamePointDiagnostics": [
+            {
+              "id": "osm:node:1864706600",
+              "name": "Béketelep",
+              "place": "suburb",
+              "sourcePolygonCoversPoint": true,
+              "distanceOutsideM": 0.0,
+              "usedForFit": false
+            }
+          ],
+          "currentNamePointsUsedForFit": false,
+          "identityOnly": true,
+          "sourceCategory": "central_historical_quarter",
+          "currentWholeExtentVerified": false
+        },
+        "sourcePeriod": "KSH issue8/2005, publishedJuly2005; statistics principally2001-02-01; map survey/reference date unknown",
+        "georeferencingStatus": "estimated_three_interpreted_road_junction_similarity",
+        "georeferencingIsApproximate": true,
+        "georeferenceConfidence": "low_unquantified_absolute_accuracy",
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "controlHullCoveredFraction": 0.0,
+        "mainVsTwoControlAlternativeVertexShiftM": {
+          "minimum": 7.234765911309237,
+          "median": 12.937359734560248,
+          "maximum": 44.10010184518896,
+          "notAnAccuracyBound": true
+        },
+        "sourceDocumentIsOfficialStatisticalPublication": true,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_historical_source_candidate_pending_independent_world_review",
+        "method": "Literal closed source fill contours from the original July2005KSH PDF page9, including all actual native subpaths and touching micro-triangles. Original decimal PDF vertices are evaluated exactly, then mapped by a three-road-junction EOV similarity and vertexwise EPSG23700→4326. No polygon repair, dropped component, smoothing, buffer, clipping, snapping, missing-edge cap, frame closure or current-name-point fit. Placement remains estimated; one two-control alternative is retained separately. Hódtó is invalid in source and already represented, so it is quarantined rather than repaired or counted again.",
+        "placementUncertainty": "Geographic placement is estimated from three interpreted source-boundary road junctions, not surveyed source controls. C2 has historical/current street-name ambiguity. Main fit RMS15.03m is not an accuracy bound; an ambiguous held-out junction differs55.76–74.73m. The control triangle covers only small portions ofBelváros/Tabán; other candidate footprints are extrapolated. Source cartographic generalization, road-centre convention,2005/current change and unknown survey/CRS remain material. Literal current-street-name line checks diverge up to1014m where simplified historical descriptions do not match the whole mapped border under current names; no aliases or source corrections are inferred. Independent source Susán/Újváros rail135 check differs by up to84.21m. These diagnostics do not establish absolute accuracy or whole current extents. Four detached village depictions are schematic/compressed and are retained only in native source coordinates.",
+        "evidenceUrls": [
+          "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+            "sha256": "3dc2a4f4fcf3afd1b387a278be6a7fc7dcccdb75db8f1d4af3a5f07d811d8342",
+            "pdfPageOneBased": 9,
+            "publicationPeriod": "July2005",
+            "sourceNameStreetFactsPages": [
+              8,
+              9
+            ],
+            "statisticsReferenceEvidencePage": 4
+          }
+        ],
+        "license": "KSH2005 requires source attribution for secondary publication and reserves data-transfer permission toKSHSzeged. Unrestricted reuse permission is not established. Actual OSM control/name-point evidence ODbL-1.0.",
+        "rightsStatus": "Source attribution and separate KSH data-transfer permission conditions retained; no unrestricted data-transfer/reuse permission established."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.30705961749744,
+              46.43902786164801
+            ],
+            [
+              20.31122384228996,
+              46.43746201643033
+            ],
+            [
+              20.318408650249705,
+              46.436953512371424
+            ],
+            [
+              20.337882585145174,
+              46.43730371797653
+            ],
+            [
+              20.338451718039366,
+              46.43717889976704
+            ],
+            [
+              20.354265964684494,
+              46.43181552116193
+            ],
+            [
+              20.353967899640033,
+              46.43172808629073
+            ],
+            [
+              20.342882154495534,
+              46.425435429227036
+            ],
+            [
+              20.338905667575755,
+              46.42450335981571
+            ],
+            [
+              20.33426016645228,
+              46.425806798295454
+            ],
+            [
+              20.32960395947456,
+              46.426993467095706
+            ],
+            [
+              20.32485554575848,
+              46.428501545589796
+            ],
+            [
+              20.321636579215095,
+              46.429542540960284
+            ],
+            [
+              20.318961015204795,
+              46.43044310341279
+            ],
+            [
+              20.319077567143438,
+              46.43174213523559
+            ],
+            [
+              20.31442947300785,
+              46.43302810463098
+            ],
+            [
+              20.31466357613942,
+              46.434021170160136
+            ],
+            [
+              20.31430782444798,
+              46.43463827312984
+            ],
+            [
+              20.31432573933013,
+              46.43483812495067
+            ],
+            [
+              20.307652378147562,
+              46.43781550830165
+            ],
+            [
+              20.30705961749744,
+              46.43902786164801
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:hodmezovasarhely-ksh2005-native:5",
+      "properties": {
+        "name": "Kertváros",
+        "municipality": "Hódmezővásárhely",
+        "municipalityId": "city:Hódmezővásárhely",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceContourObserved": true,
+        "sourceNativeFillOrdinal": 5,
+        "sourceNativePaintIndex": 5,
+        "sourceNativePartCount": 1,
+        "sourceNativeGeometryCanonicalSha256": "9855405bc4f94ee79345a1685a29d94962327bd7ab173f156b40490e6988ddd2",
+        "sourceContourCoordinatesPreservedVertexwise": true,
+        "sourceHistoricalQuarterIdentitySupported": true,
+        "sourceNameEvidence": {
+          "literalSourceName": "Kertváros",
+          "sourcePageOneBased": 9,
+          "sourceLabelRectanglePdfPoints": [
+            175.49998474121094,
+            328.64337158203125,
+            204.42880249023438,
+            335.7902526855469
+          ],
+          "sourceLabelUsedForFit": false,
+          "currentNamePointDiagnostics": [
+            {
+              "id": "osm:node:1864706578",
+              "name": "Kertváros",
+              "place": "suburb",
+              "sourcePolygonCoversPoint": true,
+              "distanceOutsideM": 0.0,
+              "usedForFit": false
+            }
+          ],
+          "currentNamePointsUsedForFit": false,
+          "identityOnly": true,
+          "sourceCategory": "central_historical_quarter",
+          "currentWholeExtentVerified": false
+        },
+        "sourcePeriod": "KSH issue8/2005, publishedJuly2005; statistics principally2001-02-01; map survey/reference date unknown",
+        "georeferencingStatus": "estimated_three_interpreted_road_junction_similarity",
+        "georeferencingIsApproximate": true,
+        "georeferenceConfidence": "low_unquantified_absolute_accuracy",
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "controlHullCoveredFraction": 0.0,
+        "mainVsTwoControlAlternativeVertexShiftM": {
+          "minimum": 24.086001043875044,
+          "median": 30.549798078932678,
+          "maximum": 39.534288912693064,
+          "notAnAccuracyBound": true
+        },
+        "sourceDocumentIsOfficialStatisticalPublication": true,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_historical_source_candidate_pending_independent_world_review",
+        "method": "Literal closed source fill contours from the original July2005KSH PDF page9, including all actual native subpaths and touching micro-triangles. Original decimal PDF vertices are evaluated exactly, then mapped by a three-road-junction EOV similarity and vertexwise EPSG23700→4326. No polygon repair, dropped component, smoothing, buffer, clipping, snapping, missing-edge cap, frame closure or current-name-point fit. Placement remains estimated; one two-control alternative is retained separately. Hódtó is invalid in source and already represented, so it is quarantined rather than repaired or counted again.",
+        "placementUncertainty": "Geographic placement is estimated from three interpreted source-boundary road junctions, not surveyed source controls. C2 has historical/current street-name ambiguity. Main fit RMS15.03m is not an accuracy bound; an ambiguous held-out junction differs55.76–74.73m. The control triangle covers only small portions ofBelváros/Tabán; other candidate footprints are extrapolated. Source cartographic generalization, road-centre convention,2005/current change and unknown survey/CRS remain material. Literal current-street-name line checks diverge up to1014m where simplified historical descriptions do not match the whole mapped border under current names; no aliases or source corrections are inferred. Independent source Susán/Újváros rail135 check differs by up to84.21m. These diagnostics do not establish absolute accuracy or whole current extents. Four detached village depictions are schematic/compressed and are retained only in native source coordinates.",
+        "evidenceUrls": [
+          "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+            "sha256": "3dc2a4f4fcf3afd1b387a278be6a7fc7dcccdb75db8f1d4af3a5f07d811d8342",
+            "pdfPageOneBased": 9,
+            "publicationPeriod": "July2005",
+            "sourceNameStreetFactsPages": [
+              8,
+              9
+            ],
+            "statisticsReferenceEvidencePage": 4
+          }
+        ],
+        "license": "KSH2005 requires source attribution for secondary publication and reserves data-transfer permission toKSHSzeged. Unrestricted reuse permission is not established. Actual OSM control/name-point evidence ODbL-1.0.",
+        "rightsStatus": "Source attribution and separate KSH data-transfer permission conditions retained; no unrestricted data-transfer/reuse permission established."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.322463321715848,
+              46.41155150645286
+            ],
+            [
+              20.321195018197237,
+              46.408730402264396
+            ],
+            [
+              20.321196023855325,
+              46.407125396342956
+            ],
+            [
+              20.32118705827631,
+              46.40702547109216
+            ],
+            [
+              20.306358023532187,
+              46.40227789295165
+            ],
+            [
+              20.305780247695743,
+              46.402302623002164
+            ],
+            [
+              20.303893539747815,
+              46.40228304866658
+            ],
+            [
+              20.29387951595658,
+              46.40461688129292
+            ],
+            [
+              20.293742493081776,
+              46.40470632096573
+            ],
+            [
+              20.29216681764717,
+              46.40627819433895
+            ],
+            [
+              20.29323752122426,
+              46.41340451502613
+            ],
+            [
+              20.29595846340668,
+              46.413288353928884
+            ],
+            [
+              20.301905179673707,
+              46.413836719166056
+            ],
+            [
+              20.30810244991543,
+              46.41367188648667
+            ],
+            [
+              20.30946944072449,
+              46.41301150008065
+            ],
+            [
+              20.31004732932971,
+              46.41298675116775
+            ],
+            [
+              20.31003838338902,
+              46.4128868250097
+            ],
+            [
+              20.317313449899927,
+              46.412073455668356
+            ],
+            [
+              20.322463321715848,
+              46.41155150645286
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:hodmezovasarhely-ksh2005-native:7",
+      "properties": {
+        "name": "Susán",
+        "municipality": "Hódmezővásárhely",
+        "municipalityId": "city:Hódmezővásárhely",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceContourObserved": true,
+        "sourceNativeFillOrdinal": 7,
+        "sourceNativePaintIndex": 7,
+        "sourceNativePartCount": 1,
+        "sourceNativeGeometryCanonicalSha256": "aea055bf5d43f6dff4903e94ae23ef77b536de5851ba692e9ca93503eb16ac5f",
+        "sourceContourCoordinatesPreservedVertexwise": true,
+        "sourceHistoricalQuarterIdentitySupported": true,
+        "sourceNameEvidence": {
+          "literalSourceName": "Susán",
+          "sourcePageOneBased": 9,
+          "sourceLabelRectanglePdfPoints": [
+            277.79937744140625,
+            279.2640686035156,
+            296.39208984375,
+            286.41094970703125
+          ],
+          "sourceLabelUsedForFit": false,
+          "currentNamePointDiagnostics": [
+            {
+              "id": "osm:node:1864706588",
+              "name": "Susán",
+              "place": "suburb",
+              "sourcePolygonCoversPoint": true,
+              "distanceOutsideM": 0.0,
+              "usedForFit": false
+            }
+          ],
+          "currentNamePointsUsedForFit": false,
+          "identityOnly": true,
+          "sourceCategory": "central_historical_quarter",
+          "currentWholeExtentVerified": false
+        },
+        "sourcePeriod": "KSH issue8/2005, publishedJuly2005; statistics principally2001-02-01; map survey/reference date unknown",
+        "georeferencingStatus": "estimated_three_interpreted_road_junction_similarity",
+        "georeferencingIsApproximate": true,
+        "georeferenceConfidence": "low_unquantified_absolute_accuracy",
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "controlHullCoveredFraction": 0.0,
+        "mainVsTwoControlAlternativeVertexShiftM": {
+          "minimum": 26.125963963851504,
+          "median": 31.203464662180128,
+          "maximum": 55.68016891014092,
+          "notAnAccuracyBound": true
+        },
+        "sourceDocumentIsOfficialStatisticalPublication": true,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_historical_source_candidate_pending_independent_world_review",
+        "method": "Literal closed source fill contours from the original July2005KSH PDF page9, including all actual native subpaths and touching micro-triangles. Original decimal PDF vertices are evaluated exactly, then mapped by a three-road-junction EOV similarity and vertexwise EPSG23700→4326. No polygon repair, dropped component, smoothing, buffer, clipping, snapping, missing-edge cap, frame closure or current-name-point fit. Placement remains estimated; one two-control alternative is retained separately. Hódtó is invalid in source and already represented, so it is quarantined rather than repaired or counted again.",
+        "placementUncertainty": "Geographic placement is estimated from three interpreted source-boundary road junctions, not surveyed source controls. C2 has historical/current street-name ambiguity. Main fit RMS15.03m is not an accuracy bound; an ambiguous held-out junction differs55.76–74.73m. The control triangle covers only small portions ofBelváros/Tabán; other candidate footprints are extrapolated. Source cartographic generalization, road-centre convention,2005/current change and unknown survey/CRS remain material. Literal current-street-name line checks diverge up to1014m where simplified historical descriptions do not match the whole mapped border under current names; no aliases or source corrections are inferred. Independent source Susán/Újváros rail135 check differs by up to84.21m. These diagnostics do not establish absolute accuracy or whole current extents. Four detached village depictions are schematic/compressed and are retained only in native source coordinates.",
+        "evidenceUrls": [
+          "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+            "sha256": "3dc2a4f4fcf3afd1b387a278be6a7fc7dcccdb75db8f1d4af3a5f07d811d8342",
+            "pdfPageOneBased": 9,
+            "publicationPeriod": "July2005",
+            "sourceNameStreetFactsPages": [
+              8,
+              9
+            ],
+            "statisticsReferenceEvidencePage": 4
+          }
+        ],
+        "license": "KSH2005 requires source attribution for secondary publication and reserves data-transfer permission toKSHSzeged. Unrestricted reuse permission is not established. Actual OSM control/name-point evidence ODbL-1.0.",
+        "rightsStatus": "Source attribution and separate KSH data-transfer permission conditions retained; no unrestricted data-transfer/reuse permission established."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.35441951312609,
+              46.431909199662655
+            ],
+            [
+              20.36485598979457,
+              46.421392960867884
+            ],
+            [
+              20.359950733663506,
+              46.41981637495888
+            ],
+            [
+              20.336352600945474,
+              46.41225828255458
+            ],
+            [
+              20.33620813379919,
+              46.41226450369013
+            ],
+            [
+              20.332536799384535,
+              46.41471297542988
+            ],
+            [
+              20.32882920694447,
+              46.41676162934554
+            ],
+            [
+              20.327859885012742,
+              46.41700392056432
+            ],
+            [
+              20.328004365781826,
+              46.416997710102066
+            ],
+            [
+              20.328314149022628,
+              46.41748594744636
+            ],
+            [
+              20.328193747326125,
+              46.41749112317436
+            ],
+            [
+              20.32862107506328,
+              46.41767337459647
+            ],
+            [
+              20.33003596308727,
+              46.420504837651535
+            ],
+            [
+              20.33140826420282,
+              46.42124830785181
+            ],
+            [
+              20.335174841087465,
+              46.42307574435649
+            ],
+            [
+              20.339194666641514,
+              46.42449091046549
+            ],
+            [
+              20.338914668801774,
+              46.42460328373883
+            ],
+            [
+              20.34304467411047,
+              46.42562904675971
+            ],
+            [
+              20.35441951312609,
+              46.431909199662655
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:hodmezovasarhely-ksh2005-native:8",
+      "properties": {
+        "name": "Újváros",
+        "municipality": "Hódmezővásárhely",
+        "municipalityId": "city:Hódmezővásárhely",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceContourObserved": true,
+        "sourceNativeFillOrdinal": 8,
+        "sourceNativePaintIndex": 8,
+        "sourceNativePartCount": 1,
+        "sourceNativeGeometryCanonicalSha256": "9e765300514fca1c3378a6a08889ab177a49d40e6f120c5a405bab0098d5657a",
+        "sourceContourCoordinatesPreservedVertexwise": true,
+        "sourceHistoricalQuarterIdentitySupported": true,
+        "sourceNameEvidence": {
+          "literalSourceName": "Újváros",
+          "sourcePageOneBased": 9,
+          "sourceLabelRectanglePdfPoints": [
+            286.0195617675781,
+            325.4637756347656,
+            308.8844299316406,
+            332.61065673828125
+          ],
+          "sourceLabelUsedForFit": false,
+          "currentNamePointDiagnostics": [
+            {
+              "id": "osm:node:1864706595",
+              "name": "Újváros",
+              "place": "suburb",
+              "sourcePolygonCoversPoint": true,
+              "distanceOutsideM": 0.0,
+              "usedForFit": false
+            }
+          ],
+          "currentNamePointsUsedForFit": false,
+          "identityOnly": true,
+          "sourceCategory": "central_historical_quarter",
+          "currentWholeExtentVerified": false
+        },
+        "sourcePeriod": "KSH issue8/2005, publishedJuly2005; statistics principally2001-02-01; map survey/reference date unknown",
+        "georeferencingStatus": "estimated_three_interpreted_road_junction_similarity",
+        "georeferencingIsApproximate": true,
+        "georeferenceConfidence": "low_unquantified_absolute_accuracy",
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "controlHullCoveredFraction": 0.0,
+        "mainVsTwoControlAlternativeVertexShiftM": {
+          "minimum": 35.493043250017024,
+          "median": 50.38173266033671,
+          "maximum": 62.62730293912741,
+          "notAnAccuracyBound": true
+        },
+        "sourceDocumentIsOfficialStatisticalPublication": true,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_historical_source_candidate_pending_independent_world_review",
+        "method": "Literal closed source fill contours from the original July2005KSH PDF page9, including all actual native subpaths and touching micro-triangles. Original decimal PDF vertices are evaluated exactly, then mapped by a three-road-junction EOV similarity and vertexwise EPSG23700→4326. No polygon repair, dropped component, smoothing, buffer, clipping, snapping, missing-edge cap, frame closure or current-name-point fit. Placement remains estimated; one two-control alternative is retained separately. Hódtó is invalid in source and already represented, so it is quarantined rather than repaired or counted again.",
+        "placementUncertainty": "Geographic placement is estimated from three interpreted source-boundary road junctions, not surveyed source controls. C2 has historical/current street-name ambiguity. Main fit RMS15.03m is not an accuracy bound; an ambiguous held-out junction differs55.76–74.73m. The control triangle covers only small portions ofBelváros/Tabán; other candidate footprints are extrapolated. Source cartographic generalization, road-centre convention,2005/current change and unknown survey/CRS remain material. Literal current-street-name line checks diverge up to1014m where simplified historical descriptions do not match the whole mapped border under current names; no aliases or source corrections are inferred. Independent source Susán/Újváros rail135 check differs by up to84.21m. These diagnostics do not establish absolute accuracy or whole current extents. Four detached village depictions are schematic/compressed and are retained only in native source coordinates.",
+        "evidenceUrls": [
+          "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+            "sha256": "3dc2a4f4fcf3afd1b387a278be6a7fc7dcccdb75db8f1d4af3a5f07d811d8342",
+            "pdfPageOneBased": 9,
+            "publicationPeriod": "July2005",
+            "sourceNameStreetFactsPages": [
+              8,
+              9
+            ],
+            "statisticsReferenceEvidencePage": 4
+          }
+        ],
+        "license": "KSH2005 requires source attribution for secondary publication and reserves data-transfer permission toKSHSzeged. Unrestricted reuse permission is not established. Actual OSM control/name-point evidence ODbL-1.0.",
+        "rightsStatus": "Source attribution and separate KSH data-transfer permission conditions retained; no unrestricted data-transfer/reuse permission established."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.359950733663506,
+              46.41981637495888
+            ],
+            [
+              20.368401377905798,
+              46.41276282378375
+            ],
+            [
+              20.360480518743714,
+              46.404830044493394
+            ],
+            [
+              20.35905414237223,
+              46.40509240047726
+            ],
+            [
+              20.33774389047469,
+              46.400328167613964
+            ],
+            [
+              20.337229108553554,
+              46.401052525838345
+            ],
+            [
+              20.32685719642391,
+              46.409072319238696
+            ],
+            [
+              20.328918413727994,
+              46.40968588173712
+            ],
+            [
+              20.331464097561945,
+              46.41057950029163
+            ],
+            [
+              20.33620813379919,
+              46.41226450369013
+            ],
+            [
+              20.336352600945474,
+              46.41225828255458
+            ],
+            [
+              20.359950733663506,
+              46.41981637495888
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "manual:hodmezovasarhely-ksh2005-native:9",
+      "properties": {
+        "name": "Kishomok",
+        "municipality": "Hódmezővásárhely",
+        "municipalityId": "city:Hódmezővásárhely",
+        "boundaryKind": "inferred_area",
+        "candidateBoundaryKind": "neighbourhood",
+        "estimated": true,
+        "estimatedContour": false,
+        "estimatedPlacement": true,
+        "canonicalNameIsNeighborhood": false,
+        "sourceContourIsObserved": true,
+        "sourceContourObserved": true,
+        "sourceNativeFillOrdinal": 9,
+        "sourceNativePaintIndex": 9,
+        "sourceNativePartCount": 1,
+        "sourceNativeGeometryCanonicalSha256": "60aba0bff1210c58cd19aa8e789e4202686e284bd4973220c33fea727cff2aa7",
+        "sourceContourCoordinatesPreservedVertexwise": true,
+        "sourceHistoricalQuarterIdentitySupported": true,
+        "sourceNameEvidence": {
+          "literalSourceName": "Kishomok",
+          "sourcePageOneBased": 9,
+          "sourceLabelRectanglePdfPoints": [
+            137.94052124023438,
+            360.14337158203125,
+            167.93557739257812,
+            367.2902526855469
+          ],
+          "sourceLabelUsedForFit": false,
+          "currentNamePointDiagnostics": [
+            {
+              "id": "osm:node:712916346",
+              "name": "Kishomok",
+              "place": "suburb",
+              "sourcePolygonCoversPoint": true,
+              "distanceOutsideM": 0.0,
+              "usedForFit": false
+            }
+          ],
+          "currentNamePointsUsedForFit": false,
+          "identityOnly": true,
+          "sourceCategory": "named_statistical_city_part_with_garden_character",
+          "currentWholeExtentVerified": false
+        },
+        "sourcePeriod": "KSH issue8/2005, publishedJuly2005; statistics principally2001-02-01; map survey/reference date unknown",
+        "georeferencingStatus": "estimated_three_interpreted_road_junction_similarity",
+        "georeferencingIsApproximate": true,
+        "georeferenceConfidence": "low_unquantified_absolute_accuracy",
+        "claimedAbsoluteAccuracyMetres": null,
+        "absoluteBoundaryAccuracyM": null,
+        "wholeOrdinaryQuarterExtentVerified": false,
+        "controlHullCoveredFraction": 0.0,
+        "mainVsTwoControlAlternativeVertexShiftM": {
+          "minimum": 38.21390097753713,
+          "median": 42.06800619072777,
+          "maximum": 54.27789305755918,
+          "notAnAccuracyBound": true
+        },
+        "sourceDocumentIsOfficialStatisticalPublication": true,
+        "sourceIsOfficial": false,
+        "sourceIsHardBoundary": false,
+        "usableForAddressAssignment": false,
+        "reviewStatus": "estimated_historical_source_candidate_pending_independent_world_review",
+        "method": "Literal closed source fill contours from the original July2005KSH PDF page9, including all actual native subpaths and touching micro-triangles. Original decimal PDF vertices are evaluated exactly, then mapped by a three-road-junction EOV similarity and vertexwise EPSG23700→4326. No polygon repair, dropped component, smoothing, buffer, clipping, snapping, missing-edge cap, frame closure or current-name-point fit. Placement remains estimated; one two-control alternative is retained separately. Hódtó is invalid in source and already represented, so it is quarantined rather than repaired or counted again.",
+        "placementUncertainty": "Geographic placement is estimated from three interpreted source-boundary road junctions, not surveyed source controls. C2 has historical/current street-name ambiguity. Main fit RMS15.03m is not an accuracy bound; an ambiguous held-out junction differs55.76–74.73m. The control triangle covers only small portions ofBelváros/Tabán; other candidate footprints are extrapolated. Source cartographic generalization, road-centre convention,2005/current change and unknown survey/CRS remain material. Literal current-street-name line checks diverge up to1014m where simplified historical descriptions do not match the whole mapped border under current names; no aliases or source corrections are inferred. Independent source Susán/Újváros rail135 check differs by up to84.21m. These diagnostics do not establish absolute accuracy or whole current extents. Four detached village depictions are schematic/compressed and are retained only in native source coordinates.",
+        "evidenceUrls": [
+          "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf"
+        ],
+        "sourceDocuments": [
+          {
+            "url": "https://www.ksh.hu/docs/hun/xftp/idoszaki/regiok/hodmezov.pdf",
+            "sha256": "3dc2a4f4fcf3afd1b387a278be6a7fc7dcccdb75db8f1d4af3a5f07d811d8342",
+            "pdfPageOneBased": 9,
+            "publicationPeriod": "July2005",
+            "sourceNameStreetFactsPages": [
+              8,
+              9
+            ],
+            "statisticsReferenceEvidencePage": 4
+          }
+        ],
+        "license": "KSH2005 requires source attribution for secondary publication and reserves data-transfer permission toKSHSzeged. Unrestricted reuse permission is not established. Actual OSM control/name-point evidence ODbL-1.0.",
+        "rightsStatus": "Source attribution and separate KSH data-transfer permission conditions retained; no unrestricted data-transfer/reuse permission established."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.305780247695743,
+              46.402302623002164
+            ],
+            [
+              20.28321721676545,
+              46.39479009054784
+            ],
+            [
+              20.282062712711895,
+              46.39973759777574
+            ],
+            [
+              20.281525743575084,
+              46.401850195248684
+            ],
+            [
+              20.28016758289588,
+              46.402610171699735
+            ],
+            [
+              20.279134938351785,
+              46.40404170590831
+            ],
+            [
+              20.279246744586036,
+              46.40692912726575
+            ],
+            [
+              20.293742493081776,
+              46.40470632096573
+            ],
+            [
+              20.29387951595658,
+              46.40461688129292
+            ],
+            [
+              20.303893539747815,
+              46.40228304866658
+            ],
+            [
+              20.305780247695743,
+              46.402302623002164
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

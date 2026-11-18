@@ -1,0 +1,762 @@
+{
+  "schemaVersion": 1,
+  "researchedAt": "2026-11-13",
+  "region": "Western and southwestern Hungary",
+  "scope": "Concrete official neighborhood names, statutory maps, and manual boundary sources. Source facts do not assert nationwide completeness or current legal applicability.",
+  "networkStatus": "Shell downloads fail because configured proxy is unreachable. Public web connector used for discovery and document reading. Root agent may acquire binaries through approved GitHub workflow.",
+  "sources": [
+    {
+      "city": "Győr",
+      "sourceUrl": "https://gyor.hu/easy-docs/5dc9829cb6d4c",
+      "title": "Megalapozó vizsgálat Győr TFK és ITS",
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [
+        "Belváros",
+        "Újváros",
+        "Sziget",
+        "Pinnyéd",
+        "Révfalu",
+        "Sárás",
+        "Kisbácsa",
+        "Bácsa",
+        "Városrét",
+        "Gyárváros",
+        "Likócs",
+        "Győrszentiván",
+        "Nádorváros",
+        "Jancsifalu",
+        "Adyváros",
+        "Marcalváros I.",
+        "Marcalváros II.",
+        "Szabadhegy",
+        "Ipari Park",
+        "Kismegyer",
+        "Ménfőcsanak",
+        "Gyirmót"
+      ],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "Public municipal document. No explicit open geodata licence verified; independently documented boundary facts may support manual derivation. Do not assert a vector open-data licence."
+      },
+      "manualDerivationNeeded": true,
+      "sourceDate": "2014",
+      "evidence": {
+        "pdfPagesZeroBased": [
+          268,
+          269,
+          270,
+          271
+        ],
+        "section": "3.3.1",
+        "map": "97. ábra; 2006 neighborhood and urban-planning-district map",
+        "note": "2006 plan has 21 neighborhoods/46 planning districts; analysis uses 22 IVS units, including splitting Marcalváros. The table maps differing partitions. These must not be conflated."
+      },
+      "verification": "Opened full official PDF (327 pages), inspected table of contents and section 3.3.1.",
+      "polygonAvailability": "Neighborhood map in PDF; vector extraction/georeferencing not yet inspected.",
+      "secondaryUrls": [
+        "https://gyms.hu/wp-content/uploads/2023/11/GYOR_FVS.pdf"
+      ],
+      "gisStatus": {
+        "sourceUrl": "https://gyor.hu/kozlemeny-terinformatikai-rendszer-atmenetileg-nem-elerheto/",
+        "status": "Official notice says municipal GIS temporarily unavailable as of research date.",
+        "viewerUrl": "http://195.228.178.212/mapguide/gyor/internet.php"
+      }
+    },
+    {
+      "city": "Sopron",
+      "sourceUrl": "https://njt.jog.gov.hu/document/4f/4fb0LL_EJR_84883813-Sopron_-_HESZmod_1_melleklet__SZT-Atnezeti_tervlapok.pdf",
+      "title": "39/2021 HÉSZ, annex 1 updated by 25/2024; neighborhood overview and territorial scope",
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "Public municipal document. No explicit open geodata licence verified; independently documented boundary facts may support manual derivation. Do not assert a vector open-data licence."
+      },
+      "manualDerivationNeeded": true,
+      "sourceDate": "2024-11-30",
+      "evidence": {
+        "pdfPagesZeroBased": [
+          0,
+          1
+        ],
+        "officialLawUrl": "https://njt.jog.gov.hu/jogszabaly/2021-39-SP-5Y3492",
+        "note": "Section 1(3)(a) explicitly identifies a full municipal neighborhood overview plus detailed legal scope map. The legal partitions are broader than individual vernacular residential neighborhoods."
+      },
+      "verification": "Opened official 2-page PDF and law; detailed street labels are extractable text.",
+      "polygonAvailability": "Statutory boundary map; potential vector paths in PDF, pending local PDF inspection.",
+      "statutoryAreaNames": [
+        "Északnyugati városrész",
+        "Sopronbánfalva – Kutyahegy",
+        "Lőverek",
+        "Délkeleti gazdasági terület",
+        "Belváros, Szent Mihály domb, Deák tér és környezete"
+      ],
+      "alternateImageUrl": "https://net.jogtar.hu/get-doc-resource?resourceid=gp2_547_A2100039%24BSOP__999_a2400025sop%24A1a%24BBMP_0.png"
+    },
+    {
+      "city": "Tatabánya",
+      "sourceUrl": "https://njt.jog.gov.hu/document/c5/c56aLL_EJR_13372578-H_SZ_3.mell_klet.pdf",
+      "title": "8/2018 HÉSZ annex 3: Városrészek településrendezési szempontú lehatárolása",
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [
+        "Kertváros",
+        "Bánhida",
+        "Szőlőhegy",
+        "Alsógalla",
+        "Óváros",
+        "VI-os telep",
+        "Síkvölgy",
+        "Nyugat-Gerecse",
+        "Galla ipari övezet",
+        "Dózsakert",
+        "Újváros",
+        "Észak-Vértes",
+        "Sárberek",
+        "Erőmű ltp.",
+        "Felsőgalla",
+        "Nyugati ipari park"
+      ],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "Public municipal document. No explicit open geodata licence verified; independently documented boundary facts may support manual derivation. Do not assert a vector open-data licence."
+      },
+      "manualDerivationNeeded": true,
+      "sourceDate": "2018",
+      "evidence": {
+        "pdfPagesZeroBased": [
+          0
+        ],
+        "officialLawUrl": "https://njt.jog.gov.hu/jogszabaly/2018-8-SP-5Y3620.3",
+        "note": "Statutory planning neighborhood partition; includes industrial and large natural areas alongside residential neighborhoods."
+      },
+      "verification": "Opened official one-page PDF and extracted all 16 area labels.",
+      "polygonAvailability": "Full legal map with neighborhood lines and street labels. Potential vector paths; georeferencing needed.",
+      "derivedPolygonArtifact": "data/neighborhoods/sources/municipal-west/tatabanya-manual.geojson",
+      "derivedPolygonCount": 4,
+      "derivationStatus": "Partial city coverage; exact source trace or PDF georeferencing completed. See artifact per-feature quality, controls, provenance and limitations."
+    },
+    {
+      "city": "Tata",
+      "sourceUrl": "https://magyaryterv.etata.hu/telepulesrendezes/tesz/7_melleklet_a_19_2022_XI_30_rendelethez_varosreszek_000.pdf",
+      "title": "19/2022 HÉSZ annex 7: Városrészek lehatárolása",
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [
+        "Újhegy",
+        "Ipari park",
+        "Nagykert",
+        "Öreg-tó",
+        "Halastó-Fényes",
+        "Felső-Tata",
+        "Agostyán",
+        "Tóváros",
+        "Kertváros",
+        "Külterületek"
+      ],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "Public municipal document. No explicit open geodata licence verified; independently documented boundary facts may support manual derivation. Do not assert a vector open-data licence."
+      },
+      "manualDerivationNeeded": true,
+      "sourceDate": "2022-11-30",
+      "evidence": {
+        "pdfPagesZeroBased": [
+          0
+        ],
+        "scale": "1:50000",
+        "discoveryUrl": "https://magyaryterv.etata.hu/telepulesrendezes/tesz/",
+        "note": "One-page full statutory city neighborhood partition. Includes lake, industrial, and countryside units."
+      },
+      "verification": "Followed municipal planning page directly to annex PDF; area labels extractable.",
+      "polygonAvailability": "Official neighborhood map; vector path inspection pending. PDF states state base data used, data-service no.2542.",
+      "derivedPolygonArtifact": "data/neighborhoods/sources/municipal-west/tata-manual.geojson",
+      "derivedPolygonCount": 9,
+      "derivationStatus": "Partial city coverage; exact source trace or PDF georeferencing completed. See artifact per-feature quality, controls, provenance and limitations."
+    },
+    {
+      "city": "Szombathely",
+      "sourceUrl": "https://kbr.szombathely.hu/kbrfile/46469.pdf",
+      "title": "Integrált Városfejlesztési Stratégia 2008–13, 2013 June 6",
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [
+        "Belváros (városmag)",
+        "Hagyományos beépítésű belső lakóterület",
+        "Oladi lakótelep",
+        "Derkovits lakótelep",
+        "Joskar-Ola-lakótelep",
+        "Ifjúsági (KISZ) lakótelep",
+        "Herényi kertváros",
+        "Kámoni kertváros",
+        "Oladi kertváros",
+        "Alsóhegy-Középhegy kertváros",
+        "Újperint kertváros",
+        "Gyöngyösszőlős kertváros",
+        "Gyöngyöshermán kertváros",
+        "Szentkirály kertváros",
+        "Éhen Gyula kertváros",
+        "Ipartelep",
+        "Zanat",
+        "Petőfi telep"
+      ],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "Public municipal document. No explicit open geodata licence verified; independently documented boundary facts may support manual derivation. Do not assert a vector open-data licence."
+      },
+      "manualDerivationNeeded": true,
+      "sourceDate": "2013-06-06",
+      "evidence": {
+        "pdfPagesZeroBased": [
+          48,
+          49,
+          149,
+          150
+        ],
+        "section": "IV.1; IX.1 annex: Városrészek határai",
+        "note": "Annex enumerates 18 units, mostly as ordered road/river/railway boundary circuits. Zanat and Petőfi telep list included streets, not closed boundary circuits. Some units reference built-up limits or cadastral roads that require map verification."
+      },
+      "verification": "Opened 179-page official PDF, inspected boundaries annex and section IV.1.",
+      "polygonAvailability": "Explicit boundary facts plus neighborhood map. Best manual street-boundary source found in region.",
+      "secondaryUrls": [
+        "https://kbr.szombathely.hu/kbrfile/32208.pdf",
+        "https://kbr.szombathely.hu/kbrfile/119160.pdf"
+      ],
+      "gisStatus": {
+        "sourceUrl": "http://gis.szombathely.hu/mapguide/szombathely/internet.php",
+        "status": "Public municipal MapGuide viewer documented; no open licensed GeoJSON/WFS boundary layer verified.",
+        "discoveryUrl": "https://szombathely.hu/onkormanyzat/terinformatika-telepulesrendezes/muszaki-terinformatikai-rendszer/"
+      },
+      "derivedPolygonArtifact": "data/neighborhoods/sources/municipal-west/szombathely-manual.geojson",
+      "derivedPolygonCount": 1,
+      "derivationStatus": "Partial city coverage; exact source trace or PDF georeferencing completed. See artifact per-feature quality, controls, provenance and limitations."
+    },
+    {
+      "city": "Zalaegerszeg",
+      "sourceUrl": "https://zalaegerszeg.hu/wp-content/uploads/2023/05/Zalaegerszeg_ITS.pdf",
+      "title": "Integrált Településfejlesztési Stratégia 2014–2020",
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [
+        "Belváros",
+        "Ola",
+        "Landorhegy",
+        "Páterdomb",
+        "Kertváros",
+        "Iparterület",
+        "Csácsbozsok",
+        "Vorhota",
+        "Kaszaháza – Nekeresd – Pózva",
+        "Zalabesenyő",
+        "Botfa",
+        "Bazita",
+        "Ebergény",
+        "Szenterzsébethegy",
+        "Andráshida – Gébárt – Apátfa",
+        "Neszele – Ságod",
+        "Nyugati külterület",
+        "Északi külterület",
+        "Keleti külterület",
+        "Déli külterület"
+      ],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "Public municipal document. No explicit open geodata licence verified; independently documented boundary facts may support manual derivation. Do not assert a vector open-data licence."
+      },
+      "manualDerivationNeeded": true,
+      "sourceDate": "2014-08-28",
+      "evidence": {
+        "pdfPagesZeroBased": [
+          11,
+          12
+        ],
+        "map": "1. ábra: Zalaegerszeg városrészek szerinti felosztása",
+        "note": "20 comparison units: 16 built-up/planning units and 4 countryside quadrants. Some units group several actual neighborhoods; these groups must not be split without independent boundary evidence."
+      },
+      "verification": "Opened full 106-page official PDF and read figure caption and complete unit table.",
+      "polygonAvailability": "Figure 1 map; requires local vector/raster inspection and manual derivation.",
+      "secondaryUrls": [
+        "https://zalaegerszeg.hu/wp-content/uploads/2024/12/Zalaegerszeg-FVS-II.-Strategiai-munkaresz-20240912.pdf"
+      ]
+    },
+    {
+      "city": "Veszprém",
+      "sourceUrl": "https://veszprem.hu/wp-content/uploads/2023/08/ITS_Veszprem_v5.0_20140911.pdf",
+      "title": "Integrált Településfejlesztési Stratégia v5.0",
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [
+        "Belváros",
+        "Dózsaváros",
+        "Jeruzsálemhegy",
+        "Egyetemváros",
+        "Füredidomb",
+        "Cholnokyváros",
+        "Újtelep",
+        "Jutasi úti lakótelep",
+        "Bakonyalja",
+        "Jutaspuszta",
+        "Szabadságpuszta",
+        "Iparváros",
+        "Gyulafirátót",
+        "Kádárta"
+      ],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "Public municipal document. No explicit open geodata licence verified; independently documented boundary facts may support manual derivation. Do not assert a vector open-data licence."
+      },
+      "manualDerivationNeeded": true,
+      "sourceDate": "2014-09-11",
+      "evidence": {
+        "pdfPagesZeroBased": [
+          74
+        ],
+        "section": "2.11",
+        "note": "Explicitly cites statutory 33/1997 names amended by 22/2003. Recent FVS search indexing confirms 14 neighborhoods and 11 other territorial units; do not count other units as official neighborhoods."
+      },
+      "verification": "Opened official 259-page PDF and read statutory neighborhood list.",
+      "polygonAvailability": "This list establishes names. Earlier IVS and TAK have maps; exact name-to-boundary correspondence requires inspection.",
+      "secondaryUrls": [
+        "https://veszprem.hu/wp-content/uploads/2023/09/VMJV-Integralt-Varosfejlesztesi-Strategia-2008.pdf",
+        "https://veszprem.hu/wp-content/uploads/2023/08/VMJV_Fenntarthato_varosfejlesztesi_strat_2021-2027.pdf",
+        "https://veszprem.hu/wp-content/uploads/2023/10/I-6_VMJV_TAK_2019_web.pdf"
+      ]
+    },
+    {
+      "city": "Pécs",
+      "sourceUrl": "https://logoweb.pecs.hu/download/koncepcio/ITS.pdf",
+      "title": "Integrált Településfejlesztési Stratégia 2021–2027",
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [
+        "Ispitaalja",
+        "Siklósi külváros",
+        "Szigeti külváros",
+        "Belváros",
+        "Budai külváros",
+        "Kisbalokány",
+        "Budaiváros",
+        "Kovácstelep",
+        "Rácváros",
+        "Uránváros",
+        "Újmecsekalja",
+        "Ürög",
+        "Szentkút",
+        "Kismélyvölgy",
+        "Deindol",
+        "Patacs",
+        "Szentmiklós",
+        "Makár",
+        "Zsebedomb",
+        "Donátus",
+        "Csoronika",
+        "Rókusdomb",
+        "Mecsekoldal",
+        "Havihegy",
+        "Piricsizma",
+        "Bálics",
+        "Szkókó",
+        "Füzes",
+        "Észak-Megyer",
+        "Balokány",
+        "Szigeti tanya",
+        "Tüskésrét",
+        "Gyükés",
+        "Rigóder",
+        "Pécsbánya",
+        "Diós",
+        "Szabolcsi zártkert",
+        "Meszes",
+        "Szabolcs",
+        "Újhegy",
+        "Gyárváros",
+        "Basamalom",
+        "Üszögi tározó-major",
+        "Üszög",
+        "Fogadó",
+        "Nyugati ipari út",
+        "Bolgárkert",
+        "Kertváros",
+        "Köztemető",
+        "Megyer",
+        "Árpádváros",
+        "Nagyárpád",
+        "Málom",
+        "Postavölgy",
+        "Péterpuszta",
+        "M utca",
+        "Flóriántelep",
+        "Vasas",
+        "Somogy",
+        "Rücker-akna",
+        "István-akna",
+        "Murom",
+        "Hird",
+        "Petőfi-akna",
+        "Árpádtető",
+        "Józsefháza"
+      ],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "Public municipal document. No explicit open geodata licence verified; independently documented boundary facts may support manual derivation. Do not assert a vector open-data licence."
+      },
+      "manualDerivationNeeded": true,
+      "sourceDate": "2021",
+      "evidence": {
+        "pdfPagesZeroBased": [
+          46,
+          47
+        ],
+        "section": "1.2.1; table 8; figure 9",
+        "note": "13 broad planning units contain the listed finer neighborhoods. The figure maps the planning units, not necessarily each of the nested neighborhood names; exact per-neighborhood boundaries remain separate work."
+      },
+      "verification": "Followed current municipal strategy registry to official 316-page PDF; read all names and hierarchy.",
+      "polygonAvailability": "Figure 9 planning partition, finer actual neighborhood boundaries not yet verified.",
+      "planningUnits": [
+        "Belső városrészek",
+        "Nyugati városrészek",
+        "Mecsek-nyugat",
+        "Mecsek-közép",
+        "Pécsi-víz mente",
+        "Mecsek-kelet",
+        "Keleti városrészek",
+        "Újhegy",
+        "Keleti gazdasági terület",
+        "Nyugati gazdasági terület",
+        "Déli városrészek",
+        "Somogy – Vasas – Hird",
+        "Déli gazdasági terület"
+      ],
+      "discoveryUrl": "https://pecs.hu/pecs-megyei-jogu-varos-onkormanyzata-strategiai-dokumentumai/"
+    },
+    {
+      "city": "Kaposvár",
+      "sourceUrl": "https://kph.kaposvar.hu/data/dl/nagyprojektek/TOP_PLUSZ-1.3.1-21-SO1-2022-00001/J%C3%B3v%C3%A1hagyott%20FVS.pdf",
+      "title": "Fenntartható Városfejlesztési Stratégia 2021–2027 v2.0",
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [
+        "Belváros",
+        "Északnyugati városrész",
+        "Északi városrész",
+        "Kisgát és környéke",
+        "Kecelhegy – Cser",
+        "Donner – Rómahegy",
+        "Ivánfahegy – Kaposszentjakab",
+        "Kaposfüred",
+        "Toponár – Répáspuszta – Fészerlakpuszta – Deseda",
+        "Töröcske – Zselic kertváros"
+      ],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "Public municipal document. No explicit open geodata licence verified; independently documented boundary facts may support manual derivation. Do not assert a vector open-data licence."
+      },
+      "manualDerivationNeeded": true,
+      "sourceDate": "2023-07",
+      "evidence": {
+        "pdfPagesZeroBased": [
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187
+        ],
+        "section": "2.2.2 Városrészek lehatárolása",
+        "note": "Ten retained functional planning-neighborhood units; figure30 maps them. Road/water boundary facts transcribed to municipal-west/kaposvar-boundary-definitions.json. Several units group finer residential neighborhoods."
+      },
+      "verification": "Opened current 389-page official PDF; section and map identified by table of contents and indexed text.",
+      "polygonAvailability": "Map plus explicit road/water boundary circuits for central units; manual derivation requires actual OSM line geometry and verification against map.",
+      "secondaryUrls": [
+        "https://kph.kaposvar.hu/eloterjesztesek/et20140929/documents/0301.pdf",
+        "https://kph.kaposvar.hu/eloterjesztesek/et20140625/documents/0101.pdf"
+      ]
+    },
+    {
+      "city": "Nagykanizsa",
+      "sourceUrl": "https://nagykanizsa.hu/docs/koncepciostrategia/nkmjvits20140909.pdf",
+      "title": "Integrált Településfejlesztési Stratégia",
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "Public municipal document. No explicit open geodata licence verified; independently documented boundary facts may support manual derivation. Do not assert a vector open-data licence."
+      },
+      "manualDerivationNeeded": true,
+      "sourceDate": "2014-09-09",
+      "evidence": {
+        "discoveryUrl": "https://nagykanizsa.hu/megtekintes/lap/1856",
+        "note": "Actual PDF linked from current municipal strategy registry; browser extractor refuses 32MB document. A local copy is needed to inspect neighborhood chapters and maps."
+      },
+      "verification": "Followed municipal link to exact 32125904-byte PDF, indexed text confirms city and title.",
+      "polygonAvailability": "Not yet confirmed: must inspect downloaded document, do not assume a neighborhood map.",
+      "secondaryUrls": [
+        "https://nagykanizsa.hu/letoltesek/2024-04/68_870_nagykanizsa_megyei_jogu_varos_fenntarthato_varosfejlesztesi_strategia.pdf"
+      ],
+      "gisStatus": {
+        "sourceUrl": "https://hungarocad.nagykanizsa.hu/mapguide/nagykanizsa/index.php",
+        "status": "Official current municipality GIS link verified. MapGuide application returns empty text; no accessible WFS/GeoJSON layer verified."
+      }
+    },
+    {
+      "city": "Szekszárd",
+      "sourceUrl": "https://szekszard.hu/wp-content/uploads/01/Onkormanyzat/fejlesztesi-dokumentumok/integralt-telepulesfejlesztesi-strategia/Int.%20tel.%20fejl.%20start.%20m%C3%B3d.pdf",
+      "title": "ITS modification 2022-11-24",
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [
+        "Városközpont",
+        "Felsőváros",
+        "Bottyánhegy",
+        "Újváros",
+        "Alsóváros",
+        "Bakta",
+        "Miklósváros",
+        "Szőlőhegy",
+        "Iparterület",
+        "Szilfa körül",
+        "Csörge-tó",
+        "Palánk"
+      ],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "Public municipal document. No explicit open geodata licence verified; independently documented boundary facts may support manual derivation. Do not assert a vector open-data licence."
+      },
+      "manualDerivationNeeded": true,
+      "sourceDate": "2022-11-24",
+      "evidence": {
+        "discoveryUrl": "https://szekszard.hu/lakossag/onkormanyzat/fejlesztesi-dokumentumok/",
+        "note": "Official2013 megalapozó vizsgálat section3.3.1 lists12 historical/functional neighborhoods with description/maps. PDF extraction drops leading F in Felsőváros; name normalized. Current strategy alone does not establish per-neighborhood boundaries.",
+        "inventorySourceUrl": "https://szekszard.hu/application/files/1215/3227/7693/69elot_mell_2.pdf",
+        "inventoryPdfPagesZeroBased": [
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220,
+          221,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227,
+          228,
+          229,
+          230
+        ]
+      },
+      "verification": "Opened 66-page working PDF, confirmed revision and official registry.",
+      "polygonAvailability": "No neighborhood inventory or partition map verified yet.",
+      "secondaryUrls": [
+        "https://szekszard.hu/application/files/1215/3227/7693/69elot_mell_2.pdf"
+      ]
+    },
+    {
+      "city": "Sárvár",
+      "sourceUrl": "https://sarvarvaros.hu/dokumentumok/its-egyseges-szerkezet-20210801-tol-66.pdf",
+      "title": "ITS consolidated version effective 2021-08-01",
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "Public municipal document. No explicit open geodata licence verified; independently documented boundary facts may support manual derivation. Do not assert a vector open-data licence."
+      },
+      "manualDerivationNeeded": true,
+      "sourceDate": "2021-08-01",
+      "evidence": {
+        "pdfPagesZeroBased": [
+          16,
+          17
+        ],
+        "section": "1.2",
+        "note": "14 planning units, of which 4 countryside. The text explicitly says the partition serves strategy interpretation and official designation would require review of names and boundaries. Do not label these official neighborhood boundaries."
+      },
+      "verification": "Opened 81-page document; read explicit limitations on neighborhood partition.",
+      "polygonAvailability": "Strategy map available, requires manual derivation; planning units only."
+    },
+    {
+      "city": "Keszthely",
+      "sourceUrl": "https://onkormanyzat.keszthely.hu/wp-content/uploads/document_library/12059/01_6.melleklet-_helyi_cselekvesi_terv-melleklet.pdf",
+      "title": "TOP-5.3.1-16-ZA1-2017-00010 local action plan",
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [
+        "Történelmi belváros",
+        "Szalasztó",
+        "Északi és keleti lakóterületek",
+        "Kertváros és Vadaskert",
+        "Északi városrész",
+        "Északi Balaton-part"
+      ],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "Public municipal document. No explicit open geodata licence verified; independently documented boundary facts may support manual derivation. Do not assert a vector open-data licence."
+      },
+      "manualDerivationNeeded": true,
+      "evidence": {
+        "pdfPagesZeroBased": [
+          3,
+          4,
+          5
+        ],
+        "section": "1.1",
+        "note": "Six ITS-based project target neighborhoods, not complete municipal neighborhood inventory. Both boundary roads and contained-street inventories given explicitly. Codes VK1,VK3,L2,L3,Gi2,Ba1."
+      },
+      "verification": "Opened 34-page official PDF; inspected neighborhood table and complete boundary/included-street tables.",
+      "polygonAvailability": "Street boundary inventories support manual derivation; not a reusable polygon download."
+    },
+    {
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "manualDerivationNeeded": true,
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "No explicit open geodata licence verified. Municipal factual boundary descriptions may support independent manual derivation."
+      },
+      "city": "Ajka",
+      "sourceUrl": "https://www.ajka.hu/upload/ajka_ivs.pdf",
+      "title": "Integrált Városfejlesztési Stratégia v5.0",
+      "sourceDate": "2008-05",
+      "namesAsDocumented": [
+        "Belváros (Lakóteleppel és Szőlőheggyel)",
+        "Bakonygyepes (Ajkarendekkel)",
+        "Padragkút",
+        "Bódé (Csingerrel, Csikólegelővel és Iparteleppel)",
+        "Tósokberénd"
+      ],
+      "evidence": {
+        "pdfPagesZeroBased": [
+          68,
+          69,
+          70
+        ],
+        "section": "5.1; table15; map6",
+        "note": "Five grouped planning units; source explicitly groups smaller neighborhoods because institutions are dispersed. Smaller component names must not be assigned whole grouped geometry."
+      },
+      "verification": "Opened235-page municipal PDF; read table15 and map6 caption.",
+      "polygonAvailability": "Map6 atPDF69 shows five-unit partition. Requires local map/vector inspection and georeferencing."
+    },
+    {
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "manualDerivationNeeded": true,
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "No explicit open geodata licence verified. Municipal factual boundary descriptions may support independent manual derivation."
+      },
+      "city": "Dombóvár",
+      "sourceUrl": "https://www.dombovar.hu/media/files/Dombovar_ITS_vegso_2017.pdf",
+      "title": "ITS II.kötet modification",
+      "sourceDate": "2017-06",
+      "namesAsDocumented": [
+        "Belváros",
+        "Egyéb, belvárost övező városi területek",
+        "Újdombóvár",
+        "Kertváros",
+        "Tüske",
+        "Gunaras",
+        "Kakasdomb",
+        "Szuhay-domb",
+        "Szőlőhegy",
+        "Mászlony",
+        "Külterületek"
+      ],
+      "evidence": {
+        "pdfPagesZeroBased": [
+          30,
+          31,
+          32,
+          33,
+          34
+        ],
+        "section": "1.2.2 Területi célok",
+        "note": "Describes eleven territorial units, including broad residual and countryside areas. Further detailed boundary inventory should come from the megalapozó study; action-area polygons must not substitute for neighborhoods."
+      },
+      "verification": "Opened143-page official PDF and read unit headings and scope.",
+      "polygonAvailability": "Names and descriptions verified; per-neighborhood boundary map not yet verified.",
+      "discoveryUrl": "https://dombovar.hu/lakohelyunk/telepulesrendezes-telepulesfejlesztes/telepulesfejlesztes/"
+    },
+    {
+      "format": "PDF",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "manualDerivationNeeded": true,
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "No explicit open geodata licence verified. Municipal factual boundary descriptions may support independent manual derivation."
+      },
+      "city": "Kőszeg",
+      "sourceUrl": "https://koszeg.hu/pictures/downloadmanager/download.php?id=975",
+      "title": "ITS megalapozó vizsgálat",
+      "sourceDate": "2015",
+      "namesAsDocumented": [],
+      "evidence": {
+        "discoveryUrl": "https://koszeg.hu/hu/onkormanyzat/projektek/content.php?id=9685",
+        "note": "Exact municipal download link confirmed;13.3MB exceeds web extractor. Companion ITS is142pages but its three mapped areas are project action areas, not a whole-city neighborhood partition."
+      },
+      "verification": "Followed officialmunicipal strategy page to actual megalapozó download; binary not read.",
+      "polygonAvailability": "Unconfirmed until local study inspection.",
+      "secondaryUrls": [
+        "https://koszeg.hu/pictures/downloadmanager/58/632/integralt_telepulesfejlesztesi_strategia_974.pdf"
+      ]
+    },
+    {
+      "city": "Pécsvárad",
+      "sourceUrl": "https://www.pecsvarad.hu/dokumentum/letoltes/30",
+      "title": "Integrált Településfejlesztési Stratégia III.kötet",
+      "format": "PDF",
+      "sourceDate": "2015-09-14",
+      "machineReadablePolygonDownloadVerified": false,
+      "layerIds": [],
+      "namesAsDocumented": [
+        "Történeti és jelenlegi településközpont",
+        "Vár és a történeti település északi területe",
+        "Keleti városrész",
+        "Pécsi út melletti terület",
+        "Vasút és a 6-os számú főút közötti terület",
+        "Dombay tó és környéke",
+        "Szilágypuszta területe"
+      ],
+      "license": {
+        "status": "not-explicitly-licensed",
+        "note": "No explicit open geodata licence verified; municipal boundary facts can support independent manual derivation."
+      },
+      "manualDerivationNeeded": true,
+      "evidence": {
+        "pdfPagesZeroBased": [
+          14,
+          15
+        ],
+        "section": "2.2",
+        "map": "2.2-1. ábra: Pécsvárad településrészek",
+        "note": "Seven historical/functional planning-neighborhood units retained from earlier IVS. Includes outlying lake and hamlet areas."
+      },
+      "verification": "Opened115-page official PDF; read full neighborhood name list and map caption.",
+      "polygonAvailability": "Seven-unit map atPDF14; vector/raster and georeferencing inspection needed."
+    }
+  ]
+}

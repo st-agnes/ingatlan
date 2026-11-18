@@ -1,0 +1,243 @@
+# Connector-extracted archived configuration; not an original HTTP byte capture.
+# Source: https://github.com/geographika/mappyfile/blob/28716ec134d30ab5c7f0da5e28d7b3f100a3737d/tests/mapfiles/large_map1.map
+# Two source spans are concatenated below: MAP/WEB header, then the complete varosr LAYER.
+# No source coordinate values or feature geometry were returned by this configuration file.
+
+MAP
+NAME kobanya
+EXTENT 653350 234700 663500 240650
+SIZE 600 600
+IMAGETYPE png
+SHAPEPATH "/web/html/x/data"
+#SHAPEPATH "/home/html/x/data"
+FONTSET "/web/html/x/fonts.lst"
+#FONTSET "/home/html/x/fonts.lst"
+SYMBOLSET "/web/html/x/x.sym"
+#SYMBOLSET "/home/html/x/x.sym"
+UNITS meters
+#TEMPLATEPATTERN ".*\.html"
+CONFIG "MS_ERRORFILE"  "/web/html/x/tmp/error.txt"
+#CONFIG "MS_ERRORFILE"  "/home/html/x/tmp/error.txt"
+DEBUG 5
+INTERLACE OFF
+RESOLUTION 96
+PROJECTION
+	"init=epsg:23700"
+END
+
+OUTPUTFORMAT
+	NAME png
+	DRIVER "GD/PNG"
+	MIMETYPE "image/png"
+	IMAGEMODE RGB	# better image quality for photos
+	FORMATOPTION  "INTERLACE=OFF"
+	TRANSPARENT OFF
+	EXTENSION "png"
+END
+
+WEB
+	TEMPLATE "x_template.html"
+	IMAGEPATH "/web/html/x/tmp/"
+#	IMAGEPATH "/home/html/x/tmp/"
+	IMAGEURL "/x/tmp/"
+#	HEADER "x_header.html"
+#	FOOTER "x_footer.html"
+	MAXSCALEDENOM 100000
+#	MINSCALEDENOM 100
+#	ERROR "/x/hiba.html"
+#	EMPTY "/x/hiba.html"
+	METADATA
+		wms_title "X WMS Server"
+		wms_abstract "Several map layers for 10th district of Budapest"
+#		wms_onlineresource "http://localhost/cgi-bin/mapserv?map=/home/html/x/pmapper/config/default/x201406.map&"
+		wms_onlineresource "http://terkep.kobanya.hu/cgi-bin/mapserv?map=/web/html/x/pmapper/config/default/x201703.map&"
+		wms_srs "EPSG:23700 EPSG:3857 EPSG:900913"
+	END
+END
+
+
+# ---- extracted varosr LAYER ----
+LAYER
+	NAME "varosr"
+	DATA szelveny/varosreszek
+	STATUS OFF
+	TYPE POLYGON
+	METADATA
+		"DESCRIPTION"	"Városrészek"
+		"wms_name"	"varosreszek"
+		"wms_style"	"visual"
+		"wms_server_version"	"1.1.1"
+		"wms_format"	"image/png"
+		"ows_title"	"varosreszek"
+		"LAYER_ENCODING" "ISO-8859-2"
+	END
+	LABELITEM "VAROSR"
+	CLASSITEM "ID"
+	SYMBOLSCALEDENOM 15000
+	CLASS 
+		NAME "Laposdűlő"
+		EXPRESSION "1"
+		COLOR 183 255 120
+		LABEL
+			COLOR 0 0 255
+			SIZE 40
+			SHADOWCOLOR 255 255 255
+			SHADOWSIZE 2 2
+			POSITION CC
+			FONT arial
+			TYPE TRUETYPE
+			ENCODING "ISO-8859-2"
+		END
+	END
+	CLASS 
+		NAME "Ligettelek"
+		EXPRESSION "2"
+		COLOR 255 199 51
+		LABEL
+			COLOR 0 0 255
+			SIZE 40
+			SHADOWCOLOR 255 255 255
+			SHADOWSIZE 2 2
+			POSITION CC
+			FONT arial
+			TYPE TRUETYPE
+			ENCODING "ISO-8859-2"
+		END
+	END
+	CLASS 
+		NAME "Felsőrákos"
+		EXPRESSION "3"
+		COLOR 143 255 255
+		LABEL
+			COLOR 0 0 255
+			SIZE 40
+			SHADOWCOLOR 255 255 255
+			SHADOWSIZE 2 2
+			POSITION CC
+			FONT arial
+			TYPE TRUETYPE
+			ENCODING "ISO-8859-2"
+		END
+	END
+	CLASS 
+		NAME "Kőbánya-Kertváros"
+		EXPRESSION "4"
+		COLOR 255 255 110
+		LABEL
+			COLOR 0 0 255
+			SIZE 40
+			SHADOWCOLOR 255 255 255
+			SHADOWSIZE 2 2
+			POSITION CC
+			FONT arial
+			TYPE TRUETYPE
+			ENCODING "ISO-8859-2"
+		END
+	END
+	CLASS 
+		NAME "Keresztúri-dűlő"
+		EXPRESSION "5"
+		COLOR 184 181 255
+		LABEL
+			COLOR 0 0 255
+			SIZE 40
+			SHADOWCOLOR 255 255 255
+			SHADOWSIZE 2 2
+			POSITION CC
+			FONT arial
+			TYPE TRUETYPE
+			ENCODING "ISO-8859-2"
+		END
+	END
+	CLASS 
+		NAME "Újhegy"
+		EXPRESSION "6"
+		COLOR 255 255 43
+		LABEL
+			COLOR 0 0 255
+			SIZE 40
+			SHADOWCOLOR 255 255 255
+			SHADOWSIZE 2 2
+			POSITION CC
+			FONT arial
+			TYPE TRUETYPE
+			ENCODING "ISO-8859-2"
+		END
+	END
+	CLASS 
+		NAME "Téglagyárdűlő"
+		EXPRESSION "7"
+		COLOR 255 190 190
+		LABEL
+			COLOR 0 0 255
+			SIZE 40
+			SHADOWCOLOR 255 255 255
+			SHADOWSIZE 2 2
+			POSITION CC
+			FONT arial
+			TYPE TRUETYPE
+			ENCODING "ISO-8859-2"
+		END
+	END
+	CLASS 
+		NAME "Óhegy"
+		EXPRESSION "8"
+		COLOR 238 241 160
+		LABEL
+			COLOR 0 0 255
+			SIZE 40
+			SHADOWCOLOR 255 255 255
+			SHADOWSIZE 2 2
+			POSITION CC
+			FONT arial
+			TYPE TRUETYPE
+			ENCODING "ISO-8859-2"
+		END
+	END
+	CLASS 
+		NAME "Kúttó"
+		EXPRESSION "9"
+		COLOR 225 225 225
+		LABEL
+			COLOR 0 0 255
+			SIZE 40
+			SHADOWCOLOR 255 255 255
+			SHADOWSIZE 2 2
+			POSITION CC
+			FONT arial
+			TYPE TRUETYPE
+			ENCODING "ISO-8859-2"
+		END
+	END
+	CLASS 
+		NAME "Gyárdűlő"
+		EXPRESSION "10"
+		COLOR 233 255 190
+		LABEL
+			COLOR 0 0 255
+			SIZE 40
+			SHADOWCOLOR 255 255 255
+			SHADOWSIZE 2 2
+			POSITION CC
+			FONT arial
+			TYPE TRUETYPE
+			ENCODING "ISO-8859-2"
+		END
+	END
+	CLASS 
+		NAME "Népliget"
+		EXPRESSION "11"
+		COLOR 170 255 0
+		LABEL
+			COLOR 0 0 255
+			SIZE 40
+			SHADOWCOLOR 255 255 255
+			SHADOWSIZE 2 2
+			POSITION CC
+			FONT arial
+			TYPE TRUETYPE
+			ENCODING "ISO-8859-2"
+		END
+	END
+END
+

@@ -1,0 +1,33 @@
+{
+  "validator": "scripts/neighborhoods/build.mjs validateGeometry, without repair",
+  "results": [
+    {
+      "file": "neszele-inferred-import.geojson",
+      "id": "manual:zalaegerszeg-ziffa2025:unit16-neszele-estimated-placement",
+      "name": "Neszele",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        16.822082006629568,
+        46.85405687133148,
+        16.83282259286138,
+        46.86075833492411
+      ],
+      "vertices": 1035
+    },
+    {
+      "file": "neszele-placement-alternative.geojson",
+      "id": "alternative:zalaegerszeg-ziffa2025:neszele-two-junction-placement",
+      "name": "Neszele",
+      "estimated": true,
+      "valid": true,
+      "bbox": [
+        16.821902772981492,
+        46.85404263742601,
+        16.832866878628472,
+        46.860881499925945
+      ],
+      "vertices": 1035
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-13",
+  "files": [
+    {
+      "path": "tata-manual.geojson",
+      "sha256": "418ff0d46494f318bef71c095c565d74da6713dfc2b369e2ec8c482f10b21c1b",
+      "features": 9,
+      "methodProof": "tata-georeference-proof.json"
+    },
+    {
+      "path": "tata-map.source.pdf",
+      "sha256": "88cf8d1af8bbaeb41c78a9ea098fef6f42fce9b93b82a7b15b34abe1064ae979",
+      "sourceUrl": "https://magyaryterv.etata.hu/telepulesrendezes/tesz/7_melleklet_a_19_2022_XI_30_rendelethez_varosreszek_000.pdf"
+    },
+    {
+      "path": "szombathely-manual.geojson",
+      "sha256": "5f41bd11a9fbffc8e8114041066ccd24bcf818fe5f0100a0781588e2a37ae9ed",
+      "features": 1,
+      "methodProof": "szombathely-trace-proof.json",
+      "reproduce": "PYTHONPATH=.local/geodata python data/neighborhoods/sources/municipal-west/trace_szombathely.py"
+    },
+    {
+      "path": "szombathely-trace-proof.json",
+      "sha256": "0f1e803afc44aee9248cbeb3190ad278ce6288ec5ea28bdee078ca6e3b1038d6"
+    },
+    {
+      "path": "tata-georeference-proof.json",
+      "sha256": "35bab3d3b58cbbeb52e62e5bda52a422d5882e01fc8fafc581367704adae941b"
+    },
+    {
+      "path": "register_tata.py",
+      "sha256": "8786561702ba4dedd5ce056be25b3f8ce14c3ea3332105330eaa567cf861e07d"
+    },
+    {
+      "path": "trace_szombathely.py",
+      "sha256": "45fa5ca9a1624e18a1b000aa6780d3ac7e9f45d80b57296f46f20f3c4e6a8b29"
+    },
+    {
+      "path": "tatabanya-manual.geojson",
+      "sha256": "fd527b72165d5a50178f3eedfc0cb0498ee9c087bd7aa1727e1a4794a8c9100e",
+      "features": 4,
+      "methodProof": "tatabanya-georeference-proof.json"
+    },
+    {
+      "path": "tatabanya-georeference-proof.json",
+      "sha256": "e0debc1af65c71699403deaa786efbdfd63337d84d980c37c7128e2705c6aeb8"
+    },
+    {
+      "path": "tatabanya-map.source.pdf",
+      "sha256": "7a7ca9a8f70f0dcaad90deb3ce27a459a8b70610914c72cc7d9ec98eb2fb76d7"
+    },
+    {
+      "path": "tatabanya-registration-preview.png",
+      "sha256": "f2d5f285400547a393fe32b3bfd131912c2ce6c6a306d1ff2cda10bdb09b136b"
+    },
+    {
+      "path": "register_tatabanya.py",
+      "sha256": "af53c6a69daf88279615aae0032450e73d0e8aa6e3358c3896fc18cb8315b4f1"
+    },
+    {
+      "path": "unresolved-traces.json",
+      "sha256": "653677db04587a533162ad4fb69074f9cf6b92aca5afe07b756ca6bea79c4112"
+    }
+  ],
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "methodProof": "szombathely-trace-proof.json"
+}

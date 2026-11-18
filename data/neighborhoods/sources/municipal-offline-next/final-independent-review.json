@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "status": "passed_for_source_based_review_required_research_admission",
+  "scope": "Independent read-only check of three Kecskemét source-based research candidates",
+  "outputPath": "data/neighborhoods/sources/municipal-offline-next/kecskemet-next.geojson",
+  "outputSha256": "da90ced61c34c7a1b2b142daf46f8937cce7f00cb0932e9685fc32ce2b3ef05b",
+  "manifestFilesVerified": 18,
+  "originalPbfSha256": "224897876ea131bcf0cb420e789640402d63aabe5e1491785aa4fca813aa641a",
+  "actualPbfWaysIndependentlyMatched": 82,
+  "actualPbfNodePositionsIndependentlyMatched": 373,
+  "allSubsetWaysEqualFullArchivedRoadRecords": true,
+  "features": [
+    {
+      "name": "Bethlenváros",
+      "vertices": 107,
+      "originalConsecutiveNodeEdges": 106,
+      "allEdgesOriginal": true,
+      "areaM2": 509589.1281028155,
+      "valid": true,
+      "fullyInsideMunicipality": true,
+      "sourceNameEvidence": {
+        "status": "same_snapshot_label_inside",
+        "sourceId": "osm:node:984225151",
+        "name": "Bethlenváros",
+        "independentOfOsmProvider": false
+      }
+    },
+    {
+      "name": "Homoki-domb",
+      "vertices": 136,
+      "originalConsecutiveNodeEdges": 135,
+      "allEdgesOriginal": true,
+      "areaM2": 440867.8169153655,
+      "valid": true,
+      "fullyInsideMunicipality": true,
+      "sourceNameEvidence": {
+        "status": "municipal_document_name_only",
+        "matchingCurrentOsmLabelFound": false,
+        "currentNameIndependentlyConfirmed": false
+      }
+    },
+    {
+      "name": "Rákócziváros",
+      "vertices": 138,
+      "originalConsecutiveNodeEdges": 137,
+      "allEdgesOriginal": true,
+      "areaM2": 358086.98919335473,
+      "valid": true,
+      "fullyInsideMunicipality": true,
+      "sourceNameEvidence": {
+        "status": "same_snapshot_label_inside",
+        "sourceId": "osm:node:984225154",
+        "name": "Rákócziváros",
+        "independentOfOsmProvider": false
+      }
+    }
+  ],
+  "pairwiseInteriorOverlapsM2": 0,
+  "interiorOverlapWithExistingErzsebetvarosM2": 0,
+  "boundariesSurveyed": false,
+  "usableForAddressAssignment": false,
+  "limits": [
+    "Homoki-domb current-name corroboration remains absent; retain explicit unverified status.",
+    "Literal street-edge provenance does not establish current statutory boundary or exact street-side precision.",
+    "Source-map illustration reuse rights remain separately unverified."
+  ],
+  "readOnlyReproductionCheckPassed": true,
+  "visualAndSemanticReview": {
+    "status": "passed",
+    "sourcePeriod": "Municipal May2021 consultation draft; figure73, printed141 and printed146–148 boundary descriptions",
+    "sourceMapBoundaryInterpretationPlausible": true,
+    "independentSurvey": false,
+    "claimedAbsoluteAccuracyMetres": null,
+    "findings": [
+      {
+        "name": "Bethlenváros",
+        "finding": "Published four-road corridor matched; Piaristák tere is a source-map-supported southwest current-name transition."
+      },
+      {
+        "name": "Homoki-domb",
+        "finding": "Mária körút occurs in the parent Belváros perimeter on printed141; the inner ring-road corridor follows figure73. Current separate name confirmation remains absent."
+      },
+      {
+        "name": "Rákócziváros",
+        "finding": "Nap utca–Kurucz tér outer cap follows figure73. The shorter Búzaszentelő interior shortcut is correctly excluded."
+      }
+    ]
+  },
+  "criticalDefects": [],
+  "sourceFilesModifiedByReview": false
+}
