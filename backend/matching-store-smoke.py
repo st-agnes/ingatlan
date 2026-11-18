@@ -17,10 +17,23 @@ with gzip.open(ROOT / 'dist/data/neighborhoods.json.gz', 'rt', encoding='utf-8')
     assert runtime.readline().strip() == '[', 'Unexpected generated neighborhood runtime format.'
     NEIGHBORHOODS = json.loads(runtime.readline().rstrip(',\r\n'))['areas']
 assert len(NEIGHBORHOODS) == 4308, 'The location-index verifier requires the full generated neighborhood catalog.'
+with gzip.open(ROOT / 'dist/data/streets.json.gz', 'rt', encoding='utf-8') as runtime:
+    assert runtime.readline().strip() == '[', 'Unexpected generated street runtime format.'
+    street_header = json.loads(runtime.readline().rstrip(',\r\n'))
+    STREET_IDS = set()
+    for line in runtime:
+        if line.strip() == ']':
+            break
+        identifier = json.loads(line.rstrip(',\r\n'))['id']
+        assert re.fullmatch(r'street:[a-f0-9]{24}', identifier), 'Invalid canonical street identity.'
+        assert identifier not in STREET_IDS, 'Duplicate canonical street identity.'
+        STREET_IDS.add(identifier)
+assert len(STREET_IDS) == street_header['count'] > 100000, 'The location-index verifier requires the full generated postal street catalog.'
 KNOWN_IDS = ({'city:' + city for city in SETTLEMENTS}
              | {'district:Budapest:' + str(index) for index in range(1, 24)}
              | {area['id'] for area in AREAS}
-             | {area['id'] for area in NEIGHBORHOODS})
+             | {area['id'] for area in NEIGHBORHOODS}
+             | STREET_IDS)
 
 
 def normalize(value):

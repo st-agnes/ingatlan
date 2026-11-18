@@ -15,7 +15,7 @@ public class TestDataSeedTests
     [Fact]
     public void EmbeddedCatalogBuildsTheEntireReadyDatasetWithRolesCreditsAndStableIds()
     {
-        Assert.Equal("20261116-test-fixtures-v5", TestDataSeed.CatalogVersion);
+        Assert.Equal("20261118-test-fixtures-v6", TestDataSeed.CatalogVersion);
         Assert.Equal(14, Plan.Users.Length);
         Assert.Equal(3, Plan.Users.Count(user => user.AccountType == AccountTypes.Agent));
         Assert.Equal(355, Plan.Properties.Length);
@@ -64,7 +64,8 @@ public class TestDataSeedTests
     public void EveryFixtureUsesAnExplicitlySyntheticOwnerScopedPointWithoutCallingGoogle()
     {
         Assert.All(Plan.Properties, property => {
-            Assert.Equal("OTTHONRA TEST", property.Street);
+            if (property.StreetId is null) Assert.Equal("OTTHONRA TEST", property.Street);
+            else Assert.Equal("99999", property.HouseNumber);
             Assert.False(string.IsNullOrWhiteSpace(property.HouseNumber));
             Assert.True(PropertyGeocodingAddress.ValidCoordinates(property.Latitude, property.Longitude));
             Assert.Equal("synthetic-test-fixture", property.GeocodingProvider);
@@ -81,6 +82,9 @@ public class TestDataSeedTests
         Assert.Equal(venkertPoint.Latitude, venkert.Latitude); Assert.Equal(venkertPoint.Longitude, venkert.Longitude);
         Assert.Equal(sestakertPoint.Latitude, sestakert.Latitude); Assert.Equal(sestakertPoint.Longitude, sestakert.Longitude);
         Assert.NotEqual((venkert.Latitude, venkert.Longitude), (sestakert.Latitude, sestakert.Longitude));
+        Assert.Equal("street:aae22ff8e2d0fa698c0291dc", venkert.StreetId);
+        Assert.Equal("street:6cd1dbc01d7aec3be234b7ba", sestakert.StreetId);
+        Assert.Equal(2, Plan.Properties.Count(property => property.StreetId is not null));
         foreach (var property in Plan.Properties.Where(property => property.City is "Abádszalók" or "Hajdúszoboszló"))
         {
             var ownMunicipality = NeighborhoodCatalog.TestPointForCity(property.City)!;
@@ -88,6 +92,34 @@ public class TestDataSeedTests
             Assert.Equal(ownMunicipality.Longitude, property.Longitude);
             Assert.Equal("synthetic:city:" + property.City, property.GeocodingPlaceId);
         }
+    }
+
+    [Fact]
+    public void RealStreetNamesOnlyReceiveSyntheticPointsInTheTwoExplicitFictionalFixtures()
+    {
+        var property = new Property { City = "Debrecen", LocationId = "city:Debrecen", Street = "Böszörményi út",
+            StreetId = "street:aae22ff8e2d0fa698c0291dc", HouseNumber = "99999", PostalCode = "4027" };
+        Assert.Throws<InvalidOperationException>(() => TestDataSeed.AssignSyntheticCoordinates(property));
+        Assert.Throws<InvalidOperationException>(() => TestDataSeed.AssignSyntheticCoordinates(property, "unrelated"));
+        TestDataSeed.AssignSyntheticCoordinates(property, "reka-debrecen-1");
+        Assert.Equal("SYNTHETIC", property.GeocodingQuality);
+        property.HouseNumber = "12";
+        Assert.Throws<InvalidOperationException>(() => TestDataSeed.AssignSyntheticCoordinates(property, "reka-debrecen-1"));
+        property.HouseNumber = "99999"; property.StreetId = "street:6cd1dbc01d7aec3be234b7ba";
+        Assert.Throws<InvalidOperationException>(() => TestDataSeed.AssignSyntheticCoordinates(property, "reka-debrecen-1"));
+    }
+
+    [Fact]
+    public void SeededStreetSearchesHaveHardScopedChoicesAndKeepTheMixedTownAlternative()
+    {
+        var first = Plan.Properties.Single(property => property.Id == TestDataSeed.StableId("property:reka-debrecen-1"));
+        var second = Plan.Properties.Single(property => property.Id == TestDataSeed.StableId("property:bence-debrecen-1"));
+        var streets = Plan.Searches.Single(search => search.Id == TestDataSeed.StableId("search:julia-debrecen-search-2"));
+        var mixed = Plan.Searches.Single(search => search.Id == TestDataSeed.StableId("search:marton-debrecen-search-2"));
+        Assert.True(Rules.Compatible(first, streets)); Assert.True(Rules.Compatible(second, streets));
+        Assert.True(Rules.Compatible(first, mixed)); Assert.False(Rules.Compatible(second, mixed));
+        var nearby = Plan.Properties.Single(property => property.Id == TestDataSeed.StableId("property:bence-debrecen-2"));
+        Assert.True(Rules.Compatible(nearby, mixed)); Assert.False(Rules.Compatible(nearby, streets));
     }
 
     [Fact]
@@ -190,7 +222,7 @@ public class TestDataSeedTests
     [Fact]
     public void DeploymentHistoryKeysDistinguishRevisionsAndLocalCatalogVersions()
     {
-        Assert.Equal("local:20261116-test-fixtures-v5", TestDataSeed.RevisionKey(null, TestDataSeed.CatalogVersion));
+        Assert.Equal("local:20261118-test-fixtures-v6", TestDataSeed.RevisionKey(null, TestDataSeed.CatalogVersion));
         Assert.Equal("ci-fixtures-a", TestDataSeed.RevisionKey("ci-fixtures-a", TestDataSeed.CatalogVersion));
         Assert.NotEqual(TestDataSeed.RevisionKey("ci-fixtures-a", TestDataSeed.CatalogVersion), TestDataSeed.RevisionKey("ci-fixtures-b", TestDataSeed.CatalogVersion));
         Assert.NotEqual(TestDataSeed.RevisionKey(null, "catalog-v1"), TestDataSeed.RevisionKey(null, "catalog-v2"));
@@ -210,6 +242,8 @@ public class TestDataSeedTests
         Assert.True(order.IndexOf("PropertyNeighborhoods") < order.IndexOf("Properties"));
         Assert.DoesNotContain("__OtthonraTestSeeds", order); Assert.DoesNotContain("__OtthonraSchemaVersions", order);
         Assert.DoesNotContain("NeighborhoodSearchAreas", order); Assert.DoesNotContain("__OtthonraNeighborhoodDataset", order);
+        Assert.DoesNotContain("StreetCatalog", order); Assert.DoesNotContain("__OtthonraStreetDataset", order);
+        Assert.DoesNotContain("__OtthonraStreetAssociation", order);
         foreach (var entity in db.Model.GetEntityTypes())
         foreach (var foreignKey in entity.GetForeignKeys())
             Assert.True(order.IndexOf(entity.GetTableName()!) < order.IndexOf(foreignKey.PrincipalEntityType.GetTableName()!),

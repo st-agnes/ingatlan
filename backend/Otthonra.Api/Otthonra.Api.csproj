@@ -6,6 +6,7 @@
     <EmbeddedResource Include="../../dist/data/settlements.json" LogicalName="Otthonra.Api.Settlements.json" />
     <EmbeddedResource Include="../../dist/data/agglomerations.json" LogicalName="Otthonra.Api.Agglomerations.json" />
     <EmbeddedResource Include="../../dist/data/neighborhoods.json.gz" LogicalName="Otthonra.Api.Neighborhoods.json.gz" />
+    <EmbeddedResource Include="../../dist/data/streets.json.gz" LogicalName="Otthonra.Api.Streets.json.gz" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.11" />

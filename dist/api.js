@@ -3,7 +3,7 @@ import {publicFirstName,publicTitle} from './public-profile.js';
 import {FEEDBACK_OPTIONS,FEEDBACK_PACKAGE_SIZES,FEEDBACK_QUESTION,feedbackTitle} from './feedback.js';
 import { regions } from './regions-data.js';
 import {searchSpecificity} from './matching.js';
-import { getLocation, resolveLegacyLocations, isPropertyLocation } from './locations.js';
+import { getLocation, resolveLegacyLocations, isPropertyLocation, registerLocations, isStreetId, streetBelongsToLocation } from './locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
 import {normalizeAccountType,likeCost,normalizeReportReason,normalizeIncomingPagination,REPORT_REASON_OPTIONS} from './accounts.js';
 
@@ -74,7 +74,12 @@ function entityLocations(value, kind, strict = false) {
   }
   const uniqueIds = ids == null ? null : [...new Set(ids)];
   const legacyEmpty = !strict && uniqueIds != null && (uniqueIds.length === 0 || kind === 'property' && uniqueIds.length === 1 && (uniqueIds[0] == null || typeof uniqueIds[0] === 'string' && !uniqueIds[0].trim()));
-  const selected = uniqueIds == null || legacyEmpty ? resolveLegacyLocations(kind === 'search' ? {...value, districts:inputStrings(value.districts)} : value) : uniqueIds.map(getLocation).filter(Boolean);
+  const malformedSearchIds = kind === 'search' && value.locationIds != null
+    && (!Array.isArray(value.locationIds) || uniqueIds.length > 50);
+  let selected = malformedSearchIds ? [] : uniqueIds == null || legacyEmpty
+    ? resolveLegacyLocations(kind === 'search' ? {...value, districts:inputStrings(value.districts)} : value)
+    : uniqueIds.map(getLocation).filter(Boolean);
+  if(kind === 'search' && uniqueIds?.length && selected.length !== uniqueIds.length) selected=[];
   const locations = kind === 'property' ? selected.filter(isPropertyLocation) : selected;
   if (strict && (!locations.length || (kind === 'search' && locations.length > 50)
       || (uniqueIds != null && locations.length !== uniqueIds.length))) throw new Error('Válassz érvényes települést vagy budapesti kerületet a találati listából.');
@@ -85,6 +90,7 @@ function privateAddressFromApi(value) {
   if (!value || typeof value !== 'object') return null;
   return {
     street: inputText(value.street), houseNumber: inputText(value.houseNumber), postalCode: inputText(value.postalCode),
+    ...(isStreetId(value.streetId) ? {streetId:value.streetId} : {}),
     latitude: value.latitude == null ? null : numeric(value.latitude), longitude: value.longitude == null ? null : numeric(value.longitude),
     geocodedAt: value.geocodedAt ?? null, provider: inputText(value.provider), quality: inputText(value.quality), geocodingStatus: inputText(value.geocodingStatus)
   };
@@ -110,6 +116,8 @@ function propertyFromApi(value, own = false) {
 }
 function searchFromApi(value) {
   if (!value) return null;
+  // Street metadata travels with selected public search locations, not a browser-wide catalogue.
+  registerLocations(value.locations);
   const locations = entityLocations(value, 'search');
   // Retain explicit invalid selections so the matcher cannot revive them through a legacy city.
   const declaredIds = value.locationIds != null ? clone(value.locationIds) : Array.isArray(value.locations) ? value.locations.map(location=>location?.id) : null;
@@ -160,8 +168,12 @@ function propertyToApi(value, updating = false) {
   if (!street || !houseNumber) throw new Error('Add meg az ingatlan utcáját és házszámát.');
   if (street.length > 180 || /\p{Cc}/u.test(street) || !/^\d[\p{L}\d./ -]{0,31}$/u.test(houseNumber)
       || postalCode && !/^\d{4}$/.test(postalCode)) throw new Error('Adj meg érvényes utcát, házszámot és négyjegyű irányítószámot.');
+  const streetId = value.streetId ?? value.addressDetails?.streetId ?? null;
+  if (streetId != null && streetId !== '' && (!isStreetId(streetId)
+      || getLocation(streetId) && !streetBelongsToLocation(getLocation(streetId), location))) throw new Error('Válassz az ingatlan településéhez tartozó utcát.');
   return {
-    title: inputText(value.title), locationId:location.id, city:location.city, district:location.district || '', street, houseNumber, postalCode, address: inputText(value.address), description: inputText(value.description),
+    title: inputText(value.title), locationId:location.id, city:location.city, district:location.district || '', street, houseNumber, postalCode,
+    ...(streetId ? {streetId} : {}), address: inputText(value.address), description: inputText(value.description),
     type, price: Math.round(price * MILLION), area, rooms, wholeRooms:countsSupplied ? attributes.wholeRooms : null, halfRooms:countsSupplied ? attributes.halfRooms : null, lotArea, floor,
     condition:attributes.condition, building:attributes.building,
     constructionAge:attributes.constructionAge, view:attributes.view, ceilingHeight:attributes.ceilingHeight,
@@ -267,6 +279,22 @@ function matchFromApi(value) {
 export class ApiModel {
   constructor(config) { this.mode = 'api'; this.baseUrl = apiBase(config.baseUrl); this.token = config.token; this.active = null; this.userId = null; this.feedbackScenarioCapability = undefined; }
   call(path, method, body) { return request(this.baseUrl, this.token, path, method, body); }
+  async findLocations(query, limit = 8, {kind = 'search'} = {}) {
+    if (!['search','property'].includes(kind)) throw new Error('Érvénytelen helyszínválasztó-típus.');
+    const count = Number.isFinite(Number(limit)) ? Math.max(0,Math.min(50,Math.trunc(Number(limit)))) : 8;
+    if (!String(query ?? '').trim() || !count) return [];
+    const parameters = new URLSearchParams({q:String(query).slice(0,120),limit:String(count),kind});
+    const locations = registerLocations(rows(await this.call('/locations?' + parameters)));
+    return locations.filter(location => kind === 'search' || isPropertyLocation(location)).slice(0,count);
+  }
+  async findStreets(query, locationId, limit = 8) {
+    const location = getLocation(locationId);
+    const count = Number.isFinite(Number(limit)) ? Math.max(0,Math.min(50,Math.trunc(Number(limit)))) : 8;
+    if (!isPropertyLocation(location) || !String(query ?? '').trim() || !count) return [];
+    const parameters = new URLSearchParams({q:String(query).slice(0,120),locationId,limit:String(count)});
+    return registerLocations(rows(await this.call('/streets?' + parameters)))
+      .filter(street => streetBelongsToLocation(street,location)).slice(0,count);
+  }
   async getState() {
     const [profile, entities, ledgerResponse] = await Promise.all([this.call('/me'), this.call('/me/entities'), this.call('/credits/ledger')]);
     const user = profile.user || profile;
@@ -277,7 +305,7 @@ export class ApiModel {
     return {
       user: { accountType:normalizeAccountType(user.accountType), id: String(user.id), name: user.name || user.displayName || '', email: user.email || '', phone: user.phone || user.phoneNumber || '', avatar: user.avatar || initials(user.name || user.displayName) },
       credits: Number(profile.credits ?? profile.creditBalance ?? profile.balance ?? user.credits ?? 0), active,
-      properties: rows(entities.properties).map(value=>propertyFromApi(value,true)), searches: rows(entities.searches || entities.searchRequests).map(searchFromApi),
+      properties: rows(entities.properties).map(value=>propertyFromApi(value,String(value.ownerId ?? value.userId ?? '')===this.userId)), searches: rows(entities.searches || entities.searchRequests).map(searchFromApi),
       decisions: rows(entities.decisions || profile.decisions).map(d=>({...clone(d),id:String(d.id),actorId:String(d.actorId),propertyId:String(d.propertyId),searchId:String(d.searchId??d.searchRequestId),property:propertyFromApi(d.property,String(d.property?.ownerId)===this.userId),search:searchFromApi(d.search??d.searchRequest)})),
       ledger: rows(ledgerResponse.ledger || ledgerResponse).map(entry => ({ ...clone(entry), amount: Number(entry.amount ?? entry.delta ?? 0), description: entry.description || entry.reason || '', createdAt: entry.createdAt })),
       createdAt: user.createdAt,

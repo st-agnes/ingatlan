@@ -4,6 +4,7 @@ import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {editorField,editorSave,editorStep} from './editor-browser-helpers.mjs';
+import {searchLocations} from '../dist/locations.js';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
 const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
@@ -19,7 +20,7 @@ async function contextFor(browser,viewport){
  await context.route('https://fonts.gstatic.com/**',route=>route.abort());
  return context;
 }
-async function query(page,value){await (await editorField(page,'#location-input')).fill(value);await page.locator('#location-options').waitFor({state:'visible'});}
+async function query(page,value){await (await editorField(page,'#location-input')).fill(value);await page.locator('#location-options').waitFor({state:'visible'});await page.waitForFunction(()=>{const list=document.getElementById('location-options');return list&&!list.hidden&&list.getAttribute('aria-busy')!=='true';});}
 async function choose(page,interact,id){await interact(page.locator(`#location-options [data-location-id="${id}"]`));assert.equal(await page.locator('#location-input').inputValue(),'');}
 async function openNew(page,interact,kind){await page.goto(`${origin}/#${kind==='property'?'properties':'searches'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));await page.waitForFunction(()=>document.activeElement?.id==='f-title');}
 async function fits(page){const box=await page.locator('.modal').evaluate(element=>({width:element.clientWidth,scrollWidth:element.scrollWidth}));assert.ok(box.scrollWidth<=box.width+1,'Names and address controls must fit the modal');}
@@ -100,6 +101,8 @@ async function addressFlow(browser,viewport){
  await context.route(`${origin}/api/**`,async route=>{
   const request=route.request(),url=new URL(request.url()),path=url.pathname;
   const reply=(body,status=200)=>route.fulfill({status,contentType:'application/json',body:JSON.stringify(body)});
+  if(path==='/api/locations')return reply(searchLocations(url.searchParams.get('q'),Number(url.searchParams.get('limit'))||12,{kind:url.searchParams.get('kind')||'search'}));
+  if(path==='/api/streets')return reply([]);
   if(path==='/api/me')return reply({...owner,credits:100});
   if(path==='/api/me/entities')return reply({active,properties,searches:[search],decisions:[]});
   if(path==='/api/credits/ledger'||path==='/api/matches')return reply([]);

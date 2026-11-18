@@ -34,6 +34,7 @@ const quarters = neighborhoods.map(neighborhood => {
 
 export const locations = Object.freeze([...cities, ...districts, ...areas, ...quarters]);
 const byId = new Map(locations.map(location => [location.id, location]));
+const streetLocations = new Map();
 if (byId.size !== locations.length) throw new Error('A helyszínazonosítók nem egyediek.');
 const byCity = new Map(cities.map(location => [normalize(location.city), location]));
 const byLabel = new Map(locations.map(location => [normalize(location.label), location]));
@@ -44,6 +45,62 @@ const indexed = locations.map((location, index) => ({ location, index,
 
 export function getLocation(id) {
   return typeof id === 'string' ? byId.get(id) ?? null : null;
+}
+
+export const isStreetId = id => typeof id === 'string' && /^street:[a-f0-9]{24}$/.test(id);
+
+/** Register bounded metadata returned by the public catalogue API, never arbitrary typed text. */
+export function registerLocations(values) {
+  if (!Array.isArray(values)) return [];
+  const result = [];
+  for (const value of values) {
+    if (!value || typeof value !== 'object') continue;
+    const known = byId.get(value.id);
+    if (known && known.kind !== 'street') { result.push(known); continue; }
+    if (!isStreetId(value.id) || value.kind !== 'street' || !settlementNames.has(value.city)
+        || typeof value.streetName !== 'string' || !value.streetName.trim() || value.streetName.length > 180
+        || typeof value.label !== 'string' || !value.label.trim() || value.label.length > 400
+        || /\p{Cc}/u.test(value.streetName + value.label)
+        || !Array.isArray(value.postalCodes) || !value.postalCodes.length
+        || value.postalCodes.some(code => typeof code !== 'string' || !/^\d{4}$/.test(code))) continue;
+    const district = value.district == null || value.district === '' ? null : value.district;
+    if (district !== null && (value.city !== 'Budapest' || !roman.some(number => number + '.' === district))) continue;
+    const location = Object.freeze({id:value.id, label:value.label.trim(), city:value.city, district,
+      kind:'street', streetName:value.streetName.trim(), postalCodes:Object.freeze([...new Set(value.postalCodes)].sort()), settlementCount:null});
+    // A stable catalogue ID must never change meaning within an open workspace.
+    if (known && JSON.stringify(known) !== JSON.stringify(location)) continue;
+    if (!known) { byId.set(location.id, location); streetLocations.set(location.id, location); }
+    result.push(known || location);
+  }
+  return result;
+}
+
+export function streetBelongsToLocation(street, location) {
+  return street?.kind === 'street' && isPropertyLocation(location) && street.city === location.city
+    && (!street.district || !location.district || street.district === location.district);
+}
+
+/** Resolve only an unambiguous exact catalogue name, optionally narrowed by postcode. */
+export function resolveStreetLocation(streetName, location, postalCode = '', values = [...streetLocations.values()]) {
+  const name = normalize(streetName), code = String(postalCode || '').trim();
+  const matches = values.filter(street => streetBelongsToLocation(street, location)
+    && normalize(street.streetName) === name && (!code || street.postalCodes.includes(code)));
+  return matches.length === 1 ? matches[0] : null;
+}
+
+/** Address suggestions are scoped to one town or Budapest district. */
+export function searchStreets(query, locationId, limit = 8, values = [...streetLocations.values()]) {
+  const location = getLocation(locationId), text = normalize(query).slice(0, 120);
+  const count = Number.isFinite(Number(limit)) ? Math.max(0, Math.min(50, Math.trunc(Number(limit)))) : 8;
+  if (!isPropertyLocation(location) || !text || !count) return [];
+  const words = text.split(' ');
+  return values.filter(street => streetBelongsToLocation(street, location))
+    .map(street => ({street, name:normalize(street.streetName)}))
+    .filter(item => words.every(word => item.name.split(' ').some(part => part.startsWith(word))))
+    .sort((left,right) => Number(right.name === text) - Number(left.name === text)
+      || Number(right.name.startsWith(text)) - Number(left.name.startsWith(text))
+      || left.street.label.localeCompare(right.street.label, 'hu') || left.street.id.localeCompare(right.street.id))
+    .slice(0,count).map(item => item.street);
 }
 
 /** Listings always identify one real town or Budapest district. */
@@ -79,7 +136,7 @@ function editDistanceAtMostOne(left, right) {
 }
 
 /** Suggest canonical choices; typed text alone never creates a location. */
-export function searchLocations(query, limit = 8, {kind = 'search'} = {}) {
+export function searchLocations(query, limit = 8, {kind = 'search', streets = [...streetLocations.values()]} = {}) {
   if (!['search', 'property'].includes(kind)) throw new Error('Érvénytelen helyszínválasztó-típus.');
   const text = normalize(query).slice(0, 120);
   const count = Number.isFinite(Number(limit)) ? Math.max(0, Math.min(50, Math.trunc(Number(limit)))) : 8;
@@ -88,7 +145,9 @@ export function searchLocations(query, limit = 8, {kind = 'search'} = {}) {
   const compact = text.replace(/[().]/g, '');
   const words = compact.split(' ');
   const results = [];
-  for (const item of indexed) {
+  const candidates = kind === 'property' ? indexed : [...indexed, ...streets.map((location,index) => ({location,index:indexed.length+index,
+    label:normalize(location.label),terms:[normalize(`${location.streetName} ${location.city} ${location.district || ''}`)]}))];
+  for (const item of candidates) {
     if (kind === 'property' && !isPropertyLocation(item.location)) continue;
     const label = item.label.replace(/[().]/g, '');
     const terms = item.terms || [label];
@@ -148,11 +207,13 @@ function searchLocationList(search) {
   return resolveLegacyLocations(search);
 }
 
-/** Towns, districts, areas and verified neighborhood membership are alternatives. */
+/** Canonical places and verified street/neighborhood membership are alternatives. */
 export function matchesLocations(property = {}, search = {}) {
   const home = propertyLocation(property);
   if (!home) return false;
-  return searchLocationList(search).some(location => location.kind === 'neighborhood'
+  return searchLocationList(search).some(location => location.kind === 'street'
+    ? streetBelongsToLocation(location, home) && (property.streetId ?? property.addressDetails?.streetId) === location.id
+    : location.kind === 'neighborhood'
     ? Array.isArray(property.neighborhoodIds) && property.neighborhoodIds.includes(location.id)
     : location.kind === 'area' ? areaMembers.get(location.id)?.has(home.city) === true
     : location.city === home.city && (!location.district || location.district === home.district));

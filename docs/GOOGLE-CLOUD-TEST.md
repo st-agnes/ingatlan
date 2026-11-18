@@ -205,7 +205,7 @@ A helyi, szerveroldali megfelelő a `Geocoding__Google__ApiKey` környezeti vál
 
 A telepítés az új Cloud Run API-t a Hosting módosítása előtt ellenőrzi. A Firebase közzétételének befejezése után a webes ellenőrzés legfeljebb 12 alkalommal, 5 másodperces várakozással kérdezi le újra az oldalt, a runtime-konfigurációt és az API állapotát. Minden kérés külön URL-paramétert kap, és tiltja a gyorsítótárazást. Átmenetileg még korábbi Hosting-útvonal válaszolhat; siker csak az aktuális beágyazott tesztadat-verzióval lehetséges. Tartós eltérésnél a napló kiírja a hibás útvonalat és feltételt, verzióeltérésnél a kapott és az elvárt verziót is. A 401/403 válasz azonnal megállítja az ellenőrzést. A „release complete” után kapott ellenőrzési hiba nem vonja vissza automatikusan a már közzétett kiadást.
 
-A backendbe beágyazott `20261116-test-fixtures-v5` tesztadatcsomag **14 felhasználót, 355 ingatlant és 353 keresést** hoz létre. Ebből 3 fiók ingatlanközvetítő, 11 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
+A backendbe beágyazott `20261118-test-fixtures-v6` tesztadatcsomag **14 felhasználót, 355 ingatlant és 353 keresést** hoz létre. Ebből 3 fiók ingatlanközvetítő, 11 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
 
 | Fiók | Fióktípus | E-mail-cím |
 |---|---|---|
@@ -339,3 +339,16 @@ Az éles üzemhez szükséges megerősített fiókkezelés, fizetési ellenőrz�
 A két külön fiók ugyanazt a `OtthonraDemo2026!` jelszót használja. A kereső fiókban az újraindító gomb után az első ingatlan elutasítása rögtön felhozza a nyolcgombos kérdést. Az eladó fiókban a Statisztikák és visszajelzések oldal mutatja a beküldött választ; onnan is újraindítható a próba. A 10 válaszos csomag valódi tesztkredit-könyveléssel készül: 100 kezdő kreditből 10 levonás, 90 maradék. A visszautasított választ a rendes végpont kezeli, a normál felhasználók ritkítása változatlan.
 
 Az újraindító útvonal kizárólag explicit teszttelepítésnél és beágyazott tesztfeltöltésnél létezik. Csak a két kijelölt fiók használhatja; normál éles környezetben a végpont hiányzik, akkor is, ha a feltöltési jelző véletlenül be van kapcsolva. Az újraindítás a próba saját csomagját/párját és hozzájuk tartozó könyvelését kezeli, mások számláit és eseményeit megőrzi.
+
+
+## Utcanév szerinti keresés
+
+A backend a Magyar Posta Partner Extra 2026. november 18-án letöltött állományából mind a 124 188 közterület–irányítószám párt megőrzi, és 123 354 közterületet importál a saját MySQL-adatbázisba. Mind a 3155 település szerepel a katalógusban. Az import verziózott, zárolt és ismételhető; azonos verzió hidegindításakor nem tölti be újra a listát. A tesztadatok revíziónkénti alaphelyzetbe állítása a katalógust megőrzi.
+
+A keresési igény helyszínválasztója utcákat is felajánl, településsel és ismert budapesti kerülettel megkülönböztetve. Több utca és más helyszínek továbbra is VAGY kapcsolatban használhatók. Egy teljes település kiválasztása ezért az azon belüli utcánál tágabb feltétel. Az eladói utcanévmező a kiválasztott településhez/kerülethez tartozó neveket ajánlja; a házszámot külön kell megadni.
+
+A már elmentett ingatlanok utcához rendelése csak egyértelmű név/település/kerület/irányítószám esetén történik, Google-hívás és koordinátamódosítás nélkül. Bizonytalan vagy ismeretlen utca nem kap találgatott azonosítót. Az új ingatlan címe továbbra is szerveroldali Google-geokódolást igényel, míg a gépelés közbeni utcanév-javaslat és az utcára szűrés a saját adatokból működik. A pontos utcaazonosító a tulajdonosi címadatok része, nem kerül a nyilvános ingatlankártyákba.
+
+A v6 tesztkészlet Réka és Bence két, egyértelműen szintetikus debreceni ingatlanjához két külön Posta-utcát és 99999 házszámot ad; Júlia és Márton további kereséseivel több utca, illetve utca–település kombináció próbálható. A minták nem valódi eladó ingatlanok és nem valódi házszámokra geokódolt címek. Az eredeti Vénkert–Sestakert keresési példák is megmaradnak.
+
+A forrás, mezők, lefedettség, külön kezelt budapesti postai irányítószámok és frissítés részletei: [STREET-DATA.md](STREET-DATA.md). A gyűjtő workflow csak nyilvános állományt tölt le és artifactot készít; a futó alkalmazás nem kér adatot a Posta szerverétől minden kereséskor vagy induláskor.

@@ -1,5 +1,6 @@
-import { getLocation, resolveLegacyLocations, isPropertyLocation } from './locations.js';
+import { getLocation, resolveLegacyLocations, isPropertyLocation, registerLocations, searchLocations, searchStreets, resolveStreetLocation, isStreetId } from './locations.js';
 import {neighborhoodDemoPoints} from './neighborhood-demo-points.js';
+import {streetDemoData} from './street-demo-data.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
 import {normalizeAccountType,likeCost,canInteract,normalizeReportReason,normalizeIncomingPagination} from './accounts.js';
 import {prepareSearch,evaluateMatch,valueForMoney,searchSpecificity} from './matching.js';
@@ -17,6 +18,8 @@ const photos = ['/assets/home.jpg','/assets/living.jpg','/assets/bedroom.jpg','/
 const numeric = (value, fallback) => value === '' || value == null ? fallback : typeof value === 'boolean' ? NaN : Number(value);
 const storedInstant = value => typeof value==='string'&&value.trim()?Date.parse(value):NaN;
 const locationError = () => new Error('Válassz érvényes települést vagy budapesti kerületet a találati listából.');
+// This tiny source-backed subset makes the fictional seed usable without downloading the nationwide catalogue.
+const demoStreets=registerLocations(streetDemoData);
 function withLocations(entity, kind, strict = false) {
   let locations,invalidPropertyId,invalidSearchIds;
   if (kind === 'property' && ((Object.hasOwn(entity, 'locationId') && (strict || entity.locationId != null)) || entity.location?.id)) {
@@ -51,11 +54,24 @@ function migrateLocations(state) {
   state.reports=Array.isArray(state.reports)?state.reports.map(report=>({...report,reason:report.reason??'suspected_agent'})):[];
   state.notifications=Array.isArray(state.notifications)?state.notifications:[];
   for(const key of ['propertyImpressions','feedbackPackages','feedbackInvitations'])state[key]=Array.isArray(state[key])?state[key]:[];
-  state.properties = state.properties.map(entity=>normalizePropertyAttributes(withLocations(entity, 'property')));
+  // Saved search metadata is the bounded subset chosen from the demo's public catalogue.
+  for (const search of state.searches) registerLocations(search.locations);
+  state.properties = state.properties.map(entity=>{
+    const property=normalizePropertyAttributes(withLocations(entity, 'property'));
+    const details=property.addressDetails;
+    const savedId=details?.streetId ?? property.streetId;
+    const street=getLocation(savedId);
+    const exact=details&&resolveStreetLocation(details.street,property.location,details.postalCode,street?[street]:[]);
+    // An unchanged private association survives a reload before its public metadata is queried again.
+    // Unknown IDs still cannot match until the search/picker registers the real catalogue choice.
+    property.streetId=street?exact?.id??null:isStreetId(savedId)?savedId:null;
+    if(details)details.streetId=property.streetId;
+    return property;
+  });
   state.searches = state.searches.map(entity=>normalizeSearchAttributes(withLocations(entity, 'search')));
   return state;
 }
-const privatePropertyFields = ['street','houseNumber','postalCode','latitude','longitude','coordinates','geocodingStatus','geocodingProvider','geocodedAt','formattedAddress','provider','quality','addressDetails'];
+const privatePropertyFields = ['streetId','streetMetadata','streetLocation','street','houseNumber','postalCode','latitude','longitude','coordinates','geocodingStatus','geocodingProvider','geocodedAt','formattedAddress','provider','quality','addressDetails'];
 const visibleEntity = (entity,users,specificity,viewerId) => {
   if(!entity)return null;
   const result = clone(entity);
@@ -90,7 +106,10 @@ function seed(now) {
     const point=neighborhoodDemoPoints.find(value=>value.synthetic&&value.city==='Budapest'&&pointName(value.name)===pointName(neighborhood));
     if(!point)throw new Error('A fiktív demóingatlan városrészi tesztpontja hiányzik.');
     const districtNumber=Number(resolveLegacyLocations({city:'Budapest',district})[0].id.split(':').at(-1));
-    const addressDetails={street:'Fiktív demó utca',houseNumber:String(++demoAddressNumber),postalCode:String(1001+districtNumber*10),
+    const preferredStreet={'Szentimreváros':'Bartók Béla út','Lágymányos':'Karinthy Frigyes út','Albertfalva':'Budafoki út',
+      'Újlipótváros':'Pozsonyi út','Vizafogó':'Váci út','Marina-part':'Váci út','Országút':'Margit körút','Pasarét':'Pasaréti út','Rózsadomb':'Fény utca'}[neighborhood];
+    const street=demoStreets.find(value=>value.city==='Budapest'&&value.district===district&&value.streetName===preferredStreet);
+    const addressDetails={street:street?.streetName??'Fiktív demó utca',streetId:street?.id??null,houseNumber:`99999/${++demoAddressNumber}`,postalCode:street?.postalCodes[0]??String(1001+districtNumber*10),
       latitude:point.latitude,longitude:point.longitude,geocodedAt:null,provider:'synthetic-demo',quality:'synthetic',geocodingStatus:'demo-synthetic'};
     return {id,ownerId,title,city:'Budapest',district,neighborhood,type:'Lakás',price,area,rooms,floor:3,condition:'Felújított',building:'Tégla',balcony:true,balconyArea:6,elevator:true,description:'Világos, átgondolt elrendezésű otthon, kellemes környezetben. A nappalit nagy ablakok teszik igazán napfényessé. Kiváló közlekedés, kedvenc kávézók és zöldterületek néhány perc sétára.',images:[photos[image],photos[(image+1)%photos.length],photos[(image+2)%photos.length]],archived:false,createdAt:time,...extras,addressDetails,neighborhoodIds:[...point.membershipIds]};
   };
@@ -198,7 +217,25 @@ export function isCompatible(property,search) {
   return evaluateMatch(property,prepareSearch(search)).isExact;
 }
 
-export function createModel(storage=globalThis.localStorage, now=()=>new Date().toISOString()) {
+let publicStreetCatalog;
+async function loadPublicStreetCatalog() {
+  if (!publicStreetCatalog) publicStreetCatalog=(async()=>{
+    if (typeof DecompressionStream !== 'function') throw new Error('Az utcakeresőhöz frissebb böngésző szükséges.');
+    const response=await fetch(new URL('./data/streets.json.gz',import.meta.url));
+    if(!response.ok)throw new Error('Az utcakatalógus most nem érhető el. Próbáld újra.');
+    const stream=new Blob([await response.arrayBuffer()]).stream().pipeThrough(new DecompressionStream('gzip'));
+    const data=await new Response(stream).json();
+    const values=Array.isArray(data)?data:data.streets??data.items;
+    if(!Array.isArray(values))throw new Error('Az utcakatalógus érvénytelen.');
+    return values.filter(street=>isStreetId(street?.id)).map(street=>({...street,kind:'street'}));
+  })().catch(error=>{publicStreetCatalog=null;throw error;});
+  return publicStreetCatalog;
+}
+
+export function createModel(storage=globalThis.localStorage, now=()=>new Date().toISOString(), {streetCatalog,streetLoader=loadPublicStreetCatalog}={}) {
+  if (streetCatalog) registerLocations(streetCatalog);
+  let modelStreetCatalog=streetCatalog;
+  const findStreetCatalog=async()=>modelStreetCatalog??(modelStreetCatalog=await streetLoader());
   let state;
   try {const saved=JSON.parse(storage?.getItem(STORAGE_KEY)||'null');if(saved?.version===3&&Array.isArray(saved.properties)&&Array.isArray(saved.searches)&&Array.isArray(saved.decisions)&&Array.isArray(saved.matches)&&Array.isArray(saved.users)&&Number.isFinite(saved.credits))state=saved;} catch {}
   state = migrateLocations(state || seed(now));
@@ -347,6 +384,20 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       stage:exact.length?'exact':includeApproximate&&approximate.length?'approximate':'empty'};
   };
   return {
+    async findLocations(query,limit=8,{kind='search'}={}) {
+      if(!['search','property'].includes(kind))throw new Error('Érvénytelen helyszínválasztó-típus.');
+      if(kind==='property')return searchLocations(query,limit,{kind});
+      if(!String(query??'').trim()||Number(limit)===0)return [];
+      const streets=await findStreetCatalog();
+      const selected=searchLocations(query,limit,{kind,streets});
+      registerLocations(selected);
+      return selected.map(location=>getLocation(location.id)).filter(Boolean);
+    },
+    async findStreets(query,locationId,limit=8) {
+      if(!isPropertyLocation(getLocation(locationId))||!String(query??'').trim())return [];
+      const selected=searchStreets(query,locationId,limit,await findStreetCatalog());
+      return registerLocations(selected);
+    },
     getState() {
       processRefunds();
       return clone({unreadNotificationCount:state.notifications.filter(item=>item.userId===state.userId&&!item.readAt).length,user:state.users.find(u=>u.id===state.userId),credits:state.credits,active:state.active,properties:state.properties.filter(p=>p.ownerId===state.userId).map(p=>visibleEntity(p,state.users,undefined,state.userId)),searches:state.searches.filter(q=>q.ownerId===state.userId).map(q=>visibleEntity(q,state.users)),decisions:state.decisions.filter(d=>own(state,d.actorKind,d.actorId)).map(d=>({...d,property:visibleEntity(state.properties.find(p=>p.id===d.propertyId),state.users,undefined,state.userId),search:visibleEntity(state.searches.find(q=>q.id===d.searchId),state.users)})),ledger:state.ledger,createdAt:state.createdAt,likeCost:state.active?.id?likeCost(state.users.find(user=>user.id===state.userId)?.accountType,state.active.kind):0,reportedOwnerIds:[...new Set(state.reports.filter(report=>report.reporterId===state.userId).map(report=>report.reportedUserId))],reportedEntities:state.reports.filter(report=>report.reporterId===state.userId&&['property','search'].includes(report.entityKind)&&typeof report.entityId==='string').map(({entityKind,entityId,reason})=>({entityKind,entityId,reason}))});
@@ -538,11 +589,23 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
           if(!street||!houseNumber)throw new Error('Add meg az ingatlan utcáját és házszámát.');
           if(street.length>180||/\p{Cc}/u.test(street)||!/^\d[\p{L}\d./ -]{0,31}$/u.test(houseNumber)||postalCode&&!/^\d{4}$/.test(postalCode))throw new Error('Adj meg érvényes utcát, házszámot és négyjegyű irányítószámot.');
           const unchanged=existing?.locationId===entity.locationId&&existing?.addressDetails?.street===street&&existing?.addressDetails?.houseNumber===houseNumber&&String(existing?.addressDetails?.postalCode||'')===postalCode;
+          const selectedId=data.streetId??data.addressDetails?.streetId;
+          const selected=getLocation(selectedId);
+          const resolved=selectedId?resolveStreetLocation(street,entity.location,postalCode,selected?[selected]:[]):resolveStreetLocation(street,entity.location,postalCode);
+          const previousStreetId=existing?.addressDetails?.streetId;
+          const streetId=resolved?.id??(unchanged&&isStreetId(previousStreetId)&&!getLocation(previousStreetId)
+            &&(selectedId==null||selectedId===previousStreetId)?previousStreetId:null);
+          if(resolved?.district&&!entity.location.district){
+            const district=resolveLegacyLocations({city:resolved.city,district:resolved.district})[0];
+            entity.locationId=district.id;entity.location=clone(district);entity.district=district.district;
+          }
           // Demo edits never pretend to perform Google geocoding. New addresses have no verified membership.
           entity.addressDetails=unchanged?clone(existing.addressDetails):{street,houseNumber,postalCode,latitude:null,longitude:null,geocodedAt:null,provider:'',quality:'',geocodingStatus:'demo-unverified'};
+          entity.addressDetails.streetId=streetId;
           entity.neighborhoodIds=unchanged?clone(existing.neighborhoodIds||[]):[];
           entity.neighborhood=unchanged?String(existing.neighborhood||''):'';
           for(const field of privatePropertyFields)if(field!=='addressDetails')delete entity[field];
+          entity.streetId=streetId;
         }else{
           for(const [min,max] of [['minPrice','maxPrice'],['minArea','maxArea'],['minRooms','maxRooms']]){entity[min]=numeric(entity[min],null);entity[max]=numeric(entity[max],null);if((entity[min]!=null&&(!Number.isFinite(entity[min])||entity[min]<0))||(entity[max]!=null&&(!Number.isFinite(entity[max])||entity[max]<=0))||(entity[min]!=null&&entity[max]!=null&&entity[max]<entity[min]))throw new Error('A minimum érték nem lehet nagyobb a maximumnál; a korlátok érvényes számok legyenek.');}
           entity.balcony=!!entity.balcony;entity.elevator=!!entity.elevator;entity.moveIn ||= 'Rugalmas';

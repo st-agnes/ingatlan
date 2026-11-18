@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
-import {DEFAULT_BATCH, createDemoCatalog, DEMO_USERS, DEMO_FIXTURES, DEMO_PASSWORD, FEEDBACK_TEST_SCENARIO, DEMO_NEIGHBORHOOD_SCENARIO} from '../scripts/gcp/demo-data.mjs';
+import {DEFAULT_BATCH, createDemoCatalog, DEMO_USERS, DEMO_FIXTURES, DEMO_PASSWORD, FEEDBACK_TEST_SCENARIO, DEMO_NEIGHBORHOOD_SCENARIO, DEMO_STREET_SCENARIO} from '../scripts/gcp/demo-data.mjs';
 import {getLocation, isPropertyLocation} from '../dist/locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from '../dist/attributes.js';
 import {isCompatible} from '../dist/model.js';
@@ -96,7 +96,12 @@ test('all fixture locations, categories, room compositions and house requirement
   assert.match(input.description,/Kitalált tesztadat/);
   assert.equal(Object.hasOwn(input,'ownerAccountType'),false,'The server must derive owner roles');
   if(fixture.kind==='property'){
-   assert.equal(input.street,'OTTHONRA TEST');assert.match(input.houseNumber,/^[1-9][0-9]*$/);assert.equal(input.postalCode,null);
+   if([DEMO_STREET_SCENARIO.firstProperty,DEMO_STREET_SCENARIO.secondProperty].includes(fixture.key)){
+    const first=fixture.key===DEMO_STREET_SCENARIO.firstProperty;
+    assert.equal(input.streetId,first?DEMO_STREET_SCENARIO.firstId:DEMO_STREET_SCENARIO.secondId);
+    assert.equal(input.street,first?DEMO_STREET_SCENARIO.firstName:DEMO_STREET_SCENARIO.secondName);
+    assert.equal(input.houseNumber,'99999');assert.equal(input.postalCode,first?'4027':'4032');
+   }else{assert.equal(input.street,'OTTHONRA TEST');assert.match(input.houseNumber,/^[1-9][0-9]*$/);assert.equal(input.postalCode,null);assert.equal(input.streetId??null,null);}
    assert.equal(Object.hasOwn(input,'latitude'),false);assert.equal(Object.hasOwn(input,'longitude'),false);
    assert.equal(Object.hasOwn(input,'neighborhoodIds'),false,'Fixture membership must come from MySQL polygon checks');
    assert.ok(isPropertyLocation(getLocation(input.locationId)),fixture.key);
@@ -122,12 +127,27 @@ test('the same deployed catalog exposes two quarters and a mixed town search wit
  const venkert=find(scenario.venkertProperty),sestakert=find(scenario.sestakertProperty);
  assert.equal(venkert.input.city,'Debrecen');assert.equal(sestakert.input.city,'Debrecen');
  assert.equal(venkert.input.neighborhood,'Vénkert');assert.equal(sestakert.input.neighborhood,'Sestakert');
- assert.equal(venkert.input.houseNumber,'1');assert.equal(sestakert.input.houseNumber,'2');
+ assert.equal(venkert.input.houseNumber,'99999');assert.equal(sestakert.input.houseNumber,'99999');
  assert.match(venkert.input.description,/Szintetikus.*nem Google/);assert.match(sestakert.input.description,/Szintetikus.*nem Google/);
  assert.deepEqual(find(scenario.quarterSearch).input.locationIds,[scenario.venkertId,scenario.sestakertId]);
  assert.deepEqual(find(scenario.mixedSearch).input.locationIds,[scenario.venkertId,'city:Hajdúsámson']);
  assert.notEqual(venkert.owner,find(scenario.quarterSearch).owner);assert.notEqual(sestakert.owner,find(scenario.quarterSearch).owner);
  assert.ok(find(scenario.quarterSearch).input.locationIds.every(id=>getLocation(id)), 'Both quarter IDs must resolve from the shipped metadata');
+});
+
+test('the shipped catalog includes two exact street choices and a mixed street-town OR search',()=>{
+ const catalog=createDemoCatalog(),scenario=DEMO_STREET_SCENARIO,find=key=>catalog.fixtures.find(item=>item.key===key);
+ const first=find(scenario.firstProperty),second=find(scenario.secondProperty);
+ assert.equal(first.input.streetId,scenario.firstId);assert.equal(second.input.streetId,scenario.secondId);
+ assert.deepEqual(find(scenario.streetSearch).input.locationIds,[scenario.firstId,scenario.secondId]);
+ assert.deepEqual(find(scenario.mixedSearch).input.locationIds,[scenario.firstId,'city:Hajdúsámson']);
+ for(const item of [first,second]){
+  assert.equal(item.input.houseNumber,'99999');assert.match(item.input.description,/házszám kitalált/);
+  assert.ok(isCompatible(property(item),search(find(scenario.streetSearch))));
+ }
+ assert.ok(isCompatible(property(first),search(find(scenario.mixedSearch))));
+ assert.equal(isCompatible(property(second),search(find(scenario.mixedSearch))),false);
+ assert.ok(find(scenario.streetSearch).input.locationIds.every(id=>getLocation(id)?.kind==='street'));
 });
 
 test('named batches have new account and fixture identities while keeping the original three accounts untouched',()=>{

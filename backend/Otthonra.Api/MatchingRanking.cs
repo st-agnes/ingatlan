@@ -18,6 +18,7 @@ public sealed class CompiledSearch
     public IReadOnlySet<string> Cities { get; }
     public IReadOnlySet<string> DistrictIds { get; }
     public IReadOnlySet<string> NeighborhoodIds { get; }
+    public IReadOnlySet<string> StreetIds { get; }
     public int Specificity { get; internal set; }
     internal bool House => NormalizedType == "HAZ";
     internal HashSet<string> Conditions { get; }
@@ -28,7 +29,8 @@ public sealed class CompiledSearch
     internal int[] Floors { get; }
     internal int? ConditionMinimum { get; }
 
-    internal CompiledSearch(SearchRequest input, HashSet<string> cities, HashSet<string> districtIds, HashSet<string> neighborhoodIds)
+    internal CompiledSearch(SearchRequest input, HashSet<string> cities, HashSet<string> districtIds, HashSet<string> neighborhoodIds,
+        HashSet<string> streetIds)
     {
         Source = new SearchRequest {
             Id = input.Id, OwnerId = input.OwnerId, Type = input.Type, Archived = input.Archived,
@@ -40,7 +42,7 @@ public sealed class CompiledSearch
             FloorsJson = input.FloorsJson, HeatingTypesJson = input.HeatingTypesJson
         };
         NormalizedType = Rules.Normalize(input.Type);
-        Cities = cities; DistrictIds = districtIds; NeighborhoodIds = neighborhoodIds;
+        Cities = cities; DistrictIds = districtIds; NeighborhoodIds = neighborhoodIds; StreetIds = streetIds;
         Conditions = Dto.Strings(input.ConditionsJson).Select(PropertyAttributes.NormalizeCondition).ToHashSet(StringComparer.Ordinal);
         Buildings = Dto.Strings(input.BuildingsJson).Select(PropertyAttributes.NormalizeBuilding).ToHashSet(StringComparer.Ordinal);
         Heating = Dto.Strings(input.HeatingTypesJson).Select(PropertyAttributes.NormalizeHeating).ToHashSet(StringComparer.Ordinal);
@@ -92,9 +94,11 @@ public static class MatchingRanking
         var cities = new HashSet<string>(StringComparer.Ordinal);
         var districts = new HashSet<string>(StringComparer.Ordinal);
         var neighborhoods = new HashSet<string>(StringComparer.Ordinal);
+        var streets = new HashSet<string>(StringComparer.Ordinal);
         foreach (var location in LocationCatalog.ForSearch(search))
         {
-            if (location.Kind == "neighborhood") neighborhoods.Add(location.Id);
+            if (location.Kind == "street") streets.Add(location.Id);
+            else if (location.Kind == "neighborhood") neighborhoods.Add(location.Id);
             else if (location.Kind == "area")
             {
                 if (AreaMembers.Value.TryGetValue(location.Id, out var members)) cities.UnionWith(members);
@@ -103,9 +107,20 @@ public static class MatchingRanking
             else cities.Add(location.City);
         }
         districts.RemoveWhere(id => cities.Contains(LocationCatalog.Get(id)!.City));
-        var prepared = new CompiledSearch(search, cities, districts, neighborhoods);
+        var prepared = new CompiledSearch(search, cities, districts, neighborhoods, streets);
         prepared.Specificity = SpecificityOf(prepared);
         return prepared;
+    }
+
+    // Known municipalities and districts must agree. Identity-only legacy
+    // backfills can keep an unspecified district; free text alone never
+    // establishes membership in an exact street.
+    internal static string? VerifiedStreetId(Property property, Location? location = null)
+    {
+        location ??= LocationCatalog.ForProperty(property);
+        var street = LocationCatalog.Get(property.StreetId);
+        return location is not null && street?.Kind == "street" && street.City == location.City
+            && (street.District is null || location.District is null || street.District == location.District) ? street.Id : null;
     }
 
     private static bool Eligible(Property property, CompiledSearch search)
@@ -116,7 +131,8 @@ public static class MatchingRanking
         var location = LocationCatalog.ForProperty(property);
         return location is not null && location.Kind != "area"
             && (search.Cities.Contains(location.City) || search.DistrictIds.Contains(location.Id)
-                || Dto.Strings(property.NeighborhoodIdsJson).Any(search.NeighborhoodIds.Contains));
+                || Dto.Strings(property.NeighborhoodIdsJson).Any(search.NeighborhoodIds.Contains)
+                || search.StreetIds.Count > 0 && VerifiedStreetId(property, location) is { } streetId && search.StreetIds.Contains(streetId));
     }
 
     public static bool CanRecommend(Property property, SearchRequest search) => Eligible(property, Prepare(search));
@@ -272,7 +288,8 @@ public static class MatchingRanking
     private static int SpecificityOf(CompiledSearch search)
     {
         var s = search.Source;
-        var coverage = search.Cities.Count + search.DistrictIds.Count / 23d + search.NeighborhoodIds.Count / 100d;
+        var coverage = search.Cities.Count + search.DistrictIds.Count / 23d + search.NeighborhoodIds.Count / 100d
+            + search.StreetIds.Count / 10000d;
         decimal selected = coverage > 0 ? (decimal)(8d / (1d + Math.Log2(1d + coverage))) : 0m, total = 8m;
         void Add(decimal weight, decimal strength) { total += weight; selected += weight * Unit(strength); }
         void Bounds(decimal? minimum, decimal? maximum, decimal minWeight, decimal maxWeight)

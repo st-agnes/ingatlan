@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {DEMO_PASSWORD, DEMO_USERS, DEMO_FIXTURES, FEEDBACK_TEST_SCENARIO} from '../scripts/gcp/demo-data.mjs';
+import {DEMO_PASSWORD, DEMO_USERS, DEMO_FIXTURES, FEEDBACK_TEST_SCENARIO, DEMO_STREET_SCENARIO} from '../scripts/gcp/demo-data.mjs';
 import {TEST_FIXTURE_VERSION, TEST_FIXTURE_PATH, exportTestFixtureCatalog} from '../scripts/gcp/export-demo-data.mjs';
 
 test('the packaged backend catalog contains every canonical fictional account and entity', async()=>{
@@ -19,7 +19,9 @@ test('the packaged backend catalog contains every canonical fictional account an
   assert.equal(packaged.fixtures.filter(item=>item.kind==='property').length,355);
   assert.equal(packaged.fixtures.filter(item=>item.kind==='search').length,353);
   for(const fixture of packaged.fixtures.filter(item=>item.kind==='property')){
-    assert.equal(fixture.input.street,'OTTHONRA TEST');assert.match(fixture.input.houseNumber,/^[1-9][0-9]*$/);
+    const streetFixture=[DEMO_STREET_SCENARIO.firstProperty,DEMO_STREET_SCENARIO.secondProperty].includes(fixture.key);
+    if(streetFixture){assert.equal(fixture.input.houseNumber,'99999');assert.match(fixture.input.streetId,/^street:[a-f0-9]{24}$/);}
+    else{assert.equal(fixture.input.street,'OTTHONRA TEST');assert.match(fixture.input.houseNumber,/^[1-9][0-9]*$/);}
     for(const privateField of ['latitude','longitude','neighborhoodIds','geocodingProvider']){
       assert.equal(Object.hasOwn(fixture.input,privateField),false,'Point coordinates and membership must be assigned by the backend startup path');
     }

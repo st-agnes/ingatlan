@@ -2,7 +2,7 @@
 -- No application deployment executes this file.
 DROP TABLE IF EXISTS `SearchLocations`;
 DROP TABLE IF EXISTS `PropertyNeighborhoods`;
-ALTER TABLE `Properties` DROP INDEX `IX_Properties_Archived_Type_LocationId`, DROP INDEX `IX_Properties_Archived_Type_City`;
+ALTER TABLE `Properties` DROP INDEX `IX_Properties_Archived_Type_LocationId`, DROP INDEX `IX_Properties_Archived_Type_City`, DROP INDEX `IX_Properties_Archived_Type_StreetId`;
 ALTER TABLE `SearchRequests` DROP INDEX `IX_SearchRequests_Archived_Type_City`;
 -- The current composite index also supports the search foreign key. Restore
 -- a legacy-style supporting index before removing the new recommendation one.
@@ -26,7 +26,7 @@ ALTER TABLE `CreditEntries` DROP FOREIGN KEY `FK_CreditEntries_Decisions_Refunde
 ALTER TABLE `Decisions` DROP INDEX `IX_Decisions_Liked_RefundedAt_CreatedAt`, DROP COLUMN `RefundedAt`;
 ALTER TABLE `Users` DROP COLUMN `AccountType`;
 ALTER TABLE `Properties`
-  DROP COLUMN `Street`, DROP COLUMN `HouseNumber`, DROP COLUMN `PostalCode`,
+  DROP COLUMN `Street`, DROP COLUMN `StreetId`, DROP COLUMN `HouseNumber`, DROP COLUMN `PostalCode`,
   DROP COLUMN `Latitude`, DROP COLUMN `Longitude`, DROP COLUMN `GeocodedAt`,
   DROP COLUMN `GeocodingProvider`, DROP COLUMN `GeocodingPlaceId`,
   DROP COLUMN `GeocodingQuality`, DROP COLUMN `GeocodingAddressKey`, DROP COLUMN `NeighborhoodIdsJson`,
@@ -41,4 +41,4 @@ ALTER TABLE `SearchRequests`
   DROP COLUMN `ConstructionAgesJson`, DROP COLUMN `ViewsJson`, DROP COLUMN `CeilingHeight`, DROP COLUMN `FloorsJson`,
   DROP COLUMN `HeatingTypesJson`;
 DELETE FROM `__OtthonraSchemaVersions`
-  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights', '20261111-continuous-seller-feedback', '20261116-neighborhood-address-search');
+  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights', '20261111-continuous-seller-feedback', '20261116-neighborhood-address-search', '20261118-postal-street-search');

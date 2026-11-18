@@ -65,6 +65,7 @@ if (builder.Configuration.GetValue<bool>("Database:Initialize"))
     await db.Database.EnsureCreatedAsync();
     await SchemaUpgrade.ApplyAsync(db);
     await NeighborhoodData.InitializeAsync(db);
+    await StreetData.InitializeAsync(db);
     if (deployment.IsTest && builder.Configuration.GetValue<bool>("Database:SeedTestFixtures"))
     {
         await TestDataSeed.RunAsync(db, deployment, builder.Configuration["K_REVISION"]);
@@ -75,9 +76,13 @@ if (builder.Configuration.GetValue<bool>("Database:Initialize"))
 app.MapLikeRefunds();
 app.MapPublicLanding();
 app.MapGet("/api/locations", (string? q, int? limit, string? kind) => Results.Ok(new { items = LocationCatalog.Search(q, limit ?? 8, kind) }));
+app.MapGet("/api/streets", (string? q, int? limit, string? locationId) => Results.Ok(new {
+    items = StreetCatalog.Search(q, limit ?? 12, locationId).Select(LocationCatalog.FromStreet)
+}));
 app.MapGet("/api/health", async Task<IResult> (AppDb db) => await db.Database.CanConnectAsync()
     ? Results.Ok(new { status = "ready", deployment = deployment.Name, testCreditsEnabled = deployment.AllowDemoTopup, testDataVersion,
-        neighborhoodCount = NeighborhoodCatalog.ExpectedCount, neighborhoodDatasetVersion = NeighborhoodCatalog.DatasetVersion })
+        neighborhoodCount = NeighborhoodCatalog.ExpectedCount, neighborhoodDatasetVersion = NeighborhoodCatalog.DatasetVersion,
+        streetCount = StreetCatalog.All.Count, streetDatasetVersion = StreetCatalog.DatasetVersion })
     : Results.Json(new { status = "database-unavailable", deployment = deployment.Name, testCreditsEnabled = deployment.AllowDemoTopup, testDataVersion }, statusCode: 503));
 
 object Session(User user)
@@ -171,7 +176,7 @@ api.MapPut("/properties/{id:guid}", async (Guid id, PropertyInput input, AppDb d
     await AssignNeighborhoods(db, p, cancellationToken);
     // Address, coordinates and memberships are one value, even when a concurrent
     // editor changed the row while this request was waiting on the provider.
-    foreach (var field in new[] { nameof(Property.Street), nameof(Property.HouseNumber), nameof(Property.PostalCode),
+    foreach (var field in new[] { nameof(Property.Street), nameof(Property.StreetId), nameof(Property.HouseNumber), nameof(Property.PostalCode),
         nameof(Property.City), nameof(Property.District), nameof(Property.LocationId), nameof(Property.Address),
         nameof(Property.Latitude), nameof(Property.Longitude), nameof(Property.GeocodedAt), nameof(Property.GeocodingProvider),
         nameof(Property.GeocodingPlaceId), nameof(Property.GeocodingQuality), nameof(Property.GeocodingAddressKey),

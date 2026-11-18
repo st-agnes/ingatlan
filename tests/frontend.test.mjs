@@ -84,6 +84,9 @@ class Document {
 }
 async function setup(options={}){
  const storage={getItem:()=>options.initialRaw?JSON.stringify(options.initialRaw):null,setItem:()=>{}},demoModel=createModel(storage),document=new Document();
+ // This minimal DOM fixture exercises the immediate legacy picker unless a
+ // test explicitly opts into the async catalogue callbacks below.
+ delete demoModel.findLocations;delete demoModel.findStreets;
  const apiModel=Object.assign({...demoModel},{mode:'api'},options.apiOverrides||{});
  if(options.apiOverrides?.feed&&!options.apiOverrides?.recommendations)apiModel.recommendations=async request=>{const items=await apiModel.feed(request);return {items,stage:items.length?'exact':'empty'};};
  let selected=options.hosted?(options.authenticated?apiModel:null):demoModel;

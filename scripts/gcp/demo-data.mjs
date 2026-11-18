@@ -18,6 +18,12 @@ export const DEMO_NEIGHBORHOOD_SCENARIO = Object.freeze({
   venkertProperty: 'reka-debrecen-1', sestakertProperty: 'bence-debrecen-1',
   quarterSearch: 'julia-debrecen-search-1', mixedSearch: 'marton-debrecen-search-1'
 });
+export const DEMO_STREET_SCENARIO = Object.freeze({
+  firstId:'street:aae22ff8e2d0fa698c0291dc', secondId:'street:6cd1dbc01d7aec3be234b7ba',
+  firstName:'Böszörményi út', secondName:'Egyetem sugárút',
+  firstProperty:'reka-debrecen-1', secondProperty:'bence-debrecen-1',
+  streetSearch:'julia-debrecen-search-2', mixedSearch:'marton-debrecen-search-2'
+});
 const propertyDefaults = {
   neighborhood: '', address: '', description: fictional, type: 'Lakás', floor: 1,
   condition: 'Jó állapotú', building: 'Tégla', balcony: false, elevator: false,
@@ -353,12 +359,14 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
   const fixture = key => fixtures.find(item => item.key === key);
   const venkert = fixture(`reka${keySuffix}-debrecen-1`);
   const sestakert = fixture(`bence${keySuffix}-debrecen-1`);
-  Object.assign(venkert.input, {neighborhood:'Vénkert', houseNumber:'1',
+  Object.assign(venkert.input, {neighborhood:'Vénkert', street:DEMO_STREET_SCENARIO.firstName,
+    streetId:DEMO_STREET_SCENARIO.firstId, houseNumber:'99999', postalCode:'4027',
     title:'Teszt · Vénkerti lakás · szintetikus címpont' + titleSuffix,
-    description:fictional + 'Szintetikus tesztkoordináta a Vénkert keresési területén; nem Google által ellenőrzött valódi cím.'});
-  Object.assign(sestakert.input, {neighborhood:'Sestakert', houseNumber:'2',
+    description:fictional + 'Szintetikus tesztkoordináta a Vénkert keresési területén; nem Google által ellenőrzött valódi cím. A postai közterület valódi, a 99999 házszám kitalált.'});
+  Object.assign(sestakert.input, {neighborhood:'Sestakert', street:DEMO_STREET_SCENARIO.secondName,
+    streetId:DEMO_STREET_SCENARIO.secondId, houseNumber:'99999', postalCode:'4032',
     title:'Teszt · Sestakerti lakás · szintetikus címpont' + titleSuffix,
-    description:fictional + 'Szintetikus tesztkoordináta a Sestakert keresési területén; nem Google által ellenőrzött valódi cím.'});
+    description:fictional + 'Szintetikus tesztkoordináta a Sestakert keresési területén; nem Google által ellenőrzött valódi cím. A postai közterület valódi, a 99999 házszám kitalált.'});
   Object.assign(fixture(`julia${keySuffix}-debrecen-search-1`).input, {
     title:'Teszt · Vénkert vagy Sestakert' + titleSuffix,
     locationIds:[DEMO_NEIGHBORHOOD_SCENARIO.venkertId, DEMO_NEIGHBORHOOD_SCENARIO.sestakertId],
@@ -368,6 +376,16 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
     title:'Teszt · Vénkert vagy Hajdúsámson' + titleSuffix,
     locationIds:[DEMO_NEIGHBORHOOD_SCENARIO.venkertId, 'city:Hajdúsámson'],
     description:fictional + 'Vénkerti tesztlakás vagy bármely hajdúsámsoni lakás megfelelő; a sestakerti minta kívül esik a keresésen.'
+  });
+  Object.assign(fixture(`julia${keySuffix}-debrecen-search-2`).input, {
+    title:'Teszt · Böszörményi út vagy Egyetem sugárút' + titleSuffix,
+    locationIds:[DEMO_STREET_SCENARIO.firstId, DEMO_STREET_SCENARIO.secondId],
+    description:fictional + 'Két konkrét debreceni közterület bármelyike megfelelő; a város többi utcája kívül esik a keresésen.'
+  });
+  Object.assign(fixture(`marton${keySuffix}-debrecen-search-2`).input, {
+    title:'Teszt · Böszörményi út vagy Hajdúsámson' + titleSuffix,
+    locationIds:[DEMO_STREET_SCENARIO.firstId, 'city:Hajdúsámson'],
+    description:fictional + 'A debreceni Böszörményi út vagy bármely hajdúsámsoni lakás megfelelő.'
   });
   return {users, fixtures, feedbackScenarios:[{key:'feedback-first-pass' + keySuffix,seller,buyer,property:propertyKey,search:searchKey,size:10}]};
 }

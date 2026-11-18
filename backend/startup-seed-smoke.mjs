@@ -6,6 +6,7 @@ import {resolve,dirname} from 'node:path';
 import {DEMO_USERS,DEMO_FIXTURES,DEMO_PASSWORD,FEEDBACK_TEST_SCENARIO,DEMO_NEIGHBORHOOD_SCENARIO} from '../scripts/gcp/demo-data.mjs';
 import {TEST_FIXTURE_VERSION} from '../scripts/gcp/export-demo-data.mjs';
 import {neighborhoods} from '../dist/neighborhoods-data.js';
+import {streetDemoData} from '../dist/street-demo-data.js';
 const origin=new URL(process.argv[2]||'http://127.0.0.1:3000');
 if(origin.protocol!=='http:'||!['localhost','127.0.0.1','[::1]'].includes(origin.hostname)||origin.username||origin.password||origin.pathname!=='/'||origin.search||origin.hash)throw new Error('Use only a disposable loopback API.');
 const mode=process.argv[3],fixturePath=resolve('.local/startup-seed-fixture.json'),version=TEST_FIXTURE_VERSION;
@@ -36,6 +37,7 @@ async function seededLanding(){
  for(const roman of ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII','XXIII'])labelRegions.set(`Budapest ${roman}. kerület`,new Set(['HU110']));
  for(const area of areas)labelRegions.set(`${area.city} és környéke (${area.settlements.length} település)`,new Set(area.settlements.map(city=>cityRegions.get(city))));
  for(const area of neighborhoods)labelRegions.set(area.label,new Set([cityRegions.get(area.city)]));
+ for(const street of streetDemoData)labelRegions.set(street.label,new Set([cityRegions.get(street.city)]));
  const searchKeys=['key','title','type','locations','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','ownerAccountType','ownerFirstName'].sort();
  const propertyKeys=['key','title','type','location','price','area','wholeRooms','halfRooms','rooms','lotArea','ownerAccountType','ownerFirstName'].sort();
  const publishedOwners={property:new Map(),search:new Map()};
