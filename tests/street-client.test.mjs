@@ -70,6 +70,12 @@ test('street selections are exact hard gates with town, district, neighborhood a
   assert.equal(evaluateMatch(home,query).score,100);
 });
 
+test('direct location matching enforces the raw 50-selection cap even for duplicate IDs',()=>{
+  const home={locationId:'city:Debrecen'};
+  assert.equal(matchesLocations(home,{locationIds:Array(50).fill(home.locationId)}),true);
+  assert.equal(matchesLocations(home,{locationIds:Array(51).fill(home.locationId)}),false);
+});
+
 test('API suggestion methods use bounded scoped endpoints and register only valid public metadata',async()=>{
   const selected=street('5');const calls=[];
   globalThis.fetch=async url=>{const parsed=new URL(url);calls.push(parsed);return response({items:parsed.pathname.endsWith('/streets')?[selected,street('6',{city:'Szeged',district:null})]:[{id:'city:Budapest'},selected]});};

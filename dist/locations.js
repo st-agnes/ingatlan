@@ -201,7 +201,7 @@ function propertyLocation(property) {
 
 function searchLocationList(search) {
   if (search.locationIds != null) {
-    if (!Array.isArray(search.locationIds) || !search.locationIds.length || new Set(search.locationIds).size > 50) return [];
+    if (!Array.isArray(search.locationIds) || !search.locationIds.length || search.locationIds.length > 50) return [];
     const selected = search.locationIds.map(getLocation);
     return selected.some(location => !location) ? [] : selected;
   }

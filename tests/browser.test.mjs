@@ -106,6 +106,9 @@ async function verifyViewport(browser, viewport) {
     assert.equal(await page.locator('#location-chips .location-chip').count(), 1, 'An option click must still select its location');
 
     await input.fill('Budapest V. kerület');
+    // The popup also opens while the async lookup is loading. Navigate only
+    // after this query has produced the canonical district option.
+    await page.locator('#location-options [data-location-id="district:Budapest:5"]').waitFor({ state: 'visible' });
     await input.press('ArrowDown');
     assert.ok(await input.getAttribute('aria-activedescendant'));
     await input.press('Enter');
