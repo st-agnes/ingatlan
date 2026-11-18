@@ -1,0 +1,45 @@
+{
+  "provider": "Magyar Posta Zrt. – Partner Extra",
+  "url": "http://httpmegosztas.posta.hu/PartnerExtra/Out/StreetNames.xml",
+  "retrievedOn": "2026-11-18",
+  "retrievedAt": "2026-11-18T20:04:19.283779+00:00",
+  "sha256": "e6ce188aa0c01399eb31ea8385cebce94292af0890d8d72a663fd5d41f0005ca",
+  "bytes": 12613459,
+  "sourceRows": 124188,
+  "streetCount": 123354,
+  "xmlRoot": "streetNames",
+  "recordElement": "street",
+  "fields": [
+    "ZipCode",
+    "city",
+    "name",
+    "type"
+  ],
+  "documentation": [
+    {
+      "url": "https://www.posta.hu/partnerextra",
+      "retrievedOn": "2026-11-18",
+      "sha256": "f94e39e2bba5746f3075a0773f1e7c827dd43f4a91ea18fafbb020e79387e4ad"
+    },
+    {
+      "url": "https://www.posta.hu/partnerextra_leiras",
+      "retrievedOn": "2026-11-18",
+      "sha256": "ab6008c944ea3348efd26aeb56e6e38a4c83c1e5adabcf9fac17e674b79f651a"
+    }
+  ],
+  "sourceDescription": "A Magyarországon található összes közterület nevének felsorolása.",
+  "usePermission": [
+    "A Partner Extra egy nyilvános, bárki által felhasználható adatszolgáltatás, amely tartalmazza a posták, PostaPontok (MOL és Coop) és a csomagautomaták legaktuálisabb adatait.",
+    "Az adatok letölthetőek és saját alkalmazások háttér-adatbázisaként felhasználhatók (webshop, vállalatirányítási rendszer stb.).",
+    "A szolgáltatás díjmentes."
+  ],
+  "updateStatement": "Az PE szolgáltatás adatbázisa naponta frissítésre kerül, amit minden látogató, a megelőző fejezetekben részletezett állományokon keresztül érhet el.",
+  "acquisition": {
+    "method": "GitHub Actions runner; bounded curl preserving standard TLS trust, official page link discovery",
+    "repository": "st-agnes/ingatlan",
+    "runId": 44386982485,
+    "commit": "5f96c515602c85bc874a74d8ee995ee8f1e37de0",
+    "artifactId": 14465967812,
+    "artifactSha256": "a0bb0f2de09cc8c4b8bc4520e8d7c750dea0dd96a6704e27f3f4b580a2b0d94a"
+  }
+}

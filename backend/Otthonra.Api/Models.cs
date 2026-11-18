@@ -31,6 +31,7 @@ public sealed class Property
     public string Neighborhood { get; set; } = "";
     public string Address { get; set; } = "";
     public string Street { get; set; } = "";
+    public string? StreetId { get; set; }
     public string HouseNumber { get; set; } = "";
     public string PostalCode { get; set; } = "";
     public double? Latitude { get; set; }
@@ -216,6 +217,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<Property>().HasIndex(x => new { x.OwnerId, x.Archived });
         b.Entity<Property>().HasIndex(x => new { x.Archived, x.Type, x.LocationId });
         b.Entity<Property>().HasIndex(x => new { x.Archived, x.Type, x.City });
+        b.Entity<Property>().HasIndex(x => new { x.Archived, x.Type, x.StreetId });
         b.Entity<Decision>().HasIndex(x => new { x.SearchRequestId, x.ActorKind, x.PropertyId });
         b.Entity<SearchRequest>().HasIndex(x => new { x.OwnerId, x.Archived });
         b.Entity<SearchRequest>().HasIndex(x => new { x.Archived, x.Type, x.City });
@@ -242,6 +244,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<SearchLocation>().HasOne<SearchRequest>().WithMany().HasForeignKey(x => x.SearchRequestId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<PropertyNeighborhood>().HasOne<Property>().WithMany().HasForeignKey(x => x.PropertyId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<PropertyNeighborhood>().Property(x => x.NeighborhoodId).HasMaxLength(64).UseCollation("ascii_bin").HasCharSet("ascii");
+        b.Entity<Property>().Property(x => x.StreetId).HasMaxLength(64).UseCollation("ascii_bin").HasCharSet("ascii");
         b.Entity<Decision>().HasOne<Property>().WithMany().HasForeignKey(x => x.PropertyId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<Decision>().HasOne<SearchRequest>().WithMany().HasForeignKey(x => x.SearchRequestId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<Decision>().HasOne<User>().WithMany().HasForeignKey(x => x.ActorUserId).OnDelete(DeleteBehavior.Restrict);
@@ -270,7 +273,7 @@ public static class Dto
     {
         var rooms = Rules.RoomCounts(p);
         return new { p.Id, p.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), ownerAccountType = AccountTypes.PublicType(ownerAccountType), p.Title, p.City, p.District, p.Neighborhood, Address = own ? p.Address : "",
-            addressDetails = own && includeOwnedLocationDetails ? new { street = p.Street, houseNumber = p.HouseNumber, postalCode = p.PostalCode,
+            addressDetails = own && includeOwnedLocationDetails ? new { street = p.Street, streetId = p.StreetId, houseNumber = p.HouseNumber, postalCode = p.PostalCode,
                 latitude = p.Latitude, longitude = p.Longitude, geocodedAt = p.GeocodedAt,
                 provider = p.GeocodingProvider, quality = p.GeocodingQuality,
                 geocodingStatus = p.Latitude.HasValue && p.Longitude.HasValue ? "located" : "missing" } : null,
@@ -278,7 +281,15 @@ public static class Dto
             neighborhoods = Strings(p.NeighborhoodIdsJson).Select(NeighborhoodCatalog.Get).Where(x => x is not null).ToArray(),
             p.Description, locationId = LocationCatalog.ForProperty(p)?.Id ?? p.LocationId, location = LocationCatalog.ForProperty(p), p.Type, p.Price, p.Area, p.LotArea, p.Rooms, wholeRooms = rooms.WholeRooms, halfRooms = rooms.HalfRooms, p.Floor, condition = PropertyAttributes.NormalizeCondition(p.Condition), building = PropertyAttributes.NormalizeBuilding(p.Building), p.ConstructionAge, p.View, p.CeilingHeight, heatingType = PropertyAttributes.NormalizeHeating(p.HeatingType), p.SecondaryHeatingType, p.Insulated, p.EnergyRating, p.AirConditioning, p.SolarPanels, p.ParkingType, parkingTypes = PropertyAttributes.Parking(p), p.Balcony, p.Elevator, Images = Strings(p.ImagesJson), p.Archived, p.CreatedAt };
     }
-    public static object Search(SearchRequest s, string ownerAccountType = AccountTypes.Private, string? ownerName = null) => new { s.Id, s.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), searchSpecificity = MatchingRanking.Specificity(s), ownerAccountType = AccountTypes.PublicType(ownerAccountType), s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds = LocationCatalog.ForSearch(s).Select(x => x.Id), locations = LocationCatalog.ForSearch(s), s.Description, s.Type, s.MinPrice, s.MaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, conditions = Strings(s.ConditionsJson), buildings = Strings(s.BuildingsJson), constructionAges = Strings(s.ConstructionAgesJson), views = Strings(s.ViewsJson), s.CeilingHeight, floors = PropertyAttributes.Floors(s.FloorsJson), heatingTypes = Strings(s.HeatingTypesJson), s.Balcony, s.Elevator, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
+    public static object Search(SearchRequest s, string ownerAccountType = AccountTypes.Private, string? ownerName = null)
+    {
+        var locations = LocationCatalog.ForSearch(s);
+        var declaredIds = Strings(s.LocationIdsJson);
+        // Keep invalid explicit choices visible to clients. Replacing them with []
+        // would make an old client's legitimate empty-selection city fallback broaden this search.
+        var locationIds = declaredIds.Length > 0 && locations.Length == 0 ? declaredIds : locations.Select(x => x.Id).ToArray();
+        return new { s.Id, s.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), searchSpecificity = MatchingRanking.Specificity(s), ownerAccountType = AccountTypes.PublicType(ownerAccountType), s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds, locations, s.Description, s.Type, s.MinPrice, s.MaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, conditions = Strings(s.ConditionsJson), buildings = Strings(s.BuildingsJson), constructionAges = Strings(s.ConstructionAgesJson), views = Strings(s.ViewsJson), s.CeilingHeight, floors = PropertyAttributes.Floors(s.FloorsJson), heatingTypes = Strings(s.HeatingTypesJson), s.Balcony, s.Elevator, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
+    }
     public static object Message(Message m) => new { m.Id, m.MatchId, m.SenderId, m.Text, m.CreatedAt };
 }
 
@@ -290,5 +301,5 @@ public record DecisionInput(Guid PropertyId, Guid SearchRequestId, bool Liked, b
 public record ReportInput(string EntityKind, Guid EntityId, string? Reason = null);
 public record MessageInput(string Text);
 public record TopupInput(int Amount);
-public record PropertyInput(string Title, string City, string? District, string? Neighborhood, string? Address, string? Description, string Type, decimal Price, decimal Area, decimal Rooms, int? Floor, string? Condition, string? Building, bool Balcony, bool Elevator, string[]? Images, bool Archived = false, string? LocationId = null, decimal? LotArea = null, string? ConstructionAge = null, string? View = null, string? CeilingHeight = null, string? HeatingType = null, bool? Insulated = null, string? EnergyRating = null, bool? AirConditioning = null, bool? SolarPanels = null, string? ParkingType = null, int? WholeRooms = null, int? HalfRooms = null, string? SecondaryHeatingType = null, string[]? ParkingTypes = null, string? Street = null, string? HouseNumber = null, string? PostalCode = null);
+public record PropertyInput(string Title, string City, string? District, string? Neighborhood, string? Address, string? Description, string Type, decimal Price, decimal Area, decimal Rooms, int? Floor, string? Condition, string? Building, bool Balcony, bool Elevator, string[]? Images, bool Archived = false, string? LocationId = null, decimal? LotArea = null, string? ConstructionAge = null, string? View = null, string? CeilingHeight = null, string? HeatingType = null, bool? Insulated = null, string? EnergyRating = null, bool? AirConditioning = null, bool? SolarPanels = null, string? ParkingType = null, int? WholeRooms = null, int? HalfRooms = null, string? SecondaryHeatingType = null, string[]? ParkingTypes = null, string? Street = null, string? HouseNumber = null, string? PostalCode = null, string? StreetId = null);
 public record SearchInput(string Title, string City, string[]? Districts, string? Description, string Type, decimal? MinPrice, decimal? MaxPrice, decimal? MinArea, decimal? MaxArea, decimal? MinRooms, decimal? MaxRooms, bool Balcony, bool Elevator, string? MoveIn, string? Financing, bool Archived = false, string[]? LocationIds = null, string[]? Conditions = null, string[]? Buildings = null, string[]? ConstructionAges = null, string[]? Views = null, string? CeilingHeight = null, int[]? Floors = null, string[]? HeatingTypes = null);

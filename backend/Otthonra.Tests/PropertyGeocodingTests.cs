@@ -351,6 +351,23 @@ public class PropertyGeocodingTests
     }
 
     [Theory]
+    [InlineData("Böszörményi út", "4027", "neighborhood:e8c749e1fc0a306c717ad312")]
+    [InlineData("Egyetem sugárút", "4032", "neighborhood:f22df415c7b5ea79925e8886")]
+    public async Task TestSpecificFixtureCasesUseOnlyTheDesignatedPostalStreetsAndFictionalHouse(string street, string postal, string areaId)
+    {
+        var geocoder = new TestPropertyGeocoder();
+        var address = Address with { Street = street, PostalCode = postal, HouseNumber = "99999" };
+        var result = await geocoder.GeocodeAsync(address);
+        var point = NeighborhoodCatalog.RepresentativePoint(areaId)!;
+        Assert.Equal((point.Latitude, point.Longitude), (result.Latitude, result.Longitude));
+        Assert.Equal("test-fixture", result.Provider); Assert.Equal("SYNTHETIC", result.Quality);
+        foreach (var invalid in new[] { address with { HouseNumber = "12" }, address with { HouseNumber = "99998" },
+            address with { PostalCode = "9999" }, address with { City = "Szeged", LocationId = "city:Szeged" },
+            address with { Street = "Piac utca", PostalCode = "4024" }, address with { Street = "Nemlétező utca" } })
+            Assert.Equal(400, (await Assert.ThrowsAsync<ApiException>(() => geocoder.GeocodeAsync(invalid))).Status);
+    }
+
+    [Theory]
     [InlineData(2, "neighborhood:ba157ae98860772474d9d016")]
     [InlineData(23, "neighborhood:6caf5ba44e563972619da861")]
     [InlineData(11, "neighborhood:9d5b9a27888a2969fbf6b60a")]

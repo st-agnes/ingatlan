@@ -99,6 +99,15 @@ public static class Rules
                 throw new ApiException(400, "Ellenőrizd a közterületet, a házszámot és a négyjegyű irányítószámot.");
         }
         p.Address = p.Street.Length > 0 && p.HouseNumber.Length > 0 ? p.Street + " " + p.HouseNumber : Optional(i.Address, 255);
+        var street = p.Street.Length == 0 && i.StreetId is null ? null : StreetCatalog.ResolveProperty(p, i.StreetId);
+        p.StreetId = street?.Id;
+        // A selected Budapest street can make a city-only choice more precise.
+        // Resolve the ward before geocoding so the provider verifies that ward.
+        if (street?.District is { } ward && p.City == "Budapest" && p.District.Length == 0)
+        {
+            var exact = LocationCatalog.ResolveLegacy("Budapest", [ward]).Single();
+            p.LocationId = exact.Id; p.District = exact.District!;
+        }
         p.Description = PublicText(i.Description);
         PropertyAttributes.Apply(p, i); p.Balcony = !house && i.Balcony; p.Elevator = !house && i.Elevator; p.Archived = i.Archived;
         var images = i.Images ?? [];

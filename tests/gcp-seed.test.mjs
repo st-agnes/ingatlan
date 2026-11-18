@@ -130,6 +130,17 @@ test('fresh test installation receives ready accounts, properties, searches and 
   }
 });
 
+test('the optional API importer retains the two explicit fictional postal street fixtures', async () => {
+  const mock=server(),catalog=createDemoCatalog(),sourceCases=catalog.fixtures.filter(item=>item.kind==='property'&&item.input.streetId);
+  assert.equal(sourceCases.length,2);
+  await runSeed({config,fetchImpl:mock.fetchImpl,state:initialState()});
+  for(const fixture of sourceCases){
+    const request=mock.calls.find(call=>call.path==='/api/properties'&&call.body?.title===fixture.input.title);
+    assert.equal(request.body.street,fixture.input.street);assert.equal(request.body.streetId,fixture.input.streetId);
+    assert.equal(request.body.houseNumber,'99999');assert.equal(request.body.postalCode,fixture.input.postalCode);
+  }
+});
+
 test('repeat seed preserves archived and renamed fixtures, manual data, balances and active selections', async () => {
   const mock = server(), state = initialState();
   await runSeed({config, fetchImpl: mock.fetchImpl, state, saveState: async () => {}});

@@ -254,10 +254,26 @@ public sealed class TestPropertyGeocoder : IPropertyGeocoder
     {
         cancellationToken.ThrowIfCancellationRequested();
         address = PropertyGeocodingAddress.Validate(address);
-        if (PropertyGeocodingAddress.Canonical(address.Street) != ReservedStreet
-            || !int.TryParse(address.HouseNumber, NumberStyles.None, CultureInfo.InvariantCulture, out var ordinal)
-            || ordinal is < 1 or > 9999)
-            throw new ApiException(400, "A tesztcímkereső kizárólag OTTHONRA TEST utca és 1–9999 közötti tesztházszám esetén használható.");
+        var ordinal = 0;
+        var postalFixture = false;
+        if (address.HouseNumber == "99999")
+        {
+            // Only the two designated, visibly fictional source-street cases
+            // can use their synthetic quarter points. This provider is itself
+            // gated to explicitly enabled Development/TEST; Google is separate.
+            var street = StreetCatalog.ResolveProperty(new Property { City = address.City, Street = address.Street,
+                PostalCode = address.PostalCode ?? "", LocationId = address.LocationId ?? "" });
+            ordinal = street?.Id switch {
+                "street:aae22ff8e2d0fa698c0291dc" => 1,
+                "street:6cd1dbc01d7aec3be234b7ba" => 2,
+                _ => 0
+            };
+            postalFixture = ordinal > 0;
+        }
+        if (!postalFixture && (PropertyGeocodingAddress.Canonical(address.Street) != ReservedStreet
+            || !int.TryParse(address.HouseNumber, NumberStyles.None, CultureInfo.InvariantCulture, out ordinal)
+            || ordinal is < 1 or > 9999))
+            throw new ApiException(400, "A tesztcímkereső csak a fenntartott tesztcímeket és a két kijelölt, 99999 házszámú kitalált postai példát fogadja el.");
 
         var choices = NeighborhoodCatalog.All.Where(area => area.City == address.City).OrderBy(area => area.Id, StringComparer.Ordinal).ToArray();
         NeighborhoodArea? area = null;
@@ -287,7 +303,7 @@ public sealed class TestPropertyGeocoder : IPropertyGeocoder
         if (point is null || !PropertyGeocodingAddress.ValidCoordinates(point.Latitude, point.Longitude))
             throw new ApiException(400, "Ehhez a településhez vagy kerülethez nincs előre meghatározott tesztcím.");
         return Task.FromResult(new PropertyGeocodeResult(point.Latitude, point.Longitude, "test-fixture",
-            "test-fixture:" + address.PropertyId.ToString("N") + ":" + (area?.Id[13..] ?? "city"), "test-fixture"));
+            "test-fixture:" + address.PropertyId.ToString("N") + ":" + (area?.Id[13..] ?? "city"), postalFixture ? "SYNTHETIC" : "test-fixture"));
     }
 }
 

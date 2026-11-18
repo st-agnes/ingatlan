@@ -1,5 +1,5 @@
 {
-  "version": "20261116-test-fixtures-v5",
+  "version": "20261118-test-fixtures-v6",
   "password": "OtthonraDemo2026!",
   "users": [
     {
@@ -3569,7 +3569,7 @@
       "input": {
         "neighborhood": "Vénkert",
         "address": "",
-        "description": "Kitalált tesztadat, nem valódi ingatlanhirdetés. Szintetikus tesztkoordináta a Vénkert keresési területén; nem Google által ellenőrzött valódi cím.",
+        "description": "Kitalált tesztadat, nem valódi ingatlanhirdetés. Szintetikus tesztkoordináta a Vénkert keresési területén; nem Google által ellenőrzött valódi cím. A postai közterület valódi, a 99999 házszám kitalált.",
         "type": "Lakás",
         "floor": 1,
         "condition": "Felújítandó",
@@ -3603,9 +3603,10 @@
         "wholeRooms": 3,
         "halfRooms": 0,
         "rooms": 3,
-        "street": "OTTHONRA TEST",
-        "houseNumber": "1",
-        "postalCode": null
+        "street": "Böszörményi út",
+        "houseNumber": "99999",
+        "postalCode": "4027",
+        "streetId": "street:aae22ff8e2d0fa698c0291dc"
       }
     },
     {
@@ -4478,7 +4479,7 @@
       "input": {
         "neighborhood": "Sestakert",
         "address": "",
-        "description": "Kitalált tesztadat, nem valódi ingatlanhirdetés. Szintetikus tesztkoordináta a Sestakert keresési területén; nem Google által ellenőrzött valódi cím.",
+        "description": "Kitalált tesztadat, nem valódi ingatlanhirdetés. Szintetikus tesztkoordináta a Sestakert keresési területén; nem Google által ellenőrzött valódi cím. A postai közterület valódi, a 99999 házszám kitalált.",
         "type": "Lakás",
         "floor": 1,
         "condition": "Jó",
@@ -4512,9 +4513,10 @@
         "wholeRooms": 3,
         "halfRooms": 0,
         "rooms": 3,
-        "street": "OTTHONRA TEST",
-        "houseNumber": "2",
-        "postalCode": null
+        "street": "Egyetem sugárút",
+        "houseNumber": "99999",
+        "postalCode": "4032",
+        "streetId": "street:6cd1dbc01d7aec3be234b7ba"
       }
     },
     {
@@ -5790,7 +5792,7 @@
       "kind": "search",
       "input": {
         "districts": [],
-        "description": "Kitalált tesztadat, nem valódi ingatlanhirdetés. Debrecen és a környező települések lakásaihoz készült keresés, többféle helyszínválasztással.",
+        "description": "Kitalált tesztadat, nem valódi ingatlanhirdetés. Két konkrét debreceni közterület bármelyike megfelelő; a város többi utcája kívül esik a keresésen.",
         "type": "Lakás",
         "minPrice": null,
         "maxPrice": 80000000,
@@ -5803,12 +5805,11 @@
         "moveIn": "3 hónapon belül",
         "financing": "Tesztként megadott saját forrás",
         "archived": false,
-        "title": "Teszt · Debreceni térségben keresek 6/2",
+        "title": "Teszt · Böszörményi út vagy Egyetem sugárút",
         "city": "Debrecen",
         "locationIds": [
-          "city:Debrecen",
-          "city:Hajdúsámson",
-          "city:Hajdúszoboszló"
+          "street:aae22ff8e2d0fa698c0291dc",
+          "street:6cd1dbc01d7aec3be234b7ba"
         ]
       }
     },
@@ -6700,7 +6701,7 @@
       "kind": "search",
       "input": {
         "districts": [],
-        "description": "Kitalált tesztadat, nem valódi ingatlanhirdetés. Debrecen és a környező települések lakásaihoz készült keresés, többféle helyszínválasztással.",
+        "description": "Kitalált tesztadat, nem valódi ingatlanhirdetés. A debreceni Böszörményi út vagy bármely hajdúsámsoni lakás megfelelő.",
         "type": "Lakás",
         "minPrice": null,
         "maxPrice": 80000000,
@@ -6713,12 +6714,11 @@
         "moveIn": "3 hónapon belül",
         "financing": "Tesztként megadott saját forrás",
         "archived": false,
-        "title": "Teszt · Debreceni térségben keresek 7/2",
+        "title": "Teszt · Böszörményi út vagy Hajdúsámson",
         "city": "Debrecen",
         "locationIds": [
-          "city:Debrecen",
-          "city:Hajdúsámson",
-          "city:Hajdúszoboszló"
+          "street:aae22ff8e2d0fa698c0291dc",
+          "city:Hajdúsámson"
         ]
       }
     },

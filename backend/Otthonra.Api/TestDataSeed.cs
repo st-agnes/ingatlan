@@ -98,7 +98,7 @@ public static class TestDataSeed
                     ?? throw new InvalidOperationException("A property fixture is empty.");
                 var property = new Property { Id = id, OwnerId = owner.Id, CreatedAt = now };
                 Rules.Apply(property, input);
-                AssignSyntheticCoordinates(property);
+                AssignSyntheticCoordinates(property, fixture.Key);
                 if (property.Archived) throw new InvalidOperationException("Initial test properties must be active.");
                 properties.Add(property);
             }
@@ -168,10 +168,17 @@ public static class TestDataSeed
     /// Fixture-only coordinates. These deliberately fictional addresses have
     /// never been sent to Google and must never be described as validated homes.
     /// </summary>
-    public static void AssignSyntheticCoordinates(Property property)
+    public static void AssignSyntheticCoordinates(Property property, string? fixtureKey = null)
     {
-        if (property.Street != "OTTHONRA TEST")
-            throw new InvalidOperationException("Synthetic fixture coordinates require the reserved fictional test street.");
+        // Only these named fixtures may pair a source street with the visibly
+        // fictional 99999 house number. Normal property saves still geocode.
+        var postalFixture = fixtureKey is not null && property.City == "Debrecen" && property.HouseNumber == "99999"
+            && ((Regex.IsMatch(fixtureKey, @"\Areka(?:--[a-z0-9][a-z0-9-]{0,31})?-debrecen-1\z")
+                    && property.StreetId == "street:aae22ff8e2d0fa698c0291dc" && property.Street == "Böszörményi út" && property.PostalCode == "4027")
+                || (Regex.IsMatch(fixtureKey, @"\Abence(?:--[a-z0-9][a-z0-9-]{0,31})?-debrecen-1\z")
+                    && property.StreetId == "street:6cd1dbc01d7aec3be234b7ba" && property.Street == "Egyetem sugárút" && property.PostalCode == "4032"));
+        if (property.Street != "OTTHONRA TEST" && !postalFixture)
+            throw new InvalidOperationException("Synthetic fixture coordinates require the reserved street or an explicit fictional postal fixture.");
         var areas = NeighborhoodCatalog.All.Where(area => area.City == property.City).ToArray();
         var districtFixtureName = property.LocationId switch {
             "district:Budapest:2" => "Rózsadomb", "district:Budapest:9" => "Belső-Ferencváros",

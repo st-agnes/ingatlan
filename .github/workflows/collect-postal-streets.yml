@@ -1,0 +1,72 @@
+name: Collect public Magyar Posta street source
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'codex/postal-street-source-fetch-*'
+    paths:
+      - '.github/workflows/collect-postal-streets.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  download:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Fetch the official public catalogue and source documentation
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          from urllib.parse import urljoin, urlparse
+          from datetime import datetime, timezone
+          import gzip, hashlib, json, subprocess, xml.etree.ElementTree as ET
+          output = Path('postal-source'); output.mkdir()
+          def fetch(url, target, maximum):
+              subprocess.run(['curl', '--fail', '--silent', '--show-error', '--location',
+                  '--connect-timeout', '15', '--max-time', '100', '--max-redirs', '3',
+                  '--max-filesize', str(maximum), '--output', str(target), url], check=True)
+              raw = target.read_bytes()
+              if len(raw) > maximum: raise RuntimeError('Source exceeds the configured size limit.')
+              return raw
+          page_url = 'https://www.posta.hu/partnerextra'
+          page = fetch(page_url, output / 'partnerextra.html', 2_000_000)
+          description_url = 'https://www.posta.hu/partnerextra_leiras'
+          fetch(description_url, output / 'partnerextra-description.html', 2_000_000)
+          class Links(HTMLParser):
+              def __init__(self): super().__init__(); self.links = []
+              def handle_starttag(self, tag, attrs):
+                  if tag.lower() == 'a':
+                      for key, value in attrs:
+                          if key.lower() == 'href' and value: self.links.append(urljoin(page_url, value))
+          parser = Links(); parser.feed(page.decode('utf-8', errors='replace'))
+          candidates = [url for url in parser.links if urlparse(url).hostname == 'httpmegosztas.posta.hu'
+              and urlparse(url).path.lower() == '/partnerextra/out/streetnames.xml'
+              and urlparse(url).scheme in ('http', 'https')]
+          if not candidates: raise RuntimeError('Official page has no recognized street catalogue link.')
+          source_url = candidates[0]
+          raw = fetch(source_url, output / 'StreetNames.xml', 100_000_000)
+          if b'<!DOCTYPE' in raw.upper(): raise RuntimeError('A document type declaration is not expected.')
+          root = ET.fromstring(raw)
+          rows = [row for row in root.iter() if row.tag.rsplit('}', 1)[-1].lower() == 'street']
+          if len(rows) < 1000: raise RuntimeError('The downloaded document is not a countrywide street catalogue.')
+          report = {'sourceUrl': source_url, 'documentationUrl': page_url, 'schemaUrl': description_url,
+              'retrievedAt': datetime.now(timezone.utc).isoformat(), 'sha256': hashlib.sha256(raw).hexdigest(),
+              'bytes': len(raw), 'xmlRoot': root.tag, 'streetElements': len(rows),
+              'sample': [{child.tag: child.text for child in row} for row in rows[:5]]}
+          (output / 'source-report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
+          for path in list(output.iterdir()):
+              if path.suffix in ('.xml', '.html'):
+                  path.with_name(path.name + '.gz').write_bytes(gzip.compress(path.read_bytes(), mtime=0)); path.unlink()
+          print(json.dumps(report, ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: postal-street-source
+          path: postal-source/
+          retention-days: 30
+          if-no-files-found: error

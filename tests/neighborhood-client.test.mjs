@@ -71,8 +71,8 @@ test('every fictional demo seed uses its explicit synthetic point and all known 
   const addresses=new Set();
   for(const property of raw.properties){
     const detail=property.addressDetails;
-    assert.ok(detail.street.includes('Fiktív'));
-    assert.ok(detail.houseNumber);
+    assert.ok(detail.streetId?getLocation(detail.streetId)?.streetName===detail.street:detail.street.includes('Fiktív'));
+    assert.match(detail.houseNumber,/^99999\//);
     assert.match(detail.postalCode,/^\d{4}$/);
     assert.equal(detail.provider,'synthetic-demo');
     assert.equal(detail.geocodingStatus,'demo-synthetic');

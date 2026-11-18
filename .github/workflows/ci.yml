@@ -48,6 +48,7 @@ jobs:
           JS
           node tests/wizard-dock-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-ui.log
           node tests/neighborhood-search-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-neighborhood.log
+          node tests/street-search-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-street.log
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -56,10 +57,86 @@ jobs:
             .local/browser-tests/screenshots/*.png
             .local/browser-tests/guided-*.log
           if-no-files-found: ignore
+  postal-street-integration:
+    name: Postal street MySQL integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_DATABASE: otthonra_ci
+          MYSQL_USER: otthonra
+          MYSQL_PASSWORD: ci-only-password
+          MYSQL_ROOT_PASSWORD: ci-only-root-password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="MYSQL_PWD=ci-only-password mysql -h 127.0.0.1 -u otthonra otthonra_ci -e 'SELECT 1' >/dev/null 2>&1"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=30
+    env:
+      DOTNET_NOLOGO: "true"
+      DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+      ASPNETCORE_ENVIRONMENT: Production
+      Deployment__Environment: test
+      ConnectionStrings__MySql: Server=127.0.0.1;Port=3306;Database=otthonra_ci;User=otthonra;Password=ci-only-password
+      Jwt__Key: ci-only-signing-key-for-disposable-test-environment-2026
+      Database__Initialize: "true"
+      Database__SeedDemo: "false"
+      Database__SeedTestFixtures: "true"
+      Geocoding__EnableTestGeocoder: "true"
+      Credits__EnableDemoTopup: "true"
+      K_REVISION: ci-fixtures-a
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build the actual API and verify packaged fixtures
+        run: |
+          dotnet restore backend/Otthonra.Api/Otthonra.Api.csproj
+          dotnet build backend/Otthonra.Api/Otthonra.Api.csproj --no-restore
+          node scripts/gcp/export-demo-data.mjs --check
+      - name: Seed and record the native postal catalogue in its disposable database
+        run: |
+          node scripts/dev.mjs --background
+          node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --initial
+          python3 backend/startup-seed-store.py "${{ job.services.mysql.id }}" changed
+          python3 backend/street-store-smoke.py "${{ job.services.mysql.id }}" record
+      - name: Verify import idempotency and association-only versioned backfill
+        run: |
+          node scripts/dev.mjs --restart
+          node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --preserved
+          python3 backend/street-store-smoke.py "${{ job.services.mysql.id }}" verify
+          python3 backend/street-store-smoke.py "${{ job.services.mysql.id }}" stale
+          node scripts/dev.mjs --restart
+          python3 backend/street-store-smoke.py "${{ job.services.mysql.id }}" rebuilt
+          node scripts/dev.mjs --restart
+          python3 backend/street-store-smoke.py "${{ job.services.mysql.id }}" verify
+      - name: Verify exact street APIs and preserve the native catalogue through fixture reset
+        run: |
+          node backend/street-smoke.mjs http://127.0.0.1:3000
+          K_REVISION=ci-fixtures-b node scripts/dev.mjs --restart
+          node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --reset
+          python3 backend/startup-seed-store.py "${{ job.services.mysql.id }}" reset
+          python3 backend/street-store-smoke.py "${{ job.services.mysql.id }}" verify
+      - name: Show postal integration startup logs on failure
+        if: failure()
+        run: tail -n 80 .local/dev.log 2>/dev/null || true
+      - name: Stop postal integration supervisor
+        if: always()
+        run: node scripts/dev.mjs --stop
   build-and-test:
     name: Build and test (MySQL ${{ matrix.mysql }})
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -118,6 +195,10 @@ jobs:
         run: |
           python3 scripts/import-neighborhoods.py --check
           python3 tests/neighborhood-runtime-data.test.py
+      - name: Verify the pinned postal street source and generated catalogue
+        run: |
+          python3 scripts/import-streets.py --check
+          python3 tests/street-data.test.py
       - name: Build Docker API with embedded location catalogue
         run: docker build --file backend/Dockerfile --tag otthonra-api:ci .
       - name: Verify the pinned Cloud SQL proxy image and required CLI flags
@@ -153,6 +234,8 @@ jobs:
           node tests/development.test.mjs
           node tests/locations.test.mjs
           node tests/neighborhood-client.test.mjs
+          node tests/street-client.test.mjs
+          node tests/street-search-browser.test.mjs --offline
           node tests/areas.test.mjs
           node tests/regions.test.mjs
           node tests/attributes.test.mjs
@@ -227,6 +310,8 @@ jobs:
         run: node tests/wizard-dock-browser.test.mjs http://127.0.0.1:3000
       - name: Test location picker and search creation in Chromium
         run: node tests/browser.test.mjs http://127.0.0.1:3000
+      - name: Test asynchronous street search and scoped address selection in Chromium
+        run: node tests/street-search-browser.test.mjs http://127.0.0.1:3000
       - name: Test optional attributes in desktop, tablet and mobile Chromium
         run: node tests/attributes-browser.test.mjs http://127.0.0.1:3000
       - name: Test seller fields and numeric input on desktop, tablet and mobile
@@ -332,13 +417,22 @@ jobs:
           ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-a node scripts/dev.mjs --background
           node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --initial
           python3 backend/startup-seed-store.py "${{ job.services.mysql.id }}" changed
+          python3 backend/street-store-smoke.py "${{ job.services.mysql.id }}" record
           node scripts/dev.mjs --stop
           ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-a node scripts/dev.mjs --background
           node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --preserved
+          python3 backend/street-store-smoke.py "${{ job.services.mysql.id }}" verify
+          python3 backend/street-store-smoke.py "${{ job.services.mysql.id }}" stale
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-a node scripts/dev.mjs --restart
+          python3 backend/street-store-smoke.py "${{ job.services.mysql.id }}" rebuilt
+          ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-a node scripts/dev.mjs --restart
+          python3 backend/street-store-smoke.py "${{ job.services.mysql.id }}" verify
+          node backend/street-smoke.mjs http://127.0.0.1:3000
           node scripts/dev.mjs --stop
           ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-b node scripts/dev.mjs --background
           node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --reset
           python3 backend/startup-seed-store.py "${{ job.services.mysql.id }}" reset
+          python3 backend/street-store-smoke.py "${{ job.services.mysql.id }}" verify
           node scripts/dev.mjs --stop
           ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=test Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-a node scripts/dev.mjs --background
           node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --preserved
@@ -346,6 +440,7 @@ jobs:
           ASPNETCORE_ENVIRONMENT=Production Deployment__Environment=production Geocoding__EnableTestGeocoder=false Database__SeedDemo=false Database__SeedTestFixtures=true K_REVISION=ci-fixtures-production node scripts/dev.mjs --background
           node backend/startup-seed-smoke.mjs http://127.0.0.1:3000 --production
           python3 backend/startup-seed-store.py "${{ job.services.mysql.id }}" reset
+          python3 backend/street-store-smoke.py "${{ job.services.mysql.id }}" verify
       - name: Test the repeatable hosted feedback scenario on desktop, tablet and mobile
         run: |
           node scripts/dev.mjs --stop

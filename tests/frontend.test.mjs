@@ -60,7 +60,7 @@ class Element {
  get offsetParent(){if(this.type==='hidden')return null;for(let node=this;node;node=node.parentElement)if(node.hidden||node.classList?.contains('hidden')||node.style?.display==='none')return null;return this.doc.getElementById('modal-root');}
  scrollIntoView(){}
  get parentElement(){return this.doc.parentOf(this.id);}
- contains(node){for(let current=node;current;current=current.parentElement){if(current===this)return true;}return false;}
+ contains(node){if(this.isModal)return this.doc.currentModal===this&&this.doc.getElementById(node?.id)===node&&this.doc.getElementById('modal-backdrop')?.contains(node)===true;for(let current=node;current;current=current.parentElement){if(current===this)return true;}return false;}
 }
 
 class Document {
@@ -84,6 +84,9 @@ class Document {
 }
 async function setup(options={}){
  const storage={getItem:()=>options.initialRaw?JSON.stringify(options.initialRaw):null,setItem:()=>{}},demoModel=createModel(storage),document=new Document();
+ // This minimal DOM fixture exercises the immediate legacy picker unless a
+ // test explicitly opts into the async catalogue callbacks below.
+ delete demoModel.findLocations;delete demoModel.findStreets;
  const apiModel=Object.assign({...demoModel},{mode:'api'},options.apiOverrides||{});
  if(options.apiOverrides?.feed&&!options.apiOverrides?.recommendations)apiModel.recommendations=async request=>{const items=await apiModel.feed(request);return {items,stage:items.length?'exact':'empty'};};
  let selected=options.hosted?(options.authenticated?apiModel:null):demoModel;
@@ -1082,6 +1085,16 @@ test('modal focus chooses the first visible enabled field before progress button
  const replacementStart=t.document.focusEvents.length;t.runNextTimer();assert.equal(t.document.focusEvents.length,replacementStart,'The replaced dialog timer must not move focus into the new dialog');
  t.runNextTimer();assert.equal(t.document.activeElement.id,'replacement-field');assert.deepEqual(t.document.focusEvents.slice(replacementStart),['replacement-field']);
  t.ui.openModal('<input id="closed-field">');t.ui.closeModal();const closedStart=t.document.focusEvents.length;t.runTimers();assert.equal(t.document.focusEvents.length,closedStart,'A closed dialog timer cannot steal focus');
+});
+
+test('deferred modal opening focus preserves an editor control the user already focused',async()=>{
+ const t=await setup({captureTimers:true});t.ui.openEditor('property','own-p1');
+ const street=t.document.getElementById('f-street'),list=t.document.getElementById('street-options');
+ street.focus();street.value='Pozsonyi';street.handlers.input();assert.equal(list.hidden,false);
+ const before=t.document.focusEvents.length;t.runNextTimer();
+ assert.equal(t.document.activeElement.id,street.id,'The opening focus timer must not interrupt typing in the street field');
+ assert.equal(t.document.focusEvents.length,before,'A focused editor control must not be focused elsewhere again');
+ assert.equal(street.value,'Pozsonyi');assert.equal(list.hidden,false);
 });
 
 function configuredCriteriaRaw(kind){

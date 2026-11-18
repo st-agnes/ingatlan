@@ -85,3 +85,17 @@ Public source data, per-feature provenance and supporting source records:
 https://github.com/st-agnes/ingatlan/tree/main/data/neighborhoods
 Catalogue methods and limitations:
 https://github.com/st-agnes/ingatlan/blob/main/docs/NEIGHBORHOOD-SEARCH-DATA.md
+
+
+Hungarian postal street catalogue
+Forrás / Source: Magyar Posta Zrt., Partner Extra, Országos utcalista.
+https://www.posta.hu/partnerextra
+https://www.posta.hu/partnerextra_leiras
+
+The application uses the freely downloadable Partner Extra street and postcode
+list for its own address suggestions and street-based location search. Street
+names are normalized for lookup and combined into stable application records;
+postcodes and Budapest districts are retained for disambiguation. The list is a
+postal reference, not proof that an exact house number exists or is deliverable.
+Exact property addresses are verified separately. Magyar Posta retains its
+rights in the source; this notice does not claim an open-data licence.

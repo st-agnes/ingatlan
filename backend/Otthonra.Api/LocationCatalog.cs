@@ -3,7 +3,8 @@ using System.Text.Json;
 
 namespace Otthonra.Api;
 
-public sealed record Location(string Id, string Label, string City, string? District, string Kind = "city", int? SettlementCount = null);
+public sealed record Location(string Id, string Label, string City, string? District, string Kind = "city", int? SettlementCount = null,
+    string? StreetName = null, string[]? PostalCodes = null);
 
 /// <summary>The same versioned, local municipality and city-area catalogues are used by the web and API.</summary>
 public static class LocationCatalog
@@ -50,7 +51,11 @@ public static class LocationCatalog
         return new CatalogueData(cities.Concat(districts).Concat(areas).Concat(NeighborhoodCatalog.All.Select(area => new Location(area.Id, area.Label, area.City, null, "neighborhood"))).ToArray(), membersById);
     }
 
-    public static Location? Get(string? id) => id is not null && ById.Value.TryGetValue(id, out var result) ? result : null;
+    public static Location FromStreet(PostalStreet street) => new(street.Id, street.Label, street.City, street.District,
+        "street", StreetName: street.StreetName, PostalCodes: street.PostalCodes);
+    public static Location? Get(string? id) => id?.StartsWith("street:", StringComparison.Ordinal) == true
+        ? StreetCatalog.Get(id) is { } street ? FromStreet(street) : null
+        : id is not null && ById.Value.TryGetValue(id, out var result) ? result : null;
     public static string Normalize(string? value) => Rules.Normalize(value ?? "");
     private static int? DistrictNumber(string? value)
     {
@@ -105,7 +110,8 @@ public static class LocationCatalog
     {
         // Even malformed persisted area IDs must never become a precise home
         // location through the old center-city fallback.
-        if (property.LocationId?.StartsWith("area:", StringComparison.Ordinal) == true || property.LocationId?.StartsWith("neighborhood:", StringComparison.Ordinal) == true) return null;
+        if (property.LocationId?.StartsWith("area:", StringComparison.Ordinal) == true || property.LocationId?.StartsWith("neighborhood:", StringComparison.Ordinal) == true
+            || property.LocationId?.StartsWith("street:", StringComparison.Ordinal) == true) return null;
         return Get(property.LocationId)
             ?? ResolveLegacy(property.City, string.IsNullOrWhiteSpace(property.District) ? [] : [property.District]).FirstOrDefault();
     }
@@ -127,7 +133,8 @@ public static class LocationCatalog
         var place = ForProperty(property);
         if (place is null || place.Kind is not ("city" or "district")) return false;
         var membership = Dto.Strings(property.NeighborhoodIdsJson).ToHashSet(StringComparer.Ordinal);
-        return ForSearch(search).Any(wanted => wanted.Kind == "neighborhood" ? membership.Contains(wanted.Id)
+        return ForSearch(search).Any(wanted => wanted.Kind == "street" ? MatchingRanking.VerifiedStreetId(property, place) == wanted.Id
+            : wanted.Kind == "neighborhood" ? membership.Contains(wanted.Id)
             : wanted.Kind == "area" ? Catalogue.Value.AreaMembers.TryGetValue(wanted.Id, out var members) && members.Contains(place.City)
             : wanted.City == place.City && (wanted.District is null || wanted.District == place.District));
     }
@@ -155,11 +162,16 @@ public static class LocationCatalog
             .ThenBy(x => x.Location.Label, StringComparer.Create(CultureInfo.GetCultureInfo("hu-HU"), false)).Take(limit).Select(x => x.Location).ToArray();
         var directDistrict = value.StartsWith("BUDAPEST", StringComparison.Ordinal) ? DistrictNumber(query) : null;
         var words = new string(value.Select(c => char.IsLetterOrDigit(c) ? c : ' ').ToArray()).Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        return candidates.Where(x => x.DisplayLabel == value || x.Text.Contains(value, StringComparison.Ordinal)
+        var ordinary = candidates.Where(x => x.DisplayLabel == value || x.Text.Contains(value, StringComparison.Ordinal)
                 || words.Length > 0 && words.All(word => x.Words.Any(part => part.StartsWith(word, StringComparison.Ordinal)))
                 || directDistrict.HasValue && x.Location.Id == $"district:Budapest:{directDistrict}")
             .OrderBy(x => directDistrict.HasValue && x.Location.Id == $"district:Budapest:{directDistrict}" ? -1
                 : x.DisplayLabel == value || x.Primary == value ? 0 : x.Location.Kind == "area" && x.City == value ? 1 : x.Primary.StartsWith(value, StringComparison.Ordinal) ? 2 : 3)
             .ThenBy(x => x.Location.Label, StringComparer.Create(CultureInfo.GetCultureInfo("hu-HU"), false)).Take(limit).Select(x => x.Location).ToArray();
+        if (kind != "search" || value.Length < 2) return ordinary;
+        var streets = StreetCatalog.Search(query, limit).Select(FromStreet).ToArray();
+        var ordinarySlots = streets.Length == 0 ? limit : Math.Max(1, limit - Math.Min(4, limit / 2));
+        return ordinary.Take(ordinarySlots).Concat(streets).Concat(ordinary.Skip(ordinarySlots))
+            .DistinctBy(x => x.Id).Take(limit).ToArray();
     }
 }

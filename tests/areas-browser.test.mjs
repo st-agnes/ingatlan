@@ -18,7 +18,7 @@ async function openPage(page,kind){
 }
 async function newEntity(page,interact,kind){await openPage(page,kind);await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));await page.waitForFunction(()=>document.activeElement?.id==='f-title');}
 async function editEntity(page,interact,kind,id){await openPage(page,kind);await interact(page.locator(`[data-action="edit"][data-id="${id}"]`));await page.waitForFunction(()=>document.activeElement?.id==='f-title');}
-async function query(page,value){await (await editorField(page,'#location-input')).fill(value);await page.locator('#location-options').waitFor({state:'visible'});}
+async function query(page,value){await (await editorField(page,'#location-input')).fill(value);await page.locator('#location-options').waitFor({state:'visible'});await page.waitForFunction(()=>{const list=document.getElementById('location-options');return list&&!list.hidden&&list.getAttribute('aria-busy')!=='true';});}
 async function choose(page,interact,id){await interact(page.locator(`#location-options [data-location-id="${id}"]`));assert.equal(await page.locator('#location-input').inputValue(),'');}
 async function save(page,interact,isNewSearch=false){
  await editorSave(page,interact);
