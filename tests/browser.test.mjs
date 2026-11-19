@@ -85,7 +85,7 @@ async function verifyViewport(browser, viewport) {
     assert.equal(geometry.inputIsTopmost, true, 'Suggestions must not cover the typed input');
     assert.ok(geometry.listTop >= geometry.inputBottom - 1, 'Suggestions must begin below the input');
 
-    await interact(page.locator('#f-type'));
+    await interact(page.locator('#editor-heading-0'));
     assert.equal(await list.isHidden(), true, 'Clicking or tapping another field must close suggestions');
     assert.equal(await input.inputValue(), 'Deb', 'Dismissing must preserve the query');
     assert.equal(await page.locator('#location-chips .location-chip').count(), 0, 'Dismissing must not select a place');

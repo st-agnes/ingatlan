@@ -52,7 +52,7 @@ async function searchFlow(browser,viewport){
   const input=page.locator('#location-input'),list=page.locator('#location-options');
   const geometry=await page.evaluate(()=>({input:document.getElementById('location-input').getBoundingClientRect().toJSON(),list:document.getElementById('location-options').getBoundingClientRect().toJSON()}));
   assert.ok(geometry.list.top>=geometry.input.bottom,'Suggestions must open below the typed query');
-  await interact(page.locator('#f-type'));assert.equal(await list.isHidden(),true);assert.equal(await input.inputValue(),'Debrecen');
+  await interact(page.locator('#editor-heading-0'));assert.equal(await list.isHidden(),true);assert.equal(await input.inputValue(),'Debrecen');
   assert.equal(await page.locator('#location-chips .location-chip').count(),3,'Outside dismissal must not select');
   await input.focus();await list.waitFor({state:'visible'});await input.press('Escape');assert.equal(await list.isHidden(),true);
   await input.fill('');
