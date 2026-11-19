@@ -63,7 +63,7 @@ async function verifyReports(browser,viewport){
 async function verifyPrivateIncoming(browser,viewport){
  const context=await createContext(browser,viewport),page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));page.setDefaultTimeout(10000);const interact=locator=>viewport.touch?locator.tap():locator.click();
  try{
-  await configure(page);assert.match(await page.locator('.nav-button[data-page="incoming"]').innerText(),/Kedveltek/);await enterIncoming(page,interact);
+  await configure(page);assert.match(await page.locator('.nav-button[data-page="incoming"]').innerText(),/Téged kedveltek/);await enterIncoming(page,interact);
   assert.equal(await page.locator('.incoming-card').count(),2);assert.equal(await page.locator('.incoming-card[data-id="p1"] .private-badge').innerText(),'Magánszemély');assert.equal(await page.locator('.incoming-card[data-id="p2"] .agent-badge').innerText(),'Ingatlanközvetítő');
   const visible=await page.locator('#app').innerText();assert.equal(visible.includes('peter@example.hu'),false);assert.equal(visible.includes('+36 30 555 0141'),false);const unchanged=await current(page);assert.equal(unchanged.decisions.length,0,'Viewing incoming likes cannot make a decision');assert.equal(unchanged.credits,24);
   await interact(page.locator('.incoming-card[data-id="p1"] [data-action="incoming-details"]'));assert.equal((await page.locator('.modal').innerText()).includes('peter@example.hu'),false);await fit(page.locator('.modal'));await closeModal(page,interact);

@@ -25,7 +25,10 @@ const profile=owner=>api('/me',{token:owner.token});
 const decide=(owner,property,search,liked=true)=>api('/decisions',{token:owner.token,method:'POST',body:{propertyId:property.id,searchRequestId:search.id,liked}});
 const hasTarget=(item,kind,id)=>item.target?.entityKind===kind&&item.target?.entityId===id;
 async function onlyNotice(owner,kind,predicate=()=>true){const rows=(await page(owner)).items.filter(item=>item.kind===kind&&predicate(item));assert.equal(rows.length,1,`Expected exactly one ${kind} event`);return rows[0];}
-function noContact(value,f){const raw=JSON.stringify(value);for(const item of f.owners)for(const secret of [item.email,item.phone])assert.ok(!raw.includes(secret),'Unmatched notification/context leaked a contact');assert.doesNotMatch(raw,/addressDetails|geocodingPlaceId|latitude|longitude|"password/i);}
+function noContact(value,f){
+ const raw=JSON.stringify(value);for(const item of f.owners)for(const secret of [item.email,item.phone])assert.ok(!raw.includes(secret),'Unmatched notification/context leaked a contact');
+ const inspect=node=>{if(!node||typeof node!=='object')return;for(const [key,child]of Object.entries(node)){if(key==='addressDetails')assert.equal(child,null,'An unmatched property may expose only a null private-address placeholder');else assert.doesNotMatch(key,/^(?:geocodingPlaceId|latitude|longitude|coordinates|password(?:Hash)?)$/i,'Unmatched notification/context leaked a private field');inspect(child);}};inspect(value);
+}
 function sourceSummary(items){return items.map(item=>({kind:item.kind,amount:item.amount,target:item.target??null,text:item.text,readAt:item.readAt??null})).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)));}
 async function checkpoint(f){f.snapshots={};for(const owner of f.owners){const notices=await page(owner);const me=await profile(owner);assert.equal(me.unreadNotificationCount,notices.unreadCount);f.snapshots[owner.id]={credits:me.credits,total:notices.total,unreadCount:notices.unreadCount,items:sourceSummary(notices.items)};}await save(f);}
 

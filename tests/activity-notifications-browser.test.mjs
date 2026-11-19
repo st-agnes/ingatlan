@@ -163,7 +163,7 @@ async function deletionAndUnavailable(browser,viewport){
  await inspect(t,async()=>{
   await page.goto(origin+'/#notifications',{waitUntil:'domcontentloaded'});await readyNotifications(page);await badge(page,1);await openNotice(page,viewport,notices.deleted);
   await page.getByRole('heading',{name:'Az esemény már nem nyitható meg.',exact:true}).waitFor();await badge(page,0);assert.equal(server.activations.length,0);assert.equal(server.decisions.length,0);
-  await interact(viewport,page.locator('.modal [data-action="close"]'));
+  await interact(viewport,page.locator('.modal').getByRole('button',{name:'Rendben',exact:true}));
   await navigate(page,viewport,'properties');const deleting=page.locator(`[data-action="delete"][data-kind="property"][data-id="${ids.inactive}"]`);await deleting.waitFor();
   assert.match((await deleting.getAttribute('aria-label'))||'',/törlés/i);await interact(viewport,deleting);
   const confirmation=page.locator('.modal');assert.match(await confirmation.innerText(),/Törl/);assert.doesNotMatch(await confirmation.innerText(),/Archiv/);
