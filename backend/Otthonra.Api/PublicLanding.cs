@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,10 +7,10 @@ namespace Otthonra.Api;
 
 public sealed record LandingSearchTeaser(string Key, string Title, string Type, string[] Locations,
     decimal? MinPrice, decimal? MaxPrice, decimal? MinArea, decimal? MaxArea, decimal? MinRooms,
-    decimal? MaxRooms, string OwnerAccountType, string OwnerFirstName = "", LandingSearchPrefill? Prefill = null);
+    decimal? MaxRooms, string OwnerAccountType, string OwnerFirstName = "", LandingSearchPrefill? Prefill = null, string SourceKey = "");
 public sealed record LandingPropertyTeaser(string Key, string Title, string Type, string Location,
     decimal Price, decimal Area, int? WholeRooms, int? HalfRooms, decimal Rooms, decimal? LotArea,
-    string OwnerAccountType, string OwnerFirstName = "", LandingPropertyPrefill? Prefill = null);
+    string OwnerAccountType, string OwnerFirstName = "", LandingPropertyPrefill? Prefill = null, string SourceKey = "");
 public sealed record PublicLandingResponse(IReadOnlyList<LandingRegion> Regions, LandingRegion? Region,
     string Scope, LandingSearchTeaser[] Searches, LandingPropertyTeaser[] Properties);
 
@@ -37,7 +39,10 @@ public static class PublicLanding
         return RegionCatalog.Get(region.Trim()) ?? throw new ApiException(400, "Ismeretlen régió. Válassz a régiók listájából.");
     }
 
-    // Only sanitized ad titles and given names are public; contacts, source IDs, photographs and addresses stay private.
+    // Only sanitized ad titles, given names and opaque source keys are public;
+    // contacts, raw source IDs, photographs and addresses stay private.
+    private static string SourceKey(string kind, Guid id) => kind + "-" + Convert.ToHexString(
+        SHA256.HashData(Encoding.UTF8.GetBytes($"otthonra:landing-source:v1:{kind}:{id:N}"))).ToLowerInvariant();
     public static string SafeType(string? type) => Rules.Normalize(type ?? "") switch
     {
         "LAKAS" => "Lakás", "HAZ" => "Ház", "TELEK" => "Telek", "NYARALO" => "Nyaraló",
@@ -63,7 +68,8 @@ public static class PublicLanding
         return (new LandingSearchTeaser("", PublicProfile.Title(search.Title, SearchTitle(type)), type,
             locations.Select(location => location.Label).ToArray(), SafeBound(search.MinPrice), SafeBound(search.MaxPrice),
             SafeBound(search.MinArea), SafeBound(search.MaxArea), SafeBound(search.MinRooms), SafeBound(search.MaxRooms),
-            AccountTypes.PublicType(accountType), PublicProfile.FirstName(ownerName), LandingPrefill.Search(search, locations)), RegionCatalog.ForLocations(locations));
+            AccountTypes.PublicType(accountType), PublicProfile.FirstName(ownerName), LandingPrefill.Search(search, locations),
+            SourceKey("search", search.Id)), RegionCatalog.ForLocations(locations));
     }
 
     public static (LandingPropertyTeaser Teaser, string[] Regions)? PropertyTeaser(Property property, string? accountType, string? ownerName = null)
@@ -77,7 +83,7 @@ public static class PublicLanding
             property.Price, property.Area, rooms.WholeRooms >= 0 ? rooms.WholeRooms : null,
             rooms.HalfRooms >= 0 ? rooms.HalfRooms : null, property.Rooms,
             type == "Ház" ? SafeBound(property.LotArea) : null, AccountTypes.PublicType(accountType), PublicProfile.FirstName(ownerName),
-            LandingPrefill.Property(property, location)),
+            LandingPrefill.Property(property, location), SourceKey("property", property.Id)),
             RegionCatalog.ForLocation(location));
     }
 }

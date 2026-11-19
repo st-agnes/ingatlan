@@ -128,9 +128,9 @@ public class PublicLandingTests
         using var document = JsonDocument.Parse(json);
         var s = document.RootElement.GetProperty("searches")[0];
         var p = document.RootElement.GetProperty("properties")[0];
-        Assert.Equal(new[] { "key", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "ownerAccountType", "ownerFirstName", "prefill", "title", "type" },
+        Assert.Equal(new[] { "key", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "ownerAccountType", "ownerFirstName", "prefill", "sourceKey", "title", "type" },
             s.EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
-        Assert.Equal(new[] { "area", "halfRooms", "key", "location", "lotArea", "ownerAccountType", "ownerFirstName", "prefill", "price", "rooms", "title", "type", "wholeRooms" },
+        Assert.Equal(new[] { "area", "halfRooms", "key", "location", "lotArea", "ownerAccountType", "ownerFirstName", "prefill", "price", "rooms", "sourceKey", "title", "type", "wholeRooms" },
             p.EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
         Assert.Equal(new[] { "balcony", "buildings", "ceilingHeight", "conditions", "constructionAges", "elevator", "floors", "heatingTypes", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "type", "views" },
             s.GetProperty("prefill").EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
@@ -144,6 +144,55 @@ public class PublicLandingTests
         Assert.Equal("Budapest V. kerület", response.Properties[0].Location);
         Assert.Equal("private", response.Searches[0].OwnerAccountType);
         Assert.Equal("agent", response.Properties[0].OwnerAccountType);
+    }
+
+    [Fact]
+    public void OpaqueSourceKeysDistinguishEntitiesAndStayStableWhenTheirPublicValuesChange()
+    {
+        var search = SearchAt("city:Debrecen");
+        var otherSearch = SearchAt("city:Debrecen");
+        var property = PropertyAt("city:Debrecen");
+        property.Id = search.Id;
+        var searchKey = PublicLanding.SearchTeaser(search, AccountTypes.Private)!.Value.Teaser.SourceKey;
+        var propertyKey = PublicLanding.PropertyTeaser(property, AccountTypes.Private)!.Value.Teaser.SourceKey;
+        Assert.Matches("^search-[a-f0-9]{64}$", searchKey);
+        Assert.Matches("^property-[a-f0-9]{64}$", propertyKey);
+        Assert.NotEqual(searchKey, PublicLanding.SearchTeaser(otherSearch, AccountTypes.Private)!.Value.Teaser.SourceKey);
+        Assert.NotEqual(searchKey[7..], propertyKey[9..]);
+        foreach (var id in new[] { search.Id, otherSearch.Id, property.Id })
+        {
+            Assert.DoesNotContain(id.ToString(), searchKey + propertyKey);
+            Assert.DoesNotContain(id.ToString("N"), searchKey + propertyKey);
+        }
+
+        search.Title = "Másik név"; search.MaxPrice = 110_000_000m; search.MinArea = 60m;
+        property.Title = "Átírt hirdetés"; property.Price = 75_000_000m; property.Area = 70m;
+        Assert.Equal(searchKey, PublicLanding.SearchTeaser(search, AccountTypes.Agent, "Másik Anna")!.Value.Teaser.SourceKey);
+        Assert.Equal(propertyKey, PublicLanding.PropertyTeaser(property, AccountTypes.Agent, "Másik Péter")!.Value.Teaser.SourceKey);
+    }
+
+    [Fact]
+    public void SnapshotSourceKeysSurviveFreshSamplesRegionsAndCacheReconstruction()
+    {
+        var searches = Enumerable.Range(0, 12).Select(_ => SearchAt("city:Debrecen")).ToArray();
+        var properties = Enumerable.Range(0, 8).Select(_ => PropertyAt("city:Debrecen")).ToArray();
+        var searchKeys = searches.Select(search => PublicLanding.SearchTeaser(search, AccountTypes.Private)!.Value.Teaser.SourceKey).ToHashSet();
+        var propertyKeys = properties.Select(property => PublicLanding.PropertyTeaser(property, AccountTypes.Private)!.Value.Teaser.SourceKey).ToHashSet();
+        Assert.Equal(searches.Length, searchKeys.Count);
+        Assert.Equal(properties.Length, propertyKeys.Count);
+        for (var seed = 0; seed < 3; seed++)
+        {
+            var snapshot = new PublicLandingSnapshot(new Random(seed));
+            foreach (var search in searches) snapshot.Add(search, AccountTypes.Private);
+            foreach (var property in properties) snapshot.Add(property, AccountTypes.Private);
+            foreach (var response in new[] { snapshot.Response(null), snapshot.Response(RegionCatalog.Get("HU321")), snapshot.Response(null) })
+            {
+                Assert.Equal(response.Searches.Length, response.Searches.Select(item => item.SourceKey).Distinct().Count());
+                Assert.Equal(response.Properties.Length, response.Properties.Select(item => item.SourceKey).Distinct().Count());
+                Assert.All(response.Searches, item => Assert.Contains(item.SourceKey, searchKeys));
+                Assert.All(response.Properties, item => Assert.Contains(item.SourceKey, propertyKeys));
+            }
+        }
     }
 
     [Fact]
@@ -365,8 +414,8 @@ public class PublicLandingTests
 
     // Ignore positional UI keys: membership must change in fields the visitor
     // can actually see, rather than merely swapping internal source IDs/order.
-    private static string VisibleSearch(LandingSearchTeaser item) => JsonSerializer.Serialize(item with { Key = "" });
-    private static string VisibleProperty(LandingPropertyTeaser item) => JsonSerializer.Serialize(item with { Key = "" });
+    private static string VisibleSearch(LandingSearchTeaser item) => JsonSerializer.Serialize(item with { Key = "", SourceKey = "" });
+    private static string VisibleProperty(LandingPropertyTeaser item) => JsonSerializer.Serialize(item with { Key = "", SourceKey = "" });
     private static string Membership(IEnumerable<string> signatures) => string.Join("\n", signatures.Order(StringComparer.Ordinal));
 
     [Fact]

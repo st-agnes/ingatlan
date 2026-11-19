@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createDraft,updateDraft,saveDraft,loadDraft,clearDraft,prepareDraftForAuth,bindDraft,prepareDraftSave,markDraftSaved,prefillFromTeaser,suggestEntityTitle,sanitizeTeaserPrefill,DRAFT_STORAGE_KEY,DRAFT_TTL_MS} from '../dist/onboarding.js';
+import {createDraft,updateDraft,saveDraft,loadDraft,clearDraft,prepareDraftForAuth,bindDraft,prepareDraftSave,markDraftSaved,prefillFromTeaser,suggestEntityTitle,sanitizeTeaserPrefill,normalizeDraftOrigin,originFromListing,originFromLocations,originBlank,sameDraftOrigin,DRAFT_STORAGE_KEY,DRAFT_TTL_MS} from '../dist/onboarding.js';
 import {getLocation,locations} from '../dist/locations.js';
 import {createModel,STORAGE_KEY,demoLanding} from '../dist/model.js';
 import {ApiModel,findPublicLocations,findPublicStreets,fetchLanding,getModel,connectApi,disconnectApi,API_CONFIG_KEY,AUTH_ATTEMPT_KEY} from '../dist/api.js';
@@ -95,6 +95,72 @@ test('draft binding refuses another account or another registration address',()=
   assert.throws(()=>prepareDraftSave(draft,{id:'other',email:'other@example.hu'},{now:NOW}),/másik fiók/);
   assert.throws(()=>prepareDraftForAuth(draft,'other@example.hu',{now:NOW}),/másik e-mail/);
   const bound=bindDraft(draft,USER,{now:NOW});assert.throws(()=>prepareDraftSave(bound,{id:'different-account',email:USER.email},{now:NOW}),/másik fiók/);
+});
+
+test('listing-origin drafts retain one opaque source identity across edits, reload and authentication',()=>{
+  const storage=store(),propertyKey='property-'+'a'.repeat(64),otherPropertyKey='property-'+'b'.repeat(64);
+  const origin=originFromListing('property',propertyKey);
+  let draft=createDraft('search',{title:'Saját keresésem',locationIds:[city.id],maxPrice:80},{now:NOW,origin});
+  const identity=draft.creationRequestId;
+  assert.deepEqual(draft.origin,{kind:'property',key:propertyKey});
+  assert.equal(sameDraftOrigin(draft,'search',origin),true);
+  draft=updateDraft(draft,{data:{title:'Átírt saját keresés',locationIds:[district.id],maxPrice:90},step:3,origin:originFromListing('property',otherPropertyKey)},{now:NOW});
+  assert.deepEqual(draft.origin,origin,'Changing the current criteria must not rewrite the original listing identity');
+  assert.equal(sameDraftOrigin(draft,'search',origin),true,'The same source resumes even after criteria or source display values change');
+  assert.equal(sameDraftOrigin(draft,'search',originFromListing('property',otherPropertyKey)),false);
+  assert.equal(sameDraftOrigin(draft,'property',origin),false);
+  saveDraft(draft,storage);draft=loadDraft(storage,{now:NOW});
+  assert.deepEqual(draft.origin,origin);assert.equal(draft.step,3);assert.equal(draft.creationRequestId,identity);
+  draft=prepareDraftSave(prepareDraftForAuth(draft,USER.email,{now:NOW}),USER,{now:NOW});
+  assert.deepEqual(draft.origin,origin);assert.equal(draft.creationRequestId,identity);
+  assert.equal('origin' in draft.data,false);assert.equal('origin' in draft.completedData,false);assert.equal('sourceKey' in draft.completedData,false);
+  assert.equal(JSON.stringify(draft.completedData).includes(propertyKey),false,'Public source identity is local draft metadata, never creation input');
+  assert.notEqual(createDraft('search',{}, {now:NOW,origin:originFromListing('property',otherPropertyKey)}).creationRequestId,identity);
+  const searchOrigin=originFromListing('search','search-'+'c'.repeat(64));
+  assert.equal(sameDraftOrigin(createDraft('property',{}, {now:NOW,origin:searchOrigin}),'property',searchOrigin),true);
+});
+
+test('location starts compare the current exact canonical set independently of order, duplicates and original source',()=>{
+  const origin=originFromLocations([district,city,district]);
+  assert.deepEqual(origin,{kind:'locations',locationIds:[city.id,district.id].sort()});
+  const original=originFromListing('property','property-'+'d'.repeat(64));
+  let draft=createDraft('search',{locationIds:[district.id,city.id,city.id]},{now:NOW,origin:original});
+  assert.equal(sameDraftOrigin(draft,'search',origin),true,'A location start may resume a search originally seeded from a listing');
+  assert.equal(sameDraftOrigin(draft,'search',originFromLocations([city.id])),false,'A subset is a different search');
+  assert.equal(sameDraftOrigin(draft,'search',originFromLocations([city.id,district.id,'city:Szeged'])),false,'An extra selected location starts a new draft');
+  draft=updateDraft(draft,{data:{locationIds:[city.id]}},{now:NOW});
+  assert.equal(sameDraftOrigin(draft,'search',origin),false,'The old originating choices do not override edited current choices');
+  assert.equal(sameDraftOrigin(draft,'search',originFromLocations([city.id])),true);
+  assert.equal(sameDraftOrigin({...draft,data:{locationIds:[city.id,'unknown-location']}},'search',originFromLocations([city.id])),false);
+  assert.equal(sameDraftOrigin(createDraft('property',{locationId:city.id},{now:NOW}),'search',originFromLocations([city.id])),false);
+  const storage=store(),fromPicker=createDraft('search',{locationIds:[city.id]},{now:NOW,origin});
+  saveDraft(fromPicker,storage);assert.deepEqual(loadDraft(storage,{now:NOW}).origin,origin);
+});
+
+test('origin sanitization rejects positional keys and private IDs while preserving older drafts without false listing matches',()=>{
+  const sourceId='1252f520-aefe-4a9c-b1b6-932ef64fe38a',opaque='property-'+'e'.repeat(64);
+  for(const key of ['property-1',sourceId,'property-'+sourceId,'property-'+'E'.repeat(64),'search-'+'e'.repeat(64),opaque+'extra',null])assert.equal(originFromListing('property',key),null);
+  assert.equal(normalizeDraftOrigin({kind:'property',key:opaque},'property'),null,'A property draft originates from a search teaser, never another property');
+  assert.equal(normalizeDraftOrigin({kind:'locations',locationIds:[city.id]},'property'),null);
+  assert.equal(originFromLocations([]),null);assert.equal(originFromLocations([city.id,'unknown-location']),null);assert.equal(originFromLocations(new Array(1)),null);
+  assert.equal(originFromLocations(Array(51).fill(city.id)),null);
+  const storage=store(),draft=createDraft('search',{title:'Régebbi piszkozat',locationIds:[city.id],origin:{key:sourceId},sourceKey:sourceId},{now:NOW,origin:{kind:'property',key:opaque,id:sourceId,ownerId:USER.id,street:'Titkos utca',latitude:47}});
+  saveDraft(draft,storage);const raw=JSON.parse(storage.getItem(DRAFT_STORAGE_KEY));
+  assert.deepEqual(raw.origin,{kind:'property',key:opaque});assert.equal(JSON.stringify(raw).includes(sourceId),false);assert.equal('origin' in raw.data,false);assert.equal('sourceKey' in raw.data,false);
+  delete raw.origin;storage.setItem(DRAFT_STORAGE_KEY,JSON.stringify(raw));const legacy=loadDraft(storage,{now:NOW});
+  assert.ok(legacy);assert.equal(legacy.origin,undefined);assert.equal(sameDraftOrigin(legacy,'search',originFromListing('property',opaque)),false);
+  assert.equal(sameDraftOrigin(legacy,'search',originFromLocations([city.id])),true,'A legacy draft still has verifiable current location choices');
+  assert.equal(sameDraftOrigin(legacy,'search',originBlank('search')),false,'Missing provenance never silently becomes a blank-source identity');
+});
+
+test('blank-origin drafts resume only the same empty-start flow and retain their original request identity',()=>{
+  const origin=originBlank('search'),draft=createDraft('search',{title:'Elkezdett keresés',locationIds:[city.id]},{now:NOW,origin});
+  assert.deepEqual(origin,{kind:'blank',entityKind:'search'});assert.equal(sameDraftOrigin(draft,'search',origin),true);
+  assert.equal(sameDraftOrigin(draft,'property',originBlank('property')),false);
+  assert.equal(sameDraftOrigin(draft,'search',originFromListing('property','property-'+'f'.repeat(64))),false);
+  const reopened=updateDraft(prepareDraftForAuth(draft,USER.email,{now:NOW}),{phase:'editing',data:{maxPrice:90}},{now:NOW});
+  assert.equal(reopened.creationRequestId,draft.creationRequestId);assert.deepEqual(reopened.origin,origin);
+  assert.equal(originBlank('unknown'),null);assert.equal(normalizeDraftOrigin({kind:'blank',entityKind:'property'},'search'),null);
 });
 
 test('property teaser seeds a relaxed search using chosen canonical locations and safe attributes',()=>{

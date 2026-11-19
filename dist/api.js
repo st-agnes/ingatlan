@@ -6,7 +6,7 @@ import {searchSpecificity} from './matching.js';
 import { getLocation, resolveLegacyLocations, isPropertyLocation, registerLocations, isStreetId, streetBelongsToLocation } from './locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
 import {normalizeAccountType,likeCost,normalizeReportReason,normalizeIncomingPagination,REPORT_REASON_OPTIONS} from './accounts.js';
-import {sanitizeTeaserPrefill} from './onboarding.js';
+import {sanitizeTeaserPrefill,originFromListing} from './onboarding.js';
 
 export const API_CONFIG_KEY = 'otthonra.api';
 export const AUTH_ATTEMPT_KEY = 'otthonra.auth.attempt';
@@ -467,8 +467,8 @@ function landingFromApi(value) {
   const publicType=value=>['Lakás','Ház','Telek','Nyaraló','Garázs','Iroda','Üzlethelyiség','Egyéb'].includes(value)?value:'Ingatlan';
   return {
     regions:regions.map(region=>({...region})),region:clone(region),scope:region?'region':'national',
-    searches:rows(value?.searches).slice(0,8).map((item,index)=>({key:String(item.key??`search-${index+1}`),title:publicTitle(item.title,'Ingatlant keresnek'),type:publicType(item.type),locations:(Array.isArray(item.locations)?item.locations:[]).filter(location=>typeof location==='string').slice(0,50),minPrice:millions(nullableNumber(item.minPrice)),maxPrice:millions(nullableNumber(item.maxPrice)),minArea:nullableNumber(item.minArea),maxArea:nullableNumber(item.maxArea),minRooms:nullableNumber(item.minRooms),maxRooms:nullableNumber(item.maxRooms),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('search',item.prefill,{pricesInHuf:true})})),
-    properties:rows(value?.properties).slice(0,4).map((item,index)=>({key:String(item.key??`property-${index+1}`),title:publicTitle(item.title,'Eladó ingatlan'),type:publicType(item.type),location:String(item.location||''),price:millions(nullableNumber(item.price)),area:nullableNumber(item.area),wholeRooms:nullableNumber(item.wholeRooms),halfRooms:nullableNumber(item.halfRooms),rooms:nullableNumber(item.rooms),lotArea:nullableNumber(item.lotArea),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('property',item.prefill,{pricesInHuf:true})}))
+    searches:rows(value?.searches).slice(0,8).map((item,index)=>({key:String(item.key??`search-${index+1}`),sourceKey:originFromListing('search',item.sourceKey)?.key??null,title:publicTitle(item.title,'Ingatlant keresnek'),type:publicType(item.type),locations:(Array.isArray(item.locations)?item.locations:[]).filter(location=>typeof location==='string').slice(0,50),minPrice:millions(nullableNumber(item.minPrice)),maxPrice:millions(nullableNumber(item.maxPrice)),minArea:nullableNumber(item.minArea),maxArea:nullableNumber(item.maxArea),minRooms:nullableNumber(item.minRooms),maxRooms:nullableNumber(item.maxRooms),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('search',item.prefill,{pricesInHuf:true})})),
+    properties:rows(value?.properties).slice(0,4).map((item,index)=>({key:String(item.key??`property-${index+1}`),sourceKey:originFromListing('property',item.sourceKey)?.key??null,title:publicTitle(item.title,'Eladó ingatlan'),type:publicType(item.type),location:String(item.location||''),price:millions(nullableNumber(item.price)),area:nullableNumber(item.area),wholeRooms:nullableNumber(item.wholeRooms),halfRooms:nullableNumber(item.halfRooms),rooms:nullableNumber(item.rooms),lotArea:nullableNumber(item.lotArea),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('property',item.prefill,{pricesInHuf:true})}))
   };
 }
 export async function fetchLanding({region}={}) {
