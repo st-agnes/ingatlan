@@ -58,24 +58,55 @@ function errorMessage(payload, status) {
   }
   return payload?.message || payload?.detail || payload?.error || payload?.title || `Az API-kérés sikertelen (${status}).`;
 }
-async function request(baseUrl, token, path, method = 'GET', body) {
+function readCancelled() {
+  const error = new Error('Az elavult adatlekérést megszakítottuk.');
+  error.code = 'API_READ_CANCELLED';
+  return error;
+}
+function requireCurrentRead(signal) { if (signal?.aborted) throw readCancelled(); }
+async function request(baseUrl, token, path, method = 'GET', body, {signal} = {}) {
+  // A view may cancel its reads. Never attach its lifetime to a write: the
+  // server may already have accepted that operation when navigation changes.
+  const readSignal = method === 'GET' ? signal : null;
+  requireCurrentRead(readSignal);
   const controller = new AbortController();
+  const cancelRead = () => controller.abort();
+  let abortListener;
+  const aborted = new Promise((_resolve, reject) => {
+    abortListener = () => {
+      if (readSignal?.aborted) reject(readCancelled());
+      else { const error = new Error('Request aborted'); error.name = 'AbortError'; reject(error); }
+    };
+    controller.signal.addEventListener('abort', abortListener, {once:true});
+  });
+  readSignal?.addEventListener('abort', cancelRead, {once:true});
   const timeout = setTimeout(() => controller.abort(), 20000);
   try {
+    requireCurrentRead(readSignal);
     const headers = { Accept: 'application/json' };
     if (token) headers.Authorization = `Bearer ${token}`;
     if (body !== undefined) headers['Content-Type'] = 'application/json';
-    const response = await fetch(`${baseUrl}/api${path}`, { method, headers, ...(body === undefined ? {} : { body: JSON.stringify(body) }), signal: controller.signal });
-    const raw = await response.text();
-    let payload = null;
-    if (raw) { try { payload = JSON.parse(raw); } catch { if (response.ok) throw new Error('Az API érvénytelen JSON-választ küldött.'); } }
-    if (!response.ok) { const error = new Error(errorMessage(payload, response.status)); error.status = response.status; throw error; }
-    return payload;
+    const transport = async () => {
+      const response = await fetch(`${baseUrl}/api${path}`, { method, headers, ...(body === undefined ? {} : { body: JSON.stringify(body) }), signal: controller.signal });
+      requireCurrentRead(readSignal);
+      const raw = await response.text();
+      requireCurrentRead(readSignal);
+      let payload = null;
+      if (raw) { try { payload = JSON.parse(raw); } catch { if (response.ok) throw new Error('Az API érvénytelen JSON-választ küldött.'); } }
+      if (!response.ok) { const error = new Error(errorMessage(payload, response.status)); error.status = response.status; throw error; }
+      return payload;
+    };
+    return await Promise.race([transport(), aborted]);
   } catch (error) {
+    if (readSignal?.aborted || error.code === 'API_READ_CANCELLED') throw readCancelled();
     if (error.name === 'AbortError') throw new Error('Az API nem válaszolt 20 másodpercen belül. Próbáld újra.');
     if (error instanceof TypeError) throw new Error('Az API nem érhető el. Ellenőrizd a címet, a szerver futását és a CORS-beállításokat.');
     throw error;
-  } finally { clearTimeout(timeout); }
+  } finally {
+    clearTimeout(timeout);
+    readSignal?.removeEventListener('abort', cancelRead);
+    controller.signal.removeEventListener('abort', abortListener);
+  }
 }
 
 const rows = value => Array.isArray(value) ? value : (value?.items || []);
@@ -297,7 +328,7 @@ function matchFromApi(value) {
 
 export class ApiModel {
   constructor(config) { this.mode = 'api'; this.baseUrl = apiBase(config.baseUrl); this.token = config.token; this.active = null; this.userId = null; this.feedbackScenarioCapability = undefined; }
-  call(path, method, body) { return request(this.baseUrl, this.token, path, method, body); }
+  call(path, method, body, options) { return request(this.baseUrl, this.token, path, method, body, options); }
   async findLocations(query, limit = 8, {kind = 'search'} = {}) {
     if (!['search','property'].includes(kind)) throw new Error('Érvénytelen helyszínválasztó-típus.');
     const count = Number.isFinite(Number(limit)) ? Math.max(0,Math.min(50,Math.trunc(Number(limit)))) : 8;
@@ -314,8 +345,9 @@ export class ApiModel {
     return registerLocations(rows(await this.call('/streets?' + parameters)))
       .filter(street => streetBelongsToLocation(street,location)).slice(0,count);
   }
-  async getState() {
-    const [profile, entities, ledgerResponse] = await Promise.all([this.call('/me'), this.call('/me/entities'), this.call('/credits/ledger')]);
+  async getState({signal}={}) {
+    const [profile, entities, ledgerResponse] = await Promise.all([this.call('/me','GET',undefined,{signal}), this.call('/me/entities','GET',undefined,{signal}), this.call('/credits/ledger','GET',undefined,{signal})]);
+    requireCurrentRead(signal);
     const user = profile.user || profile;
     this.userId = String(user.id);
     const rawActive = entities.active || entities.activeEntity || profile.active || profile.activeEntity;
@@ -334,11 +366,12 @@ export class ApiModel {
       reportedEntities:reportSummaries(entities.reportedEntities)
     };
   }
-  async recommendations({includeApproximate=false}={}) {
-    if (!this.active) await this.getState();
+  async recommendations({includeApproximate=false,signal}={}) {
+    requireCurrentRead(signal);
+    if (!this.active) await this.getState({signal});
     const requestedActive=this.active?{...this.active}:null;
     if (!requestedActive?.id) return {active:null,items:[],hasApproximate:false,requiresApproximateConsent:false,stage:'empty'};
-    const response = await this.call('/feed'+(includeApproximate===true?'?includeApproximate=true':''));
+    const response = await this.call('/feed'+(includeApproximate===true?'?includeApproximate=true':''),'GET',undefined,{signal});
     const rawActive=response?.active;
     const active=Object.hasOwn(response||{},'active')?(rawActive&&['property','search'].includes(rawActive.kind)&&rawActive.id!=null?{kind:rawActive.kind,id:String(rawActive.id)}:null):requestedActive;
     const items=rows(response).map(item=>{
@@ -352,7 +385,7 @@ export class ApiModel {
   async incomingLikes(options={}) {
     const {offset,limit}=normalizeIncomingPagination(options);
     const query=new URLSearchParams({offset:String(offset),limit:String(limit)});
-    const response=await this.call('/incoming-likes?'+query);
+    const response=await this.call('/incoming-likes?'+query,'GET',undefined,{signal:options.signal});
     const rawActive=response?.active;
     const active=rawActive&&['property','search'].includes(rawActive.kind)&&rawActive.id!=null?{kind:rawActive.kind,id:String(rawActive.id)}:null;
     const items=active?rows(response).map(item=>{
@@ -365,7 +398,7 @@ export class ApiModel {
   async notifications(options={}) {
     const {offset,limit}=normalizeIncomingPagination(options);
     const query=new URLSearchParams({offset:String(offset),limit:String(limit)});
-    const response=await this.call('/notifications?'+query);
+    const response=await this.call('/notifications?'+query,'GET',undefined,{signal:options.signal});
     const items=rows(response).map(notificationFromApi);
     return {items,total:Number(response?.total??items.length),unreadCount:Number(response?.unreadCount??0),offset:Number(response?.offset??offset),limit:Number(response?.limit??limit),hasMore:!!response?.hasMore};
   }
@@ -376,12 +409,13 @@ export class ApiModel {
   async getPropertyInsights(id,options={}) {
     id=feedbackId(id,'ingatlanazonosító');
     const {offset,limit}=normalizeIncomingPagination(options);
-    return propertyInsightsFromApi(await this.call(`/properties/${encodeURIComponent(id)}/insights?${new URLSearchParams({offset:String(offset),limit:String(limit)})}`));
+    return propertyInsightsFromApi(await this.call(`/properties/${encodeURIComponent(id)}/insights?${new URLSearchParams({offset:String(offset),limit:String(limit)})}`,'GET',undefined,{signal:options.signal}));
   }
-  async getFeedbackScenario() {
+  async getFeedbackScenario({signal}={}) {
+    requireCurrentRead(signal);
     if(!hostedMode()||deploymentEnvironment()!=='test')return {available:false};
     if(this.feedbackScenarioCapability===undefined){
-      try{this.feedbackScenarioCapability=feedbackScenarioFromApi(await this.call('/test/feedback-scenario'));}
+      try{const result=await this.call('/test/feedback-scenario','GET',undefined,{signal});requireCurrentRead(signal);this.feedbackScenarioCapability=feedbackScenarioFromApi(result);}
       catch(error){if(error.status!==404)throw error;this.feedbackScenarioCapability={available:false};}
     }
     return clone(this.feedbackScenarioCapability);
@@ -405,18 +439,19 @@ export class ApiModel {
     const result=await this.call('/impressions','POST',{propertyId,searchRequestId:searchId});
     return {recorded:result.recorded===true};
   }
-  async pendingFeedback() { return feedbackPromptFromApi((await this.call('/feedback/pending')).feedbackPrompt); }
+  async pendingFeedback({signal}={}) { return feedbackPromptFromApi((await this.call('/feedback/pending','GET',undefined,{signal})).feedbackPrompt); }
   async answerFeedback(id,reason) {
     id=feedbackId(id,'visszajelzés-azonosító');
     if(!feedbackReason(reason))throw new Error('Válassz egy visszajelzési lehetőséget.');
     const result=await this.call(`/feedback/${encodeURIComponent(id)}`,'POST',{reason});
     return {accepted:result.accepted===true,alreadyAnswered:result.alreadyAnswered===true};
   }
-  async decide(item, liked, {allowApproximate=false}={}) {
+  async decide(item, liked, {allowApproximate=false,resolveMatch=true}={}) {
     const result = await this.call('/decisions', 'POST', { propertyId: item.pair.propertyId, searchRequestId: item.pair.searchId, liked: inputBoolean(liked), ...(allowApproximate===true?{allowApproximate:true}:{}) });
     let match = result.match ? matchFromApi(result.match) : null;
-    if (!match && result.matchId) match = (await this.matches()).find(m => m.id === String(result.matchId)) || null;
-    return { match, charged: Number(result.charged ?? result.creditsSpent ?? result.creditCost ?? 0), feedbackPrompt:feedbackPromptFromApi(result.feedbackPrompt) };
+    const matchId = match?.id ?? (result.matchId == null ? null : String(result.matchId).trim() || null);
+    if (!match && matchId && resolveMatch !== false) match = (await this.matches()).find(m => m.id === matchId) || null;
+    return { match, matchId, charged: Number(result.charged ?? result.creditsSpent ?? result.creditCost ?? 0), feedbackPrompt:feedbackPromptFromApi(result.feedbackPrompt) };
   }
   async activate(kind, id) { const result = await this.call('/me/active', 'PUT', { kind, id }); this.active = { kind, id }; return result; }
   async saveEntity(kind, data, id, {creationRequestId}={}) {
@@ -444,7 +479,7 @@ export class ApiModel {
     if (checkoutUrl.protocol !== 'https:' || checkoutUrl.username || checkoutUrl.password) throw new Error('A fizetési cím kizárólag biztonságos HTTPS-cím lehet.');
     return { checkoutUrl: checkoutUrl.href };
   }
-  async matches() { return rows(await this.call('/matches')).map(matchFromApi); }
+  async matches({signal}={}) { return rows(await this.call('/matches','GET',undefined,{signal})).map(matchFromApi); }
   async sendMessage(matchId, text) { return messageFromApi(await this.call(`/matches/${encodeURIComponent(matchId)}/messages`, 'POST', { text: String(text).trim() })); }
   async markRead() { return true; }
   async reset() { throw new Error('A valódi API-adatok a demó visszaállításával nem törölhetők. A demóhoz bontsd az API-kapcsolatot.'); }
@@ -471,12 +506,12 @@ function landingFromApi(value) {
     properties:rows(value?.properties).slice(0,4).map((item,index)=>({key:String(item.key??`property-${index+1}`),sourceKey:originFromListing('property',item.sourceKey)?.key??null,title:publicTitle(item.title,'Eladó ingatlan'),type:publicType(item.type),location:String(item.location||''),price:millions(nullableNumber(item.price)),area:nullableNumber(item.area),wholeRooms:nullableNumber(item.wholeRooms),halfRooms:nullableNumber(item.halfRooms),rooms:nullableNumber(item.rooms),lotArea:nullableNumber(item.lotArea),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('property',item.prefill,{pricesInHuf:true})}))
   };
 }
-export async function fetchLanding({region}={}) {
+export async function fetchLanding({region,signal}={}) {
   const selected=region==null||region===''?null:regionById(region);
   if(region!=null&&region!==''&&!selected)throw new Error('Válassz egy érvényes régiót.');
   if(!hostedMode())return {regions:regions.map(region=>({...region})),...demoLanding(selected)};
   const query=selected?'?'+new URLSearchParams({region:selected.id}):'';
-  return landingFromApi(await request(hostedApiBase(),null,'/public/landing'+query));
+  return landingFromApi(await request(hostedApiBase(),null,'/public/landing'+query,'GET',undefined,{signal}));
 }
 function normalizedRegionLabel(value) {
   return String(value||'').normalize('NFD').replace(/\p{M}/gu,'').toLowerCase().replace(/\b(county|megye|varmegye)\b/g,'').replace(/[^a-z0-9]/g,'').replace(/^csongrad$/,'csongradcsanad');
