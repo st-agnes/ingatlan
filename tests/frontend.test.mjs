@@ -34,7 +34,7 @@ class Element {
   this.style={};this.handlers={};this.scrollHeight=500;this.scrollTop=0;this.validationMessage='';this.reportedValidity=0;
   this.classList={toggle:(name,on)=>{const classes=new Set(this.className.split(' ').filter(Boolean));if(on??!classes.has(name))classes.add(name);else classes.delete(name);this.className=[...classes].join(' ');},remove:name=>this.classList.toggle(name,false),add:name=>this.classList.toggle(name,true),contains:name=>this.className.split(' ').includes(name)};
  }
- set innerHTML(value){this._innerHTML=value;this.innerHTMLWasAssigned=true;if(['app','modal-root'].includes(this.id)){for(const id of this.doc.elements.keys())if(!['app','modal-root','toast'].includes(id))this.doc.elements.delete(id);}if(this.id==='modal-root'){const markup=value.match(/<[^>]*class="modal(?:\s[^"]*)?"[^>]*>/)?.[0];this.doc.currentModal=markup?new Element('__modal-'+(++this.doc.modalSerial),this.doc,markup):null;if(this.doc.currentModal)this.doc.currentModal.isModal=true;}}
+ set innerHTML(value){const previous=this._innerHTML;this._innerHTML=value;this.innerHTMLWasAssigned=true;if(['app','modal-root'].includes(this.id)){for(const match of previous.matchAll(/\bid=["']([^"']+)["']/g))if(!['app','modal-root','toast'].includes(match[1]))this.doc.elements.delete(match[1]);}if(this.id==='modal-root'){const markup=value.match(/<[^>]*class="modal(?:\s[^"]*)?"[^>]*>/)?.[0];this.doc.currentModal=markup?new Element('__modal-'+(++this.doc.modalSerial),this.doc,markup):null;if(this.doc.currentModal)this.doc.currentModal.isModal=true;}}
  get innerHTML(){return this._innerHTML;}
  addEventListener(type,handler){const prior=this.handlers[type];this.handlers[type]=prior?event=>{prior(event);return handler(event);}:handler;}
  querySelectorAll(selector){return this.doc.selectWithin(this,selector);}
@@ -66,7 +66,7 @@ class Element {
 }
 
 class Document {
- constructor(){this.elements=new Map();this.handlers={};this.listeners=new Map();this.currentModal=null;this.modalSerial=0;this.focusEvents=[];for(const id of ['app','modal-root','toast'])this.elements.set(id,new Element(id,this));}
+ constructor(){this.visibilityState='visible';this.hidden=false;this.hasFocus=()=>!this.hidden;this.elements=new Map();this.handlers={};this.listeners=new Map();this.currentModal=null;this.modalSerial=0;this.focusEvents=[];for(const id of ['app','modal-root','toast'])this.elements.set(id,new Element(id,this));}
  get html(){return [...this.elements.entries()].filter(([id])=>['app','modal-root'].includes(id)).map(([,e])=>e.innerHTML).join('');}
  getElementById(id){if(this.elements.has(id))return this.elements.get(id);const markup=this.html.match(new RegExp(`<[^>]*\\bid=["']${id}["'][^>]*>`))?.[0];if(!markup)return null;const full=markup.startsWith('<select')||markup.startsWith('<textarea')?this.html.match(new RegExp(`<${markup.startsWith('<select')?'select':'textarea'}[^>]*\\bid=["']${id}["'][^>]*>[\\s\\S]*?</${markup.startsWith('<select')?'select':'textarea'}>`))?.[0]||markup:markup;const element=new Element(id,this,full);this.elements.set(id,element);return element;}
  querySelector(selector){if(selector==='.modal')return this.currentModal;if(selector.startsWith('.modal '))return this.currentModal?.querySelectorAll(selector)[0]||null;if(selector.startsWith('#'))return this.getElementById(selector.slice(1).split(' ')[0]);return null;}
@@ -95,7 +95,7 @@ async function setup(options={}){
  const timers=[],connected=[],disconnected=[],landingCalls=[],windowEvents={},windowListeners=new Map(),regionStorage=new Map(Object.entries(options.regionStorage||{}));
  let currentHash=options.hash??(options.hosted&&!options.authenticated?'#login':'');
  const ctx=vm.createContext({
-  document,console,Intl,Date,Promise,URL,URLSearchParams,IntersectionObserver:options.IntersectionObserver,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
+  document,console,Intl,Date:options.Date||Date,Promise,URL,URLSearchParams,AbortController,IntersectionObserver:options.IntersectionObserver,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
   location:{get hash(){return currentHash;},set hash(value){const next=value?(value.startsWith('#')?value:'#'+value):'';if(next===currentHash)return;currentHash=next;if(options.dispatchHashChanges)Promise.resolve().then(()=>windowEvents.hashchange?.());},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},addEventListener:(type,handler)=>{const listeners=windowListeners.get(type)||[];listeners.push(handler);windowListeners.set(type,listeners);windowEvents[type]=event=>{const pending=[...(windowListeners.get(type)||[])].map(callback=>callback(event)).filter(value=>value?.then);return pending.length?Promise.all(pending):undefined;};}},
   OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:options.environment||'test'}:{mode:'demo',environment:'local'},
   searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...accountHelpers,...feedbackHelpers,...Object.fromEntries(Object.entries(onboardingHelpers).filter(([name])=>!['loadDraft','saveDraft','clearDraft'].includes(name))),
@@ -111,6 +111,7 @@ async function setup(options={}){
   FormData:class {constructor(form){this.values=form.values===undefined?mountedFormValues(document,form):Array.isArray(form.values)?form.values:Object.entries(form.values||{});}get(k){return this.values.find(([key])=>key===k)?.[1]}has(k){return this.values.some(([key])=>key===k)}[Symbol.iterator](){return this.values[Symbol.iterator]()}}
  });
  const body=source.replace(/^import[^\n]+\n/gm,'');
+ options.onDocument?.(document);
  await vm.runInContext(`(async()=>{${body}\nglobalThis.ui={render,changePage,startOnboarding,openEditor,openDetails,openModal,closeModal,openActivation,matchingTags,openFeedbackPackages,openFeedbackPurchase,openFeedbackPrompt,propertyInsightsPage,getFeedbackPrompt:()=>feedbackPrompt,getModelState:()=>state};})()`,ctx);
  const click=async(dataset)=>{const target={dataset,closest:()=>target};await document.handlers.click({target,preventDefault(){}})};
  return{model:options.hosted?apiModel:demoModel,document,ctx,click,ui:ctx.ui,connected,disconnected,getSelectedModel:()=>selected,landingCalls,regionStorage,windowEvents,timers,runNextTimer:()=>timers.shift()?.callback(),runTimers:()=>{for(const timer of timers.splice(0))timer.callback();}};
@@ -1428,16 +1429,15 @@ test('an expired session during draft saving requests login and preserves the co
  const saved=JSON.parse(t.regionStorage.get(onboardingHelpers.DRAFT_STORAGE_KEY));assert.equal(saved.phase,'saving');assert.equal(saved.creationRequestId,draft.creationRequestId);assert.deepEqual(saved.completedData,data);
 });
 
-test('reload completion waits for the committed workspace render before presenting discovery when hash navigation overlaps',async()=>{
+test('reload completion coalesces hash navigation and presents discovery only after its workspace read commits',async()=>{
  const data={title:'Újratöltés után is visszaigazolt keresés',type:'Lakás',locationIds:['city:Debrecen'],maxPrice:90,minArea:40,minRooms:null};
  const initial=onboardingHelpers.prepareDraftForAuth(onboardingHelpers.createDraft('search',data),'anna@example.hu');
  const baseline=await createModel({getItem:()=>null,setItem:()=>{}}).getState();const draft=onboardingHelpers.prepareDraftSave(initial,baseline.user);
- let reads=0,resolveStale,resolveCommitted,writes=0;
- const pending=setup({hosted:true,authenticated:true,hash:'#register',dispatchHashChanges:true,regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(draft)},apiOverrides:{getState:async()=>{reads++;if(reads===2)return await new Promise(resolve=>{resolveStale=resolve;});if(reads===3)return await new Promise(resolve=>{resolveCommitted=resolve;});return baseline;},saveEntity:async()=>{writes++;return{id:'reload-confirmed',...data};}}});
- await settle();assert.equal(reads,3,'Changing to the saved collection overlaps the awaited render with a native hash render');
- resolveStale(baseline);const t=await pending;assert.doesNotMatch(t.document.getElementById('modal-root').innerHTML,/reload-confirmed/);
- resolveCommitted(baseline);await settle();
- assert.equal(writes,1);assert.equal(t.ctx.location.hash,'#searches');assert.equal(t.regionStorage.has(onboardingHelpers.DRAFT_STORAGE_KEY),false);
+ let reads=0,resolveCommitted,writes=0,mounted;
+ const pending=setup({hosted:true,authenticated:true,hash:'#register',dispatchHashChanges:true,onDocument:document=>{mounted=document;},regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(draft)},apiOverrides:{getState:async()=>{reads++;if(reads===2)return await new Promise(resolve=>{resolveCommitted=resolve;});return baseline;},saveEntity:async()=>{writes++;return{id:'reload-confirmed',...data};}}});
+ await settle();assert.equal(reads,2,'Native hash navigation must share the already pending read for the saved collection');assert.doesNotMatch(mounted.getElementById('modal-root').innerHTML,/reload-confirmed/);
+ resolveCommitted(baseline);const t=await pending;await settle();
+ assert.equal(reads,2);assert.equal(writes,1);assert.equal(t.ctx.location.hash,'#searches');assert.equal(t.regionStorage.has(onboardingHelpers.DRAFT_STORAGE_KEY),false);
  assert.match(t.document.getElementById('modal-root').innerHTML,/data-action="discover-search" data-id="reload-confirmed"/);assert.match(t.document.getElementById('app').innerHTML,/Keresési igényeim/);
 });
 
@@ -1531,5 +1531,129 @@ test('an abandoned save completion cannot unlock a replacement authentication or
   if(stage==='authentication'){releaseAuth();await settle();assert.equal(typeof resolveNew,'function');}
   await t.click({action:'onboarding-save-retry'});assert.deepEqual(writes,[initial.creationRequestId,replacement.creationRequestId],'An old finally block cannot release the replacement save marker or cause another POST');
   resolveNew();await newSubmitted;await settle();assert.equal(storedOnboarding(t),null);assert.equal(t.ctx.location.hash,'#searches');assert.match(t.document.getElementById('modal-root').innerHTML,/current-pending-source-saved/);assert.deepEqual(writes,[initial.creationRequestId,replacement.creationRequestId]);
+ }
+});
+
+// A suspended foreground read must not make a navigation click look ignored.
+test('cached workspace navigation responds before a resumed account read completes',async()=>{
+ const baseline=await createModel({getItem:()=>null,setItem:()=>{}}).getState();let delayed=false,release;
+ const t=await setup({hosted:true,authenticated:true,hash:'#discover',apiOverrides:{getState:async()=>delayed?await new Promise(resolve=>{release=()=>resolve(baseline);}):baseline}});
+ delayed=true;const navigation=t.click({page:'settings'});await settle();
+ try{
+  assert.ok(t.document.getElementById('profile-form'),'The selected settings screen must appear immediately from the same-account snapshot, before a slow resumed GET returns');
+  assert.match(t.document.getElementById('app').innerHTML,/Beállítások/);
+ }finally{release?.();await navigation;}
+});
+
+test('an acknowledged decision does not lock local wizard controls behind its slow read refresh',async()=>{
+ const baseline=await createModel({getItem:()=>null,setItem:()=>{}}).getState();let paused=false;const releases=[];
+ const t=await setup({hosted:true,authenticated:true,hash:'#discover',apiOverrides:{getState:async()=>paused?await new Promise(resolve=>{releases.push(()=>resolve(baseline));}):baseline}});
+ const decide=t.model.decide;t.model.decide=async(...args)=>{const value=await decide(...args);paused=true;return value;};
+ const pending=t.click({action:'pass'});let nextWrite=Promise.resolve();await settle();assert.ok(releases.length,'The write has completed and its subsequent read is deliberately delayed');
+ try{
+  t.ui.openEditor('search');chooseLocation(t,'city:Debrecen');const type=t.document.getElementById('f-type');type.value='Lakás';type.handlers.change({target:type,currentTarget:type});
+  await editorAction(t,'editor-next');assert.equal(editorStep(t),1,'A local Next action must remain usable after the write is acknowledged, even while refreshed data is pending');
+  let topups=0;const topup=t.model.buyDemoCredits;t.model.buyDemoCredits=async(...args)=>{topups++;return topup(...args);};nextWrite=t.click({action:'confirm-test-credits',amount:'100'});await settle();assert.equal(topups,1,'The acknowledged decision must also release the write guard before its unrelated read refresh returns');
+ }finally{paused=false;for(const release of releases)release();await Promise.all([pending,nextWrite]);}
+});
+
+function emitVisibility(t,state){t.document.visibilityState=state;t.document.hidden=state==='hidden';return t.document.handlers.visibilitychange?.({type:'visibilitychange',target:t.document});}
+function foregroundBurst(t){emitVisibility(t,'visible');return [t.windowEvents.focus?.({type:'focus'}),t.windowEvents.pageshow?.({type:'pageshow',persisted:true})].filter(value=>value?.then);}
+
+test('a foreground lifecycle burst never releases an unacknowledged decision for another POST',async()=>{
+ let writes=0,resolveWrite;
+ const t=await setup({hosted:true,authenticated:true,hash:'#discover',apiOverrides:{decide:async()=>{writes++;return await new Promise(resolve=>{resolveWrite=resolve;});}}});
+ const first=t.click({action:'like'});await settle();assert.equal(writes,1);
+ emitVisibility(t,'hidden');t.windowEvents.pagehide?.({type:'pagehide',persisted:true});const foreground=foregroundBurst(t);await settle();
+ await t.click({action:'like'});await t.click({action:'pass'});assert.equal(writes,1,'Returning to a tab must not clear the mutation guard while its POST is still unresolved');
+ t.ui.openEditor('search');chooseLocation(t,'city:Debrecen');const type=t.document.getElementById('f-type');type.value='Lakás';type.handlers.change({target:type,currentTarget:type});
+ const form=t.document.getElementById('entity-form');await editorAction(t,'editor-next');assert.equal(editorStep(t),1,'Local editing must remain available even while a different write is still pending');await editorAction(t,'editor-back');assert.equal(editorStep(t),0);
+ resolveWrite({match:null,charged:0,feedbackPrompt:null});await first;await Promise.all(foreground);await settle();assert.equal(writes,1,'Foreground handling must never replay a write automatically');assert.equal(t.document.getElementById('entity-form'),form,'A late decision acknowledgement cannot close a newly opened unrelated wizard');
+});
+
+test('foreground revalidation clears an old-account private snapshot before waiting for the new account',async()=>{
+ const baseline=await createModel({getItem:()=>null,setItem:()=>{}}).getState();let paused=false,current=baseline;const releases=[];
+ const t=await setup({hosted:true,authenticated:true,hash:'#settings',regionStorage:{'otthonra.api':'session-anna'},apiOverrides:{getState:async()=>paused?await new Promise(resolve=>{releases.push(resolve);}):current}});
+ assert.ok(t.document.getElementById('profile-form'));assert.match(t.document.getElementById('app').innerHTML,/anna@example.hu/);
+ emitVisibility(t,'hidden');paused=true;current={...baseline,user:{...baseline.user,id:'other-account',name:'Másik Fiók',email:'other@example.hu'},properties:[],searches:[],active:null};t.regionStorage.set('otthonra.api','session-other');const foreground=foregroundBurst(t);await settle();
+ try{
+  assert.doesNotMatch(t.document.getElementById('app').innerHTML,/anna@example.hu|Nagy Anna/,'A session change on another tab must remove the previous user before a potentially slow new account read');
+ }finally{
+  paused=false;for(const release of releases)release(current);await Promise.all(foreground);await settle();
+ }
+});
+
+function inputEvent(t,input){const event={type:'input',target:input,currentTarget:input};for(let node=input;node;node=node.parentElement)node.handlers.input?.(event);t.document.handlers.input?.(event);}
+
+test('late foreground reads preserve the mounted form and text entered before the response',async()=>{
+ const baseline=await createModel({getItem:()=>null,setItem:()=>{}}).getState();let paused=false;const releases=[];
+ const t=await setup({hosted:true,authenticated:true,hash:'#discover',apiOverrides:{getState:async()=>paused?await new Promise(resolve=>{releases.push(resolve);}):baseline}});
+ paused=true;const navigation=t.click({page:'settings'});await settle();
+ const form=t.document.getElementById('profile-form'),name=t.document.getElementById('f-name');
+ try{
+  assert.ok(form,'Cached navigation must make the form available before background reads');
+  name.value='Még el nem mentett saját név';name.focus();inputEvent(t,name);
+  emitVisibility(t,'hidden');const foreground=foregroundBurst(t);await settle();
+  paused=false;for(const release of releases)release(baseline);await navigation;await Promise.all(foreground);await settle();
+  assert.equal(t.document.getElementById('profile-form'),form,'A foreground revalidation must retain the interactive form node');assert.equal(t.document.getElementById('f-name'),name);assert.equal(name.value,'Még el nem mentett saját név');
+ }finally{paused=false;for(const release of releases)release(baseline);await navigation;}
+});
+
+test('profile save captures its form before awaiting and preserves newer edits after its acknowledgement',async()=>{
+ const baseline=await createModel({getItem:()=>null,setItem:()=>{}}).getState();let current=baseline,release;const writes=[];
+ const t=await setup({hosted:true,authenticated:true,hash:'#settings',apiOverrides:{getState:async()=>current,updateProfile:async data=>{writes.push(data);return await new Promise(resolve=>{release=()=>{current={...baseline,user:{...baseline.user,...data}};resolve(current.user);};});}}});
+ const form=t.document.getElementById('profile-form'),name=t.document.getElementById('f-name');name.value='Első, beküldött név';inputEvent(t,name);
+ const event={preventDefault(){},currentTarget:form};form.handlers.submit(event);event.currentTarget=null;await settle();assert.equal(typeof release,'function');assert.equal(writes[0].name,'Első, beküldött név');
+ name.value='Közben tovább szerkesztett név';inputEvent(t,name);release();await settle();
+ assert.equal(t.document.getElementById('profile-form'),form);assert.equal(name.value,'Közben tovább szerkesztett név');assert.equal(form.dataset.unsaved,'true','Acknowledging the submitted snapshot must not mark a newer edit as already saved');assert.match(t.document.getElementById('toast').textContent,/profiladataidat elmentettük/);
+});
+
+test('a cancelled earlier page read cannot replace the newer navigation when its transport answers late',async()=>{
+ const baseline=await createModel({getItem:()=>null,setItem:()=>{}}).getState();let delayNext=false,release;const receivedSignals=[];
+ const t=await setup({hosted:true,authenticated:true,hash:'#discover',apiOverrides:{getState:async options=>{receivedSignals.push(options?.signal);if(delayNext){delayNext=false;return await new Promise(resolve=>{release=()=>resolve(baseline);});}return baseline;}}});
+ delayNext=true;const older=t.click({page:'settings'});await settle();assert.ok(t.document.getElementById('profile-form'));
+ const signal=receivedSignals.at(-1);await t.click({page:'properties'});assert.equal(t.ctx.location.hash,'#properties');assert.equal(t.document.getElementById('profile-form'),null);assert.equal(signal.aborted,true,'Changing pages must cancel the retired view read');
+ release();await older;await settle();assert.equal(t.ctx.location.hash,'#properties');assert.equal(t.document.getElementById('profile-form'),null);assert.match(t.document.getElementById('app').innerHTML,/Saját ingatlanok/);
+});
+
+test('opening liked profiles first still resolves mutual matches and exposes the existing conversation action',async()=>{
+ const t=await setup();const match=t.model.matches()[0];assert.ok(match);
+ await t.click({action:'tab',tab:'liked'});
+ const html=t.document.getElementById('app').innerHTML;assert.match(html,/Kölcsönös találat/);assert.ok(html.includes(`data-action="open-chat" data-id="${match.id}"`),'The liked view must load mutual-match data even when Matches has never been opened');
+});
+
+test('stale discovery details cannot open an inert modal and fresh detail actions target the newly verified candidate',async()=>{
+ const base=createModel({getItem:()=>null,setItem:()=>{}}),baseline=base.getState(),candidates=base.feed();assert.ok(candidates.length>1);let paused=false,refreshed=false;const releases=[],decisions=[];
+ const t=await setup({hosted:true,authenticated:true,hash:'#discover',apiOverrides:{getState:async()=>paused?await new Promise(resolve=>{releases.push(()=>resolve(baseline));}):baseline,recommendations:async()=>({items:[candidates[refreshed?1:0]],stage:'exact',active:baseline.active}),decide:async(item,liked)=>{decisions.push({id:item.id,liked});return{match:null,charged:0,feedbackPrompt:null};}}});
+ paused=true;emitVisibility(t,'hidden');const foreground=foregroundBurst(t);await settle();
+ try{
+  await t.click({action:'details'});assert.equal(t.document.getElementById('modal-root').innerHTML,'','A stale cached card cannot create a details dialog whose decisions remain blocked forever');assert.deepEqual(decisions,[]);
+ }finally{paused=false;refreshed=true;for(const release of releases)release();await Promise.all(foreground);await settle();}
+ await t.click({action:'details'});assert.match(t.document.getElementById('modal-root').innerHTML,new RegExp(candidates[1].title.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));await t.click({action:'pass'});assert.deepEqual(decisions,[{id:candidates[1].id,liked:false}]);
+});
+
+test('a focus-only resume retires an aged read once even when the operating system sent no hidden event',async()=>{
+ let clock=Date.now();class ResumeDate extends Date{static now(){return clock;}}
+ const baseline=await createModel({getItem:()=>null,setItem:()=>{}}).getState();let reads=0,releaseOld,releaseFresh;const signals=[];
+ const t=await setup({Date:ResumeDate,hosted:true,authenticated:true,hash:'#discover',apiOverrides:{getState:async options=>{reads++;signals.push(options?.signal);if(reads===2)return await new Promise(resolve=>{releaseOld=resolve;});if(reads===3)return await new Promise(resolve=>{releaseFresh=resolve;});return baseline;}}});
+ const older=t.click({page:'settings'});await settle();assert.equal(reads,2);const oldSignal=signals.at(-1);
+ clock+=60000;const resumed=[t.windowEvents.focus({type:'focus'}),t.windowEvents.pageshow({type:'pageshow',persisted:true})];await settle();
+ try{
+  assert.equal(reads,3,'Focus and pageshow must share one fresh read instead of reusing the aged request');assert.equal(oldSignal.aborted,true);assert.equal(t.document.hidden,false,'No hidden/visibility event was involved in this reproduction');
+  releaseFresh({...baseline,user:{...baseline.user,name:'Frissen ellenőrzött név'}});await Promise.all(resumed);await settle();assert.equal(t.ui.getModelState().user.name,'Frissen ellenőrzött név');
+ }finally{releaseFresh?.(baseline);releaseOld?.({...baseline,user:{...baseline.user,name:'Elavult, késői név'}});await older;await Promise.all(resumed);await settle();}
+ assert.equal(t.ui.getModelState().user.name,'Frissen ellenőrzött név','The old read cannot overwrite the fresh response when it finally arrives');
+});
+
+test('queued impression writes and old impression errors cannot cross a raw session-token change',async()=>{
+ for(const stage of ['queued','inflight']){
+  const observers=[];class Observer{constructor(callback){this.callback=callback;observers.push(this);}observe(){}disconnect(){}}
+  let calls=0,rejectOld;
+  const t=await setup({hosted:true,authenticated:true,hash:'#discover',regionStorage:{'otthonra.api':'session-a'},IntersectionObserver:Observer,apiOverrides:{recordImpression:async()=>{calls++;if(stage==='inflight')return await new Promise((_resolve,reject)=>{rejectOld=reject;});return{recorded:true};}}});
+  observers.at(-1).callback([{isIntersecting:true,intersectionRatio:1}]);
+  if(stage==='inflight'){await settle();assert.equal(calls,1);}
+  t.regionStorage.set('otthonra.api','session-b');
+  if(stage==='inflight')rejectOld(Object.assign(new Error('An old impression session expired'),{status:401}));
+  await settle();assert.equal(calls,stage==='queued'?0:1,'A queued old impression must recheck credentials before its POST starts');assert.equal(t.regionStorage.get('otthonra.api'),'session-b');assert.equal(t.disconnected.length,0,'An old impression 401 must not log the newer session out');assert.equal(t.document.getElementById('hosted-auth-form'),null);
  }
 });

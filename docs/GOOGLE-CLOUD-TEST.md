@@ -371,3 +371,11 @@ A végső lépés a regisztrációra vezet, ahol meglévő fiókkal bejelentkez�
 A sikeres létrehozás után a saját adatlapok között jelenik meg az új keresés vagy ingatlan, visszajelzéssel és külön felfedezési gombbal. A kliensoldali piszkozat ekkor automatikusan törlődik. E gomb aktiválja az új adatlapot. Hálózati vagy kiszolgálóhiba esetén a kitöltés megmarad, és a mentés újrapróbálható. Egy piszkozat a teljes élettartama alatt ugyanazt a létrehozási azonosítót használja: párhuzamos fülek, oldalfrissítés és elveszett HTTP-válasz sem hoz létre belőle több példányt.
 
 A normál tesztdeploy betölti az ismétlésvédelmet biztosító új, additív sémát is (`20261118-idempotent-entity-creation`). Új Google-kulcs, levélküldő szolgáltatás vagy kézi konfiguráció nem szükséges. A pontos ingatlancím koordinátáit továbbra is a meglévő szerveroldali Google-beállítás kezeli, a bejelentkezést követő mentéskor.
+
+## Visszatérés háttérben hagyott böngészőfülre
+
+A menüváltás a meglévő, ugyanahhoz a bejelentkezéshez tartozó adatokkal azonnal megjeleníti a kiválasztott oldalt. Az aktuális oldalhoz szükséges adatok külön frissülnek; egy lassú lekérés nem zárolja az egész alkalmazást. A frissítés nem írja felül a folyamatban lévő űrlapot, a beírt szöveget vagy a piszkozatot. Másik fülön történt kijelentkezés vagy fiókváltás után a korábbi fiók adatai nem maradhatnak a képernyőn.
+
+A háttérbe kerülés és új navigáció megszakíthatja az elavult képernyőhöz tartozó adatlekéréseket. A folyamatban lévő mentéseket, kedveléseket és kreditműveleteket ez nem indítja újra. A műveleti zárolás a szerver visszaigazolásáig marad érvényben, a későbbi adatfrissítés külön működik. A felfedezésben az elavult kártyák nem bírálhatók el újra a friss ajánlások és visszajelzéskérések ellenőrzése előtt.
+
+A CI `tests/tab-resume-browser.test.mjs` próbái késleltetett szerverválasszal és Chromium-fagyasztás/visszatérés mellett ellenőrzik a viselkedést asztali, tablet- és mobilméreten. A külön API-tesztek az olvasások megszakítását, a késői válaszok figyelmen kívül hagyását és az írások változatlan végrehajtását ellenőrzik.

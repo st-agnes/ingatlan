@@ -125,6 +125,7 @@ test('feed keeps GUID pairs and resolves matchId to contact and message DTOs aft
   const result = await api.decide(card, true);
   assert.deepEqual(JSON.parse(calls.find(call => call.path === '/api/decisions').body), { propertyId: ids.property, searchRequestId: ids.search, liked: true });
   assert.equal(result.charged, 0);
+  assert.equal(result.matchId, ids.match);
   assert.equal(result.match.id, ids.match);
   assert.equal(result.match.partner.email, 'peter@example.hu');
   assert.equal(result.match.messages[0].senderId, 'other');
@@ -596,4 +597,101 @@ test('anonymous teaser source identities accept only opaque keys of the matching
  assert.deepEqual(value.properties.map(item=>item.sourceKey),[propertyKey,null,null]);
  assert.equal(value.searches[0].key,'search-3');assert.equal(value.properties[0].key,'property-4');
  assert.doesNotMatch(JSON.stringify(value),/11111111-1111|private@example/);
+});
+
+test('superseded view state reads settle immediately and cannot overwrite a newer active account snapshot',async()=>{
+ const model=adapter(),controller=new AbortController(),pending=[];
+ globalThis.fetch=(url,options)=>new Promise(resolve=>pending.push({path:new URL(url).pathname,options,resolve}));
+ const previous=model.getState({signal:controller.signal});
+ assert.equal(pending.length,3);
+ controller.abort();
+ await assert.rejects(previous,error=>error.code==='API_READ_CANCELLED'&&error.status===undefined);
+ assert.ok(pending.every(item=>item.options.signal.aborted),'Every read in the old view is cancelled');
+ routes(accountRoutes());const current=await model.getState();
+ for(const item of pending)item.resolve(response(item.path==='/api/me'?{...profile,id:'previous-user'}:item.path==='/api/me/entities'?{properties:[],searchRequests:[],active:{kind:'property',id:'previous-active'}}:[]));
+ for(let index=0;index<8;index++)await Promise.resolve();
+ assert.equal(model.userId,current.user.id);assert.deepEqual(model.active,current.active);
+ assert.notEqual(model.userId,'previous-user');assert.notEqual(model.active.id,'previous-active');
+});
+
+test('all scoped view reads reject an already cancelled signal without sending a request',async()=>{
+ globalThis.OTTHONRA_CONFIG={mode:'api',environment:'test'};globalThis.location={origin:'https://dev.otthonra.hu'};
+ const model=adapter(),controller=new AbortController();controller.abort();let calls=0;
+ globalThis.fetch=async()=>{calls++;throw new Error('A cancelled view must not start network work');};
+ for(const read of [
+  ()=>model.getState({signal:controller.signal}),()=>model.recommendations({signal:controller.signal}),
+  ()=>model.feed({signal:controller.signal}),()=>model.matches({signal:controller.signal}),
+  ()=>model.pendingFeedback({signal:controller.signal}),()=>model.getFeedbackScenario({signal:controller.signal}),
+  ()=>model.incomingLikes({signal:controller.signal}),()=>model.notifications({signal:controller.signal}),
+  ()=>model.getPropertyInsights(ids.property,{signal:controller.signal}),()=>fetchLanding({signal:controller.signal})
+ ])await assert.rejects(read(),error=>error.code==='API_READ_CANCELLED');
+ assert.equal(calls,0);
+});
+
+test('cancelling a view aborts its GET but neither aborts nor replays submitted writes',async()=>{
+ const model=adapter(),controller=new AbortController(),pending=[];
+ globalThis.fetch=(url,options)=>new Promise(resolve=>pending.push({url,options,resolve}));
+ const read=model.matches({signal:controller.signal});
+ const writes=['POST','PUT','DELETE'].map(method=>model.call('/write-test',method,{example:true},{signal:controller.signal}));
+ controller.abort();
+ await assert.rejects(read,error=>error.code==='API_READ_CANCELLED');
+ const submitted=pending.filter(item=>item.options.method!=='GET');
+ assert.equal(submitted.length,3);assert.ok(submitted.every(item=>!item.options.signal.aborted));
+ submitted.forEach((item,index)=>item.resolve(response({accepted:index})));
+ assert.deepEqual(await Promise.all(writes),[{accepted:0},{accepted:1},{accepted:2}]);
+ assert.equal(pending.length,4,'Cancellation never retries a mutation');
+});
+
+test('a cancelled response body cannot hold a view open and completed reads detach their cancellation listener',async()=>{
+ const model=adapter(),controller=new AbortController();let bodyStarted=false,resolveBody;
+ globalThis.fetch=async()=>({ok:true,status:200,text:()=>{bodyStarted=true;return new Promise(resolve=>{resolveBody=resolve;});}});
+ const pending=model.matches({signal:controller.signal});
+ for(let index=0;index<4&&!bodyStarted;index++)await Promise.resolve();assert.equal(bodyStarted,true);
+ controller.abort();await assert.rejects(pending,error=>error.code==='API_READ_CANCELLED');
+ resolveBody('[]');await Promise.resolve();
+ const fresh=new AbortController();let transportSignal;
+ globalThis.fetch=async(_url,options)=>{transportSignal=options.signal;return response([]);};
+ assert.deepEqual(await model.matches({signal:fresh.signal}),[]);fresh.abort();
+ assert.equal(transportSignal.aborted,false,'A finished request releases its view listener');
+});
+
+test('the original twenty-second request deadline remains bounded for reads and writes without automatic retry',async()=>{
+ const originalSetTimeout=globalThis.setTimeout,originalClearTimeout=globalThis.clearTimeout;
+ const timers=new Map(),cleared=[];let nextTimer=0,calls=0;
+ try{
+  globalThis.setTimeout=(callback,delay)=>{assert.equal(delay,20000);const id=++nextTimer;timers.set(id,callback);return id;};
+  globalThis.clearTimeout=id=>{cleared.push(id);timers.delete(id);};
+  globalThis.fetch=async()=>{calls++;return await new Promise(()=>{});};
+  const model=adapter();
+  for(const method of ['GET','POST']){
+   const pending=model.call('/deadline-test',method,method==='POST'?{example:true}:undefined);
+   const [timer,callback]=[...timers.entries()][0];callback();
+   await assert.rejects(pending,error=>error.code!=='API_READ_CANCELLED'&&/20 másodperc/.test(error.message));
+   assert.ok(cleared.includes(timer));assert.equal(timers.size,0);
+  }
+  assert.equal(calls,2,'An expired write is not replayed');
+ }finally{globalThis.setTimeout=originalSetTimeout;globalThis.clearTimeout=originalClearTimeout;}
+});
+
+test('an acknowledged mutual like can return before optional match hydration without retrying the accepted decision',async()=>{
+ const candidate={pair:{propertyId:ids.property,searchId:ids.search}},api=adapter();
+ for(const lookup of ['held','failed']){
+  const calls=[];
+  globalThis.fetch=async(url,options)=>{
+   const path=new URL(url).pathname;calls.push({path,...options});
+   if(path==='/api/decisions')return response({matchId:ids.match,charged:2});
+   if(lookup==='held')return await new Promise(()=>{});
+   return response({message:'Temporary match lookup failure'},503);
+  };
+  const result=await api.decide(candidate,true,{allowApproximate:true,resolveMatch:false});
+  assert.equal(result.match,null);assert.equal(result.matchId,ids.match);assert.equal(result.charged,2);
+  assert.equal(calls.length,1,'The already accepted write never waits for or retries optional hydration');
+  assert.equal(calls[0].path,'/api/decisions');assert.equal(calls[0].method,'POST');
+  assert.deepEqual(JSON.parse(calls[0].body),{propertyId:ids.property,searchRequestId:ids.search,liked:true,allowApproximate:true});
+ }
+ const calls=routes({'/api/decisions':{match,charged:0}});
+ const inline=await api.decide(candidate,true,{resolveMatch:false});
+ assert.equal(inline.matchId,ids.match);assert.equal(inline.match.id,ids.match);assert.equal(calls.length,1);
+ const emptyCalls=routes({'/api/decisions':{matchId:null,charged:0}});
+ assert.equal((await api.decide(candidate,false,{resolveMatch:false})).matchId,null);assert.equal(emptyCalls.length,1);
 });

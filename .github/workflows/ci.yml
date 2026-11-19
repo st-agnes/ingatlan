@@ -49,6 +49,7 @@ jobs:
           node tests/wizard-dock-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-ui.log
           node tests/neighborhood-search-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-neighborhood.log
           node tests/street-search-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-street.log
+          node tests/tab-resume-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-tab-resume.log
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
