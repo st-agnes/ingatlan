@@ -2,7 +2,7 @@
  * Run only with a disposable test database. API responses are never mocked.
  */
 import assert from 'node:assert/strict';
-import {editorSave} from './editor-browser-helpers.mjs';
+import {editorField,editorSave} from './editor-browser-helpers.mjs';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -99,10 +99,14 @@ async function verifyViewport(browser, viewport) {
     await interact(page.locator('.page-heading [data-action="new"]'));
     await interact(page.locator('.choose-type [data-action="new"][data-kind="search"]'));
     await page.locator('#entity-form').waitFor();
-    await page.waitForFunction(() => document.activeElement?.id === 'f-title');
-    await page.locator('#f-title').fill(title);
+    await page.waitForFunction(() => document.activeElement?.closest('[data-editor-step]')?.dataset.editorStep === '0');
+    await page.locator('#f-type').selectOption('Lakás');
     await chooseLocation(page, interact, 'Debrecen', 'city:Debrecen');
     await chooseLocation(page, interact, 'Budapest V. kerület', 'district:Budapest:5');
+    await (await editorField(page, '#f-maxPrice')).fill('90');
+    await (await editorField(page, '#f-minArea')).fill('40');
+    await (await editorField(page, '#f-minRooms')).fill('1');
+    await (await editorField(page, '#f-title')).fill(title);
     const save = page.waitForResponse(response => new URL(response.url()).pathname === '/api/searches' && response.request().method() === 'POST');
     await editorSave(page, interact);
     assert.equal((await save).status(), 201);

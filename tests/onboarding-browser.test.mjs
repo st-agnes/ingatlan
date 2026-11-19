@@ -15,6 +15,9 @@ const viewports=[{name:'desktop',width:1280,height:900,touch:false},{name:'table
 const city=getLocation('city:Debrecen'),otherCity=getLocation('city:Szeged');
 const quarter=getLocation(neighborhoods.find(item=>item.city==='Debrecen'&&item.name==='Vénkert').id);
 const draft=page=>page.evaluate(async()=>{const {loadDraft}=await import('/onboarding.js');return loadDraft();});
+const rawDraft=page=>page.evaluate(()=>localStorage.getItem('otthonra.onboarding.v1'));
+async function landingGeometry(page){return await page.evaluate(()=>{const input=document.getElementById('landing-location-input').getBoundingClientRect(),button=document.querySelector('#landing-search-form button[type=submit]').getBoundingClientRect(),chips=document.getElementById('landing-location-chips').getBoundingClientRect();return {offset:button.top-input.top,inputBottom:input.bottom,chipsTop:chips.top};});}
+async function assertFreshLanding(page){await page.locator('#landing-search-form').waitFor();assert.equal(await page.locator('#landing-location-input').inputValue(),'');assert.equal(await page.locator('#landing-location-chips .location-chip').count(),0);}
 const interact=(viewport,locator)=>viewport.touch?locator.tap():locator.click();
 const pause=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
 function landing(){
@@ -75,24 +78,33 @@ async function verifyWizardAuth(browser,viewport){
  const {context,server}=await createFixture(browser,viewport),page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));page.setDefaultTimeout(10000);
  try{
   await page.goto(origin+'/',{waitUntil:'domcontentloaded'});await page.locator('.landing-property-card').waitFor();
+  await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));
+  assert.equal(await page.locator('#entity-form,#hosted-auth-form').count(),0,'An empty query cannot skip choosing a canonical location');assert.match(await page.locator('#landing-location-error').innerText(),/Válassz/);
+  const initialGeometry=await landingGeometry(page);
   await page.locator('#landing-location-input').fill('Nem létező hely');await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));
   assert.equal(await page.locator('#entity-form,#hosted-auth-form').count(),0);assert.match(await page.locator('#landing-location-error').innerText(),/Válassz/);
   await page.locator('#landing-location-input').fill('Debrecen');await page.locator('#landing-location-options [role="option"]').first().waitFor();
   await page.locator('#landing-location-input').press('ArrowDown');await page.locator('#landing-location-input').press('Enter');
-  await page.locator('#landing-location-chips .location-chip').waitFor();await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));await progress(page,0);
+  await page.locator('#landing-location-chips .location-chip').waitFor();
+  for(let selected=1;selected<=2;selected++){const geometry=await landingGeometry(page);assert.ok(geometry.chipsTop>=geometry.inputBottom-1,'Selected locations belong below the query');assert.ok(Math.abs(geometry.offset-initialGeometry.offset)<=1,'Adding location chips must not move the button relative to the input');if(selected===1){await page.locator('#landing-location-input').fill('Debrecen');await page.locator('#landing-location-options [role="option"]').first().waitFor();await page.locator('#landing-location-input').press('ArrowDown');await page.locator('#landing-location-input').press('Enter');await page.waitForFunction(()=>document.querySelectorAll('#landing-location-chips .location-chip').length===2);}}
+  await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));await progress(page,0);
+  assert.equal((await draft(page)).data.locationIds.length,2,'Handoff copies every choice into the new draft');
+  await interact(viewport,page.locator('[data-action="landing"]').first());await assertFreshLanding(page);
+  await page.goto(origin+'/#onboarding');await progress(page,0);
   assert.equal(await page.locator('#hosted-auth-form').count(),0,'Location selection opens anonymous onboarding before registration');assert.match(await page.locator('#location-chips').innerText(),/Debrecen/);
-  let title=`Saját keresésem ${viewport.name}`;assert.ok((await page.locator('#f-title').inputValue()).trim());await page.locator('#f-title').fill(title);await next(page,viewport,1);
+  let title=`Saját keresésem ${viewport.name}`;assert.equal(await page.locator('#f-title').isVisible(),false,'Name is offered only at the final topic');assert.equal(await page.locator('#f-type').inputValue(),'');await interact(viewport,page.locator('#editor-next'));await progress(page,0);assert.equal(await page.locator('#f-type').evaluate(element=>element.validity.valueMissing),true,'Choosing a type is mandatory');await page.locator('#f-type').selectOption('Lakás');await next(page,viewport,1);
+  for(const field of ['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'])assert.equal(await page.locator(`#f-${field}`).inputValue(),'','A new search must not invent numeric preferences');
   await page.locator('#f-maxPrice').fill('80');await page.locator('#f-minArea').fill('50');await page.locator('#f-maxArea').fill('70');await page.locator('#f-minRooms').fill('1');await page.locator('#f-maxRooms').fill('3');
   await page.locator('#f-minPrice').fill('90');await interact(viewport,page.locator('#editor-next'));await progress(page,1);assert.equal(await page.locator('#f-maxPrice').evaluate(element=>element.checkValidity()),false,'Invalid ranges must block the same wizard validation');
   await page.locator('#f-minPrice').fill('');
   const before=await draft(page),second=await context.newPage();await second.goto(origin+'/#onboarding',{waitUntil:'domcontentloaded'});await progress(second,1);
   assert.equal((await draft(second)).id,before.id);assert.equal(await second.locator('#f-maxPrice').inputValue(),'80');await second.close();
   await page.reload({waitUntil:'domcontentloaded'});await progress(page,1);assert.equal(await page.locator('#f-maxPrice').inputValue(),'80');
-  await gotoStep(page,viewport,0);assert.equal(await page.locator('#f-title').inputValue(),title);await gotoStep(page,viewport,1);
-  await next(page,viewport,2);await next(page,viewport,3);await next(page,viewport,4);await page.locator('#f-description').fill('A saját igényeim.');await interact(viewport,page.locator('#editor-save'));
+  await gotoStep(page,viewport,0);assert.equal(await page.locator('#f-title').isVisible(),false);await gotoStep(page,viewport,1);
+  await next(page,viewport,2);await next(page,viewport,3);await next(page,viewport,4);const generated=await page.locator('#f-title').inputValue();assert.match(generated,/Lakás/);assert.match(generated,/Debrecen/);assert.ok(generated.length<=70);await page.locator('#f-title').fill(title);await page.locator('#f-description').fill('A saját igényeim.');await interact(viewport,page.locator('#editor-save'));
   await page.locator('#hosted-auth-form').waitFor();assert.equal(new URL(page.url()).hash,'#register');assert.equal((await draft(page)).phase,'awaiting-auth');assert.equal(server.creates.length,0);
-  const initialCompleted=await draft(page);await interact(viewport,page.locator('[data-action="onboarding-edit"]'));await progress(page,4);await gotoStep(page,viewport,0);
-  title+=' módosítva';await page.locator('#f-title').fill(title);await gotoStep(page,viewport,4);await interact(viewport,page.locator('#editor-save'));await page.locator('#hosted-auth-form').waitFor();
+  const initialCompleted=await draft(page);await interact(viewport,page.locator('[data-action="onboarding-edit"]'));await progress(page,4);
+  title+=' módosítva';await page.locator('#f-title').fill(title);await gotoStep(page,viewport,0);await gotoStep(page,viewport,4);assert.equal(await page.locator('#f-title').inputValue(),title);await interact(viewport,page.locator('#editor-save'));await page.locator('#hosted-auth-form').waitFor();
   const changedCompleted=await draft(page);assert.equal(changedCompleted.id,initialCompleted.id);assert.equal(changedCompleted.creationRequestId,initialCompleted.creationRequestId,'Editing the same draft must retain its lifetime creation receipt');assert.equal(changedCompleted.completedData.title,title);
   server.failAuth=1;await page.locator('#f-name').fill('Saját Fiók');await page.locator('#f-email').fill(server.user.email);await page.locator('#f-password').fill('BrowserOnboarding2026!');await interact(viewport,page.locator('#hosted-auth-form button[type="submit"]'));
   await page.waitForFunction(()=>document.querySelector('#auth-error')?.textContent.includes('regisztráció most'));const pending=await draft(page);assert.equal(pending.expectedEmail,server.user.email);assert.ok(pending.creationRequestId);
@@ -101,10 +113,13 @@ async function verifyWizardAuth(browser,viewport){
   await page.waitForFunction(()=>document.querySelector('#auth-error')?.textContent.includes('eredetileg'));assert.equal(server.authRequests.length,1,'A changed account must be rejected before registration and save');assert.equal(server.creates.length,0);
   await page.locator('#f-email').fill(server.user.email);server.failSave=1;await interact(viewport,page.locator('#hosted-auth-form button[type="submit"]'));
   await page.locator('#onboarding-save-error').waitFor();assert.equal((await draft(page)).phase,'saving');assert.equal(server.rows.size,1,'The accepted save with a lost response must remain retryable');
-  await page.reload({waitUntil:'domcontentloaded'});await page.locator('[data-action="discover-search"]').waitFor();assert.equal(new URL(page.url()).hash,'#searches');assert.equal(await draft(page),null);
+  await page.reload({waitUntil:'domcontentloaded'});await page.locator('[data-action="discover-search"]').waitFor();assert.equal(new URL(page.url()).hash,'#searches');assert.equal(await draft(page),null);assert.equal(await rawDraft(page),null,'Successful creation removes the storage key, not just hides the draft');
   assert.equal(server.rows.size,1);assert.ok(server.creates.length>=2);assert.ok(server.creates.every(request=>request.body.creationRequestId===pending.creationRequestId));assert.equal([...server.rows.values()][0].title,title);assert.equal(server.active,null,'Creation waits for the ordinary discovery choice before activation');
   await interact(viewport,page.locator('[data-action="discover-search"]'));await page.waitForFunction(()=>location.hash==='#discover');assert.equal(server.active.kind,'search');
-  await page.reload({waitUntil:'domcontentloaded'});await page.locator('.page-heading').waitFor();assert.equal(server.rows.size,1);assert.equal(server.creates.length,2);
+  await page.reload({waitUntil:'domcontentloaded'});await page.locator('.page-heading').waitFor();assert.equal(server.rows.size,1);assert.equal(server.creates.length,2);assert.equal(await rawDraft(page),null);
+  await page.goto(origin+'/#landing');await assertFreshLanding(page);assert.equal(await rawDraft(page),null);
+  await page.goto(origin+'/#settings');await page.locator('#profile-form').waitFor();await interact(viewport,page.locator('[data-action="disconnect"]').first());await assertFreshLanding(page);
+  await page.reload({waitUntil:'domcontentloaded'});await assertFreshLanding(page);assert.equal(await rawDraft(page),null,'Leaving the workspace and page lifecycle cannot resurrect a saved draft');
   assert.ok(server.lookupRequests.length>0&&server.lookupRequests.every(request=>!request.authorization),'Anonymous picker calls use the normal canonical API without a session');assert.deepEqual(server.unhandled,[]);assert.deepEqual(errors,[]);
   console.log(`Onboarding ${viewport.name}: canonical picker, five steps, range validation, editable title, cross-tab/reload persistence, auth failure/account guard, lost-response resume and discovery passed.`);
  }catch(error){await screenshot(page,`onboarding-wizard-${viewport.name}-failure.png`);throw error;}finally{await context.close();}
@@ -116,7 +131,7 @@ async function verifyTeaserSeeds(browser,viewport){
   await page.goto(origin+'/',{waitUntil:'domcontentloaded'});await page.locator('.landing-property-card').waitFor();
   await interact(viewport,page.locator('.landing-property-card [data-action="onboarding-start"]'));await progress(page,0);assert.match(await page.locator('#location-chips').innerText(),/Vénkert/);assert.notEqual(await page.locator('#f-title').inputValue(),'A másik ember ingatlanhirdetése');
   await next(page,viewport,1);
-  for(const [name,value] of Object.entries({minPrice:'',maxPrice:'55',minArea:'54',maxArea:'66',minRooms:'',maxRooms:'2.5'}))assert.equal(await page.locator(`#f-${name}`).inputValue(),value,`Property teaser ${name}`);
+  for(const [name,value] of Object.entries({minPrice:'',maxPrice:'55',minArea:'50',maxArea:'',minRooms:'2.5',maxRooms:''}))assert.equal(await page.locator(`#f-${name}`).inputValue(),value,`Property teaser ${name}`);
   await assertNoSourcePrivacy(page);await interact(viewport,page.locator('[data-action="onboarding-abandon"]'));await page.locator('.landing-search-card').first().waitFor();
   await interact(viewport,page.locator('.landing-search-card [data-action="onboarding-start"]').first());await progress(page,0);assert.match(await page.locator('#location-chips').innerText(),/Debrecen/);assert.equal(await page.locator('#f-street').inputValue(),'');assert.equal(await page.locator('#f-houseNumber').inputValue(),'');
   await interact(viewport,page.locator('#editor-next'));await progress(page,0);assert.equal(await page.locator('#f-street').evaluate(element=>element.checkValidity()),false,'A teaser never supplies another property address');
@@ -141,7 +156,7 @@ async function verifyCrossTabAuth(browser,viewport){
   await first.waitForFunction(()=>!localStorage.getItem('otthonra.onboarding.v1'));
   await first.locator('.page-heading').waitFor();await second.goto(origin+'/#searches',{waitUntil:'domcontentloaded'});await second.locator('.page-heading').waitFor();
   assert.equal(server.rows.size,1);assert.ok(server.creates.length>=1);assert.ok(server.creates.every(request=>request.body.creationRequestId===key));assert.equal(server.authRequests.length,1,'A session established in another tab resumes the saved draft');
-  assert.equal(await draft(second),null);assert.deepEqual(server.unhandled,[]);
+  assert.equal(await draft(second),null);assert.equal(await rawDraft(first),null);assert.equal(await rawDraft(second),null);await first.reload({waitUntil:'domcontentloaded'});await first.locator('.page-heading').waitFor();assert.equal(await rawDraft(first),null,'An older open tab cannot restore a consumed draft');assert.deepEqual(server.unhandled,[]);
   console.log(`Onboarding session ${viewport.name}: registration/login in another tab resumes one stable owned creation and clears the completed draft.`);
  }catch(error){await screenshot(first,`onboarding-tabs-${viewport.name}-failure.png`);throw error;}finally{await context.close();}
 }

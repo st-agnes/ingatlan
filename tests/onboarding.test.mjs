@@ -100,9 +100,38 @@ test('draft binding refuses another account or another registration address',()=
 test('property teaser seeds a relaxed search using chosen canonical locations and safe attributes',()=>{
   const source={prefill:{locations:[district],type:'Lakás',price:72.9,area:64,rooms:3,condition:'Felújított',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m feletti',floor:14,heatingType:'Hőszivattyú',balcony:true,elevator:false},title:'Más címe',description:'Más leírása',address:'Titkos cím',id:'source'};
   const data=prefillFromTeaser('search',source,{locations:[city,district]});
-  assert.deepEqual(data.locationIds,[city.id,district.id]);assert.deepEqual([data.minPrice,data.maxPrice,data.minRooms,data.maxRooms],[null,80.19,null,3]);assert.deepEqual([data.minArea,data.maxArea],[57.6,70.4]);
+  assert.deepEqual(data.locationIds,[city.id,district.id]);assert.deepEqual([data.minPrice,data.maxPrice,data.minRooms,data.maxRooms],[null,85,3,null]);assert.deepEqual([data.minArea,data.maxArea],[55,null]);
   assert.deepEqual(data.conditions,['Új/felújított']);assert.deepEqual(data.buildings,['Tégla']);assert.deepEqual(data.heatingTypes,['Hőszivattyú']);assert.deepEqual(data.floors,[11]);
   assert.equal(data.balcony,true);assert.equal(data.elevator,false);assert.equal('address' in data,false);assert.equal('description' in data,false);assert.notEqual(data.title,source.title);assert.ok(data.title.includes('+1'));
+});
+
+test('property-to-search rounds relaxed price upward and area downward without inventing upper room or area bounds',()=>{
+  for (const [price,area,maxPrice,minArea] of [[165,64,185,55],[50,60,55,50],[100,50,110,45],[45.454545,100,50,90],[45.454546,100,55,90],[0.000001,5,5,null],[null,null,null,null]]) {
+    const data=prefillFromTeaser('search',{prefill:{type:'Lakás',locations:[city],price,area,rooms:2.5}});
+    assert.deepEqual([data.maxPrice,data.minArea],[maxPrice,minArea],`price=${price}, area=${area}`);
+    assert.deepEqual([data.minPrice,data.maxArea,data.minRooms,data.maxRooms],[null,null,2.5,null]);
+    if(maxPrice!=null)assert.equal(maxPrice%5,0);if(minArea!=null)assert.equal(minArea%5,0);
+  }
+  const source=sanitizeTeaserPrefill('property',{locations:[city],type:'Lakás',price:165000000,area:64,rooms:3},{pricesInHuf:true});
+  const converted=prefillFromTeaser('search',{prefill:source});
+  assert.equal(converted.maxPrice,185,'API HUF prices convert once, then round in million-HUF units');
+  const empty=prefillFromTeaser('search');
+  assert.equal(empty.type,undefined);assert.deepEqual([empty.minPrice,empty.maxPrice,empty.minArea,empty.maxArea,empty.minRooms,empty.maxRooms],[null,null,null,null,null,null]);
+  const invalid=prefillFromTeaser('search',{prefill:{price:-5,area:0}});
+  assert.deepEqual([invalid.maxPrice,invalid.minArea],[null,null]);
+});
+
+test('suggested editable names summarize canonical place and entered price/size within seventy characters',()=>{
+  const search=suggestEntityTitle('search',{type:'Lakás',locations:[city],maxPrice:'85',minArea:'55',minRooms:'3'});
+  assert.match(search,/Lakás keresés/);assert.match(search,/Debrecen/);assert.match(search,/85 M Ft-ig/);assert.match(search,/55\+ m²/);assert.ok(search.length<=70);
+  const property=suggestEntityTitle('property',{type:'Ház',locationId:city.id,price:'165',area:'120'});
+  assert.match(property,/Ház eladó/);assert.match(property,/Debrecen/);assert.match(property,/165 M Ft/);assert.match(property,/120 m²/);assert.ok(property.length<=70);
+  assert.equal(suggestEntityTitle('search',{type:'Lakás',locations:[city],maxPrice:'',minArea:null,minRooms:''}),'Lakás keresés – Debrecen');
+  assert.match(suggestEntityTitle('search',{type:'Lakás',locations:[city],minRooms:2.5}),/2,5\+ szoba/);
+  const longPlace=locations.filter(location=>location.kind==='neighborhood').sort((a,b)=>b.label.length-a.label.length)[0];
+  const compact=suggestEntityTitle('search',{type:'Üzlethelyiség',locations:[longPlace,city,district],maxPrice:999.99,minArea:12345});
+  assert.ok(compact.length<=70);assert.match(compact,/\+2 helyszín/);assert.equal(compact.includes('NaN'),false);
+  assert.ok(suggestEntityTitle('property',{type:'Üzlethelyiség',locationId:city.id,price:1e50,area:1e50}).length<=70);
 });
 
 test('search teaser copies only unambiguous property values and never invents an exact address',()=>{

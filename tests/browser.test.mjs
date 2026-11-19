@@ -2,7 +2,7 @@
  * Install Playwright into ignored .local/browser-tests; see the CI workflow.
  */
 import assert from 'node:assert/strict';
-import {editorSave} from './editor-browser-helpers.mjs';
+import {editorField,editorSave} from './editor-browser-helpers.mjs';
 import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -31,7 +31,8 @@ async function openSearch(page, interact) {
   }
   await page.locator('#entity-form').waitFor();
   // Wait for the dialog's automatic focus before typing into another field.
-  await page.waitForFunction(() => document.activeElement?.id === 'f-title');
+  await page.waitForFunction(() => document.activeElement?.closest('[data-editor-step]')?.dataset.editorStep === '0');
+  await page.locator('#f-type').selectOption('Lakás');
 }
 
 async function choose(page, interact, id, query) {
@@ -84,7 +85,7 @@ async function verifyViewport(browser, viewport) {
     assert.equal(geometry.inputIsTopmost, true, 'Suggestions must not cover the typed input');
     assert.ok(geometry.listTop >= geometry.inputBottom - 1, 'Suggestions must begin below the input');
 
-    await interact(page.locator('#f-title'));
+    await interact(page.locator('#f-type'));
     assert.equal(await list.isHidden(), true, 'Clicking or tapping another field must close suggestions');
     assert.equal(await input.inputValue(), 'Deb', 'Dismissing must preserve the query');
     assert.equal(await page.locator('#location-chips .location-chip').count(), 0, 'Dismissing must not select a place');
@@ -115,7 +116,10 @@ async function verifyViewport(browser, viewport) {
     assert.equal(await list.isHidden(), true);
     assert.equal(await page.locator('#location-chips .location-chip').count(), 2);
     const title = `Böngészős próba – ${viewport.name}`;
-    await page.locator('#f-title').fill(title);
+    await (await editorField(page, '#f-maxPrice')).fill('90');
+    await (await editorField(page, '#f-minArea')).fill('40');
+    await (await editorField(page, '#f-minRooms')).fill('1');
+    await (await editorField(page, '#f-title')).fill(title);
     await editorSave(page, interact);
     await page.getByRole('heading', { name: 'Elkészült a keresési igényed.', exact: true }).waitFor();
     const savedState = await demoState(page);
@@ -135,7 +139,10 @@ async function verifyViewport(browser, viewport) {
     await openSearch(page, interact);
     await choose(page, interact, 'city:Debrecen', 'Debrecen');
     const laterTitle = `Később folytatom – ${viewport.name}`;
-    await page.locator('#f-title').fill(laterTitle);
+    await (await editorField(page, '#f-maxPrice')).fill('90');
+    await (await editorField(page, '#f-minArea')).fill('40');
+    await (await editorField(page, '#f-minRooms')).fill('1');
+    await (await editorField(page, '#f-title')).fill(laterTitle);
     await editorSave(page, interact);
     await page.getByRole('heading', { name: 'Elkészült a keresési igényed.', exact: true }).waitFor();
     await interact(page.locator('.modal-actions [data-action="close"]'));
