@@ -274,8 +274,29 @@ function candidateFromApi(item,activeKind) {
   const score=Math.round(Number(item.compatibilityScore??item.score??100));
   return {...entity,kind:property?'property':'search',score,isExact:item.isExact??score===100,searchSpecificity:Number(item.searchSpecificity??entity.searchSpecificity??0),valueForMoney:Number(item.valueForMoney??0),reasons:clone(item.reasons||[]),matchDetails:matchDetailsFromApi(item.matchDetails),pair:{propertyId,searchId},likedYou:!!(item.likedYou??item.hasLiked)};
 }
-function notificationFromApi(value) {
-  return {id:String(value.id),kind:String(value.kind||''),amount:Number(value.amount||0),text:String(value.text||''),decisionId:value.decisionId==null?null:String(value.decisionId),feedbackPackageId:value.feedbackPackageId==null?null:String(value.feedbackPackageId),createdAt:value.createdAt,readAt:value.readAt??null};
+const notificationPages = new Set(['incoming','messages','insights','credits']);
+const notificationReference = value => typeof value==='string'&&value.trim()&&value.length<=200?value:null;
+function notificationTargetFromApi(value,kind='') {
+  if(!value||typeof value!=='object'||Array.isArray(value))return ['like_refund','feedback_refund','credit_added'].includes(kind)?{page:'credits',entityKind:null,entityId:null,propertyId:null,searchRequestId:null,matchId:null}:null;
+  if(!notificationPages.has(value.page))return null;
+  return {page:value.page,entityKind:['property','search'].includes(value.entityKind)?value.entityKind:null,entityId:notificationReference(value.entityId),propertyId:notificationReference(value.propertyId),searchRequestId:notificationReference(value.searchRequestId),matchId:notificationReference(value.matchId)};
+}
+function notificationFromApi(value={}) {
+  const kind=String(value.kind||'');
+  const result={id:String(value.id),kind,amount:Number(value.amount||0),text:String(value.text||''),decisionId:value.decisionId==null?null:String(value.decisionId),feedbackPackageId:value.feedbackPackageId==null?null:String(value.feedbackPackageId),createdAt:value.createdAt,readAt:value.readAt??null,target:notificationTargetFromApi(value.target,kind)};
+  if(Number.isSafeInteger(value.unreadCount)&&value.unreadCount>=0)result.unreadCount=value.unreadCount;
+  return result;
+}
+function notificationContextFromApi(value={}) {
+  const notification=notificationFromApi(value.notification),target=notificationTargetFromApi(value.target??notification.target,notification.kind);
+  let item=null;
+  if(value.available===true&&notification.kind==='incoming_like'&&target?.page==='incoming'&&target.entityKind&&target.entityId&&value.item){
+    const raw=value.item,candidate=candidateFromApi(raw,target.entityKind);
+    if(candidate.kind==='property')candidate.address='';
+    item={...candidate,likedYou:true,likedAt:raw.likedAt,myDecision:['liked','passed'].includes(raw.myDecision)?raw.myDecision:null,matchId:raw.matchId==null?null:String(raw.matchId),compatible:raw.compatible!==false};
+  }
+  const available=value.available===true&&!!target&&(target.page!=='incoming'||!!item);
+  return {notification,available,target,canActivate:available&&value.canActivate===true&&!!target.entityKind&&!!target.entityId,item};
 }
 const feedbackReason=reason=>FEEDBACK_OPTIONS.find(option=>option.value===reason);
 const feedbackCount=value=>Number.isFinite(Number(value))?Math.max(0,Math.trunc(Number(value))):0;
@@ -406,6 +427,11 @@ export class ApiModel {
     if(typeof id!=='string'||!id.trim())throw new Error('Érvénytelen értesítés.');
     return notificationFromApi(await this.call(`/notifications/${encodeURIComponent(id)}/read`,'PUT'));
   }
+  async getNotificationContext(id,{signal}={}) {
+    if(typeof id!=='string'||!id.trim())throw new Error('Érvénytelen értesítés.');
+    return notificationContextFromApi(await this.call(`/notifications/${encodeURIComponent(id)}/context`,'GET',undefined,{signal}));
+  }
+
   async getPropertyInsights(id,options={}) {
     id=feedbackId(id,'ingatlanazonosító');
     const {offset,limit}=normalizeIncomingPagination(options);

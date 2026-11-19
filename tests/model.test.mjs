@@ -367,6 +367,7 @@ test('incoming pagination is stable, excludes invalid counterparties and isolate
  const noActive=JSON.parse(storage.getItem(STORAGE_KEY));noActive.active={kind:'search',id:null};storage.setItem(STORAGE_KEY,JSON.stringify(noActive));assert.deepEqual(createModel(storage,()=> '2026-11-09T13:00:00.000Z').incomingLikes(),{active:null,items:[],total:0,offset:0,limit:50,hasMore:false,likeCost:0});
 });
 
+const refunds=model=>model.notifications({limit:100}).items.filter(item=>item.kind==='like_refund');
 const REFUND_START='2026-11-01T12:00:00.000Z';
 const REFUND_DEADLINE='2026-11-15T12:00:00.000Z';
 function refundFixture({agent=false}={}) {
@@ -386,15 +387,15 @@ function refundFixture({agent=false}={}) {
 
 test('paid unanswered likes refund exactly at fourteen days once, persisting a private notification and ledger reference',()=>{
  const t=refundFixture();t.setClock('2026-11-15T11:59:59.999Z');
- assert.equal(t.m.getState().credits,t.balance-2);assert.equal(t.m.notifications().total,0);
+ assert.equal(t.m.getState().credits,t.balance-2);assert.equal(refunds(t.m).length,0);
  t.setClock(REFUND_DEADLINE);const refunded=t.m.getState();
- assert.equal(refunded.credits,t.balance);assert.equal(refunded.unreadNotificationCount,1);
+ assert.equal(refunded.credits,t.balance);assert.equal(refunded.unreadNotificationCount,t.m.notifications().unreadCount);
  const entry=refunded.ledger.find(entry=>entry.type==='like_refund');assert.equal(entry.amount,2);assert.equal(entry.refundedDecisionId,t.decision.id);
- const page=t.m.notifications();assert.equal(page.total,1);assert.equal(page.unreadCount,1);assert.equal(page.hasMore,false);
- assert.deepEqual(Object.keys(page.items[0]).sort(),['amount','createdAt','decisionId','id','kind','readAt','text']);
+ const page=t.m.notifications();assert.equal(refunds(t.m).length,1);assert.equal(page.unreadCount,page.total);assert.equal(page.hasMore,false);
+ assert.deepEqual(Object.keys(page.items[0]).sort(),['amount','createdAt','decisionId','feedbackPackageId','id','kind','readAt','target','text']);
  assert.equal(page.items[0].kind,'like_refund');assert.equal(page.items[0].amount,2);assert.match(page.items[0].text,/14 napon/);assert.equal(page.items[0].readAt,null);
  assert.equal(t.m.getState().decisions.find(d=>d.id===t.decision.id).refundedAt,REFUND_DEADLINE);
- const again=t.reload();for(let i=0;i<3;i++){assert.equal(again.getState().credits,t.balance);assert.equal(again.notifications().total,1);}
+ const again=t.reload();for(let i=0;i<3;i++){assert.equal(again.getState().credits,t.balance);assert.equal(refunds(again).length,1);}
  assert.equal(again.getState().ledger.filter(entry=>entry.type==='like_refund').length,1);
 });
 
@@ -403,7 +404,7 @@ test('any opposite decision at or before the deadline blocks a refund, including
   const t=refundFixture(),raw=JSON.parse(t.storage.getItem(STORAGE_KEY));
   raw.decisions.push({id:'opposite',actorKind:'search',actorId:t.item.pair.searchId,...t.item.pair,liked,charged:0,createdAt});
   t.storage.setItem(STORAGE_KEY,JSON.stringify(raw));t.setClock('2026-11-20T12:00:00.000Z');
-  const m=t.reload();assert.equal(m.getState().credits,t.balance-2);assert.equal(m.notifications().total,0);
+  const m=t.reload();assert.equal(m.getState().credits,t.balance-2);assert.equal(refunds(m).length,0);
  }
 });
 
@@ -412,7 +413,7 @@ test('a reaction after fourteen days keeps the due refund and a later mutual mat
  raw.decisions.push({id:'late',actorKind:'search',actorId:t.item.pair.searchId,...t.item.pair,liked:true,charged:0,createdAt:'2026-11-15T12:00:00.001Z'});
  raw.matches.push({id:'late-match',...t.item.pair,createdAt:'2026-11-15T12:00:00.001Z',unread:0,messages:[]});
  t.storage.setItem(STORAGE_KEY,JSON.stringify(raw));t.setClock('2026-11-16T12:00:00.000Z');
- const m=t.reload();assert.equal(m.getState().credits,t.balance);assert.equal(m.notifications().total,1);assert.ok(m.matches().find(item=>item.id==='late-match').partner.email);
+ const m=t.reload();assert.equal(m.getState().credits,t.balance);assert.equal(refunds(m).length,1);assert.ok(m.matches().find(item=>item.id==='late-match').partner.email);
 });
 
 test('agent search refunds the charged one credit; free, passed, foreign and legacy uncharged decisions never create money',()=>{
@@ -420,27 +421,27 @@ test('agent search refunds the charged one credit; free, passed, foreign and leg
  assert.equal(t.m.getState().credits,t.balance);assert.equal(t.m.notifications().items[0].amount,1);
  const storage=store();let clock=REFUND_START;const m=createModel(storage,()=>clock);m.decide(m.feed().find(item=>!item.likedYou),true);
  m.activate('property','own-p1');m.decide(m.feed()[0],false);clock='2026-12-01T12:00:00.000Z';
- assert.equal(m.getState().credits,24);assert.equal(m.notifications().total,0,'Free, pass and foreign seeded likes do not refund');
+ assert.equal(m.getState().credits,24);assert.equal(refunds(m).length,0,'Free, pass and foreign seeded likes do not refund');
  const raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.decisions.push({id:'legacy-uncharged',actorKind:'property',actorId:'own-p1',propertyId:'own-p1',searchId:'s3',liked:true,createdAt:REFUND_START});storage.setItem(STORAGE_KEY,JSON.stringify(raw));
  assert.equal(createModel(storage,()=>clock).getState().credits,24);
 });
 
 test('notification reads are owner-scoped and idempotent, with bounded pagination and stable saved timestamps',()=>{
  const t=refundFixture();t.setClock(REFUND_DEADLINE);const item=t.m.notifications().items[0];
- assert.equal(t.m.getState().unreadNotificationCount,1);const marked=t.m.markNotificationRead(item.id);assert.equal(marked.readAt,REFUND_DEADLINE);
- t.setClock('2026-11-16T12:00:00.000Z');assert.deepEqual(t.m.markNotificationRead(item.id),marked);assert.equal(t.m.getState().unreadNotificationCount,0);
- assert.equal(t.reload().notifications().unreadCount,0);assert.equal(t.m.notifications({offset:1,limit:1}).items.length,0);
+ const unread=t.m.notifications().unreadCount;assert.ok(unread>1);assert.equal(t.m.getState().unreadNotificationCount,unread);const marked=t.m.markNotificationRead(item.id);assert.equal(marked.readAt,REFUND_DEADLINE);
+ t.setClock('2026-11-16T12:00:00.000Z');assert.deepEqual(t.m.markNotificationRead(item.id),marked);assert.equal(t.m.getState().unreadNotificationCount,unread-1);
+ assert.equal(t.reload().notifications().unreadCount,unread-1);assert.equal(t.m.notifications({offset:t.m.notifications().total,limit:1}).items.length,0);
  for(const options of [{offset:-1},{limit:101}])assert.throws(()=>t.m.notifications(options),/lapozási/);
  assert.throws(()=>t.m.markNotificationRead('missing'),/nem található/);
  const raw=JSON.parse(t.storage.getItem(STORAGE_KEY));raw.notifications.push({...item,id:'foreign-notification',userId:'u1'});t.storage.setItem(STORAGE_KEY,JSON.stringify(raw));
- const again=t.reload();assert.equal(again.notifications().total,1);assert.throws(()=>again.markNotificationRead('foreign-notification'),/nem található/);
+ const again=t.reload();assert.equal(refunds(again).length,1);assert.throws(()=>again.markNotificationRead('foreign-notification'),/nem található/);
 });
 
 test('refund storage failure commits neither balance, decision marker, ledger nor notification',()=>{
  const t=refundFixture();t.setClock(REFUND_DEADLINE);const before=t.storage.getItem(STORAGE_KEY);
  const m=createModel({getItem:key=>t.storage.getItem(key),setItem:()=>{throw new Error('quota');}},()=>REFUND_DEADLINE);
  assert.throws(()=>m.getState(),/tárhely/);assert.equal(t.storage.getItem(STORAGE_KEY),before);
- assert.equal(t.reload().getState().credits,t.balance);assert.equal(t.reload().notifications().total,1);
+ assert.equal(t.reload().getState().credits,t.balance);assert.equal(refunds(t.reload()).length,1);
 });
 
 test('no-longer-current reports apply to both account types and keep existing contextual deduplication',()=>{
@@ -455,8 +456,89 @@ test('no-longer-current reports apply to both account types and keep existing co
 test('legacy paid decisions with no valid recorded timestamp cannot produce a synthetic refund',()=>{
  for(const createdAt of [null,'',undefined,'invalid']){
   const t=refundFixture(),raw=JSON.parse(t.storage.getItem(STORAGE_KEY));raw.decisions.find(item=>item.id===t.decision.id).createdAt=createdAt;t.storage.setItem(STORAGE_KEY,JSON.stringify(raw));t.setClock(REFUND_DEADLINE);
-  const m=t.reload();assert.equal(m.getState().credits,t.balance-2);assert.equal(m.notifications().total,0);
+  const m=t.reload();assert.equal(m.getState().credits,t.balance-2);assert.equal(refunds(m).length,0);
  }
+});
+
+function activityFixture(edit=()=>{}) {
+ const storage=store();let at='2026-11-19T10:00:00.000Z';
+ const initial=createModel(storage,()=>at);initial.activate('search','own-s1');
+ const raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.decisions=[];raw.matches=[];raw.ledger=[];raw.notifications=[];
+ edit(raw);storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ return {storage,model:createModel(storage,()=>at),reload:()=>createModel(storage,()=>at),at:value=>{at=value;},
+  edit:change=>{const value=JSON.parse(storage.getItem(STORAGE_KEY));change(value);storage.setItem(STORAGE_KEY,JSON.stringify(value));}};
+}
+
+test('account activity includes inactive owned profiles and resolves exact incoming cards outside the first page',()=>{
+ const t=activityFixture(raw=>{
+  raw.decisions=[{id:'older-like',actorKind:'search',actorId:'s1',propertyId:'own-p1',searchId:'s1',liked:true,createdAt:'2026-11-18T10:00:00.000Z'},
+   {id:'newer-like',actorKind:'property',actorId:'p1',propertyId:'p1',searchId:'own-s1',liked:true,createdAt:'2026-11-19T10:00:00.000Z'}];
+ });
+ const saved=t.storage.getItem(STORAGE_KEY),page=t.model.notifications({limit:1});assert.equal(page.total,2);assert.equal(page.hasMore,true);
+ const old=t.model.notifications({offset:1,limit:1}).items[0];assert.equal(old.target.entityId,'own-p1');assert.equal(old.kind,'incoming_like');
+ const before=t.model.getState(),context=t.model.getNotificationContext(old.id);
+ assert.equal(context.available,true);assert.equal(context.canActivate,true);assert.equal(context.item.id,'s1');assert.equal(context.item.kind,'search');
+ assert.deepEqual(context.item.pair,{propertyId:'own-p1',searchId:'s1'});assert.equal(context.item.myDecision,null);
+ assert.deepEqual(t.model.getState(),before);assert.equal(t.storage.getItem(STORAGE_KEY),saved,'Reading exact context cannot activate, mark read or write storage');
+ assert.doesNotMatch(JSON.stringify({page,context}),/anna@example|peter@example|phone|addressDetails|eventKey|userId|latitude|longitude/);
+ const property=t.model.getNotificationContext(page.items[0].id).item;assert.equal(property.address,'');assert.equal('addressDetails' in property,false);
+ assert.equal(t.model.getState().unreadNotificationCount,2);t.model.activate(context.target.entityKind,context.target.entityId);assert.equal(t.model.incomingLikes().items[0].id,'s1');
+});
+
+test('live likes, mutual matches and messages notify the correct owners once across inactive-profile switches and reloads',()=>{
+ const t=activityFixture(),first=t.model.feed().find(item=>item.id==='p1');
+ assert.equal(t.model.decide(first,true).match,null);assert.equal(t.model.notifications().total,0);
+ t.edit(raw=>{raw.userId='u1';raw.active={kind:'property',id:'p1'};});
+ const seller=t.reload();assert.equal(seller.notifications().items.filter(item=>item.kind==='incoming_like').length,1);
+ const result=seller.decide(seller.feed().find(item=>item.id==='own-s1'),true);assert.ok(result.match);seller.sendMessage(result.match.id,'Szia!');
+ assert.equal(seller.notifications().items.filter(item=>item.kind==='match_created').length,1);assert.equal(seller.notifications().items.filter(item=>item.kind==='message_received').length,0);
+ t.edit(raw=>{raw.userId='me';raw.active={kind:'search',id:'own-s2'};});
+ const buyer=t.reload(),items=buyer.notifications().items;
+ assert.deepEqual(items.map(item=>item.kind).sort(),['incoming_like','match_created','message_received']);assert.ok(items.every(item=>item.target.entityId==='own-s1'));
+ const context=buyer.getNotificationContext(items.find(item=>item.kind==='incoming_like').id);assert.equal(context.item.myDecision,'liked');assert.equal(context.item.matchId,result.match.id);
+ const unread=buyer.notifications().unreadCount,marked=buyer.markNotificationRead(items[0].id);assert.equal(marked.unreadCount,unread-1);
+ t.at('2026-11-19T11:00:00.000Z');assert.deepEqual(buyer.markNotificationRead(items[0].id),marked);assert.equal(t.reload().notifications().unreadCount,unread-1);
+ assert.deepEqual(t.reload().notifications().items.map(item=>item.id),buyer.notifications().items.map(item=>item.id));
+ assert.throws(()=>buyer.markNotificationRead('missing'),/nem található/);assert.throws(()=>buyer.getNotificationContext('missing'),/nem található/);
+ const ownNotice=items[0].id;t.edit(raw=>{raw.userId='u3';raw.active=null;});const other=t.reload();assert.throws(()=>other.getNotificationContext(ownNotice),/nem található/);assert.throws(()=>other.markNotificationRead(ownNotice),/nem található/);
+});
+
+test('deleted profile targets retain notification history, disable incoming actions and still open established conversations',()=>{
+ const t=activityFixture(raw=>{
+  raw.decisions=[{id:'buyer',actorKind:'search',actorId:'own-s1',propertyId:'p1',searchId:'own-s1',liked:true,createdAt:REFUND_START},
+   {id:'seller',actorKind:'property',actorId:'p1',propertyId:'p1',searchId:'own-s1',liked:true,createdAt:REFUND_START}];
+  raw.matches=[{id:'conversation',propertyId:'p1',searchId:'own-s1',createdAt:REFUND_START,messages:[{id:'received-message',senderId:'u1',text:'Szia!',createdAt:REFUND_START}],unread:1}];
+ });
+ const before=t.model.notifications().items;t.model.deleteEntity('search','own-s1');
+ assert.equal(t.model.notifications().total,before.length);
+ for(const item of before){const context=t.model.getNotificationContext(item.id);assert.equal(context.canActivate,false);assert.equal(context.available,item.kind!=='incoming_like');assert.equal(context.item,null);}
+ assert.ok(t.model.matches().find(item=>item.id==='conversation').partner.email,'Contacts remain reachable only through the validated mutual-match route');
+});
+
+test('accepted anonymous feedback and completed packages notify sellers but declining never counts as feedback',()=>{
+ const t=activityFixture(raw=>{
+  raw.userId='u1';raw.active={kind:'search',id:'s1'};
+  raw.feedbackPackages=[{id:'package',ownerId:'me',propertyId:'own-p1',size:10,receivedCount:8,createdAt:'2026-11-18T10:00:00.000Z',expiresAt:'2026-12-02T10:00:00.000Z',refundedAt:null}];
+  raw.feedbackInvitations=['accepted-a','declined','accepted-b'].map(id=>({id,packageId:'package',propertyId:'own-p1',buyerId:'u1',createdAt:'2026-11-19T10:00:00.000Z',expiresAt:'2026-11-19T10:15:00.000Z',answeredAt:null,reason:null}));
+ });
+ assert.equal(t.model.answerFeedback('accepted-a','layout').accepted,true);assert.equal(t.model.answerFeedback('declined','decline').accepted,false);assert.equal(t.model.answerFeedback('accepted-b','lighting').accepted,true);
+ assert.equal(t.model.notifications().total,0);t.edit(raw=>{raw.userId='me';raw.active={kind:'search',id:'own-s2'};});
+ const seller=t.reload(),page=seller.notifications();assert.equal(page.items.filter(item=>item.kind==='feedback_received').length,2);assert.equal(page.items.filter(item=>item.kind==='feedback_completed').length,1);assert.equal(page.total,3);
+ assert.doesNotMatch(JSON.stringify(page),/layout|lighting|decline|buyerId|peter@example/);
+ for(const item of page.items){const context=seller.getNotificationContext(item.id);assert.equal(context.available,true);assert.equal(context.target.page,'insights');assert.equal(context.target.entityId,'own-p1');assert.equal(context.item,null);}
+ seller.markNotificationRead(page.items[0].id);assert.equal(t.reload().notifications().total,3);assert.equal(t.reload().notifications().unreadCount,2);
+ seller.deleteEntity('property','own-p1');assert.ok(seller.notifications().items.every(item=>!seller.getNotificationContext(item.id).available));
+});
+
+test('positive credits and expired feedback packages have separate durable receipts without duplicating refunds',()=>{
+ const t=activityFixture(raw=>{
+  raw.feedbackPackages=[{id:'expired-package',ownerId:'me',propertyId:'own-p1',size:10,receivedCount:8,createdAt:'2026-11-05T10:00:00.000Z',expiresAt:'2026-11-19T10:00:00.000Z',refundedAt:null}];
+ });
+ const balance=t.model.getState().credits;assert.equal(balance,26);
+ const refunded=t.model.notifications().items;assert.deepEqual(refunded.map(item=>item.kind).sort(),['feedback_expired','feedback_refund']);
+ t.model.buyDemoCredits(10);const page=t.model.notifications();assert.equal(page.items.filter(item=>item.kind==='credit_added').length,1);assert.equal(page.items.find(item=>item.kind==='credit_added').amount,10);
+ assert.equal(t.reload().notifications().total,3);assert.equal(t.reload().getState().credits,balance+10);assert.equal(t.reload().getState().ledger.filter(item=>item.type==='feedback_refund').length,1);
+ const refund=page.items.find(item=>item.kind==='feedback_refund');t.model.deleteEntity('property','own-p1');assert.equal(t.model.getNotificationContext(refund.id).available,true);assert.equal(t.model.getNotificationContext(refund.id).target.page,'credits');
 });
 
 const publicFingerprint=items=>items.map(({key,sourceKey,...item})=>JSON.stringify(item)).sort();

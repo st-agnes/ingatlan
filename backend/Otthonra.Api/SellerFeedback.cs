@@ -140,7 +140,7 @@ public static class SellerFeedback
                 await transaction.CommitAsync(cancellationToken);
                 return Results.Ok(new { package = SellerFeedbackPolicy.Package(prior, now), charged = 0, credits = user.Credits });
             }
-            if (property.Archived) throw new ApiException(400, "Archivált ingatlanhoz nem kérhető új visszajelzés.");
+            if (property.Archived) throw new ApiException(400, "Törölt ingatlanhoz nem kérhető új visszajelzés.");
             if (await db.FeedbackPackages.AnyAsync(row => row.PropertyId == id && row.ExpiresAt > now && row.RefundedAt == null, cancellationToken))
                 throw new ApiException(409, "Ehhez az ingatlanhoz már van aktív visszajelzés-csomag.");
             if (user.Credits < input.Size) throw new ApiException(402, "Nincs elegendő kredited a visszajelzés-csomaghoz.");
@@ -192,9 +192,12 @@ public static class SellerFeedback
             // The first read locates the property's lock; authorization is checked again under the actor lock.
             var candidate = await db.FeedbackInvitations.AsNoTracking().SingleOrDefaultAsync(row => row.Id == id && row.BuyerId == uid, cancellationToken)
                 ?? throw new ApiException(404, "A visszajelzéskérés nem található.");
+            var sellerId = await db.Properties.AsNoTracking().Where(row => row.Id == candidate.PropertyId).Select(row => (Guid?)row.OwnerId).SingleOrDefaultAsync(cancellationToken)
+                ?? throw new ApiException(404, "Az ingatlan nem található.");
             await using var transaction = await db.Database.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken);
-            _ = await LockedUserAsync(db, uid, cancellationToken);
-            _ = await LockedPropertyAsync(db, candidate.PropertyId, cancellationToken);
+            _ = await ActivityNotifications.LockUsersAsync(db, new[] { uid, sellerId }, cancellationToken);
+            var lockedProperty = await LockedPropertyAsync(db, candidate.PropertyId, cancellationToken);
+            if (lockedProperty.OwnerId != sellerId) throw new ApiException(409, "A profil közben megváltozott. Frissítsd az oldalt.");
             var package = (await db.FeedbackPackages.FromSqlInterpolated($"SELECT * FROM `FeedbackPackages` WHERE `Id` = {candidate.PackageId} FOR UPDATE")
                 .ToListAsync(cancellationToken)).SingleOrDefault();
             var invitation = (await db.FeedbackInvitations.FromSqlInterpolated($"SELECT * FROM `FeedbackInvitations` WHERE `Id` = {id} FOR UPDATE")

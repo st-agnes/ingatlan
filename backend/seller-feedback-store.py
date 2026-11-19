@@ -79,6 +79,10 @@ FROM UserNotifications ORDER BY Id"""),
 if mode == 'legacy-notification':
     # The API is stopped by CI before altering this owned disposable table.
     assert query('SELECT COUNT(*) FROM FeedbackPackages') == '0', 'Legacy fixture must precede feedback package creation.'
+    # This fixture predates generic activity receipts. Remove only rows which
+    # could not exist with its original NOT NULL decision FK; real refund rows
+    # and all financial sources remain in place and are compared below.
+    query("DELETE FROM UserNotifications WHERE Kind IN ('incoming_like','match_created','message_received','feedback_received','feedback_completed','feedback_expired','credit_added')")
     assert query('SELECT COUNT(*) FROM UserNotifications WHERE DecisionId IS NULL') == '0'
     row = query('SELECT Id,ActorUserId FROM Decisions ORDER BY CreatedAt,Id LIMIT 1').split('\t')
     assert len(row) == 2

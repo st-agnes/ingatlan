@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {locations} from '../dist/locations.js';
 import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi, hostedMode, deploymentEnvironment, fetchLanding, detectLandingRegion } from '../dist/api.js';
 
+const creditsTarget={page:'credits',entityKind:null,entityId:null,propertyId:null,searchRequestId:null,matchId:null};
 const exactAddress={street:'Fiktív teszt utca',houseNumber:'12',postalCode:'1234'};
 const originalFetch = globalThis.fetch;
 const originalStorage = globalThis.localStorage;
@@ -434,7 +435,7 @@ test('notification pages map only recipient-safe fields, retain pagination and e
  const calls=routes(accountRoutes({'/api/me':{...profile,unreadNotificationCount:3},'/api/notifications':{items:[notification],total:8,unreadCount:3,offset:2,limit:1,hasMore:true}}));
  const api=adapter();assert.equal((await api.getState()).unreadNotificationCount,3);
  const page=await api.notifications({offset:2,limit:1});
- assert.deepEqual(page,{items:[{id:notification.id,kind:'like_refund',amount:2,text:notification.text,decisionId:'paid-decision',feedbackPackageId:null,createdAt:notification.createdAt,readAt:null}],total:8,unreadCount:3,offset:2,limit:1,hasMore:true});
+ assert.deepEqual(page,{items:[{id:notification.id,kind:'like_refund',amount:2,text:notification.text,decisionId:'paid-decision',feedbackPackageId:null,createdAt:notification.createdAt,readAt:null,target:creditsTarget}],total:8,unreadCount:3,offset:2,limit:1,hasMore:true});
  assert.equal(JSON.stringify(page).includes('PRIVATE-'),false);
  const request=calls.find(call=>call.path==='/api/notifications');assert.equal(request.headers.Authorization,'Bearer sample-token');
  const before=calls.length;for(const options of [{offset:-1},{limit:0},{limit:101}])await assert.rejects(api.notifications(options),/lapozási/);assert.equal(calls.length,before);
@@ -443,10 +444,49 @@ test('notification pages map only recipient-safe fields, retain pagination and e
 test('notification read calls are authenticated and encoded, preserve the server timestamp, and surface access failures',async()=>{
  const item={id:'notice/id',kind:'like_refund',amount:1,text:'Visszatérítés',decisionId:'decision',createdAt:'2026-11-15T12:00:00Z',readAt:'2026-11-16T12:00:00Z'};
  const calls=routes({'/api/notifications/notice%2Fid/read':item}),api=adapter();
- assert.deepEqual(await api.markNotificationRead('notice/id'),{...item,feedbackPackageId:null});assert.equal(calls[0].method,'PUT');assert.equal(calls[0].headers.Authorization,'Bearer sample-token');assert.equal(calls[0].body,undefined);
+ assert.deepEqual(await api.markNotificationRead('notice/id'),{...item,feedbackPackageId:null,target:creditsTarget});assert.equal(calls[0].method,'PUT');assert.equal(calls[0].headers.Authorization,'Bearer sample-token');assert.equal(calls[0].body,undefined);
  for(const id of ['',null,1])await assert.rejects(api.markNotificationRead(id),/értesítés/);assert.equal(calls.length,1);
  routes({'/api/notifications/unknown/read':()=>response({message:'Az értesítés nem található.'},404)});
  await assert.rejects(api.markNotificationRead('unknown'),error=>error.status===404&&/nem található/.test(error.message));
+});
+
+test('notification context opens the exact inactive-profile like without loading state or leaking private source fields',async()=>{
+ const target={page:'incoming',entityKind:'search',entityId:ids.search,propertyId:ids.property,searchRequestId:ids.search,matchId:null};
+ const notice={id:'notice/id',kind:'incoming_like',text:'Új kedvelés',createdAt:'2026-11-19T10:00:00Z',target,eventKey:'PRIVATE-RECEIPT',userId:'PRIVATE-RECIPIENT'};
+ const raw={notification:notice,target:{...target,privateField:'PRIVATE-TARGET'},available:true,canActivate:true,
+  item:{propertyId:ids.property,searchRequestId:ids.search,property:{...property,address:'PRIVATE-ADDRESS',email:'PRIVATE-EMAIL',phone:'PRIVATE-PHONE',addressDetails:{street:'PRIVATE-STREET',houseNumber:'PRIVATE-HOUSE'},latitude:47.123,longitude:19.123},likedAt:notice.createdAt,myDecision:'passed',matchId:null,compatible:false,compatibilityScore:68,partner:{email:'PRIVATE-PARTNER'}}};
+ const calls=routes({'/api/notifications/notice%2Fid/context':raw}),api=adapter();api.active={kind:'property',id:'another-profile'};
+ const before={...api.active},context=await api.getNotificationContext('notice/id');
+ assert.deepEqual(context.target,target);assert.deepEqual(context.notification.target,target);assert.equal(context.available,true);assert.equal(context.canActivate,true);
+ assert.deepEqual(context.item.pair,{propertyId:ids.property,searchId:ids.search});assert.equal(context.item.id,ids.property);assert.equal(context.item.kind,'property');
+ assert.equal(context.item.price,72.9);assert.equal(context.item.score,68);assert.equal(context.item.myDecision,'passed');assert.equal(context.item.compatible,false);assert.equal(context.item.address,'');
+ assert.doesNotMatch(JSON.stringify(context),/PRIVATE-|latitude|longitude|addressDetails|eventKey|userId/);
+ assert.equal(calls.length,1);assert.equal(calls[0].method,'GET');assert.equal(calls[0].headers.Authorization,'Bearer sample-token');assert.deepEqual(api.active,before);
+ for(const id of ['',null,1])await assert.rejects(api.getNotificationContext(id),/értesítés/);assert.equal(calls.length,1);
+});
+
+test('notification contexts map both profile sides and retain unavailable history with safe known destinations',async()=>{
+ const target={page:'incoming',entityKind:'property',entityId:ids.property,propertyId:ids.property,searchRequestId:ids.search,matchId:null};
+ const notice={id:'incoming',kind:'incoming_like',target};
+ routes({'/api/notifications/incoming/context':{notification:notice,target,available:true,canActivate:true,item:{propertyId:ids.property,searchRequestId:ids.search,searchRequest:{...search,phone:'PRIVATE-PHONE'},myDecision:'liked',matchId:ids.match,compatible:true}}});
+ const api=adapter(),context=await api.getNotificationContext('incoming');assert.equal(context.item.kind,'search');assert.equal(context.item.id,ids.search);assert.equal(context.item.maxPrice,85);assert.equal(context.item.matchId,ids.match);assert.doesNotMatch(JSON.stringify(context),/PRIVATE-/);
+ const archivedTarget={...target,page:'messages',matchId:ids.match};
+ routes({'/api/notifications/history/context':{notification:{id:'history',kind:'message_received',target:archivedTarget},target:archivedTarget,available:true,canActivate:false,item:{partner:{email:'PRIVATE-CONTACT'}}}});
+ const history=await api.getNotificationContext('history');assert.equal(history.available,true);assert.equal(history.canActivate,false);assert.equal(history.item,null);assert.equal(history.target.matchId,ids.match);
+ routes({'/api/notifications/gone/context':{notification:notice,target,available:false,canActivate:true,item:{property}}});
+ const gone=await api.getNotificationContext('gone');assert.equal(gone.available,false);assert.equal(gone.canActivate,false);assert.equal(gone.item,null);
+ routes({'/api/notifications/invalid/context':{notification:{id:'invalid',kind:'incoming_like'},target:{page:'https://foreign.invalid',entityKind:'search',entityId:ids.search},available:true,canActivate:true,item:{property}}});
+ const invalid=await api.getNotificationContext('invalid');assert.equal(invalid.target,null);assert.equal(invalid.available,false);assert.equal(invalid.canActivate,false);
+ routes({'/api/notifications/foreign/context':()=>response({message:'Az értesítés nem található.'},404)});
+ await assert.rejects(api.getNotificationContext('foreign'),error=>error.status===404);
+});
+
+test('notification read responses preserve only authoritative nonnegative integer unread counts',async()=>{
+ for(const count of [0,5,-1,1.5,'5',null]){
+  routes({'/api/notifications/read-count/read':{id:'read-count',kind:'credit_added',amount:10,unreadCount:count,ownerId:'PRIVATE-OWNER',target:{...creditsTarget,addressDetails:'PRIVATE-ADDRESS'}}});
+  const item=await adapter().markNotificationRead('read-count');assert.equal('unreadCount' in item,Number.isSafeInteger(count)&&count>=0);
+  if('unreadCount' in item)assert.equal(item.unreadCount,count);assert.deepEqual(item.target,creditsTarget);assert.doesNotMatch(JSON.stringify(item),/PRIVATE-/);
+ }
 });
 
 test('hosted landing is anonymous and same-origin, converts HUF and discards private or raw listing fields',async()=>{
@@ -623,6 +663,7 @@ test('all scoped view reads reject an already cancelled signal without sending a
   ()=>model.feed({signal:controller.signal}),()=>model.matches({signal:controller.signal}),
   ()=>model.pendingFeedback({signal:controller.signal}),()=>model.getFeedbackScenario({signal:controller.signal}),
   ()=>model.incomingLikes({signal:controller.signal}),()=>model.notifications({signal:controller.signal}),
+  ()=>model.getNotificationContext('notice',{signal:controller.signal}),
   ()=>model.getPropertyInsights(ids.property,{signal:controller.signal}),()=>fetchLanding({signal:controller.signal})
  ])await assert.rejects(read(),error=>error.code==='API_READ_CANCELLED');
  assert.equal(calls,0);

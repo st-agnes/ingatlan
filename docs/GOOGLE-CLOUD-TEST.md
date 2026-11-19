@@ -379,3 +379,13 @@ A menüváltás a meglévő, ugyanahhoz a bejelentkezéshez tartozó adatokkal a
 A háttérbe kerülés és új navigáció megszakíthatja az elavult képernyőhöz tartozó adatlekéréseket. A folyamatban lévő mentéseket, kedveléseket és kreditműveleteket ez nem indítja újra. A műveleti zárolás a szerver visszaigazolásáig marad érvényben, a későbbi adatfrissítés külön működik. A felfedezésben az elavult kártyák nem bírálhatók el újra a friss ajánlások és visszajelzéskérések ellenőrzése előtt.
 
 A CI `tests/tab-resume-browser.test.mjs` próbái késleltetett szerverválasszal és Chromium-fagyasztás/visszatérés mellett ellenőrzik a viselkedést asztali, tablet- és mobilméreten. A külön API-tesztek az olvasások megszakítását, a késői válaszok figyelmen kívül hagyását és az írások változatlan végrehajtását ellenőrzik.
+
+## Értesítések az összes saját profilhoz
+
+Az értesítési lista a fiók összes ingatlanjához és kereséséhez kapcsolódó eseményeket tartalmazza, az aktív profil kiválasztásától függetlenül. Új kedvelés, párosítás, beérkezett üzenet, névtelen ingatlan-visszajelzés, visszajelzés-csomag teljesülése/lejárata, kreditjóváírás és visszatérítés is megjelenhet benne. A korábbi események egyszeri feltöltése az induláskor történik; a már olvasott visszatérítések azonosítója és olvasási időpontja megmarad.
+
+A „Megtekintés” szükség esetén aktiválja az értesítéshez tartozó saját profilt, majd a konkrét érdeklődőt, beszélgetést, ingatlanstatisztikát vagy krediteket nyitja meg. Régebbi kedvelés akkor is közvetlenül megnyitható, ha nincs a „Téged kedveltek” lista első oldalán. Törölt profilra nem lehet visszaváltani; a korábbi párosításhoz tartozó beszélgetés ettől még megmarad.
+
+A kiválasztott értesítés megnyitáskor olvasottá válik, vagy külön olvasottnak jelölhető. A lista megnyitása nem jelöli olvasottnak a többi eseményt. A menüben és a fejlécben az olvasatlanok száma látható, és az olvasottság újraindítás után, illetve több böngészőfül esetén is megmarad. A visszajelzések továbbra is névtelenek; az értesítések nem fedik fel a kereső személyét.
+
+A profil eltávolításának neve „Törlés”, mivel a felületen nincs visszaállítás. A történeti párosítások, üzenetek és kreditbizonylatok megmaradnak. A normál tesztdeploy automatikusan alkalmazza az additív értesítési sémát és a történeti feltöltést; új kulcs vagy kézi cloudbeállítás nem szükséges.

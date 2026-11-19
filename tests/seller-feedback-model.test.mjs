@@ -126,7 +126,7 @@ test('missing responses refund once at fourteen days, notify the owner and allow
  const t=fixture(),m=t.model,start=m.getState().credits,pkg=m.buyFeedbackPackage('own-p1',10,REQUEST).package;
  t.edit(raw=>{raw.feedbackPackages[0].receivedCount=2;});const again=t.reload();t.at('2026-11-24T11:59:59.999Z');assert.equal(again.getState().credits,start-10);
  t.at(END);const insights=again.getPropertyInsights('own-p1');assert.equal(insights.activePackage,null);assert.equal(insights.packages[0].refundedCredits,8);assert.equal(again.getState().credits,start-2);
- assert.equal(again.notifications().items.filter(item=>item.feedbackPackageId===pkg.id).length,1);assert.equal(again.getState().ledger.filter(item=>item.refundedFeedbackPackageId===pkg.id).length,1);
+ assert.equal(again.notifications().items.filter(item=>item.kind==='feedback_refund'&&item.feedbackPackageId===pkg.id).length,1);assert.equal(again.getState().ledger.filter(item=>item.refundedFeedbackPackageId===pkg.id).length,1);
  assert.equal(t.reload().getState().credits,start-2);assert.equal(again.buyFeedbackPackage('own-p1',10,REQUEST).charged,0);
  assert.equal(again.buyFeedbackPackage('own-p1',20,NEXT).charged,20);assert.equal(again.getPropertyInsights('own-p1').activePackage.size,20);
 });
@@ -134,7 +134,7 @@ test('missing responses refund once at fourteen days, notify the owner and allow
 test('completed packages still block replacement until the end and generate no unused-credit refund',()=>{
  const t=fixture();t.model.buyFeedbackPackage('own-p1',10,REQUEST);t.edit(raw=>{raw.feedbackPackages[0].receivedCount=10;});const m=t.reload(),balance=m.getState().credits;
  assert.equal(m.getPropertyInsights('own-p1').activePackage.status,'completed');assert.throws(()=>m.buyFeedbackPackage('own-p1',10,NEXT),/aktív/);
- t.at(END);assert.equal(m.getState().credits,balance);assert.equal(m.notifications().total,0);assert.equal(m.getState().ledger.filter(item=>item.type==='feedback_refund').length,0);
+ t.at(END);assert.equal(m.getState().credits,balance);assert.equal(m.notifications().items.filter(item=>item.kind==='feedback_refund').length,0);assert.equal(m.getState().ledger.filter(item=>item.type==='feedback_refund').length,0);
 });
 
 test('expired prompts reject late answers and a failed refund commit preserves the original balance and package',()=>{

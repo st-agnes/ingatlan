@@ -68,7 +68,7 @@ FROM CreditEntries WHERE RefundedDecisionId IN ({ids}) ORDER BY Id""")
     notifications = query(f"""SELECT Id,UserId,DecisionId,Kind,Amount,Text,
 DATE_FORMAT(CreatedAt,'%Y-%m-%dT%H:%i:%s.%fZ'),
 COALESCE(DATE_FORMAT(ReadAt,'%Y-%m-%dT%H:%i:%s.%fZ'),'NULL')
-FROM UserNotifications WHERE UserId IN ({users}) ORDER BY Id""")
+FROM UserNotifications WHERE UserId IN ({users}) AND Kind='like_refund' ORDER BY Id""")
     balances = query(f'SELECT Id,Credits FROM Users WHERE Id IN ({users}) ORDER BY Id')
     return {'decisions': decisions, 'charges': charges, 'refunds': refunds,
             'notifications': notifications, 'balances': balances}

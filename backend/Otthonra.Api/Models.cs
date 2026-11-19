@@ -149,6 +149,12 @@ public sealed class UserNotification
     public Guid UserId { get; set; }
     public Guid? DecisionId { get; set; }
     public Guid? FeedbackPackageId { get; set; }
+    public string? EventKey { get; set; }
+    public string? EntityKind { get; set; }
+    public Guid? EntityId { get; set; }
+    public Guid? PropertyId { get; set; }
+    public Guid? SearchRequestId { get; set; }
+    public Guid? MatchId { get; set; }
     public string Kind { get; set; } = "like_refund";
     public int Amount { get; set; }
     public string Text { get; set; } = "";
@@ -184,11 +190,11 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
     public DbSet<FeedbackPackage> FeedbackPackages => Set<FeedbackPackage>();
     public DbSet<FeedbackInvitation> FeedbackInvitations => Set<FeedbackInvitation>();
     public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
-        => PropertyNeighborhoodIndex.SaveAsync(this,
-            () => SearchLocationIndex.SaveAsync(this, () => base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken), cancellationToken), cancellationToken);
+        => ActivityNotifications.SaveAsync(this, () => PropertyNeighborhoodIndex.SaveAsync(this,
+            () => SearchLocationIndex.SaveAsync(this, () => base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken), cancellationToken), cancellationToken), cancellationToken);
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
-        => PropertyNeighborhoodIndex.SaveAsync(this,
-            () => SearchLocationIndex.SaveAsync(this, () => Task.FromResult(base.SaveChanges(acceptAllChangesOnSuccess)), CancellationToken.None), CancellationToken.None)
+        => ActivityNotifications.SaveAsync(this, () => PropertyNeighborhoodIndex.SaveAsync(this,
+            () => SearchLocationIndex.SaveAsync(this, () => Task.FromResult(base.SaveChanges(acceptAllChangesOnSuccess)), CancellationToken.None), CancellationToken.None), CancellationToken.None)
             .GetAwaiter().GetResult();
     protected override void OnModelCreating(ModelBuilder b)
     {
@@ -217,6 +223,8 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<CreditEntry>().HasIndex(x => x.RefundedDecisionId).IsUnique();
         b.Entity<UserNotification>().HasIndex(x => x.DecisionId).IsUnique();
         b.Entity<UserNotification>().HasIndex(x => new { x.UserId, x.CreatedAt });
+        b.Entity<UserNotification>().HasIndex(x => new { x.UserId, x.EventKey }).IsUnique();
+        b.Entity<UserNotification>().HasIndex(x => new { x.UserId, x.ReadAt, x.CreatedAt });
         b.Entity<Decision>().HasIndex(x => new { x.Liked, x.RefundedAt, x.CreatedAt });
         b.Entity<Property>().HasIndex(x => new { x.OwnerId, x.Archived });
         b.Entity<Property>().HasIndex(x => new { x.OwnerId, x.CreationRequestId }).IsUnique();
@@ -251,6 +259,8 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<PropertyNeighborhood>().HasOne<Property>().WithMany().HasForeignKey(x => x.PropertyId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<PropertyNeighborhood>().Property(x => x.NeighborhoodId).HasMaxLength(64).UseCollation("ascii_bin").HasCharSet("ascii");
         b.Entity<Property>().Property(x => x.StreetId).HasMaxLength(64).UseCollation("ascii_bin").HasCharSet("ascii");
+        b.Entity<UserNotification>().Property(x => x.EventKey).HasMaxLength(160).UseCollation("ascii_bin").HasCharSet("ascii");
+        b.Entity<UserNotification>().Property(x => x.EntityKind).HasMaxLength(20);
         b.Entity<Property>().Property(x => x.CreationRequestHash).HasMaxLength(64).UseCollation("ascii_bin").HasCharSet("ascii");
         b.Entity<SearchRequest>().Property(x => x.CreationRequestHash).HasMaxLength(64).UseCollation("ascii_bin").HasCharSet("ascii");
         b.Entity<Decision>().HasOne<Property>().WithMany().HasForeignKey(x => x.PropertyId).OnDelete(DeleteBehavior.Restrict);
